@@ -1,0 +1,2285 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-la-medicaid-preface-explanatory-notes
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Preface / Explanatory Notes'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/PREFACE.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/preface-explanatory-notes
+  request: &id001
+    browser_user_agent: true
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Preface / Explanatory Notes
+- source_id: us-la-medicaid-a-100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): A - 100 Abbreviations and Acronyms'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/A-100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/a-100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: A-100
+- source_id: us-la-medicaid-a-200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): A - 200 Definitions'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/A-200.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/a-200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: A-200
+- source_id: us-la-medicaid-b-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): B - 0000 Introduction'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/B-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/b-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: B-0000
+- source_id: us-la-medicaid-c-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): C - 0000 Medical Services'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/C-0000.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/c-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: C-0000
+- source_id: us-la-medicaid-e-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): E - 0000 Category'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/E-0000.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/e-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: E-0000
+- source_id: us-la-medicaid-f-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): F - 0000 Medical Programs'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/F-0000.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/f-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: F-0000
+- source_id: us-la-medicaid-g-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): G - 0000 Application Processing'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/G-0000m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/g-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: G-0000
+- source_id: us-la-medicaid-h-100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 100 General Information'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-100
+- source_id: us-la-medicaid-h-600
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 600 Extended Medicaid'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-600.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-600
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-600
+- source_id: us-la-medicaid-h-700
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 700 SSI Retroactive Medicaid'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-700.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-700
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-700
+- source_id: us-la-medicaid-h-800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 800 Long Term Care'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-800.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-800
+- source_id: us-la-medicaid-h-900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 900 Home and Community Based Services (HCBS)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-900.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-900
+- source_id: us-la-medicaid-h-1000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1000 Medically Needy Program - General Information'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1000
+- source_id: us-la-medicaid-h-1020
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1020 Regular and Spend-Down Medically Needy - MAGI Related'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1020m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1020
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1020
+- source_id: us-la-medicaid-h-1030
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1030 Spend-Down Medically Needy - SSI Related'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1030
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1030
+- source_id: us-la-medicaid-h-1040
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1040 Spend-Down Medically Needy - Long Term Care - SSI Related'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1040
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1040
+- source_id: us-la-medicaid-h-1050
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1050 Spend-Down Medically Needy - Home and Community Based Services
+    - SSI Related'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1050.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1050
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1050
+- source_id: us-la-medicaid-h-1100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1100 Qualified Medicare Beneficiary (QMB)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1100
+- source_id: us-la-medicaid-h-1200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1200 Qualified Disabled and Working Individuals (QDWI)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1200.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1200
+- source_id: us-la-medicaid-h-1300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1300 Specified Low-Income Medicare Beneficiary (SLMB)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1300.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1300
+- source_id: us-la-medicaid-h-1400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1400 Breast and Cervical Cancer Program'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1400
+- source_id: us-la-medicaid-h-1500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1500 Continued Medicaid'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1500.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1500
+- source_id: us-la-medicaid-h-1600
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1600 Tuberculosis Infected (TB)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1600m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1600
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1600
+- source_id: us-la-medicaid-h-1800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1800 Retroactive Medical Eligibility (RME)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1800.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1800
+- source_id: us-la-medicaid-h-1900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 1900 Twelve (12) Months Continuous Eligibility'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-1900.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-1900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-1900
+- source_id: us-la-medicaid-h-2000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2000 Qualifying Individuals Program (QI)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2000
+- source_id: us-la-medicaid-h-2100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2100 Medicaid Purchase Plan (MPP)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2100m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2100
+- source_id: us-la-medicaid-h-2300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2300 Family Opportunity Act Medicaid Program'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2300
+- source_id: us-la-medicaid-h-2400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2400 Refugee Medical Assistance'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2400
+- source_id: us-la-medicaid-h-2500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2500 Youth Aging Out of Foster Care'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2500
+- source_id: us-la-medicaid-h-2800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2800 Parents and Caretaker Relatives'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2800m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2800
+- source_id: us-la-medicaid-h-2900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 2900 MAGI Pregnant Women'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-2900m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-2900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-2900
+- source_id: us-la-medicaid-h-3010
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3010 Children Under Age 19 Group - Deemed Newborn Children'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3010m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3010
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3010
+- source_id: us-la-medicaid-h-3020
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3020 CHAMP'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3020m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3020
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3020
+- source_id: us-la-medicaid-h-3030
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3030 LaCHIP'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3030m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3030
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3030
+- source_id: us-la-medicaid-h-3040
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3040 LaCHIP Affordable Plan'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3040m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3040
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3040
+- source_id: us-la-medicaid-h-3050
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3050 LaCHIP Phase IV'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3050m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3050
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3050
+- source_id: us-la-medicaid-h-3100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3100 Former Foster Care Children'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3100m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3100
+- source_id: us-la-medicaid-h-3200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3200 Hospital Presumptive Eligibility (HPE)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3200.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3200
+- source_id: us-la-medicaid-h-3300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3300 Provisional Medicaid'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3300
+- source_id: us-la-medicaid-h-3400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3400 Take Charge Plus'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3400
+- source_id: us-la-medicaid-h-3500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3500 Adult Group'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3500
+- source_id: us-la-medicaid-h-3600
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3600 Program of All Inclusive Care for the Elderly (PACE)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3600.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3600
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3600
+- source_id: us-la-medicaid-h-3800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3800 Act 421 Children''s Medicaid Option (TEFRA)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3800.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3800
+- source_id: us-la-medicaid-h-3900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): H - 3900 Louisiana Health Insurance Premium Payment Program (LaHIPP)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-3900.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/h-3900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: H-3900
+- source_id: us-la-medicaid-i-100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 100 Age - MAGI Related'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-100m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-100
+- source_id: us-la-medicaid-i-200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 200 Assignment of Third Party Rights'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-200m.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-200
+- source_id: us-la-medicaid-i-300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 300 Citizenship / Identity and Qualified Non-Citizen Status'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-300.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-300
+- source_id: us-la-medicaid-i-400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 400 Continuity of Stay (LTC Only, Except HCBS)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-400
+- source_id: us-la-medicaid-i-500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 500 Deprivation'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-500
+- source_id: us-la-medicaid-i-600
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 600 Enumeration'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-600.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-600
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-600
+- source_id: us-la-medicaid-i-800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 800 Home'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-800.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-800
+- source_id: us-la-medicaid-i-900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 900 Institutionalization'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-900.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-900
+- source_id: us-la-medicaid-i-1000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1000 Medical Certification'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1000
+- source_id: us-la-medicaid-i-1100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1100 Medicare Ineligibility'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1100.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1100
+- source_id: us-la-medicaid-i-1200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1200 Mother''s Medicaid Eligibility (Deemed Newborn Children)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1200.PDF
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1200
+- source_id: us-la-medicaid-i-1400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1400 Need - General Information'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1400
+- source_id: us-la-medicaid-i-1500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1500 Need - Income'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1500
+- source_id: us-la-medicaid-i-1530
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1530 Need - SSI-Related Income'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1530.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1530
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1530
+- source_id: us-la-medicaid-i-1550
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1550 MAGI Determinations'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1550m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1550
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1550
+- source_id: us-la-medicaid-i-1600
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1600 Need - Resources - General Information'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1600.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1600
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1600
+- source_id: us-la-medicaid-i-1620
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1620 Long-Term Care Partnership (LTCP) Program'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1620.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1620
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1620
+- source_id: us-la-medicaid-i-1630
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1630 Need - SSI-Related Resources'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1630.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1630
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1630
+- source_id: us-la-medicaid-i-1660
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1660 Spousal Impoverishment Resource Provisions (LTC/HCBS)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1660.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1660
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1660
+- source_id: us-la-medicaid-i-1670
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1670 Transfer of Assets For Less Than Fair Market Value'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1670.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1670
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1670
+- source_id: us-la-medicaid-i-1700
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1700 Trusts'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1700.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1700
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1700
+- source_id: us-la-medicaid-i-1900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 1900 Residence'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-1900m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-1900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-1900
+- source_id: us-la-medicaid-i-2000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 2000 Support Enforcement Services'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-2000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-2000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-2000
+- source_id: us-la-medicaid-i-2100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 2100 Supplemental Security Income (SSI) Eligibility'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-2100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-2100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-2100
+- source_id: us-la-medicaid-i-2200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): I - 2200 Creditable Health Insurance'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/I-2200.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/i-2200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: I-2200
+- source_id: us-la-medicaid-j-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): J - 0000 Medicaid Eligibility Cards and Optional State Supplement Payments'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/J-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/j-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: J-0000
+- source_id: us-la-medicaid-k-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): K - 0000 Renewals'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/K-0000m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/k-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: K-0000
+- source_id: us-la-medicaid-l-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): L - 0000 Changes'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/L-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/l-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: L-0000
+- source_id: us-la-medicaid-n-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): N - 0000 Special Processing'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/N-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/n-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: N-0000
+- source_id: us-la-medicaid-p-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): P - 0000 Third Party Liability (TPL)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/P-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/p-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: P-0000
+- source_id: us-la-medicaid-q-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Q - 0000 Inquiries and Complaints'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Q-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/q-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Q-0000
+- source_id: us-la-medicaid-r-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): R - 0000 Authorized Representation'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/R-0000m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/r-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: R-0000
+- source_id: us-la-medicaid-s-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): S - 0000 Verification and Documentation'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/S-0000m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/s-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: S-0000
+- source_id: us-la-medicaid-t-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): T - 0000 Fair Hearings'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/T-0000m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/t-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: T-0000
+- source_id: us-la-medicaid-u-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): U - 0000 Fraud and Recovery'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/U-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/u-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: U-0000
+- source_id: us-la-medicaid-x-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): X - 0000 Retirees'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/X-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/x-0000
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: X-0000
+- source_id: us-la-medicaid-z-100
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 100 Maximum SSI Student Child Earned Income Exclusion Amounts'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-100
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-100
+- source_id: us-la-medicaid-z-200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 200 Federal Poverty Income Guidelines'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-200m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-200
+- source_id: us-la-medicaid-z-300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 300 Medically Needy Income Eligibility Standards (MNIES)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-300
+- source_id: us-la-medicaid-z-400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 400 Federal Benefit Rate (FBR)'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-400
+- source_id: us-la-medicaid-z-500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 500 Filing Requirements for Children and Tax Dependents'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-500
+- source_id: us-la-medicaid-z-700
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 700 LTC/HCBS SIL Rate, Resource Limits and Personal Care Needs
+    Allowance'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-700.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-700
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-700
+- source_id: us-la-medicaid-z-800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 800 Spousal Impoverishment Maintenance Needs and Resource Standards'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-800.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-800
+- source_id: us-la-medicaid-z-900
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 900 Resource Limits by Program'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-900m.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-900
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-900
+- source_id: us-la-medicaid-z-1200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 1200 Life Expectancy Tables'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-1200.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-1200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-1200
+- source_id: us-la-medicaid-z-1300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 1300 Usufruct and Remainder Interest Tables'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-1300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-1300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-1300
+- source_id: us-la-medicaid-z-1400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 1400 Social Security Cost of Living Adjustment (COLA) Extended
+    Medicaid Only'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-1400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-1400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-1400
+- source_id: us-la-medicaid-z-1500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 1500 Deeming Allowance'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-1500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-1500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-1500
+- source_id: us-la-medicaid-z-1800
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 1800 SSI Disability Denial Codes'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-1800.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-1800
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-1800
+- source_id: us-la-medicaid-z-2200
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 2200 Medicare Savings Program Resource Limits'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-2200.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-2200
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-2200
+- source_id: us-la-medicaid-z-2300
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 2300 Home Equity Limits by Year'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-2300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-2300
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-2300
+- source_id: us-la-medicaid-z-2400
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 2400 Average Projected Rates For MNP By Program'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-2400.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-2400
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-2400
+- source_id: us-la-medicaid-z-2500
+  jurisdiction: us-la
+  document_class: manual
+  title: 'Louisiana Medicaid Eligibility Manual (LDH): Z - 2500 Premium Program Income Limits'
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-2500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-la/manual/ldh/medicaid/z-2500
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Louisiana Medicaid Eligibility Manual (LDH)
+    manual_index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    section: Z-2500

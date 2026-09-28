@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "b06fd64fb606db4a7fb6d7b24207c0832f53b8c82efcea6e0bb2826fb66b83ab"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "47f422ae889de6e41e7409c4da4edc6fbe093812fc3ec1cde9ad8949c2258e27"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/manual/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "7f63030a5f9394c487ec58d39c5d41c43e1e298d071cc034932137b0ec025dcf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-nh-dhhs-sr-25-32.html",
+      "sha256": "a95b2d92daafd0bba6c03cafb018f7ccf6e364bf201f7088e32ac7232b80887f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-nh-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T17:24:48.847222+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v2+00LlBYKIURXmBk54jJw4rNWc1fBbiEdtqW9PlQSHCJy0eD/Q1BvmkqGf0rXqS2LEUjqAdpmdeTyytiAK1Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

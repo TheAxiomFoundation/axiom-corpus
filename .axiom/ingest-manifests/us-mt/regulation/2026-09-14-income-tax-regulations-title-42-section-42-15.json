@@ -1,0 +1,501 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15.json",
+      "sha256": "5989a986135ecbee8b9f5c16d80b72c2caf198cff45b3dd8aeb3607e1820a025"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15.json",
+      "sha256": "b334a96e3b48ca3e251e5fd6914de77aedd59eee6394be41461acd20fd3791b8"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15.jsonl",
+      "sha256": "0e077366cc78db0b3a1fc4964e7faa224e3cfa94ad9195c42f46cedc323f365e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/collections.json",
+      "sha256": "de408e7e6fe652f470e4b14115a0e384e0421a01e7f1dc5574c4b46157b871fb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1001-277a7bec-f688-4047-8dc9-b4db5b64dd67.html",
+      "sha256": "47d5ffa93bf3d513df13e4279ada291c29d1dc34e770837c9fd5fd0f50aec2e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1002-4d14b7f1-2a7a-4cfc-92a8-17a39c4460b6.html",
+      "sha256": "228285231c6c4ba0f9bed19da0995a2d06f7e7f833a187ec342c5a875027041d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1003-0a1d5afb-9d59-49ea-a407-f1e01d1cee21.html",
+      "sha256": "b5bff6d9a63b4dc995eb6e2fdf9775f2c6b002c187d5525110765104f418bab4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1004-e6f7a63f-dfcf-4ced-800d-3e1cff643241.html",
+      "sha256": "2f3c06b41a6c9db6a25d44d0c9f139def52f678fed82f969f130e7cd3befdc91"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-107-01676e03-1fd8-4f8c-b23f-042a88ba809a.html",
+      "sha256": "18f285e045ad8b11c33a9dd1f2394ef9af9d88bcba02cbeaaa8e1dd120c4a935"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-108-5cbdaf8f-5389-4a63-aaa0-873c260b98f2.html",
+      "sha256": "802617877be65f491df54374d38d13610c5070e7777f1bf7571670644d2068c7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-109-b6860593-4d1c-4bfb-97fc-c0a8e59b0759.html",
+      "sha256": "aae1221d6fbae2620b0381080bec1d2e2defb9d5323d516580e7f8a3f9f6dbcc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-110-10087e71-bd38-4b3c-b235-466aaf5cde88.html",
+      "sha256": "a77544daca2d9a113317592be4a197e01143858a396e3ccf0197a388eebf5f4d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-119-a77bcdce-ec68-4728-a635-000da34aff62.html",
+      "sha256": "823d7edb9911668aaa1e16a3e6eb545dc23226ef195808fbc6a8c4547af1b014"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-120-a05f947b-aafc-47cd-8473-c917bf84663a.html",
+      "sha256": "805bd7627142c46c1a0bc076206647b03684f20eb0cf97793a4133f177ee67a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-125-781d2f7b-223e-4ff5-aaf1-7000f9b4d27c.html",
+      "sha256": "5103ce0698de246d3f00ba6efd116293a5444e56d2df2cf0e4c5e3578dc1878f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1501-3e7310ba-441e-4b10-ac7a-48770622f709.html",
+      "sha256": "8fd6267e4c8626b44ee9b57f3079aab9b4761f5661e62eef7c9f3a095e48325d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1510-ad7e9270-84be-418c-b856-f0fd2d4cdf3d.html",
+      "sha256": "a97004a6d367249e0d9a142549c40367e524735a594dc71edb5a76897f0d4fd0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1511-853e35c6-6e30-4ebc-aa59-723487703009.html",
+      "sha256": "ad08cce8c1dd253de40733c5b0afdad980d9c3d806c00b3269ec75b8f3388a27"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-1512-e09e42a8-bfa7-480f-afa8-fd119429461b.html",
+      "sha256": "748b975d82ab7e361524d7ea24ce2a94e71183631a19334befd9b401a01d6783"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-204-1adfade2-b7c7-4fce-a80c-03879a445df4.html",
+      "sha256": "0f3219458a424aa872e2834e837ee30619b0abb6b210dd8d237b24b8aabaa495"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-216-be0c2f10-428f-4fb0-afa1-d3c5c9363e87.html",
+      "sha256": "fcfb19923156b723420cc1006e15d345e830b7ffbe952855bccdc89711fbb9bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-220-6e9384a5-a7c9-4ab6-9122-753bc6ae5162.html",
+      "sha256": "80fe772e9b6607f903a2c4e95db40f87a46508753456bd764b3cbd765ab23103"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-223-3f5f81c4-902b-4a4d-9b05-c1b821d60984.html",
+      "sha256": "2f42fc168a2a95181426e85ad7e9e8d7d11f46cd65731f1540ee38aa225f8fb0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-301-a18f57b6-4b2a-481d-ad8a-0ee05295fe44.html",
+      "sha256": "867a4c96b25138649200480f3db2b50a50879e0a6572c4628bc5f29e1df275df"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-303-06c7f249-5337-436c-9617-8616b57a3d64.html",
+      "sha256": "a809c6fdadcc9308d260dcc8b27d16921dfdc93a6d2b7319b4fdfee95902b28e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-310-718318ee-b4a6-4f4d-9ca0-e024238bfeee.html",
+      "sha256": "6f5a64d52675a10bf9663e299dcf1bf27f4704347eadefd5dce7ab6fb299e578"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-314-ea7b156f-1772-4fb3-9e58-334b2c6e1548.html",
+      "sha256": "c7e7d76d2a4f6453ee9017a40f1e08426b0e63d89ce1d590cf969bc0273311dd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-315-54b6eafe-3583-40f0-9443-5f38f8b9d97d.html",
+      "sha256": "a536d3ec6e78475b927930c7c56c9bc6c71cd6e799c1c7ce182b18c6a9561a22"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-316-a2a5c2cd-ed0d-4590-b098-747d86e6e08e.html",
+      "sha256": "dda0f3c356534e28087e60f12ac70e08ea3794a98bf1a380de04f9da719b3e08"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-317-a979b3d9-5f1b-43ad-a25a-6a6d29dc5536.html",
+      "sha256": "de1b9bc55748da4ae6f95615f526d696f1e4ec6593f7cac5ef14685768803316"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-319-00356f08-5519-4dda-b11c-10028db56764.html",
+      "sha256": "e507de05f2aa528b580e35babf718be610b64d08c067ed2b2b20359a282ca8e1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-325-88a41735-f258-4c29-b081-7d4d0f38a37e.html",
+      "sha256": "daa13843eec28d81b5483208da90127279e1a54f5634fe0753b753c9770c49e3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-326-06d6cda7-10f8-48ec-a4cc-df25cb250042.html",
+      "sha256": "87aaf4e98ec42f1b610a9e065bcac0e7afb34809770cc86aeab946587e9b1c15"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-327-a740da1a-970c-4ea8-9df3-225fc915294a.html",
+      "sha256": "af8ebd36056813c2ab998858a7b07e6d42ab5c3ffabb47fa4c51b1105d5e23eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-328-e48494ff-73bf-4a7b-b9b6-258e934bcebd.html",
+      "sha256": "a197ac38f98cd30c1f3c2eeaa841a2bf1beb7213b4069881f10ea5aa928bd9e8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-329-992221b7-569c-4ec5-85d6-30df6b8ef8e4.html",
+      "sha256": "78dc17bf2dee5947058f77df0d7b3a2b9edaf3bfd2e87889ea91a980eb493c62"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-414-86ca796d-7106-4613-abea-0e17f2d85c24.html",
+      "sha256": "965d64ccbdfccbb66068f27a84d0a0679d23ba74652beb8ea9323389d7a406c3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-601-03e451be-746a-4a8c-be37-104ce9e2a528.html",
+      "sha256": "7de6f82d9ed9960c83a638affb17f8bbc96f9ce8ee5fd58cfdd9c8440749bb85"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-602-fbba36b5-2067-4d4a-92d6-eefbc42d4d8d.html",
+      "sha256": "34579b528e48e8b5b131ef74e61f6109c678e9186ee03905eda8580aa647427b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-603-b08ab8fc-fef5-4526-af67-30802091f7e0.html",
+      "sha256": "c7250c1a0a5cd54736ab8265cd49a91a80be1f45181afb4ca61658e442a4c505"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-604-d894896e-e6a0-446c-a513-b4ea447a6207.html",
+      "sha256": "2b621412ed082e0bf3affbff928946f8d1a7e85c2f371cce43d298acd0d41753"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-605-05d1d429-26b9-4d12-a029-8c235cd17b88.html",
+      "sha256": "a067691987b62fea51cd4f87ecb3c10d4d3e4a683c29612d66bdc5ad1211f572"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-802-c0e7c408-2eb8-4c53-912c-e8d06f314ae5.html",
+      "sha256": "173ed9509412168fb57160b3173d884717ccf8be40533ebd81b782dd5e30e404"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-803-0e95f655-2b6a-416d-bf28-4887b0c6d73f.html",
+      "sha256": "da3d9a40b8ebd24768dc912f10dea3b205c7b146d5d64ad8331834f76db0e8a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-804-7be60d1b-d607-4497-8630-8f733251f3da.html",
+      "sha256": "312aa1e141b05952fad69fcb3f9f7e961d5a210edd90b30fcf9a8b73d7d5ff62"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-805-6158de4a-2844-4f6f-b222-349acf6de601.html",
+      "sha256": "d8c7c4f3a05c13b7f10f31d99d64f0a59691f58e9c17bfc058af6260fb1e4b79"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-806-f8435702-248e-449d-a7a7-b35ada13d0c8.html",
+      "sha256": "b348288a0787422640f8407744c712e6a81cc9729697bb0c1746a39c716482f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-807-0981fd28-9402-4ec3-be8e-9d4545232beb.html",
+      "sha256": "624fef753385c690042979523b0247768451c0d475321399038761072cf33078"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-901-b3e34544-4fd0-4581-97f3-6dc4a550e58d.html",
+      "sha256": "ea407076409d033628f3a54b30228a229dfa67dacf4fd538ac29d7c9afe56081"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-903-63fb8863-67ae-43f3-88b4-e1c517733b41.html",
+      "sha256": "a4bbf2b213bebfaa973faed8494e809e4c340bf4ad42fd1c903fc021ee2d3977"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-904-e5a7fdcc-9c2d-481f-af82-3feb9175bd53.html",
+      "sha256": "4bc6e2fa6c967fd3e96e68ba1046719c13b1d35008d792441da89fec05c9d138"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-905-7415ad2e-b697-435f-8c58-8f7f87dd5200.html",
+      "sha256": "5f17c7e3086eca536c99692ac90b5520ec2a3ef95c4a8e473f1941d024a6f024"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-906-3a48197d-27ab-47e0-8848-5c3f314c46a3.html",
+      "sha256": "4c5ff56c56ce30b42377e64a26d882a79ead64f17ca4df519e0fd8f3feba6e6f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/html/42-15-907-a20ee50c-dd21-46f5-8d24-c7bdea589300.html",
+      "sha256": "65d49a9bbdba4714c7ef4cfe0c27d60c2ce1d0445ec2c51eaf97080537f27fee"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1001-277a7bec-f688-4047-8dc9-b4db5b64dd67.json",
+      "sha256": "a2afff69d132a173c6c8cedd3158a44dffefa675f6dacf46ec4b7db29cdb0249"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1002-4d14b7f1-2a7a-4cfc-92a8-17a39c4460b6.json",
+      "sha256": "6ebeb83daadf4cd8740a072ceea3a252ddd9d7c40fb4a76700bfdc7efc627569"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1003-0a1d5afb-9d59-49ea-a407-f1e01d1cee21.json",
+      "sha256": "b1a3ca60fcf8e19ff278c5887c47736f4d4503bf9f643611838a4e5dad3c1606"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1004-e6f7a63f-dfcf-4ced-800d-3e1cff643241.json",
+      "sha256": "e84f5fcc1d01b4dceecae419fd40da1e3ec9565f12ff918c0b57c829526858f0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-107-01676e03-1fd8-4f8c-b23f-042a88ba809a.json",
+      "sha256": "39a38544d383e3b9b5f6a3ade53772293b3cec6f5f21e89a4301c0e9f5c75312"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-108-5cbdaf8f-5389-4a63-aaa0-873c260b98f2.json",
+      "sha256": "4aba0ac7199e2070254341b00481dbc707841de1e7976f1d70fef2f87edd1614"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-109-b6860593-4d1c-4bfb-97fc-c0a8e59b0759.json",
+      "sha256": "2a29ff406a2b50105def3ea5040469a9d2f338c7ac94b6ddcca6190f3143d3ee"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-110-10087e71-bd38-4b3c-b235-466aaf5cde88.json",
+      "sha256": "328e1e7efd14ce23997c3b8adeae80a9b31d43bc4e0adb24df52d44513f3a279"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-119-a77bcdce-ec68-4728-a635-000da34aff62.json",
+      "sha256": "ce1c9e471d6d2e09c80d83078e1ca8f7b6a26191f8bb6bfc3c055abbe4254976"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-120-a05f947b-aafc-47cd-8473-c917bf84663a.json",
+      "sha256": "8c714735cf56a7b5b4c2b58d60af3c8de0e91201fc2ebb73dc117c4fd72bad1b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-125-781d2f7b-223e-4ff5-aaf1-7000f9b4d27c.json",
+      "sha256": "7b4d1ec7c4cb227eb39015305f155fb4daf90c3d0a2633b97b2fb4ac8a7c5f97"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1501-3e7310ba-441e-4b10-ac7a-48770622f709.json",
+      "sha256": "c6eb58eb974123565d634fc52ebd8ead5e794676236d7e3a359e52808ff8f6a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1510-ad7e9270-84be-418c-b856-f0fd2d4cdf3d.json",
+      "sha256": "0af3b4de6d2f0cdebad91fc9b575274584b10cd0a3ead7a4da68ad71a93d59ac"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1511-853e35c6-6e30-4ebc-aa59-723487703009.json",
+      "sha256": "9a5bc06b8d731570e6cf4c360d78265f1fcb91bfc3bfeca14a73060043f4a9c7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-1512-e09e42a8-bfa7-480f-afa8-fd119429461b.json",
+      "sha256": "7c82f6e0ef1c062c8005e2607a86935e8f09d905cd827668085df68164486725"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-204-1adfade2-b7c7-4fce-a80c-03879a445df4.json",
+      "sha256": "33985fbf18da59b096d210245f61001f3b5a336d735496dc9095b04caa96b75c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-216-be0c2f10-428f-4fb0-afa1-d3c5c9363e87.json",
+      "sha256": "91c892245fdfde593b41fad34d201417acc49d1c64347394ca05d7b1bbf8243f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-220-6e9384a5-a7c9-4ab6-9122-753bc6ae5162.json",
+      "sha256": "0be12a78c8997bf90eb3d2280b242f6733ba7398242b9dc495e322dfe0fe16f4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-223-3f5f81c4-902b-4a4d-9b05-c1b821d60984.json",
+      "sha256": "aa99a6add61bceb9fadc6ec4f2eeac440afaf426306f0750e9b36d1c32baf711"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-301-a18f57b6-4b2a-481d-ad8a-0ee05295fe44.json",
+      "sha256": "74a21813eecdf56a3044ba732c03170baeefab94075bcd939071cb38b8f66bb5"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-303-06c7f249-5337-436c-9617-8616b57a3d64.json",
+      "sha256": "b6d04b2791591a6e35a8a3aeefcb3a4f3a8d8b423979eed3f2ecd4b4f7d44758"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-310-718318ee-b4a6-4f4d-9ca0-e024238bfeee.json",
+      "sha256": "2206cd32abe9a3274887f4f5c64f7d9f7894103d329b2a82c9464ff5a32ae26a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-314-ea7b156f-1772-4fb3-9e58-334b2c6e1548.json",
+      "sha256": "6dd21044ecc2e294f712007fdbe6098016a3a3d2ee1a470e3280aac7bb566237"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-315-54b6eafe-3583-40f0-9443-5f38f8b9d97d.json",
+      "sha256": "e82b97e62831f5f66bcfb5d80957ba2d73081597c526dd46cd111946b989f526"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-316-a2a5c2cd-ed0d-4590-b098-747d86e6e08e.json",
+      "sha256": "a08af81d78ccbaf67143fc6a9e3987e6ef36fc1c7e194a99637d36818860fb94"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-317-a979b3d9-5f1b-43ad-a25a-6a6d29dc5536.json",
+      "sha256": "b927539cb318c89ed7a8cae6cbc690c4b17bbe3c084ffd7d12df7fab06bb2b7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-319-00356f08-5519-4dda-b11c-10028db56764.json",
+      "sha256": "8f2479ab31f396e1423e4339c21feb9df935a4f6077240829d3ed019336693f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-325-88a41735-f258-4c29-b081-7d4d0f38a37e.json",
+      "sha256": "4e0ad64c930a262dc2404a9a2f6c0b8c8bbe34bb113369bd9c8e3f482ac585bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-326-06d6cda7-10f8-48ec-a4cc-df25cb250042.json",
+      "sha256": "c3d85b6bf1c8919110a3de5d0b95721c06c7ec96211287ea03ac58893dc80afe"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-327-a740da1a-970c-4ea8-9df3-225fc915294a.json",
+      "sha256": "5acb50ba6b776121d82d457c2162d252dd7362ecf8129c4f327bda38ee0f211b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-328-e48494ff-73bf-4a7b-b9b6-258e934bcebd.json",
+      "sha256": "784cd9e99f4f4aa3f694f30105244fef1861b8ff7d10db2faaa0fdbe8b2bb62f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-329-992221b7-569c-4ec5-85d6-30df6b8ef8e4.json",
+      "sha256": "47ed9c75de38e90a85adc1dc3f1383f32cf7e6874a7f23b7260361521cd0a066"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-414-86ca796d-7106-4613-abea-0e17f2d85c24.json",
+      "sha256": "623cb4e07279a01bc40bf5ac49b852a9f026a3e8568c4908d7e32163167730e1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-601-03e451be-746a-4a8c-be37-104ce9e2a528.json",
+      "sha256": "81f2246d9496b9da51355ee8230127b61567ca1eee70d35aefe292983aa89296"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-602-fbba36b5-2067-4d4a-92d6-eefbc42d4d8d.json",
+      "sha256": "23389e36c68f2a412e2be10f896af02bb88619477870cbf934911933c24dd0ee"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-603-b08ab8fc-fef5-4526-af67-30802091f7e0.json",
+      "sha256": "a340c132605665b3cd2d9b3e4fdbda3d654c564b56c97fb828accecbde7c38cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-604-d894896e-e6a0-446c-a513-b4ea447a6207.json",
+      "sha256": "9dbd2596006352ab26b2d989d9624b90d4d752ab6e95a42bd766b3684ba8dd70"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-605-05d1d429-26b9-4d12-a029-8c235cd17b88.json",
+      "sha256": "646c9afd230d05c19cdd81239d82569e6d795ffd71a9847dee3bd0414a72a58d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-802-c0e7c408-2eb8-4c53-912c-e8d06f314ae5.json",
+      "sha256": "ba25ea8310893ae697bff9bdd89e86e8773ff73b3fc5c7482b835734d0319ed8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-803-0e95f655-2b6a-416d-bf28-4887b0c6d73f.json",
+      "sha256": "15573c193be56b250a1172c6a44068410be7b61344d04d67130a18199736a76a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-804-7be60d1b-d607-4497-8630-8f733251f3da.json",
+      "sha256": "6622112ce63e99a4543ba48ef7868d9b1decba38bfbc325d61f1db0c254893fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-805-6158de4a-2844-4f6f-b222-349acf6de601.json",
+      "sha256": "577d666e8743d017ef47ff04b839753ab1c8d1827a3869dd940808d9b1318d01"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-806-f8435702-248e-449d-a7a7-b35ada13d0c8.json",
+      "sha256": "6a32996415b37eb1a5698ce6665ec8a48c0a7514d867d379277bd5ac03d2c129"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-807-0981fd28-9402-4ec3-be8e-9d4545232beb.json",
+      "sha256": "aea4b65956a5a27cc0c2c9644e41cc901de7bbb933e11a0085dfb01ddbc8035f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-901-b3e34544-4fd0-4581-97f3-6dc4a550e58d.json",
+      "sha256": "b04a610db822e66b183cd5cbade4e46da4c66f07bbd3ee0787281ea9b4c1db29"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-903-63fb8863-67ae-43f3-88b4-e1c517733b41.json",
+      "sha256": "b38bb978a71bf457063a8d29bf12ed87f6b2bca3e6711d5fbb2de9bcb5818758"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-904-e5a7fdcc-9c2d-481f-af82-3feb9175bd53.json",
+      "sha256": "2c95215f6332b8333c8fe289607ba2ce785217aaaa872aa0e188dc955c128b3c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-905-7415ad2e-b697-435f-8c58-8f7f87dd5200.json",
+      "sha256": "401ce99a9305f2217501516bf43b208c43e661b58cc0ad4082e09900e0a42603"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-906-3a48197d-27ab-47e0-8848-5c3f314c46a3.json",
+      "sha256": "7ea3a19bca628a809bfd0ca61b7661c16fa34e4d4c193e7831bc80b02141f290"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/policies/42-15-907-a20ee50c-dd21-46f5-8d24-c7bdea589300.json",
+      "sha256": "b6ed9ca6c460550465501f74d1723a478f927f203aeaee319461d6aab864fbfa"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-1-354e35fd-5f71-4581-80ed-6888c5555d25.json",
+      "sha256": "d1042d4e8b4e767713dc4414d23ec3188f9789df08036ed798f1505cf6fc18e3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-10-0403ae2b-9373-40bf-a535-34d883bfa9f4.json",
+      "sha256": "eba6f9ceda51a8169a3f44b9328c41d1a980693c869eb5539dbe0558f45e1bc4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-15-26f36c5a-07c8-4869-bc7a-948ed77afe80.json",
+      "sha256": "f2f5497354f0d51f77275693cde6d2d5235376ae81c45a83cd04285f8d53e808"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-2-59d478df-00a7-456a-934a-0905d53abd33.json",
+      "sha256": "0ff901eba0b88ab536f7a8b828ce966a3de76b071b79b08e9ea46484dd34cb31"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-3-645724f8-a984-4e40-94b4-20d9797ef0f2.json",
+      "sha256": "f50213763968963023c0c2a72c4f205297bc50a1fae56299ba9133a73ad86927"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-4-874250ec-6298-4473-805f-709d4c5b338c.json",
+      "sha256": "3f39e5320b90ea53c6ff0852699aa7883ec091b7f55014b56ee6310b7878df31"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-5-0edb9174-0d69-416a-852e-248798177c0c.json",
+      "sha256": "cf74f841c372f8f0846d301eec89e8316678d4e2fd9db77adfea8fddba8df98e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-6-8fc52c85-1f1b-4652-b7a7-491148ab2de1.json",
+      "sha256": "5dbd8d3092b3a75eda7603cac362e00bf56e805bbb940bb43fec5d19e663b504"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-7-4db196fc-80cd-4a4c-8d81-8d17d9092b5e.json",
+      "sha256": "ebfd35722cddf4363ce5913f24595e65d0cacff56e43ccb4da36aa633846af2f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-8-1881c37a-02a0-4b0b-941e-1ec3572e1b1a.json",
+      "sha256": "ed7515e0af5958abac0d13fe92261ba3eb83d06bbe574e0eed4a47a42b686bd7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-9-d42e4184-4018-4ce1-bdd2-3658987a89af.json",
+      "sha256": "064d619aba5ea35f3dccc5769fa71c871dedb8ad8044c6fab35f1e1202a10cd7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/sections/42-15-9ed1f49c-10c3-4b28-a6de-711320d77584.json",
+      "sha256": "83cb9f374530f401a8c574c17219f7052a7b18c64509c03ed9283fd90dcda61f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15/montana-rules/tree.json",
+      "sha256": "133a466f0f08e3f6e97306d77e6478b457fb7f567fe295aacd61956059af831d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations-title-42-section-42-15 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T17:10:11.801080+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "P3p2nt1QrMrkE0HcqzhmwtmEFOI11TIxv8MNH11WDuxQOjBsKVbUEqPn2AfLfTgviXfsh9uYr5gFZZ3GU41OCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations-title-42-section-42-15"
+}

@@ -1,0 +1,90 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-parentage-2025-history.json",
+      "sha256": "9027aaf5547097fdbf8176e79bd66e9af2cab22a3832ed3d2dae1f57a762f124"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-parentage-2025-history.json",
+      "sha256": "80df42142b65ba82f10629e5708f3cc56ab845a4addf4877e8fbf9ceb21d4a95"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-2025-history.jsonl",
+      "sha256": "656c01d2a1010a937bee8bbcd689f9ed3e0f189089d8f1e864909f51ad0b5510"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1594-2025-history.html",
+      "sha256": "2d029e4c35286f5c2c63340bcbb0f688f04fa9ce3c03b2483e2c1981c85bca5c"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1595-2025-history.html",
+      "sha256": "452ee5a5c6dd8082af197dc2a779a46794c53fc9f310a7f43b554121a68f4da0"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1596-2025-history.html",
+      "sha256": "5de737b2f2f08d54bc64837649cc90405a3f06f1d61f2ac4b1aab6655e3de0f1"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1597-2025-history.html",
+      "sha256": "59e8131d769b0bf36a775cd60c6c903aa70374954f1c23d8e319a98a64b9ed86"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1598-2025-history.html",
+      "sha256": "a4ba9e9cfe0869b821de3ff5d6cc4da89d14a1602a2ab7e1b9e000f652051a47"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1599-2025-history.html",
+      "sha256": "e291be98c35831624f3ee7548af8b7e0cf50c3dc7d1869e9d41c2e03483321c3"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1600-2025-history.html",
+      "sha256": "03bc51e7c6c06640d6f05c2750ace5fb03bd42a929adeba43ca6c4688660e092"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1600a-2025-history.html",
+      "sha256": "0091abb54531bf500064ae9ceaf2c0da79f9dcd94be658664ac6b92436a238eb"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-2025-history/official-documents/de-bgb-1600b-2025-history.html",
+      "sha256": "c44e387d235c43f4739f79fee5cb7b7988c16f90e56c9ad4b3a025218d97a8e1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bd931997783a02400a262718cfb9d2ca3b6dad7c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-08-de-kindergeld-parentage-2025-history --manifest manifests/de-kindergeld-parentage-2025-history.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T21:26:23.921829+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-2025-history-audit.json",
+      "sha256": "939c2b7a3c1f9d542a6420b4b940a72735e64748e3d7ccb56dd3e079a6b3eac7"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-2025-history.md",
+      "sha256": "43ed9dc95df9e3c0cec064329ac28f695eb512453f2d03762f9b5fd644157903"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PusY/BvQRHzO/fb20iojf9HaiVInabxZqCdsC3i/5a7gfJXFBCq22EdP4vv5X6npAvr0TA7lUEPLN6zVLEQIAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-parentage-2025-history"
+}

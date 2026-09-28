@@ -1,0 +1,837 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ks-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 30
+    index_records_total: 30
+- source_id: us-ks-cms-chip-state-plan-spa-ks-25-0014-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-25-0014: Approval Package (approved January 26, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-25-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-25-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-25-0014
+    cms_node_id: '188821'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=188821
+    approval_date: '2026-01-26'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, Kansas demonstrates compliance with section 5121 of the Consolidated Appropriations Act, 2023
+      (CAA, 2023) by modifying CHIP eligibility requirements for the treatment of incarcerated youth and providing pre-release
+      services to eligible juveniles.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-25-0013-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-25-0013: Approval Package (approved September 3, 2025, effective June 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-06-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-25-0013/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-25-0013
+    cms_node_id: '184721'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=184721
+    approval_date: '2025-09-03'
+    effective_date: '2025-06-01'
+    summary: Through this SPA, the state eliminates the CHIP waiting period, consistent with requirements of 42 CFR § 457.805(b).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-24-0005-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-24-0005: Approval Package (approved July 17, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-24-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-24-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-24-0005
+    cms_node_id: '169306'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169306
+    approval_date: '2024-07-17'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-24-0004-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-24-0004: Approval Package (approved June 10, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-24-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-24-0004
+    cms_node_id: '167216'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=167216
+    approval_date: '2024-06-10'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state documents the state's compliance with the longstanding requirement to cover children's
+      vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which requires states to cover age-appropriate
+      vaccines in accordance with the recommendations of the ACIP without cost sharing. Additionally, the state makes technical
+      updates to the CHIP state plan.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-21-0014-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-21-0014: Approval Package (approved July 27, 2023, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-21-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-21-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-21-0014
+    cms_node_id: '151131'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=151131
+    approval_date: '2023-07-27'
+    effective_date: '2021-07-01'
+    summary: Through this SPA, the state updates the presumptive eligibility (PE) for children template (known as the CS28).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-22-0017-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-22-0017: Approval Package (approved July 26, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-22-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-22-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-22-0017
+    cms_node_id: '138166'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=138166
+    approval_date: '2022-07-26'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Kansas with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-22-0019-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-22-0019: Approval Package (approved June 30, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-22-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-22-0019/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-22-0019
+    cms_node_id: '137571'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=137571
+    approval_date: '2022-06-30'
+    effective_date: '2022-07-01'
+    summary: This SPA the state updates the CHIP MAGI eligibility template for targeted low-income children by creating a
+      permanent upper income standard for CHIP at 250 percent of the federal poverty level.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-22-0007-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-22-0007: Approval Package (approved March 10, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-22-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-22-0007/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-22-0007
+    cms_node_id: '134041'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=134041
+    approval_date: '2022-03-10'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-22-0005-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-22-0005: Approval Package (approved February 23, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-22-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-22-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-22-0005
+    cms_node_id: '144871'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144871
+    approval_date: '2022-02-23'
+    effective_date: '2022-04-01'
+    summary: This SPA updates the CS7 which describes the annual update to the upper income standard for CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-21-0003-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-21-0003: Approval Package (approved March 30, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-21-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-21-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-21-0003
+    cms_node_id: '107476'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=107476
+    approval_date: '2021-03-30'
+    effective_date: '2021-04-01'
+    summary: Relates to the Modified Adjusted Gross Income eligibility and methodology.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-20-0010-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-20-0010: Approval Package (approved September 8, 2020, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-20-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-20-0010
+    cms_node_id: '106761'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=106761
+    approval_date: '2020-09-08'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-19-0024-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-19-0024: Approval Package (approved August 12, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-19-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-19-0024/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-19-0024
+    cms_node_id: '101661'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=101661
+    approval_date: '2020-08-12'
+    effective_date: '2020-10-01'
+    summary: This SPA makes updates to the state’s alternative single streamlined paper and online applications.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-20-0002-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-20-0002: Approval Package (approved February 10, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-20-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-20-0002
+    cms_node_id: '146816'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146816
+    approval_date: '2020-02-10'
+    effective_date: '2020-04-01'
+    summary: Through this SPA, the state updates the supporting document for the CS7 page, which describes the annual update
+      to the upper income standard for CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-19-0002-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-19-0002: Approval Package (approved February 7, 2019, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-19-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-19-0002
+    cms_node_id: '146796'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146796
+    approval_date: '2019-02-07'
+    effective_date: '2019-04-01'
+    summary: Through this SPA, the state updates the supporting document for the CS7 page, which describes the annual update
+      to the upper income standard for CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-18-0005-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-18-0005: Approval Package (approved April 25, 2018, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-18-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-18-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-18-0005
+    cms_node_id: '3841'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3841
+    approval_date: '2018-04-25'
+    effective_date: '2017-10-01'
+    summary: Implements mental health parity regulations at 42 CFR 457.496 to ensure that treatment limitations and financial
+      requirements applied to mental health and substance use disorder benefits are no more restrictive than those applied
+      to medical\/surgical benefits.
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-17-0002-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-17-0002: Approval Package (approved April 5, 2017, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-17-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-17-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-17-0002
+    cms_node_id: '3371'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3371
+    approval_date: '2017-04-05'
+    effective_date: '2017-04-01'
+    summary: Relates to the Modified Adjusted Gross Income eligibility and methodology.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-14-0012-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-14-0012: Approval Package (approved December 22, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-14-0012-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-14-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0012
+    cms_node_id: '2851'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2851
+    approval_date: '2014-12-22'
+    effective_date: '2013-10-01'
+    summary: Incorporates Modified Adjusted Gross Income (MAGI) Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-14-0010-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-14-0010: Approval Package (approved July 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-14-0010-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-14-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0010
+    cms_node_id: '2861'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2861
+    approval_date: '2014-07-23'
+    effective_date: '2014-01-01'
+    summary: Converts State's Existing Income Eligibility Standards to MAGI-Equivalent Standards, by Age Group, for Children
+      Covered in its Title XXI-Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-14-0009-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-14-0009: Approval Package (approved June 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-14-0009-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-14-0009/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0009
+    cms_node_id: '2866'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2866
+    approval_date: '2014-06-25'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that the State will Apply Methodologies Based on MAGI for All Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-14-0011-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-14-0011: Approval Package (approved June 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-14-0011-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-14-0011/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0011
+    cms_node_id: '2856'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2856
+    approval_date: '2014-06-17'
+    effective_date: '2014-01-01'
+    summary: 'Describes State''s Plan to Provide Coverage in Its Separate CHIP for Children Subject to Section 2101(f) of
+      the Affordable Care Act, as Specified in the State''s Submission of CS14: Children Ineligible for Medicaid as a Result
+      of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-14-0013-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-14-0013: Approval Package (approved January 1, 2014, effective April 3, 2015)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-14-0013-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-04-03'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-14-0013/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0013
+    cms_node_id: '2846'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2846
+    approval_date: '2014-01-01'
+    effective_date: '2015-04-03'
+    summary: Adjusts Modified Adjusted Gross Income (MAGI) Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-spa-ks-cspa-8-approval-package
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-CSPA-8: Approval Package (approved February 4, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-CSPA-8-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-cspa-8/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-CSPA-8
+    cms_node_id: '1966'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1966
+    approval_date: '2010-02-04'
+    effective_date: '2010-01-01'
+    summary: Expands eligibility for children from 200 up to 241 percent of the Federal poverty level (FPL).
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-ks-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KSCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: KS
+    cms_node_id: '1971'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1971
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 10 and Factsheet as of 03-12-2010.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ks-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KSCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: KS
+    cms_node_id: '1971'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1971
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 10 and Factsheet as of 03-12-2010.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-ks-cms-chip-state-plan-spa-ks-cspa-11-pending-state-plan
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas CHIP SPA KS-CSPA-11: Pending State Plan (approved August 1, 2003, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KS/KS-CSPA-11.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ks/policy/cms/chip-state-plan/spa/ks-cspa-11/pending-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_document
+    transmittal_number: KS-CSPA-11
+    cms_node_id: '2286'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2286
+    approval_date: '2003-08-01'
+    effective_date: '2013-01-01'
+    summary: Redesigned, statewide Managed Care Delivery System brings CHIP into compliance with the Hospice Concurrent Care
+      Provision of the Affordable Care Act.
+    topics:
+    - Eligibility
+    - Managed Care
+    link_label: Pending State Plan

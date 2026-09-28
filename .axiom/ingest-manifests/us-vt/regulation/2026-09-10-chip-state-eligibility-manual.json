@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "8f04fc6bcbe82f8d5e5889db79dabc3ff39f8b2e816359d881a8e84e84f978d0"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "087ad15c541e8a4d5a6b65aadbbf9a879a9b8d063c48a3e7202b359567a35a96"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "7ccc894565f3354e8ae670fcee22fb7c0ababfd20a56c2e4682483b3ed8ae428"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/vt-ahs-hbee-part-2.pdf",
+      "sha256": "add9ae035867cd184f75d6d7bba2b91cbbd19cffad75407bb866b67c40c7da63"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/vt-ahs-hbee-part-5.pdf",
+      "sha256": "9965a00908e6ce6962d60702b30334da120758ad2b97ed2345a665ffb8a1c977"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-vt-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 55,
+    "missing_count": 0,
+    "provision_count": 55,
+    "source_count": 55
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-12T13:04:07.848536+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UcjWbDkDLZS4N/UQ4bbbWTd07VsQ5wVjY3qsolV28dLzio7g41xOgu7dsFdpcllaURfzBZyyUubPW0saP3V7BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

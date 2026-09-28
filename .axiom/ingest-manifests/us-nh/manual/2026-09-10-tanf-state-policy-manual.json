@@ -1,0 +1,2905 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "f2c9465f98e08ae7810e1b2765a46e391ba0584aaeae69b30798b563f223549d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "cfc98a26672db4c4c7f5e868a255ec82765c179ed45fa227b6c47ae0965c74b6"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/manual/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "39df7da5e350fb9366dc0e997adbb34b42b56cd8ecfc9fc79bde1534c0a2dad1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-100-case-processing-fam.html",
+      "sha256": "ada55e3b732517f6ad300a4cd96542709e75e1464b056573e867cbac716c40eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-101-individual-rights-and-responsibilities-fam.html",
+      "sha256": "c59522ffdaf4206a6f9bfebaed63c8c910b4a05f8729accd86e98f2e1a194fd3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-103-01-racial-and-ethnic-heritage-data-fam.html",
+      "sha256": "8100d7dcf7c7fe0c27964823ec9ef20d5e520faf1ba9d1f9900fa7b98c6a3dff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-103-nondiscrimination-fam.html",
+      "sha256": "e787a9a6218e1570662a6a2ba4483badeeceb882ccc19a0aabab73b3971d2532"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-105-01-eligibility-determinations-fam.html",
+      "sha256": "29c3980fde736bcc37aa46e10300b58f00e1bfa0433dc1774153829c83fa7f1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-105-03-eligibility-reviews-fam.html",
+      "sha256": "5dbba425d964854778fae92fe0849c9719b84198f0bde74b9f76670e4850faad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-105-compliance-with-requirements-fam.html",
+      "sha256": "800f22a659804d472c5ebf70d80e870e028fc5596b39ef4193b2fb4c94933481"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-107-providing-verification-fam.html",
+      "sha256": "2443c38ecf83bdbb49b59cfb808cb9514447b1f784fa96a4a82b6828ba6c59e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-01-filing-an-application-fam.html",
+      "sha256": "284d18712e1e4fc15819244a58e68a22d53f9504d08e816e903d1bb088d008bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-03-when-the-application-is-filed-fam.html",
+      "sha256": "555ec7f6b74a93e1ed2f4e14035fdf52830d7ace829ce1557a4ffe07e96afb44"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-05-withdrawal-of-a-request-for-assistance-fam.html",
+      "sha256": "7fb94b3616f0db46619ed1cd690f5c2b0bc50ce7c50a793b63222e788ef40e54"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-07-reuse-of-an-application-after-denial-or-closing.html",
+      "sha256": "dfc98c86d7cb2d673124619fdbbd95595bbd0517c82ee4e511d2072d98a1ad9e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-09-application-for-retroactive-medical-assistance-fam.html",
+      "sha256": "cd5727381427ca84f10ccc5d2193eba5ed06456b88920c994fce4c671f7462a3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-11-choice-of-financial-or-medical-assistance-fam.html",
+      "sha256": "06616b130a39744a54b8f27d995cccf8f2cc6571f087e2743a7f3771c1c7279d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-15-concurrent-receipt-of-medical-assistance-fam.html",
+      "sha256": "e378e0972702656a6209e6a989ddab96634843d61b417d90cc466d95d4439dc5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-109-application-process-fam.html",
+      "sha256": "04aa718855935d3fca626d7558633eff06238a6e5b1b739126e84db5b23fea7d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-111-01-ar-acting-in-place-of-the-individual-fam.html",
+      "sha256": "b0c0756ecc9cf3cd372f63b6c93e4a0022cef5fbd32a87e2c1356967eafda3dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-111-03-ar-signature-required-fam.html",
+      "sha256": "ba415d0b4108d93e6c22d291845ed230dbe9936fa59cf8965f5be8abdc2362b8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-111-11-abuse-by-ar-or-failure-of-an-ar-to-perform-their-duties-fam.html",
+      "sha256": "7b151bddd131ea79735696b6d83d7008a167ad7ab81c16f5c76ea5e2ab68acf0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-111-authorized-representatives-ar-fam.html",
+      "sha256": "d08cd9295b3ead5c98c1a22fcb2eebbaab071cc22200c5838c1bef2976b4d0fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-113-01-mismanagement-of-funds-fam.html",
+      "sha256": "1f02902859ef797675f072760666fd02f7f8ae32cda42091cdb1701cd53601c9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-113-03-noncompliance-with-jobs-requirements-fam.html",
+      "sha256": "6aad78e0f01840da7cd97e5b4d23495960fce191b6fc4243716f732510621c05"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-113-05-noncompliance-with-child-support-requirements-fam.html",
+      "sha256": "883b90353699ce2c2219bc68462bfbddd855d5b2b9094c488546d2b68abf34a3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-113-07-protective-payee-criteria-fam.html",
+      "sha256": "5d27166f7c5cc40134c4347a3a7c2e1a787e4ceedbd083c9f7ea856930329a0f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-113-09-protective-payee-responsibilities-fam.html",
+      "sha256": "8a1e89a352397c14f8547d7e1bdb138a34e2fa4b959d4fb468e8fd44a6045ef2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-113-protective-payees-fam.html",
+      "sha256": "23ac2e53c3aca39c0da2949dea92fa1c792ae488da1330179aa800ed18004079"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-115-vendor-payees-fam.html",
+      "sha256": "e7c56c8a35f8f0fcc45768e04e4dcbbe6aa16f6dead4624337991caed9772b0d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-117-application-processing-time-frames-fam.html",
+      "sha256": "9e57c396b1fb5f99846670b134b0f65f56e21c0720cdb487bdd37e9f9e3e641b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-119-joint-applications-fam.html",
+      "sha256": "7e424c9dcf239fbafbdb6cdc81fbef69fd613607c23d6f0f40f1c15bb0ffd89c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-123-01-initiation-of-medical-assistance-fam.html",
+      "sha256": "0b6ddeedfafe08359895be4eefc2fdba861e2da7c981cfff63c46f85b2ef0a04"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-123-benefit-delivery-time-frames-fam.html",
+      "sha256": "730ae660e811ccc2d4de7c100e76d3f31e8047985258ef31e159ddaa0ef7532a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-127-01-interview-sites-fam.html",
+      "sha256": "9b429c9229f5a8bbc493bf8de90746f19d95d9c6815bdd8940b4aa541a5de36c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-127-03-failure-to-appear-for-an-interview-fam.html",
+      "sha256": "4dba06279e295403d4cf99481727f3f655a63a36be88caafa40f552890cc0346"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-127-05-notification-during-the-initial-interview.html",
+      "sha256": "afcbd8895d3c05cf1eef9788ef50baa8eaab923fbc023fb1e4551d20d0d3c88b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-127-interviews-fam.html",
+      "sha256": "688dc75a9ed0a2b23056c8dde013650893d3f1f4d8410b33f39fd7bfb50ec865"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-129-pending-information-fam.html",
+      "sha256": "f66f485241f731468ce4fac767b907c94c896c67b7acd46659b7dbc693dfd4b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-131-01-presumptive-eligibility-fam.html",
+      "sha256": "a49839683cda1e1a97ae0b889e2258d5b62fbe57b8f9d343c2d9feb747c15334"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-131-eligibility-determinations-fam.html",
+      "sha256": "bcd90bf5b82f6f6294ae740bbece53c262e91a84ff2c4feeef97e90610c9edaa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-133-length-of-eligibility-fam.html",
+      "sha256": "2b7ad4b2fd98dc4bc5aa39e84668ff85dfa678e3b2ac9a4cae009d6710e42e33"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-01-general-requirements-fam.html",
+      "sha256": "abd097155dee2bf9d3c514b1b52e44de6db1682bee5187ca3cdb707adb8ba757"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-03-specified-hardship-criteria-fam.html",
+      "sha256": "d2f555f8a45d60d9516e82eb50a4fca221d0195fc4936b82b57fcc1a00485959"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-05-requirements-for-two-parent-families-fam.html",
+      "sha256": "950c7971f5f8ea83bb5830226534dcdfbb5d9ec9f4bdc82cc9b0e8441fb93ffe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-07-length-of-extensions-fam.html",
+      "sha256": "8d6469be394f3a6ab056afe8416b898f697b4b5feb0dff60778eb236ac023953"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-09-requesting-a-hardship-extension-fam.html",
+      "sha256": "eb0e90d4911c04ad18e46afb3712a4d44b4e33877e11b4ac9d420f0497a8c948"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-11-extension-review-process-fam.html",
+      "sha256": "4f25c8d82fd2d33308a1c02666f7e1bcd157a66ba051ae7665512a9421c4019d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-13-reasons-for-termination-of-an-extension-fam.html",
+      "sha256": "bd2423402a98e0c35e2fa225adc1308941db45b788d4424180cdf27616b3ce21"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-134-hardship-extensions-to-the-tanf-60-month-lifetime-limit-fam.html",
+      "sha256": "7ffd7135eafa4c2c628827e76cf2effd2dd1a06552ed9e0e11d5241e600f67c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-135-providing-notices-to-individuals-fam.html",
+      "sha256": "44a68fd5479c1015b2e9fe2f941210f87a9bf289a969ac63afd6b375ce57f5b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-137-notifying-local-welfare-officers-fam.html",
+      "sha256": "dd84c0a38e87b3f2368a309d81401da212bf7267e6d2da03e9ebe41bb9bf7f1c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-139-notices-of-decision-nod-fam.html",
+      "sha256": "cfd6dac31d21efe8cf8c5323badf0038ff6d3d5e9cbb14ab0b66b52100bc6811"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-141-01-fair-hearing-requests-and-the-anp-fam.html",
+      "sha256": "fd87acb3dcddeaa77738ea22ea6b28b3a624f8ac026de8afaca4b994ab095540"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-141-03-no-anp-required-fam.html",
+      "sha256": "7c90bb21b524826a6b9222b18c66d4203e4d3fa537b73248b7f27f1099ebd0bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-141-05-five-day-anp-fam.html",
+      "sha256": "2e511b213725f16a8a6e539dc54afa58d78d0880334a91642fc0f53cc70d367c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-141-07-30-day-anp-fam.html",
+      "sha256": "d28b0f4ff7b4270b1e88515f81a7d5f9ba04b1d68668577b3cfe48b80ddbf43f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-141-advance-notice-period-anp-fam.html",
+      "sha256": "eeacbdd7faa4f085ff7976dbe6d838aa9a00c502caf14239dc89c2f021d0cddd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-143-complaints-and-fair-hearings-fam.html",
+      "sha256": "1c14b571039512bf127aa8ec86573409495922428334fd6bb2b5c73eeef0dbe8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-145-01-reporting-requirements-fam.html",
+      "sha256": "fde7fe4290224c4f7321999a7278dfd193d6564269fb0de52aa8c7126acaa8c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-145-03-what-to-report-fam.html",
+      "sha256": "0d770e1c48ebbae9cdfd4d29378f83ceda9cc19552f04cae64ca568fc578a4d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-145-05-how-to-report-fam.html",
+      "sha256": "fde86c2ab15aad24503d61d24b2fef5e96e82152e94caa25f9cd3e78ee675563"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-145-07-when-to-report-fam.html",
+      "sha256": "02ff88ddc011b04b77c13030023537bd95dc883d42b441e2a8d3bec8b7a55506"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-145-09-notifying-individuals-of-reporting-requirements-fam.html",
+      "sha256": "40c552b73b86113afb99f18837f3a13aca09706e89ef002b6eccca7202fc0f6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-145-changes-fam.html",
+      "sha256": "f1a58f79cc6c232c3568acf676460f7bfe1680bb060406303db10fb02f991be6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-147-actions-on-changes-fam.html",
+      "sha256": "5a0329c78404f3aa7a75d336dc52a618e5d48a7e1649448b64aa86e1878366ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-149-mass-changes-fam.html",
+      "sha256": "047a67fa08756c31734643a9eeb67233af59f36820e00d81160aff864dfb6334"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-151-changes-that-increase-benefits-fam.html",
+      "sha256": "fb6f6f52092c63058a16f0d45b3478563f5138ec55c2982270deedeca2e96054"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-153-changes-that-decrease-benefits-fam.html",
+      "sha256": "8e2c9d5a5cd5a34611c1036ee19f40052544c860612b8c5a363066a608907e6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-155-addition-of-an-individual-fam.html",
+      "sha256": "8c1c4ad8b35fae78b75f2a3a1c64c4b5fbc9265c5d7a2b10fe1a5d1abb530a8b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-157-failure-to-report-a-change-fam.html",
+      "sha256": "2f0f258ae9acb741fa936244bc0055241b9cd771c8a3cb15328d7562bff06c95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-159-desk-reviews-fam.html",
+      "sha256": "35ef26908991219fe77d3de7044aa452cd8b067bcffd4bdd00e27263ccbfc7de"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-161-01-timely-notice-fam.html",
+      "sha256": "8920aff6d98c20b1b9fc9aac031fce0aa79065a164cda772903326168e1dfe90"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-161-03-required-verification-for-redetermination-recertification-fam.html",
+      "sha256": "5c0990608f632cef66d1c5dac0221f9d53102da2c927fa914137a77341261d71"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-161-05-processing-redeterminations-recertifications-fam.html",
+      "sha256": "3f110933eb0fc9df4c44543781e090b905f10ab9573132a2749886c1c71c632d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-161-07-termination-at-redetermination-recertification-fam.html",
+      "sha256": "185b757bc8753e9ec88c699648660e0c490e972f50a4a72df2bd495e7a3f9f3f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-161-redetermination-recertification-fam.html",
+      "sha256": "bf902d1a90eb523cf484e1c73fef6bb60dc1841ea83419d372c5bf871c3c3fee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-163-termination-of-assistance-fam.html",
+      "sha256": "ad90662daac70c3042b17835f2dfee3b16c6646fd6bb613e0fa5e073affc5a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-165-termination-of-financial-assistance-fam.html",
+      "sha256": "8ad9ee84c829b876a2effc9b0f723c61283b3891adebf2df03d4ce5b804c67e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-167-termination-of-medical-assistance-fam.html",
+      "sha256": "12b69f657cd8cfe7c19b848e3b122acf3843cac43b12a96e9168d5abd7457a1f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-169-01-determining-the-four-month-coverage-period-fam.html",
+      "sha256": "be47789ea3f95b698b156240ab82dff4927a522aef7135cfc87a08b41b795208"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-169-03-changes-during-the-four-month-coverage-period-fam.html",
+      "sha256": "a566843b40dcbc6817a4a4ebc4cdba2b41032ad8ff37f6ee3c0408f1ce4329f5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-169-05-redetermination-of-eligibility-during-the-four-month-coverage-period-fam.html",
+      "sha256": "49ac9ca9debeb30b469e1c30d7f733322ec75018a74cf918241e0c59116d5aeb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-169-extended-medical-assistance-due-to-increased-child-or-spousal-support-fam.html",
+      "sha256": "454fff003f19c43b1d1ffb60e81f10899a704e15b733fd52627bd4e13b9888c9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-171-01-determining-the-coverage-period-fam.html",
+      "sha256": "76f1a93d5f2c689ba2d75533fcac7c9bd95dc38c4d544d1dce8d9af1ccaeb69b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-171-03-termination-due-to-employment-of-an-incapacitated-parent-fam.html",
+      "sha256": "88a2745e5103fc114b486dd29250eef0736bd18da2608a0d1cc3c327e7e806be"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-171-extended-medical-assistance-due-to-employment-fam.html",
+      "sha256": "12bfe72a2f8d3b9cd0889995d53e2352b25003c270180b4eaf97f5c93ded15dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-01-definition-of-a-complete-form-890-fam.html",
+      "sha256": "1d01fcead08efbc1e25492352f957143ecd46bb00ade98be0f55d42f4d13bf25"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-03-financial-eligibility-fam.html",
+      "sha256": "247ed8f716a4424464c1d6812e52be45acb34aaa92e62311aa9149044460b1d6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-05-ineligibility-reasons-fam.html",
+      "sha256": "0a4dadd5d97674fd16de27364893307c18df0e076fc2cfab02be6da3c52d8796"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-07-determining-good-cause-fam.html",
+      "sha256": "80aaea1d620f7b1168eaffdf1602a82526a664b1172c8f9412f85e8d36cbb6ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-09-reinstatement-after-termination-fam.html",
+      "sha256": "0e4f1cc20e0352fe9a5c4daf86bda27db10b7b8dfbfad0c050f2bcff2187b7f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-11-changes-during-the-12-month-coverage-period-fam.html",
+      "sha256": "9b0bb648f86cbe87f955e2644c3df7e93a795aa18e821c639101658134fc876d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-13-changes-in-assistance-group-composition-fam.html",
+      "sha256": "6e9a209afbd9afc6660d17f105dba67481f8cb440fc7559561e9495fe3184c2c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-15-scheduled-redeterminations-of-eligibility-fam.html",
+      "sha256": "a90c11c261e1e647fd8456ef4662178e6c2704b575d4740d8c7c175b77adab58"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-17-required-verification-for-12-month-coverage-fam.html",
+      "sha256": "eed32c863a836d40f1dfd1925a4a275e0e54832be6f93114f16ed88cfaa67aa9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-173-eligibility-criteria-for-12-month-coverage-fam.html",
+      "sha256": "427300e31535461d0ccb4a0a685cf5d9dd51d88e4d7585f31de73c55dfd46dc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-175-01-open-individuals-who-report-new-or-increased-earnings-fam.html",
+      "sha256": "aebd22c891c1f6d8b740475fa9484cf07d7c12f74456844a74c17a5b60868fab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-175-03-individuals-who-request-assistance-due-to-section-1619-status-fam.html",
+      "sha256": "a0cdac9dfdc92f27906faa5699d05176803aef7847f4338fce0e0a5ae78a5bd0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-175-extended-medical-assistance-due-to-section-1619-status-fam.html",
+      "sha256": "256161f2c60654fb3499517fcd4ffb45f2e63d6d61188efa315ff0a84e9f7c12"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-200-program-criteria-fam.html",
+      "sha256": "ea11593a08287624d4251744f328e3bd0b809ca218bcc85cce7e49f434ff4351"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-201-program-requirements-fam.html",
+      "sha256": "9488237746c9eb943199287219dc78f593694f49c0b74929b76258fdc5c8021d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-01-nhep-new-hampshire-employment-program-fam.html",
+      "sha256": "9caee5401b563852b7aa8a9c5789676b7c5443bed0a9d55ed43d15d3a25624ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-03-fap-family-assistance-program-fam.html",
+      "sha256": "ff6d8105f33ff272f20c9bb87441c021775e1614adaa62ddfbdeb93bdc311822"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-05-up-financial-assistance-for-unemployed-parent-program-fam.html",
+      "sha256": "52cb7ca3e75d98e4532a90938024b31303c199553803b3416fc6b1623fa8629a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-07-families-with-older-children-fwoc-fam.html",
+      "sha256": "e6001b925c376413b93e0bbac0ecc9ad9e943fad477236a23b5f263bb237fa4a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-09-interim-disabled-parent-idp-fam.html",
+      "sha256": "872d18e84273c5d3530803cd8820a6daf0ffcc977987b5d43a881694f758ed9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-11-transitional-assessment-planning-tap-fam.html",
+      "sha256": "cc6b1bb0a0c2966c8e4a40d68710ca6825cde93fb5e5c5ad2a78ba55f3c6cf2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-203-tanf-temporary-assistance-for-needy-families-fam.html",
+      "sha256": "cd3381616388b80dec0ed438b0a090f7282b55acd1bd40ecdf02bce140c9e322"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-204-01-verification-requirement-fam.html",
+      "sha256": "cbeef71c6415db04e32dd2bae70ab9814c1732a38ff860cc7cd629941285bb81"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-204-tanf-financial-assistance-for-unwed-minor-parents-fam.html",
+      "sha256": "158f866d2bdecbfe9ef6f797db5d8e30024462c81d8cfa304bb28e076e41d068"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-205-01-children-up-to-age-19-fam.html",
+      "sha256": "957f3021ef155a6d88c6c0f97ce6a34feb2c7eb9c890fc0631451617b236e593"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-205-03-pregnant-women-fam.html",
+      "sha256": "9ff712c3289101e3d53f0320258e8da5332e1f19cb5f8bbf2502d6167840fe2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-205-05-severely-disabled-children-fam.html",
+      "sha256": "8b38ffdd0006635fcf8790f617c408441c32ed48dc461eb145d7f685f82cfbe6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-205-tanf-related-medical-assistance-fam.html",
+      "sha256": "0afad257d36a7520fc75fe66f4c53f31ed7a74678a336a04e69ccdfd3069346c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-01-eligible-dependent-child-as-a-requirement-for-tanf-fam.html",
+      "sha256": "8c0f38036abb3be0287d01657a87d3eeec335629b9c661710e4329bbfae87b94"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-03-eligible-dependent-child-fam.html",
+      "sha256": "2a2d6a41259214e90066f61b251f3dc2a7b73684f814e805701e38687b524c5e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-05-living-with-a-specified-relative-fam.html",
+      "sha256": "ef1158e2443473ad005223ae8eb137240c969c09c15d8f3b1c9f1dbc5be7dc53"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-07-dependent-children-who-are-students-fam.html",
+      "sha256": "1c32b5897889546c4aca9149e59792ac7e3c9270b9f08b4de9feff2a310c808e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-09-deprivation-of-the-support-or-care-of-a-parent-fam.html",
+      "sha256": "81de96d2fae649f0140b16295910e8d466625d0aa0ff95db06958411a98ccce2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-11-when-dependent-child-reaches-maximum-age-fam.html",
+      "sha256": "ac74b86974ad9bbdeb95757b50475300d81c9d1de44793014cb6f984b5fb648a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-13-verification-fam.html",
+      "sha256": "ae5275ca135936bfee9f76d3a5146cfbfa1ca3d593afb0beec0a2f673fdda303"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-207-dependent-child-fam.html",
+      "sha256": "d865b539a37640ed41a930a35ad062ee46e6d67a5d1f341ede509e2d0e764e26"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-01-eligibility-requirements-fam.html",
+      "sha256": "a272a7f0ea68860cd99ded64910d0f100b0dbaf4697bad67c44ccc073f5b95f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-03-death-of-a-parent-fam.html",
+      "sha256": "58dc7de53c7ca943c195d4a7990955a0025f06a972bc789c47bb0693f2523ad0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-05-continued-absence-of-a-parent-fam.html",
+      "sha256": "1066f5b8c5c2c25bbfb479c233143466eba394f076d6af7659d60638ef162f9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-07-continued-absence-of-a-parent-30-day-continued-absence-period-fam.html",
+      "sha256": "638337e887a6b19a348224a294788544611b6702993ee653bfec65744902fa0f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-09-incapacity-fam.html",
+      "sha256": "6f4bb7f28bc5548c34d80a0c47aa1ab397e99e6ec1af907c0beb8d2ef3798562"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-11-incapacity-30-day-incapacity-requirement-fam.html",
+      "sha256": "c0115a36a0f9e4daef99c453c5ed8145a3c7bee3122072cf7eeeb62c526efb0c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-13-incapacity-case-tech-determines-incapacity-fam.html",
+      "sha256": "737f610cc44db1a458c5f3ee4ea450254954e268e04d961b44b9e96b45e7025a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-15-incapacity-determining-incapacity-for-parents-in-optional-programs-fam.html",
+      "sha256": "545a6179156007a8d13fddd16f13e2e7760af3a807c525ed3bba4e53edd3a377"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-17-incapacity-increased-earnings-by-an-incapacitated-parent-fam.html",
+      "sha256": "231ba019b4cf1d42dd2a70b9e01d621de49f5e27e9f6d64ce88e0ff92523fd61"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-19-unemployment-of-principal-wage-earner-fam.html",
+      "sha256": "8695563febc42368a9b307b130e25401460496b7a239907fdd4c0b02619c6cc6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-21-unemployment-definition-of-unemployed-fam.html",
+      "sha256": "72f923b93a53a054af0441bf3b6d9e0eb0018629ef48c62ebb965a7acb451109"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-23-unemployment-eligibility-by-work-and-education-history-fam.html",
+      "sha256": "2ac44227aa630651a5184aebea91f1fc49cfe028ba2809bf4e3ac60443b5946c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-25-unemployment-eligibility-by-unemployment-compensation-history-fam.html",
+      "sha256": "938124190eb35b22a31f1f7000af5ce8ff5603f1020b4bfc0d3190a436c66670"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-27-unemployment-nh-employment-security-fam.html",
+      "sha256": "5aec783000d118c1fdde18b01c44667353cd83d629791495965ff49e3597e89a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-29-unemployment-refusing-an-offer-of-employment-or-training-fam.html",
+      "sha256": "9845dd078c9bf100e5155f4988943c188363e38ed2c9d54c4e3411a56a5f670f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-31-unemployment-good-cause-reasons-for-refusing-an-offer-of-employment-or-training-fam.html",
+      "sha256": "f087241ba6a3c5d22aab8fe12672d2cf91a572b5440334439353118b1c996bc9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-33-unemployment-12-month-extended-ma-fam.html",
+      "sha256": "076ac8dd63256a1848e332e9a4912a334e7a2f730c5fd2158b7fa010b5a700d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-35-temporary-adjustment-period-fam.html",
+      "sha256": "9999885b7a585cd8ed358b214bdd7d2e65a5150ce48185c6b302109daef856d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-37-verification-of-deprivation-fam.html",
+      "sha256": "bf587c937dc5fa7b4ff2648cf0a3811b1b126d6ff323d080574e45b4ab43e178"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-39-special-verification-of-employment-requirements-for-refugees-fam.html",
+      "sha256": "38cff36a3e9c59f72e8b25092624cef2a7ec3e0dfd1e1629b007f3b55f210f16"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-209-tanf-deprivation-fam.html",
+      "sha256": "ab4d3a9ed14314839c28a5a1ea8867147669de39ff20e3c4cc1ef1261c409f89"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-211-01-who-must-be-members-fam.html",
+      "sha256": "a4c8f7b8ce9416dfdf07542ff94d756c92693f5e3d431d3ab968584c84e8c5fb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-211-03-disqualified-individuals-fam.html",
+      "sha256": "4299175b8b816c7ebf2a07e21bec589d2f0071339da694a13705e93309147d36"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-211-05-who-must-be-separate-fam.html",
+      "sha256": "ac3b0339430fa804a1a4c633a17a652672bee84b0cfe9838501afdd89078466e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-211-09-who-may-be-members-fam.html",
+      "sha256": "a40f8f4a26cf2cadf342d969279effe4639902e84e5579f0e45382d9e3815a41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-211-11-who-is-not-a-member-fam.html",
+      "sha256": "c1c9fca6993247bf1106707b6fb9db9ae6541d1a645212a7fad2a21c2c1a5d40"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-211-composition-of-assistance-groups-fam.html",
+      "sha256": "8ce29e1f1c6b5c991e57c9b1904431736ade3cde1a2005f2bbbcd75a8dced12f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-01-unemployment-of-the-principal-wage-earner-fam.html",
+      "sha256": "35f3f7722fcc59881a69351df286b61ae33032b1d3f7f0984252417f4e9429e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-03-up-definition-of-unemployed-fam.html",
+      "sha256": "dcdbd3db7a0797f4053748c677c652f54aecd7476a12664b2b36afcf83aba0cf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-05-up-eligibility-by-work-and-education-history-fam.html",
+      "sha256": "8ded57c7c916e5bf8f2a4f805b5e2bdec47fccb0ecc2007a0f384e7da4b653ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-07-up-eligibility-by-unemployment-compensation-history-fam.html",
+      "sha256": "120a843d368af9509d6bb6fb8454924e24f62c4ce06a83a1fb990a4b70ffde49"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-09-up-nh-employment-security-fam.html",
+      "sha256": "689cf10b45caeb87b1a7bd944279b35b490668cbfdceae86ee69c66678988723"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-11-up-refusing-an-offer-of-employment-or-training-fam.html",
+      "sha256": "aed747d51b33572be95d98c5e33f8b624ed362faba6c5ad99027c124e86d44b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-13-up-good-cause-reasons-for-refusing-an-offer-of-employment-or-training-fam.html",
+      "sha256": "9357d5b7ee5ad9618efed8065ac38bf11237272cb28f822239899e3942a04c2f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-15-up-ineligibility-for-uc-benefits-fam.html",
+      "sha256": "98ae7f6d0aa17a9281fbcbbd0cd15a15389104ec52956f8bbe37acb6a1db2c95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-17-termination-of-up-and-eligibility-for-other-programs-fam.html",
+      "sha256": "2ce660d2972321cfcce96227e605759266368614242feb91271121a797f62fea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-19-verification-of-up-eligibility-fam.html",
+      "sha256": "411ed6f817af49b3e9dd62448f924e1da3dd5d912cf05425bc21fe318838869f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-21-special-verification-of-employment-requirements-for-refugees-fam.html",
+      "sha256": "e8d49c4d42d4a0440b2c12eed8380782a0b38f63b16aca9fc9bb581742b2623b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-213-up-eligibility-fam.html",
+      "sha256": "5cca6ec55dd0fd7f727ff2be7cf4e335883672977c6a62add586a8facd251307"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-215-01-who-must-be-members-fam.html",
+      "sha256": "630894951412b80a155c2ef0b372c6bb5f022d87a09db341dee006aec13b14b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-215-03-who-may-be-members-fam.html",
+      "sha256": "b3aaec82f8e9e9bf966383fe5a22197d4958318a05c89eb0c96028f82e4a1b2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-215-05-who-is-not-a-member-fam.html",
+      "sha256": "29ea7b3d74db510b9877c7a945c748b81cc05204bdeba30c2e6dcf94f502dea7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-215-tanf-medical-assistance-only-group-composition-fam.html",
+      "sha256": "2a5f6e7da34396dc9b4ed6d46b1fc9f23f38c887124d915758c930a2295b977f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-217-01-when-separate-medical-assistance-groups-are-required-fam.html",
+      "sha256": "8396cf18c7c1299181269a0ceaee56e74fdbe56d76fadc6a97260f7f80a9f665"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-217-03-actions-affecting-separate-medical-assistance-groups-fam.html",
+      "sha256": "190fa38991a07562f33f963271cbfdb5a65af5f568e18e4e8ed2f56de637b342"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-217-separate-medical-assistance-groups-fam.html",
+      "sha256": "acc97f07a25491106df7e504c56b53d1ac111e1314b365195f7e787e159ac5cf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-219-01-medical-assistance-group-composition-fam.html",
+      "sha256": "55d34c3d4e117c297e6177bf970a8280e801f8fc380348c606fac5214e1fdf8e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-219-03-required-verification-fam.html",
+      "sha256": "52c27ea54d677116c86c30bdbdf2aca343889fd72fb842ccda3ccfa0f42f3de4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-219-children-up-to-age-19-fam.html",
+      "sha256": "36ca07c05a6efe78605110af4c3493bd3f7557630add23bc3a317881fd10ff0f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-01-coverage-group-composition-fam.html",
+      "sha256": "90297904a0d59b48d6ad9c68cb3973d7182e4c8a41737a18877d27876e031cba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-03-eligibility-requirements-fam.html",
+      "sha256": "d46fb0a6614caccdbed8b7152e842aa41ee7f581db6727f3a7fb11165fdcaeea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-05-application-for-healthy-kids-silver-medical-insurance-fam.html",
+      "sha256": "ea3513a1092df20b02eb3df352ef92ebfbdcf779741f7ea501ca55111528073a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-07-initiation-of-healthy-kids-silver-medical-insurance-fam.html",
+      "sha256": "515cb247b356c99fdc00ead4ab074c2d84f19b69e767e47efea085bccb4c3edb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-09-termination-of-healthy-kids-silver-medical-insurance-fam.html",
+      "sha256": "cfb08d2097a04be3dbe58f27932c344f9cd41fee4e9e89fb4e45d53925c80254"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-11-three-month-lockout-due-to-failure-to-pay-the-premium-without-good-cause-fam.html",
+      "sha256": "a7f39123a27225be8977b1b103c856b9f4db9decaf9822ef91ebfd1a51d158bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-13-verification-requirements-fam.html",
+      "sha256": "d9877d484e5806a86f122a00ae0bb675da7a0bc23de3ae83dc8647660f0678db"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-15-notices-fam.html",
+      "sha256": "7474eb3fb6189f0769210bd83ad5b2a5f6569fef31816487c8317b73bd1f889b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-220-healthy-kids-silver-medical-insurance-fam.html",
+      "sha256": "3b5427b8cfadfc2e00576a0a2a3d5533d56c423eae2825abee563fcb249d2b8a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-221-01-medical-assistance-group-composition-fam.html",
+      "sha256": "9decfaccbe64dfdaa887d084ec2ff77bf4f90b1b8d751180a2047eacce5d0023"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-221-03-continuation-of-medical-assistance-following-pregnancy-fam.html",
+      "sha256": "f8dd45bb5f2e2372f16e3df275234a2b5016f40a27b6446ea77dbbf6328ba06a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-221-05-required-verification-fam.html",
+      "sha256": "fc7e239c001a0a20416cbebe6e19d219b2e0ae221492f51c580793d46936ac85"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-221-pregnant-women-fam.html",
+      "sha256": "d413ecd8bc01d3cf268b123e55353e00cb4c26551a9e95217be2458e58145240"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-01-family-planning-ma-eligibility-criteria-fam.html",
+      "sha256": "4e70fdf087b474c4bb02fdb43c52f1807dab4328eef5e8087af60aae981dbca6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-03-family-planning-ma-application-process-fam.html",
+      "sha256": "9eb24d0d39bd4b0afee5c2abb6d3a56278fe2c162b25e7f3d8661dc194d545eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-05-family-planning-ma-income-requirements-fam.html",
+      "sha256": "bc159b9f85e1075e9f1dfcb022a1a96d0c25ec5e15d45000b85e979d2a9c3d4b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-07-family-planning-ma-resource-requirements-fam.html",
+      "sha256": "a932482b5dced5e23d50d920f1f173cc5a4f65f4f15a96efca37f3968082c8ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-09-family-planning-ma-allowable-deductions-fam.html",
+      "sha256": "1027950febc1f164c781185a286ff19432544d2be08cbdba75ed24320a89b1a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-11-family-planning-ma-covered-and-non-covered-services-fam.html",
+      "sha256": "918b13cd89ec4097a3d3f26bc896aed2647c5007793bd0364fa069cd9566412c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-13-family-planning-ma-retroactive-medical-assistance-fam.html",
+      "sha256": "386f760f3b67dd0bdbfea3000a074d06ec80b987ab0692c249dadd3c2b60678a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-15-family-planning-ma-in-and-out-medical-assistance-fam.html",
+      "sha256": "41e5e4ea8eb1dc4907b8f7fdd8996d8fda2015460f6d0b32825e9972bce6b241"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-17-family-planning-ma-third-party-liability-tpl-fam.html",
+      "sha256": "b26c0daaba0ffae93ab32f8ad11a68a1986431a8546d40995c0d9e458784f346"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-19-family-planning-ma-length-of-eligibility-fam.html",
+      "sha256": "277208753d80b4dbbb6c7526847da5fb7e641ed33b57407dd537de919ed3312c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-21-family-planning-ma-determining-presumptive-eligibility-pe-fam.html",
+      "sha256": "350db76573a63d75b1680270aedaf80dcf1940b0916cefe0814ea25137bca90f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-23-family-planning-ma-required-verification-fam.html",
+      "sha256": "c6947d8f5fe0f1c59b5d4b219f97d1ffdd773bf534718647ea1ae51eb333e835"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-222-family-planning-medical-assistance-ma-fam.html",
+      "sha256": "7301be7d7092c90486c2ec5e531852a5d9c39029e7799e1bb4e6930da07692d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-223-01-medical-assistance-group-composition-fam.html",
+      "sha256": "1813a32efab8a57796233ba457b9ee42038e8f05aa2f57c8ac701bced8573162"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-223-03-required-verification-fam.html",
+      "sha256": "78e9cc6d8121192977077b2405e7592b7479ede01839a166dc3102b479b3ffc0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-223-05-three-month-temporary-adjustment-period-fam.html",
+      "sha256": "1c4071780ec2a3a1975574884096bf8f6872ff6064fc46bf8ea6be847370c8fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-223-07-csd-children-turning-18-years-old-fam.html",
+      "sha256": "316d59d9f8a0597fda0e83f7218d4ad5b93ae2db07acb02f75cfd52dba823f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-223-children-with-severe-disabilities-fam.html",
+      "sha256": "06be592969a90f857b346f075d61c37baed26a73dd416d846cfe480ac09a7ca1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-225-01-medical-assistance-group-composition-fam.html",
+      "sha256": "dca8bb598f2bef61582b1d0c6936bf8d009d98ec4263727467533b60963e6015"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-225-03-required-verification-fam.html",
+      "sha256": "ed344306c8b5e7f26bd8a07ffe653eb06f95cb8f54d63bfc96001bd5158cf2dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-225-05-three-month-temporary-adjustment-period-fam.html",
+      "sha256": "c206f251243e2ba8749e9ba41d23743c9ce770c94bc81b713c4bcd33a671eeaf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-225-07-hc-csd-children-turning-18-years-old-fam.html",
+      "sha256": "6f95da4a9b7b29f3f20f88bf4c51a2fb74c3def60b8424a03c0d5e08e1146a46"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-225-home-care-for-children-with-severe-disabilities-hc-csd-fam.html",
+      "sha256": "929c1fc0dfbc5eb4db9b90e47118b7913c77dd8199e2602d08b9c115b2e5253e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-227-01-individuals-not-considered-strikers-fam.html",
+      "sha256": "aec69a4623c54bf2c703d0c9d6f6c4944b117e90058b35e56976095211c7c908"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-227-03-striker-eligibility-fam.html",
+      "sha256": "685cc14b0858c7e7dcb9adad6700b0f68e4706045de13b54fe204a0869690ea4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-227-07-recoupment-for-strikers-fam.html",
+      "sha256": "b73fc892210f0849fd5e0b44626862c214e33ee1323bf85551b2a8639da7e500"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-227-09-required-verification-fam.html",
+      "sha256": "7ff9c683c69dad574af13a1baa3ebadb893518b1dc3b39e73ac1953f548d0c01"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-227-strikers-fam.html",
+      "sha256": "2ba8b8684b5a963ef2f4b9ce076cdb6367eff1671bf303415fe76983e33036d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-241-01-assistance-group-composition-hcbc-dd-fam.html",
+      "sha256": "4bf5115a760fca7e60c4ffb2c5df8f6333716cbf68d98f2b51fffea81b088689"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-241-02-required-verification-fam.html",
+      "sha256": "a0eac77187b539c46cfb5b8451ec572363ef984eb3ce52e4cce1887af3748f65"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-241-home-and-community-based-care-for-the-developmentally-disabled-fam.html",
+      "sha256": "1a98eeee0bc559d987d408ab104fc8f9f33194a8d6bc7967ce15f91ae4925d2c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-242-01-assistance-group-composition-hcbc-ihs-fam.html",
+      "sha256": "3339b3422572e2b695b1788aa0d3d8c3e1c90d8201909f446d3be2392dfe1a26"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-242-02-required-verification-hcbc-ihs-fam.html",
+      "sha256": "506eb84d9d4ecb26fcd5f151476524bf726bae81e2e16fd30df04e127c907ca2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-242-home-and-community-based-care-for-in-home-supports-hcbc-ihs-fam.html",
+      "sha256": "bc1a5b2882964c762cfcea37c296ecbbebc2aad540b8eacd90036664956fe88a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-243-01-assistance-group-composition-hcbc-abd-fam.html",
+      "sha256": "4cbd7ea069483d6374aa97164fbb5bded6f9fe279c75970e5cd36823c0a48536"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-243-03-required-verification-fam.html",
+      "sha256": "59afee1dec2bfefd92f7b9e3bfa4f2e7e80aa5d913ae0c5d367b98e4de8bb41c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-243-home-and-community-based-care-for-individuals-with-an-acquired-brain-disorder-hcbc-abd-fam.html",
+      "sha256": "efacb20924ccb3b1ad7827aa40bb9e1df63b329bf4583df4cdcb8d713d2a0436"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-01-rca-rma-application-process-fam.html",
+      "sha256": "69340a87af5f2e919526c18a7cfb301977aaabe537dde112fde16a08cf102d86"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-03-completing-an-application-for-rca-rma-fam.html",
+      "sha256": "a65a0264de5872f3dedfcacd58cd31fdd9facadfc51ac75a7c2f8aeeb897e593"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-05-rca-rma-application-processing-time-frame-fam.html",
+      "sha256": "5d06c512600292f44def780f74950e9d460993541203a611fefb11f6b0013460"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-07-rca-rma-eligibility-criteria-fam.html",
+      "sha256": "a5d670d3e45de44cd45f3165c93e4314081588ceecab3b9b1f247b1bfb50aee0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-09-who-is-not-eligible-for-rca-rma-fam.html",
+      "sha256": "3c544821de71dcda041c35dc7757bc6848af3a43f3292e08a2625b9b3684c349"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-11-rca-rma-length-of-eligibility-fam.html",
+      "sha256": "3a483ebf666f0d4cfad9280afee0d895a0cd7c9c6793dcd3af292dafc2ec11a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-13-changes-during-the-rca-rma-eligibility-period-fam.html",
+      "sha256": "1b39b2b9a6741b4673c66c056c7941c63c83764111fde7215e2a4943c368ae05"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-15-treatment-of-grants-received-by-rca-rma-applicants-fam.html",
+      "sha256": "9aa79fb0514152f60b65099d8cf3788b3a2eda2bd43e62a96bfe7db574edd7e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-17-work-requirements-of-rca-rma-recipients-fam.html",
+      "sha256": "61de7bf9b0bb368b6986ee7de11b0289343ebadd629dd95d8721fa96e4235381"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-19-termination-of-rca-rma-fam.html",
+      "sha256": "8eb03759daba3209e093c00abfdf272c000b034d17461eaffe117602ecde2834"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-247-refugee-assistance-fam.html",
+      "sha256": "26d77965e50e1a7e5684620297e6596fbcaf2d6f7e27e4697c69fe96c9271f09"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-249-extended-food-stamps-efs-fam.html",
+      "sha256": "e7c014f483a861a06b1c326bcb08d9e4979194c6959b2c475cf75ffe41e9b7e7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-300-non-financial-criteria-fam.html",
+      "sha256": "c3abb239d335afe8e95f89e5e080704dd1802c0d5064038cdd9c81abacd44395"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-301-01-application-fam.html",
+      "sha256": "3190c28e41c897415074cd99df15e9f503e46e8a59b98c8c9d129a653f0dd841"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-301-03-case-membership-changes-fam.html",
+      "sha256": "a211f4302ef7420a927c861c07e2015cee18ce9867644eaf92b3c6c452d1215c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-301-07-how-to-verify-fam.html",
+      "sha256": "cd394bf89074c4d894c4b04658d1a39146e9850188653af6ff0e75f125ca627c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-301-identity-fam.html",
+      "sha256": "76a04195111d9e6930325b10012c9b4f3d1f643dea43cd9aeec3ad4564f8700c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-01-residence-for-eligibility-fam.html",
+      "sha256": "41226aab6efffd954487a76155654835a46419e58798f4d7be065c1a541e5a4f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-03-when-to-verify-residency-fam.html",
+      "sha256": "755bbcc704a4a267ed4421b43060c796c5676a9b25d1b60e1c541826b8c528c6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-05-how-to-verify-residence-fam.html",
+      "sha256": "ccc429b5765c6afe7fd1d628c3d9a4687868dd4c8f782a34626cd79cfc3b6c0e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-07-moves-within-the-state-fam.html",
+      "sha256": "0de40cf2c25553674bf2150ec975ae9c196c2a735204361eeee20e1cbbc5722b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-09-out-of-state-recipient-moves-into-new-hampshire-fam.html",
+      "sha256": "c226dbecea8f604bf69b7970aabcd3bc8bab57263fd7b92b60921fee69e074ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-11-absence-from-new-hampshire-temporary-fam.html",
+      "sha256": "f0aee348810a745e0bfa1ca23e48108bcb45836efd9e650ee7f39cfd02edb84f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-13-absence-from-new-hampshire-permanent-fam.html",
+      "sha256": "572acf57c7436b43a4f6344378d126199e4f3d6472255e473726acef95894e8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-15-medicaid-only-residency-fam.html",
+      "sha256": "0b4a24e5b795990ea1a87d449bb9804c0f44c52bd93c4755910e687dbc21cc45"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-17-medicaid-only-residency-individuals-placed-out-of-state-fam.html",
+      "sha256": "5b64b47fb93be88594f5793fe2c08461823bccc2794daebbf474f31b45422082"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-19-medicaid-only-residency-institutionalized-individuals-under-age-21-fam.html",
+      "sha256": "9bd8175f170e2060f3621a6480243685a7bb4ceb0f2d8280bd29832de9b5940c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-21-medicaid-only-residency-incompetent-individuals-age-21-or-over-fam.html",
+      "sha256": "d79328d15548a056367743f0ae9fd14fad9e70b717537fa601e4754acce1081b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-23-medicaid-only-residency-transient-individuals-fam.html",
+      "sha256": "e711b7f7158a5242c6c29a8a6901f40207f2d4f89efa0952d776a93ec2c65ba8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-303-residency-fam.html",
+      "sha256": "0e5368f679481ad6cc91c1c3b6cfeffd6a08cd858b16e4e9df53559e1c6b1c2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-01-definition-of-us-citizen-fam.html",
+      "sha256": "814a9d6b9a80b37f68ef9926c65615738f7a939bf22f7ffc493fb847cdb9ac07"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-03-declaration-of-citizenship-fam.html",
+      "sha256": "b21b15e027e28cab06136b94d28c12409b86c135d781a1bca7a779f39c3a9e68"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-05-verification-of-citizenship-fam.html",
+      "sha256": "f0e4a8ae435f379a78c523ebae657b9923d675a48e2c3a1b51dce188e731076f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-07-ineligible-sponsored-aliens-fam.html",
+      "sha256": "b0af8245384d3381acfe48330301322d8c2fb1e7bb76e0e02c58948c8d14fd6a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-09-determining-qualified-alien-status-fam.html",
+      "sha256": "e3f91e62538225e71479cda0a73532d6e1411b756dbe2b4aaac9391b1bb68e97"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-11-eligibility-for-certain-qualified-aliens-fam.html",
+      "sha256": "cce68f73d7766ba47a8b7d5e01c91894f6bffc572c2cf6dd7c4a7e89e2c7c3d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-13-qualified-aliens-eligible-without-restriction-fam.html",
+      "sha256": "b629a51e860c1b79cd0e4b940e3823b96cb949a8572305afcb5ec52a65b6193f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-17-qualified-aliens-with-restricted-eligibility-based-on-date-of-entry-into-the-us-fam.html",
+      "sha256": "83e331342341b968cef4d4135bbd7c13c8c08cbb78f3dfbf2501efa617a1a727"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-19-crediting-ssa-work-quarters-fam.html",
+      "sha256": "8cd8b32ff3091595fb792825a6efa8008c712e88e24e77d4688073b83dd7d6f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-21-documentation-of-bcis-status-fam.html",
+      "sha256": "8ce1f68706c57377cae8a5b027605f074f5168f0fec8129144665f1651fe2914"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-23-verification-of-qualified-alien-status-fam.html",
+      "sha256": "b048bcb5745b55bac7031574a66bf73cda668907e477b7f4d8dd25614c509b4a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-25-when-ins-responds-late-fam.html",
+      "sha256": "4c0cfff9195aec0668cad309d84f287629e05539a0034640ad36e9c577033c31"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-27-administrative-appeals-fam.html",
+      "sha256": "4572c4ce2ee94e74153b3095da8099eb9aac67ea829510e943417d75adcd1f5a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-29-reporting-illegal-aliens-to-ins-fam.html",
+      "sha256": "48eec7d8f311a9e685f3784e23432067ea5b94897d33459c19def86503f1bbc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-305-citizenship-fam.html",
+      "sha256": "a692d867c64b9182b170e75e6e265ac831d3f72beb463d0af012eb449484ad95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-01-eligibility-within-institutions-fam.html",
+      "sha256": "2d379fd2889210f9688bb9df827926e17aea4586065ebd04ca4607891150b662"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-03-individuals-in-designated-receiving-facilities-fam.html",
+      "sha256": "041fa48b76591f08327107e7790e2e2249cfec0a547e1b9397d7e329867943af"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-05-medical-assistance-institutions-for-tuberculosis-or-mental-emotional-disorder-fam.html",
+      "sha256": "bcec781009da393080d5bbe8ab256c6e8f0b94ad88846d9b3795bce550a2201b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-07-medical-assistance-public-institutions-fam.html",
+      "sha256": "285d03c6dc682858713f83631f13f654a7738473b2e7197fda6d65c930679818"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-09-how-to-verify-fam.html",
+      "sha256": "de1749020433269a539fd2f01667690b15be176d7973edce81c640eb536d8f8b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-11-medical-assistance-inmates-fam.html",
+      "sha256": "ce434f11eae3b644a89aed6c3db0bf4a152940651d0f7e6b399908c2057893ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-307-institutions-fam.html",
+      "sha256": "296ad67165dba1015a826fcda0913622b960629ad7010df542b64f148425ab9e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-309-01-ssn-eligibility-and-applicant-notification-requirement-fam.html",
+      "sha256": "ea1c3ada1fab2cb8a87845100d6af3983d36ac8d86644d16a0046a346248a7ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-309-03-other-worker-action-at-application-fam.html",
+      "sha256": "53203a8f6242fb0f1d86a2ecf829f209ed9057fa0f300733bb906aebb33e436b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-309-05-completing-an-application-for-an-ssn-fam.html",
+      "sha256": "033bd442feb5d30acc522ddbf1cb3a75ef99c7289cd49a800a7fdd2c679ffa6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-309-07-verification-fam.html",
+      "sha256": "d303e32dba2c8b867c9b935620ac001e6cfe28b62e8ead5d13e9b7b54ddd78dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-309-social-security-numbers-fam.html",
+      "sha256": "29a3b030e437d814b1b21bba1aa2a95b061d33b6e5c800820c568da5ed9758fd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-01-who-is-liable-to-support-a-child-on-tanf-financial-assistance-fam.html",
+      "sha256": "72ceca69049d11b2ac0c46d97264b19f0d02ad7365a11ca31c01b21c439fbe42"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-03-who-is-liable-to-support-a-spouse-on-tanf-financial-assistance-fam.html",
+      "sha256": "d113f706517cf67342d1f8f829fb766ce29953447bf219925cdab1358cf7e5ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-05-determining-the-amount-to-be-contributed-fam.html",
+      "sha256": "03c85a796a74894fdc210d63f5ee38c2e0a3b93aab71ba2d674c3929615e0be5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-07-assignment-to-dhhs-of-rights-to-support-income-fam.html",
+      "sha256": "f6f0f5fe01a210501bdc9f2ac92a55ae12ff13d8959e1ef5bb14cf6f91260140"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-09-notification-fam.html",
+      "sha256": "e6fa66000c128248a216cc8a03366eef7ece152aeeabdc79485fe23c5ae36c03"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-11-termination-of-assignment-to-dhhs-of-rights-to-support-income-fam.html",
+      "sha256": "1c1b88224c694efcca1b566ad4ce86b7eaba58a39bc9d6a225b258db76967879"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-13-cooperation-fam.html",
+      "sha256": "df750976566ae7517ee9b70b9b5dbbd128e4c46aa08e1cf4f2f2df4a27d3d485"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-15-refusal-to-cooperate-fam.html",
+      "sha256": "4d2f21df2d7387ccc47f0af1b54dc03ad9f4774cf14234443441c4103cc4a20f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-17-good-cause-for-non-cooperation-fam.html",
+      "sha256": "f213f2feb3e67ef3c716e534d0a7a41d80044a9ab327540e74cbcf5bcc3c79ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-19-good-cause-acceptable-reasons-fam.html",
+      "sha256": "452c310803f3519c9a03252b7017627336bf53380655d03fbf0f29759133394d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-21-good-cause-time-frames-fam.html",
+      "sha256": "73f50f093a6cb3c3b79901cd26d6a92849357965ee728ba11bc07f491b10f0ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-23-good-cause-notifying-the-division-of-child-support-services-dcss-fam.html",
+      "sha256": "b56a517ceff9e33e057189bdb9f9fda1b009bec819d1353bd7e8627be7a755d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-25-good-cause-verification-fam.html",
+      "sha256": "619407155c7a012b2e9859fdd5fa0ffd8d5bb1b4830557fd472d331f1d69edfb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-311-liability-of-relatives-for-support-for-tanf-financial-assistance-fam.html",
+      "sha256": "6d26e9da525a90dddb91cd08c9b456f4e2eb310b08bd0a3089f7d5f92c187a02"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-313-01-medical-assistance-cases-who-is-liable-for-support-fam.html",
+      "sha256": "3fa7e11279c3002c42a3bec8e276d2339977c0a9eaa266f9d72113a388839781"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-313-03-medical-assistance-cases-relatives-ability-to-contribute-fam.html",
+      "sha256": "f3605ae80cc32820c2e9d3fd90a8ab3347a3392970ef8e9088e10edaee6489fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-313-05-medical-assistance-cases-determining-the-amount-of-relatives-contribution-fam.html",
+      "sha256": "833b5048589804dc166bc36d13ebe3475e32f121974fbb252c895647b99ffc25"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-313-07-cooperation-fam.html",
+      "sha256": "db4b4b123c02925195de96770eab24b0694981333a533e954241915cba47ebd7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-313-liability-for-support-in-ma-only-cases-fam.html",
+      "sha256": "f515817a2bd440d1653fdab74e7155e85f3ae64e217a7104ed7a195315c6bd3d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-01-definition-of-voluntary-quit-fam.html",
+      "sha256": "3fb5215d943b0b7cf27a3352f25744fe0236e20010ee0a10441ae740b1711bc0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-03-good-cause-for-voluntary-quit-fam.html",
+      "sha256": "9cff69b1e234b3a9657e020dbf24c0c83dbc1740b5b4c72f0fb56172a79555bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-05-sanctions-disqualifications-for-voluntary-quit-fam.html",
+      "sha256": "755f14ebe7e156b6567b95c255cf735fb13831ae99ee3a17e6a7a3ed136d00dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-07-informing-the-household-about-voluntary-quit-fam.html",
+      "sha256": "e2fbe34edffd91d223274778247e979a14c29166701809cf59de16d0240da286"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-09-fair-hearings-fam.html",
+      "sha256": "b6feee5924ffbbbfb8974f16637418202e16ce3b33fd8f3fa3580fdffb9b4ecc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-11-reapplication-reinstatement-after-voluntary-quit-fam.html",
+      "sha256": "ecbec81a733b5b59229aa7af9c1bbadfc079c1a843d9fa79ce355131d9b884c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-13-verification-fam.html",
+      "sha256": "02eda8e7f61de9095ff2f3e4afcd8b6a7b9f03971df9de783ef2e2afb21ef89b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-315-voluntary-quit-fam.html",
+      "sha256": "779be03c15459c717b05e7c5e9a9e14f77ccddc1920be21c33c840dc47ebf06c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-317-01-potential-sources-of-income-fam.html",
+      "sha256": "42a958bf7f63a9d380f7dbefbd9b2642cf3eb232e766e34e6c3cbc305eb14487"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-317-03-requirements-for-developing-potential-sources-of-income-fam.html",
+      "sha256": "9b7995dbf146aafff9afd82eef431cf9d7978e71c35df680d13b30411a0a13a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-317-05-application-requirements-for-developing-potential-sources-of-income-fam.html",
+      "sha256": "4dbacbd29b2124decf5e38ecc233b04267b34bff412da8ae371ac4bc1bac1706"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-317-07-cooperation-requirements-for-developing-potential-sources-of-income-fam.html",
+      "sha256": "dd23444d49533899255575092e720aec26e3277b488a6417a979556550bb79c3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-317-09-good-cause-for-not-developing-potential-sources-of-income-fam.html",
+      "sha256": "33d21042e81163b7a0722dfd4f7eeeef83705005c9df5098847f56b219363afa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-317-developing-potential-sources-of-income-fam.html",
+      "sha256": "e0e7d9a6c7ee189611fd9e5d2c8bd2bdf4e23ff8c1037621f643ae9a9a691143"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-319-fugitive-felons-and-violators-of-probation-or-parole-fam.html",
+      "sha256": "11a1f6a85cedcede1762a53a6ccbf43061f64bf44765794fd666746e49a0334e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-321-ineligibility-for-fraudulent-receipt-of-multiple-benefits-fam.html",
+      "sha256": "aa454f8a76dbb27f84bf632fc34a46eb792237c34ee3420b0f7edd26353d053a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-323-family-domestic-violence-options-fvo-fam.html",
+      "sha256": "5945f71b7145f0df9cfae2c2d76d0a65e9d99f05b15a0b4dd8a0f88051abf5c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-400-resources-fam.html",
+      "sha256": "048c8813fb5a1d3f5f80ea8f1e826f1cca7dcd39192d938cf7c8339d6ca4d274"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-401-general-information-fam.html",
+      "sha256": "9628e55b3fab69a6db0614ade6b43b04a830fa3e511bcee7d625f13bb0646f4e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-403-resource-limits-fam.html",
+      "sha256": "bc5fbe399916e94cb97b13d0e6d3988d1357fa586190a5c1882189ef8407fccf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-405-whose-resources-count-fam.html",
+      "sha256": "cc289f76274b7c62ad2842e01a12695b59a38f5e68a1ed965efa9ebd688a05d3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-407-treatment-of-resources-fam.html",
+      "sha256": "7d4b874998c38b1d24e6d44348666807afe7d40ee7bf1a70f71a5bc1eb1726ee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-alien-sponsors-resources-fam.html",
+      "sha256": "ec089c1bdb6046b4ce7399fb0ef9876e2ada734faf0ff59a2973d850d247b5ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-annuities-fam.html",
+      "sha256": "1e9fc133ac0f22357ffdd9b9bde49b8092315f9147bcfa1f545cd5c45ae7a995"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-automobile-fam.html",
+      "sha256": "973a5ed8de7c4f4ae57a9045178a08dee62b88d90f665f0b220f4cf5318df394"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-bank-accounts-fam.html",
+      "sha256": "e56ec92461d1a5898d1c73bd32027503b432ea2ad0d5a349de1821574b47609b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-bonds-fam.html",
+      "sha256": "a00770ff5244613cf209ab835c9c2e97a0f908705ed0100b315081eb9e0c3ed5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-borrowed-money-fam.html",
+      "sha256": "edf5885189dba269db130829303c1ac1ac9fadc1c74f9106374b33f04fd561e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-burial-fund-fam.html",
+      "sha256": "81d9bc38b7b0f9b464b54925091cd9cbea24879cae6b112a3b99e305c0118f63"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-burial-plot-fam.html",
+      "sha256": "ebc0c01697f5c8da04866e6d06e0ef45e48749f3bb0c58d4f90fdb0ecadab300"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-certificates-of-deposit-fam.html",
+      "sha256": "061f8f535daa71dedc85b019202836c94ce3d2616a901aa748067600e753a1d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-checking-accounts-fam.html",
+      "sha256": "66e1fe13404ea808556b7227055d3a64a1828c2dfe533114654e1ea5161dd66c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-common-types-of-resources-fam.html",
+      "sha256": "15db3cd7c9842bca5bea5198c638f7294749296f21bdb109a69e00727320cb15"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-corrective-payments-fam.html",
+      "sha256": "8244c94c4b6f476d88e9ce678c26d933a6811aea946d404e6b3628f9bd8cdefc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-credit-union-accounts-fam.html",
+      "sha256": "4c467e715688cdfd9d27fb0b12cb9d411acb3447fca66027a46911614c5688f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-dividends-resource-fam.html",
+      "sha256": "8c7c0026877e3aab9d31b2cc78770eb26cd4a65262f54dd9d541e36e2750be09"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-earmarked-resources-fam.html",
+      "sha256": "8fd69356b0b5878eef848dd820e3897e9174117d7246cb38bd46e7c9c688ab37"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-earned-income-tax-credit-resource-fam.html",
+      "sha256": "af34d9eb691d566ef8355f7617e906054667020dc735e4d80c2fb596f1c5071a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-home-fam.html",
+      "sha256": "3c9ac6f86829bc65ef285c93967f61919a5373adab21f508af512e8177ec6bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-household-items-and-possessions-fam.html",
+      "sha256": "ae7f39d6569c8dc677d2bcdc8d926fc7b047afc828ae34f479ef8fed1ddf42ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-inaccessible-resource-fam.html",
+      "sha256": "89882bc4235a488558f5a88e02193fe56f2e0bb06004493016e822e24d3aade1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-income-producing-property-fam.html",
+      "sha256": "27df3c7c9a2c8761d70a98c0f3b5982792f76bbfe0c56479f549ea1a2263f817"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-individual-retirement-account-fam.html",
+      "sha256": "efec9bf78c0866f81b8b782ec63b897cecb35f9b367f39f5772604efd14d65d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-interest-resource-fam.html",
+      "sha256": "bd55740d4234ab2d3793b542d6c6da98d430a8a5d144ea34eaff9c4b8f2c75f7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-jointly-owned-resources-fam.html",
+      "sha256": "46269221a7599b6ab8ad48b2785352784bcf08fd42a93289d4341de674bce4fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-keogh-plan-fam.html",
+      "sha256": "d658521274cef858a0838488417d63f2f8f0c289fad79fa14fa36ec2956a120c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-life-insurance-fam.html",
+      "sha256": "5d0052883bda4b5bbf4183774ad1952c752d9a5ee0b15890d69b25e57c615f5d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-loans-resource-fam.html",
+      "sha256": "896b64ad1844a1e9107a5445a90bea067a5c2894f007337af2b00c6d9626e7f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-lump-sum-death-benefits-fam.html",
+      "sha256": "d4dc9d826cfbd9ca2436390a5942a0f6363269624ded64b895ccc88ec4621f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-lump-sum-earned-income-resource-fam.html",
+      "sha256": "af94cbe3f2c33ab7110becc3efb03c0abdc03acfb9f293c1c9afe188adb00cb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-lump-sum-payment-nonrecurring-fam.html",
+      "sha256": "c2e20d2baf83bad3b67c7c855d12bb47487be0016e16a73ad5b9b8b0c7fb6e1c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-medicaid-qualifying-trust-fam.html",
+      "sha256": "ba08921dfa090a9338790ffe0e3c72feb09701eca3bfc9f23d2603d06725f58c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-plan-for-achieving-self-support-pass-fam.html",
+      "sha256": "4495f945386326c213142849570ba769a28622c333cc5e8601a2ab90f1a50f42"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-prorated-income-fam.html",
+      "sha256": "d18c0a8d430f2c5d3bc1774c054d82f2f21ebb886f44a9c39a482d09ebc6e71a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-real-property-fam.html",
+      "sha256": "40d8969daad9a06a410bf504a444d3e34a0a5fc055d7b35f97dbcd2057e63606"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-savings-accounts-fam.html",
+      "sha256": "45d392c6db5a30cf464267ce101e504fd7ab96fc0bdcecb570566cf8e647ef61"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-special-needs-trusts-fam.html",
+      "sha256": "27e3e499983d53ea737f415af70537c30f9bbe8a4cbeaaa942ce141bfbc16624"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-stocks-fam.html",
+      "sha256": "49fad149ce0f436e977fd5de5d0d5d6eb00ffde911e3da28295fb6cd7e805045"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-trusts-resource-fam.html",
+      "sha256": "714e48e6d5133146e33bbbbcce1043ec95a4315c745ac41b60ccca0545c07832"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-trusts-using-the-assets-of-other-parties-fam.html",
+      "sha256": "240e79984da40a8eb0bb8cdc1dc68ffcb7ead2fa4208ba2c0d910cb34cb2d722"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-trusts-using-the-assets-of-the-individual-or-spouse-fam.html",
+      "sha256": "391b55d655857c16c1e414f0a642aa41f816d71a80b9cd36796152a163e1921f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-unoccupied-property-fam.html",
+      "sha256": "e13635953799d23059fb64ffca7d9ce6153c6abfd02b1219d63486a95a988783"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-409-vehicles-fam.html",
+      "sha256": "add5b6269de6506d7589037d4cd5851ae47b85c87c86f149a3d1e3304bd6d66b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-able-stable-accounts-fam.html",
+      "sha256": "bc56777aef05e9d1b2863597ecf53a36307f6ba4cc8ed3b31339040adaa04ebc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-crowdfunding-fam.html",
+      "sha256": "556110e1e495f68e668fa5ac15ffcddb9bb40095a70f7caa2cab8aad44d61875"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-farm-machinery-livestock-tools-and-equipment-fam.html",
+      "sha256": "f22ae218b9c998ba10eca936a68008794112d7bda789cc48c400032e2cff768f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-individual-development-account-ida-fam.html",
+      "sha256": "b6619ed2ce67e4ac0debda718446e0c5aced1d4370a64b2a1caf584a9108bf0b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-less-common-types-of-resources-fam.html",
+      "sha256": "ec44c8dc85abb05d274b401afb747a7a5e52bbfd06028c213b627e9e4018fc6b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-mead-protected-earned-income-ei-resources-fam.html",
+      "sha256": "5a7c9c471e56c0618f912c55bc6dabfffc619371e439f600e5e2a986117e99f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-resources-excluded-by-federal-mandate-fam.html",
+      "sha256": "73d72a2ef965b46203399240a31a76190b5e81889717c5df3c2e952bc9614a62"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-susan-walker-v-bayer-corporation-et-al-96-c-5024-nd-iii-payments-fam.html",
+      "sha256": "5b380258621c30fc4c966d0b405af984de8cedc0172b11e19f29d50b9d689911"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-411-tax-refund-fam.html",
+      "sha256": "c5d2d182731285e3b19f416f7a13b17ff9f7aeb11bcedc3570e50c6d197de659"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-413-verification-of-resources-fam.html",
+      "sha256": "406b192bc802c0e148fb27a2d7b50dfd2fe7e02cae7a3a28c87dc9327e71479a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-01-what-is-a-property-transfer-fam.html",
+      "sha256": "bf1cb9949878c677a3b8ade21899b665f8fcb8d5c79369c19393c38c3a406332"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-03-examples-of-property-transfers-fam.html",
+      "sha256": "3ba92b2b79f5c5e23741f6f41bcdf9e98333ad0508f686f36e2b48e3567e0343"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-05-transfers-to-monitor-fam.html",
+      "sha256": "5e42038dc813eedcf7e643fc5012c0b17d82c28893767001aa94d8731f2dc3e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-07-evaluation-of-transfers-fam.html",
+      "sha256": "1a5956c7aa3f30a6206edc85f465cda414d95ec7cc7bc289df313d751c96a8ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-09-penalty-for-transferring-resources-fam.html",
+      "sha256": "94d0e1627fce7d03ee8092a46d700595880a4d168613f10254f7efffd4f5b62a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-13-verification-of-property-transfers-fam.html",
+      "sha256": "3cc446a5ccd4d33d34ecd6c07c944130778a04365de4f7dd5e57d809634b66a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-415-transfer-of-property-fam.html",
+      "sha256": "9b424b54a38d591b3aa5ccab3c5e36c2f7604e5331114f6c87b4c319be7ba6a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-500-income-fam.html",
+      "sha256": "4fd76da56d073be3bb74ac3c0cfe708c7dbbab67f128b27824433dca7ba94feb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-501-general-information-fam.html",
+      "sha256": "1bd4af5a8b2084eaf7082dd65a2a7066fc2bde9f88b8a34c7f706a9d673161f1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-503-available-income-fam.html",
+      "sha256": "b352ab5da0caaa4a77242f126b5738f3db3213b63e241312037a63786148d9d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-505-whose-income-counts-fam.html",
+      "sha256": "1989d078813228d169eb2b778f9e35f987f4fd4eedbaa576cfb01c3557cebecd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-507-treatment-of-income-fam.html",
+      "sha256": "ce73ec0e313ecad60ed7fb01714e70a8dea35034759f4941ba878416cf485ff0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-509-verification-fam.html",
+      "sha256": "fa2f592d2544c40b52f5fc0ec3e0f1239c43d62ef8bd4073244e2c0c12a75893"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-active-corps-of-executives-ace-fam.html",
+      "sha256": "3c24b477a63ce3281063abc74d6505d0e52e75961a2c971e9b7b1936a303f752"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-adoption-subsidies-fam.html",
+      "sha256": "8e6ae84bbb0fef40204a7922c18cbb1603d1dbbf748bcfcddd4f9062c61b4cca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-alien-sponsors-income-fam.html",
+      "sha256": "b78a25235af5da60a2cdbfa193496e67d91e0f49accfc365cf5cf3ed19343c00"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-alimony-fam.html",
+      "sha256": "72cc3c69198bb67a2b2f09160902a20918fd76816e0a6d2db1d1bfd1b82f2998"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-allocated-income-fam.html",
+      "sha256": "b6d97f5f69540048fea033a6c23fb126fac47004e928cd35f1c512b0b8630350"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-american-association-of-retired-persons-aarp-fam.html",
+      "sha256": "31b17bb2fcee87c1b08827bb1742cd73632ea13cc24e78dd73f65e8a7f7a42bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-americorps-fam.html",
+      "sha256": "d4d7b074067d117faf315ab00406b28b3936a7a4eb8e6733aa56ab4b6e9f448c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-annuities-fam.html",
+      "sha256": "e6a97b5fcdfa3769e7c13ade71d59b94c16bc98bc843d010c1992c6c6a0e8e56"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-assistance-payments-fam.html",
+      "sha256": "f3f8693a6bb2e333ae78a5d2f89a3b2cbc42cc8d5381ec4dd4bfa01571ab952f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-benefits-fam.html",
+      "sha256": "c4a05cde0742c9e32c855e4830c8d49a20c25c26ff45330fc59e65f54c0f55be"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-boarder-income-fam.html",
+      "sha256": "379e64e8530533946b7c17073bfae2c839770b1ccc00ce9ec93f59d1eb75e2f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-child-care-income-fam.html",
+      "sha256": "479630872b7031da6c9e05248c61e729b9482552ff6df93de7054b9eda742744"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-child-support-fam.html",
+      "sha256": "4001a958128cd36c5016565396625f292b1973f42eac1eaf26e5d23485e5a31b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-commissions-fam.html",
+      "sha256": "4ec1c30a65d9f9970e911ea062f19b41f05af789e686a4d88fbcd92ac5f4ae4b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-common-types-of-income-fam.html",
+      "sha256": "5dde8007fee43f79dee076027718b7dc05b9d62d08ab22e95b585c8b5b29694a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-contract-income-fam.html",
+      "sha256": "66616f25a59ce75a1b70d8f3a0ee626d06db55f7263098c119796eb52e4967ba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-contributions-fam.html",
+      "sha256": "edac79be3781ef16492dc412110693a31038d0b48e06826a2920a94ae4261bc5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-deemed-income-fam.html",
+      "sha256": "eee3b556b224ccc9584c0985357d798d976295b41cd287ec85ff78bae2ca3295"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-department-of-resources-and-economic-development-dred-fam.html",
+      "sha256": "dceb3702d89a66494bf50939ab1d3093b956a94fb14926199ee004944420987c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-direct-relief-fam.html",
+      "sha256": "663f0be164408574b5c47eef1b39a183ab7e31e663161a95576a95d92ceea383"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-disqualified-members-income-fam.html",
+      "sha256": "7aff5c8f6a482aa620e0da6307a868926e4d6819bcf1e978fddc22a2dccc850f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-dividends-income-fam.html",
+      "sha256": "4d84d106f2f3ad454d8fe01eef026714715ec1c496cd38ae7efc3ce66caefb40"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-earned-income-tax-credit-income-fam.html",
+      "sha256": "840c5639abe8766b960774c7ff786101366070293aa0d50c0cd3dd869d041a95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-earnings-fam.html",
+      "sha256": "1e51803844c69c145221728190ebf0b9ddd69f9a86dfb29cecc2a07b4602e1b8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-earnings-of-children-who-are-students-fam.html",
+      "sha256": "decd31050ce30d832253ea64cf0758769f0ce80e8942a54fd955fa9bd9b06caf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-educational-income-fam.html",
+      "sha256": "3581f33e62ca2cfc1e6dff2bb2e3c3d90599a2e6b1d4372102f404eca7857aee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-federal-fuel-assistance-fam.html",
+      "sha256": "77b94eb8d4c27d2d5b60ff68062d8a5f48c280051b9d0fc6696d81be64f8fc8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-federal-work-and-training-programs-fam.html",
+      "sha256": "244469f9e1498ed34107de25945be8f98c62e79e550848cfb6748931344c7213"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-food-stamps-fam.html",
+      "sha256": "953a1c886d87beea5e33f7003e8a8dc784b5425e5692dcd0c069f9ddd8e24027"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-foster-care-fam.html",
+      "sha256": "6024f52d0500740411257a11e5bb23be954775dc5c82a6d446500ad9534b5182"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-foster-grandparent-program-fgp-fam.html",
+      "sha256": "20d573ecc1da4ecb95aec402646942a49425e0af6dcabf8d6ee30e16f62e1d7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-green-thumb-fam.html",
+      "sha256": "ad1147798c513a95ef98d52d4d1ababeebd097f1a73ba8820f29c79659849fb8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-income-in-kind-fam.html",
+      "sha256": "7ca3e9b2b32a7251f07a7bb22e5cb1951e90fb498530aa7a90cf73ef3a8bb2d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-interest-income-fam.html",
+      "sha256": "849c78c7e23a6bbc9516e56cb079dea574b172ae3005ec86f7ba7e816a2217e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-loans-income-fam.html",
+      "sha256": "9893469526a7005b6036bf62c4145530458c469bb86e3d2801787805d7199d39"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-lump-sum-income-income-fam.html",
+      "sha256": "d36140bf6bb3aa2754593f74d84c05ab77b2359919644bb83f8dc1d88a4a83ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-older-americans-community-service-program-oascp-fam.html",
+      "sha256": "6e876f2d22531986124c6e2fd6d13d75d3c3a5ada97f00d91cfa8d3270723d12"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-pensions-fam.html",
+      "sha256": "c7ce1a935b8c98533cc9f6571651a68f9b7be57c34a86c799c20b390dd8848c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-plan-for-achieving-self-support-pass-income-fam.html",
+      "sha256": "fe4d2533171bffd192282dae0ba260f1bd6d1aba6c21c032714f1fc673e759a5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-rental-income-fam.html",
+      "sha256": "a4b5833fd272221012ea3a34ec6a65e8e51776722bf2f22c46f642152be672c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-retired-senior-volunteer-program-rsvp-fam.html",
+      "sha256": "360ef1b3fc2a37666aa56fc8efab08f1901d16bd6d3472f682f56af0838b80ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-roomer-income-fam.html",
+      "sha256": "30d41dff7b3f1c282e3a36cf10d78cf68fef20c6fd81ad2a9967084a7b0acffc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-royalties-fam.html",
+      "sha256": "1fef02788c2a5bfbb2199120f945d4715be7dc07599f748a06f3a3cb411cc074"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-salaries-fam.html",
+      "sha256": "0e6bb5ceda4fddb55aa0b451836d15356585f9c6000d3bb686e754249a570fa0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-scholarships-fam.html",
+      "sha256": "9317cfb576d68f0ac590b990568932a5ab4ee67aaa770b89616cab48fb49c603"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-self-employment-fam.html",
+      "sha256": "007fc8fde5b8ba756910df294bc556bcb344bd1a9d538fc6d93403c448393ebe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-senior-citizen-community-service-employment-income-fam.html",
+      "sha256": "2bac4b29ad38976bb31fbbff57d4552c75ccd694484c3da645df9ad25d1cff9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-service-corps-of-retired-executives-score-fam.html",
+      "sha256": "e135613fcdf7dbfba4ec95b5a99798c6b4b0e8b2b3c84d572df96fa2543c2298"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-social-security-administration-ssa-benefits-fam.html",
+      "sha256": "49a517f184d643d9fb68b778a2ca6bc650d651fe1d37b948421e42d16369c0b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-spousal-support-fam.html",
+      "sha256": "83899780b03a38972b7ac56127b4bd99129e6788a1db9ff90a77520d5b83a213"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-ssdi-benefits-fam.html",
+      "sha256": "6a218913b11a79906a0d596340025937411fcc985f4a8569c20b0f0d64a714c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-stipend-fam.html",
+      "sha256": "b16b842adbef8f88d34943e8f02501de06d4bfa4e7208a9fc771f7ff37efc15d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-supplemental-security-income-ssi-benefits-fam.html",
+      "sha256": "50d14414f16f006efa4a1b12d4249bf65eb161e3d56cf4b40591640b1260ecf7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-tax-refunds-fam.html",
+      "sha256": "16346b9568d41c039e230b526dc49e5bb7b742550fd633cca237f2d7329425db"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-tips-fam.html",
+      "sha256": "51aa9b923f417fa4b47d18c7dd24009964ec99eb860acf5c82c3691117e37311"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-trusts-income-fam.html",
+      "sha256": "d9043d6e4388d2e0619b5e97ea210ce6df1370344a5a58cbf366c7907fdcb60d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-unemployment-compensation-fam.html",
+      "sha256": "fcb18a35b2112ed889386c1c3df7ab5523f8626183857e0ea44bddeb287fa06f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-va-aid-and-attendance-allowance-vaaa-fam.html",
+      "sha256": "f50cbf887d68b629852c6b6e0457c73320274db71709284551d2db2cafe30f7c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-va-benefits-fam.html",
+      "sha256": "d010c2bd25d5190cafdcd6069a6ac3028e966c0f35061d66ff003a2da5f73f2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-vendor-payments-fam.html",
+      "sha256": "e84b6b3b3c7e4d6852411dbf5f77e88f141583e75c822f645b42f3af6cf3d26e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-volunteers-in-service-to-america-vista-fam.html",
+      "sha256": "a83936f9309038827f0e75607dfa18d461d1a101013b22b74ad9729ee5925f7a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-wages-fam.html",
+      "sha256": "46fec11e4d802d77aa9f439e5bea74cc5905b63c66e617c9757345e8fca2f809"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-work-study-fam.html",
+      "sha256": "7f15c058ac5dd8e4b15f9d3625810e5a192240626ea4db75f987c2da6df35dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-511-workers-compensation-fam.html",
+      "sha256": "982fde9a8e95dae0d259d59808f11c386392c6c546e6d058b44f497ee0d583ac"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-agent-orange-settlement-fam.html",
+      "sha256": "8d5901316208c2309c12ba414c6f800fe999e9a9f546a32633eedd4af9903360"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-alaskan-natives-fam.html",
+      "sha256": "4831856bde35b144499000b9c26ef8eb74d519c01c326e1f96799821848d0df1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-aleutian-and-pribilof-islanders-fam.html",
+      "sha256": "4a7bbf0df554d80f336b2136236257efa8f7bc2a08af2cd745f02ab106780e57"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-american-indians-fam.html",
+      "sha256": "bca13b22f90d71a22a797c3a082059a3c21a2180d8452fc2626976179ca91735"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-census-income-fam.html",
+      "sha256": "e8ac4fcf9c47962cb1abe150cf492f59866389f29d46a0786a7920ff657c0fa1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-german-reparation-payments-fam.html",
+      "sha256": "40aba78609baf8e74671e4e9627405bd7f04b29d157b78550294227a66502401"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-home-produced-food-fam.html",
+      "sha256": "9ddcaa64e8d42add8729c3393fd0b94e64b3f8cec04d195d3607d443944f6238"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-ida-withdrawals-fam.html",
+      "sha256": "5a0eaf0aacde9d35524cc498c18f99ee5d201b360dff7b48eed71e1aa850f5a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-less-common-types-of-income-fam.html",
+      "sha256": "cfb8c6e5be66eea61facabac14f49e84d4e81b49c707c17a4cf45172cae77ccb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-military-pay-and-allowances-fam.html",
+      "sha256": "58e1d1c9bdbf4eb3896c681f7eaa459173cfa3f04b0e91cf24d92e3308ce506d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-nutrition-program-for-the-elderly-fam.html",
+      "sha256": "2f3e7a76034178f2986d08d56943469095e862734728b3da1a9140c49efb8684"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-radiation-exposure-compensation-fam.html",
+      "sha256": "127310105f83a4d1614c2dc56061cc8207dceffe6d83c50ca6a11469d761f2c3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-relocation-assistance-fam.html",
+      "sha256": "e752b9f8f37126de7baa8636a1504d740aa49b8911f02d6c3cb28819632be09e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-summer-youth-program-fam.html",
+      "sha256": "f94339c4413a4597c4f724099442239d840467f888d2c85dc3ca4450839a0da5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-supplemental-food-assistance-fam.html",
+      "sha256": "af4a291fb6cb54b66ff8e397c217d89ca4326933857ad174b41e39ba20e80773"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-us-citizens-of-japanese-ancestry-fam.html",
+      "sha256": "1a4c99b812d1df3f8a4fd77851eb8d12810b47bae2d1d847aace392022cd82fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-513-youth-employment-program-fam.html",
+      "sha256": "f44ef5f1a692877d158e615c62f002fd6b7ce9abeb6ccc005d85c8c54d20dd1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-600-standards-and-budget-fam.html",
+      "sha256": "552bb5b38b9d5b6c281b77f5a1290941e72dd735005dfb599b4320b71af036f0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-income-limits-payment-standards-and-allotments-fam.html",
+      "sha256": "6893e8c5de7b1004ed205608733388d14ddf6992cf2235287c39e1eedde187ed"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-table-a-1-fanf-shelter-allowances-fam.html",
+      "sha256": "5e6f3bd2d715a4d76d19f51c7a32787bd7fc9f08c4640fb2a020359dfc2f9afd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-table-a-fanf-basic-maintenance-needs-allowance-and-maximum-standard-of-need-fam.html",
+      "sha256": "faf4c9f723c848e529a4d2cf09130500f2b59ad2a0a1688acb2c38093fd04a9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-table-b-fanf-maximum-payment-standard-fam.html",
+      "sha256": "130bf22134c8669a5974ded5c7dfc0546533a6ba1b882364599442766260481e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-table-c-fanf-medical-assistance-net-income-limits-and-percentages-of-poverty-level-fam.html",
+      "sha256": "8a0304f5e4b54cc5818183dc3758468dfd2fd1b1bc9f793d2e8c5d1adbf83994"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-table-d-children-with-severe-disabilities-resource-deduction-fam.html",
+      "sha256": "c54259ce8eed38fb644896b59e1a621e6d408d08492dfd82228508c2694c8a25"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-601-table-h-federal-information-taxes-income-ceilings-and-minimum-wage-standards-fam.html",
+      "sha256": "f202d4e32e919e51b9cf1ef1efd4db5872a234a292ffa3cafdf0c8188ed915cb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-01-earned-income-disregards-eid-fam.html",
+      "sha256": "55a80ad596f17e8e657780cbac7ffda0f8972c51622c509033e348beb9403c77"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-03-employment-expense-deduction-eed-fam.html",
+      "sha256": "41e7723502edb62e9fba800b6770a2d62d82efb3aade07e16056a1fd41141a51"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-05-child-dependent-care-deduction-fam.html",
+      "sha256": "0dcacc1c22c219bd164e0904a06145e9832cc788143743e4add978888845741d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-court-ordered-child-or-spousal-support-payments-fam.html",
+      "sha256": "12b9ef758bb3c20b249066ae0d486dc11b1b27bcb62741165493f54d135e1c33"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-garnishments-fam.html",
+      "sha256": "7cf506c14e036dd9db09b7b9836af1ed577cb1f04074b92d7307e660650d03fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-income-allocated-to-dependents-fam.html",
+      "sha256": "11ae629424102a6abe552bbc820933da2f8f049d63e32f63ecc0d2455e178da1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-medical-deduction-fam.html",
+      "sha256": "7fa92f9d93b7b449a7d8f8b44653eb2270e92bbf0e83e4f596ce740a5345d1af"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-other-allowable-deductions-fam.html",
+      "sha256": "1623bcdc00cc57fff4edbc57d1585d68e52bbeb8355e4ad6d894d9568cc1b6ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-other-valid-deductions-fam.html",
+      "sha256": "90cb43258747fa163d1efa4c04e8dd12e0502ea6b07566da1945527088dbe3bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-self-employment-expenses-fam.html",
+      "sha256": "1bd577164a3a0891decf1fcbd090077bfd6a20367f4fe1b1cefc37674884c261"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-shelter-deduction-fam.html",
+      "sha256": "234ff5860c94937dc565bef59e20ec1a5e4997cbc8452161d376c2957f9c8753"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-09-training-expenses-fam.html",
+      "sha256": "d379d1fb46a919c53f9451da28cf76697d2ed1dcd232216692feb1eb36a6cf76"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-11-verification-of-deductions-fam.html",
+      "sha256": "49b9f287ca650d32d486ea00f73daa8bcca037fc0cabf6724ad0764597bbecf6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-603-deductions-and-disregards-fam.html",
+      "sha256": "9e52c4ba8d902a5ea13bf19bf35cbfe1f8e08cc004a8476ad3ec22ecc3d05fc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-605-budgeting-overview-fam.html",
+      "sha256": "caa7696c17f479bddde55fcb3ffa0255e60a5d5c6f9b849031107f45af720a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-607-conversion-to-monthly-amounts-fam.html",
+      "sha256": "dc479919f46e20655fc115885985f9b7bda7d130f584278d8584942702ab1ad5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-609-01-averaging-fluctuating-income-fam.html",
+      "sha256": "dd2ce301d5c7b44e92f483c88fb128f9e30eba1dba00836774cc8489138c15a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-609-03-time-frames-for-using-averaged-fluctuating-income-fam.html",
+      "sha256": "a5b7ea574cfb70237529ea03edb63ed377228731e8751c84455a0569bb3671bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-609-fluctuating-income-fam.html",
+      "sha256": "bcd6abc5b06e937787f6ae4fd59780f0c9d1fd33b7d0aa0e28974bf510fd4884"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-611-01-computing-eligibility-fam.html",
+      "sha256": "9ba8aecdc8bd11ab5c023e044495ef69dbdf0ff6efafc3e160313bfdbeab97b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-611-03-deeming-principles-fam.html",
+      "sha256": "d9ffa7c158546d8157b1e2d696eae048b35f84b1cc4ca03f9537b1d7cd767965"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-611-04-determining-budgetary-units-for-medical-assistance-programs-fam.html",
+      "sha256": "ea3b95cad4e5ff3156bfe76e472cf8a13eee14f4563936f8d882ae719dcdf182"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-611-05-income-of-disqualified-individuals-fam.html",
+      "sha256": "c22e6fedf27f66b412b5e7fe9b9b5a55c4fb2954752993076b94bb604bf1defe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-611-income-budgeting-fam.html",
+      "sha256": "b3a49e2456e01d44ecbd0f1423a2698c140a181555b525794b21a2bc9b4ef364"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-613-rounding-procedures-fam.html",
+      "sha256": "1fbe795458738d3b55eccbf508dd8d590606c3edf65859457e030bf56f9eed87"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-614-01-cost-of-care-hcbc-dd-abd-fam.html",
+      "sha256": "c9a4084512c44714f8b96c48feac64568de9e0eb9398fa0e3122f59a58facd21"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-614-03-cost-of-care-hcbc-ihs-fam.html",
+      "sha256": "403cfb3b04fbc6256b8508d46c122d159ee274d5e3377ee8e4fffb3ccec2dfd9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-614-cost-of-care-hcbc-dd-abd-ihs-fam.html",
+      "sha256": "e999b60aaffbf566bd062187dae8127fd89869b013bf3544d7d0f00b0f26cd62"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-615-benefits-determination-frequency-and-issuance-fam.html",
+      "sha256": "ee3b190dfdf7a8fd8c033612cb90cb889c37366e285a601a1d24f35a9c24eea4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-617-01-one-month-spenddown-fam.html",
+      "sha256": "21496f44ba26088ed7a859bba1bb0dc81b20faed5ec32d0a4b221cfc4edf1dc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-617-03-six-month-spenddown-fam.html",
+      "sha256": "e47e7ca1afcb3f7ffb9e5a6f96b460ea0756ac3c89a79d68c12a624f4b5a98e2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-617-05-offsetting-the-spenddown-fam.html",
+      "sha256": "c503204f34011ad18d9d04c7dd80e3a80e7034dd54caed2a3d4e0ece6d510fcd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-617-in-and-out-medical-assistance-fam.html",
+      "sha256": "8630504946b6c0271921b966d33bf2b9acfff37b4e8102a8bba2e48e0e8776f4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-619-01-determine-the-corrective-payment-or-supplemental-benefit-fam.html",
+      "sha256": "2aa90db026228cc12184a10e68b6325308de88131ee936fb24cab1b527d5c5ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-619-corrective-payments-or-supplemental-benefits-fam.html",
+      "sha256": "95d9395ac43f712c9c374c4ed9d65a73ca544cda5cbb621844694abc5346c194"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-621-01-determine-the-overpayment-or-overissuance-fam.html",
+      "sha256": "e42e9bc0bcbb10f9fa5c1559823e37fb9223c506e424fcbf690cafce4f0a6b1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-621-03-rate-and-method-of-recoupment-fam.html",
+      "sha256": "ee9db0635df28454a3e1bb04f0102418c75a8235821e36259fd6c9777e281cb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-621-recoupment-repayment-of-assistance-fam.html",
+      "sha256": "3f86612da8dccae372ae96d232ca89a8504376ca34c9f41a2bdd13eab60bcf99"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-623-recoupment-of-medical-assistance-fam.html",
+      "sha256": "1e74128fa134179ddbcf99749f57264ae1694e7a777103d22bcc1ed43aabe655"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-625-recoupment-legal-action-fam.html",
+      "sha256": "ffa496d65fe63d44a448c7d136f4df67e0acd27caceaf15a7ef665696516ad1f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-700-miscellaneous-fam.html",
+      "sha256": "38905200af8716b015658df7d6e4ff4d472f58fb3fc92b9617ef1853a9fa248c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-01-purpose-fam.html",
+      "sha256": "7de86a04d5b1b5d2bbec17a43ab0646a6658b1d1fc91bbcf3f14a3720e1789dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-03-application-fam.html",
+      "sha256": "d7902318626ca4d8554b124aedd535d8dd9c0f198053a01067b15cb52c5c0d79"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-05-emergency-assistance-ea-eligibility-requirements-fam.html",
+      "sha256": "761364bcdc90b3d0f5b1e9ec9221ddd33ba54a5aefa6d53f1cd0d08c055d6f85"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-07-emergency-assistance-payment-limits-fam.html",
+      "sha256": "7cfc62add4c0fc72a396652c7273dd198d6cc83059c680c321e45ff77de67145"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-11-applying-recipient-resources-fam.html",
+      "sha256": "82fdf0e0a09d334cd107907ee9e30edeb76098166e6d042ce7895fa572c45874"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-13-when-expenses-exceed-maximum-allowable-amounts-fam.html",
+      "sha256": "b42f71d04a7456f7860194108dd5a9aa60a9b120b4686a77a97d9cc5c162c235"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-15-authorization-period-for-emergency-assistance-fam.html",
+      "sha256": "03931b41eb77ce3fe6b546c2f45a89c6d98c20f4ae7cc5d52dcbc0391f55f131"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-17-returned-payments-fam.html",
+      "sha256": "9ebc2eb4d6475f8cd156d615ef31c3b570f442a782593467a5f1190ea02bee6a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-19-verification-requirements-fam.html",
+      "sha256": "c561cfbcc23de05e611677d41629a46e90a4a33bb21957b579f88c837f862f58"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-23-notice-of-decision-nod-fam.html",
+      "sha256": "5e62839fa2fa5fb32a3e575bf225cc9423c1db0d377404477d76b0f87d29b656"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-703-emergency-assistance-program-fam.html",
+      "sha256": "602aa4795aa8fac0a3da11dde4e0d44a90d4506267be0008217f85de8be0690a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-01-outstanding-expenses-covered-by-last-check-fam.html",
+      "sha256": "c0c70dac38575e4edf961ce914e5deca830102612fb078e6bd0a5f38e94e4922"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-01-outstanding-expenses-covered-by-last-payment-fam.html",
+      "sha256": "aa04534dce82fd930fb39643dc0ad6fa3af5bd454e46732065b4b1bf9fed1bf0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-03-funeral-and-disposal-expenses-fam.html",
+      "sha256": "e6b60f287e2904711fdb0b7712e90e23f3fc86c8a80d58cf8fbac12df8c5e50d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-05-conditions-for-eligibility-fam.html",
+      "sha256": "49bcb6ed6607c6c915b9849727ba0763bdb1162955f859f2d70b3a1ad5e29228"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-07-method-of-payment-fam.html",
+      "sha256": "9918fa32ab1b9bc61f2f3c5dff6b1b715e2e5c72cf9860f4e0589d017f44da02"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-09-funeral-director-responsibilities-fam.html",
+      "sha256": "5fcc7e04fb5429ebb8aafd9ad828d903e96fe39753cea521651932394a633e87"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-11-required-verification-fam.html",
+      "sha256": "4b2d6574cba87f19ba5915eea6ee2c3260f8caed7dfa826242f18eb5a14c16f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-705-deceased-recipients-of-financial-assistance-fam.html",
+      "sha256": "348d54e42903ce654dd3feeefba013d8c20bcdf3c463e38668af691b1098e25b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-707-01-mailing-addresses-fam.html",
+      "sha256": "404acffb33eb75f6088e3784dcf8957220c568b17e7a5699de19c56fd8b520b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-707-03-using-cash-benefits-fam.html",
+      "sha256": "10957bf25a94bfe7d527512e51609d0e8817e96bebda7060b8b28dd9013be76b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-707-05-penalties-for-an-ebt-card-violation-fam.html",
+      "sha256": "631a5520f064b2d8dd4fc9e0bd84434520a33129e87a9db0146324753d989cb2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-707-07-separation-of-duties-for-ebt-card-issuance-and-distribution-fam.html",
+      "sha256": "d0fb13b7fd01d5f9678db6f8876637473b3b85c3fde194cb1813e520eff69072"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-707-issuing-financial-assistance-benefits-fam.html",
+      "sha256": "926487ccd23d12f886f3dec4dec41dfb88cdf059ab80450bd9753d0f6178fbfe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-01-what-benefits-may-be-replaced-fam.html",
+      "sha256": "ef5de2b14ac6182b82391e5080e76116bf89495349a836f41e05714fc3c6af4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-03-when-benefits-are-not-received-fam.html",
+      "sha256": "1afa388fcb04d9bd91aca3aa343aa87128328c95e3dcc64fe7787e29ca1598a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-03-when-paper-checks-are-not-received-fam.html",
+      "sha256": "e739d8e4a105918cb4bd0c3c9fac1650485abe7e0061b3f4a4f892a96b65a136"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-05-issuing-or-replacing-ebt-cards-or-pins-fam.html",
+      "sha256": "3bf8722559c35609f7724b42c5ef39df51ce1b4522311be268e79ed8d2f56c5a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-07-replacing-electronic-stolen-benefits.html",
+      "sha256": "49f2efcb0d128bf0e2076b8a37e47e75b70826d283860e86da1bfe021d8e1427"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-09-time-frame-for-electronic-stolen-benefits.html",
+      "sha256": "c0b2c0022550403155a4d4ab9de2801c128da283f44b1e69cb4432ea483dd650"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-709-replacing-unreceived-benefits-fam.html",
+      "sha256": "4a28177c882809c3c454c48ecb5f42d5d21536ac95d1d40c6c30ed16c04eda44"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-710-02-expungement-of-ebt-benefits-from-deceased-households-fam.html",
+      "sha256": "df8ca38980fd65e7f1c6033cd5870bcc4ec8fa35fe6a7e06c827ebc1caf78a2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-710-benefit-expungement-fam.html",
+      "sha256": "8fa342158ff576004d57e8a44b10bc5642113e0841d7f152c9aaa6370adda2e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-01-intentional-program-violation-ipv-fam.html",
+      "sha256": "7b8cfe37c66c32fe8dc39e9189ea121fecf48e30a45bb1ea4066af09ffb791bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-03-disqualification-periods-fam.html",
+      "sha256": "111512a48f9cd5e2e5100c39dd08965c9ba096f98b5cd496feb15864805c6bec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-05-ipv-court-of-appropriate-jurisdiction-fam.html",
+      "sha256": "690d080326e50f2b87c765a03d970190a4c35e25298a94fc1eb43163b642f50e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-07-ipv-administrative-disqualification-hearing-fam.html",
+      "sha256": "254640fd123746e7ce86b16ce0f87f0cacf15b4a460819d62c2c762bce134e2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-09-calculating-the-amount-of-repayment-for-an-intentional-program-violation-ipv-fam.html",
+      "sha256": "2c6149b0f7097d0177adb30dce864f406399b3b773fb87fbdc41a6e80bdb0bde"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-11-recovering-overpayments-due-to-ipv-collections-fam.html",
+      "sha256": "6267736bb36c9ced01523cbd680e4e4551d3c2e8ea0792d06320f2836d815c6a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-13-court-adjudicated-claims-fam.html",
+      "sha256": "e3c24a71b8adbc08e6641831f7c74098b5a49e092f535c91dc868e0e948b4f5e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-15-initiating-claims-fam.html",
+      "sha256": "2113a0b31a9c1be20b110934e79d9e8f1dfbf15806c029f4a3792f4d76693cf8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-21-methods-of-collection-fam.html",
+      "sha256": "b88904852224b42e6333f119962ee72eaa1a0a8b96f407f259714a9994d1cdaf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-713-intentional-program-violations-ipv-fam.html",
+      "sha256": "5e9b9a436cecabfd497e280162672a17383f4d6cac42e17dd5eae818266105ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-01-purpose-of-nswf-fam.html",
+      "sha256": "7cafbe078e30108ef025457511488ac27a5c9140c5b5449603dbcc85acb7b74b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-03-nswf-eligibility-requirements-fam.html",
+      "sha256": "0489e8800d378680e2d2a572a1ea1e8ba5ec6539d8e680abd3bf6d893fb6aa3a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-05-nswf-amount-fam.html",
+      "sha256": "444aa49f64ad9f86f14e2ae2d34d8b093209242850edabbedad8021e3ae89f07"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-07-initiation-of-nswf-fam.html",
+      "sha256": "4235b2eadc4b40cdc58a6aba029dbe1f946c29df6e8d374d0352196a93746762"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-09-nswf-and-the-nhep-work-program-fam.html",
+      "sha256": "f3e60fbed25caf1e14dae7b33c8ca7896a54ac458e105f4378ee8866c575a60e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-11-nswf-benefit-issuance-fam.html",
+      "sha256": "b77e12b8c696d16c495238cb8c884a61bc726bec2506a365493bd1b93ac91d7a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-13-termination-of-nswf-fam.html",
+      "sha256": "0d89180e53d27e8bbb7ab47e5e835810c2db3a43f6f2b5d9812ef9e8fad98740"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-715-nutritional-supplement-for-working-families-nswf-fam.html",
+      "sha256": "126821fb6de57d6c9771f9c8509368599c085701911ac007cefd82b1843f5ff6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-01-definition-of-medicare-fam.html",
+      "sha256": "426cd424614b0bce4e9c8bbd1a9d4567f4b501cabf4967fed08014db47932996"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-03-definition-of-buy-in-of-medicare-part-a-qmb-and-qdwi-fam.html",
+      "sha256": "931399ed3205fbf5aff3b8218a0e4977a3e6f1d1bdc0e8dd4f5de3c2c3ae87b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-05-who-is-eligible-for-medicare-part-a-buy-in-fam.html",
+      "sha256": "bcdcb2a007ac700dea46f09ee2ebceb02a25ce00354ff29f2ee5f432797fc631"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-07-medicare-part-b-eligibility-fam.html",
+      "sha256": "77cb9a680640d72d591dee44fcfcf545fbcbe2db85928f23f553673f2991095b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-09-definition-of-buy-in-of-medicare-part-b-fam.html",
+      "sha256": "1891fcc29ba8d577cb1da3d22444938a569e27de544ff00f10902c5635111de3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-11-who-is-eligible-for-part-b-buy-in-fam.html",
+      "sha256": "6a5dc785b346251bbe8321b98352ed2d8809334b753d65bcd59261c7b76451d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-13-when-is-part-b-buy-in-effective-fam.html",
+      "sha256": "21369dce6692e9a39b6dea0e5874ab4b2ebf0fc272c4394991354525b4b0faff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-15-how-is-part-b-buy-in-terminated-fam.html",
+      "sha256": "d2ed5ddf3200e9a15ef6f15aaf06092a65ee5502bf31320130ecc3d1b1065d4b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-717-buy-in-of-medicare-fam.html",
+      "sha256": "cc0e17eb8d8371dc537adfcc4b13308acd2f5c691d5ba6e1a11034ea289a73d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-800-training-education-and-employment-fam.html",
+      "sha256": "b3476849d3e2d0d3b34e3fa0a192dda1099b278e46948a395962fadc44c1915e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-801-purpose-and-long-term-goal-fam.html",
+      "sha256": "3455ae2802f7d5485c5ca9f80f4d76987b3f34c2e85e030e9d40806684da6306"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-803-notifications-at-application-fam.html",
+      "sha256": "df2c8660f6bf5e5e6a0e050920b625e0b4ff3c2949c75008cc16693c85b2bb99"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-807-which-work-requirements-apply-fam.html",
+      "sha256": "b8f7dd0b5229ca13cfbe351e77b44414a97d6301e939d3710af2dc7b148b6434"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-01-initial-appraisal-fam.html",
+      "sha256": "f28165ee1542f812d9b985abd187bdde032031e246ae4d7b513b0b090eb72fd8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-03-nhep-participation-fam.html",
+      "sha256": "04e2b6a90ce4a9e493a6c606cfff36bdb262bb6c492fe2741655775c6ffa414d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-05-exemptions-from-participation-in-nhep-fam.html",
+      "sha256": "75ecd1335f6090964b125b2f6a08c2f53376cc6c6575f3bf18a82589d0766eb0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-07-verification-of-exemptions-fam.html",
+      "sha256": "70ae1cd7e3ed97648e2f50eaeea203f8f56cad5d8667284944e34fe39771089d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-09-referral-to-nhep-teams-fam.html",
+      "sha256": "d31ccb693b7c504d3f5340df5079b50d1a5a93d27c8a8864a9545e28387bb38a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-11-72-hour-requirement-fam.html",
+      "sha256": "992d2a4c8d05c8f66d42289ae2542b4e5288e5e0ad6dc622b248c6c0859772e8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-13-nhep-26-week-component-fam.html",
+      "sha256": "41bbb3911cd8fd24f3bf2fd5e4e4b6ffed2a93adce575707a625ecb18dbe054e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-15-orientation-fam.html",
+      "sha256": "657e797a038cf414ddcb8ff83dba97ec887ef758dfb9615365520859ae492420"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-17-assessment-fam.html",
+      "sha256": "22062b4bffc8af073d3267047296b291d9c3e36200171de49de89c3122d7f74c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-19-initial-4-week-job-search-period-fam.html",
+      "sha256": "7af24ffddcf2f33aa0a2ec368793cc66bb4df263de94ab432c30d584106cda82"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-21-employment-plan-fam.html",
+      "sha256": "64af49642b32fbba01b4be32409e538636458fae31ed16efca3860ac487b989c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-23-profiling-fam.html",
+      "sha256": "90be6683b3a7b541e61d10b13c2f6c2aca13e0c5af0e1bf39f0d8edbc7c28c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-25-referrals-to-other-activities-fam.html",
+      "sha256": "d405c1870cc51cb67f9c64c1afc4fa65a45748507e23da66ad9a7b4e26eda5bc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-27-hourly-participation-requirements-fam.html",
+      "sha256": "752be9ae8484ddcfe4907f437ef6a92e1f7a1d6d7a0122400e8879019191efb5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-29-required-contacts-during-job-search-component-fam.html",
+      "sha256": "f9648e5b496765c8f0d9e1ff8527caddcd6b772b5bd9765985851449b4425084"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-31-compliance-requirements-fam.html",
+      "sha256": "8d2c9a0cc66ee8aef46183b373ed2fbaf33a17ca6cf29f7a295e0bcd0af598f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-33-conciliation-process-fam.html",
+      "sha256": "72956d6c9271370508ef7ee2e8e1394f8816ff3e81e6ede96553e813b8cf5047"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-35-sanctions-for-voluntary-quit-or-failure-refusal-to-cooperate-with-nhep-work-program-participation-requirements-fam.html",
+      "sha256": "eb8d2bc12fe275e852252c3284ddaa7be2fe2c2a1eab376f63877dcbe716174d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-36-actions-taken-during-a-sanction-period-fam.html",
+      "sha256": "5b0de498b7b869119715247687f402bd7877561b92fe1a9b847aa5b03f32cf45"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-37-participation-requirements-for-2-parent-families-fam.html",
+      "sha256": "4fff70417c3591085dbec83a9f57d8b4cef719ca1b228edbedf910e69cf57fd7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-alternative-work-experience-program-awep-fam.html",
+      "sha256": "b35c11332ac7d4533e8f6023c906f82bce8428c746e55e7de8c7258d4eb6c126"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-basic-education-fam.html",
+      "sha256": "828e348fb4e12f582557f1b32a647b06c80d1a725f67cee636285d459cb5ab98"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-community-work-experience-cwep-fam.html",
+      "sha256": "fa37961c1afc970029ef41aeab1f94fe9ce58f5915586749b4d33e045be128d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-employment-fam.html",
+      "sha256": "9a08aef14768747e7f32223ad74837bc5bf39397027ff687a889252ca845bba5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-english-as-a-second-language-esl-fam.html",
+      "sha256": "29b2e7c648710676c4ca6f6ec093b9d5461bb7f592503a21c99216f71c7e5a12"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-homecare-works-fam.html",
+      "sha256": "b75b9071e5c7a9a9b711b67378e481b3f8a88f1ba03f550ad7364101b68603f1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-interim-activities-fam.html",
+      "sha256": "bd638e7893d19a51a29b75a3889a15d328163330832284713b0d1b87765fcc94"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-job-club-cwep-fam.html",
+      "sha256": "a8f50182b1d37fc2ec622ffdae822cb35ff1765bd124dd3ff11224b6dc9892b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-job-readiness-fam.html",
+      "sha256": "cf6f47f1c92212ea64a7e1d11a3cf4bf9c65f20579f721bcdb0b5be1e700a4e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-job-search-fam.html",
+      "sha256": "d3e66730bb302cadc09d63941f36df791122ee23074d55d446d02c13951bbb20"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-job-skills-training-directly-related-to-employment-fam.html",
+      "sha256": "b535cfb8bd761260d79c263d1c7edc4a3fc2fd8d3fe135279117ee4c7215cf7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-nhep-activities-fam.html",
+      "sha256": "3b43fc3d79888f2ec87ee223f086ce3ae7d1611a834c04169112a52a77a7d203"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-on-the-job-training-ojt-fam.html",
+      "sha256": "73a2abb1745c92fa22a1810532c7a7e01dc25475f834373b6d1f9a5e2adf2e3b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-post-secondary-education-fam.html",
+      "sha256": "4a1c9322daa3f31c18c150902c0411f0f989e54dc544072f2bc85f08ae47b1d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-self-employment-fam.html",
+      "sha256": "b43e66f4919281e4533fb6d939caaa7f61da64a8a682aeabbd13d5d4838aaf43"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-single-course-fam.html",
+      "sha256": "b1b86d1cb351ce887701b444e98d6656064c9c2565581b145316a247a411d274"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-39-vocational-skills-training-fam.html",
+      "sha256": "034d5c16a1ed192a128df57808faf9a27ffd1def1c9f7bcaa36b4766c56e050d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-automobile-repair-assistance.html",
+      "sha256": "ad7359c7815eed4d96590844f88f282e2a4bc6d8b6bca2129d5ad6c6cc31547b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-case-management-fam.html",
+      "sha256": "861b133872cd3f26cbb56207a3a2cebecce7d4f2ea5d89385ea419ac1941fe0c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-extended-case-management-fam.html",
+      "sha256": "9061a70d26cf1a8de0cd8af436107f8ab88af7ae8e77e890e48a9843e1168c11"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-fees-and-supplies-fam.html",
+      "sha256": "2d56300d8509ecd975acb4302c1232f13182cd504ae970c6573fc5f3d7d5a6a5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-support-services-fam.html",
+      "sha256": "fe66e6665acc4e6d56d0d413f77f02a65f8c5c089928ef2a84d31e2cc63a0118"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-support-services-for-obstacles-to-employment-fam.html",
+      "sha256": "bc3f27c0375902887f7281168200bb1b8a6a2bb321a7c4f09a75e4580b14ad13"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-transportation-assistance-fam.html",
+      "sha256": "d6a4414988b2012397149be3952b15f0d656c82049072652f4e68195a7fc4cbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-41-tuition-assistance-fam.html",
+      "sha256": "be73fa326b9cd44abf37ecfe9936b00f34c6e9e28d73b39a3a7ce460c7bd9d86"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-43-division-of-adult-learning-and-rehabilitation-dalr-bureau-of-vocational-rehabilitation-fam.html",
+      "sha256": "c45b924902218bc4ec8e7a5c31b270c4069d7b3a7f12c59436d6a0e93f99a0c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-45-referrals-to-the-medical-exemption-unit-meu-fam.html",
+      "sha256": "504cf97846debeea7fea3337893e3c09e804944d465e9378424f54c1dbe1c381"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-808-new-hampshire-employment-program-nhep-fam.html",
+      "sha256": "6830845a8c132c96cb481f92a09d962c56b86c052a66e3a516aba52b90bb2f50"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-825-conciliation-process-fam.html",
+      "sha256": "9e898f38bc9762b49c2b5ffb3ce72fa213e7ea4c5a1edfc5d2be29b935640f24"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-829-fair-hearings-fam.html",
+      "sha256": "4a69946bdf6929aab287ba2d04c5f8033a3f90b5cdc9116050bbded12ba987d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-831-payment-to-nhep-providers-fam.html",
+      "sha256": "2be7c19c0e92dcd29d2032fa608deb131e8cc037ef14c1aa63e6254f9d68ceb8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-900-child-care-services-fam.html",
+      "sha256": "dce304138701bba1835c72603118ad39469f678ea04fadbf0e4b39536b6012f1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-901-01-filing-an-application-fam.html",
+      "sha256": "1f93f13e1e0f96f90d50bc7d1867b11608873d590768b57881043cb8a99baa63"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-901-application-process-fam.html",
+      "sha256": "c22f2d3374bb7974abe0b6fecf4fdb2c254c8de3b2f23465f50094267f0ede19"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-903-01-nh-child-care-scholarship-wait-list-fam.html",
+      "sha256": "6663e28fa43677a145cf0638d85c5ab3c4a7a0d2a568f12741bd5bba2a983a1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-903-03-exemptions-to-the-nh-child-care-scholarship-wait-list-fam.html",
+      "sha256": "76c9c9847f9038cc2fcc4841a1404a45af8ce614bca509a628dd4e3134b3c93a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-903-04-expedited-child-care-fam.html",
+      "sha256": "dd70533a319c9c95ae70d1f03ccf8d9aea15196afce1e5884e1bd3741888f8cd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-903-05-required-verification-for-wait-list-exemption-fam.html",
+      "sha256": "3e8d200797eb526399230474266abde3379e1eb01155f35ab8f74a2287df9e3f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-903-07-required-verification-to-grant-a-good-cause-extension-fam.html",
+      "sha256": "d06ea5a8b4e44e7f540505325839bbf723d09fc03c28577d9fe3b4c00ea94279"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-903-application-processing-time-frame-fam.html",
+      "sha256": "80090de1dff0518da81fb277f44ab2a15fc735775b92f0c043cce287077f81d3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-904-nh-child-care-scholarship-authorized-level-of-service-fam.html",
+      "sha256": "de0ac08d9a4c617b3d8158ed9f18148ba473954874259501b033cd0f5ba6b4dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-905-length-of-eligibility-fam.html",
+      "sha256": "fc3d062d98222fd27384234209efefa54c0fd9ce65fb2f61480ac62999a7d8d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-907-01-notice-of-decision-nod-fam.html",
+      "sha256": "8257607afa0d13ec7883a0bcf3e8943c7458f05b4509929a60037cc053189cb0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-907-03-other-new-heights-notifications-fam.html",
+      "sha256": "4d35f57fca4d4bbaa66c6721795311cc72620c661281050826718e004017a610"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-907-notices-of-decision-nod-fam.html",
+      "sha256": "216021b439ca6ca4ef3f71fc4e562f0fd290ff7beb77880152da4561ef42fc5a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-909-01-changes-due-to-birthdays-fam.html",
+      "sha256": "034fc590687dbf758592b151476a3402e19d2fb898324e6b7d9ff0c100533b63"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-909-changes-fam.html",
+      "sha256": "86044c2d63d6df5d430be59f295a203c13f7a775a4ddde459652ae3965ea5fcf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-911-01-late-requests-for-redetermination-fam.html",
+      "sha256": "de247f5c269ef48d536bf620223cd430e4b246243a0107dc17eb75fc09d1f8ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-911-redetermination-fam.html",
+      "sha256": "156f68a2b5b49fbaaa828cc96426d94ccd1d3579cdb48be399d1faca295c87e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-913-termination-of-assistance-fam.html",
+      "sha256": "ecdd79f97800a2ed3c766b4b0b55afc4f2f52a986a43f5e48afed14d7893e4bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-914-appealing-a-decision-fam.html",
+      "sha256": "5cc4752a3e85bba345f524886fd21192691a87726e3a42dec718967eca349fe6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-915-01-verification-of-name-date-and-place-of-birth-citizenship-and-current-address-fam.html",
+      "sha256": "9a515a65ced08117fde764f221c5492808d7617a096b0877bd3f6aaaa677f349"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-915-program-criteria-fam.html",
+      "sha256": "b3096e73560bdfd76b62170e535adcb5b50c14465cdf35d4d22aef7f6c31ca0e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-917-01-required-verification-fam.html",
+      "sha256": "5b30b0a1c3c9a7b233d7f01fea5cbd68aac4005b723ccc14459fd6053119e9bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-917-assistance-group-composition-fam.html",
+      "sha256": "1e4aeb36a31f74ab773f3f19c02d3a5e336afe94e6372e979c685ba5a9c5db73"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-919-01-required-verification-fam.html",
+      "sha256": "d38d9f23e4bb9fa24a850ff74222ed2fcbb072e25192d088767429ecb184d04a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-919-age-of-children-fam.html",
+      "sha256": "8fa1b2f66c067bfc9c0b7012a9ae209ab941697a2caa1cf548785864f1e57468"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-921-01-leave-of-absence-fam.html",
+      "sha256": "4158e1581101cd65904be9e2e5ff192b618d93016d29108f1e3b2ee4f1c69a9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-921-03-required-verification-fam.html",
+      "sha256": "4606850843292317425ac2bc87d7b0059495a4b3c9a415b9752ccb586b8650b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-921-employment-fam.html",
+      "sha256": "bf01398913d83e79125293182c82368f925a31b79e91cb7538cea382ca077bda"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-922-01-required-verification-for-a-mental-health-or-substance-misuse-treatment-program-for-recipient-of-nhep-or-fap.html",
+      "sha256": "b3d129d58dab7accbab9308996ca700acc2a0954ba69633a3f1491bdc83c3f1d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-922-02-continued-eligibility-for-a-mental-health-or-substance-misuse-treatment-program-for-a-recipient-of-nhep-or-fap.html",
+      "sha256": "8c5f496081808d7df3aec9abf12145c9ad38585bdbf5b19953db030b1826b829"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-922-03-required-verification-at-redetermination-for-continued-eligibility-for-medical-leave-from-mental-health-or-substance-misuse-treatmen.html",
+      "sha256": "e4fb49ea8ca06aab390fa33d6dc82f53ffc8961f630536e00ed23ecc08e1b26d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-922-mental-health-or-substance-misuse-treatment-program-for-a-recipient-of-nhep-or-fap.html",
+      "sha256": "d9e50cf70101a07e03526bc28a14d2a712e400501c6945378cfcbdf437ab8f5b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-923-01-required-verification-fam.html",
+      "sha256": "21c48597412933689dd5f1931f14beb2da90d189110cbbaf56c1a6f810561c3d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-923-actively-seeking-employment-fam.html",
+      "sha256": "3c1d5b9bc77be341de77f27affb93a2a043fdd5485024d3418a2d0aee188c889"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-925-01-exceptions-to-the-two-year-time-limit-fam.html",
+      "sha256": "d89660bf519514d45e126c66864922c0e232054aa38d2b43397a523a4d1bce4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-925-03-leave-of-absence-fam.html",
+      "sha256": "1b0db42660b6b2cfc7b0b875275de4d994a3ce76db6ebda9be69e3b54c5637e8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-925-05-breaks-fam.html",
+      "sha256": "889d397fdeed02d19fffab1715d9729326c7d46fc1e28e699f1b47898b824067"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-925-07-required-verification-fam.html",
+      "sha256": "b974397d1d4d7efd8352628770fcfa32d6f50a22d7e0639b903dd8059edf5104"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-925-training-or-education-preparatory-to-employment-fam.html",
+      "sha256": "adc9847ead6b56624443c28959107259e5732186bf13839d884445ffef1984e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-926-continued-assistance-during-the-12-month-eligibility-period.html",
+      "sha256": "0c9e72eb569b5f9ceab4567f25fa2ef3f6162e2fb36b0974e66c6ec22c8a7e5d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-927-01-required-verification-fam.html",
+      "sha256": "06523f61ca9edd8a5593c7c4a17e620b8f186725f6819c37026c79f969ff719f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-927-billable-hours-of-service-fam.html",
+      "sha256": "c2d0b83f9c82ba6a94b192ad80ca392ba574da8de9d45de9d372354e8143bee6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-929-01-required-verification-fam.html",
+      "sha256": "541ac0d7847504fcfe55d39d02ea1dbd537f5bcd2aa0f58be77928bb188ff083"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-929-provider-qualifications-fam.html",
+      "sha256": "9aefd76713d31b69ee3a518aacf5a5531668ac69a54b9428612270a257b238a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-931-resources-fam.html",
+      "sha256": "1d67e306d02cc8870d78dc2b18547ecef0759100177a9de6388f5527e76161c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-933-01-treatment-of-specific-income-types-fam.html",
+      "sha256": "5d2b858705d33d3ca0484d743a2821e76f27b4934799e6dde85533c4ca192622"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-933-02-annualizing-income-fam.html",
+      "sha256": "a960b1b8cfa931b51a6f1f304338294b19457177631a466191d464f3efd4bd5b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-933-03-required-verification-fam.html",
+      "sha256": "3ffa83d99e60f995d12c30e735f5ed159d06dd6b4078b1b269d53cc1d7e787bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-933-05-state-median-income-fam.html",
+      "sha256": "9582ef428aa23e5682b2ca5387c3d6522b628dc33748a675a48c88367135d414"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-933-income-fam.html",
+      "sha256": "e98405ae56bf6aa565b7f274307b25e326f8ed76fc5599740dfc0a7d3ec25f91"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-935-gross-monthly-income-limits-fam.html",
+      "sha256": "cdf2e6dc653271515c2e484943deef301e126625cd520481acd91a86dd8e5988"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-937-reimbursement-rates-fam.html",
+      "sha256": "9bf9bc69562698a6371018786854da3513f391e912c20e47df785a3efb9400d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-938-cost-share-and-provider-co-pay-fam.html",
+      "sha256": "077f7a0f65af535b808f8b0293a9db547daa256741b2030ac25d4540411d4c03"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-939-determining-the-allowable-rate-fam.html",
+      "sha256": "fbdb8a99ec1d51eb96bf7f9b25b560993314db199e0d3a48b11450ef0ada7fa7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-941-01-required-verification-for-a-child-with-a-disability-fam.html",
+      "sha256": "7948e9b4788640cb64260741c041c603b195f73e6fce3bfcd88bb13c1e4810a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-941-calculating-the-maximum-allowable-payment-fam.html",
+      "sha256": "7bb8db61191af3ebd7db2d73fbc4563090007eb5abe3a6451ac091bba3c30801"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-943-01-required-co-payment-fam.html",
+      "sha256": "6283e6263658470053394d5950901313d147f7364000adc6183f4a83fe9dcfb8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-943-payment-for-noncontract-provider-services-fam.html",
+      "sha256": "0204881346e6c26e8058fe6f2436b2a9822b644422ea3b7db58e8e70798b7c91"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-945-payment-for-contract-agency-services-fam.html",
+      "sha256": "9cd20f22e34c644169d0c8a13c79b675924505805c997fad71f4de27483f732f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-947-payment-for-absentee-closure-days.html",
+      "sha256": "3f4ee4edd2e0657eceb7155bf97d6885d9a741554d0e768af6c587a085b00371"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-a-words-fam.html",
+      "sha256": "cb4d3b2fe97df0b0e66be9f29cb7e476151a09f97d2396175181ef373a175cc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-b-words-fam.html",
+      "sha256": "23c2c6157e50c1ac6bf088c29a70d2c7f65800833e3b7f51c4cffbe692178f71"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-c-words-fam.html",
+      "sha256": "f7da84405bc1b871ea3d8d541bce04725246ef10948021b699faed32b6287dd0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-d-words-fam.html",
+      "sha256": "fe3c6e65b230b5b9e51f0c0604dc84925cf2a73e766e334d4f33e08164b73e1c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-e-words-fam.html",
+      "sha256": "2b456af869f7b9bee9dde53ae6b68e10e33dfc6a2e6d1797d0dd1f11e0224f2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-f-words-fam.html",
+      "sha256": "8c566f3df29de089840d717ee046e3270554eeb136c8001c63a93741d9cf6ec7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-fam.html",
+      "sha256": "443180c844b758dac4a48352b5d912b5a3344064d967a15cd53b5e25fc9c124e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-g-words-fam.html",
+      "sha256": "14fe8e8e36ada9cd04da6c390a38f8ce1df0f6ee1068a995595243fa86ba9356"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-h-words-fam.html",
+      "sha256": "a3553d0f9a5eb79e7c4b2d6030b8544c61ace3653128ec35ff3d615d25ba1270"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-i-words-fam.html",
+      "sha256": "6f940716a14c934cfd26797cd1b5e20ed6537e23dab85d040413d8d7e9699cc3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-l-words-fam.html",
+      "sha256": "a31523e9a80f240393e0b5686415d8b5e9168a556e0945295cd9eba80e6d2571"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-m-words-fam.html",
+      "sha256": "e23e1471726b19b882804b460453984ae05b6554e76e3fb880ad99b8565214eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-n-words-fam.html",
+      "sha256": "6f435a582e288c9d5386fd5169af60e833def15c361bfbd233b53cbd87eb2278"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-o-words-fam.html",
+      "sha256": "06020c04e8cf8b651e21f1213d07b17cb69da75e15559067fa71d9c2e992d147"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-p-words-fam.html",
+      "sha256": "5e7078e93fa8c60eb34c9e38a7805aea0054dffcdc34944af0ba33663b99f695"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-q-words-fam.html",
+      "sha256": "f45d097c15ccd2cdbd4102e7b312afb708eb797a55308b2956c5a3bd9dc8c911"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-r-words-fam.html",
+      "sha256": "1cc4cbf5a0dbbc190f52898426fe16442efa5e2825ba10891bb2f14dfa9fa5ed"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-s-words-fam.html",
+      "sha256": "f7a76540bf3a6f507cc6ee4aaba8fe2721fdf30fe778e669ea2cc6ac48d88031"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-t-words-fam.html",
+      "sha256": "8dcc7fd8c8b9f23abca1f8b89fcbf23f97ac61ecbfbfc20a0bb5b0841214faec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-u-words-fam.html",
+      "sha256": "80b7da15239595845cb43f35070afa2ae24ff1d0c21803df5ba4776ebd357ab6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-v-words-fam.html",
+      "sha256": "0fca1dff06834cf42ca60d489e6e23d94bbbc33ed0dcba62911c526381d212e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-glossary-w-words-fam.html",
+      "sha256": "035306359ffe3006d260b50974742395cf13851a983a4529ea4475b705e00119"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-introduction-fam.html",
+      "sha256": "b49b316a81c10b51d2f6d6445152fffff0a83e397c6e645bab9713c2632889e8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-introduction-how-this-manual-is-updated-fam.html",
+      "sha256": "3cf7168848bb09cae22d0932e234e24225f97f2387cbe4b57f309a1abb721fda"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-introduction-how-to-use-this-manual-fam.html",
+      "sha256": "9df7049e2b6a9efd377100baa7aeabbd46a1dfe3c1b89a8bd28cc8b5c54d2d0c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-introduction-navigating-the-family-assistance-manual-fam.html",
+      "sha256": "3e03321fa790e14fbdb849bd1dc04a6f03923d6e85aba6de5b81a7f8bb1cbc57"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-irregular-income.html",
+      "sha256": "d5336bff241ad5437400a56e8c369f9964b3c46363c42215a8196f48b4e6b5b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-nh-dhhs-fam-panhandling.html",
+      "sha256": "339d92b431f66f96eaba4b50a06acfa0f601abdbd62cdcdfacb5077e94f5e0ca"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1430,
+    "missing_count": 0,
+    "provision_count": 1430,
+    "source_count": 1430
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:16:16.318000+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8rFNR5XoIP4KoRVqh6WmXB666zrWozDtaq8J/le9cKV0xBerwNtRN9Xp/dU049bmrvdie4FLDKmQtAXyaEeHBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "citation_path": "us-al/guidance/ador/ty2026/individual-income-tax-filing-information",
+      "metadata": {
+        "amounts_carried": [
+          "rate schedule (2%/4%/5%)",
+          "personal exemption ($1,500/$3,000)"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "text/html; charset=UTF-8",
+        "discovered_via": "manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/ (read 2026-09-13)",
+        "document_subtype": "department_web_page",
+        "download_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/",
+        "index_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/",
+        "kind": "document",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": null,
+        "source_authority": "Alabama Department of Revenue",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "Undated current page; Alabama does not index and the page states the statutory rates and exemptions in force for 2026.",
+        "tax_year": "2026",
+        "title": "Individual Income Tax: General Information for Individuals (rates and personal exemptions)"
+      },
+      "sha256": "0af71e4061e376a657cba4dde4672cb1d3c9ddf77ab63596c78e12be2840df75",
+      "source_format": "html",
+      "source_path": "sources/us-al/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-al-ador-individual-income-tax-filing-information-ty2026.html",
+      "source_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/"
+    },
+    {
+      "citation_path": "us-al/guidance/ador/ty2026/individual-income-tax-filing-information/block-1",
+      "metadata": {
+        "amounts_carried": [
+          "rate schedule (2%/4%/5%)",
+          "personal exemption ($1,500/$3,000)"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "text/html; charset=UTF-8",
+        "discovered_via": "manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/ (read 2026-09-13)",
+        "document_subtype": "department_web_page",
+        "download_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/",
+        "index_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/",
+        "kind": "block",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": null,
+        "source_authority": "Alabama Department of Revenue",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "Undated current page; Alabama does not index and the page states the statutory rates and exemptions in force for 2026.",
+        "source_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/",
+        "tax_year": "2026",
+        "title": "Individual Income Tax: General Information for Individuals (rates and personal exemptions)"
+      },
+      "sha256": "0af71e4061e376a657cba4dde4672cb1d3c9ddf77ab63596c78e12be2840df75",
+      "source_format": "html",
+      "source_path": "sources/us-al/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-al-ador-individual-income-tax-filing-information-ty2026.html",
+      "source_url": "https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/"
+    }
+  ]
+}

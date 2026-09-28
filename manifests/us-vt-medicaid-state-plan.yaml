@@ -1,0 +1,1316 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-vt-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 215
+- source_id: us-vt-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 215
+- source_id: us-vt-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 15
+    index_records_total: 215
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-26-0009-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-26-0009: Approval Document (approved July 20, 2026, effective July 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-26-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-26-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-26-0009
+    cms_node_id: '194181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=194181
+    approval_date: '2026-07-20'
+    effective_date: '2026-07-01'
+    summary: This amendment affirms Vermont's compliance with Section 5121 of the Consolidated Appropriations Act of 2023,
+      and the items noted in the Companion Letter for SPA 25-0007.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-26-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-26-0002: Approval Document (approved May 18, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-26-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-26-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-26-0002
+    cms_node_id: '192931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192931
+    approval_date: '2026-05-18'
+    effective_date: '2026-01-01'
+    summary: This amendment proposed new income disregards under the authority of section 1902(r)(2) of the Social Security
+      Act for the Qualified Medicare Beneficiary and Qualified Individual eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-25-0011-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-25-0011: Approval Document (approved May 5, 2026, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-25-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-25-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-25-0011
+    cms_node_id: '192246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192246
+    approval_date: '2026-05-05'
+    effective_date: '2025-07-01'
+    summary: This amendment proposes adding supported employment services to Vermont’s Alternative Benefit Plan (ABP). It
+      also amends the ABP to reflect the benefit changes approved in SPAs 25-0009 and 25-0015.
+    topics:
+    - Alternative Benefit Plan
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-25-0015-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-25-0015: Approval Document (approved December 22, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-25-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-25-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-25-0015
+    cms_node_id: '187571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187571
+    approval_date: '2025-12-22'
+    effective_date: '2025-07-01'
+    summary: This amendment proposes to add targeted case management for adults with serious mental illness in accordance
+      with Special Term and Condition 4.4(c) of the Global Commitment to Health 1115 Waiver, wherein rehabilitative mental
+      health services are being transferred to the State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-25-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-25-0002: Approval Document (approved May 16, 2025, effective February 2, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-25-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-02-02'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-25-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-25-0002
+    cms_node_id: '179661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179661
+    approval_date: '2025-05-16'
+    effective_date: '2025-02-02'
+    summary: This amendment proposed to confirm its methodology for determining household income.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-24-0010-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-24-0010: Approval Document (approved March 14, 2025, effective April 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-24-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-24-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-24-0010
+    cms_node_id: '178601'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178601
+    approval_date: '2025-03-14'
+    effective_date: '2024-04-01'
+    summary: This amendment proposed new disregards for Medicare Savings Program eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-24-0008-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-24-0008: Approval Document (approved June 28, 2024, effective February 21, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-24-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-21'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-24-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-24-0008
+    cms_node_id: '167316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167316
+    approval_date: '2024-06-28'
+    effective_date: '2024-02-21'
+    summary: This amendment is to suspend temporarily pharmacy co-payments for dates of service starting February 21, 2024,
+      through March 18, 2024, in response to the Change Healthcare cybersecurity incident in alignment with the CMCS Informational
+      Bulletin.
+    topics:
+    - Cost Sharing
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-24-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-24-0002: Approval Document (approved May 17, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-24-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-24-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-24-0002
+    cms_node_id: '165456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165456
+    approval_date: '2024-05-17'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to adopt the 12-month continuous eligibility mandate for children, extend the initial
+      transitional medical assistance (TMA) period from six months to 12, and elect the option to require less than three
+      months of eligibility or enrollment in the parent/caretaker relative eligibility group for TMA eligibility.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-24-0004-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-24-0004: Approval Document (approved May 3, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-24-0004
+    cms_node_id: '163841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163841
+    approval_date: '2024-05-03'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to document the new income standards for its optional state supplement program, beneficiaries
+      of which are eligible for Medicaid under Vermont's State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-23-0029-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-23-0029: Approval Document (approved August 11, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-23-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-23-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-23-0029
+    cms_node_id: '151896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151896
+    approval_date: '2023-08-11'
+    effective_date: '2023-04-01'
+    summary: This SPA provides Vermont with approval to exempt individuals in the extended postpartum period from cost sharing.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-23-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-23-0002: Approval Document (approved May 3, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-23-0002
+    cms_node_id: '147596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147596
+    approval_date: '2023-05-03'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to change the eligibility rules for the Former Foster Care Children eligibility groups,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-23-0005-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-23-0005: Approval Document (approved March 24, 2023, effective February 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VT-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-02-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-23-0005
+    cms_node_id: '146211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146211
+    approval_date: '2023-03-24'
+    effective_date: '2023-02-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to rescind premiums and cost-sharing. It reverts to co-pay amounts prior to the public health emergency
+      (PHE) with exception of services, drugs, test and vaccines for treatment of COVID-19.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-22-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-22-0002: Approval Document (approved December 20, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/media/file/vt-22-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-22-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-22-0002
+    cms_node_id: '143016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143016
+    approval_date: '2022-12-20'
+    effective_date: '2022-07-01'
+    summary: 'disregard two sources of income/resources: 1) any refundable credit against taxes made pursuant to Vermont''s
+      child tax credit or pursuant to a similar tax credit enacted by the State and intended by legislation to not be considered
+      as countable income or resources for benefit programs; and 2) any wages that are made pursuant to Vermont''s Premium
+      Pay for Workforce Recruitment and Retention Program or a similar workforce recruitment and retention program enacted
+      in Vermont and intended by the legislature to not be considered as countable income or resources in determining eligibility
+      for benefit programs.'
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-21-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-21-0002: Approval Document (approved June 24, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/media/file/1915crenewpercapprove2021-07-02.json-2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-21-0002/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-21-0002
+    cms_node_id: '109521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109521
+    approval_date: '2021-06-24'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment updates the State Supplementary Payment levels for the "Optional State
+      Supplement Beneficiaries" eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-20-0017-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-20-0017: Approval Document (approved November 19, 2020, effective September 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/VT-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-09-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-20-0017
+    cms_node_id: '104111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104111
+    approval_date: '2020-11-19'
+    effective_date: '2020-09-01'
+    summary: This SPA permits licensed pharmacists to enroll in the Vermont Medicaid program, allowing coverage of COVID-19
+      diagnostic testing and specimen collection by licensed pharmacists to the extent permitted by state and federal law.
+    topics:
+    - Current State Plan
+    - Medicaid-Medicare Issues
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-16-0025-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-16-0025: Approval Document (approved October 19, 2020, effective October 1, 2016)'
+  source_url: https://www.medicaid.gov/media/file/vt-16-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-16-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-16-0025
+    cms_node_id: '103341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103341
+    approval_date: '2020-10-19'
+    effective_date: '2016-10-01'
+    summary: VT submitted this SPA to update the ABP for the new adult group in order to ensure alignment with the full Medicaid
+      State Plan by referencing the new state plan section (G1 – G3) that describes cost-sharing requirements for Medicaid
+      beneficiaries
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-20-0011-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-20-0011: Approval Document (approved June 25, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-20-0011
+    cms_node_id: '99981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99981
+    approval_date: '2020-06-25'
+    effective_date: '2020-01-01'
+    summary: Eliminates the co-payments for preventive dental services
+    topics:
+    - Dental
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-20-0015-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-20-0015: Approval Document (approved May 29, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-20-0015
+    cms_node_id: '98796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98796
+    approval_date: '2020-05-29'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to suspend co-payment obligations for outpatient hospital visits and for medications to treat the symptoms of COVID-19,
+      remove 9-hour per week minimum for substance use disorder services and intensive outpatient treatment services (including
+      alternative benefit plans), expand prior authorization for medications by automatic renewal, and make exceptions for
+      brand name drugs.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-19-0007-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-19-0007: Approval Document (approved January 28, 2020, effective October 15, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT 19-0007 Approval
+    Package.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-15'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-19-0007
+    cms_node_id: '58571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58571
+    approval_date: '2020-01-28'
+    effective_date: '2019-10-15'
+    summary: Revises the prior authorization requirements for special eyewear lenses
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-19-0005-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-19-0005: Approval Document (approved December 13, 2019, effective November 15, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-19-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-15'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-19-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-19-0005
+    cms_node_id: '58086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58086
+    approval_date: '2019-12-13'
+    effective_date: '2019-11-15'
+    summary: Updates the state’s supplemental rebate agreement
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-16-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-16-0002: Approval Document (approved August 7, 2017, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-16-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-16-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-16-0002
+    cms_node_id: '14151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=14151
+    approval_date: '2017-08-07'
+    effective_date: '2018-01-01'
+    summary: This eligibility SPA expands eligibility for the Medicaid for Working People with Disabilities (MWPD) program
+      by disregarding certain types of income and by increasing the resource limits.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-16-0017-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-16-0017: Approval Document (approved March 29, 2017, effective October 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-16-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-16-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-16-0017
+    cms_node_id: '15696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15696
+    approval_date: '2017-03-29'
+    effective_date: '2016-10-01'
+    summary: SPA amends state plan to exempt sexual-assault related services from hospital outpatient cost-sharing.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-15-029-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-15-029: Approval Document (approved January 19, 2016, effective October 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-15-029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-10-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-15-029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-15-029
+    cms_node_id: '20916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20916
+    approval_date: '2016-01-19'
+    effective_date: '2015-10-01'
+    summary: Updates Hospice Rates in Accordance with Medicare Rates that are Updated Annually and Adjusted for Medicaid.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-15-011-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-15-011: Approval Document (approved September 2, 2015, effective July 9, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-15-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-09'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-15-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-15-011
+    cms_node_id: '22556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22556
+    approval_date: '2015-09-02'
+    effective_date: '2015-07-09'
+    summary: Updates Various Provisions of Vermont Medicaid's Shared Savings Program for Performance Year 2.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-14-008-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-14-008: Approval Document (approved May 8, 2015, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-14-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-14-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-14-008
+    cms_node_id: '27221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27221
+    approval_date: '2015-05-08'
+    effective_date: '2014-04-01'
+    summary: This SPA reflects that Vermont will use MAGI-based income methodologies for purposes of determining medically
+      needy eligibility for parents/caretaker relatives, pregnant women, and children. All resources will be disregarded for
+      purposes of determining eligibility for these medically needy groups subject to MAGI-based income methodologies.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-15-0002-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-15-0002: Approval Document (approved March 26, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-15-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-15-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-15-0002
+    cms_node_id: '28071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28071
+    approval_date: '2015-03-26'
+    effective_date: '2015-01-01'
+    summary: Indicates State Recognizes Same-Sex Marriages for Purposes of Medicaid Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-14-0006-mm7-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-14-0006-MM7: Approval Document (approved July 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-14-0006-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-14-0006-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-14-0006-MM7
+    cms_node_id: '35196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35196
+    approval_date: '2014-07-17'
+    effective_date: '2014-01-01'
+    summary: Indicates Hospitals in the State Determine Eligibility Presumptively and that the State Provides Medicaid Coverage
+      for Individuals Determined Presumptively Eligible Under this Provision.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-13-0010-mm3-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-13-0010-MM3: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-13-0010-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-13-0010-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-13-0010-MM3
+    cms_node_id: '38226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38226
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: Describes how State will Apply Modified Adjusted Gross Income MAGI Based Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-13-0006-mm2-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-13-0006-MM2: Approval Document (approved February 27, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-13-0006-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-13-0006-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-13-0006-MM2
+    cms_node_id: '38221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38221
+    approval_date: '2014-02-27'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI Based Eligibility Process Requirements, Including Single, Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-13-0012-mm5-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-13-0012-MM5: Approval Document (approved February 27, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-13-0012-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-13-0012-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-13-0012-MM5
+    cms_node_id: '38231'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38231
+    approval_date: '2014-02-27'
+    effective_date: '2014-01-01'
+    summary: Updates Residency Language and Affirms State Meets Requirements and Provides Medicaid to Otherwise Eligible Residents
+      of State.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-13-029-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-13-029: Approval Document (approved January 15, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-13-029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-13-029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-13-029
+    cms_node_id: '38836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38836
+    approval_date: '2014-01-15'
+    effective_date: '2014-01-01'
+    summary: Alternative Benefit Package.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Eligibility
+    - Financing & Reimbursement
+    - Managed Care
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-13-0002-mm1-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-13-0002-MM1: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-13-0002-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-13-0002-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-13-0002-MM1
+    cms_node_id: '38216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38216
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Implements the Modified Adjusted Gross Income MAGI Eligibility Process for both Mandatory and Optional Populations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-12-005-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-12-005: Approval Document (approved April 26, 2012, effective March 31, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-12-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-31'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-12-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-12-005
+    cms_node_id: '27826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27826
+    approval_date: '2012-04-26'
+    effective_date: '2012-03-31'
+    summary: This SPA transmitted a proposed amendment to your approved Title XIX State plan to implement Section 6401(a)
+      of the Affordable Care Act . This Affordable Care Act provision amended section 18660) of the Social Security Act to
+      add a new paragraph ''(2) Provider Screening."
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-11-023b-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-11-023B: Approval Document (approved April 26, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-11-023B.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-11-023b/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-11-023B
+    cms_node_id: '27846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27846
+    approval_date: '2012-04-26'
+    effective_date: '2011-07-01'
+    summary: This SPA amends the State's approved Title XIX State Plan to reduce the current Medicaid reimbursement methodology
+      for limited distribution specialty pharmacies from average wholesale price (AWP) minus 14.2 percent to 16.5 percent,
+      cover generic over-the-counter drugs when medically necessary without the option of prior authorization for brand name
+      drugs and cover active pharmaceutical ingredient (API) drugs.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-11-035-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-11-035: Approval Document (approved March 23, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-11-035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-11-035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-11-035
+    cms_node_id: '27831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27831
+    approval_date: '2012-03-23'
+    effective_date: '2012-10-01'
+    summary: This SPA transmitted a proposed amendment to your approved Title XIX State plan to implement section 4107 of
+      the Affordable Care Act. This Affordable Care Act provision amended section 1905(a)(4) of the Social Security Act to
+      add a new subsection (D) to provide Medicaid coverage of comprehensive tobacco cessation services for pregnant women.
+      including both counseling and pharmacotherapy. without cost sharing.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-11-033-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-11-033: Approval Document (approved March 2, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-11-033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-11-033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-11-033
+    cms_node_id: '27836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27836
+    approval_date: '2012-03-02'
+    effective_date: '2012-01-01'
+    summary: This SPA transmitted a proposed amendment to your approved Title XIX State plan to address Section 6411 of the
+      Affordable Care Act regarding the Medicaid Recovery Audit Contractors (RAC) program.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-vt-cms-medicaid-state-plan-spa-vt-11-008-approval-document
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont Medicaid SPA VT-11-008: Approval Document (approved December 21, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VT/VT-11-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-vt/policy/cms/medicaid-state-plan/spa/vt-11-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-11-008
+    cms_node_id: '26201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26201
+    approval_date: '2011-12-21'
+    effective_date: '2011-07-01'
+    summary: 'This SPA transmitted a proposed amendment to your approved Title XIX State plan to elect the option provided
+      by §214 of the Children''s Health Insurance Program Reauthorization Act of 2009, Public Law 111-3. This option provides
+      States, at their option: to grant full Medicaid coverage to all otherwise eligible alien children or pregnant women
+      fully residing in the United States.'
+    topics:
+    - Eligibility
+    link_label: Approval Document

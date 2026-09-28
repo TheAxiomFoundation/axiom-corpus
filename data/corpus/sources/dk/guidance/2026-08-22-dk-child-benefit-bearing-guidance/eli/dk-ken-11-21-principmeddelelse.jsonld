@@ -1,0 +1,251 @@
+[
+  {
+    "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457",
+    "http://data.europa.eu/eli/ontology#is_realized_by": [
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan",
+        "@type": "http://data.europa.eu/eli/ontology#is_realized_by"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#date_document": [
+      {
+        "@value": "17-06-2021 00:00:00",
+        "@type": "http://data.europa.eu/eli/ontology#date_document"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#date_publication": [
+      {
+        "@value": "18-06-2021 00:11:28",
+        "@type": "http://data.europa.eu/eli/ontology#date_publication"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#number": [
+      {
+        "@value": "9457",
+        "@type": "http://data.europa.eu/eli/ontology#number"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#type_document": [
+      {
+        "@id": "http://www.retsinformation.dk/eli/resource/authority/type_document#KEN"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#passed_by": [
+      {
+        "@id": "http://www.retsinformation.dk/eli/resource/authority/passed_by#REG"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#relevant_for": [
+      {
+        "@id": "http://www.retsinformation.dk/eli/resource/authority/relevant_for#INDOC"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#responsibility_of": [
+      {
+        "@value": "Social- og Boligministeriet",
+        "@type": "http://data.europa.eu/eli/ontology#responsibility_of"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#in_force": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#InForce-inForce"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#id_local": [
+      {
+        "@value": "W20210945725",
+        "@type": "http://data.europa.eu/eli/ontology#id_local"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/eli/ontology#LegalResource"
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan",
+    "http://data.europa.eu/eli/ontology#title": [
+      {
+        "@value": "Ankestyrelsens principmeddelelse 11-21 om ulovligt skolefravær - standsning af børne- og ungeydelsen - registrering af fravær - undskyldelige omstændigheder - funktionsnedsættelse - sagens oplysning - kompetence - prøvelsesadgang",
+        "@type": "http://data.europa.eu/eli/ontology#title"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#title_short": [
+      {
+        "@value": "KEN nr 9457 af 17/06/2021",
+        "@type": "http://data.europa.eu/eli/ontology#title_short"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#is_embodied_by": [
+      {
+        "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan/xml"
+      },
+      {
+        "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan/html"
+      },
+      {
+        "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan/pdf"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/dan"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#realizes": [
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2021/9457",
+        "@type": "http://data.europa.eu/eli/ontology#realizes"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/eli/ontology#LegalExpression"
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan/xml",
+    "@type": [
+      "http://data.europa.eu/eli/ontology#Format"
+    ],
+    "http://data.europa.eu/eli/ontology#media_type": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/xml"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#format": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/xml"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#published_in": [
+      {
+        "@value": "Retsinformation",
+        "@type": "http://data.europa.eu/eli/ontology#published_in"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#publisher": [
+      {
+        "@value": "Civilstyrelsen",
+        "@type": "http://data.europa.eu/eli/ontology#publisher"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#embodies": [
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan",
+        "@type": "http://data.europa.eu/eli/ontology#embodies"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#legal_value": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalValue-official"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}/{format}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan/html",
+    "@type": [
+      "http://data.europa.eu/eli/ontology#Format"
+    ],
+    "http://data.europa.eu/eli/ontology#media_type": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/text/html"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#format": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/text/html"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#published_in": [
+      {
+        "@value": "Retsinformation",
+        "@type": "http://data.europa.eu/eli/ontology#published_in"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#publisher": [
+      {
+        "@value": "Civilstyrelsen",
+        "@type": "http://data.europa.eu/eli/ontology#publisher"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#embodies": [
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan",
+        "@type": "http://data.europa.eu/eli/ontology#embodies"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#legal_value": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalValue-official"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}/{format}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan/pdf",
+    "@type": [
+      "http://data.europa.eu/eli/ontology#Format"
+    ],
+    "http://data.europa.eu/eli/ontology#media_type": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/pdf"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#format": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/pdf;type=generated"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#published_in": [
+      {
+        "@value": "Retsinformation",
+        "@type": "http://data.europa.eu/eli/ontology#published_in"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#publisher": [
+      {
+        "@value": "Civilstyrelsen",
+        "@type": "http://data.europa.eu/eli/ontology#publisher"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#embodies": [
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2021/9457/dan",
+        "@type": "http://data.europa.eu/eli/ontology#embodies"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#legal_value": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalValue-official"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}/{format}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  }
+]

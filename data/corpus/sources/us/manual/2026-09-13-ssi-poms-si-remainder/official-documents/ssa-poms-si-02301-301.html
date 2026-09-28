@@ -1,0 +1,832 @@
+<!DOCTYPE html><html>
+<head>
+<title>SSA - POMS: SI 02301.301 - Overview of Goldberg/Kelly (GK) Processing - 10/14/2004</title>
+<!-- REQUIRED META INFORMATION -->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Overview of Goldberg/Kelly (GK) Processing" />
+<meta name="DCTERMS:coderOffice" content="DCRDP:ODEPP:OPPS" />
+<meta name="DCTERMS:coder" content="eestes" />
+<meta name="DCTERMS:dateCertified" content="2016-10-11" />
+<!-- FRAMEWORK STYLES & SCRIPTS -->
+<link href="https://ssa.gov/framework/css/phoenix.css" rel="stylesheet" media="all" />
+<!-- SMARTPHONE ICON -->
+<link rel="apple-touch-icon-precomposed" href="https://ssa.gov/framework/images/icons/png/apple-touch-icon.png">
+<!-- SSA INTERNET HEAD SCRIPTS -->
+<script src="https://ssa.gov/framework/js/ssa.internet.head.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<!-- CUSTOM STYLES & SCRIPTS -->
+<link href="../ppoms.css" type="text/css" rel="stylesheet" media="all" />
+<link href="../overrides.css" type="text/css" rel="stylesheet" media="all" />
+<script language="JavaScript" type="text/javascript" src="/apps10/PublicSharedElements.nsf/kwdSearchLib.js!OpenJavascriptLibrary"></script>
+<!-- InstanceEndEditable -->
+
+<META NAME='date' content='2004-10-14'>
+<META NAME='title' content='SSA - POMS: SI 02301.301 - Overview of Goldberg/Kelly (GK) Processing'>
+
+<script language="JavaScript" type="text/javascript">
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t) {
+  var returnValue = false;
+  var url="/poms.nsf/lnx/0502301301!OpenDocument&Click=" + v;
+  if (o.href != null) {
+    o.href = url;
+    returnValue = true;
+  } else {
+    if (t == null)
+      t = document._domino_target;
+    window.open(url, t);
+  }
+  return returnValue;
+}
+// -->
+</script>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" class="nav-sidebar">
+
+<form onsubmit="return false;return true;" action=""><script type="text/javascript">
+	appProfile = {"ProfileName":"PublicPolicyNet",
+"Status":"Enabled",
+"HTTP_POMS":"https://policy.ssa.gov",
+"NSF_POMS":"poms.nsf",
+"HTTP_POMSArchive":"https://policy.ssa.gov",
+"NSF_POMSArchive":"pomsarchive.nsf",
+"HTTP_Reference":"https://policy.ssa.gov",
+"NSF_Reference":"reference.nsf",
+"HTTP_ReferenceArchive":"https://policy.ssa.gov",
+"NSF_ReferenceArchive":"referencearchive.nsf",
+"HTTP_YUILibraries":"https://policy.ssa.gov",
+"NSF_YUILibraries":"web20/yui280.nsf",
+"defaultPage":"/home!readform"
+};	
+	//getFields will return a comma separated list of fields stored in the appProfile object
+	appProfile.getFields = function() {
+		var fieldsList;
+		for(var x in appProfile) {
+			if(typeof this[x] != 'function') {
+				if(fieldsList == undefined) { 
+					fieldsList = x; 
+				} else { 
+					fieldsList += ", "+x;
+				}
+			}
+		}
+		return fieldsList;
+	} // getFields
+	//get will return the object stored for the passed FieldName
+	appProfile.get = function(strFieldName) {
+		strFieldName = (typeof strFieldName == 'undefined') ? this.ProfileName : strFieldName;	
+		return this[strFieldName];
+	} // get
+</script><input  type='hidden' id='searchParams' name='searchParams' value='&start=1&count=500' />
+<input id='Start' name='Start' type='hidden' value=''>
+<input id='Finish' name='Finish' type='hidden' value='@ERROR'>
+<input id='TotalHits' name='TotalHits' type='hidden' value='@ERROR'>
+<input id='Count' name='Count' type='hidden' value='500'>
+<input id='Hits' name='Hits' type='hidden' value=''>
+<input  type='hidden' id='Query' name='Query' value='' />
+    <!-- PAGE CONTAINER -->
+    <div id="page">
+<!-- ACCESSIBILITY OPTIONS -->
+<div class="bg-dark-gray accessibility" id="accessibility">
+ <a id="skip-navigation" href="#content">Skip to content</a>
+</div>
+<!-- BANNER -->
+<header class="banner-neo" id="banner" role="banner">
+    <div class="banner-wrapper">
+        <h1 class="banner-logo">
+            <a class="banner-logo__link" href="/apps10/">Social Security</a>
+        </h1>
+        <nav class="banner-nav" id="banner-nav">
+            <a class="banner-nav__link banner-search" href="/apps10/poms.nsf/pomssearch!SearchView&query=&searchorder=1&start=1&count=500">
+                <svg class="banner-nav__icon" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M 10 23 C 11.219 23 12.384 22.762 13.496 22.285 C 14.608 21.808 15.565 21.169 16.367 20.367 C 17.169 19.565 17.808 18.608 18.285 17.496 C 18.762 16.384 19 15.219 19 14 C 19 12.953 18.829 11.951 18.488 10.992 C 18.147 10.033 17.661 9.164 17.031 8.383 L 22.711 2.711 C 22.904 2.518 23 2.281 23 2 C 23 1.713 22.905 1.475 22.715 1.285 C 22.525 1.095 22.287 1 22 1 C 21.719 1 21.482 1.096 21.289 1.289 L 15.617 6.969 C 14.836 6.339 13.966 5.853 13.008 5.512 C 12.05 5.171 11.047 5 10 5 C 8.781 5 7.616 5.238 6.504 5.715 C 5.392 6.192 4.435 6.831 3.633 7.633 C 2.831 8.435 2.192 9.392 1.715 10.504 C 1.238 11.616 1 12.781 1 14 C 1 15.219 1.238 16.384 1.715 17.496 C 2.192 18.608 2.831 19.565 3.633 20.367 C 4.435 21.169 5.392 21.808 6.504 22.285 C 7.616 22.762 8.781 23 10 23 Z M 10 21 C 9.052 21 8.146 20.815 7.281 20.445 C 6.416 20.075 5.672 19.578 5.047 18.953 C 4.422 18.328 3.925 17.584 3.555 16.719 C 3.185 15.854 3 14.948 3 14 C 3 13.052 3.185 12.146 3.555 11.281 C 3.925 10.416 4.422 9.672 5.047 9.047 C 5.672 8.422 6.416 7.925 7.281 7.555 C 8.146 7.185 9.052 7 10 7 C 10.948 7 11.854 7.185 12.719 7.555 C 13.584 7.925 14.328 8.422 14.953 9.047 C 15.578 9.672 16.075 10.416 16.445 11.281 C 16.815 12.146 17 13.052 17 14 C 17 14.948 16.815 15.854 16.445 16.719 C 16.075 17.584 15.578 18.328 14.953 18.953 C 14.328 19.578 13.584 20.075 12.719 20.445 C 11.854 20.815 10.948 21 10 21 Z" transform="matrix(-1, 0, 0, -1, 24.000001, 24.000001)" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Search</span></a>
+            <a class="banner-nav__link banner-menu" href="https://ssa.gov/site/menu/en/" id="ssa-menu">
+                <svg class="banner-nav__icon" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M3 5h18q.414 0 .707.293T22 6t-.293.707T21 7H3q-.414 0-.707-.293T2 6t.293-.707T3 5zm0 12h18q.414 0 .707.293T22 18t-.293.707T21 19H3q-.414 0-.707-.293T2 18t.293-.707T3 17zm0-6h18q.414 0 .707.293T22 12t-.293.707T21 13H3q-.414 0-.707-.293T2 12t.293-.707T3 11z" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Menu</span></a>
+            <a class="banner-nav__link banner-languages" href="https://ssa.gov/site/languages/en/" id="ssa-languages" title="Languages">
+                <svg class="banner-nav__icon" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c.812 0 1.604-.08 2.37-.235-.31-.147-.343-1.255-.037-1.887.34-.703 1.406-2.485.35-3.08-1.053-.6-.76-.868-1.405-1.56-.644-.692-.38-.796-.422-.974-.14-.61.62-1.523.656-1.616.035-.094.035-.446.023-.55-.012-.107-.48-.387-.597-.4-.117-.01-.176.188-.34.2-.164.012-.88-.433-1.03-.55-.154-.117-.224-.398-.435-.61-.21-.212-.235-.047-.562-.175-.327-.13-1.382-.516-2.19-.844-.81-.33-.88-.79-.892-1.114-.012-.325-.492-.797-.718-1.137-.225-.342-.267-.81-.348-.705-.082.106.422 1.336.34 1.37-.083.037-.26-.338-.493-.643-.235-.304.245-.14-.505-1.617-.75-1.476.235-2.23.282-3 .048-.77.633.28.328-.21-.304-.493.023-1.524-.21-1.9-.235-.374-1.57.423-1.57.423.034-.363 1.17-.985 1.99-1.56.82-.573 1.322-.128 1.982.083.66.21.703.142.48-.07-.222-.21.094-.316.61-.235.516.082.656.704 1.442.645.784-.06.08.152.186.35.105.2-.117.177-.633.53-.516.35.012.35.926 1.02.913.667.632-.447.538-.94-.094-.49.668-.105.668-.105.563.375.46.02.87.15.408.13 1.52 1.07 1.52 1.07-1.395.762-.516.844-.282 1.02.235.175-.48.515-.48.515-.294-.293-.34.012-.528.117-.187.105-.012.375-.012.375-.97.153-.75 1.173-.738 1.418.012.247-.62.622-.786.973-.164.35.423 1.113.117 1.16-.305.048-.61-1.148-2.25-.703-.495.134-1.593.703-1.008 1.863.585 1.16 1.558-.328 1.886-.164.33.163-.093.902-.023.913.07.012.927.033.974 1.032.048 1 1.3.914 1.57.938.27.023 1.173-.74 1.3-.774.13-.035.646-.47 1.77.175 1.126.644 1.7.55 2.086.82.387.27.117.81.48.985.365.176 1.818-.058 2.18.54.364.597-1.5 3.597-2.085 3.925-.586.328-.856 1.078-1.442 1.558-.69.563-1.418 1.076-2.18 1.535-.684.407-.807 1.137-1.112 1.367C19.984 22.52 24 17.73 24 12c0-6.627-5.373-12-12-12zm2.813 11.262c-.165.047-.504.352-1.336-.14-.832-.494-1.406-.4-1.477-.48 0 0-.07-.2.293-.236.747-.072 1.688.692 1.9.704.21.012.315-.21.69-.09.375.12.094.195-.07.242zM10.887 1.196c-.082-.06.068-.128.157-.246.05-.07.013-.182.078-.246.175-.177 1.043-.423.874.058-.17.48-.98.527-1.11.434zm2.098 1.523c-.293-.013-.983-.086-.856-.212.494-.492-.188-.633-.61-.668-.423-.036-.598-.27-.388-.294.21-.024 1.055.013 1.196.13.14.117.902.422.95.644.047.223 0 .41-.293.4zm2.542-.083c-.234.188-1.413-.673-1.64-.867-.985-.844-1.513-.563-1.72-.703-.206-.142-.132-.33.184-.61.318-.282 1.21.094 1.724.152.516.058 1.113.457 1.125.93.01.474.562.91.327 1.097z" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Languages</span></a>
+            <a class="banner-nav__link banner-signin" href="https://ssa.gov/site/signin/en/" id="ssa-signin">
+                <svg class="banner-nav__icon" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 17.016q-.797 0-1.406-.61t-.61-1.405.61-1.405 1.406-.61 1.406.61.61 1.406-.61 1.407-1.406.61zm6 3V9.986H6v10.03h12zm-6-17.11q-1.266 0-2.18.914T8.906 6H9v2.016h6.094V6q0-1.266-.914-2.18T12 2.906zm6 5.11q.797 0 1.406.586t.61 1.383v10.03q0 .798-.61 1.384T18 21.984H6q-.797 0-1.406-.586t-.61-1.384V9.986q0-.798.61-1.384T6 8.016h.984V6q0-2.063 1.477-3.54T12 .985t3.54 1.477T17.015 6v2.016H18z" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Sign in / up</span></a>
+        </nav>
+    </div>
+</header>
+<!-- PAGE TITLE -->
+<div id="title-bar"><h2>Program Operations Manual System (POMS)</h2></div>
+
+<!-- CONTENT -->
+<div id="content" role="main">
+
+
+<!-- GRID -->
+<div class="grid">
+
+<div class="row-12 equal-heights">
+
+<div class="column-12">
+<div id="divBody"><!-- DO NOT CHANGE THIS TAG -->
+<!-- OPPS CUSTOMIZATION using template's breacrumbs div -->
+<div class="breadcrumbs">
+	<span class="floatl">Effective Dates:&nbsp;10/14/2004 - Present</span>
+	<span class="floatr print-hide"> <a href="0502301300" id="linkPreviousDocument" title="Previous Document">Previous</a> | <a href="0502301305" id="linkNextDocument" title = "Next Document">Next</a></span>
+	<div style="clear:both;"></div>
+</div>
+<div class="poms">
+   <p align="right" class="tninfo">TN 60 (07-23)</p>
+   <h1 xmlns="http://www.w3.org/1999/xhtml" class="sectitle"><a class="poms" id="SI-023-01-301">SI 02301.301 </a>Overview of Goldberg/Kelly (GK) Processing</h1>
+   
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="a"></a><span class="poms-subsection1-label">A.&nbsp;</span>Introduction</h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <p class="poms-para">Correcting benefits on time requires an understanding of systems GK processing, system
+            cutoffs dates and when the FO must suppress an automated GK notice and issue a manual
+            or online GK notice to reduce or stop the following month's benefit.</p>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="b"></a><span class="poms-subsection1-label">B.&nbsp;</span>Process - Systems GK Processing</h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <p class="poms-para">This section gives an overview of how the system identifies and processes an adverse
+            action. (See <a class="poms" href="../lnx/0502301301#e">SI 02301.301E.</a> for examples. See detailed systems instructions in SM 01305.500.)</p>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b1"></a><span class="poms-subsection2-label">1.&nbsp;</span>System Identifies an Adverse Action</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The system identifies an incoming change as an adverse action when the new monthly
+                  benefit amount due is less than the amount due in the last regular first-of-the-month
+                  payment(s). (See SM 01701.010 about payment tapes and systems computation periods.)</p>
+               <div class="poms-note">
+                  <div class="poms-note-text">
+                     <p class="poms-para"><span class="poms-bold">NOTE - SYSTEMS LIMITATION: </span> The system is unable to consider certain underpayments (payment type codes 2 and
+                        4) when comparing monthly benefit amounts. When the system cannot identify an adverse
+                        action due to an underpayment, FOs must input GK due process data (DPD) with the change,
+                        suppress the systems notice, and issue a manual GK notice. (See SM 01305.520B. on
+                        how to compute the monthly benefit amount.)</p>
+                     </div>
+               </div>
+               <div class="poms-subsection3">
+                  <div class="poms-subsection3-title">
+                     <h4 class="sectitle"><a name="b1a"></a><span class="poms-subsection3-label">a.&nbsp;</span>System Compares Benefit Amounts</h4>
+                  </div>
+                  <div class="poms-subsection3-body">
+                     <p class="poms-para">The system compares benefit amounts for:</p>
+                     <ul class="poms-ul">
+                        <li class="poms-li">
+                           <div class="poms-li">
+                              <div class="poms-ul-mark">•</div>
+                              <div class="poms-ul-p1">
+                                 <p class="listing">incoming changes <span class="poms-bold">to </span>records in C01, N01 for section 1619(b) eligibles, and</p>
+                                 </div>
+                           </div>
+                        </li>
+                        <li class="poms-li">
+                           <div class="poms-li">
+                              <div class="poms-ul-mark">•</div>
+                              <div class="poms-ul-p1">
+                                 <p class="listing">records changing <span class="poms-bold">from </span>S06, S07 and S08 <span class="poms-bold">to </span>C01 or N01 through N54.</p>
+                                 </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="poms-subsection3">
+                  <div class="poms-subsection3-title">
+                     <h4 class="sectitle"><a name="b1b"></a><span class="poms-subsection3-label">b.&nbsp;</span>System Does Not Compare Benefits</h4>
+                  </div>
+                  <div class="poms-subsection3-body">
+                     <p class="poms-para">The system does <span class="poms-bold">not </span>compare benefit amounts for the following exceptions to GK procedures:</p>
+                     <ul class="poms-ul">
+                        <li class="poms-li">
+                           <div class="poms-li">
+                              <div class="poms-ul-mark">•</div>
+                              <div class="poms-ul-p1">
+                                 <p class="listing">records changing <span class="poms-bold">to </span>S06, S07, S08, N19 and T01, and</p>
+                                 </div>
+                           </div>
+                        </li>
+                        <li class="poms-li">
+                           <div class="poms-li">
+                              <div class="poms-ul-mark">•</div>
+                              <div class="poms-ul-p1">
+                                 <p class="listing">records changing <span class="poms-bold">from </span>N19 <span class="poms-bold">to </span>another payment status.</p>
+                                 </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b2"></a><span class="poms-subsection2-label">2.&nbsp;</span>System Posts the Adverse Action Month</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The system determines the month that it can actually reduce or stop a future month's
+                  benefit and posts it to the record.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b3"></a><span class="poms-subsection2-label">3.&nbsp;</span>System Issues the Automated GK Notice</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">For most adverse actions, the system issues an automated GK notice and:</p>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">dates the notice 7 days after the notice run date, to allow for processing and mailing
+                              time and</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">records the notice run date (<span class="poms-bold">not </span>the notice date), the notice form, and the notice paragraph numbers or Universal Text
+                              Identifier (UTI) in the Notices Data (NOTC) segment on the SSR. For a description
+                              of the NOTC segment see SM 01601.670. and</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">retains a copy of the notice on the online retrieval system (ORS).</p>
+                           </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b4"></a><span class="poms-subsection2-label">4.&nbsp;</span>System Issues an Online GK Notice during the GK Temporary Period</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">For most adverse actions processed through MSSICS during the GK temporary period,
+                  the system can issue an online GK notice when requested and:</p>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">dates the notice the same day it is produced and puts the time (Eastern Standard)
+                              the notice was created in the upper right hand corner of the notice</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">records the notice run date and time, the notice form (8155), and the notice paragraph
+                              numbers or UTIs in the Notices Data (NOTC) segment on the SSR</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">records the notice indicator in the Notices Data (NOTC) segment of the SSR. OH indicates
+                              the notice was produced online and handed to the claimant. OM indicates the notice
+                              was produced online and mailed to the claimant.</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">stores a copy of the notice on the online retrieval system (ORS).</p>
+                           </div>
+                     </div>
+                  </li>
+               </ul>
+               <p class="poms-para">&nbsp;</p>
+               <p class="poms-para">For a more detailed description of the system’s process involved in the online GK
+                  notices, see SM 01305.510 through SM 01305.620.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b5"></a><span class="poms-subsection2-label">5.&nbsp;</span>System Posts GK Data (DPD Entries)</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The system posts GK due process data (DPD) in the Due Process Data (DUPR) segment
+                  on the SSR when the Goldberg Kelly (DBGK) screen is completed in MSSICS and an online,
+                  manual, or overnight automated notice is selected. The DPD entries enable the system
+                  to pay future benefits at the PPL when a recipient appeals. The following are some
+                  of the DPD entries:</p>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">The adverse action month <span class="poms-bold">(AVM)</span></p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">The new benefit amount <span class="poms-bold">(MBL) </span>by separate Federal and State amounts</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">The protected payment level <span class="poms-bold">(PPL) </span>by separate Federal and State amounts</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">The date the FO handed or mailed a manual GK notice</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">The GK status code. For example, the FO inputs GK status code <span class="poms-bold">N </span>for no appeal, <span class="poms-bold">P </span>to place the record in protected payment status (pending appeal and payment continuation),
+                              and <span class="poms-bold">R </span>for a rendered appeal decision and to remove protected payment status.</p>
+                           </div>
+                     </div>
+                  </li>
+               </ul>
+               <p class="poms-para">For a description of these data and other DPD entries displayed in the DUPR segment,
+                  see SM 01305.510.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b6"></a><span class="poms-subsection2-label">6.&nbsp;</span>Subsequent Incoming Change</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">When the system receives a subsequent incoming change and the DUPR segment shows:</p>
+               <div class="poms-subsection3">
+                  <div class="poms-subsection3-title">
+                     <h4 class="sectitle"><a name="b6a"></a><span class="poms-subsection3-label">a.&nbsp;</span>No Appeal</h4>
+                  </div>
+                  <div class="poms-subsection3-body">
+                     <p class="poms-para">The system compares the new benefit amount due with the MBL set by the last GK notice.
+                        If the new benefit is less than the MBL, the system recognizes the adverse action
+                        and issues an automated GK notice and posts the new MBL to the record. For adverse
+                        actions processed through MSSICS, the system will post the new MBL to the record and,
+                        if requested, produce an online GK notice.</p>
+                  </div>
+               </div>
+               <div class="poms-subsection3">
+                  <div class="poms-subsection3-title">
+                     <h4 class="sectitle"><a name="b6b"></a><span class="poms-subsection3-label">b.&nbsp;</span>Appeal and Payment Continuation</h4>
+                  </div>
+                  <div class="poms-subsection3-body">
+                     <p class="poms-para">The system cannot identify the incoming change as an adverse action and reduce benefits.
+                        (The MBL entries change to 0s when a record goes into protected payment status.) For
+                        adverse actions, the FO must manually recompute the PPL, input the new PPL and issue
+                        a manual GK notice. See <a class="poms" href="../lnx/0502301325">SI 02301.325</a> for instructions.</p>
+                     <p class="poms-para">For a description of automated systems processing during payment continuation, see
+                        SM 01305.645.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="c"></a><span class="poms-subsection1-label">C.&nbsp;</span>Process - Systems Cutoffs</h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <p class="poms-para">This section describes the monthly systems cutoffs to consider when inputting a change
+            to <span class="poms-bold">reduce </span>a future month's benefit. The cutoff dates vary each month and appear in a monthly
+            systems processing schedule. See SM 01701.010 about payment tape cutoffs and computation
+            periods for processing SSI records.</p>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="c1"></a><span class="poms-subsection2-label">1.&nbsp;</span>The GK Notice Cutoff</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The GK notice cutoff occurs around the 7th to 9th day of each month. This is generally
+                  <span class="poms-bold">the last day </span>that the FO can input a change to reduce the following month's benefit and have the
+                  system issue an automated GK notice. After this day, there is not enough time left
+                  to produce and mail an automated notice at least 15 days before the first day of the
+                  following month.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="c2"></a><span class="poms-subsection2-label">2.&nbsp;</span>The GK Temporary Period</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The GK temporary period <span class="poms-bold">begins the day after </span>the GK cutoff and <span class="poms-bold">ends with </span>the recurring tape cutoff. During this period, the system can reduce the following
+                  month's benefit only if a GK notice is issued timely and due process data (DPD) is
+                  entered. The system will build the required DPD entries for adverse actions processed
+                  through MSSICS. The advance GK notice can be produced online or manually. For adverse
+                  actions processed outside MSSICS, the FO inputs the GK status code and other DPD entries
+                  with the change and produces an online GK notice or issues a manual GK notice. If
+                  the DPD entries are not included with the 1719B transaction when issuing a manual
+                  notice, the system will issue an automated GK notice and reduce benefits for the month
+                  after the following month. See <span class="poms-bold">EXCEPTION</span>.</p>
+               <p class="poms-para"><span class="poms-bold">EXCEPTION: </span>When<span class="poms-bold"> </span>the FO inputs the changes to S06, S07, S08 or N19 on the SSI record, the system will
+                  stop the following month’s benefit and will issue the automated notice as long as
+                  the FO makes these inputs before the recurring payment tape (treasury) cutoff.</p>
+               <div class="poms-note">
+                  <div class="poms-note-text">
+                     <p class="poms-para"><span class="poms-bold">NOTE: </span>The DPD entries are built automatically by the system when the adverse action is processed
+                        in MSSICS during the GK temporary period.</p>
+                     </div>
+               </div>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="c3"></a><span class="poms-subsection2-label">3.&nbsp;</span>The Recurring Payment Tape (Treasury) Cutoff</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The recurring cutoff date precedes the Treasury Check Generation Run which is processed
+                  on the third Saturday of each month. The Friday preceding the third Saturday of each
+                  month is the recurring payment tape (Treasury) cutoff date and occurs around the 15th
+                  to 21st day of the month.<span class="poms-bold"> After this day, the system cannot reduce </span>the following month's benefit.</p>
+               <p class="poms-para">For more information regarding the Recurring Payment Tape cutoff, see SM 01305.515A.</p>
+               <div class="poms-note">
+                  <div class="poms-note-title">
+                     <p class="poms-note-title">NOTE:&nbsp;</p>
+                  </div>
+                  <div class="poms-note-text">
+                     
+                     <p class="poms-para">In order for claimants to receive due process, notices must be mailed at least 15
+                        days prior to the end of the month. Notices can be handed to claimants 10 days prior
+                        to the end of the month and still meet the due process requirements required by law.</p>
+                     </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="d"></a><span class="poms-subsection1-label">D.&nbsp;</span>Procedure</h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="d1"></a><span class="poms-subsection2-label">1.&nbsp;</span>Before Inputting an Adverse Action</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para"><span class="poms-bold">Before </span>inputting an adverse action to the SSR:</p>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">Determine the effect of the change.</p>
+                           
+                           <p class="listing"><span class="poms-bold">REMINDER: </span>Use the retrospective monthly accounting (RMA) rules in <a class="poms" href="../lnx/0502005001">SI 02005.001</a> to compute payments and determine when to reduce a future month's benefit. Use the
+                              SSI eligibility rules to determine the effective month of a suspension, stop payment
+                              or termination event.</p>
+                           </div>
+                     </div>
+                  </li>
+               </ul>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">If the adverse action is not being processed in MSSICS, make sure to check the systems
+                              processing schedule to find out the first month the system can actually reduce or
+                              stop benefits when the following month could result in an overpayment or N05, N19,
+                              N20, S06 or S08. If these adverse actions can be processed in MSSICS, the system will
+                              select the earliest month possible for reduction based on the notice type selected.</p>
+                           </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="d2"></a><span class="poms-subsection2-label">2.&nbsp;</span>When Inputting an Adverse Action</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para"><span class="poms-bold">When</span> inputting an adverse action, follow systems input instructions in SM 01305.500 and</p>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">Issue an online or manual GK notice for an input during the GK temporary period to
+                              reduce the following month’s benefit <span class="poms-bold">unless</span> the input will change the record to S06, S07, S08 or N19. For these payment status
+                              codes (PSCs), the system will stop next month’s payment and issue an automated notice
+                              as long as the inputs are completed by the recurring payment tape cutoff date.</p>
+                           </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">Prepare a manual GK notice if the system cannot identify the adverse action due to
+                              an underpayment or if the action is being processed outside of MSSICS or if the system
+                              cannot issue the correct notice for the situation. See <a class="poms" href="../lnx/0502301307">SI 02301.307</a> for a list of manual GK notice situations.</p>
+                           </div>
+                     </div>
+                  </li>
+               </ul>
+               <p class="poms-para">Be sure to input DPD entries when required during the GK temporary period to reduce
+                  the following month's benefit. Otherwise, the system will not reduce benefits until
+                  2 months later.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="e"></a><span class="poms-subsection1-label">E.&nbsp;</span>Examples</h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="e1"></a><span class="poms-subsection2-label">1.&nbsp;</span>Incoming Change/Adverse Action - System Sets MBL</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">Evelyn English's monthly benefit amount is $100. An incoming change in July 2004 results
+                  in a new benefit amount of $50 for September. The system identifies the change as
+                  an adverse action because the new amount of $50 is less than the last amount of $100.</p>
+               <p class="poms-para">The system processes the adverse action, issues an automated GK notice and posts the
+                  MBL of $50 to the record. The notice explains that the benefits will be reduced to
+                  $50 beginning in September.</p>
+               <p class="poms-para">Later in July 2004, Evelyn reports a subsequent change that again affects the September
+                  benefit. See the examples in <a class="poms" href="../lnx/0502301301#e2">SI 02301.301E.2.</a> and <a class="poms" href="../lnx/0502301301#e3">SI 02301.301E.3.</a></p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="e2"></a><span class="poms-subsection2-label">2.&nbsp;</span>Subsequent Change/Increase in Payment</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">Same as Example 1 (<a class="poms" href="../lnx/0502301301#e1">SI 02301.301E.1.</a>) except that the FO inputs the subsequent change to the system on August 2, 2004.
+                  Evelyn's monthly payment of $100 will change to $75 beginning September. The system
+                  processes the change as an increase because the new amount of $75 is greater than
+                  the MBL of $50 set by the last GK notice. The system issues Form SSA-L8151 (Notice
+                  of Change in Payment) which explains the increase to $75 beginning September 2004.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="e3"></a><span class="poms-subsection2-label">3.&nbsp;</span>Subsequent Change/Adverse Action - System Sets New MBL</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">Same as Example 1(<a class="poms" href="../lnx/0502301301#e1">SI 02301.301E.1.</a>), except the subsequent incoming change to the system on August 2, 2004 results in
+                  a new benefit amount of $25 for September instead of the MBL of $50 set by the last
+                  GK notice. The system processes the change as an adverse action, issues an automated
+                  GK notice to reduce the September 2004 payment to $25 and posts the new MBL of $25
+                  to the record.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="e4"></a><span class="poms-subsection2-label">4.&nbsp;</span>Inputting Adverse Action During GK Temporary Period</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">During the systems GK temporary period in October 2004, Alvin Carr provides evidence
+                  of wages for past months. The FO computes the effect of the wages on the following
+                  month's benefit amount and determines that a reduction is necessary. If the changes
+                  are processed through MSSICS, an online GK notice can be issued and the system will
+                  post the required DPD entries. Otherwise, the FO inputs the required DPD entries with
+                  the wages and issues a manual GK notice to reduce the November 2004 payment on time.</p>
+               <div class="poms-note">
+                  <div class="poms-note-text">
+                     <p class="poms-para"><span class="poms-bold">NOTE: </span>If the wages did not reduce the benefit amount until December due to RMA, the FO would
+                        have input the wage changes through MSSICS or on a 1719B without DPD entries and the
+                        system would issue an automated GK notice to reduce the December 2004 payment.</p>
+                     </div>
+               </div>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="e5"></a><span class="poms-subsection2-label">5.&nbsp;</span>Inputting Adverse Action During GK Temporary Period After Period of S06, S07 or S08</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">Sam Yoo's monthly SSI benefit amount is $446. Sam's record goes to non-pay effective
+                  April 2005 for whereabouts unknown (S06). Sam requests reinstatement in May. The FO
+                  determines that the correct monthly payment beginning in June is $297.34 due to the
+                  value of food and shelter Sam began receiving 2 months before in April. During the
+                  GK temporary period in May, the FO should process the change through MSSICS and select
+                  the online or manual GK notice option on the DBGK screen in order to reinstate benefits
+                  and reduce the June 2005 payment to $297.34.</p>
+               <div class="poms-note">
+                  <div class="poms-note-text">
+                     <p class="poms-para"><span class="poms-bold">NOTE: </span>If the FO did not select the online or manual GK notice option on the DBGK screen
+                        or if the FO input the changes after the GK temporary period, Sam would have been
+                        overpaid for June 2005. The system would have paid $446 for June and issued an automated
+                        GK notice to reduce the July payment to $297.34.</p>
+                     </div>
+               </div>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="e6"></a><span class="poms-subsection2-label">6.&nbsp;</span>Inputting Adverse Action During GK Temporary Period – Underpayment on SSR (payment
+                  type codes 2 or 4) – Manual Notice Required</h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">During the systems GK temporary period in January 2005, Brooklyn Bryant provides evidence
+                  of wages for past months. Brooklyn's SSR already shows that an underpayment is due
+                  (payment type code 2). The FO determines that Brooklyn's benefits should be reduced.
+                  If the case is in MSSICS, the FO inputs the wages, selects the manual notice handed
+                  or manual notice mailed option (depending on if the notice will be handed or mailed)
+                  on the Goldberg Kelly (DBGK) screen, sends the information to the SSR so the system
+                  can build the DPD entries, and prepares and issues the manual GK notice. For cases
+                  processed outside MSSICS, the FO inputs the required DPD entries with the wages and
+                  prepares and issues a manual GK notice to reduce the February 2005 payment on time.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="f"></a><span class="poms-subsection1-label">F.&nbsp;</span>References</h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <ul class="poms-ul">
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">Computation of Payments, <a class="poms" href="../lnx/0502005001">SI 02005.001</a></p>
+                     </div>
+               </div>
+            </li>
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">Goldberg/Kelly Procedures, SM 01305.500</p>
+                     </div>
+               </div>
+            </li>
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">Description of Fields on the SSR, SM 01601.000</p>
+                     </div>
+               </div>
+            </li>
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">Systems Payment Tape Cutoffs and Computation Periods, SM 01701.010</p>
+                     </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <!-- Created on August 7, 2026 08:03:13 p.m. using Saxonica SAXON version HE 10.6 --></div>
+</div><!--divBody-->
+<HR>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr valign="top"><td style="line-height: 1em" width="50%"><i><font size="1" face="Arial">To Link to this section - Use this URL: </font></i><br><small><font face='arial'><a href="http://policy.ssa.gov/poms.nsf/lnx/0502301301">http://policy.ssa.gov/poms.nsf/lnx/0502301301</a></font></small><br></td><td style="line-height: 1em" width="50%"><div align="right"><i><font size="1" face="Times New Roman">SI 02301.301 - Overview of Goldberg/Kelly (GK) Processing - 10/14/2004</font></i><br>
+<i><font size="1" color="#C0C0C0" face="Times New Roman">Batch run: </font></i><i><font size="1" face="Times New Roman">08/07/2026</font></i><br>
+<i><font size="1" color="#C0C0C0" face="Times New Roman">Rev:</font></i><i><font size="1" face="Times New Roman">10/14/2004</font></i></div></td></tr>
+</table>
+<div align="right"></div>
+<!-- END COLUMN -->
+
+</div>
+<!-- END ROW -->
+
+</div>
+<!-- END GRID -->
+
+</div>
+<!-- END PAGE CONTENT -->
+
+        <!-- PAGE FOOTER -->
+        <!-- FOOTER -->
+<footer class="footer" id="footer" role="contentinfo">
+
+<div class="important-info">
+<h4>Important Information:</h4>
+<ul>
+<li><a href="https://ssa.gov/accessibility/">Accessibility</a></li>
+<li><a href="https://ssa.gov/foia/">FOIA</a></li>
+<li><a href="https://ssa.gov/open/">Open Government</a></li>
+<li><a href="https://ssa.gov/agency/glossary/">Glossary</a></li>
+<li><a href="https://ssa.gov/agency/privacy.html">Privacy</a></li>
+<li><a href="http://oig.ssa.gov/report-fraud-waste-or-abuse">Report Fraud, Waste or Abuse</a></li>
+<li><a href="https://ssa.gov/sitemap.htm">Site Map</a></li>
+<li><a href="https://ssa.gov/agency/websitepolicies.html">Website Policies</a></li>
+</ul>
+</div>
+
+<div class="gov-sites">
+<h4>Other Government Websites:</h4>
+<ul>
+<li><a href="http://www.govbenefits.gov">Benefits.gov</a></li>
+<li><a href="https://www.disability.gov/">Disability.gov</a></li>
+<li><a href="https://www.healthcare.gov">Healthcare.gov</a></li>
+<li><a href="http://mymoney.gov">MyMoney.gov</a></li>
+<li><a href="https://regulations.gov">Regulations.gov</a></li>
+<li><a href="https://www.usa.gov">USA.gov</a></li>
+<li><a href="https://ssa.gov/agency/other-gov-websites.html">Other Government Sites</a></li>
+</ul>
+</div>
+
+<div class="social-media">
+<h4>Follow:</h4>
+<ul>
+<li><a class="btn-twitter" href="//twitter.com/socialsecurity/" title="Twitter"><span class="visually-hidden">Twitter</span></a></li>
+<li><a class="btn-facebook" href="//facebook.com/socialsecurity/" title="Facebook"><span class="visually-hidden">Facebook</span></a></li>
+<li><a class="btn-youtube" href="//youtube.com/socialsecurityonline/" title="YouTube"><span class="visually-hidden">YouTube</span></a></li>
+<li><a class="btn-blog" href="//blog.ssa.gov/" title="Blog"><span class="visually-hidden">Blog</span></a></li>
+<li><a class="btn-more" href="https://ssa.gov/socialmedia/" title="More Social Media"><span class="visually-hidden">More Social Media</span></a></li>
+</ul>
+</div>
+
+<p class="align-center margin-top">This website is produced and published at U.S. taxpayer expense.</p>
+
+</footer>
+<!-- END FOOTER -->
+
+    </div>
+<!-- END PAGE CONTAINER -->
+
+<!-- SSA INTERNET BODY SCRIPTS -->
+<script src="https://ssa.gov/framework/js/ssa.internet.body.js"></script>
+
+</div>
+<input name="$$HTMLFrontMatter" type="hidden" value="&lt;!DOCTYPE html&gt;">
+<input name="appProfile" type="hidden" value="PublicPolicyNet">
+<input name="YUIPath" type="hidden" value="web20/yui280.nsf">
+<input name="NSF_POMS" type="hidden" value="poms.nsf">
+<input name="NSF_POMSArchive" type="hidden" value="pomsarchive.nsf">
+<input name="NSF_Rules" type="hidden" value="">
+<input name="NSF_Redir" type="hidden" value="">
+<input name="NSF_SystemStatus" type="hidden" value="">
+<input name="NSF_Reference" type="hidden" value="reference.nsf">
+<input name="NSF_ReferenceArchive" type="hidden" value="referencearchive.nsf">
+<input name="NSF_Homepage" type="hidden" value="">
+<input name="NSF_ClosedGuidelines" type="hidden" value="">
+<input name="NSF_ClosedPrereqs" type="hidden" value="">
+<input name="NSF_ClosedDigital" type="hidden" value="">
+<input name="NSF_ClosedYouth" type="hidden" value="">
+<input name="SectionTitle" type="hidden" value="Overview of Goldberg/Kelly (GK) Processing">
+<input name="Audience" type="hidden" value="">
+<input name="PartNumber" type="hidden" value="05">
+<input name="Chapter" type="hidden" value="023">
+<input name="SubChapter" type="hidden" value="01">
+<input name="Sensitive" type="hidden" value="N">
+<input name="ComputedID" type="hidden" value="SI 02301.301">
+<input name="Filename" type="hidden" value="">
+<input name="PartAbbreviation" type="hidden" value="SI">
+<input name="Title" type="hidden" value="SI 02301.301 - Overview of Goldberg/Kelly (GK) Processing - 10/14/2004">
+<input name="PulledDate" type="hidden" value="08/07/2026">
+<input name="LastUpdate" type="hidden" value="10/14/2004">
+<input name="Author" type="hidden" value="policynet01/SSA">
+<input name="DocSize" type="hidden" value="42376">
+<input name="ArchivedOK" type="hidden" value="">
+<input name="SectionBookmarkHook" type="hidden" value="0502301301">
+<input name="Section" type="hidden" value="301">
+<input name="ISO8601date" type="hidden" value="2004-10-14">
+<input name="SupplementType" type="hidden" value="">
+<input name="PartTextLookup" type="hidden" value="Supplemental Security Income"></form>
+</body>
+</html>

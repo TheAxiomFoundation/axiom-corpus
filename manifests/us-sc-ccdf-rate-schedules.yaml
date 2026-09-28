@@ -1,0 +1,66 @@
+version: 2026-09-13-ccdf-rate-schedules
+documents:
+- source_id: us-sc-ccdf-rate-schedule-scholarship-fee-scale-2025-2026
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina: SC Child Care Scholarship Program Fee Scale, October 1, 2025 - September 30, 2026'
+  source_url: https://scchildcare.org/media/ih2mrjw5/fee-scale-2025-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-sc/policy/ccdf/rate-schedules/scholarship-fee-scale-2025-2026
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Social Services, SC Child Care Scholarship Program
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://scchildcare.org/resources/
+    source_discovery_group: us-sc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://scchildcare.org/resources/
+    closure_elements:
+    - ccdf-s30
+- source_id: us-sc-ccdf-rate-schedule-scholarship-maximum-payments-ffy2026
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina: SC Child Care Scholarship Maximum Payments Allowed, October 1, 2025 - September 30, 2026'
+  source_url: https://scchildcare.org/media/gpok20jb/maxrates.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-sc/policy/ccdf/rate-schedules/scholarship-maximum-payments-ffy2026
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Social Services, SC Child Care Scholarship Program
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://scchildcare.org/resources/
+    source_discovery_group: us-sc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://scchildcare.org/resources/
+    closure_elements:
+    - ccdf-s30
+    source_note: the page labels it FFY 2025; the document covers 10/1/2025-9/30/2026
+- source_id: us-sc-ccdf-rate-schedule-child-care-income-standards-2025-2026
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina: Child Care Income Standards, 2025-2026'
+  source_url: https://scchildcare.org/media/pskhwthx/income-guidelines-2025-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-sc/policy/ccdf/rate-schedules/child-care-income-standards-2025-2026
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Social Services, SC Child Care Scholarship Program
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://scchildcare.org/resources/
+    source_discovery_group: us-sc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://scchildcare.org/resources/
+    closure_elements:
+    - ccdf-s30

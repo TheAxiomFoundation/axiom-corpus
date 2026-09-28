@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "a0f20bfe43a398f18ab84c4c6da0fc7e4b75da6f815eb1c5d7d42850f14ff74b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "cbc210b5849032577042a85d12207ac4b496cb4f820a2039e7131a6014ba2db0"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "86f8519385a2ea127939ce2672137395e57d7f27c67a743541fc8e116c0464ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-09-13-snap-et-state-plan/official-documents/ma-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "c8f9412f815d486688c1fc197bacfdffed50281140e4104ece5d84ac6604e47f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 168,
+    "missing_count": 0,
+    "provision_count": 168,
+    "source_count": 168
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:37:43.538613+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9l7w5cKEHR2mpjm9RVLK8GqmYktJ/MIgoOklLCRbPtAI9ui3r+zI+1rV15ikfiEnmx7KwXQ/2YKaCr4OIyTHDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

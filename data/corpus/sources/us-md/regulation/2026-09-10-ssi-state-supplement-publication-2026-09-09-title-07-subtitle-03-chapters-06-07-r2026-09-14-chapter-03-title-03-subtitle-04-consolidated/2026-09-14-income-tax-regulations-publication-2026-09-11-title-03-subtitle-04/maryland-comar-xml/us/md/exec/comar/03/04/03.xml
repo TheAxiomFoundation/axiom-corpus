@@ -1,0 +1,1354 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>03</num>
+  <heading>Corporations</heading>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Scope.</heading>
+    <para>
+      <num>A.</num>
+      <text>This chapter provides specific guidance to all corporate entities subject to the Maryland income tax laws.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text><cite path="|03.04.08">COMAR 03.04.08</cite> applies to banking and similar institutions as defined in that chapter. Corporations not coming within that definition, including subsidiaries or affiliates of banking and similar institutions, shall apportion their income between Maryland and other states as required by applicable regulations and administrative releases of the Comptroller.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Banking and nonbanking institutions are required to file a Maryland corporate income tax return if they are engaged in or conducting business in this State. No change is intended by these regulations in existing income tax law or practice with respect to the level of activity sufficient to require the filing of an income tax return, or the apportionment of income to this State.</text>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Banking and nonbanking institutions may be required to use a modified apportionment formula under the authority of <cite path="03.04.08.03|C.">COMAR 03.04.08.03C</cite> if a banking institution, and of <cite path="|03|04|03|.08|E.">Regulation .08E of this chapter</cite> if a nonbanking institution.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.02</num>
+    <heading>Definitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this chapter, the following terms have the meanings indicated.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Terms Defined.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Allocation” means the assignment of income to a particular state.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Apportionment” means the allocation of income between states by the use of a formula.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.03</num>
+    <heading>Corporations Required to File.</heading>
+    <para>
+      <num>A.</num>
+      <text>A corporation, not expressly exempt, having any income allocable to this State, shall file a Maryland corporation income tax return even though it has no Maryland taxable income.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Special Requirements. Special requirements apply to the following organizations:</text>
+      <para>
+        <num>(1)</num>
+        <text>Affiliated corporations which are included in a consolidated federal return shall file separate Maryland returns, and each separate corporation shall report its taxable income without regard to any consolidation for federal income tax purposes;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Real estate investment trusts which qualify as such under the Internal Revenue Code shall be taxable in Maryland to the same extent they are taxable under federal law;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>S corporations allowed Subchapter S filing status under the Internal Revenue Code shall file a corporate income tax return to:</text>
+        <para>
+          <num>(a)</num>
+          <text>Report pass-through items to shareholders, and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Pay tax on income taxable at the corporate level;</text>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Corporate partners of partnerships shall report their share of partnership income or loss on the corporate return;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Corporations exempt from taxation  under Internal Revenue Code, §501, with unrelated business taxable income shall file a corporate income tax return to report income to the extent taxable for federal purposes;</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Those institutions set forth in <cite doc="Md. Code" path="gtg|8-101">Tax-General Article, §8-101(c)(2)(vi), Annotated Code of Maryland</cite>, are subject to the following:</text>
+        <para>
+          <num>(a)</num>
+          <text>The provisions of this chapter, with the exception of <cite path="|03|04|03|.08">Regulation .08 of this chapter</cite>, and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The provisions of <cite path="|03.04.08">COMAR 03.04.08</cite>.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Organizations Exempt from Filing Corporation Income Tax Returns. The following organizations are exempt from filing corporation income tax returns:</text>
+      <para>
+        <num>(1)</num>
+        <text>Insurance companies within the meaning of <cite doc="Md. Code" path="gin">Insurance Article, Annotated Code of Maryland</cite>;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Common trust funds as defined in <cite doc="Md. Code" path="gfi|3-501">Financial Institutions Article, §3-501(b), Annotated Code of Maryland</cite>; and</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Nonprofit organizations exempt from federal income tax under the Internal Revenue Code, §501(c).</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.04</num>
+    <heading>Filing of Returns.</heading>
+    <para>
+      <num>A.</num>
+      <text>A corporation shall file a corporation income tax return by the 15th day of the 4th month following the end of the tax year or period. The return shall be filed with a copy of the federal return for the corresponding tax year or period.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Certain organizations that are afforded a later due date for filing federal returns under the Internal Revenue Code shall be afforded the same later due date for filing Maryland income tax returns.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Extension of Time to File.</text>
+      <para>
+        <num>(1)</num>
+        <text>A corporation unable to file by the due date shall file an Application for Extension to File Corporation Income Tax Return (Form 500E) to be granted an automatic extension of up to 7 months.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The application shall be filed by the original due date and extends only the time allowed to file the income tax return.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Full payment of the expected tax due is required with the application.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Signing of Returns. A return shall be signed by a duly authorized officer of the corporation and the tax return preparer if the preparer is other than an employee or officer of the corporation.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.05</num>
+    <heading>Computing the Tax.</heading>
+    <para>
+      <num>A.</num>
+      <text>Accounting Periods. The taxable year or period for which the return is filed shall be the same as that for which the federal return is filed, and in every instance that a federal return is required, a corresponding State return shall be filed.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Use of Federal Figures. The starting point for the Maryland return is the taxable income as defined in the Internal Revenue Code and developed on the federal return. Corporations included in a consolidated filing for federal purposes shall file separate Maryland returns and compute separate taxable income.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Rate of Tax. The tax rate is 8.25 percent of Maryland taxable income.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.06</num>
+    <heading>Other Forms, Returns, Schedules, and Statements.</heading>
+    <para>
+      <num>A.</num>
+      <text>Copy of Federal Return Required.</text>
+      <para>
+        <num>(1)</num>
+        <text>Failure to attach the required federal copy to the Maryland return shall constitute a nonfiling.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Corporations included in a consolidated filing for federal purposes shall attach a copy of pages one through five of the actual consolidated return and shall also provide a copy of the columnar schedule of income and expense, and of balance sheet items, reconciling the separate items of each member corporation to the consolidated totals.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Reporting of Internal Revenue Service Adjustments.</text>
+      <para>
+        <num>(1)</num>
+        <text>If at any time the items of federal net taxable income reported for any taxable year or period are adjusted by the Internal Revenue Service (IRS) and will increase Maryland taxable income, a copy of the final IRS adjustment report shall be submitted within 90 days under separate cover.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>If an affiliated group of corporations files a consolidated federal return, then a copy of the actual IRS adjustment report shall be submitted and shall include a schedule reconciling the separate adjustments for each member corporation.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A claim for refund based upon a federal adjustment shall be filed within the time provided under <cite doc="Md. Code" path="gtg|13-1104">Tax-General Article, §13-1104(c), Annotated Code of Maryland</cite>.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Notification of a federal audit shall be submitted under separate cover, indicating the corporate name, federal employer identification number, tax year or years involved, and information sufficient to identify the IRS audit and issue or issues.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Amended Returns.</text>
+      <para>
+        <num>(1)</num>
+        <text>To correct a previously filed return, the corporation shall file an amended return and provide an explanation and reconciliation of the changes.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>To claim a net operating loss carryback:</text>
+        <para>
+          <num>(a)</num>
+          <text>The corporation shall attach a copy of the documents required and filed with the IRS; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A member of a consolidated group shall:</text>
+          <para>
+            <num>(i)</num>
+            <text>Attach a copy of any related documents required and filed with the IRS for the group, and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Reconcile the deduction claimed for the separate corporation.</text>
+          </para>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>To claim a refund, the corporation shall file an amended return within the time provided under <cite doc="Md. Code" path="gtg|13-1104">Tax-General Article, §13-1104(c), Annotated Code of Maryland</cite>.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Registration of Exempt Organizations.</text>
+      <para>
+        <num>(1)</num>
+        <text>Organizations exempt from taxation under §501 of the Internal Revenue Code shall register with the Comptroller of the Treasury, Revenue Administration Division.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>An authorized official of the exempt organization shall register the organization by submitting a copy of the Internal Revenue Service determination letter.</text>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Estimated Tax.</text>
+      <para>
+        <num>(1)</num>
+        <text>A corporation shall make quarterly estimated tax payments during the tax period if the estimated tax for the complete period will exceed $1,000.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Payments of $10,000 or more shall be remitted by immediately available funds pursuant to <cite path="|03.01.02">COMAR 03.01.02</cite>.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A corporation shall file Form 500D with remittances by the required installment due dates.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>A declaration of estimated income tax payment shall be due by the 15th day of the 4th, 6th, 9th, and 12th month following the beginning of the tax year or period.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The total estimated tax payments for the year shall be at least 90 percent of the tax developed for the current taxable year or 110 percent of the tax developed for the prior tax year.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>At least 25 percent of the total estimated tax shall be remitted by each of the four installment due dates.</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>For a short tax period, the total estimated tax for the taxable period shall be paid equally over the number of installment due dates occurring during the short tax year. However, estimated tax need not be paid for a short period of less than 4 months.</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>Assessment of interest and penalty for underpayment of estimated tax shall be based on the tax for the current taxable year.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.07</num>
+    <heading>Losses, Audits, and Appeals.</heading>
+    <para>
+      <num>A.</num>
+      <text>Net Operating Loss Deduction.</text>
+      <para>
+        <num>(1)</num>
+        <text>For the loss year, the net operating loss may be used to offset Maryland modifications.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The deductions for carryback and carryover shall be calculated and claimed following federal income tax provisions, and a modification to the amount of the deductions may not be allowed under Maryland income tax law.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>When an affiliated group of corporations files a consolidated return for federal purposes, each separate member corporation shall calculate any net operating loss deduction based on its separate federal taxable income and loss and as if the member corporation was not involved in a consolidated filing and filed a separate federal return.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>If a corporation elected to relinquish the entire carryback period for federal purposes, a copy of the federal election shall be submitted with the Maryland return for the loss year.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>A net operating loss generated when a corporation is not subject to Maryland income tax law may not be allowed as a deduction to offset Maryland income.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>If a liquidated or acquired corporation was not subject to Maryland income tax law when its net operating loss was generated, then the acquiring corporation which is subject to Maryland income tax law may not use the net operating loss of the liquidated or acquired corporation as a deduction to offset Maryland income.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Capital Loss Carryover. A capital loss carryover shall be allowed for Maryland filing. However, a capital loss carryback may not be an allowable deduction under Maryland income tax law.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Audits. All items reported on the return are subject to audit, verification, and revision. In the event of revision and assessment or reduced refund, the Comptroller shall issue a notice to the corporation.</text>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Appeals. A taxpayer may appeal an assessment or denial of a refund by applying for a hearing as provided under <cite path="03.01.01.04">COMAR 03.01.01.04</cite>.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|03|.08">
+    <prefix>Regulation</prefix>
+    <num>.08</num>
+    <heading>Apportionment of Income.</heading>
+    <para>
+      <num>A.</num>
+      <text>Corporations engaged in business within and outside the State shall allocate income to reflect the amount attributable to this State.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Corporations operating within and outside the State as unitary businesses shall use an apportionment formula to determine the amount of income to be allocated:</text>
+      <para>
+        <num>(1)</num>
+        <text>All of the factors of the apportionment formula shall be developed as fractions, the numerator of which shall be the total of items in this State during the tax year, and the denominator shall be the total of items everywhere during the tax year.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Each factor shall be separately determined and the number of factors used shall be averaged to arrive at the final apportionment factor.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The items on both numerator and denominator of each factor shall be adjusted by the applicable addition and subtraction adjustments provided under Tax-General Article, Title 10, Subtitle 3, Part II, Annotated Code of Maryland.</text>
+        <text>Example 1: In computing the net dividend item includible in the denominator of its sales factor, X Company includes the total amount of the dividends that it reported on its federal income tax return. X Company then reduces that amount by its adjustment for dividends for domestic corporations claiming foreign tax credit and by its adjustment for dividends from related foreign corporations. X Company also reduces that amount by the total amount of the special deductions that X Company reported on its federal income tax return.</text>
+        <text>Example 2: In computing the net interest item includible in the denominator of its sales factor, Y Company includes the total amount of the interest that it reported on its federal income tax return and reduces that amount by its adjustment for income from U.S. obligations.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>The items of both numerator and denominator shall be reconciled to the items as categorized and reported on the federal income tax return.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>If a return is filed by a corporation operating within and outside the State which reflects a loss with no income to be apportioned, an apportionment factor shall be calculated for the filing to be considered complete.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Apportionment Formula.</text>
+      <para>
+        <num>(1)</num>
+        <text>Corporations operating as a unitary business within and outside the State shall, for tax years beginning before December 31, 2021, generally use a three-factor formula of property, payroll, and sales to determine the part of the corporation’s Maryland modified income derived from or reasonably attributable to trade or business carried on in the State, as follows:</text>
+        <para>
+          <num>(a)</num>
+          <text>For a taxable year beginning before January 1, 2018, the apportionment formula is a fraction, the numerator of which is the sum of the property factor, payroll factor, and twice the sales factor, and the denominator is four;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>For a taxable year beginning after December 31, 2017, but before January 1, 2019, the apportionment formula is a fraction, the numerator of which is the sum of the property factor, the payroll factor, and three times the sales factor, and the denominator of which is five;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>For a taxable year beginning after December 31, 2018, but before January 1, 2020, the apportionment formula is a fraction, the numerator of which is the sum of the property factor, the payroll factor, and four times the sales factor, and the denominator of which is six;</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>For a taxable year beginning after December 31, 2019, but before January 1, 2021, the apportionment formula is a fraction, the numerator of which is the sum of the property factor, the payroll factor, and five times the sales factor, and the denominator of which is seven; and</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>For a taxable year beginning after December 31, 2020, but before January 1, 2022, the apportionment formula is a fraction, the numerator of which is the sum of the property factor, the payroll factor, and six times the sales factor, and the denominator of which is eight.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Corporations operating as unitary businesses within and outside the State shall, for a taxable year beginning after December 31, 2021, determine the part of the corporation’s Maryland modified income derived from or reasonably attributable to trade or business carried on in the State by using a single sales factor apportionment formula, by multiplying its Maryland modified income by 100 percent of the sales factor.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A worldwide headquartered company, as defined by <cite doc="Md. Code" path="gtg|10-402">Tax-General Article, §10-402(a), Annotated Code of Maryland</cite>, may elect to calculate its Maryland modified income derived from or reasonably attributable to trade or business carried on in the State using a three-factor apportionment fraction, the numerator of which is the sum of the property factor, the payroll factor, and twice the sales factor, and the denominator of which is four.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>The three factors are described in §C(5)—(7) of this regulation.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The sales factor includes the amounts of income reported during the taxable year as gross receipts or sales, or both (less returns and allowances), dividends and interest, gross rents and royalties, capital gains, and certain other income as follows:</text>
+        <para>
+          <num>(a)</num>
+          <text>Gross receipts are generally sales of tangible personal property and shall be included in the numerator if the property is delivered or shipped to a purchaser within this State, regardless of f.o.b. point or other conditions of sale.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Sales of property in transit destined to this State also shall be included in the numerator.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Gross receipts from contracting or service-related activities shall be included in the numerator if the receipts are derived from customers within this State as determined in <cite path="03|04|03|.08|D.">§D of this regulation</cite>.</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Gross income from intangible items such as dividends, interest, royalties, and capital gains from the sale of intangible property shall be included in the numerator based upon the average of the property and payroll factors.</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>Gross receipts from the rental, leasing, or licensing of real or tangible personal property shall be included in the numerator if the property is located within this State.</text>
+        </para>
+        <para>
+          <num>(f)</num>
+          <text>When tangible personal property is in this State for a portion of the tax year, the income received for that portion shall be included in the numerator.</text>
+        </para>
+        <para>
+          <num>(g)</num>
+          <text>Capital gains from the sale of real and tangible personal property shall be included in the numerator if the property is located within this State. However, ordinary net gain or loss derived from the sale of depreciable assets shall be excluded from the factor.</text>
+        </para>
+        <para>
+          <num>(h)</num>
+          <text>Other income items shall be considered separately, and the actual treatment shall be dependent upon the nature and type of each item.</text>
+        </para>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The property factor includes owned as well as rented tangible personal property used in the trade or business during the taxable year and shall be included in the numerator if the tangible personal property is located within this State. The following apply:</text>
+        <para>
+          <num>(a)</num>
+          <text>The properties to which this subsection applies include:</text>
+          <para>
+            <num>(i)</num>
+            <text>Buildings;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Equipment;</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>Inventory;</text>
+          </para>
+          <para>
+            <num>(iv)</num>
+            <text>Land;</text>
+          </para>
+          <para>
+            <num>(v)</num>
+            <text>Machinery; and</text>
+          </para>
+          <para>
+            <num>(vi)</num>
+            <text>Other tangible assets.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Property owned by a corporation shall be valued at its original cost and shall be reflected in the factor at the average of the tax year's beginning and ending amounts. However, if there are material changes during the tax year and the average is not a fair representation, the average shall be calculated on a monthly or daily basis.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Property in transit shall be considered to be at its destination for purposes of the factor.</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Property under construction during the tax year shall be excluded from the factor until actually placed in service.</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>Property leased or rented by the corporation shall be included in the factor at a capitalized value as follows:</text>
+          <para>
+            <num>(i)</num>
+            <text>The expense associated with the privilege of occupying or using the property, including such items as fixed rent, percentage rent, real estate taxes, insurance, and maintenance, shall be multiplied by eight to arrive at the capitalized value;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Expenses such as gas, electricity, oil, water, or other items normally consumed shall be excluded.</text>
+          </para>
+        </para>
+        <para>
+          <num>(f)</num>
+          <text>Improvements to the leased or rented property which revert to the owner at the expiration of the lease or rental term shall be amortized and not capitalized. The following apply:</text>
+          <para>
+            <num>(i)</num>
+            <text>The actual cost of the improvements shall be divided by the number of years remaining for the term of the lease; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The result shall be included in the factor for each tax year.</text>
+          </para>
+        </para>
+        <para>
+          <num>(g)</num>
+          <text>Sublease income shall be included in the sales factor and not used to reduce rental expense.</text>
+        </para>
+        <para>
+          <num>(h)</num>
+          <text>Nonrental or below market rate rental shall be adjusted to reflect a reasonable market rental rate and then capitalized as provided in <cite path="03|04|03|.08|C.|(6)|(e)|(i)">§C(6)(e)(i) of this regulation</cite>.</text>
+        </para>
+        <para>
+          <num>(i)</num>
+          <text>Property that has remained idle and has not produced any revenue for a period of 5 or more years may not be included in the property factor.</text>
+        </para>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>The payroll factor shall be the amount of compensation paid during the taxable year, as follows:</text>
+        <para>
+          <num>(a)</num>
+          <text>Compensation is included in the numerator if:</text>
+          <para>
+            <num>(i)</num>
+            <text>The individual's service is performed entirely within this State, or</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The individual's service is performed both within and without this State but the service performed without this State is incidental to the individual's service within this State;</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Compensation is also included in the numerator if:</text>
+          <para>
+            <num>(i)</num>
+            <text>Some part of the service is performed within this State,</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The base of operations or place from which the service is controlled is not in any state where the service is performed, and</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>The individual's residence is in this State.</text>
+          </para>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Customers Within this State.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Customers within this State” shall be determined as provided in this section.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Domicile.</text>
+        <para>
+          <num>(a)</num>
+          <text>Individuals. Except as provided in this section, a customer to whom a service is provided shall be considered a customer within this State if the customer is an individual domiciled in this State.</text>
+          <text>Example 1: An attorney, a partner in law firm A located in the District of Columbia, renders legal advice to a domiciliary of Maryland. Assuming sufficient nexus between the law firm and Maryland so as to require the filing of a Maryland income tax return, the fee earned from the service rendered to the Maryland domiciliary is included in the numerator of A's sales factor.</text>
+          <text>Example 2: An accountant B, whose firm is located within Maryland, performs accounting services for a resident of Pennsylvania. The fee earned from these services is not included in the numerator of B's sales factor.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Business Enterprises.</text>
+          <para>
+            <num>(i)</num>
+            <text>“Business enterprise” includes a proprietorship, partnership, limited liability partnership, corporation, limited liability company, and any other entity, regardless of how structured or denominated, that is engaged in business.</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>A business enterprise shall be considered a customer within this State if the business enterprise is domiciled in this State.</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>If the customer is a business enterprise, then the domicile is the state in which is located the office or place of business that provides the principal impetus for the sale. If an office or place of business cannot be identified as providing the principal impetus for the sale, then the domicile shall be the state in which the headquarters or principal place of business management of the customer is located.</text>
+          </para>
+        </para>
+        <aftertext>Example 2-1: X Company, a subsidiary corporation located in Maryland, administers medical plans on behalf of its parent corporation, which is located in Tennessee. X Company administers these medical plans for individuals that are domiciled in Maryland. The fees paid for these administration services are included in the numerator of X Company's sales factor. This example illustrates that the ultimate customer is determined by the domicile of the individual/business enterprise actually receiving the service.</aftertext>
+        <aftertext>Example 3: Service provider C contracts with corporation D, an enterprise operating within and outside the State, to redesign the operating software for D's customer billing operation. The principal impetus for this contract is to provide a benefit to the central billing computers. If those computers are located within Maryland, then the revenue earned from these services is included in the numerator of C's sales factor.</aftertext>
+        <aftertext>Example 4: Service provider E contracts with corporation F, an enterprise operating within and outside the State, to redesign all the operating software of F’s multistate computer network. If no particular office or place of business can be identified as the principal impetus for this contract, then the revenue earned from this contract shall be included in the numerator of E's sales factor only if F's headquarters or principal place of business management is located within Maryland.</aftertext>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Services Related to Real Property. If a person provides a service relating to construction or improvement to real property, then whether the customer is a customer within this State will be determined by the situs of the property.</text>
+        <text>Example 5: An architect contracts with a nonresident of this State to design a shopping center in this State. The architect shall include in the numerator of the sales factor all revenue received from the customer.</text>
+        <text>Example 6: A contractor contracts with a resident of Maryland to construct an apartment complex outside of this State. The contractor does not include in the numerator of the sales factor the revenue received from the customer.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Brokerage Services. Receipts derived from securities brokerages services allocable to this State are determined by multiplying the total dollar amount of sales of securities brokerage services by a fraction, the numerator of which is the receipts from securities brokerage services from customers domiciled in this State and the denominator of which is the receipts from securities brokerage services from all customers. Receipts from securities brokerage services include commissions on transactions, the spread earned on principal transactions in which the broker buys or sells from its account, total margin interest paid on behalf of brokerage accounts owned by the broker's customers, and fees and receipts of all kinds from the underwriting of securities. For principal transactions that are part of brokerage receipts, if the income from these transactions can be tied to, or associated with, an identifiable customer that provides the impetus for the transaction, the receipt shall be assigned to the domicile of that customer. If it is impossible to identify or associate a specific customer with a receipt, the receipt shall be excluded from both the numerator and the denominator of the receipts factor. If receipts from brokerage services can be associated with a particular customer, but it is impractical to associate the receipts with the address of the customer, the customer shall be presumed to have a domicile at the branch office that generates transactions for the customer.</text>
+        <text>Example 7: Broker A executes a transaction on a stock exchange for Customer B, a Maryland domiciliary, selling 100 shares of Corporation X for $1,000 and earning a $50 commission on the transaction. The commission is included in the numerator of A's sales factor.</text>
+        <text>Example 8: Broker C executes a transaction for Customer E, a domiciliary of Maryland, whereby C sells to E securities from its own account. Broker C's purchase cost is $1,000 and sales price is $1,025. The spread of $25 is included in the numerator of C's sales factor. This example illustrates two principles. First, only net proceeds, not gross proceeds, from principal transactions in which the broker sells from its own account are included in the sales factor. Second, the net amount is included in the sales factor numerator because Customer E, a domiciliary of Maryland, is the principle impetus for the transaction.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Services to Regulated Investment Companies.</text>
+        <para>
+          <num>(a)</num>
+          <text>Receipts from services that are derived directly or indirectly from the sale of management, distribution, administration, or securities brokerages services to, or on behalf of, a regulated investment company or its beneficial owners (including receipts derived directly or indirectly from trustees, sponsors, or participants of employee benefit plans that have accounts in a regulated investment company) shall be allocated to this State to the extent that shareholders of the regulated investment company are domiciled in this State. A separate computation shall be made with respect to the receipts derived from each regulated investment company. The total amount of receipts derived from each regulated investment company which are allocable to this State shall be equal to the total receipts so derived multiplied by a fraction:</text>
+          <para>
+            <num>(i)</num>
+            <text>The numerator of which is the average of the sum of the beginning-of-the-year and end-of-the-year number of shares owned by the regulated investment company share-holders domiciled in this State; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The denominator of which is the average of the sum of the beginning-of-the-year and end-of-the-year number of shares owned by all shareholders.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>For purposes of the fraction, the year shall be the taxable year of the regulated investment company that ends with or within the taxable year of the taxpayer.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>“Domicile” means the shareholder's mailing address on the records of the regulated investment company. If the regulated investment company or the person providing management services to the regulated investment company has actual knowledge that the shareholder's primary residence or principal place of business is different than the shareholder's mailing address, then the shareholder's primary residence or principal place of business is the shareholder's domicile. If the shareholder's address is not known or determinable and it is impracticable to obtain this information, then the domicile of the shareholder will be the location or domicile of the business entity that provides the impetus for the transaction.</text>
+          <text>Example 9: Mutual Fund X is an investment option in a §401(k) plan sponsored by Company Z located and domiciled in Ohio, but the mutual fund does not maintain addresses of the plan participants. The “customer” and associated receipts would be domiciled in Ohio. If the Mutual Fund does maintain addresses of the plan participants, the “customer” and associated receipts would be assigned to Maryland if the address of the plan participant is in Maryland.</text>
+        </para>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Broadcast and Print Media. All revenue, including advertising receipts, derived from print and broadcast media shall be included in the numerator of the sales factor based on a reasonable estimate of the Maryland component of the audience for the broadcaster or publisher. In the case of print media, audience shall be measured by circulation.</text>
+        <text>Example 10: A radio station in the District of Columbia regularly solicits business in Maryland and broadcasts its signal into Maryland. The station subscribes to a ratings service that enables it to demonstrate to its advertisers the location, size, and demographics of its listening audience. The percentage of the audience that represents the Maryland component of the total audience is applied to total revenue to determine the Maryland sales.</text>
+        <text>Example 11: A newspaper is engaged in business in both Maryland and the District of Columbia. The amount of its total revenue to be included in the Maryland sales factor numerator is determined based on the newspaper's circulation. The percentage of total circulation attributable to Maryland is applied to total revenue to determine the Maryland sales.</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>Processing or Similar Services to Business Customers. If a business enterprise provides processing or similar services to a customer having a location in more than one state, then the business enterprise's customers within this State are determined by the point of sale between the ultimate consumer and the business enterprise's customer.</text>
+        <text>Example 12: A credit card processing company contracts with a major retailer operating within and outside the State. The processor shall include in the numerator of its sales factor all revenue received from the retailer derived from sales by the retailer in this State.</text>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Other Apportionment Methods.</text>
+      <para>
+        <num>(1)</num>
+        <text>A corporation engaged primarily in leasing or rental operations shall use an equally weighted two-factor formula of receipts and property, except that receipts from intangible items shall be excluded.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Corporations engaged primarily in certain types of transportation shall use a one-factor formula as described below to determine the amount of income allocable to this State:</text>
+        <para>
+          <num>(a)</num>
+          <text>Trucks (Motorfreight Carriers). Number of miles traveled on roads in-State compared to the number of miles traveled on roads everywhere.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Railroads. Number of miles traveled on tracks in-State compared to the number of miles traveled on tracks everywhere.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Ships. Number of days spent in ports and on waterways in-State compared to the number of days spent in ports and on waterways everywhere.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Special Rules.</text>
+      <para>
+        <num>(1)</num>
+        <text>If an apportionment formula does not fairly represent the extent of a corporation's activity in this State, the Comptroller may alter the formula or its components.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A corporation's share of partnership or joint venture receipts, property, and wages shall be included in the apportionment formula:</text>
+        <para>
+          <num>(a)</num>
+          <text>To the extent of the factors required; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>In the same manner as if they were direct receipts, property, and wages of the corporation.</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Separate accounting may be allowed only if:</text>
+        <para>
+          <num>(a)</num>
+          <text>It is practicable; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The activity of the corporation within this State is nonunitary.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>G.</num>
+      <text>Airline Industry.</text>
+      <para>
+        <num>(1)</num>
+        <text>In this section, the following terms have the meanings indicated:</text>
+        <para>
+          <num>(a)</num>
+          <text>“Departures” means all takeoffs, whether scheduled or nonscheduled flights, that occur during revenue service.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>“Flight equipment” means aircraft and their integral components.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Originating Passengers.</text>
+          <para>
+            <num>(i)</num>
+            <text>“Originating passengers” means passengers first received in air travel as reported on the Department of Transportation “Passenger Origin and Destination Survey Report.”</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>“Originating passengers” does not include enplanements occurring on flight changes en route.</text>
+          </para>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>“Originating tons” means loaded or short tons (2,000 pounds) of cargo at the beginning of a flight.</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>“Value” means the original cost of real property or tangible personal property and, in the case of rented or leased property, value means eight times the net annual rental or lease expense.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Corporations engaged primarily in the airline industry shall use a three-factor formula of sales, property, and payroll to determine the amount of income allocable to this State.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Sales Factor.</text>
+        <para>
+          <num>(a)</num>
+          <text>The numerator of the sales factor is the sum of the passenger revenue and freight revenue allocable to this State for the taxable year. Passenger revenue is computed by multiplying passenger revenue everywhere by the ratio of the number of originating passengers in Maryland compared to the number of originating passengers everywhere. Freight revenue is computed by multiplying freight revenue everywhere by the ratio of originating tons in this State compared to originating tons everywhere.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The denominator of the sales factor is the sum of passenger revenue everywhere plus freight revenue everywhere.</text>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Property Factor.</text>
+        <para>
+          <num>(a)</num>
+          <text>The numerator of the property factor is the sum of the average value of real property and tangible personal property owned, rented, and used in this State during the taxable year plus the value of flight equipment allocable to this State. The allocation of the value of flight equipment is determined by the following:</text>
+          <para>
+            <num>(i)</num>
+            <text>50 percent times the air miles in this State over the air miles everywhere times the value of flight equipment everywhere; plus</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>50 percent times the departures from this State over the departures everywhere times the value of flight equipment everywhere.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The denominator of the property factor is the sum of the average value of all real property and tangible personal property owned and rented everywhere, including the value of all flight equipment.</text>
+        </para>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Payroll Factor.</text>
+        <para>
+          <num>(a)</num>
+          <text>The numerator of the payroll factor is the total amount paid as compensation for services performed in this State plus flight crew compensation allocable to this State. The allocation of flight crew compensation allocable to this State is determined by the following:</text>
+          <para>
+            <num>(i)</num>
+            <text>50 percent times the air miles in this State over the air miles everywhere times flight crew compensation everywhere; plus</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>50 percent times the departures from this State over the departures everywhere times flight crew compensation everywhere.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The denominator of the payroll factor is the total payroll everywhere for the taxable year.</text>
+        </para>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The final apportionment factor is arrived at by averaging the sum of the separately computed sales, property, and payroll factors.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|03|.09">
+    <prefix>Regulation</prefix>
+    <num>.09</num>
+    <heading>Apportionment of Income — Motion Picture and Television Film Producers and Television Networks.</heading>
+    <para>
+      <num>A.</num>
+      <text>Scope.</text>
+      <para>
+        <num>(1)</num>
+        <text>This regulation applies to:</text>
+        <para>
+          <num>(a)</num>
+          <text>Motion picture and television film producers and affiliated distribution companies;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Producers of television commercials;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Television networks; and</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Independent television stations, to the extent they are members of a chain of commonly owned stations all of which operate as network affiliates or all of which are unaffiliated with a network but which operate:</text>
+          <para>
+            <num>(i)</num>
+            <text>Collectively in purchasing properties for telecast or in marketing air time, or</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>As a producer.</text>
+          </para>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>This regulation applies to taxable years beginning after December 31, 1998.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>In this regulation, the following terms have the meanings indicated:</text>
+      <para>
+        <num>(1)</num>
+        <text>Film.</text>
+        <para>
+          <num>(a)</num>
+          <text>“Film” means the physical embodiment of a play, story, or other literary, commercial, educational, or artistic work as a motion picture, video tape, disc, or other similar medium, except that it does not include news or sports films produced for telecast.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>“Film” does not include video cassettes or discs intended for home viewing.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Release date” means the date on which a film is placed in service as follows:</text>
+        <para>
+          <num>(a)</num>
+          <text>A film is placed in service when it is first telecast or exhibited to the primary audience for which the film was created;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A motion picture film is placed in service when it is first publicly exhibited for entertainment purposes;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>An educational film is placed in service when it is first exhibited for instructional purposes;</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Each episode of a television series is placed in service when it is first telecast; and</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>A film is not placed in service merely because it is completed and therefore in a condition or state of readiness and availability for telecast or exhibition, or merely because it is telecast or exhibited to prospective exhibitors, sponsors, or purchasers, or is shown in a “sneak preview” before a select audience.</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>“Rent” includes license fees for the exhibition or telecast of films.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>“Tangible personal property”, whether owned or rented, includes but is not limited to sets, props, wardrobes, and other similar equipment or property.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>“Subscriber” means the individual residence or other outlet which is the ultimate recipient of the transmission of a subscription television telecaster.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>“Telecast” means the transmission of an electronic signal by radiowaves or microwaves or by wires, lines, coaxial cables, wave guides, or other tangible conduits of communication.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Films.</text>
+      <para>
+        <num>(1)</num>
+        <text>Each episode of a series of films produced for television shall constitute a separate film, notwithstanding that the series relates to the same principal subject and is produced during one or more television seasons.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A “film” is deemed to be tangible personal property.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Apportionment of Business Income. The property, payroll, and sales factor of the apportionment formula for motion picture and television film producers and television networks is computed pursuant to <cite doc="Md. Code" path="gtg|10-402">Tax-General Article, §10-402, Annotated Code of Maryland</cite>, and <cite path="|03|04|03|.08">Regulation .08 of this chapter</cite>, except as provided in this regulation.</text>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Property Factor.</text>
+      <para>
+        <num>(1)</num>
+        <text>In the case of rented studios, the net annual rental rate includes only the amount of the basic or flat rental charge by the studio for the use of a stage and other permanent equipment such as sound recording equipment, and similar equipment except that additional equipment rented from other sources or from the studio not covered in the basic or flat rental charge and used for 1 week or longer (even though rented on a day-to-day basis) are included. Lump-sum net rental payments for a period which encompasses more than single income year are assigned ratably over the rental period.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The value of films:</text>
+        <para>
+          <num>(a)</num>
+          <text>Is the original cost of producing the film as determined for federal income tax purposes, before any adjustment for federal credits which have not been claimed for state purposes; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Includes talent salaries.</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The value of a film is not included in the property factor until its release date.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Video cassettes and discs are included in the property factor at their inventory cost as shown in the taxpayer's books and records.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Denominator.</text>
+        <para>
+          <num>(a)</num>
+          <text>All real property and tangible personal property (other than films), whether owned or rented, which is used in the business, are included in the denominator.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Films are included in the property factor at original cost for 12 years beginning with the release date.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Films of a topical nature including news or current event programs, sporting events, or interview shows are included in the property factor at original cost for 1 year beginning with the release date.</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>All films, other than those included in the denominator under §E(5)(b) and (c) of this regulation, are aggregated and treated as a single film property which is included in the property factor. This property is valued at eight times the gross receipts generated during the income year from theater distribution, network television, television syndication, cable television, subscription television, and the marketing of video cassettes and discs through licensing or direct selling, or similar receipts, but not in an amount greater than the total original cost of the aggregated film property.</text>
+        </para>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Numerator.</text>
+        <para>
+          <num>(a)</num>
+          <text>If tangible personal property (other than films) is located or used in this State for part of the income year, its value is determined by applying the ratio which the number of days the property is located or used in this State bears to the total number of days the property was owned or rented during the taxable year.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The total value of films included in the property factor under <cite path="03|04|03|.09|E.|(5)">§E(5) of this regulation</cite> is attributed to this State in the same ratio as the total Maryland receipts from these films, as determined in §G(1)—(3) of this regulation pertaining to the sales factor, bears to the total of receipts of these films everywhere.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Payroll Factor.</text>
+      <para>
+        <num>(1)</num>
+        <text>Denominator.</text>
+        <para>
+          <num>(a)</num>
+          <text>The denominator includes all compensation paid to employees during the taxable year, including talent salaries and residual and profit participation payments.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The amount paid to a corporation for providing the services of an actor or director who is an employee of the corporation, or for loaning the services of an actor or director who is under contract with the corporation, is, if substantial, included in the producer's payroll factor as if the amount paid was compensation paid to an employee of the producer.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Numerator. Compensation of employees engaged in the production of a film on location is attributed to this State in the same ratio as the total Maryland receipts from the films, as determined in §G(1)—(3) of this regulation pertaining to the sales factor, bears to the total receipts everywhere. Compensation of all other employees is governed by <cite path="|03|04|03|.08|C.|(5)">Regulation .08C(5) of this chapter</cite>.</text>
+      </para>
+    </para>
+    <para>
+      <num>G.</num>
+      <text>Sales Factor.</text>
+      <para>
+        <num>(1)</num>
+        <text>The numerator includes all gross receipts of the taxpayer from sources within this State including the following:</text>
+        <para>
+          <num>(a)</num>
+          <text>Gross receipts from films in release to theaters and television stations located in this State;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Gross receipts from films in release to or by a television network for network telecast in the ratio that the audience for the network stations (owned and affiliated) located in Maryland bears to the total audience for all network stations (owned and affiliated) everywhere;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Gross receipts from films in release to subscription television telecasters in the ratio that the subscribers for the telecaster located in Maryland bears to the total subscribers of the telecaster everywhere; and</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Receipts from sales and rentals of video cassettes and discs as provided in Regulation .08C(3)(a), (b), and (e) of this chapter.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Under <cite path="03|04|03|.09|G.|(1)|(b)">§G(1)(b) of this regulation</cite>, the audience is determined by rate card values published annually by market surveys or other industry publications, or, if none are available, by population data published by the U.S. Bureau of the Census.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Under <cite path="03|04|03|.09|G.|(1)|(c)">§G(1)(c) of this regulation</cite>, if the number of subscribers cannot be determined accurately from records maintained by the taxpayer, then the ratio is determined on the basis of the applicable year’s statistics on subscribers published by market surveys or other industry publications, or, if none are available, by population data published by the U.S. Bureau of the Census for all states in which the telecaster has subscribers.</text>
+      </para>
+    </para>
+    <para>
+      <num>H.</num>
+      <text>Making and Revoking Election for Exclusion from this Regulation.</text>
+      <para>
+        <num>(1)</num>
+        <text>A company described in <cite path="03|04|03|.09|A.|(1)">§A(1) of this regulation</cite> shall apportion its income as set forth in this regulation unless the company makes an election to be excluded from the requirements of this regulation.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A company doing business in Maryland on or before the effective date of this regulation that wishes to be excluded from the requirements of this regulation must make the election for exclusion on or before the due date, including an extended due date, of the company's original tax return for its first taxable year beginning on or after January 1, 1999.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A company that begins doing business in Maryland after the effective date of this regulation and that wishes to be excluded from the requirements of this regulation must make the election for exclusion on or before the due date, including an extended due date, of the company's first original income tax return required to be filed with the Comptroller.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>An electing company shall make the election by attaching a statement to its tax return for the year for which the election is made. This election shall contain the following information:</text>
+        <para>
+          <num>(a)</num>
+          <text>The name of the electing company;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The address of the electing company;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>The taxpayer identification number of the electing company; and</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>A statement to the effect that the company is electing to be excluded from the apportionment of income as required in this regulation.</text>
+        </para>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>A company is deemed to have made an election to apportion its income consistent with the principles set forth in this regulation if the company does not make an election as set forth in §H(1)—(4) of this regulation.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Revocation of Election.</text>
+        <para>
+          <num>(a)</num>
+          <text>An election under this regulation may be revoked by the electing company at any time by attaching a statement to its tax return for the year for which the revocation is made. The revocation shall contain the following information:</text>
+          <para>
+            <num>(i)</num>
+            <text>The name of the revoking company;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The address of the revoking company;</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>The taxpayer identification number of the revoking company; and</text>
+          </para>
+          <para>
+            <num>(iv)</num>
+            <text>A statement to the effect that the company is revoking its election to be excluded from the apportionment of income as required in this regulation.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A company that has revoked its election under <cite path="03|04|03|.09|H.|(6)">§H(6) of this regulation</cite> may not thereafter elect to be excluded from the requirements of this regulation.</text>
+        </para>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>An election made by one member of an affiliated group is not binding on any other member of the group. Each separate entity shall file its own election or revocation.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|03|.10">
+    <prefix>Regulation</prefix>
+    <num>.10</num>
+    <heading>Apportionment of Income—Single Sales Factor Apportionment for Manufacturing Corporations.</heading>
+    <para>
+      <num>A.</num>
+      <text>Scope. This regulation provides specific guidelines for manufacturing corporations subject to the Maryland income tax laws.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>In this regulation, the following terms have the meanings indicated:</text>
+      <para>
+        <num>(1)</num>
+        <text>Manufacturing Corporation.</text>
+        <para>
+          <num>(a)</num>
+          <text>“Manufacturing corporation” means a domestic or foreign corporation that is primarily engaged in activities that, in accordance with the North American Industrial Classification System, would be included in sector 11, 31, 32, or 33.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>“Manufacturing corporation” does not include:</text>
+          <para>
+            <num>(i)</num>
+            <text>A refiner, as defined in <cite doc="Md. Code" path="gbr|10-101">Business Regulation Article, §10-101, Annotated Code of Maryland</cite>;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>An affiliated or commonly controlled corporation that engages in activities on behalf of a manufacturing corporation, either directly or indirectly; or</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>An affiliated or unaffiliated service provider.</text>
+          </para>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“North American Industrial Classification System (NAICS)” means the North American Industrial Classification System, United States Manual, United States Office of Management and Budget, 1997 Edition.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Classification as a Manufacturing Corporation.</text>
+      <para>
+        <num>(1)</num>
+        <text>To be classified as a manufacturing corporation, the requisite activities of the NAICS code shall be performed directly by the entity using the one-factor formula. While it is not required that entities using the one-factor formula perform all elements of a vertically integrated manufacturing process, it is required that the activities leading to their classification as a manufacturing corporation be performed by the corporation, and not by related or unrelated entities.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Examples.</text>
+        <para>
+          <num>(a)</num>
+          <text>The operation of the criteria in <cite path="03|04|03|.10|C.|(1)">§C(1) of this regulation</cite> is shown by §C (2) (b)—(d) of this regulation.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>X Company sells goods that are manufactured under cost plus contracts and service agreements by affiliated subsidiaries and unaffiliated companies. X Company's only activities are related to storage and transportation of goods, sales, and general headquarters management. X Company is not a manufacturing corporation within the meaning of this regulation.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Y Company sells motorcycles produced from parts such as engines, frames, and gears that it purchases from a variety of affiliated and unaffiliated suppliers. It assembles these parts into finished products for resale using its own employees to do so. Y Company is a manufacturing corporation within the meaning of this regulation.</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Z Company manufactures, sells, and installs custom and off-the-shelf cabinets. Z Company is a manufacturing corporation within the meaning of this regulation. C Contractor purchases custom and off-the-shelf cabinets for its customers and installs the cabinets in its customers' homes. Although C Contractor may assemble the off-the-shelf cabinets and install them, C Contractor is not a manufacturing corporation within the meaning of this regulation.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Primarily Engaged.</text>
+      <para>
+        <num>(1)</num>
+        <text>A manufacturing corporation is primarily engaged in activities that would be included in NAICS sector 11, 31, 32, or 33 if:</text>
+        <para>
+          <num>(a)</num>
+          <text>More than 50 percent of the corporation's sales are derived from activities from one or more of these sectors; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Line 1c of the corporation's federal income tax return (sales) are more than 50 percent of line 11 of the corporation's federal income tax return (total income).</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Sales, as determined under this section, include all of the corporation's gross receipts or sales, less returns and allowances, as reported on line 1c of the corporation's federal income tax return.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The sales factor of a company using a one-factor formula as required by this regulation is determined as follows:</text>
+        <para>
+          <num>(a)</num>
+          <text>Sales of tangible personal property shall be allocated to the numerator or denominator of the factor by the same methods and rules applied in <cite path="03.04.03.08|C.|(3)|(a)">COMAR 03.04.03.08C(3)(a)</cite> and (b);</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Gross receipts from the rental, leasing, or licensing of real or tangible personal property shall be allocated to the numerator or the denominator by the same methods and rules applied in <cite path="03.04.03.08|C.|(3)|(e)">COMAR 03.04.03.08C(3)(e)</cite> and (f);</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Service income shall be allocated to the numerator or denominator by the same methods and rules applied in <cite path="03.04.03.08|C.|(3)|(c)">COMAR 03.04.03.08C(3)(c)</cite>;</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Gross receipts from intangible items such as interest, royalties, capital gains, including capital gains from sales of tangible personal property, and ordinary gains and losses shall be excluded from the numerator and denominator; and</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>Other income items shall be considered separately and the actual treatment shall be dependent upon the nature and type of each item.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Apportionment Method. If a manufacturing corporation carries on its trade or business within and outside of the State and the trade or business is a unitary business, the part of the corporation's Maryland modified income derived from or reasonably attributable to trade or business carried on in the State shall be determined using a single sales factor apportionment formula, by multiplying its Maryland modified income by 100 percent of the sales factor.</text>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Tax Return Reporting.</text>
+      <para>
+        <num>(1)</num>
+        <text>NAICS Code.</text>
+        <para>
+          <num>(a)</num>
+          <text>In filing its tax return for each year, a manufacturing corporation shall certify that the NAICS code reported on its Maryland tax return is consistent with that reported to other government agencies and accurately reflects the primary activities of the corporation.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>If the Comptroller determines that a corporation has submitted information that incorrectly classifies the corporation as a manufacturing corporation, the Comptroller shall reclassify the corporation in an appropriate manner.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>For each taxable year beginning after December 31, 2005, but before January 1, 2011, a manufacturing corporation that has more than 25 employees and apportions its income under this regulation shall attach to its Maryland tax return a report containing the following information as of the last day of the taxable year:</text>
+        <para>
+          <num>(a)</num>
+          <text>The difference in tax owed as a result of using the single sales factor apportionment method under this regulation as compared to the tax owed using the three-factor, double-weighted sales factor apportionment method as set forth in <cite path="03.04.03.08">COMAR 03.04.03.08</cite>, in effect for the last taxable year beginning on or before December 31, 2000;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The volume of sales in the State and worldwide;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>The taxable income in the State and worldwide; and</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>The book value of plant, land, and equipment in the State and worldwide.</text>
+        </para>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|03|.11">
+    <prefix>Regulation</prefix>
+    <num>.11</num>
+    <heading>Donations to Diaper Banks and Other Charitable Entities.</heading>
+    <para>
+      <num>A.</num>
+      <text>Definitions.</text>
+      <para>
+        <num>(1)</num>
+        <text>In this regulation, the following terms have the meanings indicated.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Terms Defined.</text>
+        <para>
+          <num>(a)</num>
+          <text>“Diaper bank” means a nonprofit organization located in the State that:</text>
+          <para>
+            <num>(i)</num>
+            <text>Is qualified as tax exempt under §501(c)(3) of the Internal Revenue Code;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Is established and operating primarily for the purpose of collecting or purchasing disposable diapers or other hygiene products for infants or children; and</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>Distributes those diapers or hygiene products through schools, health care facilities, government agencies, or other nonprofit entities for eventual distribution to individuals free of charge.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>“Donation” means an irrevocable gift of:</text>
+          <para>
+            <num>(i)</num>
+            <text>Disposable diapers, other hygiene products for infants or children, or feminine personal hygiene products; or</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Cash that is specifically designated for the purchase of disposable diapers, other hygiene products for infants or children, or feminine personal hygiene products.</text>
+          </para>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>“Feminine personal hygiene products” means sanitary pads, tampons, menstrual sponges, menstrual cups, or other similar feminine hygiene products, whether reusable or disposable.</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>“Qualified charitable entity” means a diaper bank, homeless shelter, domestic violence shelter, religious organization, or other charitable organization that distributes diapers, other hygiene products for infants or children, or feminine personal hygiene products, and that is registered with the Comptroller as a distributor of disposable diapers, other hygiene products for infants or children, or feminine personal hygiene products as described in <cite path="03.04.02.17">COMAR 03.04.02.17</cite>.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Subtraction for Corporations.</text>
+      <para>
+        <num>(1)</num>
+        <text>For any taxable year beginning after December 31, 2020, but before January 1, 2024, a corporation may subtract up to $1,000 of donations made by the taxpayer during any taxable year to a qualified charitable entity from federal taxable income to determine Maryland modified income.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>To claim the subtraction under <cite path="03|04|03|.11|B.|(1)">§B(1) of this regulation</cite>, the taxpayer shall file with the income tax return on which the subtraction modification is taken a statement with the following information:</text>
+        <para>
+          <num>(a)</num>
+          <text>The name of each qualified charitable entity to which a donation was made;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The value of the donation to each qualified charitable entity identified in <cite path="03|04|03|.11|B.|(2)|(a)">§B(2)(a) of this regulation</cite>, which the Comptroller may verify with the qualified charitable entity; and</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Any other information that the Comptroller requires.</text>
+        </para>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container">Tax-General Article, §§<cite doc="Md. Code" path="gtg|2-103">2-103</cite> and <cite doc="Md. Code" path="gtg|10-306">10-306</cite>.1(h), Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-01-09">Effective date: January 9, 1989 (15:27 Md. R. 3126)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2001-06-25"><cite path="|03|04|03|.01">Regulation .01</cite> amended effective January 1, 1998 (24:12 Md. R. 861); June 25, 2001 (28:12 Md. R. 1103)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|03|.01|E.">Regulation .01E</cite> repealed effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|03|.03|B.">Regulation .03B</cite> amended effective January 1, 1998 (24:12 Md. R. 861); January 14, 1999 (26:1 Md. R. 22); October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|03|.03|C.">Regulation .03C</cite> amended effective January 14, 1999 (26:1 Md. R. 22); October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2017-03-27"><cite path="|03|04|03|.04|A.">Regulation .04A</cite> amended effective March 27, 2017 (44:6 Md. R. 324)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2010-04-19"><cite path="|03|04|03|.04|C.">Regulation .04C</cite> amended effective October 22, 2007 (34:21 Md. R. 1913); April 19, 2010 (37:8 Md. R. 614)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2009-02-09"><cite path="|03|04|03|.05|C.">Regulation .05C</cite> amended effective February 9, 2009 (36:3 Md. R. 207)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2010-04-19"><cite path="|03|04|03|.06|A.">Regulation .06A</cite> amended effective April 19, 2010 (37:8 Md. R. 614)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1990-08-20"><cite path="|03|04|03|.06|B.">Regulation .06B</cite>, C amended effective August 20, 1990 (17:16 Md. R. 1989)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1999-01-14"><cite path="|03|04|03|.06|D.">Regulation .06D</cite> amended effective January 14, 1999 (26:1 Md. R. 22)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2013-07-08"><cite path="|03|04|03|.06|E.">Regulation .06E</cite> amended effective December 22, 2003 (30:25 Md. R. 1844); July 8, 2013 (40:13 Md. R. 1073)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2007-10-22"><cite path="|03|04|03|.07|A.">Regulation .07A</cite> amended effective October 22, 2007 (34:21 Md. R. 1913)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1999-01-14"><cite path="|03|04|03|.07|D.">Regulation .07D</cite> amended effective January 14, 1999 (26:1 Md. R. 22)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|03|.08">Regulation .08</cite> amended effective January 1, 1998 (24:26 Md. R. 1754); May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|03|.08|B.">Regulation .08B</cite> amended effective October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|03|.08|C.">Regulation .08C</cite> amended effective October 12, 1992 (19:20 Md. R. 1813); October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|03|.08|D.">Regulation .08D</cite> amended effective October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|03|.08|G.">Regulation .08G</cite> adopted effective October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2000-04-03"><cite path="|03|04|03|.09">Regulation .09</cite> adopted effective April 3, 2000 (27:6 Md. R. 639)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|03|.09|G.">Regulation .09G</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2002-03-04"><cite path="|03|04|03|.10">Regulation .10</cite> adopted effective March 4, 2002 (29:4 Md. R. 416)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2009-02-09"><cite path="|03|04|03|.10|F.">Regulation .10F</cite> amended effective February 9, 2009 (36:3 Md. R. 207)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-03-21"><cite path="|03|04|03|.11">Regulation .11</cite> adopted effective March 21, 2022 (49:6 Md. R. 404)</annotation>
+  </annotations>
+</container>

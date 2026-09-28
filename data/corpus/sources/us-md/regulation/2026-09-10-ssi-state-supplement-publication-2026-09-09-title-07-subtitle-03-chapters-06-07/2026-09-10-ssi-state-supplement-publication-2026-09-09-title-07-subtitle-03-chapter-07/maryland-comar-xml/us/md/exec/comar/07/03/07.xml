@@ -1,0 +1,1157 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>07</num>
+  <heading>Public Assistance to Adults</heading>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Purpose.</heading>
+    <text>Public Assistance to Adults is a monthly payment of State funds to an individual who has:</text>
+    <para>
+      <num>A.</num>
+      <text>Been certified for a licensed assisted living program, a CARE home, or a Maryland Department of Health  (MDH) rehabilitative residence; and</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Allowable needs in excess of total countable income and resources that do not exceed limits.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.02</num>
+    <heading>Definitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this chapter, the following terms have the meanings indicated.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Terms Defined.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Allowable need” means any need as described in <cite path="|07|03|07|.04">Regulation .04 of this chapter</cite> as licensed assisted living, Certified Adult Residential Environment (CARE) homes, and personal and incidental needs.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Assisted living” means services provided in a licensed protective institutional environment as described in <cite path="|10.07.14">COMAR 10.07.14</cite> to an individual who is aged or disabled, or both, and who cannot manage activities of daily living as described in <cite path="10.07.14.02|B.|(2)|(b)">COMAR 10.07.14.02B(2)(b)</cite>.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>“CARE home” means a home that provides supervised residential alternatives to an individual who, due to physical or mental disability, cannot live unsupervised in the community and is at risk for institutionalization as described in <cite path="|07.02.19">COMAR 07.02.19</cite>.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>"MDH" rehabilitative residence" means a residence that provides residential rehabilitation as described in <cite path="|10.21.22">COMAR 10.21.22</cite> or a supported living program approved by the Mental Hygiene Administration of the Maryland Department of Health.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>“Local department” means a local department of social services in a county or Baltimore City or the Montgomery County Department of Health and Human Services.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>“Net countable income” means gross income less any disregard.</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>“Protected living arrangement” means a residential environment that provides care to vulnerable adults who are aged, disabled, or both, and who cannot manage activities of daily living as described in <cite path="10.07.14.02|B.|(2)|(b)">COMAR 10.07.14.02B(2)(b)</cite>.</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>“Resident” means an individual who is living in the State voluntarily and not for a temporary purpose.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.03">
+    <prefix>Regulation</prefix>
+    <num>.03</num>
+    <heading>Eligibility Criteria.</heading>
+    <para>
+      <num>A.</num>
+      <text>An individual is eligible when, in any month, the individual:</text>
+      <para>
+        <num>(1)</num>
+        <text>Is a resident of the State;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Is receiving a federal benefit for age, blindness, or disability;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>If not receiving a federal retirement or disability benefit, has filed an application for Supplemental Security Income (SSI) and Social Security Disability Insurance (SSDI), in accordance with <cite path="07|03|07|.03|B.">§B of this regulation</cite>;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Is in an assisted living program, in a CARE home, or in a MDH rehabilitative residence while continuing to cooperate with all technical and financial requirements of eligibility; and</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Continues to cooperate with all technical and financial requirements of eligibility.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Social Security Administration Disability Benefits Applications and Appeals.</text>
+      <para>
+        <num>(1)</num>
+        <text>Applicants who are not receiving a federal retirement or disability benefit shall fully cooperate with the Social Security Administration (SSA) application and appeals processes.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Failure to cooperate shall render the applicant or recipient ineligible and result in application denial or case closure.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>If SSA makes a final unfavorable decision, the customer is no longer eligible for assisted living benefits from the PAA program, unless:</text>
+      <para>
+        <num>(1)</num>
+        <text>Good cause exists for continued PAA eligibility, which the DHS Appointing Authority or its designee shall determine following a review; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Disability Services Operations (DSO) decides that the person meets the definition of disabled following a consultative exam or coordination with the State Disability Determination Services Agency.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Determination of Medical Justification for Placement into an Assisted Living Facility.</text>
+      <para>
+        <num>(1)</num>
+        <text>The Department of Human Services shall establish a process through DSO to determine when medical justification for placement into a protected living environment is sufficient to support an individual’s eligibility for the PAA-Assisted Living program.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>This provision does not apply to individuals participating in PAA-CARE homes and PAA-MDH rehabilitative residences.</text>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Temporary Absence from Maryland.</text>
+      <para>
+        <num>(1)</num>
+        <text>An individual remains a resident of the State despite temporary absence from the State if the individual intends to return when the purposes of the absence have been accomplished.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The local department shall verify, after 30 consecutive days of absence and monthly after that, whether the absence is temporary or permanent.</text>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Cooperation with the Eligibility Process.</text>
+      <para>
+        <num>(1)</num>
+        <text>An individual shall:</text>
+        <para>
+          <num>(a)</num>
+          <text>Provide all necessary information needed for initial or continued program eligibility and ensure that the information is true, correct, and complete; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Cooperate with the Agency in all aspects of program administration.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The individual and the individual’s authorized representative are subject to the requirements in <cite path="|07.03.14">COMAR 07.03.14</cite> if they provide false information.</text>
+      </para>
+    </para>
+    <para>
+      <num>G.</num>
+      <text>After meeting all other program requirements, an individual is eligible for Public Assistance to Adults:</text>
+      <para>
+        <num>(1)</num>
+        <text>While the application for other benefits is pending; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>After the application for other benefits is denied if the individual meets the conditions described in <cite path="07|03|07|.03|A.|(3)">§A(3) of this regulation</cite>.</text>
+      </para>
+    </para>
+    <para>
+      <num>H.</num>
+      <text>Interim Payment Reimbursement Authorization.</text>
+      <para>
+        <num>(1)</num>
+        <text>Assisted living program and CARE home applicants and recipients shall sign an Interim Payment Reimbursement Authorization which:</text>
+        <para>
+          <num>(a)</num>
+          <text>Permits the Social Security Administration to mail the initial SSI payment to the local department providing the Public Assistance to Adults; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Allows the local department to reimburse itself for the assistance granted the recipient.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>If the initial SSI payment mailed to the local department is less than or equal to the amount of Public Assistance to Adults received for the months the individual was entitled to SSI, the local department may retain the full amount of the SSI payment.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>If the amount of SSI received by the local department is greater than the amount of assistance paid, the local department shall pay the excess amount to the individual within 10 days of the receipt of the SSI payment and the Supplemental Security Income Notice of Interim Assistance Reimbursement Eligibility and Accountability Report.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.04">
+    <prefix>Regulation</prefix>
+    <num>.04</num>
+    <heading>Need Requirements.</heading>
+    <para>
+      <num>A.</num>
+      <text>Personal Needs Allowance.</text>
+      <para>
+        <num>(1)</num>
+        <text>The standard for personal and incidental needs is $82 for an individual receiving Public Assistance to Adults for care in an assisted living program, CARE home, or MDH rehabilitative residence or supported living programs.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The personal needs allowance may not be used for the cost of care.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Assisted Living Program.</text>
+      <para>
+        <num>(1)</num>
+        <text>Assisted living cost of care is:</text>
+        <para>
+          <num>(a)</num>
+          <text>Paid up to the maximum allowable amount as set forth in <cite path="07|03|07|.04|B.|(2)">§B(2) of this regulation</cite>; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>An allowable need for the purposes of Public Assistance to Adults.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Payment Schedule for Assisted Living Care. Effective January 1, 2009, the maximum allowable amount paid to a recipient for assisted living program care is $858 per month or $28.22 per diem.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Per diem amounts are used when the recipient enters care after the first day of the month.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Benefits are effective on the date of entry into care when the application is made in the same month.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>CARE Homes.</text>
+      <para>
+        <num>(1)</num>
+        <text>CARE home cost of care is:</text>
+        <para>
+          <num>(a)</num>
+          <text>Paid up to a maximum allowable amount as set forth in <cite path="07|03|07|.04|C.|(2)">§C(2) of this regulation</cite>; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>An allowable need for the purposes of Public Assistance to Adults.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Payment Schedule for CARE Homes. Effective January 1, 2009, the maximum allowable amount paid to a recipient for CARE home care is:</text>
+        <text>
+          <table>
+            <tbody>
+              <tr>
+                <td/>
+                <td>Monthly <br/>Maximum</td>
+                <td>Per Diem <br/>Maximum</td>
+              </tr>
+              <tr>
+                <td>Level A (Minimal Supervision, Assistance, and Personal Care)</td>
+                <td data-text-align="center" data-vertical-align="middle">$740</td>
+                <td data-text-align="center" data-vertical-align="middle">$24.34</td>
+              </tr>
+              <tr>
+                <td>Level B (Moderate Supervision, Assistance, and Personal Care)</td>
+                <td data-text-align="center" data-vertical-align="middle">$849</td>
+                <td data-text-align="center" data-vertical-align="middle">$27.93</td>
+              </tr>
+              <tr>
+                <td>Level C (Extensive Supervision, Assistance, and Personal Care)</td>
+                <td data-text-align="center" data-vertical-align="middle">$1,137</td>
+                <td data-text-align="center" data-vertical-align="middle">$37.40</td>
+              </tr>
+              <tr>
+                <td>Level D (Specialized and Intensive Supervision, Assistance, and Personal Care</td>
+                <td data-text-align="center" data-vertical-align="middle">$1,340</td>
+                <td data-text-align="center" data-vertical-align="middle">$44.08</td>
+              </tr>
+            </tbody>
+          </table>
+        </text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Per diem amounts are used when the recipient enters care after the first day of the month.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Benefits are paid from the date of entry into care when the application is made in the same month.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Rehabilitative Residences. A resident of a MDH rehabilitative residence or supported living program who meets technical and financial eligibility requirements shall receive the personal needs allowance as described in <cite path="07|03|07|.04|A.">§A of this regulation</cite>.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.05">
+    <prefix>Regulation</prefix>
+    <num>.05</num>
+    <heading>Determining Available Resources.</heading>
+    <para>
+      <num>A.</num>
+      <text>Resources Retained.</text>
+      <para>
+        <num>(1)</num>
+        <text>The Public Assistance to Adults applicant or recipient may retain up to $2,000 in countable resources.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>To determine the individual's eligibility, the local department shall measure the individual's countable resources against the maximum allowable amount as described in <cite path="07|03|07|.05|A.|(1)">§A(1) of this regulation</cite>.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Countable resources include but are not limited to:</text>
+      <para>
+        <num>(1)</num>
+        <text>Cash on hand;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Money in the bank;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Stocks;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Bonds;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Real property other than the applicant's or recipient's home; and</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Trust fund principal when the individual:</text>
+        <para>
+          <num>(a)</num>
+          <text>Is the beneficiary; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Has unrestricted access to the principal of the trust.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Ownership of Home.</text>
+      <para>
+        <num>(1)</num>
+        <text>An applicant or recipient may retain the home the applicant or recipient owns if the:</text>
+        <para>
+          <num>(a)</num>
+          <text>Applicant or recipient was living in the home and plans to return to the home within 6 months from the date of the application for assistance; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Spouse with whom the applicant or recipient was living when the applicant or recipient entered care is still living in the home.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>If neither of the conditions described in <cite path="07|03|07|.05|C.|(1)">§C(1) of this regulation</cite> exists, then the equity value of the home is considered a countable resource.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Transfer of Property. Transfer of property while receiving assistance with the intent to defeat the purposes of the law and without the consent of the local department shall be dealt with as described in <cite path="|07.03.01">COMAR 07.03.01</cite>.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.06">
+    <prefix>Regulation</prefix>
+    <num>.06</num>
+    <heading>Excluded Resources.</heading>
+    <para>
+      <num>A.</num>
+      <text>Excluded resources include:</text>
+      <para>
+        <num>(1)</num>
+        <text>The value of burial spaces for the individual, the individual's spouse, or any member of the individual's immediate family;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Burial funds as described in <cite path="07|03|07|.06|B.">§B of this regulation</cite>;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Irrevocable burial contracts as described in <cite path="07|03|07|.06|C.">§C of this regulation</cite>;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Vehicles owned by the individual;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Life insurance policies;</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Payments under Title I of Public Law 100-383, the Civil Liberties Act of 1988, or Title II of Public Law 100-383, the Aleutian and Pribilof Islands Restitution Act, received by individuals of Japanese ancestry and Aleuts;</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>Payments made from the Agent Orange Settlement Fund or any other fund established pursuant to the settlement in the Agent Orange product liability litigation;</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>Payments excluded under federal law; and</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>Trust fund principal when the individual has no access or only restricted access to the principal of the trust.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Burial Funds.</text>
+      <para>
+        <num>(1)</num>
+        <text>In this section, “burial funds” means a revocable burial contract, burial trust, or other burial arrangement, or separately identified fund that is clearly designated as set aside for the individual's or spouse's burial expense.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Up to $1,500 each of burial funds shall be excluded from resources.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Funds set aside for burial shall be kept separate from other resources not set aside for burial. Burial funds mixed with other resources shall be treated as nonexcluded resources.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Interest earned on excluded burial funds is also excluded from income and resources if it is left to accumulate and become part of the separately identified burial fund.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The burial fund exclusion shall be reduced by:</text>
+        <para>
+          <num>(a)</num>
+          <text>The face value of insurance policies if the cash surrender value of the policies has been excluded from resources; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Amounts in an irrevocable burial contract, or other irrevocable agreement, available to meet burial expenses.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Irrevocable Burial Contracts.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Irrevocable burial contract” means an agreement that does not provide for a refund and that is clearly designated as providing for the individual's or spouse's burial expense.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>An irrevocable burial contract is fully excluded regardless of value.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Interest earned on irrevocable burial funds is also excluded from income and resources.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.07">
+    <prefix>Regulation</prefix>
+    <num>.07</num>
+    <heading>Income.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this regulation, “income” means all income from any source.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Countable income includes, but is not limited to:</text>
+      <para>
+        <num>(1)</num>
+        <text>Wages, salaries, tips, and commissions;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Income from self-employment after deducting costs of materials, equipment, or other items essential to production of the self-employment income;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Federally funded assistance payments;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>State-funded assistance payments;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Annuities, pensions, and retirement benefits;</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Workers' compensation or unemployment benefits;</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>Social Security benefits;</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>Support and alimony payments;</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>Educational assistance not excluded under <cite path="07|03|07|.07|C.">§C of this regulation</cite>;</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>Payments from government programs, dividends, interest, royalties, or money payments from any source that is a gain or benefit to the individual;</text>
+      </para>
+      <para>
+        <num>(11)</num>
+        <text>The contribution for a parent from a son or daughter;</text>
+      </para>
+      <para>
+        <num>(12)</num>
+        <text>The contribution for an adult child with a disability from a parent;</text>
+      </para>
+      <para>
+        <num>(13)</num>
+        <text>Lump sum income as described in <cite path="07|03|07|.07|E.">§E of this regulation</cite>;</text>
+      </para>
+      <para>
+        <num>(14)</num>
+        <text>Trust fund payments made on behalf of the individual when the payment is made:</text>
+        <para>
+          <num>(a)</num>
+          <text>Directly to the individual; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>To the individual's legal guardian; and</text>
+        </para>
+      </para>
+      <para>
+        <num>(15)</num>
+        <text>Income from the trust fund principal when the individual has a right to the income as it becomes available.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Excluded income includes:</text>
+      <para>
+        <num>(1)</num>
+        <text>Any grant or loan to an undergraduate student for educational purposes made, or insured, under any program administered by the U.S. Secretary of Education;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Any benefits received under Title VII, Nutrition Program for the Elderly, of the Older Americans Act of 1965, as amended;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Any stipends, compensation, or expenses received by volunteers from any programs existing or to be set up under the “Domestic Volunteer Service Act of 1973” sponsored by ACTION, such as, but not limited to:</text>
+        <para>
+          <num>(a)</num>
+          <text>Demonstration Project Program for Local Services (PLS);</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Volunteers in Service to America (VISTA);</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>University Year for Action;</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Retired Senior Volunteer Program (RSVP);</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>Foster Grandparents;</text>
+        </para>
+        <para>
+          <num>(f)</num>
+          <text>Older American Community Service Program;</text>
+        </para>
+        <para>
+          <num>(g)</num>
+          <text>Service Corps of Retired Executives (SCORE); and</text>
+        </para>
+        <para>
+          <num>(h)</num>
+          <text>Active Corps of Executives (ACE);</text>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>The value of home produce of an applicant or recipient used by the individual for home consumption;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Educational loans and grants, such as scholarships, obtained and used under conditions that preclude their use for current living costs, other than those related to educational pursuits, such as books, fees, transportation to and from an educational institution, and the cost of child care while in attendance;</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>All training allowances received in a program under the Youth Employment Demonstration Program;</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>All training allowances received in a program offered by a public or private organization enabling people to participate in training programs intended to help them acquire job skills;</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>Payment received from the U.S. Department of Commerce, the Census Bureau, for short-term employment as a census worker;</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>Payment under Title I of Public Law 100-383, the Civil Liberties Act of 1988, or Title II of Public Law 100-383, the Aleutian and Pribilof Islands Restitution Act, received by individuals of Japanese ancestry and Aleuts;</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>Payment made from the Agent Orange Settlement Fund or any other fund established pursuant to the settlement in the Agent Orange product liability litigation;</text>
+      </para>
+      <para>
+        <num>(11)</num>
+        <text>The value of the benefit amount under the Food Supplement Program; and</text>
+      </para>
+      <para>
+        <num>(12)</num>
+        <text>Income from the trust principal when the individual has no right to the income.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Income that is excluded may not be considered in determining the need of any other person for assistance.</text>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Receipt of Lump Sum Income.</text>
+      <para>
+        <num>(1)</num>
+        <text>Lump sum income is a nonrecurring money payment received by an applicant or recipient.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The portion of a lump sum actually available to an applicant or recipient is counted as a resource or income for determining eligibility and amount of payment.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The lump sum payment is counted in the following way:</text>
+        <para>
+          <num>(a)</num>
+          <text>An amount equal to the resource limit as described in <cite path="|07|03|07|.05|A.">Regulation .05A of this chapter</cite>, or an amount which when added to existing resources would equal the resource limit, may be retained;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The remaining lump sum is considered income and is added to the sum of all other income for the month after work expenses and other allowable disregards have been applied;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Income resulting from the computation in <cite path="07|03|07|.07|E.|(3)|(b)">§E(3)(b) of this regulation</cite> is divided by the allowable amount for the individual;</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>The recipient is ineligible for the period of months equal to the quotient resulting from the division in <cite path="07|03|07|.07|E.|(3)|(c)">§E(3)(c) of this regulation</cite> beginning with the first month for which advance notice of termination requirements can be met;</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>Any amount remaining which is less than the allowable amount is counted as income in the first month after the ineligibility ends;</text>
+        </para>
+        <para>
+          <num>(f)</num>
+          <text>If the lump sum is less than the monthly allowable amount and the asset limitation has been reached, the lump sum is deducted from the grant for the first month for which advance notice of reduction requirements can be met; and</text>
+        </para>
+        <para>
+          <num>(g)</num>
+          <text>The recipient who receives a lump sum payment in the month of application is ineligible for the period of months equal to the quotient resulting from the division in <cite path="07|03|07|.07|E.|(3)|(c)">§E(3)(c) of this regulation</cite> beginning with the month of application.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Shortened Period of Ineligibility for Recipients of Lump Sum Income.</text>
+      <para>
+        <num>(1)</num>
+        <text>The local department shall shorten the period of ineligibility for assistance due to receipt of lump sum income when the lump sum income or a portion of it becomes unavailable to the applicant or recipient due to circumstances beyond the individual's control.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The lump sum income or a portion of it is considered unavailable when:</text>
+        <para>
+          <num>(a)</num>
+          <text>It is no longer in the possession of the individual and can not be recovered or used for every day expenses; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>This unavailability has been verified.</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Circumstances considered beyond the control of the individual are:</text>
+        <para>
+          <num>(a)</num>
+          <text>Theft of money;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Disaster defined as fire, flood, tornado, or civil disorder;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Eviction or foreclosure; or</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Medical expenses.</text>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Allowable medical expenses under <cite path="07|03|07|.07|F.|(3)|(d)">§F(3)(d) of this regulation</cite> are payments for:</text>
+        <para>
+          <num>(a)</num>
+          <text>Treatment or service rendered in a hospital, clinic, or nursing home;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Treatment or service rendered by a physician, dentist, certified psychologist, licensed social worker, or any health professional licensed or certified by the State;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Prescription drugs when prescribed by a health professional licensed under State law to prescribe drugs; and</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>Over-the-counter medication, health-related supplies, or appliances recommended by a health professional licensed by the State.</text>
+        </para>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.08</num>
+    <heading>Disregards from Income.</heading>
+    <para>
+      <num>A.</num>
+      <text>Net countable income is determined by applying the following disregards to countable income:</text>
+      <para>
+        <num>(1)</num>
+        <text>A disregard of $85 plus 1/2 of the remaining earned income in any month is deducted from the total earned income as described in Regulation .07B(1) and (2) of this chapter of an individual who has no unearned income;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A disregard of $20 is applied to the unearned income of an individual who has only unearned income; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A disregard of $20 in addition to a disregard of $65 plus 1/2 of the remaining earned income in any month is deducted from the total earned income of a person who has both earned and unearned income.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>A disregard equal to the cost of care is applied to the income of residents of MDH rehabilitative residences.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.09</num>
+    <heading>Amount of Grant and Payee.</heading>
+    <para>
+      <num>A.</num>
+      <text>The payment in Public Assistance to Adults, in any month, shall be the amount by which the allowable needs exceed the net countable income in that month.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The payee shall be one of the following:</text>
+      <para>
+        <num>(1)</num>
+        <text>An eligible individual;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>An agency-appointed representative payee; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A judicially appointed legal representative, guardian, trustee, or committee.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Protective payments may be made on behalf of a recipient to an agency-appointed representative payee if:</text>
+      <para>
+        <num>(1)</num>
+        <text>Medical and social findings establish that the recipient is so unable to manage money that making payment to the recipient would be contrary to the recipient's welfare;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>There is available to act as representative payee, a responsible and dependable individual, other than the assisted living facility operator or staff, to receive the check on behalf of a recipient and handle the money for the recipient's interest and well-being;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The initial and subsequent decisions and plan for protective payments are reviewed and approved by the local department director or an appropriate member of the administrative or supervisory staff designated by the local department director to take this responsibility;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Services are given to protect the recipient's welfare and to improve, as much as possible, the recipient's care and ability to manage funds;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Full needs by assistance standards are met; and</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The decision and plan are reviewed at least once in 6 months.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Protective payments are terminated immediately when:</text>
+      <para>
+        <num>(1)</num>
+        <text>The recipient is considered able to manage funds;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Judicial appointment is made of a guardian or other legal representative as serving the best interest of the recipient; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The agency learns that the representative payee has a conflict of interest or is handling the recipient’s funds in a fraudulent or exploitative manner.</text>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>The representative payee may not be an individual whose selection would create a conflict of interest, including:</text>
+      <para>
+        <num>(1)</num>
+        <text>A Family Investment Program staff member; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>An entity that deals with the recipient for profit, such as an assisted living home operator or other vendor.</text>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Any program payments that are obtained or used in a fraudulent manner shall be considered an overpayment and shall be subject to recoupment in accordance with <cite path="|07|03|07|.13">Regulation .13 of this chapter</cite>.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.10</num>
+    <heading>Reconsideration.</heading>
+    <para>
+      <num>A.</num>
+      <text>The purpose of a reconsideration is to review all requirements for a Public Assistance to Adults grant in order to determine eligibility for continuing assistance and, if eligible, amount of assistance.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Timing. Every case receiving assistance shall be reconsidered once in every 12 months.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>The Reapplication Process.</text>
+      <para>
+        <num>(1)</num>
+        <text>A recipient shall have an opportunity to file a signed application for assistance to continue and shall be given, in writing or orally, information pertinent to filing the application.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>When the signed application is filed, the local department shall take steps to ascertain and record the facts and any other information required to make a decision as to continuing eligibility for benefits.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>A decision as to eligibility for continuing assistance is to be made as promptly as possible and in accordance with requirements set forth in <cite path="|07.03.01">COMAR 07.03.01</cite>.</text>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>The case record shall show accurately and completely that the requirements of this regulation with respect to reconsiderations have been met.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.11</num>
+    <heading>Interim Change.</heading>
+    <para>
+      <num>A.</num>
+      <text>The recipient shall report any change in circumstances to the local department within 10 days of the change.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The local department shall:</text>
+      <para>
+        <num>(1)</num>
+        <text>Give, in writing or orally, information pertinent to the recipient's filing of a signed statement regarding the change; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Take steps as indicated by the facts and other information reported by either the recipient or another responsible source to make a decision as to eligibility for continuing assistance.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.12">
+    <prefix>Regulation</prefix>
+    <num>.12</num>
+    <heading>Advance Notice of Termination or Reduction.</heading>
+    <para>
+      <num>A.</num>
+      <text>Except as expressly provided in §§C and D of this regulation, the local department may not reduce, suspend, or terminate a benefit unless timely and adequate advance notice has been given to the recipient.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Except as expressly provided in <cite path="07|03|07|.12|D.">§D of this regulation</cite>, in this regulation the following terms have the meanings indicated:</text>
+      <para>
+        <num>(1)</num>
+        <text>“Adequate” means a written notice that includes a statement of:</text>
+        <para>
+          <num>(a)</num>
+          <text>What action the agency intends to take;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The reasons for the intended agency action;</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>The specific regulations supporting this action;</text>
+        </para>
+        <para>
+          <num>(d)</num>
+          <text>The explanation of the individual's right to request a fair hearing; and</text>
+        </para>
+        <para>
+          <num>(e)</num>
+          <text>The circumstances under which assistance is continued, if a hearing is requested.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Timely” means that the notice is mailed at least 10 days before the first day of the calendar month in which the action becomes effective.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>The local department may dispense with timely notice but shall send adequate notice no later than the date of action, when:</text>
+      <para>
+        <num>(1)</num>
+        <text>The local department has factual information confirming the death of a recipient;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The local department receives a clear written statement signed by the recipient that:</text>
+        <para>
+          <num>(a)</num>
+          <text>The recipient no longer wishes assistance; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Gives information which requires termination or reduction of assistance and the recipient has indicated in writing the recipient's understanding that this is the consequence of supplying the information;</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The recipient's whereabouts are unknown;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>A recipient has been accepted for assistance in a new jurisdiction and that fact has been established by the jurisdiction previously providing assistance;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The local department has factual information confirming that the recipient was admitted to a public institution; or</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The local department has confirmed that the recipient and assisted living facility operator are using the program funds in fraudulent manner.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>When changes in either State or federal law require automatic grant adjustments for classes of recipients, the local department shall give timely and adequate notice of an adjustment to assistance which includes:</text>
+      <para>
+        <num>(1)</num>
+        <text>A statement of the intended action;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The reasons for that action;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A statement of a specific change in law requiring that action; and</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>A statement of the circumstances under which a hearing may be obtained and assistance continued.</text>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Unless continuation of assistance pending a hearing decision is required, the local department shall take action to reduce, suspend, or end the assistance:</text>
+      <para>
+        <num>(1)</num>
+        <text>When a conference with the recipient or the recipient's representative confirms that the action is appropriate;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>When one or more of the conditions set forth in §C or D of this regulation are met; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Following the end of the required notice period.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.13</num>
+    <heading>Payment Irregularities.</heading>
+    <text>Payment irregularities which include overpayments, underpayments, fraud, and recoupment of funds are handled according to <cite path="|07.03.14">COMAR 07.03.14</cite>.</text>
+    <annotations/>
+  </section>
+  <section cache:ref-path="07|03|07|.14">
+    <prefix>Regulation</prefix>
+    <num>.14</num>
+    <heading>Replacement of Checks Lost, Stolen, or Not Received.</heading>
+    <para>
+      <num>A.</num>
+      <text>The local department shall issue a new check to replace an assistance check that is lost, stolen, or not received if the:</text>
+      <para>
+        <num>(1)</num>
+        <text>Recipient notified the local department within 30 calendar days from the date the check was mailed that the check was lost, stolen, or not received;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Check was stolen, and the recipient has filed a complaint with the local law enforcement officials and can provide a valid complaint number; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Check was cashed, and the recipient has signed a completed forgery affidavit form.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The local department shall issue the replacement check within 5 working days of satisfaction of the conditions in <cite path="07|03|07|.14|A.">§A of this regulation</cite>.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.15</num>
+    <heading>Appeals and Complaints of Discrimination.</heading>
+    <para>
+      <num>A.</num>
+      <text>Appeal from Local Department Decision.</text>
+      <para>
+        <num>(1)</num>
+        <text>The local department shall give written notification of the right to and the procedures for requesting and obtaining an administrative hearing to each applicant or recipient of public assistance:</text>
+        <para>
+          <num>(a)</num>
+          <text>At the time of application; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Whenever the local department notifies the applicant or recipient of any action that might deny, delay, suspend, reduce, or terminate benefits.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The appeal procedures are set forth in <cite path="|07.01.04">COMAR 07.01.04</cite>.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Complaints of Discrimination. An applicant, recipient, authorized representative, or someone acting on behalf of the customer who believes the local department has discriminated on the basis of age, race, color, sex, disability, religion, national origin, or political beliefs may file a written complaint in accordance with <cite path="07.01.03.08">COMAR 07.01.03.08</cite>.</text>
+    </para>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container">Human Services Article, §§<cite doc="Md. Code" path="ghu|5-205">5-205</cite>(a), <cite doc="Md. Code" path="ghu|5-207">5-207</cite>(a), <cite doc="Md. Code" path="ghu|5-403">5-403</cite>—<cite doc="Md. Code" path="ghu|5-407">5-407</cite>, and <cite doc="Md. Code" path="ghu|5-409">5-409</cite>, Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1974-01-01">Effective date: January 1, 1974</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1979-07-27">Regulations <cite path="|07|03|07|.01">.01</cite>—<cite path="|07|03|07|.06">.06</cite> amended effective July 27, 1979 (6:15 Md. R. 1270)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-10-30"><cite path="|07|03|07|.01">Regulation .01</cite> amended effective January 16, 1984 (11:1 Md. R. 41); December 14, 1987 (14:25 Md. R. 2658); October 30, 1989 (16:21 Md. R. 2261)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1977-01-05">Regulations .02A, .03A, .04A, B amended effective January 5, 1977 (4:1 Md. R. 15)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-10-30"><cite path="|07|03|07|.02|A.">Regulation .02A</cite> amended effective May 24, 1982 (9:10 Md. R. 1019); January 16, 1984 (11:1 Md. R. 41); August 26, 1985 (12:17 Md. R. 1702); October 30, 1989 (16:21 Md. R. 2261)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1981-03-20"><cite path="|07|03|07|.02|B.">Regulation .02B</cite> amended effective March 20, 1981 (8:6 Md. R. 561)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1981-03-20"><cite path="|07|03|07|.02|C.">Regulation .02C</cite> adopted effective March 20, 1981 (8:6 Md. R. 561)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-10-30"><cite path="|07|03|07|.02|D.">Regulation .02D</cite> amended effective August 26, 1985 (12:17 Md. R. 1702); October 30, 1989 (16:21 Md. R. 2261)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1984-01-16"><cite path="|07|03|07|.02|D.">Regulation .02D</cite>—E adopted effective January 16, 1984 (11:1 Md. R. 41)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1987-12-14"><cite path="|07|03|07|.02">Regulation .02</cite> amended effective December 14, 1987 (14:25 Md. R. 2658)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1982-05-24"><cite path="|07|03|07|.03|A.">Regulation .03A</cite> amended effective May 24, 1982 (9:10 Md. R. 1019)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1981-03-20"><cite path="|07|03|07|.03|B.">Regulation .03B</cite> amended effective March 20, 1981 (8:6 Md. R. 561)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-10-30"><cite path="|07|03|07|.03|D.">Regulation .03D</cite> amended effective October 30, 1989 (16:21 Md. R. 2261)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1982-05-24"><cite path="|07|03|07|.04">Regulation .04</cite> amended effective May 24, 1982 (9:10 Md. R. 1019)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-12-19"><cite path="|07|03|07|.04|A.">Regulation .04A</cite> amended effective January 16, 1984 (11:1 Md. R. 41); December 14, 1987 (14:25 Md. R. 2658); October 3, 1988 (15:20 Md. R. 2333); November 27, 1989 (16:23 Md. R. 2504); April 25, 1994 (21:8 Md. R. 672); December 19, 1994 (21:25 Md. R. 2104)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-04-25"><cite path="|07|03|07|.04|B.">Regulation .04B</cite> amended effective July 28, 1978 (5:15 Md. R. 1186); March 20, 1981 (8:6 Md. R. 561); December 6, 1982 (9:24 Md. R. 2389); October 10, 1983 (10:20 Md. R. 1784); August 27, 1984 (11:17 Md. R. 1490); August 12, 1985 (12:16 Md. R. 1604); October 6, 1986 (13:20 Md. R. 2209); October 5, 1987 (14:20 Md. R. 2141); October 3, 1988 (15:20 Md. R. 2333); November 27, 1989 (16:23 Md. R. 2504); April 25, 1994 (21:8 Md. R. 672)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-12-19"><cite path="|07|03|07|.04|C.">Regulation .04C</cite> amended effective March 20, 1981 (8:6 Md. R. 561); December 6, 1982 (9:24 Md. R. 2389); October 10, 1983 (10:20 Md. R. 1784); August 27, 1984 (11:17 Md. R. 1490); August 12, 1985 (12:16 Md. R. 1604); October 6, 1986 (13:20 Md. R. 2209); October 5, 1987 (14:20 Md. R. 2141); November 27, 1989 (16:23 Md. R. 2504); October 29, 1990 (17:21 Md. R. 2526); April 25, 1994 (21:8 Md. R. 672); December 19, 1994 (21:25 Md. R. 2104)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1977-02-16"><cite path="|07|03|07|.04|D.">Regulation .04D</cite> amended effective February 16, 1977 (4:4 Md. R. 280)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1978-02-10"><cite path="|07|03|07|.04|D.">Regulation .04D</cite> repealed effective February 10, 1978 (5:3 Md. R. 137)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-10-30"><cite path="|07|03|07|.04|D.">Regulation .04D</cite> repealed and .04E recodified to .04D effective October 30, 1989 (16:21 Md. R. 2261)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1996-11-18"><cite path="|07|03|07|.04|D.">Regulation .04D</cite> amended effective November 18, 1996 (23:23 Md. R. 1555)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1987-12-14"><cite path="|07|03|07|.04|E.">Regulation .04E</cite> adopted effective December 14, 1987 (14:25 Md. R. 2658)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1978-04-07"><cite path="|07|03|07|.05">Regulation .05</cite> amended effective April 7, 1978 (5:7 Md. R. 521)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-10-30"><cite path="|07|03|07|.05|A.">Regulation .05A</cite> amended effective October 30, 1989 (16:21 Md. R. 2261)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-04-25"><cite path="|07|03|07|.05|B.">Regulation .05B</cite> amended effective July 29, 1985 (12:15 Md. R. 1512); July 28, 1986 (13:15 Md. R. 1733); April 20, 1987 (14:8 Md. R. 938); December 14, 1987 (14:25 Md. R. 2658); May 2, 1988 (15:9 Md. R. 1108); April 17, 1989 (16:7 Md. R. 811); April 25, 1994 (21:8 Md. R. 672)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-04-25"><cite path="|07|03|07|.05|D.">Regulation .05D</cite>-1 adopted effective April 25, 1994 (21:8 Md. R. 672)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-12-19"><cite path="|07|03|07|.05|E.">Regulation .05E</cite> amended effective August 25, 1978 (5:17 Md. R. 1326); June 27, 1980 (7:13 Md. R. 1276); March 20, 1981 (8:6 Md. R. 561); May 24, 1982 (9:10 Md. R. 1019); January 16, 1984 (11:1 Md. R. 41); May 5, 1986 (13:9 Md. R. 1023); December 14, 1987 (14:25 Md. R. 2658); April 25, 1994 (21:8 Md. R. 672); December 19, 1994 (21:25 Md. R. 2104)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1987-05-04"><cite path="|07|03|07|.05|E.">Regulation .05E</cite> amended as an emergency provision effective February 1, 1987 (14:4 Md. R. 412); amended permanently effective May 4, 1987 (14:9 Md. R. 1079)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1990-08-06"><cite path="|07|03|07|.05|E.">Regulation .05E</cite> amended as an emergency provision effective April 1, 1990 (17:8 Md. R. 968); amended permanently effective August 6, 1990 (17:15 Md. R. 1855)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1986-02-10"><cite path="|07|03|07|.05|H.">Regulation .05H</cite>, I adopted effective February 10, 1986 (13:3 Md. R. 271)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1987-06-15"><cite path="|07|03|07|.05|J.">Regulation .05J</cite> adopted effective June 15, 1987 (14:12 Md. R. 1349)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-04-25"><cite path="|07|03|07|.05|J.">Regulation .05J</cite> amended effective April 25, 1994 (21:8 Md. R. 672)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1985-06-03"><cite path="|07|03|07|.06|D.">Regulation .06D</cite> adopted effective June 3, 1985 (12:11 Md. R. 1047)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1987-05-04"><cite path="|07|03|07|.06|D.">Regulation .06D</cite> repealed as an emergency provision effective February 1, 1987 (14:4 Md. R. 412); repealed permanently effective May 4, 1987 (14:9 Md. R. 1079)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-04-25"><cite path="|07|03|07|.07|F.">Regulation .07F</cite> amended effective July 1, 1980 (7:13 Md. R. 1275); April 25, 1994 (21:8 Md. R. 672)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1987-12-14"><cite path="|07|03|07|.07|F.">Regulation .07F</cite>-1 adopted effective June 27, 1980 (7:13 Md. R. 1276); repealed effective December 14, 1987 (14:25 Md. R. 2658)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1981-03-06"><cite path="|07|03|07|.07|G.">Regulation .07G</cite> amended effective July 1, 1980 (7:13 Md. R. 1275); March 6, 1981 (8:5 Md. R. 472)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1982-01-18"><cite path="|07|03|07|.09">Regulation .09</cite> amended effective January 18, 1982 (9:1 Md. R. 18)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1984-03-26"><cite path="|07|03|07|.09-1">Regulation .09-1</cite> adopted effective March 26, 1984 (11:6 Md. R. 548)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1975-09-17"><cite path="|07|03|07|.10|A.">Regulation .10A</cite> adopted effective September 17, 1975 (2:21 Md. R. 1340)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1983-10-10"><cite path="|07|03|07|.10|A.">Regulation .10A</cite> amended effective October 10, 1983 (10:20 Md. R. 1783)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1975-12-10"><cite path="|07|03|07|.10|B.">Regulation .10B</cite> adopted effective December 10, 1975 (2:28 Md. R. 1666)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1984-01-16"><cite path="|07|03|07|.10|B.">Regulation .10B</cite> amended effective January 16, 1984 (11:1 Md. R. 41)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2001-12-10" discontinuity="true">Regulations <cite path="|07|03|07|.01">.01</cite>—<cite path="|07|03|07|.10">.10</cite> repealed and new Regulations <cite path="|07|03|07|.01">.01</cite>—<cite path="|07|03|07|.15">.15</cite> adopted effective December 10, 2001 (28:24 Md. R. 2127)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-12-22"><cite path="|07|03|07|.02|B.">Regulation .02B</cite> amended effective December 22, 2014 (41:25 Md. R. 1477)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-12-22"><cite path="|07|03|07|.03">Regulation .03</cite> amended effective December 22, 2014 (41:25 Md. R. 1477)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2009-12-28"><cite path="|07|03|07|.04|B.">Regulation .04B</cite>, C amended effective July 19, 2004 (31:14 Md. R. 1078); February 25, 2008 (35:4 Md. R. 512); October 6, 2008 (35:20 Md. R. 1773); December 28, 2009 (36:26 Md. R. 1994)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2008-02-25"><cite path="|07|03|07|.05|B.">Regulation .05B</cite> amended effective February 25, 2008 (35:4 Md. R. 512)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2008-02-25"><cite path="|07|03|07|.06|A.">Regulation .06A</cite> amended effective February 25, 2008 (35:4 Md. R. 512)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2008-02-25"><cite path="|07|03|07|.07|B.">Regulation .07B</cite> amended effective February 25, 2008 (35:4 Md. R. 512)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2009-12-28"><cite path="|07|03|07|.07|C.">Regulation .07C</cite> amended effective February 25, 2008 (35:4 Md. R. 512); December 28, 2009 (36:26 Md. R. 1994)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-12-22"><cite path="|07|03|07|.09">Regulation .09</cite> amended effective December 22, 2014 (41:25 Md. R. 1477)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-12-22"><cite path="|07|03|07|.12|C.">Regulation .12C</cite> amended effective December 22, 2014 (41:25 Md. R. 1477)</annotation>
+  </annotations>
+</container>

@@ -1,0 +1,91 @@
+version: 2026-09-10-snap-state-manual-completion
+documents:
+- source_id: wy-dfs-snap-power-glossary
+  jurisdiction: us-wy
+  document_class: manual
+  citation_path: us-wy/manual/dfs/snap-power-policy-manual/glossary
+  title: 'Wyoming SNAP and POWER Policy Manual: Glossary'
+  source_url: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/glossary/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Family Services
+    document_subtype: manual_glossary
+    program: SNAP
+    federal_program: SNAP
+    manual: SNAP and POWER Policy Manual
+    manual_landing_page: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+    source_discovery_group: us-wy/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher index https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+- source_id: wy-dfs-snap-power-policy-clarifications
+  jurisdiction: us-wy
+  document_class: manual
+  citation_path: us-wy/manual/dfs/snap-power-policy-manual/policy-clarifications
+  title: 'Wyoming SNAP and POWER Policy Manual: Policy Clarifications'
+  source_url: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/policy-clarifications/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Family Services
+    document_subtype: policy_clarifications
+    program: SNAP
+    federal_program: SNAP
+    manual: SNAP and POWER Policy Manual
+    manual_landing_page: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+    source_discovery_group: us-wy/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher index https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+- source_id: wy-dfs-snap-power-table-i-snap-income-limits
+  jurisdiction: us-wy
+  document_class: manual
+  citation_path: us-wy/manual/dfs/snap-power-policy-manual/table-i-snap-income-limits
+  title: 'Wyoming SNAP and POWER Policy Manual: Table I: SNAP Income Limits'
+  source_url: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/table-i-snap-income-limits/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Family Services
+    document_subtype: manual_table
+    program: SNAP
+    federal_program: SNAP
+    manual: SNAP and POWER Policy Manual
+    manual_landing_page: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+    source_discovery_group: us-wy/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher index https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+- source_id: wy-dfs-snap-power-purchasing-and-preparing-food-separately-and-pass-through-rent
+  jurisdiction: us-wy
+  document_class: manual
+  citation_path: us-wy/manual/dfs/snap-power-policy-manual/purchasing-and-preparing-food-separately-and-pass-through-rent-mortgage-monies-7-21-14
+  title: 'Wyoming SNAP and POWER Policy Manual: Purchasing and preparing food separately And Pass-through rent/mortgage monies
+    7/21/14'
+  source_url: https://dfs.wyo.gov/about/policy-manuals/purchasing-and-preparing-food-separately-and-pass-through-rent-mortgage-monies-7-21-14/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Family Services
+    document_subtype: policy_clarification
+    program: SNAP
+    federal_program: SNAP
+    manual: SNAP and POWER Policy Manual
+    manual_landing_page: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+    source_discovery_group: us-wy/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher index https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/

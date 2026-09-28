@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-adult-services.json",
+      "sha256": "ae5487a1792e5424219b6de031dc3e07d576880e117f45d7c47e802abf8e1eec"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-adult-services.json",
+      "sha256": "7817354353f3b27ab0de07101445431dafb6ef8488ac1e19f4df69c971110094"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-adult-services.jsonl",
+      "sha256": "854e48ad2b3fe59439cfa25132eac2c949135520f3c68e86abf43c18746a9163"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/bfdg/BJNR068710011.xml",
+      "sha256": "3e3d7b9d024b3371e1e490e8ab6c256d51e12d5950fc8451acfd7a4d1b057515"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/ehfg/BJNR005490969.xml",
+      "sha256": "0bc6ae1065a93b086bb66f5cbca3ea96fdeae4bd4a4486330d67ad8d2ecf9410"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/ersdig/BJNR000100960.xml",
+      "sha256": "56edfa42a887e50243594a5d86386f901182462a96ef336a0221119f3bada265"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/jfdg/BJNR084210008.xml",
+      "sha256": "c8b33279c91b7e272ac731b98e0fa3881cc3882c30cb6e55c8c1d20305caad20"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/sg/BJNR001140956.xml",
+      "sha256": "756c1a50bd1021b51f5e3e072ed724a05ae7df8f5a909fd8142fc7330d885341"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/sgb_7/BJNR125410996.xml",
+      "sha256": "0656d61d79193d264be5ca420d8847cca07055065c125c207118b6e1a790405f"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-services/wehrpflg/BJNR006510956.xml",
+      "sha256": "5205a9a02c61416c4d4229a65c25fcb02af6980d5f187a3aaea3dc4fefe87f98"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e583798b0cdc667d4baf78c0a572231d104ad5e7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-de-gii --base data/corpus --version 2026-09-09-de-kindergeld-adult-services --manifest manifests/de-kindergeld-adult-services-gii.yaml --source-as-of 2026-09-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 746,
+    "missing_count": 0,
+    "provision_count": 746,
+    "source_count": 746
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-09T07:01:49.528184+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vmehr69vqxXvNbmod1+mxhecv4gI0RGddlLGhuD+RTJKCuK6LybJmBOzL3T67607XNLrTBKvZT+LYk5NCas+DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-adult-services"
+}

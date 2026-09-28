@@ -1,0 +1,1381 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ma-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 479
+- source_id: us-ma-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 479
+- source_id: us-ma-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 479
+- source_id: us-ma-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 479
+- source_id: us-ma-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 5
+    index_records_on_page: 79
+    index_records_total: 479
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-25-0023-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-25-0023: Approval Document (approved July 24, 2026, effective September 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-25-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-09-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-25-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-25-0023
+    cms_node_id: '194246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=194246
+    approval_date: '2026-07-24'
+    effective_date: '2025-09-01'
+    summary: This amendment proposes to update the methods and standards used by Massachusetts for payment for the Children’s
+      Behavioral Health Initiative (CBHI) and to add descriptions related to MassHealth’s new Family-based Intensive Treatment
+      (FIT) Service.
+    topics:
+    - Coverage
+    - Eligibility
+    - Other Licensed Practitioners
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-25-0040-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-25-0040: Approval Document (approved March 13, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-25-0040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-25-0040/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-25-0040
+    cms_node_id: '190391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190391
+    approval_date: '2026-03-13'
+    effective_date: '2025-10-01'
+    summary: This amendment imposes, as a condition of Medicaid eligibility, that Medicaid applicants and beneficiaries who
+      may be eligible for Medicare must apply for Medicare as a condition of their Medicaid eligibility.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid-Medicare Issues
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-25-0003-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-25-0003: Approval Document (approved November 20, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-25-0003
+    cms_node_id: '187191'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187191
+    approval_date: '2025-11-20'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to conform with the requirements of section 5121 of the Consolidated Appropriations Act,
+      2023, including mandatory coverage of eligible juveniles who are inmates of a public institution post-adjudication of
+      charges, and screening and diagnostic services, and targeted case management services for eligible juveniles.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-24-0019-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-24-0019: Approval Document (approved December 19, 2024, effective April 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-24-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-24-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-24-0019
+    cms_node_id: '174846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=174846
+    approval_date: '2024-12-19'
+    effective_date: '2024-04-01'
+    summary: This amendment proposes to update cost sharing requirements.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-24-0001-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-24-0001: Approval Document (approved May 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-24-0001
+    cms_node_id: '165451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165451
+    approval_date: '2024-05-15'
+    effective_date: '2024-01-01'
+    summary: This amendment provides 12 months of continuous eligibility to children under age 19.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-24-0011-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-24-0011: Approval Document (approved May 3, 2024, effective March 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-24-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-24-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-24-0011
+    cms_node_id: '163836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163836
+    approval_date: '2024-05-03'
+    effective_date: '2024-03-01'
+    summary: 'This amendment proposed to eliminate the resource test for the following eligibility groups: Qualified Medicare
+      Beneficiaries; Specified Low-Income Medicare Beneficiaries; and Qualifying Individuals.'
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0064-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0064: Approval Document (approved February 29, 2024, effective January 2, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0064.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-02'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0064/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0064
+    cms_node_id: '160176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160176
+    approval_date: '2024-02-29'
+    effective_date: '2024-01-02'
+    summary: This SPA proposes to confirm compliance with Third Party Liability payment of claims requirements under federal
+      law.
+    topics:
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0031-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0031: Approval Document (approved August 3, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0031
+    cms_node_id: '151396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151396
+    approval_date: '2023-08-03'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend availability
+      of hospital presumptive eligibility (HPE) to non-MAGI individuals.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0025-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0025: Approval Document (approved June 23, 2023, effective May 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0025
+    cms_node_id: '149396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=149396
+    approval_date: '2023-06-23'
+    effective_date: '2023-05-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to suspend all pharmacy copays for eligibility groups consistent with 42 CFR 435 Subparts B, C,
+      and D. (Effective date 5/1/22 and through the duration of the federal public health emergency).
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0002-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0002: Approval Document (approved June 6, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0002
+    cms_node_id: '151201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151201
+    approval_date: '2023-06-06'
+    effective_date: '2023-01-01'
+    summary: The state proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0032-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0032: Approval Document (approved June 2, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0032
+    cms_node_id: '148646'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148646
+    approval_date: '2023-06-02'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to disregard
+      all economic impact payments or rebates authorized under section 2201 of the CARES Act, Sections 2 & 3 of The COVID-related
+      Tax Relief Act of 2020, and section 9601 of The American Rescue Plan Act of 2021.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0033-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0033: Approval Document (approved June 2, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0033
+    cms_node_id: '148651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148651
+    approval_date: '2023-06-02'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to amendment
+      to disregard certain income, that would have otherwise been counted, for the purposes of determining eligibility.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0034-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0034: Approval Document (approved June 2, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0034/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0034
+    cms_node_id: '148656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148656
+    approval_date: '2023-06-02'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to amendment
+      to disregard monies received by any member or applicant as part of a settlement agreement with residents of the Holyoke
+      Soldier's Home for the purposes of determining eligibility.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-22-0026-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-22-0026: Approval Document (approved June 1, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-22-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-22-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-22-0026
+    cms_node_id: '148546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148546
+    approval_date: '2023-06-01'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt certain income disregards for the determinations of eligibility for the Medicare Savings
+      Program (MSP) groups.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0026-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0026: Approval Document (approved May 24, 2023, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0026
+    cms_node_id: '148221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148221
+    approval_date: '2023-05-24'
+    effective_date: '2020-03-18'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to disregard income that would have otherwise been counted for purposes of determining eligibility.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-23-0001-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-23-0001: Approval Document (approved May 5, 2023, effective May 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-05-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0001
+    cms_node_id: '147621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147621
+    approval_date: '2023-05-05'
+    effective_date: '2022-05-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is an amendment to disregard monies received by any member or applicant as part of a settlement agreement
+      with residents of the Holyoke Soldier's Home for the purpose of determining eligibility.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-21-0035-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-21-0035: Approval Document (approved July 29, 2022, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-21-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-21-0035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-21-0035
+    cms_node_id: '138296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=138296
+    approval_date: '2022-07-29'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to add additional resource disregards during the COVID-19 public Health emergency.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-21-0043-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-21-0043: Approval Document (approved March 1, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-21-0043.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-21-0043/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-21-0043
+    cms_node_id: '133706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=133706
+    approval_date: '2022-03-01'
+    effective_date: '2021-10-01'
+    summary: This amendment updates the State Plan to amend Third-Party Liability Requirement under the Bipartisan Budget
+      Act (BBA) of 2018 and Medicaid Investment and Accountability Act (MSIAA) of 2019.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-21-0030-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-21-0030: Approval Document (approved December 15, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MA-21-0030
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-21-0030/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-21-0030
+    cms_node_id: '129171'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=129171
+    approval_date: '2021-12-15'
+    effective_date: '2021-07-01'
+    summary: This amendment updates the state plan to reflect that Brokered Non ­Emergency Medical Transpo1iation (NEMT) Services
+      are now provided through two Regional Transit Authorities.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-20-0019-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-20-0019: Approval Document (approved April 8, 2021, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-20-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-20-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-20-0019
+    cms_node_id: '107521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107521
+    approval_date: '2021-04-08'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to eliminate co-pays for a number of eligibility populations as well as a number of services.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-20-0027-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-20-0027: Approval Document (approved March 24, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-20-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-20-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-20-0027
+    cms_node_id: '107821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107821
+    approval_date: '2021-03-24'
+    effective_date: '2020-10-01'
+    summary: Effective October 1, 2020, this amendment authorizes updates to the reimbursement methodology for acute inpatient
+      hospital services for fiscal year (FY) 2021.
+    topics:
+    - Current State Plan
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-20-0024-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-20-0024: Approval Document (approved December 21, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MA-20-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-20-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-20-0024
+    cms_node_id: '105436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105436
+    approval_date: '2020-12-21'
+    effective_date: '2020-07-01'
+    summary: This SPA seeks to confirm that the state covers all preventive services assigned a grade of A or B by the U.S.
+      Preventive Services Task Force (USPSTF), and all approved adult vaccines and their administration recommended by the
+      Advisory Committee on Immunization Practices (ACIP), without any cost-sharing in order to demonstrate compliance with
+      Section 4106 of the Affordable Care Act.
+    topics:
+    - Affordable Care Act
+    - Cost Sharing
+    - Program Administration
+    - Vaccine - Policy Clarification
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-20-0006-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-20-0006: Approval Document (approved August 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MA-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-20-0006
+    cms_node_id: '101381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101381
+    approval_date: '2020-08-18'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment to 1) allow Hospital Presumptive Eligibility (HPE) for individuals aged 65 and over who have income
+      under 100% of the Federal Poverty Level, 2) eliminate copays for acute inpatient hospital stays for all members, and
+      3) eliminate cost sharing for all COVID-19 testing and treatment services.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-19-0033-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-19-0033: Approval Document (approved July 30, 2020, effective December 20, 2019)'
+  source_url: https://www.medicaid.gov/media/file/ma-19-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-12-20'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-19-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-19-0033
+    cms_node_id: '100851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100851
+    approval_date: '2020-07-30'
+    effective_date: '2019-12-20'
+    summary: Incorporates Targeted Case Management for members eligible for Department of Children and Families services.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-19-0026-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-19-0026: Approval Document (approved December 12, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-19-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-19-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-19-0026
+    cms_node_id: '52501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52501
+    approval_date: '2019-12-12'
+    effective_date: '2020-01-01'
+    summary: Increases the income and asset limits for the Qualified Medicare Beneficiary Program, the Specified Low-Income
+      Medicare Beneficiary program, and the Qualified Individuals program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-18-025-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-18-025: Approval Document (approved March 12, 2019, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-18-025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-18-025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-18-025
+    cms_node_id: '6966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6966
+    approval_date: '2019-03-12'
+    effective_date: '2018-10-01'
+    summary: Revise your approved Title XIX State plan to waive the Recovery Audit Contractor (RAC) program requirements.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-17-0021-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-17-0021: Approval Document (approved February 27, 2018, effective December 14, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-17-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-12-14'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-17-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-17-0021
+    cms_node_id: '11451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11451
+    approval_date: '2018-02-27'
+    effective_date: '2017-12-14'
+    summary: Removes the authority for eligibility for former foster care youth up to age 26 who aged out of foster care in
+      another state.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-13-0028-mm6-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-13-0028-MM6: Approval Document (approved August 12, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-13-0028-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-13-0028-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-13-0028-MM6
+    cms_node_id: '34186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34186
+    approval_date: '2014-08-12'
+    effective_date: '2013-12-31'
+    summary: Incorporates Citizen and Non-Citizen Eligibility Requirements
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-14-0009-mm7-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-14-0009-MM7: Approval Document (approved June 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-14-0009-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-14-0009-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-14-0009-MM7
+    cms_node_id: '35921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35921
+    approval_date: '2014-06-26'
+    effective_date: '2014-01-01'
+    summary: Describes Policies Related to Hospital Presumptive Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-13-0018-mm5-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-13-0018-MM5: Approval Document (approved May 30, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-13-0018-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-13-0018-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-13-0018-MM5
+    cms_node_id: '36366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36366
+    approval_date: '2014-05-30'
+    effective_date: '2014-01-01'
+    summary: Affirms Residency Regulations Under the Affordable Care Act.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-13-009-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-13-009: Approval Document (approved March 27, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-13-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-13-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-13-009
+    cms_node_id: '36946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36946
+    approval_date: '2014-03-27'
+    effective_date: '2013-12-31'
+    summary: Changes the definition of children, including lawfully present immigrants under the State Plan in include individuals
+      who are 19 and 20 years of age whose family income is up to 150 percent.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-13-0027-mm2-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-13-0027-MM2: Approval Document (approved March 26, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-13-0027-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-13-0027-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-13-0027-MM2
+    cms_node_id: '37771'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37771
+    approval_date: '2014-03-26'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI-based eligibility process requirements, including the single streamlined application, into
+      Massachusetts' Medicaid state plan in accordance with the Affordable Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-11-012-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-11-012: Approval Document (approved June 12, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-11-012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-11-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-11-012
+    cms_node_id: '27921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27921
+    approval_date: '2012-06-12'
+    effective_date: '2012-07-01'
+    summary: This amendment proposes to implement Section 2702 of the Affordable Care.Act of 2010 and the implementing final
+      rule at 42 CFR 447, Subpart A.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-11-006-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-11-006: Approval Document (approved February 3, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-11-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-11-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-11-006
+    cms_node_id: '31526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31526
+    approval_date: '2012-02-03'
+    effective_date: '2011-04-01'
+    summary: This amendment inserts language into the State plan concerning a nursing ho,e patient paid amount deduction for
+      non-covered, necessary remedial care expenses in the three months prior to eligibility.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-10-002-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-10-002: Approval Document (approved September 20, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-10-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-10-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-10-002
+    cms_node_id: '29311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29311
+    approval_date: '2010-09-20'
+    effective_date: '2010-04-01'
+    summary: This amendment complies with Section 1 15 of the Medicare Improvements for Patients and Providers Act of 2008,
+      which requires States to exempt Medicare cost-sharing benefits paid under the Medicare Savings Programs (MSPs) from
+      estate recovery under section 191 7(b)(l) of the Act.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-10-001-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-10-001: Approval Document (approved June 28, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-10-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-10-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-10-001
+    cms_node_id: '29316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29316
+    approval_date: '2010-06-28'
+    effective_date: '2010-01-01'
+    summary: This amendment complies with Section 1 12 of Medicare Improvements for Patients and Providers Act (the "Act"),
+      which amended section 1905(p)(l)(C) of the Act to make the resource limit for Qualified Medicare Beneficiaries (QMB),
+      Specified Low-Income Medicare Beneficiaries (SLMB) and Qualified Individuals (QIs). conform to the resource limit for
+      individuals who qualify for the full subsidy Medicare Part D low income subsidy.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ma-cms-medicaid-state-plan-spa-ma-09-009-approval-document
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts Medicaid SPA MA-09-009: Approval Document (approved December 22, 2009, effective August 29, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MA/MA-09-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-08-29'
+  citation_path: us-ma/policy/cms/medicaid-state-plan/spa/ma-09-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-09-009
+    cms_node_id: '29341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29341
+    approval_date: '2009-12-22'
+    effective_date: '2009-08-29'
+    summary: This amendment implements the new option created by section 214 of the Children's Health Insurance Program Reauthorization
+      Act of 2009 that permits States to extend federally-funded health insurance coverage to certain special status immigrant
+      pregnant women and children.
+    topics:
+    - Eligibility
+    link_label: Approval Document

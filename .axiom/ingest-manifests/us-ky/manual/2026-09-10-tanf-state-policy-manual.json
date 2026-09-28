@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "ab08dfc811f3a8f91d624551482234b56b9615fcd014e4bf4722440d6b481762"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "50fd5fa384b5768387b2822b1d1b0735cdf07f172585abded93af9d67f81ddcf"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "7899224a60bfabbf73e2d1359d0848bedf7d08f1ce87e2cbaafd2e2589b130fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-ky-dcbs-dfs-om-vol-iii.pdf",
+      "sha256": "9e14d84e67342ef14986eb79777545a5f97e88b1c06ac316848526b27c155950"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-ky-dcbs-dfs-om-vol-iiia.pdf",
+      "sha256": "4dd40be2f34630615a5a62c8505dec8ce9fb2fb5d22688169305bbae7c65e1b4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 337,
+    "missing_count": 0,
+    "provision_count": 337,
+    "source_count": 337
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:51:41.640033+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0N2hfSyhE0L7a5qOGRcAEjfNLB+6IVfd03W6zqrYhnTVXKxneOmtkh3/2TA+7cFsFLGLA2J7z3FkiyQoCmpMDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

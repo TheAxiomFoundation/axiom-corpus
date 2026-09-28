@@ -1,0 +1,718 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-la-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 27
+    index_records_total: 27
+- source_id: us-la-cms-chip-state-plan-spa-la-25-0015-and-la-25-0015-a-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-25-0015-and-LA-25-0015-A: Approval Package (approved April 20, 2026, effective June 3, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-25-0015-and-LA-25-0015-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-06-03'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-25-0015-and-la-25-0015-a/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0015-and-LA-25-0015-A
+    cms_node_id: '191986'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=191986
+    approval_date: '2026-04-20'
+    effective_date: '2025-06-03'
+    summary: Through this SPA, the state removes its waiting period policy, as required by CMS regulations at 42 CFR § 457.805(b),
+      and updates its existing substitution monitoring strategies.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-25-0005-a-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-25-0005-A: Approval Package (approved February 6, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-25-0005-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-25-0005-a/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0005-A
+    cms_node_id: '188811'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=188811
+    approval_date: '2026-02-06'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, Louisiana demonstrates compliance with section 5121 of the Consolidated Appropriations Act,
+      2023 (CAA, 2023) by modifying CHIP eligibility requirements for the treatment of incarcerated youth and providing pre-release
+      services to eligible juveniles.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-25-0022-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-25-0022: Approval Package (approved January 20, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-25-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-25-0022/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0022
+    cms_node_id: '188826'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=188826
+    approval_date: '2026-01-20'
+    effective_date: '2025-10-01'
+    summary: Through this SPA, the state amends the provisions governing the Federally Facilitated Marketplace (FFM) eligibility
+      determinations. Louisiana will transition from a FFM Determination state where the state delegated authority to the
+      FFM to make final eligibility decisions, to an FFM Assessment state where the FFM will make a preliminary assessment
+      of eligibility and the State will make the final decision.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-25-0003-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-25-0003: Approval Package (approved June 2, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-25-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0003
+    cms_node_id: '180576'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=180576
+    approval_date: '2025-06-02'
+    effective_date: '2025-01-01'
+    summary: Through these SPAs, the state removes the state’s premium lock out period and makes corresponding technical edits
+      to its CHIP state plan to demonstrate that the state no longer disenrolls children from coverage due to non-payment
+      of premiums during the continuous eligibility period and no longer implements a premium lock out period.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-23-0042-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-23-0042: Approval Package (approved January 10, 2023, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-23-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-23-0042/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-23-0042
+    cms_node_id: '158076'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=158076
+    approval_date: '2023-01-10'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-22-0001-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-22-0001: Approval Package (approved April 7, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-22-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-22-0001
+    cms_node_id: '135006'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135006
+    approval_date: '2022-04-07'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-22-0010-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-22-0010: Approval Package (approved April 1, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-22-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-22-0010
+    cms_node_id: '134431'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=134431
+    approval_date: '2022-04-01'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Louisiana with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its separate CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-21-0026-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-21-0026: Approval Package (approved November 9, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-21-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-21-0026/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-21-0026
+    cms_node_id: '128631'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=128631
+    approval_date: '2021-11-09'
+    effective_date: '2021-07-01'
+    summary: This amendment implements a health services initiative (HSI) to provide support to the Louisiana Poison Center.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-21-0017-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-21-0017: Approval Package (approved September 8, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-21-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-21-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-21-0017
+    cms_node_id: '125856'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=125856
+    approval_date: '2021-09-08'
+    effective_date: '2021-04-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-20-0008-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-20-0008: Approval Package (approved December 17, 2020, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-20-0008/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-20-0008
+    cms_node_id: '104806'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=104806
+    approval_date: '2020-12-17'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-19-0022-factsheet
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-19-0022: Factsheet (approved August 15, 2019, effective July 10, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-19-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-10'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-19-0022/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: LA-19-0022
+    cms_node_id: '92316'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92316
+    approval_date: '2019-08-15'
+    effective_date: '2019-07-10'
+    summary: temporary adjustments to enrollment and redetermination policies, prior authorization requirements, and cost-sharing
+      requirements for children in families living or working in a Federal Emergency Management Agency (FEMA)
+    topics:
+    - Eligibility
+    link_label: Factsheet
+- source_id: us-la-cms-chip-state-plan-spa-la-19-0010-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-19-0010: Approval Package (approved April 4, 2019, effective February 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-02-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-19-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-19-0010
+    cms_node_id: '3981'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3981
+    approval_date: '2019-04-04'
+    effective_date: '2019-02-01'
+    summary: Expand coverage to otherwise eligible lawfully residing, non-citizen targeted low income children under section
+      214 of CHIPRA.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-19-0013-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-19-0013: Approval Package (approved February 28, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-19-0013/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-19-0013
+    cms_node_id: '3986'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3986
+    approval_date: '2019-02-28'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations at 42 CFR 457, Subpart L for use of a managed
+      care delivery system.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-18-0008-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-18-0008: Approval Package (approved November 8, 2018, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-18-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-18-0008/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-18-0008
+    cms_node_id: '4011'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4011
+    approval_date: '2018-11-08'
+    effective_date: '2017-10-02'
+    summary: Implements mental health parity requirements to ensure that treatment limitations and financial requirements
+      applied to mental health and substance use disorder benefits are no more restrictive than those applied to medical/surgical
+      benefits.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-16-0002-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-16-0002: Approval Package (approved July 7, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-16-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-16-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-16-0002
+    cms_node_id: '3541'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3541
+    approval_date: '2016-07-07'
+    effective_date: '2016-07-01'
+    summary: The SPA amends the provisions governing the Federally Facilitated Marketplace (FFM) eligibility determinations.
+      Through this SPA, Louisiana will accept CHIP eligibility determinations made by the FFM.
+    topics:
+    - Eligibility
+    - Prescription Drugs
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-15-0001-a-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-15-0001-A: Approval Package (approved November 6, 2015, effective November 1, 2015)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-15-0001-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-11-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-15-0001-a/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-15-0001-A
+    cms_node_id: '3536'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3536
+    approval_date: '2015-11-06'
+    effective_date: '2015-11-01'
+    summary: To amend the provisions governing Federally Facilitated Marketplace (FFM) eligibility determinations. Through
+      this SPA, Louisiana will only accept assessments of CHIP eligibility from the FFM rather than accept CHIP eligibility
+      determinations made by the FFM.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-14-0002-mc1-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-14-0002-MC1: Approval Package (approved April 8, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-14-0002-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-14-0002-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-0002-MC1
+    cms_node_id: '3096'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3096
+    approval_date: '2014-04-08'
+    effective_date: '2014-01-01'
+    summary: Provides assurance that the state will apply methodologies based on MAGI for all separate CHIP covered groups,
+      using the approved MAGI conversion plan income thresholds.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-14-0003-mc2-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-14-0003-MC2: Approval Package (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-14-0003-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-14-0003-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-0003-MC2
+    cms_node_id: '3101'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3101
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to MAGI\u00AD equivalent standards, by age group,
+      for children covered in its title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-14-0004-mc3-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-14-0004-MC3: Approval Package (approved March 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-14-0004-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-14-0004-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-0004-MC3
+    cms_node_id: '3106'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3106
+    approval_date: '2014-03-11'
+    effective_date: '2014-01-01'
+    summary: 'To provide coverage in its separate CHIP, for children subject to Section 2101(f) of the Affordable Care Act,
+      as specified in the state''s submission of CS14: Children Ineligible for Medicaid as a Result of the Elimination of
+      Income Disregards.'
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-spa-la-cspa-8-approval-package
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP SPA LA-CSPA-8: Approval Package (approved December 20, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LA-CSPA-08-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-la/policy/cms/chip-state-plan/spa/la-cspa-8/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-CSPA-8
+    cms_node_id: '1596'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1596
+    approval_date: '2011-12-20'
+    effective_date: '2011-07-01'
+    summary: CHIPRA Section 501 - Oral Health.
+    topics:
+    - Dental
+    link_label: Approval Package
+- source_id: us-la-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/LA/LACurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-la/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: LA
+    cms_node_id: '2101'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2101
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by and Factsheet as of 07-10-2009.
+    topics:
+    - State Plan Factsheet
+    link_label: Factsheet

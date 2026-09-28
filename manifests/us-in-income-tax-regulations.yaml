@@ -1,0 +1,33 @@
+version: '2026-09-14'
+documents:
+- source_id: in-iar-45-iac-3-1-adjusted-gross-income-tax
+  jurisdiction: us-in
+  document_class: regulation
+  citation_path: us-in/regulation/iac/45/3.1
+  title: '45 IAC Article 3.1: Adjusted Gross Income Tax (Department of State Revenue)'
+  source_url: https://iar.iga.in.gov/code/2026/45/3.1
+  source_format: json
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://drxya2s1hkmtl.cloudfront.net/api/adminCodeArticle?doc_stage=public&edition_year=2026&title_num=45&article_num=3.1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    json_html_field: iar_iac_article_doc.doc_html
+    html_drop_selectors:
+    - ol.toc
+    html_text_selector: h1, h2, h3, div.subsection, div.emphasize, p, li, table
+    segmentation: labeled_sections
+    section_heading_pattern: ^45 IAC 3\.1-(?P<label>\d+-\d+(?:\.\d+)?)\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of State Revenue
+    official_publisher: Indiana General Assembly, Indiana Administrative Rules and Policies (iar.iga.in.gov)
+    document_subtype: administrative_code_article
+    program: individual_income_tax
+    source_discovery_group: us-in/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://iar.iga.in.gov/code/2026/45
+    access_note: iar.iga.in.gov is a JavaScript application; its article text is served by the General Assembly's
+      own API distribution (drxya2s1hkmtl.cloudfront.net/api, referenced from the site's bundle), which answers
+      the plain client with a CloudFront 403 and the browser-impersonation fetch with the article JSON.

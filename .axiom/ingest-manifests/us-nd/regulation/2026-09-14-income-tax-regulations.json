@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "1a84a8a66eb600583d0b40f054250421fe98ea23bd1061a3a66b96db4790ac6d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "d42f01907ce2242e0c388fbdc01fa9ccbb05304371c0dfae112a78aa531c144a"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "f68a884850588d42aaa2d95efde9988afa15b37ec3582357c85a5b6c4de2c8a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-01.1.pdf",
+      "sha256": "11533efce6c8cf55397bd12d15d5f6511cb6276d80f264c2f94ba3a48b09a389"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-02.1.pdf",
+      "sha256": "fd3000cc3401e764e78d8c05d1c694b3f49cea2db0da024d973b2d0dec07e2db"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-02.2.pdf",
+      "sha256": "9e3262e78a425b4bf24774c02e27168de43ea9533f0d19a807cb702ccd5315d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-03.1.pdf",
+      "sha256": "7d93f7c6b4b91cccdc6ce04c55e6ac9d58d5ab392c735e2b7f5849ed60abbea3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-03.2.pdf",
+      "sha256": "0935bfa59ce477b77fc12c71be90980748de78f66f843fcc6077ccd3550ce69b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-04.pdf",
+      "sha256": "f7f39292accb8c5256382fd81a48310199bc9d61a8285b663335dc25adf90bc3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-09-14-income-tax-regulations/official-documents/nd-legis-ndac-81-03-10.pdf",
+      "sha256": "fb3b9835d3f676ef89e085a033f761325d2de514cae6feda82d9255706be59c2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 50,
+    "missing_count": 0,
+    "provision_count": 50,
+    "source_count": 50
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T17:17:05.929831+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eANvCZnXDMBxqM2CAsYSYsNoMAOlDRc5SI9FvwMBq5cN5LkPpEN0FSBpxCfO5K2wbVlakWoWjcZdTIYytGn4Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "978ace2d5ac5bb632b2a28380c36b8b5ea27e0296bac472f675239beeea9ae2e"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "6c8b884d65d8bc5b1c7a58de95b9d24fcbccb02168d9395f957270638edbf356"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "09e4178adbc6c8051801123459f7c0701f858b88259601ac5c3ef04376d9460d"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/regulation/2026-09-14-income-tax-regulations/official-documents/wv-sos-csr-110-21.pdf",
+      "sha256": "677c31f3e7cdd5e8cc5c2d02ac541cc54b291f5df7f932abf974814c61d087fa"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/regulation/2026-09-14-income-tax-regulations/official-documents/wv-sos-csr-110-21a.pdf",
+      "sha256": "4b5d664970edfde8164303c0fe1e896c7cdb2117fc5b2c34b8d97221777db261"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/regulation/2026-09-14-income-tax-regulations/official-documents/wv-sos-csr-110-21b.pdf",
+      "sha256": "f9a9313a710fcec7d2ebf6802d8d7aca3847b5021c7e254e9278d6eddc6be55d"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/regulation/2026-09-14-income-tax-regulations/official-documents/wv-sos-csr-110-21c.pdf",
+      "sha256": "e6a28d14f3f2c669bb52669dba435de704d1c668efc205efda80a638e3f48039"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/regulation/2026-09-14-income-tax-regulations/official-documents/wv-sos-csr-110-21g.pdf",
+      "sha256": "683e639f5b8bcf4920a047ef0e862030f2fadf9720b95f6a0cd8c8bf22bf6d37"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/regulation/2026-09-14-income-tax-regulations/official-documents/wv-sos-csr-110-21h.pdf",
+      "sha256": "0bd8f3ee6520bfd9b6bf91ad2c47bf7878532bca29eea0c67a5eea722561887c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 55,
+    "missing_count": 0,
+    "provision_count": 55,
+    "source_count": 55
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T18:36:26.274188+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zq6MAiGwdgSnazxdz376wyKyKHNYnw3e0Z/sl5J1BZILk0vw2bRJZPN8ydbN5LrjVMs4YFmvd4348KO8n+KnAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

@@ -1,0 +1,366 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ca-cdss-mpp-eas-1
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 1: Div 40, Chap 40-000 - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/1EAS.docx?ver=g8dJ8ivcaxh-XYpgsTaGnQ%3d%3d
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-30'
+  citation_path: us-ca/regulation/mpp/eas/1
+  request:
+    browser_impersonation: true
+  extraction: &id001
+    segmentation: styled_labeled_sections
+    section_heading_pattern: ^(?P<label>\d\d-\d\d\d)\s+(?P<heading>\S.*?)(?:\s+\d\d-\d\d\d)?$
+    heading_paragraphs_only: false
+    heading_text_pattern: ^[A-Z0-9][A-Z0-9 ,/&()'.;:-]*$
+    drop_line_patterns:
+    - ^\d\d-\d\d\d\s+\(Cont\.\)\s.*$
+    - ^\d\d-\d\d\d\s+.*\s+Regulations$
+    - ^\d\d-\d\d\d\s+.*\((?:Continued|Cont\.)\)$
+    - ^Regulations\s+.*\s+\d\d-\d\d\d(?:\s+\(Cont\.\))?$
+    - ^CALIFORNIA-DSS-MANUAL-EAS$
+    - ^MANUAL LETTER NO\. .*$
+    - ^Page \d+$
+    - ^This page is intentionally left blank\.$
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 1
+    source_last_modified: '2026-06-30'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-2
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 2: Div 40, Chap 40-100 - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/2EAS.docx?ver=2025-01-07-154017-420
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-30'
+  citation_path: us-ca/regulation/mpp/eas/2
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 2
+    source_last_modified: '2026-06-30'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-3
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 3: Div 40, Chap 40-100 (Cont) - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/3EAS.docx?ver=2024-08-26-085023-243
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-30'
+  citation_path: us-ca/regulation/mpp/eas/3
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 3
+    source_last_modified: '2026-06-30'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-4
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 4: Div 40 (Cont) thru Div 42, Chap
+    42-200 - Eligibility and Assistance Standards'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/4EAS.docx?ver=2024-08-26-085023-243
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2024-08-26'
+  citation_path: us-ca/regulation/mpp/eas/4
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 4
+    source_last_modified: '2024-08-26'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-5
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 5: Div 42, Chap 42-200 (Cont) thru
+    42-600 - Eligibility and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/5EAS.docx?ver=2024-10-31-081646-693
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-31'
+  citation_path: us-ca/regulation/mpp/eas/5
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 5
+    source_last_modified: '2024-10-31'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-6
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 6: Div 42, Chap 42-700 - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/6EAS.docx?ver=VUwsgWu50p5DpXxuSi6TGQ%3d%3d
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-28'
+  citation_path: us-ca/regulation/mpp/eas/6
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 6
+    source_last_modified: '2025-04-28'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-7
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 7: Div 42, Chap 42-700 (Cont) - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/7EAS.docx?ver=_sLQ4yofwxaWH-RYiWZbeQ%3d%3d
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-28'
+  citation_path: us-ca/regulation/mpp/eas/7
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 7
+    source_last_modified: '2025-04-28'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-8
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 8: Div 42, Chap 42-700 (Cont) - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/8EAS.docx?ver=2024-09-17-121015-493
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2024-09-17'
+  citation_path: us-ca/regulation/mpp/eas/8
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 8
+    source_last_modified: '2024-09-17'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-9
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 9: Div 42 and 43, Chap 42-800 thru
+    43-100 - Eligibility and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/9EAS.docx?ver=DEqPtSIcSXFab9lRQo8syQ%3d%3d
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-28'
+  citation_path: us-ca/regulation/mpp/eas/9
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 9
+    source_last_modified: '2025-04-28'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-10
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 10: Div 43 and 44, Chap 43-200 thru
+    44-100 - Eligibility and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/10EAS.docx?ver=2024-10-31-081646-787
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-31'
+  citation_path: us-ca/regulation/mpp/eas/10
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 10
+    source_last_modified: '2024-10-31'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-11
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 11: Div 44, Chap 44-200 - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/11EAS.docx?ver=7-eOd2Lvv8Xdhav6S4UbOg%3d%3d
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-29'
+  citation_path: us-ca/regulation/mpp/eas/11
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 11
+    source_last_modified: '2026-06-29'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-12
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 12: Div 44, Chap 44-300 - Eligibility
+    and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/12EAS.docx?ver=2024-10-31-081646-803
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-31'
+  citation_path: us-ca/regulation/mpp/eas/12
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 12
+    source_last_modified: '2024-10-31'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped
+- source_id: us-ca-cdss-mpp-eas-13
+  jurisdiction: us-ca
+  document_class: regulation
+  title: 'CDSS Manual of Policies and Procedures, Eligibility and Assistance Standards 13: Div 44, Chap 44-300 (cont.) thru
+    44-500 – Eligibility and Assistance Standards Manual'
+  source_url: https://www.cdss.ca.gov/Portals/9/Regs/Man/EAS/12EASa.docx?ver=2024-10-31-081646-803
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-30'
+  citation_path: us-ca/regulation/mpp/eas/13
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: adopted_regulation_manual_docx
+    program: TANF
+    state_program: CalWORKs
+    federal_program: TANF
+    manual_landing_page: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    source_discovery_group: us-ca/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
+    manual: MPP Eligibility and Assistance Standards (Divisions 40-44 taken)
+    index_ordinal: 13
+    source_last_modified: '2026-06-30'
+    extraction_note: styled_labeled_sections merges page-break heading restatements; running heads dropped

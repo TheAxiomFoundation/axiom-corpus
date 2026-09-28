@@ -1,0 +1,548 @@
+{
+ "elements": 206,
+ "federal_elements": 164,
+ "state_elements": 42,
+ "cells": 2306,
+ "by_status": {
+  "PRESENT": 892,
+  "EXTRACTABLE": 706,
+  "ABSENT": 1,
+  "N/A": 677,
+  "REVIEW": 30
+ },
+ "by_status_federal": {
+  "PRESENT": 98,
+  "EXTRACTABLE": 65,
+  "ABSENT": 1
+ },
+ "by_status_state": {
+  "PRESENT": 794,
+  "N/A": 677,
+  "EXTRACTABLE": 641,
+  "REVIEW": 30
+ },
+ "per_jurisdiction": {
+  "us": {
+   "PRESENT": 98,
+   "EXTRACTABLE": 65,
+   "ABSENT": 1
+  },
+  "us-ak": {
+   "PRESENT": 1,
+   "N/A": 41
+  },
+  "us-al": {
+   "PRESENT": 12,
+   "EXTRACTABLE": 17,
+   "N/A": 12,
+   "REVIEW": 1
+  },
+  "us-ar": {
+   "PRESENT": 6,
+   "EXTRACTABLE": 26,
+   "N/A": 9,
+   "REVIEW": 1
+  },
+  "us-az": {
+   "PRESENT": 14,
+   "EXTRACTABLE": 21,
+   "N/A": 7
+  },
+  "us-ca": {
+   "PRESENT": 16,
+   "EXTRACTABLE": 23,
+   "N/A": 3
+  },
+  "us-co": {
+   "PRESENT": 28,
+   "N/A": 7,
+   "EXTRACTABLE": 6,
+   "REVIEW": 1
+  },
+  "us-ct": {
+   "PRESENT": 19,
+   "N/A": 10,
+   "EXTRACTABLE": 12,
+   "REVIEW": 1
+  },
+  "us-dc": {
+   "PRESENT": 29,
+   "N/A": 7,
+   "EXTRACTABLE": 5,
+   "REVIEW": 1
+  },
+  "us-de": {
+   "PRESENT": 8,
+   "EXTRACTABLE": 25,
+   "N/A": 8,
+   "REVIEW": 1
+  },
+  "us-fl": {
+   "PRESENT": 1,
+   "N/A": 41
+  },
+  "us-ga": {
+   "PRESENT": 27,
+   "N/A": 8,
+   "EXTRACTABLE": 6,
+   "REVIEW": 1
+  },
+  "us-hi": {
+   "PRESENT": 26,
+   "N/A": 6,
+   "EXTRACTABLE": 9,
+   "REVIEW": 1
+  },
+  "us-ia": {
+   "PRESENT": 30,
+   "EXTRACTABLE": 7,
+   "N/A": 4,
+   "REVIEW": 1
+  },
+  "us-id": {
+   "PRESENT": 12,
+   "EXTRACTABLE": 21,
+   "N/A": 8,
+   "REVIEW": 1
+  },
+  "us-il": {
+   "PRESENT": 20,
+   "EXTRACTABLE": 14,
+   "N/A": 8
+  },
+  "us-in": {
+   "PRESENT": 28,
+   "N/A": 10,
+   "EXTRACTABLE": 4
+  },
+  "us-ks": {
+   "PRESENT": 23,
+   "N/A": 7,
+   "EXTRACTABLE": 12
+  },
+  "us-ky": {
+   "PRESENT": 9,
+   "EXTRACTABLE": 23,
+   "N/A": 10
+  },
+  "us-la": {
+   "PRESENT": 22,
+   "N/A": 11,
+   "EXTRACTABLE": 9
+  },
+  "us-ma": {
+   "PRESENT": 19,
+   "EXTRACTABLE": 17,
+   "N/A": 6
+  },
+  "us-md": {
+   "PRESENT": 6,
+   "EXTRACTABLE": 31,
+   "N/A": 4,
+   "REVIEW": 1
+  },
+  "us-me": {
+   "PRESENT": 3,
+   "EXTRACTABLE": 35,
+   "N/A": 4
+  },
+  "us-mi": {
+   "PRESENT": 15,
+   "N/A": 10,
+   "EXTRACTABLE": 17
+  },
+  "us-mn": {
+   "PRESENT": 17,
+   "EXTRACTABLE": 20,
+   "N/A": 4,
+   "REVIEW": 1
+  },
+  "us-mo": {
+   "PRESENT": 23,
+   "N/A": 7,
+   "EXTRACTABLE": 11,
+   "REVIEW": 1
+  },
+  "us-ms": {
+   "PRESENT": 6,
+   "EXTRACTABLE": 22,
+   "N/A": 13,
+   "REVIEW": 1
+  },
+  "us-mt": {
+   "PRESENT": 24,
+   "EXTRACTABLE": 11,
+   "N/A": 6,
+   "REVIEW": 1
+  },
+  "us-nc": {
+   "PRESENT": 15,
+   "N/A": 10,
+   "EXTRACTABLE": 16,
+   "REVIEW": 1
+  },
+  "us-nd": {
+   "PRESENT": 18,
+   "EXTRACTABLE": 9,
+   "N/A": 14,
+   "REVIEW": 1
+  },
+  "us-ne": {
+   "PRESENT": 14,
+   "EXTRACTABLE": 21,
+   "N/A": 7
+  },
+  "us-nh": {
+   "PRESENT": 2,
+   "N/A": 40
+  },
+  "us-nj": {
+   "PRESENT": 24,
+   "EXTRACTABLE": 11,
+   "N/A": 6,
+   "REVIEW": 1
+  },
+  "us-nm": {
+   "PRESENT": 29,
+   "EXTRACTABLE": 9,
+   "N/A": 3,
+   "REVIEW": 1
+  },
+  "us-nv": {
+   "PRESENT": 1,
+   "N/A": 41
+  },
+  "us-ny": {
+   "PRESENT": 26,
+   "EXTRACTABLE": 13,
+   "N/A": 2,
+   "REVIEW": 1
+  },
+  "us-oh": {
+   "PRESENT": 8,
+   "EXTRACTABLE": 26,
+   "N/A": 7,
+   "REVIEW": 1
+  },
+  "us-ok": {
+   "PRESENT": 29,
+   "N/A": 4,
+   "EXTRACTABLE": 8,
+   "REVIEW": 1
+  },
+  "us-or": {
+   "PRESENT": 27,
+   "EXTRACTABLE": 11,
+   "N/A": 4
+  },
+  "us-pa": {
+   "PRESENT": 13,
+   "EXTRACTABLE": 17,
+   "N/A": 11,
+   "REVIEW": 1
+  },
+  "us-ri": {
+   "PRESENT": 24,
+   "N/A": 7,
+   "EXTRACTABLE": 10,
+   "REVIEW": 1
+  },
+  "us-sc": {
+   "PRESENT": 19,
+   "EXTRACTABLE": 12,
+   "N/A": 10,
+   "REVIEW": 1
+  },
+  "us-sd": {
+   "PRESENT": 1,
+   "N/A": 41
+  },
+  "us-tn": {
+   "PRESENT": 2,
+   "N/A": 40
+  },
+  "us-tx": {
+   "EXTRACTABLE": 1,
+   "N/A": 41
+  },
+  "us-ut": {
+   "PRESENT": 8,
+   "EXTRACTABLE": 21,
+   "N/A": 12,
+   "REVIEW": 1
+  },
+  "us-va": {
+   "PRESENT": 10,
+   "EXTRACTABLE": 23,
+   "N/A": 8,
+   "REVIEW": 1
+  },
+  "us-vt": {
+   "PRESENT": 30,
+   "EXTRACTABLE": 7,
+   "N/A": 4,
+   "REVIEW": 1
+  },
+  "us-wa": {
+   "PRESENT": 3,
+   "N/A": 37,
+   "EXTRACTABLE": 2
+  },
+  "us-wi": {
+   "PRESENT": 27,
+   "EXTRACTABLE": 9,
+   "N/A": 5,
+   "REVIEW": 1
+  },
+  "us-wv": {
+   "PRESENT": 20,
+   "N/A": 11,
+   "EXTRACTABLE": 10,
+   "REVIEW": 1
+  },
+  "us-wy": {
+   "EXTRACTABLE": 1,
+   "N/A": 41
+  }
+ },
+ "gap_by_element": {
+  "R01": {
+   "EXTRACTABLE": 42
+  },
+  "F06": {
+   "REVIEW": 30
+  },
+  "S12": {
+   "EXTRACTABLE": 28
+  },
+  "F01": {
+   "EXTRACTABLE": 28
+  },
+  "F04": {
+   "EXTRACTABLE": 26
+  },
+  "S13": {
+   "EXTRACTABLE": 25
+  },
+  "S14": {
+   "EXTRACTABLE": 25
+  },
+  "S17": {
+   "EXTRACTABLE": 25
+  },
+  "F02": {
+   "EXTRACTABLE": 24
+  },
+  "F03": {
+   "EXTRACTABLE": 24
+  },
+  "F05": {
+   "EXTRACTABLE": 23
+  },
+  "S27": {
+   "EXTRACTABLE": 21
+  },
+  "S32": {
+   "EXTRACTABLE": 21
+  },
+  "S33": {
+   "EXTRACTABLE": 21
+  },
+  "S26": {
+   "EXTRACTABLE": 20
+  },
+  "S31": {
+   "EXTRACTABLE": 19
+  },
+  "S23": {
+   "EXTRACTABLE": 19
+  },
+  "S15": {
+   "EXTRACTABLE": 17
+  },
+  "S34": {
+   "EXTRACTABLE": 17
+  },
+  "S16": {
+   "EXTRACTABLE": 17
+  },
+  "S11": {
+   "EXTRACTABLE": 16
+  },
+  "S10": {
+   "EXTRACTABLE": 16
+  },
+  "S24": {
+   "EXTRACTABLE": 15
+  },
+  "S22": {
+   "EXTRACTABLE": 15
+  },
+  "S21": {
+   "EXTRACTABLE": 14
+  },
+  "S35": {
+   "EXTRACTABLE": 13
+  },
+  "S02": {
+   "EXTRACTABLE": 12
+  },
+  "S07": {
+   "EXTRACTABLE": 11
+  },
+  "S09": {
+   "EXTRACTABLE": 11
+  },
+  "S30": {
+   "EXTRACTABLE": 11
+  },
+  "S03": {
+   "EXTRACTABLE": 10
+  },
+  "S08": {
+   "EXTRACTABLE": 9
+  },
+  "S05": {
+   "EXTRACTABLE": 8
+  },
+  "S25": {
+   "EXTRACTABLE": 8
+  },
+  "S19": {
+   "EXTRACTABLE": 8
+  },
+  "S20": {
+   "EXTRACTABLE": 7
+  },
+  "S04": {
+   "EXTRACTABLE": 5
+  },
+  "S18": {
+   "EXTRACTABLE": 5
+  },
+  "S28": {
+   "EXTRACTABLE": 2
+  },
+  "S01": {
+   "EXTRACTABLE": 2
+  },
+  "S06": {
+   "EXTRACTABLE": 1
+  }
+ },
+ "gap_by_family": {
+  "state statute": {
+   "EXTRACTABLE": 474
+  },
+  "state form instructions and rate schedules": {
+   "EXTRACTABLE": 125
+  },
+  "state regulation": {
+   "EXTRACTABLE": 42
+  },
+  "federal statute": {
+   "EXTRACTABLE": 31
+  },
+  "state department bulletins": {
+   "REVIEW": 30
+  },
+  "IRS forms and instructions": {
+   "EXTRACTABLE": 16
+  },
+  "IRS regulation": {
+   "EXTRACTABLE": 16
+  },
+  "revenue procedure": {
+   "EXTRACTABLE": 2,
+   "ABSENT": 1
+  }
+ },
+ "pe_not_modeled": [
+  "F003 1(g): kiddie tax (net unearned income of a child taxed at parents' rate)",
+  "F007 3: tax table for individuals (statute) and the TY2025 tax table as printed",
+  "F012 23: adoption expense credit (dollar limit, phase-out, OBBBA refundable portion)",
+  "F024 25: mortgage credit certificate credit",
+  "F025 26: nonrefundable personal credit limitation and ordering",
+  "F026 27/901/904: foreign tax credit and limitation",
+  "F035 31: credit for tax withheld on wages",
+  "F036 35: health coverage tax credit (expired)",
+  "F037 53: credit for prior-year minimum tax",
+  "F053 72: annuities and 72(t) 10% early distribution penalty",
+  "F056 101: life insurance death benefits excluded",
+  "F057 102: gifts and inheritances excluded",
+  "F059 104/105/106: injury compensation, accident and health plan exclusions",
+  "F060 108: discharge of indebtedness exclusions",
+  "F061 112: combat zone compensation exclusion",
+  "F062 117: qualified scholarships exclusion",
+  "F063 121: exclusion of gain on sale of principal residence ($250,000/$500,000)",
+  "F064 125: cafeteria plans",
+  "F066 132: fringe benefits exclusion",
+  "F067 135: US savings bond interest used for education",
+  "F068 137: adoption assistance exclusion",
+  "F069 139: disaster relief payments excluded",
+  "F078 172: net operating loss deduction (80% limit, carryforward)",
+  "F081 212: expenses for production of income",
+  "F083 217: moving expenses (Armed Forces only)",
+  "F087 223: HSA contribution limits and eligibility",
+  "F088 2026 HSA inflation-adjusted amounts (Rev. Proc. 2025-19)",
+  "F089 2027 HSA inflation-adjusted amounts (Rev. Proc. 2026-24)",
+  "F093 408: traditional IRA rules; 408A Roth IRA contribution limits and MAGI phase-out",
+  "F094 415: qualified plan contribution and benefit limits (indexed)",
+  "F095 461(l): excess business loss limitation (indexed thresholds)",
+  "F096 469: passive activity loss rules ($25,000 rental allowance)",
+  "F097 529/529A/530: qualified tuition programs, ABLE, Coverdell",
+  "F098 1001/1011-1016: amount realized and basis rules",
+  "F101 1250/1(h)(6): unrecaptured section 1250 gain",
+  "F102 66: community income treatment",
+  "F107 3401/3402: wages for withholding, withholding at source, W-4",
+  "F109 3405/3406: pension withholding and backup withholding",
+  "F111 6013: joint returns (election, MFS switch, deceased spouse)",
+  "F112 6401: refundable credits treated as overpayments",
+  "F113 6654: estimated tax underpayment penalty and safe harbors (90%/100%/110%)",
+  "F114 6072/6081: return due date and extensions",
+  "F115 7703: marital status determination; 7701(b) resident alien; 7701(a)(17) husband and wife",
+  "F133 Rev. Proc. 2024-40: tax year 2025 inflation adjustments (pre-OBBBA base amounts still governing non-amended items)",
+  "F136 Notice 2026-10: 2026 standard mileage rates",
+  "F137 Revenue procedure setting tax year 2027 items (not issued as of 2026-09-10)"
+ ],
+ "seconds": 33,
+ "rows_loaded": 52015,
+ "pe_state_not_modeled_cells": 562,
+ "pe_state_not_modeled_by_element": {
+  "S01": 9,
+  "S02": 42,
+  "S03": 42,
+  "S13": 25,
+  "S17": 36,
+  "S24": 42,
+  "S30": 42,
+  "S31": 42,
+  "S32": 42,
+  "S33": 40,
+  "S34": 42,
+  "S35": 7,
+  "S15": 22,
+  "S16": 22,
+  "F05": 7,
+  "S29": 3,
+  "S05": 20,
+  "S09": 2,
+  "S12": 9,
+  "S18": 11,
+  "S26": 18,
+  "S28": 1,
+  "F04": 3,
+  "S10": 6,
+  "S11": 6,
+  "S04": 1,
+  "S06": 1,
+  "F03": 1,
+  "F06": 1,
+  "S19": 3,
+  "S20": 2,
+  "S23": 7,
+  "S21": 2,
+  "S22": 2,
+  "S14": 1
+ }
+}

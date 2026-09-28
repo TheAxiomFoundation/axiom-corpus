@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0c101b">
+    <meta name="apple-mobile-web-app-title" content="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta property="og:title" content="ARLIS" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content=""/>
+    <meta name="twitter:image" content="https://arlis.am/static/img/share_logo.png"/>
+    <meta property="og:image" content="https://arlis.am/static/img/share_logo.png"/>
+    <meta name="twitter:title" content="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ" />
+    <meta name="description" content="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ" />
+    <meta name="og:description" content="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ" />
+    <meta name="twitter:description" content="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ" />
+    <meta name="author" content=""/>
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:site" content="" />
+    <meta name="theme-color" content="#0c101b"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ"/>
+    <base href="" />
+    <link rel="canonical" href="" />
+    <link rel="apple-touch-icon" href="">
+    <link rel="shortcut icon" href="/static/img/fav/favicon-32x32.png"/>
+    <link rel="icon" sizes="512x512" href="/static/img/fav/favicon-32x32.png"/>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+
+    <!------------- VX Components Styles  -------------->
+    <link rel="stylesheet" href="/static/theme/vx-button/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-input/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-radio/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-checkbox/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-select/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-tag-input/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-textarea/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-date-select/styles.css">
+    <link rel="stylesheet" href="/static/theme/vx-datepicker/styles.css">
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SJP456ZP4"></script>
+    <script defer src="/static/js/functions.js"></script>
+    <script defer src="/static/js/main.js"></script>
+    <script defer src="/static/js/events.js"></script>
+    <script defer src="/static/js/search.js"></script>
+    <script defer src="/static/js/sharer.min.js"></script>
+    <!--script defer type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script-->
+
+    <!------------- VX Components Tamplates  -------------->
+    <script defer src="/static/theme/vx-button/Template.js"></script>
+    <script defer src="/static/theme/vx-input/Template.js"></script>
+    <script defer src="/static/theme/vx-radio/Template.js"></script>
+    <script defer src="/static/theme/vx-checkbox/Template.js"></script>
+    <script defer src="/static/theme/vx-select/Template.js"></script>
+    <script defer src="/static/theme/vx-tag-input/Template.js"></script>
+    <script defer src="/static/theme/vx-textarea/Template.js"></script>
+    <script defer src="/static/theme/vx-date-select/Template.js"></script>
+    <script defer src="/static/theme/vx-datepicker/Template.js"></script>
+    <script defer src="/static/js/lib/vx-components.min.js"></script>
+
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4SJP456ZP4');
+
+    window.locale = "hy";
+    window.notification = ""
+    window.translations = {"0010 c. Yerevan, Tigran Metsi ave., 4 building, 2nd floor":"0010 ք․ Երևան, Տիգրան Մեծի պող․, 4-րդ շենք, 2-րդ հարկ","400 Bad Request":"Սխալ 400","401 Unauthorized":"Սխալ 401","403 Forbidden":"Սխալ 403","404 PAGE NOT FOUND":"404 ԷՋԸ ՉԻ ԳՏՆՎԵԼ","405 Method Not Allowed":"Սխալ 405","500 Internal Server Error":"500 Ներքին սերվերի սխալ","About":"Նախագծի մասին","About us":"Կայքի մասին","About Us":"Մեր մասին","Act Info":"Ակտի վավերապայմաններ","Act is added in favorites":"Իրավական ակտը ավելացվել է նախընտրելիների ցանկում","Act is removed from favorites":"Իրավական ակտը հեռացվել է նախընտրելիների ցանկից","Act number":"Համար","Act Number":"Ակտի համար","Acts count":"Տվյալների շտեմարանում առկա փաստաթղթերի քանակ՝","Act type":"Տեսակ","Actual start date":"Ուժի մեջ մտնելու ամսաթիվ","adopted by the Minister of Justice of the Republic of Armenia in 2018":"ՀՐԱՄԱՆԻ ՀԱՄԱՁԱՅՆ ՆԱԽԱՐԱՐՈՒԹՅԱՆ ԿՈՂՄԻՑ ՎԱՐՎՈՂ ՆՈՐՄԱՏԻՎ ԻՐԱՎԱԿԱՆ ԱԿՏԵՐԻ ՀՐԱՊԱՐԱԿՄԱՆ ՄԻԱՍՆԱԿԱՆ ԿԱՅՔՈՒՄ ՆՈՐՄԱՏԻՎ ԻՐԱՎԱԿԱՆ ԱԿՏԵՐԻ ՊԱՇՏՈՆԱԿԱՆ ՀՐԱՊԱՐԱԿՈՒՄԸ ԵՎ ԻՆԿՈՐՊՈՐԱՑԻԱՆ ԻՐԱԿԱՆԱՑՎՈՒՄ Է «ՊԱՇՏՈՆԱԿԱՆ ՏԵՂԵԿԱԳԻՐ» ՓԱԿ ԲԱԺՆԵՏԻՐԱԿԱՆ ԸՆԿԵՐՈՒԹՅԱՆ ՄԻՋՈՑՈՎ:","Advanced search":"Ընդլայնված որոնում","Advertisement":"Գովազդ","All":"Որոնում","All Rights Reserved":"Բոլոր իրավունքները պաշտպանված են","Anti-constitutional":"Հակասահմանադրական կապեր","Application Layer Error":"Տվյալների ներքին սխալ:","April":"Ապրիլ","ARLIS - Error page":"ԱՐԼԻՍ-Սխալի էջ","ARLIS - Under construction":"Էջը մշակման փուլում է","Armenian":"","August":"Օգոստոս","Cancel":"Ընդհատել","Cassation Court":"Վճռաբեկ դատարան","Changed act":"Փոփոխված ակտ","Changed acts":"Փոփոխված ակտ","Change history":"Փոփոխման պատմություն","Changes and incorporations":"Փոփոխողներ և ինկորպորացիաներ","Changing act":"Փոփոխող ակտ","Classifier":"Դասակարգիչ","Clear search":"Ջնջել","Close":"Փակել","Comparison of legal acts":"Իրավական ակտերի համեմատում","Contact with us":"Հետադարձ կապ","Content":"Բովանդակություն","© Copyright reserved.":"© 2023 Հեղինակային իրավունքները պաշտպանված են","Count of search results:":"Որոնման արդյունքների քանակ՝","Database Layer Error":"Տվյալների շտեմարանի սխալ","Data is loading...":"Տվյալները բեռնվում են․․․․","Data layer error":"Տվյալների ներքին սխալ: Խնդրում ենք դիմել սպասարկման թիմին:","DD - MM - YYYY":"ՕՕ-ԱԱ-ՏՏՏՏ","December":"Դեկտեմբեր","Download Act":"Ներբեռնել իրավական ակտը","Download the act without change history":"Ներբեռնել առանց փոփոխությունների պատմության","Download the change history only":"Ներբեռնել միայն փոփոխությունների պատմությունը","Download the whole act":"Ներբեռնել ամբողջ ակտը","ECHR judgments":"ՄԻԵԴ վճիռներ","Effective":"Ուժի մեջ է մտնում","Effective date":"Ուժի մեջ մտնելու ամսաթիվ","Enactment body":"Ընդունող մարմին","Enactment date":"Ընդունման ամսաթիվ","Enactment location":"Ընդունման վայր","Enactment organisation":"Ընդունող մարմին","English":"","Error 400":"Սխալ 400","Error 401":"Սխալ 401","Error 403":"Սխալ 403","Error 404":"Սխալ 404","Error 405":"Սխալ 405","Error 500":"Սխալ 500","Eurasian Economic Union":"ԵՏՄ ակտեր","Exclude changing acts":"Բացառել փոփոխողները","Favorite acts":"Նախընտրելի իրավական ակտեր","Favorites":"Նախընտրելիներ","February":"Փետրվար","Filter":"Որոնել","First and Last name are required":"Անուն և ազգանուն դաշտերը պարտադիր են լրացման համար","First or Last name is to long":"Անուն և ազգանուն դաշտերը երկար են","For technical support, inaccuracies and misprints in legal acts contact us by:":"Տեխնիկական աջակցություն ստանալու, առաջարկությունների, իրավական ակտերի անճշտությունների և վրիպակների մասին հայտնելու համար զանգահարել հետևյալ հեռախոսահամարներով՝","From":"գտնված","General relations":"Ընդհանուր կապեր","Home page":"Գլխավոր","Hot line":"ԹԵԺ ԳԻԾ՝","In ascending order":"Աճման կարգով","Incorporation":"Ինկորպորացիա","Incorrect session":"","In descending order":"Նվազման կարգով","In execution of article 25 of the RA law":"Ի ԿԱՏԱՐՈՒՄՆ","Information":"Տեղեկատվություն","Insert searched act title":"որոնվող տեքստ","Interrupt date":"Ուժը կորցրել է","Interrupted":"Ուժը կորցրել է","Interrupted date":"ՈՒժը կորցնելու ամսաթիվ","Invalid account":"","Invalid person data":"","Invalid responce from ARLIS system":"ԱՐԼԻՍ համակարգից ստացված անվավեր պատասխան","January":"Հունվար","March":"Մարտ","May":"Մայիս","June":"Հունիս","July":"Հուլիս","September":"Սեպտեմբեր","October":"Հոկտեմբեր","November":"Նոյեմբեր","Mon":"Երկ","Tue":"Երք","Wed":"Չրք","Thu":"Հնգ","Fri":"Ուրբ","Sat":"Շբթ","Sun":"Կիր","Judicial Precedents":"Դատական նախադեպեր","Last update":"Վերջին անգամ թարմացվել է՝","Latest releases":"Վերջին հրապարակումները","Login":"Մուտք","Logout":"Ելք","Main act":"Հիմնական ակտ","Ministry Of Justice":"ՀՀ ԱՐԴԱՐԱԴԱՏՈՒԹՅԱՆ ՆԱԽԱՐԱՐՈՒԹՅՈՒՆ,","Ministry of Justice of the Republic of Armenia":"Հայաստանի Հանրապետության Արդարադատության Նախարարություն","News":"Նորություններ","Newsletter of departmental normative acts":"Գերատեսչական նորմատիվ ակտերի տեղեկագիր","Newsletter of legal acts of Yerevan":"Երևանի իրավական ակտերի տեղեկագիր","No. 180-N":"180-Ն","./node_modules/@babel/polyfill/lib/index.js":"","No results found":"Տվյալներ չեն գտնվել","Not enacted":"Ընդունված չէ","Notifications":"Ծանուցումներ","Number":"Համար","Official":"Պաշտոնական ինկորպորացիա","Official clarifications":"Պաշտոնական պարզաբանումներ","Official Newsletter":"Պաշտոնական տեղեկագիր","Official publications on single website":"Պաշտոնական հրապարակումներ միասնական կայքում","Official Releases":"ՊԱՇՏՈՆԱԿԱՆ ՀՐԱՊԱՐԱԿՈՒՄՆԵՐ","OFFICIAL RELEASES THIS WEEK":"Այս շաբաթ հրապարակվել են՝","ON REGULATORY LEGAL ACTS":"«ՆՈՐՄԱՏԻՎ ԻՐԱՎԱԿԱՆ ԱԿՏԵՐԻ ՄԱՍԻՆ»","Order by":"Դասավորել ըստ","Page number":"էջ","Please enter valid date":"Խնդրում ենք մուտքագրել վավեր ամսաթիվ","Publication date":"Հրապարակման ամսաթիվ","Quick links":"ՀՀ ՍԱՀՄԱՆԱԴՐՈՒԹՅՈՒՆ ԵՎ ՕՐԵՆՍԳՐՔԵՐ","Ratificating organisation":"Վավերացնող մարմին","Ratification date":"Վավերացման ամսաթիվ","Ratification organisation":"Վավերացնող մարմին","Relations":"Կապեր","Released":"ԼՈՒՅՍ Է ՏԵՍԵԼ","Relevance":"Բառերի մոտիկություն","Request parameter type mismatch error":"Հարցվող տվյալների անհամապատասխանություն","Russian":"","Search":"Որոնել","Search in act body":"վերնագրում և բովանդակությունում","Search in content":"որոնել բովանդակությունում","Search in title":"միայն վերնագրում","Search in act":"որոնում վերնագրում և բովանդակությունում","Search results":"Որոնման արդյունքներ","See all":"Տեսնել բոլորը","Show only official acts":"Ցույց տալ միայն պաշտոնական ինկորպորացիաները","Signatory organisation":"Ստորագրող մարմին","Signing date":"Ստորագրման ամսաթիվ","Signing organisation":"Ստորագրող մարմին","Something went wrong":"","Sort":"Դասավորել","Source":"Սկզբնաղբյուր","./src/index.js":"","Statistics":"Վիճակագրություն","Status":"Կարգավիճակ","Submit":"Հաստատել","Synchronous scrolling":"Միաժամանակյա դիտարկում","the official publication and incorporation of regulatory legal acts is implemented by \"Pashtonakan teghekagir\" CJSC on the unified website of the publication of regulatory legal acts conducted by the Ministry in accordance with Order":"ՀՀ ՕՐԵՆՔԻ 25-ՐԴ ՀՈԴՎԱԾԻ՝ ԱՐԴԱՐԱԴԱՏՈՒԹՅԱՆ ՆԱԽԱՐԱՐԻ 2018Թ․","This page is under construction":"Տվյալ Էջը մշակման փուլում է","Title":"Վերնագիր","Type":"Տիպ","Untitled":"","User data is required":"","User identifier is required":"","Visitors per Month":"Կայքի այցելությունների քանակն ըստ ամիսների","Year":"Տարի","Yerevan Municipality":"ԵՐԵՎԱՆԻ ՔԱՂԱՔԱՊԵՏԱՐԱՆ","Search in old versions":"Որոնման արդյունքները նախկին տեսքերում","Exact matcth":"Ճշգրիտ համընկնումները","Start":"Սկսած","End":"Մինչև","Clear":"Ջնջել","Value is too long for act enactment year":"Արժեքը շատ երկար է ակտի ընդունման տարվա համար","Value is too long for act number":"Արժեքը չափազանց երկար է ակտի համարի համար","Search value is too long":"Որոնման արժեքը շատ երկար է"};
+    /*
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            {
+                pageLanguage: "hy",
+                autoDisplay: false
+            },
+            "google_translate_element"
+        );
+    }*/
+    </script>
+    
+    <title>ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ</title>
+  </head>
+  <body>
+    <a href="/hy/" class="act-header flex-container align-middle">
+    <img src="/static/img/flag.png" alt=""/>
+    <span class="text-large font-extrabold">ARLIS</span>
+    <p class="text-xsmall">Հայաստանի  իրավական տեղեկատվական համակարգ</p>
+</a>
+
+
+    <main>
+      <link rel="stylesheet" href="/static/css/act-inner.css">
+
+<div class="act-container sidebar-left-closed">
+    <div class="act-container-heading act-container__toggle act-container__toggle_right">
+        <div class="act-container__toggle-wrap cursor-pointer">
+            <div class="act-container__toggle-icon bg-white">
+                <i class="icon color-grey-40 icon-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+    <div class="act-content">
+        <div class="act-container-heading act-actions">
+            <div class="act-actions__back flex-container align-middle">
+                <!--div id="google_translate_element"></div-->
+            </div>
+            <div class="act-content-controls flex-container shrink" data-settings-title="Գործիքներ">
+                <div class="modal-close-panel hidden"><i class="icon icon-close medium color-grey-80"></i></div>
+
+                <div class="act-actions__status lang-links">
+                    <div class="flex-container align-middle act-lang-wrapper">
+
+                        <a href="/hy/acts/191632" rel="noopener" target="_blank" class="cursor-pointer">
+                            <div class="act-lang-item flex-container align-middle cursor-pointer">
+                                <div class="act-lang-item-flag radius-circle clip">
+                                    <img src="/static/img/flag-rus.svg" alt="Руский" class="fluid-x fluid-y">
+                                </div>
+                                <div class="act-lang-item-label helvetica-65 font-medium font-spacing-01 color-grey-60 text-small">
+                                    Руский
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="act-actions__status">
+                    <div class="act-actions__status-wrap flex-container align-center-middle helvetica-75 font-uppercase font-spacing-02 color-turquoise">
+                        <i class="icon icon-success"></i>
+                        <span>Պաշտոնական ինկորպորացիա</span>
+                    </div>
+                </div>
+                <div class="act-actions__sizes flex-container align-middle">
+                    <div id="act-size-plus" class="act-actions__sizes-plus cursor-pointer control">
+                        <i class="icon color-grey-80 icon-font-plus medium"></i>
+                    </div>
+                    <div id="act-size-minus" class="act-actions__sizes-minus cursor-pointer control">
+                        <i class="icon color-grey-80 icon-font-minus medium"></i>
+                    </div>
+                </div>
+                <div class="act-actions__btns flex-container align-middle">
+
+                    <div id="share-act-trigger" class="act-actions__download cursor-pointer control" data-window-open="share-act">
+                        <i class="icon icon-share medium color-grey-80"></i>
+                    </div>
+                    <div class="cursor-pointer control" data-window-open="print-act">
+                        <i class="icon icon-print medium color-grey-80"></i>
+                    </div>
+                    <div id="download-act-trigger" class="act-actions__download cursor-pointer control" data-window-open="download-act">
+                        <i class="icon color-grey-80 icon-download medium"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="act-actions__controls flex-container align-middle gap-2">
+                <vx-button id="settings-modal-trigger" prefix="icon-settings medium" theme="white" classNames="btn-icon" class="hidden-btn modal-toggler"></vx-button>
+                <vx-button id="info-modal-trigger" title="Ակտի վավերապայմաններ" prefix="icon-info medium" theme="white"></vx-button>
+            </div>
+            <div class="dotted-x"></div>
+        </div>
+        <div id="act_view" class="scrollable-wrapper act-doc-wrapper">
+            <div class="text-center mb_20 act-status-mobile hidden">
+                <div class="flex-container align-center-middle helvetica-75 font-uppercase font-spacing-02 color-turquoise bg-success-20 content-tag text-xsmall">
+                    <i class="icon icon-success font-bold"></i>
+                    <span>Պաշտոնական ինկորպորացիա</span>
+                </div>
+            </div>
+            <div id="act_body" class="act-content__wrapper">
+                <div class="act-block act-block_main">
+                    <div class="act-block__section" >
+                        <P style="MARGIN: 0px" align=center><STRONG><FONT size=4>ՀԱՅԱՍՏԱՆԻ ՀԱՆՐԱՊԵՏՈՒԹՅԱՆ</FONT></STRONG></P>
+<P style="MARGIN: 0px" align=center><STRONG></STRONG>&nbsp;</P>
+<P style="MARGIN: 0px" align=center><STRONG><FONT size=5>Օ Ր Ե Ն Ք Ը</FONT></STRONG></P>
+<P style="MARGIN: 0px">&nbsp;</P>
+<P style="MARGIN: 0px" align=right>Ընդունված է 2003 թվականի դեկտեմբերի 17-ին</P>
+<P style="MARGIN: 0px">&nbsp;</P>
+<P style="MARGIN: 0px" align=center><STRONG>ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ</STRONG></P>
+<P style="MARGIN: 0px">&nbsp;</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG>Հոդված 1.</STRONG> Հայաստանի Հանրապետությունում նվազագույն ամսական աշխատավարձը սահմանել&nbsp;75000 դրամ:</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG><EM>(1-ին հոդվածը փոփ. 11.11.05 ՀՕ-221-Ն, 28.11.06 ՀՕ-200-Ն, 05.11.07 ՀՕ-252-Ն, 27.11.08 ՀՕ-200-Ն, 16.11.10 ՀՕ-164-Ն, 13.11.12 ՀՕ-200-Ն, 20.06.13 ՀՕ-61-Ն, 12.12.13 ՀՕ-187-Ն,&nbsp;</EM></STRONG><STRONG><EM>01.12.14 </EM></STRONG><STRONG><EM>ՀՕ-205-Ն, 19.11.19 ՀՕ-223-Ն, 07.12.22 ՀՕ-501-Ն</EM></STRONG><STRONG><EM>)</EM></STRONG></P>
+<P style="MARGIN: 0px">&nbsp;</P><STRONG>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"></STRONG><STRONG>Հոդված 2.</STRONG> Գործավարձով կամ ժամավճարով վարձատրվող աշխատողների համար ժամային տարիֆային դրույքի նվազագույն չափը սահմանել՝</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">1) աշխատաժամանակի նորմալ տևողության դեպքում՝ 40-ժամյա աշխատանքային շաբաթ՝ 450 դրամ.</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">2) աշխատաժամանակի կրճատ տևողության դեպքում՝</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">ա. մինչև 24-ժամյա աշխատանքային շաբաթ՝ 750 դրամ,</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">բ. 36-ժամյա աշխատանքային շաբաթ՝ 500 դրամ:</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG><EM>(2-րդ հոդվածը փոփ. 11.11.05 ՀՕ-221-Ն, 28.11.06 ՀՕ-200-Ն, 05.11.07 ՀՕ-252-Ն, լրաց., փոփ.&nbsp;27.11.08 ՀՕ-200-Ն, փոփ. 16.11.10 ՀՕ-164-Ն, 13.11.12 ՀՕ-200-Ն, 20.06.13 ՀՕ-61-Ն, 12.12.13 ՀՕ-187-Ն, 01.12.14 ՀՕ-205-Ն, խմբ. 19.11.19 ՀՕ-223-Ն</EM></STRONG><STRONG><EM>, 07.12.22 ՀՕ-501-Ն</EM></STRONG><STRONG><EM>)</EM></STRONG></P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">&nbsp;</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG>Հոդված 2.1.</STRONG> Առողջապահության, հոգաբարձության (խնամակալության), մանկական-դաստիարակչական, էներգամատակարարման, գազամատակարարման, ջերմամատակարարման, կապի և աշխատանքի այլ առանձնահատուկ բնույթ ունեցող բնագավառների աշխատողների նվազագույն ժամային տարիֆային դրույքը որոշվում է սույն օրենքի 1-ին հոդվածով սահմանված նվազագույն ամսական աշխատավարձը բաժանելով Հայաստանի Հանրապետության օրենսդրությամբ այդ աշխատողների` ամսվա համար սահմանված աշխատաժամանակի նորմալ տևողությանը:</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG><EM>(2.1-ին հոդվածը&nbsp;լրաց. 16.11.10 ՀՕ-164-Ն)</EM></STRONG></P>
+<P style="MARGIN: 0px">&nbsp;</P>
+<P style="MARGIN: 0px">
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG>Հոդված 3.</STRONG> Հայաստանի Հանրապետության օրենսգրքերի (բացառությամբ Հայաստանի Հանրապետության քրեական օրենսգրքի), օրենքների, Հայաստանի Հանրապետության Նախագահի հրամանագրերի, Հայաստանի Հանրապետության կառավարության և վարչապետի որոշումների, նախարարությունների և գերատեսչությունների, տեղական ինքնակառավարման մարմինների, առանձին իրավաբանական անձանց ակտերի իմաստով որպես հաշվարկային հիմք չի կարող ընդունվել սույն օրենքով սահմանված նվազագույն ամսական աշխատավարձը:</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">Նշված ակտերում որպես հաշվարկային հիմք սահմանվում է 1000 դրամը:</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG><EM>(3-րդ հոդվածը&nbsp;լրաց. 09.06.22 ՀՕ-170-Ն</EM></STRONG><STRONG><EM>, փոփ.&nbsp;07.12.22 ՀՕ-501-Ն</EM></STRONG><STRONG><EM>)</EM></STRONG></P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">&nbsp;</P>
+<P style="MARGIN: 0px">
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG>Հոդված 4.</STRONG> Նվազագույն ամսական աշխատավարձի, գործավարձով և ժամավճարով վարձատրվող աշխատողների համար սահմանված ժամային տարիֆային դրույքի նվազագույն չափերի մեջ չեն ներառվում աշխատավարձից վճարվող հարկերը, սոցիալական կամ օրենքով սահմանված պարտադիր այլ վճարները, հավելումները, հավելավճարները, պարգևատրումները և լրավճարները:</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG><EM>(4-րդ հոդվածը խմբ. 11.11.05 ՀՕ-221-Ն, լրաց. 22.12.10 ՀՕ-290-Ն, 21.06.14 ՀՕ-74-Ն, փոփ. 01.12.14 ՀՕ-205-Ն, խմբ.</EM></STRONG><STRONG><EM>&nbsp;07.12.22 ՀՕ-501-Ն</EM></STRONG><STRONG><EM>)</EM></STRONG></P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">&nbsp;</P>
+<P style="MARGIN: 0px"><STRONG>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px">Հոդված 5.</STRONG> Սույն օրենքն ուժի մեջ մտնելու պահից ուժը կորցրած ճանաչել «Նվազագույն ամսական աշխատավարձի մասին» Հայաստանի Հանրապետության 1998 թվականի հոկտեմբերի 27-ի ՀՕ-257 օրենքը:</P>
+<P></P>
+<P style="MARGIN: 0px">&nbsp;</P>
+<P style="MARGIN: 0px; TEXT-INDENT: 25px"><STRONG>Հոդված 6.</STRONG> Սույն օրենքն ուժի մեջ է մտնում 2004 թվականի հունվարի 1-ից: </P>
+<P style="MARGIN: 0px">&nbsp;</P>
+<P style="MARGIN: 0px">
+<TABLE style="WIDTH: 100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+
+<TR>
+<TD width=300>
+<P align=center><STRONG>Հայաստանի Հանրապետության<BR>Նախագահ</STRONG></P></TD>
+<TD vAlign=bottom align=right><STRONG>Ռ. Քոչարյան</STRONG></TD></TR>
+<TR>
+<TD>
+<P align=center><BR>2003 թ. դեկտեմբերի 29<BR>Երևան<BR>ՀՕ-66-Ն</P></TD></TR></TABLE></P>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="icon color-blue icon-scroll-up large act-scroller" data-scroll-cont="act_view" data-scroll-to="act_body"></i>
+    </div>
+    <div id="act_sidebar" class="act-sidebar act-sidebar_right scrollable-wrapper">
+        <div class="act-sidebar__wrapper">
+            <div id="sidebar_body" class="act-sidebar__body">
+                <div class="act-sidebar__heading">
+                    <span class="font-narek font-demibold">Տեղեկատվություն</span>
+                    <div class="act-sidebar-close cursor-pointer">
+                        <i class="icon icon-close medium color-grey-40"></i>
+                    </div>
+                </div>
+                <div class="act-container-heading act-tabs">
+                    <div class="tabs flex-container">
+                        <div class="tab cursor-pointer">
+                            <i class="icon color-inherit icon-info medium"></i>
+                            <span class="helvetica-75 font-spacing-02 font-uppercase">Ակտի վավերապայմաններ</span>
+                        </div>
+                        <div class="tab cursor-pointer">
+                            <i class="icon color-inherit icon-settings medium"></i>
+                            <span class="helvetica-75 font-spacing-02 font-uppercase">ՓՈՓՈԽՈՂՆԵՐ ԵՎ ԻՆԿՈՐՊՈՐԱՑԻԱՆԵՐ</span>
+                        </div>
+                        <div class="tab cursor-pointer">
+                            <i class="icon color-inherit icon-link medium"></i>
+                            <span class="helvetica-75 font-spacing-02 font-uppercase">Կապեր</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="act-tabs-container">
+                    <div class="tab-container">
+
+<div class="act-info color-grey-80 font-spacing-01">
+    <div class="act-info__title helvetica-65 font-uppercase">ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ</div>
+    <div class="act-info__wrap">
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Համար</div>
+                <div class="act-info__value helvetica-65">ՀՕ-66-Ն</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Տիպ</div>
+                <div class="act-info__value helvetica-65">Օրենք</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Փաստաթղթի տեսակ</div>
+                <div class="act-info__value helvetica-65">Պաշտոնական Ինկորպորացիա (23.12.2022-մինչ օրս)</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Կարգավիճակ</div>
+                <div class="act-info__value helvetica-65">Գործում է</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Սկզբնաղբյուր</div>
+                <div class="act-info__value helvetica-65">ՀՀՊՏ 2004.01.16/3(302) Հոդ.43</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Ընդունող մարմին</div>
+                <div class="act-info__value helvetica-65">ՀՀ Ազգային ժողով</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Ընդունման ամսաթիվ</div>
+                <div class="act-info__value helvetica-65">17.12.2003</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Ընդունման վայր</div>
+                <div class="act-info__value helvetica-65">Երևան</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Ստորագրող մարմին</div>
+                <div class="act-info__value helvetica-65">ՀՀ Նախագահ</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Ստորագրման ամսաթիվ</div>
+                <div class="act-info__value helvetica-65">29.12.2003</div>
+            </div>
+            <div class="dotted-x"></div>
+            <div class="act-info__item flex-container">
+                <div class="act-info__label helvetica-55">Ուժի մեջ մտնելու ամսաթիվ</div>
+                <div class="act-info__value helvetica-65">01.01.2004</div>
+            </div>
+    </div>
+</div>
+                    </div>
+                    <div class="tab-container">
+
+
+
+<div class="act-changes">
+    <a href="/hy/acts/1457" target="_blank" class="act-changes-primary">
+        <i class="icon color-inherit icon-book"></i>
+        <span class="act-changes-primary__title">Հիմնական ակտ</span>
+        <span class="act-changes-primary__date">
+            <span>
+                17.12.2003, ՀՕ-66-Ն
+            </span>
+            <i class="icon color-inherit icon-chevron-right"></i>
+        </span>
+    </a>
+    <div class="act-changes-block">
+        <div class="act-nested-tabs flex-container">
+            <div class="nested-tab helvetica-75 font-spacing-02 font-uppercase color-grey-60 cursor-pointer">
+                <i class="icon color-inherit icon-history medium"></i>
+                <span>Փոփոխման պատմություն</span>
+            </div>
+            <div class="nested-tab helvetica-75 font-spacing-02 font-uppercase color-grey-60 cursor-pointer">
+                <i class="icon color-inherit icon-check medium"></i>
+                <span>Փոփոխվող ակտ</span>
+            </div>
+        </div>
+        <div class="dotted-x"></div>
+        <div class="act-nested-tabs-container">
+            <div class="nested-tab-container">
+                <div class="act-changes-history color-grey-80 font-spacing-01">
+                    <div class="act-changes-history__heading helvetica-75-ita">
+                        <span>Փոփոխող ակտ</span>
+                        <span>Ինկորպորացիա</span>
+                    </div>
+                    <div class="act-changes-history__couples">
+
+
+                        <div class="act-changes-history__couple current-act">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/172110" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>07.12.2022, ՀՕ-501-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/172160" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+    <div class="act-link-lang radius-circle clip">
+        <img src="/static/img/flag-rus.svg" class="fluid-x fluid-y">
+    </div>
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/172160">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/164868" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>09.06.2022, ՀՕ-170-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/165000" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+    <div class="act-link-lang radius-circle clip">
+        <img src="/static/img/flag-rus.svg" class="fluid-x fluid-y">
+    </div>
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/165000">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/136979" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>19.11.2019, ՀՕ-223-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/137616" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/137616">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/94688" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>01.12.2014,  ՀՕ-205-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/94713" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/94713">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/91063" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>21.06.2014, ՀՕ-74-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/91095" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/91095">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/87787" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>12.12.2013, ՀՕ-187-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/90822" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/90822">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/84157" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>20.06.2013, ՀՕ-61-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/84170" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/84170">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/79782" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>13.11.2012, ՀՕ-200-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/79872" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/79872">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/64604" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>22.12.2010, ՀՕ-290-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/64625" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/64625">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/63746" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>16.11.2010, ՀՕ-164-Ն </span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/63804" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/63804">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/48664" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>27.11.2008, ՀՕ-200-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/48733" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/48733">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/40502" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>05.11.2007, ՀՕ-252-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/40617" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/40617">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/29595" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>28.11.2006, ՀՕ-200-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/32388" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/32388">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="act-changes-history__couple ">
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/21443" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>11.11.2005, ՀՕ-221-Ն</span>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__item">
+                                <a href="/hy/acts/32085" target="_blank"
+                                    class="color-inherit custom-underline helvetica-65 act-link">
+                                    <span>17.12.2003, ՀՕ-66-Ն</span>
+                                    <i class="icon color-inherit icon-chevron-right"></i>
+                                    
+
+                                </a>
+                            </div>
+                            <div class="act-changes-history__couple-compare cursor-pointer helvetica-65 with-tooltip" data-tooltip="Համեմատել ակտը"
+                                data-request-url="/hy/acts/172160/compare/32085">
+                                 <i class="icon color-inherit icon-compare"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nested-tab-container">
+                <div class="act-changes-history color-grey-80 font-spacing-01">
+                    <div class="act-changes-history__heading helvetica-75-ita">
+                        <span>Փոփոխություններ է կատարել հետևյալ ակտերում</span>
+                        <span>Յուրաքանչյուր փոփոխվողին համապատասխանող ինկորպորացիան</span>
+                    </div>
+                    <div class="act-changes-history__couples">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="compare-acts" class="compare-modal">
+    <div class="compare-modal__inner">
+        <div class="compare-modal__body">
+            <div class="compare-modal__header flex-container">
+                <div class="compare-modal__close color-grey-40 cursor-pointer">
+                    <i class="icon icon-close medium"></i>
+                </div>
+                <div class="compare-modal__title flex-container align-middle">
+                    <div class="compare-modal__icon radius-circle bg-blue-5 color-blue-40 flex-container align-center-middle">
+                        <i class="icon icon-book"></i>
+                    </div>
+                    <span class="font-narek color-white">Իրավական ակտերի համեմատում</span>
+                </div>
+                <div class="compare-modal__switcher switcher active flex-container align-middle cursor-pointer">
+                    <span class="helvetica-65 font-spacing-01 font-uppercase">Զուգահեռ դիտում</span>
+                    <div class="switcher__element">
+                        <div class="switcher__circle radius-circle flex-container align-center-middle">
+                            <i class="icon icon-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="compare-modal__content flex-container radius-12">
+                <div class="compare-modal__loader">
+                    <img src="/static/img/loader.gif" alt="loading...">
+                </div>
+
+                <div class="compare-modal__part radius-12" style="display: none;">
+                    <div class="act-block">
+                        <div class="act-block__date text-center">
+                            <div class="act-block__date-wrap bg-grey-5 helvetica-65 color-grey-80 font-spacing-01">
+                            </div>
+                        </div>
+                        <div class="act-block__section">
+                        </div>
+                    </div>
+                </div>
+                <div class="compare-modal__part radius-12" style="display: none;">
+                    <div class="act-block">
+                        <div class="act-block__date text-center">
+                            <div class="act-block__date-wrap bg-grey-5 helvetica-65 color-grey-80 font-spacing-01">
+                            </div>
+                        </div>
+                        <div class="act-block__section">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    </div>
+                    <div class="tab-container">
+
+
+<div class="act-conection">
+    <div class="act-nested-tabs flex-container">
+        <div class="nested-tab helvetica-75 font-spacing-02 font-uppercase color-grey-60 cursor-pointer">
+            <i class="icon color-inherit icon-hierarchy medium"></i>
+            <span>Ընդհանուր կապեր</span>
+        </div>
+        <div class="nested-tab helvetica-75 font-spacing-02 font-uppercase color-grey-60 cursor-pointer">
+            <i class="icon color-inherit icon-hammer medium"></i>
+            <span>Դատական նախադեպեր</span>
+        </div>
+        <div class="nested-tab helvetica-75 font-spacing-02 font-uppercase color-grey-60 cursor-pointer">
+            <i class="icon color-inherit icon-edit medium"></i>
+            <span>Պաշտոնական պարզաբանումներ</span>
+        </div>
+        <div class="nested-tab helvetica-75 font-spacing-02 font-uppercase color-grey-60 cursor-pointer">
+            <i class="icon color-inherit icon-shield medium"></i>
+            <span>Հակասահմանադրական կապեր</span>
+        </div>
+    </div>
+    <div class="dotted-x"></div>
+    <div class="act-nested-tabs-container">
+        <div class="nested-tab-container">
+        </div>
+        <div class="nested-tab-container">
+        </div>
+        <div class="nested-tab-container">
+        </div>
+        <div class="nested-tab-container">
+        </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <i class="icon color-blue icon-scroll-up large act-scroller" data-scroll-cont="act_sidebar" data-scroll-to="sidebar_body"></i>
+    </div>
+</div>
+
+
+<div id="download-act" class="modal">
+    <div class="modal-inner">
+        <form class="download-modal__body">
+            <div class="download-modal__close color-grey-40 bordered radius-circle flex-container align-center-middle cursor-pointer" data-window-close="download-act">
+                <i class="icon icon-close medium"></i>
+            </div>
+            <div class="download-modal__heading text-center">
+                <div class="download-modal__icon">
+                   <img src="/static/img/download.svg" alt="">
+                </div>
+                <div class="download-modal__title font-narek font-demibold color-grey">
+                    Ներբեռնել իրավական ակտը
+                </div>
+            </div>
+            <div class="download-modal__items">
+                <a href="Javascript: void(0)"
+                   onclick='location.href="/hy/acts/172160/download/act_changes"'
+                   class="download-modal__item bg-blue-5 radius-8 flex-container align-middle">
+                    <i class="icon color-blue-40 icon-arrow-down"></i>
+                    <span class="helvetica-65 font-spacing-01 color-blue-80">
+                        Ներբեռնել ամբողջ ակտը
+                    </span>
+                </a>
+                <a href="Javascript: void(0)"
+                   onclick='location.href="/hy/acts/172160/download/act"'
+                   class="download-modal__item bg-blue-5 radius-8 flex-container align-middle" download>
+                    <i class="icon color-blue-40 icon-arrow-down"></i>
+                    <span class="helvetica-65 font-spacing-01 color-blue-80">
+                        Ներբեռնել առանց փոփոխությունների պատմության
+                    </span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="print-act" class="modal">
+    <div class="modal-inner">
+        <form class="download-modal__body">
+            <div class="download-modal__close color-grey-40 bordered radius-circle flex-container align-center-middle cursor-pointer" data-window-close="print-act">
+                <i class="icon icon-close medium"></i>
+            </div>
+            <div class="download-modal__heading text-center">
+                <div class="download-modal__icon">
+                   <img src="/static/img/print.svg" alt="">
+                </div>
+                <div class="download-modal__title font-narek font-demibold color-grey">
+                    Տպել ակտը
+                </div>
+            </div>
+            <div class="download-modal__items">
+                <a href="/hy/acts/172160/print/act_changes" target="_blank"
+                   class="download-modal__item bg-blue-5 radius-8 flex-container align-middle">
+                    <i class="icon color-blue-40 icon-print"></i>
+                    <span class="helvetica-65 font-spacing-01 color-blue-80">
+                        Տպել ամբողջ ակտը
+                    </span>
+                </a>
+                <a href="/hy/acts/172160/print/act" target="_blank"
+                   class="download-modal__item bg-blue-5 radius-8 flex-container align-middle">
+                    <i class="icon color-blue-40 icon-print"></i>
+                    <span class="helvetica-65 font-spacing-01 color-blue-80">
+                        Տպել առանց փոփոխությունների պատմության
+                    </span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="share-act" class="modal">
+    <div class="modal-inner">
+        <form class="download-modal__body">
+            <div class="download-modal__close color-grey-40 bordered radius-circle flex-container align-center-middle cursor-pointer" data-window-close="share-act">
+                <i class="icon icon-close medium"></i>
+            </div>
+            <div class="download-modal__heading text-center">
+                <div class="download-modal__icon">
+                   <img src="/static/img/share.svg" alt="">
+                </div>
+                <div class="download-modal__title font-narek font-demibold color-grey">
+                    Share Act
+                </div>
+            </div>
+            <div class="download-modal__items">
+                <a data-sharer="facebook" data-url="https://www.arlis.am/hy/acts/172160" data-title="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ"
+                   class="download-modal__item bg-blue-5 radius-8 flex-container align-middle">
+                    <img src="/static/img/facebook.svg" alt="Facebook" width="24" height="24">
+                    <span class="helvetica-65 font-spacing-01 color-blue-80">
+                        Share the act on Facebook social media
+                    </span>
+                </a>
+                <a data-sharer="x" data-url="https://www.arlis.am/hy/acts/172160" data-title="ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ"
+                   class="download-modal__item bg-blue-5 radius-8 flex-container align-middle">
+                    <img src="/static/img/x-social.svg" alt="X" width="24" height="24">
+                    <span class="helvetica-65 font-spacing-01 color-blue-80">
+                        Share the act on X social media
+                    </span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+    </main>
+
+    
+
+    <div id="notification" class="modal main_modal">
+      <div class="modal-inner">
+        <div class="main-modal__body">
+          <div class="main-modal__close">
+            <div class="act-modal__close color-grey-40 flex-container align-center-middle cursor-pointer" data-window-close="notification">
+              <i class="icon icon-close medium"></i>
+            </div>
+          </div>
+          <div id="notification_data"></div>
+          <vx-button class="main-modal__btn" title="Փակել" theme="blue-primary" size="lg" data-window-close="notification"></vx-button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

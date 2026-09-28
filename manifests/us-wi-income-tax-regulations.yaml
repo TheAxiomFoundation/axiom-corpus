@@ -1,0 +1,55 @@
+version: '2026-09-14'
+documents:
+- source_id: wi-legis-tax-2
+  jurisdiction: us-wi
+  document_class: regulation
+  citation_path: us-wi/regulation/tax/2
+  title: 'Wisconsin Administrative Code Chapter Tax 2: Income Taxation, Returns, Records and Gross Income'
+  source_url: https://docs.legis.wisconsin.gov/code/admin_code/tax/2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Tax (?P<label>2\.\d+)\s+(?P<heading>[A-Z].+)$
+    drop_line_patterns:
+    - ^Published under s\. 35\.93, Wis\. Stats\., by the Legislative Reference Bureau\.$
+    - ^Tax \d+\.\d+$
+    - ^\d{1,3}$
+    - ^DEPARTMENT OF REVENUE$
+    - ^Register .* No\. \d+$
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Revenue
+    official_publisher: Wisconsin Legislative Reference Bureau
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-wi/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://docs.legis.wisconsin.gov/code/admin_code/tax
+- source_id: wi-legis-tax-3
+  jurisdiction: us-wi
+  document_class: regulation
+  citation_path: us-wi/regulation/tax/3
+  title: 'Wisconsin Administrative Code Chapter Tax 3: Income Taxation, Deductions from Gross Income, Exclusions
+    and Exemptions'
+  source_url: https://docs.legis.wisconsin.gov/code/admin_code/tax/3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Tax (?P<label>3\.\d+)\s+(?P<heading>[A-Z].+)$
+    drop_line_patterns:
+    - ^Published under s\. 35\.93, Wis\. Stats\., by the Legislative Reference Bureau\.$
+    - ^Tax \d+\.\d+$
+    - ^\d{1,3}$
+    - ^DEPARTMENT OF REVENUE$
+    - ^Register .* No\. \d+$
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Revenue
+    official_publisher: Wisconsin Legislative Reference Bureau
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-wi/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://docs.legis.wisconsin.gov/code/admin_code/tax

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="Description" content="Chapter 229 - Income Tax"/>
+<meta name="Number" content="229"/>
+<title>Chapter 229 - Income Tax</title>
+<style type="text/css" media="screen"><!--
+/* High-level style defs for page */
+html {
+background-color: #ffffff;
+color: #000000;
+}
+body {
+padding: 0em 0.5em;
+font-family : "Times New Roman", Times, serif;
+font-size: medium;
+}
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+color : #000000;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.1;
+margin : 0em 0em;
+text-align : center;
+text-decoration : none;
+text-indent : 0em;
+}
+h1, h2, h3 {
+font-weight : bold;
+}
+h5, h6 {
+margin-top: 2em;
+}
+h1.title-no, h1.title-name {
+color: #800000;
+}
+h2.chap-no, h2.chap-name {
+/* nothing special */
+}
+h3.part-name {
+margin-top: 0.5em;
+}
+h3.part-no {
+margin-top: 2em;
+}
+h4.chap_toc_hd {
+font-weight: bold;
+margin: 1.5em 0em 1em 0em;
+text-align: left;
+}
+h4.subpart-name {
+font-weight: bold;
+margin-top: 0.5em;
+}
+h4.subpart-no {
+font-weight: bold;
+margin-top: 2em;
+}
+/* HORIZONTAL RULES */
+hr.titles_pg_bar {
+background-color: #a0a0a0;
+border-width: 0;
+color: #a0a0a0;
+height: .5em;
+margin: 1em 0em;
+width: 100%;
+}
+hr.chaps_pg_bar {
+background-color: #8b0000;
+border-width: 0;
+color: #8b0000;
+height: .8em;
+margin: .5em 0em;
+width: 100%;
+}
+hr.titles_toc_spcr {
+background-color: #ffcc00;
+border-width: 0;
+color: #ffcc00;
+height: 1em;
+margin: 0.1em .5em;
+text-align: left;
+vertical-align: top;
+width: 150px;
+}
+/* IMAGES */
+img.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* PARAGRAPHS */
+p {
+font-size : 1em;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.2;
+margin : 1em 0em 0em 0em;
+text-align : justify;
+text-justify:distribute;
+text-decoration : none;
+text-indent: 1em;
+}
+p.annotation, p.annotation-first {
+color: #ff3333;
+}
+p.cross-ref, p.cross-ref-first {
+color: #009900;
+}
+p.front-note, p.front-note-first {
+color : #ff6600;
+}
+p.history, p.history-first {
+color : #9900FF;
+}
+p.source, p.source-first {
+color : #996600;
+}
+p.Form-center, p.Text-center, p.Form-head, p.lesser-head {
+text-align : center;
+text-indent: 0em;
+}
+p.Form-head, p.lesser-head {
+margin-top: 2em;
+}
+p.Form-left, p.Text-left {
+text-align : justify;
+text-indent: 0em;
+}
+p.Text-left1 {
+text-align : justify;
+text-indent: 0em;
+margin-top: 0em;
+}
+p.Form-right {
+text-align : right;
+text-indent: 0em;
+}
+p.tb, p.tb-left, p.tb-left1, p.tb-left2, p.tb-center, p.tb-right {
+text-align : justify;
+text-indent : 0em;
+margin : 0.5em 0em 0em 0em;
+}
+p.tb, p.tb-left1 {
+margin-left: 1em;
+}
+p.tb-left2 {
+margin-left: 2em;
+}
+p.tb-center {
+text-align : center;
+}
+p.tb-right {
+text-align : right;
+}
+p.nolead {
+margin-top: 0em;
+}
+p.flush {
+text-align : left;
+text-indent : 0em;
+}
+/* TABLES */
+table {
+/* consider border-collapse : collapse; */
+border-style: none;
+font-size: 1em;
+text-align: left;
+vertical-align: top;
+margin: 1em 0em 1em 0em;
+}
+tbody, thead, tfoot, tr, td, th {
+text-indent: 0em;
+vertical-align: top;
+}
+table.center {
+margin-left: auto;
+margin-right: auto;
+}
+table.nav_tbl {
+border: 0;
+width: 50%;
+padding: 2px;
+border-spacing: 2px;
+text-align: center;
+margin: 1em 0em 2em 0em;
+}
+table.ttl_toc_vol_hd {
+border: 0;
+padding: 0px;
+border-right: 15px;
+vertical-align: middle;
+margin-top: 2em;
+}
+td.bottom {
+vertical-align: bottom;
+}
+td.left_25pct {
+width: 25%;
+}
+td.left_38pct {
+width: 38%;
+}
+td.left_40pct {
+width: 40%;
+}
+/* SPANS */
+span.inline_hd {
+font-weight : bold;
+}
+span.catchln {
+color: #8b0000;
+font-weight : bold;
+}
+span.toc_vol_no {
+font-size: 1.2em;
+font-style : normal;
+font-weight : bold;
+}
+span.toc_ttl_desig, span.toc_ttl_name {
+font-size: 1.1em;
+font-weight: bold;
+color: #003399;
+}
+span.toc_rng_chaps {
+font-size: 1.1em;
+font-weight: bold;
+color: #cc0033;
+}
+/* etc. */
+.titles_main_hd {
+color: #ff0000;
+}
+.toc_rng_secs {
+color: #cc0033;
+font-weight: bold;
+}
+.toc_catchln {
+color: #8b0000;
+margin : .1em 0em 0em 2em;
+max-width: 90%;
+text-indent: -2em;
+}
+.toc_catchln * {
+color: #8b0000;
+}
+.toc_ch_link {
+display: inline-block;
+color: #0000ff;
+font-size: 1.1em;
+font-weight: normal;
+}
+.nav_link {
+color: #0000ff;
+}
+.full-width {
+width: 100%;
+}
+.half-width {
+width: 50%;
+}
+.third-width {
+width: 33%;
+}
+--></style>
+</head>
+<body>
+<div id="chap_229.htm" lang="en-us">
+<h2 class="chap-no">CHAPTER 229</h2>
+<h2 class="chap-name">INCOME TAX</h2>
+<h4 class="chap_toc_hd" id="TOC">Table of Contents</h4>
+<br/><h4>
+<a target="_blank" href ="/2025/pub/titles.htm">Note: This 2026 Supplement is intended to be used in conjunction with the General Statutes of Connecticut, revised to January 1, 2025.</a>
+<h4/>
+<br/>
+<p class="toc_catchln"><a href="#sec_12-701">Sec. 12-701. Definitions. Regulations.</a></p>
+<p class="toc_catchln"><a href="#sec_12-704e">Sec. 12-704e. Earned income tax credit. Additional amount for certain taxpayers.</a></p>
+<p class="toc_catchln"><a href="#sec_12-704j">Sec. 12-704j. Credit for owner of family child care home.</a></p>
+<p class="toc_catchln"><a href="#sec_12-704k">Sec. 12-704k. Credit for residents who challenge taxes imposed on certain income by another jurisdiction.</a></p>
+<p class="toc_catchln"><a href="#sec_12-705">Sec. 12-705. Withholding of taxes from wages and other payments.</a></p>
+<p class="toc_catchln"><a href="#sec_12-724b">Sec. 12-724b. First-time homebuyer savings accounts. Information furnished to commissioner.</a></p>
+<p class="toc_catchln"><a href="#sec_12-743">Sec. 12-743. Contributions from refunds to special accounts.</a></p>
+<hr class="chaps_pg_bar"/>
+<p><span class="catchln" id="sec_12-701">Sec. 12-701. Definitions. Regulations.</span> (a) For purposes of this chapter:</p>
+<p>(1) &#x201C;Resident of this state&#x201D; means any natural person (A) who is domiciled in this state, unless (i) the person maintains no permanent place of abode in this state, maintains a permanent place of abode elsewhere and spends in the aggregate not more than thirty days of the taxable year in this state, or (ii) within any period of five hundred forty-eight consecutive days the person is present in a foreign country or countries for at least four hundred fifty days, and during such period of five hundred forty-eight consecutive days the person is not present in this state for more than ninety days and does not maintain a permanent place of abode in this state at which such person&#x0027;s spouse, unless such spouse is legally separated, or minor children are present for more than ninety days, and during the nonresident portion of the taxable year with or within which such period of five hundred forty-eight consecutive days begins and the nonresident portion of the taxable year with or within which such period ends, such person is present in this state for a number of days which does not exceed an amount which bears the same ratio to ninety as the number of days contained in such portion of the taxable year bears to five hundred forty-eight, or (B) who is not domiciled in this state but maintains a permanent place of abode in this state and is in this state for an aggregate of more than one hundred eighty-three days of the taxable year, unless such person, not being domiciled in this state, is in active service in the armed forces of the United States.</p>
+<p>(2) &#x201C;Nonresident of this state&#x201D; means any natural person who is not a resident of this state for any portion of the taxable year.</p>
+<p>(3) &#x201C;Part-year resident of this state&#x201D; means any natural person who is not either a resident of this state for the entire taxable year or a nonresident of this state for the entire taxable year.</p>
+<p>(4) &#x201C;Resident trust or estate&#x201D; means (A) the estate of a decedent who at the time of his death was a resident of this state, (B) the estate of a person who, at the time of commencement of a case under Title 11 of the United States Code, was a resident of this state, (C) a trust, or a portion of a trust, consisting of property transferred by will of a decedent who at the time of his death was a resident of this state, and (D) a trust, or a portion of a trust, consisting of the property of (i) a person who was a resident of this state at the time the property was transferred to the trust if the trust was then irrevocable, (ii) a person who, if the trust was revocable at the time the property was transferred to the trust, and has not subsequently become irrevocable, was a resident of this state at the time the property was transferred to the trust or (iii) a person who, if the trust was revocable when the property was transferred to the trust but the trust has subsequently become irrevocable, was a resident of this state at the time the trust became irrevocable. For purposes of this chapter, if any trust or portion of a trust, other than a trust created by the will of a decedent, has one or more nonresident noncontingent beneficiaries, the Connecticut taxable income of the trust, as defined in subdivision (9) of this subsection, shall be modified as follows: The Connecticut taxable income of the trust shall be the sum of all such income derived from or connected with sources within this state and that portion of such income derived from or connected with all other sources which is derived by applying to all such income derived from or connected with all other sources a fraction the numerator of which is the number of resident noncontingent beneficiaries and the denominator of which is the total number of noncontingent beneficiaries. For purposes of section 12-700a, if any trust or portion of a trust, other than a trust created by the will of a decedent, has one or more nonresident noncontingent beneficiaries, its adjusted federal alternative minimum taxable income, as defined in section 12-700a shall be modified as follows: The adjusted federal alternative minimum taxable income of the trust shall be the sum of all such income derived from or connected with sources within this state and that portion of such income derived from or connected with all other sources which is derived by applying to all such income derived from or connected with all other sources a fraction, the numerator of which is the number of resident noncontingent beneficiaries and the denominator of which is the total number of noncontingent beneficiaries. As used in this subdivision, &#x201C;noncontingent beneficiary&#x201D; means a beneficiary whose interest is not subject to a condition precedent.</p>
+<p>(5) &#x201C;Nonresident trust or estate&#x201D; means any trust or estate other than a resident trust or estate or a part-year resident trust.</p>
+<p>(6) &#x201C;Part-year resident trust&#x201D; means any trust which is not either a resident trust or a nonresident trust for the entire taxable year.</p>
+<p>(7) &#x201C;Taxable year&#x201D; means taxable year as determined in accordance with section 12-708.</p>
+<p>(8) &#x201C;Connecticut taxable income of a resident&#x201D; means the Connecticut adjusted gross income of a natural person with respect to any taxable year reduced by the amount of the exemption provided in section 12-702.</p>
+<p>(9) &#x201C;Connecticut taxable income of a resident trust or estate&#x201D; means the taxable income of the fiduciary of such trust or estate as determined for purposes of the federal income tax, to which (A) there shall be added or subtracted, as the case may be, the share of the trust or estate, as determined under section 12-716, in the Connecticut fiduciary adjustment, and (B) with respect to any trust, there shall be added the amount of any includable gain, reduced by any deductions properly allocable thereto, upon which a tax is imposed for the taxable year pursuant to Section 644 of the Internal Revenue Code.</p>
+<p>(10) &#x201C;Connecticut fiduciary adjustment&#x201D; means the net positive or negative total of the following items relating to income, gain, loss or deduction of a trust or estate:</p>
+<p>(A) There shall be added together:</p>
+<p>(i) Any interest income from obligations issued by or on behalf of any state, political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity, exclusive of such income from obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut and exclusive of any such income with respect to which taxation by any state is prohibited by federal law;</p>
+<p>(ii) Any exempt-interest dividends, as defined in Section 852(b)(5) of the Internal Revenue Code, exclusive of such exempt-interest dividends derived from obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut and exclusive of such exempt-interest dividends derived from obligations, the income with respect to which taxation by any state is prohibited by federal law;</p>
+<p>(iii) Any interest or dividend income on obligations or securities of any authority, commission or instrumentality of the United States that federal law exempts from federal income tax but does not exempt from state income taxes;</p>
+<p>(iv) To the extent properly includable in determining the net gain or loss from the sale or other disposition of capital assets for federal income tax purposes, any loss from the sale or exchange of obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut, in the income year such loss was recognized;</p>
+<p>(v) To the extent deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries, any income taxes imposed by this state;</p>
+<p>(vi) To the extent deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries, any interest on indebtedness incurred or continued to purchase or carry obligations or securities the interest on which is exempt from tax under this chapter;</p>
+<p>(vii) Expenses paid or incurred during the taxable year for the production or collection of income which is exempt from tax under this chapter, or the management, conservation or maintenance of property held for the production of such income, and the amortizable bond premium for the taxable year on any bond the interest on which is exempt from taxation under this chapter, to the extent that such expenses and premiums are deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries;</p>
+<p>(viii) To the extent deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries, the deduction allowable as qualified domestic production activities income, pursuant to Section 199 of the Internal Revenue Code; and</p>
+<p>(ix) To the extent not includable in federal taxable income prior to deductions relating to distributions to beneficiaries, the total amount of a lump sum distribution for the taxable year.</p>
+<p>(B) There shall be subtracted from the sum of such items:</p>
+<p>(i) To the extent properly includable in gross income for federal income tax purposes, any income with respect to which taxation by any state is prohibited by federal law;</p>
+<p>(ii) To the extent allowable under section 12-718, exempt dividends paid by a regulated investment company;</p>
+<p>(iii) With respect to any trust or estate that is a shareholder of an S corporation which is carrying on, or that has the right to carry on, business in this state, as said term is used in section 12-214, the amount of such shareholder&#x0027;s pro rata share of such corporation&#x0027;s nonseparately computed items, as defined in Section 1366 of the Internal Revenue Code, that is subject to tax under chapter 208, in accordance with subsection (c) of section 12-217 multiplied by such corporation&#x0027;s apportionment fraction, if any, as determined in accordance with section 12-218;</p>
+<p>(iv) To the extent properly includable in gross income for federal income tax purposes, any interest income from obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut;</p>
+<p>(v) To the extent properly includable in determining the net gain or loss from the sale or other disposition of capital assets for federal income tax purposes, any gain from the sale or exchange of obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut, in the income year such gain was recognized;</p>
+<p>(vi) Any interest on indebtedness incurred or continued to purchase or carry obligations or securities the interest on which is subject to tax under this chapter, but exempt from federal income tax, to the extent that such interest on indebtedness is not deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries;</p>
+<p>(vii) Ordinary and necessary expenses paid or incurred during the taxable year for the production or collection of income that is subject to taxation under this chapter, but exempt from federal income tax, or the management, conservation or maintenance of property held for the production of such income, and the amortizable bond premium for the taxable year on any bond the interest on which is subject to tax under this chapter, but exempt from federal income tax, to the extent that such expenses and premiums are not deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries; and</p>
+<p>(viii) The amount of any refund or credit for overpayment of income taxes imposed by this state, to the extent properly includable in gross income for federal income tax purposes for the taxable year and to the extent deductible in determining federal taxable income prior to deductions relating to distributions to beneficiaries for the preceding taxable year.</p>
+<p>(11) &#x201C;Estimated tax&#x201D; means the amount which the individual estimates to be his income tax under this chapter for the taxable year less the amount which such individual estimates to be the sum of any credits allowable for tax withheld.</p>
+<p>(12) &#x201C;Required annual payment&#x201D; means the lesser of (A) ninety per cent of the tax shown on the return for the taxable year, or, if no return is filed, ninety per cent of the tax for such year, or (B) if the preceding taxable year was a taxable year of twelve months and the individual filed a return for the preceding taxable year, one hundred per cent of the tax shown on the return of the individual for such preceding taxable year.</p>
+<p>(13) &#x201C;Regulated investment company&#x201D; means a regulated investment company as defined in Section 851 of the Internal Revenue Code.</p>
+<p>(14) &#x201C;Exempt dividends&#x201D; means any dividend or part thereof, other than a capital gain dividend, paid by a regulated investment company and designated by it as an exempt dividend, in accordance with section 12-718, in a written notice mailed to its shareholders not later than sixty days after the close of its taxable year.</p>
+<p>(15) &#x201C;Taxpayer&#x201D; means any person, trust or estate subject to the tax imposed under this chapter.</p>
+<p>(16) &#x201C;Internal Revenue Code&#x201D; means the Internal Revenue Code of 1986, or any subsequent corresponding internal revenue code of the United States, as from time to time amended.</p>
+<p>(17) &#x201C;S corporation&#x201D; means any corporation which is an S corporation for federal income tax purposes.</p>
+<p>(18) &#x201C;Person&#x201D; means a person as defined in section 12-1, but shall not include any corporation or association which is taxable as a corporation for the purposes of chapter 208, provided, for purposes of sections 12-735, 12-736 and 12-737, the term &#x201C;person&#x201D; shall include an individual, corporation or partnership and any officer or employee of any corporation, including a dissolved corporation, and a member or employee of any partnership who, as such officer, employee or member, is under a duty to perform the act in respect of which the violation occurs.</p>
+<p>(19) &#x201C;Adjusted gross income&#x201D; means the adjusted gross income of a natural person with respect to any taxable year, as determined for federal income tax purposes and as properly reported on such person&#x0027;s federal income tax return.</p>
+<p>(20) &#x201C;Connecticut adjusted gross income&#x201D; means adjusted gross income, with the following modifications:</p>
+<p>(A) There shall be added thereto:</p>
+<p>(i) To the extent not properly includable in gross income for federal income tax purposes, any interest income from obligations issued by or on behalf of any state, political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity, exclusive of such income from obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut and exclusive of any such income with respect to which taxation by any state is prohibited by federal law;</p>
+<p>(ii) Any exempt-interest dividends, as defined in Section 852(b)(5) of the Internal Revenue Code, exclusive of such exempt-interest dividends derived from obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut and exclusive of such exempt-interest dividends derived from obligations, the income with respect to which taxation by any state is prohibited by federal law;</p>
+<p>(iii) Any interest or dividend income on obligations or securities of any authority, commission or instrumentality of the United States which federal law exempts from federal income tax but does not exempt from state income taxes;</p>
+<p>(iv) To the extent included in gross income for federal income tax purposes for the taxable year, the total taxable amount of a lump sum distribution for the taxable year deductible from such gross income in calculating federal adjusted gross income;</p>
+<p>(v) To the extent properly includable in determining the net gain or loss from the sale or other disposition of capital assets for federal income tax purposes, any loss from the sale or exchange of obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut, in the income year such loss was recognized;</p>
+<p>(vi) To the extent deductible in determining federal adjusted gross income, any income taxes imposed by this state;</p>
+<p>(vii) To the extent deductible in determining federal adjusted gross income, any interest on indebtedness incurred or continued to purchase or carry obligations or securities the interest on which is exempt from tax under this chapter;</p>
+<p>(viii) Expenses paid or incurred during the taxable year for the production or collection of income which is exempt from taxation under this chapter or the management, conservation or maintenance of property held for the production of such income, and the amortizable bond premium for the taxable year on any bond the interest on which is exempt from tax under this chapter to the extent that such expenses and premiums are deductible in determining federal adjusted gross income;</p>
+<p>(ix) For property placed in service after September 27, 2017, any additional allowance for depreciation under subsection (k) of Section 168 of the Internal Revenue Code, to the extent deductible in determining federal adjusted gross income;</p>
+<p>(x) To the extent deductible in determining federal adjusted gross income, the deduction allowable as qualified domestic production activities income, pursuant to Section 199 of the Internal Revenue Code;</p>
+<p>(xi) To the extent not properly includable in gross income for federal income tax purposes for the taxable year, any income from the discharge of indebtedness, in taxable years ending after December 31, 2008, in connection with any reacquisition, after December 31, 2008, and before January 1, 2011, of an applicable debt instrument or instruments, as those terms are defined in Section 108 of the Internal Revenue Code, as amended by Section 1231 of the American Recovery and Reinvestment Act of 2009, the inclusion of which income in federal gross income for the taxable year is deferred, as provided by said Section 1231;</p>
+<p>(xii) To the extent not properly includable in gross income for federal income tax purposes, an amount equal to (I) any distribution from a manufacturing reinvestment account not used in accordance with subdivision (3) of subsection (c) of section 32-9zz to the extent that a contribution to such account was subtracted from federal adjusted gross income pursuant to clause (xix) of subparagraph (B) of this subdivision in computing Connecticut adjusted gross income for the current or a preceding taxable year, and (II) any return of money from a manufacturing reinvestment account pursuant to subsection (d) of section 32-9zz to the extent that a contribution to such account was subtracted from federal adjusted gross income pursuant to clause (xix) of subparagraph (B) of this subdivision in computing Connecticut adjusted gross income for the current or a preceding taxable year;</p>
+<p>(xiii) To the extent not properly includable in gross income for federal income tax purposes, an amount equal to any compensation required to be recognized under Section 457A of the Internal Revenue Code that is attributable to services performed within this state; and</p>
+<p>(xiv) For taxable years commencing on or after January 1, 2018, eighty per cent of any deduction claimed for federal purposes under Section 179 of the Internal Revenue Code.</p>
+<p>(B) There shall be subtracted therefrom:</p>
+<p>(i) To the extent properly includable in gross income for federal income tax purposes, any income with respect to which taxation by any state is prohibited by federal law;</p>
+<p>(ii) To the extent allowable under section 12-718, exempt dividends paid by a regulated investment company;</p>
+<p>(iii) To the extent properly includable in gross income for federal income tax purposes, the amount of any refund or credit for overpayment of income taxes imposed by this state, or any other state of the United States or a political subdivision thereof, or the District of Columbia;</p>
+<p>(iv) To the extent properly includable in gross income for federal income tax purposes and not otherwise subtracted from federal adjusted gross income pursuant to clause (x) of this subparagraph in computing Connecticut adjusted gross income, any tier 1 railroad retirement benefits;</p>
+<p>(v) To the extent any additional allowance for depreciation under Section 168(k) of the Internal Revenue Code for property placed in service after September 27, 2017, was added to federal adjusted gross income pursuant to subparagraph (A)(ix) of this subdivision in computing Connecticut adjusted gross income, twenty-five per cent of such additional allowance for depreciation in each of the four succeeding taxable years;</p>
+<p>(vi) To the extent properly includable in gross income for federal income tax purposes, any interest income from obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut;</p>
+<p>(vii) To the extent properly includable in determining the net gain or loss from the sale or other disposition of capital assets for federal income tax purposes, any gain from the sale or exchange of obligations issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district or similar public entity created under the laws of the state of Connecticut, in the income year such gain was recognized;</p>
+<p>(viii) Any interest on indebtedness incurred or continued to purchase or carry obligations or securities the interest on which is subject to tax under this chapter but exempt from federal income tax, to the extent that such interest on indebtedness is not deductible in determining federal adjusted gross income and is attributable to a trade or business carried on by such individual;</p>
+<p>(ix) Ordinary and necessary expenses paid or incurred during the taxable year for the production or collection of income which is subject to taxation under this chapter but exempt from federal income tax, or the management, conservation or maintenance of property held for the production of such income, and the amortizable bond premium for the taxable year on any bond the interest on which is subject to tax under this chapter but exempt from federal income tax, to the extent that such expenses and premiums are not deductible in determining federal adjusted gross income and are attributable to a trade or business carried on by such individual;</p>
+<p>(x) (I) For taxable years commencing prior to January 1, 2019, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is less than fifty thousand dollars, or as a married individual filing separately whose federal adjusted gross income for such taxable year is less than fifty thousand dollars, or for a husband and wife who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for such taxable year is less than sixty thousand dollars or a person who files a return under the federal income tax as a head of household whose federal adjusted gross income for such taxable year is less than sixty thousand dollars, an amount equal to the Social Security benefits includable for federal income tax purposes;</p>
+<p>(II) For taxable years commencing prior to January 1, 2019, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is fifty thousand dollars or more, or as a married individual filing separately whose federal adjusted gross income for such taxable year is fifty thousand dollars or more, or for a husband and wife who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income from such taxable year is sixty thousand dollars or more or for a person who files a return under the federal income tax as a head of household whose federal adjusted gross income for such taxable year is sixty thousand dollars or more, an amount equal to the difference between the amount of Social Security benefits includable for federal income tax purposes and the lesser of twenty-five per cent of the Social Security benefits received during the taxable year, or twenty-five per cent of the excess described in Section 86(b)(1) of the Internal Revenue Code;</p>
+<p>(III) For the taxable year commencing January 1, 2019, and each taxable year thereafter, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or as a married individual filing separately whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or for a husband and wife who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars or a person who files a return under the federal income tax as a head of household whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, an amount equal to the Social Security benefits includable for federal income tax purposes; and</p>
+<p>(IV) For the taxable year commencing January 1, 2019, and each taxable year thereafter, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is seventy-five thousand dollars or more, or as a married individual filing separately whose federal adjusted gross income for such taxable year is seventy-five thousand dollars or more, or for a husband and wife who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income from such taxable year is one hundred thousand dollars or more or for a person who files a return under the federal income tax as a head of household whose federal adjusted gross income for such taxable year is one hundred thousand dollars or more, an amount equal to the difference between the amount of Social Security benefits includable for federal income tax purposes and the lesser of twenty-five per cent of the Social Security benefits received during the taxable year, or twenty-five per cent of the excess described in Section 86(b)(1) of the Internal Revenue Code;</p>
+<p>(xi) To the extent properly includable in gross income for federal income tax purposes, any amount rebated to a taxpayer pursuant to section 12-746;</p>
+<p>(xii) To the extent properly includable in the gross income for federal income tax purposes of a designated beneficiary, any distribution to such beneficiary from any qualified state tuition program, as defined in Section 529(b) of the Internal Revenue Code, established and maintained by this state or any official, agency or instrumentality of the state;</p>
+<p>(xiii) To the extent allowable under section 12-701a, contributions to accounts established pursuant to any qualified state tuition program, as defined in Section 529(b) of the Internal Revenue Code, established and maintained by this state or any official, agency or instrumentality of the state;</p>
+<p>(xiv) To the extent properly includable in gross income for federal income tax purposes, the amount of any Holocaust victims&#x0027; settlement payment received in the taxable year by a Holocaust victim;</p>
+<p>(xv) To the extent properly includable in the gross income for federal income tax purposes of a designated beneficiary, as defined in section 3-123aa, interest, dividends or capital gains earned on contributions to accounts established for the designated beneficiary pursuant to the Connecticut Homecare Option Program for the Elderly established by sections 3-123aa to 3-123ff, inclusive;</p>
+<p>(xvi) To the extent properly includable in gross income for federal income tax purposes, any income received from the United States government as retirement pay for a retired member of (I) the Armed Forces of the United States, as defined in Section 101 of Title 10 of the United States Code, or (II) the National Guard, as defined in Section 101 of Title 10 of the United States Code;</p>
+<p>(xvii) To the extent properly includable in gross income for federal income tax purposes for the taxable year, any income from the discharge of indebtedness in connection with any reacquisition, after December 31, 2008, and before January 1, 2011, of an applicable debt instrument or instruments, as those terms are defined in Section 108 of the Internal Revenue Code, as amended by Section 1231 of the American Recovery and Reinvestment Act of 2009, to the extent any such income was added to federal adjusted gross income pursuant to subparagraph (A)(xi) of this subdivision in computing Connecticut adjusted gross income for a preceding taxable year;</p>
+<p>(xviii) To the extent not deductible in determining federal adjusted gross income, the amount of any contribution to a manufacturing reinvestment account established pursuant to section 32-9zz in the taxable year that such contribution is made;</p>
+<p>(xix) To the extent properly includable in gross income for federal income tax purposes, (I) for the taxable year commencing January 1, 2015, ten per cent of the income received from the state teachers&#x0027; retirement system, (II) for the taxable years commencing January 1, 2016, to January 1, 2020, inclusive, twenty-five per cent of the income received from the state teachers&#x0027; retirement system, and (III) for the taxable year commencing January 1, 2021, and each taxable year thereafter, fifty per cent of the income received from the state teachers&#x0027; retirement system or, for a taxpayer whose federal adjusted gross income does not exceed the applicable threshold under clause (xx) of this subparagraph, the percentage pursuant to said clause of the income received from the state teachers&#x0027; retirement system, whichever deduction is greater;</p>
+<p>(xx) To the extent properly includable in gross income for federal income tax purposes, except for retirement benefits under clause (iv) of this subparagraph and retirement pay under clause (xvi) of this subparagraph, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or as a married individual filing separately whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or as a head of household whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or for a husband and wife who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, (I) for the taxable year commencing January 1, 2019, fourteen per cent of any pension or annuity income, (II) for the taxable year commencing January 1, 2020, twenty-eight per cent of any pension or annuity income, (III) for the taxable year commencing January 1, 2021, forty-two per cent of any pension or annuity income, and (IV) for the taxable years commencing January 1, 2022, and January 1, 2023, one hundred per cent of any pension or annuity income;</p>
+<p>(xxi) To the extent properly includable in gross income for federal income tax purposes, except for retirement benefits under clause (iv) of this subparagraph and retirement pay under clause (xvi) of this subparagraph, any pension or annuity income for the taxable year commencing on or after January 1, 2024, and each taxable year thereafter, in accordance with the following schedule, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, or as a married individual filing separately whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, or as a head of household whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars:</p>
+<table id="table043" class="half-width center">
+<tbody>
+<tr>
+<td><p class="tb-left nolead">Federal Adjusted Gross Income</p></td>
+<td><p class="tb-right nolead">Deduction</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">Less than $75,000</p></td>
+<td><p class="tb-right nolead">100.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$75,000 but not over $77,499</p></td>
+<td><p class="tb-right nolead">85.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$77,500 but not over $79,999</p></td>
+<td><p class="tb-right nolead">70.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$80,000 but not over $82,499</p></td>
+<td><p class="tb-right nolead">55.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$82,500 but not over $84,999</p></td>
+<td><p class="tb-right nolead">40.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$85,000 but not over $87,499</p></td>
+<td><p class="tb-right nolead">25.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$87,500 but not over $89,999</p></td>
+<td><p class="tb-right nolead">10.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$90,000 but not over $94,999</p></td>
+<td><p class="tb-right nolead">5.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$95,000 but not over $99,999</p></td>
+<td><p class="tb-right nolead">2.5%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$100,000 and over</p></td>
+<td><p class="tb-right nolead">0.0%&#x2002;</p></td>
+</tr>
+</tbody>
+</table>
+<p>(xxii) To the extent properly includable in gross income for federal income tax purposes, except for retirement benefits under clause (iv) of this subparagraph and retirement pay under clause (xvi) of this subparagraph, any pension or annuity income for the taxable year commencing on or after January 1, 2024, and each taxable year thereafter, in accordance with the following schedule for married individuals who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for such taxable year is less than one hundred fifty thousand dollars:</p>
+<table id="table044" class="half-width center">
+<tbody>
+<tr>
+<td><p class="tb-left nolead">Federal Adjusted Gross Income</p></td>
+<td><p class="tb-right nolead">Deduction</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">Less than $100,000</p></td>
+<td><p class="tb-right nolead">100.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$100,000 but not over $104,999</p></td>
+<td><p class="tb-right nolead">85.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$105,000 but not over $109,999</p></td>
+<td><p class="tb-right nolead">70.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$110,000 but not over $114,999</p></td>
+<td><p class="tb-right nolead">55.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$115,000 but not over $119,999</p></td>
+<td><p class="tb-right nolead">40.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$120,000 but not over $124,999</p></td>
+<td><p class="tb-right nolead">25.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$125,000 but not over $129,999</p></td>
+<td><p class="tb-right nolead">10.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$130,000 but not over $139,999</p></td>
+<td><p class="tb-right nolead">5.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$140,000 but not over $149,999</p></td>
+<td><p class="tb-right nolead">2.5%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$150,000 and over</p></td>
+<td><p class="tb-right nolead">0.0%&#x2002;</p></td>
+</tr>
+</tbody>
+</table>
+<p>(xxiii) The amount of lost wages and medical, travel and housing expenses, not to exceed ten thousand dollars in the aggregate, incurred by a taxpayer during the taxable year in connection with the donation to another person of an organ for organ transplantation occurring on or after January 1, 2017;</p>
+<p>(xxiv) To the extent properly includable in gross income for federal income tax purposes, the amount of any financial assistance received from the Crumbling Foundations Assistance Fund or paid to or on behalf of the owner of a residential building pursuant to sections 8-442 and 8-443;</p>
+<p>(xxv) To the extent properly includable in gross income for federal income tax purposes, the amount calculated pursuant to subsection (b) of section 12-704g for income received by a general partner of a venture capital fund, as defined in 17 CFR 275.203(l)-1, as amended from time to time;</p>
+<p>(xxvi) To the extent any portion of a deduction under Section 179 of the Internal Revenue Code was added to federal adjusted gross income pursuant to subparagraph (A)(xiv) of this subdivision in computing Connecticut adjusted gross income, twenty-five per cent of such disallowed portion of the deduction in each of the four succeeding taxable years;</p>
+<p>(xxvii) To the extent properly includable in gross income for federal income tax purposes, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or as a married individual filing separately whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or as a head of household whose federal adjusted gross income for such taxable year is less than seventy-five thousand dollars, or for a husband and wife who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, for the taxable year commencing January 1, 2023, twenty-five per cent of any distribution from an individual retirement account other than a Roth individual retirement account;</p>
+<p>(xxviii) To the extent properly includable in gross income for federal income tax purposes, for a person who files a return under the federal income tax as an unmarried individual whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, or as a married individual filing separately whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, or as a head of household whose federal adjusted gross income for such taxable year is less than one hundred thousand dollars, (I) for the taxable year commencing January 1, 2024, fifty per cent of any distribution from an individual retirement account other than a Roth individual retirement account, (II) for the taxable year commencing January 1, 2025, seventy-five per cent of any distribution from an individual retirement account other than a Roth individual retirement account, and (III) for the taxable year commencing January 1, 2026, and each taxable year thereafter, any distribution from an individual retirement account other than a Roth individual retirement account. The subtraction under this clause shall be made in accordance with the following schedule:</p>
+<table id="table045" class="half-width center">
+<tbody>
+<tr>
+<td><p class="tb-left nolead">Federal Adjusted Gross Income</p></td>
+<td><p class="tb-right nolead">Deduction</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">Less than $75,000</p></td>
+<td><p class="tb-right nolead">100.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$75,000 but not over $77,499</p></td>
+<td><p class="tb-right nolead">85.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$77,500 but not over $79,999</p></td>
+<td><p class="tb-right nolead">70.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$80,000 but not over $82,499</p></td>
+<td><p class="tb-right nolead">55.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$82,500 but not over $84,999</p></td>
+<td><p class="tb-right nolead">40.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$85,000 but not over $87,499</p></td>
+<td><p class="tb-right nolead">25.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$87,500 but not over $89,999</p></td>
+<td><p class="tb-right nolead">10.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$90,000 but not over $94,999</p></td>
+<td><p class="tb-right nolead">5.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$95,000 but not over $99,999</p></td>
+<td><p class="tb-right nolead">2.5%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$100,000 and over</p></td>
+<td><p class="tb-right nolead">0.0%&#x2002;</p></td>
+</tr>
+</tbody>
+</table>
+<p>(xxix) To the extent properly includable in gross income for federal income tax purposes, for married individuals who file a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for such taxable year is less than one hundred fifty thousand dollars, (I) for the taxable year commencing January 1, 2024, fifty per cent of any distribution from an individual retirement account other than a Roth individual retirement account, (II) for the taxable year commencing January 1, 2025, seventy-five per cent of any distribution from an individual retirement account other than a Roth individual retirement account, and (III) for the taxable year commencing January 1, 2026, and each taxable year thereafter, any distribution from an individual retirement account other than a Roth individual retirement account. The subtraction under this clause shall be made in accordance with the following schedule:</p>
+<table id="table046" class="half-width center">
+<tbody>
+<tr>
+<td><p class="tb-left nolead">Federal Adjusted Gross Income</p></td>
+<td><p class="tb-right nolead">Deduction</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">Less than $100,000</p></td>
+<td><p class="tb-right nolead">100.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$100,000 but not over $104,999</p></td>
+<td><p class="tb-right nolead">85.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$105,000 but not over $109,999</p></td>
+<td><p class="tb-right nolead">70.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$110,000 but not over $114,999</p></td>
+<td><p class="tb-right nolead">55.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$115,000 but not over $119,999</p></td>
+<td><p class="tb-right nolead">40.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$120,000 but not over $124,999</p></td>
+<td><p class="tb-right nolead">25.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$125,000 but not over $129,999</p></td>
+<td><p class="tb-right nolead">10.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$130,000 but not over $139,999</p></td>
+<td><p class="tb-right nolead">5.0%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$140,000 but not over $149,999</p></td>
+<td><p class="tb-right nolead">2.5%&#x2002;</p></td>
+</tr>
+<tr>
+<td><p class="tb-left nolead">$150,000 and over</p></td>
+<td><p class="tb-right nolead">0.0%&#x2002;</p></td>
+</tr>
+</tbody>
+</table>
+<p>(xxx) To the extent properly includable in gross income for federal income tax purposes, for the taxable year commencing January 1, 2022, the amount or amounts paid or otherwise credited to any eligible resident of this state under (I) the 2020 Earned Income Tax Credit enhancement program from funding allocated to the state through the Coronavirus Relief Fund established under the Coronavirus Aid, Relief, and Economic Security Act, P.L. 116-136, and (II) the 2021 Earned Income Tax Credit enhancement program from funding allocated to the state pursuant to Section 9901 of Subtitle M of Title IX of the American Rescue Plan Act of 2021, P.L. 117-2;</p>
+<p>(xxxi) For the taxable year commencing January 1, 2023, and each taxable year thereafter, for a taxpayer licensed under the provisions of chapter 420f or 420h, the amount of ordinary and necessary expenses that would be eligible to be claimed as a deduction for federal income tax purposes under Section 162(a) of the Internal Revenue Code but that are disallowed under Section 280E of the Internal Revenue Code because marijuana is a controlled substance under the federal Controlled Substance Act;</p>
+<p>(xxxii) To the extent properly includable in gross income for federal income tax purposes, for the taxable year commencing on or after January 1, 2025, and each taxable year thereafter, any common stock received by the taxpayer during the taxable year under a share plan, as defined in section 12-217ss;</p>
+<p>(xxxiii) To the extent properly includable in gross income for federal income tax purposes, the amount of any student loan reimbursement payment received by a taxpayer pursuant to section 10a-19m;</p>
+<p>(xxxiv) Contributions to an ABLE account established pursuant to sections 3-39k to 3-39q, inclusive, not to exceed five thousand dollars for each individual taxpayer or ten thousand dollars for taxpayers filing a joint return;</p>
+<p>(xxxv) To the extent properly includable in gross income for federal income tax purposes, the amount of any payment received pursuant to subsection (c) of section 3-122a;</p>
+<p>(xxxvi) For an account holder, as defined in section 12-724b, who files a return under the federal income tax as an unmarried individual, a married individual filing separately or a head of household, whose federal adjusted gross income for the taxable year is less than one hundred twenty-five thousand dollars or who files a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for the taxable year is less than two hundred fifty thousand dollars:</p>
+<p>(I) To the extent not deductible in determining federal adjusted gross income, for the taxable year commencing January 1, 2027, an amount equal to the contributions deposited during the taxable years commencing January 1, 2026, and January 1, 2027, in a first-time homebuyer savings account established pursuant to subsection (c) of section 12-724b, less any amounts withdrawn during said taxable years by the account holder from such account under subparagraph (D) of subdivision (2) of subsection (f) of section 12-724b. The amount claimed under this subclause shall not exceed two thousand five hundred dollars for each such taxable year for an unmarried individual, a married individual filing separately or a head of household and five thousand dollars for each such taxable year for married individuals filing jointly;</p>
+<p>(II) To the extent not deductible in determining federal adjusted gross income, for the taxable year commencing January 1, 2028, and each taxable year thereafter, an amount equal to the contributions deposited during the taxable year in a first-time homebuyer savings account established pursuant to subsection (c) of section 12-724b, less any amounts withdrawn during the taxable year by the account holder from such account pursuant to subparagraph (D) of subdivision (2) of subsection (f) of section 12-724b. The amount allowed to be claimed under this subclause for the taxable year shall not exceed two thousand five hundred dollars for an unmarried individual, a married individual filing separately or a head of household and five thousand dollars for married individuals filing jointly; and</p>
+<p>(III) To the extent properly includable in gross income for federal income tax purposes, for the taxable year commencing January 1, 2027, and each taxable year thereafter, an amount equal to the sum of all interest accrued on a first-time homebuyer savings account, established pursuant to subsection (c) of section 12-724b, during the taxable year; and</p>
+<p>(xxxvii) To the extent properly includable in gross income for federal income tax purposes, for the taxable year commencing January 1, 2027, and each taxable year thereafter, for an account holder who is a qualified beneficiary of a first-time homebuyer savings account, as those terms are defined in section 12-724b, and who files a return under the federal income tax as an unmarried individual, a married individual filing separately or a head of household, whose federal adjusted gross income for the taxable year is less than one hundred twenty-five thousand dollars or who files a return under the federal income tax as married individuals filing jointly whose federal adjusted gross income for the taxable year is less than two hundred fifty thousand dollars, an amount equal to any withdrawal from such account that is used to pay or reimburse such qualified beneficiary for eligible costs, as defined in section 12-724b, incurred by the qualified beneficiary.</p>
+<p>(C) With respect to a person who is the beneficiary of a trust or estate, there shall be added or subtracted, as the case may be, from adjusted gross income such person&#x0027;s share, as determined under section 12-714, in the Connecticut fiduciary adjustment.</p>
+<p>(21) &#x201C;Commissioner&#x201D; means the Commissioner of Revenue Services or his authorized agent.</p>
+<p>(22) &#x201C;Department&#x201D; means the Department of Revenue Services.</p>
+<p>(23) &#x201C;Federal tentative minimum tax&#x201D; means tentative minimum tax, as determined pursuant to Section 55 of the Internal Revenue Code, reduced by the alternative minimum tax foreign tax credit.</p>
+<p>(24) &#x201C;Adjusted federal tentative minimum tax&#x201D; of an individual means such individual&#x0027;s federal tentative minimum tax or, in the case of an individual whose Connecticut adjusted gross income includes modifications described in subparagraph (A)(i), (A)(ii), (A)(v), (A)(vi), (A)(vii) or (A)(viii) of subdivision (20) of this subsection or subparagraph (B)(i), (B)(ii), (B)(v), (B)(vi), (B)(vii), (B)(viii), (B)(ix), (B)(x), (B)(xiii) or (B)(xv) of subdivision (20) of this subsection, the amount that would have been the federal tentative minimum tax if such tax were calculated by including, to the extent not includable in federal alternative minimum taxable income, the modifications described in subparagraph (A)(i), (A)(ii), (A)(v), (A)(vi), (A)(vii) or (A)(viii) of subdivision (20) of this subsection, by excluding, to the extent includable in federal alternative minimum taxable income, the modifications described in subparagraph (B)(i), (B)(ii), (B)(v), (B)(vi), (B)(vii), (B)(viii), (B)(ix), (B)(x), (B)(xiii) or (B)(xv) of subdivision (20) of this subsection, and by excluding, to the extent includable in federal alternative minimum taxable income, the amount of any interest income or exempt-interest dividends, as defined in Section 852(b)(5) of the Internal Revenue Code, from obligations that are issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district, or similar public entity that is created under the laws of the state of Connecticut, or from obligations that are issued by or on behalf of any territory or possession of the United States, any political subdivision of such territory or possession, or public instrumentality, authority, district or similar public entity of such territory or possession, the income with respect to which taxation by any state is prohibited by federal law. If such individual is a beneficiary of a trust or estate, then, in calculating his or her federal tentative minimum tax, his or her federal alternative taxable income shall be increased or decreased, as the case may be, by the net amount of such individual&#x0027;s proportionate share of the Connecticut fiduciary adjustment relating to modifications that are described in, to the extent not includable in federal alternative minimum taxable income, subparagraph (A)(i), (A)(ii), (A)(v), (A)(vi), (A)(vii) or (A)(viii) of subdivision (20) of this subsection or, to the extent includable in federal alternative minimum taxable income, subparagraph (B)(i), (B)(ii), (B)(v), (B)(vi), (B)(vii), (B)(viii), (B)(ix), (B)(x), (B)(xiii) or (B)(xv) of subdivision (20) of this subsection.</p>
+<p>(25) &#x201C;Net Connecticut minimum tax&#x201D; means the amount by which the Connecticut minimum tax exceeds the income tax imposed under section 12-700.</p>
+<p>(26) (A) &#x201C;Connecticut minimum tax&#x201D; of an individual means the lesser of (i) nineteen per cent of the adjusted federal tentative minimum tax, as defined in subdivision (24) of this subsection, or (ii) five and one-half per cent of the adjusted federal alternative minimum taxable income, as defined in subdivision (30) of this subsection. (B) &#x201C;Connecticut minimum tax&#x201D; of a trust or estate means the lesser of (i) nineteen per cent of the adjusted federal tentative minimum tax, as defined in subdivision (28) of this subsection, or (ii) five and one-half per cent of the adjusted federal alternative minimum taxable income, as defined in subdivision (31) of this subsection.</p>
+<p>(27) &#x201C;Adjusted net Connecticut minimum tax&#x201D; means (A) if the Connecticut minimum tax is calculated under subparagraph (A)(i) or (B)(i), as the case may be, of subdivision (26) of this subsection, the excess, if any, of (i) the net Connecticut minimum tax, less the credit allowed under subsection (e) of section 12-700a, over (ii) the amount that would have been the net Connecticut minimum tax provided the adjustments and items of preference specified in Section 53(d) of the Internal Revenue Code had been used in determining the net Connecticut minimum tax, less the credit that would have been allowed under subsection (e) of section 12-700a for a similar tax determined by using only the adjustments and items of preference specified in Section 53(d) of the Internal Revenue Code, or (B) if the Connecticut minimum tax is calculated under subparagraph (A)(ii) or (B)(ii), as the case may be, of subdivision (26) of this subsection, then the product of the excess that is described in subparagraph (A) of this subdivision and that is determined without regard to said subparagraph (A)(ii) or (B)(ii), as the case may be, of subdivision (26) of this subsection, multiplied by a fraction, the numerator of which is the net Connecticut minimum tax, as if the Connecticut minimum tax were calculated under said subparagraph (A)(ii) or (B)(ii), as the case may be, of subdivision (26) of this subsection and the denominator of which is the net Connecticut minimum tax, as if the Connecticut minimum tax were calculated under said subparagraph (A)(i) or (B)(i), as the case may be, of subdivision (26) of this subsection.</p>
+<p>(28) &#x201C;Adjusted federal tentative minimum tax&#x201D; of a trust or estate means its federal tentative minimum tax or, in the case of a trust or estate whose Connecticut taxable income includes modifications described in subparagraph (A)(i), (A)(ii), (A)(iv), (A)(v), (A)(vi) or (A)(vii) of subdivision (10) of this subsection or subparagraph (B)(i), (B)(ii), (B)(iii), (B)(iv), (B)(v), (B)(vi) or (B)(vii) of subdivision (10) of this subsection, the amount that would have been the federal tentative minimum tax if such tax were calculated by including, to the extent not includable in federal alternative minimum taxable income, the modifications described in subparagraph (A)(i), (A)(ii), (A)(iv), (A)(v), (A)(vi) or (A)(vii) of subdivision (10) of this subsection, by excluding, to the extent includable in federal alternative minimum taxable income, the modifications described in subparagraph (B)(i), (B)(ii), (B)(iii), (B)(iv), (B)(v), (B)(vi) or (B)(vii) of subdivision (10) of this subsection, and by excluding, to the extent includable in federal alternative minimum taxable income, the amount of any interest income or exempt-interest dividends, as defined in Section 852(b)(5) of the Internal Revenue Code, from obligations that are issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district, or similar public entity that is created under the laws of the state of Connecticut, or from obligations that are issued by or on behalf of any territory or possession of the United States, any political subdivision of such territory or possession, or public instrumentality, authority, district or similar public entity of such territory or possession, the income with respect to which taxation by any state is prohibited by federal law. If such trust or estate is itself a beneficiary of a trust or estate, then, for purposes of calculating its adjusted federal alternative minimum tax, its federal alternative minimum taxable income shall also be increased or decreased, as the case may be, by the net amount of such trust or estate&#x0027;s proportionate share of the Connecticut fiduciary adjustment relating to modifications that are described, to the extent not includable in federal alternative minimum taxable income, in subparagraph (A)(i), (A)(ii), (A)(iv), (A)(v), (A)(vi) or (A)(vii) of subdivision (10) of this subsection or, to the extent includable in federal alternative minimum taxable income, subparagraph (B)(i), (B)(ii), (B)(iii), (B)(iv), (B)(v), (B)(vi) or (B)(vii) of subdivision (10) of this subsection.</p>
+<p>(29) &#x201C;Federal alternative minimum taxable income&#x201D; means alternative minimum taxable income, as defined in Section 55(b)(2) of the Internal Revenue Code.</p>
+<p>(30) &#x201C;Adjusted federal alternative minimum taxable income&#x201D; of an individual means his or her federal alternative minimum taxable income or, in the case of an individual whose Connecticut adjusted gross income includes modifications described in subparagraph (A)(i), (A)(ii), (A)(v), (A)(vi), (A)(vii) or (A)(viii) of subdivision (20) of this subsection or subparagraph (B)(i), (B)(ii), (B)(v), (B)(vi), (B)(vii), (B)(viii), (B)(ix), (B)(x), (B)(xiii) or (B)(xv) of subdivision (20) of this subsection, the amount that would have been the federal alternative minimum taxable income if such amount were calculated by including, to the extent not includable in federal alternative minimum taxable income, the modifications described in subparagraph (A)(i), (A)(ii), (A)(v), (A)(vi), (A)(vii) or (A)(viii) of subdivision (20) of this subsection, by excluding, to the extent includable in federal alternative minimum taxable income, the modifications described in subparagraph (B)(i), (B)(ii), (B)(v), (B)(vi), (B)(vii), (B)(viii), (B)(ix), (B)(x), (B)(xiii) or (B)(xv) of subdivision (20) of this subsection, and by excluding, to the extent includable in federal alternative minimum taxable income, the amount of any interest income or exempt-interest dividends, as defined in Section 852(b)(5) of the Internal Revenue Code, from obligations that are issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district, or similar public entity that is created under the laws of the state of Connecticut, or from obligations that are issued by or on behalf of any territory or possession of the United States, any political subdivision of such territory or possession, or public instrumentality, authority, district or similar public entity of such territory or possession, the income with respect to which taxation by any state is prohibited by federal law. If such individual is a beneficiary of a trust or estate, then, for purposes of calculating his or her adjusted federal alternative minimum taxable income, his or her federal alternative minimum taxable income shall also be increased or decreased, as the case may be, by the net amount of such individual&#x0027;s proportionate share of the Connecticut fiduciary adjustment relating to modifications to the extent not includable in federal alternative minimum taxable income, that are described in subparagraph (A)(i), (A)(ii), (A)(v), (A)(vi), (A)(vii) or (A)(viii) of subdivision (20) of this subsection or, to the extent includable in federal alternative minimum taxable income, subparagraph (B)(i), (B)(ii), (B)(v), (B)(vi), (B)(vii), (B)(viii), (B)(ix), (B)(x), (B)(xiii) or (B)(xv) of subdivision (20) of this subsection.</p>
+<p>(31) &#x201C;Adjusted federal alternative minimum taxable income&#x201D; of a trust or estate means its federal alternative minimum taxable income or, in the case of a trust or estate whose Connecticut taxable income includes modifications described in subparagraph (A)(i), (A)(ii), (A)(iv), (A)(v), (A)(vi) or (A)(vii) of subdivision (10) of this subsection or subparagraph (B)(i), (B)(ii), (B)(iii), (B)(iv), (B)(v), (B)(vi) or (B)(vii) of subdivision (10) of this subsection, the amount that would have been the federal alternative minimum taxable income if such amount were calculated by including, to the extent not includable in federal alternative minimum taxable income, the modifications described in subparagraph (A)(i), (A)(ii), (A)(iv), (A)(v), (A)(vi) or (A)(vii) of subdivision (10) of this subsection, by excluding, to the extent includable in federal alternative minimum taxable income, the modifications described in subparagraph (B)(i), (B)(ii), (B)(iii), (B)(iv), (B)(v), (B)(vi) or (B)(vii) of subdivision (10) of this subsection, and by excluding, to the extent includable in federal alternative minimum taxable income, the amount of any interest income or exempt-interest dividends, as defined in Section 852(b)(5) of the Internal Revenue Code, from obligations that are issued by or on behalf of the state of Connecticut, any political subdivision thereof, or public instrumentality, state or local authority, district, or similar public entity that is created under the laws of the state of Connecticut, or from obligations that are issued by or on behalf of any territory or possession of the United States, any political subdivision of such territory or possession, or public instrumentality, authority, district or similar public entity of such territory or possession, the income with respect to which taxation by any state is prohibited by federal law. If such trust or estate is itself a beneficiary of a trust or estate, then, for purposes of calculating its adjusted federal alternative minimum taxable income, its federal alternative minimum taxable income shall also be increased or decreased, as the case may be, by the net amount of such trust or estate&#x0027;s proportionate share of the Connecticut fiduciary adjustment relating to modifications that are described, to the extent not includable in federal alternative minimum taxable income, in subparagraph (A)(i), (A)(ii), (A)(iv), (A)(v), (A)(vi) or (A)(vii) of subdivision (10) of this subsection or, to the extent includable in federal alternative minimum taxable income, subparagraph (B)(i), (B)(ii), (B)(iii), (B)(iv), (B)(v), (B)(vi) or (B)(vii) of subdivision (10) of this subsection.</p>
+<p>(32) &#x201C;Pay&#x201D; means the payment by an individual of the tax imposed on his Connecticut adjusted gross income or the payment by a fiduciary of a trust or estate of the tax imposed on its Connecticut taxable income, and includes the payment over by an employer or other person of the tax that such employer or other person is required to collect, deduct or withhold and to truthfully account for.</p>
+<p>(33) &#x201C;Partnership&#x201D; means a partnership as defined in Section 7701(a)(2) of the Internal Revenue Code and the regulations adopted thereunder, as from time to time amended, and any reference in this chapter or in regulations adopted under this chapter to a partnership shall include a limited liability company that is treated as a partnership for federal income tax purposes.</p>
+<p>(34) &#x201C;Partner&#x201D; means a partner as defined in Section 7701(a)(2) of the Internal Revenue Code and the regulations adopted thereunder, as from time to time amended, and any reference in this chapter or in regulations adopted under this chapter to a partner shall include a member of a limited liability company that is treated as a partnership for federal income tax purposes.</p>
+<p>(35) &#x201C;Holocaust victim settlement payment&#x201D; means a payment received: (A) As a result of a settlement of the action entitled In re Holocaust Victims&#x0027; Asset Litigation, C.A. No. 96-4849, in the United States District Court for the Eastern District of New York; (B) under the German act regulating unresolved property claims, also known as Gesetz zur Regelung offener Vermogensfragen, or any other foreign law providing payments for Holocaust claims; or (C) as a result of the settlement of any other Holocaust claim, including insurance claims, claims relating to looted art, claims relating to looted financial assets, or claims relating to slave labor wages. &#x201C;Holocaust victim settlement payment&#x201D; includes any interest on any such payment accumulated or accrued through the date of payment. &#x201C;Holocaust victim settlement payment&#x201D; does not include any amount received from any asset acquired with any asset recovered, returned, or otherwise given as compensation to a Holocaust victim as a Holocaust victim settlement payment or with the proceeds from the sale of any asset recovered, returned, or otherwise given as compensation to a Holocaust victim as a Holocaust victim settlement payment.</p>
+<p>(36) &#x201C;Holocaust victim&#x201D; means an individual who died or lost property as a result of discriminatory laws, policies or actions targeted against discrete groups of individuals based on race, religion, ethnicity, sexual orientation or national origin, whether or not the individual was actually a member of any of those groups, or because the individual assisted or allegedly assisted any of those groups, between January 1, 1929, and December 31, 1945, in the country of Nazi Germany, areas occupied by Nazi Germany, those European countries allied with Nazi Germany, areas occupied by those European countries allied with Nazi Germany or any other neutral European country or area in Europe under the influence or threat of invasion by Nazi Germany or by any European country allied with or occupied by Nazi Germany. &#x201C;Holocaust victim&#x201D; includes the spouse or descendant of a Holocaust victim.</p>
+<p>(37) &#x201C;Organ&#x201D; means human bone marrow or all or part of a human liver, pancreas, kidney, intestine or lung.</p>
+<p>(b) Any term used in this chapter has the same meaning as when used in a comparable context in the laws of the United States relating to income taxes unless a different meaning is clearly required. Any reference in this chapter to the laws of the United States means the provisions of the Internal Revenue Code and any other provisions of the laws of the United States relating to income tax as the same may be or become effective, at any time or from time to time, for the taxable year. Terms preceded by the word &#x201C;federal&#x201D; refer to the corresponding terms defined in the laws of the United States.</p>
+<p>(c) The commissioner shall, by regulation, define the term &#x201C;derived from or connected with sources within this state&#x201D; as used in this chapter.</p>
+<p class="source-first">(June Sp. Sess. P.A. 91-3, S. 52, 168; May Sp. Sess. P.A. 92-5, S. 2, 37; May Sp. Sess. P.A. 92-17, S. 11, 43, 59; P.A. 93-74, S. 38, 39, 57, 58, 67; 93-332, S. 27, 42; May Sp. Sess. P.A. 94-4, S. 26, 71&#x2013;74, 85; P.A. 95-5, S. 1&#x2013;3, 6; 95-160, S. 64, 69; P.A. 96-139, S. 9&#x2013;11, 13; 96-175, S. 2, 3, 5; 96-180, S. 29&#x2013;31, 166; 96-221, S. 22, 25; P.A. 97-286, S. 2, 3, 8; 97-309, S. 9, 23; 97-322, S. 7, 9; P.A. 98-110, S. 4, 27; 98-252, S. 58, 80; 98-255, S. 3, 24; P.A. 99-173, S. 1, 65; P.A. 00-82, S. 1&#x2013;4, 6; 00-174, S. 38, 39, 83; 00-192, S. 6, 102; June Sp. Sess. P.A. 01-6, S. 35, 36, 85; May 9 Sp. Sess. P.A. 02-1, S. 77; P.A. 03-225, S. 13; June 30 Sp. Sess. P.A. 03-6, S. 72; P.A. 05-251, S. 71&#x2013;73; P.A. 06-186, S. 76, 77; P.A. 07-130, S. 7, 8; P.A. 08-140, S. 1; June Sp. Sess. P.A. 09-3, S. 120, 121; June 19 Sp. Sess. P.A. 09-2, S. 5; June 12 Sp. Sess. P.A. 12-1, S. 196; P.A. 14-47, S. 50; 14-69, S. 3; 14-122, S. 99, 100; 14-155, S. 16; P.A. 15-179, S. 3; 15-244, S. 65; P.A. 17-147, S. 2; June Sp. Sess. P.A. 17-2, S. 342, 641, 642; June Sp. Sess. P.A. 17-4, S. 18; P.A. 18-26, S. 27; 18-49, S. 11; 18-147, S. 2; P.A. 19-117, S. 332; June Sp. Sess. P.A. 21-2, S. 433; P.A. 22-110, S. 32, 33; 22-118, S. 410; P.A. 23-117, S. 8; 23-137, S. 57; 23-204, S. 175, 377, 391; P.A. 24-27, S. 2; Nov. Sp. Sess. P.A. 25-1, S. 2.)</p>
+<p class="history-first">History: June Sp. Sess. P.A. 91-3, S. 52, effective August 22, 1991, and applicable to taxable years of taxpayers occurring on or after January 1, 1991; May Sp. Sess. P.A. 92-5 made various technical and minor changes, effective June 19, 1992, and applicable to taxable years of taxpayers commencing on or after January 1, 1992; May Sp. Sess. P.A. 92-17 amended Subsec. (a)(4) to delete standards for nontaxation of a resident trust and to create a formula for modification of the Connecticut taxable income of a trust based on the residence of the beneficiaries, effective June 19, 1992, and applicable to taxable years of taxpayers commencing on or after January 1, 1993, and added Subsec. (c), concerning a definition of the term &#x201C;derived from or connected with sources within this state&#x201D;, effective June 19, 1992, and applicable to taxable years of taxpayers commencing on or after January 1, 1992; P.A. 93-74 amended Subsec. (a)(12), deleting existing definition of &#x201C;assumed tax&#x201D; and replacing it with definition of &#x201C;required annual payment&#x201D;, amended Subsec. (a)(18), defining &#x201C;person&#x201D; by changing statutory citation from Sec. 1-1 to Sec. 12-1, made technical change in Subsec. (a)(20) and added Subdivs. (23) to (27), inclusive, to Subsec. (a) defining &#x201C;federal tentative minimum tax&#x201D;, &#x201C;adjusted federal tentative minimum tax&#x201D;, &#x201C;net Connecticut minimum tax&#x201D;, &#x201C;Connecticut minimum tax&#x201D; and &#x201C;adjusted net Connecticut minimum tax&#x201D;, effective May 19, 1993, and applicable to taxable years on and after January 1, 1993; P.A. 93-332 amended Subsec. (a)(4) to modify definition of &#x201C;resident trust or estate&#x201D; to include trust or estate which has one or more nonresident beneficiaries, effective June 25, 1993, and applicable to taxable years commencing on or after January 1, 1993; May Sp. Sess. P.A. 94-4 in Subsec. (a)(4) made changes in definition of &#x201C;resident trust or estate&#x201D; relative to the calculation of the alternative minimum tax, effective June 9, 1994, and applicable to taxable years commencing on or after January 1, 1993, in Subsec. (a)(20) eliminated the modification for moving expenses and added a new Subpara. (x) re eliminating the federal increase in social security taxes, effective June 9, 1994, and applicable to taxable years commencing on or after January 1, 1994, in Subsec. (a)(24) modified definition to exclude the amount of certain interest income or exempt-interest dividends, effective June 9, 1994, and applicable to taxable years commencing on or after January 1, 1993, in Subsec. (a)(26) and (27) modified definitions of &#x201C;Connecticut minimum tax&#x201D; and &#x201C;adjusted net Connecticut minimum tax&#x201D; to provide that the Connecticut minimum tax is the lesser of 19% of the adjusted federal tentative minimum tax or 5% of the adjusted federal alternative minimum taxable income, effective June 9, 1994, and applicable to taxable years commencing on or after January 1, 1993, and added Subdivs. (28) to (31), inclusive, defining &#x201C;adjusted federal tentative minimum tax&#x201D;, &#x201C;federal alternative minimum taxable income&#x201D;, &#x201C;adjusted federal alternative minimum taxable income of an individual&#x201D; and &#x201C;adjusted federal alternative minimum taxable income of a trust or an estate&#x201D;, respectively, effective June 9, 1994, and applicable to taxable years commencing on or after January 1, 1993; P.A. 95-5 amended Subsec. (a)(18) to include reference to Secs. 12-735 and 12-737, amended Subsec. (a)(26) and (27) to add a definition of &#x201C;Connecticut minimum tax&#x201D; of a trust or estate and to provide that adjusted net Connecticut minimum tax is less the credit under Sec. 12-700a(e) and made technical changes, and added new Subdiv. (32) defining &#x201C;pay&#x201D; effective April 13, 1995, and applicable to taxable years commencing on or after January 1, 1995; P.A. 95-160 revised effective date of May Sp. Sess. P.A. 94-4 but without affecting this section; P.A. 96-139 amended Subsec. (a)(10), (28) and (31) to make technical relettering and renumbering corrections, effective May 29, 1996; P.A. 96-175 amended Subsec. (a)(10) and (20) to add reference to Sec. 12-217(c), effective May 31, 1996, and applicable to income years commencing on or after January 1, 1997; P.A. 96-180 amended Subsec. (a)(10), (28) and (31) to make technical relettering and renumbering changes in Subpara. and clause designations, effective June 3, 1996; P.A. 96-221 added Subsec. (a)(10)(B)(viii) re amount of any refund or credit for overpayment of tax, effective June 4, 1996, and applicable to income years commencing on or after January 1, 1992 (Revisor&#x0027;s note: The Revisors editorially corrected clerical errors in Subdivs. (28), (30) and (31) by changing references to &#x201C;&#x2026; such territory of possession, &#x2026;&#x201D; to &#x201C;&#x2026; such territory or possession, &#x2026;&#x201D; for consistency with the other references in the section); P.A. 97-286 amended Subsec. (a)(27) to make technical changes to definition and to add new Subdivs. (33) and (34) defining &#x201C;partnership&#x201D; and &#x201C;partner&#x201D;, effective June 26, 1997, and applicable to taxable years commencing on or after January 1, 1997; P.A. 97-309 amended Subsec. (a)(20)(B)(x) to increase the amount of Social Security income that is exempt, effective July 1, 1997, and applicable to income years commencing on or after January 1, 1998; P.A. 97-322 changed effective date of P.A. 97-309 but without affecting this section; P.A. 98-110 added Subsec. (a)(20)(B)(xi) excluding amount of rebate, effective May 19, 1998, and applicable to taxable years commencing on or after January 1, 1998; P.A. 98-252 and P.A. 98-255 both added Subsec. (a)(20)(B)(xii) re distributions from qualified state tuition programs, effective July 1, 1998; P.A. 99-173 amended Subsec. (a)(20) to exempt the remaining 25% of taxable Social Security income for joint filers and heads of household with an adjusted gross income under $60,000 and single filers with an adjusted gross income under $50,000, effective June 23, 1999, and applicable to taxable years commencing on or after January 1, 1999; P.A. 00-82 amended Subsec. (a)(20) to exclude Holocaust victim&#x0027;s settlement payments from Connecticut adjusted gross income, amended Subsec. (a)(24) and (30) to make said Subdivs. consistent with substantive changes in said act and to make technical changes for purposes of gender neutrality and added Subsec. (a)(35) and (36) defining &#x201C;Holocaust victim settlement payment&#x201D; and &#x201C;Holocaust victim&#x201D;, respectively, effective May 26, 2000, and applicable to taxable years commencing on or after January 1, 2000; P.A. 00-174 amended Subsec. (a)(1) to modify the domicile provisions in the definition of &#x201C;resident of this state&#x201D; and amended Subsec. (a)(20) to eliminate a subtraction modification for tax refunds or credits from any province of Canada, to modify provisions in the Social Security benefit adjustment and to make technical changes, effective May 26, 2000, and applicable to taxable years commencing on or after January 1, 2000; P.A. 00-192 amended Subsec. (a)(20)(B) to delete reference to any province of Canada and to add provisions re interest earned on funds deposited in individual development accounts, effective January 1, 2001, and applicable to taxable years commencing on or after that date; June Sp. Sess. P.A. 01-6, S. 35 amended Subsec. (a)(19) to provide that &#x201C;adjusted gross income&#x201D; shall be the income that is properly reported on the taxpayer&#x0027;s federal return, effective July 1, 2001, and applicable to all open tax periods (Revisor&#x0027;s note: June Sp. Sess. P.A. 01-6, S. 36, provided as follows: &#x201C;Sec. 36. The intent of the amendment made by section 35 of this act to subdivision (19) of subsection (a) of section 12-701 of the general statutes is to clarify that a natural person&#x0027;s adjusted gross income is not further modified in determining such person&#x0027;s Connecticut adjusted gross income for purposes of chapter 229 of the general statutes, except as expressly provided in subdivision (20) of subsection (a) of said section 12-701.&#x201D;); May 9 Sp. Sess. P.A. 02-1 amended Subsec. (a)(20)(A) to require an addition to income for any allowance for depreciation under the federal Job Creation and Worker Assistance Act of 2002, effective July 1, 2002, and applicable to taxable years commencing on or after January 1, 2002; P.A. 03-225 amended Subsec. (a)(20)(B)(iv) and (v) to provide for a corresponding subtraction modification for the bonus depreciation &#x201C;decoupling&#x201D; adopted the previous year and to eliminate an overlap between Social Security and railroad retirement benefits, effective July 9, 2003, and applicable to taxable years commencing on or after January 1, 2003; June 30 Sp. Sess. P.A. 03-6 amended Subsec. (a)(26) to increase applicable percentage of alternative minimum taxable income from 5% to 5.5% and to make a technical change, effective August 20, 2003 and applicable to taxable years commencing on and after January 1, 2003; P.A. 05-251 added Subsec. (a)(20)(B)(xv) excluding 50% of military retirement pay, and amended Subsecs. (a)(24) and (a)(30) to add reference to Subsec. (a)(20)(B)(xv) re military retirement pay, effective June 30, 2005, and applicable for taxable years commencing on or after January 1, 2008; P.A. 06-186 added Subsec. (a)(20)(B)(xiii) re contributions to qualified state tuition programs, and redesignating existing clauses (xiii) to (xv) as clauses (xiv) to (xvi), effective July 1, 2006, and applicable to taxable years commencing on or after January 1, 2006; P.A. 07-130 amended Subsec. (a)(20)(B) by adding new clause (xvi) re contributions to accounts established for designated beneficiary pursuant to Connecticut Homecare Option Program for the Elderly, effective October 1, 2007, and applicable to taxable years commencing on or after January 1, 2007, and by redesignating existing clause (xvi) as clause (xvii), effective October 1, 2007, and applicable to taxable years commencing on or after January 1, 2008; P.A. 08-140 amended Subsec. (a)(20)(B)(xvi) by adding as allowable deduction dividends or capital gains earned on contributions to accounts established under Connecticut Homecare Option Program for the Elderly, effective July 1, 2008, and applicable to taxable years commencing on or after January 1, 2008; June Sp. Sess. P.A. 09-3 amended Subsec. (a) by adding Subdivs. (10)(A)(viii) and (20)(A)(x) re deduction for qualified domestic production activities income, effective September 9, 2009, and applicable to taxable years commencing on or after January 1, 2009; June 19 Sp. Sess. P.A. 09-2 amended Subsec. (a)(20) by adding Subpara. (A)(x), codified by the Revisors as Subpara. (A)(xi), and Subpara. (B)(xviii) re treatment of income from discharge of indebtedness, effective June 22, 2009, and applicable to taxable years ending after December 31, 2008; June 12 Sp. Sess. P.A. 12-1 amended Subsec. (a)(20) by adding clauses (xii) and (xiii) re distribution from a manufacturing reinvestment account in Subpara. (A) and adding clause (xix) re contribution to a manufacturing reinvestment account in Subpara. (B), effective June 15, 2012, and applicable to taxable years commencing on or after January 1, 2011; P.A. 14-47 amended Subsec. (a)(20)(B) by adding clause (xx) re deduction for income from state teachers&#x0027; retirement system, effective July 1, 2015, and applicable to taxable years commencing on or after January 1, 2015; P.A. 14-69 amended Subsec. (a)(20)(A) by deleting former clause (xii) re manufacturing reinvestment account distribution and redesignating existing clause (xiii) as clause (xii), effective July 1, 2014, and applicable to taxable years commencing on or after January 1, 2014; P.A. 14-122 made technical changes in Subsecs. (a)(9) and (b); P.A. 14-155 amended Subsec. (a)(10)(A) by adding clause (ix) re lump sum distribution, effective June 11, 2014, and applicable to taxable years commencing on or after January 1, 2014; P.A. 15-179 made a technical change in Subsec. (a)(20)(B)(xviii), effective July 1, 2015; P.A. 15-244 amended Subsec. (a)(20)(B)(xvii) to increase deduction for Armed Forces and National Guard retirement income from 50 per cent of such income to any such income, effective July 1, 2015, and applicable to taxable years commencing on or after January 1, 2015; P.A. 17-147 amended Subsec. (a)(20)(A) by adding clause (xiii) re compensation required to be recognized under Sec. 457A of the Internal Revenue Code, effective July 1, 2017, and applicable to taxable years commencing on or after January 1, 2017; June Sp. Sess. P.A. 17-2 amended Subsec. (a)(20) by adding Subpara. (B)(xxi), codified by the Revisors as Subpara. (B)(xxiii), re amount of financial assistance received from Crumbling Foundations Assistance Fund or paid to or on behalf of owner pursuant to Secs. 8-442 and 8-443, effective October 31, 2017, and applicable to taxable years commencing on and after January 1, 2017, and amended Subsec. (a)(20)(B) by adding subclauses (III) and (IV) re deduction of Social Security benefits for taxable years commencing January 1, 2018, in clause (x), replacing &#x201C;January 1, 2017&#x201D; with &#x201C;January 1, 2019&#x201D; re implementation of 50 per cent deduction of teachers&#x0027; retirement income, adding provision re percentage, if applicable, pursuant to clause (xxi) and adding subclause designators in clause (xx), adding clause (xxi) re deduction of pension or annuity income, adding clause (xxii) re deduction of lost wages and medical, travel and housing expenses incurred in connection with certain organ donations, and making technical and conforming changes, effective October 31, 2017, and applicable to taxable years commencing on or after January 1, 2017, and further amended Subsec. (a) by adding Subdiv. (37) re definition of &#x201C;organ&#x201D;, effective October 31, 2017, and applicable to taxable years commencing on or after January 1, 2017; June Sp. Sess. P.A. 17-4 amended Subsec. (a)(20)(B)(x) by replacing &#x201C;2018&#x201D; with &#x201C;2019&#x201D;, effective November 21, 2017; P.A. 18-26 amended Subsec. (a)(20) to make technical changes and add &#x201C;and each taxable year thereafter,&#x201D; in Subpara. (B)(xxi)(VII); P.A. 18-49 amended Subsec. (a)(20) by replacing &#x201C;September 10, 2001, but prior to September 11, 2004, in taxable years ending after September 10, 2001&#x201D; with &#x201C;September 27, 2017&#x201D; and deleting reference to Sec. 101 of the Job Creation and Worker Assistance Act of 2002 in Subpara. (A)(ix), adding Subpara. (A)(xiv) re 80 per cent addback of deduction claimed for federal purposes under Sec. 179 of Internal Revenue Code, deleting reference to Sec. 101 of Job Creation and Worker Assistance Act of 2002, replacing &#x201C;December 31, 2001, but prior to September 10, 2004&#x201D; with &#x201C;September 27, 2017&#x201D; and deleting reference to taxable year ending after December 31, 2001, in Subpara. (B)(v), adding Subpara. (B)(xxiv), codified by the Revisors as Subpara. (B)(xxv), re deduction of disallowed portion pursuant to Subpara. (A)(xiv), and making technical changes, effective May 31, 2018, and applicable to taxable years commencing on or after January 1, 2017; P.A. 18-147 amended Subsec. (a)(20)(B) by adding clause (xxiv) re deduction for venture capital income calculated pursuant to Sec. 12-704g, effective July 1, 2018, and applicable to taxable years commencing on or after January 1, 2018; P.A. 19-117 amended Subsec. (a)(20)(B)(xx) by replacing &#x201C;January 1, 2017, and January 1, 2018&#x201D; with &#x201C;to January 1, 2020, inclusive&#x201D; in subclause (II) re income received from state teachers&#x0027; retirement system, and replacing &#x201C;2019&#x201D; with &#x201C;2021&#x201D; in subclause (III), and made a technical change in Subsec. (a)(20)(B)(xxiii), effective June 26, 2019, and applicable to taxable years commencing on or after January 1, 2019; June Sp. Sess. P.A. 21-2 amended Subsec. (a)(20)(B) by deleting &#x201C;the percentage, if applicable, pursuant to&#x201D; in clause (xx) and adding provision re taxpayer whose federal adjusted gross income does not exceed applicable threshold under clause (xxi), and adding clause (xxvi) re deductions for the taxable years commencing on and after January 1, 2023, for distribution from individual retirement account other than Roth individual retirement account, effective June 23, 2021; P.A. 22-110 amended Subsec. (a) by making technical changes in Subdivs. (10), (24), (26), (28), (30) and (31); P.A. 22-118 amended Subsec. (a)(20) by making 100 per cent of pension or annuity income deductible for the taxable year commencing January 1, 2022, and each taxable year thereafter for taxpayers with federal adjusted gross income below certain thresholds in Subpara. (B)(xxi)(IV), and adding Subpara. (B)(xxvii) re amount or amounts paid or otherwise credited under the 2020 and 2021 federal Earned Income Tax Credit enhancement programs, effective May 7, 2022; P.A. 23-117 amended Subsec. (a)(20)(B) by deleting former clause (xv) and making conforming changes, effective June 27, 2023; P.A. 23-137 amended Subsec. (a)(20)(B) by making technical changes in clauses (xxvi) and (xxvii) and adding clause (xxviii), codified by the Revisors as clause (xxxiv), re deduction for contributions to ABLE account, effective January 1, 2024, and applicable to taxable years commencing on or after January 1, 2024; P.A. 23-204 amended Subsec. (a)(20)(B) by replacing &#x201C;taxable year commencing January 1, 2022, and each taxable year thereafter&#x201D; with &#x201C;taxable years commencing January 1, 2022, and January 1, 2023&#x201D; in clause (xxi)(IV), adding new clauses (xxii) and (xxiii), codified by the Revisors as clauses (xxi) and (xxii), re deductions for pension or annuity income for taxable years commencing on or after January 1, 2024, redesignating existing clauses (xxii) to (xxv) as clauses (xxiv) to (xxvii), redesignating existing clause (xxvi) as clause (xxviii) and amending same to delete subclauses (II) and (III) and subclause (I) designator, adding clauses (xxix) and (xxx), codified by the Revisors as clauses (xxviii) and (xxix), re deductions for distributions from an individual retirement account other than a Roth individual retirement account for taxable years commencing on or after January 1, 2024, redesignating existing clause (xxvii) as clause (xxxi), and adding clause (xxxii), codified by the Revisors as clause (xxxi), re deduction for ordinary and necessary expenses for taxpayer licensed under Ch. 420f or 420h for the taxable year commencing January 1, 2023, and each taxable year thereafter, effective June 12, 2023, and further amended Subsec. (a)(20)(B) by adding clause (xxviii), codified by the Revisors as clause (xxxii), re deduction for common stock received under a share plan for taxable years commencing on or after January 1, 2025, effective January 1, 2024, and further amended Subsec. (a)(20)(B) by adding clause (xxviii), codified by the Revisors as clause (xxxiii), re student loan reimbursement payment and making technical changes in clauses (xxvi) and (xxvii), effective January 1, 2024, and applicable to taxable years commencing on or after January 1, 2024; P.A. 24-27 amended Subsec. (a)(20)(B) by adding clause (xxxv) re payments from Fallen Officer Fund, effective May 14, 2024, and applicable to taxable years commencing on or after January 1, 2024; Nov. Sp. Sess. P.A. 25-1 amended Subsec. (a)(20)(B) by adding clauses (xxxvi) and (xxxvii) re deductions for contributions to and withdrawals from first-time homebuyers savings accounts, effective January 1, 2026.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_12-704e">Sec. 12-704e. Earned income tax credit. Additional amount for certain taxpayers.</span> (a) Any resident of this state, as defined in subdivision (1) of subsection (a) of section 12-701, who is subject to the tax imposed under this chapter for any taxable year shall be allowed a credit against the tax otherwise due under this chapter in an amount equal to the applicable percentage of the earned income credit claimed and allowed for the same taxable year under Section 32 of the Internal Revenue Code, as defined in subsection (a) of section 12-701. As used in this section, &#x201C;applicable percentage&#x201D; means (1) twenty-three per cent for taxable years commencing prior to January 1, 2021, (2) thirty and one-half per cent for taxable years commencing on or after January 1, 2021, and prior to January 1, 2023, and (3) forty per cent for taxable years commencing on or after January 1, 2023.</p>
+<p>(b) If the amount of the credit allowed pursuant to this section exceeds the taxpayer&#x0027;s liability for the tax imposed under this chapter, the Commissioner of Revenue Services shall treat such excess as an overpayment and, except as provided under section 12-739 or 12-742, shall refund the amount of such excess, without interest, to the taxpayer. If the taxpayer is eligible for the credit under this section and has at least one qualifying child for federal income tax purposes, such taxpayer shall be allowed an additional two hundred fifty dollars for the amount of the credit.</p>
+<p>(c) If a married individual who is otherwise eligible for the credit allowed under this section has filed a joint federal income tax return for the taxable year, but is required to file a separate return under this chapter for such taxable year, the credit for which such individual is eligible under this section shall be an amount equal to the applicable percentage of the earned income credit claimed and allowed for such taxable year under Section 32 of the Internal Revenue Code multiplied by a fraction, the numerator of which is such individual&#x0027;s federal adjusted gross income, as reported on such individual&#x0027;s separate return under this chapter, and the denominator of which is the federal adjusted gross income, as reported on the joint federal income tax return.</p>
+<p>(d) To the extent permitted under federal law, any state or federal earned income tax credit shall not be counted as income when received by an individual who is an applicant for, or recipient of, benefits or services under any state or federal program that provides such benefits or services based on need, nor shall any such earned income tax credit be counted as resources, for the purpose of determining the individual&#x0027;s or any other individual&#x0027;s eligibility for such benefits or services, or the amount of such benefits or services.</p>
+<p class="source-first">(P.A. 11-6, S. 110; June Sp. Sess. P.A. 11-1, S. 3, 4, 14; P.A. 13-184, S. 83; P.A. 15-244, S. 69; June Sp. Sess. P.A. 17-2, S. 645; June Sp. Sess. P.A. 21-2, S. 430; P.A. 23-204, S. 378; P.A. 25-168, S. 371.)</p>
+<p class="history-first">History: P.A. 11-6 effective May 4, 2011, and applicable to taxable years commencing on or after January 1, 2011; June Sp. Sess. P.A. 11-1, S. 3 and 4, amended Subsecs. (a) and (c) to change tax credit from 30% to 25%, effective July 1, 2011, and applicable to taxable years commencing on or after January 1, 2011; pursuant to June Sp. Sess. P.A. 11-1, S. 14, the changes made by June Sp. Sess. P.A. 11-1, S. 3 and 4, to Subsecs. (a) and (c) ceased to be effective on August 22, 2011, and the provisions of Subsecs. (a) and (c) in effect immediately prior to July 1, 2011, were reinstated; P.A. 13-184 amended Subsecs. (a) and (c) to delete &#x201C;thirty per cent&#x201D; and add reference to applicable percentage and added Subsec. (e) defining &#x201C;applicable percentage&#x201D;, effective June 18, 2013, and applicable to taxable years commencing on or after January 1, 2013; P.A. 15-244 amended Subsec. (e)(2) by redefining &#x201C;applicable percentage&#x201D; to apply 27.5 per cent rate to taxable years commencing on or after January 1, 2014, but prior to January 1, 2017, effective June 30, 2015, and applicable to taxable years commencing on or after January 1, 2015; June Sp. Sess. P.A. 17-2 amended Subsec. (e) by redefining &#x201C;applicable percentage&#x201D;, effective October 31, 2017, and applicable to taxable years commencing on or after January 1, 2017; June Sp. Sess. P.A. 21-2 redefined &#x201C;applicable percentage&#x201D; and made technical changes, effective June 23, 2021, and applicable to taxable years commencing on or after January 1, 2021; P.A. 23-204 amended Subsec. (a) by redefining &#x201C;applicable percentage&#x201D;, effective June 12, 2023; P.A. 25-168 amended Subsec. (b) by adding provision re additional $250 for certain taxpayers and made a technical change in Subsec. (c), effective June 30, 2025, and applicable to taxable years commencing on and after January 1, 2025.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_12-704j">Sec. 12-704j. Credit for owner of family child care home.</span> (a) There shall be allowed a credit against the tax imposed by this chapter, other than the liability imposed by section 12-707, for a taxpayer who owns a family child care home, as described in section 19a-77 and is licensed under section 19a-87b, in the amount of five hundred dollars per family child care home.</p>
+<p>(b) If the taxpayer is an S corporation or an entity treated as a partnership for federal income tax purposes, the credit may be claimed by the taxpayer&#x0027;s shareholders or partners. If such taxpayer is a single member limited liability company that is disregarded as an entity separate from its owner, the credit may be claimed by such limited liability company&#x0027;s owner, provided such owner is subject to the tax imposed under this chapter.</p>
+<p>(c) If the amount of the credit allowed pursuant to this section exceeds such taxpayer&#x0027;s tax liability for the tax imposed under this chapter, the Commissioner of Revenue Services shall treat such excess as an overpayment and, except as provided in section 12-739 or 12-742, shall refund the amount of such excess, without interest, to such taxpayer.</p>
+<p class="source-first">(P.A. 25-168, S. 372.)</p>
+<p class="history-first">History: P.A. 25-168 effective January 1, 2026, and applicable to taxable years commencing on or after January 1, 2026.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_12-704k">Sec. 12-704k. Credit for residents who challenge taxes imposed on certain income by another jurisdiction.</span> For taxable years commencing on or after January 1, 2020:</p>
+<p>(1) A resident of this state who satisfies the provisions of subparagraphs (A) to (D), inclusive, of this subdivision shall be allowed a credit against the tax otherwise due for the applicable taxable year under this chapter, other than the liability imposed by section 12-707, in an amount equal to sixty per cent of the amount of taxes owed to this state as a result of the readjustment of the credit for taxes paid to another state of the United States or a political subdivision thereof or the District of Columbia, pursuant to section 12-704. To be eligible for the credit under this section, such resident shall have:</p>
+<p>(A) Paid any income tax or wage tax imposed for the taxable year by another state of the United States or a political subdivision thereof or the District of Columbia;</p>
+<p>(B) Applied for and been denied a refund from such other jurisdiction for taxes paid to such other jurisdiction on income derived from services rendered while such resident was within this state;</p>
+<p>(C) Filed an appeal with a court or tribunal through which such resident formally protested such denial; and</p>
+<p>(D) Obtained a final decision that resulted in such other jurisdiction refunding to such resident taxes paid to such other jurisdiction on income derived from services rendered while such resident was within this state.</p>
+<p>(2) No penalty or interest shall be imposed on any late payment of the tax due under this chapter, other than the liability imposed by section 12-707, if (A) such late payment is attributable to a reduction in the credit for taxes paid under section 12-704, (B) such reduction in the credit for taxes paid is the direct result of a refund that a resident of this state received from another state of the United States or a political subdivision thereof or the District of Columbia, (C) such refund relates to income derived from services rendered while such resident was not within such other jurisdiction, and (D) such other jurisdiction requires employee income to be sourced to an employer&#x0027;s location if a nonresident renders services from an out-of-state location.</p>
+<p class="source-first">(P.A. 25-172, S. 2.)</p>
+<p class="history-first">History: P.A. 25-172 effective July 8, 2025.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_12-705">Sec. 12-705. Withholding of taxes from wages and other payments.</span> (a)(1) Each employer, as defined in section 12-707, maintaining an office or transacting business within this state and making payment of any wages taxable under this chapter to a resident or nonresident individual shall deduct and withhold from such wages for each payroll period a tax computed in such manner as to result, so far as practicable, in withholding from the employee&#x0027;s wages during each calendar year an amount substantially equivalent to the tax reasonably estimated to be due from the employee under this chapter with respect to the amount of such wages during the calendar year. The method of determining the amount to be withheld shall be prescribed by regulations of the Commissioner of Revenue Services adopted in accordance with chapter 54.</p>
+<p>(2) (A) Except as provided in subparagraph (B) of this subdivision, each payer, as defined in section 12-707, of distributions from a profit-sharing plan, a stock bonus, a deferred compensation plan, an individual retirement arrangement, an endowment or a life insurance contract, or of pension payments or annuity distributions, that maintains an office or transacts business within this state and makes payment of any amounts taxable under this chapter to a resident individual, shall, upon request by such individual, deduct and withhold an amount from the taxable portion of any such distribution. Such request and the determination of the amount to be withheld shall be made in accordance with regulations promulgated by the commissioner for pension payments and annuity distributions.</p>
+<p>(B) (i) For the period commencing July 1, 2025, and ending December 31, 2026, the withholding requirement for a lump sum payment under clause (ii) of this subparagraph shall not apply, except that if a payee has requested an amount to be withheld from such distribution, the payer shall withhold such amount.</p>
+<p>(ii) With respect to a lump sum distribution, if a payee does not make a request to have an amount withheld from such distribution, the payer shall withhold from the taxable portion of the distribution at the highest marginal rate, except that no withholding shall be required if (I) any portion of the lump sum distribution was previously subject to tax, or (II) the lump sum distribution is a rollover that is effected as a direct trustee-to-trustee transfer or as a direct rollover in the form of a check made payable to another qualified account.</p>
+<p>(iii) For purposes of this subparagraph, &#x201C;lump sum distribution&#x201D; means a payment from a payer to a resident payee of an amount exceeding fifty per cent of such resident payee&#x0027;s entire account balance or more than five thousand dollars, whichever is less, exclusive of any other tax withholding and any administrative charges and fees.</p>
+<p>(3) In no event shall the requirements of this subsection result in nonpayment of any distribution to a resident individual. For the calendar year ending December 31, 2018, no taxpayer shall be assessed interest by the commissioner pursuant to section 12-722 solely on the basis of a payer&#x0027;s failure to comply with the provisions of this subsection.</p>
+<p>(b) The commissioner may, if such action is deemed necessary for the protection of the revenue and under such regulations as the commissioner may adopt in accordance with the provisions of chapter 54, require persons other than employers and payers (1) to deduct and withhold taxes from payments made by such persons to residents of this state, nonresidents and part-year residents, (2) to file a withholding return as prescribed by the commissioner, and (3) to pay over to the commissioner, or to a depositary designated by the commissioner, the taxes so required to be deducted and withheld, in accordance with a schedule established in such regulations.</p>
+<p>(c) The commissioner may adopt regulations providing for withholding from (1) remuneration for services performed by an employee for his or her employer that does not constitute wages, (2) wages paid to an employee by an employer not maintaining an office or transacting business within this state, or (3) any other type of payment with respect to which the commissioner finds that withholding would be appropriate under the provisions of this chapter if the employer and the employee, or, in the case of any other type of payment, the person making and the person receiving such payment, agree to such withholding. Such agreement shall be made in such form and manner as the commissioner may prescribe by regulations adopted in accordance with the provisions of chapter 54. For purposes of this chapter, remuneration, wages or other payments with respect to which such an agreement is made shall be regarded as if they were wages paid to an employee by an employer maintaining an office or transacting business within this state to the extent that such remuneration or wages are paid or other payments are made during the period for which the agreement is in effect.</p>
+<p class="source-first">(June Sp. Sess. P.A. 91-3, S. 56, 168; May Sp. Sess. P.A. 92-5, S. 6, 37; P.A. 17-147, S. 6; P.A. 18-26, S. 7; P.A. 24-151, S. 69; P.A. 25-168, S. 401.)</p>
+<p class="history-first">History: June Sp. Sess. P.A. 91-3, S. 56, effective August 22, 1991, and applicable to taxable years of taxpayers commencing on or after January 1, 1991; May Sp. Sess. P.A. 92-5 made various technical and minor changes, effective June 19, 1992, and applicable to taxable years of taxpayers commencing on or after January 1, 1992; P.A. 17-147 amended Subsec. (a) by designating existing provisions re employer deduction and withholding from wages as Subdiv. (1) and adding Subdiv. (2) re deduction and withholding of tax by payer of pension or annuity distributions, and made technical and conforming changes, effective January 1, 2018; P.A. 18-26 amended Subsec. (a) by substantially revising provisions re withholding in Subdiv. (2), including replacing &#x201C;the same as the method used by employers with respect to the payment of wages&#x201D; with &#x201C;determined in accordance with instructions provided by the commissioner&#x201D; re method of determining amount to be withheld, and adding &#x201C;or as a direct rollover in the form of a check made payable to another qualified account&#x201D; in clause (ii), and adding Subdiv. (3) re prohibition on nonpayment of distribution by payer and on assessment of interest by commissioner, effective May 29, 2018; P.A. 24-151 amended Subsec. (a)(2) by substantially revising provisions re deduction and withholding of tax by payers of certain distributions and for lump sum distributions, effective January 1, 2025, and applicable to taxable years commencing on or after January 1, 2025; P.A. 25-168 amended Subsec. (a)(2) by redesignating provision re lump sum distribution withholding and &#x201C;lump sum distribution&#x201D; definition in Subpara. (B) as Subpara. (B)(ii) and (iii), respectively, adding Subpara. (B)(i) re suspension of lump sum distribution withholding requirement through December 31, 2026, and making technical and conforming changes, effective July 1, 2025.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_12-724b">Sec. 12-724b. First-time homebuyer savings accounts. Information furnished to commissioner.</span> (a) For the purposes of this section, subparagraph (B) of subdivision (20) of subsection (a) of section 12-701 and section 12-217xx:</p>
+<p>(1) &#x201C;Account holder&#x201D; means an individual who, either individually or jointly with another individual, establishes a first-time homebuyer savings account;</p>
+<p>(2) &#x201C;Allowable closing costs&#x201D; means the disbursements listed on a settlement statement concerning a transaction involving the purchase of a one-to-four family residence in this state by a qualified beneficiary to serve as the qualified beneficiary&#x0027;s primary residence;</p>
+<p>(3) &#x201C;Commissioner&#x201D; means the Commissioner of Revenue Services;</p>
+<p>(4) &#x201C;Eligible costs&#x201D; means the down payment and all allowable closing costs paid or reimbursed by a qualified beneficiary to purchase a one-to-four family residence in this state to serve as the qualified beneficiary&#x0027;s primary residence;</p>
+<p>(5) &#x201C;Financial institution&#x201D; means a bank, out-of-state bank, Connecticut credit union, federal credit union or out-of-state credit union, as those terms are defined in section 36a-2, and any affiliate or third-party provider of such entities;</p>
+<p>(6) &#x201C;First-time homebuyer&#x201D; means an individual who did not own or purchase, either individually or jointly with another person, a one-to-four family residence prior to the closing date of a real estate transaction involving the purchase of a one-to-four family residence in this state by the individual;</p>
+<p>(7) &#x201C;First-time homebuyer savings account&#x201D; means an account established by one or more account holders with a financial institution that the account holders designate as an account exclusively containing funds to pay or reimburse eligible costs incurred by the qualified beneficiary of the account;</p>
+<p>(8) &#x201C;One-to-four family residence&#x201D; means a residential dwelling consisting of not more than four dwelling units, including, but not limited to, a mobile manufactured home, as defined in section 21-64, or a residential unit in a cooperative, common interest community or condominium, as such terms are defined in section 47-202;</p>
+<p>(9) &#x201C;Qualified beneficiary&#x201D; means a first-time homebuyer who (A) is an account holder and designated as the qualified beneficiary of a first-time homebuyer savings account, and (B) resides in the one-to-four family residence in this state that is purchased with the funds deposited in such account; and</p>
+<p>(10) &#x201C;Settlement statement&#x201D; means the statement of receipts and disbursements for a transaction related to real estate, including, but not limited to, a statement prescribed pursuant to the Real Estate Settlement Procedures Act of 1974, 12 USC 2601 et seq., as amended from time to time, and any regulations adopted thereunder.</p>
+<p>(b) For purposes of implementing the deduction allowed under subparagraph (B) of subdivision (20) of subsection (a) of section 12-701 and the credit allowed under section 12-217xx, the commissioner shall prepare forms for (1) the designation of accounts as first-time homebuyer savings accounts, (2) the designation of qualified beneficiaries, and (3) account holders to submit to the commissioner the information described in subparagraph (B) of subdivision (1) of subsection (d) of this section and any additional information that the commissioner reasonably requires pursuant to the provisions of this section.</p>
+<p>(c) An individual may establish one or more first-time homebuyer savings accounts with a financial institution. Two individuals may jointly establish and serve as the account holders of a first-time homebuyer savings account, provided such account holders shall file a joint return for the tax imposed under this chapter for each taxable year during which such account exists. The account holder or account holders shall, not later than April fifteenth of the taxable year immediately following the taxable year during which such account holder or account holders established a first-time homebuyer savings account, designate the qualified beneficiary of such account. The account holder or account holders of a first-time homebuyer savings account may designate a new qualified beneficiary of the account at any time, provided there shall not be more than one qualified beneficiary of such account at any time. No individual may establish or serve as an account holder of multiple first-time homebuyer savings accounts that have the same qualified beneficiary. A first-time homebuyer savings account shall exclusively contain cash, and there shall be no limit on the amount of contributions made to, or contained in, such accounts. Any person may contribute to a first-time homebuyer savings account, including, but not limited to, employers of the account holder or account holders of such account. If an account holder of a first-time homebuyer savings account leaves employment with an employer that contributed to such account while such account holder was employed by such employer, such employer shall not seek reimbursement of any contribution to such account. The account holder or account holders may invest funds deposited in a first-time homebuyer savings account in money market funds.</p>
+<p>(d) (1) Each account holder shall:</p>
+<p>(A) Not use any portion of the funds deposited in a first-time homebuyer savings account to pay any administrative fees or expenses, other than service fees imposed by the depository financial institution, for such account; and</p>
+<p>(B) Submit to the commissioner such account holder&#x0027;s tax return for each taxable year beginning on or after January 1, 2026, during which a first-time homebuyer savings account established by such account holder exists, along with:</p>
+<p>(i) Any information required by the commissioner concerning such first-time homebuyer savings account for purposes of implementing the deduction allowed under subparagraph (B) of subdivision (20) of subsection (a) of section 12-701 and the credit allowed under section 12-217xx;</p>
+<p>(ii) The Internal Revenue Service Form 1099 issued by the depository financial institution for such first-time homebuyer savings account; and</p>
+<p>(iii) If such account holder withdrew funds from such first-time homebuyer savings account during the taxable year that is the subject of such return, a detailed accounting of all eligible costs and ineligible costs paid or reimbursed using such funds during such taxable year and the balance of funds remaining in such account.</p>
+<p>(2) Each account holder may withdraw all, or any portion of, the funds contributed to and deposited in a first-time homebuyer savings account and deposit such funds in another first-time homebuyer savings account established by such account holder at any financial institution.</p>
+<p>(e) (1) The commissioner may require that financial institutions furnish certain information about each first-time homebuyer savings account.</p>
+<p>(2) No financial institution shall be required to (A) designate an account as a first-time homebuyer savings account, (B) track the use of any funds withdrawn from a first-time homebuyer savings account, or (C) allocate funds in a first-time homebuyer savings account among account holders.</p>
+<p>(3) No financial institution shall be liable or responsible for (A) determining whether, or ensuring that, an account holder satisfies the requirements established in this section concerning first-time homebuyer savings accounts or the funds in first-time homebuyer savings accounts are used to pay or reimburse eligible costs, or (B) disclosing or remitting taxes or penalties concerning first-time homebuyer savings accounts unless such disclosure or remittance is required by applicable law.</p>
+<p>(4) Upon receiving proof of the death of an account holder and all other information required by any contract governing a first-time homebuyer savings account established by the account holder, the depository financial institution shall distribute the funds in the first-time homebuyer savings account in accordance with the terms of such contract.</p>
+<p>(f) (1) Except as provided in subdivision (2) of this subsection and subdivision (2) of subsection (d) of this section, each account holder who withdraws funds from a first-time homebuyer savings account for any reason other than paying or reimbursing the qualified beneficiary of such account for eligible costs incurred by such qualified beneficiary shall be liable to this state for a civil penalty in an amount equal to ten per cent of the withdrawn amount. Such civil penalty shall be collectible by the commissioner. If such funds were deducted by an account holder in accordance with subparagraph (B) of subdivision (20) of subsection (a) of section 12-701, then such withdrawn funds shall be considered income.</p>
+<p>(2) No account holder shall be liable for a penalty under subdivision (1) of this subsection, nor shall funds withdrawn from a first-time homebuyer savings account be considered income, if the funds withdrawn from the first-time homebuyer savings account:</p>
+<p>(A) Are deposited in another first-time homebuyer savings account pursuant to subdivision (2) of subsection (d) of this section;</p>
+<p>(B) Are withdrawn due to the death or disability of an account holder who established such account;</p>
+<p>(C) Constitute a disbursement of the assets of such account pursuant to a filing for protection under the United States Bankruptcy Code, as amended from time to time; or</p>
+<p>(D) Are not claimed as a deduction pursuant to subparagraph (B) of subdivision (20) of subsection (a) of section 12-701 by the account holder on a return for the tax imposed under this chapter.</p>
+<p>(g) The commissioner may adopt regulations, in accordance with the provisions of chapter 54, to implement the provisions of this section.</p>
+<p class="source-first">(Nov. Sp. Sess. P.A. 25-1, S. 1.)</p>
+<p class="history-first">History: Nov. Sp. Sess. P.A. 25-1 effective January 1, 2026.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_12-743">Sec. 12-743. Contributions from refunds to special accounts.</span> (a) Any taxpayer filing a return under this chapter may contribute any part of a refund under this chapter to (1) the organ transplant account established pursuant to section 17b-288, (2) the AIDS research education account established pursuant to section 19a-32a, (3) the endangered species, natural area preserves and watchable wildlife account established pursuant to section 22a-27<i>l</i>, (4) the breast cancer research and education account established pursuant to section 19a-32b, (5) the safety net services account established pursuant to section 17b-112f, (6) a CHET account under the Connecticut Higher Education Trust established pursuant to sections 3-22f to 3-22p, inclusive, or to the Connecticut Baby Bond Trust established pursuant to section 3-36b, or (7) the mental health community investment account established pursuant to section 17a-451g. Such contribution shall be made by indicating on the tax return, in a manner provided for by the Commissioner of Revenue Services pursuant to subsection (b) of this section, the amount to be contributed to the account.</p>
+<p>(b) (1) The Commissioner of Revenue Services shall revise the tax return form to implement the provisions of subsection (a) of this section, which form shall include spaces on the return in which taxpayers may indicate their intention to make a contribution, in a whole dollar amount, in accordance with this section. The commissioner shall include in the instructions accompanying the tax return a description of the purposes for which the accounts and funds set forth in subsection (a) of this section were created.</p>
+<p>(2) For purposes of facilitating the registration of a taxpayer as an organ donor, the commissioner shall include information in the instructions accompanying the tax return that (A) indicates the manner by which a taxpayer may contact an organ donor registry organization, or (B) provides electronic links to appropriate organ donor registry organizations for such purpose.</p>
+<p>(c) A designated contribution of all or part of any refund shall be irrevocable upon the filing of the return and shall be made in the full amount designated if the refund found due the taxpayer upon the initial processing of the return, and after any deductions required by this chapter, is greater than or equal to the designated contribution. If the refund due, as determined upon initial processing, and after any deductions required by this chapter, is less than the designated contribution, the contribution shall be made in the full amount of the refund. The Commissioner of Revenue Services shall subtract the amount of any contribution of all or part of any refund from the amount of the refund initially found due the taxpayer and shall certify the difference to the Secretary of the Office of Policy and Management and the Treasurer for payment to the taxpayer in accordance with this chapter. For the purposes of any subsequent determination of the taxpayer&#x0027;s net tax payment, such contribution shall be considered a part of the refund paid to the taxpayer.</p>
+<p>(d) Except for any funds collected for purposes of subdivision (6) of subsection (a) of this section, the Commissioner of Revenue Services, after notification of and approval by the Secretary of the Office of Policy and Management, may deduct and retain from the remaining funds so collected an amount equal to the costs of implementing this section and sections 17b-288, 19a-32a, 22a-27<i>l</i>, 19a-32b and 17b-112f but not to exceed seven and one-half per cent of the funds contributed in any fiscal year and in no event shall exceed the total cost of implementation of said sections.</p>
+<p class="source-first">(P.A. 93-233, S. 1, 3, 5; P.A. 94-175, S. 14, 16, 32; May Sp. Sess. P.A. 94-4, S. 80, 85; P.A. 95-160, S. 64, 69; P.A. 97-286, S. 7, 8; June 18 Sp. Sess. P.A. 97-2, S. 4, 165; P.A. 04-201, S. 7; P.A. 10-117, S. 81; P.A. 14-217, S. 28; P.A. 17-147, S. 43; P.A. 25-168, S. 382.)</p>
+<p class="history-first">History: (Revisor&#x0027;s note: P.A. 93-233 S. 1, 3 and 5 regarding contributions from tax refunds to (1) the organ transplant fund account, (2) the endangered species, natural area preserves and watchable wildlife account, and (3) the AIDS research education fund account were combined editorially into one section by the Revisors who made necessary technical adjustments to the wording to permit this); P.A. 94-175, in Subsec. (a) changed account names from &#x201C;organ transplant fund account&#x201D; to &#x201C;organ transplant account&#x201D; and from &#x201C;AIDS research education fund account&#x201D; to &#x201C;AIDS research education account&#x201D;, effective June 2, 1994; May Sp. Sess. P.A. 94-4 revised effective date of P.A. 94-175 but without affecting this section; (Revisor&#x0027;s note: In 1997 the Revisors editorially changed the reference in Subsec. (d) to &#x201C;sections 19a-32a, 19a-32b and 22a-271&#x201D;, to &#x201C;sections 17b-288, 19a-32a and 22a-271&#x201D;, thereby correcting a clerical codification error); P.A. 95-160 revised effective date of May Sp. Sess. P.A. 94-4 but without affecting this section; P.A. 97-286 added breast cancer research and education account and made technical changes, effective June 26, 1997, and applicable to taxable years commencing on or after January 1, 1997; June 18 Sp. Sess. P.A. 97-2 added the safety net services account, effective July 1, 1997; P.A. 04-201 amended Subsec. (b) to add provision re indication of contribution in whole dollar amount and delete former provisions re suggested amounts, effective June 3, 2004, and applicable to taxable years commencing on or after January 1, 2004; P.A. 10-117 amended Subsec. (b) by adding provision re commissioner&#x0027;s responsibility to include information facilitating registration of taxpayer as organ donor with instructions accompanying tax return, effective July 1, 2010; P.A. 14-217 amended Subsec. (a) by adding Subdiv. (6) re Connecticut Higher Education Trust and CHET Baby Scholars fund, amended Subsec. (b) by designating existing provisions re contributions utilizing tax return form as new Subdiv. (1), designating existing provisions re registration as organ donor as new Subdiv. (2) and adding Subdiv. (3) re Connecticut Higher Education Trust and CHET Baby Scholars fund, amended Subsec. (d) by adding reference to exception in Subsec. (a)(6), and made technical and conforming changes, effective July 1, 2014; P.A. 17-147 amended Subsec. (a) to add Subdiv. (7) re mental health community investment account and make a technical change, and amended Subsec. (b) to make a conforming change, effective July 1, 2017; P.A. 25-168 amended Subsec. (a)(6) by replacing reference to individual savings plan with &#x201C;a CHET account&#x201D; and reference to CHET Baby Scholars fund with reference to Connecticut Baby Bond Trust, and deleted former Subsec. (b)(3) re spaces on return for Connecticut Higher Education Trust and CHET Baby Scholars fund, effective July 1, 2025.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_12.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

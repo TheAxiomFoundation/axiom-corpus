@@ -1,0 +1,730 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-nv-medicaid-table-of-contents
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Table of Contents'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Table%20of%20Contents.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/table-of-contents
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-a-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): A-100 Medical Assistance Overview'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/A-100%20Medical%20Assistance%20Overview%20ADA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/a-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-a-200
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): A-200 Definitions and Acronyms'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/A-200%20Definitions%20and%20Acronyms%20Nov%2024%20ADA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/a-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-b-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): B-100 Modified Adjusted Gross Income (MAGI) Medical Categories'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/B-100%20MAGI%20Medical%20Categories%20Mar%2017(1).pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/b-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-b-200
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): B-200 Specialized Medical Categories'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/B-200%20Specialized%20Medical%20Categories%20Nov%2016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/b-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-b-300
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): B-300 Medical Assistance for the Aged, Blind, and Disabled (MAABD) Medical
+    Categories'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/B-300%20MAABD%20MEDICAL%20CATEGORIES%20Mar%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/b-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-c-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): C-100 General Eligibility Requirements'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/C-100%20General%20Eligibility%20Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/c-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-d-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): D-100 MAGI Application Processing'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/D-100%20MAGI%20Application%20Processing%20Jan%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/d-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-d-200
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): D-200 Specialized Group Application Processing'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/D-200%20Specialized%20Group%20Application%20Processing%20Jan%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/d-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-d-300
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): D-300 MAABD Application Processing'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/D-300%20MAABD%20Application%20Processing.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/d-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-d-400
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): D-400 Redeterminations'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/D-400%20Redetermination%20May%2016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/d-400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-d-500
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): D-500 Changes'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/D-500%20Changes%20Jan%2017(1).pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/d-500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-e-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): E-100 MAGI Budget Methodology'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/E-100%20%20MAGI%20Budget%20Methodology%20March%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/e-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-e-200
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): E-200 MAABD Budget Methodology'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/E-200%20MAABD%20Budget%20Methodology%20Nov%2024%20ADA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/e-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-e-300
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): E-300 Types of Earned and Unearned Income'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/E-300%20Types%20of%20Earned%20and%20Unearned%20Mar%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/e-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-e-400
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): E-400 Resources'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/E-400%20Resources%20Sept%202024%20ADA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/e-400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-f-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): F-100 Long Term Care Services'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/F-100%20Institutional%20greater%20than%2030%20days%20Mar%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/f-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-f-200
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): F-200 Home and Community Based Waivers'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/F-200%20-%20Home%20and%20Community%20Based%20Waivers.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/f-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-f-300
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): F-300 Persons Institutionalized Less Than 30 Consecutive Days'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/F-300%20Institutional%20Less%20Than%2030%20Days%20Sept%2024%20ADA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/f-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-f-400
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): F-400 Transfer of Assets'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/F-400%20-%20Transfer%20of%20Assets.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/f-400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-f-500
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): F-500 Treatment of Trusts'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/F-500%20-%20Treatment%20of%20Trusts.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/f-500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-g-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): G-100 Non-Discrimination of Hearings and Claims'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/G-100%20-%20Non-Discrimination%20of%20Hearings%20and%20Claims.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/g-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-h-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): H-100 Hospital Presumptive Eligibility Provider Guidance'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/H-100%20-%20Hospital%20Presumptive%20Eligibility%20Provider%20Guidance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/h-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-h-200
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): H-200 Hospital Presumptive Eligibility DWSS Case Manager Guidance'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/H-200%20-%20Hospital%20Presumptive%20Eligibility%20DWSS%20Case%20Manager%20Guidance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/h-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    contents_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-3-cont/
+- source_id: us-nv-medicaid-appendix-a
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix A MAGI Income Charts Verification Plan AID Code Charts'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20A%20MAGI%20Income%20Charts.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-a
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-b
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix B Possible Benefits Available to Division of Welfare and Supportive
+    Services Clients'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/APDX-B_Possible%20Benefits%20Jan%2016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-b
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-c
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix C MAABD Income Standard Chart'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20C%20MAABD%20Income%20Chart%20Sept%2024%20%20ADA(1).pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-c
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-d
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix D Benefit Level Chart'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20D%20Benefit%20Level%20Chart%20Sept%2024%20ADA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-d
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-e
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix E BIC Code Values'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20E%20-%20BIC%20Code%20Values.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-e
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-f
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix F MAABD Budgets'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20F%20MAABD%20BUDGETS%20%20Mar%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-f
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-g
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix G PRUCOL Verification'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20G%20-%20PRUCOL%20Verification.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-g
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-h
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix H Determining Countable RSDI Payments for MAGI Budgeting'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20H%20IRS%20Publications%20Jul%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-h
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/
+- source_id: us-nv-medicaid-appendix-i
+  jurisdiction: us-nv
+  document_class: manual
+  title: 'Nevada Medical Assistance Manual (MAM): Appendix I Non-Citizen Documentation Matrix'
+  source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20I%20Non-Citizen%20Documentation%20Matrix%20Jan%2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nv/manual/dss/medicaid/appendix-i
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Social Services
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Nevada Medical Assistance Manual (MAM)
+    manual_index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    source_discovery_group: us-nv/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+    extraction_granularity: pdf_page
+    appendix_page_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/medical-manual-4-app/

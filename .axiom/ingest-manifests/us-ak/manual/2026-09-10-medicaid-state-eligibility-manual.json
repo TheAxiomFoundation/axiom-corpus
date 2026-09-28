@@ -1,0 +1,553 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "a67824e084778f5a0d8c874e63c2a8e919e7df2d9dc1d22852e2baffcb0c5a6e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "8fa018205391a8abaeebb0bfc5d3d70ae84069fe004b05dc023ea65f9c134acf"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "490cc9634ce4018e44c54ea73f566d80129579278145f65aa4cd9b47fd619276"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-500-overview-of-aged-disabled-and-long-term-care-medicaid-500.html",
+      "sha256": "7e5f0c8449561697dc48dcbb5448b6c0b72a8e3c7eb85f93774cac49e43e3cfe"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-501-medicaid-recipient-identification-card-501-medicaid-recipient-id-card.html",
+      "sha256": "0d0b1b3acf9f187bd986f6abeb2fb81d86d9204bb24047631cda11fc08f41735"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-505-third-party-liability-tpl-and-recovery-505-third-party-liability-and-recovery.html",
+      "sha256": "7fec15e1df88a69ad6bf072c9e8e24d8534088619519561d56635576ef8e287b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-506-medicare-506-medicare.html",
+      "sha256": "64838d1b09e9d112e887452f050a3c2e7712431edf99e96525f6ed2be74447bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-507-estate-recovery-507-estate-recovery.html",
+      "sha256": "2948991794aead90dc8d2aa4cd66b0362095511219de37ce4a0d7f58d387526c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-510-assignment-of-rights-510-assignment-of-rights.html",
+      "sha256": "19fea119a9e3feea22ff85d7a78a7fcaf530d3242abdad07db511c05aa86036a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-511-child-support-cooperation-511-child-support-cooperation.html",
+      "sha256": "2147ab8eb3e791fa48fe13fdd8cd3cce4669de75c6d4f5d47a7c1c892dc9425c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-512-social-security-enumeration-512-ssn-required.html",
+      "sha256": "3c2ace97afb1e3ddb9bd483fe44dc8e938234b5ccb745935d730f024e3ef13ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-513-alaska-residency-513-alaska-residency.html",
+      "sha256": "a6f0830127cff30b971cd0a0ccf90f1da5200261000149d3a099695373901213"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-514-residents-of-institutions-514-residents-of-institutions.html",
+      "sha256": "d16ac58b0aec9567e2025704a3104b300bd0d591d3754cacf0fc5bdc80621afd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-515-continuous-eligibility-and-children-in-ssi-related-categories-515-cont-elig-and-child.html",
+      "sha256": "f103a47d08fd2e37a8c5a5c9fdf580126a49ffefaf87aa52542b86ec0f9d3895"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-516-retroactive-medicaid-516-retroactive-medicaid.html",
+      "sha256": "a0eada3b2476e65061b78d4024e9b5741ae37e1e687cd8fb5ee487806461dde0"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-517-fair-hearings-517-fair-hearings.html",
+      "sha256": "650ca9cf421899827eab3afa1fad43294921f19532450f22012b7e9d1b8154d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-518-alien-sponsor-income-alien-sponsor-income.html",
+      "sha256": "095d8479567e236fa91103ebe565ae6dd1fd4a4ecb5fee329bbfe26996f22418"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-520-eligibility-requirements-that-follow-apa-policy-520-elig-req-apa-policy.html",
+      "sha256": "14863026119090a97086d70e33ab6f53b530e92055697612ba87f07b000a163d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-521-coordination-with-the-federally-facilitate-marketplace-521-coordination-with-federally-facilitated-marketplace.html",
+      "sha256": "1ee32cde2977afc67ed5b0e88261da02cdf3d1997317c70bad02ed319cb7f924"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-522-medicaid-exceptions-to-apa-eligibility-policy-522-medicaid-exception-to-apa-citizenship-requirements.html",
+      "sha256": "6f372e39fc573e5e152c1680c82abe0b75d63a0bbfc1e9ab62ae20d12ff89658"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-523-medicaid-exceptions-to-apa-income-policy-523-medicaid-except-to-income.html",
+      "sha256": "06c0326f8e830eccf54bc4cf2b4a3a85103325e9944d53a0e8c94977333236da"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-524-medicaid-exceptions-to-apa-resource-policy-524-medicaid-except-to-resource.html",
+      "sha256": "a48b577b78995b2a3858de6a8269e3884d32a1bfc8abb57056dddcc751126afe"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-525-general-medicaid-trust-policy-525-general-medicaid-trust.html",
+      "sha256": "78ad267b19f32a23b2b18981cf802cff31038b9f6d496ac681b833a503ed9f6e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-526-qualifying-income-trusts-526-qualifying-income-trusts.html",
+      "sha256": "1b1e72cce2d62cd921c4c74d566fad986be4d237984e7c3ece318da17fa1227b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-527-special-needs-and-pooled-trusts-527-special-needs-and-pooled-trusts.html",
+      "sha256": "e170f5d05204f6ee47c0ce398cfb604cdc6d4eb2fb487accfa8e3f9a25a5419b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-528-processing-cases-with-trusts-528-processing-cases-with-trusts.html",
+      "sha256": "271f18526e6ee86d82579274f695189c38edfb4d8e29f4e63f783d9fd718cb70"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-530-ssi-and-apa-related-categories-530-ssi-and-apa-related-categories.html",
+      "sha256": "8122df9588bbdd6de91d11527548e5118c102f332c983cda256a1d3192f7c3b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-531-deemed-an-ssi-apa-recipient-under-the-pickle-amendment-531-deemed-under-the-pickle.html",
+      "sha256": "28465d0226b6715d439aae5c425a3c315848104a2ae234f7b30756a6e258a61e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-532-ssi-or-apa-ineligible-for-reasons-that-do-not-apply-to-medicaid-532-ssi-or-apa-ineligible-not-medicaid.html",
+      "sha256": "e4715257863f8b437d69eb6c64a260d924b2856e6a9dbc08f3ed4eca004c372d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-a-tefra-eligibility.html",
+      "sha256": "11abb4cdb4db9c80ee1b07e2a783d604e751a32af6a501b08b1108008bbf690a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-b-tefra-conversions.html",
+      "sha256": "0eaf6eb7f00b9572d3d43750b1224c52036e960c64fe5573a26efa45ceaf0a21"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-c-referral-and-interagency-communications.html",
+      "sha256": "0ecb43cd36a9a05e60052d47d07b6f60be59efd498be2a2d064b7cc88ec9719b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-d-case-processing.html",
+      "sha256": "20f18288266e11bd1cb2b794f2e4f1a520ef3e6c194c31e62d1f330f14f2476f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-disabled-children-at-home-tefra.html",
+      "sha256": "895789c36700381b4acf6f9ebdf775848cebbb9936fe60ed950766022816ddc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-e-tefra-reviews.html",
+      "sha256": "387bc29d64423d7942c28d8f7eecd779c9e2497bac65ce638a64e0b5059adfb5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-533-disabled-children-at-home-tefra-533-f-eis-information.html",
+      "sha256": "0126587266b8500d30f5a3af61564bf4776ec21dd3d33c36b1523f9522181220"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-534-working-disabled-medicaid-buy-in-534-working-disabled-medicaid-buy-in.html",
+      "sha256": "da9037015d85496f1b27a4152c5a1d09fb060e57bc3fbccb3fc5dec056821a24"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-540-grandfathered-eligibility-categories-540-grandfathered-eligibility-categories.html",
+      "sha256": "56bea0261b2b67fdbeff1a725e6ca1ea25811a2fa4cb279a6bf302351cb9f8f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-550-eligibility-categories-for-an-individual-living-in-an-institution-550-eligibility-categories-for-an-individual-livin.html",
+      "sha256": "cb0caf2f95d90f80dc0db5e963eaba3d98850b4bdd8a93fbb974fecc6eeab70b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-553-preventing-spousal-impoverishment-553-preventing-spousal-impoverish.html",
+      "sha256": "18d1a5753c9ee9674400b4041cbd81d71bea3b1ef15d186464044dea68423648"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-554-transfer-of-assets-554-transfer-of-assets.html",
+      "sha256": "df69efc0f5e0a2f7279af22dcc75e22d2a70199e25c181c92a1ca7d6e0c4674b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-555-institutional-deeming-555-institutional-deeming.html",
+      "sha256": "968ae29e5929ac474e6062d60b8ec1df614296a55a44e8ca8cb53f9e5ae0e565"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-560-hcb-waiver-560-hcb-waiver.html",
+      "sha256": "5810ab549ab1cf78441431dbd10cc894bf8a5cd092a748bf807bc0ebf4e4d4a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-561-eis-hcb-waiver-codes-561-eis-hcb-waiver-codes.html",
+      "sha256": "45813756e8347ab35bf618805018390bba23255b3cd8e33cb1267d2fd8fd8647"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-562-processing-hcb-waiver-cases-562-processing-hcb-waiver.html",
+      "sha256": "76760422c1b507a16f8fe3782d12d1c98f933701250116f44e9fffc68eb83265"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-570-post-eligibility-treatment-of-income-coca-570-post-eligibility-and-coc.html",
+      "sha256": "dcdf13480eceafbbcac9b7d6fee9983c67f28c0078ab987e64880d9cf0bc3267"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-575-alaska-breast-and-cervical-screening-assistance-program-575-breast-and-cervical-cancer.html",
+      "sha256": "dd7112a041b484344b2269161c9b764f37fe159eb582c4d825c68041a5e16e28"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-576-emergency-treatment-for-aliens-576-emergency-treatment-for-aliens.html",
+      "sha256": "b3ed2ad18d8d12244b990a97e574dc91124cd9d4b19dfed38bc0fd39d0ebf49b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-580-medicare-savings-programs-580-medicare-premium-assistance.html",
+      "sha256": "8369100e88a5ea855baf328a756e68ac0bae5f500617e5a65120cdc1ecc0cc4a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-1.html",
+      "sha256": "6355defff07374bb1518258d92beec4912b553aae7f21884ef21e5268cf527c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-2.html",
+      "sha256": "9dfb927dcccdee48c4717abb1efdeb0acf8b80b0838d0434a9a10d8d2c5ba90c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-3.html",
+      "sha256": "aeb90b456372c0413f3b496d0ae0a98ae9b11ddc23614ca745b10a6c06b37fad"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-4.html",
+      "sha256": "71f59303ddcd4a40a7ab065c9ac2bd812309d0a5215475831f82afacd4edc4c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-5.html",
+      "sha256": "465fb64ca28d8558de7629343b25362c35daec237f054e62dfe727bc14abd988"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-6.html",
+      "sha256": "c732e35756b788dfaae8a2ff5b7cf18f0e7456af2e310d2cf95d4fb1c9740d82"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-7.html",
+      "sha256": "b16cf76b12b10b189fd939ec0eceae7bf7df6e160e810d9aa70162f44a3e0c57"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-addenda-addendum-8.html",
+      "sha256": "45c080b393fa0d2ce669249fe4f3dcee5f961a93f2970f3b683afc3b0f5021d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-title-page.html",
+      "sha256": "1ffb51bc3b3c4358e9d108089c319208a0f539f7efb9afa56a3afd0423248e77"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-mc-73-9-26.html",
+      "sha256": "0d550ad3a4a97157b00866e0fa71aacd51919dc81059da87b1da8a56143e9a9e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-copy-of-mc-28-1-13.html",
+      "sha256": "220c9e7482408e1c7f9a9ea578793eff32aa26a06a7424c9c1e609c70ad27d46"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-copy-of-mc-29-3-13.html",
+      "sha256": "4515652043a4abfedb158fd93d6a925a00971151a025f47cb940d9eea3567820"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-06-07-07.html",
+      "sha256": "a37caf9379a8fb7510f2b659f747fc7d62b614926d134c8cbfb153685a91e398"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-1.html",
+      "sha256": "fbe165a08ff40021d109150690e0067c5f896b27d25c0371111d573aeff9af00"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-10-12-08.html",
+      "sha256": "fc2d8e4764d430260a62e31cfe337a92beba2b0aa662282d2ba23e9a54084821"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-11-02-09.html",
+      "sha256": "d983b8bf1d941f5f198b610eeb759bbcda97d2f9a8e567f34a25a9e8cd71548a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-12-4-09.html",
+      "sha256": "540310e89f3dc53e33e09bc31ea142c1d409324cd96782adb3a48abca6e650e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-13-7-09.html",
+      "sha256": "83459dc96136aa5919bbf770d7ed2cd50e137e69e21eb3accfd8014d74ada8d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-14-01-10.html",
+      "sha256": "9abbd44bddc5aa98f058815faea1589deaa80b59873d619ad9eaeaaf2da0dd60"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-15-4-10.html",
+      "sha256": "ee1df1d531c64366fb69f85428be984652f5ec1f1499d76476725692612aca46"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-16-05-10.html",
+      "sha256": "b0f6839d3160ab83d7e3befe10b1fb5be3c174aeed5a00c5655d762352ec60c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-17-8-10.html",
+      "sha256": "1dabecf1a0034edcbd9315c09d3a487919c9628ba98124189878b5b26a92dca9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-18-01-11.html",
+      "sha256": "0e0863e0ce8cf70b3435f11442c24d9ffdc777530e6a18bb5b6bc6c542fc59a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-19-04-11.html",
+      "sha256": "7def4abfe2d7bdcadf8f296997100990fdbeea0017841bd548661dc6985ee740"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-2.html",
+      "sha256": "548d7857618b338e2204e4778e3e696a8703568edf5616e43de0d2c5e6726f95"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-20-07-11.html",
+      "sha256": "958d0bde0635f3c0fd8ae463b4640880927b2c3d312bc6d03912403affb53b44"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-21-08-11.html",
+      "sha256": "93ec53a198f17079a03f917fdc9fc30214a77294bc92877ef5ede5a9055729b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-22-09-11.html",
+      "sha256": "a590fa2c69b2f1fc20f3b7a4ba358575173ed2af213c10693e8a4ab5ffc81dca"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-23-12-11.html",
+      "sha256": "519a11ba020a478a8af97cb3c9ddc203421ec5b1831a6fa833c4e5499061c431"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-24-03-12.html",
+      "sha256": "2574623bbe231ae936fc0e58ac8c96c076994fb6cbace9e06937ef95eaf209ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-25.html",
+      "sha256": "1db79c2a13f19561e2d465931cbe233cb22324b3715b3fdd4d8f801ead1d9c74"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-26-09-12.html",
+      "sha256": "207b1caafafdf38576e86d21f62be8c81ee4941d3604a85d39929de44d007e6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-27-12-12.html",
+      "sha256": "f7e87371ed2eadb8dc3b7a2665c35418fcd2661c9ebf8c22c0bd05cd0e8fda2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-3.html",
+      "sha256": "d4d7b652a0b6d8ebd9e7f71d17b3a7f9cb96c6679784806315c106f7009847ae"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-30-07-13.html",
+      "sha256": "ca626debf9ffe85fe7167fcd3d9428f2ba7d237362ac7d011d76d2eb63ec1306"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-31-09-13.html",
+      "sha256": "c2dba11f982de192b2c2e52a7a0b672e2fbf37dc20343d8d9ea7e12bfd68e03d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-32-1-14.html",
+      "sha256": "fea28de28e74d249ab9fe0ffe7a3c38d1455d014a5ecdb0495c446450b9394e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-33-03-14.html",
+      "sha256": "97de548644bc343eba560baad2a5271498ed1f7c544f29398c01a3c474411cf2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-34-06-14.html",
+      "sha256": "b07626f64a30ea1e2d10759e9c9a1ff619424449eec2115d269e0bff151910ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-35-01-15.html",
+      "sha256": "d31ced29685c906848af6c044f7bda18dd4d86647a1529f3477ade307a297de8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-36-03-15.html",
+      "sha256": "e50403522f037af7514a901979d43fc5510cf50d8ceeb5b3056e8f3d5b216a15"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-37-06-15.html",
+      "sha256": "7d4c9c0d32b4f7c2d2bac2a9f96a85e839de8bc30c10e5732f4f147a3390f986"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-38-09-15.html",
+      "sha256": "f86dcba9e9dc276ff397ea7c3fecd897a07c1eee74adb60e9981b378fe1680a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-39-12-15.html",
+      "sha256": "c7937d076b5e2cac4a386a10edfce5f2dcc3c72c18eec77b6c824d9316184aaf"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-4.html",
+      "sha256": "57f937182339db5beb1defc3a0a5f81d8b8f7c61d5b33881c696ae3560ed8a42"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-40-04-16.html",
+      "sha256": "448ac7f250b16bb1434373ae31e26b78987922aaf1408a064a40943c8c33535a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-41-08-16.html",
+      "sha256": "08b6de0a5b59daefa81e5654a3a8086f630d43aafaaefab6917dc1018601dc5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-42-12-16.html",
+      "sha256": "7955cd9dcab9478d8d9d8ef2663d62e8c57ceef4a412b548ab1647f1fd46a509"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-43-04-17.html",
+      "sha256": "d46840b26369b1dee3b153b5f8fd1eb346594452cb435302c7ffd2bd36cac444"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-44-07-17.html",
+      "sha256": "f972ea6340d8d50ed9299508d9a2f005bb44076eb05758f426718efd91aafba0"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-45-09-17.html",
+      "sha256": "7d5c903f6d4b7f427828256e090c4f2c685ba32596331bb23214fa649a0c1036"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-46-12-17.html",
+      "sha256": "e44e534d706c74604c17aef6f7bbc00ca3be1f5aaf583aa3e92ee2de5f280049"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-47-04-18.html",
+      "sha256": "b46548c491cec8e5dab2f6fc0efb95b0c052f3787dfbd9f680fa47c73582f354"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-48-09-18.html",
+      "sha256": "1652f2db4fedf251aedaa0556c609898f506322d2ee0ad5b20ee41d1cf54ba73"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-49-12-18.html",
+      "sha256": "338d6e0fc1a91ac5c118673e294235b9d291be982440a1dbd07f0f169ba2c7d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-5.html",
+      "sha256": "b131d1cbd77b99993b88049d8517c3ca9678ce2eb2c3a9dc5113a7757b0df4aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-50-04-19.html",
+      "sha256": "6689b86905e517d006dc4a19a5ccee3a9e1572e92f4536d81bcd8c2589491a55"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-51-09-19.html",
+      "sha256": "d3c5110f298d7a44448f4255a79e5f0be565cb69a88147df9665f000b3a7e14d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-52-12-19.html",
+      "sha256": "9a56178991a45d303bffcd0ca2d15f208a5680836cbdcaa2716cb4cc812d8017"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-53-04-20.html",
+      "sha256": "fce23961b1c38838515330cde5b0dd33afa74013faac8c20404335004d678d78"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-54-09-20.html",
+      "sha256": "0ba646e2405c229ed5b4a5a35332f8d8b191baba08826fcdaedd8094c99ad207"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-55-12-20.html",
+      "sha256": "38cd86b7fc8ca18843b9a6ce802981659b77ba6d83d1ba43818c1c5db973c052"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-56-04-21.html",
+      "sha256": "1950597b2fffa7ec261477af4d7f60dedd01235d6b15c7f833fb23a2b4f0120d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-57-09-21.html",
+      "sha256": "701f8ae71e73ae0dd8b597bea4c2d130dee877e0188f6fcf454613cf9a60d567"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-58-12-21.html",
+      "sha256": "4939db05466311397c811b095e1a346f73b8a49f4c09ce28c8949cd585c42689"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-59-04-22.html",
+      "sha256": "75c0960c3088b7cf9a98021f3578ed51dd9aea8e44533203334c5799bbc2ba09"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-60-09-22.html",
+      "sha256": "63276d91a3a98d25f7d474e6db97997422643de9c0a62e326df4aa1627a2afef"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-61-12-22.html",
+      "sha256": "ba04f0aacfb8d6c60ac13c9301881f5a4cdd4c3a7cfc95fe597a32098139c8a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-62-04-23.html",
+      "sha256": "07e4e27ddeef01cb9bc6e9d13ae3ba0f1eb06e7090ce68b0a1ee1c461024dd26"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-63-09-23.html",
+      "sha256": "7f15c8467537e5da8e7c1ab18d7664fa7d978f96fd476d1ba13d4885e2b95d83"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-64-12-24.html",
+      "sha256": "b6399f80ddeb183bb8c4f42c24dbfd1d063502f177c741389ea67ba961b7447b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-65-04-24.html",
+      "sha256": "f64fe5c0d8728cdb3131c0a2e1fb5e4c30fc4dbc2613c479f8514211ed44b85a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-67-12-24.html",
+      "sha256": "840a52f47dda6c60ce908cbd3ac8317057c3be868722bff740514f4e73b6e8ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-68-04-25.html",
+      "sha256": "baac9e469e2c98b83d6d693283b3aaa52211078f10e46643b5899bee8fa708ae"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-69-09-25.html",
+      "sha256": "d50d89cbd0b9ffee3c0d22207f69102923d828dfbd9ac7bc4284422a3d03bed1"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-7.html",
+      "sha256": "e453d96c7a4a04a8371fc494fda43049cf04082fa30765501c726dc64d264ff6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-70-12-25.html",
+      "sha256": "69f24267a57f137bf9a559c820a592361a024e6c365fcf889b610d878db3e632"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-71-04-26.html",
+      "sha256": "6a3f1603331dbd1139c3487bd9f91166080df83defd3b991940b8fe341874da8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-72-07-26.html",
+      "sha256": "9b061a4b11a5421b6b8a0d3b1e1c07743dba43592f8ac382ba91f6158d00b9ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-8-12-07.html",
+      "sha256": "68b10896e36e64e5b062fe06f60cb33e59f2fdbd0890f33f648eff5fd3d845ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/ak-dpa-adltc-transmittals-previous-transmittals-mc-9-07-08.html",
+      "sha256": "4658b50f4ca3c29ca95fa2a254354ef91a0dac5c465de789d46e39756e4dd8d7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ak-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 254,
+    "missing_count": 0,
+    "provision_count": 254,
+    "source_count": 254
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:33:22.366757+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TQaWqu7oab6nNrybtSm9lK4YRkDAKEG9DP+W9+ajTS9IFualnFOgwftlRVXK3mwUYTdAZ2WyKBJ7y9m9G6ZuCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

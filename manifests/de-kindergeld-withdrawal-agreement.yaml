@@ -1,0 +1,30 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-withdrawal-agreement",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "citation_path": "de/regulation/eu-uk-withdrawal-agreement",
+      "title": "Abkommen über den Austritt des Vereinigten Königreichs, ABl. L 29 vom 31.01.2020",
+      "source_url": "https://publications.europa.eu/resource/cellar/6b06c8b6-43f0-11ea-b81b-01aa75ed71a1.0004.01/DOC_1",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2020-01-24",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "segmentation": "single_block"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Publications Office of the European Union, Cellar",
+        "celex": "12020W/TXT",
+        "source_note": "German PDF item resolved from the Publications Office RDF work/expression/manifestation graph. Consolidation dates are expression dates, not commencement assertions.",
+        "document_type": "international agreement",
+        "classification_note": "Binding international legal instrument; international agreement/decision subtype retained in document_type because the corpus citation grammar has no treaty class."
+      }
+    }
+  ]
+}

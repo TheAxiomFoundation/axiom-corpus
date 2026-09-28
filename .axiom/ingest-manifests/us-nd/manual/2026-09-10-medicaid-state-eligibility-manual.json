@@ -1,0 +1,801 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "b6979ec463e19b3260e03f144a9a1ac39efd63647d8f02f5fee026c39d279d0c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "d652f8e9d138bf01999cad77976b698f9676d1408c192e6751c036c9ccd6c59a"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "4e27910ac61f28e7cb2c9f4ce7afeb403e661fee8cffc5dda2a2aa278b589789"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-05.html",
+      "sha256": "8e53d6e8f1a0f2eb81fe12472cde2e37fcc3d1924be7a811217a013757fd2b24"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-07-05.html",
+      "sha256": "9ef9d0525eb94eb7ee1ea6a1dcf7fb968739c4a3891ffce44cd30f93a63c3337"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-07-10.html",
+      "sha256": "8e72f94f3f372af823bf242e5fb9b4a81fb5996ee0072fe1d6e0eb5a9ee78aed"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-10-05.html",
+      "sha256": "1cb91e2c1f4068c0ac424ed955555472b9dfd01d14af24d1bd829a08b75b8caf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-10-10.html",
+      "sha256": "9e48842aa5abfddd2b471b03225ee5129bcbd7a373fc7dd19362735195dba3d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-10-15.html",
+      "sha256": "217c3397ee1bccc4ce063c0c7d25d0ce95f45a42401342f4e8c0965dd66507e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-10-20.html",
+      "sha256": "05ec23e2930a6685083bf9dda70acc3607292fe0210b34fdc63948ebfa0730b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-10-25.html",
+      "sha256": "121bf4470b3a488061803269346471e99ba57de0db4b1cf93964dbe573907dbf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-10-30.html",
+      "sha256": "2ee08b0b904fb3164fb75a1e773d8f18c257f7262e566aa40fae1596cee48da1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-05.html",
+      "sha256": "4396d7523b5a6a7cf6d62adfe27e089e40ee50fe0ed89c7b5855c20bce3402c3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-10.html",
+      "sha256": "43745c1d564f8beb7d3732aba095620bab62e97be32a5fceacaf3db8b57ca1dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-100.html",
+      "sha256": "59883fa814f0a96fd5c76479c5ecab582b1315ccc22dce2c925fb2527daf68d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-15.html",
+      "sha256": "17652e5cf5cd98f5b9584c49ec4af8f4d26c7a4693a2ad8a8b67649fcfae6003"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-20.html",
+      "sha256": "a5fcb4360e86c63a75a366a84919a6a47fdd83108fbf2f9755020fa602a9c971"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-25.html",
+      "sha256": "4023342ecdc67641f6adbaf9917192b104d8a63d6723cb117ad0e20e4892430c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-30.html",
+      "sha256": "0ffebba53e29300594208b09a7aa3b08eef297feb781b1dd82f03174fd124e24"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-35.html",
+      "sha256": "0de3c91f9485100c587114ad5d47636c15948cbc42f5735c004147470fa41a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-40.html",
+      "sha256": "772d7ef7cbb704e30ae7162e722ca34b104ad6569eb1dfdf48feb783bed1ea38"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-41.html",
+      "sha256": "1301a5f1e229ed8a80e2f20539631dc07b0d96294e1a92fe6e965337647d07bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-45.html",
+      "sha256": "4bc5bf63d78a9d42749a0e391272f0d80837ba71cda5abd1e0e0a749bafc5d98"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-50.html",
+      "sha256": "4f46ffbccacb53c33cf64316f50e6d2d2d5d4d0a1a26aac6452198ecb3cbb57f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-55.html",
+      "sha256": "9f0ecee1c56294e83cd293bfde36c4a8405afcefe3a951655626e317571cad81"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-60.html",
+      "sha256": "84249a8be13c53af8f03681ad53fa761deb1a746727b7565e5c32767d10d3f0e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-65.html",
+      "sha256": "5c23a669cbcd9dc69269efcbd427cb9021294c8b56b02186a59d71c4caa49844"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-70.html",
+      "sha256": "8114eb442d51419324eca28748071f8832349f102095d921c9e9db7248a06f79"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-75.html",
+      "sha256": "ba451a31698942b79c75b656dc3ea69e4a5c203413ff97187e0a7dd71f4fdce3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-80.html",
+      "sha256": "34ce72aa823621b4e806739763de0495ccb406596c3269e1f1c4a1878eb0a257"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-90.html",
+      "sha256": "c731f7be952ccbc4bf7513941c8a2b52414a59a3d76c3d3fc844a70175fa75e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-100-96.html",
+      "sha256": "0e8ce6b81634d399372b25d14bd026c835b44209fdadfeac2769075465e4a70b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-105-10.html",
+      "sha256": "4a340b4df64610af7e21d8b6ce5d7ac9e3bf610f551a8961847dc98341a1184a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-110-05.html",
+      "sha256": "7204b7f857e2ba96e27d371420453383284c53dc49879ee2587c64097305374e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-110-20.html",
+      "sha256": "33fe4c2a2dc6d9a8588e2fd5b92a8f9c41d8c0b26823a06290965a16269df978"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-12-05.html",
+      "sha256": "d4b15709a5366c3fa6ad4673f304a3b4f131e67708105a163c988f5ad51f2f08"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-12-10.html",
+      "sha256": "a0cb759a761015ad359b809b43f32d824b50795bda3ddec17e870375bc62ecbb"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-15-05.html",
+      "sha256": "6c6bba61736f72ae2319ec9949488609332af82cd67846f370431d2d94d5a6d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-20-05.html",
+      "sha256": "dabedfe7b036d8b017b358e0e387149d36f518fd0075c23c3a7782dfee013085"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-20-10.html",
+      "sha256": "ffc8409bdd3bac5ce05b37ce9b150a546b697582c9a7cbf86430f1948783dfe1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-20-15.html",
+      "sha256": "083918a34ec5ea2a4b82371af42c2ec68cf333d8777885f5cf5d22696b643d57"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-20-20.html",
+      "sha256": "27a2e36a2a8cdff6040ecc44cbbf12d6845d47cbe311d848da842be3fc636421"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-05.html",
+      "sha256": "ec8a1a8b9d0f84c8fe66ba032640ef896bca6dd848dd34b4b8f91799fc83cf43"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-10.html",
+      "sha256": "eaaa63661a3882bd0546419c414710bb978da48af50ad0dc8d784a7062be522e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-15.html",
+      "sha256": "eb08ca82b16303ed89df6a6ccc1c1b19fe69d8e3bc24551285816e4ea7f0c997"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-20.html",
+      "sha256": "432d890e33dea0a5c88ace29ba6f43306e5bd4353a8708254c308a8f6ba73ff6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-25.html",
+      "sha256": "ee24d687177d6247828963f3d8588009cdc4e2d4bf1650e34cc7a2b0f297a17a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-27.html",
+      "sha256": "416e26478229307df5517409d77e1f02d46e2b391490f29e4a40c4f79ca03eec"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-25-30.html",
+      "sha256": "63f74c1e42c48de33b03058256bb00bedf8edf14b77d961c122e24f2a534a0de"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-30-05.html",
+      "sha256": "684d64c131a0df764979499e4d68c09cec920857fae2b924d6ef77ac9091bd10"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-30-10.html",
+      "sha256": "4c7b2bb02bea1f4d8b0a4d8caaabf5404db17b366bd735d2dd47d9ac85683c00"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-05.html",
+      "sha256": "ed13a46829d45a7e07a44fd51028578f0df0239095e5d99ef566399cf258b484"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-100.html",
+      "sha256": "a5a27d8d9e60eb937f185a613dbcfbb5fc4b960be1f0b565747fe6a8a6746a85"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-15.html",
+      "sha256": "b7a9cb578458cede664d3921f900e29eceaf1410e3bcadd5d6c2b9d4b46723b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-20.html",
+      "sha256": "f2f1f27f6234f9e9befee536672b120f2f0df1c20e4bab920c8396e13114869b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-25.html",
+      "sha256": "f3738f4a91ba89b2f6101d69427038b15230a981203cd18707b378b8b304dbed"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-30.html",
+      "sha256": "8c93278c60b946499545c984cff4159bb53ee3ac8406d1b462af942193637015"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-35.html",
+      "sha256": "3096c50e0fc02c103b7cd6784a46f823634f26b0ff3fce36116a0fb6d2c7d1d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-40.html",
+      "sha256": "6e7d236d5d09bb9f003a49629fbb3f1aed2eaaf5c76809d7b2412ed8bd507986"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-45.html",
+      "sha256": "c6c4add7b51f0411810ee976055eb891de0da10ab092a406c5fc7c420331a246"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-50.html",
+      "sha256": "8df6247c5d86c892adc9658ab2f486fd56e87b7f5d2d39133fa02fe5bdf8e3e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-55.html",
+      "sha256": "926f5be992d115dced3ac689fc28417e39ca9155c073d640db82af68efd0c83e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-58.html",
+      "sha256": "5c3e5e49a05e21a229eb1ee3278b37802d48c6390d273a9ba9578917c67ee550"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-60.html",
+      "sha256": "7c48e6b7651442fac23631eb5c9cd77202cb77b9d1c5d2bca40a9185d06639a3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-65.html",
+      "sha256": "4b99e9fcc50fb9e907634b7eb5894adf3894ae685fb6ffd54414b983e5cd568b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-70.html",
+      "sha256": "745fd771ef48e8925038a3ff2fd923e9e971b2d73d9c2bdee5bad772bbf361b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-80.html",
+      "sha256": "295cdb1dd596f05868584f111955ad68fc5a13eda379a2e9b391bd211b3842ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-85.html",
+      "sha256": "eb43c1032fb885a61b64e82b100fd34ba26fcf3992c144041bb3c38f6c675a45"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-90.html",
+      "sha256": "43cf5c39588b251658016f9b38c620c1a394af65c1875a0a98264c2ec3d64ae2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-05.html",
+      "sha256": "d62cae9ddb33cc136f12f043c1f4c24e789036e9b0870a6dd6dd7ab2d8c328f5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-10.html",
+      "sha256": "d89d9e6887446c78c219b0b0c0acf36786f7f06a61686844f1d6297026e82bd9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-15.html",
+      "sha256": "240afbfd4314206e059aefde1eff09fafccf184fdef559832874479f6a89c3f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-20.html",
+      "sha256": "5d489273885188c3c9050f61913f6b73f7b18b821eeed09369c259f484dc7b5a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-25.html",
+      "sha256": "b21b86cfb0fd903acffa9a8cf336721165f39aec939254628bc7cd7f8690a4bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-30.html",
+      "sha256": "d888e1dcced9b33355628c6a742d549eba761aa1d042c8026f7ca34c30cc4c9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-05-35.html",
+      "sha256": "7bef304f1a8a8155fb640d29dd58abe914e9a9e833bffa0a3264e07c0b5f782f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-10.html",
+      "sha256": "7d0254fb450d34479413cde5adfa124531d04babae89b6784d287a68dfe6e304"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95-15.html",
+      "sha256": "d5651bf5b6b95dc5c244f0991ace53a065c48abd83d8e7fdff16f92d75cd44b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-95.html",
+      "sha256": "e9bbf499bde81295ba4084ff9ddb9219e0dc7521718dbef22d3526cdc0259f44"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-35-97.html",
+      "sha256": "09bb14cf61b5884d3a2c957806c0c52f0a067c63f790e6b5c5f247c7d36fc163"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-40-05.html",
+      "sha256": "82d6836e04b7b8152efcb364e7cd54ed933c836ad9c9cbcab64fad63f914967f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-40-10.html",
+      "sha256": "6ac01d4a1833a6ac87a80c3348d4af5ce3e8584fc995d4fade02e02fab415f08"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-40-15.html",
+      "sha256": "c7568d414ecf16a730a7f864aea23466a54180038927f74046ab9e2d280ca45a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-40-20.html",
+      "sha256": "545d46b681aabc70648151e0249b8fdb2cc042fdada55c82564e970f9b63282a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-53-05.html",
+      "sha256": "a8a5ea987f442a63b443bb57d8aa6f9a4b8ce10661ae3a5a9e5245e83156f653"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-53-10.html",
+      "sha256": "1f35fea3d54d915ceaad410cb8d38d7ae9ec8edac03d77dce963211e5c47c5da"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-53-15.html",
+      "sha256": "7ccb5d13ce4bb52504c841e8cb62ddefa8578afc97bd09fa791354282a98c4f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-53-20.html",
+      "sha256": "9a8e6f3d57f66e78a6af779c4aa235358ac8ac1c3c2a3026593f9dfd2f888295"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-55-05.html",
+      "sha256": "b721f222be265c2e0b7ba7896caf6b62feaac1ab0aac2dc281508e0891b2b49b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-55-10-05.html",
+      "sha256": "9545bedbffde0b827cf7cfc32376fb84ce446accb8c4bf78452759b679d5a3e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-55-10.html",
+      "sha256": "95fc771ac32cd70146d60c04d9c2371a01d362b52e77af5a07c4b4efe11d6aca"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-55-15.html",
+      "sha256": "5cfd826c8a512d23cf7f7f8a6c576c2da87bcb4fc2bca13927333e3cf49f8a9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-55-20.html",
+      "sha256": "b7e35a3e06da5a9f1968a61798cdfa27198c4d9ab4c1dfbcff93c8e77c6d0200"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-55-25.html",
+      "sha256": "be66796f4370a4f71055deaf8cf294c6b56dbb1a1819691f006cf0fa909ca499"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-05.html",
+      "sha256": "9c47fa496092b9387fa63f08b46c0e537410ae528722cf6e0906ad304894cb6d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-10.html",
+      "sha256": "2fb4919f7aee6246e3eb9f43e465a9e9454b707f1bb0fb04cc6358b208ccc76d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-15.html",
+      "sha256": "241ecd41ade808a29c82e8470b7f6ce370d30d6b28685eaba415a74df3cecbd1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-19.html",
+      "sha256": "b93da1bae69dad1be090ffd2ff67f309bd1d568cd8219e4ad1d95515ab8f0e6a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-25.html",
+      "sha256": "b1eb4b3e8d30979486618f1d526b034e3f0de3cebb51141a5bce48a6e6088d72"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-30.html",
+      "sha256": "3baaf4799adf68f836e4a73f677da8cd4ea37575ab5d520e4751db6ff90e02ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-57-35.html",
+      "sha256": "df5cb1fb40f3228067a23982db10caab663208b5c22c746b3f5ae9773d8ee1e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-58-05.html",
+      "sha256": "a7f87b749d767e580792b9644c7b73232a623a659eff7e6ddf3a610469f38b23"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-58-10.html",
+      "sha256": "284dbc705b3bb71b5ea5c342996a71548f7c50c376e7c666fa2f64f238ec2e1f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-58-15.html",
+      "sha256": "171c38a98dddd284a651c12ed8f484631682e4634ccf13b5c245a34d1e3c5b0c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-58-20.html",
+      "sha256": "484788d0aa56ff29f37e0a40cdb60f23a92410a011ed63e5971b7df4d16a95c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-58-25.html",
+      "sha256": "d86afd28f70581906b449359ceefcd71659ce68e84ac2a34920a432ccfbf35a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-58-30.html",
+      "sha256": "ad02e8908d5b81c0ead46fd4291904e89218909b82b494d8977149068a8b5792"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-05.html",
+      "sha256": "dc71239d4be2e37b4f1a22fbe157c3f3cff49312642b75c238cf52ce90cf6e06"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-10.html",
+      "sha256": "eee7aa06218562a490edf71f2f660abc534d6a80b51b05dc4d4c1e431880feaf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-15.html",
+      "sha256": "b4e78e928f4f17fb1eff6dc631c510b14e7e2408a09e6bf1f06c8a22f26e265d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-20.html",
+      "sha256": "fc9a93c53ca610804d23360a72368479b6b04fe91e9d4caa51a61e51fd080235"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-25.html",
+      "sha256": "66204235bea03ac80b36419ba376ff2390dcf4a8d6a0d7d2d2a1d698dca4829d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-30.html",
+      "sha256": "96a618199f5a1927b50fa56be712692bd3e669e7f87153f6f8cce7921e457c9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-60-35.html",
+      "sha256": "371ce3dec93e9bef530c633b95f3329a3effa5f7b42cd25c10b074adca5ff603"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-05.html",
+      "sha256": "02dad5b0d5b0161ce9d9f29d600a41413169710a669767b6f9dffbe520423035"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-10.html",
+      "sha256": "e57fa365dc553edccd96664bc6999c8b9210b92179abea43040c790c27b4027b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-15.html",
+      "sha256": "9304b90e83b744b9ee2b7b312a90325b8017612a195fbe153ff6fd4993cbb68a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-20.html",
+      "sha256": "70b3dad418e51cb18a2ea1c249991d4ff611c341f5f0d689f506f8daab657200"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-25.html",
+      "sha256": "f300dcf6b01632202dfa6671a469451f6f2871c38f8a0a80dd19f1f18d846dbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-30.html",
+      "sha256": "d8912d11612dccac81888b3d2f8d8f11ef00944174a18f7b0b923ee842494e87"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-35.html",
+      "sha256": "8d4544fc6168ae8c574cc958466de8674cf5ef9c83a3567ecdbf1f75db732e39"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-40.html",
+      "sha256": "d1128455b74e6a059ea80760e5753ec55774c576c426a1bcc41ed273c3362788"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-45.html",
+      "sha256": "a1748ca9ad7ccb87a243dd4b6a44e9c148f4926eb5543df3ff508f663b23e422"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-65-50.html",
+      "sha256": "90ae3490e825db9eab38164c962c4792e3a2b9c496e15529a60e8b8ad76444c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-66-05.html",
+      "sha256": "273f7b09bb1acdba6d5c8152e707503f68488d8adabc14425a86171f5b3192dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-66-10.html",
+      "sha256": "ddb5cdc99b7761024b945e0eddfc134abc1aff53049e9b429cd2bdf8c11e9012"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-66-15.html",
+      "sha256": "167690c4a607ced0ba16dd3c8741623f380e24fdc2b741fe0812038fe4aab960"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-66-20.html",
+      "sha256": "24a73d4f696fbd8813c406d7b36e74278847687a7dc730ede530e256cbaee162"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-66-25.html",
+      "sha256": "0083bbcc84f3a7555ec173d3152cbc97236334cc919d332537740963a0823fbd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-67-05.html",
+      "sha256": "969616a2896ead4e8b9d8daa8224d1045e1ced0324286eafd5aa1b885027d611"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-05.html",
+      "sha256": "4b94ba9225640210b4d2e6f3ebbfe29979e341de4cc49ebc533f952a8badfb49"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-10.html",
+      "sha256": "2e7d7ab1df415e7ce8d5d0b5692258599fa68396a96332ff5da186cbde68943b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-15.html",
+      "sha256": "02e40d41d01c653ebb5fbd70476755ac802064c3841166cd878745741f7f5152"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-17.html",
+      "sha256": "25b42413bc470aa48c7ee18b80554a10fbc18d28a9dcb868557190841fba1a81"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-20.html",
+      "sha256": "cd7fcbe780bdca7277357935b82695f3f8be4e985286e4ade18684a07d920232"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-27.html",
+      "sha256": "1952bd3da964b93dedb4bda825a0b4b460e311142f27b72366e987d00be5f1f7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-30.html",
+      "sha256": "f58f0717c6c4a7d2a5ddeb5d31ce4f4799633d56e299c56ac1840d6213cd507d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-35.html",
+      "sha256": "4669411b68ccfc57466cfdc2ac0918f4647878307d7ca7f1fc96f6671aa5fa61"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-40.html",
+      "sha256": "8e64acdfe8846d91efacb0c88d8a316ad87f2b65ebbe6148c0efe2a37e1b5c8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-45-05.html",
+      "sha256": "059fd82c2b9e262de0acabe852eaa94dcdcf62012162acdab1a8824712965f1f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-45-10.html",
+      "sha256": "41805400a09ed3f56d531bbf400220e08f2f12dc31874cbda31413d9be8ed1a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-45-15.html",
+      "sha256": "7a99f90400d5037dd9fa0f302518b50bcb5aa540b6a605a4bd29112e68076b46"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-45-20.html",
+      "sha256": "87fbd93bb640e1988e1fa2e4e9117a1b546e4ef781f17829b392908b0ed88f8d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-45-25.html",
+      "sha256": "06466682fdc29a2ace7e69552124d86b25a34d097e06840b692288b7464104d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-50.html",
+      "sha256": "ad99cf0f75a56e6894ef5624aad4f8d3e329cf6545e7a43186a5dd943baf8e39"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-70-60.html",
+      "sha256": "8c3584d74df168c36f740de6104b01b710b23847ef14e57fe3cabfabd21731cf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-75-05.html",
+      "sha256": "0d46796daeb9875d12ae957eecf9baf330b9ac7e4940d7b937ce8fb59cf45323"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-75-10.html",
+      "sha256": "2c8e56ae709ec054d4f7546bd3609e74fd0c14893d913b9e2bac8e512f77432a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-75-15.html",
+      "sha256": "67735be691887f95f3b1f432e08c539099838866ed4acc7408f2f1dbb336c422"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-05.html",
+      "sha256": "08faabc3e3d20630fe4ede8e9713f38d462c14d84e1168b00e728917ebd3629e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-10.html",
+      "sha256": "8957a4dac3e3a37b26350f2f9d79368cf6edc753b0012c5e9dadc4bfd7fde520"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-15.html",
+      "sha256": "25f1aa1603f9d064cbff2565535556dbe98f9b85dde24ae094032fb86f786238"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-20.html",
+      "sha256": "6f5952558b1b976668406f86399b9f665f17a9e84f566c056f9c0ca523c45a73"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-25.html",
+      "sha256": "df117e2b01900dba2566a0785016790adb5adbc6e1d1536c270b804f845661e1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-30.html",
+      "sha256": "c3c1c79fb2af7fac94d1237f78a0b45fba1c0967562bb3bfecae49730c809acd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-35.html",
+      "sha256": "4319b022b47d4f81f720639eb0dd755a8257cc9581a3021c21c460d400305ac8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-37.html",
+      "sha256": "92ef8ee0b48ce38edfa3699e32e4fd504b5ac8e91e6eb4dc3c819b6a72244d9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-80-40.html",
+      "sha256": "6acd02403afbfe0707792c347c2eca5414946032ae238b3573f23288490f6fbc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-05.html",
+      "sha256": "39231eb9b93e75b055dda3f6c387ec5701fb888492c94ca54a5cbbed1135ffef"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-07.html",
+      "sha256": "ce0972bc16aff2872246032690004eca3ec5682f3edf3f9cd7b131ef62706b62"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-10.html",
+      "sha256": "206dd146ef2ec35d3e4236cf3a86d02383280ae24c88d16df05a622712299c21"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-15.html",
+      "sha256": "208af9a1a54bfefd35b653e201320d5d71144b3f6c798a325c5847b02274c3c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-20.html",
+      "sha256": "2537dc65a64ccd1a0f6c792eeb0f2a6bc6df11b0f626147a056df372218806bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-23.html",
+      "sha256": "a5b9fcf6fab64d83c492432914878456e3428700a3d1df778b352cddb3813d4b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-25.html",
+      "sha256": "a73f5a32dc0e4650ab08e7fe5c2b5e6455a278026349c6b16e0ded2e6b56caaf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-30.html",
+      "sha256": "9c619d338414474fd988b3f76e27c78b6d177e8ac7b588660e6559c3ae01342a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-40.html",
+      "sha256": "d097a9bc9c64dd519d5f52f92981e57111acfab52a55e195a90caff6707a5063"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-45.html",
+      "sha256": "c177f1c0d8292000c8f89e82cc5df588f29cb376aeb5da9bb9b833d8c87b9cad"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-50.html",
+      "sha256": "eb3c15294397043e6b481ad7f93e95980c8e974d27e16b0d7caa23247c0b0326"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-55.html",
+      "sha256": "5e358e5efba40eb4cc8d809af3dd7bd9aac8a18b8d7e51b9536b1ae3cc39d3d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-85-60.html",
+      "sha256": "a95b0076bc06c8ab904a822255bc0c8b0f00f9308074904a98ca5be77650f299"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-05.html",
+      "sha256": "843875a09da4ffa47395351f39e4107a7a23ed13b35d15c368954b541d531cee"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-10.html",
+      "sha256": "c9cf7a4ddfbbc0d28e85b4907c3a9f888bc5d62d77f3d1234f05ca3b12cdce3a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-15.html",
+      "sha256": "6bbc5053946064f2987b121963e5a7878fef83f08395a9e68149024346efa366"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-20.html",
+      "sha256": "ee9a633141a21bc8f75aa2367182339d28d57d947445d2177c478f8889625fa6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-23.html",
+      "sha256": "d807f5c0e944636608d9de61f5039a6ffc2d4f10f62ad22ffd9e2f2e5c8c9595"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-25.html",
+      "sha256": "5dd49ec2567da5e46b83b1f1f1ce12a9769b0e35ca1b09b420121666fa2040f4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-30.html",
+      "sha256": "33aaf55daeb40a1bd3358a2e2795adc74fd9a6b9eff8947cc9c6adcf2310d526"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-35.html",
+      "sha256": "82c5ed6683e586d5425dd15be045f14c2ded4ad13f128453641e05f0a878c73e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-40.html",
+      "sha256": "332f019b16cad016ba07e1a886e7a6ac6c3c0370a899514bc664651c69e5f6b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-45.html",
+      "sha256": "6643b67611e1e8b7aac9f5efd68348dc1a4de6c291c294ea18b260a7b0db45bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-55.html",
+      "sha256": "563ab80abdb885cc920b4f090132f015efffa583403d971a3ee4ca95ea74adba"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-60.html",
+      "sha256": "d6b1548377ccd629b82221a9ca40ac63a846ee3cbef5431caec96e2ec41fdd73"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-65.html",
+      "sha256": "f08814774914ec59b8fb02327c5e9a81c1d136a3005203e802866ac5d541b86c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-70.html",
+      "sha256": "692a46b71b18d6595d29410e9886499a69de7ae2cab8b224e491ca2bf7f27c50"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-90-75.html",
+      "sha256": "11b3be43c02b4f6a5c6510dc0668ec2e989eea944f8554a9d16216e9ad69a1dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-95-05.html",
+      "sha256": "c9c47137742b6fc1c1c05725255b4e95fab5de4bf106de3e5301bb0a4c68d6d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-95-15.html",
+      "sha256": "971de86ccbfe89fda2520d5115b16129476d2964c87f7d7ab3bbdc87bbb6e501"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-95-20.html",
+      "sha256": "d3e566e4df38d110e6ff67415fe5b63e9d84e1d7b5cda5b2e0d304aaa9c8924e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-95-40.html",
+      "sha256": "9c9c8807e7b8aae81e53150e619db89de06048383107457fe666feea8be8d235"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-95-45.html",
+      "sha256": "c20ac78ed46aa3b09eea17c47bf07cf8fad921af24816b2435b097bd78fd992b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nd-hhs-510-05-95-50.html",
+      "sha256": "1e16c77747de93073070b3ea398c42763cf60d3a9429f8edb3980e2cc0561f5a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-nd-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 378,
+    "missing_count": 0,
+    "provision_count": 378,
+    "source_count": 378
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:10:40.265811+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WEuprpUYScNc9z444vzFlZU8Hlu9NzbIAlzcVeb+beDtohBZixrtbEQLmGTGmnj92vNinKLtAqAGbVGs+9ylBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

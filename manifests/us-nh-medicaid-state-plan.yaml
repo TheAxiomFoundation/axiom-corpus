@@ -1,0 +1,1570 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-nh-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 363
+- source_id: us-nh-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 363
+- source_id: us-nh-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 363
+- source_id: us-nh-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 63
+    index_records_total: 363
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-26-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-26-0001: Approval Document (approved April 13, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-26-0001
+    cms_node_id: '191651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=191651
+    approval_date: '2026-04-13'
+    effective_date: '2026-01-01'
+    summary: This amendment proposed to memorialize the new income standards for its optional state supplement program, the
+      beneficiaries of which are eligible for Medicaid under New Hampshire's State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-25-0026-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-25-0026: Approval Document (approved February 25, 2026, effective October 20, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-25-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-20'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-25-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-25-0026
+    cms_node_id: '190076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190076
+    approval_date: '2026-02-25'
+    effective_date: '2025-10-20'
+    summary: This amendment proposes to increase prescription drug copayments to $4.00 for Medicaid recipients and removes
+      certain limits to Tobacco Cessation Services.
+    topics:
+    - Cost Sharing
+    - Coverage
+    - Eligibility
+    - Other Licensed Practitioners
+    - Preventative Services
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-25-0031-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-25-0031: Approval Document (approved November 19, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-25-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-25-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-25-0031
+    cms_node_id: '187196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187196
+    approval_date: '2025-11-19'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to add coverage of Targeted Case Management to New Hampshire’s Alternative Benefit Plan
+      for eligible juveniles who are within 30 days of their scheduled date of release from a public institution.
+    topics:
+    - Alternative Benefit Plan
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-25-0013-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-25-0013: Approval Document (approved October 22, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-25-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-25-0013
+    cms_node_id: '185901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185901
+    approval_date: '2025-10-22'
+    effective_date: '2025-01-01'
+    summary: This amendment is being submitted to attest that New Hampshire has developed an operational plan in accordance
+      with section 1902(a)(84)(D) of the Social Security Act, to provide screening and diagnostic services and targeted case
+      management to eligible juveniles, as defined in 1902(nn).
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-25-0019-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-25-0019: Approval Document (approved August 11, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-25-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-25-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-25-0019
+    cms_node_id: '183536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183536
+    approval_date: '2025-08-11'
+    effective_date: '2025-07-01'
+    summary: This amendment proposed to increase the Medically Needy income limit.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-25-0012-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-25-0012: Approval Document (approved April 25, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-25-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-25-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-25-0012
+    cms_node_id: '179081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179081
+    approval_date: '2025-04-25'
+    effective_date: '2025-01-01'
+    summary: This amendment is to increase its medically needy income level (MNIL).
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-25-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-25-0001: Approval Document (approved March 21, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-25-0001
+    cms_node_id: '178596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178596
+    approval_date: '2025-03-21'
+    effective_date: '2025-01-01'
+    summary: This amendment is to memorialize the new income standards for its optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid under New Hampshire's state plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-24-0035-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-24-0035: Approval Document (approved November 1, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-24-0035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-24-0035
+    cms_node_id: '171596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=171596
+    approval_date: '2024-11-01'
+    effective_date: '2024-07-01'
+    summary: This amendment is to cover the optional eligibility group described in 42 C.F.R. 435.218 ("Individuals with MAGI-based
+      income above 133 percent FPL") and serve in it children under 19 whose incomes are no greater than 318 percent of the
+      federal poverty level and who may have other insurance.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-24-0033-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-24-0033: Approval Document (approved August 27, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-24-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-24-0033
+    cms_node_id: '168731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168731
+    approval_date: '2024-08-27'
+    effective_date: '2024-07-01'
+    summary: This amendment indicates that New Hampshire complies with the Consolidated Appropriations Act Chapter 146, Laws
+      of 2024 (SB312) regarding third-party liability.
+    topics:
+    - Preventive Services
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-24-0006-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-24-0006: Approval Document (approved June 21, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-24-0006
+    cms_node_id: '167351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167351
+    approval_date: '2024-06-21'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to disregard the spousal resources of certain institutionalized individuals and certain
+      individuals eligible for home and community-based services.
+    topics:
+    - Coverage
+    - Eligibility
+    - Home and Community Based Services
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-24-0003-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-24-0003: Approval Document (approved April 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-24-0003
+    cms_node_id: '163091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163091
+    approval_date: '2024-04-15'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to provide Medicaid coverage to lawfully residing individuals under the age of 19 and
+      pregnant women who meet all other eligibility requirements for Medicaid in New Hampshire.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-24-0002-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-24-0002: Approval Document (approved March 21, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-24-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-24-0002
+    cms_node_id: '161791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161791
+    approval_date: '2024-03-21'
+    effective_date: '2024-01-01'
+    summary: This amendment allows a child to remain eligible and enrolled for a full year without consideration of changes
+      in circumstances in accordance with the 2023 Consolidated Appropriations Act.
+    topics:
+    - Eligibility
+    - Inpatient
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-24-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-24-0001: Approval Document (approved February 22, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-24-0001
+    cms_node_id: '160121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160121
+    approval_date: '2024-02-22'
+    effective_date: '2024-01-01'
+    summary: This amendment proposes to memorialize the new income standards for its optional state supplement program, the
+      beneficiaries of which are eligible for Medicaid.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-23-0039-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-23-0039: Approval Document (approved August 11, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-23-0039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-23-0039/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-23-0039
+    cms_node_id: '152061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152061
+    approval_date: '2023-08-11'
+    effective_date: '2023-07-01'
+    summary: To remove the requirement of charging premiums on a sliding fee scale for participants to contribute to the cost
+      of medical assistance for the TWWIIA BBA and Basic coverage groups.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-23-0029-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-23-0029: Approval Document (approved May 18, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-23-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-23-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-23-0029
+    cms_node_id: '151091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151091
+    approval_date: '2023-05-18'
+    effective_date: '2023-01-01'
+    summary: The state proposed to increase its Medically Needy Income Levels.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-23-0030-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-23-0030: Approval Document (approved April 26, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-23-0030
+    cms_node_id: '147241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147241
+    approval_date: '2023-04-26'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to change the eligibility rules for the Former Foster Care Children eligibility groups,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-23-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-23-0001: Approval Document (approved April 11, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-23-0001
+    cms_node_id: '146736'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146736
+    approval_date: '2023-04-11'
+    effective_date: '2023-01-01'
+    summary: This SPA proposes to increase the income standards for its Optional State Supplementary Program
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-22-0053-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-22-0053: Approval Document (approved March 17, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-22-0053.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-22-0053/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-22-0053
+    cms_node_id: '146316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146316
+    approval_date: '2023-03-17'
+    effective_date: '2023-04-01'
+    summary: This amendment proposes to include cost sharing for New Hampshire's comprehensive adult dental benefit for all
+      Medicaid eligible adults age 21 and older beginning on April 1, 2023.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Dental
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-22-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-22-0001: Approval Document (approved May 24, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-22-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-22-0001
+    cms_node_id: '136186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=136186
+    approval_date: '2022-05-24'
+    effective_date: '2022-01-01'
+    summary: New Hampshire State Plan Amendment (SPA) NH-22-0001 to increase the standards for its optional state supplementary
+      program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-22-0030-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-22-0030: Approval Document (approved April 28, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-22-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-22-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-22-0030
+    cms_node_id: '135156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135156
+    approval_date: '2022-04-28'
+    effective_date: '2022-01-01'
+    summary: This State Plan Amendment was submitted to amend the provisions governing third party liability in order to clarify
+      language around preventive pediatric services, child support enforcement, and prenatal services, as well as to update
+      policies and procedures.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-21-0026-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-21-0026: Approval Document (approved July 16, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NH-21-0026
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-21-0026/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-21-0026
+    cms_node_id: '110471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110471
+    approval_date: '2021-07-16'
+    effective_date: '2021-01-01'
+    summary: 'The purpose of SPA #21-0026 is to comply with State Medicaid Director letter #10-021 of October 1, 2010 and
+      to request an exception to the Recovery Audit Contract (RAC) program.'
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-21-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-21-0001: Approval Document (approved May 21, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-21-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-21-0001
+    cms_node_id: '168816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168816
+    approval_date: '2021-05-21'
+    effective_date: '2021-01-01'
+    summary: This SPA provide for an increase in the Standards for the Optional State Supplementary Programs.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-21-0024-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-21-0024: Approval Document (approved May 19, 2021, effective February 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NH-21-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-02-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-21-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-21-0024
+    cms_node_id: '108541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108541
+    approval_date: '2021-05-19'
+    effective_date: '2021-02-01'
+    summary: Imposes a premium as a condition of eligibility to the optional eligibility group described at section 1902(a)(10)(A)(ii)(XIII)
+      of the Social Security Act (“Act”).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-21-0002-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-21-0002: Approval Document (approved April 16, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-21-0002
+    cms_node_id: '107816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107816
+    approval_date: '2021-04-16'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment revises the nursing facility per diem rate budget adjustment factor.
+    topics:
+    - Current State Plan
+    - Program Administration
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-20-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-20-0001: Approval Document (approved June 9, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NH-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-20-0001
+    cms_node_id: '183686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183686
+    approval_date: '2020-06-09'
+    effective_date: '2020-01-01'
+    summary: Increases the optional state supplemental income standards in accordance with § 1618 and 1902(a)(10)(A)(ii)(XI)
+      of the Social Security Act
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-20-0032-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-20-0032: Approval Document (approved June 2, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-20-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-20-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-20-0032
+    cms_node_id: '98936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98936
+    approval_date: '2020-06-02'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to create a Cost Sharing Exemption for COVID-19 Testing Services and Treatments, and provide assurance that NH does
+      not impose any cost sharing related to testing, services and treatments (including vaccines, specialized equipment,
+      and therapies) related to COVID-19.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-20-0034-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-20-0034: Approval Document (approved May 22, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-20-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-20-0034/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-20-0034
+    cms_node_id: '98651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98651
+    approval_date: '2020-05-22'
+    effective_date: '2020-03-18'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing and to allow hospitals to make presumptive eligibility determinations
+      for this population.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-20-0002-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-20-0002: Approval Document (approved April 13, 2020, effective September 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/NH-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-09-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-20-0002
+    cms_node_id: '94211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=94211
+    approval_date: '2020-04-13'
+    effective_date: '2020-09-01'
+    summary: Adds the Work Incentives eligibility group established by Section 1902(a)(10)(A)(ii)(XIII) of the Social Security
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-19-0009-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-19-0009: Approval Document (approved October 30, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-19-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-19-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-19-0009
+    cms_node_id: '58406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58406
+    approval_date: '2019-10-30'
+    effective_date: '2019-07-01'
+    summary: continues suspension of direct and indirect medical education (DME/IME) payments and catastrophic aid to inpatient
+      hospitals for the biennium ending June 30, 2021.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-19-0011-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-19-0011: Approval Document (approved August 22, 2019, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-19-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-19-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-19-0011
+    cms_node_id: '5201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5201
+    approval_date: '2019-08-22'
+    effective_date: '2019-04-01'
+    summary: Revises the July 2019 nursing home supplemental payment, also known as MQIP, for dates of service in the quarter
+      ending June 30, 2019.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-18-002-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-18-002: Approval Document (approved July 12, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-18-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-18-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-18-002
+    cms_node_id: '9831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9831
+    approval_date: '2018-07-12'
+    effective_date: '2018-07-01'
+    summary: This transmits language to amend the NH Title State Plan to include a 1915(i) section in order to provide home
+      and community-based services to children with serious behavioral health issues through a coordinated model.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-18-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-18-0001: Approval Document (approved April 30, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-18-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-18-0001
+    cms_node_id: '10756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10756
+    approval_date: '2018-04-30'
+    effective_date: '2018-01-01'
+    summary: This eligibility SPA increases the standards for the optional State supplementary program.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-16-0002-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-16-0002: Approval Document (approved September 27, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-16-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-16-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-16-0002
+    cms_node_id: '17931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=17931
+    approval_date: '2016-09-27'
+    effective_date: '2016-01-01'
+    summary: NHHPP PAP, non-PAP, and Medicaid Cost Share.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-16-0001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-16-0001: Approval Document (approved June 6, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-16-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-16-0001
+    cms_node_id: '19241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19241
+    approval_date: '2016-06-06'
+    effective_date: '2016-01-01'
+    summary: Individuals in the New Hampshire Health Protection Program Premium Assistance Program will get coverage from
+      qualified health plans rather than from the ABP offered through Medicaid, except for medically frail and those in the
+      Health Insurance Premium Program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-13-0021-mm5-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-13-0021-MM5: Approval Document (approved September 12, 2014, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-13-0021-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-13-0021-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-0021-MM5
+    cms_node_id: '32776'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32776
+    approval_date: '2014-09-12'
+    effective_date: '2014-01-01'
+    summary: This state plan page describes specific requirements for what constitutes state residency.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-13-0023-mm7-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-13-0023-MM7: Approval Document (approved July 9, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-13-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-13-0023-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-0023-MM7
+    cms_node_id: '35736'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35736
+    approval_date: '2014-07-09'
+    effective_date: '2014-01-01'
+    summary: Updates Presumptive Eligibility by Hospitals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-14-0006-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-14-0006: Approval Document (approved July 1, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-14-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-14-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-14-0006
+    cms_node_id: '35741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35741
+    approval_date: '2014-07-01'
+    effective_date: '2014-07-01'
+    summary: Medicaid Premiums and Cost Sharing.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-14-0005-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-14-0005: Approval Document (approved June 30, 2014, effective August 15, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-14-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-08-15'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-14-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-14-0005
+    cms_node_id: '35851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35851
+    approval_date: '2014-06-30'
+    effective_date: '2014-08-15'
+    summary: NH Alternative Benefit Plan (ABP).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-14-0004-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-14-0004: Approval Document (approved June 23, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-14-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-14-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-14-0004
+    cms_node_id: '36071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36071
+    approval_date: '2014-06-23'
+    effective_date: '2014-07-01'
+    summary: Describes New Medicaid Eligibility Group (The Adult Group) for Individuals Age 19 through 64, with MAGI Based
+      Household Income at or Below 133% of the Federal Poverty Level.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-13-0017-mm1-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-13-0017-MM1: Approval Document (approved June 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-13-0017-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-13-0017-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-0017-MM1
+    cms_node_id: '36361'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36361
+    approval_date: '2014-06-02'
+    effective_date: '2014-01-01'
+    summary: Incorporates Modified Adjusted Gross Income MAGI Based Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-13-0022mm6-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-13-0022MM6: Approval Document (approved March 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-13-0022MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-13-0022mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-0022MM6
+    cms_node_id: '38061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38061
+    approval_date: '2014-03-19'
+    effective_date: '2014-01-01'
+    summary: Citizenship and non-citizenship eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-13-0018-mm2-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-13-0018-MM2: Approval Document (approved March 11, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-13-0018-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-13-0018-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-0018-MM2
+    cms_node_id: '38236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38236
+    approval_date: '2014-03-11'
+    effective_date: '2013-10-01'
+    summary: Incorporates Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-11-009-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-11-009: Approval Document (approved March 27, 2012, effective November 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-11-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-11-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-11-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-11-009
+    cms_node_id: '27871'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27871
+    approval_date: '2012-03-27'
+    effective_date: '2011-11-01'
+    summary: This SPA transmitted a proposed revision to New Hampshire's approved Title XIX State Plan in order to remove
+      the 18 visit service limit on physician and advanced registered nurse practitioners (ARNP) to change the psychotherapy
+      service limit from 12 to 18 visits for adults age 21 and over and from 12 to 24 the visits for children under age 21.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nh-cms-medicaid-state-plan-spa-nh-11-001-approval-document
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire Medicaid SPA NH-11-001: Approval Document (approved June 22, 2011, effective March 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-11-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-01'
+  citation_path: us-nh/policy/cms/medicaid-state-plan/spa/nh-11-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-11-001
+    cms_node_id: '26256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26256
+    approval_date: '2011-06-22'
+    effective_date: '2011-03-01'
+    summary: Mandatory Income Eligibility Limit Increases for Various Programs.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document

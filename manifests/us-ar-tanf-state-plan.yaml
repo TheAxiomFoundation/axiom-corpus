@@ -1,0 +1,33 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ar-tanf-state-plan-2023
+  jurisdiction: us-ar
+  document_class: policy
+  title: Arkansas TANF State Plan (Title IV-A), signed 2023
+  source_url: https://humanservices.arkansas.gov/wp-content/uploads/TANF-State-Plan-2023-Signed-DWS.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-03-15'
+  citation_path: us-ar/policy/acf/tanf-plan/2023
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Human Services (TANF program transferred to the Division of Workforce Services)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Arkansas State Plan for Title IV-A, signed 2023 (DWS signature copy); the DWS site posts the same 45-page
+      plan as AR-TANF-State-Plan-03152023-CLEAN.pdf
+    publisher_index_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/temporary-assistance-for-needy-families/
+    listed_on_publisher_index: false
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ar/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://humanservices.arkansas.gov/divisions-shared-services/county-operations/temporary-assistance-for-needy-families/
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page
+    tls_note: server omits its Sectigo intermediate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem
+    source_note: humanservices.arkansas.gov and dws.arkansas.gov answer every page request with HTTP 403 (WAF) to plain and
+      browser clients while serving the PDF itself with HTTP 200; the plan was located with a web search and its listing page
+      could not be read. Both hosts omit the Sectigo Public Server Authentication CA OV R36 intermediate; REQUESTS_CA_BUNDLE
+      = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem, no verification disabled.

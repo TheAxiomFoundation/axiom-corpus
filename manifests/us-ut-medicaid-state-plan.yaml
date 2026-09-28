@@ -1,0 +1,1155 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ut-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 329
+- source_id: us-ut-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 329
+- source_id: us-ut-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 329
+- source_id: us-ut-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 29
+    index_records_total: 329
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-25-0024-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-25-0024: Approval Document (approved February 11, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-25-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-25-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-25-0024
+    cms_node_id: '189616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189616
+    approval_date: '2026-02-11'
+    effective_date: '2026-01-01'
+    summary: This Amendment removes its election of the extended postpartum coverage option described in section 1902(e)(16)
+      of the Social Security Act from the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-25-0004-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-25-0004: Approval Document (approved January 9, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-25-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-25-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-25-0004
+    cms_node_id: '188316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=188316
+    approval_date: '2026-01-09'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to provide mandatory coverage for eligible juveniles who are incarcerated in a public
+      institution post-adjudication of charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-24-0018-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-24-0018: Approval Document (approved September 26, 2024, effective September 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-24-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-09-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-24-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-24-0018
+    cms_node_id: '170111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=170111
+    approval_date: '2024-09-26'
+    effective_date: '2024-09-01'
+    summary: This amendment confirms third-party payer responsibilities in accordance with the Consolidated Appropriations
+      Act of 2022.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-24-0007-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-24-0007: Approval Document (approved May 31, 2024, effective February 21, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-24-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-21'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-24-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-24-0007
+    cms_node_id: '165611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165611
+    approval_date: '2024-05-31'
+    effective_date: '2024-02-21'
+    summary: This amendment makes a temporary suspension of cost sharing for prescription drugs.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-23-0017-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-23-0017: Approval Document (approved March 8, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-23-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-23-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-23-0017
+    cms_node_id: '160766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160766
+    approval_date: '2024-03-08'
+    effective_date: '2024-01-01'
+    summary: This SPA provides Utah with approval to provide 12 months of continuous postpartum coverage to individuals enrolled
+      in its Medicaid program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-23-0012-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-23-0012: Approval Document (approved October 31, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-23-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-23-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-23-0012
+    cms_node_id: '155016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155016
+    approval_date: '2023-10-31'
+    effective_date: '2023-07-01'
+    summary: This amendment tracks cost sharing using the state's Provider Reimbursement Information System (PRISM).
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-23-0007-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-23-0007: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-23-0007
+    cms_node_id: '148116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148116
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: The state adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-21-0016-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-21-0016: Approval Document (approved January 14, 2022, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/UT-21-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-21-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-21-0016
+    cms_node_id: '139216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139216
+    approval_date: '2022-01-14'
+    effective_date: '2022-10-01'
+    summary: Provides assurances that the State is in compliance with federal regulations regarding third party liability.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-20-0009-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-20-0009: Approval Document (approved June 5, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-20-0009
+    cms_node_id: '99101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99101
+    approval_date: '2020-06-05'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover testing in non-office locations; provide lab coverage for self-testing; and increase bed hold/therapeutic
+      absence days for nursing facilities and intermediate care facilities for individuals with intellectual disabilities
+      to 60 days per calendar quarter.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Long-Term Services & Support
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-20-0004-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-20-0004: Approval Document (approved May 26, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-20-0004
+    cms_node_id: '98806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98806
+    approval_date: '2020-05-26'
+    effective_date: '2020-07-01'
+    summary: Updated the utilization trend for the outpatient hospital Upper Payment Limit (UPL) in state fiscal year (SFY)
+      2021
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-20-0006-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-20-0006: Approval Document (approved May 18, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-20-0006_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-20-0006
+    cms_node_id: '98496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98496
+    approval_date: '2020-05-18'
+    effective_date: '2020-03-18'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing, Expand Hospital Presumptive Eligibility to uninsured individuals
+      for COVID-19 testing and related services, and Waive cost sharing for testing services (including in-vitro diagnostic
+      products), testing- related services, and treatments for COVID-19, including vaccines, specialized equipment and therapies.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-20-0001-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-20-0001: Approval Document (approved May 13, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-20-0001
+    cms_node_id: '98521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98521
+    approval_date: '2020-05-13'
+    effective_date: '2020-07-01'
+    summary: Updates the effective date on the introduction page
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-19-0011-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-19-0011: Approval Document (approved October 18, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-19-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-19-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-19-0011
+    cms_node_id: '4656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4656
+    approval_date: '2019-10-18'
+    effective_date: '2019-10-01'
+    summary: Allows Utah to provide Medicaid coverage for former foster care individuals who were enrolled prior to turning
+      18.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-19-0002-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-19-0002: Approval Document (approved August 27, 2019, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-19-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-19-0002
+    cms_node_id: '5096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5096
+    approval_date: '2019-08-27'
+    effective_date: '2019-04-01'
+    summary: To include the adult group in the groups for which hospitals may do HPE determinations.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-17-0001-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-17-0001: Approval Document (approved August 18, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-17-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-17-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-17-0001
+    cms_node_id: '14106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=14106
+    approval_date: '2017-08-18'
+    effective_date: '2017-07-01'
+    summary: This State Plan Amendment updates the Medicaid cost- sharing policy in accordance with the Affordable Care Act,
+      effective July 1, 2017.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-17-0017-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-17-0017: Approval Document (approved July 8, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-17-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-17-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-17-0017
+    cms_node_id: '14591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=14591
+    approval_date: '2017-07-08'
+    effective_date: '2017-07-01'
+    summary: This State Plan Amendment implements a disregard from resources and income in regard to the UT Educational Savings
+      Plan and eligibility determinations for certain groups.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-16-0002-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-16-0002-MM: Approval Document (approved March 18, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-16-0002-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-16-0002-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-16-0002-MM
+    cms_node_id: '20101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20101
+    approval_date: '2016-03-18'
+    effective_date: '2016-01-01'
+    summary: 'Adds Former Foster Care Youth: Adds eligibility for individuals who were in foster care from states.'
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-15-0018-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-15-0018: Approval Document (approved May 15, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-15-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-15-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-15-0018
+    cms_node_id: '27286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27286
+    approval_date: '2015-05-15'
+    effective_date: '2015-01-01'
+    summary: This State Plan Amendment updates Utah Medicaid's eligibility marriage policy.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0036-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0036: Approval Document (approved December 1, 2014, effective November 25, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-11-25'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0036/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0036
+    cms_node_id: '30786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30786
+    approval_date: '2014-12-01'
+    effective_date: '2014-11-25'
+    summary: Kinship Guardianship Coverage.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0035-mm1-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0035-MM1: Approval Document (approved November 18, 2014, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0035-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0035-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0035-MM1
+    cms_node_id: '31301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31301
+    approval_date: '2014-11-18'
+    effective_date: '2014-10-01'
+    summary: This SPA removes the presumptive eligibility for children program in Utah.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14--MM: Approval Document (approved May 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0001-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14--MM
+    cms_node_id: '36796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36796
+    approval_date: '2014-05-14'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Mandatory and Optional Eligibility Groups' Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0007-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0007-MM: Approval Document (approved April 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0007-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0007-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0007-MM
+    cms_node_id: '36806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36806
+    approval_date: '2014-04-02'
+    effective_date: '2014-01-01'
+    summary: Implements Presumptive Eligibility by Hospitals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-13-021-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-13-021: Approval Document (approved March 5, 2014, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-13-021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-13-021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-13-021
+    cms_node_id: '38431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38431
+    approval_date: '2014-03-05'
+    effective_date: '2013-07-01'
+    summary: Broadens Access to Podiatric Services by including a provision that allows Podiatrists along with Physicians
+      and Osteopaths to Perform Podiatric Services for Categorically and Medically needy clients.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0004-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0004-MM: Approval Document (approved February 28, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0004-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0004-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0004-MM
+    cms_node_id: '38301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38301
+    approval_date: '2014-02-28'
+    effective_date: '2014-01-01'
+    summary: Implements Affordable Care Act Provision for Addressing Single State Agencies Delegation of Appeals and Determinations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0003-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0003-MM: Approval Document (approved December 10, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0003-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0003-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0003-MM
+    cms_node_id: '39756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39756
+    approval_date: '2013-12-10'
+    effective_date: '2014-01-01'
+    summary: Implements New Provision for MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0006-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0006-MM: Approval Document (approved November 25, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0006-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0006-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0006-MM
+    cms_node_id: '39976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39976
+    approval_date: '2013-11-25'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Citizenship Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0005-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0005-MM: Approval Document (approved November 25, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0005-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0005-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0005-MM
+    cms_node_id: '39981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39981
+    approval_date: '2013-11-25'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI-based residency requirements into Utah’s Medicaid state plan in accordance with the Affordable
+      Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-14-0002-mm-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-14-0002-MM: Approval Document (approved November 22, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-14-0002-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-14-0002-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-14-0002-MM
+    cms_node_id: '39936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39936
+    approval_date: '2013-11-22'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-13-026-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-13-026: Approval Document (approved October 28, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-13-026-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-13-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-13-026
+    cms_node_id: '41346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41346
+    approval_date: '2013-10-28'
+    effective_date: '2013-07-01'
+    summary: Physical and Occupational Therapy updates, clarification and reorganization of services for eligible Medicaid
+      recipients.
+    topics: &id002
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-13-026-attachment
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-13-026: Attachment (approved October 28, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-13-026-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-13-026/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: UT-13-026
+    cms_node_id: '41346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41346
+    approval_date: '2013-10-28'
+    effective_date: '2013-07-01'
+    summary: Physical and Occupational Therapy updates, clarification and reorganization of services for eligible Medicaid
+      recipients.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-13-026-form-cms-179
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-13-026: Form CMS-179 (approved October 28, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-13-026-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-13-026/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: UT-13-026
+    cms_node_id: '41346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41346
+    approval_date: '2013-10-28'
+    effective_date: '2013-07-01'
+    summary: Physical and Occupational Therapy updates, clarification and reorganization of services for eligible Medicaid
+      recipients.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ut-cms-medicaid-state-plan-spa-ut-12-001-approval-document
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah Medicaid SPA UT-12-001: Approval Document (approved April 2, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/UT/UT-12-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ut/policy/cms/medicaid-state-plan/spa/ut-12-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Utah
+    source_discovery_group: us-ut/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: UT-12-001
+    cms_node_id: '32436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32436
+    approval_date: '2012-04-02'
+    effective_date: '2012-04-01'
+    summary: Presumptive Eligibility for Children.
+    topics:
+    - Eligibility
+    link_label: Approval Document

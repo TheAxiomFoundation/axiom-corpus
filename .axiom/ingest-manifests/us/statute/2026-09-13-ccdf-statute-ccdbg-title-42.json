@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-ccdf-statute-ccdbg-title-42.json",
+      "sha256": "d823e767c7121458961e265cad4dfef62967cf73ae509f35c0cd9fd6914888bd"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-ccdf-statute-ccdbg-title-42.json",
+      "sha256": "fca727eb39457e7438d4c81c5c1e21553c67e642f4aa31ee6490f9bee57c58ad"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-ccdf-statute-ccdbg-title-42.jsonl",
+      "sha256": "8c9240bddf2c1a2261c2532592af65331e76691a09c50eee0543eab870a5e172"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-ccdf-statute-ccdbg-title-42/olrc/xml_usc42@119-103.zip",
+      "sha256": "28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-statute-ccdbg-title-42 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 543,
+    "missing_count": 0,
+    "provision_count": 543,
+    "source_count": 543
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:55:07.450568+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "K95DiQeloqoPKMFMwytGisnLpyDFaoLFljxcHvVEsARX7ERKu6BnLOI85FGJn7OSsZS9cEiSQg7P7knKacbIAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-statute-ccdbg-title-42"
+}

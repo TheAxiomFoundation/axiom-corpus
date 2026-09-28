@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "a39833002de559b9ad2076da30eb2662a9fdeb08dfd19befee5a8e5066c67d8d"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "12d245d38abadd88e5b9fa617061f49edc176480ee2946bac3eda1b2320416a6"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "126188487cfc0dd1b398de4fd9f6634cdcfa7523c38547fe92663443c0d0ffb6"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/regulation/2026-09-14-income-tax-regulations/official-documents/sc-legislature-code-regs-chapter-117-revenue.pdf",
+      "sha256": "c89637c13c354d57f1defec1ef1b23ec264f743401f1d995d052aeff6c4fdbc4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 291,
+    "missing_count": 0,
+    "provision_count": 291,
+    "source_count": 291
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T18:05:04.394542+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dMh1PazJT2xY0VsxZuEaox69Z49Zf+DEJLQPvvL0jbky2QT7httEPMr947zSIhzlUkqIMBALcfeFsqAvMvlGBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

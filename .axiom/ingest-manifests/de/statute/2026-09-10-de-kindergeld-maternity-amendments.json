@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-10-de-kindergeld-maternity-amendments.json",
+      "sha256": "88bbd514f2941a71260fdb6409a09dca45020b0c3af5cb4330333c662d950072"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-10-de-kindergeld-maternity-amendments.json",
+      "sha256": "907a86a8f5c6ca3d9a63573c14eaa2f4f311204bf77defa9715dd784aaa20fb7"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-10-de-kindergeld-maternity-amendments.jsonl",
+      "sha256": "41460445b250b330e79e0fb9f845e92b3eb6c84f6c270769c6cb63f12e0e895f"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-maternity-amendments/official-documents/de-maternity-bgbl-2025-i-371.pdf",
+      "sha256": "b8aeb7b5420007f20b23223a085533e8f250a5a0315d17f818aa6fe7bf826535"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-maternity-amendments/official-documents/de-maternity-bgbl-2025-i-59.pdf",
+      "sha256": "15c50f5d88110f09363ad62ed59da60dd4b22d50a751c4783aec5586279bc66e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2f5d3eb6cf6d3abb6441e89552e44dfac31895b5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-09-10-de-kindergeld-maternity-amendments --manifest manifests/de-kindergeld-maternity-amendments.yaml; supported local_path replay of retained official PDFs"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-10T13:47:46.956522+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-maternity-audit.json",
+      "sha256": "9b9f27a50355f447f5eff32296d37adf6397820e527fac119aa5c20c9dd268cb"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-maternity.md",
+      "sha256": "0c24ed32dfa153191c3ef767fa17fc2f13d717722d0d9ace488ee577525ce5bb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "F3kD3P2Fthp8jFYNJdbH+vVQAsWbeHMqxjypDKzeIjc16unuQ+nOXBMGItsx6atmw1ybAaJz1wX/PxcVJLUtBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-maternity-amendments"
+}

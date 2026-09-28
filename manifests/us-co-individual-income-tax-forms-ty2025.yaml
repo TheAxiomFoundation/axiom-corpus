@@ -1,0 +1,53 @@
+version: '2026-09-10'
+documents:
+- source_id: us-co-cdor-dr-0104-ty2025
+  jurisdiction: us-co
+  document_class: form
+  title: DR 0104, Colorado Individual Income Tax Return (2025)
+  source_url: https://tax.colorado.gov/DR0104
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-co/form/cdor/ty2025/dr-0104
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-co/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.colorado.gov/2025-individual-income-tax-forms
+    discovered_via: manual-review:tax-agent-queue; index https://tax.colorado.gov/2025-individual-income-tax-forms
+  download_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104_2025.pdf
+  request:
+    browser_user_agent: true
+    browser_impersonation: true
+    browser_impersonation_direct: true
+- source_id: us-co-cdor-dr-0104-book-ty2025
+  jurisdiction: us-co
+  document_class: form
+  title: DR 0104 Book, Colorado Individual Income Tax Filing Guide (2025)
+  source_url: https://tax.colorado.gov/DR0104Booklet
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-co/form/cdor/ty2025/dr-0104-book
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-co/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.colorado.gov/2025-individual-income-tax-forms
+    discovered_via: manual-review:tax-agent-queue; index https://tax.colorado.gov/2025-individual-income-tax-forms
+  download_url: https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf
+  request:
+    browser_user_agent: true
+    browser_impersonation: true
+    browser_impersonation_direct: true

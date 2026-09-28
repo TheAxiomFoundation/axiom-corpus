@@ -1,0 +1,151 @@
+{
+  "items": [
+    {
+      "citation_path": "us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix",
+      "metadata": {
+        "access_note": "mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint for pages, but the linked FY 2027 chart download (/doc/fy-2027-liheap-income-eligibility-and-benefit-chart-july-2026/download) and the FY 2026 March 2026 chart answer 404 to the chrome120 fetch on 2026-09-14; liheapch.acf.gov HTTP 200 with the CA bundle",
+        "benefit_matrix_pdf_pages": "1-3",
+        "block_count": 3,
+        "clearinghouse_matrix_note": "FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm, delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file",
+        "closure_elements": [
+          "LIHEAP-ST-09"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "document_subtype": "plan_attachment_benefit_matrix_pdf",
+        "download_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf",
+        "expression_date_note": "Fiscal Year 2026 chart (PDF dated 2025-12-16)",
+        "extraction_granularity": "pdf_page",
+        "hosting_authority": "HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)",
+        "index_url": "https://liheapch.acf.gov/stateplans.htm#MANUALS",
+        "kind": "document",
+        "on_clearinghouse_index": false,
+        "page_count": 3,
+        "page_numbering_note": "benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number",
+        "primary_source": true,
+        "program": "LIHEAP",
+        "publisher_index_url": "https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "source_authority": "Massachusetts Executive Office of Housing and Livable Communities",
+        "source_discovery_group": "us-ma/policy/liheap-benefit-matrix",
+        "state": "MA",
+        "title": "Massachusetts HEAP FY 2026 plan attachment: Income Eligibility and Benefit Levels",
+        "tls_note": "liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem"
+      },
+      "sha256": "73e18062a1e7f6f815aa0c254b901c46aa55c125db9bc831c3f96a142c1e0f69",
+      "source_format": "pdf",
+      "source_path": "sources/us-ma/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ma-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "source_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf"
+    },
+    {
+      "citation_path": "us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix/page-1",
+      "metadata": {
+        "access_note": "mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint for pages, but the linked FY 2027 chart download (/doc/fy-2027-liheap-income-eligibility-and-benefit-chart-july-2026/download) and the FY 2026 March 2026 chart answer 404 to the chrome120 fetch on 2026-09-14; liheapch.acf.gov HTTP 200 with the CA bundle",
+        "benefit_matrix_pdf_pages": "1-3",
+        "block_count": 3,
+        "clearinghouse_matrix_note": "FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm, delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file",
+        "closure_elements": [
+          "LIHEAP-ST-09"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "document_subtype": "plan_attachment_benefit_matrix_pdf",
+        "download_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf",
+        "expression_date_note": "Fiscal Year 2026 chart (PDF dated 2025-12-16)",
+        "extraction_granularity": "pdf_page",
+        "hosting_authority": "HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)",
+        "index_url": "https://liheapch.acf.gov/stateplans.htm#MANUALS",
+        "kind": "page",
+        "on_clearinghouse_index": false,
+        "page_count": 3,
+        "page_number": 1,
+        "page_numbering_note": "benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number",
+        "primary_source": true,
+        "program": "LIHEAP",
+        "publisher_index_url": "https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "source_authority": "Massachusetts Executive Office of Housing and Livable Communities",
+        "source_discovery_group": "us-ma/policy/liheap-benefit-matrix",
+        "state": "MA",
+        "title": "Massachusetts HEAP FY 2026 plan attachment: Income Eligibility and Benefit Levels",
+        "tls_note": "liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem"
+      },
+      "sha256": "73e18062a1e7f6f815aa0c254b901c46aa55c125db9bc831c3f96a142c1e0f69",
+      "source_format": "pdf",
+      "source_path": "sources/us-ma/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ma-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "source_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf"
+    },
+    {
+      "citation_path": "us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix/page-2",
+      "metadata": {
+        "access_note": "mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint for pages, but the linked FY 2027 chart download (/doc/fy-2027-liheap-income-eligibility-and-benefit-chart-july-2026/download) and the FY 2026 March 2026 chart answer 404 to the chrome120 fetch on 2026-09-14; liheapch.acf.gov HTTP 200 with the CA bundle",
+        "benefit_matrix_pdf_pages": "1-3",
+        "block_count": 3,
+        "clearinghouse_matrix_note": "FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm, delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file",
+        "closure_elements": [
+          "LIHEAP-ST-09"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "document_subtype": "plan_attachment_benefit_matrix_pdf",
+        "download_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf",
+        "expression_date_note": "Fiscal Year 2026 chart (PDF dated 2025-12-16)",
+        "extraction_granularity": "pdf_page",
+        "hosting_authority": "HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)",
+        "index_url": "https://liheapch.acf.gov/stateplans.htm#MANUALS",
+        "kind": "page",
+        "on_clearinghouse_index": false,
+        "page_count": 3,
+        "page_number": 2,
+        "page_numbering_note": "benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number",
+        "primary_source": true,
+        "program": "LIHEAP",
+        "publisher_index_url": "https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "source_authority": "Massachusetts Executive Office of Housing and Livable Communities",
+        "source_discovery_group": "us-ma/policy/liheap-benefit-matrix",
+        "state": "MA",
+        "title": "Massachusetts HEAP FY 2026 plan attachment: Income Eligibility and Benefit Levels",
+        "tls_note": "liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem"
+      },
+      "sha256": "73e18062a1e7f6f815aa0c254b901c46aa55c125db9bc831c3f96a142c1e0f69",
+      "source_format": "pdf",
+      "source_path": "sources/us-ma/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ma-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "source_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf"
+    },
+    {
+      "citation_path": "us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix/page-3",
+      "metadata": {
+        "access_note": "mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint for pages, but the linked FY 2027 chart download (/doc/fy-2027-liheap-income-eligibility-and-benefit-chart-july-2026/download) and the FY 2026 March 2026 chart answer 404 to the chrome120 fetch on 2026-09-14; liheapch.acf.gov HTTP 200 with the CA bundle",
+        "benefit_matrix_pdf_pages": "1-3",
+        "block_count": 3,
+        "clearinghouse_matrix_note": "FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm, delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file",
+        "closure_elements": [
+          "LIHEAP-ST-09"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "document_subtype": "plan_attachment_benefit_matrix_pdf",
+        "download_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf",
+        "expression_date_note": "Fiscal Year 2026 chart (PDF dated 2025-12-16)",
+        "extraction_granularity": "pdf_page",
+        "hosting_authority": "HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)",
+        "index_url": "https://liheapch.acf.gov/stateplans.htm#MANUALS",
+        "kind": "page",
+        "on_clearinghouse_index": false,
+        "page_count": 3,
+        "page_number": 3,
+        "page_numbering_note": "benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number",
+        "primary_source": true,
+        "program": "LIHEAP",
+        "publisher_index_url": "https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap",
+        "source_authority": "Massachusetts Executive Office of Housing and Livable Communities",
+        "source_discovery_group": "us-ma/policy/liheap-benefit-matrix",
+        "state": "MA",
+        "title": "Massachusetts HEAP FY 2026 plan attachment: Income Eligibility and Benefit Levels",
+        "tls_note": "liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem"
+      },
+      "sha256": "73e18062a1e7f6f815aa0c254b901c46aa55c125db9bc831c3f96a142c1e0f69",
+      "source_format": "pdf",
+      "source_path": "sources/us-ma/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ma-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "source_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf"
+    }
+  ]
+}

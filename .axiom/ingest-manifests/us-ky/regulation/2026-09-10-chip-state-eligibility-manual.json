@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "61dc5627d7a876dbc5b81c44040d723e14a532fe94c841f3c4dcf20be91dc40d"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "8fd008fd48bfbb04481c3b297c9669e9e66ad78709afcd4526a585fff370955d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "ee303e5699d8f327e8afb2e4cfa5dacdf642a872cbc73ed85fa97615c19d5d29"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/ky-lrc-907-kar-4-020.html",
+      "sha256": "8ca2b120de4dfe589d9930c9fd079d6fe947fdb2d8a33f539d5f89beedc5bed9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/ky-lrc-907-kar-4-030.html",
+      "sha256": "4d8ed005818916f51c1b2f5280d8b5f213ec7ec289d1b9dc1e749eeeca3e0a59"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ky-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:52:51.326975+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LJJoS/Yf8b/9OyMQrE1ls9BRQY2etkXcley3BwRDJ9HXmdOisUMdA0f0nI+8tUd0C+9/xdfeUPTzzbduob8yCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

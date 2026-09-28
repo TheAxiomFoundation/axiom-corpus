@@ -1,0 +1,577 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "151746fa5fb13d07c0d25be1d7d52ee699fdc74e941d6dc44d3f731966adfc26"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "7eb6c8fc803775a0741c29ae6b576c5490e34cee31f1512758f12ab1d5991309"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "7f7492c5717d723feee1a42146df830808e6a4025585a3716c42f1d3f79a00c1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-05.html",
+      "sha256": "0f4ca8481ec2f422331edb0a5854e39a043b8c6232a299f86ca66208a69723b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-07-05.html",
+      "sha256": "9ae43d0948a407cbe586c4451bb5a5b80c955261c5c4dcd589ed98f2ddd56c1e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-07-10.html",
+      "sha256": "9bbd57fed8a12c0f88df93646fdc09504ed59285f781231512111eba2efb7335"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-10-05.html",
+      "sha256": "0d743ca35f6ecb69d3120af13500efd435d694c3d9c8a83468ebb2997a6c5371"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-10-10.html",
+      "sha256": "f4a2af9d6ab9a8c6a6b7b2191bef73eee463462116087ca24d3b161724f58161"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-10-15.html",
+      "sha256": "d7d83b7ffcd55cf50771754e61684addc57cd5562652c06287be004be75b2ed5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-10-20.html",
+      "sha256": "acfb6e58339cc3f3b7a345566a26522badddea9cc04fc3cb8876f2e59d9d848c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-10-25.html",
+      "sha256": "8ee33e9279dd1d8e979593dae0de7ed7884ab8986d86460e0c25910706bcd4f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-10-30.html",
+      "sha256": "5b93beb18f3c298878865e96775f434b12d105a3b880a128a9a07bf54093a918"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-05.html",
+      "sha256": "07325c0604935859b1a2654fad6107e2c3da27fc16a2a5d55688dfbf2a5cae6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-10.html",
+      "sha256": "bd7e710fa830ba3aca9bce45f81792ca8b037ee2065acde767988be97222d9a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-15.html",
+      "sha256": "94233049b652e45f05269f588c6c131966ea3d230346936214a33141d1e6bb10"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-20.html",
+      "sha256": "e774f546324648fb3f8509069ed7b82b74c4afe0b32d96fc892b9bd0efb11631"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-25.html",
+      "sha256": "815f451ee3bdd86ac57a4bf1a08520aa4e20642593af23d11a1e60d8961711f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-30.html",
+      "sha256": "31ff2e7cd777f97c6c4635b04f8b41240acfee0d3bd7455dd03de5e95f7ee864"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-35.html",
+      "sha256": "941fd29e5ea97e168b0546662f7ecd1e80c021462e1a579847dcd738272df492"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-40.html",
+      "sha256": "0b1e5af1837e980f5f0f60333eccbc195e7f838394187967fb88df80036f4c8a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-45.html",
+      "sha256": "e2fd11c43281ded4de90f3b4fbf2421786d61895882085e2d75732c56d6ac782"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-50.html",
+      "sha256": "9257fa13091dd017a24f036bda7eb10a20e29e70c5d598e90c10582a3640e223"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-55.html",
+      "sha256": "3a8ee466fbbd23ba57f91815213613921079c883f71f6e2a617ce9595cd73329"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-60.html",
+      "sha256": "e1badaa4a01e9c4c9dbe0babdced546c6472d4411d820434c8a92825f4ca8129"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-65.html",
+      "sha256": "ea790e3e5c46445b4a4888f10c0fe02df12037d23b87b7f42499c4f2cf777af6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-70.html",
+      "sha256": "e7b10a0085af5f73f8db3f4cd67dd97725b5dc1d886872c8416b7712dd32b205"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-75.html",
+      "sha256": "70448b5c947145975e57078fff3774e83b8c075569857a8c7b53a3005c59d857"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-80.html",
+      "sha256": "07aab2c704aa3a533302fd364be852d648d9c6468a5fb7ee1ee1c2a538d90b51"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-85.html",
+      "sha256": "273d71302e44c5e9dcebd790e1d6e257dcd3ad468d3244d0dd7adb365ec3b2b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-100-90.html",
+      "sha256": "9fdfee50b650d69490d178e624ee6b5fc306dbb66517d0933006ef229b818287"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-105-05.html",
+      "sha256": "877e84aad87e9230f22a1f2ea1df1a16782ae74bb3674fde32fd5402769be6ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-105-10.html",
+      "sha256": "e52d99ccbf2c4fe4f49decccef22f88d5ed1b67625298a33982d59ab3a50a4eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-105-15.html",
+      "sha256": "8e295a1ea7444c3f495b395eb737dd651938e9e3357a0cf6b7849a22461acc8b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-110-20.html",
+      "sha256": "0e81ce10fa23e2dcc6b76a11e61ff5bf2663b039ead9ed38b6c3caa57797ce0e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-12-05.html",
+      "sha256": "5641bf7b68487b9a14955d1a3a7a92344c91d14241c983e800ced3863a8182f4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-12-10.html",
+      "sha256": "74b6ab8ef9c0f862e9fa754227b0ba8c23a502616dfa1b91ca857bbe96597fc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-20-05.html",
+      "sha256": "08093fd7f0b95216e2ce80e1ecb8b203379891ccac92729bea59cd398ee798be"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-20-10.html",
+      "sha256": "06dce11c376bae1c2b931ae5998f6daa2db313c259a5ee5234efe1250f739e63"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-20-15.html",
+      "sha256": "44fd6d003bf2a4b74e9b1384b1321c22398c637a0e53926917eafab9a9abbb1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-20-20.html",
+      "sha256": "7609468e9de9b1b0c4773a95e5a703d8d7631f96df7fdf2ebba37507605f1fb8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-05.html",
+      "sha256": "01dafb9cf79d48996b4ea18cfec1c8f38154357fdf9e35a01185e58a5707ec4a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-10.html",
+      "sha256": "e12e17ab80a7bfa9285e5bf241558699854b67bbf36980eee535bae1ebc1411c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-15.html",
+      "sha256": "180c6745721278501fdebeacd75df0639c022081d1cf25cd3b09e81e06d05da4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-20.html",
+      "sha256": "b9d335e1b132f9f4e28eb2e6457eb8731ae5e6e9024c68ca57d39dc72468991e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-25.html",
+      "sha256": "f371291d9bb745f5af16ccc5701cf1e0ac0d5a520552a58fe789d4c649501470"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-27.html",
+      "sha256": "7b2814ebb17797217cba7cabe0bad174f178f6dacd1c9057a9fed3af4be4f897"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-25-30.html",
+      "sha256": "a7e423a7780dfcf3865af5f3f3748f0c75309c15e7888de94edff4c142e74211"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-30-05.html",
+      "sha256": "56be9e84040426512e52df382082f546bae0256cd9ec3e92fdf71798d6780d65"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-30-10.html",
+      "sha256": "02db58a881292ac24e228a669771741cc5a3b20f2bbfbfad2476dc1962b90085"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-30-15.html",
+      "sha256": "3fdb4963d93078db84e738fb28f17022431ab6ad2e09a9903b9e907491332129"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-05.html",
+      "sha256": "8dc19b194845910d22284be86677577d0f68ca8d00f09bec50ddf3ab8e462069"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-10.html",
+      "sha256": "a328d645274b08e6479aece37fa0b097733dbdcb46f5b86eced54f16bd13b3ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-100.html",
+      "sha256": "0865fecc81e31df1a58c34a2ccccef0b08fbb8f6e0ffab37139eec1faeb98294"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-105.html",
+      "sha256": "505c5900bae70906fd8981ee1eb5c1f69417d0094da44c2a996681d339448985"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-15.html",
+      "sha256": "7c29b54296e9358a3bb9089d02e8944157f08b034881c921b4231e58e3d62d34"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-20.html",
+      "sha256": "3c467b7ae48f3d21c76618dbd60cde6318bc4d94337d0f1c3dec81df2d08146c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-35.html",
+      "sha256": "75ee2aae835cf934d697fa50a499970ae0fb3fbe6a97f4ceb4c87008283cc32c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-40.html",
+      "sha256": "58bdde416c204091009e0139aeaf515a4d380509b8fed347c6df20a718f6f155"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-45.html",
+      "sha256": "6e0d1541a88df4a6b2bfc9c471f6293613b0870410bf4899df486ef9d3c9b4a6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-50.html",
+      "sha256": "5815ffef9739fab878f5d31e8c0bf8f1a4c764ea51f044a77fdded3d04951a8b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-55.html",
+      "sha256": "f2ec3a5d54d0c8d3125ca3bcd3b26e6d4daddcdd2ed14baa60b644db339f5df1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-58.html",
+      "sha256": "ae30807979f70176543607997e1679299de683bf99535963268a98c3c30381f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-60.html",
+      "sha256": "890c6d4dead5696ef8d98c68a9f8f25de36daf0af28ee23d1fe31f979ffadf5b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-65.html",
+      "sha256": "8afdc54341a9da3ebcc559b06ee60d21fb1f15929f163c51e15192c0c8ab8b5f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-70.html",
+      "sha256": "e455d780fbe608af1169d1dcedb47cf4ac834996ea79c0e47c182565b3ae9bf4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-80.html",
+      "sha256": "1755c5820da9c5cd7a1b60286e0b1eee772d0b2ee59b95aceacc54b10743239e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-85.html",
+      "sha256": "085d050367af5b218e6926a22f14b68620dffbbe38886ea70c66305e472339d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-90.html",
+      "sha256": "8194d52f16b0602485f520f57b0b5a2c275f2c40421884fd95aaf45708ab5e8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-05.html",
+      "sha256": "9decf70d1e2929f5b5254ca55ec00ffb44f03a528169d64ad019041454e7020e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-10.html",
+      "sha256": "e4602c03242b92c4191b066f64b29033f5ab2d1268eb0b261867338925f44c7e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-15.html",
+      "sha256": "57a6310bf44ea00e56331bd907d552f13e40ee89479c60ae656f99916fc7b3ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-20.html",
+      "sha256": "70bf91e11dbe9f9e7184340504ad40d7ad384798bb94391600fd4ed86556ac2c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-25.html",
+      "sha256": "6bb6955059c96144379bf58699778feffd2234e71d358c9a0774c9a5905ae228"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-30.html",
+      "sha256": "48c3370f590dde9366789c2de410d022190cfbc7643bae2ccf682e5d1a90bf62"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-05-35.html",
+      "sha256": "4317a1f784e0aa2f55e554651d04c40eeb42ce78ffcb46a7244612f163e0d421"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-10.html",
+      "sha256": "ac34056d3e4d7a558a066b78bf5546d3816c1acbc06c31f5bf985ae42cee6985"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95-15.html",
+      "sha256": "7015175fc0d9b0ad7903c995f9c876076dda799d193615e6c903ca5b98ff62fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-95.html",
+      "sha256": "fca5de9a34a0481785cf581cf6da5479f21930bfc20a92d75f5d2bf6d59d6a6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-35-97.html",
+      "sha256": "a1a3073da73395594ef1e99cece05b24e60685ec24085dc6222d9ddca647d727"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-40-05.html",
+      "sha256": "a33aa0055799ae87d1f3ba2dce5b594546e9504e0a242e4c545ef2376408095d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-40-10.html",
+      "sha256": "cd907c3d7f7c9c809ef4d0e1299aa608450b4af9b8c535f6694f3e49117656ba"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-40-15.html",
+      "sha256": "2981fe2deb69b459e2f6cb3fc0632f21f3b440f6a1112eb034f83a87082a552b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-40-20.html",
+      "sha256": "1fde0a032f09b3be515bb6cdc7f4827962096712bed40616ca661bb7661fc434"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-45-05.html",
+      "sha256": "3ad82991d5ceff799c9c811adb4d2f03eeac8e9106dbc230008fd4778f0be954"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-45-10.html",
+      "sha256": "7ff150b9e6da711ab5b1b704522522b5d6407f22a6a9812d258a2ae72526e20e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-50-05.html",
+      "sha256": "07860f49ae177e9e49b1e2aed7427d25f3d1043bc89d518d45f746bf0d3cc3f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-50-10.html",
+      "sha256": "177c6e29d39fa40cfb6acbabfa51619001a828c12084224d2663a05551a7fbb2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-53-05.html",
+      "sha256": "e80c82e409d614ec57d0c4afc57f2568f8306b561bffc28319c2ea86a04c3a38"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-53-10.html",
+      "sha256": "a71c8705744d7930f89225a5916fbcbd25478f85d1dac178c92f168cbaff246f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-53-15.html",
+      "sha256": "2a5b1bdefd0b5e5201101675b8980963eee41570ede13aa0c9a85f38caa8c3d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-53-20.html",
+      "sha256": "9f79ec6aad6fe4bb089768c83018b1917f1a084c0a0903716904b317036ba43b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-55-05.html",
+      "sha256": "7a8e7ee32be4c3e63832944adcec3da5ea1fe9bd364f4b3da5b06d58cb60b9a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-55-10.html",
+      "sha256": "f1051f9c6082f26e221dcc314ea9b71a36c0fca6ed5de40bab4eafaa7ca8142b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-55-15.html",
+      "sha256": "3d37c6c294c205729abfd0c5683acd03801b0f9c20d0b5254ce8d01a5ead3a51"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-55-20.html",
+      "sha256": "e883d842a8c03aad1fd943140d62e953c3c275f4b9871c79638c4b9adebf747e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-05.html",
+      "sha256": "9028313c3416e134e8ea59810eb91ea577cde8079da2632cce86053729d9c370"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-10.html",
+      "sha256": "5a9519e63d8ae4d6f54f1fc169f8ab5f4d985eda0675e7e558243352e441925c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-15.html",
+      "sha256": "71be33cfb36715456b0d372cfc198b83c6eed27106a256c0d9fb771a9a58ceb9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-20.html",
+      "sha256": "dfe46fa0c9aa27b5fb88d7e935ee29d924afbfe4d7c99ed5328347ccdaad45df"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-25.html",
+      "sha256": "968341b2ebf80187a5411cb9f966e3f615ac1dc6a7777b89586f7a38fe18d0e3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-30.html",
+      "sha256": "9079f7ad947c1fe0e69e4e9b647b4ddef6884be1fbd289b4ea72bcd8e8032fe3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-35.html",
+      "sha256": "f8a476fb03089a1ec54970982dbbf8990b05c34ecd1071bb2a0ec58d448a1be6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-40.html",
+      "sha256": "8ce49d90b3b25b090e06dab6098f074f493b3eb8acef9050474050ef4eacba55"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-45.html",
+      "sha256": "f7399e5f1b148e42b7905f0770d4425e954a031b10ac8b1f215ed940bff70106"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-60-50.html",
+      "sha256": "3f6168d89ed9c7c50c268f3f742e5d5893752ef2e29f42d4902c427260219eae"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-70-05.html",
+      "sha256": "584fa513990cb08bbbeaed303d48c52f450039ca5b8f8d97567ef130ea236e33"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-75-05.html",
+      "sha256": "65330ab2f0e3926249c8eb37ae2d1e02a6d2a2f262521ec62ebc49d809cef0d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-75-10.html",
+      "sha256": "a4d9f1bb627fcbf5896837fd4cb9507ba5018e80e721379552b5a4d117b9f7af"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-75-15.html",
+      "sha256": "65fdd9091852ae44ebcc9b4e46105fd4ea424a2eea39c1868d990cc8377ceee8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-05.html",
+      "sha256": "15be15e3de8e486ad727f324052369f700fe0d855333dd5ed77c349108e01057"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-10.html",
+      "sha256": "0c77862c0a76e7508ac6087714baa68dd12032cb92da9badda9d30456738399e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-13.html",
+      "sha256": "0e5916d50e07fc03806e73eea7076d3f9fb2fac275fd89428e9476a556f73726"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-15.html",
+      "sha256": "39ab4d7a7b0616544011a179bdb0bdd40e0a46d2d9f11104ceb641eeae165950"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-20.html",
+      "sha256": "bbff388c57241e49f7a717e301c681488a477e7e8a125ad3c7f8d1321a3c011b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-25.html",
+      "sha256": "91a47161547ff620160cb5c5aac27d842d5cc0c6a3fc8ebb77a48f7256aae76a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-30.html",
+      "sha256": "1bbb8a89e45d12fadeacc54f904339a127a473e07cfe24bc4a40a5683b74adf5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-35.html",
+      "sha256": "b27b752f9e194d9b7d72446f4cd21e0313f46fcc376b522df906bcef8ea733a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-85-40.html",
+      "sha256": "1e550129b39aba925e5f289d3f9bacab3037d88f505665b182df10fb471190bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-05.html",
+      "sha256": "782095bc994afcf393c2c7c8b6a7a57d19562ea680880b2f283d35f06fa2eb7c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-10.html",
+      "sha256": "fd83da7324bcb5849aec57be7ff9da6e98a8cbbcb19d4b4e12d66af68cff4f76"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-15.html",
+      "sha256": "a8c8916593b45743df261229944adc329f17039acd0c497a673635dec17125b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-17.html",
+      "sha256": "06b245d9b0048f33f77cdd72ee31bdd7578bd09c45c24e639526dc584a4dae25"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-20.html",
+      "sha256": "ab4f47c871cb9012e89dbf35558113886c153f099269ec33e12aceee64140189"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-23.html",
+      "sha256": "ed8952d772fa1ef9ffb6430329b836f110bf6f0326f0388b6b03b792d666c157"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-25.html",
+      "sha256": "7a27fc95d5cd51fd790c87d9c5b67241c8eb0c5bab60c7fe68dad91a7ac4a55f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-30.html",
+      "sha256": "4b10f3316cc3598406f6b9fda4796f928da2dc18d0cd4143a1a532f7ac18a8f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-45.html",
+      "sha256": "d61ac929061e187e2fb56933587b80c1e54999b21d2d10fd4160b6e2c8489b25"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-50.html",
+      "sha256": "72ebcfcaf070ba0aa4cdf1fcab16e8ea41b1f8b495314f8e0bc26d33ba71f57b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-55.html",
+      "sha256": "162ce155233b552bd727007afb284cd8ab70510cfe020d54d2c97373fc011c2f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-60.html",
+      "sha256": "a462c57efaf30c66520456824d424ea731fdab497ec84dd55d8c7d0601f67ddd"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-90-65.html",
+      "sha256": "b9f5b7474b66dfb77baa00d76e80cca8420ed36193e820b925620b8acf067897"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-95-05.html",
+      "sha256": "266540f00d5be8207e31f139e0c917a841c884508788dc332a1d865ef29cf867"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-95-20.html",
+      "sha256": "285ed98121092029aa569c138e1a8b1ed6da99a0a6cba43468b85609b87f240d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-95-40.html",
+      "sha256": "6f0d8372dc5e280990064f0ccb866499756abaf739f4d43b5ad9eb9989b28623"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-95-45.html",
+      "sha256": "559ef64b542e37a110143a606390e90c476dd1460088b3ef6351c535af550cd5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-chip-state-eligibility-manual/official-documents/nd-hhs-510-03-95-50.html",
+      "sha256": "22a6652c8448b700606eafb88abe1f0e920bd4b2729e0d7b79bb3fc4e2467e9d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-nd-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 268,
+    "missing_count": 0,
+    "provision_count": 268,
+    "source_count": 268
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:10:19.822393+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jYPeaDxKzA4HfhnrT8ILRDQHVg4/xPtpboOIFj1d1rV5kCVGirEjjO/UMjDlWj1TFrJLK5WaZHkP10M0Si3tCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

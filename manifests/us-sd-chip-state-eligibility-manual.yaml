@@ -1,0 +1,52 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: sd-lrc-arsd-67-46-14
+  jurisdiction: us-sd
+  document_class: regulation
+  title: ARSD Chapter 67:46:14 Nonmedicaid Children's Health Insurance Program
+  source_url: https://sdlegislature.gov/api/Rules/67:46:14
+  source_format: json
+  source_as_of: '2026-09-10'
+  expression_date: '2024-11-11'
+  citation_path: us-sd/regulation/arsd/67/46/14
+  extraction:
+    json_html_field: Html
+    segmentation: labeled_sections
+    section_heading_pattern: ^67:46:14:(?P<num>\d{2})\s*\.\s+(?P<heading>[^.]+\.)\s*(?P<body>.*)$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: South Dakota Department of Social Services (ARSD Article 67:46), published by the South Dakota Legislative
+      Research Council
+    document_subtype: administrative_rule_chapter
+    program: CHIP
+    source_discovery_group: us-sd/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    legal_identifier: ARSD 67:46:14
+    landing_page: https://sdlegislature.gov/Rules/Administrative/67:46:14
+    article_index: https://sdlegislature.gov/api/Rules/67:46
+- source_id: sd-lrc-arsd-67-46-12
+  jurisdiction: us-sd
+  document_class: regulation
+  title: ARSD Chapter 67:46:12 Modified Adjusted Gross Income (MAGI) Medicaid Eligibility Standards
+  source_url: https://sdlegislature.gov/api/Rules/67:46:12
+  source_format: json
+  source_as_of: '2026-09-10'
+  expression_date: '2023-07-03'
+  citation_path: us-sd/regulation/arsd/67/46/12
+  extraction:
+    json_html_field: Html
+    segmentation: labeled_sections
+    section_heading_pattern: ^67:46:12:(?P<num>\d{2})\s*\.\s+(?P<heading>[^.]+\.)\s*(?P<body>.*)$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: South Dakota Department of Social Services (ARSD Article 67:46), published by the South Dakota Legislative
+      Research Council
+    document_subtype: administrative_rule_chapter
+    program: CHIP
+    source_discovery_group: us-sd/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    legal_identifier: ARSD 67:46:12
+    landing_page: https://sdlegislature.gov/Rules/Administrative/67:46:12
+    article_index: https://sdlegislature.gov/api/Rules/67:46

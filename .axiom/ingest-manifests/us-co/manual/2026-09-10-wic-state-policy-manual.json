@@ -1,0 +1,485 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "1504ac10a7177788e8087fc8fc6462e3facdd9f82c6ae21ce13d08b7f13ad47c"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "af35c4ea13fe147594580f35abab0c6c34632bcbb3451b2c175fb408e9f3ffbb"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "09493ec0347fe2d80f991e5e48624835c44d13eade7fff96422fb3446ed034c7"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-access-to-wic-services-during-emergencies-and-natural-disasters.pdf",
+      "sha256": "7ca6065e61f336ac7995245f2a39ee82404b6415cc8e69917939eb0a614c0d0d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-adjunctive-eligibility.pdf",
+      "sha256": "1cc362a5ceee470e66ca8b3821af5cd4fff7a14e95fb47f90f7308a7e0f36283"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-administrative-review-policy-and-procedures-for-local-agency-appeals.pdf",
+      "sha256": "94c988170ca6be52ab04e4f59d0083ea8f2e1211e091b9c5bc893967d4abb193"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-administrative-review-policy-and-procedures-for-retailer-appeals.pdf",
+      "sha256": "edc9ad0ee59fccc196678f793366280f146decbc327d4655d5b42ad19223d70f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-anthropometric-and-blood-screening.pdf",
+      "sha256": "7f8824af088fc097d030b8640a19db9df97325d2388e9a176364e3c66fa638b1"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-bfpc-program-allowable-costs.pdf",
+      "sha256": "c39eaec4a209bc3a23b19684ea99630a2fb2fc4104246acbc509838652ceee02"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-bfpc-program-cell-phone-and-text-messaging.pdf",
+      "sha256": "e416c6ca665bea89508f8ee7c8a9b2a2dc5916d2cc7cfbc583a19126acf163bb"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-bfpc-program-requirements.pdf",
+      "sha256": "d9b60eb2d504d946adcb31817415157f7a8c58d630cad0cb703152d5fc4c33c2"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-assistance-aids-contraindications.pdf",
+      "sha256": "1767a6b598ab74172daf50ab192019160d2b0b06a5b49fdf5f599faaf4a3c6c2"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-breast-pump-issuance.pdf",
+      "sha256": "929a1c7865081afa8f9a2e88f5e8f2667c89c32e9ffefb5d5abe787e92eb2641"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-breast-pump-ordering-and-maintenance.pdf",
+      "sha256": "c0f75c2d489cbd688dcd2ac862eafec539373291e56523413871b1524f586d5c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-breast-pump-partnerships.pdf",
+      "sha256": "7baf0fc120781382f6b506ff4db52859ef844e20316a44082234c416281a68ad"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-definition-promotion-ed-support-standards.pdf",
+      "sha256": "f8b3bf2a96ff88301a258d4cbc36115afc4b2b57a92d67b49e3df31ec851294c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-human-milk-fortifier.pdf",
+      "sha256": "a197596b81f052f912f28d0da24ea8e94df94138040df6a3e6429acdd98e7544"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-breastfeeding-scope-of-practice.pdf",
+      "sha256": "68c1c285fce59db0bc46c9c8d397065f612647c8e40de16bcd2bc04ae4dbd0e7"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-central-file-requirements.pdf",
+      "sha256": "99d6966e19372864e5ac4e292af9ed245145773a53dd396a1211fac80352e410"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-certification-periods.pdf",
+      "sha256": "afa9c5c20461bb572b9f347f1e2ce49ed55ad66a3ddd5951a7a52a0ac4ee8070"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-certification-policy-and-procedures.pdf",
+      "sha256": "9a0419a5870c9ba8c66ff5d468f67b37c61f13c306ebdaffe902d46fb19cf2ca"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-civil-rights-complaints-processing.pdf",
+      "sha256": "529cf73a3fb84f98f6821092e824b51ab578ba52a74609859d8d5619b1c7ccbe"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-civil-rights-monitoring-and-compliance-reviews.pdf",
+      "sha256": "76e099f66bd1f9b0a5c65ed664c828b5e55e0fea6d9efe2c525d9bad1f1669af"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-civil-rights-training.pdf",
+      "sha256": "27d4ec2b1a394e53476359e5be2ee43e5d68702af1f2f2a15bb21a29aa73d4ce"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-colorado-allowable-foods.pdf",
+      "sha256": "db188aa689fd7186a8d3da095360536e03ed7f9df2aa97ea3e00996d61986571"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-customer-service-complaint-processing.pdf",
+      "sha256": "98cbcf559558f16b3e920724ae31cd4f4df4da1a7c93e3cb5260dd1d5ff7465c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-data-collection-and-reporting.pdf",
+      "sha256": "4c7359d60a32fd93a88427359718610874c2302c36ae33072678db9f5f78807b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-data-use-policy-process-to-request-participant-and-applicant-data.pdf",
+      "sha256": "5bd45bc38d932346523da4b7cc845713e2f283c5559e0236df6edd350c88fbf5"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-data-use-policy-use-of-program-participant-and-applicant-data.pdf",
+      "sha256": "9511755040c5b5e44f0f8996dde786f88c1038edd4fa6e060ccaa091c4df4059"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-determining-income-eligibility.pdf",
+      "sha256": "d4cf663d1d5c13cd93a9e2009333e21a500bc98d607a2cf67be5cca4563cbd3a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-education-documentation.pdf",
+      "sha256": "adb180dccb9f2c20c7896480c9e9a70741ce8425b5268cb9dd09cd4c489cf3b1"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-eligibility-requirements.pdf",
+      "sha256": "54ac827c929b4c2d5ef95ffee7ecfed392b43a6123bfe0b9dc73837a5752846a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-fair-hearing-policy-and-procedures-for-applicant-and-participant-appeals.pdf",
+      "sha256": "658460a65316965ead0e619b07017975ada42b9a3afd8c8d994d64f4bac8a59d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-fiscal-expenditures-and-reporting-requirements.pdf",
+      "sha256": "0dff9631a964da2cc56794b6d1669bb24d9c2ad576eb4afc188958d7cd2511d3"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-fiscal-monitoring.pdf",
+      "sha256": "bafa6fb69c6dd384842a76a2fa7a2d629ee7bf5460aac233c5df56a264c2294d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-benefit-redemption.pdf",
+      "sha256": "6f9e58d5c8054747eee76447266fd6806adc8c5c8e0cb1865a696d6840008c4a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-benefits-exchange-of-food-benefits-and-replacement-of-formula.pdf",
+      "sha256": "aaab6c1e94df80f90a91bccc0dc65b796362abee9031abdedd648c01fb8d5f43"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-children.pdf",
+      "sha256": "f8a5761b7789f678b9037f74483ddff6dc5616d877f0a46ef62b5af1a6611907"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-food-benefit-issuance.pdf",
+      "sha256": "7c0204ff2f554cb9bb2f849d009fa1cb9b41309893b3b69d5b09031db6daa6b3"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-infants.pdf",
+      "sha256": "7e6731aee84e6f18cea10a0381b5c8423920c67eb27237b3fbbec59821757dc5"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-issuing-ewic-cards.pdf",
+      "sha256": "68ab9aae25a5c4c7eff75b0b61b8db20a1c1cec2edacae3dad385ea3ba707c55"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-ordering-instructions-for-products-not-on-retail-shelves.pdf",
+      "sha256": "535b4f5d9d6f2a7e675a390b518159f27f2ecd58d38c470adc9a66572fb754b7"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-prescription-required-formula-and-nutritionals.pdf",
+      "sha256": "eaf9bcfed5f6fd657cbb38eb871d7477a6484d31fb63500de73061abe05680d2"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-replacement-of-ewic-card.pdf",
+      "sha256": "8a4eb4b04b9c27aedfcd1c5698eea373cc5b38f2dda5362142d4fab931a0b9eb"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-food-packages-women.pdf",
+      "sha256": "4b49b234073c32c33f2b1371c2a021b730f756e13dbc4a98f14beef09c868d54"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-high-and-low-risk-protocols.pdf",
+      "sha256": "fd3fb11638bb6b9e93ea490ef11e919738675dae50472ff4e297c793b230c89c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-homeless-and-domestic-violence-shelters-approval-and-closure-process.pdf",
+      "sha256": "836497b5162e98b9e3c415ec998c8ad58730031a681faad352a065285ff05f0a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-homeless-applicants.pdf",
+      "sha256": "56399ef2d017ee628b4d028338fc40827c3bad39bba5453215550b3a7da3db18"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-households-size.pdf",
+      "sha256": "eebc2275d5d26d8fab4c254c5a080be8fea1b0b76d182eaa8d00411dc89a45ab"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-income-guidelines.pdf",
+      "sha256": "9ef6c9349cbd468070abd2e0a609c3e79b20bef604c4644537f3aded4e386b17"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-ineligible-applicants-and-participant-terminations.pdf",
+      "sha256": "a28b56c4a79c89b00f4749ac12885366358a8754c2ddae094dc76f992ed9adab"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-intrastate-dual-participation.pdf",
+      "sha256": "b3caccf8afa1b4d85167dead9d4d9ec15fdcb46b5b510062522070fcef520b58"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-issue-resolution-at-the-state-wic-help-desk.pdf",
+      "sha256": "b4b5f3effc6905a64b980219f9655cc5487de7914cfca6b9d6b5718bc1586b8a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-limited-english-proficiency.pdf",
+      "sha256": "aa88ac13c717934e5801444b440d21683e865efe2931c63b71b0443984cb2ca4"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-local-agency-equipment-and-inventory.pdf",
+      "sha256": "a1ad69cdab4e78ab005d2ab4a357bd91ea023ba39463acc3f9dc49410202a8e2"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-local-agency-monitoring-visits.pdf",
+      "sha256": "7acb6eb108088ed0690be0445aac059dbda5645d821dfb657836b8d867e13dab"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-local-agency-time-studies.pdf",
+      "sha256": "4b24b982816798079d11b50b6bacfd758e271d34d538f3b8b01e9315dc744d70"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-local-staffing.pdf",
+      "sha256": "dad5d08a6eb0664cfe06bbf1626249f14b6f7b66a57ec842db6469bcba69dcba"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-local-wic-application.-becoming-a-wic-local-agency.pdf",
+      "sha256": "3196388477efaf937ceaa984ac0640eeab8ddcd8f62b7e47efe4b03105c3d02c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-mandatory-reporting.pdf",
+      "sha256": "1519eb69c94a4d6ca7fcf58dda238ce448fc4d3aaf9088e26639a3d25ab00bd6"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-measuring-equipment-maintenance-and-calibration.pdf",
+      "sha256": "86bf8d01150f49fcf06467904e1cd167f8bdbf87b7cd446d0f4388e45a0f447b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-migrant-applicants.pdf",
+      "sha256": "fb2b96f215d9f85b3233936888e4bb8952fccbb748e63421a3eb6a67856bc2c3"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-missed-appointments.pdf",
+      "sha256": "6cde6f791e1742536c6a1f85db04e8810434e618e0f9e04c802c86772a919aef"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-non-discrimination-statement.pdf",
+      "sha256": "0ab8e0f6552236143b0493e4a9a8956f7b2c217365512ffd78a35abdfed18675"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-nutrition-assessment.pdf",
+      "sha256": "6bac25395f463da5b03dccc30d81f65292bbd807c066a74b8c994d81d0396524"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-nutrition-education-plan-2.pdf",
+      "sha256": "f70a43c1424ab62e8c6688563fc437fe3b436c2084372c827c61655ae05986c0"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-nutrition-education-plan.pdf",
+      "sha256": "b247a8b732abefebc918d4c7710135c6a8289fb5d9ca9aa44f23a0ed8844ad90"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-nutrition-education.pdf",
+      "sha256": "5f5f9c0f79254c9c1da80539911f2887472b0f4a7880b6bbaba4036dee1f3ae5"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-nutrition-risk-factors-and-priority-systems.pdf",
+      "sha256": "03a1a7da453a0a9b5247901b8685a68f49d23ea5c4822db90d6ce402243b94d7"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-ordering-and-securing-ewic-cards.pdf",
+      "sha256": "a77fc4ae46ed7f3c46d28ee95927bbe23cefe14ef38327b42f2d086a70997ec4"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-outreach.pdf",
+      "sha256": "084b7f6ac279f17572c1689b4d6cca227b263ae538274638f76174dd51c88499"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-participant-notification-r-and-r.pdf",
+      "sha256": "2b18b1fc9962ffce0679e293f0c923a5650f388ef20b0f13fba125b695ab0272"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-participant-satisfaction-survey.pdf",
+      "sha256": "ec0dc91f32dfb4437e5b9d58756c406b95db19784a3e0bd3dfb1616cd974c0e0"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-participant-violations.pdf",
+      "sha256": "6c3707855f3cc4fccbb11b27e9e469615fba1133a576d9527f98877323481cac"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-prevention-and-management-of-wic-program-abuse-at-the-local-level.pdf",
+      "sha256": "2b57102340d97c93edee617d0cd174e95c6cf34228808f4ac6930d524caa4a99"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-processing-standards.pdf",
+      "sha256": "735fbefe1490633c4c7678b5e1f4220e28f40dbeda65a7a148521358b295fc12"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-product-distribution-in-wic-and-research-requests.pdf",
+      "sha256": "3648cacceec998a82692fca4a82953e985e12f9b3e2867321b6468a17ef0d178"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-program-accessibility-for-applicants-and-participants-with-disabilities.pdf",
+      "sha256": "6199e6cb47641a6780afd639a318cb18cee606dc305534c3fa5231ce85a2abbc"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-proof-of-identity.pdf",
+      "sha256": "612aa31fb26c75d37d1827779f734a55333febfbf566378300c617ab68d238bc"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-proof-of-income.pdf",
+      "sha256": "c9c7a724aa32a15848dbec0569313f124fc7654e456a4e63cc14ef1aecad2763"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-proof-of-residence.pdf",
+      "sha256": "578a89b7b9d2d4367d335c243f5c4caeac9e6fb2066d62e7324d8388051ff174"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-provisional-certification-requirements.pdf",
+      "sha256": "8150b425397107d082ab0d5b8ad5e64c20d83da06bd0f3fd99b726c2ac7274d1"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-proxies.pdf",
+      "sha256": "b2e8b305734f2fa6b44cd5b9807bf8d38a0aede0fcd5ed71a7cd7d3ee89233f5"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-public-notification.pdf",
+      "sha256": "31019c0f1bef4be8de4916f64b8ca41d91af7f20b359911156297908abd11629"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-redemption-at-wic-authorized-retailers.pdf",
+      "sha256": "74d1bccb8f924d5bfa16df84b779671e02e4ae1313fc68297411f06905cf7961"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-retailer-routine-monitoring.pdf",
+      "sha256": "35571d3f78eb5c1a2bb824da49cbbf4e4ea66928087b470fe3a5b147ff01470b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-retention-of-wic-records.pdf",
+      "sha256": "df801e264e3d91ed8d4ca328683e7715a8906858236d45266b530102b068df68"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-review-of-procedures-to-protect-against-disability-and-sex-discrimination.pdf",
+      "sha256": "3ae714075e324422f1d42d63b0a57a557b262fb2a937daebd8ef9a56d731938b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-scanned-documents-and-obtaining-signatures.pdf",
+      "sha256": "a9a15f49836517ecf7e51caa2ac9e1604203ac7ee72e6979f62c7b8a79f48e5f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-screening-substance-abuse-hiv-aids-lead-and-immunizations-and-referrals.pdf",
+      "sha256": "e11d8183c96320bed92dc8d0e2df58226299d4f050f579c1367e0ed852566890"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-staff-training.pdf",
+      "sha256": "9dfac80610507cf8725aba1d8d2bf0bd4a37217f0fbaa8ad5edfb1f553b13875"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-state-wic-responsibilities-la-training-and-communication.pdf",
+      "sha256": "4fbd3756a0af03541e79320e74271d4e6be012117044d37ce890691fca092484"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-transfers-voc-and-wic-overseas-program.pdf",
+      "sha256": "505d1af47c2214ab398cc302d91ce7ba504b74424966f8b4c497209c536a1abf"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-authorization-agreement-and-handbook.pdf",
+      "sha256": "a5433dfcdcc466f68afb702ef4ac3d24d8470d99bdaa5038f69297712cf6f213"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-authorization-minimum-stock.pdf",
+      "sha256": "e545b603d353fc5c4d757859e11af4ffedb95775cc4e9e8882aa30ffc8913276"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-authorization-vendor-handbook-2025-2028.pdf",
+      "sha256": "907a4a53759ca4548ff6fd075b0130e1794ec0e9522eac785bf84a4159f47a8b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-coordination-confidentiality.pdf",
+      "sha256": "5d696d41653eeeee5d702c6bc7a9e531960497a74a47f1285c53ab8d95878b52"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-coordination-issues-and-complaints-about-retailers.pdf",
+      "sha256": "eb2c262c95decf41f13fb734f68ee69a71aa803fa49bcf2f62b15545a92386e8"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-coordination-la-preparing-families.pdf",
+      "sha256": "5e6ca8986af9a39bf1e8c28c7a64f11e16c169b95d08fd7be60a44a180898202"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-coordination-state-office-and-local-agency-roles-and-responsibilities.pdf",
+      "sha256": "a7371468e068b6008e7d3ea9cf229d7e807b1402a1201193504bc61cb743e003"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-coordination-vendor-authorization-and-management.pdf",
+      "sha256": "1a8cf9299953167c1f42228e365d3a288056331f7b349893faf3b6d2581aaceb"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-coordination-vendor-files.pdf",
+      "sha256": "9bae03ca4c888e9e9cd265b305730c97ad7ab30463b38d2d6a973065e26e9d12"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-training-pre-auth-and-orientation.pdf",
+      "sha256": "7d809a349fdba2cfa3321e96cb22d7b75bf3814f35964f583216810a91958f09"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-vendor-training-routine-partnership-connections.pdf",
+      "sha256": "f5eda01e67655f586b96cfe1e24f1791c82732b4918211a98682ff1f0b127a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-voter-registration.pdf",
+      "sha256": "2ee53fb5016d3cbf5efcdd2588cbcdf53921ab78a5b64649d49636a39696d728"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-waiting-list.pdf",
+      "sha256": "2f69653acea0027d1769dd7da70a513490e22da0ce343f4ab0c964b86210d473"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-appointment-protocols.pdf",
+      "sha256": "de8ebe90737583daa5d22679dd31899ea49799c0eb718b51fb808120dc3932aa"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-branding-and-communications.pdf",
+      "sha256": "58d435f07d404692433e646db3937519eff9248c68a13452d8de949b0af670e5"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-compass-user-access-policy.pdf",
+      "sha256": "9dd58783a3ed1bed59fcc33695d5ec0db510a10b4dba6d739ac254b0213e79ad"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-endorser-and-proxies.pdf",
+      "sha256": "360e01c5f75b35de55fbcb93d899b3e3d633e461e54b0574d34cfc14d9fff3ff"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-local-agency-funding-formula-and-contracts.pdf",
+      "sha256": "41f99badff686412027816c259a02ce995862ace2084725b6334ac2cf388d1b0"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-service-accessibility.pdf",
+      "sha256": "f31e055409fff801d3cf9b7b313598cffaf00dc1ebf4154b5c2a57570fa1bf9e"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-wic-state-policy-manual/official-documents/us-co-wic-manual-wic-text-message-program.pdf",
+      "sha256": "3f1cfe27a0bdcae0d1bb6e69cd5ea4c81fb80db386242cdc809ef882c96b0759"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-co-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 220,
+    "missing_count": 0,
+    "provision_count": 220,
+    "source_count": 220
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:37:08.296396+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eJ1jMsvVQLyXlAGNkc4fTfFW3ARwA6pZ3jK6Ey5w3eEoDhiinr03/rqAZArdBlgDsH5dJuvQKNmB/fMBlVUPDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

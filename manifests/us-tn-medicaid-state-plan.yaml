@@ -1,0 +1,744 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-tn-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=946&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 91
+    index_records_total: 91
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-25-0009-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-25-0009: Approval Document (approved February 18, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-25-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-25-0009
+    cms_node_id: '189031'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189031
+    approval_date: '2026-02-18'
+    effective_date: '2025-10-01'
+    summary: This amendment describes coverage of substance use disorder treatment services for eligible individuals who are
+      patients in eligible Institutions for Mental Diseases.
+    topics:
+    - Benefits
+    - Eligibility
+    - Institution for Mental Disease
+    - Substance Use Disorders
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-25-0007-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-25-0007: Approval Document (approved October 3, 2025, effective July 7, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-25-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-07'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-25-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-25-0007
+    cms_node_id: '185896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185896
+    approval_date: '2025-10-03'
+    effective_date: '2025-07-07'
+    summary: This amendment proposed an income disregard for Beneficiary Advisory Council compensation.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-25-0002-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-25-0002: Approval Document (approved May 16, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-25-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-25-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-25-0002
+    cms_node_id: '179656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179656
+    approval_date: '2025-05-16'
+    effective_date: '2025-01-01'
+    summary: This amendment proposed to create a new reasonable classification of medically needy individuals under age 21.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-24-0004-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-24-0004: Approval Document (approved February 26, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-24-0004
+    cms_node_id: '178676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178676
+    approval_date: '2025-02-26'
+    effective_date: '2025-01-01'
+    summary: This amendment updates the allowance for personal needs for institutionalized individuals and couples.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-24-0001-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-24-0001: Approval Document (approved April 24, 2024, effective March 7, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-07'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-24-0001
+    cms_node_id: '165891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165891
+    approval_date: '2024-04-24'
+    effective_date: '2024-03-07'
+    summary: This amendment proposes to prohibit third-party payers from refusing payment for an item or service solely on
+      the basis that such item or service did not receive prior authorization under the third-party payer’s rules, consistent
+      with the Consolidated Appropriations Act 2022.
+    topics:
+    - Coverage
+    - Eligibility
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-23-0002-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-23-0002: Approval Document (approved July 21, 2023, effective June 18, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-06-18'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-23-0002
+    cms_node_id: '151246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151246
+    approval_date: '2023-07-21'
+    effective_date: '2023-06-18'
+    summary: To elect the option to provide 12 months of continuous eligibility for children under age 19
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-23-0001-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-23-0001: Approval Document (approved April 13, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-23-0001
+    cms_node_id: '147091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147091
+    approval_date: '2023-04-13'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to change the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-21-0010-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-21-0010: Approval Document (approved March 23, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-21-0010
+    cms_node_id: '134181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=134181
+    approval_date: '2022-03-23'
+    effective_date: '2021-10-01'
+    summary: This SPA proposes that the state may not adjust the patient liability of an individual receiving Medicaid Coverage
+      for certain long-term services and supports during the COVID-19 based on public health emergency.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-21-0008-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-21-0008: Approval Document (approved March 9, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-21-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-21-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-21-0008
+    cms_node_id: '133751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=133751
+    approval_date: '2022-03-09'
+    effective_date: '2021-10-01'
+    summary: This amendment is submitted to document compliance with third party liability provisions in the Bipartisan Budget
+      Act of 2018.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-21-0002-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-21-0002: Approval Document (approved May 28, 2021, effective March 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TN-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-21-0002
+    cms_node_id: '108856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108856
+    approval_date: '2021-05-28'
+    effective_date: '2021-03-01'
+    summary: Effective March 1, 2021, this amendment implements the 1915 (1) State Plan Option that provides Medicaid Assistance
+      for eligible individuals who are patients in eligible institutions for mental diseases (IMD) in accordance with Section
+      5052 of Public Law 115-271.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-18-0004-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-18-0004: Approval Document (approved July 4, 2020, effective October 22, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-18-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-22'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-18-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-18-0004
+    cms_node_id: '100086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100086
+    approval_date: '2020-07-04'
+    effective_date: '2018-10-22'
+    summary: Updates to the paper application, and the state’s election to use an alternative single, streamlined application
+      developed by the state for individuals applying for coverage who may be eligible based on the applicable modified adjusted
+      gross income standard
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-20-0001-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-20-0001: Approval Document (approved March 23, 2020, effective March 3, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-20-0001_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-03'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-20-0001
+    cms_node_id: '98976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98976
+    approval_date: '2020-03-23'
+    effective_date: '2020-03-03'
+    summary: Updates the State Governor Review regarding who is authorized to submit SPAs on behalf of the Tennessee, effective
+      March 3, 2020
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-19-0003-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-19-0003: Approval Document (approved December 19, 2019, effective March 18, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-19-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-03-18'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-19-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-19-0003
+    cms_node_id: '52806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52806
+    approval_date: '2019-12-19'
+    effective_date: '2019-03-18'
+    summary: changes to Hospital Presumptive Eligibility (HPE), modifications to Presumptive Eligibility (PE) for Pregnant
+      Women, the Eligibility Process Reviewable Unit, and the state’s election to end the option to provide Presumptive Eligibility
+      to children under age 1.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-14-0011-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-14-0011: Approval Document (approved June 28, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-14-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-14-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-14-0011
+    cms_node_id: '18896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=18896
+    approval_date: '2016-06-28'
+    effective_date: '2016-07-01'
+    summary: This SPA establishes the process for Hospital Presumptive Eligibility (HPE).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-16-0001-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-16-0001: Approval Document (approved March 22, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-16-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-16-0001
+    cms_node_id: '20176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20176
+    approval_date: '2016-03-22'
+    effective_date: '2016-01-01'
+    summary: Requests a 12 month eligibility period for families under Transitional Medical Assistance in accordance with
+      Section 1925 of the Social Security Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-14-0004-mm5-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-14-0004-MM5: Approval Document (approved June 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-14-0004-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-14-0004-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-14-0004-MM5
+    cms_node_id: '25806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25806
+    approval_date: '2014-06-26'
+    effective_date: '2014-01-01'
+    summary: Established the State's Residency Requirements in Accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-14-0002-mm6-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-14-0002-MM6: Approval Document (approved June 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-14-0002-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-14-0002-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-14-0002-MM6
+    cms_node_id: '36016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36016
+    approval_date: '2014-06-20'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-14-0001-mm3-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-14-0001-MM3: Approval Document (approved April 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-14-0001-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-14-0001-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-14-0001-MM3
+    cms_node_id: '37661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37661
+    approval_date: '2014-04-23'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-11-003-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-11-003: Approval Document (approved April 7, 2011, effective March 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-11-003-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-11-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-11-003
+    cms_node_id: '40541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40541
+    approval_date: '2011-04-07'
+    effective_date: '2011-03-01'
+    summary: This State Plan Amendment addresses the list of incurred expenses that may be deducted for institutionalized
+      persons as part of the post-eligibility treatment of income.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-11-003-attachment
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-11-003: Attachment (approved April 7, 2011, effective March 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-11-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-11-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: TN-11-003
+    cms_node_id: '40541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40541
+    approval_date: '2011-04-07'
+    effective_date: '2011-03-01'
+    summary: This State Plan Amendment addresses the list of incurred expenses that may be deducted for institutionalized
+      persons as part of the post-eligibility treatment of income.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-11-003-form-cms-179
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-11-003: Form CMS-179 (approved April 7, 2011, effective March 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-11-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-01'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-11-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: TN-11-003
+    cms_node_id: '40541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40541
+    approval_date: '2011-04-07'
+    effective_date: '2011-03-01'
+    summary: This State Plan Amendment addresses the list of incurred expenses that may be deducted for institutionalized
+      persons as part of the post-eligibility treatment of income.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-tn-cms-medicaid-state-plan-spa-tn-19-0001-approval-document
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee Medicaid SPA TN-19-0001: Approval Document (approved June 1, 2001, effective December 31, 2000)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TN/TN-19-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2000-12-31'
+  citation_path: us-tn/policy/cms/medicaid-state-plan/spa/tn-19-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Tennessee
+    source_discovery_group: us-tn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TN-19-0001
+    cms_node_id: '7371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7371
+    approval_date: '2001-06-01'
+    effective_date: '2000-12-31'
+    summary: Updates the designated single state agency authorization for state plan amendments.
+    topics:
+    - Current State Plan
+    link_label: Approval Document

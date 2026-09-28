@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "citation_path": "us-co/form/cdor/ty2026/dr-0104ep",
+      "metadata": {
+        "amounts_carried": [
+          "flat rate (4.4%)",
+          "estimated-tax threshold"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:tax-agent-queue; index https://tax.colorado.gov/individual-income-tax-forms (read 2026-09-13)",
+        "document_subtype": "estimated_tax_instructions",
+        "download_url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104EP_2026.pdf",
+        "index_url": "https://tax.colorado.gov/individual-income-tax-forms",
+        "kind": "document",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": "2025-12-05",
+        "source_authority": "Colorado Department of Revenue",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "tax.colorado.gov (CloudFront) answers HTTP 403 to the corpus client and serves the file to a Chrome user agent (probed 2026-09-13).",
+        "tax_year": "2026",
+        "title": "DR 0104EP 2026 Colorado Estimated Income Tax Payment Form"
+      },
+      "sha256": "2b4e33fe2bdc4f5e3b324687f11ef7a0b22698673341a7a8b07764203946b12c",
+      "source_format": "pdf",
+      "source_path": "sources/us-co/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-co-cdor-dr-0104ep-ty2026.pdf",
+      "source_url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104EP_2026.pdf"
+    },
+    {
+      "citation_path": "us-co/form/cdor/ty2026/dr-0104ep/document-1",
+      "metadata": {
+        "amounts_carried": [
+          "flat rate (4.4%)",
+          "estimated-tax threshold"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:tax-agent-queue; index https://tax.colorado.gov/individual-income-tax-forms (read 2026-09-13)",
+        "document_subtype": "estimated_tax_instructions",
+        "download_url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104EP_2026.pdf",
+        "index_url": "https://tax.colorado.gov/individual-income-tax-forms",
+        "kind": "document",
+        "page_count": 6,
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": "2025-12-05",
+        "source_authority": "Colorado Department of Revenue",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "tax.colorado.gov (CloudFront) answers HTTP 403 to the corpus client and serves the file to a Chrome user agent (probed 2026-09-13).",
+        "tax_year": "2026",
+        "title": "DR 0104EP 2026 Colorado Estimated Income Tax Payment Form"
+      },
+      "sha256": "2b4e33fe2bdc4f5e3b324687f11ef7a0b22698673341a7a8b07764203946b12c",
+      "source_format": "pdf",
+      "source_path": "sources/us-co/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-co-cdor-dr-0104ep-ty2026.pdf",
+      "source_url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104EP_2026.pdf"
+    }
+  ]
+}

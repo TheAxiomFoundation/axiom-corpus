@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "7e207e8ee04577239df4138798ed6252c0940f779c4e529354ea00fd69939789"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "da0d200401a4413389d2fe3689f757d583a198e0e5cdc56ebdc0d716e2cfc759"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/policy/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "8cdc9d1549e41bdaa0341726e89d8ef4b1cb35f1df5aae95ed6b0c03184a4a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-nm-liheap-hca-liheap-point-and-income-guide-ffy2026.pdf",
+      "sha256": "d7d02211955cca399ad3b0d879a84cc45d22b33fdcaf391437559d5e55592d8a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-nm-liheap-benefit-matrix-attachments.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T17:33:14.591385+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Vxct9NeAGK2Vf7yUCX0k/Zs3bx6drnr/83Gn5c3V4GdNgFF1gWxCTjoUrE7yu7XqEscXjk7MR0lu7/A1acobCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

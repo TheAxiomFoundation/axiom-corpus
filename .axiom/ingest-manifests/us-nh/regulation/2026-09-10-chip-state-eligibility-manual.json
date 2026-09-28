@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "66e4c09e7bf9fef38a50e5bf3ee2182b2f00a552420d4085acccd98abd23e14d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "d51c663912701b1d4d15fada45e099358fa77e5e12251ab3033faf1df88294c2"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "ac3ac345775738b1151a3776d16716c341dc64be0dfdecbdb851123a462cf03f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/nh-gencourt-he-w-800.html",
+      "sha256": "22eb88322c4d1c9272a4237af45b94015b695b1e4d438011e9f9d64d9affcb84"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "043020521b2d60fc887dc8df1f27473805c8f944",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-nh-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-chip-*.md; re-extracted 2026-09-12 with slug-safe section paths)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 157,
+    "missing_count": 0,
+    "provision_count": 157,
+    "source_count": 157
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-12T13:25:21.477647+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "T1mQB7h9ZKdipTQHbB6/ARt4XSOT5zWWh3zKBUpWjQMay5nREa4bHV/drOT7/tfqVhX6VOrB2PeFfFJoVLbuAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

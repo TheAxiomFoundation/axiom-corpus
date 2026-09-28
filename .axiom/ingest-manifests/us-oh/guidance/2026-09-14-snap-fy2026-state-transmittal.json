@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "8182ee7cfd73c1dd60590d4995ac5bcf48f4a611681f40f2023a0bf8bafd4766"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "e21360e8caf275208ef77e2321dffd2522b86f9eee4cf3df1b5306528b52a9fd"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "c1467e15e86f959672605f29d0853ad7471501b55122f84837c67f291d4ea973"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-oh-odjfs-fact-105.pdf",
+      "sha256": "ad463e163bc71d918bbc4625a080a8fe65e0667e6794155d0728b57dab51e4ae"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-oh-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:41:42.029537+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EcmZOloNv1jZmSDcggMhOv8cVe+a+i8LR6NIJJYYFqVNJEVeG0Z7IMxUj649LEqwfYAHR7fUFX6YGIb7RwktDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

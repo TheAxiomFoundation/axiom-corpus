@@ -1,0 +1,30 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-nh-dhhs-sr-26-03
+  jurisdiction: us-nh
+  document_class: manual
+  title: 'SR 26-03 Dated 03/26: Updated Income Limits for QMB, SLMB/SLMB135, GA, EMA, CM, PW (Service Release)'
+  source_url: https://www.dhhs.nh.gov/sr_htm/html/sr_26-03_dated_03_26.htm
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-nh/manual/dhhs/sr/26-03
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: New Hampshire Department of Health and Human Services, Bureau of Family Assistance
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-nh/manual
+    index_url: https://www.dhhs.nh.gov/mam_htm/html/601_table_a_income_limits_mam.htm
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: service_release
+    document_number: SR 26-03
+    pointer: us-nh/manual/dhhs/mam/601-table-c-qualified-medicare-beneficiary-qmb-mam and 601-table-d-... (selected scope)
+      carry the twelve-size tables
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

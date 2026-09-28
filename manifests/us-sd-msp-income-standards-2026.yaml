@@ -1,0 +1,46 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-sd-dss-medicare-savings-program-brochure-2026-05
+  jurisdiction: us-sd
+  document_class: guidance
+  title: Medicare Savings Program Application Assistance (brochure EA05, May 2026)
+  source_url: https://dss.sd.gov/formsandpubs/docs/MEDELGBLTY/MedicareSavingsProgramBrochureEntire.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-05-01'
+  citation_path: us-sd/guidance/dss/medicare-savings-program-brochure/2026-05
+  metadata:
+    primary_source: true
+    source_authority: South Dakota Department of Social Services (DSS)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-sd/guidance
+    index_url: https://dss.sd.gov/economicassistance/medical_programs.aspx
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_brochure
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+- source_id: us-sd-dss-medicaid-coverage-groups-2026
+  jurisdiction: us-sd
+  document_class: guidance
+  title: 'South Dakota Medicaid Coverage Groups: Medicare Savings Program (DSS page)'
+  source_url: https://dss.sd.gov/economicassistance/medical_programs.aspx
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-sd/guidance/dss/medicaid-coverage-groups/2026
+  metadata:
+    primary_source: true
+    source_authority: South Dakota Department of Social Services (DSS)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-sd/guidance
+    index_url: https://dss.sd.gov/economicassistance/medical_programs.aspx
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    closure_elements_extra:
+    - MED-ST-1
+    - MED-ST-3

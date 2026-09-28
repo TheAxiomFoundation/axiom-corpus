@@ -36,7 +36,7 @@ import argparse
 import glob
 import json
 import re
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
 from uuid import NAMESPACE_URL, uuid5
@@ -71,8 +71,20 @@ def versioned_id(version: str | None, citation_path: str) -> str | None:
     return str(uuid5(NAMESPACE_URL, identity))
 
 
-def load_records(provisions_dir: Path) -> list[dict[str, Any]]:
-    records: list[dict[str, Any]] = []
+# The only record fields any check reads. Rows carry full provision bodies, so
+# holding whole rows made memory scale with the corpus text: the 577,545 rows
+# in 2.28 GB of JSONL (2026-09-23) peaked at 6.1 GB RSS, against 0.16 GB when
+# the scan streams these fields.
+CHECKED_FIELDS = ("citation_path", "jurisdiction", "document_class", "id", "version")
+
+
+def iter_records(provisions_dir: Path) -> Iterator[dict[str, Any]]:
+    """Yield the checked fields of every record that has a citation_path.
+
+    Records stream in file and line order, one at a time, so a scan holds one
+    parsed row plus the per-path results rather than the whole corpus. An
+    unparseable line yields ``{"_error": "<file>:<line> invalid JSON"}``.
+    """
     pattern = str(provisions_dir / "**" / "*.jsonl")
     for filename in sorted(glob.glob(pattern, recursive=True)):
         with open(filename, encoding="utf-8") as handle:
@@ -83,34 +95,35 @@ def load_records(provisions_dir: Path) -> list[dict[str, Any]]:
                 try:
                     obj = json.loads(line)
                 except json.JSONDecodeError:
-                    records.append({"_error": f"{filename}:{lineno} invalid JSON"})
+                    yield {"_error": f"{filename}:{lineno} invalid JSON"}
                     continue
                 if "citation_path" not in obj:
                     continue
-                obj["_file"] = filename
-                records.append(obj)
-    return records
+                yield {field: obj[field] for field in CHECKED_FIELDS if field in obj}
 
 
 def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
-    """Run all checks, returning a structured result dict."""
+    """Run all checks in one streaming pass, returning a structured result dict."""
     pattern = re.compile(schema["$defs"]["citation_path"]["pattern"])
     doc_classes = set(schema["$defs"]["document_class"]["enum"])
 
-    records = load_records(provisions_dir)
-    paths = [r["citation_path"] for r in records if "citation_path" in r]
-
-    json_errors = [r["_error"] for r in records if "_error" in r]
-
+    record_count = 0
+    unique_paths: set[str] = set()
+    json_errors: list[str] = []
     pattern_failures: list[str] = []
     jurisdiction_mismatches: list[str] = []
     docclass_mismatches: list[str] = []
     unknown_docclass: list[str] = []
+    # Identity drift: stored id derives from neither path-only nor versioned id.
+    drift_live_set: set[str] = set()
 
-    for rec in records:
-        if "citation_path" not in rec:
+    for rec in iter_records(provisions_dir):
+        if "_error" in rec:
+            json_errors.append(rec["_error"])
             continue
         p = rec["citation_path"]
+        record_count += 1
+        unique_paths.add(p)
         segs = p.split("/")
         if not pattern.match(p):
             pattern_failures.append(p)
@@ -124,11 +137,17 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
                 docclass_mismatches.append(f"{p}  (field document_class={dc!r})")
             if segs[1] not in doc_classes:
                 unknown_docclass.append(p)
+        stored = rec.get("id")
+        if (
+            stored
+            and path_only_id(p) != stored
+            and versioned_id(rec.get("version"), p) != stored
+        ):
+            drift_live_set.add(p)
 
     # Immutable scope versions can repeat the same citation identity. Ratchet
     # citation-path shapes, not the number of versioned rows carrying them.
     baselines = schema["known_irregulars_ratchet"]["baselines"]
-    unique_paths = set(paths)
     live_counts = {
         name: sum(1 for path in unique_paths if predicate(path))
         for name, predicate in IRREGULAR_PREDICATES.items()
@@ -139,22 +158,7 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
         if live_counts.get(name, 0) > baselines[name]
     }
 
-    # Identity drift: stored id derives from neither path-only nor versioned id.
     drift_baseline = set(schema["identity_drift_ratchet"]["baseline_paths"])
-    drift_live: list[str] = []
-    for rec in records:
-        if "citation_path" not in rec:
-            continue
-        stored = rec.get("id")
-        if not stored:
-            continue
-        p = rec["citation_path"]
-        if path_only_id(p) == stored:
-            continue
-        if versioned_id(rec.get("version"), p) == stored:
-            continue
-        drift_live.append(p)
-    drift_live_set = set(drift_live)
     drift_new = sorted(drift_live_set - drift_baseline)  # regressions: NOT in baseline
     drift_resolved = sorted(drift_baseline - drift_live_set)  # baseline entries now clean
 
@@ -171,7 +175,7 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
     return {
         "ok": ok,
         "provisions_dir": str(provisions_dir),
-        "record_count": len(paths),
+        "record_count": record_count,
         "unique_path_count": len(unique_paths),
         "json_errors": json_errors,
         "pattern_failures": sorted(set(pattern_failures)),

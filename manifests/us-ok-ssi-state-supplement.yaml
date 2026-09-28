@@ -1,0 +1,69 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: ok-oac-340-15-state-supplemental-payment
+  jurisdiction: us-ok
+  document_class: regulation
+  citation_path: us-ok/regulation/oac/340/15
+  title: Oklahoma Administrative Code Title 340 Chapter 15 State Supplemental Payment; Children and Youth with Special Health
+    Care Needs
+  source_url: https://rules.ok.gov/home
+  download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=15
+  source_format: json
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  extraction:
+    segmentation: records
+    json_record_text_field: text
+    json_record_text_is_html: true
+    json_record_label_field: sectionNum
+    json_record_heading_field: description
+    json_record_kind_field: name
+    json_record_status_field: statusName
+    json_record_exclude_statuses:
+    - Revoked
+    - Reserved
+    json_record_metadata_fields:
+    - id
+    - parentId
+    - name
+    - titleNum
+    - chapterNum
+    - subChapterNum
+    - partNum
+    - sectionNum
+    - appendixNum
+    - description
+    - statusName
+    - segmentStatusId
+    - segmentTypeId
+    - recordStatus
+    - effectiveDate
+    - filingId
+    - hasEmergency
+    - segmentNotes
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Department of Human Services
+    official_publisher: Oklahoma Secretary of State Office of Administrative Rules
+    document_subtype: administrative_code_chapter
+    program: ssi_state_supplement
+    state_program: State Supplemental Payment (SSP)
+    federal_program: SSI
+    state: OK
+    rules_landing_page: https://rules.ok.gov/home
+    rules_api_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=15
+    legacy_okdhs_chapter_url: https://oklahoma.gov/okdhs/library/policy/current/oac-340/chapter-15.html
+    title_number: '340'
+    title_name: Department of Human Services
+    chapter_number: '15'
+    chapter_name: Children and Youth with Special Health Care Needs (CYSHCN)
+    subchapters: 1 State Supplemental Payment; 3 Children and Youth with Special Health Care Needs (CYSHCN)
+    section_count: 8
+    revoked_section_count: 2
+    index_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByTitleNum?titleNum=340
+    source_discovery_group: us-ok/regulation/oac/340
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://prod-ok-rules-api.tecuity.com/GetSegmentsByTitleNum?titleNum=340
+    access_note: 're-probed 2026-09-11 from a US network: oklahoma.gov OKDHS policy-library chapter page 301 -> rules.ok.gov/home;
+      rules.ok.gov answers Cloudflare HTTP 403 to a plain client and HTTP 200 (JavaScript application shell) or 403 to a chrome120
+      TLS fingerprint; the publication''s own segments API (prod-ok-rules-api.tecuity.com, the SNAP rules scope''s download_url)
+      answers HTTP 200 to a plain client; no proxy, mirror or third-party copy'

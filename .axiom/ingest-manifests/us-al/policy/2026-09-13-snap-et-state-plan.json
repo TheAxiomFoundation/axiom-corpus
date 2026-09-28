@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "273a9446b42771ad003724adebc75f9068342b524baf6a2ff8cdc508103dbcc6"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "8efa9f1c6940912d54fbad952e400b3487c0dca63242019652893fb83c7f1541"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "b6679599a913e11e84e778d5564799d3edd318a184799cab6e5b6421c01e081f"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-09-13-snap-et-state-plan/official-documents/al-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "0e3d2ea190e399052f74ad06f093aa3a9ef8198b954baf1c3072895073eabf9d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 193,
+    "missing_count": 0,
+    "provision_count": 193,
+    "source_count": 193
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:01:33.581203+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2JpsDu7rr9GWB8Xj/AedL0KUzd5aglluBpWZFB5NWuBcJMfhiHIAJlqdLMHMj/SbdIQSHu6msRRiDJD9ym9rBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

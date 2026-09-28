@@ -1,0 +1,39 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-va-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-va
+  document_class: policy
+  title: Virginia CCDF Plan, FFY 2025-2027
+  source_url: https://www.childcare.virginia.gov/home/showpublisheddocument/55566/638647472799800000
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-va/policy/acf/ccdf-plan/fy2025-2027
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: 'Certified as of 2024-10-01 (the publisher labels it "Virginia''s Approved 2025-2027 CCDF State Plan"; the
+      CARS print carries Plan Status Certified and no approval print is posted; retry 2 2026-09-10T21:35Z from a US network:
+      plain requests still get HTTP 403 AkamaiGHost, curl_cffi chrome impersonation receives the page and the PDF)'
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.childcare.virginia.gov/reports-resources/administrative-program-manuals-reports-and-data/virginia-child-care-plan
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/VA-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    source_discovery_group: us-va/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

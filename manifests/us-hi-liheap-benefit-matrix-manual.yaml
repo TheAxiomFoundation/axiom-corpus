@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-hi-liheap-dhs-liheap-policies-and-procedures
+  jurisdiction: us-hi
+  document_class: manual
+  title: Hawaii DHS LIHEAP Policies and Procedures, FFY 2020
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2019/07/Policies-and-Procedures-2020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2019-10-01'
+  citation_path: us-hi/manual/dhs/liheap-policies-and-procedures
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Benefit, Employment and Support Services Division
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: HI
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://humanservices.hawaii.gov/bessd/liheap/
+    on_clearinghouse_index: true
+    source_discovery_group: us-hi/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://humanservices.hawaii.gov/bessd/liheap/
+    extraction_granularity: pdf_page
+    expression_date_note: FFY 2020 manual (title '2020 Policies and Procedures'); PDF dated 2019-07-15
+    access_note: humanservices.hawaii.gov HTTP 200 to the plain client (311,631 bytes)
+    page_count: 22
+    benefit_matrix_pdf_pages: 19-20
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

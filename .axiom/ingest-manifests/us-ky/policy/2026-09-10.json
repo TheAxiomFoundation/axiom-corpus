@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-09-10.json",
+      "sha256": "2012673f9f5858f1839062f986ded3c2cf5d93a50c93f05e7dfb5968b8e86f91"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-09-10.json",
+      "sha256": "138a2201435dddb0d51c158b682cef90c66eb75be6f2b5f3239c5afdc6a3ba37"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-09-10.jsonl",
+      "sha256": "41e848627612233fea7bfcfaa4b9cf16fbdb0919bcf15c3e5ac1502b8c32cf63"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-09-10/official-documents/us-ky-acf-liheap-plan-fy2026.pdf",
+      "sha256": "c8868ecab0526909c1d889a1043279eff2d4c8c0a15e8733e26f95dd345e390b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-ky-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T21:52:18.003247+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Xnb1H5+rP2h2/AY9KliuSU3V17vnR3ie97TgSsbPAsQ8lcdEJm3Vc5MI9hlT/UY9b+vU01L4r97nljvuUzVFCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

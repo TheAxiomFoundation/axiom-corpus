@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "ac004344a2dc3969e10bedc995a26b2881bb18e333c5288ea16d84527a75c3ff"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "cee96702deb041141384c036a498599f301832b71ff105b881f829818550f46b"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "959a862a4c300b7f335b229ebb18f821584716268dfb8e55dec32d3d0b06a223"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "a7f51385859c3f4b00b4c54920145773979378ae9e87bc77cc16d86605fd64db"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "0760d7e7a2ca3851cf440747cf0299a69061bc3bc11b473eabd15675f18def7c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "b8495ed45e36777438bdaafe2601f9dd4e0aa88bbca7f950cf17c84f73d172ac"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-14-0011-mc3-approval-package.pdf",
+      "sha256": "350474e20ef38dfc1369a861748c50c8446a6099a34ee75c977fdcc572e37bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-17-0001-lead-approval-package.pdf",
+      "sha256": "686c81e5dd07951c50607992404f57efbd131ea8a5d933b5d96e220d8764377f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-23-0001-lead-approval-package.pdf",
+      "sha256": "844c9c82745b63b72f484fa560b80a3f9174ccad25e575742fb7108383e6bbf9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-23-0002-chip-amp-md-23-0003-chip-amp-md-23-0004-chip-approval-package.pdf",
+      "sha256": "5d44253096a5efa1c6de3e954ddf5cada6f2199c3f01c13625bc970fab4c4362"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-24-0001-chip-approval-package.pdf",
+      "sha256": "fd93834aed377beea19c69a01a73970853861736a27c41b69ca621568b8ebf1a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-24-0002-chip-approval-package.pdf",
+      "sha256": "b262ee800d5100f91dc45e8ca5635894ab69f89230399dfcd36e1532be15be1d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-cspa-08-final-approved-state-plan.pdf",
+      "sha256": "f6fa2995f0d33fa4b6dd639a6881907e6cfad9b94f09545d4d4eaa0ccb5c1c6c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-13-chip-state-plan/official-documents/us-md-cms-chip-state-plan-spa-md-cspa-9-al-approval-package.pdf",
+      "sha256": "3580f2354eaf68c2555434c5b57ea20d83468ebfc99fc5e9173e8e16dee3afc1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 541,
+    "missing_count": 0,
+    "provision_count": 541,
+    "source_count": 541
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T13:55:29.632935+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uPoeTPD8KKawFzgbsUf10PV8QBDPswFWhvoBppiYMrvUPF9ssfzyY+J7GbIl3E/6TyYmACR3ED8YAqnS/GU/Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}

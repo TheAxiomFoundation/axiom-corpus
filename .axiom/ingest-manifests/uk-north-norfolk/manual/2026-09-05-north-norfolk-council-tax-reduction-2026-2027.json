@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-north-norfolk/manual/2026-09-05-north-norfolk-council-tax-reduction-2026-2027.json",
+      "sha256": "f62c97be41ddb8ede54b50d64d4e8c3f3db056839d4c11a521c26ecb5157954f"
+    },
+    {
+      "path": "data/corpus/inventory/uk-north-norfolk/manual/2026-09-05-north-norfolk-council-tax-reduction-2026-2027.json",
+      "sha256": "4791d37a02b62c22327cd5e35297f06e72c465d0a62c7b0160e3d141c9a9d40a"
+    },
+    {
+      "path": "data/corpus/provisions/uk-north-norfolk/manual/2026-09-05-north-norfolk-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0a4b8d87f9c55ca11c6cf692515a413786c2e1b18cd721cb9b83e366beb97f1a"
+    },
+    {
+      "path": "data/corpus/sources/uk-north-norfolk/manual/2026-09-05-north-norfolk-council-tax-reduction-2026-2027/official-documents/north-norfolk-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "6efaad784ac63d259015f80834d6cacbfe9d74391215871266e039e7763418c3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-north-norfolk-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-north-norfolk-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 143,
+    "missing_count": 0,
+    "provision_count": 143,
+    "source_count": 143
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:53.703809+00:00",
+  "jurisdiction": "uk-north-norfolk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sFzm67SiWtF4N9Ind7deBNotuudyOIKuaaMTtXjyamkPpC7M4xd4ajWq9j6QFosEZDvcsqok4jSk58LsvHLIBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-north-norfolk-council-tax-reduction-2026-2027"
+}

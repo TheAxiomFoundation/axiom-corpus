@@ -1,0 +1,66 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-md-liheap-dhs-ohep-fy27-meap-benefit-matrices
+  jurisdiction: us-md
+  document_class: policy
+  title: Maryland OHEP FY27 MEAP Benefit Matrices
+  source_url: https://dhs.maryland.gov/documents/OHEP/FY27-MEAP-Benefit-Matrices.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  citation_path: us-md/policy/dhs/ohep/fy27-meap-benefit-matrices
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Human Services, Office of Home Energy Programs
+    document_subtype: plan_attachment_benefit_matrix_pdf
+    program: LIHEAP
+    state: MD
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dhs.maryland.gov/office-of-home-energy-programs/
+    on_clearinghouse_index: true
+    source_discovery_group: us-md/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dhs.maryland.gov/office-of-home-energy-programs/
+    extraction_granularity: pdf_page
+    expression_date_note: FY27 (2026-07-01 to 2027-06-30) tables; PDF dated 2026-06-23
+    access_note: dhs.maryland.gov HTTP 200 to the plain client; the Clearinghouse-listed 2021 manual URL answers 404
+    page_count: 2
+    benefit_matrix_pdf_pages: 1-2
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-md-liheap-dhs-ohep-fy27-eusp-benefit-matrix
+  jurisdiction: us-md
+  document_class: policy
+  title: Maryland OHEP FY27 EUSP Benefit Matrix
+  source_url: https://dhs.maryland.gov/documents/OHEP/FY27-EUSP-Benefit-Matrix-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  citation_path: us-md/policy/dhs/ohep/fy27-eusp-benefit-matrix
+  extraction:
+    ocr: true
+    ocr_dpi: 300
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Human Services, Office of Home Energy Programs
+    document_subtype: plan_attachment_benefit_matrix_pdf
+    program: LIHEAP
+    state: MD
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dhs.maryland.gov/office-of-home-energy-programs/
+    on_clearinghouse_index: true
+    source_discovery_group: us-md/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dhs.maryland.gov/office-of-home-energy-programs/
+    extraction_granularity: pdf_page
+    expression_date_note: FY27 (2026-07-01 to 2027-06-30) tables; PDF dated 2026-06-23
+    access_note: dhs.maryland.gov HTTP 200 to the plain client; the Clearinghouse-listed 2021 manual URL answers 404
+    page_count: 3
+    benefit_matrix_pdf_pages: 1-3
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+    ocr_note: image-only PDF (3 characters of text layer); read with tesseract at 300 dpi

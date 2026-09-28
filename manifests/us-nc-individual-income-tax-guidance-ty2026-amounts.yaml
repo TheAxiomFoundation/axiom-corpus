@@ -1,0 +1,27 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-nc-ncdor-tax-rate-schedules-ty2026
+  jurisdiction: us-nc
+  document_class: guidance
+  title: 'Tax Rate Schedules (current tax year rates: 3.99% for taxable years after 2025)'
+  source_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-nc/guidance/ncdor/ty2026/tax-rate-schedules
+  extraction:
+    html_content_selector: main#main-wrapper
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: null
+    amounts_carried:
+    - flat rate by year (2025 4.25%; after 2025 3.99%)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules
+    discovered_via: manual-review:tax-agent-queue; index https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules
+      (read 2026-09-13)

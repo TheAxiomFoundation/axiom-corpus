@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated.json",
+      "sha256": "5453aceee25c17e42cc05681293b2a0215101b6708bab651e0031340b03d47b8"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated.json",
+      "sha256": "d1ba4242c9c50dcc82118ceda12c7bc417357529814732681f39a27e35ef7b8d"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated.jsonl",
+      "sha256": "1bea0c62c93da8a33c43aa7d09c1152ccda0c78fafdf6b00d66be7b1029a8feb"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-07-13-recovery/official-documents/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1",
+      "sha256": "62edf85ec202b1009c4c4655519596a75ea2e4b716ad2e5a9ce5bc6544a72784"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-07-13-recovery/official-documents/us-co-8-ccr-1403-1",
+      "sha256": "b76234b6ce316b86adef29e5ea8d5942bb490b1fe630c37c71a44516229765af"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-07-13-recovery/official-documents/us-co-9-ccr-2503-6",
+      "sha256": "0e0ba2ab150c9327d9907af7e45a54dd2e14cb992c0d04f935245cfffe5fbf41"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-07-13-recovery/provenance/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1.json",
+      "sha256": "a797ee3ace7de2b6af48bbaa4b7eaba0ff37a9e4542e5d6823e5967de19875ec"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-07-13-recovery/provenance/us-co-8-ccr-1403-1.json",
+      "sha256": "033e2e748ef6f85a41f654f2b6b90d08a5e0f3f6a0389559d36691d6f6d32bc0"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-07-13-recovery/provenance/us-co-9-ccr-2503-6.json",
+      "sha256": "db8524b75128135a8d868ef94a8625ea8d83b73ff0b5770ed380f7c8311fdf13"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated/2026-09-10-tanf-state-policy-manual/official-documents/us-co-ccr-9-2503-6-colorado-works.pdf",
+      "sha256": "9509f0f5d7a6bb9d32b2ab2e55568763abda3b11edf945331d036506c326635f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-co --document-class regulation --target-version 2026-07-13-recovery-r2026-09-11-tanf-consolidated (run note: docs/ingest-runs/2026-09-11-release-consolidation.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 250,
+    "missing_count": 0,
+    "provision_count": 250,
+    "source_count": 250
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:37:57.230283+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ijs02hzvpNoWoLTy5eXcm2uQ2TlqiYocVISfVUymQZT/3R09MpElikVLGSKjvdZGW+FUoHLieP3ewbNIZSXQDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated"
+}

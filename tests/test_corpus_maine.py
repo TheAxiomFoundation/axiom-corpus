@@ -76,6 +76,24 @@ SAMPLE_SECTION_HTML = """
 </html>
 """
 
+SAMPLE_UNSUBDIVIDED_SECTION_HTML = """
+<html>
+<body>
+<div class="col-sm-12 MRSSection status_current">
+  <h3 class="heading_section">\u00a7115. Payment by credit card</h3>
+  <div class="mrs-text indpara MRSIndentedPara status_current IP">
+    The State Tax Assessor may establish procedures permitting payment of taxes by the use of credit cards.
+    <span class="bhistory">[PL 2005, c. 622, \u00a73 (NEW).]</span>
+  </div>
+  <div class="qhistory">
+    SECTION HISTORY
+    <div class="qhistory_list"><span class="hist_chapter">PL 2005, c. 622, \u00a73 (NEW).</span></div>
+  </div>
+</div>
+</body>
+</html>
+"""
+
 SAMPLE_TITLE = MaineTitle(
     number="36",
     heading="Taxation",
@@ -119,6 +137,18 @@ def test_parse_maine_title_chapter_and_section_pages():
         "PL 1999, c. 731, \u00a7V1 (NEW).",
     )
     assert parsed.notes == ("Revisor's Note: This is a note.",)
+
+
+def test_parse_maine_section_without_subsections_keeps_body():
+    parsed = parse_maine_section(SAMPLE_UNSUBDIVIDED_SECTION_HTML)
+
+    assert parsed.heading == "Payment by credit card"
+    assert parsed.body is not None
+    assert parsed.body.startswith("The State Tax Assessor may establish procedures")
+    assert parsed.source_history == (
+        "[PL 2005, c. 622, \u00a73 (NEW).]",
+        "PL 2005, c. 622, \u00a73 (NEW).",
+    )
 
 
 def test_extract_maine_revised_statutes_from_source_dir_writes_artifacts(tmp_path):

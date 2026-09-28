@@ -1,0 +1,58 @@
+version: "2026-09-23-payroll-contributions"
+# New Jersey payroll contribution statutes for PolicyBench root cause r05 (worker
+# unemployment insurance and workforce fund contributions missing from payroll tax):
+# N.J.S.A. 43:21-7 (unemployment compensation contributions, including (b) rates and the
+# taxable wage base in (b)(3), and (d) worker contributions) and the workforce fund
+# contribution sections N.J.S.A. 34:15D-13 (Workforce Development Partnership Fund) and
+# 34:15D-22 (Supplemental Workforce Fund for Basic Skills).
+# Both sources run the existing source-first new-jersey-statutes adapter against the
+# Legislature's official bulk statutes text (the source of the released
+# 2026-07-16-pit-central-us-nj-title-54a scope). The adapter filters at title grain
+# only, so each scope carries the whole enclosing title (Title 43, Pensions and
+# Retirement and Unemployment Compensation; Title 34, Labor and Workmen's
+# Compensation), a superset of chapters 43:21 and 34:15D that keeps the coverage check
+# against the publisher's full title meaningful. The adapter appends its own scope
+# suffix to the version, so the on-disk scope versions are
+# 2026-09-23-payroll-contributions-us-nj-title-43 and
+# 2026-09-23-payroll-contributions-us-nj-title-34. Both sources share one download
+# cache, so both scopes are cut from the same retrieved ZIP (same SHA-256).
+sources:
+  - source_id: us-nj-statutes-title-43
+    jurisdiction: us-nj
+    document_class: statute
+    adapter: new-jersey-statutes
+    source_url: https://pub.njleg.state.nj.us/Statutes/STATUTES-TEXT.zip
+    options:
+      source_as_of: "2026-09-23"
+      expression_date: "2026-09-23"
+      only_title: "43"
+      download_dir: ../data/corpus/downloads/us-nj-statutes/2026-09-23
+      timeout_seconds: 180
+      request_attempts: 3
+    metadata:
+      source_authority: New Jersey Legislature
+      source_scope_note: >-
+        New Jersey Statutes Title 43 (Pensions and Retirement and Unemployment
+        Compensation) from the Legislature's official STATUTES-TEXT.zip bulk release;
+        contains chapter 21, the Unemployment Compensation Law, including 43:21-7
+        (Contributions).
+
+  - source_id: us-nj-statutes-title-34
+    jurisdiction: us-nj
+    document_class: statute
+    adapter: new-jersey-statutes
+    source_url: https://pub.njleg.state.nj.us/Statutes/STATUTES-TEXT.zip
+    options:
+      source_as_of: "2026-09-23"
+      expression_date: "2026-09-23"
+      only_title: "34"
+      download_dir: ../data/corpus/downloads/us-nj-statutes/2026-09-23
+      timeout_seconds: 180
+      request_attempts: 3
+    metadata:
+      source_authority: New Jersey Legislature
+      source_scope_note: >-
+        New Jersey Statutes Title 34 (Labor and Workmen's Compensation) from the
+        Legislature's official STATUTES-TEXT.zip bulk release; contains chapter 15D,
+        the Workforce Development Partnership Act, including 34:15D-13 (Employer and
+        worker contributions) and 34:15D-22 (Contributions to fund).

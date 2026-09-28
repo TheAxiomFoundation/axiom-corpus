@@ -1,0 +1,2126 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-wi-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 303
+- source_id: us-wi-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 303
+- source_id: us-wi-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 303
+- source_id: us-wi-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 3
+    index_records_total: 303
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-26-0010-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-26-0010: Approval Document (approved July 17, 2026, effective May 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-26-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-26-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-26-0010
+    cms_node_id: '194136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=194136
+    approval_date: '2026-07-17'
+    effective_date: '2026-05-01'
+    summary: This amendment modifies the maximum amount allowed for the maintenance of a home of institutionalized beneficiaries
+      to reflect the Social Security Cost-of-Living Adjustment (COLA).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-26-0001-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-26-0001: Approval Document (approved May 4, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-26-0001
+    cms_node_id: '192231'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192231
+    approval_date: '2026-05-04'
+    effective_date: '2026-01-01'
+    summary: This amendment modifies the maximum amount allowed for the maintenance of a home of institutionalized beneficiaries
+      to reflect the Social Security Cost-of-Living Adjustment (COLA).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-25-0005-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-25-0005: Approval Document (approved June 9, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-25-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-25-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-25-0005
+    cms_node_id: '180766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=180766
+    approval_date: '2025-06-09'
+    effective_date: '2025-01-01'
+    summary: This Amendment resource disregard of cash received in conjunction with governmental or nongovernmental medical
+      or social services programs.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-25-0006-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-25-0006: Approval Document (approved April 25, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-25-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-25-0006
+    cms_node_id: '179086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179086
+    approval_date: '2025-04-25'
+    effective_date: '2025-01-01'
+    summary: This amendment modified the maximum amount allowed for the maintenance of a home of institutionalized beneficiaries
+      to reflect the Social Security Cost-of-Living Adjustment (COLA).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-25-0006-a-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-25-0006-A: Approval Document (approved April 25, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-25-0006-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-25-0006-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-25-0006-A
+    cms_node_id: '179111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179111
+    approval_date: '2025-04-25'
+    effective_date: '2025-01-01'
+    summary: The state memorialized the new income standards for its optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid under Wisconsin's State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0014-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0014: Approval Document (approved November 4, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0014
+    cms_node_id: '171536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=171536
+    approval_date: '2024-11-04'
+    effective_date: '2024-07-01'
+    summary: This amendment will increase the personal needs allowance from $45 to $55 per individual and from $90 to $110
+      per couple.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0010-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0010: Approval Document (approved September 20, 2024, effective March 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0010
+    cms_node_id: '169706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169706
+    approval_date: '2024-09-20'
+    effective_date: '2024-03-01'
+    summary: This Amendment totally disregards Medicare Advantage Supplemental Benefits as income and Goals and objectives
+      as assets.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0007-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0007: Approval Document (approved June 12, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0007
+    cms_node_id: '165906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165906
+    approval_date: '2024-06-12'
+    effective_date: '2024-01-01'
+    summary: This SPA in which the state will document its methodology for considering reasonably predictable changes in income.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0003-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0003: Approval Document (approved June 7, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0003
+    cms_node_id: '165746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165746
+    approval_date: '2024-06-07'
+    effective_date: '2024-01-01'
+    summary: This amendment modifies the maximum amount allowed for the maintenance of a home of institutionalized beneficiaries
+      to reflect the Social Security Adjustment (COLA).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0005-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0005: Approval Document (approved May 23, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0005
+    cms_node_id: '165696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165696
+    approval_date: '2024-05-23'
+    effective_date: '2024-01-01'
+    summary: This Amendment in which the state disregards Tribal General Welfare Assistance (GWA) in determining financial
+      eligibility for certain non-MAGI eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-23-0020-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-23-0020: Approval Document (approved May 23, 2024, effective August 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-23-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-08-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-23-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-23-0020
+    cms_node_id: '165246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165246
+    approval_date: '2024-05-23'
+    effective_date: '2024-08-01'
+    summary: This amendment revises the premium requirements for Medicaid Purchase Plan (MAPP) members to include lowering
+      the monthly premium.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0004-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0004: Approval Document (approved May 13, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0004
+    cms_node_id: '164091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=164091
+    approval_date: '2024-05-13'
+    effective_date: '2024-01-01'
+    summary: This Amendment provides 12 months continuous eligibility for children under the age of 19 in all mandatory and
+      optional eligibility groups (excluding Medically Needy).
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-24-0003-a-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-24-0003-A: Approval Document (approved May 3, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-24-0003-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-24-0003-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-24-0003-A
+    cms_node_id: '163826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163826
+    approval_date: '2024-05-03'
+    effective_date: '2024-01-01'
+    summary: This Amendment memorialize the new income standards for its optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid under Wisconsin's state plan.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-23-0016-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-23-0016: Approval Document (approved September 13, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-23-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-23-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-23-0016
+    cms_node_id: '152996'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152996
+    approval_date: '2023-09-13'
+    effective_date: '2023-04-01'
+    summary: This amendment provides assurance for compliance with third party liability requirements outlined in the Consolidated
+      Appropriates Act (CAA) of 2022
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-23-0005-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-23-0005: Approval Document (approved June 9, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-23-0005
+    cms_node_id: '150371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150371
+    approval_date: '2023-06-09'
+    effective_date: '2023-01-01'
+    summary: The State adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-23-0007-a-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-23-0007-A: Approval Document (approved May 3, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-23-0007-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-23-0007-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-23-0007-A
+    cms_node_id: '148601'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148601
+    approval_date: '2023-05-03'
+    effective_date: '2023-01-01'
+    summary: The State memorialize the new income standards for its optional state supplement program, the beneficiaries of
+      which are eligible for Medicaid under Wisconsin's state plan.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-23-0007-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-23-0007: Approval Document (approved April 21, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-23-0007
+    cms_node_id: '147151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147151
+    approval_date: '2023-04-21'
+    effective_date: '2023-01-01'
+    summary: This amendment adjusts the home maintenance allowance for the elderly, blind and disabled population based on
+      the cost of living adjustment (COLA) for year 2023.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-23-0011-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-23-0011: Approval Document (approved April 14, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-23-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-23-0011
+    cms_node_id: '146836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146836
+    approval_date: '2023-04-14'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to temporarily
+      extend the suspension of premiums for the state's Work Incentives group under section 1902(a)(10)A)(ii)(XIII) of the
+      Act.
+    topics:
+    - Disaster Relief
+    - Premiums
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-22-0018-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-22-0018: Approval Document (approved December 15, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-22-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-22-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-22-0018
+    cms_node_id: '143316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143316
+    approval_date: '2022-12-15'
+    effective_date: '2022-07-01'
+    summary: This SPA will disregard Guaranteed Income Funds from a one-year pilot program for several non-MAGI eligibility
+      groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-22-0017-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-22-0017: Approval Document (approved December 15, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-22-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-22-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-22-0017
+    cms_node_id: '143321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143321
+    approval_date: '2022-12-15'
+    effective_date: '2022-07-01'
+    summary: 'Description: This SPA expands coverage to Children born to persons eligible for CHIP or the 1115 BadgerCare
+      Reform waiver at the tome of birth.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-22-0009-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-22-0009: Approval Document (approved June 23, 2022, effective January 2, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-22-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-02'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-22-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-22-0009
+    cms_node_id: '139181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139181
+    approval_date: '2022-06-23'
+    effective_date: '2022-01-02'
+    summary: Documenting the increases in the standards for its optional state supplement program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-22-0010-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-22-0010: Approval Document (approved June 22, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-22-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-22-0010
+    cms_node_id: '137181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137181
+    approval_date: '2022-06-22'
+    effective_date: '2021-03-11'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to attest that the state covers COVID-19 vaccine, testing, and treatment without cost sharing.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-22-0008-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-22-0008: Approval Document (approved May 20, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-22-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-22-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-22-0008
+    cms_node_id: '136016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=136016
+    approval_date: '2022-05-20'
+    effective_date: '2022-01-01'
+    summary: This amendment adjusts the allowable home maintenance amount for institutionalized beneficiaries based on the
+      5.9% cost of living adjustment (COLA) for year 2022 effective January 1, 2022.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-16-0014-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-16-0014: Approval Document (approved December 9, 2021, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WI-16-0014
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-16-0014/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-16-0014
+    cms_node_id: '128701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128701
+    approval_date: '2021-12-09'
+    effective_date: '2021-10-01'
+    summary: This amendment proposes to update the third-party liability and the Health Insurance Premium Payment program
+      (HIPP) sections of the state plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-21-0012-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-21-0012: Approval Document (approved September 21, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WI-21-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-21-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-21-0012
+    cms_node_id: '126761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=126761
+    approval_date: '2021-09-21'
+    effective_date: '2021-07-01'
+    summary: Substance-used Disorder (SUD) Health Home to add specialized SUD treatment and support services for Medicaid
+      beneficiaries
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-21-0010-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-21-0010: Approval Document (approved June 14, 2021, effective February 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WI-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-02-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-21-0010
+    cms_node_id: '109246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109246
+    approval_date: '2021-06-14'
+    effective_date: '2021-02-01'
+    summary: Effective February 1, 2021, this amendment adds residential substance use disorder treatment as a covered service
+      in the state plan.
+    topics:
+    - Benefits
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-20-0018-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-20-0018: Approval Document (approved December 23, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WI-20-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-20-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-20-0018
+    cms_node_id: '105061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105061
+    approval_date: '2020-12-23'
+    effective_date: '2020-07-01'
+    summary: Proposed to eliminate cost sharing for individuals under 19 years old and to implement a tracking system to comply
+      with the statutory and regulatory cost sharing tracking requirements in section 1916A of the Social Security Act (“Act”).
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-20-0017-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-20-0017: Approval Document (approved December 21, 2020, effective August 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WI-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-08-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-20-0017
+    cms_node_id: '104961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104961
+    approval_date: '2020-12-21'
+    effective_date: '2020-08-01'
+    summary: Updates the income disregards for multiple eligibility groups
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-20-0007-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-20-0007: Approval Document (approved June 12, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-20-0007
+    cms_node_id: '99276'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99276
+    approval_date: '2020-06-12'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to provide for an extension of the reasonable opportunity period for non-citizens declaring to be in a satisfactory
+      immigration status and to allow licensed practitioners practicing within their scope of practice such as nurse practitioners
+      and physicians assistants, to order home health services.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-20-0010-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-20-0010: Approval Document (approved June 12, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-20-0010_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-20-0010
+    cms_node_id: '99286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99286
+    approval_date: '2020-06-12'
+    effective_date: '2020-04-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the suspend all cost sharing for the Work Incentives group under 1902(a)(10)(A)(XIII) of the Social Security
+      Act and extend all prior authorization by automatic renewal without clinical review or time/quantity extensions, and
+      allow automatic renewal of prior authorization for medications without clinical review or time/quantity extensions.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-20-0004-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-20-0004: Approval Document (approved May 7, 2020, effective April 18, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-18'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-20-0004
+    cms_node_id: '98271'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98271
+    approval_date: '2020-05-07'
+    effective_date: '2020-04-18'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to expand Hospital Presumptive Eligibility to include the Aged, Blind, and Disabled Population.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-20-0002-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-20-0002: Approval Document (approved April 30, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-20-0002
+    cms_node_id: '99121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99121
+    approval_date: '2020-04-30'
+    effective_date: '2020-01-01'
+    summary: Cost of Living Adjustments for Eligibility Requirements
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-19-0017-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-19-0017: Approval Document (approved February 24, 2020, effective December 11, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-19-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-12-11'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-19-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-19-0017
+    cms_node_id: '86546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86546
+    approval_date: '2020-02-24'
+    effective_date: '2019-12-11'
+    summary: Modifies Disproportionate Share Hospital (DSH) Payments. Specifically, this amendment modifies payments to hospitals
+      that serve a disproportionate share of low-income patients and meet eligibility requirements
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-19-0011-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-19-0011: Approval Document (approved December 13, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-19-0011_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-19-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-19-0011
+    cms_node_id: '52791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52791
+    approval_date: '2019-12-13'
+    effective_date: '2019-09-01'
+    summary: Medically Needy Income Modification
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-19-0011-approval-document-2
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-19-0011: Approval Document (approved December 13, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-19-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-19-0011/approval-document-2
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-19-0011
+    cms_node_id: '52471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52471
+    approval_date: '2019-12-13'
+    effective_date: '2019-09-01'
+    summary: Medically Needy Income Modification.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-18-0004-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-18-0004: Approval Document (approved June 21, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-18-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-18-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-18-0004
+    cms_node_id: '10191'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10191
+    approval_date: '2018-06-21'
+    effective_date: '2018-01-01'
+    summary: Managed Care Enrollment for SSI-Eligible Members.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-15-0006-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-15-0006: Approval Document (approved May 8, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-15-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-15-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-15-0006
+    cms_node_id: '27431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27431
+    approval_date: '2015-05-08'
+    effective_date: '2015-01-01'
+    summary: Presumptive Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-13-017-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-13-017: Approval Document (approved July 7, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-13-017
+    cms_node_id: '35811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35811
+    approval_date: '2014-07-07'
+    effective_date: '2013-10-01'
+    summary: Eligibility Irrevocable Burial Trusts.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-14-010-mm5-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-14-010-MM5: Approval Document (approved June 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-14-010-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-14-010-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-14-010-MM5
+    cms_node_id: '36046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36046
+    approval_date: '2014-06-24'
+    effective_date: '2014-01-01'
+    summary: End Interstate Residency Agreement with Florida SPA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-14-006-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-14-006: Approval Document (approved June 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-14-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-14-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-14-006
+    cms_node_id: '36311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36311
+    approval_date: '2014-06-12'
+    effective_date: '2014-01-01'
+    summary: Implements MAGI-Related Single State Agency SPA
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-14-005-mm1-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-14-005-MM1: Approval Document (approved April 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-14-005-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-14-005-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-14-005-MM1
+    cms_node_id: '34336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34336
+    approval_date: '2014-04-24'
+    effective_date: '2014-01-01'
+    summary: MAGI Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-14-011-mm1-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-14-011-MM1: Approval Document (approved April 24, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-14-011-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-14-011-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-14-011-MM1
+    cms_node_id: '34341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34341
+    approval_date: '2014-04-24'
+    effective_date: '2014-04-01'
+    summary: Incorporates MAGI-Based Eligibility Groups Into Wisconsin's State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-13-024-mm4-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-13-024-MM4: Approval Document (approved April 24, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-024-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-024-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-13-024-MM4
+    cms_node_id: '37631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37631
+    approval_date: '2014-04-24'
+    effective_date: '2013-10-01'
+    summary: Updates Group 4 Single State Agency.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-13-022-mm2-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-13-022-MM2: Approval Document (approved March 17, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-022-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-022-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-13-022-MM2
+    cms_node_id: '38286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38286
+    approval_date: '2014-03-17'
+    effective_date: '2013-10-01'
+    summary: The SPA incorporates the MAGI-based eligibility process requirements, including the single streamlined application,
+      into Wisconsin's Medicaid state plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-13-026-mm6-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-13-026-MM6: Approval Document (approved December 5, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-026-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-026-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-13-026-MM6
+    cms_node_id: '39961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39961
+    approval_date: '2013-12-05'
+    effective_date: '2014-01-01'
+    summary: Incorporates Medicaid MAGI-Related Citizenship and Immigration Status.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-13-025-mm5-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-13-025-MM5: Approval Document (approved December 5, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-025-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-025-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-13-025-MM5
+    cms_node_id: '39966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39966
+    approval_date: '2013-12-05'
+    effective_date: '2014-01-01'
+    summary: Incorporates Medicaid MAGI-Related Residency Amendment.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-13-021-mm1-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-13-021-MM1: Approval Document (approved October 30, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-021-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-13-021-MM1
+    cms_node_id: '39971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39971
+    approval_date: '2013-10-30'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-11-005-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-11-005: Approval Document (approved December 16, 2011, effective February 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-11-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-02-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-11-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-11-005
+    cms_node_id: '25121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25121
+    approval_date: '2011-12-16'
+    effective_date: '2012-02-01'
+    summary: Eligibility irrevocable burial trusts.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-10-009-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-10-009: Approval Document (approved December 23, 2010, effective November 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-10-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-11-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-10-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-10-009
+    cms_node_id: '40406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40406
+    approval_date: '2010-12-23'
+    effective_date: '2010-11-01'
+    summary: Adding family planning eligibility category to the state plan.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-10-009-attachment
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-10-009: Attachment (approved December 23, 2010, effective November 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-10-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-11-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-10-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: WI-10-009
+    cms_node_id: '40406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40406
+    approval_date: '2010-12-23'
+    effective_date: '2010-11-01'
+    summary: Adding family planning eligibility category to the state plan.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-10-009-form-cms-179
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-10-009: Form CMS-179 (approved December 23, 2010, effective November 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-10-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-11-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-10-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: WI-10-009
+    cms_node_id: '40406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40406
+    approval_date: '2010-12-23'
+    effective_date: '2010-11-01'
+    summary: Adding family planning eligibility category to the state plan.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-023-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-023: Approval Document (approved March 9, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-023-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-09-023
+    cms_node_id: '40441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40441
+    approval_date: '2010-03-09'
+    effective_date: '2009-10-01'
+    summary: Exemption of Immigrant Children and Pregnant Women from the 5 - Year Bar.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-023-attachment
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-023: Attachment (approved March 9, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-023-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-023/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: WI-09-023
+    cms_node_id: '40441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40441
+    approval_date: '2010-03-09'
+    effective_date: '2009-10-01'
+    summary: Exemption of Immigrant Children and Pregnant Women from the 5 - Year Bar.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-023-form-cms-179
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-023: Form CMS-179 (approved March 9, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-023-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-023/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: WI-09-023
+    cms_node_id: '40441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40441
+    approval_date: '2010-03-09'
+    effective_date: '2009-10-01'
+    summary: Exemption of Immigrant Children and Pregnant Women from the 5 - Year Bar.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-08-025-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-08-025: Approval Document (approved December 15, 2009, effective October 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-08-025-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-08-025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-08-025
+    cms_node_id: '40461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40461
+    approval_date: '2009-12-15'
+    effective_date: '2008-10-01'
+    summary: Increase income limits for pregnant women and infants.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-08-025-attachment
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-08-025: Attachment (approved December 15, 2009, effective October 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-08-025-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-08-025/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: WI-08-025
+    cms_node_id: '40461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40461
+    approval_date: '2009-12-15'
+    effective_date: '2008-10-01'
+    summary: Increase income limits for pregnant women and infants.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-08-025-form-cms-179
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-08-025: Form CMS-179 (approved December 15, 2009, effective October 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-08-025-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-10-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-08-025/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: WI-08-025
+    cms_node_id: '40461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40461
+    approval_date: '2009-12-15'
+    effective_date: '2008-10-01'
+    summary: Increase income limits for pregnant women and infants.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-002-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-002: Approval Document (approved June 26, 2009, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-002-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-09-002
+    cms_node_id: '40296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40296
+    approval_date: '2009-06-26'
+    effective_date: '2009-01-01'
+    summary: Cost of living adjustments for eligibility requirements.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-002-attachment
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-002: Attachment (approved June 26, 2009, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-002-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-002/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: WI-09-002
+    cms_node_id: '40296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40296
+    approval_date: '2009-06-26'
+    effective_date: '2009-01-01'
+    summary: Cost of living adjustments for eligibility requirements.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-002-form-cms-179
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-002: Form CMS-179 (approved June 26, 2009, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-002-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-002/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: WI-09-002
+    cms_node_id: '40296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40296
+    approval_date: '2009-06-26'
+    effective_date: '2009-01-01'
+    summary: Cost of living adjustments for eligibility requirements.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-005-approval-document
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-005: Approval Document (approved May 5, 2009, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-005-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WI-09-005
+    cms_node_id: '40291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40291
+    approval_date: '2009-05-05'
+    effective_date: '2009-01-01'
+    summary: Independent Foster Care Adolescents.
+    topics: &id006
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-005-attachment
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-005: Attachment (approved May 5, 2009, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-005-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-005/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: WI-09-005
+    cms_node_id: '40291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40291
+    approval_date: '2009-05-05'
+    effective_date: '2009-01-01'
+    summary: Independent Foster Care Adolescents.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-wi-cms-medicaid-state-plan-spa-wi-09-005-form-cms-179
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin Medicaid SPA WI-09-005: Form CMS-179 (approved May 5, 2009, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-09-005-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-09-005/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    source_discovery_group: us-wi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: WI-09-005
+    cms_node_id: '40291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40291
+    approval_date: '2009-05-05'
+    effective_date: '2009-01-01'
+    summary: Independent Foster Care Adolescents.
+    topics: *id006
+    link_label: Form CMS-179

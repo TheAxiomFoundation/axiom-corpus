@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "d93a12e7d254a7d56fbb89f68b5a9823963af5581b619d71614e92f8c738f6bd"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "6c93158fc14d0a00ffbcadaf3fd9acf2b2f0ed79ede182d91cfbbdaa4ab8b1ba"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "9f910b94781cf428b9e99d522ce3f973b404291ca2ae19778a4194ab731a6a40"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ia-hhs-general-letter-7-e-126.pdf",
+      "sha256": "0722308a20a7fbcb31f8fcdeb2a123a808b021a3071abdbca781aa63002e4da5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ia-hhs-general-letter-7-f-104.pdf",
+      "sha256": "d65774ad1ba45d0eca8ed35bbb5c61378defdd3c7046a6a0be4c8c315b676077"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-ia-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 32,
+    "missing_count": 0,
+    "provision_count": 32,
+    "source_count": 32
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:28:07.195485+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QbzBv5CLkcrNU+Dlvd/XEmcDMN1lra2DhGvePY4n2MwAg5OKNeYxnGdOZ+5feIZIhhtc63ky+CnBcbrW/yeEAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

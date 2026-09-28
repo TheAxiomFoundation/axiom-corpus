@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "478a01c6eb4387ab2fc933424b7104ace8ff0c0d913ec1583dae9e4473686d1a"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "b51f94f3b17ab6c07692dd014b714c8f6e9f9dcd78a2ff1bc3e7ed59b6bc6fe0"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/policy/2026-09-10-ccdf-plan-fy2025-2027.jsonl",
+      "sha256": "4d75828ce67673804d5f920a73e8496750eb3763bd07917b58b44c0ab5cf17da"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-10-ccdf-plan-fy2025-2027/official-documents/us-sc-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "849fd5c5a22d1bf1c5404c4ff973239415dddac314241a60061fac90fbb2f810"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ccdf-plan-fy2025-2027 --manifest manifests/us-sc-ccdf-state-plan-fy2025-2027.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-12T12:48:26.716106+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zXi4lr5SKBSLrWQTrpzRCmMqRh7y2P6m6eAAJVG3nFrspbIEv3umiCesnr8FhT5x0V0QdqIlTFIwsaLhR/DGCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ccdf-plan-fy2025-2027"
+}

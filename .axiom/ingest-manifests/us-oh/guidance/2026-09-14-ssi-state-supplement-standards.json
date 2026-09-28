@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "5e48cb974252ac7d4c48988638371a9edb31d9bf4c5cde80b67378fe61760155"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "ff83f2498da02d0e40a484c27a0a61b09b25417763fca30165833c71c167891d"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/guidance/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "cbdfc2054ef5d1149ad1914222394c9338a420c62fdcfb53feed144edb5171ab"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-oh-guidance-dbh-residential-state-supplement-brochure.pdf",
+      "sha256": "037e6be86679cd147cdfe074e9b07fefbbc89bfa502671c36a467f0499c3005c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-oh-ssi-state-supplement-standards-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:42:27.352612+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pgcSCOEXVIuWpef8g5RYjOWsbexaO10dkFTbfbGXVsMU5ntlXrrpZXSMQRMXhDM0+8FVskH3T9v+u/epoHrRBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

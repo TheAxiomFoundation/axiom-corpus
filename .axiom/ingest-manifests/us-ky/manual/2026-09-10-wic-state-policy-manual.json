@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "61db63b1600ea32ebcc8d911b5aeabbf2a31c281922b1c4a53cdf47e55f94a2b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "8313b7fe1a5dfa960c0b44c9577b290f861521c844beb0ef3d2a2663b4fcc9ae"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "9b989a8932fccd8298f58b78539703f0c0230e1616d61f6940d215e7f68ec7e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-100.pdf",
+      "sha256": "05c5b60c85f1073d56c5d0fa6925abe288625f5284ac80394880f80c630f791e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-200.pdf",
+      "sha256": "a928fd3d3fab7e49482950cd281566b06a3297f894db7cd094292d88abb019e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-300.pdf",
+      "sha256": "fad794ee21b9dc9870fa2e598534f3c3580703658812f115a7f8be10d4c3e1eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-400.pdf",
+      "sha256": "5c99c34f8b1cbe5983281d89fe0f57c7da0a3bcf6179961836132795a6b5f214"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-500.pdf",
+      "sha256": "985bee7c4b64c8bb244bc873f1aafa3dac7f56c9a84eab5130d457bdf037aa43"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-600.pdf",
+      "sha256": "cd3e5dd86e7de573baee0d60d0f11cd4bd8c65fa6b7b8f06b28cb22bbe13cb54"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-700.pdf",
+      "sha256": "6e98d3180294092706d571be638357cbdb7bd4e1f1292dba5867a66d2cfef969"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-800.pdf",
+      "sha256": "6a6b7e3ba548f45292eeb84303dc9cda23bd4021456659dfba1e59ac87390dac"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-800b.pdf",
+      "sha256": "965eda52c585b9d1ba609f5c50751639eec2349c29a42e019930bf1133838d6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ky-wic-manual-900.pdf",
+      "sha256": "388bb1b76123b4e0111b7a6309ddaad20968720e60f4b47a68be074a763c0009"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-ky-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:52:00.880757+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZCK5wUrk9HYLrSyAv8n9R/EM+GxJtaTY95fTrHRMSyaWEfx9ZCJEOnJMaAgwvZUWW6wqA9sn0C4G55c1UXjwCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

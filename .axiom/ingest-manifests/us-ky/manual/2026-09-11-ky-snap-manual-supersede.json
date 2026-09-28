@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-09-11-ky-snap-manual-supersede.json",
+      "sha256": "d4825217f82a5bbc11340874483a743f7e87f4fa031eaa032c3b0eb95a4a5fa7"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-09-11-ky-snap-manual-supersede.json",
+      "sha256": "20216deab5a23965fa6828a59c8f26fb869c7bb25eb6bb858ecffa1715f84eb9"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-09-11-ky-snap-manual-supersede.jsonl",
+      "sha256": "8dc67701f036c7bdd56e9c07eff5c54be3e1ef87e5b3b653bcad011b936d5a78"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-11-ky-snap-manual-supersede/official-documents/ky-dcbs-dfs-om-vol-ii.pdf",
+      "sha256": "51400040476a0c0990222ea52ce54d063aba59cc80e45142ecf595e70dbcbfc0"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-11-ky-snap-manual-supersede/official-documents/ky-dcbs-dfs-om-vol-iia.pdf",
+      "sha256": "cb5088b185b259d90c984d2fad1bece676661fa4270bf0809a0b8f4fade11e1e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de9a23d2d7610775f446ff26f26e48c9b04a9b7e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-ky-snap-manual-supersede (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 405,
+    "missing_count": 0,
+    "provision_count": 405,
+    "source_count": 405
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-13T19:34:43.451571+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sUKL3aIuSkUAQP3hBPokYwq+W2I6JuDtOTdHRZs0a+ldNlMud2oYctvZOeAAGcXS2Xmd+NA6zGLlLS6RyjEgCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-ky-snap-manual-supersede"
+}

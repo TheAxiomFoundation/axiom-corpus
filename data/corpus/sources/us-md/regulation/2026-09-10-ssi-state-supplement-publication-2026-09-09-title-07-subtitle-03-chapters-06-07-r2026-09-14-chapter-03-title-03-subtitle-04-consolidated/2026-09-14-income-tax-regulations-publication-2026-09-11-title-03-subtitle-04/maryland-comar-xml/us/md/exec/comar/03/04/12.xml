@@ -1,0 +1,519 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>12</num>
+  <heading>Nonresident Real Estate Withholding Tax</heading>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Applicability.</heading>
+    <text>Effective Date. This chapter applies to all deeds and other instruments of transfer recorded with the clerk or filed with the Department on or after October 1, 2003.</text>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|12|.02">
+    <prefix>Regulation</prefix>
+    <num>.02</num>
+    <heading>Definitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this chapter, the following terms have the meanings indicated.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Terms Defined.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Clerk” means clerk of the circuit court for any county of the State or Baltimore City.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Debt incurred in contemplation of sale” means a debt secured by a mortgage, deed of trust, or other instrument on the property being sold with an effective date of not earlier than 90 days before the date of sale.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>“Department” means the Department of Assessments and Taxation.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>“Installment sale” means any sale:</text>
+        <para>
+          <num>(a)</num>
+          <text>In which at least one payment is scheduled after the end of the tax year in which the transfer occurred; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Treated as an installment sale for federal income tax purposes under §453 of the Internal Revenue Code (26 U.S.C. §453).</text>
+        </para>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>“Like-kind exchange” means an exchange of property within the provisions of §1031 of the Internal Revenue Code (26 U.S.C. §1031).</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Net Proceeds.</text>
+        <para>
+          <num>(a)</num>
+          <text>“Net proceeds” means the total sales price paid to the transferor less:</text>
+          <para>
+            <num>(i)</num>
+            <text>Debts of the transferor secured by a mortgage or other lien on the property being transferred that are being paid upon the sale or exchange of the property, except debts incurred in contemplation of sale; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Other expenses of the transferor arising out of the sale or exchange of the property and disclosed on a settlement statement prepared in connection with the sale or exchange of the property, not including adjustments in favor of the transferee.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>“Net proceeds” does not include adjustments in favor of the transferor that are disclosed on a settlement statement prepared in connection with the sale or exchange of the property.</text>
+        </para>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>“Nonresident entity” means an entity that:</text>
+        <para>
+          <num>(a)</num>
+          <text>Is not formed under the laws of the State more than 90 days before the date of sale of the property; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Is not qualified by or registered with the Department of Assessments and Taxation to do business in the State more than 90 days before the date of sale of the property.</text>
+        </para>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>“Principal residence” means a residence that is described in §121 of the Internal Revenue Code (26 U.S.C. §121).</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>“Real estate reporting person” has the meaning stated in §6045(e)(2) of the Internal Revenue Code (26 U.S.C. §6045(e)(2)).</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>“Resident” means an individual as defined in <cite doc="Md. Code" path="gtg|10-101">Tax-General Article, §10-101(k), Annotated Code of Maryland</cite>.</text>
+      </para>
+      <para>
+        <num>(11)</num>
+        <text>“Resident entity” means an entity that:</text>
+        <para>
+          <num>(a)</num>
+          <text>Is formed under the laws of the State more than 90 days before the date of sale of the property; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Is formed under the laws of another state and is qualified by or registered with the Department of Assessments and Taxation to do business in the State more than 90 days before the date of sale of the property.</text>
+        </para>
+      </para>
+      <para>
+        <num>(12)</num>
+        <text>“Transferor” means:</text>
+        <para>
+          <num>(a)</num>
+          <text>The person or entity named as grantor on the deed that records the sale or exchange of the property; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>In the case of an LLC, where the sole member is an individual or two married individuals, the entity described in <cite path="03|04|12|.02|B.|(12)|(a)">§B(12)(a) of this regulation</cite> or the member or members of the LLC.</text>
+        </para>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|12|.03">
+    <prefix>Regulation</prefix>
+    <num>.03</num>
+    <heading>Withholding Requirements.</heading>
+    <para>
+      <num>A.</num>
+      <text>Except as provided in <cite path="03|04|12|.03|B.">§B of this regulation</cite>, a deed or other instrument transferring title may not be:</text>
+      <para>
+        <num>(1)</num>
+        <text>Recorded with the clerk; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Filed with the Department.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>A deed or other instrument transferring title may be recorded with the clerk or filed with the Department when:</text>
+      <para>
+        <num>(1)</num>
+        <text>Payment is made to the clerk or Department in an amount equal to the applicable percentage of the total payment to a nonresident or nonresident entity, respectively, as stated in <cite doc="Md. Code" path="gtg|10-912">Tax-General Article, §10-912(c), Annotated Code of Maryland</cite>;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The transferor certifies under the penalties of perjury in the transfer document or an attached affidavit that the transferor is a resident or resident entity;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The transferor certifies under the penalties of perjury in the transfer document or an attached affidavit that the property being transferred is the transferor's principal residence as defined in <cite path="|03|04|12|.02">Regulation .02 of this chapter</cite>;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>The transferor presents to the clerk or the Department:</text>
+        <para>
+          <num>(a)</num>
+          <text>A Certificate of Full or Partial Exemption (Form MW506E) issued by the Comptroller in accordance with <cite path="|03|04|12|.04">Regulation .04 of this chapter</cite>; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>If a partial exemption is issued by the Comptroller, payment in the amount shown as due on the Certificate of Full or Partial Exemption;</text>
+        </para>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The transfer is:</text>
+        <para>
+          <num>(a)</num>
+          <text>A transfer pursuant to a foreclosure of a mortgage, deed of trust, or other lien instrument; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A transfer pursuant to a deed in lieu of foreclosure;</text>
+        </para>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The transferor is an agency or instrumentality of the United States;</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>The transferor is:</text>
+        <para>
+          <num>(a)</num>
+          <text>The State;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A unit of the State; or</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>A political subdivision of the State; or</text>
+        </para>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>The property is transferred pursuant to a deed or other instrument of writing that includes a statement of consideration required by <cite doc="Md. Code" path="gtp|12-104">Tax-Property Article, §12-104, Annotated Code of Maryland</cite>, indicating that the consideration payable is zero.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|12|.04">
+    <prefix>Regulation</prefix>
+    <num>.04</num>
+    <heading>Certificate of Full or Partial Exemption.</heading>
+    <para>
+      <num>A.</num>
+      <text>The transferor may file an Application for Certificate of Full or Partial Exemption (Form MW506AE) with the Comptroller.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The transferor shall:</text>
+      <para>
+        <num>(1)</num>
+        <text>File the Application for Certificate of Full or Partial Exemption with the Comptroller at least 21 days before the settlement date;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Indicate on the Application for Certificate of Full or Partial Exemption the reason or reasons the transfer qualifies for a full or partial exemption from the withholding tax; and</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Include with the Application for Certificate of Full or Partial Exemption sufficient documentation to support the request.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>The Comptroller may issue a Certificate of Full or Partial Exemption for any of the following reasons:</text>
+      <para>
+        <num>(1)</num>
+        <text>The tax due has been paid in full to the Comptroller;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The transfer is to a corporation controlled by the transferor under §351 of the Internal Revenue Code (26 U.S.C. §351);</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The transfer is pursuant to a tax-free reorganization as described in §361 of the Internal Revenue Code (26 U.S.C. §361);</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>The transfer is being made on an installment sale basis under §453 of the Internal Revenue Code (26 U.S.C. §453);</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The transfer is by a tax-exempt entity in accordance with §501(a) of the Internal Revenue Code (26 U.S.C. §501(a)) involving no unrelated business taxable income under §12 of the Internal Revenue Code (26 U.S.C. §12);</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The transfer is to a partnership in exchange for an interest in the partnership such that no gain or loss is recognized under §721 of the Internal Revenue Code (26 U.S.C. §721);</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>The transfer is by a partnership to a partner of the partnership in accordance with §731 of the Internal Revenue Code (26 U.S.C. §731);</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>The transfer is by a real estate investment trust under §857 of the Internal Revenue Code (26 U.S.C. §857);</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>The transfer is a like-kind exchange under §1031 of the Internal Revenue Code (26 U.S.C. §1031);</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>The transfer is occurring because of a condemnation and conversion into a similar property under §1033 of the Internal Revenue Code (26 U.S.C. §1033);</text>
+      </para>
+      <para>
+        <num>(11)</num>
+        <text>The transfer is between spouses, or incident to a divorce in accordance with §1041 of the Internal Revenue Code (26 U.S.C. §1041);</text>
+      </para>
+      <para>
+        <num>(12)</num>
+        <text>The transfer is by an S-corporation in accordance with §1368 of the Internal Revenue Code (26 U.S.C. §1368);</text>
+      </para>
+      <para>
+        <num>(13)</num>
+        <text>The transfer is to a disregarded entity, classified as such under 26 CFR §301.7701-3, that is solely owned by the transferor;</text>
+      </para>
+      <para>
+        <num>(14)</num>
+        <text>All or a portion of the gain from the transfer qualifies for the principal residence exclusion from gross income in accordance with §121 of the Internal Revenue Code (26 U.S.C. §121); or</text>
+      </para>
+      <para>
+        <num>(15)</num>
+        <text>The transfer is otherwise exempt as documented by the transferor.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>The Comptroller's decision to issue or deny a Certificate of Full or Partial Exemption and the determination of the amount of tax to be withheld if a partial exemption is granted are final and not subject to appeal.</text>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Like-Kind Exchange.</text>
+      <para>
+        <num>(1)</num>
+        <text>Except as provided in <cite path="03|04|12|.04|E.|(2)">§E(2) of this regulation</cite>, a like-kind exchange that qualifies under the provisions of §1031 of the Internal Revenue Code (26 U.S.C. §1031) and for which a Certificate of Full or Partial Exemption has been issued is not subject to the withholding requirements.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>If at the time of settlement it is known that the property does not qualify as a like-kind exchange under the provisions of §1031 of the Internal Revenue Code (26 U.S.C. §1031) or the transferor will receive taxable boot, then notwithstanding the issuance of the Certificate of Full or Partial Exemption, <cite path="|03|04|12|.03|B.|(1)">Regulation .03B(1) of this chapter</cite> applies to:</text>
+        <para>
+          <num>(a)</num>
+          <text>The total payment; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The taxable boot.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Installment Sale.</text>
+      <para>
+        <num>(1)</num>
+        <text>Except as provided in <cite path="03|04|12|.04|F.|(2)">§F(2) of this regulation</cite>, an installment sale for which a Certificate of Full or Partial Exemption has been issued is not subject to the withholding requirements.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text><cite path="|03|04|12|.03|B.|(1)">Regulation .03B(1)</cite> of this chapter applies to that portion of the total payment that the transferor receives before, at, or within 60 days of settlement.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.05</num>
+    <heading>Responsibilities of Transferee and Real Estate Reporting Person at Settlement.</heading>
+    <para>
+      <num>A.</num>
+      <text>Unless the transfer is fully exempt from the withholding requirements of this chapter, the transferee or real estate reporting person shall:</text>
+      <para>
+        <num>(1)</num>
+        <text>Withhold at settlement the tax required under <cite path="|03|04|12|.03|B.|(1)">Regulation .03B(1) of this chapter</cite>; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Remit the tax to the clerk or to the Department in accordance with <cite path="|03|04|12|.06">Regulation .06 of this chapter</cite>.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>A Return of Income Tax Withholding for Nonresident Sale of Real Property (Form MW506NRS) is required for each transferor for each transfer in which tax was withheld.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|12|.06">
+    <prefix>Regulation</prefix>
+    <num>.06</num>
+    <heading>Additional Requirements for Recordation or Filing.</heading>
+    <para>
+      <num>A.</num>
+      <text>If a payment is required pursuant to <cite path="|03|04|12|.03|B.|(1)">Regulation .03B(1) of this chapter</cite>, the person presenting the deed or other instrument of transfer shall present the following additional documents to the clerk or the Department:</text>
+      <para>
+        <num>(1)</num>
+        <text>Copies A and B of the Return of Income Tax Withholding for Nonresident Sale of Real Property;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>If issued by the Comptroller, the Certificate of Full or Partial Exemption; and</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>A separate check in the amount of the tax required to be withheld that is made payable to the clerk or to the Department.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The Return of Income Tax Withholding for Nonresident Sale of Real Property required under <cite path="03|04|12|.06|A.|(1)">§A(1) of this regulation</cite> shall be signed under oath by:</text>
+      <para>
+        <num>(1)</num>
+        <text>The transferor of the property;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>An agent of the transferor; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The real estate reporting person.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.07</num>
+    <heading>Duties of the Clerk or the Department.</heading>
+    <para>
+      <num>A.</num>
+      <text>The clerk or the Department shall review the documents presented for recordation or filing for compliance with the requirements of this chapter.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>If applicable, the clerk or the Department shall collect any tax due on the transfer.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>On or before the 21st day of the month following the month in which the clerk or the Department receives the payment of tax under <cite path="|03|04|12|.03|B.|(1)">Regulation .03B(1) of this chapter</cite>, the clerk or the Department shall:</text>
+      <para>
+        <num>(1)</num>
+        <text>Pay over to the Comptroller the amount of tax collected;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Submit to the Comptroller:</text>
+        <para>
+          <num>(a)</num>
+          <text>The Monthly Reconciliation Report for Sales of Real Property by Nonresidents (Form MW508NRS);</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The Sales of Real Property by Nonresidents Schedule of Withholding Receipts that includes the:</text>
+          <para>
+            <num>(i)</num>
+            <text>Name of the transferor;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Address of the transferor;</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>Social Security number or federal employer identification number of the transferor;</text>
+          </para>
+          <para>
+            <num>(iv)</num>
+            <text>Validation number of the transfer; and</text>
+          </para>
+          <para>
+            <num>(v)</num>
+            <text>Amount of tax collected; and</text>
+          </para>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Copy A of each Return of Income Tax Withholding for Nonresident Sale of Real Property.</text>
+        </para>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.08</num>
+    <heading>Procedures for Requesting Early Refunds.</heading>
+    <para>
+      <num>A.</num>
+      <text>An individual or a corporation that has paid withholding tax in excess of the amount owed may file an Application for Tentative Refund of Withholding on Sales of Real Property by Nonresidents (MW506R) with the Comptroller 60 days after the date the tax was paid to the clerk or the Department, but not later than December 1 of the calendar year in which the tax was paid.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>When the transferor of real property is a pass-through entity:</text>
+      <para>
+        <num>(1)</num>
+        <text>A member or a shareholder of a pass-through entity may file an Application for Tentative Refund of Withholding on Sales of Real Property by Nonresidents if the applicant provides sufficient documentation of their status as a member of the pass-through entity and:</text>
+        <para>
+          <num>(a)</num>
+          <text>The member or shareholder is the sole member or shareholder of the transferor pass-through entity; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The members or shareholders is one of two members or shareholders and the two members or shareholders are a married couple.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A pass-through entity or partner of a pass-through entity may not file an Application for Tentative Refund of Withholding on Sales of Real Property by Nonresidents.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>An individual or a corporation shall attach to the Application for Tentative Refund of Withholding on Sales of Real Property by Nonresidents:</text>
+      <para>
+        <num>(1)</num>
+        <text>Copy C of the Return of Income Tax Withholding for Nonresident Sale of Real Property;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A copy of the HUD 1 Settlement Statement; and</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Any other document as required by the Comptroller.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>The Comptroller may issue a tentative refund of withholding for any of the reasons found in <cite path="|03|04|12|.04|C.">Regulation .04C of this chapter</cite>.</text>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>The Comptroller's decision to deny or grant in part an Application for Tentative Refund of Withholding on Sales of Real Property by Nonresidents is final and not subject to appeal.</text>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>The filing of the Application for Tentative Refund of Withholding on Sales of Real Property by Nonresidents does not relieve an individual or a corporation of the requirement to file a State income tax return.</text>
+    </para>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container">Tax-General Article, §§<cite doc="Md. Code" path="gtg|2-103">2-103</cite> and <cite doc="Md. Code" path="gtg|10-912">10-912</cite>, Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container">Effective date:</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2003-10-01">Regulations <cite path="|03|04|12|.01">.01</cite>—<cite path="|03|04|12|.08">.08</cite> adopted as an emergency provision effective October 1, 2003 (30:22 Md. R. 1574); emergency status extended at 31:22 Md. R. 1594; emergency status expired March 31, 2005</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2005-07-18">Regulations <cite path="|03|04|12|.01">.01</cite>—<cite path="|03|04|12|.08">.08</cite> adopted as an emergency provision effective April 1, 2005 (32:11 Md. R. 981); adopted permanently effective July 18, 2005 (32:14 Md. R. 1275)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2007-10-22"><cite path="|03|04|12|.01">Regulation .01</cite> amended effective October 22, 2007 (34:21 Md. R. 1913)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|12|.02|B.">Regulation .02B</cite> amended effective October 22, 2007 (34:21 Md. R. 1913); May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2011-03-21"><cite path="|03|04|12|.03|B.">Regulation .03B</cite> amended effective March 21, 2011 (38:6 Md. R. 393)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|12|.04|C.">Regulation .04C</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|12|.08">Regulation .08</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2013-07-08"><cite path="|03|04|12|.08|A.">Regulation .08A</cite> amended effective October 22, 2007 (34:21 Md. R. 1913); April 19, 2010 (37:8 Md. R. 614); July 8, 2013 (40:13 Md. R. 1073)</annotation>
+  </annotations>
+</container>

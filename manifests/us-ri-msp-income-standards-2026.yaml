@@ -1,0 +1,27 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ri-eohhs-medicare-premium-payment-program-2026
+  jurisdiction: us-ri
+  document_class: guidance
+  title: 'Medicare Premium Payment Program (MPP): 2026 monthly income and resource limits (EOHHS page)'
+  source_url: https://eohhs.ri.gov/Consumer/ProgramsServices/MedicarePremiumPaymentProgram.aspx
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-02-01'
+  citation_path: us-ri/guidance/eohhs/medicare-premium-payment-program/2026
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Executive Office of Health and Human Services (EOHHS)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ri/guidance
+    index_url: https://eohhs.ri.gov/Consumer/ProgramsServices/MedicarePremiumPaymentProgram.aspx
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    page_updated: '2026-09-02'
+    closure_elements_extra:
+    - MED-ST-1
+    - MED-ST-2
+    - MED-ST-3
+    - MED-ST-4

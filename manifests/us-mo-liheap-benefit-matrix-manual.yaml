@@ -1,0 +1,36 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-mo-liheap-dss-liheap-policy-procedure-manual
+  jurisdiction: us-mo
+  document_class: manual
+  title: Missouri LIHEAP Policy and Procedure Manual (2025 edition)
+  source_url: https://dss.mo.gov/media/pdf/liheap-policy-procedure-manual
+  download_url: https://dss.mo.gov/sites/mydss/files/media/pdf/2025/10/liheap-policy-procedure-manual.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-mo/manual/dss/liheap-policy-procedure-manual
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: MO
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dss.mo.gov/fsd/energy-assistance/liheap-contractor-supplier-information
+    on_clearinghouse_index: true
+    source_discovery_group: us-mo/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dss.mo.gov/fsd/energy-assistance/liheap-contractor-supplier-information
+    extraction_granularity: pdf_page
+    expression_date_note: FFY 2026 edition posted 2025-10 (PDF dated 2025-09-30); the manual prints no effective date; Appendix
+      K is labelled FFY 24
+    access_note: dss.mo.gov HTTP 200 to the plain client (the Clearinghouse link mydss.mo.gov/media/pdf/liheap-manual redirects
+      to an HTML media page embedding the 2024 edition; the 2025 edition is linked from the contractor information page)
+    page_count: 129
+    benefit_matrix_pdf_pages: '129'
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

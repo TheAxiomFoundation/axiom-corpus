@@ -1,0 +1,38 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-me-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-me
+  document_class: policy
+  title: Maine CCDF Plan, FFY 2025-2027
+  source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/Maine%20State%20Plan%20CCDF%20FFY%202025-2027%20For%20Maine_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-me/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: 'Certified as of 2024-09-12 (located on retry 2026-09-10: the ACF index link goes to the ''paying for child
+      care'' page; the plan is ''Maine State Plan CCDF FFY 2025-2027 for Maine'' on the OCFS ''Child Care Affordability Information
+      & Resources'' page; Amendments #1-#4, the Appendix, public comments and the Notice of Compliance are posted separately,
+      not taken; approved print not posted)'
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/ME-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-me/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

@@ -22,7 +22,12 @@ EXPECTED_DOCUMENT_COUNT = 5
 EXPECTED_SECTION_COUNT = 737
 EXPECTED_ROW_COUNT = EXPECTED_DOCUMENT_COUNT + EXPECTED_SECTION_COUNT
 EXPECTED_SECTIONS_BY_CHAPTER = {"1": 181, "2": 133, "3": 284, "4": 119, "5": 20}
-EXPECTED_SOURCE_SET_SHA256 = "25143e250e2c33e00d7b4c8888737356c5c90f04e94950c994930d2be58bbae1"
+EXPECTED_SOURCE_SET_SHA256 = "80706c6a880d633d6d59480b74052245bc01d63cea5abbad3854ce117a4504a9"
+# The manifest now pins the superseding edition (2026-09-11 re-take): chapters 2 and 3 are
+# the 07-28-2026 editions, and every chapter is taken from the publisher's pdfBlobName copy
+# because the _Official blobs the API names are no longer served (HTTP 400). The released
+# scope below is immutable; its per-file facts come from its own inventory.
+EXPECTED_SOURCE_AS_OF = {"1": "2026-09-11", "2": "2026-09-11", "3": "2026-09-11", "4": "2026-07-17", "5": "2026-07-17"}
 SECTION_START_RE = re.compile(
     r"^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+"
 )
@@ -61,7 +66,9 @@ def test_nebraska_manifest_pins_current_title_475_chapters() -> None:
         "5",
     ]
     assert hashlib.sha256(source_set).hexdigest() == EXPECTED_SOURCE_SET_SHA256
-    assert all(document["source_as_of"] == "2026-07-17" for document in documents)
+    assert [document["source_as_of"] for document in documents] == [
+        EXPECTED_SOURCE_AS_OF[document["metadata"]["chapter_number"]] for document in documents
+    ]
     assert all(document["source_format"] == "pdf" for document in documents)
     assert all(document["metadata"]["primary_source"] is True for document in documents)
     assert all(document["metadata"]["program"] == "SNAP" for document in documents)
@@ -76,7 +83,6 @@ def test_nebraska_manifest_pins_current_title_475_chapters() -> None:
     assert all(
         document["request"]
         == {
-            "verify_tls": False,
             "range_fetch": True,
             "range_backend": "curl",
             "browser_user_agent": True,
@@ -90,6 +96,11 @@ def test_nebraska_scope_retains_every_labeled_pdf_provision() -> None:
     rows = _provisions()
     sections = [row for row in rows if row["kind"] == "section"]
     inventory = json.loads(INVENTORY_PATH.read_text())["items"]
+    released_documents = {
+        Path(item["source_path"]).stem: item["metadata"]
+        for item in inventory
+        if item["metadata"].get("kind") == "document"
+    }
     coverage = json.loads(COVERAGE_PATH.read_text())
     retained_files = sorted((SOURCE_ROOT / "official-documents").glob("*.pdf"))
     sections_by_source = Counter(row["source_id"] for row in sections)
@@ -119,9 +130,9 @@ def test_nebraska_scope_retains_every_labeled_pdf_provision() -> None:
                 for line in page.get_text().splitlines()
                 if (match := SECTION_START_RE.match(line.strip())) is not None
             ]
-            assert pdf.page_count == document["metadata"]["page_count"]
+            assert pdf.page_count == released_documents[source_id]["page_count"]
 
-        assert sha256_file(source_file) == document["metadata"]["source_sha256"]
+        assert sha256_file(source_file) == released_documents[source_id]["source_sha256"]
         assert len(source_labels) == len(set(source_labels))
         assert set(source_labels) == generated_labels
         assert len(generated_labels) == EXPECTED_SECTIONS_BY_CHAPTER[chapter]

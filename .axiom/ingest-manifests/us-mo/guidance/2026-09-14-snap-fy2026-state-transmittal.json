@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "55bdb32023606b8d5f5883e1e08e0f5bb1c7d7c2e1faeffed60c51c3d1deba54"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "21840543e195a25f0378da261520264d3b72f7b6315f0c9fd6d6bb2df4a15f7b"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "9617772ad7bd8c6d046406d07b446bfbc8f80f49f9df15a0614c15b05959cba7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-mo-fsd-snap-changes-flyer-2025-10.pdf",
+      "sha256": "d6cf7c6c4981dc9c880bd5d2b47bf10ea5c4ab08f4409b320802bf35866df2da"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-mo-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:01:49.834698+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kqfsMuVsWswNzgNfaDb3uXonDBviG0e73kkUbXUCK3rdBTO9dI2zhd+t921gxiHCelgSPEFvgE4z6KSXie4LAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

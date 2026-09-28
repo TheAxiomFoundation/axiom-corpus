@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/guidance/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "fa4c925587b54a4c029b84ba86a248762694b74106d0dcca1b6b6a218b4d3ee1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/guidance/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "81dcbdd8bc4bbfca2b5b1db0cfcb734c7c938a339bd30b81166460e16b0ec553"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/guidance/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "c23182e14f1392d2749a2ef515d8728f6ce7c23660d3dde8b56b3c75231359fd"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/guidance/2026-09-14-liheap-benefit-matrix/official-documents/us-ne-liheap-dhhs-liheap-guidance-document.pdf",
+      "sha256": "3b813ac95dd3ce7d0c0537ebd99aba80bae183b7c5ddbddb09698aa9ab6febd9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-ne-liheap-benefit-matrix-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:17:52.567880+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2fXmmKiiyOdV9QGbB/YfHe9zv2PxoqvhuFgnTSlPPWwActpMy323DX3GEDRSt3o8NKuSrG250DkKkdTFiGQEDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

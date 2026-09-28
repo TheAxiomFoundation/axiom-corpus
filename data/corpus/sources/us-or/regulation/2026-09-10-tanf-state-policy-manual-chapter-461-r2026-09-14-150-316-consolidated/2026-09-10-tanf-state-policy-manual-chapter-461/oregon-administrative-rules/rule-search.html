@@ -1,0 +1,649 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Oregon Secretary of State Administrative Rules</title>
+        
+<link rel="stylesheet" type="text/css" href="css/global_style.css" />
+<!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="css/IEstyles.css"/>
+<![endif]--> 
+<link href="js/ui-theme/jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="js/custom/jquery-ui.css" />
+<link href="js/tablesorter/css/theme.green.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Orienta:400,700,400italic,700italic|Libre+Baskerville|Nobile:400,400italic,700,700italic" rel="stylesheet" type="text/css"/>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link rel="icon" href="images/favicon.ico" />
+
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="js/ui-theme/jquery-ui.js" ></script>
+<script src="js/tablesorter/js/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="js/filings.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-25411754-13', 'auto');
+  ga('create', 'UA-25411754-4', 'auto', 'sos');
+  
+  ga('send', 'pageview');
+  ga('sos.send', 'pageview');
+</script>  
+        
+        <script type ="text/javascript"> 
+            function changeOrder() {
+                $("#browseForm").attr("action", "changeOrder.action");
+                $("#browseForm").submit();
+            }   
+            
+            $(function() {             
+                $( "#accordion" ).accordion({
+                    active: parseInt($("#tab").val(), 10),
+                    heightStyle: "content",
+                    icons: true
+                });
+             
+                $( "#searchButton" ).click(function( ) {
+                    $("#advancedSearchForm").attr("action", "advancedSearchResults.action");
+                    $("#advancedSearch").val(true);
+                    $("#advancedSearchForm").submit();
+                });
+            
+                $( "#resetButton" ).click(function( ) {
+                    $("#advancedSearchForm").attr("action", "resetSearch.action");
+                    $("#advancedSearchForm").submit();
+                });
+            
+                $( "#ruleSearchButton" ).click(function( ) {
+                    $("#quickSearchForm").attr("action", "ruleSearchResults.action");
+                    $("#quickSearch").val(true);
+                    $("#quickSearchForm").submit();
+                });
+            
+                $('#selectedChapter').on('change', function() { 
+                    $("#browseForm").attr("action", "displayChapterRules.action");
+                    $("#browseForm").submit();
+                });
+            
+                $( "#homeButton" ).click(function( ) {
+                    window.location = "processLogin.action";
+                });
+            
+                $(document).ready(function(){
+                    if($("#sendToGA").val() === 'true') {
+                        var advancedSelectedChapter = $("#advancedSelectedChapterName").val() && $("#advancedSelectedChapterName").val().length > 0 ? $("#advancedSelectedChapterName").val() : '(not set)';
+                        var valueOne = $("#valueOne").val() && $("#valueOne").val().length > 0 ? $("#valueOne").val() : '(not set)';
+                        var valueTwo = $("#valueTwo").val() && $("#valueTwo").val().length > 0 ? $("#valueTwo").val() : '(not set)';
+                        var valueThree = $("#valueThree").val() && $("#valueThree").val().length > 0 ? $("#valueThree").val() : '(not set)';
+                        var criteriaOneType = $("#criteriaOneType").val();
+                        var criteriaTwoType = $("#criteriaTwoType").val();
+                        var criteriaThreeType = $("#criteriaThreeType").val();
+                        var criteriaOneInd = $("#criteriaOneInd").val() == 'true' ? true : false; //convert to boolean
+                        var criteriaTwoInd = $("#criteriaTwoInd").val() == 'true' ? true : false;
+                        var criteriaThreeInd = $("#criteriaThreeInd").val() == 'true' ? true : false;
+                        var queryType = $("#queryType").val();
+                        var resultCount = parseInt($("#resultCount").val());
+                        var searchStatus = $("#searchStatus").val();
+                        ga('send', 'event', 'OARD Advanced Search', 'Search', {
+                            'dimension1': advancedSelectedChapter,
+                            'dimension2': valueOne,
+                            'dimension3': valueTwo,
+                            'dimension4': valueThree,
+                            'dimension5': criteriaOneType,
+                            'dimension6': criteriaTwoType,
+                            'dimension7': criteriaThreeType,
+                            'dimension8': criteriaOneInd,
+                            'dimension9': criteriaTwoInd,
+                            'dimension10': criteriaThreeInd,
+                            'dimension11': queryType,
+                            'dimension12': resultCount,
+                            'dimension13': searchStatus
+                        });
+                        $("#sendToGA").val("false");
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        
+<div class="skip"><a href="#main_content">Skip to main content.</a></div>
+<div id="wrapper">
+    <div class='sos-header-wrapper'>
+        <div class="header-container">
+            <h1 id="banner">Oregon Secretary of State</h1>
+        </div> 
+    </div>
+    <div id="container">
+        
+
+<div id="nav_bar">
+    <!-- Tier One Navigation -->
+        <ul class="navbar" role="navigation">
+           <li><a href="http://sos.oregon.gov">Home</a></li>
+           <li><a href="http://sos.oregon.gov/business/Pages/default.aspx">Business</a></li>
+           <li><a href="http://sos.oregon.gov/voting/Pages/default.aspx">Voting</a></li>
+           <li><a href="http://sos.oregon.gov/elections/Pages/default.aspx">Elections</a></li>
+           <li><a href="http://sos.oregon.gov/archives/Pages/default.aspx" class="active">State Archives</a></li>
+           <li><a href="http://sos.oregon.gov/audits/Pages/default.aspx">Audits</a></li>
+       </ul>
+    </div>
+
+
+        <div id="content_noside"><a name="main_content" id="main_content"></a>
+        <h1>Oregon Administrative Rules</h1>
+        <h2>Current Rules Search</h2>
+        <input type="hidden" name="tab" value="0" id="tab"/>
+        
+        
+        
+
+<noscript class="errors">For full functionality of this site, it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com" target="_blank"> instructions</a> on how to enable JavaScript in your web browser.</noscript>
+
+        <input type="hidden" name="sendToGA" value="" id="sendToGA"/>
+        <input type="hidden" name="advancedSelectedChapterName" value="" id="advancedSelectedChapterName"/>
+        <input type="hidden" name="resultCount" value="" id="resultCount"/>
+        <input type="hidden" name="searchStatus" value="" id="searchStatus"/>
+        <input type="hidden" name="criteriaOneType" value="" id="criteriaOneType"/>
+        <input type="hidden" name="criteriaTwoType" value="" id="criteriaTwoType"/>
+        <input type="hidden" name="criteriaThreeType" value="" id="criteriaThreeType"/> 
+        <input type="hidden" name="queryType" value="" id="queryType"/>
+        <br>
+        <div id="accordion">
+        <h3>Browse By Chapter</h3>
+        <div>
+        <form id="browseForm" name="browseForm" method="post">
+            <div class="form_text">                
+                <select name="selectedChapter" id="selectedChapter">
+    <option value="-1"
+    >Select a chapter...</option>
+    <option value="36">101 - Oregon Health Authority, Public Employees' Benefit Board</option>
+    <option value="96">104 - Oregon Department of Emergency Management</option>
+    <option value="33">105 - Department of Administrative Services, Chief Human Resources Office</option>
+    <option value="186">111 - Oregon Health Authority, Oregon Educators Benefit Board</option>
+    <option value="132">114 - Long Term Care Ombudsman</option>
+    <option value="116">115 - Employment Relations Board</option>
+    <option value="32">122 - Department of Administrative Services, Chief Financial Office</option>
+    <option value="112">123 - Oregon Business Development Department</option>
+    <option value="299">124 - Eastern Oregon Border Economic Development Board</option>
+    <option value="31">125 - Department of Administrative Services</option>
+    <option value="239">128 - Department of Administrative Services, Office of the State Chief Information Officer</option>
+    <option value="93">137 - Department of Justice</option>
+    <option value="100">141 - Department of State Lands</option>
+    <option value="101">142 - Department of State Lands, South Slough National Estuarine Research Reserve</option>
+    <option value="99">150 - Department of Revenue</option>
+    <option value="129">156 - Legislative Administration Committee</option>
+    <option value="178">160 - Secretary of State, Corporation Division</option>
+    <option value="1">161 - Appraiser Certification and Licensure Board</option>
+    <option value="176">162 - Secretary of State, Audits Division</option>
+    <option value="179">165 - Secretary of State, Elections Division</option>
+    <option value="175">166 - Secretary of State, Archives Division</option>
+    <option value="177">167 - Secretary of State, Business Services Division</option>
+    <option value="155">170 - Oregon State Treasury</option>
+    <option value="145">171 - Oregon Investment Council</option>
+    <option value="117">172 - Oregon Facilities Authority</option>
+    <option value="149">173 - Oregon 529 Savings Board</option>
+    <option value="153">177 - Oregon State Lottery</option>
+    <option value="279">180 - Office of the Public Records Advocate</option>
+    <option value="123">198 - Judicial Department</option>
+    <option value="143">199 - Oregon Government Ethics Commission</option>
+    <option value="135">213 - Oregon Criminal Justice Commission</option>
+    <option value="95">230 - Department of State Police, Oregon State Athletic Commission</option>
+    <option value="154">250 - Oregon State Marine Board</option>
+    <option value="18">255 - Board of Parole and Post-Prison Supervision</option>
+    <option value="94">257 - Department of State Police</option>
+    <option value="98">259 - Department of Public Safety Standards and Training</option>
+    <option value="340">265 - Commission on Statewide Law Enforcement Standards of Conduct and Discipline</option>
+    <option value="110">274 - Department of Veterans' Affairs</option>
+    <option value="77">291 - Department of Corrections</option>
+    <option value="88">309 - Oregon Health Authority, Health Systems Division: Behavioral Health Services</option>
+    <option value="147">325 - Oregon Patient Safety Commission</option>
+    <option value="78">330 - Department of Energy</option>
+    <option value="118">331 - Oregon Health Authority, Health Licensing Office</option>
+    <option value="120">332 - Oregon Health Authority, Health Licensing Office, Board of Direct Entry Midwifery</option>
+    <option value="89">333 - Oregon Health Authority, Public Health Division</option>
+    <option value="13">334 - Board of Massage Therapists</option>
+    <option value="7">335 - Board of Examiners for Speech-Language Pathology and Audiology</option>
+    <option value="21">337 - Board of Medical Imaging</option>
+    <option value="121">338 - Oregon Health Authority, Health Licensing Office, Environmental Health Registration Board</option>
+    <option value="131">339 - Occupational Therapy Licensing Board</option>
+    <option value="80">340 - Department of Environmental Quality</option>
+    <option value="79">345 - Department of Energy, Energy Facility Siting Council</option>
+    <option value="27">350 - Columbia River Gorge Commission</option>
+    <option value="403">404 - Oregon Public Defense Commission</option>
+    <option value="185">407 - Department of Human Services</option>
+    <option value="34">409 - Oregon Health Authority, Health Policy and Analytics</option>
+    <option value="87">410 - Oregon Health Authority, Health Systems Division: Medical Assistance Programs</option>
+    <option value="91">411 - Department of Human Services, Aging and People with Disabilities and Developmental Disabilities</option>
+    <option value="86">413 - Department of Human Services, Child Welfare Programs</option>
+    <option value="115">414 - Department of Early Learning and Care</option>
+    <option value="84">415 - Oregon Health Authority, Health Systems Division: Addiction Services</option>
+    <option value="168">416 - Oregon Youth Authority</option>
+    <option value="196">418 - Department of Human Services, Home Care Commission</option>
+    <option value="361">419 - Department of Human Services, Office of Training, Investigations and Safety</option>
+    <option value="134">423 - Oregon Department of Education, Youth Development Division</option>
+    <option value="198">431 - Oregon Health Authority, Oregon Prescription Drug Program</option>
+    <option value="76">436 - Department of Consumer and Business Services, Workers' Compensation Division</option>
+    <option value="74">437 - Department of Consumer and Business Services, Oregon Occupational Safety and Health Division</option>
+    <option value="75">438 - Department of Consumer and Business Services, Workers' Compensation Board</option>
+    <option value="69">440 - Department of Consumer and Business Services, Director's Office</option>
+    <option value="70">441 - Department of Consumer and Business Services, Finance and Securities Regulation</option>
+    <option value="148">459 - Oregon Public Employees Retirement System</option>
+    <option value="90">461 - Department of Human Services, Self-Sufficiency Programs</option>
+    <option value="173">462 - Oregon Racing Commission</option>
+    <option value="114">471 - Employment Department</option>
+    <option value="152">543 - State Library</option>
+    <option value="163">573 - Southern Oregon University</option>
+    <option value="156">575 - Higher Education Coordinating Commission, Office of Student Access and Completion</option>
+    <option value="137">581 - Oregon Department of Education</option>
+    <option value="92">582 - Department of Human Services, Vocational Rehabilitation Services</option>
+    <option value="157">583 - Higher Education Coordinating Commission, Office of Degree Authorization</option>
+    <option value="180">584 - Teacher Standards and Practices Commission</option>
+    <option value="28">585 - Commission for the Blind</option>
+    <option value="138">586 - Oregon Department of Education, Fair Dismissal Appeals Board</option>
+    <option value="67">589 - Higher Education Coordinating Commission, Office of Community Colleges and Workforce Development</option>
+    <option value="37">603 - Department of Agriculture</option>
+    <option value="46">604 - Department of Agriculture, Oregon Fine Fescue Commission</option>
+    <option value="41">605 - Department of Agriculture, Oregon Beef Council</option>
+    <option value="63">607 - Department of Agriculture, Oregon Tall Fescue Commission</option>
+    <option value="189">609 - Department of Agriculture, Oregon Invasive Species Council</option>
+    <option value="57">611 - Department of Agriculture, Oregon Raspberry and Blackberry Commission</option>
+    <option value="44">617 - Department of Agriculture, Oregon Dairy Products Commission</option>
+    <option value="184">619 - Oregon Wine Board</option>
+    <option value="49">623 - Department of Agriculture, Oregon Hazelnut Commission</option>
+    <option value="142">628 - Oregon Forest Resources Institute</option>
+    <option value="82">629 - Department of Forestry</option>
+    <option value="83">632 - Department of Geology and Mineral Industries</option>
+    <option value="81">635 - Department of Fish and Wildlife</option>
+    <option value="52">642 - Department of Agriculture, Oregon Mint Commission</option>
+    <option value="51">643 - Department of Agriculture, Oregon Hop Commission</option>
+    <option value="60">644 - Department of Agriculture, Oregon Sheep Commission</option>
+    <option value="45">645 - Department of Agriculture, Oregon Dungeness Crab Commission</option>
+    <option value="59">646 - Department of Agriculture, Oregon Salmon Commission</option>
+    <option value="56">647 - Department of Agriculture, Oregon Processed Vegetable Commission</option>
+    <option value="320">648 - Department of Agriculture, Oregon Hemp Commission</option>
+    <option value="64">656 - Department of Agriculture, Oregon Trawl Commission</option>
+    <option value="58">657 - Department of Agriculture, Oregon Ryegrass Growers Seed Commission</option>
+    <option value="54">658 - Department of Agriculture, Oregon Potato Commission</option>
+    <option value="124">660 - Land Conservation and Development Department</option>
+    <option value="125">661 - Land Use Board of Appeals</option>
+    <option value="43">664 - Department of Agriculture, Oregon Clover Seed Commission</option>
+    <option value="61">668 - Department of Agriculture, Oregon Strawberry Commission</option>
+    <option value="62">669 - Department of Agriculture, Oregon Sweet Cherry Commission</option>
+    <option value="42">670 - Department of Agriculture, Oregon Blueberry Commission</option>
+    <option value="65">678 - Department of Agriculture, Oregon Wheat Commission</option>
+    <option value="183">690 - Water Resources Department</option>
+    <option value="167">695 - Oregon Watershed Enhancement Board</option>
+    <option value="259">698 - Oregon Watershed Enhancement Board, Oregon Agricultural Heritage Program</option>
+    <option value="423">699 - Oregon Watershed Enhancement Board, Oregon Watershed Enhancement Board, Environmental Restoration Council</option>
+    <option value="192">705 - Chief Education Office</option>
+    <option value="195">710 - Citizens' Initiative Review Commission</option>
+    <option value="193">715 - Higher Education Coordinating Commission</option>
+    <option value="102">731 - Department of Transportation</option>
+    <option value="107">732 - Department of Transportation, Public Transportation Division</option>
+    <option value="181">733 - Travel Information Council</option>
+    <option value="105">734 - Department of Transportation, Delivery and Operations Division</option>
+    <option value="104">735 - Department of Transportation, Driver and Motor Vehicle Services Division</option>
+    <option value="169">736 - Parks and Recreation Department</option>
+    <option value="109">737 - Department of Transportation, Transportation Safety Office</option>
+    <option value="136">738 - Oregon Department of Aviation</option>
+    <option value="106">740 - Department of Transportation, Commerce and Compliance Division</option>
+    <option value="108">741 - Department of Transportation, Rail Division</option>
+    <option value="381">750 - State Board of Towing</option>
+    <option value="22">800 - State Board of Tax Practitioners</option>
+    <option value="2">801 - Oregon Board of Accountancy</option>
+    <option value="126">804 - Landscape Architect Board</option>
+    <option value="3">806 - State Board of Architect Examiners</option>
+    <option value="127">808 - Landscape Contractors Board</option>
+    <option value="10">809 - Board of Geologist Examiners</option>
+    <option value="4">811 - Board of Chiropractic Examiners</option>
+    <option value="29">812 - Construction Contractors Board</option>
+    <option value="144">813 - Oregon Housing and Community Services Department</option>
+    <option value="386">816 - Oregon Health Authority, Health Licensing Office, State Board of Sign Language Interpreters</option>
+    <option value="119">817 - Oregon Health Authority, Health Licensing Office, Board of Cosmetology</option>
+    <option value="133">818 - Oregon Board of Dentistry</option>
+    <option value="199">819 - Oregon Health Authority, Health Licensing Office, Board of Certified Advanced Estheticians</option>
+    <option value="6">820 - Board of Examiners for Engineering and Land Surveying</option>
+    <option value="197">824 - Oregon Health Authority, Health Licensing Office, Behavior Analysis Regulatory Board</option>
+    <option value="130">830 - Mortuary and Cemetery Board</option>
+    <option value="219">831 - Mental Health Regulatory Agency</option>
+    <option value="12">833 - Mental Health Regulatory Agency, Oregon Board of Licensed Professional Counselors and Therapists</option>
+    <option value="8">834 - Oregon Health Authority, Health Licensing Office, Board of Licensed Dietitians</option>
+    <option value="71">836 - Department of Consumer and Business Services, Insurance Regulation</option>
+    <option value="97">837 - Department of the State Fire Marshal</option>
+    <option value="24">839 - Bureau of Labor and Industries</option>
+    <option value="146">845 - Oregon Liquor and Cannabis Commission</option>
+    <option value="14">847 - Oregon Medical Board</option>
+    <option value="170">848 - Oregon Board of Physical Therapy</option>
+    <option value="15">850 - Oregon Board of Naturopathic Medicine</option>
+    <option value="16">851 - Board of Nursing</option>
+    <option value="17">852 - Board of Optometry</option>
+    <option value="9">853 - Oregon Health Authority, Health Licensing Office, Long Term Care Administrators Board</option>
+    <option value="19">855 - Board of Pharmacy</option>
+    <option value="103">856 - Public Utility Commission, Oregon Board of Maritime Pilots</option>
+    <option value="20">858 - Mental Health Regulatory Agency, Oregon Board of Psychology</option>
+    <option value="171">859 - Psychiatric Security Review Board</option>
+    <option value="172">860 - Public Utility Commission</option>
+    <option value="174">863 - Real Estate Agency</option>
+    <option value="182">875 - Veterinary Medical Examining Board</option>
+    <option value="5">877 - Board of Licensed Social Workers</option>
+    <option value="68">918 - Department of Consumer and Business Services, Building Codes Division</option>
+    <option value="341">925 - Department of Consumer and Business Services, Prescription Drug Affordability Board</option>
+    <option value="188">943 - Oregon Health Authority</option>
+    <option value="319">944 - Oregon Health Authority, Drug Treatment and Recovery Services </option>
+    <option value="190">945 - Oregon Health Authority, Health Insurance Marketplace</option>
+    <option value="362">950 - Oregon Health Authority, Equity and Inclusion Division</option>
+    <option value="141">951 - Oregon Film and Video Office</option>
+    <option value="166">952 - Oregon Utility Notification Center</option>
+    <option value="191">966 - Economic Recovery Review Council</option>
+    <option value="38">972 - Department of Agriculture, Oregon Albacore Commission</option>
+    <option value="194">976 - Oregon Tourism Commission</option>
+
+
+</select>
+
+<br>
+                Order by: <input type="radio" name="displayOrder" id="displayOrderY" value="Y" onclick="changeOrder();" checked="checked"/><label for="displayOrderY"></label>
+Chapter Number&nbsp;<input type="radio" name="displayOrder" id="displayOrderN" value="N" onclick="changeOrder();"/><label for="displayOrderN"></label>
+Chapter Name
+            </div>
+        </form>
+        </div>
+        <h3>Quick Search By Rule Number</h3>
+        <div>
+       <form id="quickSearchForm" name="quickSearchForm" method="post">
+           <input type="hidden" name="quickSearch" value="false" id="quickSearch"/>
+           <div class="errors"><input type="hidden" name="" value="ruleNumberError"/></div>
+           <label>Rule Number</label><br>
+           <div class="form_text"> 
+           <input type="text" name="ruleNumber" size="20" value="" id="ruleNumber" onchange="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Rule number must begin in format: 999-');" pattern="\d{3}-\d{3}-\d{4}|\d{3}-.{1,}" required="required"/>&nbsp;&nbsp;<input type='submit' class='sm_btn' id='ruleSearchButton' value='Search' />
+           </div>
+       </form>
+        </div>
+          
+        <h3>Rule Text Search</h3> 
+        <div>
+        <form id="advancedSearchForm" name="advancedSearchForm" method="post"> 
+            <input type="hidden" name="advancedSearch" value="false" id="advancedSearch"/>
+            <div class="errors"><input type="hidden" name="" value="resultError"/></div>
+            <div class="form_text"> 
+                <label for="advancedSelectedChapter">Filter By Chapter</label><br>
+                <div class="errors"><input type="hidden" name="" value="chapterError"/></div>
+                <select name="advancedSelectedChapter" id="advancedSelectedChapter">
+    <option value="-1"
+    >Select a Chapter...</option>
+    <option value="36">101 - Oregon Health Authority, Public Employees' Benefit Board</option>
+    <option value="96">104 - Oregon Department of Emergency Management</option>
+    <option value="33">105 - Department of Administrative Services, Chief Human Resources Office</option>
+    <option value="186">111 - Oregon Health Authority, Oregon Educators Benefit Board</option>
+    <option value="132">114 - Long Term Care Ombudsman</option>
+    <option value="116">115 - Employment Relations Board</option>
+    <option value="32">122 - Department of Administrative Services, Chief Financial Office</option>
+    <option value="112">123 - Oregon Business Development Department</option>
+    <option value="299">124 - Eastern Oregon Border Economic Development Board</option>
+    <option value="31">125 - Department of Administrative Services</option>
+    <option value="239">128 - Department of Administrative Services, Office of the State Chief Information Officer</option>
+    <option value="93">137 - Department of Justice</option>
+    <option value="100">141 - Department of State Lands</option>
+    <option value="101">142 - Department of State Lands, South Slough National Estuarine Research Reserve</option>
+    <option value="99">150 - Department of Revenue</option>
+    <option value="129">156 - Legislative Administration Committee</option>
+    <option value="178">160 - Secretary of State, Corporation Division</option>
+    <option value="1">161 - Appraiser Certification and Licensure Board</option>
+    <option value="176">162 - Secretary of State, Audits Division</option>
+    <option value="179">165 - Secretary of State, Elections Division</option>
+    <option value="175">166 - Secretary of State, Archives Division</option>
+    <option value="177">167 - Secretary of State, Business Services Division</option>
+    <option value="155">170 - Oregon State Treasury</option>
+    <option value="145">171 - Oregon Investment Council</option>
+    <option value="117">172 - Oregon Facilities Authority</option>
+    <option value="149">173 - Oregon 529 Savings Board</option>
+    <option value="153">177 - Oregon State Lottery</option>
+    <option value="279">180 - Office of the Public Records Advocate</option>
+    <option value="123">198 - Judicial Department</option>
+    <option value="143">199 - Oregon Government Ethics Commission</option>
+    <option value="135">213 - Oregon Criminal Justice Commission</option>
+    <option value="95">230 - Department of State Police, Oregon State Athletic Commission</option>
+    <option value="154">250 - Oregon State Marine Board</option>
+    <option value="18">255 - Board of Parole and Post-Prison Supervision</option>
+    <option value="94">257 - Department of State Police</option>
+    <option value="98">259 - Department of Public Safety Standards and Training</option>
+    <option value="340">265 - Commission on Statewide Law Enforcement Standards of Conduct and Discipline</option>
+    <option value="110">274 - Department of Veterans' Affairs</option>
+    <option value="77">291 - Department of Corrections</option>
+    <option value="88">309 - Oregon Health Authority, Health Systems Division: Behavioral Health Services</option>
+    <option value="147">325 - Oregon Patient Safety Commission</option>
+    <option value="78">330 - Department of Energy</option>
+    <option value="118">331 - Oregon Health Authority, Health Licensing Office</option>
+    <option value="120">332 - Oregon Health Authority, Health Licensing Office, Board of Direct Entry Midwifery</option>
+    <option value="89">333 - Oregon Health Authority, Public Health Division</option>
+    <option value="13">334 - Board of Massage Therapists</option>
+    <option value="7">335 - Board of Examiners for Speech-Language Pathology and Audiology</option>
+    <option value="21">337 - Board of Medical Imaging</option>
+    <option value="121">338 - Oregon Health Authority, Health Licensing Office, Environmental Health Registration Board</option>
+    <option value="131">339 - Occupational Therapy Licensing Board</option>
+    <option value="80">340 - Department of Environmental Quality</option>
+    <option value="79">345 - Department of Energy, Energy Facility Siting Council</option>
+    <option value="27">350 - Columbia River Gorge Commission</option>
+    <option value="403">404 - Oregon Public Defense Commission</option>
+    <option value="185">407 - Department of Human Services</option>
+    <option value="34">409 - Oregon Health Authority, Health Policy and Analytics</option>
+    <option value="87">410 - Oregon Health Authority, Health Systems Division: Medical Assistance Programs</option>
+    <option value="91">411 - Department of Human Services, Aging and People with Disabilities and Developmental Disabilities</option>
+    <option value="86">413 - Department of Human Services, Child Welfare Programs</option>
+    <option value="115">414 - Department of Early Learning and Care</option>
+    <option value="84">415 - Oregon Health Authority, Health Systems Division: Addiction Services</option>
+    <option value="168">416 - Oregon Youth Authority</option>
+    <option value="196">418 - Department of Human Services, Home Care Commission</option>
+    <option value="361">419 - Department of Human Services, Office of Training, Investigations and Safety</option>
+    <option value="134">423 - Oregon Department of Education, Youth Development Division</option>
+    <option value="198">431 - Oregon Health Authority, Oregon Prescription Drug Program</option>
+    <option value="76">436 - Department of Consumer and Business Services, Workers' Compensation Division</option>
+    <option value="74">437 - Department of Consumer and Business Services, Oregon Occupational Safety and Health Division</option>
+    <option value="75">438 - Department of Consumer and Business Services, Workers' Compensation Board</option>
+    <option value="69">440 - Department of Consumer and Business Services, Director's Office</option>
+    <option value="70">441 - Department of Consumer and Business Services, Finance and Securities Regulation</option>
+    <option value="148">459 - Oregon Public Employees Retirement System</option>
+    <option value="90">461 - Department of Human Services, Self-Sufficiency Programs</option>
+    <option value="173">462 - Oregon Racing Commission</option>
+    <option value="114">471 - Employment Department</option>
+    <option value="152">543 - State Library</option>
+    <option value="163">573 - Southern Oregon University</option>
+    <option value="156">575 - Higher Education Coordinating Commission, Office of Student Access and Completion</option>
+    <option value="137">581 - Oregon Department of Education</option>
+    <option value="92">582 - Department of Human Services, Vocational Rehabilitation Services</option>
+    <option value="157">583 - Higher Education Coordinating Commission, Office of Degree Authorization</option>
+    <option value="180">584 - Teacher Standards and Practices Commission</option>
+    <option value="28">585 - Commission for the Blind</option>
+    <option value="138">586 - Oregon Department of Education, Fair Dismissal Appeals Board</option>
+    <option value="67">589 - Higher Education Coordinating Commission, Office of Community Colleges and Workforce Development</option>
+    <option value="37">603 - Department of Agriculture</option>
+    <option value="46">604 - Department of Agriculture, Oregon Fine Fescue Commission</option>
+    <option value="41">605 - Department of Agriculture, Oregon Beef Council</option>
+    <option value="63">607 - Department of Agriculture, Oregon Tall Fescue Commission</option>
+    <option value="189">609 - Department of Agriculture, Oregon Invasive Species Council</option>
+    <option value="57">611 - Department of Agriculture, Oregon Raspberry and Blackberry Commission</option>
+    <option value="44">617 - Department of Agriculture, Oregon Dairy Products Commission</option>
+    <option value="184">619 - Oregon Wine Board</option>
+    <option value="49">623 - Department of Agriculture, Oregon Hazelnut Commission</option>
+    <option value="142">628 - Oregon Forest Resources Institute</option>
+    <option value="82">629 - Department of Forestry</option>
+    <option value="83">632 - Department of Geology and Mineral Industries</option>
+    <option value="81">635 - Department of Fish and Wildlife</option>
+    <option value="52">642 - Department of Agriculture, Oregon Mint Commission</option>
+    <option value="51">643 - Department of Agriculture, Oregon Hop Commission</option>
+    <option value="60">644 - Department of Agriculture, Oregon Sheep Commission</option>
+    <option value="45">645 - Department of Agriculture, Oregon Dungeness Crab Commission</option>
+    <option value="59">646 - Department of Agriculture, Oregon Salmon Commission</option>
+    <option value="56">647 - Department of Agriculture, Oregon Processed Vegetable Commission</option>
+    <option value="320">648 - Department of Agriculture, Oregon Hemp Commission</option>
+    <option value="64">656 - Department of Agriculture, Oregon Trawl Commission</option>
+    <option value="58">657 - Department of Agriculture, Oregon Ryegrass Growers Seed Commission</option>
+    <option value="54">658 - Department of Agriculture, Oregon Potato Commission</option>
+    <option value="124">660 - Land Conservation and Development Department</option>
+    <option value="125">661 - Land Use Board of Appeals</option>
+    <option value="43">664 - Department of Agriculture, Oregon Clover Seed Commission</option>
+    <option value="61">668 - Department of Agriculture, Oregon Strawberry Commission</option>
+    <option value="62">669 - Department of Agriculture, Oregon Sweet Cherry Commission</option>
+    <option value="42">670 - Department of Agriculture, Oregon Blueberry Commission</option>
+    <option value="65">678 - Department of Agriculture, Oregon Wheat Commission</option>
+    <option value="183">690 - Water Resources Department</option>
+    <option value="167">695 - Oregon Watershed Enhancement Board</option>
+    <option value="259">698 - Oregon Watershed Enhancement Board, Oregon Agricultural Heritage Program</option>
+    <option value="423">699 - Oregon Watershed Enhancement Board, Oregon Watershed Enhancement Board, Environmental Restoration Council</option>
+    <option value="192">705 - Chief Education Office</option>
+    <option value="195">710 - Citizens' Initiative Review Commission</option>
+    <option value="193">715 - Higher Education Coordinating Commission</option>
+    <option value="102">731 - Department of Transportation</option>
+    <option value="107">732 - Department of Transportation, Public Transportation Division</option>
+    <option value="181">733 - Travel Information Council</option>
+    <option value="105">734 - Department of Transportation, Delivery and Operations Division</option>
+    <option value="104">735 - Department of Transportation, Driver and Motor Vehicle Services Division</option>
+    <option value="169">736 - Parks and Recreation Department</option>
+    <option value="109">737 - Department of Transportation, Transportation Safety Office</option>
+    <option value="136">738 - Oregon Department of Aviation</option>
+    <option value="106">740 - Department of Transportation, Commerce and Compliance Division</option>
+    <option value="108">741 - Department of Transportation, Rail Division</option>
+    <option value="381">750 - State Board of Towing</option>
+    <option value="22">800 - State Board of Tax Practitioners</option>
+    <option value="2">801 - Oregon Board of Accountancy</option>
+    <option value="126">804 - Landscape Architect Board</option>
+    <option value="3">806 - State Board of Architect Examiners</option>
+    <option value="127">808 - Landscape Contractors Board</option>
+    <option value="10">809 - Board of Geologist Examiners</option>
+    <option value="4">811 - Board of Chiropractic Examiners</option>
+    <option value="29">812 - Construction Contractors Board</option>
+    <option value="144">813 - Oregon Housing and Community Services Department</option>
+    <option value="386">816 - Oregon Health Authority, Health Licensing Office, State Board of Sign Language Interpreters</option>
+    <option value="119">817 - Oregon Health Authority, Health Licensing Office, Board of Cosmetology</option>
+    <option value="133">818 - Oregon Board of Dentistry</option>
+    <option value="199">819 - Oregon Health Authority, Health Licensing Office, Board of Certified Advanced Estheticians</option>
+    <option value="6">820 - Board of Examiners for Engineering and Land Surveying</option>
+    <option value="197">824 - Oregon Health Authority, Health Licensing Office, Behavior Analysis Regulatory Board</option>
+    <option value="130">830 - Mortuary and Cemetery Board</option>
+    <option value="219">831 - Mental Health Regulatory Agency</option>
+    <option value="12">833 - Mental Health Regulatory Agency, Oregon Board of Licensed Professional Counselors and Therapists</option>
+    <option value="8">834 - Oregon Health Authority, Health Licensing Office, Board of Licensed Dietitians</option>
+    <option value="71">836 - Department of Consumer and Business Services, Insurance Regulation</option>
+    <option value="97">837 - Department of the State Fire Marshal</option>
+    <option value="24">839 - Bureau of Labor and Industries</option>
+    <option value="146">845 - Oregon Liquor and Cannabis Commission</option>
+    <option value="14">847 - Oregon Medical Board</option>
+    <option value="170">848 - Oregon Board of Physical Therapy</option>
+    <option value="15">850 - Oregon Board of Naturopathic Medicine</option>
+    <option value="16">851 - Board of Nursing</option>
+    <option value="17">852 - Board of Optometry</option>
+    <option value="9">853 - Oregon Health Authority, Health Licensing Office, Long Term Care Administrators Board</option>
+    <option value="19">855 - Board of Pharmacy</option>
+    <option value="103">856 - Public Utility Commission, Oregon Board of Maritime Pilots</option>
+    <option value="20">858 - Mental Health Regulatory Agency, Oregon Board of Psychology</option>
+    <option value="171">859 - Psychiatric Security Review Board</option>
+    <option value="172">860 - Public Utility Commission</option>
+    <option value="174">863 - Real Estate Agency</option>
+    <option value="182">875 - Veterinary Medical Examining Board</option>
+    <option value="5">877 - Board of Licensed Social Workers</option>
+    <option value="68">918 - Department of Consumer and Business Services, Building Codes Division</option>
+    <option value="341">925 - Department of Consumer and Business Services, Prescription Drug Affordability Board</option>
+    <option value="188">943 - Oregon Health Authority</option>
+    <option value="319">944 - Oregon Health Authority, Drug Treatment and Recovery Services </option>
+    <option value="190">945 - Oregon Health Authority, Health Insurance Marketplace</option>
+    <option value="362">950 - Oregon Health Authority, Equity and Inclusion Division</option>
+    <option value="141">951 - Oregon Film and Video Office</option>
+    <option value="166">952 - Oregon Utility Notification Center</option>
+    <option value="191">966 - Economic Recovery Review Council</option>
+    <option value="38">972 - Department of Agriculture, Oregon Albacore Commission</option>
+    <option value="194">976 - Oregon Tourism Commission</option>
+
+
+</select>
+
+
+            </div>
+            <div class="errors"><input type="hidden" name="" value="advancedError"/></div>
+            <div class="form_text">    
+                <label for="valueOne">Search By</label><br>
+                <div class="errors"><input type="hidden" name="" value="valueOneError"/></div>
+                <input type="text" name="valueOne" size="60" maxlength="100" value="" id="valueOne"/>&nbsp;<input type="radio" name="criteriaOneType" id="criteriaOneTypeexact" value="exact" checked="checked"/><label for="criteriaOneTypeexact">Exact</label>
+&nbsp;<input type="radio" name="criteriaOneType" id="criteriaOneTypecontains" value="contains"/><label for="criteriaOneTypecontains">Contains</label>
+&nbsp;<input type="checkbox" name="criteriaOneInd" value="true" id="criteriaOneInd"/><input type="hidden" id="__checkbox_criteriaOneInd" name="__checkbox_criteriaOneInd" value="true" /><label for="criteriaOneInd"> Exclude</label>
+            </div>
+            <div class="form_text">
+                <div class="errors"><input type="hidden" name="" value="valueTwoError"/></div>
+                <input type="text" name="valueTwo" size="60" maxlength="100" value="" id="valueTwo"/>&nbsp;<input type="radio" name="criteriaTwoType" id="criteriaTwoTypeexact" value="exact" checked="checked"/><label for="criteriaTwoTypeexact">Exact</label>
+&nbsp;<input type="radio" name="criteriaTwoType" id="criteriaTwoTypecontains" value="contains"/><label for="criteriaTwoTypecontains">Contains</label>
+&nbsp;<input type="checkbox" name="criteriaTwoInd" value="true" id="criteriaTwoInd"/><input type="hidden" id="__checkbox_criteriaTwoInd" name="__checkbox_criteriaTwoInd" value="true" /><label for="criteriaTwoInd"> Exclude</label>
+            </div>
+            <div class="form_text"> 
+                <div class="errors"><input type="hidden" name="" value="valueThreeError"/></div>
+                <input type="text" name="valueThree" size="60" maxlength="100" value="" id="valueThree"/>&nbsp;<input type="radio" name="criteriaThreeType" id="criteriaThreeTypeexact" value="exact" checked="checked"/><label for="criteriaThreeTypeexact">Exact</label>
+&nbsp;<input type="radio" name="criteriaThreeType" id="criteriaThreeTypecontains" value="contains"/><label for="criteriaThreeTypecontains">Contains</label>
+&nbsp;<input type="checkbox" name="criteriaThreeInd" value="true" id="criteriaThreeInd"/><input type="hidden" id="__checkbox_criteriaThreeInd" name="__checkbox_criteriaThreeInd" value="true" /><label for="criteriaThreeInd"> Exclude</label>
+            </div>
+             
+            <div class="form_left_search">
+                <input type="radio" name="queryType" id="queryTypeand" value="and" checked="checked"/><label for="queryTypeand">All must match (AND)</label>
+
+            </div>
+            <div class="form_right_search">
+                <input type="radio" name="queryType" id="queryTypeor" value="or"/><label for="queryTypeor">Any matches (OR)</label>
+
+            </div>
+            <div class="form_clear"></div>
+            <div class="buttonDiv">    
+                <input class="sm_btn" type="submit" id="searchButton" value="Search"/>
+                <input class="sm_btn" type="button" id="resetButton" name="reset" value="Reset"/>
+            </div>
+        </form>
+        </div>
+            
+        </div> <!-- end accordion -->
+        <p>&nbsp;</p>
+        <div class="buttonDiv">
+        <input class="btn" type="button" id="homeButton" value="OARD Home"/>
+        </div>
+        </div>
+        
+
+<div class="sos-footer-wrapper">
+    <div class="footer-container">
+        <div class="colophon">
+            
+                v2.1.8
+            
+        </div>
+        <div class="sos-footer-nav">
+            <ul class="inline">
+                <li><a href="http://sos.oregon.gov/Pages/system-requirements.aspx" title="Learn about system requirements">System Requirements</a></li>
+                <li><a href="http://sos.oregon.gov/Pages/privacypolicy.aspx" title="View privacy policy">Privacy Policy</a></li>
+                <li><a href="http://sos.oregon.gov/Pages/webaccessibilitypolicy.aspx" title="View accessibility policy">Accessibility Policy</a></li>
+                <li><a href="http://www.oregon.gov/ODVA/pages/VETFORM.aspx" title="Go to Oregon Veterans website" target="_blank">Oregon Veterans</a></li>
+                <li><a href="http://www.oregon.gov/" title="Visit Oregon.gov website" target="_blank">Oregon.gov</a></li>
+            </ul>
+        </div>
+        <div class="colophon">
+            <address>
+                <strong>Oregon State Archives</strong> &#149; 
+                800 Summer Street NE &#149; 
+                Salem, OR 97310
+            </address>
+            Phone: 503-373-0701 &#149; 
+            Fax: 503-373-0953 &#149; 
+            <a href="mailto:Adminrules.Archives@sos.oregon.gov">Adminrules.Archives@sos.oregon.gov</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Oregon Secretary of State<br>All Rights Reserved
+        </div>
+    </div>
+</div>
+        
+        </div>
+    </div>
+    </body>
+</html>

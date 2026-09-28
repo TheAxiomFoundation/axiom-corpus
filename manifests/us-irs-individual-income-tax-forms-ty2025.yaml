@@ -1,0 +1,403 @@
+version: '2026-09-10'
+documents:
+- source_id: irs-f1040-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 1040, U.S. Individual Income Tax Return (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f1040
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i1040gi-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 1040 and Form 1040-SR (2025)
+  source_url: https://www.irs.gov/instructions/i1040gi
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040gi
+  extraction: &id002
+    html_content_selector: .book
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040gi
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040gi.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040s1-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule 1 (Form 1040), Additional Income and Adjustments to Income (2025)
+  source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040s1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040s1
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s1
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040s2-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule 2 (Form 1040), Additional Taxes (2025)
+  source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040s2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040s2
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s2
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040s3-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule 3 (Form 1040), Additional Credits and Payments (2025)
+  source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040s3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040s3
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s3
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040sa-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule A (Form 1040), Itemized Deductions (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-a-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040sa.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sa
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040sa
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i1040sca-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2025)
+  source_url: https://www.irs.gov/instructions/i1040sca
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sca
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040sca.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040sb-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule B (Form 1040), Interest and Ordinary Dividends (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-b-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040sb.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sb
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040sb
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i1040sb-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule B (Form 1040), Interest and Ordinary Dividends (2025)
+  source_url: https://www.irs.gov/instructions/i1040sb
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sb
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sb
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040sb.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040sd-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule D (Form 1040), Capital Gains and Losses (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-d-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040sd.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sd
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040sd
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i1040sd-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule D (Form 1040), Capital Gains and Losses (2025)
+  source_url: https://www.irs.gov/instructions/i1040sd
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sd
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sd
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040sd.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040sei-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule EIC (Form 1040), Earned Income Credit (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-eic-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040sei.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sei
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040sei
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040s8-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-8812-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040s8.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040s8
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s8
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i1040s8-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2025)
+  source_url: https://www.irs.gov/instructions/i1040s8
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040s8
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040s8
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040s8.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f8962-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8962, Premium Tax Credit (PTC) (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8962
+  download_url: https://www.irs.gov/pub/irs-pdf/f8962.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8962
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8962
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i8962-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8962, Premium Tax Credit (PTC) (2025)
+  source_url: https://www.irs.gov/instructions/i8962
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8962
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8962
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i8962.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-f1040sse-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule SE (Form 1040), Self-Employment Tax (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-se-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040sse.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sse
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040sse
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-i1040sse-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule SE (Form 1040), Self-Employment Tax (2025)
+  source_url: https://www.irs.gov/instructions/i1040sse
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sse
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sse
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040sse.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040
+- source_id: irs-p17-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 17 (2025), Your Federal Income Tax (For Individuals)
+  source_url: https://www.irs.gov/publications/p17
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p17
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p17
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/p17.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/forms-instructions and https://www.irs.gov/forms-pubs/schedules-for-form-1040

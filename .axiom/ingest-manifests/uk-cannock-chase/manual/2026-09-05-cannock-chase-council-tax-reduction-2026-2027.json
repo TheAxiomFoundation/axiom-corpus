@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-cannock-chase/manual/2026-09-05-cannock-chase-council-tax-reduction-2026-2027.json",
+      "sha256": "e641a8dd43217fa6ab3e2fd9c202dc9d15a73b4b16384b009dbb8979d91a4c63"
+    },
+    {
+      "path": "data/corpus/inventory/uk-cannock-chase/manual/2026-09-05-cannock-chase-council-tax-reduction-2026-2027.json",
+      "sha256": "591c36a107724a62b683676adc26129cb462909917377f1f40b4ee11e1992747"
+    },
+    {
+      "path": "data/corpus/provisions/uk-cannock-chase/manual/2026-09-05-cannock-chase-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f651143b170d90640cc322b759d8016a679feb636a834e5f7ab01ae563b2c950"
+    },
+    {
+      "path": "data/corpus/sources/uk-cannock-chase/manual/2026-09-05-cannock-chase-council-tax-reduction-2026-2027/official-documents/cannock-chase-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "9737584d94eae55f76d4907cb81c6be81d76af2d0fbfd5e88ebb0c3ab37f95bd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-cannock-chase-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-cannock-chase-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 124,
+    "missing_count": 0,
+    "provision_count": 124,
+    "source_count": 124
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:48.501579+00:00",
+  "jurisdiction": "uk-cannock-chase",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Y3KLJtWMD91Zxq9sZ59vyFgZ/LKnWjDmnNXWERX4UODH0zc9V+BxdFdyL/bxNay0ScLavt0KEt6/YbVpVdsCAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-cannock-chase-council-tax-reduction-2026-2027"
+}

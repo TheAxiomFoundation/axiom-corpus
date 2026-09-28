@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "a39a350fa9250afb14bc2d00009f43e4fbcffef74ed4094afc1629d039e45401"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "b93e9600e6ddf30319c0686d9447d6def165afdd8dd7199cf54f9982dda72d16"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "63f5b0eea71bd9852bd2638961a1ad9c7f242afb818ac217758768a1c811bcfe"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-ia-idr-ia-1040-expanded-instructions-ty2025.pdf",
+      "sha256": "e7cf068dbcafb5319afa6efbebde5120d8850811d4ff4d66654e1ba5687af343"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-ia-idr-ia-1040-ty2025.pdf",
+      "sha256": "28f7fbe2d92b0aa6fafc499dfa2de98610ca95e9fab35fac22cee77b0576dee6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T21:45:20.660312+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Jbb6j64ko4R0BbRXAf07yk9lzO2EYfCYCMy2BxWXqZndvPFvOpWG+5rBG1x0t3IyrkbZbs6OSDWIAg0jkuSnAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

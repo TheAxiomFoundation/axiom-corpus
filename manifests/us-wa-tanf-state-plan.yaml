@@ -1,0 +1,54 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-wa-tanf-state-plan-2026
+  jurisdiction: us-wa
+  document_class: policy
+  title: Washington TANF State Plan Components, August 1, 2026 (final)
+  source_url: https://workfirst.wa.gov/sites/default/files/public/WA_TANF%20State%20Plan%202026%20FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-08-01'
+  citation_path: us-wa/policy/acf/tanf-plan/2026
+  metadata:
+    primary_source: true
+    source_authority: Washington State Department of Social and Health Services (WorkFirst)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Washington's TANF State Plan Components, August 1, 2026 (Talent and Prosperity for All WIOA combined plan,
+      TANF-only portion) with the signed 2026 certifications
+    publisher_index_url: https://workfirst.wa.gov/tanf
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-wa/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://workfirst.wa.gov/tanf
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page
+- source_id: us-wa-tanf-state-plan-2026-certifications
+  jurisdiction: us-wa
+  document_class: policy
+  title: Washington TANF State Plan Certifications 2026 (signed)
+  source_url: https://workfirst.wa.gov/sites/default/files/public/SIGNED%20-%20WA%20TANF%20State%20Plan%20Certifications%202026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-08-01'
+  citation_path: us-wa/policy/acf/tanf-plan/2026-certifications
+  metadata:
+    primary_source: true
+    source_authority: Washington State Department of Social and Health Services (WorkFirst)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Washington's TANF State Plan Components, August 1, 2026 (Talent and Prosperity for All WIOA combined plan,
+      TANF-only portion) with the signed 2026 certifications
+    publisher_index_url: https://workfirst.wa.gov/tanf
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-wa/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://workfirst.wa.gov/tanf
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "d4883816663650b350ddbbaff88af5805993d1837d906e9e779d314d3df8b83b"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "960b796dd0fa4e7551e637e56520d5b83dd74118b113d6c0a97b5ebc1f353f9f"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "6da51aefd925a6382811c2e09d1f8e86972f2c55034b3a4c9fa9292051040118"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-nm-hca-isd-017-fy2026.pdf",
+      "sha256": "5f034e748dd484ea65db9b581e9959e360bd1f45b4170115983ebffeded42e93"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-nm-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:31:24.834099+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0T8RhCikTIiyuVUxdTghkC4BxHKXvBpJx8CJNXbfRK0llHuSA3lPAOUHyxoQmxo0fTFyl/4eOzfnB97qQ8VfCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

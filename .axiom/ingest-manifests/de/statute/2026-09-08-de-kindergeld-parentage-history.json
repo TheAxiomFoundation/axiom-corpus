@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-parentage-history.json",
+      "sha256": "1468ee049126c067ee77d992cbb7f32826b92e322c214027b1d9bda9063c9d39"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-parentage-history.json",
+      "sha256": "ae7a93143e0abb6e59dbe04c2feb18ccb636f2cca420725770f577c7ab7b934c"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-history.jsonl",
+      "sha256": "9e67248ae3d7a44cb7307e1a1a4c247796610faeb233a0238026e5ab27e5d6cf"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-history/official-documents/de-kindrg-1997.pdf",
+      "sha256": "bd58391268f7d4103670967f86ab7642fe9bae34faf56ec36415b2dadc1e2c7b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1447584b5eeee8f568d9f9f29a7819336d183c41",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Existing official-document OCR / GII CLI capture; exact commands and retained-source replay in docs/ingest-runs/2026-09-08-de-kindergeld-parentage.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T17:48:57.239927+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-audit.json",
+      "sha256": "63e9e346586414098f6cba843abf7819e0afaf5668924810b726d18f666d63c9"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage.md",
+      "sha256": "72f3e9e8acc298c88e27b3a80ded900b0a026b722c2666a5e59356f598da5322"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nANKp2/4C8GfSxglNtDTXv1cw1RL56Bw4agFkSBQYKAUgry0HCuj41ANHcJq0WR80IeaQ7Xe/EAdfXwZUo3eBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-parentage-history"
+}

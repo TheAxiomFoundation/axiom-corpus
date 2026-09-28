@@ -1,0 +1,567 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>07</num>
+  <heading>Pass-Through Entity Tax</heading>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Definitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this chapter, the following terms have the meanings indicated.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Terms Defined.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Distributable cash flow” has the meaning stated in <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(a)(2), Annotated Code of Maryland.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Distributive share of partnership income” means the total distributive share of income (loss) items as reported on Schedule K of the federal partnership return, Form 1065, less interest from U.S. obligations.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>“Member” has the meaning stated in <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(a)(4), Annotated Code of Maryland.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>“Multistate pass-through entity” means a pass-through entity doing business within and outside the State.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>“Nonresident entity” has the meaning stated in <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(a)(5), Annotated Code of Maryland.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>“Nonresident member” includes, unless specifically designated elsewhere, a nonresident individual member and a nonresident entity member.</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>“Nonresident taxable income” means:</text>
+        <para>
+          <num>(a)</num>
+          <text>For a pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership), the total nonresident members' share of the distributive share of partnership income allocated to this State; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>For a pass-through entity that is an S corporation, the total nonresident members' pro rata share of S corporation income allocated to this State.</text>
+        </para>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>“Pass-through entity”, unless specifically designated elsewhere, has the meaning stated in <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(a)(7), Annotated Code of Maryland.</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>“Pass-through entity's taxable income” means the portion of a pass-through entity's income under the federal Internal Revenue Code, calculated without regard to any deduction for taxes based on net income that are imposed by any state or political subdivision of a state, that is derived from or reasonably attributable to the trade or business of the pass-through entity in this State.</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>“Pro rata share of S corporation income” means the total of the pro rata share of income (loss) items reported on Schedule K of Form 1120S, U.S. Income Tax Return for an S corporation, less interest from U.S. obligations.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|07|.02">
+    <prefix>Regulation</prefix>
+    <num>.02</num>
+    <heading>Imposition and Computation of Tax.</heading>
+    <para>
+      <num>A.</num>
+      <text>Imposition of Tax on Nonresident Members.</text>
+      <para>
+        <num>(1)</num>
+        <text>A tax is imposed on a pass-through entity that:</text>
+        <para>
+          <num>(a)</num>
+          <text>Has a nonresident member;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Has nonresident taxable income for the taxable year; and</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Does not elect to pay the tax with respect to the distributive shares or pro rata shares of all members of the pass-through entity under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The tax paid under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland, with respect to nonresident members' distributive or pro rata shares of income shall be treated as a tax imposed on the nonresident member that is paid by the pass-through entity on behalf of the nonresident member.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Election to Pay Tax with Respect to All Members</text>
+      <para>
+        <num>(1)</num>
+        <text>A pass-through entity may elect to pay tax on the distributive or pro rata shares of all members of the pass-through entity under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>When a pass-through entity elects to pay tax on the distributive or pro rata shares of all members of the pass-through entity under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, the tax shall be treated as a tax on the pass-through entity itself.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Allocation of Income for a Multistate Pass-Through Entity.</text>
+      <para>
+        <num>(1)</num>
+        <text>A multistate pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership) shall allocate income to this State using:</text>
+        <para>
+          <num>(a)</num>
+          <text>The apportionment formula for corporations under <cite path="03.04.03.08">COMAR 03.04.03.08</cite> A—E; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Separate accounting.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A multistate pass-through entity that is an S corporation shall allocate income to this State using:</text>
+        <para>
+          <num>(a)</num>
+          <text>The apportionment formula for corporations under <cite path="03.04.03.08">COMAR 03.04.03.08</cite> A—E; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Separate accounting, but this method is only allowable if the business activity of the S corporation within this State is not unitary.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Amount of Tax.</text>
+      <para>
+        <num>(1)</num>
+        <text>Calculation of Nonresident Tax for Pass-Through Entities Paying Tax with Respect to Nonresident Members' Distributive or Pro Rata Shares Under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland.</text>
+        <para>
+          <num>(a)</num>
+          <text>If the pass-through entity has one or more nonresident members that are individuals, and does not elect to pay the tax with respect to the distributive or pro rata shares of all members under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, the amount of tax is the sum of:</text>
+          <para>
+            <num>(i)</num>
+            <text>The nonresident taxable income of the nonresident members that are individuals, multiplied by the lowest rate of income tax for an individual under <cite doc="Md. Code" path="gtg|10-106">Tax-General Article, §10-106</cite>.1, Annotated Code of Maryland; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The nonresident taxable income of the nonresident members that are individuals, multiplied by the top marginal State tax rate for an individual under <cite doc="Md. Code" path="gtg|10-105">Tax-General Article, §10-105(a), Annotated Code of Maryland</cite>.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>If the pass-through entity has one or more nonresident entity members, the amount of tax is computed by applying the rate of tax for a corporation under <cite doc="Md. Code" path="gtg|10-105">Tax-General Article, §10-105(b), Annotated Code of Maryland</cite>, to the nonresident taxable income of the nonresident entity members.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>If the pass-through entity has a nonresident member that is an individual and a nonresident entity member, then the amounts as computed in §E(1)(a) and (b) of this regulation shall be summed to arrive at the amount of tax.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Calculation of Tax for Pass-Through Entities Electing to Pay Tax with Respect to All Members' Distributive or Pro Rata Shares Under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland.</text>
+        <para>
+          <num>(a)</num>
+          <text>If the pass-through entity has one or more members that are individuals, the amount of the tax is the sum of:</text>
+          <para>
+            <num>(i)</num>
+            <text>The individual members' distributive or pro rata share of the pass-through entity's taxable income, multiplied by the lowest rate of income tax for an individual under <cite doc="Md. Code" path="gtg|10-106">Tax-General Article, §10-106</cite>.1, Annotated Code of Maryland; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>The individual members' distributive share or pro rata share of the pass-through entity's taxable income, multiplied by the top marginal State tax rate for an individual under <cite doc="Md. Code" path="gtg|10-105">Tax-General Article, §10-105(a), Annotated Code of Maryland</cite>.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>If the pass-through entity has one or more entity members, the amount of the tax is computed by applying the rate of tax for a corporation under <cite doc="Md. Code" path="gtg|10-105">Tax-General Article, §10-105(b), Annotated Code of Maryland</cite>, to the distributive or pro rata share of the pass-through entity's taxable income of entity members.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>If the pass-through entity has a member that is an individual and an entity member, then the amounts as computed in §E(2)(a) and (b) of this regulation shall be summed to arrive at the amount of the tax paid on all members distributive or pro rata share.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>F.</num>
+      <text>Limitation on Tax Imposed. The tax imposed on a pass-through entity is the lesser of:</text>
+      <para>
+        <num>(1)</num>
+        <text>The amount of tax imposed as computed under <cite path="03|04|07|.02|E.">§E of this regulation</cite>;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>For a pass-through entity paying the nonresident tax under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland, the sum of the shares of all the nonresident members in the pass-through entity's distributable cash flow; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>For a pass-through entity paying tax on all members' distributive or pro rata shares under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, the sum of the shares of all members in the pass-through entity's distributable cash flow.</text>
+      </para>
+    </para>
+    <para>
+      <num>G.</num>
+      <text>Special: Certain Members.</text>
+      <para>
+        <num>(1)</num>
+        <text>A member that is itself a pass-through entity shall comply with the provisions of this regulation with respect to any of its members.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>A pass-through entity that has a member that is exempt from income tax under <cite doc="Md. Code" path="gtg|10-104">Tax-General Article, §10-104(2), Annotated Code of Maryland</cite>, is exempt from complying with the provisions of this regulation with respect to that member.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|07|.03">
+    <prefix>Regulation</prefix>
+    <num>.03</num>
+    <heading>Filing of Returns and Payment of Tax.</heading>
+    <para>
+      <num>A.</num>
+      <text>Requirement to File Returns.</text>
+      <para>
+        <num>(1)</num>
+        <text>Information Return. A pass-through entity doing business in this State and paying tax on behalf of nonresident members under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland, shall file an information return using Form 510. A pass-through entity paying tax on behalf of nonresident members under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland, that is an S corporation may be required to file a corporate income tax return as provided in <cite path="03.04.03.03|B.|(3)">COMAR 03.04.03.03B(3)</cite>.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Income Tax Return. A pass-through entity doing business in this State and electing to be taxed on all members' distributive or pro rata shares under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, shall file an income tax return using Form 511. An S corporation that pays the tax on all members' shares of income under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, may be required to file a corporate income tax return as provided in <cite path="03.04.03.03|B.|(3)">COMAR 03.04.03.03B(3)</cite>.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Attachments.</text>
+        <para>
+          <num>(a)</num>
+          <text>A pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership) shall file with the information return a copy of:</text>
+          <para>
+            <num>(i)</num>
+            <text>Schedule K of Federal Form 1065; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>A Schedule K-1 for each nonresident member.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A pass-through entity that is an S corporation shall file with the information return a copy of:</text>
+          <para>
+            <num>(i)</num>
+            <text>Schedule K of Federal Form 1120S; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>A Schedule K-1 for each nonresident member.</text>
+          </para>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Due Date. Except as provided in <cite path="03|04|07|.03|A.|(5)">§A(5) of this regulation</cite>, the due date for filing a return is:</text>
+        <para>
+          <num>(a)</num>
+          <text>For a pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership), the 15th day of the 4th month following the close of the partnership's taxable year; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>For a pass-through entity that is an S corporation, the 15th day of the 4th month following the close of the taxable year.</text>
+        </para>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Extension of Time to File.</text>
+        <para>
+          <num>(a)</num>
+          <text>A pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership) shall be granted an automatic extension of up to 6 months by filing a Form 510E.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A pass-through entity that is an S corporation shall be granted an automatic extension of up to 7 months by filing a Maryland Form 510E.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Time for Filing. The due date for filing an extension is:</text>
+          <para>
+            <num>(i)</num>
+            <text>For a pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership, the 15th day of the 4th month following the close of the partnership's taxable year; and</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>For a pass-through entity that is an S corporation, the 15th day of the 4th month following the close of the S corporation's taxable year.</text>
+          </para>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Estimated Tax Returns.</text>
+      <para>
+        <num>(1)</num>
+        <text>Requirement to File. A pass-through entity shall file quarterly estimated tax returns using Form 510D if the total tax imposed under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b), Annotated Code of Maryland, is reasonably expected to exceed $1,000 for the taxable year. At least 25 percent of the total estimated tax shall be remitted by each of the four installment dates set forth in <cite path="03|04|07|.03|B.|(2)">§B(2) of this regulation</cite>.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Due Date.</text>
+        <para>
+          <num>(a)</num>
+          <text>A pass-through entity that is a partnership (including a limited liability company taxed as a partnership and a business trust taxed as a partnership) required to file estimated tax returns shall file the returns and pay the tax due on or before the 15th day of the 4th, 6th, and 9th month of the tax year and the 15th day of the 1st month of the succeeding year.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>A pass-through entity that is an S corporation required to file estimated tax returns shall file the returns and pay the tax due on or before the 15th day of the 4th, 6th, 9th, and 12th month of the tax year.</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Unpaid Tax.</text>
+        <para>
+          <num>(a)</num>
+          <text>The Comptroller shall assess interest and penalties on the underpayment of estimated tax based on the unpaid tax from the due date of the tax to the date on which the tax is paid.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The unpaid tax is the lesser of:</text>
+          <para>
+            <num>(i)</num>
+            <text>90 percent of the tax required to be shown on the return for the current taxable year; or</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>110 percent of the tax paid for the prior taxable year.</text>
+          </para>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Short Tax Period. For a short tax period, the total estimated tax for the taxable period shall be paid equally over the number of installment due dates occurring during the short tax year. However, estimated tax is not required to be remitted for a short period of less than 4 months.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Annual Return.</text>
+      <para>
+        <num>(1)</num>
+        <text>Requirement to File.</text>
+        <para>
+          <num>(a)</num>
+          <text>A pass-through entity shall file an annual return whether or not a tax is due.</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The annual return shall reconcile the total estimated taxes paid with the total tax liability computed on the return.</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>If estimated tax returns are not required, the annual return shall develop the tax due for the taxable year.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Due Date. Except as provided in <cite path="03|04|07|.03|C.|(3)">§C(3) of this regulation</cite>, the annual return, with payment of any tax due, shall be filed on or before the due date for the filing of the pass-through entity return as provided in <cite path="03|04|07|.03|A.|(4)">§A(4) of this regulation</cite>.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Extension of Time to File. An extension of time to file an annual return shall be allowed for the same period of time allowed under <cite path="03|04|07|.03|A.|(5)">§A(5) of this regulation</cite>, if:</text>
+        <para>
+          <num>(a)</num>
+          <text>An extension is requested for the information return; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The extension is requested within the time provided under <cite path="03|04|07|.03|A.|(5)|(c)">§A(5)(c) of this regulation</cite>.</text>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>Effect of Extension. An extension of time to file an annual return may not extend the time for payment of any tax due.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Credit for Tax Paid.</text>
+      <para>
+        <num>(1)</num>
+        <text>Tax required to be paid by the pass-through entity under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland, is paid on behalf of the nonresident members.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Tax elected to be paid by the pass-through entity under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, is a tax imposed on the entity itself.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The tax attributable to a member's share of the taxable income that was paid by the pass-through entity shall be claimed by that member as a credit, allowed by <cite doc="Md. Code" path="gtg|10-701">Tax-General Article, §10-701</cite>.1, Annotated Code of Maryland, on:</text>
+        <para>
+          <num>(a)</num>
+          <text>The tax return of the member; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>If the entity does not elect to be taxed on all members' distributive or pro rata shares of income, a composite return filed on behalf of the electing nonresident member by the pass-through entity paying the tax on behalf of nonresidents under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland.</text>
+        </para>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>For a pass-through entity that has a member that is a fiduciary, the credit allowed by <cite doc="Md. Code" path="gtg|10-701">Tax-General Article, §10-701</cite>.1, Annotated Code of Maryland, may be claimed by the beneficiary of that fiduciary in an amount in proportion to the distribution of income by the fiduciary to that beneficiary.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>Overpayments of tax shown on the annual return of a pass-through entity that paid the tax on behalf of nonresidents under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(i), Annotated Code of Maryland, may not be:</text>
+        <para>
+          <num>(a)</num>
+          <text>Refunded to the pass-through entity; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Applied to the current year estimated tax of the pass-through entity.</text>
+        </para>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>Overpayments of tax shown on the annual return of a pass-through entity that elects to pay on all members' distributive or pro rata shares of income under <cite doc="Md. Code" path="gtg|10-102">Tax-General Article, §10-102</cite>.1(b)(2)(ii), Annotated Code of Maryland, may be:</text>
+        <para>
+          <num>(a)</num>
+          <text>Refunded to the pass-through entity; or</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Applied to the current year estimated tax of the pass-through entity.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>E.</num>
+      <text>Member That Is a Pass-Through Entity. A member of a pass-through entity that is itself a pass-through entity also shall file the form as provided under §A or C(1) of this regulation.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|07|.04">
+    <prefix>Regulation</prefix>
+    <num>.04</num>
+    <heading>Statements to Members.</heading>
+    <para>
+      <num>A.</num>
+      <text>Requirements. A pass-through entity shall provide each member with an income tax statement.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Form and Contents of Statement.</text>
+      <para>
+        <num>(1)</num>
+        <text>Form. A pass-through entity may elect to use a:</text>
+        <para>
+          <num>(a)</num>
+          <text>Maryland Form 510, Schedule K-1;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Modified Federal Form K-1; or</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Statement prepared by the pass-through entity on its own form.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Contents.</text>
+        <para>
+          <num>(a)</num>
+          <text>Pass-through Entity Income Tax Statement. A pass-through entity that elects to use its own form as provided under <cite path="03|04|07|.04|B.|(1)|(b)">§B(1)(b) of this regulation</cite> shall label the statement “Member Income Tax Statement”, and the statement shall contain the following:</text>
+          <para>
+            <num>(i)</num>
+            <text>Name and address of the pass-through entity;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Federal employer identification number of the pass-through entity;</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>Maryland central registration number of the pass-through entity, if one has been issued;</text>
+          </para>
+          <para>
+            <num>(iv)</num>
+            <text>Name and address of the member;</text>
+          </para>
+          <para>
+            <num>(v)</num>
+            <text>Social Security number or federal employer identification number of the member;</text>
+          </para>
+          <para>
+            <num>(vi)</num>
+            <text>Amount of the member's distributive or pro rata share of income attributable to Maryland sources;</text>
+          </para>
+          <para>
+            <num>(vii)</num>
+            <text>Description and amount of Maryland addition and subtraction modifications allocated to the member;</text>
+          </para>
+          <para>
+            <num>(viii)</num>
+            <text>Amount of the Maryland tax paid on the member's shares of distributable or pro rata income; and</text>
+          </para>
+          <para>
+            <num>(ix)</num>
+            <text>Description and amount of Maryland credits allocated to the member.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Modified Form K-1. A pass-through entity that elects to use a modified Form K-1, in addition to the information provided for federal purposes, shall include the amount of the:</text>
+          <para>
+            <num>(i)</num>
+            <text>Member's share of income attributable to Maryland sources;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Description and amount of addition and subtraction modifications allocated to the member;</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>Tax paid on the member's shares; and</text>
+          </para>
+          <para>
+            <num>(iv)</num>
+            <text>Description and amount of credits allocated to the member.</text>
+          </para>
+        </para>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.05</num>
+    <heading>Composite Returns.</heading>
+    <para>
+      <num>A.</num>
+      <text>A pass-through entity may file a composite return on behalf of the nonresident members that are individuals (not including fiduciaries) pursuant to <cite path="03.04.02.04">COMAR 03.04.02.04</cite>.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>An electing pass-through entity may not file a composite return on behalf of any members.</text>
+    </para>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container">Tax-General Article, §§<cite doc="Md. Code" path="gtg|2-103">2-103</cite> and <cite doc="Md. Code" path="gtg|10-102">10-102</cite>.1(c) and (f), Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1992-01-20">Effective date: January 20, 1992 (19:1 Md. R. 23)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1993-03-29"><cite path="|03|04|07|.01|B.">Regulation .01B</cite> amended effective March 29, 1993 (20:6 Md. R. 579)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1999-01-14"><cite path="|03|04|07|.02|C.">Regulation .02C</cite> amended effective January 14, 1999 (26:1 Md. R. 22)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1994-11-20"><cite path="|03|04|07|.03">Regulation .03</cite> amended effective November 20, 1994 (21:23 Md. R. 1931)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2003-12-22"><cite path="|03|04|07|.03|B.">Regulation .03B</cite> amended and D adopted effective December 22, 2003 (30:25 Md. R. 1845)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2003-12-22"><cite path="|03|04|07|.04|B.">Regulation .04B</cite> amended effective December 22, 2003 (30:25 Md. R. 1845)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09" discontinuity="true">Chapter revised effective October 9, 2006 (33:20 Md. R. 1613)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|07|.01|B.">Regulation .01B</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|07|.02">Regulation .02</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2010-04-19"><cite path="|03|04|07|.02|B.">Regulation .02B</cite> amended effective April 19, 2010 (37:8 Md. R. 614)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2009-02-09"><cite path="|03|04|07|.02|C.">Regulation .02C</cite> amended effective February 9, 2009 (36:3 Md. R. 207)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|07|.03">Regulation .03</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2017-03-27"><cite path="|03|04|07|.03|A.">Regulation .03A</cite> amended effective March 27, 2017 (44:6 Md. R. 324)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|07|.04">Regulation .04</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2011-03-21"><cite path="|03|04|07|.04|B.">Regulation .04B</cite> amended effective March 21, 2011 (38:6 Md. R. 393)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|07|.05">Regulation .05</cite> amended effective May 2, 2022 (49:9 Md. R. 529)</annotation>
+  </annotations>
+</container>

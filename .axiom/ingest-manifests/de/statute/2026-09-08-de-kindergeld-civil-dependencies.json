@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-civil-dependencies.json",
+      "sha256": "5cb53a8b06c7612461cf4cd25bf99be1ca2053ccc324818940bc6813dfb0cc3d"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-civil-dependencies.json",
+      "sha256": "dfe174ac522bf22e96937e05caec2a53edc37bd95b1060f36779ff5cde696d34"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-civil-dependencies.jsonl",
+      "sha256": "3ec9ce938c85f9d8fd7b74e22b207a6621ea7b9eda19c69adedb2c873a4ccd68"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-civil-dependencies/bgb/BJNR001950896.xml",
+      "sha256": "d35dc6ea8187743648e28f0081d4cd4e650e3380d3f90c98b7e9692fb7e19086"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-civil-dependencies/einigvtr/BJNR208890990.xml",
+      "sha256": "9ce1f00ac81ababc6d39bdd2622d82f9c6438fdbcad26b87e96ad1fd0e08c4a1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "603e1a190f90a9d7d55e780a151bbbc5c4f5b3fa",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld civil dependencies: existing extract-de-gii and extract-official-documents; exact commands and inputs in docs/ingest-runs/2026-09-08-de-kindergeld-civil.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3136,
+    "missing_count": 0,
+    "provision_count": 3136,
+    "source_count": 3136
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T15:41:21.377059+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-civil.md",
+      "sha256": "45f939bcf9260213e7a84d62dce67c557bc50b227e0173bcc011cea44f469e54"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "j8cJ/nTenBuTwY5DpsuhLCp365Zed8KZadipErQx/cSinPUcCdN57/mF4FI2ClOXmdX+AMZvzKbl2nvb+kz/Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-civil-dependencies"
+}

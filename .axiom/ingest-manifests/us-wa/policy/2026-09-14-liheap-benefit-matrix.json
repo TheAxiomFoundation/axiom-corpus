@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "c040d501367bbb141d4a7e7ad57afd6aa449781230248a0cbae0bb5856df9ec5"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "a2bc2c0d8bce21060ed1aa94b1237516cf92a6e2a5c771c6b1605c5bbfde9a4d"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/policy/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "747bca9c773b45487db322ce5b169c17b2d3c2fa9e43f9eb14d70ae5fcc6e989"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-wa-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "sha256": "7a4a8c5e8d3909e432dd30147895d74ea3603b9899df28eb16226c28f214ad71"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-wa-liheap-benefit-matrix-attachments.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T18:32:28.917365+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "t+wSdCsOxzob0BTsZa6mm2hwXkuGqhv/jFZkp5h0YqZxijI1HWJTBlL47dy6dl/UiqHfmNom4lezs0u9o/ECDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

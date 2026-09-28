@@ -1,0 +1,37 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-or-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-or
+  document_class: policy
+  title: Oregon CCDF Plan, FFY 2025-2027
+  source_url: https://www.oregon.gov/delc/about-us/Documents/ACF-118_CCDF_2025-2027_Oregon.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-or/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: Approved as of 2024-11-09 ('2025-27 Plan (303 pages)'; Amendment 1 with its approval letter, the initial
+      approval letter, the state-hosted Appendix 1, public comment documents and the transitional waiver request are posted
+      separately, not taken; www.oregon.gov resolved and answered on retry 2 2026-09-10T21:35Z from a US network)
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.oregon.gov/delc/about-us/pages/state-plans.aspx
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/OR-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-or/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

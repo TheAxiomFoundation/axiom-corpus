@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "3faf864b356c70d1c36002c0dd15d61e57ec1ecc9fc7b1f6ff1c413ebd967c1d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "7af9dee895a748958fe178c9c7df4c7d3270f289b3a27cd865b787e80676a40b"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "691b1bdc6defc6c9e3afd238d94b284a5ba4cb22da12602239dc0791a431a2a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-nm-trd-fyi-104-withholding-tax-ty2026.pdf",
+      "sha256": "400f141e3cc28d352712cd0cb94f80d7c2dc1c40463fcdcf31561247b5889a82"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-nm-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:32:16.103067+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UoAwvTCOuhcbxI6uzaNyo/RCMPNc4qykQzoy9ClSU/Z9TvJptCMOdstoPNd8l3kN7bfZrLMc+NdX7y2H1as3CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

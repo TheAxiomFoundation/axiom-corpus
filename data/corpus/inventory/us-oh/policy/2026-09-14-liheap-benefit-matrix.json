@@ -1,0 +1,77 @@
+{
+  "items": [
+    {
+      "citation_path": "us-oh/policy/acf/liheap-plan/fy2026-benefit-matrix",
+      "metadata": {
+        "access_note": "the Clearinghouse-listed manual is on a third-party CDN (irp.cdn-website.com) and is not taken; jfs.ohio.gov answers HTTP 404 to the plain client and a 1.1 MB single-page application to a Chrome UA, and its HEAP page HTTP 502/504 to a chrome120 fetch on 2026-09-13; liheapch.acf.gov HTTP 200 with the CA bundle",
+        "benefit_matrix_pdf_pages": "1",
+        "block_count": 1,
+        "clearinghouse_matrix_note": "FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm, delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file",
+        "closure_elements": [
+          "LIHEAP-ST-09"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://jfs.ohio.gov/public-assistance/energy-and-community-assistance",
+        "document_subtype": "plan_attachment_benefit_matrix_pdf",
+        "download_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/OH_BenefitMatrix_2026.pdf",
+        "expression_date_note": "attachment dated 5/1/2025 for the FY 2026 plan (headed DRAFT Funding); PDF dated 2025-08-04",
+        "extraction_granularity": "pdf_page",
+        "hosting_authority": "HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)",
+        "index_url": "https://liheapch.acf.gov/stateplans.htm#MANUALS",
+        "kind": "document",
+        "on_clearinghouse_index": true,
+        "page_count": 1,
+        "page_numbering_note": "benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number",
+        "primary_source": true,
+        "program": "LIHEAP",
+        "publisher_index_url": "https://jfs.ohio.gov/public-assistance/energy-and-community-assistance",
+        "source_authority": "Ohio Department of Job and Family Services (HEAP since 2026-04-06; formerly Ohio Department of Development)",
+        "source_discovery_group": "us-oh/policy/liheap-benefit-matrix",
+        "state": "OH",
+        "title": "Ohio LIHEAP FY 2026 plan attachment: 2025 LIHEAP Benefit Matrix (HWAP transfer up to 25 percent)",
+        "tls_note": "liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem"
+      },
+      "sha256": "67832ffefcbd799068c18a9103b8062caaace7abec8b9460631f2e7866616660",
+      "source_format": "pdf",
+      "source_path": "sources/us-oh/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-oh-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "source_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/OH_BenefitMatrix_2026.pdf"
+    },
+    {
+      "citation_path": "us-oh/policy/acf/liheap-plan/fy2026-benefit-matrix/page-1",
+      "metadata": {
+        "access_note": "the Clearinghouse-listed manual is on a third-party CDN (irp.cdn-website.com) and is not taken; jfs.ohio.gov answers HTTP 404 to the plain client and a 1.1 MB single-page application to a Chrome UA, and its HEAP page HTTP 502/504 to a chrome120 fetch on 2026-09-13; liheapch.acf.gov HTTP 200 with the CA bundle",
+        "benefit_matrix_pdf_pages": "1",
+        "block_count": 1,
+        "clearinghouse_matrix_note": "FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm, delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file",
+        "closure_elements": [
+          "LIHEAP-ST-09"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://jfs.ohio.gov/public-assistance/energy-and-community-assistance",
+        "document_subtype": "plan_attachment_benefit_matrix_pdf",
+        "download_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/OH_BenefitMatrix_2026.pdf",
+        "expression_date_note": "attachment dated 5/1/2025 for the FY 2026 plan (headed DRAFT Funding); PDF dated 2025-08-04",
+        "extraction_granularity": "pdf_page",
+        "hosting_authority": "HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)",
+        "index_url": "https://liheapch.acf.gov/stateplans.htm#MANUALS",
+        "kind": "page",
+        "on_clearinghouse_index": true,
+        "page_count": 1,
+        "page_number": 1,
+        "page_numbering_note": "benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number",
+        "primary_source": true,
+        "program": "LIHEAP",
+        "publisher_index_url": "https://jfs.ohio.gov/public-assistance/energy-and-community-assistance",
+        "source_authority": "Ohio Department of Job and Family Services (HEAP since 2026-04-06; formerly Ohio Department of Development)",
+        "source_discovery_group": "us-oh/policy/liheap-benefit-matrix",
+        "state": "OH",
+        "title": "Ohio LIHEAP FY 2026 plan attachment: 2025 LIHEAP Benefit Matrix (HWAP transfer up to 25 percent)",
+        "tls_note": "liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem"
+      },
+      "sha256": "67832ffefcbd799068c18a9103b8062caaace7abec8b9460631f2e7866616660",
+      "source_format": "pdf",
+      "source_path": "sources/us-oh/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-oh-liheap-acf-liheap-plan-fy2026-benefit-matrix.pdf",
+      "source_url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/OH_BenefitMatrix_2026.pdf"
+    }
+  ]
+}

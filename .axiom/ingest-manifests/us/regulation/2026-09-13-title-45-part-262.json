@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-45-part-262.json",
+      "sha256": "47c7e4af3383ed1ee1608cf9deaaf977aec854828db12f51ecedbd0de66e9e50"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-45-part-262.json",
+      "sha256": "c1d9d9601db62448385c2c6124e31a021b85ee597775febee2fb2ad06390a54a"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-45-part-262.jsonl",
+      "sha256": "4082e21b4e13a928da58fe2d1070a768044b929542e01e1bfe7f6353914d6300"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-45-part-262/ecfr/title-45-part-262.xml",
+      "sha256": "ee41a5218d96772f77c8f5250f1c6d410e92c209d8ad844347a969b135f57d34"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-45-part-262/ecfr/title-45.structure.json",
+      "sha256": "9ee8b602c32b892fcd5a2780ed1cd9e14e8ec7f4d96bbc6477cc11a776905a81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-45-part-262 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:45:21.747828+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xZ+oH9ue1eQmdt8pxQajtZJQ/jGQjLSoDyo2iUG+ZRy8U5ge1EiJoQ+0g9te/rgKbtTkuEu2ZkTivaLORJuUCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-45-part-262"
+}

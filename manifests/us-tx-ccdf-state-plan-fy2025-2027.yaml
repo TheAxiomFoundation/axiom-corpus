@@ -1,0 +1,39 @@
+version: 2026-09-13-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-tx-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-tx
+  document_class: policy
+  title: Texas CCDF Plan, FFY 2025-2027
+  source_url: https://www.twc.texas.gov/sites/default/files/ccel/docs/ffy-2025-2027-ccdf-state-plan-amendment-1-accessible.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-tx/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Amendment 1
+    plan_status: Approved as of 2026-07-01 ('Child Care and Development Fund 2025-2027 State Plan Amendment 1' on the TWC
+      Child Care Data, Reports & Plans page, the only FFY 2025-2027 plan version posted; the page links the ACF-hosted Appendix
+      separately, not taken; located on the 2026-09-13T19:57Z re-probe from a US network with the plain extractor client (HTTP
+      200, 122,911 bytes, 0.2 s; the PDF 2,910,861 bytes, Last-Modified 2026-08-03) after HTTP 403 CloudFront and an HTTP
+      202 AWS WAF challenge on the three 2026-09-10 passes)
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.twc.texas.gov/programs/child-care/data-reports-plans
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/TX-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-tx/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

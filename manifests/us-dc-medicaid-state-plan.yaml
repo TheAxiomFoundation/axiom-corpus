@@ -1,0 +1,885 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-dc-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 207
+- source_id: us-dc-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 207
+- source_id: us-dc-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 7
+    index_records_total: 207
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-25-0003-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-25-0003: Approval Document (approved May 21, 2026, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-25-0003
+    cms_node_id: '192946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192946
+    approval_date: '2026-05-21'
+    effective_date: '2025-04-01'
+    summary: This amendment amends the Medicaid State Plan to provide mandatory coverage in accordance with section 1902(a)(84)(D)
+      of the Social Security Act for eligible juveniles who are incarcerated in a public institution post-adjudication of
+      charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-25-0013-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-25-0013: Approval Document (approved November 18, 2025, effective January 1,
+    2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-25-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-25-0013
+    cms_node_id: '187641'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187641
+    approval_date: '2025-11-18'
+    effective_date: '2026-01-01'
+    summary: 'This amendment proposed to: discontinue coverage of the optional eligibility group serving individuals with
+      MAGI-based income above 133 percent of the federal poverty level (FPL); and reduce the income eligibility standard of
+      its mandatory eligibility group serving parents and other caretaker relatives from 216 percent of the FPL to 133 percent
+      of the FPL.'
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-24-0019-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-24-0019: Approval Document (approved March 10, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-24-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-24-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-24-0019
+    cms_node_id: '179541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179541
+    approval_date: '2025-03-10'
+    effective_date: '2025-04-01'
+    summary: This amendment is to renew the District of Columbia's 1915(i) State Plan HCBS benefit.
+    topics:
+    - Benefits
+    - Coverage and Reimbursement
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-24-0006-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-24-0006: Approval Document (approved March 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-24-0006
+    cms_node_id: '162056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162056
+    approval_date: '2024-03-15'
+    effective_date: '2024-01-01'
+    summary: Provide a twelve (12) month continuous eligibility period to children under age nineteen, who no longer meet
+      eligibility requirements. This SPA will align the District's eligibility and operational practices with new federal
+      requirements set forth under the Consolidated Appropriations Act of 2023.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-24-0003-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-24-0003: Approval Document (approved February 21, 2024, effective February
+    1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-24-0003
+    cms_node_id: '159716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159716
+    approval_date: '2024-02-21'
+    effective_date: '2024-02-01'
+    summary: 1) to supply assurances that it is complying with new third party liability requirements authorized under the
+      Consolidated Appropriations Act, 2022 and 2) to provide clarity on the state’s option to adopt a new flexibility on
+      creating liens for injury settlement proceeds attributable to future medical expenses.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-23-0002-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-23-0002: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-23-0002
+    cms_node_id: '148451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148451
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-23-0001-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-23-0001: Approval Document (approved May 5, 2023, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-23-0001
+    cms_node_id: '147616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147616
+    approval_date: '2023-05-05'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to update housing supportive services provider qualification criteria, provide reimbursement for
+      retroactive provider rate changes, to increase the personal needs allowance, and to waiver pharmacy signature requirements.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    - Home and Community Based Services
+    - Prescription Drugs
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-22-0014-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-22-0014: Approval Document (approved March 29, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-22-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-22-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-22-0014
+    cms_node_id: '146501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146501
+    approval_date: '2023-03-29'
+    effective_date: '2022-10-01'
+    summary: To adopt certain income disregards and make various eligibility-related updates to the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-21-0002-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-21-0002: Approval Document (approved May 7, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/DC-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-21-0002
+    cms_node_id: '108251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108251
+    approval_date: '2021-05-07'
+    effective_date: '2021-04-01'
+    summary: Refocuses the objectives of the Stevie Sellows assessment and supplemental payments.
+    topics:
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-20-0002-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-20-0002: Approval Document (approved August 7, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DC-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-20-0002
+    cms_node_id: '101761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101761
+    approval_date: '2020-08-07'
+    effective_date: '2020-07-01'
+    summary: Updates the LTCSS assessment requirements for beneficiaries receiving PCA services to align with changes made
+      to the District’s assessment process and corresponding regulations
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-19-0007-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-19-0007: Approval Document (approved March 18, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-19-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-19-0007
+    cms_node_id: '91001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=91001
+    approval_date: '2020-03-18'
+    effective_date: '2020-04-01'
+    summary: Renews the District of Columbia’s 1915(i) State Plan HCBS benefit
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-19-005-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-19-005: Approval Document (approved February 3, 2020, effective February 1,
+    2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-19-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-02-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-19-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-19-005
+    cms_node_id: '58721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58721
+    approval_date: '2020-02-03'
+    effective_date: '2020-02-01'
+    summary: This amendment will authorize the District to implement a PACE program, effective February 1, 2020
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-16-0012-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-16-0012: Approval Document (approved February 6, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-16-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-16-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-16-0012
+    cms_node_id: '16451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16451
+    approval_date: '2017-02-06'
+    effective_date: '2017-07-01'
+    summary: Individuals eligible to receive Health Home services include beneficiaries with multiple chronic conditions.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-16-0001-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-16-0001: Approval Document (approved April 21, 2016, effective April 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-04-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-16-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-16-0001
+    cms_node_id: '19706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19706
+    approval_date: '2016-04-21'
+    effective_date: '2016-04-01'
+    summary: Non-Financial Eligibility-State Residency for Title IV-E Foster Care children. Lays out the residency authority
+      for enrolling new and maintaining existing Title IV-E Foster Care children.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-15-0010-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-15-0010: Approval Document (approved November 20, 2015, effective January 1,
+    2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-15-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-15-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-15-0010
+    cms_node_id: '21496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21496
+    approval_date: '2015-11-20'
+    effective_date: '2016-01-01'
+    summary: Childless Adult Above 133%.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-15-001-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-15-001: Approval Document (approved April 9, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-15-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-15-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-15-001
+    cms_node_id: '27781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27781
+    approval_date: '2015-04-09'
+    effective_date: '2015-01-01'
+    summary: This SPA amendment will enable the District to extend Transitional Medicaid from two six month periods to one
+      twelve month period; thus, enabling families with low incomes the opportunity to retain Medicaid without a lapse in
+      coverage.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-14-0001-mm-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-14-0001-MM: Approval Document (approved May 14, 2014, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-14-0001-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-14-0001-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-14-0001-MM
+    cms_node_id: '34761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34761
+    approval_date: '2014-05-14'
+    effective_date: '2014-01-01'
+    summary: Proposed that One or More Qualified Hospitals Determine Presumptive Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-13-0011-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-13-0011: Approval Document (approved November 22, 2013, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-13-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-13-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-0011
+    cms_node_id: '22536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22536
+    approval_date: '2013-11-22'
+    effective_date: '2014-01-01'
+    summary: This amendment sets forth the eligibility requirements for former foster children under the age of 26 years in
+      accordance with the affordable care act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-13-09-mm-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-13-09-MM: Approval Document (approved November 20, 2013, effective January
+    1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-13-09-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-13-09-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-09-MM
+    cms_node_id: '39131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39131
+    approval_date: '2013-11-20'
+    effective_date: '2014-01-01'
+    summary: Identifies the Non-Financial Eligibility Requirements for both Citizens and Non-Citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-13-07-mm-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-13-07-MM: Approval Document (approved November 20, 2013, effective January
+    1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-13-07-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-13-07-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-07-MM
+    cms_node_id: '39056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39056
+    approval_date: '2013-11-20'
+    effective_date: '2014-01-01'
+    summary: Identifies MAGI-Based Eligibility Groups and Incorporates General Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-13-0015-mm-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-13-0015-MM: Approval Document (approved November 19, 2013, effective January
+    1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-13-0015-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-13-0015-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-0015-MM
+    cms_node_id: '38981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38981
+    approval_date: '2013-11-19'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI-Based Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-13-0013-mm-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-13-0013-MM: Approval Document (approved November 18, 2013, effective January
+    14, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-13-0013-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-14'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-13-0013-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-0013-MM
+    cms_node_id: '39026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39026
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-14'
+    summary: MAGI Based Eligibility Group.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-12-05-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-12-05: Approval Document (approved January 25, 2013, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-12-05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-12-05/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-12-05
+    cms_node_id: '36076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36076
+    approval_date: '2013-01-25'
+    effective_date: '2012-10-01'
+    summary: Modifies Methods and Standards for Making Medical Assistance Payments to Intermediate Care Facilities for Individuals
+      with Intellectual Disabilities.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-dc-cms-medicaid-state-plan-spa-dc-09-08-approval-document
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia Medicaid SPA DC-09-08: Approval Document (approved April 9, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DC/DC-09-08.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-dc/policy/cms/medicaid-state-plan/spa/dc-09-08/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-09-08
+    cms_node_id: '30701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30701
+    approval_date: '2010-04-09'
+    effective_date: '2010-01-01'
+    summary: This amendment elects the Children's Health Insurance Program Reauthorization Act (CHIPRA) of 2009 option in
+      Section 214 to lift the five year bar ban on eligibility and provide full Medicaid coverage to all otherwise eligible
+      alien children or pregnant women lawfully residing in the District of Columbia.
+    topics:
+    - Eligibility
+    link_label: Approval Document

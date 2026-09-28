@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "67135d23491ad7d7ef848be8b3a250695eac9633b81fea29af2d44a2750868b7"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "ed79667b3d16be7170c3af546fd6a5fa8ab458a5ae313e855b8d17bc0b22f446"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/policy/2026-09-13-ccdf-rate-schedules.jsonl",
+      "sha256": "4a402cf4486ecb72fc793e9df097332faa0dbd0d4b86a2ac2de641dd586fcac6"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-sc-ccdf-rate-schedule-child-care-income-standards-2025-2026.pdf",
+      "sha256": "88ed89069fe9eeb0c6e499e44c7f605976319ad3df5dec3487085673f4100b26"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-sc-ccdf-rate-schedule-scholarship-fee-scale-2025-2026.pdf",
+      "sha256": "bc5f7e2dbf9b730cd51dd570cda32bfb5359b3b2abc651df19a792f72eb61e13"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-sc-ccdf-rate-schedule-scholarship-maximum-payments-ffy2026.pdf",
+      "sha256": "6b32ec74b488b3e584778be5468b6865b14dc69afe3aa57a4f87c5f9e40571ea"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-rate-schedules (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:13:00.163945+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "i/YjkQqjDPRxbERrJCfk/ByKLb8Ak9EmaCpIhBi8DBUuNfYJQokCFxG7VK1dE0jL7IsqCpUQn/+ZNyFfDXhgCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-rate-schedules"
+}

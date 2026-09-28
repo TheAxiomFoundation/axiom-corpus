@@ -32,7 +32,12 @@ def test_kentucky_snap_manifest_pins_both_current_official_manuals() -> None:
     documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
 
     assert {document["source_id"] for document in documents} == set(EXPECTED_SOURCES)
-    assert all(document["source_as_of"] == "2026-07-17" for document in documents)
+    # Superseding edition (2026-09-11): Volume II OMTL-708 (Last-Modified 2026-09-11),
+    # Volume IIA OMTL-707 (Last-Modified 2026-09-09), both revised through R. 9/1/26.
+    assert {document["source_id"]: document["source_as_of"] for document in documents} == {
+        "ky-dcbs-dfs-om-vol-ii": "2026-09-11",
+        "ky-dcbs-dfs-om-vol-iia": "2026-09-09",
+    }
     assert all(document["request"]["browser_user_agent"] is True for document in documents)
     assert all(document["metadata"]["primary_source"] is True for document in documents)
     assert all(
@@ -41,8 +46,12 @@ def test_kentucky_snap_manifest_pins_both_current_official_manuals() -> None:
         for document in documents
     )
     assert {document["source_id"]: document["expression_date"] for document in documents} == {
-        "ky-dcbs-dfs-om-vol-ii": "2026-07-01",
-        "ky-dcbs-dfs-om-vol-iia": "2025-10-25",
+        "ky-dcbs-dfs-om-vol-ii": "2026-09-01",
+        "ky-dcbs-dfs-om-vol-iia": "2026-09-01",
+    }
+    assert {document["source_id"]: document["metadata"]["latest_omtl"] for document in documents} == {
+        "ky-dcbs-dfs-om-vol-ii": "708",
+        "ky-dcbs-dfs-om-vol-iia": "707",
     }
 
 

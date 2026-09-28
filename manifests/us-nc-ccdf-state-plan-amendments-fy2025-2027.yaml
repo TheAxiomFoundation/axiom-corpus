@@ -1,0 +1,38 @@
+version: 2026-09-13-ccdf-state-plan-amendments
+documents:
+- source_id: us-nc-acf-ccdf-plan-fy2025-2027-amendment-2
+  jurisdiction: us-nc
+  document_class: policy
+  title: North Carolina CCDF Plan FFY 2025-2027, Amendment 2
+  source_url: https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/A/ACF-118_CCDF_FFY_2025-2027_For_North_Carolina.pdf?ver=qMH8KP5I8Z-D2B1zTmbO-w%3d
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-03-12'
+  citation_path: us-nc/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_amendment_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://ncchildcare.ncdhhs.gov/Services/Child-Care-Development-Fund-CCDF
+    source_discovery_group: us-nc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://ncchildcare.ncdhhs.gov/Services/Child-Care-Development-Fund-CCDF
+    plan_version: Amendment 2
+    plan_status: Approved as of 2026-03-12
+    source_note: 'the page''s ''with Amendment 1'' and ''with Amendment 2'' links resolve to the same file (byte-identical,
+      Version: Amendment 2)'
+    closure_elements:
+    - ccdf-s28

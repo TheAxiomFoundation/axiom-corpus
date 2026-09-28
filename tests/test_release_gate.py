@@ -121,18 +121,10 @@ def _validation(content: dict[str, Any]) -> dict[str, Any]:
                 "actual": scope["provision_rows"],
                 "expected_navigation": scope["navigation_rows"],
                 "actual_navigation": scope["navigation_rows"],
-                "expected_provision_projection_sha256": scope[
-                    "provision_projection_sha256"
-                ],
-                "actual_provision_projection_sha256": scope[
-                    "provision_projection_sha256"
-                ],
-                "expected_navigation_projection_sha256": scope[
-                    "navigation_projection_sha256"
-                ],
-                "actual_navigation_projection_sha256": scope[
-                    "navigation_projection_sha256"
-                ],
+                "expected_provision_projection_sha256": scope["provision_projection_sha256"],
+                "actual_provision_projection_sha256": scope["provision_projection_sha256"],
+                "expected_navigation_projection_sha256": scope["navigation_projection_sha256"],
+                "actual_navigation_projection_sha256": scope["navigation_projection_sha256"],
             }
             for scope in content["scopes"]
         ],
@@ -145,9 +137,7 @@ def release_repo(tmp_path: Path, signing_keys: tuple[str, str]):
     root.mkdir()
     subprocess.run(["git", "init", "-q", str(root)], check=True)
     subprocess.run(["git", "-C", str(root), "config", "user.name", "Test"], check=True)
-    subprocess.run(
-        ["git", "-C", str(root), "config", "user.email", "test@example.com"], check=True
-    )
+    subprocess.run(["git", "-C", str(root), "config", "user.email", "test@example.com"], check=True)
     private, public = signing_keys
 
     def make(
@@ -204,9 +194,7 @@ def release_repo(tmp_path: Path, signing_keys: tuple[str, str]):
             root, release=manifest, validation={"passed": True}, created_at=created_at
         )
         content["validation"] = _validation(content)
-        signed = sign_release_object(
-            build_unsigned_release_object(content), private_key=private
-        )
+        signed = sign_release_object(build_unsigned_release_object(content), private_key=private)
         path = root / f"{name}.json"
         path.write_text(json.dumps(signed, indent=2, sort_keys=True) + "\n")
         return signed, path
@@ -359,9 +347,7 @@ def test_older_release_vs_active_fails_incident_replay(release_repo) -> None:
     scope = ReleaseScope("uk", "manual", "2026-07-24-council")
     root, public, make = release_repo
     obj, path = make("uk-older", [scope])
-    _install_active_manifest(
-        root, "uk-active", ReleaseScope("uk", "manual", "2026-07-26-council")
-    )
+    _install_active_manifest(root, "uk-active", ReleaseScope("uk", "manual", "2026-07-26-council"))
     active = [
         {
             "jurisdiction": "uk",
@@ -405,10 +391,7 @@ def test_serving_state_rows_fail_preview_coverage(release_repo) -> None:
     result = _by_name(results)["scope_monotonicity"]
     assert not result.passed
     assert "active-state preview schema violation" in result.evidence
-    assert (
-        "missing incoming pair(s) [('uk', 'manual')]; refusing vacuous pass"
-        in result.evidence
-    )
+    assert "missing incoming pair(s) [('uk', 'manual')]; refusing vacuous pass" in result.evidence
 
 
 def test_empty_active_state_rows_fail_preview_coverage(release_repo) -> None:
@@ -512,7 +495,7 @@ def test_older_publication_with_equal_versions_fails_incident_replay(release_rep
     )
     result = _by_name(results)["scope_monotonicity"]
     assert not result.passed
-    assert "versions tie" in result.evidence
+    assert "identical version evidence" in result.evidence
 
 
 def test_equal_release_reaffirm_passes(release_repo) -> None:
@@ -570,6 +553,49 @@ def test_strict_superset_passes(release_repo) -> None:
     ]
 
 
+def test_identical_version_sets_pass_without_parsing(release_repo) -> None:
+    # Grandfathered version keys (us-ky form 2026-740-es) do not parse as
+    # YYYY-MM-DD-…; when the incoming release carries the identical
+    # version evidence, monotonicity holds by identity and only the
+    # publication-recency requirement applies.
+    scope = ReleaseScope("us-ky", "form", "2026-740-es")
+    active = [
+        {
+            "jurisdiction": "us-ky",
+            "document_class": "form",
+            "changes": True,
+            "current_release_name": "us-active",
+            "current_versions": ["2026-740-es"],
+            "current_published_at": "2026-08-10T00:00:00Z",
+            "incoming_published_at": "2026-08-23T00:00:00Z",
+        }
+    ]
+    _, _, results = _results(release_repo, "us-identical", [scope], active, allow_regression=False)
+    result = _by_name(results)["scope_monotonicity"]
+    assert result.passed, result.evidence
+
+
+def test_identical_version_sets_still_require_publication_recency(
+    release_repo,
+) -> None:
+    scope = ReleaseScope("us-ky", "form", "2026-740-es")
+    active = [
+        {
+            "jurisdiction": "us-ky",
+            "document_class": "form",
+            "changes": True,
+            "current_release_name": "us-active",
+            "current_versions": ["2026-740-es"],
+            "current_published_at": "2026-08-23T00:00:00Z",
+            "incoming_published_at": "2026-08-10T00:00:00Z",
+        }
+    ]
+    _, _, results = _results(release_repo, "us-replay", [scope], active, allow_regression=False)
+    result = _by_name(results)["scope_monotonicity"]
+    assert not result.passed
+    assert "identical version evidence" in result.evidence
+
+
 def test_allow_regression_malformed_version_still_fails(release_repo) -> None:
     scope = ReleaseScope("uk", "manual", "not-a-date")
     active = [
@@ -582,9 +608,7 @@ def test_allow_regression_malformed_version_still_fails(release_repo) -> None:
             "current_published_at": "2026-07-26T00:00:00Z",
         }
     ]
-    _, _, results = _results(
-        release_repo, "uk-malformed", [scope], active, allow_regression=True
-    )
+    _, _, results = _results(release_repo, "uk-malformed", [scope], active, allow_regression=True)
     result = _by_name(results)["scope_monotonicity"]
     assert not result.passed
     assert not result.warning
@@ -618,9 +642,7 @@ def test_proven_ordering_regression_with_flag_warns_and_acknowledges(
     scope = ReleaseScope("uk", "manual", "2026-07-24-council")
     root, public, make = release_repo
     obj, path = make("uk-ack", [scope], created_at="2026-07-24T00:00:00Z")
-    _install_active_manifest(
-        root, "uk-active", ReleaseScope("uk", "manual", "2026-07-26-council")
-    )
+    _install_active_manifest(root, "uk-active", ReleaseScope("uk", "manual", "2026-07-26-council"))
     active = [
         {
             "jurisdiction": "uk",

@@ -1,0 +1,11 @@
+# Disability-causation decision omitted from discovery
+
+The exact citation in DA-KG 2025 A 19.3 is `BFH vom 30.01.2024, III R 42/22, BStBl II 2025 S.16`. It was absent from the consumer discovery snapshot. A recall probe across the retained DA-KG text found 188 matching BFH citation occurrences and this one missing case label; this is not proof of exhaustive discovery or correct dates for existing labels.
+
+The native official-documents adapter captures the complete official five-page BFH PDF as two guidance rows. The decision date is taken from the official header. The full decision, paragraphs 1–32, was reviewed. Paragraphs 22–27 require a case-specific assessment of substantial co-causation and include provisional placement under StPO § 126a. The absence of guilt under StGB § 20 because of the same pre-age-25 disability is a significant indicator; psychiatric placement alone is not an automatic entitlement test. Paragraph 27 distinguishes placement alongside conviction, including diminished responsibility. Paragraphs 29–31 uphold the particular factual assessment under review. These distinctions remain for source-bound encoding.
+
+The extracted body was checked against all five PDF pages after whitespace normalization. The companion audit records retained PDF and body hashes. The native coverage report is complete, with zero missing and zero extra rows. BStBl II 2025 page 16 remains the DA-KG discovery citation; this capture does not independently verify the gazette issue/page.
+
+Reproduce with `extract-official-documents --base data/corpus --version 2026-09-10-de-kindergeld-disability-case --manifest manifests/de-kindergeld-disability-case.yaml --source-as-of 2026-09-10`. The final run uses a temporary manifest with supported `local_path` and the exact retained snapshot hash; the committed manifest records the official URL.
+
+This scope extends the maternity release plan from 44 scopes/9,262 rows to 45 scopes/9,264 rows. The preceding maternity capture log describes its original three-scope tranche; that signed log and its source bytes remain unchanged. The release preserves all 41 baseline scopes, adds the three maternity scopes and this one decision scope. Publication does not activate serving or establish Kindergeld closure/certification.

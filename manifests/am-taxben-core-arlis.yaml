@@ -1,0 +1,90 @@
+documents:
+  - source_id: tax-code
+    jurisdiction: am
+    document_class: statute
+    act_id: "230171"
+    official_number: "ՀՕ-165-Ն"
+    adopted: "2016-10-04"
+    title: "ՀՀ ՀԱՐԿԱՅԻՆ ՕՐԵՆՍԳԻՐՔ"
+    source_url: "https://www.arlis.am/hy/acts/230171/latest"
+    source_file: tax-code-230171-latest.html
+    sha256: 9c940bce5f3f50a5dc458d2faed4a993b053fe1008f3ae4de3fb83cd9b5b9055
+    source_as_of: "2026-08-29"
+    expression_date: "2026-09-01"
+    language: hy
+    expected_article_count: 474
+
+  - source_id: funded-pensions
+    jurisdiction: am
+    document_class: statute
+    act_id: "224823"
+    official_number: "ՀՕ-244-Ն"
+    adopted: "2010-12-22"
+    title: "ՀՀ ՕՐԵՆՔԸ ԿՈՒՏԱԿԱՅԻՆ ԿԵՆՍԱԹՈՇԱԿՆԵՐԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/224823/latest"
+    source_file: funded-pensions-224823-latest.html
+    sha256: 47f05a03172f5369900bffb8c975a3ca19edf530ca7340cf17ebdfc6e412d055
+    source_as_of: "2026-08-29"
+    expression_date: "2026-05-18"
+    language: hy
+    expected_article_count: 81
+
+  - source_id: universal-health-insurance
+    jurisdiction: am
+    document_class: statute
+    act_id: "224417"
+    official_number: "ՀՕ-459-Ն"
+    adopted: "2025-12-17"
+    title: "ՀՀ ՕՐԵՆՔԸ ԱՌՈՂՋՈՒԹՅԱՆ ՀԱՄԸՆԴՀԱՆՈՒՐ ԱՊԱՀՈՎԱԳՐՈՒԹՅԱՆ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/224417/latest"
+    source_file: universal-health-insurance-224417-latest.html
+    sha256: 5d4773f42f0dc04830264709fad9df7420f558cc965adb697d0270db10ffc4ce
+    source_as_of: "2026-08-29"
+    expression_date: "2026-05-08"
+    language: hy
+    expected_article_count: 46
+
+  - source_id: servicemen-compensation
+    jurisdiction: am
+    document_class: statute
+    act_id: "230046"
+    official_number: "ՀՕ-245-Ն"
+    adopted: "2016-12-15"
+    title: "ՀՀ ՕՐԵՆՔԸ ՀՀ ՊԱՇՏՊԱՆՈՒԹՅԱՆ ԺԱՄԱՆԱԿ ԶԻՆԾԱՌԱՅՈՂՆԵՐԻ ԿՅԱՆՔԻՆ ԿԱՄ ԱՌՈՂՋՈՒԹՅԱՆԸ ՊԱՏՃԱՌՎԱԾ ՎՆԱՍՆԵՐԻ ՀԱՏՈՒՑՄԱՆ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/230046/latest"
+    source_file: servicemen-compensation-230046-latest.html
+    sha256: 1673b7fa18f97e1fc0146aea8d1d181e9d27159022c3543d143d12426de4c3f1
+    source_as_of: "2026-08-29"
+    expression_date: "2026-09-01"
+    language: hy
+    expected_article_count: 32
+
+  - source_id: state-benefits
+    jurisdiction: am
+    document_class: statute
+    act_id: "230168"
+    official_number: "ՀՕ-154-Ն"
+    adopted: "2013-12-12"
+    title: "ՀՀ ՕՐԵՆՔԸ ՊԵՏԱԿԱՆ ՆՊԱՍՏՆԵՐԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/230168/latest"
+    source_file: state-benefits-230168-latest.html
+    sha256: 3c02c6e57499621154eae1b965c917e3d9a38c67b37cdda580648686df448a07
+    source_as_of: "2026-08-29"
+    expression_date: "2026-09-01"
+    language: hy
+    expected_article_count: 44
+
+  - source_id: state-pensions
+    jurisdiction: am
+    document_class: statute
+    act_id: "230043"
+    official_number: "ՀՕ-243-Ն"
+    adopted: "2010-12-22"
+    title: "ՀՀ ՕՐԵՆՔԸ ՊԵՏԱԿԱՆ ԿԵՆՍԱԹՈՇԱԿՆԵՐԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/230043/latest"
+    source_file: state-pensions-230043-latest.html
+    sha256: b4fa77e1d1228c6b3b007730660aa3c5b3e01251ea7a62300020885b07a85a2c
+    source_as_of: "2026-08-29"
+    expression_date: "2026-09-01"
+    language: hy
+    expected_article_count: 58

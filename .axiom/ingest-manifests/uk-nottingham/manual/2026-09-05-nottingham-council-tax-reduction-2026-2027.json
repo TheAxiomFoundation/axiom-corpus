@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-nottingham/manual/2026-09-05-nottingham-council-tax-reduction-2026-2027.json",
+      "sha256": "acfe429a6f6e3ca342ce215d4d3cafc0e6574e48ab53666449ee38e216ebe63f"
+    },
+    {
+      "path": "data/corpus/inventory/uk-nottingham/manual/2026-09-05-nottingham-council-tax-reduction-2026-2027.json",
+      "sha256": "519afcd50cd95d47f82f1fb2a13c2ec9dc169afbd130b45ff7f3c85c5094668b"
+    },
+    {
+      "path": "data/corpus/provisions/uk-nottingham/manual/2026-09-05-nottingham-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "13e40e6b3935ef91af01e279f9b67af09ba721767dc78347020493b406d97d64"
+    },
+    {
+      "path": "data/corpus/sources/uk-nottingham/manual/2026-09-05-nottingham-council-tax-reduction-2026-2027/official-documents/nottingham-council-tax-reduction-scheme-2026-2027.docx",
+      "sha256": "4b8bb3852a83b05d5e9e8991988cb9122faa78f5899bccb87474acbff0fef9a4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-nottingham-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-nottingham-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 186,
+    "missing_count": 0,
+    "provision_count": 186,
+    "source_count": 186
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:54.860608+00:00",
+  "jurisdiction": "uk-nottingham",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XZAAMn6YOMka70XKGLBxqqcNOkGrY9RF3N0qgGI+CJJ4DqESxQJITGWhZ7S4lxhYzXAxS8uXT6udP7w/f4ZaBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-nottingham-council-tax-reduction-2026-2027"
+}

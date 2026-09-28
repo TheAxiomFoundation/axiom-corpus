@@ -1,0 +1,1191 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-il-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 312
+- source_id: us-il-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 312
+- source_id: us-il-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 312
+- source_id: us-il-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 12
+    index_records_total: 312
+- source_id: us-il-cms-medicaid-state-plan-spa-il-23-0021-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-23-0021: Approval Document (approved March 27, 2024, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-23-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-23-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-23-0021
+    cms_node_id: '162011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162011
+    approval_date: '2024-03-27'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend certain
+      COVID-19 disaster relief policies originally approved in Disaster Relief SPAs IL-20-0004, IL-20-0013, IL-21-0004, IL-21-0005,
+      and IL-23-0016. This amendment also proposes to add a new Section 7.4.C to temporarily increase the asset test to $17,500
+      for Medicaid beneficiaries determined eligible through the Aged, Blind, and Disabled category.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-23-0046-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-23-0046: Approval Document (approved March 26, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-23-0046.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-23-0046/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-23-0046
+    cms_node_id: '162016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162016
+    approval_date: '2024-03-26'
+    effective_date: '2024-01-01'
+    summary: This SPA increases the monthly personal needs allowance for Medicaid beneficiaries residing in nursing facilities.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-21-0019-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-21-0019: Approval Document (approved February 26, 2024, effective November 30, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-21-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-11-30'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-21-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-21-0019
+    cms_node_id: '160101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160101
+    approval_date: '2024-02-26'
+    effective_date: '2022-11-30'
+    summary: This SPA elects the Individuals Eligible for Family Planning Services (“Family Planning”) eligibility group and
+      elect to add Presumptive Eligibility (PE) for the Family Planning eligibility group.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-23-0010-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-23-0010: Approval Document (approved January 12, 2024, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-23-0010
+    cms_node_id: '158896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158896
+    approval_date: '2024-01-12'
+    effective_date: '2023-01-01'
+    summary: The state adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-23-0040-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-23-0040: Approval Document (approved January 8, 2024, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-23-0040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-23-0040/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-23-0040
+    cms_node_id: '157951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157951
+    approval_date: '2024-01-08'
+    effective_date: '2023-07-01'
+    summary: This SPA updates Illinois' Medicaid State Plan to comply with third party liability (TPL) requirements authorized
+      under the Bipartisan Budget Act of 2018 and the Consolidated Appropriations Act of 2021.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-23-0009-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-23-0009: Approval Document (approved June 27, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-23-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-23-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-23-0009
+    cms_node_id: '150146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150146
+    approval_date: '2023-06-27'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to allow annual increases to the maintenance needs standard and resource standard for
+      the community spouse in a post-eligibility determination.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-22-0020-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-22-0020: Approval Document (approved October 20, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-22-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-22-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-22-0020
+    cms_node_id: '141026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=141026
+    approval_date: '2022-10-20'
+    effective_date: '2022-07-01'
+    summary: The state elect its option to provide 12 months of postpartum Medicaid coverage to individuals who were pregnant
+      when enrolled in Medicaid.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-21-0006-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-21-0006: Approval Document (approved June 24, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IL-21-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-21-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-21-0006
+    cms_node_id: '139161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139161
+    approval_date: '2022-06-24'
+    effective_date: '2022-07-01'
+    summary: Transitions Illinois children enrolled through the separate CHIP Program to Medicaid expansion coverage through
+      the Optional Targeted Low Income Children eligibility group.
+    topics:
+    - Children's Health Insurance Program
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-21-0010-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-21-0010: Approval Document (approved August 11, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/IL-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-21-0010
+    cms_node_id: '110821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110821
+    approval_date: '2021-08-11'
+    effective_date: '2021-04-01'
+    summary: Proposes to make changes to post-eligibility treatment of income (PETI) by imposing reasonable limits on deductions
+      for incurred medical or remedial care expenses
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-20-0004-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-20-0004: Approval Document (approved April 24, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-20-0004
+    cms_node_id: '97966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97966
+    approval_date: '2020-04-24'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing, suspend the resource test in determining eligibility for certain
+      eligibility groups, add presumptive eligibility (PE) for certain eligibility groups, suspend premiums for certain individuals,
+      expand telehealth, extend all prior authorization for medications by automatic renewal without clinical review or time/quantity
+      extensions, allow the state to make exceptions to its published Preferred Drug List if drug shortages occur, and increase
+      certain payment rates.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-19-0020-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-19-0020: Approval Document (approved January 31, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-19-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-19-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-19-0020
+    cms_node_id: '58686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58686
+    approval_date: '2020-01-31'
+    effective_date: '2020-01-01'
+    summary: Medicare-Medicaid Alignment Initiative End Date Extension
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-19-0012-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-19-0012: Approval Document (approved November 25, 2019, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-19-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-19-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-19-0012
+    cms_node_id: '52261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52261
+    approval_date: '2019-11-25'
+    effective_date: '2019-08-01'
+    summary: ID/DD and MC/DD rate increase.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-19-0015-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-19-0015: Approval Document (approved November 1, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-19-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-19-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-19-0015
+    cms_node_id: '4501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4501
+    approval_date: '2019-11-01'
+    effective_date: '2019-09-01'
+    summary: Eliminates of Title XIX copayments.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-12-023-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-12-023: Approval Document (approved January 11, 2019, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-12-023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-12-023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-12-023
+    cms_node_id: '4506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4506
+    approval_date: '2019-01-11'
+    effective_date: '2012-07-01'
+    summary: Updates co-payments
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-17-0014-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-17-0014: Approval Document (approved July 18, 2018, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-17-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-17-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-17-0014
+    cms_node_id: '9691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9691
+    approval_date: '2018-07-18'
+    effective_date: '2018-10-01'
+    summary: Implements health and Homes as authorized under Section 2703 of the Patient Protection and Affordable Care Act.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0003-mm1-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0003-MM1: Approval Document (approved June 3, 2016, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0003-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0003-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0003-MM1
+    cms_node_id: '19336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19336
+    approval_date: '2016-06-03'
+    effective_date: '2014-01-01'
+    summary: Medicaid MAGI-Based Eligibility Groups.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-15-0010-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-15-0010: Approval Document (approved January 19, 2016, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-15-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-15-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-15-0010
+    cms_node_id: '20981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20981
+    approval_date: '2016-01-19'
+    effective_date: '2015-07-01'
+    summary: Allows Hospitals Separate Reimbursement for Long Acting Reversible Contraceptive (LARC) Devices Provided in the
+      Inpatient Hospital Setting Immediate Postpartum.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0037-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0037: Approval Document (approved January 13, 2016, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0037/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0037
+    cms_node_id: '20986'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20986
+    approval_date: '2016-01-13'
+    effective_date: '2014-07-01'
+    summary: Provides for a Per Diem Rate Reimbursement for Long-Term Care Facilities Serving Persons Less than 22 Years of
+      Age with Clinically Complex Residents.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0032-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0032: Approval Document (approved January 13, 2016, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0032
+    cms_node_id: '20991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20991
+    approval_date: '2016-01-13'
+    effective_date: '2014-07-01'
+    summary: Increases the RUG-IV Nursing Base Per Diem From $83.49 to $85.25.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-13-0017-mm2-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-13-0017-MM2: Approval Document (approved March 19, 2015, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-13-0017-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-13-0017-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-13-0017-MM2
+    cms_node_id: '28461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28461
+    approval_date: '2015-03-19'
+    effective_date: '2013-10-01'
+    summary: Eligibility Process.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0023-mm6-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0023-MM6: Approval Document (approved March 11, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0023-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0023-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0023-MM6
+    cms_node_id: '27816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27816
+    approval_date: '2015-03-11'
+    effective_date: '2014-01-01'
+    summary: Updates Citizenship and Non-Citizenship Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-035-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-035: Approval Document (approved December 11, 2014, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-035
+    cms_node_id: '30386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30386
+    approval_date: '2014-12-11'
+    effective_date: '2014-10-01'
+    summary: Removes the 20 limit visit on physical, occupational and speech therapy services.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0028-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0028: Approval Document (approved November 7, 2014, effective September 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-09-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0028
+    cms_node_id: '31221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31221
+    approval_date: '2014-11-07'
+    effective_date: '2014-09-01'
+    summary: Authorizes the Chicago Public Schools to procure a vendor or vendors to manufacture eyeglasses for individuals
+      enrolled in a CPS system school.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0004-mm5-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0004-MM5: Approval Document (approved September 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0004-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0004-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0004-MM5
+    cms_node_id: '32771'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32771
+    approval_date: '2014-09-22'
+    effective_date: '2014-01-01'
+    summary: 'Non-Financial Eligibility: State Residency.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-13-0016-mm3-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-13-0016-MM3: Approval Document (approved August 12, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-13-0016-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-13-0016-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-13-0016-MM3
+    cms_node_id: '34331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34331
+    approval_date: '2014-08-12'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Income Methodology.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0013-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0013: Approval Document (approved June 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0013
+    cms_node_id: '36166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36166
+    approval_date: '2014-06-24'
+    effective_date: '2014-01-01'
+    summary: 'Illinois’ Alternative Benefit Plan (ABP) state plan amendment TN 14-0013: Medicaid Alternative Benefit Plan.'
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0003-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0003: Approval Document (approved June 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0003B.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0003
+    cms_node_id: '36146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36146
+    approval_date: '2014-06-17'
+    effective_date: '2014-01-01'
+    summary: Implements Eligibility of Mandatory Coverage Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-12-011-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-12-011: Approval Document (approved June 16, 2014, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-12-011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-12-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-12-011
+    cms_node_id: '35631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35631
+    approval_date: '2014-06-16'
+    effective_date: '2012-04-01'
+    summary: Revises Fee Schedule for Cost of Drugs Provided by Non-Pharmacy Provider Beginning July 21, 2012.
+    topics:
+    - Cost Sharing
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-13-007-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-13-007: Approval Document (approved June 16, 2014, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-13-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-13-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-13-007
+    cms_node_id: '35636'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35636
+    approval_date: '2014-06-16'
+    effective_date: '2013-07-01'
+    summary: Increases by $60, the Rate Paid to Hospitals and Clinics for Outpatient Renal Services or Home Dialysis Treatment.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-14-0002-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-14-0002: Approval Document (approved June 16, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-14-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-14-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0002
+    cms_node_id: '35641'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35641
+    approval_date: '2014-06-16'
+    effective_date: '2014-01-01'
+    summary: Ends Medically Needy Coverage to Parents and Other Caretakers' Relatives.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-12-019-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-12-019: Approval Document (approved May 30, 2014, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-12-019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-12-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-12-019
+    cms_node_id: '36596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36596
+    approval_date: '2014-05-30'
+    effective_date: '2012-07-01'
+    summary: Request to change limitations for inpatient, chiropractic, podiatric, home health, dental, and physical/occupational/speech
+      therapy.
+    topics:
+    - Benefits
+    - Dental
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-13-018-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-13-018: Approval Document (approved March 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-13-018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-13-018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-13-018
+    cms_node_id: '38201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38201
+    approval_date: '2014-03-19'
+    effective_date: '2014-01-01'
+    summary: Request to add coverage of tobacco cessation counseling for pregnant women.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-il-cms-medicaid-state-plan-spa-il-11-07-approval-document
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois Medicaid SPA IL-11-07: Approval Document (approved February 10, 2012, effective May 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IL/IL-11-07.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-05-01'
+  citation_path: us-il/policy/cms/medicaid-state-plan/spa/il-11-07/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-11-07
+    cms_node_id: '24811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24811
+    approval_date: '2012-02-10'
+    effective_date: '2011-05-01'
+    summary: Implements mandatory managed care for the adult aged, blind and disabled population in Cook County and the surrounding
+      border counties.
+    topics:
+    - Eligibility
+    link_label: Approval Document

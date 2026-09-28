@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/regulation/2026-09-11-ne-snap-manual-supersede.json",
+      "sha256": "3372db2471fb0d628efe6ad1ce8920e66e061c6c475ccc110024a3aa1a05ab4d"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/regulation/2026-09-11-ne-snap-manual-supersede.json",
+      "sha256": "e21c7e562d23608e824c0a5a52766d091d22b3fc76167bd367b6ed045da217ef"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/regulation/2026-09-11-ne-snap-manual-supersede.jsonl",
+      "sha256": "cb500d464c90a6c64000ada964a62d6c39945250dc29b3302d27cd86c11d6691"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-11-ne-snap-manual-supersede/official-documents/ne-dhhs-title-475-chapter-1.pdf",
+      "sha256": "3d04637590545de92aa2af625fef7aea6d27dc16a4f5cc67dc4b0c7246653dfb"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-11-ne-snap-manual-supersede/official-documents/ne-dhhs-title-475-chapter-2.pdf",
+      "sha256": "40c4ae3ce48e012d52d3a5a303f6a2fa5394db5889cc7c348076290ec3c51f73"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-11-ne-snap-manual-supersede/official-documents/ne-dhhs-title-475-chapter-3.pdf",
+      "sha256": "fd30f11381ca761e767fb48648447c3a613e4c0c5da50cb778f16966745cddcd"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-11-ne-snap-manual-supersede/official-documents/ne-dhhs-title-475-chapter-4.pdf",
+      "sha256": "2f55765164716d7634011ab4d100b95beae499f4defd6b8c39a3f9e10b326105"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-11-ne-snap-manual-supersede/official-documents/ne-dhhs-title-475-chapter-5.pdf",
+      "sha256": "ff63c7adc3830511c237308740f4215d65d0e6d5e68a98fee63229f5dce50b52"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-ne-snap-manual-supersede (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 694,
+    "missing_count": 0,
+    "provision_count": 694,
+    "source_count": 694
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:41:15.749158+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "r75aVMwMNACcMbP3UJdohVzM4BXj2gd+MKVAPp8ykFH+pe9jkT9VKiQLmx0/u/f/PVW7pgp151S1DoNml79ACQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-ne-snap-manual-supersede"
+}

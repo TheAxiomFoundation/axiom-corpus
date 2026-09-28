@@ -1,0 +1,602 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ri-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 20
+    index_records_total: 20
+- source_id: us-ri-cms-chip-state-plan-spa-ri-26-0004-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-26-0004: Approval Package (approved August 17, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-26-0004-CHIP-SPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-26-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-26-0004
+    cms_node_id: '195016'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=195016
+    approval_date: '2026-08-17'
+    effective_date: '2026-01-01'
+    summary: Through this SPA, Rhode Island demonstrates compliance with section 205 of the Consolidated Appropriations Act,
+      2024 (CAA, 2024) by modifying CHIP eligibility requirements for the treatment of incarcerated pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-24-0006-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-24-0006: Approval Package (approved July 12, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-24-0006/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-24-0006
+    cms_node_id: '169746'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169746
+    approval_date: '2024-07-12'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-24-0005-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-24-0005: Approval Package (approved May 14, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-24-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-24-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-24-0005
+    cms_node_id: '165116'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=165116
+    approval_date: '2024-05-14'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-22-0026-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-22-0026: Approval Package (approved August 19, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-22-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0026/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-22-0026
+    cms_node_id: '170526'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170526
+    approval_date: '2023-08-19'
+    effective_date: '2022-10-01'
+    summary: This amendment implements a health services initiative (HSI) to provide 12 months of postpartum coverage for
+      individuals covered under the from conception group (also known as the “unborn” option).
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-22-0025-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-22-0025: Approval Package (approved April 19, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-22-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-22-0025
+    cms_node_id: '147001'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147001
+    approval_date: '2023-04-19'
+    effective_date: '2022-10-01'
+    summary: This SPA provides Rhode Island with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-22-0006-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-22-0006: Approval Package (approved June 30, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-22-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0006/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-22-0006
+    cms_node_id: '137551'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=137551
+    approval_date: '2022-06-30'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-20-0009-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-20-0009: Approval Package (approved September 2, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-20-0009/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-20-0009
+    cms_node_id: '145376'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145376
+    approval_date: '2020-09-02'
+    effective_date: '2019-10-01'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-19-0004-factsheet
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-19-0004: Factsheet (approved August 9, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-19-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-19-0004/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: RI-19-0004
+    cms_node_id: '58616'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=58616
+    approval_date: '2019-08-09'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with CHIP Managed Care regulations
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-ri-cms-chip-state-plan-spa-ri-13-023-mc1-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-13-023-MC1: Approval Package (approved April 4, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-13-023-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-13-023-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-023-MC1
+    cms_node_id: '2601'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2601
+    approval_date: '2014-04-04'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that State will Apply Methodologies based on MAGI for all Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-13-0026-mc4-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-13-0026-MC4: Approval Package (approved March 26, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-13-0026-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-13-0026-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-0026-MC4
+    cms_node_id: '2761'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2761
+    approval_date: '2014-03-26'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements in accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-13-027-mc5-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-13-027-MC5: Approval Package (approved March 5, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-13-027-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-13-027-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-027-MC5
+    cms_node_id: '2596'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2596
+    approval_date: '2014-03-05'
+    effective_date: '2014-01-01'
+    summary: Clarifies State's Non-Financial Eligibility Policies on Residency, Citizenship, Social Security Numbers, Substitution
+      of Coverage, and Non-Payment of Premiums.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-13-024-mc2-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-13-024-MC2: Approval Package (approved March 4, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-13-024-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-13-024-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-024-MC2
+    cms_node_id: '2606'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2606
+    approval_date: '2014-03-04'
+    effective_date: '2014-01-01'
+    summary: Coverts State's Existing Income Eligibility Standards to MAGI Equivalent Standards by Age Group for Children
+      Covered in Its' Title XXI-Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-cspa-6-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-CSPA-6: Approval Package (approved December 29, 2009, effective December 9, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-CSPA-6-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-09'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-CSPA-6
+    cms_node_id: '1881'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1881
+    approval_date: '2009-12-29'
+    effective_date: '2009-12-09'
+    summary: CHIPRA Section 111 - Coverage of Pregnant Women.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP compiled state plan: Factsheet (approved October 29, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RICurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: RI
+    cms_node_id: '1296'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1296
+    approval_date: '2009-10-29'
+    effective_date: '2009-07-01'
+    summary: Current CHIP State Plan as amended by SPA 7 and Factsheet as of 01-06-2010.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ri-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP compiled state plan: Current State Plan (approved October 29, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RICurrentStateplan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: RI
+    cms_node_id: '1296'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1296
+    approval_date: '2009-10-29'
+    effective_date: '2009-07-01'
+    summary: Current CHIP State Plan as amended by SPA 7 and Factsheet as of 01-06-2010.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-ri-cms-chip-state-plan-spa-ri-cspa-7-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-CSPA-7: Approval Package (approved October 29, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-CSPA-7-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-cspa-7/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-CSPA-7
+    cms_node_id: '1741'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1741
+    approval_date: '2009-10-29'
+    effective_date: '2009-07-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ri-cms-chip-state-plan-spa-ri-cspa-7-final-approved-state-plan
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-CSPA-7: Final Approved State Plan (approved October 29, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-CSPA-7-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-cspa-7/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: RI-CSPA-7
+    cms_node_id: '1741'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1741
+    approval_date: '2009-10-29'
+    effective_date: '2009-07-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-ri-cms-chip-state-plan-spa-ri-cspa-5-approval-package
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island CHIP SPA RI-CSPA-5: Approval Package (approved April 30, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/RI/RI-CSPA-5-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-cspa-5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-CSPA-5
+    cms_node_id: '2106'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2106
+    approval_date: '2008-04-30'
+    effective_date: '2007-07-01'
+    summary: Removal of the $10,000 liquid asset limit.
+    topics:
+    - Eligibility
+    link_label: Approval Package
