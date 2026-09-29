@@ -33,6 +33,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import OfficialDocumentSource, _DocumentBlock
 from axiom_corpus.corpus.models import DocumentClass
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RETAINED_BASE = REPO_ROOT / "data/corpus"
@@ -591,6 +592,19 @@ def reproduce(base: Path, source_dir: Path | None = None) -> dict[str, Any]:
     }
 
 
+def ensure_corpus_inputs(*, repo: Path = REPO_ROOT, source_dir: Path | None = None) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    input_root = source_dir.resolve() if source_dir is not None else Path("data/corpus")
+    ensure_corpus_paths(
+        [
+            input_root / path
+            for snapshot in SNAPSHOTS
+            for path in (snapshot.official_filename, _canonical_source_path(snapshot))
+        ],
+        repo=repo,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -609,6 +623,7 @@ def main() -> int:
         ),
     )
     args = parser.parse_args()
+    ensure_corpus_inputs(source_dir=args.source_dir)
     print(json.dumps(reproduce(args.base, args.source_dir), indent=2, sort_keys=True))
     return 0
 

@@ -155,6 +155,11 @@ separate command (`axiom_corpus.corpus.resolver`):
   fetches it first, never after its writes).
 - `build_release_content` and `scripts/publish_corpus.py` fetch the selected
   scopes before hashing.
+- The one-off reproductions (`scripts/repro/*.py`,
+  `scripts/repro_us_cfr_416_deeming_slice.py`) call `ensure_corpus_inputs()`
+  first in `main()`, which fetches the locked files the script reads: its
+  retained sources and any other scope it compares against. An input-root
+  override outside the checkout fetches nothing.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
   `require_materialized` are the building blocks.
 
