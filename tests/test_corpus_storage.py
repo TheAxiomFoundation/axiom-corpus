@@ -611,6 +611,16 @@ def test_repro_script_fetches_the_locked_inputs_it_reads_and_not_its_outputs(
     assert present() == set(inputs)
     assert all((repo / path).read_bytes() == data for path, data in inputs.items())
 
+    # main() always passes --source-base (default data/corpus), which the helper
+    # resolves; a symlinked spelling of the checkout resolves to the same files.
+    (tmp_path / "link").symlink_to(repo)
+    for source_base in (repo / "data" / "corpus", tmp_path / "link" / "data" / "corpus"):
+        for path in inputs:
+            (repo / path).unlink()
+        use_fresh_resolver()
+        repro.ensure_corpus_inputs(repo=repo, source_base=source_base)
+        assert present() == set(inputs)
+
 
 def test_cli_inputs_name_paths_selectors_and_optional_scopes(tmp_path: Path, monkeypatch) -> None:
     import argparse
