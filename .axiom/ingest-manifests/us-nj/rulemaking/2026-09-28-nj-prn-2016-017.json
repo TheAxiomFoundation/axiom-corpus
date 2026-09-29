@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "084caf0523f1f0d8c38484fe8d584f77719effc6",
+    "commit": "e216c2831c94fd9f75f61b139723e45e69a94eca",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 21
   },
   "document_class": "rulemaking",
-  "generated_at": "2026-09-28T17:57:44.620810+00:00",
+  "generated_at": "2026-09-29T22:08:42.673284+00:00",
   "jurisdiction": "us-nj",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
-      "sha256": "0cebdbecb639e85664e5e3727ed3a8a6b2e08ec06a513719b81853a005d94fc1"
+      "sha256": "136b078eb4bc34406722309d4e2b6f81560054f9e414e7883399212e902526d4"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "osI+0X4YVfU3XgIOtJf0AzwntpTIaCeLWbeuVSGc5+V2Dh2/T1sPkgPxDKFC5pE1SAp/vBJxBlwKKpPsUKTDBQ=="
+    "value": "d8sUyNBUPi7pi/rlC+hEMp6xJTL+XPfWeYHVCGNFWsDLMDy+ZtWFfsuZ4zpHnLc8lnn7byHESWh0aAB/nd+9Bg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-nj-prn-2016-017"

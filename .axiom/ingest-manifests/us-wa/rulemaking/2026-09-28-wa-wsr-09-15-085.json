@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-wa/rulemaking/2026-09-28-wa-wsr-09-15-085.jsonl",
-      "sha256": "f60abddd24245f8bc8e64372d0f0c0fc77dba4b04e72f4dee1ad62e32d652876"
+      "sha256": "f9f828f0947dd7ffb3439098d221be2bac8111fda7a5d151cae59a424e44a7ea"
     },
     {
       "path": "data/corpus/sources/us-wa/rulemaking/2026-09-28-wa-wsr-09-15-085/official-documents/wa-wsr-09-15-085.html",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "084caf0523f1f0d8c38484fe8d584f77719effc6",
+    "commit": "e216c2831c94fd9f75f61b139723e45e69a94eca",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 2
   },
   "document_class": "rulemaking",
-  "generated_at": "2026-09-28T17:57:47.619403+00:00",
+  "generated_at": "2026-09-29T22:08:49.359094+00:00",
   "jurisdiction": "us-wa",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
-      "sha256": "0cebdbecb639e85664e5e3727ed3a8a6b2e08ec06a513719b81853a005d94fc1"
+      "sha256": "136b078eb4bc34406722309d4e2b6f81560054f9e414e7883399212e902526d4"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "gwzwGk89J3PQqdTpfgIVNr3iYUx+y5+FnR91xf6G0xVuDo26iYOWIhyFP6Ce75SxlQJWfxFohwW44UVdzt+1Cg=="
+    "value": "KRGZIkMxMEVZa26MTQEPEIcbPkD21gemvvNMb9vPJPuZSGHhoKwfLYu1JvMdIhbDPQ6qR2YS9B1k9tmMRPTkDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-wa-wsr-09-15-085"
