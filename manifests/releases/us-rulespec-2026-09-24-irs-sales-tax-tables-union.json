@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-08-23-canada-338-suspension-union. Carries every scope of that release unchanged and adds the IRS Optional State and Local Sales Tax Tables for tax years 2021-2025, the tables prescribed under 26 U.S.C. 164(b)(5)(H), with the Schedule A line 5a instructions and sales tax deduction worksheet (us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021, 8 provisions; us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025, 32 provisions).",
+  "description": "Successor to us-rulespec-2026-08-23-canada-338-suspension-union. Carries every other scope of that release unchanged and adds the IRS Optional State and Local Sales Tax Tables for tax years 2021-2025, the tables prescribed under 26 U.S.C. 164(b)(5)(H), with the Schedule A line 5a instructions and sales tax deduction worksheet (us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021, 8 provisions; us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025, 32 provisions). Its us-ca statute scopes differ from that release: us-ca/statute/2026-07-13-recovery (defective recovery rows, see axiom-corpus#748) and us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5 are replaced by us-ca/statute/2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7. The chapter scope carries all six PIT core sections with byte-identical bodies and, at the same citation paths, the ten R&TC sections whose recovery rows are empty roots. The recovery scope's page-chrome block rows and its us-ca/statute/wic/11450/a/1/A root hold no statute text and are dropped; WIC 11450 stays in the CalWORKs scope.",
   "name": "us-rulespec-2026-09-24-irs-sales-tax-tables-union",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -426,17 +426,12 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
       "version": "2026-07-28-ca-cdss-calfresh-bbce-authority-us-ca-sections-wic-18901.3-wic-18901.5"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-ca",
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
     },
     {
       "document_class": "policy",
