@@ -241,7 +241,7 @@ def _selected_entries(
 ) -> list[LockEntry]:
     if select_all:
         return list(locks.entries())
-    selectors = [parse_scope_selector(text) for text in scopes]
+    selectors = _parse_selectors(scopes)
     exact_scopes: list[ScopeKey] = []
     for release in releases:
         found = _selector_scopes(repo, Path(release))
@@ -341,13 +341,20 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
     return lines
 
 
+def _parse_selectors(texts: Iterable[str]) -> list[tuple[str, ...]]:
+    try:
+        return [parse_scope_selector(text) for text in texts]
+    except ValueError as exc:
+        raise SystemExit(f"corpus: {exc}") from None
+
+
 # --------------------------------------------------------------------------- status
 
 
 def _cmd_status(args: argparse.Namespace) -> int:
     repo = _repo(args)
     locks = load_locks(repo)
-    selectors = [parse_scope_selector(text) for text in args.scopes]
+    selectors = _parse_selectors(args.scopes)
     selected = locks.select(selectors) if selectors else list(locks.locks.values())
     counts = {"present": 0, "missing": 0, "modified": 0}
     modified: list[str] = []
@@ -394,7 +401,7 @@ def _unlocked_files(repo: Path, locks: LockSet, selectors: list[tuple[str, ...]]
             if not path.is_file():
                 continue
             rel = path.relative_to(repo).as_posix()
-            if rel in locks.by_path or path.name.startswith("."):
+            if rel in locks.by_path:
                 continue
             scope = scope_for_path(rel)
             if selectors and (scope is None or not any(scope[: len(s)] == s for s in selectors)):
@@ -500,7 +507,11 @@ def _cmd_lock(args: argparse.Namespace) -> int:
     repo = _repo(args)
     scopes: list[ScopeKey] = []
     for text in args.scopes:
-        parts = parse_scope_selector(text)
+        try:
+            parts = parse_scope_selector(text)
+        except ValueError as exc:
+            print(f"corpus lock: {exc}", file=sys.stderr)
+            return 2
         if len(parts) != 3:
             print(
                 f"corpus lock: scope must be <jurisdiction>/<class>/<version>: {text}",
@@ -610,8 +621,19 @@ def _cmd_push(args: argparse.Namespace) -> int:
 
 def _cmd_verify(args: argparse.Namespace) -> int:
     repo = _repo(args)
-    locks = load_locks_at_ref(repo, args.ref) if args.ref else load_locks(repo)
+    # Attestation audits committed history, so --attest checks HEAD's locks
+    # (or --ref's) throughout rather than mixing them with worktree locks.
+    ref = args.ref or ("HEAD" if args.attest else None)
+    locks = load_locks_at_ref(repo, ref) if ref else load_locks(repo)
     problems = list(locks.errors)
+    if args.attest and not args.ref:
+        worktree = load_locks(repo)
+        drift = diff_lock_sets(locks, worktree)
+        if drift.added or drift.removed or drift.changed or worktree.errors != locks.errors:
+            problems.append(
+                "worktree lock files differ from HEAD; --attest checks committed locks "
+                "only, so commit the lock changes (or pass --ref) first."
+            )
     entries = list(locks.entries())
     if args.changed_since:
         base = load_locks_at_ref(repo, args.changed_since)
@@ -643,7 +665,7 @@ def _cmd_verify(args: argparse.Namespace) -> int:
     if args.attest:
         from axiom_corpus.corpus.ingest_manifests import audit_lock_attestation
 
-        attest_issues = audit_lock_attestation(repo, ref=args.ref or "HEAD")
+        attest_issues = audit_lock_attestation(repo, ref=ref or "HEAD")
         problems.extend(attest_issues)
     payload = {
         "lock_files": len(locks.locks),

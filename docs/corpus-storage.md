@@ -61,18 +61,29 @@ One lock file per scope lists every protected file of that scope:
 - The encoding is canonical: fixed key order, entries sorted by path, one
   entry per line, ASCII, final newline. Readers reject any other bytes, so two
   writers of one lock produce identical files.
+- In a worktree, hidden files under `.axiom/corpus-locks` (`.DS_Store`, editor
+  swap files) are ignored; any other file there that is not a lock is an
+  error. Staged locks with unresolved merge conflicts are an error too.
 
 ### Local cache
 
 `$AXIOM_CORPUS_CACHE`, default `~/.axiom/corpus-cache`, holds each distinct
 file once, read-only. A writer streams bytes into a temporary file inside the
 cache, checks sha256 and size, and publishes the object with `link(2)`, which
-succeeds only if the object is absent; on a filesystem without hardlinks it
-creates the object exclusively (`O_EXCL`) instead. Objects are therefore
-write-once: no writer replaces an object another process is cloning. A reader
-uses an object only when its size matches, and hashes it the first time a
-process uses it; a corrupt object is deleted and fetched again rather than
-copied into checkouts.
+succeeds only if the object is absent. On a filesystem without hardlinks it
+renames with no-replace semantics instead (`renamex_np(RENAME_EXCL)` on macOS,
+`renameat2(RENAME_NOREPLACE)` on Linux). Only where neither exists does it
+create the object exclusively (`O_EXCL`) and copy into it, deleting the object
+if the copy fails. Objects are therefore write-once: no writer replaces an
+object another process is cloning.
+
+A reader deletes an object whose size is wrong. It also hashes each object the
+first time a process uses it, and deletes one whose bytes are wrong. Either
+way, the next fetch replaces the object with verified bytes. A writer that
+loses the race to publish checks the object that won, and replaces it if it is
+corrupt. Placing files from a warm cache into a fresh checkout therefore reads
+each object once per process. For a full fetch that is about 15 GB of reads.
+Files already in place are skipped without reading the cache.
 
 ### Remote store
 
@@ -89,10 +100,10 @@ All live under `axiom-corpus-ingest corpus`:
 | Command | Effect |
 | --- | --- |
 | `corpus fetch [SCOPE…] [--all] [--release SELECTOR] [--path PATH] [--paths-from FILE]` | Place locked files in `data/corpus` |
-| `corpus status [SCOPE…] [--verify]` | Count present, missing, modified and unlocked files |
-| `corpus lock SCOPE… [--push] [--drop-missing]` | Hash scopes' files into their locks and cache the bytes |
+| `corpus status [SCOPE…] [--verify]` | Count present, missing, modified and unlocked files (hidden files included) |
+| `corpus lock SCOPE… [--push] [--drop-missing]` | Hash scopes' files into their locks and cache the bytes; refuses hidden files such as `.DS_Store` |
 | `corpus push [SCOPE…\|--all\|--changed-since REF] [--dry-run]` | Upload locked objects R2 lacks |
-| `corpus verify [--ref REF] [--remote] [--changed-since REF]` | Check lock files; with `--remote`, check R2 holds every object |
+| `corpus verify [--ref REF] [--remote] [--changed-since REF] [--attest]` | Check lock files; with `--remote`, check R2 holds every object; with `--attest`, audit every entry (see Guard) |
 | `corpus migrate [--ref REF] [--seed-cache]` | Move tracked protected files into lock files |
 
 A `SCOPE` is `<jurisdiction>[/<document_class>[/<version>]]`.
@@ -115,7 +126,8 @@ have no copy-on-write clones, so a cache would double disk use.
 Bytes on their way into a checkout wait in `data/corpus/.corpus-fetch-tmp/`,
 on the same filesystem but outside every scope, so an interrupted fetch never
 leaves a file that `corpus lock` or signing would pick up (`corpus lock`
-refuses any leftover `.corpus-fetch-` file it finds in a scope).
+refuses any leftover `.corpus-fetch-` file it finds in a scope). The next fetch
+deletes temporaries more than a day old.
 
 Fetch never creates symlinks or hardlinks in `data/corpus`: release code
 rejects symlinked artifact paths, and a hardlink would let an in-place edit
@@ -127,9 +139,18 @@ whose bytes differ from the lock unless `--force`.
 A scope's `sources/` directory is fetched all or nothing. Code enumerates a
 scope's sources by listing that directory (release content, signing, the
 repair scripts), so half a directory would read as a smaller scope. Selecting
-any source file selects the whole directory, and when one of its files fails,
-fetch removes the ones it placed in that directory during the same call
-(`rolled_back`).
+or resolving any source file brings the whole directory, even when that file
+is already present, so a directory left partial by a killed process is
+completed by the next fetch that touches it. A process checks each scope's
+directory once.
+
+When one of a directory's files fails, fetch removes the files it placed there
+during the same call (`rolled_back`). It removes only a file that is still
+exactly as placed (same inode, size and modification time). A file that an
+extractor or another fetch has rewritten since then stays, and fetch reports
+it as modified. A caller whose fetch succeeded checks afterward that its files
+are still there, because another process's rollback may have removed some. It
+fetches missing files again once, and then fails.
 
 ### Resolver
 
@@ -148,7 +169,12 @@ separate command (`axiom_corpus.corpus.resolver`):
 - Commands and scripts that list whole artifact directories (`analytics`,
   `artifact-report`, `snapshot-provision-counts`,
   `scripts/validate_citation_paths.py`) refuse a partly fetched tree and name
-  the fetch command. The manifest builders' collision checks and
+  the fetch command. `analytics` requires only the version it reports (and
+  that version's `<version>-*` parts), limited to its `--jurisdiction` and
+  `--document-class` filters. `scripts/audit_us_release_publishability.py
+  --repair-derived` fetches a scope's locked artifacts before deciding what
+  to regenerate, so it never writes a stand-in for an unfetched one. The
+  manifest builders' collision checks and
   `scripts/recover_ingest_batch.py` fetch the provisions they list, and the
   scripts that compose, consolidate, re-version or repair scopes fetch their
   input scopes before listing them (a script that rewrites its own scope
@@ -159,8 +185,12 @@ separate command (`axiom_corpus.corpus.resolver`):
   `require_materialized` are the building blocks.
 
 With no lock files every one of these does nothing, so the same code runs
-before and after the switch. Lock files that fail to parse make every one of
-them raise: an invalid lock must not read as "no locks". Paths resolve
+before and after the switch. Once one of them consults the locks, lock files
+that fail to parse make it raise: an invalid lock must not read as "no
+locks". Reading a file that is already present does not consult the locks, so
+`load_provisions` on a present file does not notice a broken lock; source
+files are the exception, since they check their siblings. `corpus`
+commands, the test session and CI read every lock first. Paths resolve
 through symlinked spellings, and a command's `--base` may be relative or
 absolute and given from any directory.
 
@@ -190,8 +220,11 @@ mode, lock files not yet staged are checked too:
   path its scope names, and lists only protected paths of that scope, each
   once. A lock that fails to parse fails the guard.
 - **One representation.** Once `H` has lock files, no protected path may be
-  tracked in git at `H`, in any letter case (`data/corpus/Provisions/…` lands
-  on the locked path on a case-insensitive filesystem).
+  tracked in git at `H` in any letter case: `DATA/corpus/…` or
+  `data/corpus/Provisions/…` lands on the locked path on a case-insensitive
+  filesystem. Git matches pathspecs case-sensitively, so the guard lists
+  every tracked path and folds case itself. It names each such path the diff
+  adds or changes, and reports any already tracked at `H` in one message.
 - **Moved files.** A protected path tracked at `B` and untracked at `H`
   passes when a lock at `H` carries the base blob's sha256 and size (and, when
   the entry names one, its blob id); otherwise a signed manifest must mark it
@@ -208,11 +241,23 @@ mode, lock files not yet staged are checked too:
 
 CI installs the guard from the pull request's base commit, so the guard that
 checks the switch is the one this change adds. The guard only sees changes, so
-`corpus verify --attest` checks every lock entry at a commit: each needs a
-valid signed manifest attesting its path and sha256, or a `git_blob` holding
-its bytes that history reachable from the commit tracked at that path. CI runs
-it whenever lock files exist, so no lock can rest on a base the guard never
-checked. At `dbb69efb` signed ingest
+`corpus verify --attest` checks every lock entry at a commit. Each entry
+needs one of these:
+
+- a valid signed manifest attesting its path and sha256;
+- a `git_blob` holding its bytes, which some commit on the audited commit's
+  first-parent history held at that path.
+
+The repository merges pull requests only with merge commits, so the
+first-parent chain is the sequence of states `main` itself held. Bytes that a
+pull request committed and removed again before merging never qualify. The
+chain is trusted as `main`'s own history, so branch protection is part of this
+check: a direct push to `main` would enter that history.
+
+Without `--ref`, `--attest` audits `HEAD` and fails if the worktree's lock
+files differ from it. CI runs the audit whenever lock files exist, using the
+verifier installed from the base commit, just as it does for the guard. A pull
+request therefore cannot loosen its own audit. At `dbb69efb` signed ingest
 manifests attest 55,239 of the 55,269 protected files by exact path and
 sha256, and none contradicts a tracked file; the other 30 predate the manifest
 regime and enter the locks as moved files.
@@ -247,7 +292,8 @@ CI jobs fetch before they read, and skip the fetch when no lock files exist:
 - `citation-path-grammar`: `corpus fetch --path data/corpus/provisions`.
 - `validate-release`: fetches every selector's scopes, then validates with
   `AXIOM_CORPUS_NO_FETCH=1`, under which a missing locked file fails loudly.
-- `test` also runs `corpus verify --attest` over every lock entry.
+- `test` also runs `corpus verify --attest --ref <commit>` over every lock
+  entry, right after the guard and with the same base-installed verifier.
 - The guard reads new lock entries' bytes for its content checks.
 
 These steps read R2 with `R2_CORPUS_READ_ACCESS_KEY_ID` and
@@ -340,11 +386,18 @@ exactly those 1,362 files.
    tracked at the base, and each entry's sha256, size and `git_blob` equal
    that blob's.
 4. **Fetch fidelity.** After a fetch, every placed file hashes to its lock
-   sha256; a file that failed is never partly written, a missing file is
-   created but never replaced, and a scope's `sources/` directory is left
-   whole or rolled back.
+   sha256, and a missing file is created but never replaced. Files appear
+   under their final names by link or no-replace rename, so a failed file is
+   never partly written there. The one exception is the exclusive-copy
+   fallback, used only on filesystems with neither hardlinks nor no-replace
+   renames: a failed copy is removed, but a process killed mid-copy leaves a
+   short file. In the cache that file has the wrong size and is deleted on
+   next use; in a checkout, `corpus status` reports it as modified. A scope's
+   `sources/` directory ends up whole, or the files this call placed are
+   rolled back, and a file someone else rewrote is never removed.
 5. **Cache integrity.** Every cache object is written once, and a process
-   uses it only after checking that it hashes to its name.
+   uses it only after checking its size and its hash. A corrupt object is
+   deleted and replaced with verified bytes.
 6. **Idempotence.** A second fetch changes nothing.
 7. **No links.** Placed files are regular files, never symlinks, and never
    share an inode with the cache.
@@ -354,10 +407,14 @@ exactly those 1,362 files.
 `tests/test_corpus_storage.py` checks 1, 2, 4, 5, 6 and 7 as Hypothesis
 properties and 3 on real git trees; `tests/test_corpus_lock_guard.py` checks
 8, including tampered locks. `tests/test_corpus_storage_review.py` and
-`tests/test_corpus_lock_guard_review.py` pin each case the adversarial
-reviews found (concurrent writes during fetch, interrupted fetches, corrupt
-cache objects, partial source directories, planted locks, stale bases,
-unstaged locks, and signing after a deletion).
+`tests/test_corpus_lock_guard_review.py` hold one regression test per
+reproduced review finding, each named after it. They cover concurrent writes
+during fetch and rollback, interrupted fetches and publication, corrupt and
+truncated cache objects, partial source directories, planted and laundered
+locks, differently cased paths, stale bases, unstaged, malformed and conflicted
+locks, and signing after a deletion. Deliberately breaking each fix fails its
+test. One known gap has no test: the partial-test audit hook's blind spots,
+described under Tests and CI.
 
 ## Alternatives considered
 

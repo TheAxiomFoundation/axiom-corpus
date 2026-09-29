@@ -27,6 +27,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
 )
 
 from axiom_corpus.corpus.corpus_locks import (
+    CORPUS_BASE,
     LOCK_ROOT,
     PROTECTED_CORPUS_PREFIXES,
     HashedBlob,
@@ -390,7 +391,11 @@ def guard_ingested_artifacts(
             # Tracked file left git for a lock entry holding its exact bytes.
             continue
         if lock_check.lock_mode and change.status != "D":
-            # Reported once, in aggregate, by the lock check.
+            issues.append(
+                f"`{change.path}` is a corpus artifact tracked in git while "
+                f"`{LOCK_ROOT.as_posix()}` exists; corpus bytes enter through lock files "
+                "only. Run `axiom-corpus-ingest sign-ingest-manifest ... --lock`."
+            )
             continue
         manifest_entry = entries_by_path.get(change.path)
         if manifest_entry is None:
@@ -581,7 +586,12 @@ class _LockCheck:
         issues: list[str] = list(head.errors)
         lock_mode = bool(head) or bool(head.errors)
         if lock_mode:
-            tracked = _tracked_protected_paths(repo, head_ref)
+            # Tracked files this diff adds or modifies are reported one by one by
+            # the guard loop; this catches the ones already tracked at the base.
+            changed_here = {change.path for change in changes if change.status != "D"}
+            tracked = [
+                path for path in _tracked_protected_paths(repo, head_ref) if path not in changed_here
+            ]
             if tracked:
                 shown = ", ".join(f"`{path}`" for path in tracked[:10])
                 issues.append(
@@ -657,16 +667,15 @@ def _tracked_protected_paths(repo: Path, head_ref: str | None) -> list[str]:
     On a case-insensitive filesystem ``data/corpus/Provisions/x`` lands on the
     locked path, so every spelling counts.
     """
-    if head_ref:
-        tracked = [blob.path for blob in list_tree_blobs(repo, head_ref, "data")]
-    else:
-        result = subprocess.run(
-            ["git", "ls-files", "-z", "--cached", "--", "data"],
-            cwd=repo,
-            check=True,
-            capture_output=True,
-        )
-        tracked = [os.fsdecode(raw) for raw in result.stdout.split(b"\0") if raw]
+    # No pathspec: git matches pathspecs case-sensitively, so ``data`` would
+    # miss ``DATA/corpus/...``. List everything and fold case here.
+    command = (
+        ["git", "ls-tree", "-r", "--name-only", "-z", head_ref]
+        if head_ref
+        else ["git", "ls-files", "-z", "--cached"]
+    )
+    result = subprocess.run(command, cwd=repo, check=True, capture_output=True)
+    tracked = {raw.decode("utf-8", errors="surrogateescape") for raw in result.stdout.split(b"\0") if raw}
     return sorted(path for path in tracked if _is_protected_corpus_artifact(path))
 
 
@@ -792,20 +801,80 @@ def audit_lock_attestation(
         if not entry.git_blob
     )
     issues.extend(_git_blob_reference_issues(repo, with_blob))
+    wanted: dict[str, set[str]] = {}
     for entry in with_blob:
-        history = subprocess.run(
-            ["git", "log", "-1", "--format=%H", f"--find-object={entry.git_blob}", ref, "--", entry.path],
-            cwd=repo,
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if not history.stdout.strip():
-            issues.append(
-                f"`{entry.path}` names git_blob {entry.git_blob}, which no commit reachable "
-                f"from `{ref}` tracked at that path."
-            )
+        wanted.setdefault(entry.path, set()).add(entry.git_blob or "")
+    try:
+        held = first_parent_path_blobs(repo, ref, wanted)
+    except (subprocess.CalledProcessError, OSError) as exc:
+        issues.append(f"Unable to read the first-parent history of `{ref}`: {exc}")
+        return list(dict.fromkeys(issues))
+    issues.extend(
+        f"`{entry.path}` names git_blob {entry.git_blob}, which no commit on the "
+        f"first-parent history of `{ref}` held at that path."
+        for entry in with_blob
+        if (entry.path, entry.git_blob) not in held
+    )
     return list(dict.fromkeys(issues))
+
+
+_NULL_OID = "0" * 40
+
+
+def first_parent_path_blobs(
+    repo: Path, ref: str, wanted: dict[str, set[str]]
+) -> set[tuple[str, str]]:
+    """The ``(path, blob)`` pairs in ``wanted`` that a tree on ``ref``'s first-parent chain held.
+
+    Only the first-parent chain counts: with merge commits only, that is the
+    sequence of states the base branch itself held, so bytes a pull request
+    committed and removed again before merging never qualify. Each commit is
+    diffed against its first parent, and both sides of a change are states of
+    the chain; the walk stops once every wanted pair is found (a migration
+    commit's deletions name them all at once).
+    """
+    remaining = {(path, oid) for path, oids in wanted.items() for oid in oids}
+    found: set[tuple[str, str]] = set()
+    if not remaining:
+        return found
+    command = [
+        "git", "log", "--first-parent", "--diff-merges=first-parent", "--root",
+        "--raw", "--no-renames", "--no-abbrev", "-z", "--format=", ref, "--", CORPUS_BASE,
+    ]  # fmt: skip
+    process = subprocess.Popen(command, cwd=repo, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    assert process.stdout is not None
+    stopped_early = False
+    pending = b""
+    header: list[str] | None = None
+    try:
+        while remaining:
+            chunk = process.stdout.read(1 << 20)
+            if not chunk:
+                break
+            tokens = (pending + chunk).split(b"\0")
+            pending = tokens.pop()
+            for token in tokens:
+                if header is None:
+                    text = token.lstrip(b"\n").decode("ascii", errors="replace")
+                    if text.startswith(":"):
+                        header = text[1:].split()
+                    continue
+                path = token.decode("utf-8", errors="surrogateescape")
+                for oid in header[2:4] if len(header) >= 4 else ():
+                    if oid != _NULL_OID and (path, oid) in remaining:
+                        remaining.discard((path, oid))
+                        found.add((path, oid))
+                header = None
+        stopped_early = not remaining
+    finally:
+        if process.poll() is None:
+            process.kill()
+        _stdout, stderr = process.communicate()
+    if not stopped_early and process.returncode != 0:
+        raise subprocess.CalledProcessError(
+            process.returncode, command, stderr=stderr.decode("utf-8", errors="replace")
+        )
+    return found
 
 
 def sha256_file(path: Path) -> str:

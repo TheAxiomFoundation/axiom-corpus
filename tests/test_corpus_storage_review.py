@@ -35,6 +35,7 @@ from axiom_corpus.corpus.corpus_locks import (
     CorpusLock,
     LockEntry,
     LockFormatError,
+    LockSet,
     load_locks,
     lock_from_worktree,
     parse_lock,
@@ -362,11 +363,16 @@ def test_migrate_refuses_dirty_protected_paths_and_other_refs(tmp_path: Path, mo
 # Astra 12 -------------------------------------------------------------------------
 
 
-def test_publish_without_hardlinks_still_never_replaces(tmp_path: Path, monkeypatch) -> None:
+@pytest.mark.parametrize("rename_noreplace", [True, False], ids=["rename-noreplace", "exclusive-copy"])
+def test_publish_without_hardlinks_still_never_replaces(
+    tmp_path: Path, monkeypatch, rename_noreplace: bool
+) -> None:
     def no_links(*_args, **_kwargs):
         raise OSError(errno.EPERM, "no hardlinks here")
 
     monkeypatch.setattr(content_store.os, "link", no_links)
+    if not rename_noreplace:
+        monkeypatch.setattr(content_store, "_RENAME_NOREPLACE", None)
     target = tmp_path / "object"
     first = tmp_path / "a"
     first.write_bytes(b"first writer")
@@ -375,7 +381,6 @@ def test_publish_without_hardlinks_still_never_replaces(tmp_path: Path, monkeypa
     second.write_bytes(b"second writer")
     assert not publish_no_replace(second, target)
     assert target.read_bytes() == b"first writer"
-    assert not first.exists() and not second.exists()
 
 
 # Opus nit (git spawns) ------------------------------------------------------------
@@ -416,6 +421,356 @@ def test_relative_paths_resolve_through_symlinked_spellings(tmp_path: Path) -> N
 def test_corpus_wide_reports_recognize_an_absolute_base(tmp_path: Path, monkeypatch) -> None:
     repo = _init_repo(tmp_path / "repo")
     monkeypatch.chdir(tmp_path)
-    args = build_parser().parse_args(["analytics", "--base", str(repo / "data/corpus"), "--version", "v1"])
-    prefixes = {p.relative_to(repo).as_posix().rstrip("/") for p in _corpus_wide_prefixes(args, "analytics")}
-    assert prefixes == {"data/corpus/inventory", "data/corpus/provisions", "data/corpus/coverage"}
+    args = build_parser().parse_args(["artifact-report", "--base", str(repo / "data/corpus"), "--version", "v1"])
+    prefixes = {p.relative_to(repo).as_posix().rstrip("/") for p in _corpus_wide_prefixes(args, "artifact-report")}
+    assert prefixes == {
+        "data/corpus/sources",
+        "data/corpus/inventory",
+        "data/corpus/provisions",
+        "data/corpus/coverage",
+    }
+
+
+# =========================================================================== round 2
+
+
+# Astra r2-1 / Opus r2-S4: rollback removes only what this call placed -------------
+
+
+def _failing_sibling_fetch(tmp_path: Path, monkeypatch, rewrite) -> tuple[Path, LockEntry, object]:
+    """Fetch two sources where the second fails; ``rewrite`` runs just before it."""
+    sources = [e for e in _lock().files if "/sources/" in e.path]
+    first, second = sources
+    repo = tmp_path / "repo"
+    remote = _remote({content_key(first.sha256): FILES[first.path]})
+    real_ensure = content_store.ensure_cached
+
+    def ensure(entry_arg, cache, sources_arg):
+        if entry_arg.path == second.path:
+            rewrite(repo / first.path)
+        return real_ensure(entry_arg, cache, sources_arg)
+
+    monkeypatch.setattr(content_store, "ensure_cached", ensure)
+    report = materialize(repo, sources, ContentCache(tmp_path / "cache"), [remote], workers=1)
+    assert set(report.failed) == {second.path}
+    return repo, first, report
+
+
+def test_rollback_keeps_a_file_an_extractor_rewrote_in_place(tmp_path: Path, monkeypatch) -> None:
+    repo, first, report = _failing_sibling_fetch(
+        tmp_path, monkeypatch, lambda path: path.write_bytes(b"extractor output")
+    )
+    assert (repo / first.path).read_bytes() == b"extractor output"
+    assert report.rolled_back == [] and first.path in report.modified
+
+
+def test_rollback_keeps_a_file_another_writer_replaced(tmp_path: Path, monkeypatch) -> None:
+    def replace(path: Path) -> None:
+        tmp = path.with_name("replacement")
+        tmp.write_bytes(FILES[first_path])  # same bytes, new file
+        os.replace(tmp, path)
+
+    first_path = next(p for p in FILES if "/sources/" in p)
+    repo, first, report = _failing_sibling_fetch(tmp_path, monkeypatch, replace)
+    assert (repo / first.path).read_bytes() == FILES[first.path]
+    assert report.rolled_back == []
+
+
+def test_rollback_still_removes_an_untouched_placed_file(tmp_path: Path, monkeypatch) -> None:
+    repo, first, report = _failing_sibling_fetch(tmp_path, monkeypatch, lambda _path: None)
+    assert report.rolled_back == [first.path]
+    assert not (repo / first.path).exists()
+
+
+# Astra r2-3 / Opus r2-S2: a wrong-size cache object is repaired ------------------------
+
+
+def test_a_truncated_cache_object_is_replaced_by_verified_bytes(tmp_path: Path) -> None:
+    lock = _lock()
+    cache_root = tmp_path / "cache"
+    assert materialize(tmp_path / "first", lock.files, ContentCache(cache_root), [_full_remote()]).ok
+    victim = next(e for e in lock.files if e.size > 4)
+    obj = ContentCache(cache_root).object_path(victim.sha256)
+    os.chmod(obj, 0o644)
+    obj.write_bytes(b"bad")  # wrong size
+    report = materialize(tmp_path / "second", lock.files, ContentCache(cache_root), [_full_remote()])
+    assert report.ok
+    assert (tmp_path / "second" / victim.path).read_bytes() == FILES[victim.path]
+    assert ContentCache(cache_root).verify_object(victim.sha256)
+
+
+def test_publish_replaces_a_corrupt_object_that_won_the_race(tmp_path: Path) -> None:
+    data = b"verified bytes"
+    sha = _sha(data)
+    cache = ContentCache(tmp_path / "cache")
+    target = cache.object_path(sha)
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b"X" * len(data))  # appeared after this writer's usable() check
+    tmp = tmp_path / "tmp-object"
+    tmp.write_bytes(data)
+    assert cache._publish(tmp, target, sha, len(data)) == target
+    assert target.read_bytes() == data
+
+
+# Astra r2-4 / Opus r2-S3: the exclusive-copy fallback never leaves partial bytes -------
+
+
+def test_exclusive_copy_fallback_removes_a_partial_target(tmp_path: Path, monkeypatch) -> None:
+    def no_links(*_args, **_kwargs):
+        raise OSError(errno.EPERM, "no hardlinks here")
+
+    def copy_then_fill_disk(src, dst, _length=0):
+        dst.write(src.read(7))
+        raise OSError(errno.ENOSPC, "No space left on device")
+
+    monkeypatch.setattr(content_store.os, "link", no_links)
+    monkeypatch.setattr(content_store, "_RENAME_NOREPLACE", None)
+    monkeypatch.setattr(content_store.shutil, "copyfileobj", copy_then_fill_disk)
+    tmp = tmp_path / "tmp"
+    tmp.write_bytes(b"complete object bytes")
+    target = tmp_path / "target"
+    with pytest.raises(OSError, match="No space"):
+        publish_no_replace(tmp, target)
+    assert not target.exists()
+
+
+# Opus r2-N4: interrupted fetches' temporaries are cleaned up ----------------------------
+
+
+def test_stale_fetch_temporaries_are_removed(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(content_store, "_PRUNED_TMP_DIRS", set())
+    repo = tmp_path / "repo"
+    tmp_dir = repo / FETCH_TEMP_DIR
+    tmp_dir.mkdir(parents=True)
+    stale = tmp_dir / "act.html.corpus-fetch-old"
+    fresh = tmp_dir / "act.html.corpus-fetch-new"
+    stale.write_bytes(b"old")
+    fresh.write_bytes(b"new")
+    two_days_ago = content_store.time.time() - 2 * 24 * 3600
+    os.utime(stale, (two_days_ago, two_days_ago))
+    assert materialize(repo, _lock().files, ContentCache(tmp_path / "cache"), [_full_remote()]).ok
+    assert not stale.exists() and fresh.exists()
+
+
+# Astra r2 table (Astra 4): an existing source still brings its siblings --------------
+
+
+def test_resolving_a_present_source_fetches_its_missing_siblings(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    present = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    sibling = "data/corpus/sources/nz/statute/2026-07-10/official/sub dir/s 2.xml"
+    _write(repo, present, FILES[present])
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
+    assert resolver.resolve(present) == repo / present
+    assert (repo / sibling).read_bytes() == FILES[sibling]
+
+
+def test_resolving_a_present_source_with_fetching_off_refuses_a_partial_scope(
+    tmp_path: Path, monkeypatch
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    present = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    _write(repo, present, FILES[present])
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off"):
+        resolver.resolve(present)
+
+
+# Opus r2-S4: the resolver re-checks what a concurrent rollback removed ------------------
+
+
+def test_ensure_refetches_files_removed_while_it_ran(tmp_path: Path, monkeypatch) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    victim = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+    real = resolver_module.materialize
+    calls = []
+
+    def materialize_then_lose_one(*args, **kwargs):
+        report = real(*args, **kwargs)
+        calls.append(len(args[1]))
+        if len(calls) == 1:
+            (repo / victim).unlink()  # another process's rollback
+        return report
+
+    monkeypatch.setattr(resolver_module, "materialize", materialize_then_lose_one)
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
+    resolver.ensure_scopes([SCOPE])
+    assert (repo / victim).read_bytes() == FILES[victim]
+    assert calls == [len(FILES), 1]
+
+
+def test_ensure_gives_up_when_files_keep_disappearing(tmp_path: Path, monkeypatch) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    victim = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+    real = resolver_module.materialize
+
+    def materialize_then_lose_one(*args, **kwargs):
+        report = real(*args, **kwargs)
+        (repo / victim).unlink(missing_ok=True)
+        return report
+
+    monkeypatch.setattr(resolver_module, "materialize", materialize_then_lose_one)
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
+    with pytest.raises(CorpusNotMaterializedError, match="disappeared"):
+        resolver.ensure_scopes([SCOPE])
+
+
+# Astra r2-10 / Opus r2-N1: unread R2 bodies are closed ----------------------------------
+
+
+def test_closing_an_unread_r2_stream_closes_its_body() -> None:
+    body = BytesIO(b"payload")
+    content_store._close(content_store._iter_body(body))
+    assert body.closed
+
+
+def test_an_r2_body_is_closed_when_another_worker_cached_it_first(tmp_path: Path) -> None:
+    data = FILES["data/corpus/provisions/nz/statute/2026-07-10.jsonl"]
+    cache = ContentCache(tmp_path / "cache")
+    cache.add_stream([data], sha256=_sha(data), size=len(data))
+    body = BytesIO(data)
+    cache.add_stream(content_store._iter_body(body), sha256=_sha(data), size=len(data))
+    assert body.closed
+
+
+# Opus r2-S5: git blobs stream in chunks and an abandoned stream frees the process -------
+
+
+def test_git_source_streams_large_blobs_and_survives_an_abandoned_stream(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    big = os.urandom(content_store.CHUNK_SIZE * 2 + 17)
+    rel = "data/corpus/sources/nz/statute/2026-07-10/official/big.pdf"
+    small_rel = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+    _write(repo, rel, big)
+    _write(repo, small_rel, FILES[small_rel])
+    _git(repo, "add", "-f", rel, small_rel)
+    _git(repo, "commit", "-q", "-m", "track")
+    big_entry = LockEntry(rel, _sha(big), len(big), git_blob=_git(repo, "rev-parse", f"HEAD:{rel}"))
+    small = FILES[small_rel]
+    small_entry = LockEntry(
+        small_rel, _sha(small), len(small), git_blob=_git(repo, "rev-parse", f"HEAD:{small_rel}")
+    )
+    source = GitBlobSource(repo)
+    try:
+        chunks = source.open(big_entry)
+        assert chunks is not None
+        first = next(iter(chunks))
+        assert len(first) <= content_store.CHUNK_SIZE < len(big)
+        content_store._close(chunks)  # abandoned mid-blob
+        again = source.open(small_entry)
+        assert again is not None and b"".join(again) == small
+        whole = source.open(big_entry)
+        assert whole is not None and b"".join(whole) == big
+    finally:
+        source.close()
+
+
+# Astra r2-11: invalid selectors are usage errors, not tracebacks -------------------------
+
+
+def test_invalid_scope_selectors_exit_cleanly(tmp_path: Path, monkeypatch, capsys) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    monkeypatch.chdir(repo)
+    assert cli_main(["corpus", "lock", "--repo", str(repo), "NZ/statute/v1"]) == 2
+    assert "scope must be" in capsys.readouterr().err
+    for command in (["corpus", "status"], ["corpus", "fetch"]):
+        with pytest.raises(SystemExit, match="scope must be"):
+            cli_main([*command, "--repo", str(repo), "NZ/statute/v1"])
+
+
+# Opus r2-N3 / N5: hidden files -------------------------------------------------------
+
+
+def test_hidden_files_in_the_lock_directory_are_ignored(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    path = write_lock(repo, _lock())
+    (path.parent / ".DS_Store").write_bytes(b"\0finder")
+    (path.parent / f".{path.name}.swp").write_bytes(b"vim")
+    locks = load_locks(repo)
+    assert locks.errors == () and SCOPE in locks.locks
+    (path.parent / "notes.txt").write_text("stray")
+    assert load_locks(repo).errors  # any other stray file is still an error
+
+
+def test_lock_refuses_a_hidden_source_file_that_status_reports(tmp_path: Path, monkeypatch, capsys) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    for rel, data in FILES.items():
+        _write(repo, rel, data)
+    hidden = "data/corpus/sources/nz/statute/2026-07-10/official/.DS_Store"
+    _write(repo, hidden, b"finder")
+    with pytest.raises(LockFormatError, match="hidden file"):
+        lock_from_worktree(repo, SCOPE)
+    write_lock(repo, _lock())
+    monkeypatch.chdir(repo)
+    assert cli_main(["corpus", "status", "--repo", str(repo), "--json"]) in (0, 1)
+    assert hidden in capsys.readouterr().out
+
+
+# Opus r2-N8: analytics requires only the version and scopes it reports ---------------
+
+
+def test_analytics_requires_only_its_version_and_filters(tmp_path: Path, monkeypatch) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    other_scope = ("nz", "statute", "2026-08-01")
+    other = {p.replace("2026-07-10", "2026-08-01"): d for p, d in FILES.items()}
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            other_scope, [LockEntry(p, _sha(d), len(d)) for p, d in other.items()]
+        ),
+    )
+    part = "data/corpus/provisions/us/statute/2026-07-10-part-a.jsonl"
+    write_lock(
+        repo,
+        CorpusLock.from_entries(("us", "statute", "2026-07-10-part-a"), [LockEntry(part, "0" * 64, 1)]),
+    )
+    monkeypatch.chdir(repo)
+    base = str(repo / "data/corpus")
+
+    def required(*extra: str) -> set[str]:
+        args = build_parser().parse_args(["analytics", "--base", base, "--version", "2026-07-10", *extra])
+        return {p.relative_to(repo).as_posix() for p in _corpus_wide_prefixes(args, "analytics")}
+
+    assert required() == {
+        "data/corpus/inventory/nz/statute/2026-07-10.json",
+        "data/corpus/provisions/nz/statute/2026-07-10.jsonl",
+        part,
+    }
+    assert required("--jurisdiction", "us") == {part}
+
+
+# entries_under is a sorted-prefix query; check it against the obvious scan -----------
+
+
+def test_entries_under_matches_a_linear_scan() -> None:
+    from hypothesis import given, settings
+    from hypothesis import strategies as st
+
+    segment = st.text(alphabet="ab-/", min_size=1, max_size=4).filter(
+        lambda s: "//" not in s and not s.startswith("/") and not s.endswith("/")
+    )
+
+    @settings(max_examples=200, deadline=None)
+    @given(st.sets(segment, min_size=1, max_size=12), segment)
+    def check(tails: set[str], query_tail: str) -> None:
+        paths = sorted({f"data/corpus/sources/nz/statute/v1/{tail}" for tail in tails})
+        lock = CorpusLock.from_entries(
+            ("nz", "statute", "v1"), [LockEntry(p, "0" * 64, 1) for p in paths]
+        )
+        locks = LockSet(locks={lock.scope: lock})
+        query = f"data/corpus/sources/nz/statute/v1/{query_tail}"
+        expected = (
+            [locks.by_path[query]]
+            if query in locks.by_path
+            else [locks.by_path[p] for p in paths if p.startswith(query + "/")]
+        )
+        assert locks.entries_under(query) == expected
+
+    check()

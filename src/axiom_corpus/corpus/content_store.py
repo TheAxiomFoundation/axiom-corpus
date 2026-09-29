@@ -20,12 +20,13 @@ import subprocess
 import sys
 import tempfile
 import threading
+import time
 from collections.abc import Callable, Iterable, Iterator
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from contextlib import closing, suppress
+from contextlib import suppress
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import IO, Any, Protocol
+from typing import Any, Protocol
 
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -105,36 +106,86 @@ def clone_file(source: Path, target: Path) -> str:
     return "copy"
 
 
+def _load_rename_noreplace() -> Callable[[Path, Path], int] | None:
+    """An atomic "rename unless the target exists" from the C library, if any.
+
+    macOS has ``renamex_np(RENAME_EXCL)``; Linux has ``renameat2(RENAME_NOREPLACE)``.
+    Returns a function giving 0 on success or an errno.
+    """
+    path = ctypes.util.find_library("c")
+    try:
+        libc = ctypes.CDLL(path, use_errno=True)
+    except OSError:
+        return None
+    if sys.platform == "darwin" and hasattr(libc, "renamex_np"):
+        renamex = libc.renamex_np
+        renamex.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_uint]
+        renamex.restype = ctypes.c_int
+
+        def rename_excl(src: Path, dst: Path) -> int:
+            if renamex(os.fsencode(src), os.fsencode(dst), 0x4) == 0:  # RENAME_EXCL
+                return 0
+            return ctypes.get_errno()
+
+        return rename_excl
+    if sys.platform.startswith("linux") and hasattr(libc, "renameat2"):
+        renameat2 = libc.renameat2
+        renameat2.argtypes = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint]
+        renameat2.restype = ctypes.c_int
+
+        def rename_noreplace(src: Path, dst: Path) -> int:
+            at_fdcwd = -100
+            if renameat2(at_fdcwd, os.fsencode(src), at_fdcwd, os.fsencode(dst), 1) == 0:
+                return 0
+            return ctypes.get_errno()
+
+        return rename_noreplace
+    return None
+
+
+_RENAME_NOREPLACE = _load_rename_noreplace()
+
+
 def publish_no_replace(tmp: Path, target: Path) -> bool:
     """Give ``tmp``'s file the name ``target`` only if ``target`` does not exist.
 
     Returns False, leaving ``target`` untouched, when something already exists
-    there. ``tmp`` is gone either way. ``link`` is the atomic create-if-absent
-    step; where the filesystem has no hardlinks, an exclusive create plus copy
-    keeps the no-replace guarantee (a reader that checks size and hash never
-    uses the partly written file).
+    there. Every path is atomic: ``link`` where the filesystem has hardlinks,
+    otherwise a no-replace rename. Only where neither exists does it copy into
+    an exclusively created file, and then a failed copy removes that file, so
+    ``target`` never holds partial bytes. The caller removes ``tmp`` afterwards
+    if it still exists.
     """
     try:
-        try:
-            os.link(tmp, target)
+        os.link(tmp, target)
+        return True
+    except FileExistsError:
+        return False
+    except OSError as exc:
+        if exc.errno not in _NO_HARDLINK_ERRNOS:
+            raise
+    if _RENAME_NOREPLACE is not None:
+        err = _RENAME_NOREPLACE(tmp, target)
+        if err == 0:
             return True
-        except FileExistsError:
+        if err == errno.EEXIST:
             return False
-        except OSError as exc:
-            if exc.errno not in _NO_HARDLINK_ERRNOS:
-                raise
-        try:
-            fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-        except FileExistsError:
-            return False
+        if err not in {errno.ENOTSUP, errno.EOPNOTSUPP, errno.EINVAL, errno.ENOSYS}:
+            raise OSError(err, os.strerror(err), str(target))
+    try:
+        fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    except FileExistsError:
+        return False
+    try:
         with os.fdopen(fd, "wb") as dst, tmp.open("rb") as src:
             shutil.copyfileobj(src, dst, CHUNK_SIZE)
             dst.flush()
             os.fsync(dst.fileno())
         os.chmod(target, tmp.stat().st_mode & 0o777)
-        return True
-    finally:
-        tmp.unlink(missing_ok=True)
+    except BaseException:
+        target.unlink(missing_ok=True)
+        raise
+    return True
 
 
 # --------------------------------------------------------------------------- cache
@@ -170,7 +221,11 @@ class ContentCache:
         The first use in this process hashes the object; a corrupt object is
         removed so the caller refetches it.
         """
+        path = self.object_path(sha256)
+        if not path.exists():
+            return False
         if not self.contains(sha256, size):
+            self._discard(sha256)  # wrong size: a corrupt or truncated object
             return False
         with self._verified_lock:
             if sha256 in self._verified:
@@ -203,7 +258,7 @@ class ContentCache:
         tmp = Path(tmp_name)
         try:
             write_verified(fd, chunks, sha256=sha256, size=size)
-            return self._publish(tmp, target, sha256)
+            return self._publish(tmp, target, sha256, size)
         finally:
             tmp.unlink(missing_ok=True)
 
@@ -225,23 +280,27 @@ class ContentCache:
             # Re-hash the placed copy: the source could have changed after hashing.
             if hash_path(tmp) != (actual_sha, actual_size):
                 raise ContentStoreError(f"{path} changed while it was being cached")
-            return self._publish(tmp, target, actual_sha)
+            return self._publish(tmp, target, actual_sha, actual_size)
         finally:
             tmp.unlink(missing_ok=True)
 
-    def _publish(self, tmp: Path, target: Path, sha256: str) -> Path:
+    def _publish(self, tmp: Path, target: Path, sha256: str, size: int) -> Path:
         """Publish a verified object once; never replace an existing one.
 
         Replacing an object while another thread cloned it made ``clonefile``
-        fail with ENOENT. A losing writer holds the same verified bytes and
-        discards them.
+        fail with ENOENT. A losing writer keeps the winner when it verifies; a
+        corrupt winner is removed and the verified copy published instead.
         """
         os.chmod(tmp, 0o444)
         target.parent.mkdir(parents=True, exist_ok=True)
-        if publish_no_replace(tmp, target):
-            with self._verified_lock:
-                self._verified.add(sha256)
-        return target
+        for _attempt in range(3):
+            if publish_no_replace(tmp, target):
+                with self._verified_lock:
+                    self._verified.add(sha256)
+                return target
+            if self.usable(sha256, size):  # discards a corrupt winner
+                return target
+        raise ContentStoreError(f"cannot publish {sha256}: the cache keeps a conflicting object")
 
     def verify_object(self, sha256: str) -> bool:
         path = self.object_path(sha256)
@@ -328,24 +387,34 @@ class GitBlobSource:
         return self._proc
 
     def open(self, entry: LockEntry) -> Iterator[bytes] | None:
+        """Stream one blob in chunks; the process is held until the stream ends.
+
+        One ``cat-file`` process answers one blob at a time anyway, so streaming
+        under the lock serializes nothing extra and keeps memory to one chunk.
+        """
         if entry.git_blob is None:
             return None
-        with self._lock:
+        self._lock.acquire()
+        try:
             proc = self._process()
             assert proc.stdin is not None and proc.stdout is not None
             proc.stdin.write(entry.git_blob.encode("ascii") + b"\n")
             proc.stdin.flush()
             header = proc.stdout.readline().split()
             if len(header) == 2 and header[1] == b"missing":
+                self._lock.release()
                 return None
             if len(header) != 3 or header[1] != b"blob":
                 self.close()
                 raise ContentStoreError(f"unexpected git cat-file reply for {entry.git_blob}")
-            data = _read_exact(proc.stdout, int(header[2]))
-            if proc.stdout.read(1) != b"\n":
-                self.close()
-                raise ContentStoreError(f"malformed git cat-file output for {entry.git_blob}")
-        return iter((data,))
+        except BaseException:
+            if self._lock.locked():
+                self._lock.release()
+            raise
+        return self._stream(proc, int(header[2]), entry.git_blob)
+
+    def _stream(self, proc: subprocess.Popen[bytes], size: int, oid: str) -> Iterator[bytes]:
+        return _GitBlobChunks(self, proc, size, oid)
 
     def close(self) -> None:
         proc, self._proc = self._proc, None
@@ -360,16 +429,62 @@ class GitBlobSource:
             proc.kill()
 
 
-def _read_exact(stream: IO[bytes], size: int) -> bytes:
-    parts: list[bytes] = []
-    left = size
-    while left:
-        chunk = stream.read(min(left, CHUNK_SIZE))
+class _GitBlobChunks:
+    """One blob streamed from the shared ``cat-file`` process.
+
+    Holds the source's lock until the stream ends or is closed; closing early
+    (even before the first read) drains the rest so the next request starts
+    at a header, then releases the lock.
+    """
+
+    def __init__(self, source: GitBlobSource, proc: subprocess.Popen[bytes], size: int, oid: str):
+        self._source = source
+        self._proc = proc
+        self._left = size
+        self._oid = oid
+        self._done = False
+
+    def __iter__(self) -> _GitBlobChunks:
+        return self
+
+    def __next__(self) -> bytes:
+        if self._done:
+            raise StopIteration
+        if not self._left:
+            self.close()
+            raise StopIteration
+        assert self._proc.stdout is not None
+        chunk = self._proc.stdout.read(min(self._left, CHUNK_SIZE))
         if not chunk:
-            raise ContentStoreError("truncated git cat-file output")
-        parts.append(chunk)
-        left -= len(chunk)
-    return b"".join(parts)
+            self._source.close()
+            self._finish()
+            raise ContentStoreError(f"truncated git cat-file output for {self._oid}")
+        self._left -= len(chunk)
+        return chunk
+
+    def close(self) -> None:
+        if self._done:
+            return
+        try:
+            stdout = self._proc.stdout
+            if stdout is not None and self._proc.poll() is None:
+                while self._left:
+                    chunk = stdout.read(min(self._left, CHUNK_SIZE))
+                    if not chunk:
+                        break
+                    self._left -= len(chunk)
+                if self._left or stdout.read(1) != b"\n":
+                    self._source.close()
+        finally:
+            self._finish()
+
+    def _finish(self) -> None:
+        if not self._done:
+            self._done = True
+            self._source._lock.release()
+
+    def __del__(self) -> None:
+        self.close()
 
 
 class R2ObjectStore:
@@ -487,13 +602,34 @@ def _is_missing(exc: Exception) -> bool:
     return False
 
 
+class _BodyChunks:
+    """Chunks of an R2 response body; closing it closes the body even unread."""
+
+    def __init__(self, body: Any):
+        self._body = body
+        self._closed = False
+
+    def __iter__(self) -> _BodyChunks:
+        return self
+
+    def __next__(self) -> bytes:
+        if self._closed:
+            raise StopIteration
+        chunk = self._body.read(CHUNK_SIZE)
+        if not chunk:
+            self.close()
+            raise StopIteration
+        return chunk if isinstance(chunk, bytes) else bytes(chunk)
+
+    def close(self) -> None:
+        if not self._closed:
+            self._closed = True
+            with suppress(Exception):
+                self._body.close()
+
+
 def _iter_body(body: Any) -> Iterator[bytes]:
-    with closing(body):
-        while True:
-            chunk = body.read(CHUNK_SIZE)
-            if not chunk:
-                return
-            yield chunk if isinstance(chunk, bytes) else bytes(chunk)
+    return _BodyChunks(body)
 
 
 # --------------------------------------------------------------------------- fetch
@@ -583,10 +719,31 @@ def destination_state(target: Path, entry: LockEntry, *, verify: bool) -> str:
     return "present"
 
 
+_PRUNED_TMP_DIRS: set[Path] = set()
+_PRUNE_LOCK = threading.Lock()
+STALE_FETCH_TEMP_SECONDS = 24 * 3600
+
+
+def _prune_stale_fetch_tmp(directory: Path) -> None:
+    """Remove temporary files that interrupted fetches left more than a day ago."""
+    with _PRUNE_LOCK:
+        if directory in _PRUNED_TMP_DIRS:
+            return
+        _PRUNED_TMP_DIRS.add(directory)
+    cutoff = time.time() - STALE_FETCH_TEMP_SECONDS
+    with suppress(FileNotFoundError), os.scandir(directory) as entries:
+        for item in entries:
+            if FETCH_TEMP_MARKER in item.name and item.is_file(follow_symlinks=False):
+                with suppress(FileNotFoundError):
+                    if item.stat(follow_symlinks=False).st_mtime < cutoff:
+                        os.unlink(item.path)
+
+
 def _fetch_tmp(repo: Path, target: Path) -> Path:
     """A temporary name for a file bound for ``target``: same filesystem, outside any scope."""
     directory = repo / FETCH_TEMP_DIR
     directory.mkdir(parents=True, exist_ok=True)
+    _prune_stale_fetch_tmp(directory)
     fd, name = tempfile.mkstemp(dir=directory, prefix=f"{FETCH_TEMP_MARKER}{target.name[:40]}.")
     os.close(fd)
     os.unlink(name)
@@ -603,6 +760,16 @@ def _place(tmp: Path, target: Path, *, replace: bool) -> bool:
     return publish_no_replace(tmp, target)
 
 
+# (st_dev, st_ino, st_size, st_mtime_ns) of the file one call placed; a later
+# write in place or a replacement changes at least one of them.
+_Placed = tuple[int, int, int, int]
+
+
+def _identity(path: Path) -> _Placed:
+    stat = path.lstat()
+    return (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns)
+
+
 def materialize_entry(
     repo: Path,
     entry: LockEntry,
@@ -612,6 +779,22 @@ def materialize_entry(
     force: bool = False,
     verify: bool = False,
 ) -> tuple[str, str | None, str | None]:
+    """Place one locked file in the worktree (see ``_materialize_one``)."""
+    state, source, method, _placed = _materialize_one(
+        repo, entry, cache, sources, force=force, verify=verify
+    )
+    return state, source, method
+
+
+def _materialize_one(
+    repo: Path,
+    entry: LockEntry,
+    cache: ContentCache | None,
+    sources: Iterable[ObjectSource],
+    *,
+    force: bool = False,
+    verify: bool = False,
+) -> tuple[str, str | None, str | None, _Placed | None]:
     """Place one locked file in the worktree.
 
     Returns ``(state, source, method)`` where state is ``present``,
@@ -625,9 +808,9 @@ def materialize_entry(
     target = destination_for(repo, entry)
     state = destination_state(target, entry, verify=verify)
     if state == "present":
-        return "present", None, None
+        return "present", None, None, None
     if state == "modified" and not force:
-        return "modified", None, None
+        return "modified", None, None, None
     replace = state == "modified"
     tmp = _fetch_tmp(repo, target)
     try:
@@ -639,10 +822,11 @@ def materialize_entry(
         if verify and hash_path(tmp) != (entry.sha256, entry.size):
             raise ContentStoreError(f"placed copy of {entry.path} does not match its lock")
         if not _place(tmp, target, replace=replace):
-            return "modified", None, None
+            return "modified", None, None, None
+        placed = _identity(target)
     finally:
         tmp.unlink(missing_ok=True)
-    return "materialized", source, method
+    return "materialized", source, method, placed
 
 
 def _stream_to(tmp: Path, entry: LockEntry, sources: Iterable[ObjectSource]) -> tuple[str, str]:
@@ -690,22 +874,24 @@ def materialize(
     report = FetchReport()
     total = len(entry_list)
 
-    def one(entry: LockEntry) -> tuple[LockEntry, str, str | None, str | None, str | None]:
+    def one(
+        entry: LockEntry,
+    ) -> tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None]:
         try:
-            state, source, method = materialize_entry(
+            state, source, method, placed = _materialize_one(
                 repo, entry, cache, source_list, force=force, verify=verify
             )
-            return entry, state, source, method, None
+            return entry, state, source, method, placed, None
         except (ContentStoreError, OSError) as exc:
-            return entry, "failed", None, None, str(exc)
+            return entry, "failed", None, None, None, str(exc)
 
-    created_by_scope: dict[tuple[str, str, str], list[LockEntry]] = {}
+    created_by_scope: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]] = {}
     failed_scopes: set[tuple[str, str, str]] = set()
     done = 0
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
         futures = [pool.submit(one, entry) for entry in entry_list]
         for future in as_completed(futures):
-            entry, state, source, method, error = future.result()
+            entry, state, source, method, placed, error = future.result()
             done += 1
             sources_scope = _sources_scope(entry)
             if state == "present":
@@ -720,7 +906,7 @@ def materialize(
                 if method:
                     report.methods[method] = report.methods.get(method, 0) + 1
                 if sources_scope is not None:
-                    created_by_scope.setdefault(sources_scope, []).append(entry)
+                    created_by_scope.setdefault(sources_scope, []).append((entry, placed))
             else:
                 report.failed[entry.path] = error or "unknown error"
                 if sources_scope is not None:
@@ -728,11 +914,21 @@ def materialize(
             if progress is not None:
                 progress(done, total)
     for scope in failed_scopes:
-        for entry in created_by_scope.get(scope, []):
-            (repo / entry.path).unlink(missing_ok=True)
+        for entry, placed in created_by_scope.get(scope, []):
             report.materialized.remove(entry.path)
             report.bytes_materialized -= entry.size
-            report.rolled_back.append(entry.path)
+            target = repo / entry.path
+            try:
+                current = _identity(target)
+            except FileNotFoundError:
+                continue
+            # Remove only the file this call placed; anything written over it
+            # since (an extractor, another fetch) stays.
+            if placed is not None and current == placed:
+                target.unlink(missing_ok=True)
+                report.rolled_back.append(entry.path)
+            else:
+                report.modified.append(entry.path)
     report.present.sort()
     report.materialized.sort()
     return report

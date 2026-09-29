@@ -8,6 +8,7 @@ pins every protected file of the scope by repository path, sha256 and size. See
 
 from __future__ import annotations
 
+import bisect
 import contextlib
 import hashlib
 import json
@@ -327,7 +328,16 @@ class LockSet:
         exact = self.by_path.get(cleaned)
         if exact is not None:
             return [exact]
-        return [entry for p, entry in sorted(self.by_path.items()) if p.startswith(prefix)]
+        paths: list[str] | None = getattr(self, "_sorted_paths", None)
+        if paths is None:
+            paths = sorted(self.by_path)
+            object.__setattr__(self, "_sorted_paths", paths)
+        found: list[LockEntry] = []
+        for index in range(bisect.bisect_left(paths, prefix), len(paths)):
+            if not paths[index].startswith(prefix):
+                break
+            found.append(self.by_path[paths[index]])
+        return found
 
     def with_whole_source_dirs(self, entries: Iterable[LockEntry]) -> list[LockEntry]:
         """Widen a selection so every scope's ``sources/`` directory is all or nothing.
@@ -356,15 +366,20 @@ class LockSet:
 
 
 def load_locks(repo: Path) -> LockSet:
-    """Load every lock file from a worktree, collecting (not raising) format errors."""
+    """Load every lock file from a worktree, collecting (not raising) format errors.
+
+    Hidden files (``.DS_Store``, editor swap files) are not lock files and
+    git ignores them by default here, so they are skipped; any other stray
+    file is an error.
+    """
     root = repo / LOCK_ROOT
     payloads: dict[str, bytes] = {}
     if root.is_dir():
-        for path in sorted(root.rglob("*.json")):
-            payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
         for path in sorted(root.rglob("*")):
-            if path.is_file() and path.suffix != ".json":
-                payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
+            rel = path.relative_to(root)
+            if any(part.startswith(".") for part in rel.parts) or not path.is_file():
+                continue
+            payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
     return _lock_set_from_payloads(payloads)
 
 
@@ -377,18 +392,25 @@ def load_locks_from_index(repo: Path) -> LockSet:
         capture_output=True,
     )
     staged: list[tuple[str, str]] = []
+    unmerged: set[str] = set()
     for record in result.stdout.split(b"\0"):
         if not record:
             continue
         meta, raw_path = record.split(b"\t", 1)
-        _mode, raw_oid, _stage = meta.split()
-        staged.append(
-            (raw_path.decode("utf-8", errors="surrogateescape"), raw_oid.decode("ascii"))
-        )
+        _mode, raw_oid, stage = meta.split()
+        path = raw_path.decode("utf-8", errors="surrogateescape")
+        if stage != b"0":
+            unmerged.add(path)
+            continue
+        staged.append((path, raw_oid.decode("ascii")))
     by_oid: dict[str, bytes] = {}
     for blob_oid, chunks in iter_blob_contents(repo, sorted({oid for _path, oid in staged})):
         by_oid[blob_oid] = b"".join(chunks)
-    return _lock_set_from_payloads({path: by_oid[oid] for path, oid in staged})
+    loaded = _lock_set_from_payloads({path: by_oid[oid] for path, oid in staged})
+    if not unmerged:
+        return loaded
+    conflicts = tuple(f"`{path}` has unresolved merge conflicts in the index." for path in sorted(unmerged))
+    return LockSet(locks=loaded.locks, errors=loaded.errors + conflicts)
 
 
 def load_locks_at_ref(repo: Path, ref: str) -> LockSet:
@@ -623,6 +645,9 @@ def scope_files_in_worktree(repo: Path, scope: ScopeKey) -> list[Path]:
             raise LockFormatError(
                 f"refusing to lock an interrupted fetch's temporary file: {path}; delete it"
             )
+        if path.name.startswith("."):
+            # .DS_Store and editor files; no corpus artifact is hidden.
+            raise LockFormatError(f"refusing to lock a hidden file: {path}; delete it")
     return sorted(files)
 
 
