@@ -25,6 +25,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from axiom_corpus.corpus.ingest_manifests import build_ingest_manifest, default_ingest_manifest_path
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
     build_usc_inventory_from_xml,
@@ -131,6 +132,7 @@ def _all_ingested_citation_paths() -> tuple[set[str], dict[str, list[str]]]:
     """Index every durable provision scope for the final offline recovery audit."""
     exact: set[str] = set()
     normalized: dict[str, list[str]] = defaultdict(list)
+    require_materialized([BASE / "provisions"], fetch=True, repo=REPO)
     for path in sorted((BASE / "provisions").rglob("*.jsonl")):
         for line_number, line in enumerate(path.read_text().splitlines(), 1):
             if not line.strip():

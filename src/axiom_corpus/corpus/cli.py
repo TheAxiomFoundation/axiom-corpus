@@ -17,6 +17,7 @@ from typing import Any, NamedTuple
 
 import yaml
 
+from axiom_corpus.corpus import corpus_cli
 from axiom_corpus.corpus.analytics import (
     build_analytics_report,
     load_provision_count_snapshot,
@@ -44,6 +45,7 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_store import ContentCache
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -130,6 +132,11 @@ from axiom_corpus.corpus.regulation_completion import (
 )
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
+from axiom_corpus.corpus.resolver import (
+    CorpusNotMaterializedError,
+    materialize_cli_inputs,
+    require_materialized,
+)
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
     discover_encoded_paths,
@@ -340,18 +347,31 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         output=args.output,
         key_id=args.key_id,
     )
-    print(
-        json.dumps(
-            {
-                "manifest": str(manifest_path),
-                "applied_files": len(manifest["applied_files"]),
-                "reasoning_logs": len(manifest["reasoning_logs"]),
-            },
-            indent=2,
-            sort_keys=True,
-        )
-    )
-    return 0
+    summary: dict[str, Any] = {
+        "manifest": str(manifest_path),
+        "applied_files": len(manifest["applied_files"]),
+        "reasoning_logs": len(manifest["reasoning_logs"]),
+    }
+    status = 0
+    if args.lock:
+        # Signing reads a clean tracked tree, so the lock is written after it.
+        try:
+            written, pushed = corpus_cli.lock_scopes(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                cache=ContentCache(),
+                push=args.push,
+                drop_missing=bool(deleted_files),
+            )
+        except (corpus_cli.LockRefusedError, FileNotFoundError) as exc:
+            print(f"corpus lock: {exc}", file=sys.stderr)
+            return 2
+        summary["locks"] = written
+        summary["push"] = pushed
+        if pushed and pushed["failed"]:
+            status = 1
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    return status
 
 
 def _cmd_guard_ingested(args: argparse.Namespace) -> int:
@@ -388,7 +408,10 @@ def _cmd_verify_scope_tracked(args: argparse.Namespace) -> int:
         return 0
     for path in result.missing_paths:
         print(path)
-    print(shlex.join(["git", "add", "-f", *result.missing_paths]))
+    if (args.repo / ".axiom" / "corpus-locks").is_dir():
+        print("Lock the scopes that write these files: axiom-corpus-ingest corpus lock <scope>")
+    else:
+        print(shlex.join(["git", "add", "-f", *result.missing_paths]))
     return 1
 
 
@@ -5498,6 +5521,10 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
         ),
     ),
     (
+        "Corpus storage (bytes outside git)",
+        ("corpus",),
+    ),
+    (
         "Source inventory and discovery",
         (
             "inventory-ecfr",
@@ -5738,6 +5765,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sign_ingest.add_argument("--output", type=Path)
     sign_ingest.add_argument("--key-id", default="axiom-corpus-ingest-v1")
+    sign_ingest.add_argument(
+        "--lock",
+        action="store_true",
+        help=(
+            "After signing, write the scope's corpus lock and cache its bytes "
+            "(corpus bytes live outside git; see docs/corpus-storage.md)."
+        ),
+    )
+    sign_ingest.add_argument(
+        "--push",
+        action="store_true",
+        help="With --lock, upload objects R2 lacks.",
+    )
     sign_ingest.set_defaults(func=_cmd_sign_ingest_manifest)
 
     guard_ingested = sub.add_parser(
@@ -5749,6 +5789,8 @@ def build_parser() -> argparse.ArgumentParser:
     guard_ingested.add_argument("--head-ref", default="HEAD")
     guard_ingested.add_argument("--json", action="store_true")
     guard_ingested.set_defaults(func=_cmd_guard_ingested)
+
+    corpus_cli.register(sub)
 
     verify_tracked = sub.add_parser(
         "verify-scope-tracked",
@@ -7695,9 +7737,75 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+# Commands that must see the worktree exactly as it is: signing and guarding
+# judge local files, and the corpus group manages fetching itself.
+_NO_AUTO_FETCH_COMMANDS = frozenset(
+    {
+        "corpus",
+        "guard-ingested",
+        "sign-ingest-manifest",
+        "sync-r2",
+        "validate-manifest",
+        "verify-scope-tracked",
+    }
+)
+# Read-only commands whose --jurisdiction/--document-class/--version name an
+# existing scope under --base data/corpus (for extractors they name the output).
+_SCOPE_INPUT_COMMANDS = frozenset(
+    {
+        "analytics",
+        "artifact-report",
+        "build-navigation-index",
+        "coverage",
+        "export-supabase",
+        "generate-anchors",
+        "section-provisions",
+        "snapshot-provision-counts",
+    }
+)
+
+
+# Reports that list whole artifact directories under --base. With corpus bytes
+# outside git they refuse to run on a partly fetched tree rather than report on
+# a subset.
+_CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
+    "analytics": ("provisions", "coverage"),
+    "artifact-report": ("sources", "inventory", "provisions", "coverage"),
+    "snapshot-provision-counts": ("provisions",),
+}
+
+
+def _corpus_wide_prefixes(args: argparse.Namespace) -> list[Path]:
+    classes = _CORPUS_WIDE_COMMANDS.get(args.command)
+    base = getattr(args, "base", None)
+    if not classes or base is None or Path(base).as_posix().rstrip("/") != "data/corpus":
+        return []
+    if getattr(args, "release", None) or getattr(args, "release_scope", None):
+        return []  # release scopes are fetched by materialize_cli_inputs
+    raw = getattr(args, "jurisdiction", None)
+    jurisdictions = [raw] if isinstance(raw, str) else list(raw or [])
+    return [
+        Path(base) / artifact_class / jurisdiction
+        for artifact_class in classes
+        for jurisdiction in (jurisdictions or [""])
+    ]
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.command not in _NO_AUTO_FETCH_COMMANDS:
+        try:
+            materialize_cli_inputs(
+                args,
+                include_scope=args.command in _SCOPE_INPUT_COMMANDS,
+            )
+            prefixes = _corpus_wide_prefixes(args)
+            if prefixes:
+                require_materialized(prefixes)
+        except CorpusNotMaterializedError as exc:
+            print(f"corpus: {exc}", file=sys.stderr)
+            return 2
     return int(args.func(args))
 
 

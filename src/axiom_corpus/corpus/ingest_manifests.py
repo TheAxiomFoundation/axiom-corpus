@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import contextlib
 import copy
 import hashlib
 import importlib.metadata
@@ -12,6 +13,7 @@ import re
 import subprocess
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -24,18 +26,25 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 
+from axiom_corpus.corpus.corpus_locks import (
+    LOCK_ROOT,
+    PROTECTED_CORPUS_PREFIXES,
+    HashedBlob,
+    LockEntry,
+    diff_lock_sets,
+    hash_tree_blobs,
+    iter_blob_contents,
+    list_tree_blobs,
+    load_locks,
+    load_locks_at_ref,
+)
+
 INGEST_MANIFEST_SCHEMA_VERSION = "axiom-corpus/ingest-manifest/v1"
 INGEST_MANIFEST_SIGNATURE_ALGORITHM = "ed25519"
 INGEST_MANIFEST_KEY_ID = "axiom-corpus-ingest-v1"
 INGEST_MANIFEST_PRIVATE_KEY_ENV = "AXIOM_CORPUS_INGEST_PRIVATE_KEY"
 INGEST_MANIFEST_PUBLIC_KEY_ENV = "AXIOM_CORPUS_INGEST_PUBLIC_KEY"
 INGEST_MANIFEST_ROOT = Path(".axiom") / "ingest-manifests"
-PROTECTED_CORPUS_PREFIXES = (
-    "data/corpus/sources/",
-    "data/corpus/inventory/",
-    "data/corpus/provisions/",
-    "data/corpus/coverage/",
-)
 TEXT_OFFICIAL_DOCUMENT_SUFFIXES = {
     ".csv",
     ".html",
@@ -245,8 +254,16 @@ def guard_ingested_artifacts(
     base_ref: str | None = None,
     head_ref: str | None = "HEAD",
     public_key: str | None = None,
+    content_reader: ContentReader | None = None,
 ) -> IngestGuardResult:
-    """Check changed generated corpus artifacts against signed manifests."""
+    """Check changed generated corpus artifacts against signed manifests.
+
+    Protected artifacts reach a commit either as tracked git files or as
+    entries in ``.axiom/corpus-locks`` (see ``docs/corpus-storage.md``). A
+    changed tracked file or lock entry needs a valid signed ingest manifest
+    carrying the same path and sha256, except a file that moves out of git
+    into a lock with its bytes unchanged.
+    """
     repo = repo.resolve()
     public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
     try:
@@ -262,15 +279,27 @@ def guard_ingested_artifacts(
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
 
     read_ref = (head_ref or "HEAD") if base_ref else None
+    baseline_ref = base_ref or "HEAD"
     try:
         manifests = _load_ingest_manifests(repo, ref=read_ref)
-        baseline_ref = base_ref or "HEAD"
         baseline_manifests = _load_ingest_manifests(repo, ref=baseline_ref)
     except ValueError as exc:
         return IngestGuardResult(
             repo=repo,
             protected_changes=tuple(change.path for change in protected),
             issues=(str(exc),),
+        )
+    lock_check = _LockCheck.load(
+        repo,
+        base_ref=baseline_ref,
+        head_ref=read_ref,
+        changes=changes,
+    )
+    if lock_check.load_error is not None:
+        return IngestGuardResult(
+            repo=repo,
+            protected_changes=tuple(change.path for change in protected),
+            issues=(lock_check.load_error,),
         )
     entries_by_path: dict[str, tuple[Path, dict[str, Any], dict[str, Any]]] = {}
     reasoning_manifests_by_path: dict[str, set[Path]] = {}
@@ -314,12 +343,13 @@ def guard_ingested_artifacts(
                 attested_paths
             )
     changed_reasoning_manifests = set(changed_reasoning_paths_by_manifest)
-    if not protected and not changed_reasoning_manifests:
+    protected_paths = tuple(change.path for change in protected) + lock_check.changed_entry_paths
+    if not protected and not changed_reasoning_manifests and not lock_check.touched:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
     if not public_key:
         return IngestGuardResult(
             repo=repo,
-            protected_changes=tuple(change.path for change in protected),
+            protected_changes=protected_paths,
             issues=(
                 f"{INGEST_MANIFEST_PUBLIC_KEY_ENV} is required to verify corpus ingest manifests.",
             ),
@@ -340,9 +370,15 @@ def guard_ingested_artifacts(
             )
         return manifest_issues[manifest_path]
 
-    issues: list[str] = []
+    issues: list[str] = list(lock_check.issues)
     authorizing_manifests: set[Path] = set()
     for change in protected:
+        if change.path in lock_check.moved:
+            # Tracked file left git for a lock entry holding its exact bytes.
+            continue
+        if lock_check.lock_mode and change.status != "D":
+            # Reported once, in aggregate, by the lock check.
+            continue
         manifest_entry = entries_by_path.get(change.path)
         if manifest_entry is None:
             issues.append(
@@ -376,6 +412,59 @@ def guard_ingested_artifacts(
             continue
         issues.extend(_artifact_content_issues(repo, change.path, ref=read_ref))
 
+    reader = content_reader
+    for lock_entry in lock_check.to_attest:
+        manifest_entry = entries_by_path.get(lock_entry.path)
+        if manifest_entry is None:
+            issues.append(
+                f"Unmanifested corpus lock entry: `{lock_entry.path}`. "
+                "Run `axiom-corpus-ingest sign-ingest-manifest` for the scope."
+            )
+            continue
+        manifest_path, _payload, entry = manifest_entry
+        authorizing_manifests.add(manifest_path)
+        current_manifest_issues = verification_issues(manifest_path, _payload)
+        if current_manifest_issues:
+            for issue in current_manifest_issues:
+                issues.append(f"{manifest_path.as_posix()}: {issue}")
+            continue
+        if entry.get("deleted") is True or str(entry.get("sha256") or "") != lock_entry.sha256:
+            issues.append(
+                f"`{lock_entry.path}` lock sha256 does not match ingest manifest "
+                f"`{manifest_path.as_posix()}`."
+            )
+            continue
+        if reader is None:
+            reader = default_content_reader(repo)
+        try:
+            payload_bytes = reader(lock_entry)
+        except Exception as exc:  # noqa: BLE001 - any failure to read fails closed
+            payload_bytes = None
+            read_error = f": {exc}"
+        else:
+            read_error = ""
+        if payload_bytes is None:
+            issues.append(
+                f"Cannot read the locked bytes of `{lock_entry.path}` (sha256 "
+                f"{lock_entry.sha256}) from the worktree, cache, git or R2{read_error}. "
+                "Upload them with `axiom-corpus-ingest corpus push`."
+            )
+            continue
+        issues.extend(_content_issues(lock_entry.path, payload_bytes))
+
+    for lock_entry in lock_check.removed:
+        manifest_entry = entries_by_path.get(lock_entry.path)
+        if manifest_entry is None or manifest_entry[2].get("deleted") is not True:
+            issues.append(
+                f"`{lock_entry.path}` was removed from its lock but no signed ingest "
+                "manifest marks it deleted."
+            )
+            continue
+        manifest_path, _payload, _entry = manifest_entry
+        authorizing_manifests.add(manifest_path)
+        for issue in verification_issues(manifest_path, _payload):
+            issues.append(f"{manifest_path.as_posix()}: {issue}")
+
     for manifest_path in sorted(authorizing_manifests | changed_reasoning_manifests):
         current_payload = manifests.get(manifest_path)
         if current_payload is None:
@@ -402,9 +491,204 @@ def guard_ingested_artifacts(
 
     return IngestGuardResult(
         repo=repo,
-        protected_changes=tuple(change.path for change in protected),
+        protected_changes=protected_paths,
         issues=tuple(dict.fromkeys(issues)),
     )
+
+
+ContentReader = Callable[[LockEntry], bytes | None]
+
+
+def default_content_reader(repo: Path) -> ContentReader:
+    """Read locked bytes from the worktree, the shared cache, git objects, or R2."""
+    from axiom_corpus.corpus.content_store import (
+        ContentCache,
+        ContentStoreError,
+        GitBlobSource,
+        ObjectSource,
+        R2ObjectStore,
+        read_entry_bytes,
+    )
+
+    cache = ContentCache()
+    sources: list[ObjectSource] = [GitBlobSource(repo)]
+    with contextlib.suppress(RuntimeError):  # no R2 credentials: git and cache only
+        sources.append(R2ObjectStore.from_environment())
+
+    def read(entry: LockEntry) -> bytes | None:
+        try:
+            return read_entry_bytes(repo, entry, cache, sources)
+        except ContentStoreError:
+            return None
+
+    return read
+
+
+@dataclass(frozen=True)
+class _LockCheck:
+    """Lock-file facts one guard run needs, computed once."""
+
+    lock_mode: bool = False
+    touched: bool = False
+    moved: frozenset[str] = frozenset()
+    to_attest: tuple[LockEntry, ...] = ()
+    removed: tuple[LockEntry, ...] = ()
+    issues: tuple[str, ...] = ()
+    load_error: str | None = None
+
+    @property
+    def changed_entry_paths(self) -> tuple[str, ...]:
+        return tuple(entry.path for entry in (*self.to_attest, *self.removed))
+
+    @classmethod
+    def load(
+        cls,
+        repo: Path,
+        *,
+        base_ref: str,
+        head_ref: str | None,
+        changes: tuple[_ChangedPath, ...],
+    ) -> _LockCheck:
+        lock_prefix = f"{LOCK_ROOT.as_posix()}/"
+        lock_files_changed = any(change.path.startswith(lock_prefix) for change in changes)
+        deleted_protected = {
+            change.path
+            for change in changes
+            if change.status == "D" and _is_protected_corpus_artifact(change.path)
+        }
+        try:
+            head = load_locks_at_ref(repo, head_ref) if head_ref else load_locks(repo)
+            base = load_locks_at_ref(repo, base_ref)
+        except (subprocess.CalledProcessError, OSError, ValueError) as exc:
+            return cls(load_error=f"Unable to read corpus lock files: {exc}")
+        if not head and not base and not head.errors:
+            return cls()
+
+        # A lock file that fails to parse would otherwise hide its entries.
+        issues: list[str] = list(head.errors)
+        lock_mode = bool(head) or bool(head.errors)
+        if lock_mode:
+            tracked = _tracked_protected_paths(repo, head_ref)
+            if tracked:
+                shown = ", ".join(f"`{path}`" for path in tracked[:10])
+                issues.append(
+                    f"{len(tracked)} protected corpus file(s) are tracked in git while "
+                    f"`{LOCK_ROOT.as_posix()}` exists; corpus bytes enter through lock files "
+                    f"only. Run `axiom-corpus-ingest corpus migrate`. First: {shown}."
+                )
+
+        moved: set[str] = set()
+        candidates = sorted(path for path in deleted_protected if path in head.by_path)
+        if candidates:
+            try:
+                base_blobs = _base_blobs(repo, base_ref, candidates)
+            except (subprocess.CalledProcessError, ValueError) as exc:
+                return cls(load_error=f"Unable to read base corpus blobs: {exc}")
+            for path in candidates:
+                entry = head.by_path[path]
+                blob = base_blobs.get(path)
+                if blob is None:
+                    issues.append(f"`{path}` is locked but was not tracked at `{base_ref}`.")
+                elif (
+                    entry.sha256 != blob.sha256
+                    or entry.size != blob.size
+                    or (entry.git_blob is not None and entry.git_blob != blob.oid)
+                ):
+                    issues.append(
+                        f"`{path}` left git for a lock entry that does not match its "
+                        f"tracked blob {blob.oid} (sha256 {blob.sha256}, {blob.size} bytes)."
+                    )
+                else:
+                    moved.add(path)
+
+        diff = diff_lock_sets(base, head)
+        to_attest: list[LockEntry] = []
+        new_blob_refs: list[LockEntry] = []
+        for entry in diff.added:
+            if entry.path in moved:
+                continue
+            to_attest.append(entry)
+            if entry.git_blob is not None:
+                new_blob_refs.append(entry)
+        for before, after in diff.changed:
+            if before.content != after.content:
+                to_attest.append(after)
+            if after.git_blob is not None and after.git_blob != before.git_blob:
+                new_blob_refs.append(after)
+        issues.extend(_git_blob_reference_issues(repo, new_blob_refs))
+
+        tracked_at_head = set(_tracked_protected_paths(repo, head_ref)) if diff.removed else set()
+        removed = [
+            entry
+            for entry in diff.removed
+            # Moving a file back into git (only possible once no locks remain)
+            # is checked as a tracked-file addition by the main guard loop.
+            if not (not lock_mode and entry.path in tracked_at_head)
+        ]
+        touched = lock_files_changed or bool(candidates) or not diff.is_empty
+        return cls(
+            lock_mode=lock_mode,
+            touched=touched,
+            moved=frozenset(moved),
+            to_attest=tuple(to_attest),
+            removed=tuple(removed),
+            issues=tuple(issues),
+        )
+
+
+def _tracked_protected_paths(repo: Path, head_ref: str | None) -> list[str]:
+    prefixes = [prefix.rstrip("/") for prefix in PROTECTED_CORPUS_PREFIXES]
+    if head_ref:
+        return [blob.path for blob in list_tree_blobs(repo, head_ref, *prefixes)]
+    result = subprocess.run(
+        ["git", "ls-files", "-z", "--cached", "--", *prefixes],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    )
+    return sorted(
+        os.fsdecode(raw) for raw in result.stdout.split(b"\0") if raw
+    )
+
+
+def _base_blobs(repo: Path, base_ref: str, paths: list[str]) -> dict[str, HashedBlob]:
+    wanted = set(paths)
+    prefixes = [prefix.rstrip("/") for prefix in PROTECTED_CORPUS_PREFIXES]
+    blobs = [blob for blob in list_tree_blobs(repo, base_ref, *prefixes) if blob.path in wanted]
+    return hash_tree_blobs(repo, blobs)
+
+
+def _git_blob_reference_issues(repo: Path, entries: list[LockEntry]) -> list[str]:
+    """A lock entry's ``git_blob`` must name a local blob holding exactly its bytes."""
+    if not entries:
+        return []
+    oids = sorted({entry.git_blob for entry in entries if entry.git_blob})
+    check = subprocess.run(
+        ["git", "cat-file", "--batch-check"],
+        cwd=repo,
+        input="".join(f"{oid}\n" for oid in oids).encode("ascii"),
+        capture_output=True,
+        check=False,
+    )
+    present: dict[str, int] = {}
+    for line in check.stdout.decode("ascii", errors="replace").splitlines():
+        parts = line.split()
+        if len(parts) == 3 and parts[1] == "blob":
+            present[parts[0]] = int(parts[2])
+    digests: dict[str, str] = {}
+    for oid, chunks in iter_blob_contents(repo, sorted(present)):
+        digest = hashlib.sha256()
+        for chunk in chunks:
+            digest.update(chunk)
+        digests[oid] = digest.hexdigest()
+    issues: list[str] = []
+    for entry in entries:
+        oid = entry.git_blob or ""
+        if oid not in present:
+            issues.append(f"`{entry.path}` names git_blob {oid}, which this repository lacks.")
+        elif present[oid] != entry.size or digests.get(oid) != entry.sha256:
+            issues.append(f"`{entry.path}` names git_blob {oid}, whose bytes differ from the lock.")
+    return issues
 
 
 def sha256_file(path: Path) -> str:
@@ -659,6 +943,10 @@ def _artifact_content_issues(repo: Path, path: str, *, ref: str | None) -> list[
     payload = _artifact_bytes(repo, path, ref=ref)
     if payload is None:
         return []
+    return _content_issues(path, payload)
+
+
+def _content_issues(path: str, payload: bytes) -> list[str]:
     issues: list[str] = []
     if _is_official_document_artifact(path) and _looks_like_agent_digest(path, payload):
         issues.append(
