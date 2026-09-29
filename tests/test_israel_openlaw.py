@@ -1968,3 +1968,238 @@ def test_the_extraction_report_names_the_primary_snapshot_and_every_fragment(
     assert item.citation_label.endswith("תוספת ראשונה א׳ פרט 1"), item.citation_label
     assert item.legal_identifier == item.citation_label
     assert item.metadata is not None and item.metadata["schedule_designation"] == "תוספת"
+
+
+# --- schedules divided into parts, and a section before the first heading -----
+
+HEALTH_TITLE = "חוק ביטוח בריאות דוגמה"
+HEALTH_URL = "https://he.wikisource.org/wiki/%D7%97%D7%95%D7%A7_%D7%91%D7%99%D7%98%D7%95%D7%97"
+
+# The National Health Insurance Law's two shapes the pilot laws never had: §1
+# printed straight after the table of contents, with no chapter heading before it;
+# and תוספת שניה divided into parts (<h3 id="תוספת_2_חלק_1">) whose items restart
+# at 1 in every part (תוספת_2_חלק_1_פרט_1, תוספת_2_חלק_2_פרט_1).
+HEALTH_HTML = """\
+<!doctype html>
+<html lang="he" dir="rtl">
+  <body>
+    <div class="mw-parser-output">
+      <div class="law" id="law-content">
+        <h1 class="law-title mw-html-heading">חוק ביטוח בריאות דוגמה</h1>
+        <hr class="law-separator"/>
+        <div>2000111 ס״ח תשנ״ד, 156</div>
+        <h2 class="law-section mw-html-heading">תוכן עניינים</h2>
+        <div class="law-toc-1">פרק א׳ – פרשנות</div>
+        <div class="law-toc-2">1. ביטוח הבריאות הממלכתי</div>
+        <div class="law-number tc_ selflink" id="סעיף_1"><a href="#סעיף_1">1.</a></div>
+        <div class="law-desc"><span class="law-float"></span>ביטוח הבריאות הממלכתי</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> ביטוח הבריאות יהא מושתת על עקרונות של צדק ושוויון.
+        </div></div>
+        <div class="law-cleaner"></div>
+        <h2 class="law-section mw-html-heading">פרק א׳ – פרשנות</h2>
+        <div class="law-number tc_ selflink" id="סעיף_2"><a href="#סעיף_2">2.</a></div>
+        <div class="law-desc"><span class="law-float"></span>הגדרות</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> בחוק זה – ”מבוטח“ – תושב.
+        </div></div>
+        <div class="law-cleaner"></div>
+        <h2 class="law-section mw-html-heading" id="תוספת_2">תוספת שניה</h2>
+        <h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_1">חלק ראשון: שירותים</h3>
+        <div class="law-number tc_ selflink" id="תוספת_2_חלק_1_פרט_1"><a href="#x">1</a>.</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> ביקורים במרפאות
+        </div></div>
+        <div class="law-cleaner"></div>
+        <div class="law-number tc_ selflink" id="תוספת_2_חלק_1_פרט_2"><a href="#x">2</a>.</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> אשפוז
+        </div></div>
+        <div class="law-cleaner"></div>
+        <h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_2">חלק שני: שרותים בהשתתפות</h3>
+        <div class="law-number tc_ selflink" id="תוספת_2_חלק_2_פרט_1"><a href="#x">1</a>.</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> תרופות
+        </div></div>
+        <div class="law-cleaner"></div>
+      </div>
+    </div>
+  </body>
+</html>
+"""
+
+
+def _health_source(**overrides: object) -> IsraelOpenLawSource:
+    mapping: dict[str, object] = {
+        "source_id": "sample-health-law",
+        "jurisdiction": "il",
+        "document_class": "statute",
+        "instrument_slug": "sample-health-law",
+        "israel_law_id": "2000111",
+        "title": HEALTH_TITLE,
+        "title_en": "Sample Health Insurance Law",
+        "source_url": HEALTH_URL,
+        "source_file": "sample-health-law.html",
+        "sha256": "0" * 64,
+        "source_as_of": "2026-09-06",
+        "expression_date": "2026-05-24",
+        "expression_date_basis": "Knesset OData KNS_IsraelLaw.LatestPublicationDate",
+        "source_tier": "consolidation-wikisource",
+        "language": "he",
+        "expected_section_count": 2,
+        "expected_schedule_item_count": 3,
+        "expected_schedule_count": 1,
+        "expected_part_count": 0,
+        "expected_chapter_count": 1,
+        "expected_sign_count": 2,
+    }
+    mapping.update(overrides)
+    return IsraelOpenLawSource.from_mapping(mapping)
+
+
+HEALTH_LAW = "il/statute/sample-health-law"
+
+
+def test_a_section_printed_straight_after_the_table_of_contents_is_kept() -> None:
+    provisions = {
+        item.citation_path: item
+        for item in parse_israel_openlaw_html(HEALTH_HTML, source=_health_source())
+    }
+
+    first = provisions[f"{HEALTH_LAW}/section-1"]
+    assert first.heading == "ביטוח הבריאות הממלכתי"
+    assert first.body == "ביטוח הבריאות יהא מושתת על עקרונות של צדק ושוויון."
+    assert first.parent_citation_path == HEALTH_LAW
+    # The table of contents itself is still not law: none of its lines reach a body.
+    assert not any(
+        "פרק א׳ – פרשנות" in (item.body or "") and item.kind != "chapter"
+        for item in provisions.values()
+    )
+
+
+def test_a_schedule_divided_into_parts_hangs_each_item_under_its_part() -> None:
+    source = _health_source()
+    provisions = {
+        item.citation_path: item for item in parse_israel_openlaw_html(HEALTH_HTML, source=source)
+    }
+
+    part_one = provisions[f"{HEALTH_LAW}/schedule-2/sign-1"]
+    part_two = provisions[f"{HEALTH_LAW}/schedule-2/sign-2"]
+    assert part_one.heading == "חלק ראשון: שירותים"
+    assert part_two.heading == "חלק שני: שרותים בהשתתפות"
+
+    # Item numbers restart in each part, so the part is in the path: no collision.
+    first_of_one = provisions[f"{HEALTH_LAW}/schedule-2/sign-1/item-1"]
+    first_of_two = provisions[f"{HEALTH_LAW}/schedule-2/sign-2/item-1"]
+    assert first_of_one.body == "ביקורים במרפאות"
+    assert first_of_two.body == "תרופות"
+    assert first_of_one.parent_citation_path == part_one.citation_path
+    assert first_of_one.level == part_one.level + 1
+    assert first_of_one.metadata["schedule_identifier"] == "2"
+    assert first_of_one.metadata["schedule_part_identifier"] == "1"
+    assert first_of_two.metadata["schedule_part_identifier"] == "2"
+    assert first_of_two.metadata["schedule_part_heading"] == "חלק שני: שרותים בהשתתפות"
+
+
+def test_an_item_that_names_another_part_is_refused() -> None:
+    html = HEALTH_HTML.replace('id="תוספת_2_חלק_1_פרט_2"', 'id="תוספת_2_חלק_2_פרט_2"')
+    with pytest.raises(ValueError, match="does not follow the heading of its schedule part"):
+        parse_israel_openlaw_html(html, source=_health_source())
+
+
+IL_CONTRIBUTIONS_VERSION = "2026-09-29-il-taxben-contributions"
+IL_CONTRIBUTIONS_MANIFEST = REPO_ROOT / "manifests" / "il-taxben-contributions-openlaw.yaml"
+IL_CONTRIBUTIONS_SOURCE_DIR = (
+    REPO_ROOT
+    / "data"
+    / "corpus"
+    / "sources"
+    / "il"
+    / "statute"
+    / IL_CONTRIBUTIONS_VERSION
+    / "openlaw"
+)
+HEALTH = "il/statute/national-health-insurance-law-1994"
+
+
+def _committed_contributions_provisions() -> dict[str, ProvisionRecord]:
+    return {
+        record.citation_path: record
+        for record in load_provisions(
+            REPO_ROOT
+            / "data"
+            / "corpus"
+            / "provisions"
+            / "il"
+            / "statute"
+            / f"{IL_CONTRIBUTIONS_VERSION}.jsonl"
+        )
+    }
+
+
+def test_checked_in_contributions_artifacts_match_a_fresh_extraction(tmp_path: Path) -> None:
+    committed = load_provisions(
+        REPO_ROOT
+        / "data"
+        / "corpus"
+        / "provisions"
+        / "il"
+        / "statute"
+        / f"{IL_CONTRIBUTIONS_VERSION}.jsonl"
+    )
+    report = extract_israel_openlaw(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        version=IL_CONTRIBUTIONS_VERSION,
+        manifest_path=IL_CONTRIBUTIONS_MANIFEST,
+        source_dir=IL_CONTRIBUTIONS_SOURCE_DIR,
+    )
+    assert report.document_count == 4
+    assert report.section_count == 1253
+    assert report.schedule_item_count == 114
+    assert report.navigation_count == 262
+    assert report.provisions_written == 1633
+    assert report.coverage.complete
+    assert load_provisions(report.provisions_path) == committed
+
+
+def test_the_contributions_increment_leaves_every_pilot_row_unchanged() -> None:
+    """The three pilot instruments are the same captures, so the same law.
+
+    Only what a version determines may differ: the deterministic ids and the
+    snapshot path.  Every body, heading, label, date and metadata field is the
+    pilot's, so every existing rulespec-il proof excerpt still resolves.
+    """
+    pilot = _committed_pilot_provisions()
+    increment = _committed_contributions_provisions()
+    version_bound = {"id", "parent_id", "source_document_id", "source_path", "version"}
+    assert set(pilot) <= set(increment)
+    for path, before in pilot.items():
+        after = increment[path]
+        a = before.to_mapping()
+        b = after.to_mapping()
+        assert {k: v for k, v in a.items() if k not in version_bound} == {
+            k: v for k, v in b.items() if k not in version_bound
+        }, path
+    assert all(path.startswith(f"{HEALTH}") for path in set(increment) - set(pilot))
+
+
+def test_checked_in_health_law_carries_both_employee_contribution_rates() -> None:
+    provisions = _committed_contributions_provisions()
+
+    section_14 = provisions[f"{HEALTH}/section-14"]
+    assert section_14.heading == "חובת תשלום דמי ביטוח בריאות"
+    assert section_14.body is not None
+    # §14(ב)(1): the full rate; §14(ו1): the reduced rate on the part of income up
+    # to the reduced amount fixed under National Insurance Law §341.
+    assert "בשיעור של 5.17%" in section_14.body
+    assert "בשיעור של 3.23%" in section_14.body
+    assert "סעיף 341 לחוק הביטוח הלאומי" in section_14.body
+
+    principles = provisions[f"{HEALTH}/section-1"]
+    assert principles.heading == "ביטוח הבריאות הממלכתי"
+    assert principles.body is not None and "צדק" in principles.body

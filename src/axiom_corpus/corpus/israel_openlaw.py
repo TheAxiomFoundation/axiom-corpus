@@ -95,6 +95,11 @@ _SECTION_ANCHOR_PREFIX = "סעיף_"
 # The National Insurance Law calls its schedules לוח, the Ordinance תוספת.
 _SCHEDULE_ANCHOR_PREFIXES = ("לוח_", "תוספת_")
 _SCHEDULE_ITEM_INFIX = "_פרט_"
+# A schedule divided into parts numbers its items afresh in each part, and the
+# item anchor names the part: תוספת_2_חלק_1_פרט_1 is item 1 of part 1 of the
+# National Health Insurance Law's second schedule.  The part itself is an <h3>
+# whose id is the anchor up to the item infix (תוספת_2_חלק_1).
+_SCHEDULE_PART_INFIX = "_חלק_"
 _TABLE_OF_CONTENTS_HEADING = "תוכן עניינים"
 _SCHEDULE_HEADING_RE = re.compile(r"^(?:לוח|תוספת)\s+(?P<rest>.+)$")
 _PARENTHETICAL_SUFFIX_RE = re.compile(r"\s*\([^)]*\)\s*$")
@@ -830,6 +835,10 @@ class _ParseState:
     # schedule citation path -> (designation word, full heading), so items can be
     # named the way their schedule's own heading names it (לוח … / תוספת …).
     schedule_headings: dict[str, tuple[str, str]] = field(default_factory=dict)
+    # Every <h3> navigation node's own anchor id and heading, by citation path, so
+    # an item anchor that names a schedule part can be checked against the part
+    # heading that is actually open.
+    sign_headings: dict[str, tuple[str, str]] = field(default_factory=dict)
     counters: dict[str, int] = field(default_factory=lambda: {"part": 0, "chapter": 0, "sign": 0})
     section_ordinal: int = 0
     schedule_item_ordinal: int = 0
@@ -993,6 +1002,10 @@ def _parse_fragment(
     pending_sub_item: str | None = None
     last_anchor_was_provision = False
     skipping = False
+    # Whether the open skip is the table of contents, which a numbered section
+    # ends on its own: the National Health Insurance Law prints §1 straight
+    # after its table of contents, with no heading of its own before it.
+    skipping_contents = False
 
     def deepest() -> tuple[str, int]:
         for kind in ("sign", "chapter", "schedule", "part"):
@@ -1067,6 +1080,7 @@ def _parse_fragment(
                 continue
             flush()
             skipping = heading in source.excluded_headings
+            skipping_contents = skipping and heading == _TABLE_OF_CONTENTS_HEADING
             if skipping:
                 state.excluded_blocks += 1
                 if node.name == "h1":
@@ -1154,11 +1168,16 @@ def _parse_fragment(
                 metadata={"raw_marker": heading},
             )
             context["sign"] = (path, _NAV_LEVELS["sign"])
+            state.sign_headings[path] = (str(node.get("id") or ""), heading)
             continue
 
         if node.name != "div":
             continue
 
+        if skipping and skipping_contents and _opens_numbered_section(node, classes):
+            # A table of contents holds only law-toc lines; a numbered section
+            # anchor is the law itself resuming.
+            skipping = skipping_contents = False
         if skipping:
             if any(name in classes for name in ("law-main", "law-desc")) or "law-number" in classes:
                 state.excluded_blocks += 1
@@ -1248,30 +1267,57 @@ def _parse_fragment(
                         "outside a schedule heading"
                     )
                 schedule_path = context["schedule"][0]
-                expected_path = f"{document_path}/schedule-{israeli_ident_slug(schedule_ident)}"
+                base_ident, part_ident = schedule_ident, None
+                if _SCHEDULE_PART_INFIX in schedule_ident:
+                    base_ident, part_ident = schedule_ident.split(_SCHEDULE_PART_INFIX, 1)
+                expected_path = f"{document_path}/schedule-{israeli_ident_slug(base_ident)}"
                 if schedule_path != expected_path:
                     raise ValueError(
                         f"Israel source {source.source_id} schedule item {anchor_id!r} "
                         f"does not belong to the open schedule {schedule_path!r}"
                     )
+                parent_path = schedule_path
+                parent_level = _NAV_LEVELS["schedule"]
+                part_metadata: dict[str, Any] = {}
+                if part_ident is not None:
+                    # Item numbers restart in every part, so the item hangs under
+                    # its part's heading node, and that node must be the part the
+                    # anchor names: an item can never land in a neighbouring part.
+                    part_anchor = f"{prefix}{schedule_ident}"
+                    open_sign = context.get("sign")
+                    if (
+                        open_sign is None
+                        or not open_sign[0].startswith(f"{schedule_path}/")
+                        or state.sign_headings.get(open_sign[0], ("", ""))[0] != part_anchor
+                    ):
+                        raise ValueError(
+                            f"Israel source {source.source_id} schedule item {anchor_id!r} "
+                            f"does not follow the heading of its schedule part {part_anchor!r}"
+                        )
+                    parent_path, parent_level = open_sign
+                    part_metadata = {
+                        "schedule_part_identifier": part_ident,
+                        "schedule_part_heading": state.sign_headings[parent_path][1],
+                    }
                 flush()
                 state.schedule_item_ordinal += 1
-                path = f"{schedule_path}/item-{israeli_ident_slug(item_ident)}"
+                path = f"{parent_path}/item-{israeli_ident_slug(item_ident)}"
                 pending = _PendingProvision(
                     citation_path=path,
-                    parent_citation_path=schedule_path,
+                    parent_citation_path=parent_path,
                     kind="schedule-item",
                     label=item_ident,
-                    level=_NAV_LEVELS["schedule"] + 1,
+                    level=parent_level + 1,
                     ordinal=state.schedule_item_ordinal,
                     source_file=source_file,
                     metadata={
                         "printed_identifier": item_ident,
                         "printed_label": label,
                         "anchor_id": anchor_id,
-                        "schedule_identifier": schedule_ident,
+                        "schedule_identifier": base_ident,
                         "schedule_designation": state.schedule_headings[schedule_path][0],
                         "schedule_heading": state.schedule_headings[schedule_path][1],
+                        **part_metadata,
                     },
                 )
                 last_anchor_was_provision = True
@@ -1989,6 +2035,16 @@ def _render_text(raw: str) -> str:
     return "\n".join(compacted)
 
 
+def _opens_numbered_section(node: Tag, classes: Sequence[str]) -> bool:
+    """True for a section's own number anchor (סעיף_1), not a sub-item (סעיף_2.1)."""
+    if not any(name.startswith("law-number") for name in classes) or not node.get("id"):
+        return False
+    anchor_id = unicodedata.normalize("NFC", str(node["id"]))
+    if not anchor_id.startswith(_SECTION_ANCHOR_PREFIX):
+        return False
+    return "." not in anchor_id[len(_SECTION_ANCHOR_PREFIX) :]
+
+
 def _joined_body(blocks: Sequence[str]) -> str | None:
     values = [value for value in blocks if value.strip()]
     return "\n".join(values) if values else None
@@ -2074,6 +2130,11 @@ def _citation_label(source: IsraelOpenLawSource, provision: IsraelOpenLawProvisi
         # Name the schedule the way its own heading does — לוח י׳ in the National
         # Insurance Law, תוספת ראשונה א׳ in the Ordinance — never a fixed לוח.
         heading = provision.metadata.get("schedule_heading")
+        part_heading = provision.metadata.get("schedule_part_heading")
+        if heading and part_heading:
+            # "חלק ראשון: שירותי הבריאות של …" is named by its designator alone.
+            part = str(part_heading).split(":", 1)[0].strip()
+            return f"{source.title}, {heading}, {part}, פרט {provision.label}"
         if heading:
             return f"{source.title}, {heading} פרט {provision.label}"
         designation = provision.metadata.get("schedule_designation", "לוח")
