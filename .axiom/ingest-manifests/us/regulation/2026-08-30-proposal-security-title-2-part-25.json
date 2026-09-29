@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-08-30-proposal-security-title-2-part-25.json",
+      "sha256": "faf15cc15598f77678a91a48525890e8c461b6329a2f2340d339f05c38629114"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-08-30-proposal-security-title-2-part-25.json",
+      "sha256": "0c394330589166fe655f9c7ecaeb635454e823be50a9ecdd553474fce6c103a8"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-08-30-proposal-security-title-2-part-25.jsonl",
+      "sha256": "dc4a3cf6e561f7c4923d4669ad4da126212b06aa9d13c88784d5a85c2d763fb9"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-2-part-25/ecfr/title-2-part-25.xml",
+      "sha256": "6afb0be190a4b937ee1cffd49ffdff1289554225fb5c6acb26ba560cf8ffc52d"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-2-part-25/ecfr/title-2.structure.json",
+      "sha256": "8be0489b8a14aa1f821de4415caf8103f8bf943614bb473189094225a590be76"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a4b80e77d1105c7d28ac01f64bebb5a2b0ca89d5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-08-30-proposal-security --as-of 2026-08-27 --expression-date 2026-08-27 --only-title 2 --only-part 25 --include-appendices --workers 1 (run note: docs/ingest-runs/2026-08-30-federal-proposal-security.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-29T02:56:36.517556+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qgOpca4h/zydzCtvlJB4XNl5qzzBjJREX8PNNwvhXEs3m8geZRJBmKFVVbZ78F9ljSrUtnh7Yrp+buY3NdLNDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-proposal-security-title-2-part-25"
+}

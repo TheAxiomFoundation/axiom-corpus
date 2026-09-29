@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-30-proposal-security-title-42.json",
+      "sha256": "117cb5821a24e7ad35fcff66e110e3be417321b2c958b10196096c33c3344406"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-30-proposal-security-title-42.json",
+      "sha256": "74bd4e89d0bcc47a7dfff99c5a0db44d7edcd731db235cfc43130e84f470503b"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-30-proposal-security-title-42.jsonl",
+      "sha256": "8f7e5de993ad736260fb45bc0b1d86f64fbbcbe4ecb48281acabc476076cc8e4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-30-proposal-security-title-42/olrc/xml_usc42@119-102.zip",
+      "sha256": "31929c28f117362ac8788607242795769b05ed7726f07e4ed3b1786f39655ce7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a4b80e77d1105c7d28ac01f64bebb5a2b0ca89d5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-08-30-proposal-security --source-zip xml_usc42@119-102.zip --title 42 --source-as-of 2026-07-12 --expression-date 2026-07-12 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/102/xml_usc42@119-102.zip --section 1862o --section 6605 --section 19231 --section 19232 --section 19233 --section 19234 --section 19235 --section 19237 && python scripts/self_contain_usc_scope.py --base data/corpus --version 2026-08-30-proposal-security-title-42 (run note: docs/ingest-runs/2026-08-30-federal-proposal-security.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 132,
+    "missing_count": 0,
+    "provision_count": 132,
+    "source_count": 132
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-29T02:56:35.444170+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kvSliU/zfyHNx82WclO/nitiB5xraryORdx0/T8XzJTBt5DUM0OiNTo2HpfiRvLiptOe2xtQJSnZleyoz/KsAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-proposal-security-title-42"
+}

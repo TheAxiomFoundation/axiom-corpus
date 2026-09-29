@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-08-30-federal-proposal-security-guidance.json",
+      "sha256": "f31dbf081095cdbcf3230ebd810587ab11ecb7914f1babb96300aa4ad00b32a3"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-08-30-federal-proposal-security-guidance.json",
+      "sha256": "5b5433685a24e613c69375c376cc4dabb1efa5faa48e036a410d0948931f82c7"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-08-30-federal-proposal-security-guidance.jsonl",
+      "sha256": "a16f78fee0769493e9ba11d4e7c154b84536158fb6091cef8721b8f8fc482a89"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-30-federal-proposal-security-guidance/official-documents/nsf-important-notice-149-implementation-faq.html",
+      "sha256": "a80e70b6640477ae3f95cc9a54b394a03aac087d1d17e7ff6fb50c774f5fdf41"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-30-federal-proposal-security-guidance/official-documents/nsf-important-notice-149-proposal-security.html",
+      "sha256": "b80a6a59dbb102e3371b4eab6e90971562e91e551220c892533b2efb3da9cb8d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-30-federal-proposal-security-guidance/official-documents/nsf-pappg-24-1-chapter-i-submission-security.html",
+      "sha256": "a8f98d21d424ab919458571a268b50c77f7c42164fecfb4bdbe3a94c64197d29"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-30-federal-proposal-security-guidance/official-documents/nsf-pappg-24-1-supplement-1-proposal-security.html",
+      "sha256": "688a2d3e8bfb947a983719f1ed6c40109b2345c7264cb3ce677a121458add801"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-30-federal-proposal-security-guidance/official-documents/nsf-pappg-24-1-supplement-2-dmsp.html",
+      "sha256": "4dfd5d291ec92dc9102ce102fa25534ac870eed47d11c6d2b0ab844ddf05c119"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-30-federal-proposal-security-guidance/official-documents/nsf-tip-person-entity-of-concern-prohibition.html",
+      "sha256": "161ff22863b12f79cdc783b7bd8a265909b98899a0e79bacbb6ceff4e8d56275"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a4b80e77d1105c7d28ac01f64bebb5a2b0ca89d5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-30-federal-proposal-security-guidance --manifest manifests/us-federal-proposal-security-2026.yaml (sources captured 2026-08-30; run note: docs/ingest-runs/2026-08-30-federal-proposal-security.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-29T02:56:38.188667+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+m7Z1k0i0oDf8pymXcoXeQCsp2kvtw7k2Cefm9OlWtyNDB+056GEU6U2feBY1nZ8gphhx2s1xO1kAQ3zpOx4Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-federal-proposal-security-guidance"
+}
