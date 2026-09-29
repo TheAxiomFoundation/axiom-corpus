@@ -805,3 +805,59 @@ def test_the_citation_script_skips_hidden_lock_files(tmp_path: Path, monkeypatch
     provisions = root / "data/corpus/provisions"
     provisions.mkdir(parents=True)
     assert module.unfetched_locked_provisions(provisions) == ["data/corpus/provisions/nz/statute/v1.jsonl"]
+
+
+# =========================================================================== round 5
+
+
+@pytest.mark.parametrize("kind", ["gitlink", "symlink"])
+def test_a_non_directory_axiom_hides_nothing(repo: Path, tmp_path: Path, kind: str) -> None:
+    """Round 5 nit: `.axiom` as a gitlink or symlink escaped every lock check."""
+    from axiom_corpus.corpus.corpus_locks import load_locks_at_ref
+
+    private, public = _keys()
+    _ingest(repo, private)
+    _git(repo, "rm", "-rq", "--cached", ".axiom")
+    if kind == "gitlink":
+        other = tmp_path / "other"
+        other.mkdir()
+        _git(other, "init", "-q", "-b", "main")
+        _git(other, "config", "user.email", "t@example.com")
+        _git(other, "config", "user.name", "T")
+        (other / "README").write_text("x\n")
+        _git(other, "add", "README")
+        _git(other, "commit", "-q", "-m", "x")
+        _git(repo, "update-index", "--add", "--cacheinfo", f"160000,{_git(other, 'rev-parse', 'HEAD')},.axiom")
+    else:
+        oid = subprocess.run(
+            ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=b"docs/elsewhere", check=True, capture_output=True
+        ).stdout.decode().strip()
+        _git(repo, "update-index", "--add", "--cacheinfo", f"120000,{oid},.axiom")
+    _git(repo, "commit", "-q", "-m", f".axiom as a {kind}")
+    errors = load_locks_at_ref(repo, "HEAD").errors
+    assert any("not a directory" in error for error in errors)
+    assert any("not a directory" in issue for issue in audit_lock_attestation(repo, ref="HEAD", public_key=public))
+
+
+def test_a_symlinked_lock_root_in_the_worktree_is_refused(tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    repo = tmp_path / "repo"
+    elsewhere = repo / "docs/evil/corpus-locks/zz/statute"
+    elsewhere.mkdir(parents=True)
+    (elsewhere / "v1.json").write_text("{}")
+    (repo / ".axiom").mkdir()
+    (repo / ".axiom/corpus-locks").symlink_to(repo / "docs/evil/corpus-locks")
+    assert any("symlink" in error for error in load_locks(repo).errors)
+
+
+def test_an_emacs_lock_link_in_the_lock_directory_is_ignored(repo: Path) -> None:
+    """Round 5 (regression): a dangling `.#file` link made every read fail."""
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    link = repo / ".axiom/corpus-locks/nz/statute/.#2026-07-10.json"
+    link.symlink_to("user@host.1234:1700000000")
+    locks = load_locks(repo)
+    assert locks.errors == () and SCOPE in locks.locks

@@ -389,6 +389,15 @@ class LockSet:
             if scope in wanted_scopes or any(scope_matches(scope, s) for s in selector_list)
         ]
 
+    def find_folded(self, path: str) -> LockEntry | None:
+        """The entry whose path is ``path`` in another spelling a case-insensitive
+        filesystem merges (``Data/corpus/Sources/...``), if any."""
+        index: dict[str, LockEntry] | None = getattr(self, "_by_fold", None)
+        if index is None:
+            index = {fold_path(entry_path): entry for entry_path, entry in self.by_path.items()}
+            object.__setattr__(self, "_by_fold", index)
+        return index.get(fold_path(path))
+
     def entries_under(self, path: str) -> list[LockEntry]:
         """Entries at ``path`` or below it (a repository-relative file or directory)."""
         cleaned = path.strip("/")
@@ -447,7 +456,18 @@ def load_locks(repo: Path) -> LockSet:
     spelling_error = _lock_root_spelling_error(repo)
     if spelling_error:
         return LockSet(locks={}, errors=(spelling_error,))
+    for directory in (repo / LOCK_ROOT.parts[0], root):
+        if directory.is_symlink():
+            return LockSet(
+                locks={},
+                errors=(
+                    f"`{directory.relative_to(repo).as_posix()}` is a symlink; the lock "
+                    "directory must be a plain directory in this checkout.",
+                ),
+            )
     nested = [path for path in root.rglob(".git") if path.parent != repo]
+    if (repo / LOCK_ROOT.parts[0] / ".git").exists():
+        nested.append(repo / LOCK_ROOT.parts[0] / ".git")
     if nested:
         return LockSet(
             locks={},
@@ -459,6 +479,8 @@ def load_locks(repo: Path) -> LockSet:
         )
     links: list[str] = []
     for path in sorted(root.rglob("*")):
+        if any(part.startswith(".") for part in path.relative_to(root).parts):
+            continue  # .DS_Store, editor swap and Emacs `.#` lock links: never locks
         if path.is_symlink():
             links.append(path.relative_to(repo).as_posix())
             continue
@@ -554,13 +576,32 @@ def _irregular_lock_tree_entries(repo: Path, ref: str) -> tuple[str, ...]:
     but ``git submodule update`` or a checkout would fill the directory with
     locks no guard ever read.
     """
+    errors: list[str] = []
+    # The directories above the lock root must be plain directories too: a
+    # gitlink or symlink at `.axiom` hides the whole lock root from ls-tree.
+    for ancestor in [LOCK_ROOT.parents[index].as_posix() for index in range(len(LOCK_ROOT.parts) - 1)]:
+        above = subprocess.run(
+            ["git", "ls-tree", "-z", ref, "--", ancestor],
+            cwd=repo,
+            check=True,
+            capture_output=True,
+        )
+        for record in above.stdout.split(b"\0"):
+            if not record:
+                continue
+            meta, raw_path = record.split(b"\t", 1)
+            mode, kind, _oid = meta.decode("ascii").split()
+            if raw_path.decode("utf-8", errors="surrogateescape") == ancestor and kind != "tree":
+                errors.append(
+                    f"`{ancestor}` is a {'submodule' if mode == '160000' else 'symlink' if mode == '120000' else kind}, "
+                    "not a directory; the lock directory under it would escape every check."
+                )
     result = subprocess.run(
         ["git", "ls-tree", "-r", "-z", ref, "--", LOCK_ROOT.as_posix()],
         cwd=repo,
         check=True,
         capture_output=True,
     )
-    errors: list[str] = []
     for record in result.stdout.split(b"\0"):
         if not record:
             continue

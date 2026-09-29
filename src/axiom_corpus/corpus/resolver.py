@@ -32,6 +32,7 @@ from axiom_corpus.corpus.corpus_locks import (
     LockEntry,
     LockSet,
     ScopeKey,
+    fold_path,
     is_protected_corpus_path,
     load_locks,
     scope_for_path,
@@ -215,10 +216,11 @@ class CorpusResolver:
             raise ValueError(f"{path} is not inside {self.repo}")
         target = self.repo / rel
         present = target.is_file() and not target.is_symlink()
-        if present and not rel.startswith(f"{CORPUS_BASE}/sources/"):
+        if present and not fold_path(rel).startswith(f"{CORPUS_BASE}/sources/"):
             return target
         self.require_valid_locks()
-        entry = self.locks.by_path.get(rel)
+        # A case-variant spelling (APFS) names the same locked file.
+        entry = self.locks.by_path.get(rel) or self.locks.find_folded(rel)
         if entry is None:
             if present:
                 return target
@@ -241,7 +243,7 @@ class CorpusResolver:
                     f"fetching is off ({NO_FETCH_ENV}); first: {missing[0].path}"
                 )
             self.ensure(missing)
-        if scope is not None and rel.startswith(f"{CORPUS_BASE}/sources/"):
+        if scope is not None and entry.path.startswith(f"{CORPUS_BASE}/sources/"):
             self._complete_source_scopes.add(scope)
         return target
 
@@ -382,7 +384,7 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
         and not candidate.is_symlink()
         # The real path, so a relative or symlinked spelling of a source file
         # still gets its siblings; realpath runs no git process.
-        and f"/{CORPUS_BASE}/sources/" not in os.path.realpath(candidate)
+        and f"/{CORPUS_BASE}/sources/" not in fold_path(os.path.realpath(candidate))
     ):
         return candidate  # present and not a source: nothing to widen, no git call
     if repo is None:

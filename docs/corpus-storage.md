@@ -80,10 +80,11 @@ renames with no-replace semantics instead (`renamex_np(RENAME_EXCL)` on macOS,
 `renameat2(RENAME_NOREPLACE)` on Linux). Where neither exists (exFAT, some
 network filesystems), it takes an exclusive publish lock in the staging
 directory (named by a hash of the object's path), checks the object is still
-absent, and renames. A lock older than 30 s, dated in the future, or waited on
-for 30 s belongs to a dead process and is broken; two processes breaking the
-same stale lock at once could both rename, and the second replaces the first
-with identical verified bytes. Every path gives a complete file its
+absent, and renames. A lock older than 30 s, or one this process has waited
+on for 30 s (a lock dated in the future by a skewed clock included), belongs
+to a dead process and is broken. Two processes breaking the same stale lock at
+once could both rename, and the second then replaces the first with identical
+verified bytes; that is the one exception to write-once below. Every path gives a complete file its
 final name in one step, so no reader ever sees partial bytes under an object's
 name, and objects are write-once: no writer replaces an object another
 process is cloning.
@@ -141,7 +142,8 @@ leaves a file that `corpus lock` or signing would pick up (`corpus lock`
 refuses any leftover `.corpus-fetch-` file it finds in a scope). Publish locks
 live there too. The one file a fetch may leave inside a scope is the hidden
 copy it makes beside a target when the staging directory is on another
-filesystem (`EXDEV`), if the process is killed during that copy. The next fetch
+filesystem (`EXDEV`), if the process is killed between making that copy and
+publishing it. The next fetch
 deletes temporaries that came into existence more than a day ago, judged by
 ctime: a clone keeps the cache object's old mtime.
 
@@ -255,9 +257,11 @@ mode, lock files not yet staged are checked too:
   audit: git and the guard see a different path, but a case-insensitive
   worktree reads it as the lock directory. The worktree loader refuses a lock
   directory spelled any other way on disk. Anything under the lock directory
-  that is not a regular file (a submodule, a symlink) is a lock error at every
-  ref, in the index and in the worktree: a submodule's locks would otherwise
-  appear only after `git submodule update`, unread by any guard.
+  that is not a regular file (a submodule, a symlink), and a `.axiom` that is
+  not a plain directory, is a lock error at every ref, in the index and in
+  the worktree: a submodule's locks would otherwise appear only after
+  `git submodule update`, unread by any guard. Hidden names (`.DS_Store`,
+  Emacs `.#` lock links) are skipped before that check.
 - **Moved files.** A protected path tracked at `B` and untracked at `H`
   passes when a lock at `H` carries the base blob's sha256 and size (and, when
   the entry names one, its blob id); otherwise a signed manifest must mark it
@@ -435,14 +439,16 @@ exactly those 1,362 files.
    that blob's.
 4. **Fetch fidelity.** After a fetch, every placed file hashes to its lock
    sha256, and a missing file is created but never replaced by another
-   fetch. Complete files get their final names in one step (link, no-replace
+   fetch (save the stale-publish-lock race under Local cache, which replaces
+   it with identical bytes). Complete files get their final names in one step (link, no-replace
    rename, or a rename under a publish lock), so no failed or interrupted
    fetch leaves partial bytes under a final name. On filesystems that need the
    publish lock, an extractor that writes the same file without that lock can
    be replaced in the instant between the absence check and the rename. A
    scope's `sources/` directory ends up whole, or the files this call placed
    are rolled back; a file someone else rewrote is kept.
-5. **Cache integrity.** Every cache object is written once, and a process
+5. **Cache integrity.** Every cache object is written once (save the
+   stale-publish-lock race described under Local cache), and a process
    uses it only after checking its size and its hash. A corrupt object is
    deleted and replaced with verified bytes; a good one survives a wrong lock
    entry.
@@ -473,7 +479,7 @@ failing streams, corrupt and truncated cache objects, partial source
 directories, planted and laundered locks, merged spellings of protected paths
 and of the lock directory, stale bases, unstaged, malformed and conflicted
 locks, and signing after a deletion. Each of the fixes we reverted one at a
-time (22 in round 3, 19 in round 4) fails at least one of them. One known gap has no test: the partial-test audit hook's
+time (22 in round 3, 19 in round 4, 10 in round 5) fails at least one of them. One known gap has no test: the partial-test audit hook's
 blind spots, described under Tests and CI.
 
 ## Alternatives considered

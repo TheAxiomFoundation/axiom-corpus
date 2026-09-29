@@ -537,6 +537,25 @@ def test_locked_rename_publication_never_exposes_partial_or_mixed_bytes(
         temps[i].write_bytes(data)
     barrier = threading.Barrier(len(temps))
     results = {}
+    seen_partial = []
+    real_copy = content_store.shutil.copyfileobj
+    real_rename = content_store.os.rename
+
+    def observe() -> None:
+        # Whenever bytes move, the target is absent or holds one full payload.
+        if target.exists() and target.read_bytes() not in payloads.values():
+            seen_partial.append(target.stat().st_size)
+
+    def copy(src, dst, *args):
+        observe()
+        return real_copy(src, dst, *args)
+
+    def rename(src, dst):
+        observe()
+        return real_rename(src, dst)
+
+    monkeypatch.setattr(content_store.shutil, "copyfileobj", copy)
+    monkeypatch.setattr(content_store.os, "rename", rename)
 
     def publish(i: int) -> None:
         barrier.wait()
@@ -550,14 +569,14 @@ def test_locked_rename_publication_never_exposes_partial_or_mixed_bytes(
     winners = [i for i, won in results.items() if won]
     assert len(winners) == 1
     assert target.read_bytes() == payloads[winners[0]]
+    assert seen_partial == []  # the old exclusive-copy fallback exposed a growing file
     assert not any(p.name.endswith(".corpus-fetch-lock") for p in tmp_path.iterdir())
 
 
 def test_a_stale_publish_lock_is_broken(tmp_path: Path, monkeypatch) -> None:
     _no_links_no_noreplace(monkeypatch)
     target = tmp_path / "object"
-    key = content_store.hashlib.sha256(os.fsencode(os.path.abspath(target))).hexdigest()[:32]
-    lock = tmp_path / f"{content_store.FETCH_TEMP_MARKER}lock-{key}"
+    lock = content_store.publish_lock_path(target, tmp_path)
     lock.write_bytes(b"")
     old = content_store.time.time() - 2 * content_store.PUBLISH_LOCK_STALE_SECONDS
     os.utime(lock, (old, old))
@@ -586,9 +605,9 @@ def test_publication_across_filesystems_copies_beside_the_target(tmp_path: Path,
     siblings = []
     real_sibling = content_store._publish_via_sibling
 
-    def spy(tmp, target):
+    def spy(tmp, target, *args):
         siblings.append(target)
-        return real_sibling(tmp, target)
+        return real_sibling(tmp, target, *args)
 
     monkeypatch.setattr(content_store, "_publish_via_sibling", spy)
     target = tmp_path / "dest" / "object"
@@ -612,9 +631,9 @@ def test_an_unsupported_noreplace_rename_falls_back_to_the_locked_rename(
     locked = []
     real = content_store._publish_locked_rename
 
-    def spy(tmp, target):
+    def spy(tmp, target, *args):
         locked.append(target)
-        return real(tmp, target)
+        return real(tmp, target, *args)
 
     monkeypatch.setattr(content_store, "_publish_locked_rename", spy)
     tmp = tmp_path / "tmp"
@@ -1114,8 +1133,7 @@ def test_a_publish_lock_dated_in_the_future_is_broken(tmp_path: Path, monkeypatc
     target = tmp_path / "object"
     tmp = tmp_path / "tmp"
     tmp.write_bytes(b"bytes")
-    key = content_store.hashlib.sha256(os.fsencode(os.path.abspath(target))).hexdigest()[:32]
-    lock = tmp_path / f"{content_store.FETCH_TEMP_MARKER}lock-{key}"
+    lock = content_store.publish_lock_path(target, tmp_path)
     lock.write_bytes(b"")
     future = content_store.time.time() + 3600
     os.utime(lock, (future, future))
@@ -1230,3 +1248,121 @@ def test_a_many_path_refusal_names_only_a_few_paths(tmp_path: Path) -> None:
     message = str(refused.value)
     assert f"and {len(many) - 3} more" in message and "--paths-from" in message
     assert len(message) < 800
+
+
+# =========================================================================== round 5
+
+
+def test_an_interrupt_from_the_progress_callback_still_rolls_back(tmp_path: Path) -> None:
+    """Round 5: the handler recorded a finished entry twice, so a scope missing
+    one cancelled entry counted as complete and kept its half-fetched files."""
+    lock = _lock()
+    ordered = sorted(lock.files, key=lambda e: (0 if e.path.endswith("act.html") else 1, e.path))
+    calls = []
+
+    def progress(done: int, total: int) -> None:
+        calls.append(done)
+        if len(calls) == 1:
+            raise KeyboardInterrupt
+
+    repo = tmp_path / "repo"
+    with pytest.raises(KeyboardInterrupt):
+        materialize(repo, ordered, ContentCache(tmp_path / "cache"), [_full_remote()], workers=1, progress=progress)
+    sources = [e for e in lock.files if "/sources/" in e.path]
+    present = [e.path for e in sources if (repo / e.path).exists()]
+    assert present == [] or len(present) == len(sources)
+    assert calls == [1]  # the handler never calls progress again
+
+
+def test_an_interrupt_while_submitting_cancels_and_rolls_back(tmp_path: Path, monkeypatch) -> None:
+    """Round 5 nit: a Ctrl-C during submission escaped before the try."""
+    lock = _lock()
+    real_submit = content_store.ThreadPoolExecutor.submit
+    count = []
+
+    def submit(self, fn, *args, **kwargs):
+        count.append(1)
+        if len(count) == len(lock.files):  # the last entry: the second source file
+            content_store.time.sleep(0.2)  # let the first source file land
+            raise KeyboardInterrupt
+        return real_submit(self, fn, *args, **kwargs)
+
+    monkeypatch.setattr(content_store.ThreadPoolExecutor, "submit", submit)
+    repo = tmp_path / "repo"
+    with pytest.raises(KeyboardInterrupt):
+        materialize(repo, lock.files, ContentCache(tmp_path / "cache"), [_full_remote()], workers=1)
+    sources = [e for e in lock.files if "/sources/" in e.path]
+    assert lock.files[-1] == sources[-1]  # the interrupted submit is a source file
+    assert [e.path for e in sources if (repo / e.path).exists()] == []
+
+
+def test_the_exdev_path_keeps_its_publish_lock_in_the_staging_directory(tmp_path: Path, monkeypatch) -> None:
+    """Round 5 nit: the EXDEV sibling path created its lock inside the scope."""
+    real_link = os.link
+
+    def link(src, dst):
+        raise OSError(errno.EXDEV if len(created_by_link) == 0 else errno.EPERM, "no")
+
+    created_by_link: list[str] = []
+    monkeypatch.setattr(content_store.os, "link", link)
+    monkeypatch.setattr(content_store, "_RENAME_NOREPLACE", None)
+    opened = []
+    real_open = os.open
+
+    def spy_open(path, flags, *args):
+        if flags & os.O_EXCL:
+            opened.append(Path(path))
+        return real_open(path, flags, *args)
+
+    monkeypatch.setattr(content_store.os, "open", spy_open)
+    staging = tmp_path / "staging"
+    staging.mkdir()
+    scope_dir = tmp_path / "data/corpus/sources/nz/statute/v1"
+    scope_dir.mkdir(parents=True)
+    tmp = staging / "tmp"
+    tmp.write_bytes(b"bytes")
+    assert publish_no_replace(tmp, scope_dir / "act.html")
+    locks = [path for path in opened if "lock-" in path.name]
+    assert locks and all(path.parent == staging for path in locks)
+    assert sorted(p.name for p in scope_dir.iterdir()) == ["act.html"]
+    del real_link
+
+
+def test_two_spellings_of_one_target_share_a_publish_lock(tmp_path: Path, monkeypatch) -> None:
+    """Round 5 nit: the lock key hashed abspath, so /tmp and /private/tmp differed."""
+    real_dir = tmp_path / "real"
+    real_dir.mkdir()
+    alias = tmp_path / "alias"
+    alias.symlink_to(real_dir)
+    _no_links_no_noreplace(monkeypatch)
+    names = []
+    real_open = os.open
+
+    def spy_open(path, flags, *args):
+        if flags & os.O_EXCL:
+            names.append(Path(path).name)
+        return real_open(path, flags, *args)
+
+    monkeypatch.setattr(content_store.os, "open", spy_open)
+    for spelling, data in ((real_dir / "object", b"one"), (alias / "object", b"two")):
+        tmp = tmp_path / f"tmp-{data.decode()}"
+        tmp.write_bytes(data)
+        publish_no_replace(tmp, spelling)
+    assert len(set(names)) == 1
+
+
+def test_the_source_check_folds_case_variant_spellings(tmp_path: Path, monkeypatch) -> None:
+    """Round 5 nit: `Data/corpus/sources/...` on APFS skipped sibling widening."""
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    present = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    sibling = "data/corpus/sources/nz/statute/2026-07-10/official/sub dir/s 2.xml"
+    _write(repo, present, FILES[present])
+    variant = repo / present.replace("data/corpus/sources", "Data/corpus/Sources", 1)
+    if not variant.exists():
+        pytest.skip("case-sensitive filesystem: the variant spelling names no file")
+    monkeypatch.setattr(
+        content_store.R2ObjectStore, "from_environment", classmethod(lambda cls, **_k: _full_remote())
+    )
+    resolver_module.resolve_corpus_path(variant)
+    assert (repo / sibling).exists()

@@ -22,7 +22,7 @@ import tempfile
 import threading
 import time
 from collections.abc import Callable, Iterable, Iterator
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import Future, ThreadPoolExecutor, as_completed
 from contextlib import suppress
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -33,6 +33,7 @@ from axiom_corpus.corpus.corpus_locks import (
     FETCH_TEMP_DIR,
     FETCH_TEMP_MARKER,
     LockEntry,
+    fold_path,
     scope_for_path,
 )
 
@@ -155,7 +156,7 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
     1. ``link(2)``, where the filesystem has hardlinks;
     2. otherwise a no-replace rename (``renamex_np``/``renameat2``);
     3. otherwise (exFAT, some network filesystems) a plain rename made while
-       holding an exclusive publish lock next to ``target``, after checking
+       holding an exclusive publish lock in ``tmp``'s directory, after checking
        that ``target`` is still absent. Writers that publish through this
        function exclude each other; a writer that does not (an extractor)
        could only be replaced in the instant between that check and the
@@ -165,10 +166,10 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
     temporary file beside ``target``. The caller removes ``tmp`` afterwards if
     it still exists.
     """
-    return _publish(tmp, target, allow_sibling=True)
+    return _publish(tmp, target, allow_sibling=True, lock_dir=tmp.parent)
 
 
-def _publish(tmp: Path, target: Path, *, allow_sibling: bool) -> bool:
+def _publish(tmp: Path, target: Path, *, allow_sibling: bool, lock_dir: Path) -> bool:
     try:
         os.link(tmp, target)
         return True
@@ -176,7 +177,7 @@ def _publish(tmp: Path, target: Path, *, allow_sibling: bool) -> bool:
         return False
     except OSError as exc:
         if exc.errno == errno.EXDEV and allow_sibling:
-            return _publish_via_sibling(tmp, target)
+            return _publish_via_sibling(tmp, target, lock_dir)
         if exc.errno not in _NO_HARDLINK_ERRNOS:
             raise
     if _RENAME_NOREPLACE is not None:
@@ -186,13 +187,13 @@ def _publish(tmp: Path, target: Path, *, allow_sibling: bool) -> bool:
         if err == errno.EEXIST:
             return False
         if err == errno.EXDEV and allow_sibling:
-            return _publish_via_sibling(tmp, target)
+            return _publish_via_sibling(tmp, target, lock_dir)
         if err not in {errno.ENOTSUP, errno.EOPNOTSUPP, errno.EINVAL, errno.ENOSYS}:
             raise OSError(err, os.strerror(err), str(target))
-    return _publish_locked_rename(tmp, target)
+    return _publish_locked_rename(tmp, target, lock_dir)
 
 
-def _publish_via_sibling(tmp: Path, target: Path) -> bool:
+def _publish_via_sibling(tmp: Path, target: Path, lock_dir: Path) -> bool:
     """Copy ``tmp`` next to ``target`` (same filesystem), then publish that copy."""
     fd, name = tempfile.mkstemp(
         dir=target.parent, prefix=f".{target.name[:40]}{FETCH_TEMP_MARKER}"
@@ -204,8 +205,9 @@ def _publish_via_sibling(tmp: Path, target: Path) -> bool:
             dst.flush()
             os.fsync(dst.fileno())
         os.chmod(sibling, tmp.stat().st_mode & 0o777)
-        # The sibling shares target's directory, so this cannot hit EXDEV again.
-        return _publish(sibling, target, allow_sibling=False)
+        # The sibling shares target's directory, so this cannot hit EXDEV again;
+        # the publish lock stays in the staging directory, outside the scope.
+        return _publish(sibling, target, allow_sibling=False, lock_dir=lock_dir)
     finally:
         sibling.unlink(missing_ok=True)
 
@@ -213,19 +215,28 @@ def _publish_via_sibling(tmp: Path, target: Path) -> bool:
 PUBLISH_LOCK_STALE_SECONDS = 30.0
 
 
-def _publish_locked_rename(tmp: Path, target: Path) -> bool:
+def publish_lock_path(target: Path, lock_dir: Path) -> Path:
+    """The publish lock for ``target``: one file per real, case-folded target path."""
+    real = os.path.join(os.path.realpath(target.parent), target.name)
+    key = hashlib.sha256(fold_path(real).encode("utf-8", "surrogateescape")).hexdigest()[:32]
+    return lock_dir / f"{FETCH_TEMP_MARKER}lock-{key}"
+
+
+def _publish_locked_rename(tmp: Path, target: Path, lock_dir: Path) -> bool:
     """Rename ``tmp`` onto an absent ``target`` while holding a publish lock.
 
-    The lock lives in ``tmp``'s staging directory (the cache's ``tmp`` or a
-    checkout's ``.corpus-fetch-tmp``), named by a hash of ``target``, so a
-    killed publisher never leaves a file inside a scope; every writer of one
+    The lock lives in the staging directory (the cache's ``tmp`` or a
+    checkout's ``.corpus-fetch-tmp``), named by a hash of ``target``'s real,
+    case-folded path, so a killed publisher never leaves a file inside a scope
+    and two spellings of one target share one lock; every writer of one
     target stages in the same directory. The lock is held only for a check
-    and a rename, so one older than ``PUBLISH_LOCK_STALE_SECONDS`` (or dated
-    in the future), or one this process has waited on that long, belongs to a
-    process that died and is broken.
+    and a rename, so one older than ``PUBLISH_LOCK_STALE_SECONDS``, or one
+    this process has waited on that long (a lock dated in the future by a
+    skewed clock included), belongs to a process that died and is broken.
+    Two processes breaking the same stale lock at once can both rename; the
+    second then replaces the first's identical, verified bytes.
     """
-    key = hashlib.sha256(os.fsencode(os.path.abspath(target))).hexdigest()[:32]
-    lock = tmp.parent / f"{FETCH_TEMP_MARKER}lock-{key}"
+    lock = publish_lock_path(target, lock_dir)
     waited_since = time.monotonic()
     while True:
         try:
@@ -237,7 +248,7 @@ def _publish_locked_rename(tmp: Path, target: Path) -> bool:
             except FileNotFoundError:
                 continue
             if (
-                abs(age) > PUBLISH_LOCK_STALE_SECONDS
+                age > PUBLISH_LOCK_STALE_SECONDS
                 or time.monotonic() - waited_since > PUBLISH_LOCK_STALE_SECONDS
             ):
                 lock.unlink(missing_ok=True)
@@ -998,16 +1009,12 @@ def materialize(
 
     created_by_scope: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]] = {}
     failed_scopes: set[tuple[str, str, str]] = set()
-    expected: dict[tuple[str, str, str], int] = {}
-    finished: dict[tuple[str, str, str], int] = {}
-    for entry in entry_list:
-        scope = _sources_scope(entry)
-        if scope is not None:
-            expected[scope] = expected.get(scope, 0) + 1
     done = 0
 
     def record(
         result: tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None],
+        *,
+        notify: bool = True,
     ) -> None:
         nonlocal done
         entry, state, source, method, placed, error = result
@@ -1030,33 +1037,37 @@ def materialize(
             report.failed[entry.path] = error or "unknown error"
             if sources_scope is not None:
                 failed_scopes.add(sources_scope)
-        if sources_scope is not None and state != "failed":
-            finished[sources_scope] = finished.get(sources_scope, 0) + 1
-        if progress is not None:
+        if notify and progress is not None:
             progress(done, total)
 
     pool = ThreadPoolExecutor(max_workers=max(1, workers))
-    futures = [pool.submit(one, entry) for entry in entry_list]
-    recorded: set[int] = set()
+    futures: dict[Future[Any], LockEntry] = {}
+    recorded: set[Future[Any]] = set()
     try:
+        for entry in entry_list:
+            futures[pool.submit(one, entry)] = entry
         for future in as_completed(futures):
+            recorded.add(future)  # before record(): its progress call may raise
             record(future.result())
-            recorded.add(id(future))
     except BaseException:
-        # Interrupted (Ctrl-C): stop queued work, account for what finished,
-        # and leave no sources/ directory half fetched before re-raising.
+        # Interrupted (Ctrl-C, a broken progress pipe): stop queued work,
+        # account for every entry that did finish, and leave no sources/
+        # directory half fetched before re-raising. Completeness comes from
+        # the futures themselves, so nothing is counted twice.
         pool.shutdown(wait=True, cancel_futures=True)
-        for future in futures:
-            if (
-                id(future) not in recorded
-                and future.done()
-                and not future.cancelled()
-                and future.exception() is None
-            ):
-                record(future.result())
-        failed_scopes.update(
-            scope for scope in created_by_scope if finished.get(scope, 0) < expected.get(scope, 0)
-        )
+        incomplete: set[tuple[str, str, str]] = set()
+        for entry in entry_list[len(futures) :]:  # never submitted
+            if (scope := _sources_scope(entry)) is not None:
+                incomplete.add(scope)
+        for future, entry in futures.items():
+            finished_ok = future.done() and not future.cancelled() and future.exception() is None
+            if finished_ok and future not in recorded:
+                recorded.add(future)
+                record(future.result(), notify=False)
+            scope = _sources_scope(entry)
+            if scope is not None and (not finished_ok or future.result()[1] == "failed"):
+                incomplete.add(scope)
+        failed_scopes.update(incomplete)
         _roll_back(repo, report, created_by_scope, failed_scopes)
         raise
     pool.shutdown(wait=True)
