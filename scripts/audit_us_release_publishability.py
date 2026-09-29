@@ -39,9 +39,24 @@ def _paths(base: Path, jurisdiction: str, document_class: str, version: str) -> 
 
 
 def _exists(artifact_class: str, path: Path) -> bool:
+    # Corpus bytes may live outside git: a locked artifact exists even when
+    # this checkout has not fetched it (docs/corpus-storage.md).
+    if _locked_under(path):
+        return True
     if artifact_class == "sources":
         return path.is_dir() and any(candidate.is_file() for candidate in path.rglob("*"))
     return path.is_file()
+
+
+def _locked_under(path: Path) -> bool:
+    from axiom_corpus.corpus.resolver import find_repo_root, resolver_for
+
+    resolver = resolver_for(find_repo_root(path.parent if path.parent.exists() else None))
+    if resolver is None or not resolver.active:
+        return False
+    resolver.require_valid_locks()
+    rel = resolver.relative(path)
+    return rel is not None and bool(resolver.locks.entries_under(rel))
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:

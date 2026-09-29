@@ -8,6 +8,7 @@ copy-on-write clones of cache objects, never symlinks or hardlinks. See
 
 from __future__ import annotations
 
+import atexit
 import ctypes
 import ctypes.util
 import errno
@@ -21,21 +22,24 @@ import tempfile
 import threading
 from collections.abc import Callable, Iterable, Iterator
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from contextlib import closing
+from contextlib import closing, suppress
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Protocol
+from typing import IO, Any, Protocol
 
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
+    FETCH_TEMP_DIR,
+    FETCH_TEMP_MARKER,
     LockEntry,
-    iter_blob_contents,
+    scope_for_path,
 )
 
 CACHE_ENV = "AXIOM_CORPUS_CACHE"
 DEFAULT_CACHE_ROOT = Path.home() / ".axiom" / "corpus-cache"
 CHUNK_SIZE = 1 << 20
 _FICLONE = 0x40049409  # Linux ioctl: clone the source file's extents into the target.
+_NO_HARDLINK_ERRNOS = {errno.EPERM, errno.ENOTSUP, errno.EOPNOTSUPP, errno.EXDEV, errno.EMLINK}
 
 
 class ContentStoreError(RuntimeError):
@@ -101,14 +105,53 @@ def clone_file(source: Path, target: Path) -> str:
     return "copy"
 
 
+def publish_no_replace(tmp: Path, target: Path) -> bool:
+    """Give ``tmp``'s file the name ``target`` only if ``target`` does not exist.
+
+    Returns False, leaving ``target`` untouched, when something already exists
+    there. ``tmp`` is gone either way. ``link`` is the atomic create-if-absent
+    step; where the filesystem has no hardlinks, an exclusive create plus copy
+    keeps the no-replace guarantee (a reader that checks size and hash never
+    uses the partly written file).
+    """
+    try:
+        try:
+            os.link(tmp, target)
+            return True
+        except FileExistsError:
+            return False
+        except OSError as exc:
+            if exc.errno not in _NO_HARDLINK_ERRNOS:
+                raise
+        try:
+            fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+            return False
+        with os.fdopen(fd, "wb") as dst, tmp.open("rb") as src:
+            shutil.copyfileobj(src, dst, CHUNK_SIZE)
+            dst.flush()
+            os.fsync(dst.fileno())
+        os.chmod(target, tmp.stat().st_mode & 0o777)
+        return True
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 # --------------------------------------------------------------------------- cache
 
 
 class ContentCache:
-    """A directory of read-only objects named by the sha256 of their bytes."""
+    """A directory of read-only, write-once objects named by their sha256.
+
+    Objects are verified when written and again the first time this process
+    uses them, so a corrupted object is dropped rather than copied into every
+    checkout.
+    """
 
     def __init__(self, root: Path | None = None):
         self.root = (root or default_cache_root()).expanduser()
+        self._verified: set[str] = set()
+        self._verified_lock = threading.Lock()
 
     def object_path(self, sha256: str) -> Path:
         return self.root / content_key(sha256)
@@ -121,6 +164,30 @@ class ContentCache:
             return False
         return size is None or stat.st_size == size
 
+    def usable(self, sha256: str, size: int) -> bool:
+        """True when a complete object with bytes hashing to ``sha256`` is present.
+
+        The first use in this process hashes the object; a corrupt object is
+        removed so the caller refetches it.
+        """
+        if not self.contains(sha256, size):
+            return False
+        with self._verified_lock:
+            if sha256 in self._verified:
+                return True
+        if self.verify_object(sha256):
+            with self._verified_lock:
+                self._verified.add(sha256)
+            return True
+        self._discard(sha256)
+        return False
+
+    def _discard(self, sha256: str) -> None:
+        path = self.object_path(sha256)
+        with suppress(FileNotFoundError):
+            os.chmod(path, 0o644)
+            path.unlink()
+
     def _tmp_dir(self) -> Path:
         tmp = self.root / "tmp"
         tmp.mkdir(parents=True, exist_ok=True)
@@ -129,78 +196,80 @@ class ContentCache:
     def add_stream(self, chunks: Iterable[bytes], *, sha256: str, size: int) -> Path:
         """Write bytes into the cache after checking they hash to ``sha256``."""
         target = self.object_path(sha256)
-        if self.contains(sha256, size):
+        if self.usable(sha256, size):
+            _close(chunks)
             return target
         fd, tmp_name = tempfile.mkstemp(dir=self._tmp_dir(), prefix=f"{sha256[:12]}.")
         tmp = Path(tmp_name)
         try:
             write_verified(fd, chunks, sha256=sha256, size=size)
-            return self._publish(tmp, target)
+            return self._publish(tmp, target, sha256)
         finally:
             tmp.unlink(missing_ok=True)
 
     def add_file(self, path: Path, *, sha256: str | None = None, size: int | None = None) -> Path:
         """Clone a local file into the cache, verifying its bytes first."""
-        actual_sha, actual_size = _hash_path(path)
+        actual_sha, actual_size = hash_path(path)
         if sha256 is not None and (actual_sha, actual_size) != (sha256, size):
             raise ContentStoreError(
                 f"{path} hashes to {actual_sha} ({actual_size} bytes), "
                 f"expected {sha256} ({size} bytes)"
             )
         target = self.object_path(actual_sha)
-        if self.contains(actual_sha, actual_size):
+        if self.usable(actual_sha, actual_size):
             return target
         tmp = self._tmp_dir() / f"{actual_sha[:12]}.{os.getpid()}.{threading.get_ident()}"
         tmp.unlink(missing_ok=True)
         try:
             clone_file(path, tmp)
             # Re-hash the placed copy: the source could have changed after hashing.
-            if _hash_path(tmp) != (actual_sha, actual_size):
+            if hash_path(tmp) != (actual_sha, actual_size):
                 raise ContentStoreError(f"{path} changed while it was being cached")
-            return self._publish(tmp, target)
+            return self._publish(tmp, target, actual_sha)
         finally:
             tmp.unlink(missing_ok=True)
 
-    def _publish(self, tmp: Path, target: Path) -> Path:
+    def _publish(self, tmp: Path, target: Path, sha256: str) -> Path:
         """Publish a verified object once; never replace an existing one.
 
-        Replacing an object while another thread clones it made ``clonefile``
-        fail with ENOENT. ``link`` creates the name only if it is absent; the
-        losing writer holds the same verified bytes and discards them.
+        Replacing an object while another thread cloned it made ``clonefile``
+        fail with ENOENT. A losing writer holds the same verified bytes and
+        discards them.
         """
         os.chmod(tmp, 0o444)
         target.parent.mkdir(parents=True, exist_ok=True)
-        try:
-            os.link(tmp, target)
-        except FileExistsError:
-            pass
-        except OSError as exc:
-            if exc.errno not in {errno.EPERM, errno.ENOTSUP, errno.EOPNOTSUPP, errno.EXDEV}:
-                raise
-            # No hardlinks here: fall back to an atomic create-if-absent rename.
-            if not target.exists():
-                os.replace(tmp, target)
-        tmp.unlink(missing_ok=True)
+        if publish_no_replace(tmp, target):
+            with self._verified_lock:
+                self._verified.add(sha256)
         return target
 
     def verify_object(self, sha256: str) -> bool:
         path = self.object_path(sha256)
         if not path.is_file():
             return False
-        return _hash_path(path)[0] == sha256
+        return hash_path(path)[0] == sha256
+
+
+def _close(chunks: Iterable[bytes]) -> None:
+    close = getattr(chunks, "close", None)
+    if callable(close):
+        close()
 
 
 def write_verified(fd: int, chunks: Iterable[bytes], *, sha256: str, size: int) -> None:
     """Write ``chunks`` to ``fd`` (then close it); raise unless they hash to ``sha256``."""
     digest = hashlib.sha256()
     written = 0
-    with os.fdopen(fd, "wb") as handle:
-        for chunk in chunks:
-            digest.update(chunk)
-            written += len(chunk)
-            handle.write(chunk)
-        handle.flush()
-        os.fsync(handle.fileno())
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            for chunk in chunks:
+                digest.update(chunk)
+                written += len(chunk)
+                handle.write(chunk)
+            handle.flush()
+            os.fsync(handle.fileno())
+    finally:
+        _close(chunks)
     if written != size or digest.hexdigest() != sha256:
         raise ContentStoreError(
             f"refusing bytes for {sha256}: got sha256 {digest.hexdigest()} "
@@ -208,7 +277,7 @@ def write_verified(fd: int, chunks: Iterable[bytes], *, sha256: str, size: int) 
         )
 
 
-def _hash_path(path: Path) -> tuple[str, int]:
+def hash_path(path: Path) -> tuple[str, int]:
     digest = hashlib.sha256()
     size = 0
     with path.open("rb") as handle:
@@ -231,41 +300,76 @@ class ObjectSource(Protocol):
 
 
 class GitBlobSource:
-    """Serve migrated entries from the local git object store (no network)."""
+    """Serve migrated entries from the local git object store (no network).
+
+    One long-lived ``git cat-file --batch`` process answers every request;
+    ``GIT_NO_LAZY_FETCH`` keeps a partial clone from fetching missing objects.
+    """
 
     name = "git"
 
     def __init__(self, repo: Path):
         self.repo = repo
         self._lock = threading.Lock()
-        self._present: dict[str, bool] = {}
+        self._proc: subprocess.Popen[bytes] | None = None
 
-    def _has(self, oid: str) -> bool:
-        with self._lock:
-            cached = self._present.get(oid)
-        if cached is not None:
-            return cached
-        env = dict(os.environ, GIT_NO_LAZY_FETCH="1")
-        result = subprocess.run(
-            ["git", "cat-file", "-e", oid],
-            cwd=self.repo,
-            env=env,
-            capture_output=True,
-            check=False,
-        )
-        present = result.returncode == 0
-        with self._lock:
-            self._present[oid] = present
-        return present
+    def _process(self) -> subprocess.Popen[bytes]:
+        if self._proc is None or self._proc.poll() is not None:
+            env = dict(os.environ, GIT_NO_LAZY_FETCH="1")
+            self._proc = subprocess.Popen(
+                ["git", "cat-file", "--batch"],
+                cwd=self.repo,
+                env=env,
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+            )
+            atexit.register(self.close)
+        return self._proc
 
     def open(self, entry: LockEntry) -> Iterator[bytes] | None:
-        if entry.git_blob is None or not self._has(entry.git_blob):
+        if entry.git_blob is None:
             return None
-        return self._stream(entry.git_blob)
+        with self._lock:
+            proc = self._process()
+            assert proc.stdin is not None and proc.stdout is not None
+            proc.stdin.write(entry.git_blob.encode("ascii") + b"\n")
+            proc.stdin.flush()
+            header = proc.stdout.readline().split()
+            if len(header) == 2 and header[1] == b"missing":
+                return None
+            if len(header) != 3 or header[1] != b"blob":
+                self.close()
+                raise ContentStoreError(f"unexpected git cat-file reply for {entry.git_blob}")
+            data = _read_exact(proc.stdout, int(header[2]))
+            if proc.stdout.read(1) != b"\n":
+                self.close()
+                raise ContentStoreError(f"malformed git cat-file output for {entry.git_blob}")
+        return iter((data,))
 
-    def _stream(self, oid: str) -> Iterator[bytes]:
-        for _oid, chunks in iter_blob_contents(self.repo, [oid]):
-            yield from chunks
+    def close(self) -> None:
+        proc, self._proc = self._proc, None
+        if proc is None:
+            return
+        with suppress(OSError, ValueError):
+            if proc.stdin is not None:
+                proc.stdin.close()
+        with suppress(subprocess.TimeoutExpired):
+            proc.wait(timeout=5)
+        if proc.poll() is None:
+            proc.kill()
+
+
+def _read_exact(stream: IO[bytes], size: int) -> bytes:
+    parts: list[bytes] = []
+    left = size
+    while left:
+        chunk = stream.read(min(left, CHUNK_SIZE))
+        if not chunk:
+            raise ContentStoreError("truncated git cat-file output")
+        parts.append(chunk)
+        left -= len(chunk)
+    return b"".join(parts)
 
 
 class R2ObjectStore:
@@ -401,7 +505,7 @@ def ensure_cached(
     sources: Iterable[ObjectSource],
 ) -> tuple[Path, str]:
     """Return the cache path for ``entry``, filling it from the first source that has it."""
-    if cache.contains(entry.sha256, entry.size):
+    if cache.usable(entry.sha256, entry.size):
         return cache.object_path(entry.sha256), "cache"
     failures: list[str] = []
     for source in sources:
@@ -430,6 +534,7 @@ class FetchReport:
     materialized: list[str] = field(default_factory=list)
     modified: list[str] = field(default_factory=list)
     failed: dict[str, str] = field(default_factory=dict)
+    rolled_back: list[str] = field(default_factory=list)
     sources: dict[str, int] = field(default_factory=dict)
     methods: dict[str, int] = field(default_factory=dict)
     bytes_materialized: int = 0
@@ -446,6 +551,7 @@ class FetchReport:
             "bytes_materialized": self.bytes_materialized,
             "modified": sorted(self.modified),
             "failed": dict(sorted(self.failed.items())),
+            "rolled_back": sorted(self.rolled_back),
             "sources": dict(sorted(self.sources.items())),
             "methods": dict(sorted(self.methods.items())),
         }
@@ -472,9 +578,29 @@ def destination_state(target: Path, entry: LockEntry, *, verify: bool) -> str:
         return "modified"
     if stat.st_size != entry.size:
         return "modified"
-    if verify and _hash_path(target)[0] != entry.sha256:
+    if verify and hash_path(target)[0] != entry.sha256:
         return "modified"
     return "present"
+
+
+def _fetch_tmp(repo: Path, target: Path) -> Path:
+    """A temporary name for a file bound for ``target``: same filesystem, outside any scope."""
+    directory = repo / FETCH_TEMP_DIR
+    directory.mkdir(parents=True, exist_ok=True)
+    fd, name = tempfile.mkstemp(dir=directory, prefix=f"{FETCH_TEMP_MARKER}{target.name[:40]}.")
+    os.close(fd)
+    os.unlink(name)
+    return Path(name)
+
+
+def _place(tmp: Path, target: Path, *, replace: bool) -> bool:
+    """Move a verified temporary file into place; False if ``target`` appeared meanwhile."""
+    os.chmod(tmp, 0o644)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if replace:
+        os.replace(tmp, target)
+        return True
+    return publish_no_replace(tmp, target)
 
 
 def materialize_entry(
@@ -489,9 +615,12 @@ def materialize_entry(
     """Place one locked file in the worktree.
 
     Returns ``(state, source, method)`` where state is ``present``,
-    ``materialized`` or ``modified`` (left untouched). With ``cache=None`` the
-    verified bytes stream straight into place (for hosts without
-    copy-on-write clones, where a cache would double disk use).
+    ``materialized`` or ``modified`` (left untouched). A file that is missing
+    is only ever created, never replaced: if something writes it while the
+    bytes are on their way, that file wins and the entry reports
+    ``modified``. With ``cache=None`` the verified bytes stream straight into
+    place (hosts without copy-on-write clones, where a cache would double disk
+    use).
     """
     target = destination_for(repo, entry)
     state = destination_state(target, entry, verify=verify)
@@ -499,28 +628,24 @@ def materialize_entry(
         return "present", None, None
     if state == "modified" and not force:
         return "modified", None, None
-    if cache is None:
-        return "materialized", *_stream_into_place(target, entry, sources)
-    cached, source = ensure_cached(entry, cache, sources)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    tmp = target.with_name(f".{target.name}.corpus-fetch-{os.getpid()}-{threading.get_ident()}")
-    tmp.unlink(missing_ok=True)
+    replace = state == "modified"
+    tmp = _fetch_tmp(repo, target)
     try:
-        method = clone_file(cached, tmp)
-        os.chmod(tmp, 0o644)
-        if verify and _hash_path(tmp) != (entry.sha256, entry.size):
+        if cache is None:
+            source, method = _stream_to(tmp, entry, sources)
+        else:
+            cached, source = ensure_cached(entry, cache, sources)
+            method = clone_file(cached, tmp)
+        if verify and hash_path(tmp) != (entry.sha256, entry.size):
             raise ContentStoreError(f"placed copy of {entry.path} does not match its lock")
-        os.replace(tmp, target)
+        if not _place(tmp, target, replace=replace):
+            return "modified", None, None
     finally:
         tmp.unlink(missing_ok=True)
     return "materialized", source, method
 
 
-def _stream_into_place(
-    target: Path,
-    entry: LockEntry,
-    sources: Iterable[ObjectSource],
-) -> tuple[str, str]:
+def _stream_to(tmp: Path, entry: LockEntry, sources: Iterable[ObjectSource]) -> tuple[str, str]:
     failures: list[str] = []
     for source in sources:
         try:
@@ -530,18 +655,12 @@ def _stream_into_place(
             continue
         if chunks is None:
             continue
-        target.parent.mkdir(parents=True, exist_ok=True)
-        fd, tmp_name = tempfile.mkstemp(dir=target.parent, prefix=f".{target.name}.corpus-fetch-")
-        tmp = Path(tmp_name)
+        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
         try:
             write_verified(fd, chunks, sha256=entry.sha256, size=entry.size)
-            os.chmod(tmp, 0o644)
-            os.replace(tmp, target)
             return source.name, "stream"
         except ContentStoreError as exc:
             failures.append(f"{source.name}: {exc}")
-        finally:
-            tmp.unlink(missing_ok=True)
     detail = "; ".join(failures) if failures else "no source holds it"
     raise ContentStoreError(
         f"cannot obtain {entry.path} (sha256 {entry.sha256}, {entry.size} bytes): {detail}"
@@ -559,7 +678,13 @@ def materialize(
     workers: int = 8,
     progress: Callable[[int, int], None] | None = None,
 ) -> FetchReport:
-    """Materialize many entries; never raises for a single entry's failure."""
+    """Materialize many entries; never raises for a single entry's failure.
+
+    A scope's ``sources/`` directory stays all or nothing: when any of its
+    files fails, the files this call created in that directory are removed
+    again (``rolled_back``), because code lists that directory to find a
+    scope's sources.
+    """
     entry_list = list(entries)
     source_list = list(sources)
     report = FetchReport()
@@ -574,12 +699,15 @@ def materialize(
         except (ContentStoreError, OSError) as exc:
             return entry, "failed", None, None, str(exc)
 
+    created_by_scope: dict[tuple[str, str, str], list[LockEntry]] = {}
+    failed_scopes: set[tuple[str, str, str]] = set()
     done = 0
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
         futures = [pool.submit(one, entry) for entry in entry_list]
         for future in as_completed(futures):
             entry, state, source, method, error = future.result()
             done += 1
+            sources_scope = _sources_scope(entry)
             if state == "present":
                 report.present.append(entry.path)
             elif state == "modified":
@@ -591,13 +719,29 @@ def materialize(
                     report.sources[source] = report.sources.get(source, 0) + 1
                 if method:
                     report.methods[method] = report.methods.get(method, 0) + 1
+                if sources_scope is not None:
+                    created_by_scope.setdefault(sources_scope, []).append(entry)
             else:
                 report.failed[entry.path] = error or "unknown error"
+                if sources_scope is not None:
+                    failed_scopes.add(sources_scope)
             if progress is not None:
                 progress(done, total)
+    for scope in failed_scopes:
+        for entry in created_by_scope.get(scope, []):
+            (repo / entry.path).unlink(missing_ok=True)
+            report.materialized.remove(entry.path)
+            report.bytes_materialized -= entry.size
+            report.rolled_back.append(entry.path)
     report.present.sort()
     report.materialized.sort()
     return report
+
+
+def _sources_scope(entry: LockEntry) -> tuple[str, str, str] | None:
+    if not entry.path.startswith(f"{CORPUS_BASE}/sources/"):
+        return None
+    return scope_for_path(entry.path)
 
 
 def read_entry_bytes(
@@ -613,5 +757,7 @@ def read_entry_bytes(
         if len(payload) == entry.size and hashlib.sha256(payload).hexdigest() == entry.sha256:
             return payload
     cached, _source = ensure_cached(entry, cache, sources)
-    return cached.read_bytes()
-
+    payload = cached.read_bytes()
+    if len(payload) != entry.size or hashlib.sha256(payload).hexdigest() != entry.sha256:
+        raise ContentStoreError(f"cache object for {entry.path} changed while being read")
+    return payload

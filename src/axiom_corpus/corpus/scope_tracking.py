@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from axiom_corpus.corpus.corpus_locks import LockSet, load_locks
+from axiom_corpus.corpus.corpus_locks import LockSet, load_locks_from_index
 
 
 @dataclass(frozen=True)
@@ -38,7 +38,8 @@ def verify_scope_tracked(
     """Check scoped inventory and signed-manifest references against committed files."""
     repo = repo.resolve()
     tracked_paths = _git_cached_paths(repo)
-    locks = load_locks(repo)
+    # The staged locks, like the staged files, are what the next commit carries.
+    locks = load_locks_from_index(repo)
     locked_inventories = sorted(
         path
         for path in locks.by_path
@@ -111,17 +112,17 @@ def _locked_json_payloads(
     locks: LockSet,
     paths: list[str],
 ) -> dict[str, dict[str, Any]]:
-    """Read locked JSON artifacts, fetching any that this checkout lacks."""
+    """Read the locked bytes of JSON artifacts (hash-verified; fetched if absent)."""
     if not paths:
         return {}
-    from axiom_corpus.corpus.resolver import resolver_for
+    from axiom_corpus.corpus.content_store import read_entry_bytes
+    from axiom_corpus.corpus.resolver import CorpusResolver
 
-    resolver = resolver_for(repo)
-    if resolver is not None:
-        resolver.ensure([locks.by_path[path] for path in paths])
+    resolver = CorpusResolver(repo)
     payloads: dict[str, dict[str, Any]] = {}
     for path in paths:
-        payload = json.loads((repo / path).read_text())
+        raw = read_entry_bytes(repo, locks.by_path[path], resolver.cache, resolver.sources)
+        payload = json.loads(raw.decode("utf-8"))
         if not isinstance(payload, dict):
             raise ValueError(f"Expected a JSON object in {path}")
         payloads[path] = payload

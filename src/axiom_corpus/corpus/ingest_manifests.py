@@ -274,6 +274,9 @@ def guard_ingested_artifacts(
             protected_changes=(),
             issues=(f"Unable to read changed paths: {exc}",),
         )
+    if not base_ref:
+        # Worktree mode diffs against HEAD, which misses lock files never staged.
+        changes = changes + _untracked_lock_changes(repo)
     protected = tuple(path for path in changes if _is_protected_corpus_artifact(path.path))
     if not changes:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
@@ -289,9 +292,19 @@ def guard_ingested_artifacts(
             protected_changes=tuple(change.path for change in protected),
             issues=(str(exc),),
         )
+    # Changed paths come from ``base...head`` (the merge-base), so locks and
+    # base blobs are compared against the same commit.
+    try:
+        lock_baseline = _merge_base(repo, base_ref, head_ref or "HEAD") if base_ref else "HEAD"
+    except (subprocess.CalledProcessError, ValueError) as exc:
+        return IngestGuardResult(
+            repo=repo,
+            protected_changes=tuple(change.path for change in protected),
+            issues=(f"Unable to find the merge base of `{base_ref}` and the head: {exc}",),
+        )
     lock_check = _LockCheck.load(
         repo,
-        base_ref=baseline_ref,
+        base_ref=lock_baseline,
         head_ref=read_ref,
         changes=changes,
     )
@@ -613,7 +626,9 @@ class _LockCheck:
         for before, after in diff.changed:
             if before.content != after.content:
                 to_attest.append(after)
-            if after.git_blob is not None and after.git_blob != before.git_blob:
+            if after.git_blob is not None and (
+                after.git_blob != before.git_blob or after.content != before.content
+            ):
                 new_blob_refs.append(after)
         issues.extend(_git_blob_reference_issues(repo, new_blob_refs))
 
@@ -637,18 +652,50 @@ class _LockCheck:
 
 
 def _tracked_protected_paths(repo: Path, head_ref: str | None) -> list[str]:
-    prefixes = [prefix.rstrip("/") for prefix in PROTECTED_CORPUS_PREFIXES]
+    """Tracked paths under a protected prefix, compared case-insensitively.
+
+    On a case-insensitive filesystem ``data/corpus/Provisions/x`` lands on the
+    locked path, so every spelling counts.
+    """
     if head_ref:
-        return [blob.path for blob in list_tree_blobs(repo, head_ref, *prefixes)]
+        tracked = [blob.path for blob in list_tree_blobs(repo, head_ref, "data")]
+    else:
+        result = subprocess.run(
+            ["git", "ls-files", "-z", "--cached", "--", "data"],
+            cwd=repo,
+            check=True,
+            capture_output=True,
+        )
+        tracked = [os.fsdecode(raw) for raw in result.stdout.split(b"\0") if raw]
+    return sorted(path for path in tracked if _is_protected_corpus_artifact(path))
+
+
+def _untracked_lock_changes(repo: Path) -> tuple[_ChangedPath, ...]:
     result = subprocess.run(
-        ["git", "ls-files", "-z", "--cached", "--", *prefixes],
+        ["git", "ls-files", "-z", "--others", "--exclude-standard", "--", LOCK_ROOT.as_posix()],
         cwd=repo,
         check=True,
         capture_output=True,
     )
-    return sorted(
-        os.fsdecode(raw) for raw in result.stdout.split(b"\0") if raw
+    return tuple(
+        _ChangedPath(status="A", path=os.fsdecode(raw))
+        for raw in result.stdout.split(b"\0")
+        if raw
     )
+
+
+def _merge_base(repo: Path, base_ref: str, head_ref: str) -> str:
+    result = subprocess.run(
+        ["git", "merge-base", base_ref, head_ref],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    commit = result.stdout.strip()
+    if not _is_full_git_commit(commit):
+        raise ValueError(f"unexpected merge-base output {commit!r}")
+    return commit
 
 
 def _base_blobs(repo: Path, base_ref: str, paths: list[str]) -> dict[str, HashedBlob]:
@@ -689,6 +736,76 @@ def _git_blob_reference_issues(repo: Path, entries: list[LockEntry]) -> list[str
         elif present[oid] != entry.size or digests.get(oid) != entry.sha256:
             issues.append(f"`{entry.path}` names git_blob {oid}, whose bytes differ from the lock.")
     return issues
+
+
+def audit_lock_attestation(
+    repo: Path,
+    *,
+    ref: str = "HEAD",
+    public_key: str | None = None,
+) -> list[str]:
+    """Check every lock entry at ``ref``, not just the ones a diff changed.
+
+    An entry passes when a valid signed ingest manifest at ``ref`` attests its
+    path and sha256, or when its ``git_blob`` holds exactly its bytes and git
+    history reachable from ``ref`` tracked that blob at that path. The guard
+    checks lock changes against the base; this closes the gap for lock files
+    that reached a base the guard never checked.
+    """
+    repo = repo.resolve()
+    public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
+    if not public_key:
+        return [f"{INGEST_MANIFEST_PUBLIC_KEY_ENV} is required to audit corpus locks."]
+    locks = load_locks_at_ref(repo, ref)
+    issues = list(locks.errors)
+    if not locks:
+        return issues
+    manifests = _load_ingest_manifests(repo, ref=ref)
+    attestations: dict[str, list[tuple[Path, dict[str, Any]]]] = {}
+    for manifest_path, payload in manifests.items():
+        for entry in payload.get("applied_files", []):
+            if isinstance(entry, dict) and isinstance(entry.get("path"), str):
+                attestations.setdefault(entry["path"], []).append((manifest_path, entry))
+    verdicts: dict[Path, bool] = {}
+
+    def manifest_valid(manifest_path: Path) -> bool:
+        if manifest_path not in verdicts:
+            verdicts[manifest_path] = not verify_ingest_manifest(
+                manifests[manifest_path], public_key=public_key, repo=repo, head_ref=ref
+            )
+        return verdicts[manifest_path]
+
+    unattested: list[LockEntry] = []
+    for lock_entry in locks.entries():
+        attested = any(
+            entry.get("deleted") is not True
+            and entry.get("sha256") == lock_entry.sha256
+            and manifest_valid(manifest_path)
+            for manifest_path, entry in attestations.get(lock_entry.path, [])
+        )
+        if not attested:
+            unattested.append(lock_entry)
+    with_blob = [entry for entry in unattested if entry.git_blob]
+    issues.extend(
+        f"`{entry.path}` has neither a signed ingest manifest nor a git blob attesting it."
+        for entry in unattested
+        if not entry.git_blob
+    )
+    issues.extend(_git_blob_reference_issues(repo, with_blob))
+    for entry in with_blob:
+        history = subprocess.run(
+            ["git", "log", "-1", "--format=%H", f"--find-object={entry.git_blob}", ref, "--", entry.path],
+            cwd=repo,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if not history.stdout.strip():
+            issues.append(
+                f"`{entry.path}` names git_blob {entry.git_blob}, which no commit reachable "
+                f"from `{ref}` tracked at that path."
+            )
+    return list(dict.fromkeys(issues))
 
 
 def sha256_file(path: Path) -> str:
@@ -1104,7 +1221,8 @@ def _changed_paths(
 
 
 def _is_protected_corpus_artifact(path: str) -> bool:
-    return any(path.startswith(prefix) for prefix in PROTECTED_CORPUS_PREFIXES)
+    lowered = path.lower()
+    return any(lowered.startswith(prefix) for prefix in PROTECTED_CORPUS_PREFIXES)
 
 
 def _git_metadata(repo: Path) -> dict[str, Any]:

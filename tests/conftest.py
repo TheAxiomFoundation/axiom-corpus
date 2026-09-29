@@ -7,11 +7,12 @@ and names the command that fetches them (``axiom-corpus-ingest corpus fetch
 --all``; on APFS the fetched files are clones that share the cache's disk
 blocks).
 
-``AXIOM_CORPUS_PARTIAL_TESTS=1`` runs on a partly fetched checkout instead. An
-audit hook then records every attempt to open a locked file that is absent and
-fails the session, naming the files, so a test cannot pass or skip on data it
-never read. The hook only sees this interpreter; tests that read corpus files
-from a subprocess fail on their own when the file is absent.
+``AXIOM_CORPUS_PARTIAL_TESTS=1`` runs on a partly fetched checkout instead, for
+test runs that do not read corpus data (the PostgreSQL job) or deliberate
+subsets. An audit hook then fails the session, naming the files, if a test
+tries to open a locked file that is absent. The hook sees only ``open`` in
+this interpreter: a test that checks ``exists()``, lists a directory, or reads
+from a subprocess is not caught, so real runs use the full tree.
 """
 
 from __future__ import annotations
@@ -49,6 +50,8 @@ def pytest_sessionstart(session: pytest.Session) -> None:
     from axiom_corpus.corpus.corpus_locks import load_locks
 
     locks = load_locks(REPO_ROOT)
+    if locks.errors:
+        pytest.exit("corpus lock files are invalid: " + "; ".join(locks.errors[:5]), returncode=2)
     if not locks:
         return
     _locked = frozenset(locks.by_path)
@@ -76,3 +79,18 @@ def pytest_sessionfinish(session: pytest.Session, exitstatus: int) -> None:
         file=sys.stderr,
     )
     session.exitstatus = pytest.ExitCode.TESTS_FAILED
+
+
+@pytest.fixture(autouse=True)
+def _no_real_corpus_remote(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Tests never reach the real R2 bucket through the corpus fetch path.
+
+    Tests that exercise R2 pass an in-memory client explicitly; the resolver's
+    default sources would otherwise read the developer's credentials.
+    """
+    from axiom_corpus.corpus import content_store
+
+    def refuse(cls: type, **_kwargs: object) -> object:
+        raise RuntimeError("R2 is disabled in tests")
+
+    monkeypatch.setattr(content_store.R2ObjectStore, "from_environment", classmethod(refuse))

@@ -134,6 +134,8 @@ from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.resolver import (
     CorpusNotMaterializedError,
+    _is_corpus_base,
+    cli_repo,
     materialize_cli_inputs,
     require_materialized,
 )
@@ -361,7 +363,10 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
                 [(args.jurisdiction, args.document_class, args.version)],
                 cache=ContentCache(),
                 push=args.push,
-                drop_missing=bool(deleted_files),
+                deleted=[
+                    (path if path.is_absolute() else repo / path).resolve().relative_to(repo).as_posix()
+                    for path in deleted_files
+                ],
             )
         except (corpus_cli.LockRefusedError, FileNotFoundError) as exc:
             print(f"corpus lock: {exc}", file=sys.stderr)
@@ -7734,6 +7739,11 @@ def build_parser() -> argparse.ArgumentParser:
     # choices themselves (parsing, errors, per-command --help) are untouched.
     getattr(sub, "_choices_actions", []).clear()
 
+    # Mark every subcommand under a private attribute: a subcommand's own
+    # --command flag (sign-ingest-manifest) overwrites args.command.
+    for name, subparser in sub.choices.items():
+        if "_cli_command" not in subparser._defaults:
+            subparser.set_defaults(_cli_command=name)
     return parser
 
 
@@ -7769,23 +7779,24 @@ _SCOPE_INPUT_COMMANDS = frozenset(
 # outside git they refuse to run on a partly fetched tree rather than report on
 # a subset.
 _CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
-    "analytics": ("provisions", "coverage"),
+    "analytics": ("inventory", "provisions", "coverage"),
     "artifact-report": ("sources", "inventory", "provisions", "coverage"),
     "snapshot-provision-counts": ("provisions",),
 }
 
 
-def _corpus_wide_prefixes(args: argparse.Namespace) -> list[Path]:
-    classes = _CORPUS_WIDE_COMMANDS.get(args.command)
+def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
+    classes = _CORPUS_WIDE_COMMANDS.get(command)
     base = getattr(args, "base", None)
-    if not classes or base is None or Path(base).as_posix().rstrip("/") != "data/corpus":
+    repo = cli_repo(args)
+    if not classes or base is None or repo is None or not _is_corpus_base(repo, base):
         return []
     if getattr(args, "release", None) or getattr(args, "release_scope", None):
         return []  # release scopes are fetched by materialize_cli_inputs
     raw = getattr(args, "jurisdiction", None)
     jurisdictions = [raw] if isinstance(raw, str) else list(raw or [])
     return [
-        Path(base) / artifact_class / jurisdiction
+        repo / "data" / "corpus" / artifact_class / jurisdiction
         for artifact_class in classes
         for jurisdiction in (jurisdictions or [""])
     ]
@@ -7794,13 +7805,16 @@ def _corpus_wide_prefixes(args: argparse.Namespace) -> list[Path]:
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
-    if args.command not in _NO_AUTO_FETCH_COMMANDS:
+    # Some subcommands define their own --command flag, which overwrites
+    # args.command; the parser marks each subcommand under a private name.
+    command = getattr(args, "_cli_command", args.command)
+    if command not in _NO_AUTO_FETCH_COMMANDS:
         try:
             materialize_cli_inputs(
                 args,
-                include_scope=args.command in _SCOPE_INPUT_COMMANDS,
+                include_scope=command in _SCOPE_INPUT_COMMANDS,
             )
-            prefixes = _corpus_wide_prefixes(args)
+            prefixes = _corpus_wide_prefixes(args, command)
             if prefixes:
                 require_materialized(prefixes)
         except CorpusNotMaterializedError as exc:

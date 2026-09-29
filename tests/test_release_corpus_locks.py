@@ -36,6 +36,20 @@ def _entry(path: str, data: bytes) -> LockEntry:
     return LockEntry(path, hashlib.sha256(data).hexdigest(), len(data))
 
 
+@pytest.fixture(autouse=True)
+def no_real_r2(monkeypatch, tmp_path: Path):
+    """Keep tests off the developer's R2 credentials and shared cache."""
+    from axiom_corpus.corpus import content_store
+    from axiom_corpus.corpus import resolver as resolver_module
+
+    def refuse(cls, **_kwargs):
+        raise RuntimeError("R2 is disabled in tests")
+
+    monkeypatch.setattr(content_store.R2ObjectStore, "from_environment", classmethod(refuse))
+    monkeypatch.setenv("AXIOM_CORPUS_CACHE", str(tmp_path / "default-cache"))
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+
+
 @pytest.fixture
 def locked_repo(tmp_path: Path) -> tuple[Path, ReleaseManifest]:
     repo = tmp_path / "repo"
@@ -112,5 +126,6 @@ def test_scope_tracking_flags_a_reference_to_an_unlocked_source(locked_repo) -> 
     files["data/corpus/inventory/nz/statute/v1.json"] = inventory
     (repo / "data/corpus/inventory/nz/statute/v1.json").write_bytes(inventory)
     write_lock(repo, CorpusLock.from_entries(SCOPE, [_entry(p, d) for p, d in files.items()]))
+    _git(repo, "add", ".axiom")  # scope tracking reads staged locks
     result = verify_scope_tracked(repo=repo)
     assert result.missing_paths == ("data/corpus/sources/nz/statute/v1/missing.html",)

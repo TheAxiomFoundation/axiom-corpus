@@ -8,10 +8,14 @@ pins every protected file of the scope by repository path, sha256 and size. See
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
+import os
 import re
 import subprocess
+import tempfile
+import unicodedata
 from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -30,6 +34,11 @@ SINGLE_FILE_SUFFIXES = {
     "provisions": ".jsonl",
     "coverage": ".json",
 }
+
+# Fetch writes its temporary files under this directory (git-ignored, never
+# inside a scope), and names them with this marker.
+FETCH_TEMP_DIR = f"{CORPUS_BASE}/.corpus-fetch-tmp"
+FETCH_TEMP_MARKER = ".corpus-fetch-"
 
 _SCOPE_COMPONENT_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -252,9 +261,15 @@ def write_lock(repo: Path, lock: CorpusLock) -> Path:
     """Write one lock file atomically; return its absolute path."""
     target = repo / lock.relative_path
     target.parent.mkdir(parents=True, exist_ok=True)
-    tmp = target.with_name(f".{target.name}.tmp")
-    tmp.write_bytes(serialize_lock(lock))
-    tmp.replace(target)
+    fd, tmp_name = tempfile.mkstemp(dir=target.parent, prefix=f".{target.name}.")
+    tmp = Path(tmp_name)
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(serialize_lock(lock))
+        os.chmod(tmp, 0o644)
+        os.replace(tmp, target)
+    finally:
+        tmp.unlink(missing_ok=True)
     return target
 
 
@@ -353,6 +368,29 @@ def load_locks(repo: Path) -> LockSet:
     return _lock_set_from_payloads(payloads)
 
 
+def load_locks_from_index(repo: Path) -> LockSet:
+    """Load the lock files staged in git's index (what the next commit carries)."""
+    result = subprocess.run(
+        ["git", "ls-files", "-s", "-z", "--", LOCK_ROOT.as_posix()],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    )
+    staged: list[tuple[str, str]] = []
+    for record in result.stdout.split(b"\0"):
+        if not record:
+            continue
+        meta, raw_path = record.split(b"\t", 1)
+        _mode, raw_oid, _stage = meta.split()
+        staged.append(
+            (raw_path.decode("utf-8", errors="surrogateescape"), raw_oid.decode("ascii"))
+        )
+    by_oid: dict[str, bytes] = {}
+    for blob_oid, chunks in iter_blob_contents(repo, sorted({oid for _path, oid in staged})):
+        by_oid[blob_oid] = b"".join(chunks)
+    return _lock_set_from_payloads({path: by_oid[oid] for path, oid in staged})
+
+
 def load_locks_at_ref(repo: Path, ref: str) -> LockSet:
     """Load every lock file from a git tree without touching the worktree."""
     payloads = read_tree_blobs(repo, ref, LOCK_ROOT.as_posix())
@@ -446,12 +484,16 @@ def iter_blob_contents(repo: Path, oids: Iterable[str]) -> Iterator[tuple[str, I
         try:
             for oid in oid_list:
                 proc.stdin.write(oid.encode("ascii") + b"\n")
+        except BrokenPipeError:
+            pass  # the reader stopped early and closed the process
         finally:
-            proc.stdin.close()
+            with contextlib.suppress(BrokenPipeError):
+                proc.stdin.close()
 
     feeder = threading.Thread(target=feed, daemon=True)
     feeder.start()
     stdout = proc.stdout
+    completed = False
     try:
         for oid in oid_list:
             header = stdout.readline().split()
@@ -474,10 +516,13 @@ def iter_blob_contents(repo: Path, oids: Iterable[str]) -> Iterator[tuple[str, I
                 pass
             if stdout.read(1) != b"\n":
                 raise LockFormatError(f"malformed git cat-file output after {oid}")
+        completed = True
     finally:
         stdout.close()
-        proc.wait()
+        returncode = proc.wait()
         feeder.join(timeout=5)
+    if completed and returncode != 0:
+        raise LockFormatError(f"git cat-file --batch exited with status {returncode}")
 
 
 def read_tree_blobs(repo: Path, ref: str, *pathspecs: str) -> dict[str, bytes]:
@@ -559,16 +604,35 @@ def scope_files_in_worktree(repo: Path, scope: ScopeKey) -> list[Path]:
     base = repo / CORPUS_BASE
     files: list[Path] = []
     source_root = base / "sources" / jurisdiction / document_class / version
+    _refuse_symlinked_ancestors(repo, source_root)
     if source_root.is_dir():
-        files.extend(path for path in source_root.rglob("*") if path.is_file())
+        for directory, dirnames, filenames in os.walk(source_root, followlinks=False):
+            for name in dirnames:
+                if (Path(directory) / name).is_symlink():
+                    raise LockFormatError(f"refusing to lock through a symlink: {Path(directory) / name}")
+            files.extend(Path(directory) / name for name in filenames)
     for artifact_class, suffix in SINGLE_FILE_SUFFIXES.items():
         path = base / artifact_class / jurisdiction / document_class / f"{version}{suffix}"
-        if path.is_file():
+        _refuse_symlinked_ancestors(repo, path)
+        if path.exists() or path.is_symlink():
             files.append(path)
     for path in files:
-        if path.is_symlink():
-            raise LockFormatError(f"refusing to lock a symlink: {path}")
+        if path.is_symlink() or not path.is_file():
+            raise LockFormatError(f"refusing to lock a symlink or non-regular file: {path}")
+        if FETCH_TEMP_MARKER in path.name:
+            raise LockFormatError(
+                f"refusing to lock an interrupted fetch's temporary file: {path}; delete it"
+            )
     return sorted(files)
+
+
+def _refuse_symlinked_ancestors(repo: Path, path: Path) -> None:
+    """Refuse a path whose directories (below ``repo``) include a symlink."""
+    lexical = repo
+    for part in path.relative_to(repo).parts:
+        lexical = lexical / part
+        if lexical.is_symlink():
+            raise LockFormatError(f"refusing to lock through a symlink: {lexical}")
 
 
 def lock_from_worktree(
@@ -633,9 +697,9 @@ def _validate_corpus_path(path: object) -> None:
         path.startswith("/")
         or "\\" in path
         or "\0" in path
-        or not path.isascii()
+        or unicodedata.normalize("NFC", path) != path
         or any(part in {"", ".", ".."} for part in path.split("/"))
-        or any(ord(ch) < 0x20 or ord(ch) == 0x7F for ch in path)
+        or any(unicodedata.category(ch).startswith("C") for ch in path)
     ):
         raise LockFormatError(f"lock entry path is not a canonical repository path: {path!r}")
     if not is_protected_corpus_path(path):

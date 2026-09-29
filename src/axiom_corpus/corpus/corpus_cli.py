@@ -29,8 +29,10 @@ from axiom_corpus.corpus.content_store import (
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
     LOCK_ROOT,
+    PROTECTED_CORPUS_PREFIXES,
     CorpusLock,
     LockEntry,
+    LockFormatError,
     LockSet,
     ScopeKey,
     diff_lock_sets,
@@ -154,6 +156,15 @@ def register(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
     common(verify)
     verify.add_argument("--ref", help="Read lock files from this git ref instead of the worktree.")
     verify.add_argument("--remote", action="store_true")
+    verify.add_argument(
+        "--attest",
+        action="store_true",
+        help=(
+            "Require every lock entry to be attested by a valid signed ingest manifest "
+            "or by a git blob that history tracked at that path (reads "
+            "AXIOM_CORPUS_INGEST_PUBLIC_KEY)."
+        ),
+    )
     verify.add_argument("--changed-since", metavar="REF")
     verify.add_argument("--workers", type=int, default=32)
     verify.set_defaults(func=_cmd_verify)
@@ -407,14 +418,23 @@ def lock_scopes(
     push: bool = False,
     workers: int = 16,
     drop_missing: bool = False,
+    deleted: Iterable[str] = (),
 ) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
     """Write each scope's lock from its worktree files and cache their bytes.
 
     A scope whose current lock lists files that are absent from the worktree is
-    refused unless ``drop_missing``: an unfetched file and a deleted file look
-    the same on disk, and only the caller knows which it is.
+    refused unless every absent file is named in ``deleted`` (or
+    ``drop_missing``): an unfetched file and a deleted file look the same on
+    disk, and only the caller knows which it is. Malformed lock files refuse
+    everything, since the current lock of a scope is then unknown.
     """
     existing = load_locks(repo)
+    if existing.errors:
+        raise LockRefusedError(
+            "corpus lock files are invalid; fix them before locking: "
+            + "; ".join(existing.errors[:5])
+        )
+    deleted_paths = set(deleted)
     written: list[dict[str, Any]] = []
     new_entries: list[LockEntry] = []
     for scope in scopes:
@@ -424,12 +444,14 @@ def lock_scopes(
                 entry.path
                 for entry in previous.files
                 if destination_state(repo / entry.path, entry, verify=False) == "missing"
+                and entry.path not in deleted_paths
             ]
             if absent:
                 raise LockRefusedError(
                     f"{len(absent)} locked file(s) of {'/'.join(scope)} are not in the "
-                    f"worktree (first: {absent[0]}). Fetch the scope first, or pass "
-                    "--drop-missing if they were deleted on purpose."
+                    f"worktree (first: {absent[0]}). Fetch the scope first, or name "
+                    "deliberate deletions (--deleted-file when signing, --drop-missing "
+                    "for corpus lock)."
                 )
         lock = lock_from_worktree(repo, scope, previous=previous)
         for entry in lock.files:
@@ -495,7 +517,7 @@ def _cmd_lock(args: argparse.Namespace) -> int:
             workers=args.workers,
             drop_missing=args.drop_missing,
         )
-    except (LockRefusedError, FileNotFoundError) as exc:
+    except (LockRefusedError, FileNotFoundError, LockFormatError, ContentStoreError, OSError) as exc:
         print(f"corpus lock: {exc}", file=sys.stderr)
         return 2
     _emit(args, {"locks": written, "push": pushed}, lock_summary_lines(written, pushed))
@@ -617,9 +639,17 @@ def _cmd_verify(args: argparse.Namespace) -> int:
             for p_entry in entries
             if p_entry.sha256 in absent
         )
+    attest_issues: list[str] = []
+    if args.attest:
+        from axiom_corpus.corpus.ingest_manifests import audit_lock_attestation
+
+        attest_issues = audit_lock_attestation(repo, ref=args.ref or "HEAD")
+        problems.extend(attest_issues)
     payload = {
         "lock_files": len(locks.locks),
         "entries_checked": len(entries),
+        "attest_checked": bool(args.attest),
+        "attest_issues": attest_issues,
         "remote_checked": bool(args.remote),
         "remote_missing": remote_missing,
         "problems": problems,
@@ -640,6 +670,10 @@ def _cmd_verify(args: argparse.Namespace) -> int:
 
 def _cmd_migrate(args: argparse.Namespace) -> int:
     repo = _repo(args)
+    refusal = _migrate_refusal(repo, args.ref, dry_run=args.dry_run)
+    if refusal:
+        print(f"corpus migrate: {refusal}", file=sys.stderr)
+        return 2
     blobs = protected_tree_blobs(repo, args.ref)
     if not blobs:
         _emit(args, {"migrated": 0}, ["No tracked protected corpus files; nothing to migrate."])
@@ -702,6 +736,39 @@ def _cmd_migrate(args: argparse.Namespace) -> int:
         )
     _emit(args, summary, lines)
     return 0
+
+
+def _migrate_refusal(repo: Path, ref: str, *, dry_run: bool) -> str | None:
+    """Why migrating now would lose work, or None.
+
+    The locks are built from the tree at ``ref`` while the removal edits the
+    index, so both must agree: ``ref`` is HEAD, and no protected path has
+    staged or unstaged changes (otherwise an edit would silently leave version
+    control).
+    """
+    def git(*args: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True, check=False)
+
+    head = git("rev-parse", "HEAD").stdout.strip()
+    target = git("rev-parse", f"{ref}^{{commit}}").stdout.strip()
+    if not target:
+        return f"cannot resolve {ref}"
+    if target != head and not dry_run:
+        return f"{ref} is not HEAD; check it out first (or use --dry-run)"
+    prefixes = [prefix.rstrip("/") for prefix in PROTECTED_CORPUS_PREFIXES]
+    if dry_run:
+        return None
+    for label, extra in (("staged", ["--cached"]), ("unstaged", [])):
+        diff = git("diff", "--name-only", *extra, "HEAD", "--", *prefixes)
+        if diff.returncode != 0:
+            return f"cannot read {label} changes: {diff.stderr.strip()}"
+        changed = [line for line in diff.stdout.splitlines() if line]
+        if changed:
+            return (
+                f"{len(changed)} protected corpus file(s) have {label} changes (first: "
+                f"{changed[0]}); commit or restore them before migrating"
+            )
+    return None
 
 
 def _untrack(repo: Path, paths: list[str]) -> None:

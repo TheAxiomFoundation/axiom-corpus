@@ -142,6 +142,17 @@ jobs:
             axiom-corpus-ingest corpus verify --remote
           fi
 
+      - name: Audit every corpus lock entry's attestation
+        # The guard checks lock changes against the base; this checks every
+        # entry, so no lock can rest on a base the guard never saw. No-op
+        # without lock files.
+        run: |
+          if [ -d .axiom/corpus-locks ]; then
+            axiom-corpus-ingest corpus verify --attest
+          else
+            echo "No corpus lock files; corpus bytes are tracked in git."
+          fi
+
       - name: Fetch the corpus the tests read
         # Tests read real corpus data (often whole release selectors), and
         # tests/conftest.py stops the session if any locked file is absent.
@@ -260,12 +271,16 @@ jobs:
       - name: Test atomic named-release migration in PostgreSQL
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+          # Database-only tests: they read no corpus files, so this job skips the
+          # corpus fetch (tests/conftest.py).
+          AXIOM_CORPUS_PARTIAL_TESTS: "1"
         run: |
           pytest -v tests/test_atomic_release_postgres.py
 
       - name: Test work queue claims in PostgreSQL
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+          AXIOM_CORPUS_PARTIAL_TESTS: "1"
         run: |
           pytest -v tests/test_ops_work_queue_postgres.py
 

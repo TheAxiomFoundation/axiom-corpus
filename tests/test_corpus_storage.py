@@ -560,27 +560,40 @@ def test_resolver_raises_when_bytes_are_unavailable(tmp_path: Path) -> None:
         resolver.ensure_scopes([SCOPE])
 
 
-def test_cli_inputs_name_paths_selectors_and_optional_scopes() -> None:
+def test_cli_inputs_name_paths_selectors_and_optional_scopes(tmp_path: Path, monkeypatch) -> None:
     import argparse
 
+    repo = _init_repo(tmp_path / "repo")
+    monkeypatch.chdir(repo)
     args = argparse.Namespace(
         base=Path("data/corpus"),
         jurisdiction="nz",
         document_class="statute",
         version="v1",
         provisions=Path("data/corpus/provisions/nz/statute/v1.jsonl"),
-        source_dir="./data/corpus/sources/nz/statute/v1/raw",
+        source_dir=str(repo / "data/corpus/sources/nz/statute/v1/raw"),
         release="manifests/releases/x.json",
         output=Path("out.json"),
+        # sign-ingest-manifest's free-text --command lands on args.command.
+        command="uv run x --source-dir data/corpus/sources/nz/statute/v1",
         func=None,
     )
-    paths, scopes, selectors = corpus_inputs_from_args(args)
+    paths, scopes, selectors = corpus_inputs_from_args(args, repo=repo)
     assert paths == [
         "data/corpus/provisions/nz/statute/v1.jsonl",
         "data/corpus/sources/nz/statute/v1/raw",
     ]
     assert scopes == [("nz", "statute", "v1")]
     assert selectors == [Path("manifests/releases/x.json")]
+
+    elsewhere = tmp_path / "elsewhere"
+    elsewhere.mkdir()
+    monkeypatch.chdir(elsewhere)
+    args.base = repo / "data" / "corpus"  # absolute, from another directory
+    args.provisions = repo / "data/corpus/provisions/nz/statute/v1.jsonl"
+    paths, scopes, _selectors = corpus_inputs_from_args(args, repo=repo)
+    assert "data/corpus/provisions/nz/statute/v1.jsonl" in paths
+    assert scopes == [("nz", "statute", "v1")]
 
 
 def test_read_entry_bytes_prefers_a_matching_worktree_file(tmp_path: Path) -> None:
