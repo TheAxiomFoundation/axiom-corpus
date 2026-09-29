@@ -2296,5 +2296,68 @@ def test_a_heading_inserted_before_the_parts_stops_the_parse() -> None:
         '<h3 class="law-subsection mw-html-heading">כותרת נוספת</h3>\n'
         '        <h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_1">',
     )
-    with pytest.raises(ValueError, match="is heading 2 of its schedule, not heading 1"):
+    with pytest.raises(ValueError, match="printed as part 1 \\(ordinal 1\\) but is heading 2"):
         parse_israel_openlaw_html(html, source=_health_source(expected_sign_count=3))
+
+
+def _lettered_parts_html() -> str:
+    return HEALTH_HTML.replace("תוספת_2_חלק_1", "תוספת_2_חלק_א").replace(
+        "תוספת_2_חלק_2", "תוספת_2_חלק_ב"
+    )
+
+
+def test_lettered_parts_hang_under_their_part_and_keep_their_letter() -> None:
+    provisions = {
+        item.citation_path: item
+        for item in parse_israel_openlaw_html(_lettered_parts_html(), source=_health_source())
+    }
+    first = provisions[f"{HEALTH_LAW}/schedule-2/sign-1/item-1"]
+    assert first.metadata["schedule_part_identifier"] == "א"
+    assert (
+        provisions[f"{HEALTH_LAW}/schedule-2/sign-2/item-1"].metadata["schedule_part_identifier"]
+        == "ב"
+    )
+
+
+def test_a_lettered_part_out_of_position_stops_the_parse() -> None:
+    html = _lettered_parts_html().replace(
+        '<h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_א">',
+        '<h3 class="law-subsection mw-html-heading">כותרת נוספת</h3>\n'
+        '        <h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_א">',
+    )
+    with pytest.raises(ValueError, match="printed as part א \\(ordinal 1\\) but is heading 2"):
+        parse_israel_openlaw_html(html, source=_health_source(expected_sign_count=3))
+
+
+def test_a_part_identifier_that_is_not_an_ordinal_stops_the_parse() -> None:
+    html = HEALTH_HTML.replace("תוספת_2_חלק_2", "תוספת_2_חלק_1א")
+    with pytest.raises(ValueError, match="not a plain number or Hebrew ordinal letter"):
+        parse_israel_openlaw_html(html, source=_health_source())
+
+
+def test_plain_items_of_a_schedule_with_no_heading_follow_a_parted_schedule() -> None:
+    """No caption resets the open <h3> here: only the new schedule's <h2> does."""
+    html = HEALTH_HTML.replace(
+        """      </div>
+    </div>
+  </body>""",
+        """        <h2 class="law-section mw-html-heading" id="תוספת_3">תוספת שלישית</h2>
+        <div class="law-number tc_ selflink" id="תוספת_3_פרט_1"><a href="#x">1</a>.</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> שירותי אשפוז
+        </div></div>
+        <div class="law-cleaner"></div>
+      </div>
+    </div>
+  </body>""",
+    )
+    provisions = {
+        item.citation_path: item
+        for item in parse_israel_openlaw_html(
+            html,
+            source=_health_source(expected_schedule_item_count=4, expected_schedule_count=2),
+        )
+    }
+    item = provisions[f"{HEALTH_LAW}/schedule-3/item-1"]
+    assert item.parent_citation_path == f"{HEALTH_LAW}/schedule-3"

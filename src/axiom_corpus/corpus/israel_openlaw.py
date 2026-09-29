@@ -1305,11 +1305,20 @@ def _parse_fragment(
                     # parts (a caption, say) must stop the parse rather than move
                     # every part's items to a different citation path.
                     part_position = state.sign_headings[open_sign[0]][2]
-                    if part_ident.isdigit() and int(part_ident) != part_position:
+                    printed_ordinal = _schedule_part_ordinal(part_ident)
+                    if printed_ordinal is None:
                         raise ValueError(
                             f"Israel source {source.source_id} schedule part {part_anchor!r} "
-                            f"is heading {part_position} of its schedule, not heading "
-                            f"{part_ident}: its items would not be cited as part {part_ident}"
+                            f"has identifier {part_ident!r}, which is not a plain number or "
+                            "Hebrew ordinal letter, so its heading position cannot be checked"
+                        )
+                    if printed_ordinal != part_position:
+                        raise ValueError(
+                            f"Israel source {source.source_id} schedule part {part_anchor!r} "
+                            f"is printed as part {part_ident} (ordinal {printed_ordinal}) but is "
+                            f"heading {part_position} of its schedule: a heading was added, "
+                            "removed or reordered before it, and its items would be cited "
+                            f"under sign-{part_position}"
                         )
                     parent_path, parent_level = open_sign
                     part_metadata = {
@@ -2050,6 +2059,16 @@ def _render_text(raw: str) -> str:
         if line or not compacted or compacted[-1]:
             compacted.append(line)
     return "\n".join(compacted)
+
+
+def _schedule_part_ordinal(ident: str) -> int | None:
+    """The ordinal a printed schedule-part identifier names: "1" -> 1, "א" -> 1,
+    "ג" -> 3.  None for anything else ("2א", a pointed letter)."""
+    if re.fullmatch(r"[0-9]+", ident):
+        return int(ident)
+    if re.fullmatch(r"[א-ת]+", ident):
+        return hebrew_numeral_value(ident)
+    return None
 
 
 def _opens_numbered_section(node: Tag, classes: Sequence[str]) -> bool:
