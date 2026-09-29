@@ -15,8 +15,8 @@ the § 11-1704.1 14% additional tax on the same schedule. Every US release selec
 carries NYC Administrative Code text selects that stale scope. That includes
 `us-rulespec-2026-08-08-obbb-alien-snap`, which rulespec-us pins, and its successor
 `us-rulespec-2026-09-24-snap-fy2027-cola`. The encoder reads provision text only from the
-pinned signed release, so the #1438 re-encode cannot start until a release carries the
-amended text.
+pinned signed release, so until a pinned release carries the amended text the #1438
+re-encode would encode the pre-amendment text.
 
 ## Official source and access
 
@@ -58,8 +58,10 @@ session law follows.
 ## Cross-check against the session law
 
 A.11561 as passed, <https://legislation.nysenate.gov/pdf/bills/2025/A11561>, fetched on
-2026-09-28: 13 pages, SHA-256
-`52179cd4bea441c790c5aed2c49cdcae959a66d3569bfde9e3e374e0e4bf6d34`. Part D § 6 (page 8,
+2026-09-28: 13 pages. The server stamps a new trailer `/ID` into the PDF on every request,
+so its byte hash is not reproducible. Its text is: `pdftotext` (poppler 26.09) output has
+SHA-256 `484b9c13f6d503ad74751189cbad9cf00f5941b35fd3dc34fe6a10c1b23cb60c`, and an
+independent reviewer's fetch gave the same hash. Part D § 6 (page 8,
 line 48 to page 9, line 6) amends the § 11-1701 opening paragraph. § 7 (page 9, line 7
 to page 10, line 8) re-enacts § 11-1701(b). § 8 (page 10, lines 9-23) amends
 § 11-1704.1(a)(1). A word-level diff of each new body against the 2026-06-05 body finds
@@ -89,12 +91,24 @@ only these changes:
     - (ii) 2007 through 2025: 100% to 23%;
     - (iii) from 2026: 100% to 23%, then 23% down to 15% between $1,000,000 and
       $1,250,000 of city taxable income.
+  - The 2026-06-05 text had only one schedule, (i), open-ended from 1997, at 65% to 15%.
+    So the corpus text for 2007 through 2025 changes too. This note does not establish
+    whether Local Law 133 added (ii) or the June capture lacked it.
+  - (iii)(III) reads "If the city taxable income is $142,000 but less than $1,000,000",
+    without the "or greater" that (ii)(III) and (iii)(V) carry. The publisher's HTML reads
+    the same, so this is the source text, not an extraction error.
   - The amounts are now written in numerals ("$42,000", "65 percent") where the old text
     spelled them out.
   - Nothing else in the section changed.
 
 In § 11-1701 the phrases "two thousand twenty-six" and "two thousand twenty-seven" no longer
-appear. `tests/test_us_ny_nyc_admin_code_ch127.py` pins every change listed above.
+appear. `tests/test_us_ny_nyc_admin_code_ch127.py` pins:
+
+- the exact word-level diff of §§ 11-1701 and 11-1704.1 against the 2026-06-05 text. This
+  also shows that subdivision (a) is unchanged.
+- the rows of the three (b) tables.
+- for § 11-1706: that every changed line lies in (c)(2)(A) or the history note, the three
+  schedule headers, and the (iii)(III) and (iii)(V) wording.
 
 ## Scope
 
@@ -106,7 +120,8 @@ appear. `tests/test_us_ny_nyc_admin_code_ch127.py` pins every change listed abov
 - Coverage is complete: 3 sources, 3 provisions, 0 missing, 0 extra.
 
 `expression_date` follows the adapter default and the 2026-06-05 scope's convention, which
-is the capture date. The text has been in force since chapter 127 took effect on 2026-06-05.
+is the capture date. The §§ 11-1701 and 11-1704.1 text has been in force since chapter 127
+took effect on 2026-06-05.
 The 2026-06-05 scope already uses that date for the unamended text, however, so reusing it
 here would give the same expression date to two different texts.
 
@@ -117,7 +132,7 @@ never emitted a `us-ny/statute/NYC` row. Release validation rejects that as
 `missing_parent_citation`. Commit 3b6989cf2 ("Repair local release-artifact debt") removed
 the dangling links from the 2026-06-05 artifacts but did not fix the adapter. A fresh
 extraction therefore reproduced the defect. The adapter now leaves the parent unset,
-which is the shape of the 2026-06-05 rows. The existing unit test asserts it.
+which is the shape of the 2026-06-05 rows. The unit test now asserts it.
 
 GitNexus impact analysis could not run. Its index reports a storage-version mismatch:
 database file version 42, build storage version 40. Callers were checked by hand with
@@ -189,8 +204,9 @@ uv run --extra dev axiom-corpus-ingest sign-ingest-manifest --repo . --base data
   - byte-identical re-extraction from the retained HTML;
   - source hashes against the inventory;
   - the row shape;
-  - each chapter 127 change in §§ 11-1701 and 11-1704.1;
-  - the Local Law 133 text in § 11-1706;
+  - the exact word diff of §§ 11-1701 and 11-1704.1 against the 2026-06-05 text, and the
+    (b) table rows;
+  - that § 11-1706 changes only in (c)(2)(A) and the history note;
   - that the 2026-06-05 scope still has the pre-amendment text.
 - `scripts/validate_citation_paths.py`: OK.
 
