@@ -169,6 +169,32 @@ documents:
         URL: payments at 80% of the weekly minimum wage for a claimant injured
         before turning 18. Statutory base is Accident Compensation Act 2001
         schedule 1 part 2 clause 47.
+  - source_id: nz-acc-client-payment-rates-2025-04
+    jurisdiction: nz
+    document_class: guidance
+    title: ACC — Changes to client payments from 1 April 2025
+    source_url: https://www.acc.co.nz/newsroom/stories/changes-to-client-payments-from-1-april-2025
+    source_format: html
+    source_as_of: '2026-08-16'
+    citation_path: nz/guidance/acc/client-payment-rates-2025-04
+    metadata:
+      primary_source: true
+      source_authority: Accident Compensation Corporation
+      source_family: acc
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official ACC notice (27 March 2025) of the client payment rates
+        applying from 1 April 2025: gross minimum weekly compensation for a
+        full-time earner $752.00, stated as 80% of the adult minimum wage of
+        $940.00 for a forty-hour week. Grounds the 2025 value of
+        acc_weekly_minimum_wage_40_hour_week (rulespec-nz#106). Statutory
+        base is Accident Compensation Act 2001 schedule 1 clauses 32(3)
+        (80% of weekly earnings) and 42(3) (minimum weekly earnings for
+        full-time earners), with the adult minimum wage set by the Minimum
+        Wage Order 2025; s 115(1)(a) expressly excludes this minimum-rate
+        compensation from indexation. Page re-resolved and content-verified
+        2026-08-16; plain-HTTP fetch returns a script stub, rendered
+        content verified in a browser.
   - source_id: nz-acc-client-payment-rates-2026-04
     jurisdiction: nz
     document_class: guidance
