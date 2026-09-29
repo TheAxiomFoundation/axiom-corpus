@@ -119,8 +119,10 @@ jobs:
         # The guard checks lock changes against the base; this checks every
         # entry against signed manifests and the base branch's first-parent
         # history. Like the guard, it runs the verifier installed from the
-        # base commit, so a pull request cannot loosen its own audit. No-op
-        # without lock files.
+        # base commit, so a pull request cannot change the verifier's code
+        # (this workflow file itself still comes from the pull request, so
+        # review of workflow changes stays the trust root). No-op without
+        # lock files.
         env:
           AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
         run: |

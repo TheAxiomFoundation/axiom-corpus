@@ -165,13 +165,17 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
     temporary file beside ``target``. The caller removes ``tmp`` afterwards if
     it still exists.
     """
+    return _publish(tmp, target, allow_sibling=True)
+
+
+def _publish(tmp: Path, target: Path, *, allow_sibling: bool) -> bool:
     try:
         os.link(tmp, target)
         return True
     except FileExistsError:
         return False
     except OSError as exc:
-        if exc.errno == errno.EXDEV:
+        if exc.errno == errno.EXDEV and allow_sibling:
             return _publish_via_sibling(tmp, target)
         if exc.errno not in _NO_HARDLINK_ERRNOS:
             raise
@@ -181,7 +185,7 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
             return True
         if err == errno.EEXIST:
             return False
-        if err == errno.EXDEV:
+        if err == errno.EXDEV and allow_sibling:
             return _publish_via_sibling(tmp, target)
         if err not in {errno.ENOTSUP, errno.EOPNOTSUPP, errno.EINVAL, errno.ENOSYS}:
             raise OSError(err, os.strerror(err), str(target))
@@ -200,7 +204,8 @@ def _publish_via_sibling(tmp: Path, target: Path) -> bool:
             dst.flush()
             os.fsync(dst.fileno())
         os.chmod(sibling, tmp.stat().st_mode & 0o777)
-        return publish_no_replace(sibling, target)
+        # The sibling shares target's directory, so this cannot hit EXDEV again.
+        return _publish(sibling, target, allow_sibling=False)
     finally:
         sibling.unlink(missing_ok=True)
 
@@ -211,10 +216,17 @@ PUBLISH_LOCK_STALE_SECONDS = 30.0
 def _publish_locked_rename(tmp: Path, target: Path) -> bool:
     """Rename ``tmp`` onto an absent ``target`` while holding a publish lock.
 
-    The lock is held only for a check and a rename, so one older than
-    ``PUBLISH_LOCK_STALE_SECONDS`` belongs to a process that died.
+    The lock lives in ``tmp``'s staging directory (the cache's ``tmp`` or a
+    checkout's ``.corpus-fetch-tmp``), named by a hash of ``target``, so a
+    killed publisher never leaves a file inside a scope; every writer of one
+    target stages in the same directory. The lock is held only for a check
+    and a rename, so one older than ``PUBLISH_LOCK_STALE_SECONDS`` (or dated
+    in the future), or one this process has waited on that long, belongs to a
+    process that died and is broken.
     """
-    lock = target.parent / f".{target.name}{FETCH_TEMP_MARKER}lock"
+    key = hashlib.sha256(os.fsencode(os.path.abspath(target))).hexdigest()[:32]
+    lock = tmp.parent / f"{FETCH_TEMP_MARKER}lock-{key}"
+    waited_since = time.monotonic()
     while True:
         try:
             os.close(os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600))
@@ -224,8 +236,12 @@ def _publish_locked_rename(tmp: Path, target: Path) -> bool:
                 age = time.time() - lock.stat().st_mtime
             except FileNotFoundError:
                 continue
-            if age > PUBLISH_LOCK_STALE_SECONDS:
+            if (
+                abs(age) > PUBLISH_LOCK_STALE_SECONDS
+                or time.monotonic() - waited_since > PUBLISH_LOCK_STALE_SECONDS
+            ):
                 lock.unlink(missing_ok=True)
+                waited_since = time.monotonic()
             else:
                 time.sleep(0.01)
     try:
@@ -908,6 +924,44 @@ def _stream_to(tmp: Path, entry: LockEntry, sources: Iterable[ObjectSource]) -> 
     )
 
 
+def _roll_back(
+    repo: Path,
+    report: FetchReport,
+    created_by_scope: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]],
+    failed_scopes: set[tuple[str, str, str]],
+) -> None:
+    """Remove the files this call placed in each failed scope's ``sources/`` directory."""
+    undone: set[str] = set()
+    for scope in failed_scopes:
+        for entry, placed in created_by_scope.get(scope, []):
+            undone.add(entry.path)
+            report.bytes_materialized -= entry.size
+            target = repo / entry.path
+            try:
+                current = _identity(target)
+            except FileNotFoundError:
+                continue
+            # Remove only the file this call placed, still holding the locked
+            # bytes; anything written over it since (an extractor, another
+            # fetch) stays. The content check covers an in-place rewrite of
+            # the same size within one coarse timestamp tick.
+            try:
+                still_ours = (
+                    placed is not None
+                    and current == placed
+                    and hash_path(target) == (entry.sha256, entry.size)
+                )
+            except FileNotFoundError:
+                continue  # someone removed it meanwhile
+            if still_ours:
+                target.unlink(missing_ok=True)
+                report.rolled_back.append(entry.path)
+            else:
+                report.modified.append(entry.path)
+    if undone:
+        report.materialized = [path for path in report.materialized if path not in undone]
+
+
 def materialize(
     repo: Path,
     entries: Iterable[LockEntry],
@@ -944,57 +998,69 @@ def materialize(
 
     created_by_scope: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]] = {}
     failed_scopes: set[tuple[str, str, str]] = set()
+    expected: dict[tuple[str, str, str], int] = {}
+    finished: dict[tuple[str, str, str], int] = {}
+    for entry in entry_list:
+        scope = _sources_scope(entry)
+        if scope is not None:
+            expected[scope] = expected.get(scope, 0) + 1
     done = 0
-    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
-        futures = [pool.submit(one, entry) for entry in entry_list]
+
+    def record(
+        result: tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None],
+    ) -> None:
+        nonlocal done
+        entry, state, source, method, placed, error = result
+        done += 1
+        sources_scope = _sources_scope(entry)
+        if state == "present":
+            report.present.append(entry.path)
+        elif state == "modified":
+            report.modified.append(entry.path)
+        elif state == "materialized":
+            report.materialized.append(entry.path)
+            report.bytes_materialized += entry.size
+            if source:
+                report.sources[source] = report.sources.get(source, 0) + 1
+            if method:
+                report.methods[method] = report.methods.get(method, 0) + 1
+            if sources_scope is not None:
+                created_by_scope.setdefault(sources_scope, []).append((entry, placed))
+        else:
+            report.failed[entry.path] = error or "unknown error"
+            if sources_scope is not None:
+                failed_scopes.add(sources_scope)
+        if sources_scope is not None and state != "failed":
+            finished[sources_scope] = finished.get(sources_scope, 0) + 1
+        if progress is not None:
+            progress(done, total)
+
+    pool = ThreadPoolExecutor(max_workers=max(1, workers))
+    futures = [pool.submit(one, entry) for entry in entry_list]
+    recorded: set[int] = set()
+    try:
         for future in as_completed(futures):
-            entry, state, source, method, placed, error = future.result()
-            done += 1
-            sources_scope = _sources_scope(entry)
-            if state == "present":
-                report.present.append(entry.path)
-            elif state == "modified":
-                report.modified.append(entry.path)
-            elif state == "materialized":
-                report.materialized.append(entry.path)
-                report.bytes_materialized += entry.size
-                if source:
-                    report.sources[source] = report.sources.get(source, 0) + 1
-                if method:
-                    report.methods[method] = report.methods.get(method, 0) + 1
-                if sources_scope is not None:
-                    created_by_scope.setdefault(sources_scope, []).append((entry, placed))
-            else:
-                report.failed[entry.path] = error or "unknown error"
-                if sources_scope is not None:
-                    failed_scopes.add(sources_scope)
-            if progress is not None:
-                progress(done, total)
-    undone: set[str] = set()
-    for scope in failed_scopes:
-        for entry, placed in created_by_scope.get(scope, []):
-            undone.add(entry.path)
-            report.bytes_materialized -= entry.size
-            target = repo / entry.path
-            try:
-                current = _identity(target)
-            except FileNotFoundError:
-                continue
-            # Remove only the file this call placed, still holding the locked
-            # bytes; anything written over it since (an extractor, another
-            # fetch) stays. The content check covers an in-place rewrite of
-            # the same size within one coarse timestamp tick.
+            record(future.result())
+            recorded.add(id(future))
+    except BaseException:
+        # Interrupted (Ctrl-C): stop queued work, account for what finished,
+        # and leave no sources/ directory half fetched before re-raising.
+        pool.shutdown(wait=True, cancel_futures=True)
+        for future in futures:
             if (
-                placed is not None
-                and current == placed
-                and hash_path(target) == (entry.sha256, entry.size)
+                id(future) not in recorded
+                and future.done()
+                and not future.cancelled()
+                and future.exception() is None
             ):
-                target.unlink(missing_ok=True)
-                report.rolled_back.append(entry.path)
-            else:
-                report.modified.append(entry.path)
-    if undone:
-        report.materialized = [path for path in report.materialized if path not in undone]
+                record(future.result())
+        failed_scopes.update(
+            scope for scope in created_by_scope if finished.get(scope, 0) < expected.get(scope, 0)
+        )
+        _roll_back(repo, report, created_by_scope, failed_scopes)
+        raise
+    pool.shutdown(wait=True)
+    _roll_back(repo, report, created_by_scope, failed_scopes)
     report.present.sort()
     report.materialized.sort()
     return report

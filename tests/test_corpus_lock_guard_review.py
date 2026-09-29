@@ -706,3 +706,102 @@ def test_signing_refuses_hidden_source_files_even_without_lock(repo: Path) -> No
             version=SCOPE[2],
             command="x",
         )
+
+
+# =========================================================================== round 4
+
+
+def test_a_submodule_under_the_lock_root_is_a_lock_error(repo: Path, tmp_path: Path) -> None:
+    """Round 4: a gitlink under .axiom/corpus-locks passed the guard and the audit."""
+    from axiom_corpus.corpus.corpus_locks import (
+        load_locks,
+        load_locks_at_ref,
+        load_locks_from_index,
+    )
+
+    private, public = _keys()
+    base = _ingest(repo, private)
+    other = tmp_path / "other"
+    other.mkdir()
+    _git(other, "init", "-q", "-b", "main")
+    _git(other, "config", "user.email", "t@example.com")
+    _git(other, "config", "user.name", "T")
+    (other / "README").write_text("x\n")
+    _git(other, "add", "README")
+    _git(other, "commit", "-q", "-m", "x")
+    commit = _git(other, "rev-parse", "HEAD")
+    _git(repo, "update-index", "--add", "--cacheinfo", f"160000,{commit},.axiom/corpus-locks/zz")
+    assert any("not a regular file" in error for error in load_locks_from_index(repo).errors)
+    _git(repo, "commit", "-q", "-m", "gitlink under the lock root")
+    assert any("submodule" in error for error in load_locks_at_ref(repo, "HEAD").errors)
+    assert not _guard(repo, base, public).passed
+    assert audit_lock_attestation(repo, ref="HEAD", public_key=public)
+    # A checked-out submodule in the worktree is refused too.
+    nested = repo / ".axiom/corpus-locks/zz"
+    nested.mkdir(exist_ok=True)
+    (nested / ".git").write_text(f"gitdir: {other}/.git\n")
+    assert any("nested git" in error for error in load_locks(repo).errors)
+
+
+def test_a_symlinked_lock_file_is_a_lock_error(repo: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    link = repo / ".axiom/corpus-locks/nz/statute/link.json"
+    link.symlink_to(repo / lock_path_for_scope(SCOPE))
+    assert any("symlink" in error for error in load_locks(repo).errors)
+
+
+@pytest.mark.parametrize(
+    "spelling",
+    [
+        "data/corpu‌s/provisions/nz/statute/2026-07-11.jsonl",  # ZWNJ: HFS+ ignores it
+        "data/corpus/provısions/nz/statute/2026-07-11.jsonl",  # dotless i: NTFS upcases to I
+        "data/corpus/provisions﻿/nz/statute/2026-07-11.jsonl",  # BOM
+    ],
+    ids=["zwnj", "dotless-i", "bom"],
+)
+def test_ignorable_and_dotless_spellings_are_protected(repo: Path, spelling: str) -> None:
+    """Round 4: fold_path kept format characters and the dotless i."""
+    from axiom_corpus.corpus.corpus_locks import lands_on_lock_root, lands_on_protected_path
+
+    assert lands_on_protected_path(spelling)
+    assert lands_on_lock_root(".axiom/corpus‌-locks/x.json")
+    private, public = _keys()
+    base = _ingest(repo, private)
+    _stage_blob(repo, spelling, b'{"citation_path":"nz/statute/unsigned"}\n')
+    _git(repo, "commit", "-q", "-m", "unsigned bytes under an ignorable spelling")
+    assert not _guard(repo, base, public).passed
+
+
+def test_the_audit_flags_a_variant_lock_root_already_on_main(repo: Path) -> None:
+    """Round 4 nit: a variant-spelled lock already on main was never reported again."""
+    private, public = _keys()
+    _ingest(repo, private)
+    _stage_blob(repo, ".AXIOM/corpus-locks/zz/statute/v1.json", b"{}\n")
+    _git(repo, "commit", "-q", "-m", "variant lock root")
+    issues = audit_lock_attestation(repo, ref="HEAD", public_key=public)
+    assert any("another spelling" in issue for issue in issues)
+
+
+def test_the_citation_script_skips_hidden_lock_files(tmp_path: Path, monkeypatch) -> None:
+    """Round 4 nit: the stdlib loader crashed on an AppleDouble ._x.json."""
+    import importlib.util
+
+    path = Path(__file__).resolve().parents[1] / "scripts" / "validate_citation_paths.py"
+    spec = importlib.util.spec_from_file_location("validate_citation_paths", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    root = tmp_path / "repo"
+    lock_dir = root / ".axiom/corpus-locks/nz/statute"
+    lock_dir.mkdir(parents=True)
+    (lock_dir / "._v1.json").write_bytes(b"\x00\x05\x16\x07binary AppleDouble")
+    (lock_dir / "v1.json").write_text(
+        json.dumps({"files": [{"path": "data/corpus/provisions/nz/statute/v1.jsonl"}]})
+    )
+    monkeypatch.setattr(module, "REPO_ROOT", root)
+    provisions = root / "data/corpus/provisions"
+    provisions.mkdir(parents=True)
+    assert module.unfetched_locked_provisions(provisions) == ["data/corpus/provisions/nz/statute/v1.jsonl"]

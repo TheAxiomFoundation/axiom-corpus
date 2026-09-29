@@ -78,9 +78,12 @@ cache, checks sha256 and size, and publishes the object with `link(2)`, which
 succeeds only if the object is absent. On a filesystem without hardlinks it
 renames with no-replace semantics instead (`renamex_np(RENAME_EXCL)` on macOS,
 `renameat2(RENAME_NOREPLACE)` on Linux). Where neither exists (exFAT, some
-network filesystems), it takes an exclusive publish lock beside the object,
-checks the object is still absent, and renames; a lock older than 30 s
-belongs to a dead process and is broken. Every path gives a complete file its
+network filesystems), it takes an exclusive publish lock in the staging
+directory (named by a hash of the object's path), checks the object is still
+absent, and renames. A lock older than 30 s, dated in the future, or waited on
+for 30 s belongs to a dead process and is broken; two processes breaking the
+same stale lock at once could both rename, and the second replaces the first
+with identical verified bytes. Every path gives a complete file its
 final name in one step, so no reader ever sees partial bytes under an object's
 name, and objects are write-once: no writer replaces an object another
 process is cloning.
@@ -135,7 +138,10 @@ have no copy-on-write clones, so a cache would double disk use.
 Bytes on their way into a checkout wait in `data/corpus/.corpus-fetch-tmp/`,
 on the same filesystem but outside every scope, so an interrupted fetch never
 leaves a file that `corpus lock` or signing would pick up (`corpus lock`
-refuses any leftover `.corpus-fetch-` file it finds in a scope). The next fetch
+refuses any leftover `.corpus-fetch-` file it finds in a scope). Publish locks
+live there too. The one file a fetch may leave inside a scope is the hidden
+copy it makes beside a target when the staging directory is on another
+filesystem (`EXDEV`), if the process is killed during that copy. The next fetch
 deletes temporaries that came into existence more than a day ago, judged by
 ctime: a clone keeps the cache object's old mtime.
 
@@ -235,17 +241,23 @@ mode, lock files not yet staged are checked too:
 - **One representation.** Once `H` has lock files, no protected path may be
   tracked in git at `H` in any spelling a case- and normalization-insensitive
   filesystem merges: `DATA/corpus/…`, `data/corpus/Provisions/…` and
-  `data/corpuſ/…` (long s) all land on the locked path on APFS. The guard
-  folds every tracked path with full Unicode case folding and NFKC (git
-  pathspecs match case-sensitively) and also counts a tracked file or symlink
-  standing in for a protected directory (`data/corpus/provisions`). It names
+  `data/corpuſ/…` (long s) all land on the locked path on APFS, and HFS+
+  also ignores format characters such as a zero-width non-joiner. The guard
+  drops format characters, applies full Unicode case mapping, case folding
+  and NFKC to every tracked path (git pathspecs match case-sensitively), and
+  also counts a tracked file or symlink standing in for a protected directory
+  (`data/corpus/provisions`). That covers every merged spelling we know of; a
+  filesystem with another folding rule could add more. It names
   each such path the diff adds or changes, and reports any already tracked
   at `H` in one message.
 - **One lock directory.** A tracked file under another spelling of
-  `.axiom/corpus-locks` (`.AXIOM/corpus-locks/…`) fails the guard: git and
-  the guard see a different path, but a case-insensitive worktree reads it as
-  the lock directory. The worktree loader refuses a lock directory spelled
-  any other way on disk.
+  `.axiom/corpus-locks` (`.AXIOM/corpus-locks/…`) fails the guard and the
+  audit: git and the guard see a different path, but a case-insensitive
+  worktree reads it as the lock directory. The worktree loader refuses a lock
+  directory spelled any other way on disk. Anything under the lock directory
+  that is not a regular file (a submodule, a symlink) is a lock error at every
+  ref, in the index and in the worktree: a submodule's locks would otherwise
+  appear only after `git submodule update`, unread by any guard.
 - **Moved files.** A protected path tracked at `B` and untracked at `H`
   passes when a lock at `H` carries the base blob's sha256 and size (and, when
   the entry names one, its blob id); otherwise a signed manifest must mark it
@@ -279,8 +291,11 @@ direct push or rebase merge would enter that history unchecked.
 Without `--ref`, `--attest` audits `HEAD` and fails if the worktree's lock
 files differ from it. CI runs the audit whenever lock files exist. On pull
 requests it uses the verifier installed from the base commit, as the guard
-does, so a pull request cannot loosen the audit that judges it; the one
-exception is the pull request that adds the audit, whose base has none. Push
+does, so a pull request cannot change the verifier's code; the one exception
+is the pull request that adds the audit, whose base has none. The workflow
+file itself runs as the pull request has it, so a pull request that edits
+`.github/workflows/ci.yml` could skip either step: review of workflow changes
+(and the admins who can merge past checks) remain the trust root. Push
 and scheduled runs audit a branch commit with that commit's own code. The
 guard's lock rules run when a change touches lock files or protected paths;
 the audit covers every entry on every run. At `dbb69efb` signed ingest
@@ -444,19 +459,21 @@ exactly those 1,362 files.
    no such collision.
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
-(1), the partition (2), byte fidelity, create-only placement and whole
-`sources/` directories (4), write-once objects (5), idempotence (6), no links
-(7) and portable names (9); 3 on real git trees. `tests/test_corpus_lock_guard.py`
+(1), the partition (2), byte fidelity (4), objects that hash to their names
+and are read-only (5), idempotence (6), no links (7) and portable names (9,
+with a differential test against a brute-force reference); 3 on real git
+trees. `tests/test_corpus_lock_guard.py`
 checks 8, including tampered locks. The concurrency and failure clauses of 4
 and 5 are pinned by regression tests instead: `tests/test_corpus_storage_review.py`
 and `tests/test_corpus_lock_guard_review.py` hold one test per reproduced
-review finding, each named after it. They cover concurrent writes during
+review finding, each named after it, including create-only placement, whole
+`sources/` directories and write-once publication under concurrency. They cover concurrent writes during
 fetch and rollback, concurrent and cross-device publication, interrupted and
 failing streams, corrupt and truncated cache objects, partial source
 directories, planted and laundered locks, merged spellings of protected paths
 and of the lock directory, stale bases, unstaged, malformed and conflicted
-locks, and signing after a deletion. Reverting each fix in turn fails at
-least one of them. One known gap has no test: the partial-test audit hook's
+locks, and signing after a deletion. Each of the fixes we reverted one at a
+time (22 in round 3, 19 in round 4) fails at least one of them. One known gap has no test: the partial-test audit hook's
 blind spots, described under Tests and CI.
 
 ## Alternatives considered

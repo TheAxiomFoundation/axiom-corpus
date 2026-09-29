@@ -816,6 +816,19 @@ def audit_lock_attestation(
         return [f"{INGEST_MANIFEST_PUBLIC_KEY_ENV} is required to audit corpus locks."]
     locks = load_locks_at_ref(repo, ref)
     issues = list(locks.errors)
+    # A lock file under another spelling of the lock root is read as a lock on
+    # case-insensitive checkouts but never by the guard; flag any already there.
+    tracked = subprocess.run(
+        ["git", "ls-tree", "-r", "--name-only", "-z", ref],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    ).stdout.split(b"\0")
+    issues.extend(
+        f"`{path}` is a lock file under another spelling of `{LOCK_ROOT.as_posix()}`."
+        for path in (raw.decode("utf-8", errors="surrogateescape") for raw in tracked if raw)
+        if lands_on_lock_root(path) and not path.startswith(f"{LOCK_ROOT.as_posix()}/")
+    )
     if not locks:
         return issues
     manifests = _load_ingest_manifests(repo, ref=ref)

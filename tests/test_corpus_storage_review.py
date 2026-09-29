@@ -556,7 +556,8 @@ def test_locked_rename_publication_never_exposes_partial_or_mixed_bytes(
 def test_a_stale_publish_lock_is_broken(tmp_path: Path, monkeypatch) -> None:
     _no_links_no_noreplace(monkeypatch)
     target = tmp_path / "object"
-    lock = tmp_path / f".{target.name}.corpus-fetch-lock"
+    key = content_store.hashlib.sha256(os.fsencode(os.path.abspath(target))).hexdigest()[:32]
+    lock = tmp_path / f"{content_store.FETCH_TEMP_MARKER}lock-{key}"
     lock.write_bytes(b"")
     old = content_store.time.time() - 2 * content_store.PUBLISH_LOCK_STALE_SECONDS
     os.utime(lock, (old, old))
@@ -1059,7 +1060,7 @@ def test_ensure_names_a_directory_squatting_on_a_locked_path(tmp_path: Path) -> 
     squatter = repo / "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
     squatter.mkdir(parents=True)
     resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
-    with pytest.raises(CorpusNotMaterializedError):
+    with pytest.raises(CorpusNotMaterializedError, match="are directories in this checkout"):
         resolver.ensure_scopes([SCOPE])
 
 
@@ -1078,3 +1079,154 @@ def test_an_unexpected_placement_error_fails_only_that_entry(tmp_path: Path, mon
     assert set(report.failed) == {victim}
     assert "RuntimeError" in report.failed[victim]
     assert len(report.materialized) == len(FILES) - 1
+
+
+# =========================================================================== round 4
+
+
+def test_the_publish_lock_never_lands_inside_a_scope(tmp_path: Path, monkeypatch) -> None:
+    """Round 4: a killed publisher left `.<name>.corpus-fetch-lock` in sources/."""
+    _no_links_no_noreplace(monkeypatch)
+    staging = tmp_path / "staging"
+    staging.mkdir()
+    scope_dir = tmp_path / "data/corpus/sources/nz/statute/v1"
+    scope_dir.mkdir(parents=True)
+    created = []
+    real_open = os.open
+
+    def spy_open(path, flags, *args):
+        if flags & os.O_EXCL:
+            created.append(Path(path))
+        return real_open(path, flags, *args)
+
+    monkeypatch.setattr(content_store.os, "open", spy_open)
+    tmp = staging / "tmp"
+    tmp.write_bytes(b"bytes")
+    assert publish_no_replace(tmp, scope_dir / "act.html")
+    assert created and all(path.parent == staging for path in created)
+    assert sorted(p.name for p in scope_dir.iterdir()) == ["act.html"]
+
+
+def test_a_publish_lock_dated_in_the_future_is_broken(tmp_path: Path, monkeypatch) -> None:
+    """Round 4: a lock with a future mtime made the wait spin forever."""
+    _no_links_no_noreplace(monkeypatch)
+    monkeypatch.setattr(content_store, "PUBLISH_LOCK_STALE_SECONDS", 0.5)
+    target = tmp_path / "object"
+    tmp = tmp_path / "tmp"
+    tmp.write_bytes(b"bytes")
+    key = content_store.hashlib.sha256(os.fsencode(os.path.abspath(target))).hexdigest()[:32]
+    lock = tmp_path / f"{content_store.FETCH_TEMP_MARKER}lock-{key}"
+    lock.write_bytes(b"")
+    future = content_store.time.time() + 3600
+    os.utime(lock, (future, future))
+    assert publish_no_replace(tmp, target)
+    assert target.read_bytes() == b"bytes"
+
+
+def test_rollback_tolerates_a_file_removed_during_its_check(tmp_path: Path, monkeypatch) -> None:
+    """Round 4 nit: the content check could raise FileNotFoundError out of materialize()."""
+    real_hash = content_store.hash_path
+
+    def vanish(path):
+        if "/sources/" in str(path) and Path(path).name == "act.html" and Path(path).exists():
+            Path(path).unlink()
+            raise FileNotFoundError(path)
+        return real_hash(path)
+
+    sources = [e for e in _lock().files if "/sources/" in e.path]
+    first, second = sources
+    remote = _remote({content_key(first.sha256): FILES[first.path]})
+    monkeypatch.setattr(content_store, "hash_path", vanish)
+    report = materialize(tmp_path / "repo", sources, ContentCache(tmp_path / "cache"), [remote], workers=1)
+    assert set(report.failed) == {second.path}
+
+
+def test_an_interrupted_fetch_rolls_back_a_half_fetched_sources_directory(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Round 4: Ctrl-C waited for every queued entry, then skipped the rollback."""
+    sources = [e for e in _lock().files if "/sources/" in e.path]
+    first, second = sources
+    real = content_store._materialize_one
+
+    def interrupt_on_second(repo, entry, *args, **kwargs):
+        if entry.path == second.path:
+            raise KeyboardInterrupt
+        return real(repo, entry, *args, **kwargs)
+
+    monkeypatch.setattr(content_store, "_materialize_one", interrupt_on_second)
+    repo = tmp_path / "repo"
+    with pytest.raises(KeyboardInterrupt):
+        materialize(repo, sources, ContentCache(tmp_path / "cache"), [_full_remote()], workers=1)
+    assert not (repo / first.path).exists()
+
+
+def test_resolve_corpus_path_widens_a_source_spelled_relative_to_data_corpus(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Round 4: the fast path tested a literal 'data/corpus/sources/' substring."""
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    present = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    sibling = "data/corpus/sources/nz/statute/2026-07-10/official/sub dir/s 2.xml"
+    _write(repo, present, FILES[present])
+    monkeypatch.setattr(
+        content_store.R2ObjectStore, "from_environment", classmethod(lambda cls, **_k: _full_remote())
+    )
+    monkeypatch.chdir(repo / "data/corpus")
+    resolver_module.resolve_corpus_path("sources/nz/statute/2026-07-10/official/act.html")
+    assert (repo / sibling).read_bytes() == FILES[sibling]
+
+
+def test_signing_checks_names_before_it_signs(tmp_path: Path, monkeypatch) -> None:
+    """Round 4: check_lockable missed non-canonical and colliding names.
+
+    The worktree listing is stubbed, so the test does not depend on whether
+    this filesystem can hold both spellings.
+    """
+    repo = _init_repo(tmp_path / "repo")
+    base = "data/corpus/sources/nz/statute/2026-07-10/official"
+    listing: list[str] = []
+    monkeypatch.setattr(
+        corpus_cli, "scope_files_in_worktree", lambda repo_arg, _scope: [repo_arg / rel for rel in listing]
+    )
+    listing[:] = [f"{base}/act.html", f"{base}/ACT.html"]
+    with pytest.raises(corpus_cli.LockRefusedError, match="cannot both exist"):
+        corpus_cli.check_lockable(repo, [SCOPE])
+    listing[:] = [unicodedata.normalize("NFD", base + "/caf" + chr(0xE9) + ".html")]
+    with pytest.raises(LockFormatError):
+        corpus_cli.check_lockable(repo, [SCOPE])
+    listing[:] = [f"{base}/act.html"]
+    corpus_cli.check_lockable(repo, [SCOPE])
+
+
+def test_a_selector_on_invalid_locks_names_the_real_problem(tmp_path: Path, monkeypatch, capsys) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    path = write_lock(repo, _lock())
+    path.write_text("{not json")
+    monkeypatch.chdir(repo)
+    with pytest.raises(SystemExit) as stopped:
+        cli_main(["corpus", "status", "--repo", str(repo), "nz/statute"])
+    assert stopped.value.code == 2
+    assert "invalid" in capsys.readouterr().err
+
+
+def test_paths_from_accepts_the_corpus_root_like_path() -> None:
+    import tempfile
+
+    with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as handle:
+        handle.write("data/corpus\nnz/statute\ndata/corpus/provisions\n")
+    scopes, paths = corpus_cli._read_paths_file(Path(handle.name))
+    assert scopes == ["nz/statute"] and paths == ["data/corpus", "data/corpus/provisions"]
+
+
+def test_a_many_path_refusal_names_only_a_few_paths(tmp_path: Path) -> None:
+    """Round 3 nit, pinned in round 4: the analytics refusal listed every file twice."""
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    many = [repo / entry.path for entry in _lock().files]
+    with pytest.raises(CorpusNotMaterializedError) as refused:
+        resolver_module.require_materialized(many, repo=repo)
+    message = str(refused.value)
+    assert f"and {len(many) - 3} more" in message and "--paths-from" in message
+    assert len(message) < 800

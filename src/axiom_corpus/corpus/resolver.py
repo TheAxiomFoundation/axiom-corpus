@@ -380,7 +380,9 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     if (
         candidate.is_file()
         and not candidate.is_symlink()
-        and f"{CORPUS_BASE}/sources/" not in candidate.as_posix()
+        # The real path, so a relative or symlinked spelling of a source file
+        # still gets its siblings; realpath runs no git process.
+        and f"/{CORPUS_BASE}/sources/" not in os.path.realpath(candidate)
     ):
         return candidate  # present and not a source: nothing to widen, no git call
     if repo is None:

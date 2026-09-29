@@ -249,6 +249,8 @@ def unfetched_locked_provisions(provisions_dir: Path) -> list[str]:
     prefix = relative.as_posix().rstrip("/") + "/"
     missing: list[str] = []
     for lock_file in sorted((REPO_ROOT / ".axiom" / "corpus-locks").glob("*/*/*.json")):
+        if any(part.startswith(".") for part in lock_file.relative_to(REPO_ROOT / ".axiom").parts[1:]):
+            continue  # hidden files (AppleDouble ._x.json, editor swaps) are never locks
         for entry in json.loads(lock_file.read_text(encoding="ascii")).get("files", []):
             path = entry.get("path", "")
             if path.startswith(prefix) and not (REPO_ROOT / path).is_file():

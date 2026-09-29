@@ -36,6 +36,7 @@ from axiom_corpus.corpus.corpus_locks import (
     LockSet,
     ScopeKey,
     diff_lock_sets,
+    fold_collisions,
     hash_tree_blobs,
     load_locks,
     load_locks_at_ref,
@@ -272,7 +273,8 @@ def _read_paths_file(path: Path) -> tuple[list[str], list[str]]:
         line = raw.split("#", 1)[0].strip()
         if not line:
             continue
-        (paths if line.startswith(f"{CORPUS_BASE}/") else scopes).append(line)
+        is_path = line.rstrip("/") == CORPUS_BASE or line.startswith(f"{CORPUS_BASE}/")
+        (paths if is_path else scopes).append(line)
     return scopes, paths
 
 
@@ -358,6 +360,8 @@ def _parse_selectors(texts: Iterable[str]) -> list[tuple[str, ...]]:
 
 def _require_matches(locks: LockSet, selectors: list[tuple[str, ...]]) -> None:
     """A selector that matches no lock is a typo, not an empty request."""
+    if selectors and locks.errors:
+        _usage_exit("corpus lock files are invalid: " + "; ".join(locks.errors[:5]))
     for selector in selectors:
         if not locks.select([selector]):
             _usage_exit(f"no lock matches scope {'/'.join(selector)}")
@@ -453,6 +457,7 @@ def check_lockable(
             + "; ".join(existing.errors[:5])
         )
     deleted_paths = set(deleted)
+    scopes = list(scopes)
     for scope in scopes:
         previous = existing.locks.get(scope)
         if previous is not None and not drop_missing:
@@ -469,7 +474,29 @@ def check_lockable(
                     "deliberate deletions (--deleted-file when signing, --drop-missing "
                     "for corpus lock)."
                 )
-        scope_files_in_worktree(repo, scope)  # raises LockFormatError on unlockable files
+    # Every refusal writing the locks would hit, before anything is written or
+    # signed: unlockable files, non-canonical names, and names that collide
+    # with each other or with other scopes' locks on a case-insensitive disk.
+    scope_list = list(scopes)
+    kept = {
+        path
+        for scope, lock in existing.locks.items()
+        if scope not in set(scope_list)
+        for path in (entry.path for entry in lock.files)
+    }
+    proposed: list[str] = []
+    for scope in scope_list:
+        for path in scope_files_in_worktree(repo, scope):
+            rel = path.relative_to(repo).as_posix()
+            LockEntry(rel, "0" * 64, 0)  # raises LockFormatError on a non-canonical name
+            proposed.append(rel)
+    collisions = fold_collisions(sorted(kept | set(proposed)))
+    if collisions:
+        first, second = collisions[0]
+        raise LockRefusedError(
+            f"`{first}` and `{second}` cannot both exist in one checkout (they differ only "
+            "in case or Unicode form, or one is a directory of the other); rename one."
+        )
     return existing
 
 

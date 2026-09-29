@@ -143,13 +143,20 @@ def is_protected_corpus_path(path: str) -> bool:
 def fold_path(path: str) -> str:
     """A spelling-insensitive key for ``path``.
 
-    Case-insensitive, normalization-insensitive filesystems (APFS, NTFS) put
-    ``DATA/corpus``, ``data/corpus`` and ``data/corpu\u017f`` (long s) in one
-    place. Full case folding plus NFKC maps every such spelling to one key; it
-    also merges some spellings a filesystem keeps apart, which only makes the
-    checks that use it stricter.
+    Case-insensitive, normalization-insensitive filesystems (APFS, HFS+, NTFS)
+    put ``DATA/corpus``, ``data/corpus``, ``data/corpu\u017f`` (long s) and,
+    on HFS+, ``data/corpu\u200cs`` (a zero-width non-joiner) in one place.
+    Dropping format characters, then full case mapping and folding plus NFKC,
+    maps every spelling we know to merge onto one key; it also merges some
+    spellings a filesystem keeps apart, which only makes the checks that use
+    it stricter.
     """
-    return unicodedata.normalize("NFKC", unicodedata.normalize("NFKC", path).casefold())
+    text = unicodedata.normalize("NFKC", path)
+    # HFS+ ignores format characters (ZWNJ, bidi marks, BOM) in names; drop them.
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
+    # upper().lower() maps the dotless i and long s to plain letters, as
+    # NTFS-style upcasing does; casefold() covers the remaining foldings.
+    return unicodedata.normalize("NFKC", text.upper().lower().casefold())
 
 
 def lands_on_protected_path(path: str) -> bool:
@@ -440,11 +447,32 @@ def load_locks(repo: Path) -> LockSet:
     spelling_error = _lock_root_spelling_error(repo)
     if spelling_error:
         return LockSet(locks={}, errors=(spelling_error,))
+    nested = [path for path in root.rglob(".git") if path.parent != repo]
+    if nested:
+        return LockSet(
+            locks={},
+            errors=(
+                f"`{nested[0].parent.relative_to(repo).as_posix()}` is a nested git "
+                "repository (a submodule) inside the lock directory; the guard never "
+                "checks locks there.",
+            ),
+        )
+    links: list[str] = []
     for path in sorted(root.rglob("*")):
+        if path.is_symlink():
+            links.append(path.relative_to(repo).as_posix())
+            continue
         if not path.is_file():
             continue
         payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
-    return _lock_set_from_payloads(payloads)
+    loaded = _lock_set_from_payloads(payloads)
+    if not links:
+        return loaded
+    return LockSet(
+        locks=loaded.locks,
+        errors=loaded.errors
+        + tuple(f"`{link}` is a symlink in the lock directory; locks must be regular files." for link in links),
+    )
 
 
 def _lock_root_spelling_error(repo: Path) -> str | None:
@@ -484,10 +512,13 @@ def load_locks_from_index(repo: Path) -> LockSet:
         if not record:
             continue
         meta, raw_path = record.split(b"\t", 1)
-        _mode, raw_oid, stage = meta.split()
+        mode, raw_oid, stage = meta.split()
         path = raw_path.decode("utf-8", errors="surrogateescape")
         if stage != b"0":
             unmerged.add(path)
+            continue
+        if mode.decode("ascii") not in _REGULAR_MODES:
+            unmerged.add(path)  # reported below; a gitlink or symlink is never a lock
             continue
         staged.append((path, raw_oid.decode("ascii")))
     by_oid: dict[str, bytes] = {}
@@ -496,14 +527,52 @@ def load_locks_from_index(repo: Path) -> LockSet:
     loaded = _lock_set_from_payloads({path: by_oid[oid] for path, oid in staged})
     if not unmerged:
         return loaded
-    conflicts = tuple(f"`{path}` has unresolved merge conflicts in the index." for path in sorted(unmerged))
+    conflicts = tuple(
+        f"`{path}` has unresolved merge conflicts in the index, or is not a regular file."
+        for path in sorted(unmerged)
+    )
     return LockSet(locks=loaded.locks, errors=loaded.errors + conflicts)
 
 
 def load_locks_at_ref(repo: Path, ref: str) -> LockSet:
     """Load every lock file from a git tree without touching the worktree."""
     payloads = read_tree_blobs(repo, ref, LOCK_ROOT.as_posix())
-    return _lock_set_from_payloads(payloads)
+    loaded = _lock_set_from_payloads(payloads)
+    irregular = _irregular_lock_tree_entries(repo, ref)
+    if not irregular:
+        return loaded
+    return LockSet(locks=loaded.locks, errors=loaded.errors + irregular)
+
+
+_REGULAR_MODES = frozenset({"100644", "100755"})
+
+
+def _irregular_lock_tree_entries(repo: Path, ref: str) -> tuple[str, ...]:
+    """Errors for anything under the lock root that is not a regular file.
+
+    A submodule (gitlink) or symlink there is invisible to the blob readers,
+    but ``git submodule update`` or a checkout would fill the directory with
+    locks no guard ever read.
+    """
+    result = subprocess.run(
+        ["git", "ls-tree", "-r", "-z", ref, "--", LOCK_ROOT.as_posix()],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    )
+    errors: list[str] = []
+    for record in result.stdout.split(b"\0"):
+        if not record:
+            continue
+        meta, raw_path = record.split(b"\t", 1)
+        mode, kind, _oid = meta.decode("ascii").split()
+        if kind != "blob" or mode not in _REGULAR_MODES:
+            path = raw_path.decode("utf-8", errors="surrogateescape")
+            errors.append(
+                f"`{path}` is a {'submodule' if mode == '160000' else 'symlink' if mode == '120000' else kind} "
+                "in the lock directory; only regular lock files may live there."
+            )
+    return tuple(errors)
 
 
 def _lock_set_from_payloads(payloads: Mapping[str, bytes]) -> LockSet:
