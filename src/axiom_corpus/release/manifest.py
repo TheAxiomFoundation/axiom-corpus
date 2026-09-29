@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import io
 import json
 import re
 import subprocess
@@ -19,7 +20,8 @@ from binascii import Error as BinasciiError
 from collections.abc import Mapping, Sequence
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from tempfile import SpooledTemporaryFile
+from typing import TYPE_CHECKING, Any
 
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import serialization
@@ -28,13 +30,20 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 
-from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.io import (
+    iter_nonblank_lines,
+    iter_provisions,
+    load_source_inventory_references,
+)
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     ReleaseManifest,
     validate_release_name,
 )
+
+if TYPE_CHECKING:
+    from axiom_corpus.corpus.navigation import NavigationNode
 
 RELEASE_OBJECT_SCHEMA_V2 = "axiom-corpus/release-object/v2"
 RELEASE_OBJECT_SCHEMA_VERSION = "axiom-corpus/release-object/v3"
@@ -47,6 +56,10 @@ DEFAULT_R2_BUCKET = "axiom-corpus"
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _SCOPE_COMPONENT_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
 _ARTIFACT_CLASSES = ("inventory", "provisions", "coverage", "sources")
+# A provisions snapshot spills from memory to a temporary file past this size;
+# the largest artifacts (756 MB for the May whole-eCFR scope) live on disk.
+_SNAPSHOT_MEMORY_BYTES = 8 * 1024 * 1024
+_SNAPSHOT_READ_BYTES = 1024 * 1024
 
 
 class ReleaseManifestError(RuntimeError):
@@ -237,23 +250,16 @@ def build_release_content(
             root,
             str(provision_entries[0]["path"]),
         )
-        records = _load_provision_snapshot(
+        provision_projection, navigation = _provision_snapshot_projection(
             provision_path,
             expected_sha256=str(provision_entries[0]["sha256"]),
             expected_bytes=int(provision_entries[0]["bytes"]),
             expected_rows=provision_rows,
         )
-        # Local imports avoid a module cycle: navigation's stable provision IDs
+        # Local import avoids a module cycle: navigation's stable provision IDs
         # live in the Supabase projection module, which also exposes release RPCs.
-        from axiom_corpus.corpus.navigation import build_navigation_nodes
-        from axiom_corpus.corpus.projection_digest import (
-            navigation_projection_sha256,
-            provision_projection_sha256,
-        )
-        from axiom_corpus.corpus.supabase import iter_supabase_rows
+        from axiom_corpus.corpus.projection_digest import navigation_projection_sha256
 
-        provision_projection = provision_projection_sha256(iter_supabase_rows(records))
-        navigation = build_navigation_nodes(records)
         if len(navigation) != provision_rows:
             raise ReleaseManifestError(
                 "release navigation projection must contain one row per provision: "
@@ -798,35 +804,121 @@ def _validate_validation_attestation(
             )
 
 
-def _load_provision_snapshot(
+def _provision_snapshot_projection(
     path: Path,
     *,
     expected_sha256: str,
     expected_bytes: int,
     expected_rows: int,
-) -> tuple[ProvisionRecord, ...]:
-    """Parse the exact provision bytes already named by the artifact entry."""
-    raw = path.read_bytes()
-    if len(raw) != expected_bytes or hashlib.sha256(raw).hexdigest() != expected_sha256:
-        raise ReleaseManifestError(
-            f"provisions artifact changed while building release content: {path}"
-        )
-    records: list[ProvisionRecord] = []
-    try:
-        for line in raw.decode("utf-8").splitlines():
-            if not line.strip():
-                continue
-            value = json.loads(line)
-            if not isinstance(value, dict):
-                raise ReleaseManifestError(f"provisions artifact contains a non-object row: {path}")
-            records.append(ProvisionRecord.from_mapping(value))
-    except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
-        raise ReleaseManifestError(f"cannot parse provisions artifact {path}: {exc}") from exc
-    if len(records) != expected_rows:
+) -> tuple[str, tuple[NavigationNode, ...]]:
+    """Project the exact provision bytes already named by the artifact entry.
+
+    Returns the provision projection digest and the navigation rows. The
+    artifact is copied once into a spooled temporary file while it is hashed;
+    after the size and hash match the entry, records are parsed from that
+    verified copy one at a time. The digest keeps each row's identity and
+    32-byte digest and the navigation build keeps compact per-row metadata, so
+    memory does not grow with provision bodies.
+
+    Failures rank as they did when the snapshot was held as bytes and parsed
+    into records first: a changed artifact, then bytes that are not UTF-8,
+    then the first row that does not parse, then a changed row count, then the
+    first row the Supabase projection rejects, then digest and navigation
+    errors.
+    """
+    # Local imports avoid a module cycle: navigation's stable provision IDs
+    # live in the Supabase projection module, which also exposes release RPCs.
+    from axiom_corpus.corpus.navigation import (
+        NavigationSource,
+        build_navigation_nodes_from_sources,
+        navigation_source,
+    )
+    from axiom_corpus.corpus.projection_digest import (
+        PROVISION_PROJECTION_COLUMNS,
+        ProjectionDigest,
+    )
+    from axiom_corpus.corpus.supabase import SupabaseRowProjector
+
+    projector = SupabaseRowProjector()
+    provisions = ProjectionDigest(
+        columns=PROVISION_PROJECTION_COLUMNS,
+        order_by=("citation_path", "id"),
+        mapping_columns={"identifiers"},
+    )
+    sources: list[NavigationSource] = []
+    shared: dict[object, object] = {}
+    rows = 0
+    parse_failure: Exception | None = None
+    projection_failure: Exception | None = None
+    with SpooledTemporaryFile(max_size=_SNAPSHOT_MEMORY_BYTES, mode="w+b") as snapshot:
+        digest = hashlib.sha256()
+        size = 0
+        with path.open("rb") as source:
+            for chunk in iter(lambda: source.read(_SNAPSHOT_READ_BYTES), b""):
+                snapshot.write(chunk)
+                digest.update(chunk)
+                size += len(chunk)
+        if size != expected_bytes or digest.hexdigest() != expected_sha256:
+            raise ReleaseManifestError(
+                f"provisions artifact changed while building release content: {path}"
+            )
+        snapshot.seek(0)
+        undecodable = False
+        text = io.TextIOWrapper(snapshot, encoding="utf-8", newline=None)
+        try:
+            for line in iter_nonblank_lines(text):
+                try:
+                    record = _snapshot_record(line, path)
+                except Exception as exc:
+                    parse_failure = exc
+                    break
+                rows += 1
+                if projection_failure is None:
+                    try:
+                        provisions.add(projector.project(record))
+                    except Exception as exc:
+                        projection_failure = exc
+                sources.append(navigation_source(record, shared))
+            if parse_failure is not None:
+                # The whole snapshot used to be decoded before any row was
+                # parsed, so undecodable bytes anywhere outrank a bad row.
+                for _ in text:
+                    pass
+        except UnicodeDecodeError:
+            undecodable = True
+        finally:
+            text.detach()
+        if undecodable:
+            # Decode the verified copy whole so the error names the same byte
+            # position as before; only an invalid artifact takes this path.
+            snapshot.seek(0)
+            try:
+                snapshot.read().decode("utf-8")
+            except UnicodeDecodeError as exc:
+                raise ReleaseManifestError(
+                    f"cannot parse provisions artifact {path}: {exc}"
+                ) from exc
+            raise ReleaseManifestError(f"provisions snapshot decoded inconsistently: {path}")
+    if parse_failure is not None:
+        raise parse_failure
+    if rows != expected_rows:
         raise ReleaseManifestError(
             f"provisions artifact row count changed while building release content: {path}"
         )
-    return tuple(records)
+    if projection_failure is not None:
+        raise projection_failure
+    provision_projection = provisions.hexdigest()
+    return provision_projection, build_navigation_nodes_from_sources(sources)
+
+
+def _snapshot_record(line: str, path: Path) -> ProvisionRecord:
+    try:
+        value = json.loads(line)
+        if not isinstance(value, dict):
+            raise ReleaseManifestError(f"provisions artifact contains a non-object row: {path}")
+        return ProvisionRecord.from_mapping(value)
+    except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ReleaseManifestError(f"cannot parse provisions artifact {path}: {exc}") from exc
 
 
 def _scope_artifact_entries(
@@ -919,17 +1011,17 @@ def _validate_signed_source_references(
         repo_root,
         str(by_class["provisions"][0]["path"]),
     )
-    try:
-        inventory = load_source_inventory(inventory_path)
-        provisions = load_provisions(provisions_path)
-    except (
+    parse_errors = (
         AttributeError,
         json.JSONDecodeError,
         KeyError,
         OSError,
         TypeError,
         ValueError,
-    ) as exc:
+    )
+    try:
+        inventory = load_source_inventory_references(inventory_path)
+    except parse_errors as exc:
         raise ReleaseManifestError(
             "cannot parse scope source references for "
             f"{jurisdiction}/{document_class}/{version}: {exc}"
@@ -940,42 +1032,65 @@ def _validate_signed_source_references(
         for entry in by_class["sources"]
         if isinstance(entry.get("path"), str)
     }
+    # Provisions stream below instead of being loaded whole first. A row that
+    # does not parse still outranks every reference failure, so the first
+    # inventory and provision failures are held until the stream has ended.
+    inventory_failure: Exception | None = None
     inventory_source_paths: set[str] = set()
-    for item in inventory:
-        relative = _canonical_signed_source_reference(
-            repo_root,
-            base=base,
-            scope_key=scope_key,
-            source_path=item.source_path,
-            owner=f"inventory item {item.citation_path}",
-        )
-        signed_entry = source_entries.get(relative)
-        if signed_entry is None:
-            raise ReleaseManifestError(
-                f"inventory source reference is absent from signed artifacts: {relative}"
+    try:
+        for item in inventory:
+            relative = _canonical_signed_source_reference(
+                repo_root,
+                base=base,
+                scope_key=scope_key,
+                source_path=item.source_path,
+                owner=f"inventory item {item.citation_path}",
             )
-        if not isinstance(item.sha256, str) or item.sha256 != signed_entry.get("sha256"):
-            raise ReleaseManifestError(
-                f"inventory source sha256 does not match signed artifact: {relative}"
-            )
-        inventory_source_paths.add(relative)
+            signed_entry = source_entries.get(relative)
+            if signed_entry is None:
+                raise ReleaseManifestError(
+                    f"inventory source reference is absent from signed artifacts: {relative}"
+                )
+            if not isinstance(item.sha256, str) or item.sha256 != signed_entry.get("sha256"):
+                raise ReleaseManifestError(
+                    f"inventory source sha256 does not match signed artifact: {relative}"
+                )
+            inventory_source_paths.add(relative)
+    except Exception as exc:
+        inventory_failure = exc
 
-    for record in provisions:
-        relative = _canonical_signed_source_reference(
-            repo_root,
-            base=base,
-            scope_key=scope_key,
-            source_path=record.source_path,
-            owner=f"provision {record.citation_path}",
-        )
-        if relative not in source_entries:
-            raise ReleaseManifestError(
-                f"provision source reference is absent from signed artifacts: {relative}"
-            )
-        if relative not in inventory_source_paths:
-            raise ReleaseManifestError(
-                f"provision source reference is absent from scope inventory: {relative}"
-            )
+    provision_failure: Exception | None = None
+    try:
+        for record in iter_provisions(provisions_path):
+            if inventory_failure is not None or provision_failure is not None:
+                continue
+            try:
+                relative = _canonical_signed_source_reference(
+                    repo_root,
+                    base=base,
+                    scope_key=scope_key,
+                    source_path=record.source_path,
+                    owner=f"provision {record.citation_path}",
+                )
+                if relative not in source_entries:
+                    raise ReleaseManifestError(
+                        f"provision source reference is absent from signed artifacts: {relative}"
+                    )
+                if relative not in inventory_source_paths:
+                    raise ReleaseManifestError(
+                        f"provision source reference is absent from scope inventory: {relative}"
+                    )
+            except Exception as exc:
+                provision_failure = exc
+    except parse_errors as exc:
+        raise ReleaseManifestError(
+            "cannot parse scope source references for "
+            f"{jurisdiction}/{document_class}/{version}: {exc}"
+        ) from exc
+    if inventory_failure is not None:
+        raise inventory_failure
+    if provision_failure is not None:
+        raise provision_failure
 
 
 def _canonical_signed_source_reference(
