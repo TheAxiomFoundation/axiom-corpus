@@ -129,7 +129,13 @@ jobs:
             exit 0
           fi
           if ! axiom-corpus-ingest corpus verify --help 2>/dev/null | grep -q -- '--attest'; then
-            echo "The installed verifier predates lock audits; auditing with the checked-out code."
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              # Only the pull request that adds lock audits has a base without them.
+              echo "The base commit's verifier predates lock audits; auditing with the checked-out code."
+            else
+              # push and schedule runs audit the branch's own commit with its own code.
+              echo "No base verifier on ${{ github.event_name }} runs; auditing with the checked-out code."
+            fi
             python -I -m pip install -e "$GITHUB_WORKSPACE"
           fi
           axiom-corpus-ingest corpus verify --attest --ref "${{ github.sha }}"

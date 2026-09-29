@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import os
 import re
@@ -333,6 +334,21 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         applied_files = list(args.file)
     deleted_files: list[Path] = list(args.deleted_file or [])
     reasoning_logs: list[Path] = list(args.reasoning_log or [])
+    if args.lock:
+        # Check before signing, so a scope that cannot be locked (a hidden or
+        # leftover file, an unexplained absence) never gets a signed manifest.
+        try:
+            corpus_cli.check_lockable(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                deleted=[
+                    (path if path.is_absolute() else repo / path).resolve().relative_to(repo).as_posix()
+                    for path in deleted_files
+                ],
+            )
+        except (corpus_cli.LockRefusedError, OSError, ValueError) as exc:
+            print(f"corpus lock: {exc} (nothing was signed)", file=sys.stderr)
+            return 2
     manifest = build_ingest_manifest(
         repo=repo,
         base=args.base,
@@ -7821,7 +7837,8 @@ def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
         return [
             repo / entry.path
             for scope, lock in sorted(resolver.locks.locks.items())
-            if (scope[2] == version or scope[2].startswith(f"{version}-"))
+            # analytics globs "<version>.json" and "<version>-*.json"
+            if (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
             and (not jurisdictions or scope[0] in jurisdictions)
             and (not document_classes or scope[1] in document_classes)
             for entry in lock.files

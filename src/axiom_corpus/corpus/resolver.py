@@ -187,6 +187,12 @@ class CorpusResolver:
             pending = [entry for entry in entries if not (self.repo / entry.path).is_file()]
             if not pending:
                 return report
+        blocked = [entry.path for entry in pending if (self.repo / entry.path).is_dir()]
+        if blocked:
+            raise CorpusNotMaterializedError(
+                f"{len(blocked)} locked corpus path(s) are directories in this checkout "
+                f"(first: {blocked[0]}); remove them and fetch again."
+            )
         raise CorpusNotMaterializedError(
             f"{len(pending)} locked corpus file(s) disappeared while being fetched "
             f"(first: {pending[0].path}); another process may be removing them."
@@ -326,11 +332,17 @@ def require_materialized(
     if fetch and not fetch_disabled():
         resolver.ensure(resolver.locks.with_whole_source_dirs(missing))
         return
-    shown = " ".join(f"--path {rel}" for rel in rels)
+    # Name at most a few paths: callers may pass thousands of exact files.
+    named = rels if len(rels) <= 3 else [*rels[:3], f"and {len(rels) - 3} more"]
+    command = (
+        " ".join(f"--path {rel}" for rel in rels)
+        if len(rels) <= 3
+        else "--paths-from <file listing them>"
+    )
     raise CorpusNotMaterializedError(
-        f"{len(missing)} locked corpus file(s) under {', '.join(rels)} are not in this "
+        f"{len(missing)} locked corpus file(s) under {', '.join(named)} are not in this "
         f"checkout (first: {missing[0].path}); results would cover only part of the "
-        f"corpus. Run `axiom-corpus-ingest corpus fetch {shown}` first."
+        f"corpus. Run `axiom-corpus-ingest corpus fetch {command}` first."
     )
 
 
@@ -365,6 +377,12 @@ def fetch_locked_file(path: str | Path) -> bool:
 def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     """Return a regular file for ``path``, fetching it if it is locked and absent."""
     candidate = Path(path)
+    if (
+        candidate.is_file()
+        and not candidate.is_symlink()
+        and f"{CORPUS_BASE}/sources/" not in candidate.as_posix()
+    ):
+        return candidate  # present and not a source: nothing to widen, no git call
     if repo is None:
         repo = find_repo_root(_existing_ancestor(candidate))
     resolver = resolver_for(repo)

@@ -33,8 +33,11 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   suite needs `--all`.
 - After an ingest, `sign-ingest-manifest ... --lock` writes the scope's lock;
   commit the lock with the signed manifest. Never `git add -f` corpus files.
-- `corpus push` writes content-addressed objects to R2. Like any R2 write, run
-  it only when the user asks for publication.
+- `corpus push` (and `--push` on signing or locking) writes content-addressed
+  objects to R2. Like any R2 write, run it only when the user asks. CI fails an
+  ingest pull request until R2 holds every object its new lock entries name,
+  so when you ingest, ask up front whether to push; without that go, leave
+  the pull request red and say that it waits on the push.
 
 ## State Statute Work
 

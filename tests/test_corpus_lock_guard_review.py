@@ -489,6 +489,8 @@ def test_sign_with_lock_reports_lock_failures_without_a_traceback(
     )  # fmt: skip
     assert status == 2
     assert "hidden file" in capsys.readouterr().err
+    # Round 3: the check runs before signing, so no manifest attests the hidden file.
+    assert not (repo / ".axiom/ingest-manifests/nz/statute/2026-07-10.json").exists()
 
 
 def test_a_differently_cased_file_already_tracked_blocks_lock_mode(repo: Path) -> None:
@@ -501,3 +503,191 @@ def test_a_differently_cased_file_already_tracked_blocks_lock_mode(repo: Path) -
     base = _ingest(repo, private)  # this diff touches only lock files
     result = _guard(repo, base, public)
     assert any("tracked in git while" in issue and legacy in issue for issue in result.issues)
+
+
+# =========================================================================== round 3
+
+
+@pytest.mark.parametrize(
+    "spelling",
+    [
+        "data/corpuſ/provisions/nz/statute/2026-07-11.jsonl",  # long s
+        "DATA/CORPUS/PROVISIONS/nz/statute/2026-07-11.jsonl",
+    ],
+    ids=["long-s", "upper"],
+)
+def test_every_merged_spelling_of_a_protected_path_is_checked(repo: Path, spelling: str) -> None:
+    """Round 3 (blocking): `.lower()` left U+017F long s unfolded."""
+    from axiom_corpus.corpus.corpus_locks import lands_on_protected_path
+
+    assert lands_on_protected_path(spelling)
+    private, public = _keys()
+    base = _ingest(repo, private)
+    _stage_blob(repo, spelling, b'{"citation_path":"nz/statute/unsigned"}\n')
+    _git(repo, "commit", "-q", "-m", "unsigned bytes under a merged spelling")
+    result = _guard(repo, base, public)
+    assert not result.passed
+    assert any(spelling in issue for issue in result.issues)
+
+
+@pytest.mark.parametrize("ancestor", ["data", "data/corpus", "data/corpus/provisions", "Data/Corpus"])
+def test_a_tracked_file_standing_in_for_a_protected_directory_is_checked(repo: Path, ancestor: str) -> None:
+    """Round 3 nit: a tracked symlink or file at a protected directory redirects it."""
+    from axiom_corpus.corpus.corpus_locks import lands_on_protected_path
+
+    assert lands_on_protected_path(ancestor)
+    assert not lands_on_protected_path("data/corpus/anchors/us.json")
+    assert not lands_on_protected_path("docs/data/corpus.md")
+
+
+def test_a_lock_file_under_another_spelling_of_the_lock_root_fails_the_guard(repo: Path) -> None:
+    """Round 3: `.AXIOM/corpus-locks` is the lock root on APFS but invisible to the guard."""
+    _private, public = _keys()
+    base = _git(repo, "rev-parse", "HEAD")
+    lock = CorpusLock.from_entries(
+        ("zz", "statute", "v1"),
+        [LockEntry("data/corpus/provisions/zz/statute/v1.jsonl", hashlib.sha256(b"x").hexdigest(), 1)],
+    )
+    _stage_blob(repo, ".AXIOM/corpus-locks/zz/statute/v1.json", serialize_lock(lock))
+    _git(repo, "commit", "-q", "-m", "planted lock under a variant spelling")
+    result = _guard(repo, base, public)
+    assert not result.passed
+    assert any("another spelling" in issue for issue in result.issues)
+
+
+def test_the_worktree_refuses_a_lock_directory_spelled_differently(tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    repo = tmp_path / "repo"
+    variant = repo / ".AXIOM" / "Corpus-Locks" / "zz" / "statute"
+    variant.mkdir(parents=True)
+    (variant / "v1.json").write_text("{}")
+    case_insensitive = (repo / ".axiom" / "corpus-locks").is_dir()
+    locks = load_locks(repo)
+    if case_insensitive:
+        assert locks.errors and "spelled" in locks.errors[0]
+    else:
+        assert not locks and not locks.errors  # git and the resolver see no lock root
+
+
+def test_first_parent_scan_reads_the_old_side_of_a_change(monkeypatch, tmp_path: Path) -> None:
+    """Round 3 nit: a blob seen only as the old side (a deletion) must count."""
+    from axiom_corpus.corpus import ingest_manifests
+
+    old_blob = "a" * 40
+    new_blob = "b" * 40
+    raw = (
+        f":100644 000000 {old_blob} {'0' * 40} D\0data/corpus/provisions/zz/statute/v1.jsonl\0"
+        f"\n:000000 100644 {'0' * 40} {new_blob} A\0data/corpus/provisions/zz/statute/v2.jsonl\0"
+    ).encode()
+
+    class FakeProcess:
+        def __init__(self, *_args, **_kwargs):
+            import io
+
+            self.stdout = io.BytesIO(raw)
+            self.returncode = 0
+
+        def poll(self):
+            return 0
+
+        def kill(self):
+            pass
+
+        def communicate(self):
+            return b"", b""
+
+    monkeypatch.setattr(ingest_manifests.subprocess, "Popen", FakeProcess)
+    wanted = {
+        "data/corpus/provisions/zz/statute/v1.jsonl": {old_blob},
+        "data/corpus/provisions/zz/statute/v2.jsonl": {new_blob},
+    }
+    found = ingest_manifests.first_parent_path_blobs(tmp_path, "HEAD", wanted)
+    assert found == {
+        ("data/corpus/provisions/zz/statute/v1.jsonl", old_blob),
+        ("data/corpus/provisions/zz/statute/v2.jsonl", new_blob),
+    }
+
+
+def test_audit_accepts_a_blob_main_gained_through_a_merge_commit(repo: Path) -> None:
+    """Round 3 nit: the only way bytes reach main is a --no-ff merge; that must count."""
+    _private, public = _keys()
+    path = "data/corpus/provisions/yy/statute/v1.jsonl"
+    data = b"legacy via merge\n"
+    _git(repo, "checkout", "-q", "-b", "legacy")
+    _stage_blob(repo, path, data)
+    _git(repo, "commit", "-q", "-m", "legacy bytes on a branch")
+    _git(repo, "checkout", "-q", "main")
+    _git(repo, "merge", "-q", "--no-ff", "legacy", "-m", "merge legacy")
+    blob = _git(repo, "rev-parse", f"HEAD:{path}")
+    _git(repo, "rm", "-q", "--cached", path)
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            ("yy", "statute", "v1"),
+            [LockEntry(path, hashlib.sha256(data).hexdigest(), len(data), git_blob=blob)],
+        ),
+    )
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "move into lock")
+    assert audit_lock_attestation(repo, ref="HEAD", public_key=public) == []
+
+
+def test_guard_reads_locked_bytes_concurrently_and_reports_each_failure(repo: Path) -> None:
+    """Round 3 (scale): reads run in parallel; one unreadable entry fails alone."""
+    from axiom_corpus.corpus import ingest_manifests
+
+    entries = [
+        LockEntry(f"data/corpus/sources/nz/statute/2026-07-10/official/{i}.html", "0" * 64, 1)
+        for i in range(70)
+    ]
+    unreadable = entries[40].path
+
+    def reader(entry):
+        if entry.path == unreadable:
+            raise RuntimeError("R2 said no")
+        return b"<p>ok</p>\n"
+
+    issues = ingest_manifests._locked_content_issues(repo, entries, reader)
+    assert len([i for i in issues if "Cannot read" in i]) == 1
+    assert unreadable in next(i for i in issues if "Cannot read" in i)
+
+
+def test_publishability_audit_keeps_going_past_an_unfetchable_scope(
+    repo: Path, tmp_path: Path, monkeypatch
+) -> None:
+    """Round 3 nit: one scope's fetch failure used to abort the whole audit."""
+    script = _publishability_script()
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            SCOPE, [LockEntry(p, hashlib.sha256(d).hexdigest(), len(d)) for p, d in FILES.items()]
+        ),
+    )
+    selector = repo / "manifests/releases/r.json"
+    selector.parent.mkdir(parents=True)
+    selector.write_text(
+        json.dumps(
+            {
+                "name": "r",
+                "scopes": [
+                    dict(zip(("jurisdiction", "document_class", "version"), SCOPE, strict=True)),
+                    {"jurisdiction": "zz", "document_class": "statute", "version": "v9"},
+                ],
+            }
+        )
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        ["audit", "--repo", str(repo), "--release-ref", "WORKTREE", "--release-path",
+         "manifests/releases/r.json", "--repair-derived"],
+    )  # fmt: skip
+    import contextlib
+    import io
+
+    out = io.StringIO()
+    with contextlib.redirect_stdout(out):
+        status = script.main()
+    report = json.loads(out.getvalue())
+    assert status == 2
+    assert report["scope_count"] == 2 and report["unfetchable_count"] == 1

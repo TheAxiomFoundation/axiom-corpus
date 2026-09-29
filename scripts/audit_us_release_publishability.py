@@ -145,7 +145,11 @@ def main() -> int:
     for raw_scope in release["scopes"]:
         scope = {key: str(raw_scope[key]) for key in ("jurisdiction", "document_class", "version")}
         paths = _paths(base, **scope)
-        repaired = _repair_derived(repo, paths, scope) if args.repair_derived else []
+        unfetchable = None
+        try:
+            repaired = _repair_derived(repo, paths, scope) if args.repair_derived else []
+        except FileNotFoundError as exc:  # CorpusNotMaterializedError: report, keep auditing
+            repaired, unfetchable = [], str(exc)
         missing = [name for name in ARTIFACT_CLASSES if not _exists(repo, name, paths[name])]
         manifest = (
             repo
@@ -166,6 +170,7 @@ def main() -> int:
                 "missing_artifacts": missing,
                 "signed_manifest": signed,
                 "repaired": repaired,
+                **({"unfetchable": unfetchable} if unfetchable else {}),
             }
         )
     output = {
@@ -176,10 +181,16 @@ def main() -> int:
             row["manifest_exists"] and not row["signed_manifest"] for row in report
         ),
         "manifest_lacking_count": sum(not row["signed_manifest"] for row in report),
+        "unfetchable_count": sum("unfetchable" in row for row in report),
         "scopes": report,
     }
     print(json.dumps(output, indent=2, sort_keys=True))
-    return 2 if output["artifact_lacking_count"] or output["manifest_lacking_count"] else 0
+    failed = (
+        output["artifact_lacking_count"]
+        or output["manifest_lacking_count"]
+        or output["unfetchable_count"]
+    )
+    return 2 if failed else 0
 
 
 if __name__ == "__main__":

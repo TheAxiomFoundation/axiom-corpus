@@ -13,7 +13,7 @@ import sys
 from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Any
+from typing import Any, NoReturn
 
 from axiom_corpus.corpus.content_store import (
     ContentCache,
@@ -43,6 +43,7 @@ from axiom_corpus.corpus.corpus_locks import (
     locks_from_hashed_blobs,
     parse_scope_selector,
     protected_tree_blobs,
+    scope_files_in_worktree,
     scope_for_path,
     write_lock,
 )
@@ -242,11 +243,12 @@ def _selected_entries(
     if select_all:
         return list(locks.entries())
     selectors = _parse_selectors(scopes)
+    _require_matches(locks, selectors)
     exact_scopes: list[ScopeKey] = []
     for release in releases:
         found = _selector_scopes(repo, Path(release))
         if not found:
-            raise SystemExit(f"corpus: cannot load release selector {release}")
+            _usage_exit(f"cannot load release selector {release}")
         exact_scopes.extend(found)
     chosen: dict[str, LockEntry] = {}
     for lock in locks.select(selectors, scopes=exact_scopes):
@@ -256,7 +258,7 @@ def _selected_entries(
         rel = Path(path).as_posix().rstrip("/")
         matches = locks.entries_under(rel)
         if not matches and rel != CORPUS_BASE:
-            raise SystemExit(f"corpus: no locked files at or under {rel}")
+            _usage_exit(f"no locked files at or under {rel}")
         for entry in matches:
             chosen[entry.path] = entry
     return locks.with_whole_source_dirs(chosen.values())
@@ -341,11 +343,24 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
     return lines
 
 
+def _usage_exit(message: str) -> NoReturn:
+    """Stop with a usage error: exit status 2, like every other corpus refusal."""
+    print(f"corpus: {message}", file=sys.stderr)
+    raise SystemExit(2)
+
+
 def _parse_selectors(texts: Iterable[str]) -> list[tuple[str, ...]]:
     try:
         return [parse_scope_selector(text) for text in texts]
     except ValueError as exc:
-        raise SystemExit(f"corpus: {exc}") from None
+        _usage_exit(str(exc))
+
+
+def _require_matches(locks: LockSet, selectors: list[tuple[str, ...]]) -> None:
+    """A selector that matches no lock is a typo, not an empty request."""
+    for selector in selectors:
+        if not locks.select([selector]):
+            _usage_exit(f"no lock matches scope {'/'.join(selector)}")
 
 
 # --------------------------------------------------------------------------- status
@@ -355,6 +370,7 @@ def _cmd_status(args: argparse.Namespace) -> int:
     repo = _repo(args)
     locks = load_locks(repo)
     selectors = _parse_selectors(args.scopes)
+    _require_matches(locks, selectors)
     selected = locks.select(selectors) if selectors else list(locks.locks.values())
     counts = {"present": 0, "missing": 0, "modified": 0}
     modified: list[str] = []
@@ -417,6 +433,46 @@ class LockRefusedError(RuntimeError):
     """A lock rewrite would silently drop files that were never fetched."""
 
 
+def check_lockable(
+    repo: Path,
+    scopes: Iterable[ScopeKey],
+    *,
+    drop_missing: bool = False,
+    deleted: Iterable[str] = (),
+) -> LockSet:
+    """Raise unless every scope can be locked as it stands; return the current locks.
+
+    Runs every refusal ``lock_scopes`` would hit (invalid locks, unexplained
+    absences, symlinks, hidden or leftover temporary files) without writing
+    anything, so signing can check before it signs.
+    """
+    existing = load_locks(repo)
+    if existing.errors:
+        raise LockRefusedError(
+            "corpus lock files are invalid; fix them before locking: "
+            + "; ".join(existing.errors[:5])
+        )
+    deleted_paths = set(deleted)
+    for scope in scopes:
+        previous = existing.locks.get(scope)
+        if previous is not None and not drop_missing:
+            absent = [
+                entry.path
+                for entry in previous.files
+                if destination_state(repo / entry.path, entry, verify=False) == "missing"
+                and entry.path not in deleted_paths
+            ]
+            if absent:
+                raise LockRefusedError(
+                    f"{len(absent)} locked file(s) of {'/'.join(scope)} are not in the "
+                    f"worktree (first: {absent[0]}). Fetch the scope first, or name "
+                    "deliberate deletions (--deleted-file when signing, --drop-missing "
+                    "for corpus lock)."
+                )
+        scope_files_in_worktree(repo, scope)  # raises LockFormatError on unlockable files
+    return existing
+
+
 def lock_scopes(
     repo: Path,
     scopes: Iterable[ScopeKey],
@@ -435,31 +491,12 @@ def lock_scopes(
     disk, and only the caller knows which it is. Malformed lock files refuse
     everything, since the current lock of a scope is then unknown.
     """
-    existing = load_locks(repo)
-    if existing.errors:
-        raise LockRefusedError(
-            "corpus lock files are invalid; fix them before locking: "
-            + "; ".join(existing.errors[:5])
-        )
-    deleted_paths = set(deleted)
+    scope_list = list(scopes)
+    existing = check_lockable(repo, scope_list, drop_missing=drop_missing, deleted=deleted)
     written: list[dict[str, Any]] = []
     new_entries: list[LockEntry] = []
-    for scope in scopes:
+    for scope in scope_list:
         previous = existing.locks.get(scope)
-        if previous is not None and not drop_missing:
-            absent = [
-                entry.path
-                for entry in previous.files
-                if destination_state(repo / entry.path, entry, verify=False) == "missing"
-                and entry.path not in deleted_paths
-            ]
-            if absent:
-                raise LockRefusedError(
-                    f"{len(absent)} locked file(s) of {'/'.join(scope)} are not in the "
-                    f"worktree (first: {absent[0]}). Fetch the scope first, or name "
-                    "deliberate deletions (--deleted-file when signing, --drop-missing "
-                    "for corpus lock)."
-                )
         lock = lock_from_worktree(repo, scope, previous=previous)
         for entry in lock.files:
             cache.add_file(repo / entry.path, sha256=entry.sha256, size=entry.size)
@@ -596,6 +633,9 @@ def _push_entries(
 def _cmd_push(args: argparse.Namespace) -> int:
     repo = _repo(args)
     locks = load_locks(repo)
+    if locks.errors:
+        print("corpus push: corpus lock files are invalid: " + "; ".join(locks.errors[:5]), file=sys.stderr)
+        return 2
     if args.changed_since:
         base = load_locks_at_ref(repo, args.changed_since)
         diff = diff_lock_sets(base, locks)

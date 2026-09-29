@@ -11,9 +11,11 @@ import json
 import os
 import re
 import subprocess
+import tempfile
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -35,6 +37,8 @@ from axiom_corpus.corpus.corpus_locks import (
     diff_lock_sets,
     hash_tree_blobs,
     iter_blob_contents,
+    lands_on_lock_root,
+    lands_on_protected_path,
     list_tree_blobs,
     load_locks,
     load_locks_at_ref,
@@ -309,6 +313,13 @@ def guard_ingested_artifacts(
         head_ref=read_ref,
         changes=changes,
     )
+    variant_locks = [
+        change.path
+        for change in changes
+        if change.status != "D"
+        and lands_on_lock_root(change.path)
+        and not change.path.startswith(f"{LOCK_ROOT.as_posix()}/")
+    ]
     if lock_check.load_error is not None:
         return IngestGuardResult(
             repo=repo,
@@ -358,7 +369,13 @@ def guard_ingested_artifacts(
             )
     changed_reasoning_manifests = set(changed_reasoning_paths_by_manifest)
     protected_paths = tuple(change.path for change in protected) + lock_check.changed_entry_paths
-    if not protected and not changed_reasoning_manifests and not lock_check.touched:
+    if (
+        not protected
+        and not changed_reasoning_manifests
+        and not lock_check.touched
+        and not lock_check.issues
+        and not variant_locks
+    ):
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
     if not public_key:
         return IngestGuardResult(
@@ -385,6 +402,12 @@ def guard_ingested_artifacts(
         return manifest_issues[manifest_path]
 
     issues: list[str] = list(lock_check.issues)
+    issues.extend(
+        f"`{path}` is a lock file under another spelling of `{LOCK_ROOT.as_posix()}`; "
+        "case-insensitive filesystems read it as the lock directory, but the guard "
+        "never checks it."
+        for path in variant_locks
+    )
     authorizing_manifests: set[Path] = set()
     for change in protected:
         if change.path in lock_check.moved:
@@ -431,6 +454,7 @@ def guard_ingested_artifacts(
         issues.extend(_artifact_content_issues(repo, change.path, ref=read_ref))
 
     reader = content_reader
+    to_read: list[LockEntry] = []
     for lock_entry in lock_check.to_attest:
         manifest_entry = entries_by_path.get(lock_entry.path)
         if manifest_entry is None:
@@ -452,23 +476,9 @@ def guard_ingested_artifacts(
                 f"`{manifest_path.as_posix()}`."
             )
             continue
-        if reader is None:
-            reader = default_content_reader(repo)
-        try:
-            payload_bytes = reader(lock_entry)
-        except Exception as exc:  # noqa: BLE001 - any failure to read fails closed
-            payload_bytes = None
-            read_error = f": {exc}"
-        else:
-            read_error = ""
-        if payload_bytes is None:
-            issues.append(
-                f"Cannot read the locked bytes of `{lock_entry.path}` (sha256 "
-                f"{lock_entry.sha256}) from the worktree, cache, git or R2{read_error}. "
-                "Upload them with `axiom-corpus-ingest corpus push`."
-            )
-            continue
-        issues.extend(_content_issues(lock_entry.path, payload_bytes))
+        to_read.append(lock_entry)
+    if to_read:
+        issues.extend(_locked_content_issues(repo, to_read, reader))
 
     for lock_entry in lock_check.removed:
         manifest_entry = entries_by_path.get(lock_entry.path)
@@ -515,6 +525,44 @@ def guard_ingested_artifacts(
 
 
 ContentReader = Callable[[LockEntry], bytes | None]
+
+
+GUARD_READ_WORKERS = 8
+GUARD_READ_BATCH = 32
+
+
+def _locked_content_issues(
+    repo: Path, entries: list[LockEntry], reader: ContentReader | None
+) -> list[str]:
+    """Run the content checks on locked bytes, reading them concurrently.
+
+    Reads go to R2 for new ingests, so they run in parallel; batches keep at
+    most ``GUARD_READ_BATCH`` files in memory, and issues keep entry order.
+    """
+    read = reader or default_content_reader(repo)
+
+    def read_one(entry: LockEntry) -> tuple[bytes | None, str]:
+        try:
+            return read(entry), ""
+        except Exception as exc:  # noqa: BLE001 - any failure to read fails closed
+            return None, f": {exc}"
+
+    issues: list[str] = []
+    with ThreadPoolExecutor(max_workers=GUARD_READ_WORKERS) as pool:
+        for start in range(0, len(entries), GUARD_READ_BATCH):
+            batch = entries[start : start + GUARD_READ_BATCH]
+            for entry, (payload_bytes, read_error) in zip(
+                batch, pool.map(read_one, batch), strict=True
+            ):
+                if payload_bytes is None:
+                    issues.append(
+                        f"Cannot read the locked bytes of `{entry.path}` (sha256 "
+                        f"{entry.sha256}) from the worktree, cache, git or R2{read_error}. "
+                        "Upload them with `axiom-corpus-ingest corpus push`."
+                    )
+                    continue
+                issues.extend(_content_issues(entry.path, payload_bytes))
+    return issues
 
 
 def default_content_reader(repo: Path) -> ContentReader:
@@ -756,10 +804,11 @@ def audit_lock_attestation(
     """Check every lock entry at ``ref``, not just the ones a diff changed.
 
     An entry passes when a valid signed ingest manifest at ``ref`` attests its
-    path and sha256, or when its ``git_blob`` holds exactly its bytes and git
-    history reachable from ``ref`` tracked that blob at that path. The guard
-    checks lock changes against the base; this closes the gap for lock files
-    that reached a base the guard never checked.
+    path and sha256, or when its ``git_blob`` holds exactly its bytes and a
+    commit on ``ref``'s first-parent history held that blob at that path (see
+    ``first_parent_path_blobs``). The guard checks lock changes against the
+    base; this also covers lock files that reached a base the guard never
+    checked.
     """
     repo = repo.resolve()
     public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
@@ -838,38 +887,43 @@ def first_parent_path_blobs(
     if not remaining:
         return found
     command = [
-        "git", "log", "--first-parent", "--diff-merges=first-parent", "--root",
-        "--raw", "--no-renames", "--no-abbrev", "-z", "--format=", ref, "--", CORPUS_BASE,
+        "git", "-c", "log.showSignature=false", "log", "--first-parent",
+        "--diff-merges=first-parent", "--root", "--raw", "--no-renames", "--no-abbrev",
+        "-z", "--format=", ref, "--", CORPUS_BASE,
     ]  # fmt: skip
-    process = subprocess.Popen(command, cwd=repo, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    assert process.stdout is not None
-    stopped_early = False
-    pending = b""
-    header: list[str] | None = None
-    try:
-        while remaining:
-            chunk = process.stdout.read(1 << 20)
-            if not chunk:
-                break
-            tokens = (pending + chunk).split(b"\0")
-            pending = tokens.pop()
-            for token in tokens:
-                if header is None:
-                    text = token.lstrip(b"\n").decode("ascii", errors="replace")
-                    if text.startswith(":"):
-                        header = text[1:].split()
-                    continue
-                path = token.decode("utf-8", errors="surrogateescape")
-                for oid in header[2:4] if len(header) >= 4 else ():
-                    if oid != _NULL_OID and (path, oid) in remaining:
-                        remaining.discard((path, oid))
-                        found.add((path, oid))
-                header = None
-        stopped_early = not remaining
-    finally:
-        if process.poll() is None:
-            process.kill()
-        _stdout, stderr = process.communicate()
+    # stderr goes to a file: an undrained pipe could block git while stdout is read.
+    with tempfile.TemporaryFile() as errors:
+        process = subprocess.Popen(command, cwd=repo, stdout=subprocess.PIPE, stderr=errors)
+        assert process.stdout is not None
+        stopped_early = False
+        pending = b""
+        header: list[str] | None = None
+        try:
+            while remaining:
+                chunk = process.stdout.read(1 << 20)
+                if not chunk:
+                    break
+                tokens = (pending + chunk).split(b"\0")
+                pending = tokens.pop()
+                for token in tokens:
+                    if header is None:
+                        text = token.lstrip(b"\n").decode("ascii", errors="replace")
+                        if text.startswith(":"):
+                            header = text[1:].split()
+                        continue
+                    path = token.decode("utf-8", errors="surrogateescape")
+                    for oid in header[2:4] if len(header) >= 4 else ():
+                        if oid != _NULL_OID and (path, oid) in remaining:
+                            remaining.discard((path, oid))
+                            found.add((path, oid))
+                    header = None
+            stopped_early = not remaining
+        finally:
+            if process.poll() is None:
+                process.kill()
+            process.communicate()
+        errors.seek(0)
+        stderr = errors.read()
     if not stopped_early and process.returncode != 0:
         raise subprocess.CalledProcessError(
             process.returncode, command, stderr=stderr.decode("utf-8", errors="replace")
@@ -1290,8 +1344,7 @@ def _changed_paths(
 
 
 def _is_protected_corpus_artifact(path: str) -> bool:
-    lowered = path.lower()
-    return any(lowered.startswith(prefix) for prefix in PROTECTED_CORPUS_PREFIXES)
+    return lands_on_protected_path(path)
 
 
 def _git_metadata(repo: Path) -> dict[str, Any]:

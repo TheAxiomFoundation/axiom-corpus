@@ -515,41 +515,134 @@ def test_publish_replaces_a_corrupt_object_that_won_the_race(tmp_path: Path) -> 
 # Astra r2-4 / Opus r2-S3: the exclusive-copy fallback never leaves partial bytes -------
 
 
-def test_exclusive_copy_fallback_removes_a_partial_target(tmp_path: Path, monkeypatch) -> None:
+def _no_links_no_noreplace(monkeypatch) -> None:
     def no_links(*_args, **_kwargs):
         raise OSError(errno.EPERM, "no hardlinks here")
 
-    def copy_then_fill_disk(src, dst, _length=0):
-        dst.write(src.read(7))
-        raise OSError(errno.ENOSPC, "No space left on device")
-
     monkeypatch.setattr(content_store.os, "link", no_links)
     monkeypatch.setattr(content_store, "_RENAME_NOREPLACE", None)
-    monkeypatch.setattr(content_store.shutil, "copyfileobj", copy_then_fill_disk)
+
+
+def test_locked_rename_publication_never_exposes_partial_or_mixed_bytes(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Round 3 (exFAT): concurrent publishers of one object, with neither
+    hardlinks nor a no-replace rename, leave exactly one writer's full bytes."""
+    _no_links_no_noreplace(monkeypatch)
+    target = tmp_path / "object"
+    payloads = {i: bytes([i]) * (64 * 1024) for i in range(8)}
+    temps = {}
+    for i, data in payloads.items():
+        temps[i] = tmp_path / f"tmp-{i}"
+        temps[i].write_bytes(data)
+    barrier = threading.Barrier(len(temps))
+    results = {}
+
+    def publish(i: int) -> None:
+        barrier.wait()
+        results[i] = publish_no_replace(temps[i], target)
+
+    threads = [threading.Thread(target=publish, args=(i,)) for i in temps]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    winners = [i for i, won in results.items() if won]
+    assert len(winners) == 1
+    assert target.read_bytes() == payloads[winners[0]]
+    assert not any(p.name.endswith(".corpus-fetch-lock") for p in tmp_path.iterdir())
+
+
+def test_a_stale_publish_lock_is_broken(tmp_path: Path, monkeypatch) -> None:
+    _no_links_no_noreplace(monkeypatch)
+    target = tmp_path / "object"
+    lock = tmp_path / f".{target.name}.corpus-fetch-lock"
+    lock.write_bytes(b"")
+    old = content_store.time.time() - 2 * content_store.PUBLISH_LOCK_STALE_SECONDS
+    os.utime(lock, (old, old))
     tmp = tmp_path / "tmp"
-    tmp.write_bytes(b"complete object bytes")
-    target = tmp_path / "target"
-    with pytest.raises(OSError, match="No space"):
-        publish_no_replace(tmp, target)
-    assert not target.exists()
+    tmp.write_bytes(b"bytes")
+    assert publish_no_replace(tmp, target)
+    assert target.read_bytes() == b"bytes" and not lock.exists()
+
+
+def test_publication_across_filesystems_copies_beside_the_target(tmp_path: Path, monkeypatch) -> None:
+    """Round 3 nit: EXDEV used to raise instead of falling back."""
+
+    def cross_device(*_args, **_kwargs):
+        raise OSError(errno.EXDEV, "Invalid cross-device link")
+
+    real_link = os.link
+    calls = []
+
+    def link(src, dst):
+        calls.append(src)
+        if len(calls) == 1:
+            cross_device()
+        return real_link(src, dst)
+
+    monkeypatch.setattr(content_store.os, "link", link)
+    siblings = []
+    real_sibling = content_store._publish_via_sibling
+
+    def spy(tmp, target):
+        siblings.append(target)
+        return real_sibling(tmp, target)
+
+    monkeypatch.setattr(content_store, "_publish_via_sibling", spy)
+    target = tmp_path / "dest" / "object"
+    target.parent.mkdir()
+    tmp = tmp_path / "elsewhere"
+    tmp.write_bytes(b"cross-device bytes")
+    assert publish_no_replace(tmp, target)
+    assert siblings == [target]  # copied beside the target, then linked into place
+    assert target.read_bytes() == b"cross-device bytes"
+    assert sorted(p.name for p in target.parent.iterdir()) == ["object"]
+
+
+def test_an_unsupported_noreplace_rename_falls_back_to_the_locked_rename(
+    tmp_path: Path, monkeypatch
+) -> None:
+    def no_links(*_args, **_kwargs):
+        raise OSError(errno.EPERM, "no hardlinks here")
+
+    monkeypatch.setattr(content_store.os, "link", no_links)
+    monkeypatch.setattr(content_store, "_RENAME_NOREPLACE", lambda _src, _dst: errno.ENOTSUP)
+    locked = []
+    real = content_store._publish_locked_rename
+
+    def spy(tmp, target):
+        locked.append(target)
+        return real(tmp, target)
+
+    monkeypatch.setattr(content_store, "_publish_locked_rename", spy)
+    tmp = tmp_path / "tmp"
+    tmp.write_bytes(b"x")
+    assert publish_no_replace(tmp, tmp_path / "object")
+    assert locked == [tmp_path / "object"]
 
 
 # Opus r2-N4: interrupted fetches' temporaries are cleaned up ----------------------------
 
 
-def test_stale_fetch_temporaries_are_removed(tmp_path: Path, monkeypatch) -> None:
+def test_stale_fetch_temporaries_are_removed_but_fresh_clones_are_not(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Round 3: a clone keeps the cache object's old mtime, so age is judged by ctime."""
     monkeypatch.setattr(content_store, "_PRUNED_TMP_DIRS", set())
+    monkeypatch.setattr(content_store, "STALE_FETCH_TEMP_SECONDS", 1.0)
     repo = tmp_path / "repo"
     tmp_dir = repo / FETCH_TEMP_DIR
     tmp_dir.mkdir(parents=True)
     stale = tmp_dir / "act.html.corpus-fetch-old"
-    fresh = tmp_dir / "act.html.corpus-fetch-new"
     stale.write_bytes(b"old")
-    fresh.write_bytes(b"new")
+    content_store.time.sleep(1.5)
+    in_flight = tmp_dir / "act.html.corpus-fetch-new"
+    in_flight.write_bytes(b"new")
     two_days_ago = content_store.time.time() - 2 * 24 * 3600
-    os.utime(stale, (two_days_ago, two_days_ago))
+    os.utime(in_flight, (two_days_ago, two_days_ago))  # what clonefile leaves
     assert materialize(repo, _lock().files, ContentCache(tmp_path / "cache"), [_full_remote()]).ok
-    assert not stale.exists() and fresh.exists()
+    assert not stale.exists() and in_flight.exists()
 
 
 # Astra r2 table (Astra 4): an existing source still brings its siblings --------------
@@ -680,8 +773,16 @@ def test_invalid_scope_selectors_exit_cleanly(tmp_path: Path, monkeypatch, capsy
     assert cli_main(["corpus", "lock", "--repo", str(repo), "NZ/statute/v1"]) == 2
     assert "scope must be" in capsys.readouterr().err
     for command in (["corpus", "status"], ["corpus", "fetch"]):
-        with pytest.raises(SystemExit, match="scope must be"):
+        with pytest.raises(SystemExit) as stopped:
             cli_main([*command, "--repo", str(repo), "NZ/statute/v1"])
+        assert stopped.value.code == 2
+        assert "scope must be" in capsys.readouterr().err
+    # A well-formed selector that matches no lock is a typo, not an empty fetch.
+    for command in (["corpus", "status"], ["corpus", "fetch"]):
+        with pytest.raises(SystemExit) as stopped:
+            cli_main([*command, "--repo", str(repo), "nz/statut"])
+        assert stopped.value.code == 2
+        assert "no lock matches scope nz/statut" in capsys.readouterr().err
 
 
 # Opus r2-N3 / N5: hidden files -------------------------------------------------------
@@ -774,3 +875,206 @@ def test_entries_under_matches_a_linear_scan() -> None:
         assert locks.entries_under(query) == expected
 
     check()
+
+
+# =========================================================================== round 3
+
+
+class _FailingMidBody:
+    """A source whose stream breaks after the first chunk (a dropped R2 connection)."""
+
+    name = "flaky"
+
+    def __init__(self, payload: bytes):
+        self.payload = payload
+
+    def open(self, entry):
+        def chunks():
+            yield self.payload[:1]
+            raise RuntimeError("IncompleteRead: connection dropped")
+
+        return chunks()
+
+
+def test_a_read_error_mid_body_falls_through_to_the_next_source(tmp_path: Path) -> None:
+    """Round 3: botocore stream errors are not OSError and used to escape."""
+    entry = next(e for e in _lock().files if e.path.endswith(".jsonl"))
+    data = FILES[entry.path]
+    good = _remote({content_key(entry.sha256): data})
+    for cache in (ContentCache(tmp_path / "cache"), None):
+        repo = tmp_path / f"repo-{cache is None}"
+        report = materialize(repo, [entry], cache, [_FailingMidBody(data), good])
+        assert report.ok and (repo / entry.path).read_bytes() == data
+
+
+def test_one_entrys_unexpected_error_fails_that_entry_and_rolls_back_its_directory(
+    tmp_path: Path,
+) -> None:
+    sources = [e for e in _lock().files if "/sources/" in e.path]
+    first, second = sources
+    remote = _remote({content_key(first.sha256): FILES[first.path]})
+    report = materialize(
+        tmp_path / "repo",
+        sources,
+        ContentCache(tmp_path / "cache"),
+        [remote, _FailingMidBody(FILES[second.path])],
+        workers=1,
+    )
+    assert set(report.failed) == {second.path}
+    assert "IncompleteRead" in report.failed[second.path]
+    assert report.rolled_back == [first.path]
+
+
+def test_a_wrong_size_lock_entry_does_not_delete_a_good_cache_object(tmp_path: Path) -> None:
+    data = b"shared object bytes"
+    cache = ContentCache(tmp_path / "cache")
+    cache.add_stream([data], sha256=_sha(data), size=len(data))
+    assert not cache.usable(_sha(data), len(data) + 1)  # a bad entry elsewhere
+    assert cache.object_path(_sha(data)).read_bytes() == data
+
+
+def test_rollback_keeps_a_same_size_rewrite_even_if_its_identity_matches(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Round 3: a coarse timestamp tick can hide an in-place rewrite of the same size."""
+    monkeypatch.setattr(content_store, "_identity", lambda _path: (0, 0, 0, 0))
+
+    def rewrite_same_size(path: Path) -> None:
+        path.write_bytes(b"X" * path.stat().st_size)
+
+    repo, first, report = _failing_sibling_fetch(tmp_path, monkeypatch, rewrite_same_size)
+    assert (repo / first.path).read_bytes() == b"X" * first.size
+    assert report.rolled_back == [] and first.path in report.modified
+
+
+def test_lock_sets_refuse_names_one_checkout_cannot_hold(tmp_path: Path) -> None:
+    """Round 3: `B` and `b/3` (or `Act.html` and `act.html`) cannot coexist on APFS."""
+    base = "data/corpus/sources/nz/statute/2026-07-10/official"
+    for names in (["B", "b/3"], ["Act.html", "act.html"], ["x", "x/y"], ["café", "CAFÉ"]):
+        repo = _init_repo(tmp_path / f"repo-{len(list(tmp_path.iterdir()))}")
+        entries = [LockEntry(f"{base}/{name}", _sha(name.encode()), len(name.encode())) for name in names]
+        write_lock(repo, CorpusLock.from_entries(SCOPE, entries))
+        errors = load_locks(repo).errors
+        assert any("cannot both exist in one checkout" in error for error in errors), names
+
+
+def test_the_real_corpus_path_shape_has_no_fold_collisions_and_loads_fast(tmp_path: Path) -> None:
+    """55,000 synthetic entries in the corpus's shape load in well under the
+    old 1.2-2.6 s and trip no portability error."""
+    from axiom_corpus.corpus.corpus_locks import _lock_set_from_payloads
+
+    payloads = {}
+    for s_index in range(200):
+        scope = ("us-ca", "statute", f"v{s_index:04d}")
+        entries = [
+            LockEntry(f"data/corpus/sources/us-ca/statute/v{s_index:04d}/leginfo/{i:05d}.html", "0" * 64, 1)
+            for i in range(275)
+        ]
+        lock = CorpusLock.from_entries(scope, entries)
+        payloads[lock.relative_path.as_posix()] = serialize_lock(lock)
+    started = content_store.time.perf_counter()
+    locks = _lock_set_from_payloads(payloads)
+    elapsed = content_store.time.perf_counter() - started
+    assert locks.errors == () and len(locks.by_path) == 55_000
+    assert elapsed < 5.0, elapsed
+
+
+def test_sign_with_lock_derives_deletions_from_the_manifest_spelling(tmp_path: Path, monkeypatch) -> None:
+    """Round 3 nit: `./data/...` and absolute spellings name the same deletion."""
+    import json
+    from base64 import b64encode
+
+    from cryptography.hazmat.primitives import serialization
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "lock")
+    for rel, data in FILES.items():
+        _write(repo, rel, data)
+    deleted = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    (repo / deleted).unlink()
+    key = Ed25519PrivateKey.generate()
+    private = b64encode(
+        key.private_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PrivateFormat.Raw,
+            encryption_algorithm=serialization.NoEncryption(),
+        )
+    ).decode("ascii")
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private)
+    monkeypatch.chdir(repo)
+    status = cli_main(
+        [
+            "sign-ingest-manifest", "--repo", str(repo),
+            "--jurisdiction", "nz", "--document-class", "statute", "--version", "2026-07-10",
+            "--command", "x", "--deleted-file", f"./{deleted}", "--lock",
+        ]
+    )  # fmt: skip
+    assert status == 0
+    assert deleted not in load_locks(repo).by_path
+    manifest = json.loads((repo / ".axiom/ingest-manifests/nz/statute/2026-07-10.json").read_text())
+    assert {"path": deleted, "deleted": True} in manifest["applied_files"]
+
+
+def test_push_refuses_invalid_locks(tmp_path: Path, monkeypatch, capsys) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    path = write_lock(repo, _lock())
+    path.write_text("{not json")
+    monkeypatch.chdir(repo)
+    assert cli_main(["corpus", "push", "--repo", str(repo), "--all"]) == 2
+    assert "invalid" in capsys.readouterr().err
+
+
+def test_analytics_treats_the_version_as_the_glob_it_is(tmp_path: Path, monkeypatch) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    monkeypatch.chdir(repo)
+    args = build_parser().parse_args(
+        ["analytics", "--base", str(repo / "data/corpus"), "--version", "2026-07-*"]
+    )
+    required = {p.relative_to(repo).as_posix() for p in _corpus_wide_prefixes(args, "analytics")}
+    assert required == {
+        "data/corpus/inventory/nz/statute/2026-07-10.json",
+        "data/corpus/provisions/nz/statute/2026-07-10.jsonl",
+    }
+
+
+def test_resolve_corpus_path_returns_a_present_file_without_git(tmp_path: Path, monkeypatch) -> None:
+    present = tmp_path / "data/corpus/provisions/nz/statute/v1.jsonl"
+    present.parent.mkdir(parents=True)
+    present.write_bytes(b"{}\n")
+
+    def no_git(*_args, **_kwargs):
+        raise AssertionError("resolve_corpus_path looked for a repository")
+
+    monkeypatch.setattr(resolver_module, "find_repo_root", no_git)
+    assert resolver_module.resolve_corpus_path(present) == present
+
+
+def test_ensure_names_a_directory_squatting_on_a_locked_path(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    squatter = repo / "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+    squatter.mkdir(parents=True)
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
+    with pytest.raises(CorpusNotMaterializedError):
+        resolver.ensure_scopes([SCOPE])
+
+
+def test_an_unexpected_placement_error_fails_only_that_entry(tmp_path: Path, monkeypatch) -> None:
+    """Round 3: a non-OSError from placement used to escape materialize() mid-run."""
+    real_clone = content_store.clone_file
+    victim = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+
+    def clone(src, dst):
+        if dst.name.startswith(f"{content_store.FETCH_TEMP_MARKER}2026-07-10.jsonl"):
+            raise RuntimeError("unexpected placement failure")
+        return real_clone(src, dst)
+
+    monkeypatch.setattr(content_store, "clone_file", clone)
+    report = materialize(tmp_path / "repo", _lock().files, ContentCache(tmp_path / "cache"), [_full_remote()])
+    assert set(report.failed) == {victim}
+    assert "RuntimeError" in report.failed[victim]
+    assert len(report.materialized) == len(FILES) - 1

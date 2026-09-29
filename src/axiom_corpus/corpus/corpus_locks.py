@@ -140,6 +140,67 @@ def is_protected_corpus_path(path: str) -> bool:
     return any(path.startswith(prefix) for prefix in PROTECTED_CORPUS_PREFIXES)
 
 
+def fold_path(path: str) -> str:
+    """A spelling-insensitive key for ``path``.
+
+    Case-insensitive, normalization-insensitive filesystems (APFS, NTFS) put
+    ``DATA/corpus``, ``data/corpus`` and ``data/corpu\u017f`` (long s) in one
+    place. Full case folding plus NFKC maps every such spelling to one key; it
+    also merges some spellings a filesystem keeps apart, which only makes the
+    checks that use it stricter.
+    """
+    return unicodedata.normalize("NFKC", unicodedata.normalize("NFKC", path).casefold())
+
+
+def lands_on_protected_path(path: str) -> bool:
+    """True when ``path``, in any spelling a filesystem may merge, is a protected path.
+
+    That includes the directories above the protected prefixes (``data``,
+    ``data/corpus``, ``data/corpus/provisions``): a tracked file or symlink
+    there would stand in for the whole directory.
+    """
+    folded = fold_path(path).rstrip("/")
+    return any(
+        folded.startswith(prefix) or prefix.startswith(f"{folded}/")
+        for prefix in PROTECTED_CORPUS_PREFIXES
+    )
+
+
+def fold_collisions(paths: Iterable[str]) -> list[tuple[str, str]]:
+    """Pairs of locked names that cannot both exist in one checkout.
+
+    Two paths, or a path and a directory above another path, collide when
+    they are equal (a file cannot also be a directory) or when a case- and
+    normalization-insensitive filesystem stores them in one place
+    (``B`` and ``b/3``, ``Act.html`` and ``act.html``). A lock set must be
+    free of both, so it materializes the same way on every filesystem.
+    """
+    owner: dict[str, str] = {}
+    directories: set[str] = set()
+    files: set[str] = set()
+    collisions: list[tuple[str, str]] = []
+    for path in paths:
+        files.add(path)
+        parts = path.split("/")
+        for depth in range(1, len(parts) + 1):
+            name = "/".join(parts[:depth])
+            if depth < len(parts):
+                if name in directories:
+                    continue
+                directories.add(name)
+            key = name.lower() if name.isascii() else fold_path(name)
+            other = owner.setdefault(key, name)
+            if other != name:
+                collisions.append((other, name))
+    collisions.extend((path, f"{path}/…") for path in sorted(files & directories))
+    return collisions
+
+
+def lands_on_lock_root(path: str) -> bool:
+    """True when ``path``, in any merged spelling, lies under the lock directory."""
+    return fold_path(path).startswith(f"{LOCK_ROOT.as_posix()}/")
+
+
 def scope_for_path(path: str) -> ScopeKey | None:
     """Return the scope a protected repository path belongs to, or None."""
     if not is_protected_corpus_path(path):
@@ -374,13 +435,39 @@ def load_locks(repo: Path) -> LockSet:
     """
     root = repo / LOCK_ROOT
     payloads: dict[str, bytes] = {}
-    if root.is_dir():
-        for path in sorted(root.rglob("*")):
-            rel = path.relative_to(root)
-            if any(part.startswith(".") for part in rel.parts) or not path.is_file():
-                continue
-            payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
+    if not root.is_dir():
+        return _lock_set_from_payloads(payloads)
+    spelling_error = _lock_root_spelling_error(repo)
+    if spelling_error:
+        return LockSet(locks={}, errors=(spelling_error,))
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
     return _lock_set_from_payloads(payloads)
+
+
+def _lock_root_spelling_error(repo: Path) -> str | None:
+    """An error when the on-disk lock directory is spelled other than ``.axiom/corpus-locks``.
+
+    On a case-insensitive filesystem ``repo / ".axiom/corpus-locks"`` also opens
+    ``.AXIOM/Corpus-Locks``, which git (and so the guard) sees as a different,
+    unguarded path.
+    """
+    directory = repo
+    for part in LOCK_ROOT.parts:
+        try:
+            names = os.listdir(directory)
+        except OSError:
+            return None
+        if part not in names:
+            actual = next((name for name in names if fold_path(name) == part), part)
+            return (
+                f"the lock directory is spelled `{(directory / actual).relative_to(repo).as_posix()}`, "
+                f"not `{LOCK_ROOT.as_posix()}`; the guard never checks it. Rename it."
+            )
+        directory = directory / part
+    return None
 
 
 def load_locks_from_index(repo: Path) -> LockSet:
@@ -424,6 +511,8 @@ def _lock_set_from_payloads(payloads: Mapping[str, bytes]) -> LockSet:
     errors: list[str] = []
     owner: dict[str, ScopeKey] = {}
     for rel_path, payload in sorted(payloads.items()):
+        if any(part.startswith(".") for part in rel_path.split("/")[len(LOCK_ROOT.parts) :]):
+            continue  # .DS_Store, editor swap files: never locks, in any tree
         scope = scope_for_lock_path(rel_path)
         if scope is None:
             errors.append(f"`{rel_path}` is not a lock file path (.axiom/corpus-locks/<j>/<dc>/<v>.json).")
@@ -444,6 +533,11 @@ def _lock_set_from_payloads(payloads: Mapping[str, bytes]) -> LockSet:
                 )
             owner[entry.path] = scope
         locks[scope] = lock
+    errors.extend(
+        f"`{first}` and `{second}` cannot both exist in one checkout "
+        "(one is a directory of the other, or they differ only in case or Unicode form)."
+        for first, second in fold_collisions(owner)[:20]
+    )
     return LockSet(locks=locks, errors=tuple(errors))
 
 
@@ -715,16 +809,25 @@ def diff_lock_sets(base: LockSet, head: LockSet) -> LockDiff:
     return LockDiff(added=tuple(added), changed=tuple(changed), removed=tuple(removed))
 
 
+_ASCII_CONTROL = frozenset(chr(code) for code in (*range(0x20), 0x7F))
+
+
 def _validate_corpus_path(path: object) -> None:
     if not isinstance(path, str) or not path:
         raise LockFormatError("lock entry path must be a non-empty string")
+    if path.isascii():
+        # Fast path: ASCII is already NFC and its only category-C characters
+        # are the controls.
+        bad_characters = any(ch in _ASCII_CONTROL for ch in path)
+    else:
+        bad_characters = unicodedata.normalize("NFC", path) != path or any(
+            unicodedata.category(ch).startswith("C") for ch in path
+        )
     if (
         path.startswith("/")
         or "\\" in path
-        or "\0" in path
-        or unicodedata.normalize("NFC", path) != path
+        or bad_characters
         or any(part in {"", ".", ".."} for part in path.split("/"))
-        or any(unicodedata.category(ch).startswith("C") for ch in path)
     ):
         raise LockFormatError(f"lock entry path is not a canonical repository path: {path!r}")
     if not is_protected_corpus_path(path):

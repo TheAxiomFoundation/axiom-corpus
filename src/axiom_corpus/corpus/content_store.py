@@ -150,11 +150,20 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
     """Give ``tmp``'s file the name ``target`` only if ``target`` does not exist.
 
     Returns False, leaving ``target`` untouched, when something already exists
-    there. Every path is atomic: ``link`` where the filesystem has hardlinks,
-    otherwise a no-replace rename. Only where neither exists does it copy into
-    an exclusively created file, and then a failed copy removes that file, so
-    ``target`` never holds partial bytes. The caller removes ``tmp`` afterwards
-    if it still exists.
+    there. No path ever shows partial bytes under ``target``:
+
+    1. ``link(2)``, where the filesystem has hardlinks;
+    2. otherwise a no-replace rename (``renamex_np``/``renameat2``);
+    3. otherwise (exFAT, some network filesystems) a plain rename made while
+       holding an exclusive publish lock next to ``target``, after checking
+       that ``target`` is still absent. Writers that publish through this
+       function exclude each other; a writer that does not (an extractor)
+       could only be replaced in the instant between that check and the
+       rename.
+
+    Across filesystems (``EXDEV``) the bytes are first copied to a hidden
+    temporary file beside ``target``. The caller removes ``tmp`` afterwards if
+    it still exists.
     """
     try:
         os.link(tmp, target)
@@ -162,6 +171,8 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
     except FileExistsError:
         return False
     except OSError as exc:
+        if exc.errno == errno.EXDEV:
+            return _publish_via_sibling(tmp, target)
         if exc.errno not in _NO_HARDLINK_ERRNOS:
             raise
     if _RENAME_NOREPLACE is not None:
@@ -170,22 +181,60 @@ def publish_no_replace(tmp: Path, target: Path) -> bool:
             return True
         if err == errno.EEXIST:
             return False
+        if err == errno.EXDEV:
+            return _publish_via_sibling(tmp, target)
         if err not in {errno.ENOTSUP, errno.EOPNOTSUPP, errno.EINVAL, errno.ENOSYS}:
             raise OSError(err, os.strerror(err), str(target))
-    try:
-        fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        return False
+    return _publish_locked_rename(tmp, target)
+
+
+def _publish_via_sibling(tmp: Path, target: Path) -> bool:
+    """Copy ``tmp`` next to ``target`` (same filesystem), then publish that copy."""
+    fd, name = tempfile.mkstemp(
+        dir=target.parent, prefix=f".{target.name[:40]}{FETCH_TEMP_MARKER}"
+    )
+    sibling = Path(name)
     try:
         with os.fdopen(fd, "wb") as dst, tmp.open("rb") as src:
             shutil.copyfileobj(src, dst, CHUNK_SIZE)
             dst.flush()
             os.fsync(dst.fileno())
-        os.chmod(target, tmp.stat().st_mode & 0o777)
-    except BaseException:
-        target.unlink(missing_ok=True)
-        raise
-    return True
+        os.chmod(sibling, tmp.stat().st_mode & 0o777)
+        return publish_no_replace(sibling, target)
+    finally:
+        sibling.unlink(missing_ok=True)
+
+
+PUBLISH_LOCK_STALE_SECONDS = 30.0
+
+
+def _publish_locked_rename(tmp: Path, target: Path) -> bool:
+    """Rename ``tmp`` onto an absent ``target`` while holding a publish lock.
+
+    The lock is held only for a check and a rename, so one older than
+    ``PUBLISH_LOCK_STALE_SECONDS`` belongs to a process that died.
+    """
+    lock = target.parent / f".{target.name}{FETCH_TEMP_MARKER}lock"
+    while True:
+        try:
+            os.close(os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600))
+            break
+        except FileExistsError:
+            try:
+                age = time.time() - lock.stat().st_mtime
+            except FileNotFoundError:
+                continue
+            if age > PUBLISH_LOCK_STALE_SECONDS:
+                lock.unlink(missing_ok=True)
+            else:
+                time.sleep(0.01)
+    try:
+        if os.path.lexists(target):
+            return False
+        os.rename(tmp, target)
+        return True
+    finally:
+        lock.unlink(missing_ok=True)
 
 
 # --------------------------------------------------------------------------- cache
@@ -225,7 +274,10 @@ class ContentCache:
         if not path.exists():
             return False
         if not self.contains(sha256, size):
-            self._discard(sha256)  # wrong size: a corrupt or truncated object
+            # Wrong size: a corrupt object, or a lock entry whose size is wrong.
+            # Only the first is deleted; a good object stays for other users.
+            if not self.verify_object(sha256):
+                self._discard(sha256)
             return False
         with self._verified_lock:
             if sha256 in self._verified:
@@ -654,7 +706,8 @@ def ensure_cached(
             continue
         try:
             return cache.add_stream(chunks, sha256=entry.sha256, size=entry.size), source.name
-        except ContentStoreError as exc:
+        except Exception as exc:  # noqa: BLE001 - a read error mid-body: try the next source
+            _close(chunks)
             failures.append(f"{source.name}: {exc}")
     detail = "; ".join(failures) if failures else "no source holds it"
     raise ContentStoreError(
@@ -735,7 +788,10 @@ def _prune_stale_fetch_tmp(directory: Path) -> None:
         for item in entries:
             if FETCH_TEMP_MARKER in item.name and item.is_file(follow_symlinks=False):
                 with suppress(FileNotFoundError):
-                    if item.stat(follow_symlinks=False).st_mtime < cutoff:
+                    stat = item.stat(follow_symlinks=False)
+                    # A clone keeps the cache object's old mtime; ctime is when
+                    # this file came to exist.
+                    if max(stat.st_mtime, stat.st_ctime) < cutoff:
                         os.unlink(item.path)
 
 
@@ -843,7 +899,8 @@ def _stream_to(tmp: Path, entry: LockEntry, sources: Iterable[ObjectSource]) -> 
         try:
             write_verified(fd, chunks, sha256=entry.sha256, size=entry.size)
             return source.name, "stream"
-        except ContentStoreError as exc:
+        except Exception as exc:  # noqa: BLE001 - a read error mid-body: try the next source
+            _close(chunks)
             failures.append(f"{source.name}: {exc}")
     detail = "; ".join(failures) if failures else "no source holds it"
     raise ContentStoreError(
@@ -882,8 +939,8 @@ def materialize(
                 repo, entry, cache, source_list, force=force, verify=verify
             )
             return entry, state, source, method, placed, None
-        except (ContentStoreError, OSError) as exc:
-            return entry, "failed", None, None, None, str(exc)
+        except Exception as exc:  # noqa: BLE001 - one entry's failure never stops the rest
+            return entry, "failed", None, None, None, f"{type(exc).__name__}: {exc}"
 
     created_by_scope: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]] = {}
     failed_scopes: set[tuple[str, str, str]] = set()
@@ -913,22 +970,31 @@ def materialize(
                     failed_scopes.add(sources_scope)
             if progress is not None:
                 progress(done, total)
+    undone: set[str] = set()
     for scope in failed_scopes:
         for entry, placed in created_by_scope.get(scope, []):
-            report.materialized.remove(entry.path)
+            undone.add(entry.path)
             report.bytes_materialized -= entry.size
             target = repo / entry.path
             try:
                 current = _identity(target)
             except FileNotFoundError:
                 continue
-            # Remove only the file this call placed; anything written over it
-            # since (an extractor, another fetch) stays.
-            if placed is not None and current == placed:
+            # Remove only the file this call placed, still holding the locked
+            # bytes; anything written over it since (an extractor, another
+            # fetch) stays. The content check covers an in-place rewrite of
+            # the same size within one coarse timestamp tick.
+            if (
+                placed is not None
+                and current == placed
+                and hash_path(target) == (entry.sha256, entry.size)
+            ):
                 target.unlink(missing_ok=True)
                 report.rolled_back.append(entry.path)
             else:
                 report.modified.append(entry.path)
+    if undone:
+        report.materialized = [path for path in report.materialized if path not in undone]
     report.present.sort()
     report.materialized.sort()
     return report

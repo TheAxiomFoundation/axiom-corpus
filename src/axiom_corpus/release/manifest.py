@@ -1130,16 +1130,20 @@ def _require_complete_locked_scopes(
     Source files are enumerated from the worktree, so a scope that was only
     partly fetched would otherwise sign a release that silently omits files.
     """
-    artifact_paths = {str(entry.get("path")) for entry in artifacts}
+    # Group once: comparing every artifact with every scope took minutes on
+    # the largest union release.
+    artifacts_by_scope: dict[tuple[str, str, str], set[str]] = {}
+    for entry in artifacts:
+        path = str(entry.get("path"))
+        key = scope_for_path(path)
+        if key is not None:
+            artifacts_by_scope.setdefault(key, set()).add(path)
     for scope in release.scopes:
         lock = locks.locks.get(scope.key)
         if lock is None:
             continue
         locked_paths = {entry.path for entry in lock.files}
-        scope_artifacts = {
-            path for path in artifact_paths if scope_for_path(path) == scope.key
-        }
-        absent = sorted(locked_paths - scope_artifacts)
+        absent = sorted(locked_paths - artifacts_by_scope.get(scope.key, set()))
         if absent:
             raise ReleaseManifestError(
                 f"release scope {'/'.join(scope.key)} is not fully materialized; "
