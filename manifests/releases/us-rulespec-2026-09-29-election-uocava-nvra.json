@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-09-24-snap-fy2027-cola. It preserves every prior scope and adds 52 U.S.C. 20302, 20310 and 20507 (OLRC release point 119-111), required to encode the UOCAVA 45-day absentee ballot transmission rule, the UOCAVA definitions of absent uniformed services and overseas voters, and the NVRA voter registration deadline.",
+  "description": "Successor to us-rulespec-2026-09-24-snap-fy2027-cola. It adds 52 U.S.C. 20302, 20310 and 20507 (OLRC release point 119-111), required to encode the UOCAVA 45-day absentee ballot transmission rule, the UOCAVA definitions of absent uniformed services and overseas voters, and the NVRA voter registration deadline. It keeps every other prior scope except that, as the 2026-09-25 us-ca statute recovery audit requires of the next cut in this line, the California 2026-07-13 recovery and PIT core statute scopes are replaced by the 2026-09-14 income tax chapter scope, which carries all of their sections.",
   "name": "us-rulespec-2026-09-29-election-uocava-nvra",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -411,17 +411,12 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
       "version": "2026-07-28-ca-cdss-calfresh-bbce-authority-us-ca-sections-wic-18901.3-wic-18901.5"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-ca",
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
     },
     {
       "document_class": "policy",

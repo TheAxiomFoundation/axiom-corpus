@@ -14,18 +14,50 @@ ADDITION = {
     "jurisdiction": "us",
     "version": "2026-09-29-election-statute-uocava-nvra-title-52",
 }
+# docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md, "How later cuts
+# supersede the scope": the next cut in this line drops the us-ca recovery and
+# PIT core scopes and selects the chapter scope that carries all of their
+# sections (#742, which would supply successors, is not merged).
+US_CA_REMOVALS = (
+    {
+        "document_class": "statute",
+        "jurisdiction": "us-ca",
+        "version": "2026-07-13-recovery",
+    },
+    {
+        "document_class": "statute",
+        "jurisdiction": "us-ca",
+        "version": (
+            "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-"
+            "rtc-17052-rtc-17054-rtc-17073.5"
+        ),
+    },
+)
+US_CA_ADDITION = {
+    "document_class": "statute",
+    "jurisdiction": "us-ca",
+    "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+}
 
 
 def build_release(*, release_dir: Path, output_dir: Path | None = None) -> Path:
-    """Add the Title 52 scope to the reviewed predecessor without replacing scopes."""
+    """Add the Title 52 scope to the reviewed predecessor and apply the us-ca swap."""
     source = release_dir / f"{BASE_RELEASE}.json"
     payload = json.loads(source.read_text(encoding="utf-8"))
     scopes = payload["scopes"]
-    if ADDITION in scopes:
-        raise ValueError("Title 52 election statute scope already exists in base release")
+    for scope in (ADDITION, US_CA_ADDITION):
+        if scope in scopes:
+            raise ValueError(f"scope already exists in base release: {scope}")
+    for scope in US_CA_REMOVALS:
+        if scope not in scopes:
+            raise ValueError(f"scope to replace is missing from base release: {scope}")
 
     final_scopes = sorted(
-        [*scopes, ADDITION],
+        [
+            *(scope for scope in scopes if scope not in US_CA_REMOVALS),
+            ADDITION,
+            US_CA_ADDITION,
+        ],
         key=lambda scope: (
             scope["jurisdiction"],
             scope["document_class"],
@@ -41,11 +73,15 @@ def build_release(*, release_dir: Path, output_dir: Path | None = None) -> Path:
     payload.update(
         {
             "description": (
-                f"Successor to {BASE_RELEASE}. It preserves every prior scope and "
-                "adds 52 U.S.C. 20302, 20310 and 20507 (OLRC release point 119-111), "
-                "required to encode the UOCAVA 45-day absentee ballot transmission "
-                "rule, the UOCAVA definitions of absent uniformed services and "
-                "overseas voters, and the NVRA voter registration deadline."
+                f"Successor to {BASE_RELEASE}. It adds 52 U.S.C. 20302, 20310 and "
+                "20507 (OLRC release point 119-111), required to encode the UOCAVA "
+                "45-day absentee ballot transmission rule, the UOCAVA definitions of "
+                "absent uniformed services and overseas voters, and the NVRA voter "
+                "registration deadline. It keeps every other prior scope except that, "
+                "as the 2026-09-25 us-ca statute recovery audit requires of the next "
+                "cut in this line, the California 2026-07-13 recovery and PIT core "
+                "statute scopes are replaced by the 2026-09-14 income tax chapter "
+                "scope, which carries all of their sections."
             ),
             "name": RELEASE,
             "scopes": final_scopes,
