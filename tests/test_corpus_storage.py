@@ -621,6 +621,15 @@ def test_repro_script_fetches_the_locked_inputs_it_reads_and_not_its_outputs(
         repro.ensure_corpus_inputs(repo=repo, source_base=source_base)
         assert present() == set(inputs)
 
+    # From another directory, a relative --source-base names <cwd>/data/corpus,
+    # which is what the script reads; that is outside the checkout.
+    for path in inputs:
+        (repo / path).unlink()
+    monkeypatch.chdir(tmp_path)
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo, source_base=Path("data/corpus"))
+    assert present() == set()
+
 
 def test_cli_inputs_name_paths_selectors_and_optional_scopes(tmp_path: Path, monkeypatch) -> None:
     import argparse
