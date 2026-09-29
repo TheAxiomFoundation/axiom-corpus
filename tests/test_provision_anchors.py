@@ -164,14 +164,14 @@ def test_resolver_descendant_over_real_data(
     resolver = AnchorResolver(cfr_anchors)
     parent_of_d = f"{CFR_LEAF}/D"
     by_path = {a.citation_path: a for a in cfr_anchors}
-    if parent_of_d in by_path:
-        # (D) itself is drafted (intermediate), so this is an exact hit; assert
-        # its span covers its (1)..(3) children.
-        res = resolver.resolve(parent_of_d)
-        assert res is not None
-        child = by_path[f"{parent_of_d}/3"]
-        assert res.span[0] <= child.char_start
-        assert res.span[1] >= child.char_end
+    # (D) itself is drafted (intermediate), so this is an exact hit; assert its
+    # span covers its (1)..(3) children.
+    assert parent_of_d in by_path
+    res = resolver.resolve(parent_of_d)
+    assert res is not None
+    child = by_path[f"{parent_of_d}/3"]
+    assert res.span[0] <= child.char_start
+    assert res.span[1] >= child.char_end
 
 
 def test_cfr_leaf_is_the_standard_utility_allowance(
@@ -630,7 +630,9 @@ def test_committed_anchor_artifacts_exist() -> None:
 )
 def test_committed_anchor_artifact_tracks_its_provisions(anchors_path: Path) -> None:
     # Anchors mirror the provisions layout. When a provisions scope is renamed
-    # to a successor, its anchors must be regenerated and renamed with it.
+    # to a successor, its anchors must be regenerated and renamed with it. This
+    # catches a renamed or deleted scope, not a predecessor that stays committed
+    # beside its successor.
     relative = anchors_path.relative_to(ANCHORS_DIR)
     provisions_path = PROVISIONS_DIR / relative
     assert provisions_path.is_file(), (
@@ -642,8 +644,8 @@ def test_committed_anchor_artifact_tracks_its_provisions(anchors_path: Path) -> 
     assert anchors, f"{_repo_relative(anchors_path)} is empty"
     records = load_provisions(provisions_path)
     verify_anchors_against_provisions(anchors, records)
-    # The scope columns are denormalized from the parent row, so a load into
-    # corpus.provision_anchors lands on the parent's version boundary.
+    # The scope columns are denormalized from the parent row; they must name
+    # the parent's scope, not a superseded one.
     jurisdiction, document_class = relative.parts[:2]
     parents = {record.id: record for record in records}
     for anchor in anchors:

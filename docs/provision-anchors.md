@@ -94,9 +94,12 @@ version)`:
   parent-hash re-check — **never a migration**.
 - Bump `EXTRACTOR_VERSION` whenever the algorithm could move offsets; the
   `(parent provision, extractor_version)` pair is the rebuild cache key.
-- The committed JSONL is checked in CI to equal the generator's output
-  (`test_committed_*_anchors_match_generator`), so a stale artifact fails the
-  suite.
+- CI regenerates the 7 CFR 273.9 and us-ma 106 CMR 365.180 artifacts and
+  checks they equal the committed JSONL
+  (`test_committed_*_anchors_match_generator`). Every committed artifact must
+  also sit at the path of the provisions file it mirrors, verify against it,
+  and carry its parent's jurisdiction, document class and version
+  (`test_committed_anchor_artifact_tracks_its_provisions`).
 
 ## Resolver semantics
 
@@ -136,6 +139,16 @@ axiom-corpus-ingest load-anchors-supabase \
   --anchors data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl \
   --provisions data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl
 ```
+
+Before loading, note that `load-anchors-supabase` writes each anchor's
+`parent_provision_id` as generated, which is the parent row's `id` in the
+provisions JSONL. `load-supabase` replaces a path-only id
+(`uuid5("axiom:" + citation_path)`) with the version-scoped
+`deterministic_provision_id(citation_path, version)` and keeps any other id
+(`provision_to_supabase_row` in `src/axiom_corpus/corpus/supabase.py`). Every
+committed anchors artifact has path-only parent ids, so loading one today
+points each anchor at whichever staged row holds that id rather than the row
+its `version` names, or fails the foreign key if no row does.
 
 ## Populated targets (issue-14)
 
