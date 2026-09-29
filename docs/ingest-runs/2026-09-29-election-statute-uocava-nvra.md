@@ -51,9 +51,8 @@ the 2026-09-13 and 2026-09-23 scopes; the XML creation date is in every row's
 The GovInfo precedent (`manifests/us-usc-26-85.yaml`, `extract-official-documents` with
 `anchor_range`) yields one section row per section. The encodings this run serves cite paragraphs
 (`us/statute/52/20302/a/8`, `us/statute/52/20310/1`, `us/statute/52/20310/5`,
-`us/statute/52/20507/a/1`), which only a subsection-level extraction can answer. OLRC is the same
-official publisher as every held `us/statute` scope, and its release-point XML goes through the same
-adapter.
+`us/statute/52/20507/a/1`), which only a subsection-level extraction can answer. OLRC publishes the
+release-point XML behind every held `extract-usc` scope, and this zip goes through the same adapter.
 
 ## Title root
 
@@ -130,15 +129,20 @@ None of the 162 citation paths is carried by any tracked `us/statute` provisions
 ## Citation-path grammar
 
 `scripts/validate_citation_paths.py` failed only on the `uppercase_segments` ratchet: 16,357 live
-against a 16,281 baseline. The new scope adds exactly 76 unique uppercase paths, all US Code
-subparagraph letters and subclause numerals (for example `us/statute/52/20302/a/8/A`,
-`us/statute/52/20507/e/2/A/ii/I`), the category the schema documents. The baseline in
+against a 16,281 baseline. The new scope adds exactly 76 unique paths with an uppercase segment:
+58 subparagraphs (a US Code subparagraph letter, for example `us/statute/52/20302/a/8/A`) and the 16
+clauses and 2 subclauses below them (for example `us/statute/52/20507/e/2/A/ii/I`), the category the
+schema documents. The baseline in
 `schema/citation-path.v1.json` is raised to 16,357. No space or en-dash segment is added. Other
 branches that raise this ceiling will conflict on that line; recompute it on merge.
 
 ## Not done here
 
-- The scope is not in any release selector on this branch. A minimal-delta successor to the
-  release `rulespec-us` pins is cut in a separate, stacked pull request, because merging a
-  `manifests/releases/*.json` file runs `publish.yml`.
+- The scope is not in any release selector on this branch. The release for `rulespec-us`, a
+  successor to `us-rulespec-2026-09-24-snap-fy2027-cola` in the line `rulespec-us` pins, is cut in a
+  separate, stacked pull request (#772), because merging a `manifests/releases/*.json` file runs
+  `publish.yml`.
+- Serving: the corpus API and app serve a scope only after a release carrying it is activated for
+  `(us, statute)` (`docs/named-release-publication.md`). The #772 release is a pin release that
+  must not be activated, so serving this text needs a separate cut; none is made here.
 - Nothing is published or activated.
