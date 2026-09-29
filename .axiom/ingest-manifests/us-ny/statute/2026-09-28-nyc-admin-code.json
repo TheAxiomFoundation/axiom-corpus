@@ -26,7 +26,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "83a1aeb2bd688a51d319548cee59013fb9369951",
+    "commit": "99a709d7b5f285fc49035e96a9b4d7b6f8970e63",
     "dirty_tracked": false,
     "root": "."
   },
@@ -43,19 +43,19 @@
     "source_count": 3
   },
   "document_class": "statute",
-  "generated_at": "2026-09-29T21:22:58.179629+00:00",
+  "generated_at": "2026-09-29T21:48:44.218860+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-nyc-admin-code-ch127.md",
-      "sha256": "364c6167d0b8fbd1b50295e8e467e802bb13b081850d2d579aa95e08285e6e74"
+      "sha256": "0bdbe3b878fdc1308f89ceb915fc04f38b454fa3f5d71c38ea5c19ff9b981a9d"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "8jsEjJYFY9sRFJLeipFdHMrRFhmj4tdrdJAILLetK9OjNmwCoF+HCpGQkV6Z3FNwU0tgIMsH76YyK3O6eEGWAQ=="
+    "value": "DWASSUrKdx+zf8uzSv65Xg3nH0crPvJSHLrqhsuMvJcsVPx4I7dIaJOoOQLxVfT7o5+jSjBkjKa61hzkTh76Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-nyc-admin-code"
