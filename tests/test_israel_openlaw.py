@@ -2203,3 +2203,98 @@ def test_checked_in_health_law_carries_both_employee_contribution_rates() -> Non
     principles = provisions[f"{HEALTH}/section-1"]
     assert principles.heading == "ביטוח הבריאות הממלכתי"
     assert principles.body is not None and "צדק" in principles.body
+
+
+# The real captures wrap their table of contents in nested divs; the fixture above
+# keeps its contents lines as direct children, so pin the real shape too.
+HEALTH_HTML_NESTED_CONTENTS = HEALTH_HTML.replace(
+    """        <div class="law-toc-1">פרק א׳ – פרשנות</div>
+        <div class="law-toc-2">1. ביטוח הבריאות הממלכתי</div>
+""",
+    """        <div><div><div class="law-toc">
+        <div class="law-toc-1">פרק א׳ – פרשנות</div>
+        <div class="law-toc-2">1. ביטוח הבריאות הממלכתי</div>
+        </div></div></div>
+""",
+)
+
+# A schedule with parts followed by a schedule without parts whose own <h3> is a
+# caption, not a part: its items must hang under the schedule, not the caption.
+HEALTH_HTML_TWO_SCHEDULES = HEALTH_HTML.replace(
+    """      </div>
+    </div>
+  </body>""",
+    """        <h2 class="law-section mw-html-heading" id="תוספת_3">תוספת שלישית</h2>
+        <h3 class="law-subsection mw-html-heading">שירותי הבריאות שנתנה המדינה</h3>
+        <div class="law-number tc_ selflink" id="תוספת_3_פרט_1"><a href="#x">1</a>.</div>
+        <div class="law-main"><div>
+        </div>
+        <div class="law-content1"> שירותי אשפוז
+        </div></div>
+        <div class="law-cleaner"></div>
+      </div>
+    </div>
+  </body>""",
+)
+
+
+def test_the_real_nested_table_of_contents_still_ends_at_section_1() -> None:
+    provisions = {
+        item.citation_path: item
+        for item in parse_israel_openlaw_html(HEALTH_HTML_NESTED_CONTENTS, source=_health_source())
+    }
+    assert provisions[f"{HEALTH_LAW}/section-1"].body == (
+        "ביטוח הבריאות יהא מושתת על עקרונות של צדק ושוויון."
+    )
+
+
+def test_a_numbered_section_does_not_end_any_other_excluded_heading() -> None:
+    """Only the table of contents ends at a section anchor; any other excluded
+    block (the Ordinance's appended glossary, say) stays skipped to its end."""
+    html = HEALTH_HTML.replace(
+        '<h2 class="law-section mw-html-heading">תוכן עניינים</h2>',
+        '<h2 class="law-section mw-html-heading">מונחים</h2>',
+    )
+    provisions = {
+        item.citation_path: item
+        for item in parse_israel_openlaw_html(
+            html,
+            source=_health_source(
+                excluded_headings=["תוכן עניינים", "מונחים"],
+                expected_section_count=1,
+            ),
+        )
+    }
+    assert f"{HEALTH_LAW}/section-1" not in provisions
+    assert f"{HEALTH_LAW}/section-2" in provisions
+
+
+def test_plain_items_after_a_caption_heading_hang_under_their_schedule() -> None:
+    provisions = {
+        item.citation_path: item
+        for item in parse_israel_openlaw_html(
+            HEALTH_HTML_TWO_SCHEDULES,
+            source=_health_source(
+                expected_schedule_item_count=4,
+                expected_schedule_count=2,
+                expected_sign_count=3,
+            ),
+        )
+    }
+    item = provisions[f"{HEALTH_LAW}/schedule-3/item-1"]
+    assert item.parent_citation_path == f"{HEALTH_LAW}/schedule-3"
+    assert "schedule_part_identifier" not in item.metadata
+    # The parts of the schedule before it are untouched.
+    assert f"{HEALTH_LAW}/schedule-2/sign-2/item-1" in provisions
+
+
+def test_a_heading_inserted_before_the_parts_stops_the_parse() -> None:
+    """Part N is cited as sign-N; if another <h3> came first, every part's items
+    would move to a different path.  That must fail, not shift silently."""
+    html = HEALTH_HTML.replace(
+        '<h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_1">',
+        '<h3 class="law-subsection mw-html-heading">כותרת נוספת</h3>\n'
+        '        <h3 class="law-subsection mw-html-heading" id="תוספת_2_חלק_1">',
+    )
+    with pytest.raises(ValueError, match="is heading 2 of its schedule, not heading 1"):
+        parse_israel_openlaw_html(html, source=_health_source(expected_sign_count=3))

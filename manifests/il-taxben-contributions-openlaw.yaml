@@ -7,13 +7,23 @@
 # take-home pay than it is (rulespec-il docs/ENCODING-GAPS.md,
 # no-contributions-so-net-is-not-take-home-pay).
 #
-# The health law was captured in the same 2026-09-06 session as the other three
-# (ops/il-lane/sources/health-insurance-law-wikisource.html.provenance.json).
-# Checked 2026-09-29 against the OpenLaw source markup: §14 is unchanged between
-# that capture and today; the only later edit (source revision 3081404,
-# 2026-09-09) touched §3 and §28, which this capture therefore predates.
+# Source rule.  AGENTS.md prefers primary official sources.  Like the pilot scope
+# (manifests/il-taxben-pilot-openlaw.yaml), this scope is the explicitly directed
+# non-canonical Israel experiment, labelled as such on every row
+# (metadata.source_tier).  Max directed the pilot on 2026-09-06; on 2026-09-29 he
+# delegated the call to encode the employee's contributions, which needs this act
+# ("you decide", Claude session 3d4006e3); merging this scope is his decision d648.
 #
-# Everything else below is copied unchanged from manifests/il-taxben-pilot-openlaw.yaml;
+# The health law was captured in the same 2026-09-06 session as the other three
+# (ops/il-lane/sources/health-insurance-law-wikisource.html.provenance.json): page
+# revision 3073760 (wgRevisionId in the capture).  Checked 2026-09-29: exactly one
+# later revision exists, 3081417 (2026-09-09, OpenLawBot "[3081404] כניסה לתוקף"), and
+# its only change deletes eight "(החל מיום 17.8.2026):" commencement notes in תוספת
+# שנייה, at part 1 item 28 and part 2 item 3 (rows schedule-2/sign-1/item-28 and
+# schedule-2/sign-2/item-3, which therefore still print that qualifier).  §14 is
+# unchanged.
+#
+# Everything below the header is copied unchanged from manifests/il-taxben-pilot-openlaw.yaml;
 # read that file for the per-instrument provenance notes.
 documents:
   - source_id: income-tax-ordinance

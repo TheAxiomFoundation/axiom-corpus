@@ -835,10 +835,10 @@ class _ParseState:
     # schedule citation path -> (designation word, full heading), so items can be
     # named the way their schedule's own heading names it (לוח … / תוספת …).
     schedule_headings: dict[str, tuple[str, str]] = field(default_factory=dict)
-    # Every <h3> navigation node's own anchor id and heading, by citation path, so
-    # an item anchor that names a schedule part can be checked against the part
-    # heading that is actually open.
-    sign_headings: dict[str, tuple[str, str]] = field(default_factory=dict)
+    # Every <h3> navigation node's own anchor id (NFC), heading and ordinal within
+    # its parent, by citation path, so an item anchor that names a schedule part
+    # can be checked against the part heading that is actually open.
+    sign_headings: dict[str, tuple[str, str, int]] = field(default_factory=dict)
     counters: dict[str, int] = field(default_factory=lambda: {"part": 0, "chapter": 0, "sign": 0})
     section_ordinal: int = 0
     schedule_item_ordinal: int = 0
@@ -1168,7 +1168,11 @@ def _parse_fragment(
                 metadata={"raw_marker": heading},
             )
             context["sign"] = (path, _NAV_LEVELS["sign"])
-            state.sign_headings[path] = (str(node.get("id") or ""), heading)
+            state.sign_headings[path] = (
+                unicodedata.normalize("NFC", str(node.get("id") or "")),
+                heading,
+                counters["sign"],
+            )
             continue
 
         if node.name != "div":
@@ -1288,11 +1292,24 @@ def _parse_fragment(
                     if (
                         open_sign is None
                         or not open_sign[0].startswith(f"{schedule_path}/")
-                        or state.sign_headings.get(open_sign[0], ("", ""))[0] != part_anchor
+                        or state.sign_headings.get(open_sign[0], ("", "", 0))[0] != part_anchor
                     ):
                         raise ValueError(
                             f"Israel source {source.source_id} schedule item {anchor_id!r} "
                             f"does not follow the heading of its schedule part {part_anchor!r}"
+                        )
+                    # The part's node is named by its position among the schedule's
+                    # <h3> headings (sign-N), the convention every schedule heading
+                    # here follows.  That name is only stable while position and
+                    # printed part number agree, so a heading inserted before the
+                    # parts (a caption, say) must stop the parse rather than move
+                    # every part's items to a different citation path.
+                    part_position = state.sign_headings[open_sign[0]][2]
+                    if part_ident.isdigit() and int(part_ident) != part_position:
+                        raise ValueError(
+                            f"Israel source {source.source_id} schedule part {part_anchor!r} "
+                            f"is heading {part_position} of its schedule, not heading "
+                            f"{part_ident}: its items would not be cited as part {part_ident}"
                         )
                     parent_path, parent_level = open_sign
                     part_metadata = {
