@@ -6,7 +6,7 @@ documents:
     title: "PAPPG 24-1 Chapter I: Pre-Submission Information"
     source_url: https://www.nsf.gov/policies/pappg/24-1/ch-1-pre-submission
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-28"
     expression_date: "2024-05-20"
     extraction:
       html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
@@ -37,7 +37,7 @@ documents:
     title: "PAPPG 24-1 Supplement 1: DMSP and Research Security Revisions"
     source_url: https://www.nsf.gov/policies/document/pappg24-1-supplement-1
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-28"
     expression_date: "2025-12-08"
     extraction:
       html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
@@ -67,13 +67,18 @@ documents:
     title: "PAPPG 24-1 Supplement 2: Current Data Management and Sharing Plan Workflow"
     source_url: https://www.nsf.gov/policies/document/pappg24-1-supplement-2
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-28"
     expression_date: "2026-01-22"
     extraction:
       html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
       html_drop_selectors:
         - ".print"
         - "s"
+        # The page-level "Contact information" h2 and its two paragraphs share the
+        # section 3 layout block, so the block range cannot stop before them.
+        # Drop the paragraphs first: once the h2 is gone, `h2 ~ p` matches nothing.
+        - 'h2:-soup-contains("Contact information") ~ p'
+        - 'h2:-soup-contains("Contact information")'
       segmentation: anchor_range
       html_start_selector: "div.block-layout-builder:has(#dmsp)"
       html_stop_selector: "div.block-layout-builder:has(a[name='footnote-1'])"
@@ -93,7 +98,7 @@ documents:
     title: "Important Notice No. 149: Updates to NSF Research Security Policies"
     source_url: https://www.nsf.gov/notices/important/important-notice-no-149-updates-nsf-research-security/in149
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-28"
     expression_date: "2025-11-24"
     extraction:
       html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
@@ -116,7 +121,7 @@ documents:
     title: "Important Notice No. 149 Implementation FAQ"
     source_url: https://www.nsf.gov/research-security/important-notice-no-149-implementation-faq
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-28"
     expression_date: "2025-11-24"
     extraction:
       html_content_selector: "main article.node--type-faq"
@@ -170,8 +175,8 @@ documents:
     title: "NSF TIP Person or Entity of Concern Prohibition"
     source_url: https://www.nsf.gov/research-security/person-or-entity-concern-prohibition
     source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2026-08-30"
+    source_as_of: "2026-09-28"
+    expression_date: "2026-09-28"
     extraction:
       html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
       segmentation: anchor_range
