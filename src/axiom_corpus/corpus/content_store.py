@@ -454,7 +454,7 @@ class _GitBlobChunks:
             self.close()
             raise StopIteration
         assert self._proc.stdout is not None
-        chunk = self._proc.stdout.read(min(self._left, CHUNK_SIZE))
+        chunk: bytes = self._proc.stdout.read(min(self._left, CHUNK_SIZE))
         if not chunk:
             self._source.close()
             self._finish()
