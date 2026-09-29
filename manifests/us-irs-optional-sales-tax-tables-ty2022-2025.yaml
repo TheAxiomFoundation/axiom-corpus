@@ -45,7 +45,7 @@ documents:
     tax_year: '2022'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -84,7 +84,7 @@ documents:
     tax_year: '2022'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -115,11 +115,12 @@ documents:
       300000 or more
     table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
     table_footnotes_used: 1 2 3 4 5 6
-    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
-      2. Follow the instructions on the next page to determine your local sales tax deduction.
-      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
-      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
-      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax.
+    table_footnote_legend_abridged: 1. Use the Ratio Method to determine your local sales
+      tax deduction. 2. Follow the instructions on the next page to determine your local sales
+      tax deduction. 3. The California table includes the 1.25% uniform local sales tax rate.
+      4. This state does not have a local general sales tax. 5. The Nevada table includes
+      the 2.25% uniform local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise
+      tax.
 - source_id: irs-i1040sca-ty2022-optional-local-sales-tax-table-selector
   jurisdiction: us
   document_class: form
@@ -149,7 +150,7 @@ documents:
     tax_year: '2022'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -189,7 +190,7 @@ documents:
     tax_year: '2022'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -243,7 +244,7 @@ documents:
     tax_year: '2023'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -282,7 +283,7 @@ documents:
     tax_year: '2023'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -313,12 +314,12 @@ documents:
       300000 or more
     table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
     table_footnotes_used: 1 2 3 4 5 6 7
-    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
-      2. Follow the instructions on the next page to determine your local sales tax deduction.
-      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
-      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
-      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax. 7. The
-      rate decreased during 2023 so the given rate is an average for the year.
+    table_footnote_legend_abridged: 1. Use the Ratio Method to determine your local sales
+      tax deduction. 2. Follow the instructions on the next page to determine your local sales
+      tax deduction. 3. The California table includes the 1.25% uniform local sales tax rate.
+      4. This state does not have a local general sales tax. 5. The Nevada table includes
+      the 2.25% uniform local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise
+      tax. 7. The rate decreased during 2023 so the given rate is an average for the year.
 - source_id: irs-i1040sca-ty2023-optional-local-sales-tax-table-selector
   jurisdiction: us
   document_class: form
@@ -348,7 +349,7 @@ documents:
     tax_year: '2023'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -388,7 +389,7 @@ documents:
     tax_year: '2023'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -442,7 +443,7 @@ documents:
     tax_year: '2024'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -481,7 +482,7 @@ documents:
     tax_year: '2024'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -512,11 +513,12 @@ documents:
       300000 or more
     table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
     table_footnotes_used: 1 2 3 4 5 6
-    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
-      2. Follow the instructions on the next page to determine your local sales tax deduction.
-      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
-      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
-      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax.
+    table_footnote_legend_abridged: 1. Use the Ratio Method to determine your local sales
+      tax deduction. 2. Follow the instructions on the next page to determine your local sales
+      tax deduction. 3. The California table includes the 1.25% uniform local sales tax rate.
+      4. This state does not have a local general sales tax. 5. The Nevada table includes
+      the 2.25% uniform local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise
+      tax.
 - source_id: irs-i1040sca-ty2024-optional-local-sales-tax-table-selector
   jurisdiction: us
   document_class: form
@@ -545,7 +547,7 @@ documents:
     tax_year: '2024'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -585,7 +587,7 @@ documents:
     tax_year: '2024'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -637,7 +639,9 @@ documents:
     tax_year: '2025'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
+    current_edition_note: Byte-identical to the current edition at https://www.irs.gov/pub/irs-pdf/i1040sca.pdf
+      as of 2026-09-24.
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -676,7 +680,9 @@ documents:
     tax_year: '2025'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
+    current_edition_note: Byte-identical to the current edition at https://www.irs.gov/pub/irs-pdf/i1040sca.pdf
+      as of 2026-09-24.
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -707,11 +713,12 @@ documents:
       300000 or more
     table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
     table_footnotes_used: 1 2 3 4 5 6
-    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
-      2. Follow the instructions on the next page to determine your local sales tax deduction.
-      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
-      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
-      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax.
+    table_footnote_legend_abridged: 1. Use the Ratio Method to determine your local sales
+      tax deduction. 2. Follow the instructions on the next page to determine your local sales
+      tax deduction. 3. The California table includes the 1.25% uniform local sales tax rate.
+      4. This state does not have a local general sales tax. 5. The Nevada table includes
+      the 2.25% uniform local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise
+      tax.
 - source_id: irs-i1040sca-ty2025-optional-local-sales-tax-table-selector
   jurisdiction: us
   document_class: form
@@ -741,7 +748,9 @@ documents:
     tax_year: '2025'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
+    current_edition_note: Byte-identical to the current edition at https://www.irs.gov/pub/irs-pdf/i1040sca.pdf
+      as of 2026-09-24.
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
@@ -781,7 +790,9 @@ documents:
     tax_year: '2025'
     form: Schedule A (Form 1040)
     program: individual_income_tax
-    source_status: official_prior_year_instructions
+    source_status: official_instructions
+    current_edition_note: Byte-identical to the current edition at https://www.irs.gov/pub/irs-pdf/i1040sca.pdf
+      as of 2026-09-24.
     text_extractor: PyMuPDF 1.26.7
     rulespec_semantics: not_asserted
     policyengine_parity: not_asserted
