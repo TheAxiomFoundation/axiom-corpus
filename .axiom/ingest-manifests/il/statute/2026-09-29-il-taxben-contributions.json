@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/il/statute/2026-09-29-il-taxben-contributions.json",
+      "sha256": "9464428996b50182f4155e0d86e8440b359c8b06ea8630cb387dd6696578fc21"
+    },
+    {
+      "path": "data/corpus/inventory/il/statute/2026-09-29-il-taxben-contributions.json",
+      "sha256": "48dfd7124aa7425e159ee62afcd8c9f9ba185145deef2964da026649249f13ce"
+    },
+    {
+      "path": "data/corpus/provisions/il/statute/2026-09-29-il-taxben-contributions.jsonl",
+      "sha256": "fd5f1e4d6fb941c32cfbf2ef4f248146c29baf41906d1cdb3d6c7437b86d0ac1"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-29-il-taxben-contributions/openlaw/economic-efficiency-law-2026-wikisource.html",
+      "sha256": "c4632b9f2d50e63cdd4bd0ab517ec5aa1a0f1488448e6151d0eb6a7aedbb6c4c"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-29-il-taxben-contributions/openlaw/health-insurance-law-wikisource.html",
+      "sha256": "61c3879b1f1e3cd048bc28b1e62ff9beed79f16b7158ec49d663a39f00f93570"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-29-il-taxben-contributions/openlaw/ito-wikisource-tail-235-247.html",
+      "sha256": "6cc14dd6bdd6caf14d1f0d63a6f9f74bc83706aefae46b000933d82d84abb9e8"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-29-il-taxben-contributions/openlaw/ito-wikisource.html",
+      "sha256": "87535c2b8cd8aa50b27d32301dc2ddd768390ef64e9fb4f391c3e65fe99dc228"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-29-il-taxben-contributions/openlaw/nii-law-wikisource.html",
+      "sha256": "7dbaaa757912c71b361381640d2578bf2c6ab52f2002817b85d677c2267f0715"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5b31615e0a2393c817cdbd923bcd3c04269884a6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-il-openlaw --base data/corpus --version 2026-09-29-il-taxben-contributions --manifest manifests/il-taxben-contributions-openlaw.yaml --source-dir data/corpus/sources/il/statute/2026-09-29-il-taxben-contributions/openlaw"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1633,
+    "missing_count": 0,
+    "provision_count": 1633,
+    "source_count": 1633
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-29T13:01:26.456097+00:00",
+  "jurisdiction": "il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LrXVqFHjVGwG3WgGd7Eh9nT8knbIZMuIUloGQuLjzaplOsm8P0DM9xvCzwUyWCzktgtP8oFdK1E6/WFxbqzaDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-29-il-taxben-contributions"
+}
