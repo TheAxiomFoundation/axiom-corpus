@@ -691,3 +691,18 @@ def test_publishability_audit_keeps_going_past_an_unfetchable_scope(
     report = json.loads(out.getvalue())
     assert status == 2
     assert report["scope_count"] == 2 and report["unfetchable_count"] == 1
+
+
+def test_signing_refuses_hidden_source_files_even_without_lock(repo: Path) -> None:
+    """Round 3 nit: a signed manifest must never attest bytes no lock may carry."""
+    _write_files(repo, FILES)
+    _write_files(repo, {"data/corpus/sources/nz/statute/2026-07-10/official-documents/.x.part": b"partial"})
+    with pytest.raises(ValueError, match="hidden file"):
+        build_ingest_manifest(
+            repo=repo,
+            base=Path("data/corpus"),
+            jurisdiction=SCOPE[0],
+            document_class=SCOPE[1],
+            version=SCOPE[2],
+            command="x",
+        )

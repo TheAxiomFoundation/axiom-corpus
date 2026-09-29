@@ -397,6 +397,13 @@ exactly those 1,362 files.
   past the switch, axiom-encode must place a pinned release's files in a
   lock-file checkout
   ([axiom-encode#1742](https://github.com/TheAxiomFoundation/axiom-encode/pull/1742)).
+  The contract for any tool that writes into a checkout: a protected path
+  holds either the bytes its lock pins or fresh extractor output, nothing
+  else. A tool that needs other bytes (an older release) uses a worktree at
+  that release's commit; writing them over a lock-file checkout would make
+  `corpus status` and the resolver treat them as current and let a later
+  `sign-ingest-manifest --lock` sign them. Temporary files go under
+  `data/corpus/.corpus-fetch-tmp/`, never inside a scope.
 - `axiom.org` counts `data/corpus/provisions/` paths in GitHub trees for a
   status page; since
   [axiom.org#278](https://github.com/TheAxiomFoundation/axiom.org/pull/278) it

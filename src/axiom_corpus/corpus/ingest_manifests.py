@@ -1032,6 +1032,20 @@ def _infer_scope_artifacts(
     source_root = base / "sources" / jurisdiction / document_class / version
     if source_root.exists():
         files.extend(path for path in source_root.rglob("*") if path.is_file())
+    # Hidden files (.DS_Store, an interrupted download's .part) are never corpus
+    # artifacts, and `corpus lock` refuses them; refuse them here too rather
+    # than sign bytes no lock may carry.
+    hidden = [
+        path
+        for path in files
+        if any(part.startswith(".") for part in path.relative_to(source_root).parts)
+    ]
+    if hidden:
+        raise ValueError(
+            f"refusing to sign hidden file(s) in {source_root}: "
+            + ", ".join(str(path) for path in hidden[:5])
+            + "; delete them first."
+        )
     for path in (
         base / "inventory" / jurisdiction / document_class / f"{version}.json",
         base / "provisions" / jurisdiction / document_class / f"{version}.jsonl",
