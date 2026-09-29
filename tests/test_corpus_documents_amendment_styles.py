@@ -269,8 +269,10 @@ _MARKED = {
         # Table cells are separate words; rows are separate paragraphs.
         (b"<body><table><tr><td>1</td><td><u>200</u></td></tr><tr><td><strike>3</strike></td></tr></table></body>",
          "1 {+200+}\n\n[-3-]"),
-        # <br> separates words.
+        # <br> separates words, and two in a row do not make a paragraph break.
         (b"<body><p>First<br><u>Second</u> <strike>x</strike></p></body>", "First {+Second+} [-x-]"),
+        (b"<body><p>a<br><br>b <u>c</u> <strike>d</strike></p></body>", "a b {+c+} [-d-]"),
+        (b"<body><p>a <br>\n<br> b <u>c</u> <strike>d</strike></p></body>", "a b {+c+} [-d-]"),
         # Comments and CDATA are not text (the default lxml parse drops CDATA).
         (b"<body><p>A<!-- hidden --> <u>B</u><![CDATA[ hidden ]]> <strike>C</strike></p></body>",
          "A {+B+} [-C-]"),
@@ -285,6 +287,28 @@ def test_html_amendment_text_keeps_word_and_paragraph_boundaries(
     assert documents._strip_amendment_markup(block.body).split() == default.body.split()
 
 
+def test_html_amendment_status_follows_the_source_node_not_equal_text() -> None:
+    # The drop removes different spans in the two parses; alignment happens before
+    # drops, so the retained lxml span keeps its own (unmarked) status.
+    content = (
+        b"<html><body><p><u><span id=a>A</span><p><span id=b>A</span></u>"
+        b"<span id=c>A</span></body></html>"
+    )
+    options = {"html_text_selector": "body", "html_drop_selectors": ["span:last-child"]}
+    (marked,) = _html(content, {**options, "html_amendment_markup": {"inserted_selector": "#a"}})
+    (default,) = _html(content, options)
+    assert marked.body == default.body == "A"
+    assert marked.metadata["amendment_markup"]["inserted_runs"] == 0
+
+
+def test_cdata_does_not_trip_the_delimiter_check_but_visible_delimiters_do() -> None:
+    options = {"html_amendment_markup": {"inserted_selector": "u"}}
+    (block,) = _html(b"<html><body><p><u>A</u><![CDATA[{+hidden+}]]></p></body></html>", options)
+    assert block.body == "{+A+}"
+    with pytest.raises(ValueError, match="already contains amendment markup delimiters"):
+        _html(b"<html><body><p><u>A</u> {+visible+}</p></body></html>", options)
+
+
 def test_html_amendment_ranges_span_paragraphs_while_paragraphs_follow_lxml() -> None:
     # lxml alone would close the <u> at the second <p>; html.parser alone would end
     # the second paragraph at </u>. The aligned parses keep both right.
@@ -293,22 +317,21 @@ def test_html_amendment_ranges_span_paragraphs_while_paragraphs_follow_lxml() ->
 
 
 def test_html_amendment_states_fail_when_the_two_parses_disagree() -> None:
-    root = documents._html_soup(b"<html><body><p>x y</p></body></html>").body
+    soup = documents._html_soup(b"<html><body><p>x y</p></body></html>")
+    extraction = {"html_content_selector": "body", "html_amendment_markup": {"inserted_selector": "u"}}
     with pytest.raises(RuntimeError, match="disagree at non-space character 1"):
         documents._html_amendment_states(
             b"<html><body><p><u>x</u> z</p></body></html>",
-            root,
+            soup,
             original_encoding=None,
-            drop_selectors=[],
-            extraction={"html_content_selector": "body", "html_amendment_markup": {"inserted_selector": "u"}},
+            extraction=extraction,
         )
     with pytest.raises(RuntimeError, match="has text the lxml parse lacks"):
         documents._html_amendment_states(
             b"<html><body><p><u>x</u> y extra</p></body></html>",
-            root,
+            soup,
             original_encoding=None,
-            drop_selectors=[],
-            extraction={"html_content_selector": "body", "html_amendment_markup": {"inserted_selector": "u"}},
+            extraction=extraction,
         )
 
 
@@ -529,7 +552,7 @@ def _html_paragraphs(rng: random.Random) -> tuple[str, list[list[str]]]:
             else:
                 rendered = word
             if pieces:
-                pieces.append(rng.choice((" ", "\n", "  ", " \t ")))
+                pieces.append(rng.choice((" ", "\n", "  ", " \t ", "<br>", "<br><br>", " <br>\n<br> ")))
             pieces.append(rendered)
             words.append(word)
         container = rng.choice(("p", "div", "li", None if not previous_bare else "p"))

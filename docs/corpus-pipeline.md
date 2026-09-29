@@ -446,10 +446,12 @@ cell or `<br>` separates words, and other tags add nothing; comments and CDATA
 are not text. The text and its paragraphs come from the default lxml parse;
 the amendment tags are selected in an html.parser parse of the same source,
 because lxml closes an inline `<u>` at the next `<p>` and would lose an amendment
-that spans paragraphs. The two parses must carry the same non-space characters in
+that spans paragraphs. The two whole documents are aligned before any drop
+selector or content root applies: they must carry the same non-space characters in
 the same order, and each character takes its amendment status from its
 html.parser counterpart; a disagreement fails extraction instead of changing the
-text. Removing the delimiters gives the text. It also fails on a selector that matches
+text. Drops then apply to the lxml parse alone. The literal-delimiter check reads
+the visible text that is extracted. Removing the delimiters gives the text. It also fails on a selector that matches
 nothing, a node or string both inserted and deleted, text that already contains a
 delimiter, `segmentation`, or WebWorks HTML. `html_amendment_markup: false` is the
 default.

@@ -258,9 +258,10 @@ documented in `docs/corpus-pipeline.md` ("Amended rule text in PDFs and HTML"):
   status comes from an html.parser parse of the same source, aligned character by
   character. lxml alone would end WSR 09-15-085's underlined insertion at the first
   `<p>`; html.parser alone would end paragraphs at mismatched inline end tags. The two
-  parses must agree on the non-space text, or extraction fails. WSR 09-15-085 reads
-  `(([-and-]))` as printed, with 42 paragraphs. `html_encoding` decodes strictly without
-  changing the parser.
+  parses are aligned as whole documents, before any drop selector applies, and must
+  agree on the non-space text, or extraction fails. WSR 09-15-085 reads `(([-and-]))` as
+  printed, with 41 paragraphs. `html_encoding` decodes strictly without changing the
+  parser.
 - DOCX `docx_symbol_map` writes Word `<w:sym>` glyphs, which default extraction skips.
   Title 67 stores 290 definition dashes as Symbol-font `F0BE`; mapped to U+2015, the
   character the same compilation types for that construction, §307 reads "d. SNAP―90
@@ -371,7 +372,7 @@ reproduced here before it was fixed, and each now has a regression test.
   and only amendment status from html.parser, with the two aligned and required to
   agree. It also fixes a regression the first boundary fix caused: html.parser closes an
   open `<p>` at a mismatched `</b>` or `</u>`, which split WSR 09-15-085's "(o)" from its
-  text. WSR 09-15-085's rows are unchanged from the first commit.
+  text.
 - **PDF precedence.** `unmarked_line_patterns` now applies before any character is
   classified, so a struck page number no longer fails bracket mode. Bold mode now
   ignores drawn underlines when checking conflicts, so a struck, underlined character
@@ -381,6 +382,24 @@ reproduced here before it was fixed, and each now has a regression test.
 
 The HTML property test now checks against the generator's own words and paragraphs,
 1,000 generated documents, rather than comparing non-space characters.
+
+### Third review
+
+The same reviewer's second round, and a separate session porting the property tests
+to Hypothesis, found three more defects. Each was reproduced here before it was fixed,
+and each now has a regression test.
+
+- **Alignment after drops (major).** Aligning the two parses after drop selectors had
+  run could pair equal text from different source nodes when the parsers dropped
+  different elements. The reproduction gave an insertion to text lxml had kept from an
+  unselected node. Alignment now runs on the whole undropped documents, and drops then
+  apply to the lxml parse alone.
+- **CDATA and the delimiter check.** The literal-delimiter check read html.parser text,
+  including CDATA that is not extracted. It now reads the visible extracted text.
+- **`<br><br>`.** Each `<br>` was a line break, so two in a row made a paragraph break
+  that default extraction does not have. `<br>` is now a word break. WSR 09-15-085 has
+  one `<BR><BR>`, between the "AMENDATORY SECTION" line and the WAC heading, so its
+  body now has 41 paragraphs. Its words are unchanged.
 
 ## Citation-path ratchet and retention
 

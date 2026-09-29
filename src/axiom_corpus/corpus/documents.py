@@ -3024,6 +3024,15 @@ def _extract_html_blocks(
         _decode_html_strictly(content, str(encoding)) if encoding else content
     )
     soup = _html_soup(document)
+    # Amendment status is aligned on the whole, undropped documents, before any drop
+    # selector or content root, so that each lxml string pairs with its own source text.
+    amendment_states = (
+        _html_amendment_states(
+            document, soup, original_encoding=soup.original_encoding, extraction=extraction
+        )
+        if _html_amendment_markup_requested(extraction)
+        else None
+    )
     drop_selectors = [
         "script",
         "style",
@@ -3046,19 +3055,12 @@ def _extract_html_blocks(
         for node in soup.select(selector):
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
-    amendment_states = (
-        _html_amendment_states(
-            document,
-            root,
-            original_encoding=soup.original_encoding,
-            drop_selectors=drop_selectors,
-            extraction=extraction,
-        )
-        if _html_amendment_markup_requested(extraction)
-        else None
-    )
-    if amendment_states is not None and (extraction or {}).get("segmentation") is not None:
-        raise ValueError("html_amendment_markup supports only default HTML blocks")
+    if amendment_states is not None:
+        if (extraction or {}).get("segmentation") is not None:
+            raise ValueError("html_amendment_markup supports only default HTML blocks")
+        visible = "".join(_html_text_strings(root))
+        if any(token in visible for token in _AMENDMENT_MARKUP_TOKENS):
+            raise ValueError("HTML already contains amendment markup delimiters")
     title = _document_title(soup) or fallback_title
     if (extraction or {}).get("segmentation") == "anchor_range":
         return _extract_anchor_range_html_blocks(
@@ -3167,8 +3169,6 @@ def _html_amendment_nodes(
     allowed = {"deleted_selector", "inserted_selector"}
     if not isinstance(config, dict) or not config or set(config) - allowed:
         raise ValueError("html_amendment_markup requires deleted_selector or inserted_selector")
-    if any(token in root.get_text() for token in _AMENDMENT_MARKUP_TOKENS):
-        raise ValueError("HTML already contains amendment markup delimiters")
     selected: dict[int, str] = {}
     for key, selector in config.items():
         if not isinstance(selector, str) or not selector.strip():
@@ -3191,34 +3191,32 @@ def _html_text_strings(root: Tag) -> list[Any]:
 
 def _html_amendment_states(
     document: bytes | str,
-    root: Tag,
+    soup: BeautifulSoup,
     *,
     original_encoding: str | None,
-    drop_selectors: list[str],
     extraction: dict[str, Any] | None,
 ) -> dict[int, list[str | None]]:
-    """Amendment status of every character of every text string under ``root``.
+    """Amendment status of every character of every text string in ``soup``.
 
-    ``root`` is the default lxml parse, which gives the text and its paragraph
+    ``soup`` is the default lxml parse, which gives the text and its paragraph
     structure. Amendment tags are selected in an html.parser parse of the same
     source instead, because lxml closes an inline ``<u>`` or ``<strike>`` at the
     next ``<p>`` and so loses an amendment that spans paragraphs (Washington
-    register orders do this). The two parses must carry the same non-space
-    characters in the same order; each lxml character takes the status of its
-    html.parser counterpart, and a disagreement fails extraction.
+    register orders do this). Both whole documents are aligned before any drop
+    selector or content root applies, so each lxml character is paired with the
+    same source character in html.parser's text; the two must carry the same
+    non-space characters in the same order, or extraction fails. Drops then apply
+    to the lxml parse alone, and its surviving strings keep their status.
     """
     marked_soup = (
         BeautifulSoup(document, "html.parser", from_encoding=original_encoding)
         if isinstance(document, bytes)
         else BeautifulSoup(document, "html.parser")
     )
-    for selector in drop_selectors:
-        for node in marked_soup.select(selector):
-            node.decompose()
     marked_root = _html_content_root(marked_soup, extraction=extraction)
     selected = _html_amendment_nodes(marked_root, extraction=extraction) or {}
     marked: list[tuple[str, str | None]] = []
-    for string in _html_text_strings(marked_root):
+    for string in _html_text_strings(marked_soup):
         inherited = {
             selected[id(parent)] for parent in string.parents if id(parent) in selected
         }
@@ -3228,7 +3226,7 @@ def _html_amendment_states(
         marked.extend((character, state) for character in str(string) if not character.isspace())
     states: dict[int, list[str | None]] = {}
     position = 0
-    for string in _html_text_strings(root):
+    for string in _html_text_strings(soup):
         string_states: list[str | None] = []
         for character in str(string):
             if character.isspace():
@@ -3270,7 +3268,9 @@ def _html_amendment_text(node: Tag, selected: dict[int, list[str | None]] | None
         for child in current.children:
             if isinstance(child, Tag):
                 if child.name == "br":
-                    parts.append("\n")
+                    # A word break, as in the default get_text(" "); two in a row
+                    # must not become a blank line (a paragraph break).
+                    parts.append(" ")
                     states.append(None)
                     continue
                 boundary = (
