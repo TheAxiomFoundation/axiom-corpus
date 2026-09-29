@@ -16,7 +16,7 @@ ADDITION = {
 }
 # docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md, "How later cuts
 # supersede the scope": the next cut in this line drops the us-ca recovery and
-# PIT core scopes and selects the chapter scope that carries all of their
+# PIT core scopes and selects the chapter scope that carries all of their R&TC
 # sections (#742, which would supply successors, is not merged).
 US_CA_REMOVALS = (
     {
@@ -81,7 +81,7 @@ def build_release(*, release_dir: Path, output_dir: Path | None = None) -> Path:
                 "as the 2026-09-25 us-ca statute recovery audit requires of the next "
                 "cut in this line, the California 2026-07-13 recovery and PIT core "
                 "statute scopes are replaced by the 2026-09-14 income tax chapter "
-                "scope, which carries all of their sections."
+                "scope, which carries all of their Revenue and Taxation Code sections."
             ),
             "name": RELEASE,
             "scopes": final_scopes,
