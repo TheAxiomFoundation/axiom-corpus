@@ -13,7 +13,9 @@ Structure mirrors ``test_citation_path_grammar.py``:
 
 Both targets are read from the real committed provision JSONL so the test
 exercises production data, and the committed anchor JSONL is checked to be
-exactly what the generator reproduces (the derived artifact is in sync).
+exactly what the generator reproduces (the derived artifact is in sync). These
+fixtures are tracked in git, so a missing file or row fails the suite rather
+than skipping it: it means a test points at a renamed or superseded scope.
 """
 
 from __future__ import annotations
@@ -46,10 +48,12 @@ PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
 ANCHORS_DIR = REPO_ROOT / "data" / "corpus" / "anchors"
 
 # --- Target 1: 7 CFR 273.9 (federal, paragraph-tree parse) ---
-CFR_PROVISIONS = (
-    PROVISIONS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
-)
-CFR_ANCHORS = ANCHORS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
+# The release-carried scope. #344 replaced ``2026-05-10-snap-7-cfr-273`` with
+# this self-contained successor (it adds the part, chapter and title parents);
+# the 273.9 row kept its id and body, so only the anchors' ``version`` moved.
+CFR_SCOPE = "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
+CFR_PROVISIONS = PROVISIONS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
+CFR_ANCHORS = ANCHORS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
 CFR_SECTION = "us/regulation/7/273/9"
 CFR_LEAF = "us/regulation/7/273/9/d/6/iii"
 
@@ -71,13 +75,30 @@ MA_LEAF = "us-ma/regulation/106-cmr/365/180/A"
 # --------------------------------------------------------------------------- #
 
 
+def _repo_relative(path: Path) -> str:
+    return str(path.relative_to(REPO_ROOT))
+
+
+def _committed_provision(path: Path, citation_path: str) -> ProvisionRecord:
+    # ``load_provisions`` returns () for a missing path, so check the file
+    # first; otherwise a renamed scope reads as a missing row.
+    if not path.is_file():
+        pytest.fail(f"committed provisions fixture is missing: {_repo_relative(path)}")
+    for record in load_provisions(path):
+        if record.citation_path == citation_path:
+            return record
+    pytest.fail(f"{citation_path} not present in {_repo_relative(path)}")
+
+
+def _committed_anchors(path: Path) -> tuple[ProvisionAnchor, ...]:
+    if not path.is_file():
+        pytest.fail(f"committed anchors artifact is missing: {_repo_relative(path)}")
+    return load_anchors(path)
+
+
 @pytest.fixture(scope="module")
 def cfr_section() -> ProvisionRecord:
-    records = load_provisions(CFR_PROVISIONS)
-    for record in records:
-        if record.citation_path == CFR_SECTION:
-            return record
-    pytest.skip(f"{CFR_SECTION} not present in {CFR_PROVISIONS}")
+    return _committed_provision(CFR_PROVISIONS, CFR_SECTION)
 
 
 @pytest.fixture(scope="module")
@@ -87,11 +108,7 @@ def cfr_anchors(cfr_section: ProvisionRecord) -> list[ProvisionAnchor]:
 
 @pytest.fixture(scope="module")
 def ma_leaf_provision() -> ProvisionRecord:
-    records = load_provisions(MA_PROVISIONS)
-    for record in records:
-        if record.citation_path == MA_LEAF:
-            return record
-    pytest.skip(f"{MA_LEAF} not present in {MA_PROVISIONS}")
+    return _committed_provision(MA_PROVISIONS, MA_LEAF)
 
 
 @pytest.fixture(scope="module")
@@ -574,25 +591,76 @@ def test_invalid_span_rejected() -> None:
 def test_committed_cfr_anchors_match_generator(
     cfr_anchors: list[ProvisionAnchor],
 ) -> None:
-    if not CFR_ANCHORS.exists():
-        pytest.skip("committed CFR anchors artifact not present")
-    committed = load_anchors(CFR_ANCHORS)
+    committed = _committed_anchors(CFR_ANCHORS)
     got = {a.citation_path: a.to_mapping() for a in cfr_anchors}
     have = {a.citation_path: a.to_mapping() for a in committed}
     assert got == have, (
-        "committed data/corpus/anchors is stale; rerun generate-anchors"
+        f"{_repo_relative(CFR_ANCHORS)} is stale; rerun generate-anchors "
+        f"--provisions {_repo_relative(CFR_PROVISIONS)} --target {CFR_SECTION} "
+        f"--output {_repo_relative(CFR_ANCHORS)}"
     )
 
 
 def test_committed_ma_anchors_match_generator(
     ma_anchors: list[ProvisionAnchor],
 ) -> None:
-    if not MA_ANCHORS.exists():
-        pytest.skip("committed us-ma anchors artifact not present")
-    committed = load_anchors(MA_ANCHORS)
+    committed = _committed_anchors(MA_ANCHORS)
     got = {a.citation_path: a.to_mapping() for a in ma_anchors}
     have = {a.citation_path: a.to_mapping() for a in committed}
-    assert got == have
+    assert got == have, (
+        f"{_repo_relative(MA_ANCHORS)} is stale; rerun generate-anchors "
+        f"--provisions {_repo_relative(MA_PROVISIONS)} --stored-leaf {MA_LEAF} "
+        f"--output {_repo_relative(MA_ANCHORS)}"
+    )
+
+
+def _committed_anchor_artifacts() -> list[Path]:
+    return sorted(ANCHORS_DIR.rglob("*.jsonl"))
+
+
+def test_committed_anchor_artifacts_exist() -> None:
+    # Anti-vacuous: the parametrized check below must have something to check.
+    assert len(_committed_anchor_artifacts()) >= 2
+
+
+@pytest.mark.parametrize(
+    "anchors_path",
+    _committed_anchor_artifacts(),
+    ids=lambda path: str(path.relative_to(ANCHORS_DIR)),
+)
+def test_committed_anchor_artifact_tracks_its_provisions(anchors_path: Path) -> None:
+    # Anchors mirror the provisions layout. When a provisions scope is renamed
+    # to a successor, its anchors must be regenerated and renamed with it.
+    relative = anchors_path.relative_to(ANCHORS_DIR)
+    provisions_path = PROVISIONS_DIR / relative
+    assert provisions_path.is_file(), (
+        f"{_repo_relative(anchors_path)} has no provisions file at "
+        f"{_repo_relative(provisions_path)}; regenerate the anchors against the "
+        "successor scope"
+    )
+    anchors = load_anchors(anchors_path)
+    assert anchors, f"{_repo_relative(anchors_path)} is empty"
+    records = load_provisions(provisions_path)
+    verify_anchors_against_provisions(anchors, records)
+    # The scope columns are denormalized from the parent row, so a load into
+    # corpus.provision_anchors lands on the parent's version boundary.
+    jurisdiction, document_class = relative.parts[:2]
+    parents = {record.id: record for record in records}
+    for anchor in anchors:
+        parent = parents.get(anchor.parent_provision_id)
+        assert parent is not None, (
+            f"{anchor.citation_path}: parent id {anchor.parent_provision_id} is not "
+            f"in {_repo_relative(provisions_path)}"
+        )
+        assert anchor.parent_citation_path == parent.citation_path
+        assert (anchor.jurisdiction, anchor.document_class) == (
+            jurisdiction,
+            document_class,
+        )
+        assert anchor.version == parent.version, (
+            f"{anchor.citation_path}: anchor version {anchor.version!r} != parent "
+            f"version {parent.version!r}"
+        )
 
 
 def test_roundtrip_jsonl(
@@ -678,8 +746,7 @@ def test_migration_ddl_matches_expected_columns() -> None:
         / "migrations"
         / "20260704120000_corpus_provision_anchors.sql"
     )
-    if not migration.exists():
-        pytest.skip("migration not present")
+    assert migration.is_file(), f"migration is missing: {_repo_relative(migration)}"
     sql = migration.read_text()
     for column in _DDL_COLUMNS:
         assert column in sql, f"DDL is missing column {column!r}"

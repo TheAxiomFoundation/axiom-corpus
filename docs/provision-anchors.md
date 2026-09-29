@@ -122,19 +122,19 @@ A path matching none of these returns `None` (Python) / zero rows (SQL).
 # --target parses the printed paragraph tree of a section provision;
 # --stored-leaf wraps a provision that is already a block leaf.
 axiom-corpus-ingest generate-anchors \
-  --provisions data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273.jsonl \
+  --provisions data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl \
   --target us/regulation/7/273/9 \
-  --output data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273.jsonl
+  --output data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl
 
 # Resolve a citation path to (provision_id, span) over an anchors artifact.
 axiom-corpus-ingest resolve-anchor \
-  --anchors data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273.jsonl \
+  --anchors data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl \
   us/regulation/7/273/9/d/6/iii
 
 # Optional: upsert an anchors artifact into corpus.provision_anchors.
 axiom-corpus-ingest load-anchors-supabase \
-  --anchors data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273.jsonl \
-  --provisions data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273.jsonl
+  --anchors data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl \
+  --provisions data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl
 ```
 
 ## Populated targets (issue-14)
