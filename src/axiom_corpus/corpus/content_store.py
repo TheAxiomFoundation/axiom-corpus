@@ -1145,10 +1145,17 @@ def materialize(
             report.methods = {key: count for key, count in report.methods.items() if count}
             report.present.sort()
             report.materialized.sort()
+            # Give SIGINT back before the last check: a Ctrl-C from here on
+            # raises normally, and one that landed during cleanup (every
+            # directory is already whole or rolled back) is raised below.
+            if previous_handler is not None:
+                signal.signal(signal.SIGINT, previous_handler)
+                previous_handler = None
             if not interrupted():
                 return report
-            # A Ctrl-C during the final cleanup: every directory is already
-            # whole or rolled back, so honor it rather than swallow it.
+            if worker_interrupt:
+                raise worker_interrupt[0]
+            raise KeyboardInterrupt
         # Interrupted: cancel queued work, let in-flight entries finish, then
         # roll back every sources/ directory this call left incomplete.
         stop.set()

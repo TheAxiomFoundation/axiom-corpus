@@ -1631,6 +1631,9 @@ class Slow:
         time.sleep(0.005)
         return [by_sha[entry.sha256]]
 
+# A harmless handler outside materialize(): signals from the burst that land
+# after it gives SIGINT back must not kill this child.
+signal.signal(signal.SIGINT, lambda *_: None)
 original = signal.getsignal(signal.SIGINT)
 def burst():
     while signal.getsignal(signal.SIGINT) is original:
@@ -1642,12 +1645,14 @@ def burst():
         spin_until = time.perf_counter() + random.uniform(0, 30e-6)
         while time.perf_counter() < spin_until:
             pass
-threading.Thread(target=burst, daemon=True).start()
+sender = threading.Thread(target=burst, daemon=True)
+sender.start()
 try:
     materialize(root / "repo", entries, ContentCache(root / "cache"), [Slow()], workers=8)
     outcome = "completed"
 except KeyboardInterrupt:
     outcome = "interrupted"
+sender.join()
 by_scope = {}
 for p in files:
     by_scope.setdefault(p.rsplit("/", 1)[0], []).append((root / "repo" / p).exists())
@@ -1658,7 +1663,11 @@ print(json.dumps({"outcome": outcome, "partial": partial}))
 
 def test_a_burst_of_sigints_cannot_deadlock_the_handler(tmp_path: Path) -> None:
     """Round 7: an Event.set() handler re-entered by a second signal deadlocked
-    forever; the lock-free flag cannot. Run in a subprocess with a timeout."""
+    forever; the lock-free flag cannot. Run in a subprocess with a timeout.
+
+    The old handler deadlocks reliably on free-threaded builds (11 of 12 runs
+    in review) but rarely under the GIL, so on a GIL interpreter this test
+    mostly checks that bursts leave every directory whole or empty."""
     import json
     import sys
 

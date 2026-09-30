@@ -226,7 +226,11 @@ class CorpusResolver:
             folded = self.locks.find_folded(rel)
             canonical = self.repo / folded.path if folded is not None else None
             # Only a spelling the filesystem merged, i.e. the same file on disk.
-            if canonical is not None and canonical.exists() and os.path.samefile(target, canonical):
+            try:
+                merged = canonical is not None and os.path.samefile(target, canonical)
+            except FileNotFoundError:  # one of them vanished meanwhile (a rollback)
+                merged = False
+            if merged:
                 entry = folded
         if entry is None:
             if present:
