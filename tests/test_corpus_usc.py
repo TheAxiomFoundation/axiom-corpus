@@ -1024,3 +1024,75 @@ def test_extract_usc_requires_exactly_one_source(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     with pytest.raises(ValueError, match="exactly one of source_xml or source_zip"):
         extract_usc(store, version="2026-09-13")
+
+
+def test_extract_usc_prior_release_point_links_rows_to_the_release_point_download(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@118-209not159.zip"
+    with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    download_url = (
+        "https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/"
+        "xml_usc26@118-209not159.zip"
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-09-23-vintage",
+        source_zip=source_zip,
+        source_as_of="2024-12-23",
+        expression_date=date(2024, 12, 23),
+        source_download_url=download_url,
+        prior_release_point=True,
+    )
+
+    assert report.coverage.complete
+    inventory = load_source_inventory(report.inventory_path)
+    records = load_provisions(report.provisions_path)
+    assert {item.source_url for item in inventory} == {download_url}
+    assert {record.source_url for record in records} == {download_url}
+    assert {record.metadata["source_download_url"] for record in records} == {download_url}
+    assert {record.expression_date for record in records} == {"2024-12-23"}
+    assert not any("edition=prelim" in (record.source_url or "") for record in records)
+
+
+def test_extract_usc_default_rows_keep_the_prelim_reader_url(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@119-103.zip"
+    with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-09-13",
+        source_zip=source_zip,
+        source_download_url="https://uscode.house.gov/download/xml_usc26@119-103.zip",
+    )
+
+    records = load_provisions(report.provisions_path)
+    section = next(record for record in records if record.citation_path == "us/statute/26/32")
+    assert section.source_url == (
+        "https://uscode.house.gov/view.xhtml?"
+        "req=granuleid:USC-prelim-title26-section32&num=0&edition=prelim"
+    )
+
+
+def test_extract_usc_prior_release_point_requires_the_download_url(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@118-209not159.zip"
+    with zipfile.ZipFile(source_zip, "w") as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="prior_release_point requires source_download_url"):
+        extract_usc(
+            store,
+            version="2026-09-23",
+            source_zip=source_zip,
+            prior_release_point=True,
+        )
+    assert not (store.root / "sources").exists()

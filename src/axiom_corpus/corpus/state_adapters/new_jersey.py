@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import bisect
 import re
 import time
 import zipfile
-from dataclasses import dataclass
+from collections.abc import Sequence
+from dataclasses import dataclass, replace
 from datetime import date
 from io import BytesIO
 from pathlib import Path
@@ -16,6 +18,7 @@ from urllib.parse import urlparse
 import requests
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -45,6 +48,20 @@ _SOURCE_HISTORY_RE = re.compile(
     r"^(?:L\.|P\.L\.|Amended|amended|Repealed|R\.S\.|Source:)",
     re.I,
 )
+# A heading that is itself a status note ("Repealed by L.2005, c.83, s.20, ...").
+# Descriptive headings that merely start with the word ("Expired labor contracts;
+# ...", "Omitted children") are not status notes.
+_STATUS_HEADING_RE = re.compile(
+    r"^(?P<status>repealed|expired|omitted)\b"
+    r"(?=\s*(?:$|[.,;:(]|by\b|per\b|pursuant\b|eff))",
+    re.I,
+)
+# The final clause of a section's last source-history paragraph records a repeal
+# ("...; repealed R.S. 46:38A-57 (effective July 1, 2007).") or an expiration
+# ("...; per s.4, expired April 19, 1993."). "Repealed in part" leaves the
+# section in force.
+_REPEALED_HISTORY_CLAUSE_RE = re.compile(r"^\s*repealed\b(?!\s*in\s+part)", re.I)
+_EXPIRED_HISTORY_CLAUSE_RE = re.compile(r"(?:^|,)\s*(?:section\s+)?expired\b", re.I)
 
 
 @dataclass(frozen=True)
@@ -73,6 +90,22 @@ class NewJerseyProvision:
     source_history: tuple[str, ...] = ()
     references_to: tuple[str, ...] = ()
     status: str | None = None
+    # The official bulk text occasionally prints the same section header over
+    # two separate blocks of text (a stale second version, or a misprinted
+    # section number). The first block keeps the plain citation path; each later
+    # block is kept as its own provision under the repository's same-number
+    # variant convention (``<section>--variant-N``, see
+    # ``citation_segment.variant_segment``) so no official text is lost or
+    # silently attached to the wrong header. A header the publisher merely
+    # reprints partway through one section is folded back into that section.
+    header_occurrence: int = 1
+    variant_citation_paths: tuple[str, ...] = ()
+
+    @property
+    def variant(self) -> str | None:
+        if self.kind != "section" or self.header_occurrence == 1:
+            return None
+        return f"variant-{self.header_occurrence}"
 
     @property
     def source_id(self) -> str:
@@ -81,11 +114,18 @@ class NewJerseyProvision:
         if self.kind == "chapter":
             assert self.chapter is not None
             return f"chapter-{_slug(self.title)}:{_slug(self.chapter)}"
-        return _normalize_citation_label(self.citation_label).lower()
+        return variant_segment(_section_segment(self.citation_label), self.variant)
 
     @property
     def citation_path(self) -> str:
         return f"us-nj/statute/{self.source_id}"
+
+    @property
+    def canonical_citation_path(self) -> str:
+        """The plain section path a same-number variant shares with its first block."""
+        if self.kind != "section":
+            return self.citation_path
+        return f"us-nj/statute/{_section_segment(self.citation_label)}"
 
     @property
     def legal_identifier(self) -> str:
@@ -265,14 +305,33 @@ def parse_new_jersey_statutes_text(
 
     title_by_start = {row[0]: (row[1], row[2]) for row in title_rows}
     title_positions = [row[0] for row in title_rows]
+    # TITLE/APPENDIX header lines are boundaries too: a title's last section ends
+    # before the next title's header, and any text printed between a title header
+    # and its first section (the Appendix A revision note) is the title's own.
+    boundary_positions = sorted([*title_positions, *(row[0] for row in section_rows)])
+    title_preambles: dict[str, str] = {}
+    for title_line_index, title_label, _ in title_rows:
+        preamble = _normalize_body(
+            lines[
+                title_line_index + 1 : _next_position(
+                    boundary_positions, title_line_index, default=len(lines)
+                )
+            ]
+        )
+        if preamble is not None:
+            title_preambles.setdefault(title_label, preamble)
     provisions: list[NewJerseyProvision] = []
     seen_titles: set[str] = set()
     seen_chapters: set[tuple[str, str]] = set()
-    seen_sections: set[str] = set()
+    header_occurrences: dict[str, int] = {}
+    absorbed_rows: set[int] = set()
+    section_count = 0
     current_title: tuple[str, str] | None = None
     section_limit_remaining = limit
 
     for row_index, (line_index, section_label, heading) in enumerate(section_rows):
+        if row_index in absorbed_rows:
+            continue
         if section_limit_remaining is not None and section_limit_remaining <= 0:
             break
         if line_index in title_by_start:
@@ -289,7 +348,7 @@ def parse_new_jersey_statutes_text(
                     kind="title",
                     citation_label=title,
                     heading=title_heading,
-                    body=None,
+                    body=title_preambles.get(title),
                     parent_citation_path=None,
                     level=0,
                     ordinal=len(seen_titles),
@@ -313,37 +372,51 @@ def parse_new_jersey_statutes_text(
                     chapter=chapter,
                 )
             )
-        if section_label in seen_sections:
-            continue
-        seen_sections.add(section_label)
-        body_start_index = line_index + 1
-        body_preamble: list[str] = []
+        # The section can never run past the next TITLE/APPENDIX header.
+        title_end_index = _next_position(title_positions, line_index, default=len(lines))
+        body_lines: list[str] = []
+        segment_start_index = line_index + 1
         next_row_index = row_index + 1
-        while (
-            next_row_index < len(section_rows)
-            and section_rows[next_row_index][1] == section_label
-        ):
-            # The official bulk text commonly repeats the citation and heading
-            # as the first line of the section body. Treat those consecutive
-            # self-headers as body preambles, not empty provision boundaries.
-            repeated_line_index = section_rows[next_row_index][0]
-            repeated_match = _SECTION_HEADER_RE.match(
-                _clean_whitespace(lines[repeated_line_index])
-            )
-            if repeated_match is not None:
-                repeated_text = repeated_match.group("heading")
-                if repeated_text.casefold().startswith(heading.casefold()):
-                    repeated_text = repeated_text[len(heading) :].lstrip(". ")
-                if repeated_text:
-                    body_preamble.append(repeated_text)
-            body_start_index = repeated_line_index + 1
+        while next_row_index < len(section_rows):
+            repeated_line_index, repeated_label, repeated_heading = section_rows[
+                next_row_index
+            ]
+            if repeated_label != section_label or repeated_line_index > title_end_index:
+                break
+            segment = lines[segment_start_index:repeated_line_index]
+            if _has_text(segment):
+                # A same-label header after body text is either the publisher
+                # reprinting this section's header partway through it (same
+                # heading, and the text so far has no source-history line yet),
+                # which stays part of this section, or a separate block, which
+                # becomes its own variant (see NewJerseyProvision.header_occurrence).
+                if not _continues_section(heading, repeated_heading, [*body_lines, *segment]):
+                    break
+                body_lines.extend(segment)
+            else:
+                # The official bulk text commonly repeats the citation and heading
+                # as the first line of the section body. Treat those consecutive
+                # self-headers as body preambles, not empty provision boundaries.
+                repeated_match = _SECTION_HEADER_RE.match(
+                    _clean_whitespace(lines[repeated_line_index])
+                )
+                if repeated_match is not None:
+                    repeated_text = repeated_match.group("heading")
+                    if repeated_text.casefold().startswith(heading.casefold()):
+                        repeated_text = repeated_text[len(heading) :].lstrip(". ")
+                    if repeated_text:
+                        body_lines.append(repeated_text)
+            absorbed_rows.add(next_row_index)
+            segment_start_index = repeated_line_index + 1
             next_row_index += 1
-        next_line_index = (
+        next_section_index = (
             section_rows[next_row_index][0]
             if next_row_index < len(section_rows)
             else len(lines)
         )
-        body_lines = [*body_preamble, *lines[body_start_index:next_line_index]]
+        body_lines.extend(
+            lines[segment_start_index : min(next_section_index, title_end_index)]
+        )
         for body_line_index, body_line in enumerate(body_lines):
             clean_body_line = _clean_whitespace(body_line)
             if not clean_body_line:
@@ -359,6 +432,9 @@ def parse_new_jersey_statutes_text(
         body = _normalize_body(body_lines)
         history = tuple(_source_history(body_lines))
         refs = tuple(_extract_references("\n".join([heading, body or ""]), section_label))
+        header_occurrence = header_occurrences.get(section_label, 0) + 1
+        header_occurrences[section_label] = header_occurrence
+        section_count += 1
         provisions.append(
             NewJerseyProvision(
                 kind="section",
@@ -367,18 +443,61 @@ def parse_new_jersey_statutes_text(
                 body=body,
                 parent_citation_path=f"us-nj/statute/chapter-{_slug(title)}:{_slug(chapter)}",
                 level=2,
-                ordinal=len(seen_sections),
+                ordinal=section_count,
                 title=title,
                 chapter=chapter,
                 source_history=history,
                 references_to=refs,
-                status=_status(heading, body),
+                status=_status(heading, history),
+                header_occurrence=header_occurrence,
             )
         )
         if section_limit_remaining is not None:
             section_limit_remaining -= 1
 
-    return tuple(provisions)
+    return _link_variants(provisions)
+
+
+def _link_variants(
+    provisions: list[NewJerseyProvision],
+) -> tuple[NewJerseyProvision, ...]:
+    """Point each first-block section at its later same-number variants."""
+    variant_paths: dict[str, list[str]] = {}
+    for provision in provisions:
+        if provision.variant is not None:
+            variant_paths.setdefault(provision.citation_label, []).append(
+                provision.citation_path
+            )
+    if not variant_paths:
+        return tuple(provisions)
+    return tuple(
+        replace(
+            provision,
+            variant_citation_paths=tuple(variant_paths[provision.citation_label]),
+        )
+        if provision.kind == "section"
+        and provision.variant is None
+        and provision.citation_label in variant_paths
+        else provision
+        for provision in provisions
+    )
+
+
+def _next_position(positions: Sequence[int], after: int, *, default: int) -> int:
+    """Return the first sorted ``positions`` entry greater than ``after``."""
+    index = bisect.bisect_right(positions, after)
+    return positions[index] if index < len(positions) else default
+
+
+def _has_text(lines: Sequence[str]) -> bool:
+    return any(_clean_whitespace(line) for line in lines)
+
+
+def _continues_section(heading: str, repeated_heading: str, block_lines: list[str]) -> bool:
+    """Whether a same-label header reprinted after body text continues the section."""
+    return _clean_whitespace(repeated_heading).casefold() == _clean_whitespace(
+        heading
+    ).casefold() and not _source_history(block_lines)
 
 
 def _new_jersey_text_bytes(
@@ -553,6 +672,8 @@ def _identifiers(provision: NewJerseyProvision) -> dict[str, str]:
         identifiers["new_jersey:chapter"] = provision.chapter
     if provision.kind == "section":
         identifiers["new_jersey:section"] = provision.citation_label
+    if provision.variant is not None:
+        identifiers["new_jersey:variant"] = provision.variant
     return identifiers
 
 
@@ -571,7 +692,16 @@ def _metadata(provision: NewJerseyProvision) -> dict[str, Any]:
         metadata["references_to"] = list(provision.references_to)
     if provision.status:
         metadata["status"] = provision.status
+    if provision.variant is not None:
+        metadata["variant"] = provision.variant
+        metadata["canonical_citation_path"] = provision.canonical_citation_path
+    if provision.variant_citation_paths:
+        metadata["variant_citation_paths"] = list(provision.variant_citation_paths)
     return metadata
+
+
+def _section_segment(citation_label: str) -> str:
+    return _normalize_citation_label(citation_label).lower()
 
 
 def _source_history(lines: list[str]) -> list[str]:
@@ -591,14 +721,23 @@ def _extract_references(text: str, self_label: str) -> list[str]:
     return _dedupe_preserve_order(refs)
 
 
-def _status(heading: str | None, body: str | None) -> str | None:
-    text = "\n".join([heading or "", body or ""])
-    if re.search(r"\bRepealed\b", text, re.I):
+def _status(heading: str | None, source_history: Sequence[str]) -> str | None:
+    """Status from a status-note heading or the final clause of the last history line.
+
+    Section text routinely uses the words ("shall not be ... revoked or repealed",
+    "whose term shall have then expired", "(fractional part of a dollar
+    omitted)"), and repealer sections are live law, so the body is never read.
+    """
+    heading_match = _STATUS_HEADING_RE.match(_clean_whitespace(heading or ""))
+    if heading_match is not None:
+        return heading_match.group("status").lower()
+    if not source_history:
+        return None
+    final_clause = source_history[-1].rsplit(";", 1)[-1]
+    if _REPEALED_HISTORY_CLAUSE_RE.match(final_clause):
         return "repealed"
-    if re.search(r"\bExpired\b", text, re.I):
+    if _EXPIRED_HISTORY_CLAUSE_RE.search(final_clause):
         return "expired"
-    if re.search(r"\bOmitted\b", text, re.I):
-        return "omitted"
     return None
 
 
