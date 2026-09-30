@@ -375,7 +375,7 @@ Preconditions for the switch:
   ([axiom-corpus#770](https://github.com/TheAxiomFoundation/axiom-corpus/pull/770));
 - axiom-encode fetches after checking out a corpus ref (below).
 
-Open branches that add corpus files rebase onto the switch and run
+Open branches that add corpus files merge `main` after the switch and run
 `corpus migrate`, which moves their added files into locks.
 
 After the switch a worktree of `main` costs about 130 MB plus what it fetches,
