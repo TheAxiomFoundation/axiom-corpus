@@ -54,7 +54,8 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   `sources/`, `inventory/`, `provisions/`, and `coverage/`.
 - Coverage must be complete before a state is proposed for release promotion.
 - Do not publish to R2, load Supabase, merge to `main`, or delete old production
-  rows unless the user explicitly asks for publication.
+  rows unless the user explicitly asks for publication. (An ingest's own
+  `corpus push` of content-addressed objects is not publication; see above.)
 
 ## Required Checks
 
