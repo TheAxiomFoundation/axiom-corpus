@@ -523,7 +523,7 @@ def _lock_root_spelling_error(repo: Path) -> str | None:
 def load_locks_from_index(repo: Path) -> LockSet:
     """Load the lock files staged in git's index (what the next commit carries)."""
     result = subprocess.run(
-        ["git", "ls-files", "-s", "-z", "--", LOCK_ROOT.as_posix()],
+        ["git", "ls-files", "-s", "-z", "--", LOCK_ROOT.parts[0]],
         cwd=repo,
         check=True,
         capture_output=True,
@@ -536,11 +536,17 @@ def load_locks_from_index(repo: Path) -> LockSet:
         meta, raw_path = record.split(b"\t", 1)
         mode, raw_oid, stage = meta.split()
         path = raw_path.decode("utf-8", errors="surrogateescape")
+        if path in {LOCK_ROOT.parts[0], LOCK_ROOT.as_posix()}:
+            unmerged.add(path)  # `.axiom` or the lock root staged as a file, symlink or submodule
+            continue
+        if not path.startswith(f"{LOCK_ROOT.as_posix()}/"):
+            continue  # elsewhere under .axiom (manifests, reasoning logs)
         if stage != b"0":
             unmerged.add(path)
             continue
         if mode.decode("ascii") not in _REGULAR_MODES:
-            unmerged.add(path)  # reported below; a gitlink or symlink is never a lock
+            if not _hidden_under_lock_root(path):
+                unmerged.add(path)  # reported below; a gitlink or symlink is never a lock
             continue
         staged.append((path, raw_oid.decode("ascii")))
     by_oid: dict[str, bytes] = {}
@@ -567,6 +573,10 @@ def load_locks_at_ref(repo: Path, ref: str) -> LockSet:
 
 
 _REGULAR_MODES = frozenset({"100644", "100755"})
+
+
+def _hidden_under_lock_root(path: str) -> bool:
+    return any(part.startswith(".") for part in path.split("/")[len(LOCK_ROOT.parts) :])
 
 
 def _irregular_lock_tree_entries(repo: Path, ref: str) -> tuple[str, ...]:
@@ -607,8 +617,10 @@ def _irregular_lock_tree_entries(repo: Path, ref: str) -> tuple[str, ...]:
             continue
         meta, raw_path = record.split(b"\t", 1)
         mode, kind, _oid = meta.decode("ascii").split()
+        path = raw_path.decode("utf-8", errors="surrogateescape")
+        if _hidden_under_lock_root(path):
+            continue  # hidden names are never locks, in any tree
         if kind != "blob" or mode not in _REGULAR_MODES:
-            path = raw_path.decode("utf-8", errors="surrogateescape")
             errors.append(
                 f"`{path}` is a {'submodule' if mode == '160000' else 'symlink' if mode == '120000' else kind} "
                 "in the lock directory; only regular lock files may live there."

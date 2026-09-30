@@ -570,7 +570,7 @@ def test_locked_rename_publication_never_exposes_partial_or_mixed_bytes(
     assert len(winners) == 1
     assert target.read_bytes() == payloads[winners[0]]
     assert seen_partial == []  # the old exclusive-copy fallback exposed a growing file
-    assert not any(p.name.endswith(".corpus-fetch-lock") for p in tmp_path.iterdir())
+    assert not any("corpus-fetch-lock" in p.name for p in tmp_path.iterdir())  # every lock released
 
 
 def test_a_stale_publish_lock_is_broken(tmp_path: Path, monkeypatch) -> None:
@@ -1366,3 +1366,111 @@ def test_the_source_check_folds_case_variant_spellings(tmp_path: Path, monkeypat
     )
     resolver_module.resolve_corpus_path(variant)
     assert (repo / sibling).exists()
+
+
+# =========================================================================== round 6
+
+
+class _SlowSource:
+    """Serves every locked file, slowly, so an interrupt lands mid-run."""
+
+    name = "slow"
+
+    def __init__(self, payloads: dict[str, bytes], delay: float):
+        self.by_sha = {_sha(data): data for data in payloads.values()}
+        self.delay = delay
+
+    def open(self, entry):
+        content_store.time.sleep(self.delay)
+        data = self.by_sha.get(entry.sha256)
+        return None if data is None else [data]
+
+
+def test_a_real_sigint_anywhere_leaves_every_sources_directory_whole_or_empty(tmp_path: Path) -> None:
+    """Round 6: an asynchronous KeyboardInterrupt could land between submit()
+    queuing an entry and the future being stored, orphaning a placed file."""
+    import signal as signal_module
+
+    files: dict[str, bytes] = {}
+    for scope_index in range(12):
+        for file_index in range(6):
+            files[f"data/corpus/sources/zz/statute/v{scope_index:02d}/f{file_index}.html"] = (
+                f"{scope_index}-{file_index}".encode()
+            )
+    entries = [LockEntry(path, _sha(data), len(data)) for path, data in sorted(files.items())]
+    by_scope: dict[str, list[str]] = {}
+    for path in files:
+        by_scope.setdefault(path.rsplit("/", 1)[0], []).append(path)
+    # A harmless handler outside materialize(): a signal that lands after it
+    # restores the handler is recorded, never a KeyboardInterrupt in pytest.
+    late: list[int] = []
+    saved = signal_module.signal(signal_module.SIGINT, lambda _s, _f: late.append(1))
+    original = signal_module.getsignal(signal_module.SIGINT)
+    try:
+        _sigint_trials(tmp_path, files, entries, by_scope, original, signal_module, late)
+    finally:
+        signal_module.signal(signal_module.SIGINT, saved)
+
+
+def _sigint_trials(tmp_path, files, entries, by_scope, original, signal_module, late) -> None:
+    interruptions = 0
+    for trial, delay in enumerate([0.0, 0.002, 0.005, 0.01, 0.02, 0.04, 0.08]):
+        repo = tmp_path / f"repo-{trial}"
+
+        def fire(delay: float = delay) -> None:
+            deadline = content_store.time.monotonic() + 2.0
+            while signal_module.getsignal(signal_module.SIGINT) is original:
+                if content_store.time.monotonic() > deadline:
+                    return  # materialize finished before we saw it: no signal this trial
+                content_store.time.sleep(0.0005)  # wait until materialize owns SIGINT
+            content_store.time.sleep(delay)
+            if signal_module.getsignal(signal_module.SIGINT) is not original:
+                os.kill(os.getpid(), signal_module.SIGINT)
+
+        killer = threading.Thread(target=fire, daemon=True)
+        killer.start()
+        try:
+            materialize(repo, entries, ContentCache(tmp_path / f"cache-{trial}"), [_SlowSource(files, 0.004)], workers=8)
+            interrupted = False
+        except KeyboardInterrupt:
+            interrupted = True
+        killer.join()
+        assert signal_module.getsignal(signal_module.SIGINT) is original  # handler restored
+        for scope_dir, paths in by_scope.items():
+            present = [path for path in paths if (repo / path).exists()]
+            assert present == [] or len(present) == len(paths), (trial, scope_dir, present)
+        assert interrupted or all((repo / path).exists() for path in files)
+        interruptions += interrupted
+    assert interruptions >= 3  # the signal really landed mid-run in most trials
+
+
+def test_a_future_dated_publish_lock_is_waited_out_not_broken_at_once(tmp_path: Path, monkeypatch) -> None:
+    """Round 6: a skewed clock must not let a live lock be broken instantly."""
+    _no_links_no_noreplace(monkeypatch)
+    monkeypatch.setattr(content_store, "PUBLISH_LOCK_STALE_SECONDS", 0.4)
+    target = tmp_path / "object"
+    tmp = tmp_path / "tmp"
+    tmp.write_bytes(b"bytes")
+    lock = content_store.publish_lock_path(target, tmp_path)
+    lock.write_bytes(b"")
+    future = content_store.time.time() + 3600
+    os.utime(lock, (future, future))
+    started = content_store.time.monotonic()
+    assert publish_no_replace(tmp, target)
+    assert content_store.time.monotonic() - started >= 0.4
+
+
+def test_the_publish_lock_key_folds_case(tmp_path: Path) -> None:
+    upper = content_store.publish_lock_path(tmp_path / "Data" / "Act.HTML", tmp_path)
+    lower = content_store.publish_lock_path(tmp_path / "data" / "act.html", tmp_path)
+    assert upper == lower
+
+
+def test_resolving_an_absent_case_variant_does_not_map_onto_a_locked_file(tmp_path: Path) -> None:
+    """Round 6: find_folded used as a mapping returned paths that do not exist."""
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[_full_remote()])
+    variant = "data/corpus/sources/nz/statute/2026-07-10/official/act‌.html"  # ZWNJ: another name
+    with pytest.raises(CorpusNotMaterializedError, match="neither present nor locked"):
+        resolver.resolve(variant)

@@ -219,8 +219,9 @@ class CorpusResolver:
         if present and not fold_path(rel).startswith(f"{CORPUS_BASE}/sources/"):
             return target
         self.require_valid_locks()
-        # A case-variant spelling (APFS) names the same locked file.
-        entry = self.locks.by_path.get(rel) or self.locks.find_folded(rel)
+        # A case-variant spelling names the same locked file only where the
+        # filesystem merged them, i.e. when the variant exists on disk.
+        entry = self.locks.by_path.get(rel) or (self.locks.find_folded(rel) if present else None)
         if entry is None:
             if present:
                 return target

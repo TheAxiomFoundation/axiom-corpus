@@ -861,3 +861,47 @@ def test_an_emacs_lock_link_in_the_lock_directory_is_ignored(repo: Path) -> None
     link.symlink_to("user@host.1234:1700000000")
     locks = load_locks(repo)
     assert locks.errors == () and SCOPE in locks.locks
+
+
+# =========================================================================== round 6
+
+
+def test_the_worktree_refuses_a_symlinked_axiom_and_a_nested_axiom_git(tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    repo = tmp_path / "repo"
+    (repo / "docs/elsewhere/corpus-locks/zz/statute").mkdir(parents=True)
+    (repo / ".axiom").symlink_to(repo / "docs/elsewhere")
+    assert any("symlink" in error for error in load_locks(repo).errors)
+    (repo / ".axiom").unlink()
+    (repo / ".axiom/corpus-locks").mkdir(parents=True)
+    (repo / ".axiom/.git").write_text("gitdir: /elsewhere\n")
+    assert any("nested git" in error for error in load_locks(repo).errors)
+
+
+def test_the_index_loader_flags_a_staged_non_directory_axiom(repo: Path, tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks_from_index
+
+    oid = subprocess.run(
+        ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=b"elsewhere", check=True, capture_output=True
+    ).stdout.decode().strip()
+    _git(repo, "update-index", "--add", "--cacheinfo", f"120000,{oid},.axiom")
+    assert load_locks_from_index(repo).errors
+
+
+def test_a_committed_hidden_link_in_the_lock_directory_is_ignored_in_every_tree(repo: Path) -> None:
+    """Round 6: ref and index errored on a hidden symlink the worktree skipped."""
+    from axiom_corpus.corpus.corpus_locks import (
+        load_locks,
+        load_locks_at_ref,
+        load_locks_from_index,
+    )
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    link = repo / ".axiom/corpus-locks/nz/statute/.#2026-07-10.json"
+    link.symlink_to("user@host.1:1")
+    _git(repo, "add", "-f", str(link.relative_to(repo)))
+    _git(repo, "commit", "-q", "-m", "committed emacs lock link")
+    for loaded in (load_locks(repo), load_locks_from_index(repo), load_locks_at_ref(repo, "HEAD")):
+        assert loaded.errors == () and SCOPE in loaded.locks

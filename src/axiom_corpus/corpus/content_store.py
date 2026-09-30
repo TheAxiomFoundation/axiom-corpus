@@ -15,14 +15,16 @@ import errno
 import fcntl
 import hashlib
 import os
+import queue
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
 import threading
 import time
 from collections.abc import Callable, Iterable, Iterator
-from concurrent.futures import Future, ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import suppress
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -973,6 +975,28 @@ def _roll_back(
         report.materialized = [path for path in report.materialized if path not in undone]
 
 
+_COMPLETE_STATES = frozenset({"present", "materialized", "modified"})
+_Result = tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None]
+
+
+def _install_sigint_flag(event: threading.Event) -> Any:
+    """On the main thread, make SIGINT set ``event`` instead of raising.
+
+    Returns the previous handler to restore, or None when nothing changed
+    (not the main thread, or SIGINT already ignored).
+    """
+    if threading.current_thread() is not threading.main_thread():
+        return None
+    try:
+        previous = signal.getsignal(signal.SIGINT)
+        if previous in (signal.SIG_IGN, None):
+            return None
+        signal.signal(signal.SIGINT, lambda _signum, _frame: event.set())
+    except (ValueError, OSError):
+        return None
+    return previous
+
+
 def materialize(
     repo: Path,
     entries: Iterable[LockEntry],
@@ -990,36 +1014,60 @@ def materialize(
     files fails, the files this call created in that directory are removed
     again (``rolled_back``), because code lists that directory to find a
     scope's sources.
+
+    Interruption is handled without asynchronous exceptions. On the main
+    thread SIGINT only sets a flag; each worker logs its own outcome and the
+    file it placed under a lock; and on an interrupt (or a progress callback
+    that raises) queued work is cancelled, in-flight entries finish, and the
+    rollback reads that log. So a Ctrl-C anywhere, or twice, leaves every
+    ``sources/`` directory whole or rolled back before KeyboardInterrupt is
+    raised.
     """
     entry_list = list(entries)
     source_list = list(sources)
     report = FetchReport()
     total = len(entry_list)
 
-    def one(
-        entry: LockEntry,
-    ) -> tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None]:
+    log = threading.Condition()
+    outcomes: dict[str, str] = {}  # path -> final state, written by the worker that ran it
+    placed_log: list[tuple[LockEntry, _Placed]] = []
+    inflight = 0
+    stop = threading.Event()
+    interrupted = threading.Event()
+    results: queue.SimpleQueue[_Result] = queue.SimpleQueue()
+
+    def one(entry: LockEntry) -> None:
+        nonlocal inflight
+        with log:
+            if stop.is_set():
+                return
+            inflight += 1
+        result: _Result = (entry, "failed", None, None, None, "interrupted")
         try:
             state, source, method, placed = _materialize_one(
                 repo, entry, cache, source_list, force=force, verify=verify
             )
-            return entry, state, source, method, placed, None
+            result = (entry, state, source, method, placed, None)
         except Exception as exc:  # noqa: BLE001 - one entry's failure never stops the rest
-            return entry, "failed", None, None, None, f"{type(exc).__name__}: {exc}"
+            result = (entry, "failed", None, None, None, f"{type(exc).__name__}: {exc}")
+        except BaseException as exc:  # an interrupt raised inside a worker: stop the run
+            result = (entry, "failed", None, None, None, f"{type(exc).__name__}: {exc}")
+            interrupted.set()
+        finally:
+            with log:
+                outcomes[entry.path] = result[1]
+                if result[1] == "materialized" and result[4] is not None:
+                    placed_log.append((entry, result[4]))
+                inflight -= 1
+                log.notify_all()
+            results.put(result)
 
-    created_by_scope: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]] = {}
-    failed_scopes: set[tuple[str, str, str]] = set()
     done = 0
 
-    def record(
-        result: tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None],
-        *,
-        notify: bool = True,
-    ) -> None:
+    def record(result: _Result) -> None:
         nonlocal done
-        entry, state, source, method, placed, error = result
+        entry, state, source, method, _placed, error = result
         done += 1
-        sources_scope = _sources_scope(entry)
         if state == "present":
             report.present.append(entry.path)
         elif state == "modified":
@@ -1031,50 +1079,74 @@ def materialize(
                 report.sources[source] = report.sources.get(source, 0) + 1
             if method:
                 report.methods[method] = report.methods.get(method, 0) + 1
-            if sources_scope is not None:
-                created_by_scope.setdefault(sources_scope, []).append((entry, placed))
         else:
             report.failed[entry.path] = error or "unknown error"
-            if sources_scope is not None:
-                failed_scopes.add(sources_scope)
-        if notify and progress is not None:
+        if progress is not None:
             progress(done, total)
 
-    pool = ThreadPoolExecutor(max_workers=max(1, workers))
-    futures: dict[Future[Any], LockEntry] = {}
-    recorded: set[Future[Any]] = set()
-    try:
-        for entry in entry_list:
-            futures[pool.submit(one, entry)] = entry
-        for future in as_completed(futures):
-            recorded.add(future)  # before record(): its progress call may raise
-            record(future.result())
-    except BaseException:
-        # Interrupted (Ctrl-C, a broken progress pipe): stop queued work,
-        # account for every entry that did finish, and leave no sources/
-        # directory half fetched before re-raising. Completeness comes from
-        # the futures themselves, so nothing is counted twice.
-        pool.shutdown(wait=True, cancel_futures=True)
-        incomplete: set[tuple[str, str, str]] = set()
-        for entry in entry_list[len(futures) :]:  # never submitted
+    def placements() -> dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]]:
+        grouped: dict[tuple[str, str, str], list[tuple[LockEntry, _Placed | None]]] = {}
+        with log:
+            logged = list(placed_log)
+        for entry, placed in logged:
             if (scope := _sources_scope(entry)) is not None:
-                incomplete.add(scope)
-        for future, entry in futures.items():
-            finished_ok = future.done() and not future.cancelled() and future.exception() is None
-            if finished_ok and future not in recorded:
-                recorded.add(future)
-                record(future.result(), notify=False)
-            scope = _sources_scope(entry)
-            if scope is not None and (not finished_ok or future.result()[1] == "failed"):
-                incomplete.add(scope)
-        failed_scopes.update(incomplete)
-        _roll_back(repo, report, created_by_scope, failed_scopes)
-        raise
-    pool.shutdown(wait=True)
-    _roll_back(repo, report, created_by_scope, failed_scopes)
-    report.present.sort()
-    report.materialized.sort()
-    return report
+                grouped.setdefault(scope, []).append((entry, placed))
+        return grouped
+
+    previous_handler = _install_sigint_flag(interrupted)
+    pool = ThreadPoolExecutor(max_workers=max(1, workers))
+    failure: BaseException | None = None
+    try:
+        submitted = 0
+        received = 0
+        try:
+            for entry in entry_list:
+                if interrupted.is_set():
+                    break
+                pool.submit(one, entry)
+                submitted += 1
+            while received < submitted and not interrupted.is_set():
+                try:
+                    result = results.get(timeout=0.1)
+                except queue.Empty:
+                    continue
+                received += 1
+                record(result)
+        except BaseException as exc:  # a progress callback raised (Ctrl-C, broken pipe)
+            failure = exc
+        if failure is None and not interrupted.is_set():
+            pool.shutdown(wait=True)
+            failed_scopes = {
+                scope
+                for entry in entry_list
+                if (scope := _sources_scope(entry)) is not None
+                and outcomes.get(entry.path) == "failed"
+            }
+            _roll_back(repo, report, placements(), failed_scopes)
+            report.present.sort()
+            report.materialized.sort()
+            return report
+        # Interrupted: cancel queued work, let in-flight entries finish, then
+        # roll back every sources/ directory this call left incomplete.
+        stop.set()
+        pool.shutdown(wait=False, cancel_futures=True)
+        with log:
+            while inflight:
+                log.wait(timeout=1.0)
+        incomplete = {
+            scope
+            for entry in entry_list
+            if (scope := _sources_scope(entry)) is not None
+            and outcomes.get(entry.path) not in _COMPLETE_STATES
+        }
+        _roll_back(repo, report, placements(), incomplete)
+        pool.shutdown(wait=True)
+    finally:
+        if previous_handler is not None:
+            signal.signal(signal.SIGINT, previous_handler)
+    if failure is not None:
+        raise failure
+    raise KeyboardInterrupt
 
 
 def _sources_scope(entry: LockEntry) -> tuple[str, str, str] | None:
