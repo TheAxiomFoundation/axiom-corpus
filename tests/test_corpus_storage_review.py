@@ -1596,7 +1596,9 @@ def test_a_distinct_file_with_a_variant_name_is_not_mapped_onto_a_locked_entry(t
     if (repo / "data/corpus/sources/nz/statute/2026-07-10/official/act.html").exists():
         pytest.skip("case-insensitive filesystem: the variant is the locked file")
     resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[])
-    assert resolver.resolve(variant) == repo / variant  # returned as is, nothing fetched
+    # Absolute: a relative path other than `data/corpus/...` is cwd-relative by design.
+    assert resolver.resolve(repo / variant) == repo / variant  # returned as is, nothing fetched
+    assert not (repo / "data/corpus/sources/nz/statute/2026-07-10/official/act.html").exists()
 
 
 def test_report_source_and_method_counts_exclude_rolled_back_entries(tmp_path: Path) -> None:
