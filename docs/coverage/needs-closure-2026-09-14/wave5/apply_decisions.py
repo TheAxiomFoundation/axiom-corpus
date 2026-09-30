@@ -10,7 +10,12 @@ OUTREACH, REVIEW keep their class; HELD-UNTIL-* -> unchanged. Federal rows (juri
 also flip the 51 inherited state rows of the same element when those rows carry the old federal status.
 Without --write nothing is modified; the roll-up is printed either way.
 """
-import argparse, csv, collections, glob, pathlib
+import argparse
+import collections
+import csv
+import glob
+import pathlib
+
 ST = ["PRESENT", "EXTRACTABLE", "ABSENT", "OUTREACH", "REVIEW"]
 MAP = {"PRESENT": "PRESENT", "ALREADY-HELD": "PRESENT", "PATTERN-CONFIRMED": "PRESENT",
        "ABSENT": "ABSENT", "ABSENT-IN-CITED": "ABSENT", "EXTRACTABLE": "EXTRACTABLE",

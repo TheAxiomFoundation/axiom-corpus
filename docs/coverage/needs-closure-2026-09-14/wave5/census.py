@@ -1,5 +1,13 @@
-import json, csv, re, glob, pathlib, collections, statistics
-BASE=pathlib.Path("/Users/pavelmakarchuk/axiom-corpus/data/corpus/provisions")
+import collections
+import csv
+import json
+import pathlib
+import re
+import statistics
+import sys
+
+# Run from the repository root; argv[1] overrides the data/corpus root (a sparse worktree has none).
+BASE=pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "data/corpus")/"provisions"
 sel={(s["jurisdiction"],s["document_class"],s["version"]) for s in json.load(open("manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json"))["scopes"]}
 for p in BASE.glob("*/*/2026-09-15-*.jsonl"): sel.add((p.parts[-3],p.parts[-2],p.stem))
 def rows(key):

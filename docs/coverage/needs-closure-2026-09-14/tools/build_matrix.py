@@ -90,6 +90,7 @@ MSPA_INDEX = 'https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments'
 CSPA_INDEX = 'https://www.medicaid.gov/chip/state-program-information/chip-state-plan-amendments'
 CPLAN_INDEX = 'https://www.medicaid.gov/chip/state-program-information'
 MAP_NAMES = {'us-dc': 'district-of-columbia'}
+COVMAP_SELECTED = False  # set in main(): whether the selector carries the CHIP children-coverage map scope
 STATE_PLAN_FAMILY = "the state's own compiled Medicaid state plan (posted by the state Medicaid agency, not on medicaid.gov; never queued)"
 
 def norm(p): return p.replace('–', '-').replace('—', '-')
@@ -357,7 +358,8 @@ def main():
         r = json.loads(line); p = r['citation_path'].split('/')
         if len(p) >= 8 and p[6] == 'summary' and (r.get('body') or '').strip(): spa['us-'+p[4]].append(r['citation_path'])  # first body-bearing summary block (2026-09-14: the /summary container row has no body)
     covmap = {}
-    globals()['COVMAP_SELECTED'] = ('us', 'form', '2026-07-05-cms-chip-children-coverage-map') in selected
+    global COVMAP_SELECTED
+    COVMAP_SELECTED = ('us', 'form', '2026-07-05-cms-chip-children-coverage-map') in selected
     for line in open(f'{corpus}/provisions/us/form/2026-07-05-cms-chip-children-coverage-map.jsonl'):
         r = json.loads(line)
         if r['kind'] == 'record': covmap[r['citation_path'].split('/')[-1]] = (r['citation_path'], r.get('body') or '')
