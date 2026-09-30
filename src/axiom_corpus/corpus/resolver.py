@@ -221,7 +221,13 @@ class CorpusResolver:
         self.require_valid_locks()
         # A case-variant spelling names the same locked file only where the
         # filesystem merged them, i.e. when the variant exists on disk.
-        entry = self.locks.by_path.get(rel) or (self.locks.find_folded(rel) if present else None)
+        entry = self.locks.by_path.get(rel)
+        if entry is None and present:
+            folded = self.locks.find_folded(rel)
+            canonical = self.repo / folded.path if folded is not None else None
+            # Only a spelling the filesystem merged, i.e. the same file on disk.
+            if canonical is not None and canonical.exists() and os.path.samefile(target, canonical):
+                entry = folded
         if entry is None:
             if present:
                 return target

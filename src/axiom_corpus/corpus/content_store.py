@@ -979,11 +979,14 @@ _COMPLETE_STATES = frozenset({"present", "materialized", "modified"})
 _Result = tuple[LockEntry, str, str | None, str | None, _Placed | None, str | None]
 
 
-def _install_sigint_flag(event: threading.Event) -> Any:
-    """On the main thread, make SIGINT set ``event`` instead of raising.
+def _install_sigint_flag(flag: list[bool]) -> Any:
+    """On the main thread, make SIGINT set ``flag[0]`` instead of raising.
 
-    Returns the previous handler to restore, or None when nothing changed
-    (not the main thread, or SIGINT already ignored).
+    The handler only stores a value: it takes no lock, so a second signal
+    arriving while the first is being handled cannot deadlock it (an
+    ``Event.set`` in a signal handler can). Returns the previous handler to
+    restore, or None when nothing changed (not the main thread, or SIGINT
+    already ignored).
     """
     if threading.current_thread() is not threading.main_thread():
         return None
@@ -991,7 +994,7 @@ def _install_sigint_flag(event: threading.Event) -> Any:
         previous = signal.getsignal(signal.SIGINT)
         if previous in (signal.SIG_IGN, None):
             return None
-        signal.signal(signal.SIGINT, lambda _signum, _frame: event.set())
+        signal.signal(signal.SIGINT, lambda _signum, _frame: flag.__setitem__(0, True))
     except (ValueError, OSError):
         return None
     return previous
@@ -1033,8 +1036,12 @@ def materialize(
     placed_log: list[tuple[LockEntry, _Placed]] = []
     inflight = 0
     stop = threading.Event()
-    interrupted = threading.Event()
+    sigint = [False]  # set by the signal handler; a plain store, no lock
+    worker_interrupt: list[BaseException] = []  # a BaseException raised inside a worker
     results: queue.SimpleQueue[_Result] = queue.SimpleQueue()
+
+    def interrupted() -> bool:
+        return sigint[0] or bool(worker_interrupt)
 
     def one(entry: LockEntry) -> None:
         nonlocal inflight
@@ -1052,7 +1059,8 @@ def materialize(
             result = (entry, "failed", None, None, None, f"{type(exc).__name__}: {exc}")
         except BaseException as exc:  # an interrupt raised inside a worker: stop the run
             result = (entry, "failed", None, None, None, f"{type(exc).__name__}: {exc}")
-            interrupted.set()
+            with log:
+                worker_interrupt.append(exc)
         finally:
             with log:
                 outcomes[entry.path] = result[1]
@@ -1063,11 +1071,14 @@ def materialize(
             results.put(result)
 
     done = 0
+    attribution: dict[str, tuple[str | None, str | None]] = {}
 
     def record(result: _Result) -> None:
         nonlocal done
         entry, state, source, method, _placed, error = result
         done += 1
+        if state == "materialized":
+            attribution[entry.path] = (source, method)
         if state == "present":
             report.present.append(entry.path)
         elif state == "modified":
@@ -1093,7 +1104,7 @@ def materialize(
                 grouped.setdefault(scope, []).append((entry, placed))
         return grouped
 
-    previous_handler = _install_sigint_flag(interrupted)
+    previous_handler = _install_sigint_flag(sigint)
     pool = ThreadPoolExecutor(max_workers=max(1, workers))
     failure: BaseException | None = None
     try:
@@ -1101,11 +1112,11 @@ def materialize(
         received = 0
         try:
             for entry in entry_list:
-                if interrupted.is_set():
+                if interrupted():
                     break
                 pool.submit(one, entry)
                 submitted += 1
-            while received < submitted and not interrupted.is_set():
+            while received < submitted and not interrupted():
                 try:
                     result = results.get(timeout=0.1)
                 except queue.Empty:
@@ -1114,7 +1125,7 @@ def materialize(
                 record(result)
         except BaseException as exc:  # a progress callback raised (Ctrl-C, broken pipe)
             failure = exc
-        if failure is None and not interrupted.is_set():
+        if failure is None and not interrupted():
             pool.shutdown(wait=True)
             failed_scopes = {
                 scope
@@ -1122,10 +1133,22 @@ def materialize(
                 if (scope := _sources_scope(entry)) is not None
                 and outcomes.get(entry.path) == "failed"
             }
+            before = set(report.materialized)
             _roll_back(repo, report, placements(), failed_scopes)
+            for path in before - set(report.materialized):
+                source, method = attribution.get(path, (None, None))
+                if source:
+                    report.sources[source] -= 1
+                if method:
+                    report.methods[method] -= 1
+            report.sources = {key: count for key, count in report.sources.items() if count}
+            report.methods = {key: count for key, count in report.methods.items() if count}
             report.present.sort()
             report.materialized.sort()
-            return report
+            if not interrupted():
+                return report
+            # A Ctrl-C during the final cleanup: every directory is already
+            # whole or rolled back, so honor it rather than swallow it.
         # Interrupted: cancel queued work, let in-flight entries finish, then
         # roll back every sources/ directory this call left incomplete.
         stop.set()
@@ -1146,6 +1169,8 @@ def materialize(
             signal.signal(signal.SIGINT, previous_handler)
     if failure is not None:
         raise failure
+    if worker_interrupt:
+        raise worker_interrupt[0]  # SystemExit, GeneratorExit, ... as raised
     raise KeyboardInterrupt
 
 

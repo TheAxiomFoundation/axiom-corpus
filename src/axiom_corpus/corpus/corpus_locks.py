@@ -465,7 +465,11 @@ def load_locks(repo: Path) -> LockSet:
                     "directory must be a plain directory in this checkout.",
                 ),
             )
-    nested = [path for path in root.rglob(".git") if path.parent != repo]
+    nested = [
+        path
+        for path in root.rglob(".git")
+        if not any(part.startswith(".") for part in path.parent.relative_to(root).parts)
+    ]
     if (repo / LOCK_ROOT.parts[0] / ".git").exists():
         nested.append(repo / LOCK_ROOT.parts[0] / ".git")
     if nested:
@@ -541,6 +545,8 @@ def load_locks_from_index(repo: Path) -> LockSet:
             continue
         if not path.startswith(f"{LOCK_ROOT.as_posix()}/"):
             continue  # elsewhere under .axiom (manifests, reasoning logs)
+        if _hidden_under_lock_root(path):
+            continue  # hidden names are never locks, in any tree
         if stage != b"0":
             unmerged.add(path)
             continue

@@ -169,11 +169,14 @@ placed (same inode, size and modification time) and still holds the locked
 bytes; the content check catches a same-size rewrite within one coarse
 timestamp tick. A file that an extractor or another fetch has rewritten
 stays, and fetch reports it as modified. An interrupt is handled without asynchronous
-exceptions: on the main thread Ctrl-C only sets a flag, each worker logs its
-own outcome and the file it placed, and on an interrupt (or a progress
-callback that raises) fetch cancels queued work, lets in-flight files finish,
-and rolls back every `sources/` directory it left incomplete before raising
-`KeyboardInterrupt`. A second Ctrl-C during that cleanup changes nothing. A rewrite in the instant between
+exceptions: on the main thread Ctrl-C only stores a flag (no lock, so a burst
+of signals cannot deadlock the handler), each worker logs its own outcome and
+the file it placed, and on an interrupt (or a progress callback that raises)
+fetch cancels queued work, lets in-flight files finish, and rolls back every
+`sources/` directory it left incomplete before raising `KeyboardInterrupt`. A
+second Ctrl-C during that cleanup (`uv run` forwards every Ctrl-C twice)
+changes nothing, and a Ctrl-C that lands after the last file is still raised
+once cleanup is done. A rewrite in the instant between
 that check and the removal is the one case not covered. A caller whose fetch succeeded checks afterward that its files
 are still there, because another process's rollback may have removed some. It
 fetches missing files again once, and then fails.
@@ -484,7 +487,7 @@ failing streams, corrupt and truncated cache objects, partial source
 directories, planted and laundered locks, merged spellings of protected paths
 and of the lock directory, stale bases, unstaged, malformed and conflicted
 locks, and signing after a deletion. Each of the fixes we reverted one at a
-time (22 in round 3, 19 in round 4, 10 in round 5, 9 in round 6) fails at least one of them. One known gap has no test: the partial-test audit hook's
+time (22 in round 3, 19 in round 4, 10 in round 5, 9 in round 6, 7 in round 7) fails at least one of them. One known gap has no test: the partial-test audit hook's
 blind spots, described under Tests and CI.
 
 ## Alternatives considered

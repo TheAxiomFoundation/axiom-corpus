@@ -905,3 +905,26 @@ def test_a_committed_hidden_link_in_the_lock_directory_is_ignored_in_every_tree(
     _git(repo, "commit", "-q", "-m", "committed emacs lock link")
     for loaded in (load_locks(repo), load_locks_from_index(repo), load_locks_at_ref(repo, "HEAD")):
         assert loaded.errors == () and SCOPE in loaded.locks
+
+
+# =========================================================================== round 7
+
+
+def test_hidden_names_are_ignored_even_when_conflicted_or_nested(repo: Path) -> None:
+    """Round 7 nit: the index checked conflict stages before skipping hidden
+    names, and the worktree flagged a hidden nested .git."""
+    from axiom_corpus.corpus.corpus_locks import load_locks, load_locks_from_index
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    oid = subprocess.run(
+        ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=b"x", check=True, capture_output=True
+    ).stdout.decode().strip()
+    hidden = ".axiom/corpus-locks/nz/statute/.DS_Store"
+    info = "".join(f"100644 {oid} {stage}\t{hidden}\n" for stage in (1, 2, 3))
+    subprocess.run(["git", "update-index", "--index-info"], cwd=repo, input=info.encode(), check=True)
+    assert load_locks_from_index(repo).errors == ()
+    nested = repo / ".axiom/corpus-locks/.cache/.git"
+    nested.parent.mkdir(parents=True)
+    nested.write_text("gitdir: /elsewhere\n")
+    assert load_locks(repo).errors == ()

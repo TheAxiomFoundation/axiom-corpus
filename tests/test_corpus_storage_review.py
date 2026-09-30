@@ -1474,3 +1474,204 @@ def test_resolving_an_absent_case_variant_does_not_map_onto_a_locked_file(tmp_pa
     variant = "data/corpus/sources/nz/statute/2026-07-10/official/act‌.html"  # ZWNJ: another name
     with pytest.raises(CorpusNotMaterializedError, match="neither present nor locked"):
         resolver.resolve(variant)
+
+
+# =========================================================================== round 7
+
+
+def _with_safe_sigint(run):
+    """Run ``run`` with a harmless SIGINT handler around it, so a signal that
+    lands outside materialize() never interrupts pytest."""
+    import signal as signal_module
+
+    late: list[int] = []
+    saved = signal_module.signal(signal_module.SIGINT, lambda _s, _f: late.append(1))
+    try:
+        return run(signal_module.getsignal(signal_module.SIGINT))
+    finally:
+        signal_module.signal(signal_module.SIGINT, saved)
+
+
+def _signal_when_owned(original, delays: list[float], *, only_while_owned: bool = True) -> threading.Thread:
+    import signal as signal_module
+
+    def fire() -> None:
+        deadline = content_store.time.monotonic() + 2.0
+        while signal_module.getsignal(signal_module.SIGINT) is original:
+            if content_store.time.monotonic() > deadline:
+                return
+            content_store.time.sleep(0.0005)
+        started = content_store.time.monotonic()
+        for delay in delays:
+            content_store.time.sleep(max(0.0, started + delay - content_store.time.monotonic()))
+            if not only_while_owned or signal_module.getsignal(signal_module.SIGINT) is not original:
+                os.kill(os.getpid(), signal_module.SIGINT)
+
+    thread = threading.Thread(target=fire, daemon=True)
+    thread.start()
+    return thread
+
+
+def test_a_second_sigint_during_cleanup_changes_nothing(tmp_path: Path, monkeypatch) -> None:
+    """Round 7: `uv run` delivers each Ctrl-C twice; the second one must not
+    skip the rollback. It is sent from inside the rollback itself, so it lands
+    during cleanup on every machine, with no timing race."""
+    import signal as signal_module
+
+    files = {
+        f"data/corpus/sources/zz/statute/v{scope:02d}/f{index}.html": f"{scope}-{index}".encode()
+        for scope in range(8)
+        for index in range(6)
+    }
+    entries = [LockEntry(path, _sha(data), len(data)) for path, data in sorted(files.items())]
+    repo = tmp_path / "repo"
+    real_roll_back = content_store._roll_back
+
+    def roll_back_after_a_second_sigint(*args, **kwargs):
+        os.kill(os.getpid(), signal_module.SIGINT)  # the second Ctrl-C, mid-cleanup
+        return real_roll_back(*args, **kwargs)
+
+    monkeypatch.setattr(content_store, "_roll_back", roll_back_after_a_second_sigint)
+    # Python's default handler outside materialize(), as in the real CLI: code
+    # that gave SIGINT back before cleanup would raise mid-rollback.
+    saved = signal_module.signal(signal_module.SIGINT, signal_module.default_int_handler)
+    try:
+        original = signal_module.getsignal(signal_module.SIGINT)
+        killer = _signal_when_owned(original, [0.55])
+        with pytest.raises(KeyboardInterrupt):
+            materialize(repo, entries, ContentCache(tmp_path / "cache"), [_SlowSource(files, 0.5)], workers=8)
+        killer.join()
+    finally:
+        signal_module.signal(signal_module.SIGINT, saved)
+    for scope in range(8):
+        paths = [p for p in files if f"/v{scope:02d}/" in p]
+        present = [p for p in paths if (repo / p).exists()]
+        assert present == [] or len(present) == len(paths), (scope, present)
+
+
+def test_a_sigint_during_final_cleanup_is_raised_not_swallowed(tmp_path: Path, monkeypatch) -> None:
+    """Round 7 nit: a Ctrl-C after the result loop was swallowed."""
+    import signal as signal_module
+
+    real = content_store._roll_back
+    sent = []
+
+    def roll_back_then_interrupt(*args, **kwargs):
+        if not sent:
+            sent.append(1)
+            os.kill(os.getpid(), signal_module.SIGINT)
+        return real(*args, **kwargs)
+
+    monkeypatch.setattr(content_store, "_roll_back", roll_back_then_interrupt)
+
+    def run(_original):
+        with pytest.raises(KeyboardInterrupt):
+            materialize(tmp_path / "repo", _lock().files, ContentCache(tmp_path / "cache"), [_full_remote()])
+
+    _with_safe_sigint(run)
+    lock = _lock()
+    assert all((tmp_path / "repo" / e.path).exists() for e in lock.files)  # the fetch itself completed
+
+
+def test_a_workers_system_exit_is_raised_as_itself(tmp_path: Path) -> None:
+    """Round 7 nit: a worker's SystemExit came back as a bare KeyboardInterrupt."""
+
+    class Exits:
+        name = "exits"
+
+        def open(self, entry):
+            raise SystemExit(3)
+
+    with pytest.raises(SystemExit) as stopped:
+        materialize(tmp_path / "repo", _lock().files, ContentCache(tmp_path / "cache"), [Exits()])
+    assert stopped.value.code == 3
+
+
+def test_a_distinct_file_with_a_variant_name_is_not_mapped_onto_a_locked_entry(tmp_path: Path) -> None:
+    """Round 7 nit: on a case-sensitive disk `Data/...` is another file."""
+    repo = _init_repo(tmp_path / "repo")
+    write_lock(repo, _lock())
+    variant = "Data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    _write(repo, variant, b"someone else's file")
+    if (repo / "data/corpus/sources/nz/statute/2026-07-10/official/act.html").exists():
+        pytest.skip("case-insensitive filesystem: the variant is the locked file")
+    resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[])
+    assert resolver.resolve(variant) == repo / variant  # returned as is, nothing fetched
+
+
+def test_report_source_and_method_counts_exclude_rolled_back_entries(tmp_path: Path) -> None:
+    """Round 7 nit (pre-existing): rolled-back files still counted as fetched."""
+    sources = [e for e in _lock().files if "/sources/" in e.path]
+    first, second = sources
+    others = [e for e in _lock().files if "/sources/" not in e.path]
+    remote = _remote({content_key(e.sha256): FILES[e.path] for e in [first, *others]})
+    report = materialize(tmp_path / "repo", _lock().files, ContentCache(tmp_path / "cache"), [remote], workers=1)
+    assert report.rolled_back == [first.path]
+    assert sum(report.sources.values()) == len(report.materialized) == len(others)
+    assert sum(report.methods.values()) == len(report.materialized)
+
+
+_BURST_CHILD = r'''
+import hashlib, json, os, signal, sys, threading, time
+from pathlib import Path
+from axiom_corpus.corpus import content_store
+from axiom_corpus.corpus.content_store import ContentCache, materialize
+from axiom_corpus.corpus.corpus_locks import LockEntry
+
+root = Path(sys.argv[1])
+files = {f"data/corpus/sources/zz/statute/v{s:02d}/f{i}.html": f"{s}-{i}".encode() for s in range(20) for i in range(6)}
+entries = [LockEntry(p, hashlib.sha256(d).hexdigest(), len(d)) for p, d in sorted(files.items())]
+by_sha = {hashlib.sha256(d).hexdigest(): d for d in files.values()}
+
+class Slow:
+    name = "slow"
+    def open(self, entry):
+        time.sleep(0.005)
+        return [by_sha[entry.sha256]]
+
+original = signal.getsignal(signal.SIGINT)
+def burst():
+    while signal.getsignal(signal.SIGINT) is original:
+        time.sleep(0.0005)
+    time.sleep(0.01)
+    import random
+    for _ in range(200):  # microseconds apart, so some land while the handler runs
+        os.kill(os.getpid(), signal.SIGINT)
+        spin_until = time.perf_counter() + random.uniform(0, 30e-6)
+        while time.perf_counter() < spin_until:
+            pass
+threading.Thread(target=burst, daemon=True).start()
+try:
+    materialize(root / "repo", entries, ContentCache(root / "cache"), [Slow()], workers=8)
+    outcome = "completed"
+except KeyboardInterrupt:
+    outcome = "interrupted"
+by_scope = {}
+for p in files:
+    by_scope.setdefault(p.rsplit("/", 1)[0], []).append((root / "repo" / p).exists())
+partial = [s for s, flags in by_scope.items() if any(flags) and not all(flags)]
+print(json.dumps({"outcome": outcome, "partial": partial}))
+'''
+
+
+def test_a_burst_of_sigints_cannot_deadlock_the_handler(tmp_path: Path) -> None:
+    """Round 7: an Event.set() handler re-entered by a second signal deadlocked
+    forever; the lock-free flag cannot. Run in a subprocess with a timeout."""
+    import json
+    import sys
+
+    child = tmp_path / "child.py"
+    child.write_text(_BURST_CHILD)
+    outcomes = []
+    for trial in range(5):
+        result = subprocess.run(
+            [sys.executable, str(child), str(tmp_path / f"t{trial}")],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        assert result.returncode == 0, result.stderr[-2000:]
+        report = json.loads(result.stdout.strip().splitlines()[-1])
+        assert report["partial"] == [], report
+        outcomes.append(report["outcome"])
+    assert "interrupted" in outcomes  # the burst really landed mid-fetch
