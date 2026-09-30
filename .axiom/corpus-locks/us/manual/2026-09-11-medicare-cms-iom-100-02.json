@@ -1,0 +1,28 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us",
+  "document_class": "manual",
+  "version": "2026-09-11-medicare-cms-iom-100-02",
+  "files": [
+    {"path": "data/corpus/coverage/us/manual/2026-09-11-medicare-cms-iom-100-02.json", "sha256": "d3d080e85a598f2783e233df41e0e9569d585dad15126773b68625b2b13711a4", "size": 335, "git_blob": "6a0d49a1f40a528db42cb31608ae4bc8096f829b"},
+    {"path": "data/corpus/inventory/us/manual/2026-09-11-medicare-cms-iom-100-02.json", "sha256": "d4922cee81fb2ac7fdcae56eb9e44044d2bc097476c987323005e818c49b2c12", "size": 2141824, "git_blob": "432b8843c488d85b8448e188967d530aec75a225"},
+    {"path": "data/corpus/provisions/us/manual/2026-09-11-medicare-cms-iom-100-02.jsonl", "sha256": "41c080252daf26f36a1e88789beaa805ab1e8b7a75398fd975e195154ad65c8a", "size": 4720456, "git_blob": "723ec5bc6ba17e2c65e470f39873a160f095426a"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-1.pdf", "sha256": "2579dcd1e3359f8749b14c01e0353bbc0bd9d1f2e3b0704346dede02e635b9f0", "size": 695686, "git_blob": "cb2c8e2425c2dd8ad073ca50e5d0c5926fcaf84f"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-10.pdf", "sha256": "60e7b343053dc5a976535c621afba3c60cc4a82e0b08d614161a3b5c6c939ab1", "size": 334370, "git_blob": "28c32e2cfc0022ce0bcf942a06dbc57b563d366b"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-11.pdf", "sha256": "d38319c87e3315966bf19c969a33829f7749989e147726199123ec70c0751699", "size": 852738, "git_blob": "704e4fe59f61fc08c3273f7582c055e755ea49c4"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-12.pdf", "sha256": "3da91d2ac15d1bbc1191c81c820f5c2d50344219b86e8fdbb85db7f021453970", "size": 101711, "git_blob": "93b3f25ae8e89972400c09bc6abaf057b7065167"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-13.pdf", "sha256": "ea551aee86fc84723926331c9f5fcb94284b26c5f94f89c507ac205c1d68cb06", "size": 585992, "git_blob": "0890560bf504945e51a446f700ea7677ce51f11a"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-14.pdf", "sha256": "7a5a98496bad9f527b8009a884f51d8182859a7e422d692fb24ba6de7bbacbb9", "size": 56549, "git_blob": "b2768e1cedc37134b6fa688cb7895181c5d031cd"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-15.pdf", "sha256": "b34540f5453915a2a97d058f16266ce769b73c0a16f888ca3431ec14b7a80a49", "size": 1748363, "git_blob": "bd641bef0c4cf0b21290ffc421b70bba9a7f419b"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-16.pdf", "sha256": "5371c3cbbfcefb08fcc3be50b897eacbe567e99c376fae0218af87e32ae419d4", "size": 364593, "git_blob": "94b2d9254a80f666b6b85a6ad4b18da68f37aa5f"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-17.pdf", "sha256": "7d6f8f26640fa4a9be971278db368f23985f9e5fc29335108af685edb001bbbd", "size": 351208, "git_blob": "9cfbb0782b7a7eace499495661e2952fe372a574"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-2.pdf", "sha256": "5880fbbafad34895870bf8d18514bb5ba3d45726dcfbd6c9ee896ca9423a9664", "size": 113942, "git_blob": "5f37d0dfeba61dcec54858b3a46ff6be20b0000e"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-3.pdf", "sha256": "2988696fde0879df19801c820fe1b9ac78b7ff27c7d9725e9b579119f443dc1d", "size": 41583, "git_blob": "be45cb1f03387f1601f2ed1a856f4a2ccc1d950e"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-4.pdf", "sha256": "f62594f3fda38c75fa6969e67f742d8915bfdcbca9db1582372a83dfdb5c1b3a", "size": 33806, "git_blob": "131df54913498844ed71e56640a6040d902fcce9"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-5.pdf", "sha256": "0ab0d19aeb28d61bed9e3cc2e6445a32bfc6f32426d0a0a231587ad681b7712c", "size": 79962, "git_blob": "d1081a7831412796fcda6a1b6172bd3d0d8947c3"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-6.pdf", "sha256": "32501cdb7c6ed39a2ac82ca1e1512e47af3792fd5933a7643e71646780881c4f", "size": 427800, "git_blob": "54c1a8a91265472c4a97850230949b1253104a31"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-7.pdf", "sha256": "a0777bd2428a9a1140b89ae3c2264260696dd07fa38c1a3f8c514d3a7297177f", "size": 759629, "git_blob": "c66bf602e6a55696026286d450193f3ce9d11081"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-8.pdf", "sha256": "9e6bd59dfad61dcce32921c6fb5f1981840f1eaa8a7ebe5c2b533e97c9e0974f", "size": 446217, "git_blob": "13d413f8c7d85ed70c7feb6776e372567b5cd5e6"},
+    {"path": "data/corpus/sources/us/manual/2026-09-11-medicare-cms-iom-100-02/official-documents/us-cms-iom-100-02-chapter-9.pdf", "sha256": "29df9d8b4a51ef5245dc701450797b47d611abcda8e5a2edc97f67a095ce8ce6", "size": 496424, "git_blob": "1cbbc74a3e448d7bf71fceec873c9ef9a47134eb"}
+  ]
+}
