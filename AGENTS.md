@@ -23,6 +23,22 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   such as State Options Reports, Justia, FindLaw, or LegiScan unless explicitly
   directed for a separate non-canonical experiment.
 
+## Corpus Bytes Outside Git
+
+- When `.axiom/corpus-locks/` exists, protected corpus files
+  (`data/corpus/{sources,inventory,provisions,coverage}`) are never tracked in
+  git; each scope's lock file pins them by sha256. See `docs/corpus-storage.md`.
+- Fetch what a task reads: `axiom-corpus-ingest corpus fetch <scope>` (or
+  `--path`, `--release`, `--all`). Code-only tasks fetch nothing; the full test
+  suite needs `--all`.
+- After an ingest, `sign-ingest-manifest ... --lock` writes the scope's lock;
+  commit the lock with the signed manifest. Never `git add -f` corpus files.
+- `corpus push` (and `--push` on signing or locking) writes content-addressed
+  objects to R2. Like any R2 write, run it only when the user asks. CI fails an
+  ingest pull request until R2 holds every object its new lock entries name,
+  so when you ingest, ask up front whether to push; without that go, leave
+  the pull request red and say that it waits on the push.
+
 ## State Statute Work
 
 - Pick one jurisdiction at a time from
