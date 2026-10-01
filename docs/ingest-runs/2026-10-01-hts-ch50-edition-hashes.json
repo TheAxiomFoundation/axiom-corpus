@@ -1,0 +1,70 @@
+{
+  "generator_commit": "ba6a81ef5d0d3ed12cf7ade187a8a81ada88f821",
+  "signed": false,
+  "uploaded": false,
+  "activated": false,
+  "scope": {
+    "version": "2026-10-01-usitc-hts-2026-rev15-chapter50-edition",
+    "citation_root": "us/statute/hts-2026-rev15/chapter-50",
+    "rows": 42,
+    "artifacts": [
+      "sources/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition/usitc-hts/hts_2026_revision_15_json.json",
+      "inventory/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.json",
+      "provisions/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.jsonl",
+      "coverage/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.json"
+    ]
+  },
+  "files": [
+    {
+      "path": "sources/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition/usitc-hts/hts_2026_revision_15_json.json",
+      "sha256": "59a76c12e28d7a28975f31a8876bfb08e64927b922fe2b4f88801ff4459181e6",
+      "bytes": 12630559
+    },
+    {
+      "path": "inventory/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.json",
+      "sha256": "d92fb8539f96ea3fbe41c74f67af4da6917229291c5263565489d6c55ffd3243",
+      "bytes": 52949
+    },
+    {
+      "path": "provisions/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.jsonl",
+      "sha256": "23716181151ac3d8fe552333f00254e612b29c813cde3fd7bb005183b422ba5a",
+      "bytes": 68715
+    },
+    {
+      "path": "coverage/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.json",
+      "sha256": "18b3673d7c640d6d39ab7b25721babbfd4f7b002bda8234008d69fcd734a7369",
+      "bytes": 348
+    }
+  ],
+  "coverage": {
+    "complete": true,
+    "document_class": "statute",
+    "duplicate_provision_citations": [],
+    "duplicate_source_citations": [],
+    "extra_provisions": [],
+    "jurisdiction": "us",
+    "matched_count": 42,
+    "missing_from_provisions": [],
+    "provision_count": 42,
+    "source_count": 42,
+    "version": "2026-10-01-usitc-hts-2026-rev15-chapter50-edition"
+  },
+  "reviewed_test_artifact_comparison": [
+    {
+      "path": "sources/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition/usitc-hts/hts_2026_revision_15_json.json",
+      "equal_to_reviewed_test_artifact": true
+    },
+    {
+      "path": "inventory/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.json",
+      "equal_to_reviewed_test_artifact": true
+    },
+    {
+      "path": "provisions/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.jsonl",
+      "equal_to_reviewed_test_artifact": true
+    },
+    {
+      "path": "coverage/us/statute/2026-10-01-usitc-hts-2026-rev15-chapter50-edition.json",
+      "equal_to_reviewed_test_artifact": true
+    }
+  ]
+}
