@@ -12,7 +12,7 @@ from anthropic import Anthropic
 
 from axiom_corpus.models import Section
 
-DEFAULT_MODEL = "claude-sonnet-4-20250514"
+DEFAULT_MODEL = "claude-sonnet-5-5"
 
 
 @dataclass
@@ -129,13 +129,20 @@ def encode_section(section: Section, model: str = DEFAULT_MODEL) -> Encoding:
     # Call Claude
     response = client.messages.create(
         model=model,
-        max_tokens=8000,
+        max_tokens=16000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
+        # Keep compatibility with anthropic 0.75, which lacks output_config kwargs.
+        extra_body={"output_config": {"effort": "low"}},
     )
 
+    if response.stop_reason == "refusal":
+        raise ValueError("Claude refused to encode the statute section")
+
     # Extract DSL and tests from response
-    content = response.content[0].text
+    content = "\n".join(block.text for block in response.content if block.type == "text")
+    if not content.strip():
+        raise ValueError("Claude returned no text for the statute encoding")
     dsl = _extract_code_block(content, "rulespec")
     tests_yaml = _extract_code_block(content, "yaml")
 
