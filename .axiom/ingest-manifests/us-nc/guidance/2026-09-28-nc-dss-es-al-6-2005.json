@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/guidance/2026-09-28-nc-dss-es-al-6-2005.json",
+      "sha256": "3f858429468e07a8ffaf445c328152071e853f29464bfc9701c12754c3e82835"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/guidance/2026-09-28-nc-dss-es-al-6-2005.json",
+      "sha256": "d7cb1fc1271c4157740aa44348576ef16ef3ac7e68f46683072d9a5d1c038529"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/guidance/2026-09-28-nc-dss-es-al-6-2005.jsonl",
+      "sha256": "cf229c9df2682619b58e0d42a3868b5b195d99b9718b852ab3f7ac7ba4ed6b08"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/guidance/2026-09-28-nc-dss-es-al-6-2005/official-documents/nc-dss-es-al-6-2005.pdf",
+      "sha256": "ab742e6d7a4f7792b7641af357bd9f3b41d4089704bcb0cf0914ec5f483a48d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "332875a595c4fb230119f5e2c7c80ecd8f5dad57",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-nc-dss-es-al-6-2005 --manifest manifests/us-nc-dss-es-al-6-2005.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-03T13:19:30.969514+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "66b950b9fff9f86b23853ea4f816ab17843bbedf9f0a93114d44b773e52452cb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "T7nwldVf2XV9rVzMAYdALw3c/BRjkEboPg1vzZaNdEXZE2/LHVFb6wI9xme5TtG1tKM3PUllAieH60rzGg/gDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-nc-dss-es-al-6-2005"
+}

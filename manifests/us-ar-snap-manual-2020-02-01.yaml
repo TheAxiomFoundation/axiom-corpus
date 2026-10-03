@@ -1,0 +1,62 @@
+version: 2026-09-28-ar-snap-manual-2020-02-01
+documents:
+  - source_id: ar-dhs-snap-manual-2020-02-01
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-policy-manual/vintage/2020-02-01
+    title: Arkansas SNAP Certification Manual, complete manual as revised through February 1, 2020 (Complete_SNAP_Manual.pdf)
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Complete_SNAP_Manual.pdf
+    source_format: pdf
+    source_as_of: '2020-02-01'
+    expression_date: '2020-02-01'
+    request:
+      browser_impersonation: safari17_0
+      browser_impersonation_direct: true
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services, Division of County Operations
+      official_publisher: Arkansas Department of Human Services
+      document_subtype: historical_policy_manual_compilation
+      program: SNAP
+      historical_vintage: true
+      vintage_date_basis: latest_printed_revision_stamp
+      latest_printed_revision_stamp: '2020-02-01'
+      expression_date_note: >-
+        No compilation-wide date is printed. The latest section revision stamp is
+        "SNAP Manual 02/01/20", on 53 section headings from PDF page 358 (SNAP 1000);
+        the compilation is taken as current through that date. The latest manual
+        transmittal is SNAP 19-02 (PDF page 175). The file's creation timestamp,
+        D:20200228141245-06'00' (modified D:20200302151736-06'00'), is recorded
+        below and not used as a legal date.
+      latest_manual_transmittal: SNAP 19-02 (PDF page 175)
+      pdf_creation_date: '2020-02-28'
+      pdf_modification_date: '2020-03-02'
+      contents_by_pdf_page:
+        manual_transmittals: 1-175
+        policy_directives: 176-305
+        manual_sections: 306-976
+        appendices: 977-1057
+      printed_section_revision_dates:
+        '6550': '1998-06-01'
+        '6551': '1998-06-01'
+        '7524': '1998-07-01'
+        '7600': '1998-07-01'
+        '7610': '2005-06-01'
+      extraction_granularity: pdf_page
+      extraction_note: >-
+        The PDF prints some checkboxes and bullets as private-use glyphs (U+F0B7,
+        U+F0EB and others), which the rows keep as printed.
+      topic: legally_obligated_child_support_deduction
+      authority_role: >-
+        6550 (PDF page 642) allows a deduction for legally obligated child support
+        paid to a nonhousehold member. 7524 (PDF pages 687-688) allows no deduction
+        in the gross income calculation except the farm loss deduction. 6100 (PDF
+        page 615) says deductions are applied after gross income is calculated, and
+        7600 (PDF page 690) lists the child support deduction before the excess
+        shelter computation. The 7610 worksheet (PDF page 692) enters child support
+        on line 11, although its printed line 12 totals only lines 7-10.
+      citation_path_note: >-
+        The current manual's dhs/snap-policy-manual path gains
+        vintage/<revision-stamp-date> for this historical compilation, so the current
+        and historical page rows coexist.
+      discovered_via: policyengine-us SNAP child support references; live DHS historical compilation

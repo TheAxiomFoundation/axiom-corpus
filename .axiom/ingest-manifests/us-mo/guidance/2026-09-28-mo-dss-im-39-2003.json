@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/guidance/2026-09-28-mo-dss-im-39-2003.json",
+      "sha256": "805525280fab707ff21d6ecf8106ac06d244083978d1a64ede97ab8b0690195e"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/guidance/2026-09-28-mo-dss-im-39-2003.json",
+      "sha256": "4206dfa76de8728540bad221d28282d5e091dd5512066b52223a5e80cd753edc"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/guidance/2026-09-28-mo-dss-im-39-2003.jsonl",
+      "sha256": "c054fb815ad82f72b0de1332cec049a765bae235264a2b22a67f89096ca80c22"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-09-28-mo-dss-im-39-2003/official-documents/mo-dss-im-39-2003.html",
+      "sha256": "8709c83799a3ae48a25f6506dde7a2c37b8f73e574cfbfcc872f2637660d4b30"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "332875a595c4fb230119f5e2c7c80ecd8f5dad57",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-mo-dss-im-39-2003 --manifest manifests/us-mo-dss-im-39-2003.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-03T13:19:26.887186+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "66b950b9fff9f86b23853ea4f816ab17843bbedf9f0a93114d44b773e52452cb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mip+tAHpjyDn/wRRTMnsCkyR9tr882CTYbz5NUW6u63hcX+g9X/5OX4zfsPONxXnDvEUxIl0y4qbz4YntMVCDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-mo-dss-im-39-2003"
+}

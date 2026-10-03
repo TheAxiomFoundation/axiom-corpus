@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/guidance/2026-09-28-mo-dss-im-34-2013.json",
+      "sha256": "0fecf1280d76a1bdceec9c3aacff1a63c970ff2236eb9a6efd47ded5d2061216"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/guidance/2026-09-28-mo-dss-im-34-2013.json",
+      "sha256": "d3ed461b11cf0765c92c4cc06da05de555c7db8edc70478988b9e7b943dda590"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/guidance/2026-09-28-mo-dss-im-34-2013.jsonl",
+      "sha256": "f047a6718d0ea331273e76559f3abf71f351bc197fe7475e31a034edffb96483"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-09-28-mo-dss-im-34-2013/official-documents/mo-dss-im-34-2013.html",
+      "sha256": "8b7379beb096fcc1adc258569dd374cb1acb483c68a9d5bc01da84a449b1bd51"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "332875a595c4fb230119f5e2c7c80ecd8f5dad57",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-mo-dss-im-34-2013 --manifest manifests/us-mo-dss-im-34-2013.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-03T13:19:22.858440+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "66b950b9fff9f86b23853ea4f816ab17843bbedf9f0a93114d44b773e52452cb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WZytNxXWEv8pS64pKcnd8sMLc01LssdTX8PgEz+mpdpnLzEyvt/pFM4bgMn42HM7NjwCDEw9SqAgQVEWvJ82CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-mo-dss-im-34-2013"
+}

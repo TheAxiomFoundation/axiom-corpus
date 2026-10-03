@@ -1,0 +1,63 @@
+documents:
+  - source_id: la-register-2003-04-20-vol-29-no-4
+    jurisdiction: us-la
+    document_class: rulemaking
+    citation_path: us-la/rulemaking/louisiana-register/2003-04-20/vol-29-no-4
+    title: Louisiana Register, Volume 29, Number 4, April 20, 2003
+    source_url: https://www.doa.la.gov/media/m23b1mhf/0304.pdf
+    source_format: pdf
+    source_as_of: '2026-09-28'
+    expression_date: '2003-04-20'
+    metadata:
+      primary_source: true
+      source_authority: Louisiana Division of Administration, Office of the State Register
+      official_publisher: Louisiana Division of Administration, Office of the State Register
+      document_subtype: register_issue
+      topic: register_issue
+      register_volume: 29
+      register_number: 4
+      publication_date: '2003-04-20'
+      expression_date_note: >-
+        Publication date as printed in the page footers (PDF page 96: "Louisiana
+        Register Vol. 29, No. 04 April 20, 2003", with printed page number 607). The
+        three unnumbered contents pages
+        print only "April 2003". The PDF's own metadata (title "April 1999", created
+        2003-04-21) was not used.
+      source_as_of_note: official publisher retrieval date
+      index_url: https://www.doa.la.gov/doa/osr/archives/
+      alternate_source_url: https://www.doa.louisiana.gov/media/m23b1mhf/0304.pdf
+      alternate_source_url_note: >-
+        The Office of the State Register archive page links this issue on
+        www.doa.la.gov; the www.doa.louisiana.gov alias serves the same bytes.
+      page_numbering_note: >-
+        Page rows use PDF page numbers. PDF pages 1-3 are unnumbered contents; from PDF
+        page 4 the printed page is the PDF page plus 511 (PDF page 96 is printed page
+        607).
+      text_layer_note: >-
+        The PDF encodes WordPerfect typographic symbols as ASCII letters in a
+        WP-TypographicSymbols font, and the rows keep them as encoded: "C" for an em
+        dash (PDF page 94: "Food Stamp ProgramC2002 Farm Bill"), "=" for an
+        apostrophe, "A" and "@" for quotation marks, "B" for an en dash.
+      program_note: >-
+        The issue holds rules of many agencies. Only the rule described under
+        relevant_rule concerns SNAP; the other page rows are unrelated rules and
+        notices.
+      relevant_rule:
+        title: Food Stamp Program—2002 Farm Bill (LAC 67:III.1917, 1932, 1949, 1953, 1961, 1965, 1966, 1980, 1983 and 2013)
+        issuing_agency: Louisiana Department of Social Services, Office of Family Support
+        register_citation: LR 29:605 (April 2003)
+        document_number: 0304#065
+        printed_pages: 605-607
+        pdf_pages: 94-96
+        program: SNAP
+        topic: legally_obligated_child_support_payment_exclusion
+        child_support_clause: >-
+          LAC 67:III.1980.C, printed on page 607 (PDF page 96): "Legally obligated
+          child support payments to non-household members are excluded when
+          determining eligibility based on gross income standards." The August 2026
+          LAC prints this clause as 1980.A.3.
+        authority_role: >-
+          The rule amends LAC 67:III.1980 to exclude legally obligated child support
+          paid to nonhousehold members when determining eligibility under the gross
+          income standards.
+      discovered_via: policyengine-us SNAP child support references and PR 9622; official source checked 2026-09-27

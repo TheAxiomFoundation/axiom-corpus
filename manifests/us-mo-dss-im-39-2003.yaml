@@ -1,0 +1,46 @@
+documents:
+- source_id: mo-dss-im-39-2003
+  jurisdiction: us-mo
+  document_class: guidance
+  citation_path: us-mo/guidance/dss/im-2003-39
+  title: Missouri Income Maintenance Memorandum IM-39 (March 4, 2003), Court Ordered Child Support Expense Policy
+  source_url: https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/memos_03/im39_03.html
+  source_format: html
+  source_as_of: '2026-09-28'
+  expression_date: '2003-03-04'
+  extraction:
+    html_content_selector: body
+    # The trailing IM-38 / 2003 Memorandums / IM-40 navigation table.
+    html_drop_selectors:
+    - body > table
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: Missouri Department of Social Services
+    source_authority_note: The memo prints no issuing division; its only issuer marks are "JKW/REM" and "Distribution #6".
+    official_publisher: Missouri DSS Manuals
+    document_subtype: income_maintenance_memorandum
+    document_number: IM-39 (2003)
+    issue_date: '2003-03-04'
+    effective_date: '2003-03-10'
+    expression_date_note: Memorandum date printed in its heading, 03/04/03; effective for budgets completed March 10, 2003 and after.
+    source_as_of_note: official publisher retrieval date
+    source_bytes_note: >-
+      The publisher injects per-request tracking tokens (Dynatrace and Incapsula
+      script parameters) into the page, so the retained bytes differ between fetches;
+      the extracted text does not.
+    extraction_note: The memo sits in one table cell, so the whole memo is one block; its in-text headings are bold, underlined text, not heading tags.
+    authority_role: >-
+      Changes the treatment of court-ordered child support paid: effective for budgets
+      completed March 10, 2003, it is excluded from gross income before the 130%
+      gross eligibility test; the memo's separate net-income steps subtract the 20%
+      earned income deduction before child support.
+    replaced_in_part_by: >-
+      IM-34 (March 15, 2013), us-mo/guidance/dss/im-2013-34, which replaces this memo's
+      budgeting steps for disqualified or ineligible members.
+    later_history_note: >-
+      The released Missouri SNAP manual's revision histories for the child support
+      exclusion sections (us-mo/manual/dss/snap/1115-000-00/1115-035-00/1115-035-20
+      and its subsections) list IM-111 (October 22, 2004), which is not retained here.

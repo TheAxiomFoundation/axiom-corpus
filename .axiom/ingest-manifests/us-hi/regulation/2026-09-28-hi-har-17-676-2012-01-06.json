@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/regulation/2026-09-28-hi-har-17-676-2012-01-06.json",
+      "sha256": "61901efe045509f46676f1682d20d54016f6c5a6580aeda927b314742af17900"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/regulation/2026-09-28-hi-har-17-676-2012-01-06.json",
+      "sha256": "2e341a77f3bf8fe3dfdbc6af384fe5faef6342732936c9bd8dc87cc5dc4c4c42"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/regulation/2026-09-28-hi-har-17-676-2012-01-06.jsonl",
+      "sha256": "184955331d2b2e2038ed1936f9d5f59debff79e4f3e1b5289fb9e9115f0fbf2c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-09-28-hi-har-17-676-2012-01-06/official-documents/hi-dhs-har-17-676-2012-01-06.pdf",
+      "sha256": "9ed9a56f7f4e5fdf03cece5fa221e7900662b562beec3642329726093c88986f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "332875a595c4fb230119f5e2c7c80ecd8f5dad57",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-hi-har-17-676-2012-01-06 --manifest manifests/us-hi-har-17-676-2012-01-06.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 74,
+    "missing_count": 0,
+    "provision_count": 74,
+    "source_count": 74
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-03T13:19:17.282293+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "66b950b9fff9f86b23853ea4f816ab17843bbedf9f0a93114d44b773e52452cb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4nEL3ahf2n9Ywtqtnot+7+jSw6cps9qUhmMI1W55N7g2VxvZRy2L8bbwY4n3RaVwkJEJbGo8ctaDsI+B+BUwAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-hi-har-17-676-2012-01-06"
+}
