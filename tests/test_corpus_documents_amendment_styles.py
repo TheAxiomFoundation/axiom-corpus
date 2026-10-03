@@ -301,6 +301,28 @@ def test_html_amendment_status_follows_the_source_node_not_equal_text() -> None:
     assert marked.metadata["amendment_markup"]["inserted_runs"] == 0
 
 
+def test_amendment_tags_are_selected_over_the_whole_document() -> None:
+    # The two parses pick different content roots for this selector; selection over
+    # the whole html.parser document keeps the insertion on the root lxml keeps.
+    content = (
+        b"<html><body><p><u><span id=a>A</span><p><span id=b><u>B</u></span></u>"
+        b"<span id=c><u>C</u></span></body></html>"
+    )
+    (block,) = _html(
+        content,
+        {"html_content_selector": "p > span:last-child", "html_amendment_markup": {"inserted_selector": "u"}},
+    )
+    assert block.body == "{+C+}"
+    # lxml moves the <head>'s underlined text into <body>; html.parser leaves it in
+    # <head>. Neither insertion is lost.
+    (block,) = _html(
+        b"<html><head><u>A</u><title>T</title></head><body><u>B</u></body></html>",
+        {"html_amendment_markup": {"inserted_selector": "u"}},
+    )
+    assert block.body == "{+A+}\n\nT\n\n{+B+}"
+    assert block.metadata["amendment_markup"]["inserted_runs"] == 2
+
+
 def test_cdata_does_not_trip_the_delimiter_check_but_visible_delimiters_do() -> None:
     options = {"html_amendment_markup": {"inserted_selector": "u"}}
     (block,) = _html(b"<html><body><p><u>A</u><![CDATA[{+hidden+}]]></p></body></html>", options)

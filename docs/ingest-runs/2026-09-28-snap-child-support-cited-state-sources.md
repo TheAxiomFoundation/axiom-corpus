@@ -401,6 +401,28 @@ and each now has a regression test.
   one `<BR><BR>`, between the "AMENDATORY SECTION" line and the WAC heading, so its
   body now has 41 paragraphs. Its words are unchanged.
 
+### Fourth review
+
+The reviewer's third round found one more major defect. Amendment tags were still
+selected inside html.parser's content root. When the two parses chose different roots
+(a structural selector such as `p > span:last-child`), or when lxml moved underlined
+`<head>` text into `<body>`, insertions on the text lxml kept were silently dropped.
+Amendment tags are now selected over the whole html.parser document, the same scope
+the alignment uses. The block-tag set also now covers the standard HTML block
+elements (`title`, `head`, `body`, `main`, `nav`, `form`, `figure`, table sections and
+the rest), so text in them is not run together. Both reproductions are regression
+tests. WSR 09-15-085's rows are unchanged.
+
+## Storage after axiom-corpus#774
+
+`main` moved corpus bytes out of git on 2026-09-30 (#774 and the switch). After
+merging `main`, `axiom-corpus-ingest corpus migrate` moved this branch's 66 tracked
+artifact files into 15 lock files under `.axiom/corpus-locks/`. The bytes are
+unchanged, and the signed ingest manifests attest them by path and SHA-256, as
+before. `corpus push --changed-since origin/main` uploaded the new content-addressed
+objects to R2 `objects/sha256/`; they are write-once and publish nothing. Running the
+tests needs the scopes fetched (`corpus fetch`).
+
 ## Citation-path ratchet and retention
 
 The new rows add 13 `block-N` paths (IM-39 1, IM-34 8, P.L. c.45 1, the two WSR orders 2,

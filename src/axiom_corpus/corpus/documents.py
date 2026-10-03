@@ -3152,8 +3152,11 @@ def _html_amendment_markup_requested(extraction: dict[str, Any] | None) -> bool:
 # cell and <br> separate words, and every other tag adds nothing.
 _HTML_AMENDMENT_BLOCK_TAGS = frozenset(
     {
-        "address", "article", "blockquote", "center", "dd", "div", "dl", "dt", "h1", "h2",
-        "h3", "h4", "h5", "h6", "hr", "li", "ol", "p", "pre", "section", "table", "tr", "ul",
+        "address", "article", "aside", "blockquote", "body", "caption", "center", "dd",
+        "details", "dialog", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer",
+        "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html",
+        "legend", "li", "main", "nav", "ol", "p", "pre", "section", "summary", "table",
+        "tbody", "tfoot", "thead", "title", "tr", "ul",
     }
 )
 _HTML_AMENDMENT_WORD_BREAK_TAGS = frozenset({"td", "th"})
@@ -3202,19 +3205,22 @@ def _html_amendment_states(
     structure. Amendment tags are selected in an html.parser parse of the same
     source instead, because lxml closes an inline ``<u>`` or ``<strike>`` at the
     next ``<p>`` and so loses an amendment that spans paragraphs (Washington
-    register orders do this). Both whole documents are aligned before any drop
+    register orders do this). Amendment tags are selected over the whole
+    html.parser document, and both whole documents are aligned before any drop
     selector or content root applies, so each lxml character is paired with the
     same source character in html.parser's text; the two must carry the same
-    non-space characters in the same order, or extraction fails. Drops then apply
-    to the lxml parse alone, and its surviving strings keep their status.
+    non-space characters in the same order, or extraction fails. The lxml content
+    root and drops then decide what is kept, and its surviving strings keep their
+    status.
     """
     marked_soup = (
         BeautifulSoup(document, "html.parser", from_encoding=original_encoding)
         if isinstance(document, bytes)
         else BeautifulSoup(document, "html.parser")
     )
-    marked_root = _html_content_root(marked_soup, extraction=extraction)
-    selected = _html_amendment_nodes(marked_root, extraction=extraction) or {}
+    # Select over the whole document: the parses may choose different content roots
+    # (or move nodes between <head> and <body>), and the lxml root decides what is kept.
+    selected = _html_amendment_nodes(marked_soup, extraction=extraction) or {}
     marked: list[tuple[str, str | None]] = []
     for string in _html_text_strings(marked_soup):
         inherited = {

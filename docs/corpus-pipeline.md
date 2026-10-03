@@ -446,8 +446,9 @@ cell or `<br>` separates words, and other tags add nothing; comments and CDATA
 are not text. The text and its paragraphs come from the default lxml parse;
 the amendment tags are selected in an html.parser parse of the same source,
 because lxml closes an inline `<u>` at the next `<p>` and would lose an amendment
-that spans paragraphs. The two whole documents are aligned before any drop
-selector or content root applies: they must carry the same non-space characters in
+that spans paragraphs. Amendment tags are selected over the whole html.parser
+document, and the two whole documents are aligned before any drop selector or
+content root applies: they must carry the same non-space characters in
 the same order, and each character takes its amendment status from its
 html.parser counterpart; a disagreement fails extraction instead of changing the
 text. Drops then apply to the lxml parse alone. The literal-delimiter check reads
