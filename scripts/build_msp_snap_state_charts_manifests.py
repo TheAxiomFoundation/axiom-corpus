@@ -34,6 +34,8 @@ from typing import Any
 
 import yaml
 
+from axiom_corpus.corpus.resolver import require_materialized
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CORPUS_BASE = Path("/Users/pavelmakarchuk/axiom-corpus/data/corpus")
 SOURCE_AS_OF = "2026-09-14"
@@ -130,6 +132,9 @@ def corpus_citation_paths(corpus_base: Path | None, jurisdiction: str, *, exclud
     all versions) except the scope being regenerated. Empty when no corpus base is available."""
     if corpus_base is None or not corpus_base.exists():
         return set()
+    # Corpus bytes may live outside git: fetch the jurisdiction's locked
+    # provisions so the collision check never runs on a partial tree.
+    require_materialized([corpus_base / "provisions" / jurisdiction], fetch=True)
     paths: set[str] = set()
     for jsonl in sorted((corpus_base / "provisions" / jurisdiction).glob("*/*.jsonl")):
         if jsonl.stem == exclude_version:
