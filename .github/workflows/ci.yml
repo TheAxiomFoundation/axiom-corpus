@@ -115,6 +115,33 @@ jobs:
             --base-ref "$BASE_REF" \
             --head-ref "${{ github.sha }}"
 
+      - name: Audit every corpus lock entry's attestation
+        # The guard checks lock changes against the base; this checks every
+        # entry against signed manifests and the base branch's first-parent
+        # history. Like the guard, it runs the verifier installed from the
+        # base commit, so a pull request cannot change the verifier's code
+        # (this workflow file itself still comes from the pull request, so
+        # review of workflow changes stays the trust root). No-op without
+        # lock files.
+        env:
+          AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
+        run: |
+          if [ ! -d .axiom/corpus-locks ]; then
+            echo "No corpus lock files; corpus bytes are tracked in git."
+            exit 0
+          fi
+          if ! axiom-corpus-ingest corpus verify --help 2>/dev/null | grep -q -- '--attest'; then
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              # Only the pull request that adds lock audits has a base without them.
+              echo "The base commit's verifier predates lock audits; auditing with the checked-out code."
+            else
+              # push and schedule runs audit the branch's own commit with its own code.
+              echo "No base verifier on ${{ github.event_name }} runs; auditing with the checked-out code."
+            fi
+            python -I -m pip install -e "$GITHUB_WORKSPACE"
+          fi
+          axiom-corpus-ingest corpus verify --attest --ref "${{ github.sha }}"
+
       - name: Install dependencies
         run: |
           cd "$RUNNER_TEMP"
@@ -140,17 +167,6 @@ jobs:
               --changed-since "${{ github.event.pull_request.base.sha }}"
           else
             axiom-corpus-ingest corpus verify --remote
-          fi
-
-      - name: Audit every corpus lock entry's attestation
-        # The guard checks lock changes against the base; this checks every
-        # entry, so no lock can rest on a base the guard never saw. No-op
-        # without lock files.
-        run: |
-          if [ -d .axiom/corpus-locks ]; then
-            axiom-corpus-ingest corpus verify --attest
-          else
-            echo "No corpus lock files; corpus bytes are tracked in git."
           fi
 
       - name: Fetch the corpus the tests read

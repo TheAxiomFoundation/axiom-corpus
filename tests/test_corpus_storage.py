@@ -19,6 +19,7 @@ import json
 import os
 import subprocess
 import threading
+import unicodedata
 from io import BytesIO
 from pathlib import Path
 
@@ -47,6 +48,7 @@ from axiom_corpus.corpus.corpus_locks import (
     LockFormatError,
     LockSet,
     diff_lock_sets,
+    fold_collisions,
     hash_tree_blobs,
     list_tree_blobs,
     load_locks,
@@ -177,12 +179,12 @@ def scope_lock(draw) -> tuple[CorpusLock, dict[str, bytes]]:
         files[f"data/corpus/{kind}/{j}/{dc}/{v}{suffix}"] = draw(st.binary(max_size=64))
     for rel in draw(st.lists(st.lists(file_segment, min_size=1, max_size=3), max_size=6)):
         files[f"data/corpus/sources/{j}/{dc}/{v}/" + "/".join(rel)] = draw(st.binary(max_size=64))
-    # A path and a directory of the same name cannot coexist on disk.
-    names = sorted(files)
-    for a in names:
-        for b in names:
-            if a != b and b.startswith(a + "/"):
-                files.pop(a, None)
+    # Keep only a tree that can exist on disk everywhere: no path that is also
+    # a directory, and no two names a case-insensitive filesystem merges.
+    while collisions := fold_collisions(sorted(files)):
+        dropped = collisions[0][1].removesuffix("/…")
+        for path in [p for p in files if p == dropped or p.startswith(f"{dropped}/")]:
+            del files[path]
     if not files:
         files[f"data/corpus/provisions/{j}/{dc}/{v}.jsonl"] = b"{}\n"
     return _scope_lock(files, scope), files
@@ -731,3 +733,56 @@ def test_no_cache_fetch_streams_verified_bytes_into_place(tmp_path: Path) -> Non
     bad = materialize(tmp_path / "bad", lock.files, None, [corrupt], workers=2)
     assert len(bad.failed) == len(SCOPE_FILES)
     assert not any(p.is_file() for p in (tmp_path / "bad").rglob("*"))
+
+
+# --------------------------------------------------------------------------- portable names (invariant 9)
+
+_name = st.sampled_from(["a", "A", "b", "B", "café", "CAFÉ", "café", "ſx", "sx", "x"])
+
+
+def _reference_collisions(paths: list[str]) -> set[frozenset[str]]:
+    """Brute force: every pair of distinct names (files or directories) that fold alike."""
+    import unicodedata as ud
+
+    def fold(text: str) -> str:
+        return ud.normalize("NFKC", ud.normalize("NFKC", text).casefold())
+
+    names: set[str] = set()
+    directories: set[str] = set()
+    for path in paths:
+        parts = path.split("/")
+        for depth in range(1, len(parts) + 1):
+            names.add("/".join(parts[:depth]))
+            if depth < len(parts):
+                directories.add("/".join(parts[:depth]))
+    pairs = {frozenset((a, b)) for a in names for b in names if a != b and fold(a) == fold(b)}
+    pairs |= {frozenset((path, f"{path}/…")) for path in set(paths) & directories}
+    return pairs
+
+
+@PROPERTY_SETTINGS
+@given(st.lists(st.lists(_name, min_size=1, max_size=3).map("/".join), unique=True, max_size=6))
+def test_fold_collisions_matches_a_brute_force_reference(paths: list[str]) -> None:
+    found = {frozenset(pair) for pair in fold_collisions(paths)}
+    reference = _reference_collisions(paths)
+    # Same verdict, and every reported pair is a real collision.
+    assert bool(found) == bool(reference)
+    assert found <= reference
+    # Every colliding name appears in some reported pair.
+    assert {n for pair in reference for n in pair} <= {n for pair in found for n in pair} | {
+        n for pair in reference for n in pair if n.endswith("/…")
+    } | {n for pair in found for n in pair}
+
+
+_nfc_name = _name.filter(lambda n: unicodedata.normalize("NFC", n) == n)  # lock paths are NFC
+
+
+@PROPERTY_SETTINGS
+@given(st.lists(st.lists(_nfc_name, min_size=1, max_size=3).map("/".join), unique=True, min_size=1, max_size=6))
+def test_a_lock_set_is_invalid_exactly_when_its_names_collide(tmp_path_factory, tails: list[str]) -> None:
+    base = "data/corpus/sources/nz/statute/v1"
+    paths = [f"{base}/{tail}" for tail in tails]
+    repo = tmp_path_factory.mktemp("portable")
+    write_lock(repo, CorpusLock.from_entries(("nz", "statute", "v1"), [LockEntry(p, "0" * 64, 1) for p in paths]))
+    errors = load_locks(repo).errors
+    assert bool(errors) == bool(_reference_collisions(paths))

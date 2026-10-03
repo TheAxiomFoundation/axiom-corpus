@@ -8,6 +8,7 @@ pins every protected file of the scope by repository path, sha256 and size. See
 
 from __future__ import annotations
 
+import bisect
 import contextlib
 import hashlib
 import json
@@ -137,6 +138,74 @@ class CorpusLock:
 def is_protected_corpus_path(path: str) -> bool:
     """True for repository paths under the four git-excluded artifact prefixes."""
     return any(path.startswith(prefix) for prefix in PROTECTED_CORPUS_PREFIXES)
+
+
+def fold_path(path: str) -> str:
+    """A spelling-insensitive key for ``path``.
+
+    Case-insensitive, normalization-insensitive filesystems (APFS, HFS+, NTFS)
+    put ``DATA/corpus``, ``data/corpus``, ``data/corpu\u017f`` (long s) and,
+    on HFS+, ``data/corpu\u200cs`` (a zero-width non-joiner) in one place.
+    Dropping format characters, then full case mapping and folding plus NFKC,
+    maps every spelling we know to merge onto one key; it also merges some
+    spellings a filesystem keeps apart, which only makes the checks that use
+    it stricter.
+    """
+    text = unicodedata.normalize("NFKC", path)
+    # HFS+ ignores format characters (ZWNJ, bidi marks, BOM) in names; drop them.
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
+    # upper().lower() maps the dotless i and long s to plain letters, as
+    # NTFS-style upcasing does; casefold() covers the remaining foldings.
+    return unicodedata.normalize("NFKC", text.upper().lower().casefold())
+
+
+def lands_on_protected_path(path: str) -> bool:
+    """True when ``path``, in any spelling a filesystem may merge, is a protected path.
+
+    That includes the directories above the protected prefixes (``data``,
+    ``data/corpus``, ``data/corpus/provisions``): a tracked file or symlink
+    there would stand in for the whole directory.
+    """
+    folded = fold_path(path).rstrip("/")
+    return any(
+        folded.startswith(prefix) or prefix.startswith(f"{folded}/")
+        for prefix in PROTECTED_CORPUS_PREFIXES
+    )
+
+
+def fold_collisions(paths: Iterable[str]) -> list[tuple[str, str]]:
+    """Pairs of locked names that cannot both exist in one checkout.
+
+    Two paths, or a path and a directory above another path, collide when
+    they are equal (a file cannot also be a directory) or when a case- and
+    normalization-insensitive filesystem stores them in one place
+    (``B`` and ``b/3``, ``Act.html`` and ``act.html``). A lock set must be
+    free of both, so it materializes the same way on every filesystem.
+    """
+    owner: dict[str, str] = {}
+    directories: set[str] = set()
+    files: set[str] = set()
+    collisions: list[tuple[str, str]] = []
+    for path in paths:
+        files.add(path)
+        parts = path.split("/")
+        for depth in range(1, len(parts) + 1):
+            name = "/".join(parts[:depth])
+            if depth < len(parts):
+                if name in directories:
+                    continue
+                directories.add(name)
+            key = name.lower() if name.isascii() else fold_path(name)
+            other = owner.setdefault(key, name)
+            if other != name:
+                collisions.append((other, name))
+    collisions.extend((path, f"{path}/…") for path in sorted(files & directories))
+    return collisions
+
+
+def lands_on_lock_root(path: str) -> bool:
+    """True when ``path``, in any merged spelling, lies under the lock directory."""
+    return fold_path(path).startswith(f"{LOCK_ROOT.as_posix()}/")
 
 
 def scope_for_path(path: str) -> ScopeKey | None:
@@ -320,6 +389,15 @@ class LockSet:
             if scope in wanted_scopes or any(scope_matches(scope, s) for s in selector_list)
         ]
 
+    def find_folded(self, path: str) -> LockEntry | None:
+        """The entry whose path is ``path`` in another spelling a case-insensitive
+        filesystem merges (``Data/corpus/Sources/...``), if any."""
+        index: dict[str, LockEntry] | None = getattr(self, "_by_fold", None)
+        if index is None:
+            index = {fold_path(entry_path): entry for entry_path, entry in self.by_path.items()}
+            object.__setattr__(self, "_by_fold", index)
+        return index.get(fold_path(path))
+
     def entries_under(self, path: str) -> list[LockEntry]:
         """Entries at ``path`` or below it (a repository-relative file or directory)."""
         cleaned = path.strip("/")
@@ -327,7 +405,16 @@ class LockSet:
         exact = self.by_path.get(cleaned)
         if exact is not None:
             return [exact]
-        return [entry for p, entry in sorted(self.by_path.items()) if p.startswith(prefix)]
+        paths: list[str] | None = getattr(self, "_sorted_paths", None)
+        if paths is None:
+            paths = sorted(self.by_path)
+            object.__setattr__(self, "_sorted_paths", paths)
+        found: list[LockEntry] = []
+        for index in range(bisect.bisect_left(paths, prefix), len(paths)):
+            if not paths[index].startswith(prefix):
+                break
+            found.append(self.by_path[paths[index]])
+        return found
 
     def with_whole_source_dirs(self, entries: Iterable[LockEntry]) -> list[LockEntry]:
         """Widen a selection so every scope's ``sources/`` directory is all or nothing.
@@ -356,45 +443,195 @@ class LockSet:
 
 
 def load_locks(repo: Path) -> LockSet:
-    """Load every lock file from a worktree, collecting (not raising) format errors."""
+    """Load every lock file from a worktree, collecting (not raising) format errors.
+
+    Hidden files (``.DS_Store``, editor swap files) are not lock files and
+    git ignores them by default here, so they are skipped; any other stray
+    file is an error.
+    """
     root = repo / LOCK_ROOT
     payloads: dict[str, bytes] = {}
-    if root.is_dir():
-        for path in sorted(root.rglob("*.json")):
-            payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
-        for path in sorted(root.rglob("*")):
-            if path.is_file() and path.suffix != ".json":
-                payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
-    return _lock_set_from_payloads(payloads)
+    if not root.is_dir():
+        return _lock_set_from_payloads(payloads)
+    spelling_error = _lock_root_spelling_error(repo)
+    if spelling_error:
+        return LockSet(locks={}, errors=(spelling_error,))
+    for directory in (repo / LOCK_ROOT.parts[0], root):
+        if directory.is_symlink():
+            return LockSet(
+                locks={},
+                errors=(
+                    f"`{directory.relative_to(repo).as_posix()}` is a symlink; the lock "
+                    "directory must be a plain directory in this checkout.",
+                ),
+            )
+    nested = [
+        path
+        for path in root.rglob(".git")
+        if not any(part.startswith(".") for part in path.parent.relative_to(root).parts)
+    ]
+    if (repo / LOCK_ROOT.parts[0] / ".git").exists():
+        nested.append(repo / LOCK_ROOT.parts[0] / ".git")
+    if nested:
+        return LockSet(
+            locks={},
+            errors=(
+                f"`{nested[0].parent.relative_to(repo).as_posix()}` is a nested git "
+                "repository (a submodule) inside the lock directory; the guard never "
+                "checks locks there.",
+            ),
+        )
+    links: list[str] = []
+    for path in sorted(root.rglob("*")):
+        if any(part.startswith(".") for part in path.relative_to(root).parts):
+            continue  # .DS_Store, editor swap and Emacs `.#` lock links: never locks
+        if path.is_symlink():
+            links.append(path.relative_to(repo).as_posix())
+            continue
+        if not path.is_file():
+            continue
+        payloads[path.relative_to(repo).as_posix()] = path.read_bytes()
+    loaded = _lock_set_from_payloads(payloads)
+    if not links:
+        return loaded
+    return LockSet(
+        locks=loaded.locks,
+        errors=loaded.errors
+        + tuple(f"`{link}` is a symlink in the lock directory; locks must be regular files." for link in links),
+    )
+
+
+def _lock_root_spelling_error(repo: Path) -> str | None:
+    """An error when the on-disk lock directory is spelled other than ``.axiom/corpus-locks``.
+
+    On a case-insensitive filesystem ``repo / ".axiom/corpus-locks"`` also opens
+    ``.AXIOM/Corpus-Locks``, which git (and so the guard) sees as a different,
+    unguarded path.
+    """
+    directory = repo
+    for part in LOCK_ROOT.parts:
+        try:
+            names = os.listdir(directory)
+        except OSError:
+            return None
+        if part not in names:
+            actual = next((name for name in names if fold_path(name) == part), part)
+            return (
+                f"the lock directory is spelled `{(directory / actual).relative_to(repo).as_posix()}`, "
+                f"not `{LOCK_ROOT.as_posix()}`; the guard never checks it. Rename it."
+            )
+        directory = directory / part
+    return None
 
 
 def load_locks_from_index(repo: Path) -> LockSet:
     """Load the lock files staged in git's index (what the next commit carries)."""
     result = subprocess.run(
-        ["git", "ls-files", "-s", "-z", "--", LOCK_ROOT.as_posix()],
+        ["git", "ls-files", "-s", "-z", "--", LOCK_ROOT.parts[0]],
         cwd=repo,
         check=True,
         capture_output=True,
     )
     staged: list[tuple[str, str]] = []
+    unmerged: set[str] = set()
     for record in result.stdout.split(b"\0"):
         if not record:
             continue
         meta, raw_path = record.split(b"\t", 1)
-        _mode, raw_oid, _stage = meta.split()
-        staged.append(
-            (raw_path.decode("utf-8", errors="surrogateescape"), raw_oid.decode("ascii"))
-        )
+        mode, raw_oid, stage = meta.split()
+        path = raw_path.decode("utf-8", errors="surrogateescape")
+        if path in {LOCK_ROOT.parts[0], LOCK_ROOT.as_posix()}:
+            unmerged.add(path)  # `.axiom` or the lock root staged as a file, symlink or submodule
+            continue
+        if not path.startswith(f"{LOCK_ROOT.as_posix()}/"):
+            continue  # elsewhere under .axiom (manifests, reasoning logs)
+        if _hidden_under_lock_root(path):
+            continue  # hidden names are never locks, in any tree
+        if stage != b"0":
+            unmerged.add(path)
+            continue
+        if mode.decode("ascii") not in _REGULAR_MODES:
+            if not _hidden_under_lock_root(path):
+                unmerged.add(path)  # reported below; a gitlink or symlink is never a lock
+            continue
+        staged.append((path, raw_oid.decode("ascii")))
     by_oid: dict[str, bytes] = {}
     for blob_oid, chunks in iter_blob_contents(repo, sorted({oid for _path, oid in staged})):
         by_oid[blob_oid] = b"".join(chunks)
-    return _lock_set_from_payloads({path: by_oid[oid] for path, oid in staged})
+    loaded = _lock_set_from_payloads({path: by_oid[oid] for path, oid in staged})
+    if not unmerged:
+        return loaded
+    conflicts = tuple(
+        f"`{path}` has unresolved merge conflicts in the index, or is not a regular file."
+        for path in sorted(unmerged)
+    )
+    return LockSet(locks=loaded.locks, errors=loaded.errors + conflicts)
 
 
 def load_locks_at_ref(repo: Path, ref: str) -> LockSet:
     """Load every lock file from a git tree without touching the worktree."""
     payloads = read_tree_blobs(repo, ref, LOCK_ROOT.as_posix())
-    return _lock_set_from_payloads(payloads)
+    loaded = _lock_set_from_payloads(payloads)
+    irregular = _irregular_lock_tree_entries(repo, ref)
+    if not irregular:
+        return loaded
+    return LockSet(locks=loaded.locks, errors=loaded.errors + irregular)
+
+
+_REGULAR_MODES = frozenset({"100644", "100755"})
+
+
+def _hidden_under_lock_root(path: str) -> bool:
+    return any(part.startswith(".") for part in path.split("/")[len(LOCK_ROOT.parts) :])
+
+
+def _irregular_lock_tree_entries(repo: Path, ref: str) -> tuple[str, ...]:
+    """Errors for anything under the lock root that is not a regular file.
+
+    A submodule (gitlink) or symlink there is invisible to the blob readers,
+    but ``git submodule update`` or a checkout would fill the directory with
+    locks no guard ever read.
+    """
+    errors: list[str] = []
+    # The directories above the lock root must be plain directories too: a
+    # gitlink or symlink at `.axiom` hides the whole lock root from ls-tree.
+    for ancestor in [LOCK_ROOT.parents[index].as_posix() for index in range(len(LOCK_ROOT.parts) - 1)]:
+        above = subprocess.run(
+            ["git", "ls-tree", "-z", ref, "--", ancestor],
+            cwd=repo,
+            check=True,
+            capture_output=True,
+        )
+        for record in above.stdout.split(b"\0"):
+            if not record:
+                continue
+            meta, raw_path = record.split(b"\t", 1)
+            mode, kind, _oid = meta.decode("ascii").split()
+            if raw_path.decode("utf-8", errors="surrogateescape") == ancestor and kind != "tree":
+                errors.append(
+                    f"`{ancestor}` is a {'submodule' if mode == '160000' else 'symlink' if mode == '120000' else kind}, "
+                    "not a directory; the lock directory under it would escape every check."
+                )
+    result = subprocess.run(
+        ["git", "ls-tree", "-r", "-z", ref, "--", LOCK_ROOT.as_posix()],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    )
+    for record in result.stdout.split(b"\0"):
+        if not record:
+            continue
+        meta, raw_path = record.split(b"\t", 1)
+        mode, kind, _oid = meta.decode("ascii").split()
+        path = raw_path.decode("utf-8", errors="surrogateescape")
+        if _hidden_under_lock_root(path):
+            continue  # hidden names are never locks, in any tree
+        if kind != "blob" or mode not in _REGULAR_MODES:
+            errors.append(
+                f"`{path}` is a {'submodule' if mode == '160000' else 'symlink' if mode == '120000' else kind} "
+                "in the lock directory; only regular lock files may live there."
+            )
+    return tuple(errors)
 
 
 def _lock_set_from_payloads(payloads: Mapping[str, bytes]) -> LockSet:
@@ -402,6 +639,8 @@ def _lock_set_from_payloads(payloads: Mapping[str, bytes]) -> LockSet:
     errors: list[str] = []
     owner: dict[str, ScopeKey] = {}
     for rel_path, payload in sorted(payloads.items()):
+        if any(part.startswith(".") for part in rel_path.split("/")[len(LOCK_ROOT.parts) :]):
+            continue  # .DS_Store, editor swap files: never locks, in any tree
         scope = scope_for_lock_path(rel_path)
         if scope is None:
             errors.append(f"`{rel_path}` is not a lock file path (.axiom/corpus-locks/<j>/<dc>/<v>.json).")
@@ -422,6 +661,11 @@ def _lock_set_from_payloads(payloads: Mapping[str, bytes]) -> LockSet:
                 )
             owner[entry.path] = scope
         locks[scope] = lock
+    errors.extend(
+        f"`{first}` and `{second}` cannot both exist in one checkout "
+        "(one is a directory of the other, or they differ only in case or Unicode form)."
+        for first, second in fold_collisions(owner)[:20]
+    )
     return LockSet(locks=locks, errors=tuple(errors))
 
 
@@ -623,6 +867,9 @@ def scope_files_in_worktree(repo: Path, scope: ScopeKey) -> list[Path]:
             raise LockFormatError(
                 f"refusing to lock an interrupted fetch's temporary file: {path}; delete it"
             )
+        if path.name.startswith("."):
+            # .DS_Store and editor files; no corpus artifact is hidden.
+            raise LockFormatError(f"refusing to lock a hidden file: {path}; delete it")
     return sorted(files)
 
 
@@ -690,16 +937,25 @@ def diff_lock_sets(base: LockSet, head: LockSet) -> LockDiff:
     return LockDiff(added=tuple(added), changed=tuple(changed), removed=tuple(removed))
 
 
+_ASCII_CONTROL = frozenset(chr(code) for code in (*range(0x20), 0x7F))
+
+
 def _validate_corpus_path(path: object) -> None:
     if not isinstance(path, str) or not path:
         raise LockFormatError("lock entry path must be a non-empty string")
+    if path.isascii():
+        # Fast path: ASCII is already NFC and its only category-C characters
+        # are the controls.
+        bad_characters = any(ch in _ASCII_CONTROL for ch in path)
+    else:
+        bad_characters = unicodedata.normalize("NFC", path) != path or any(
+            unicodedata.category(ch).startswith("C") for ch in path
+        )
     if (
         path.startswith("/")
         or "\\" in path
-        or "\0" in path
-        or unicodedata.normalize("NFC", path) != path
+        or bad_characters
         or any(part in {"", ".", ".."} for part in path.split("/"))
-        or any(unicodedata.category(ch).startswith("C") for ch in path)
     ):
         raise LockFormatError(f"lock entry path is not a canonical repository path: {path!r}")
     if not is_protected_corpus_path(path):

@@ -32,8 +32,10 @@ from axiom_corpus.corpus.corpus_locks import (
     LockEntry,
     LockSet,
     ScopeKey,
+    fold_path,
     is_protected_corpus_path,
     load_locks,
+    scope_for_path,
 )
 
 NO_FETCH_ENV = "AXIOM_CORPUS_NO_FETCH"
@@ -93,6 +95,7 @@ class CorpusResolver:
         self.workers = workers
         self._locks: LockSet | None = None
         self._lock = threading.Lock()
+        self._complete_source_scopes: set[ScopeKey] = set()
 
     @property
     def locks(self) -> LockSet:
@@ -162,23 +165,39 @@ class CorpusResolver:
         self.require_valid_locks()
         if not entries:
             return FetchReport()
-        report = materialize(
-            self.repo,
-            entries,
-            self.cache,
-            self.sources,
-            verify=verify,
-            workers=self.workers,
-        )
-        if report.failed:
-            first, reason = next(iter(sorted(report.failed.items())))
-            raise CorpusNotMaterializedError(
-                f"{len(report.failed)} locked corpus file(s) could not be fetched; "
-                f"first: {first}: {reason}. Check R2 credentials "
-                "(~/.config/axiom-foundation/r2-credentials.json) or run "
-                "`axiom-corpus-ingest corpus fetch` with network access."
+        pending = list(entries)
+        # A concurrent fetch that fails rolls back the source files it placed,
+        # which may be ones this call counted as present; check and retry once.
+        for _attempt in range(2):
+            report = materialize(
+                self.repo,
+                pending,
+                self.cache,
+                self.sources,
+                verify=verify,
+                workers=self.workers,
             )
-        return report
+            if report.failed:
+                first, reason = next(iter(sorted(report.failed.items())))
+                raise CorpusNotMaterializedError(
+                    f"{len(report.failed)} locked corpus file(s) could not be fetched; "
+                    f"first: {first}: {reason}. Check R2 credentials "
+                    "(~/.config/axiom-foundation/r2-credentials.json) or run "
+                    "`axiom-corpus-ingest corpus fetch` with network access."
+                )
+            pending = [entry for entry in entries if not (self.repo / entry.path).is_file()]
+            if not pending:
+                return report
+        blocked = [entry.path for entry in pending if (self.repo / entry.path).is_dir()]
+        if blocked:
+            raise CorpusNotMaterializedError(
+                f"{len(blocked)} locked corpus path(s) are directories in this checkout "
+                f"(first: {blocked[0]}); remove them and fetch again."
+            )
+        raise CorpusNotMaterializedError(
+            f"{len(pending)} locked corpus file(s) disappeared while being fetched "
+            f"(first: {pending[0].path}); another process may be removing them."
+        )
 
     def ensure_paths(self, paths: Iterable[str | Path], *, verify: bool = False) -> FetchReport:
         return self.ensure(self.entries_for_paths(paths), verify=verify)
@@ -187,21 +206,56 @@ class CorpusResolver:
         return self.ensure(self.entries_for_scopes(scopes), verify=verify)
 
     def resolve(self, path: str | Path) -> Path:
-        """A regular file for one corpus path, fetched if it is locked and absent."""
+        """A regular file for one corpus path, fetched if it is locked and absent.
+
+        A source file comes with every locked source of its scope, even when it
+        is itself already present: callers list the directory next.
+        """
         rel = self.relative(path)
         if rel is None:
             raise ValueError(f"{path} is not inside {self.repo}")
         target = self.repo / rel
-        if target.is_file() and not target.is_symlink():
+        present = target.is_file() and not target.is_symlink()
+        if present and not fold_path(rel).startswith(f"{CORPUS_BASE}/sources/"):
             return target
         self.require_valid_locks()
+        # A case-variant spelling names the same locked file only where the
+        # filesystem merged them, i.e. when the variant exists on disk.
         entry = self.locks.by_path.get(rel)
+        if entry is None and present:
+            folded = self.locks.find_folded(rel)
+            canonical = self.repo / folded.path if folded is not None else None
+            # Only a spelling the filesystem merged, i.e. the same file on disk.
+            try:
+                merged = canonical is not None and os.path.samefile(target, canonical)
+            except FileNotFoundError:  # one of them vanished meanwhile (a rollback)
+                merged = False
+            if merged:
+                entry = folded
         if entry is None:
+            if present:
+                return target
             raise CorpusNotMaterializedError(
                 f"{rel} is neither present nor locked. Run `axiom-corpus-ingest corpus "
                 "status` to see which scopes this checkout has."
             )
-        self.ensure(self.locks.with_whole_source_dirs([entry]))
+        scope = scope_for_path(entry.path)
+        if present and scope in self._complete_source_scopes:
+            return target
+        missing = [
+            item
+            for item in self.locks.with_whole_source_dirs([entry])
+            if not (self.repo / item.path).is_file()
+        ]
+        if missing:
+            if fetch_disabled():
+                raise CorpusNotMaterializedError(
+                    f"{len(missing)} locked corpus file(s) that {rel} needs are absent and "
+                    f"fetching is off ({NO_FETCH_ENV}); first: {missing[0].path}"
+                )
+            self.ensure(missing)
+        if scope is not None and entry.path.startswith(f"{CORPUS_BASE}/sources/"):
+            self._complete_source_scopes.add(scope)
         return target
 
 
@@ -291,11 +345,17 @@ def require_materialized(
     if fetch and not fetch_disabled():
         resolver.ensure(resolver.locks.with_whole_source_dirs(missing))
         return
-    shown = " ".join(f"--path {rel}" for rel in rels)
+    # Name at most a few paths: callers may pass thousands of exact files.
+    named = rels if len(rels) <= 3 else [*rels[:3], f"and {len(rels) - 3} more"]
+    command = (
+        " ".join(f"--path {rel}" for rel in rels)
+        if len(rels) <= 3
+        else "--paths-from <file listing them>"
+    )
     raise CorpusNotMaterializedError(
-        f"{len(missing)} locked corpus file(s) under {', '.join(rels)} are not in this "
+        f"{len(missing)} locked corpus file(s) under {', '.join(named)} are not in this "
         f"checkout (first: {missing[0].path}); results would cover only part of the "
-        f"corpus. Run `axiom-corpus-ingest corpus fetch {shown}` first."
+        f"corpus. Run `axiom-corpus-ingest corpus fetch {command}` first."
     )
 
 
@@ -330,12 +390,20 @@ def fetch_locked_file(path: str | Path) -> bool:
 def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     """Return a regular file for ``path``, fetching it if it is locked and absent."""
     candidate = Path(path)
-    if candidate.is_file() and not candidate.is_symlink():
-        return candidate
+    if (
+        candidate.is_file()
+        and not candidate.is_symlink()
+        # The real path, so a relative or symlinked spelling of a source file
+        # still gets its siblings; realpath runs no git process.
+        and f"/{CORPUS_BASE}/sources/" not in fold_path(os.path.realpath(candidate))
+    ):
+        return candidate  # present and not a source: nothing to widen, no git call
     if repo is None:
         repo = find_repo_root(_existing_ancestor(candidate))
     resolver = resolver_for(repo)
-    if resolver is None or fetch_disabled():
+    if resolver is None or not resolver.active or resolver.relative(candidate) is None:
+        if candidate.is_file() and not candidate.is_symlink():
+            return candidate
         raise CorpusNotMaterializedError(f"{path} does not exist")
     return resolver.resolve(path)
 

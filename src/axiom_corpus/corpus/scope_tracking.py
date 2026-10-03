@@ -22,10 +22,11 @@ class ScopeTrackingResult:
     scopes_checked: int
     files_verified: int
     missing_paths: tuple[str, ...]
+    lock_errors: tuple[str, ...] = ()
 
     @property
     def passed(self) -> bool:
-        return not self.missing_paths
+        return not self.missing_paths and not self.lock_errors
 
 
 def verify_scope_tracked(
@@ -40,6 +41,12 @@ def verify_scope_tracked(
     tracked_paths = _git_cached_paths(repo)
     # The staged locks, like the staged files, are what the next commit carries.
     locks = load_locks_from_index(repo)
+    if locks.errors:
+        # Invalid locks cannot say which files they pin; checking the rest
+        # would report success over an unknown set.
+        return ScopeTrackingResult(
+            scopes_checked=0, files_verified=0, missing_paths=(), lock_errors=locks.errors
+        )
     locked_inventories = sorted(
         path
         for path in locks.by_path

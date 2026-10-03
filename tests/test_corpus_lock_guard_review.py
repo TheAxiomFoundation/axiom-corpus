@@ -293,3 +293,638 @@ def test_serialize_lock_is_stable_for_audit_inputs() -> None:
         SCOPE, [LockEntry(p, hashlib.sha256(d).hexdigest(), len(d)) for p, d in FILES.items()]
     )
     assert serialize_lock(lock) == serialize_lock(lock)
+
+
+# =========================================================================== round 2
+
+
+def _stage_blob(repo: Path, path: str, data: bytes) -> None:
+    """Stage ``data`` at exactly ``path`` without touching a case-folding filesystem."""
+    oid = subprocess.run(
+        ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=data, check=True, capture_output=True
+    ).stdout.decode().strip()
+    _git(repo, "update-index", "--add", "--cacheinfo", f"100644,{oid},{path}")
+
+
+@pytest.mark.parametrize("top", ["DATA", "Data"])
+def test_a_differently_cased_top_level_directory_is_checked(repo: Path, top: str) -> None:
+    """Astra r2-2 / Opus r2-B1: `DATA/corpus/...` is the locked location on APFS."""
+    private, public = _keys()
+    base = _ingest(repo, private)
+    odd = f"{top}/corpus/provisions/nz/statute/2026-07-11.jsonl"
+    _stage_blob(repo, odd, b'{"citation_path":"nz/statute/unsigned"}\n')
+    _git(repo, "commit", "-q", "-m", "unsigned bytes under another spelling")
+    result = _guard(repo, base, public)
+    assert not result.passed
+    assert any(odd in issue for issue in result.issues)
+
+
+def test_audit_ignores_bytes_a_merged_branch_added_and_removed(repo: Path) -> None:
+    """Astra r2-5 / Opus r2-S1: only the base branch's first-parent states count."""
+    private, public = _keys()
+    _ingest(repo, private)
+    _git(repo, "checkout", "-q", "-b", "launder")
+    path = "data/corpus/provisions/zz/statute/v1.jsonl"
+    data = b'{"citation_path":"zz/statute/unsigned"}\n'
+    _write_files(repo, {path: data})
+    _git(repo, "add", "-f", path)
+    _git(repo, "commit", "-q", "-m", "unsigned bytes, briefly")
+    blob = _git(repo, "rev-parse", f"HEAD:{path}")
+    _git(repo, "rm", "-q", "--cached", path)
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            ("zz", "statute", "v1"),
+            [LockEntry(path, hashlib.sha256(data).hexdigest(), len(data), git_blob=blob)],
+        ),
+    )
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "lock naming the removed blob")
+    _git(repo, "checkout", "-q", "main")
+    _git(repo, "merge", "-q", "--no-ff", "launder", "-m", "merge launder")
+    issues = audit_lock_attestation(repo, ref="HEAD", public_key=public)
+    assert any(path in issue and "first-parent" in issue for issue in issues)
+
+
+def test_first_parent_scan_sees_both_sides_of_a_change(repo: Path) -> None:
+    from axiom_corpus.corpus.ingest_manifests import first_parent_path_blobs
+
+    path = "data/corpus/provisions/zz/statute/v1.jsonl"
+    blobs = []
+    for version in (b"one\n", b"two\n"):
+        _stage_blob(repo, path, version)
+        _git(repo, "commit", "-q", "-m", "write")
+        blobs.append(_git(repo, "rev-parse", f"HEAD:{path}"))
+    _git(repo, "rm", "-q", "--cached", path)
+    _git(repo, "commit", "-q", "-m", "remove")
+    wanted = {path: {*blobs, "f" * 40}}
+    assert first_parent_path_blobs(repo, "HEAD", wanted) == {(path, blobs[0]), (path, blobs[1])}
+
+
+def test_verify_attest_checks_the_same_locks_it_audits(repo: Path, monkeypatch, capsys) -> None:
+    """Astra r2-6: worktree locks and HEAD's locks are never mixed."""
+    from axiom_corpus.corpus.cli import main as cli_main
+
+    private, public = _keys()
+    _ingest(repo, private)
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY", public)
+    monkeypatch.chdir(repo)
+    assert cli_main(["corpus", "verify", "--repo", str(repo), "--attest"]) == 0
+    capsys.readouterr()
+    unsigned = b"unsigned\n"
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            ("zz", "statute", "v1"),
+            [LockEntry("data/corpus/provisions/zz/statute/v1.jsonl", hashlib.sha256(unsigned).hexdigest(), 9)],
+        ),
+    )
+    assert cli_main(["corpus", "verify", "--repo", str(repo), "--attest", "--json"]) == 1
+    assert "differ from HEAD" in capsys.readouterr().out
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "commit the unsigned lock")
+    assert cli_main(["corpus", "verify", "--repo", str(repo), "--attest", "--json"]) == 1
+    assert "zz/statute/v1.jsonl" in capsys.readouterr().out
+
+
+def test_scope_tracking_fails_on_a_malformed_staged_lock(repo: Path) -> None:
+    """Astra r2-8 / Opus r2-N6."""
+    path = repo / ".axiom/corpus-locks/nz/statute/v1.json"
+    path.parent.mkdir(parents=True)
+    path.write_text("{not json")
+    _git(repo, "add", ".axiom")
+    result = verify_scope_tracked(repo=repo)
+    assert not result.passed and result.lock_errors
+
+
+def test_an_unmerged_lock_file_is_an_error(repo: Path) -> None:
+    """Opus r2-N6: a conflicted index must not silently pick one side."""
+    from axiom_corpus.corpus.corpus_locks import load_locks_from_index
+
+    def lock_with(data: bytes) -> None:
+        write_lock(
+            repo,
+            CorpusLock.from_entries(
+                ("zz", "statute", "v1"),
+                [LockEntry("data/corpus/provisions/zz/statute/v1.jsonl", hashlib.sha256(data).hexdigest(), len(data))],
+            ),
+        )
+        _git(repo, "add", ".axiom")
+
+    lock_with(b"base\n")
+    _git(repo, "commit", "-q", "-m", "base lock")
+    _git(repo, "checkout", "-q", "-b", "side")
+    lock_with(b"side\n")
+    _git(repo, "commit", "-q", "-m", "side")
+    _git(repo, "checkout", "-q", "main")
+    lock_with(b"main\n")
+    _git(repo, "commit", "-q", "-m", "main")
+    merge = subprocess.run(["git", "merge", "-q", "side"], cwd=repo, capture_output=True)
+    assert merge.returncode != 0
+    locks = load_locks_from_index(repo)
+    assert any("unresolved merge conflicts" in error for error in locks.errors)
+
+
+def _publishability_script():
+    import importlib.util
+
+    path = Path(__file__).resolve().parents[1] / "scripts" / "audit_us_release_publishability.py"
+    spec = importlib.util.spec_from_file_location("audit_us_release_publishability", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_publishability_repair_fetches_locked_artifacts_instead_of_inventing_them(
+    repo: Path, tmp_path: Path, monkeypatch
+) -> None:
+    """Astra r2-7 and r2-9: repair never synthesizes a locked artifact, and
+    presence checks use the named repository, not the working directory."""
+    from axiom_corpus.corpus.content_store import ContentCache
+
+    script = _publishability_script()
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            SCOPE, [LockEntry(p, hashlib.sha256(d).hexdigest(), len(d)) for p, d in FILES.items()]
+        ),
+    )
+    cache = ContentCache()
+    for data in FILES.values():
+        cache.add_stream([data], sha256=hashlib.sha256(data).hexdigest(), size=len(data))
+    monkeypatch.chdir(tmp_path)  # far from the repository
+    scope = dict(zip(("jurisdiction", "document_class", "version"), SCOPE, strict=True))
+    paths = script._paths(repo / "data/corpus", **scope)
+    assert all(script._exists(repo, name, paths[name]) for name in script.ARTIFACT_CLASSES)
+    provisions = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+    _write_files(repo, {provisions: FILES[provisions]})
+    assert script._repair_derived(repo, paths, scope) == []
+    for rel in ("data/corpus/inventory/nz/statute/2026-07-10.json", "data/corpus/coverage/nz/statute/2026-07-10.json"):
+        assert (repo / rel).read_bytes() == FILES[rel]
+
+
+def test_sign_with_lock_reports_lock_failures_without_a_traceback(
+    repo: Path, monkeypatch, capsys
+) -> None:
+    """Opus r2-N2."""
+    from axiom_corpus.corpus.cli import main as cli_main
+
+    private, _public = _keys()
+    _write_files(repo, FILES)
+    _write_files(repo, {"data/corpus/sources/nz/statute/2026-07-10/official-documents/.DS_Store": b"x"})
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private)
+    monkeypatch.chdir(repo)
+    status = cli_main(
+        [
+            "sign-ingest-manifest",
+            "--repo", str(repo),
+            "--jurisdiction", "nz",
+            "--document-class", "statute",
+            "--version", "2026-07-10",
+            "--command", "x",
+            "--file", "data/corpus/provisions/nz/statute/2026-07-10.jsonl",
+            "--lock",
+        ]
+    )  # fmt: skip
+    assert status == 2
+    assert "hidden file" in capsys.readouterr().err
+    # Round 3: the check runs before signing, so no manifest attests the hidden file.
+    assert not (repo / ".axiom/ingest-manifests/nz/statute/2026-07-10.json").exists()
+
+
+def test_a_differently_cased_file_already_tracked_blocks_lock_mode(repo: Path) -> None:
+    """Astra r2-2: the tracked-file listing must fold case, not use a `data` pathspec."""
+    private, public = _keys()
+    legacy = "DATA/corpus/provisions/zz/statute/v1.jsonl"
+    _stage_blob(repo, legacy, b"legacy\n")
+    _git(repo, "commit", "-q", "-m", "legacy file under another spelling")
+    _git(repo, "update-index", "--skip-worktree", legacy)  # never written to disk
+    base = _ingest(repo, private)  # this diff touches only lock files
+    result = _guard(repo, base, public)
+    assert any("tracked in git while" in issue and legacy in issue for issue in result.issues)
+
+
+# =========================================================================== round 3
+
+
+@pytest.mark.parametrize(
+    "spelling",
+    [
+        "data/corpuſ/provisions/nz/statute/2026-07-11.jsonl",  # long s
+        "DATA/CORPUS/PROVISIONS/nz/statute/2026-07-11.jsonl",
+    ],
+    ids=["long-s", "upper"],
+)
+def test_every_merged_spelling_of_a_protected_path_is_checked(repo: Path, spelling: str) -> None:
+    """Round 3 (blocking): `.lower()` left U+017F long s unfolded."""
+    from axiom_corpus.corpus.corpus_locks import lands_on_protected_path
+
+    assert lands_on_protected_path(spelling)
+    private, public = _keys()
+    base = _ingest(repo, private)
+    _stage_blob(repo, spelling, b'{"citation_path":"nz/statute/unsigned"}\n')
+    _git(repo, "commit", "-q", "-m", "unsigned bytes under a merged spelling")
+    result = _guard(repo, base, public)
+    assert not result.passed
+    assert any(spelling in issue for issue in result.issues)
+
+
+@pytest.mark.parametrize("ancestor", ["data", "data/corpus", "data/corpus/provisions", "Data/Corpus"])
+def test_a_tracked_file_standing_in_for_a_protected_directory_is_checked(repo: Path, ancestor: str) -> None:
+    """Round 3 nit: a tracked symlink or file at a protected directory redirects it."""
+    from axiom_corpus.corpus.corpus_locks import lands_on_protected_path
+
+    assert lands_on_protected_path(ancestor)
+    assert not lands_on_protected_path("data/corpus/anchors/us.json")
+    assert not lands_on_protected_path("docs/data/corpus.md")
+
+
+def test_a_lock_file_under_another_spelling_of_the_lock_root_fails_the_guard(repo: Path) -> None:
+    """Round 3: `.AXIOM/corpus-locks` is the lock root on APFS but invisible to the guard."""
+    _private, public = _keys()
+    base = _git(repo, "rev-parse", "HEAD")
+    lock = CorpusLock.from_entries(
+        ("zz", "statute", "v1"),
+        [LockEntry("data/corpus/provisions/zz/statute/v1.jsonl", hashlib.sha256(b"x").hexdigest(), 1)],
+    )
+    _stage_blob(repo, ".AXIOM/corpus-locks/zz/statute/v1.json", serialize_lock(lock))
+    _git(repo, "commit", "-q", "-m", "planted lock under a variant spelling")
+    result = _guard(repo, base, public)
+    assert not result.passed
+    assert any("another spelling" in issue for issue in result.issues)
+
+
+def test_the_worktree_refuses_a_lock_directory_spelled_differently(tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    repo = tmp_path / "repo"
+    variant = repo / ".AXIOM" / "Corpus-Locks" / "zz" / "statute"
+    variant.mkdir(parents=True)
+    (variant / "v1.json").write_text("{}")
+    case_insensitive = (repo / ".axiom" / "corpus-locks").is_dir()
+    locks = load_locks(repo)
+    if case_insensitive:
+        assert locks.errors and "spelled" in locks.errors[0]
+    else:
+        assert not locks and not locks.errors  # git and the resolver see no lock root
+
+
+def test_first_parent_scan_reads_the_old_side_of_a_change(monkeypatch, tmp_path: Path) -> None:
+    """Round 3 nit: a blob seen only as the old side (a deletion) must count."""
+    from axiom_corpus.corpus import ingest_manifests
+
+    old_blob = "a" * 40
+    new_blob = "b" * 40
+    raw = (
+        f":100644 000000 {old_blob} {'0' * 40} D\0data/corpus/provisions/zz/statute/v1.jsonl\0"
+        f"\n:000000 100644 {'0' * 40} {new_blob} A\0data/corpus/provisions/zz/statute/v2.jsonl\0"
+    ).encode()
+
+    class FakeProcess:
+        def __init__(self, *_args, **_kwargs):
+            import io
+
+            self.stdout = io.BytesIO(raw)
+            self.returncode = 0
+
+        def poll(self):
+            return 0
+
+        def kill(self):
+            pass
+
+        def communicate(self):
+            return b"", b""
+
+    monkeypatch.setattr(ingest_manifests.subprocess, "Popen", FakeProcess)
+    wanted = {
+        "data/corpus/provisions/zz/statute/v1.jsonl": {old_blob},
+        "data/corpus/provisions/zz/statute/v2.jsonl": {new_blob},
+    }
+    found = ingest_manifests.first_parent_path_blobs(tmp_path, "HEAD", wanted)
+    assert found == {
+        ("data/corpus/provisions/zz/statute/v1.jsonl", old_blob),
+        ("data/corpus/provisions/zz/statute/v2.jsonl", new_blob),
+    }
+
+
+def test_audit_accepts_a_blob_main_gained_through_a_merge_commit(repo: Path) -> None:
+    """Round 3 nit: the only way bytes reach main is a --no-ff merge; that must count."""
+    _private, public = _keys()
+    path = "data/corpus/provisions/yy/statute/v1.jsonl"
+    data = b"legacy via merge\n"
+    _git(repo, "checkout", "-q", "-b", "legacy")
+    _stage_blob(repo, path, data)
+    _git(repo, "commit", "-q", "-m", "legacy bytes on a branch")
+    _git(repo, "checkout", "-q", "main")
+    _git(repo, "merge", "-q", "--no-ff", "legacy", "-m", "merge legacy")
+    blob = _git(repo, "rev-parse", f"HEAD:{path}")
+    _git(repo, "rm", "-q", "--cached", path)
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            ("yy", "statute", "v1"),
+            [LockEntry(path, hashlib.sha256(data).hexdigest(), len(data), git_blob=blob)],
+        ),
+    )
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "move into lock")
+    assert audit_lock_attestation(repo, ref="HEAD", public_key=public) == []
+
+
+def test_guard_reads_locked_bytes_concurrently_and_reports_each_failure(repo: Path) -> None:
+    """Round 3 (scale): reads run in parallel; one unreadable entry fails alone."""
+    from axiom_corpus.corpus import ingest_manifests
+
+    entries = [
+        LockEntry(f"data/corpus/sources/nz/statute/2026-07-10/official/{i}.html", "0" * 64, 1)
+        for i in range(70)
+    ]
+    unreadable = entries[40].path
+
+    def reader(entry):
+        if entry.path == unreadable:
+            raise RuntimeError("R2 said no")
+        return b"<p>ok</p>\n"
+
+    issues = ingest_manifests._locked_content_issues(repo, entries, reader)
+    assert len([i for i in issues if "Cannot read" in i]) == 1
+    assert unreadable in next(i for i in issues if "Cannot read" in i)
+
+
+def test_publishability_audit_keeps_going_past_an_unfetchable_scope(
+    repo: Path, tmp_path: Path, monkeypatch
+) -> None:
+    """Round 3 nit: one scope's fetch failure used to abort the whole audit."""
+    script = _publishability_script()
+    write_lock(
+        repo,
+        CorpusLock.from_entries(
+            SCOPE, [LockEntry(p, hashlib.sha256(d).hexdigest(), len(d)) for p, d in FILES.items()]
+        ),
+    )
+    selector = repo / "manifests/releases/r.json"
+    selector.parent.mkdir(parents=True)
+    selector.write_text(
+        json.dumps(
+            {
+                "name": "r",
+                "scopes": [
+                    dict(zip(("jurisdiction", "document_class", "version"), SCOPE, strict=True)),
+                    {"jurisdiction": "zz", "document_class": "statute", "version": "v9"},
+                ],
+            }
+        )
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        ["audit", "--repo", str(repo), "--release-ref", "WORKTREE", "--release-path",
+         "manifests/releases/r.json", "--repair-derived"],
+    )  # fmt: skip
+    import contextlib
+    import io
+
+    out = io.StringIO()
+    with contextlib.redirect_stdout(out):
+        status = script.main()
+    report = json.loads(out.getvalue())
+    assert status == 2
+    assert report["scope_count"] == 2 and report["unfetchable_count"] == 1
+
+
+def test_signing_refuses_hidden_source_files_even_without_lock(repo: Path) -> None:
+    """Round 3 nit: a signed manifest must never attest bytes no lock may carry."""
+    _write_files(repo, FILES)
+    _write_files(repo, {"data/corpus/sources/nz/statute/2026-07-10/official-documents/.x.part": b"partial"})
+    with pytest.raises(ValueError, match="hidden file"):
+        build_ingest_manifest(
+            repo=repo,
+            base=Path("data/corpus"),
+            jurisdiction=SCOPE[0],
+            document_class=SCOPE[1],
+            version=SCOPE[2],
+            command="x",
+        )
+
+
+# =========================================================================== round 4
+
+
+def test_a_submodule_under_the_lock_root_is_a_lock_error(repo: Path, tmp_path: Path) -> None:
+    """Round 4: a gitlink under .axiom/corpus-locks passed the guard and the audit."""
+    from axiom_corpus.corpus.corpus_locks import (
+        load_locks,
+        load_locks_at_ref,
+        load_locks_from_index,
+    )
+
+    private, public = _keys()
+    base = _ingest(repo, private)
+    other = tmp_path / "other"
+    other.mkdir()
+    _git(other, "init", "-q", "-b", "main")
+    _git(other, "config", "user.email", "t@example.com")
+    _git(other, "config", "user.name", "T")
+    (other / "README").write_text("x\n")
+    _git(other, "add", "README")
+    _git(other, "commit", "-q", "-m", "x")
+    commit = _git(other, "rev-parse", "HEAD")
+    _git(repo, "update-index", "--add", "--cacheinfo", f"160000,{commit},.axiom/corpus-locks/zz")
+    assert any("not a regular file" in error for error in load_locks_from_index(repo).errors)
+    _git(repo, "commit", "-q", "-m", "gitlink under the lock root")
+    assert any("submodule" in error for error in load_locks_at_ref(repo, "HEAD").errors)
+    assert not _guard(repo, base, public).passed
+    assert audit_lock_attestation(repo, ref="HEAD", public_key=public)
+    # A checked-out submodule in the worktree is refused too.
+    nested = repo / ".axiom/corpus-locks/zz"
+    nested.mkdir(exist_ok=True)
+    (nested / ".git").write_text(f"gitdir: {other}/.git\n")
+    assert any("nested git" in error for error in load_locks(repo).errors)
+
+
+def test_a_symlinked_lock_file_is_a_lock_error(repo: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    link = repo / ".axiom/corpus-locks/nz/statute/link.json"
+    link.symlink_to(repo / lock_path_for_scope(SCOPE))
+    assert any("symlink" in error for error in load_locks(repo).errors)
+
+
+@pytest.mark.parametrize(
+    "spelling",
+    [
+        "data/corpu‌s/provisions/nz/statute/2026-07-11.jsonl",  # ZWNJ: HFS+ ignores it
+        "data/corpus/provısions/nz/statute/2026-07-11.jsonl",  # dotless i: NTFS upcases to I
+        "data/corpus/provisions﻿/nz/statute/2026-07-11.jsonl",  # BOM
+    ],
+    ids=["zwnj", "dotless-i", "bom"],
+)
+def test_ignorable_and_dotless_spellings_are_protected(repo: Path, spelling: str) -> None:
+    """Round 4: fold_path kept format characters and the dotless i."""
+    from axiom_corpus.corpus.corpus_locks import lands_on_lock_root, lands_on_protected_path
+
+    assert lands_on_protected_path(spelling)
+    assert lands_on_lock_root(".axiom/corpus‌-locks/x.json")
+    private, public = _keys()
+    base = _ingest(repo, private)
+    _stage_blob(repo, spelling, b'{"citation_path":"nz/statute/unsigned"}\n')
+    _git(repo, "commit", "-q", "-m", "unsigned bytes under an ignorable spelling")
+    assert not _guard(repo, base, public).passed
+
+
+def test_the_audit_flags_a_variant_lock_root_already_on_main(repo: Path) -> None:
+    """Round 4 nit: a variant-spelled lock already on main was never reported again."""
+    private, public = _keys()
+    _ingest(repo, private)
+    _stage_blob(repo, ".AXIOM/corpus-locks/zz/statute/v1.json", b"{}\n")
+    _git(repo, "commit", "-q", "-m", "variant lock root")
+    issues = audit_lock_attestation(repo, ref="HEAD", public_key=public)
+    assert any("another spelling" in issue for issue in issues)
+
+
+def test_the_citation_script_skips_hidden_lock_files(tmp_path: Path, monkeypatch) -> None:
+    """Round 4 nit: the stdlib loader crashed on an AppleDouble ._x.json."""
+    import importlib.util
+
+    path = Path(__file__).resolve().parents[1] / "scripts" / "validate_citation_paths.py"
+    spec = importlib.util.spec_from_file_location("validate_citation_paths", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    root = tmp_path / "repo"
+    lock_dir = root / ".axiom/corpus-locks/nz/statute"
+    lock_dir.mkdir(parents=True)
+    (lock_dir / "._v1.json").write_bytes(b"\x00\x05\x16\x07binary AppleDouble")
+    (lock_dir / "v1.json").write_text(
+        json.dumps({"files": [{"path": "data/corpus/provisions/nz/statute/v1.jsonl"}]})
+    )
+    monkeypatch.setattr(module, "REPO_ROOT", root)
+    provisions = root / "data/corpus/provisions"
+    provisions.mkdir(parents=True)
+    assert module.unfetched_locked_provisions(provisions) == ["data/corpus/provisions/nz/statute/v1.jsonl"]
+
+
+# =========================================================================== round 5
+
+
+@pytest.mark.parametrize("kind", ["gitlink", "symlink"])
+def test_a_non_directory_axiom_hides_nothing(repo: Path, tmp_path: Path, kind: str) -> None:
+    """Round 5 nit: `.axiom` as a gitlink or symlink escaped every lock check."""
+    from axiom_corpus.corpus.corpus_locks import load_locks_at_ref
+
+    private, public = _keys()
+    _ingest(repo, private)
+    _git(repo, "rm", "-rq", "--cached", ".axiom")
+    if kind == "gitlink":
+        other = tmp_path / "other"
+        other.mkdir()
+        _git(other, "init", "-q", "-b", "main")
+        _git(other, "config", "user.email", "t@example.com")
+        _git(other, "config", "user.name", "T")
+        (other / "README").write_text("x\n")
+        _git(other, "add", "README")
+        _git(other, "commit", "-q", "-m", "x")
+        _git(repo, "update-index", "--add", "--cacheinfo", f"160000,{_git(other, 'rev-parse', 'HEAD')},.axiom")
+    else:
+        oid = subprocess.run(
+            ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=b"docs/elsewhere", check=True, capture_output=True
+        ).stdout.decode().strip()
+        _git(repo, "update-index", "--add", "--cacheinfo", f"120000,{oid},.axiom")
+    _git(repo, "commit", "-q", "-m", f".axiom as a {kind}")
+    errors = load_locks_at_ref(repo, "HEAD").errors
+    assert any("not a directory" in error for error in errors)
+    assert any("not a directory" in issue for issue in audit_lock_attestation(repo, ref="HEAD", public_key=public))
+
+
+def test_a_symlinked_lock_root_in_the_worktree_is_refused(tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    repo = tmp_path / "repo"
+    elsewhere = repo / "docs/evil/corpus-locks/zz/statute"
+    elsewhere.mkdir(parents=True)
+    (elsewhere / "v1.json").write_text("{}")
+    (repo / ".axiom").mkdir()
+    (repo / ".axiom/corpus-locks").symlink_to(repo / "docs/evil/corpus-locks")
+    assert any("symlink" in error for error in load_locks(repo).errors)
+
+
+def test_an_emacs_lock_link_in_the_lock_directory_is_ignored(repo: Path) -> None:
+    """Round 5 (regression): a dangling `.#file` link made every read fail."""
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    link = repo / ".axiom/corpus-locks/nz/statute/.#2026-07-10.json"
+    link.symlink_to("user@host.1234:1700000000")
+    locks = load_locks(repo)
+    assert locks.errors == () and SCOPE in locks.locks
+
+
+# =========================================================================== round 6
+
+
+def test_the_worktree_refuses_a_symlinked_axiom_and_a_nested_axiom_git(tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks
+
+    repo = tmp_path / "repo"
+    (repo / "docs/elsewhere/corpus-locks/zz/statute").mkdir(parents=True)
+    (repo / ".axiom").symlink_to(repo / "docs/elsewhere")
+    assert any("symlink" in error for error in load_locks(repo).errors)
+    (repo / ".axiom").unlink()
+    (repo / ".axiom/corpus-locks").mkdir(parents=True)
+    (repo / ".axiom/.git").write_text("gitdir: /elsewhere\n")
+    assert any("nested git" in error for error in load_locks(repo).errors)
+
+
+def test_the_index_loader_flags_a_staged_non_directory_axiom(repo: Path, tmp_path: Path) -> None:
+    from axiom_corpus.corpus.corpus_locks import load_locks_from_index
+
+    oid = subprocess.run(
+        ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=b"elsewhere", check=True, capture_output=True
+    ).stdout.decode().strip()
+    _git(repo, "update-index", "--add", "--cacheinfo", f"120000,{oid},.axiom")
+    assert load_locks_from_index(repo).errors
+
+
+def test_a_committed_hidden_link_in_the_lock_directory_is_ignored_in_every_tree(repo: Path) -> None:
+    """Round 6: ref and index errored on a hidden symlink the worktree skipped."""
+    from axiom_corpus.corpus.corpus_locks import (
+        load_locks,
+        load_locks_at_ref,
+        load_locks_from_index,
+    )
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    link = repo / ".axiom/corpus-locks/nz/statute/.#2026-07-10.json"
+    link.symlink_to("user@host.1:1")
+    _git(repo, "add", "-f", str(link.relative_to(repo)))
+    _git(repo, "commit", "-q", "-m", "committed emacs lock link")
+    for loaded in (load_locks(repo), load_locks_from_index(repo), load_locks_at_ref(repo, "HEAD")):
+        assert loaded.errors == () and SCOPE in loaded.locks
+
+
+# =========================================================================== round 7
+
+
+def test_hidden_names_are_ignored_even_when_conflicted_or_nested(repo: Path) -> None:
+    """Round 7 nit: the index checked conflict stages before skipping hidden
+    names, and the worktree flagged a hidden nested .git."""
+    from axiom_corpus.corpus.corpus_locks import load_locks, load_locks_from_index
+
+    private, _public = _keys()
+    _ingest(repo, private)
+    oid = subprocess.run(
+        ["git", "hash-object", "-w", "--stdin"], cwd=repo, input=b"x", check=True, capture_output=True
+    ).stdout.decode().strip()
+    hidden = ".axiom/corpus-locks/nz/statute/.DS_Store"
+    info = "".join(f"100644 {oid} {stage}\t{hidden}\n" for stage in (1, 2, 3))
+    subprocess.run(["git", "update-index", "--index-info"], cwd=repo, input=info.encode(), check=True)
+    assert load_locks_from_index(repo).errors == ()
+    nested = repo / ".axiom/corpus-locks/.cache/.git"
+    nested.parent.mkdir(parents=True)
+    nested.write_text("gitdir: /elsewhere\n")
+    assert load_locks(repo).errors == ()

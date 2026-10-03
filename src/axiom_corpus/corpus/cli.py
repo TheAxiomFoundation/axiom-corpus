@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import os
 import re
@@ -45,7 +46,8 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
-from axiom_corpus.corpus.content_store import ContentCache
+from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
+from axiom_corpus.corpus.corpus_locks import LockFormatError
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -138,6 +140,7 @@ from axiom_corpus.corpus.resolver import (
     cli_repo,
     materialize_cli_inputs,
     require_materialized,
+    resolver_for,
 )
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
@@ -331,6 +334,21 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         applied_files = list(args.file)
     deleted_files: list[Path] = list(args.deleted_file or [])
     reasoning_logs: list[Path] = list(args.reasoning_log or [])
+    if args.lock:
+        # Check before signing, so a scope that cannot be locked (a hidden or
+        # leftover file, an unexplained absence) never gets a signed manifest.
+        try:
+            corpus_cli.check_lockable(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                deleted=[
+                    (path if path.is_absolute() else repo / path).resolve().relative_to(repo).as_posix()
+                    for path in deleted_files
+                ],
+            )
+        except (corpus_cli.LockRefusedError, OSError, ValueError) as exc:
+            print(f"corpus lock: {exc} (nothing was signed)", file=sys.stderr)
+            return 2
     manifest = build_ingest_manifest(
         repo=repo,
         base=args.base,
@@ -363,12 +381,20 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
                 [(args.jurisdiction, args.document_class, args.version)],
                 cache=ContentCache(),
                 push=args.push,
+                # Exactly the deletions the signed manifest records.
                 deleted=[
-                    (path if path.is_absolute() else repo / path).resolve().relative_to(repo).as_posix()
-                    for path in deleted_files
+                    str(entry["path"])
+                    for entry in manifest["applied_files"]
+                    if entry.get("deleted") is True
                 ],
             )
-        except (corpus_cli.LockRefusedError, FileNotFoundError) as exc:
+        except (
+            corpus_cli.LockRefusedError,
+            LockFormatError,
+            ContentStoreError,
+            OSError,
+            ValueError,
+        ) as exc:
             print(f"corpus lock: {exc}", file=sys.stderr)
             return 2
         summary["locks"] = written
@@ -411,6 +437,10 @@ def _cmd_verify_scope_tracked(args: argparse.Namespace) -> int:
             f"{result.scopes_checked} inventory scopes."
         )
         return 0
+    for error in result.lock_errors:
+        print(f"invalid corpus lock: {error}")
+    if result.lock_errors:
+        return 1
     for path in result.missing_paths:
         print(path)
     if (args.repo / ".axiom" / "corpus-locks").is_dir():
@@ -7779,7 +7809,7 @@ _SCOPE_INPUT_COMMANDS = frozenset(
 # outside git they refuse to run on a partly fetched tree rather than report on
 # a subset.
 _CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
-    "analytics": ("inventory", "provisions", "coverage"),
+    "analytics": ("inventory", "provisions"),
     "artifact-report": ("sources", "inventory", "provisions", "coverage"),
     "snapshot-provision-counts": ("provisions",),
 }
@@ -7795,6 +7825,25 @@ def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
         return []  # release scopes are fetched by materialize_cli_inputs
     raw = getattr(args, "jurisdiction", None)
     jurisdictions = [raw] if isinstance(raw, str) else list(raw or [])
+    if command == "analytics":
+        # Analytics reads one version (and its "<version>-*" parts) of the
+        # jurisdictions and classes it reports on; require exactly those files.
+        resolver = resolver_for(repo)
+        if resolver is None or not resolver.active:
+            return []
+        resolver.require_valid_locks()
+        version = str(args.version)
+        document_classes = set(getattr(args, "document_class", None) or [])
+        return [
+            repo / entry.path
+            for scope, lock in sorted(resolver.locks.locks.items())
+            # analytics globs "<version>.json" and "<version>-*.json"
+            if (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
+            and (not jurisdictions or scope[0] in jurisdictions)
+            and (not document_classes or scope[1] in document_classes)
+            for entry in lock.files
+            if entry.path.split("/")[2] in classes
+        ]
     return [
         repo / "data" / "corpus" / artifact_class / jurisdiction
         for artifact_class in classes
