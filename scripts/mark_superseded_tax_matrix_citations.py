@@ -26,6 +26,8 @@ import io
 import json
 from pathlib import Path
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 MATRIX = Path("docs/coverage/needs-closure-2026-09-11/tax-matrix.csv")
 RECOVERY = "2026-07-13-recovery"
 # jurisdiction -> (the whole-chapter statute scope the wave4 line selects, audit PR)
@@ -43,6 +45,8 @@ MARKER = " [superseded after this cut:"
 def carrier_paths(base: Path, jurisdiction: str) -> set[str]:
     version = CARRIERS[jurisdiction][0]
     path = base / "provisions" / jurisdiction / "statute" / f"{version}.jsonl"
+    # Corpus files are fetched, not tracked: fetch this locked file if absent.
+    ensure_corpus_paths([path.absolute()])
     return {
         json.loads(line)["citation_path"]
         for line in path.read_text(encoding="utf-8").splitlines()
