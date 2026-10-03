@@ -645,6 +645,12 @@ def parse_section(xml_str: str) -> UKSection:
             "regulation": "Regulation",
         }.get(citation.provision_segment, "Section")
         title = f"{title_prefix} {citation.section}"
+        # The marginal note lives on the enclosing P1group; without it
+        # every section reads as its bare number ("Section 141" where
+        # legislation.gov.uk shows "Child benefit").
+        section_heading = _p1group_title(root, ns, provision_root)
+        if section_heading:
+            title += f" - {section_heading}"
 
     # Extract full text
     content_root = provision_root if provision_root is not None else root
