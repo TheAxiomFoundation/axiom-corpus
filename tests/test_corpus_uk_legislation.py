@@ -616,15 +616,61 @@ def test_extract_uk_legislation_fetches_article_citation_xml(tmp_path, monkeypat
     )
 
 
-def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path):
-    with pytest.raises(
-        ValueError, match="section, regulation, article, schedule, or appendix required"
-    ):
-        extract_uk_legislation_sections(
-            CorpusArtifactStore(tmp_path / "data" / "corpus"),
-            version="2026-05-29-uk-benefits",
-            citations=("uksi/2006/965",),
-        )
+def test_extract_uk_legislation_expands_document_level_citations(tmp_path, monkeypatch):
+    """An act-level CLML citation enumerates the contents feed and
+    fetches every listed provision (previously it was rejected)."""
+    contents_xml = """
+    <Contents>
+      <ContentsItem IdURI="http://www.legislation.gov.uk/id/uksi/2006/965"/>
+      <ContentsItem IdURI="http://www.legislation.gov.uk/id/uksi/2006/965/regulation/2"/>
+    </Contents>
+    """
+    section_xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation"
+             xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             DocumentURI="http://www.legislation.gov.uk/uksi/2006/965/regulation/2">
+<ukm:Metadata>
+    <dc:title>The Child Benefit (Rates) Regulations 2006</dc:title>
+</ukm:Metadata>
+<Secondary>
+<Body>
+<P1group>
+<Title>Rate of child benefit</Title>
+<P1><Pnumber>2</Pnumber>
+<P1para><Text>The weekly rate of child benefit is prescribed.</Text></P1para>
+</P1>
+</P1group>
+</Body>
+</Secondary>
+</Legislation>"""
+
+    async def fake_fetch_xml(self, url):
+        if url.endswith("/contents/data.xml"):
+            return contents_xml
+        return section_xml
+
+    from axiom_corpus.fetchers.legislation_uk import UKLegislationFetcher
+
+    monkeypatch.setattr(UKLegislationFetcher, "_fetch_xml", fake_fetch_xml)
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(tmp_path / "data" / "corpus"),
+        version="2026-05-29-uk-benefits",
+        citations=("uksi/2006/965",),
+    )
+    assert report.provisions_written == 1
+    jsonl = (
+        tmp_path
+        / "data"
+        / "corpus"
+        / "provisions"
+        / "uk"
+        / "regulation"
+        / "2026-05-29-uk-benefits.jsonl"
+    )
+    row = json.loads(jsonl.read_text().splitlines()[0])
+    assert row["citation_path"] == "uk/regulation/uksi/2006/965/2"
 
 
 class _FakeLexClient:
@@ -813,3 +859,25 @@ def test_extract_uk_legislation_lex_matches_section_case_insensitively(tmp_path,
     )
     assert row["citation_path"] == "uk/statute/ukpga/2007/3/11D"
     assert row["body"] == "Savings nil rate."
+
+
+class TestActLevelClmlExpansion:
+    def test_contents_feed_uris_expand_to_sections_and_schedules(self):
+        from axiom_corpus.corpus.uk_legislation import _CONTENTS_PROVISION_URI_RE
+
+        contents = """
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/part/1"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/part/1/chapter/1/crossheading/introductory"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/section/1"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/section/171ZA"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/schedule/1"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/schedule/1/part/2"/>
+        <ContentsItem IdURI="http://www.legislation.gov.uk/id/ukpga/2012/5/notes"/>
+        """
+        matches = [m.group(1) for m in _CONTENTS_PROVISION_URI_RE.finditer(contents)]
+        assert matches == [
+            "ukpga/2012/5/section/1",
+            "ukpga/2012/5/section/171ZA",
+            "ukpga/2012/5/schedule/1",
+        ]
