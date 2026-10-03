@@ -236,6 +236,28 @@ def print_report(result: dict[str, Any]) -> None:
     print("  RESULT:", "OK" if result["ok"] else "FAILED")
 
 
+def unfetched_locked_provisions(provisions_dir: Path) -> list[str]:
+    """Locked provision files (``.axiom/corpus-locks``) missing from ``provisions_dir``.
+
+    Corpus bytes live outside git (docs/corpus-storage.md). This stays
+    stdlib-only because CI runs the script without installing the package.
+    """
+    try:
+        relative = provisions_dir.resolve().relative_to(REPO_ROOT)
+    except ValueError:
+        return []
+    prefix = relative.as_posix().rstrip("/") + "/"
+    missing: list[str] = []
+    for lock_file in sorted((REPO_ROOT / ".axiom" / "corpus-locks").glob("*/*/*.json")):
+        if any(part.startswith(".") for part in lock_file.relative_to(REPO_ROOT / ".axiom").parts[1:]):
+            continue  # hidden files (AppleDouble ._x.json, editor swaps) are never locks
+        for entry in json.loads(lock_file.read_text(encoding="ascii")).get("files", []):
+            path = entry.get("path", "")
+            if path.startswith(prefix) and not (REPO_ROOT / path).is_file():
+                missing.append(path)
+    return missing
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--provisions", type=Path, default=DEFAULT_PROVISIONS,
@@ -246,6 +268,15 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--update-baselines", action="store_true",
                     help="Rewrite ratchet baselines and identity-drift list to current live values.")
     args = ap.parse_args(argv)
+
+    missing = unfetched_locked_provisions(args.provisions)
+    if missing:
+        print(
+            f"{len(missing)} locked provision file(s) under {args.provisions} are not in this "
+            f"checkout (first: {missing[0]}); the scan would cover only part of the corpus. "
+            "Run `axiom-corpus-ingest corpus fetch --path data/corpus/provisions` first."
+        )
+        return 2
 
     schema = json.loads(args.schema.read_text(encoding="utf-8"))
     result = validate(args.provisions, schema)
