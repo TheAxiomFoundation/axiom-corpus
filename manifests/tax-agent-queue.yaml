@@ -2554,7 +2554,8 @@ states:
     supersedes:
     - us-al/statute/2026-07-13-recovery
     notes: Code of Alabama Title 40, Chapter 18 (whole Title 40 taken); whole-chapter statute scope of 2026-09-14 superseding
-      the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
+      the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with
+      grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
   ty2026_indexed_amounts_scope:
     run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
     queue_status: agent_ready
@@ -6500,7 +6501,8 @@ states:
     supersedes:
     - us-de/statute/2026-07-13-recovery
     notes: Delaware Code Title 30, Chapter 11 (Personal Income Tax); whole-chapter statute scope of 2026-09-14 superseding
-      the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
+      the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with
+      grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
   ty2026_indexed_amounts_scope:
     run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
     queue_status: agent_ready
@@ -17214,7 +17216,8 @@ states:
     supersedes:
     - us-ne/statute/2026-07-13-recovery
     notes: Nebraska Revised Statutes Chapter 77, Article 27 (Income Tax) (whole Chapter 77 taken); whole-chapter statute scope
-      of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
+      of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction
+      of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -25107,13 +25110,13 @@ states:
   index_url: https://admincode.legislature.state.al.us/administrative-code/810-3
   index_document_count: 268
   taken_count: 268
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Alabama Administrative
-    Code chapter 810-3 (Department of Revenue, income tax). The LSA admin-code site is a JavaScript application backed by persisted
-    GraphQL queries (POST /api/graphql answers PersistedQueryOnly), so chapters were enumerated by probing /api/chapter/810-3-<n> (n
-    = 1..250; 80 chapters answer) and rule ids were read from each chapter PDF''s table of contents; one rule PDF per document from
-    /api/rule/<id> (268 rules, page rows; chapter and rule tables of contents repeat every heading, so the chapter PDFs are not the
-    carrier). browser_user_agent as the July 660-2 runs. Rows: 772 (268 document, 504 page); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 2,947 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Alabama Administrative Code chapter 810-3 (Department of Revenue, income tax). The LSA admin-code site is a JavaScript
+    application backed by persisted GraphQL queries (POST /api/graphql answers PersistedQueryOnly), so chapters were enumerated
+    by probing /api/chapter/810-3-<n> (n = 1..250; 80 chapters answer) and rule ids were read from each chapter PDF''s table
+    of contents; one rule PDF per document from /api/rule/<id> (268 rules, page rows; chapter and rule tables of contents
+    repeat every heading, so the chapter PDFs are not the carrier). browser_user_agent as the July 660-2 runs. Rows: 772 (268
+    document, 504 page); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 2,947 chars.'
 - jurisdiction: us-ar
   name: Arkansas income tax regulations
   queue_status: blocked_primary_source
@@ -25128,12 +25131,12 @@ states:
   index_url: https://codeofarrules.arkansas.gov/Rules/Search
   index_document_count: 67
   taken_count: 0
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Code of Arkansas
-    Rules Title 26 Taxation, Part 100 Comprehensive Individual Income Tax Rule (id 26-33-261-941) and Parts 101-104. The Secretary of
-    State''s codeofarrules.arkansas.gov (official since 2025-01-01) renders rule text only in the browser: /Rules/Rule?levelType=PART&id=...
-    returns the page shell (HTTP 200, 13 KB, no text), the tree endpoints (Home/GetRulesTreeViewData) return [] below title level, and
-    the site''s TLS chain fails curl_cffi verification. DFA''s rules page (HTTP 200 today; 520 on the first probe) links no income-tax
-    rule PDF. 67 Title 26 parts listed; none extractable.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Code of Arkansas Rules Title 26 Taxation, Part 100 Comprehensive Individual Income Tax Rule (id 26-33-261-941) and Parts
+    101-104. The Secretary of State''s codeofarrules.arkansas.gov (official since 2025-01-01) renders rule text only in the
+    browser: /Rules/Rule?levelType=PART&id=... returns the page shell (HTTP 200, 13 KB, no text), the tree endpoints (Home/GetRulesTreeViewData)
+    return [] below title level, and the site''s TLS chain fails curl_cffi verification. DFA''s rules page (HTTP 200 today;
+    520 on the first probe) links no income-tax rule PDF. 67 Title 26 parts listed; none extractable.'
 - jurisdiction: us-az
   name: Arizona income tax regulations
   queue_status: done
@@ -25148,11 +25151,39 @@ states:
   index_url: https://apps.azsos.gov/public_services/Title_15/15-02.pdf
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). A.A.C. Title
-    15 Chapter 2 (Department of Revenue, Income and Withholding Tax Section) chapter PDF from the Secretary of State; apps.azsos.gov
-    answers the plain client with a Cloudflare challenge (HTTP 403, 5.8 KB) and serves the PDF (1.48 MB, Supp. 18-3) to browser impersonation.
-    labeled_sections on bold R15-2X-NNN headings: 105 section rows. Rows: 106 (1 document, 105 section); coverage complete, 0 missing,
-    0 extra, 0 duplicate citation paths; largest body 11,372 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    A.A.C. Title 15 Chapter 2 (Department of Revenue, Income and Withholding Tax Section) chapter PDF from the Secretary of
+    State; apps.azsos.gov answers the plain client with a Cloudflare challenge (HTTP 403, 5.8 KB) and serves the PDF (1.48
+    MB, Supp. 18-3) to browser impersonation. labeled_sections on bold R15-2X-NNN headings: 105 section rows. Rows: 106 (1
+    document, 105 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 11,372 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Arizona Department of Revenue
+    index_url: https://azdor.gov/forms/individual
+    index_document_count: 23
+    index_count_method: product pages listed on the Individual forms index (each carries a per-year table)
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-az-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-az/form/azdor/ty2025/form-140
+    - us-az/form/azdor/ty2025/form-140-instructions
+    - us-az/form/azdor/ty2025/form-140-booklet
+    notes: 'Served the corpus client. The Drupal product pages are inconsistent: the fillable Form 140 page carries 2023-2025
+      links, the non-fillable and Optional Tax Tables pages end at 2022.'
 - jurisdiction: us-ca
   name: California income tax regulations
   queue_status: done
@@ -25167,14 +25198,40 @@ states:
   index_url: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEB2CC7D04C8311EC89E5000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
   index_document_count: 448
   taken_count: 53
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 18 CCR Division
-    3 (Franchise Tax Board) Chapter 2.5 Personal Income Tax from the Office of Administrative Law''s CCR publication on govt.westlaw.com
-    (the OAL''s designated public site, as 18 NYCRR used for New York). The chapter table of contents lists 448 section entries of which
-    395 are repealed, renumbered or reserved stubs and one is the Refs & Annos page; the 53 live sections are one document each (block
-    rows from the #co_document container, html_text_selector for Westlaw''s div paragraphs). A cookie-bearing session receives Westlaw''s
-    browser-check interstitial after the first page, so each document is fetched with a fresh session (request.fresh_session) carrying
-    the bhCookieSess/bhCookiePerm cookies the NYCRR adapter sets. Rows: 211 (53 document, 158 block); coverage complete, 0 missing,
-    0 extra, 0 duplicate citation paths; largest body 35,361 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    18 CCR Division 3 (Franchise Tax Board) Chapter 2.5 Personal Income Tax from the Office of Administrative Law''s CCR publication
+    on govt.westlaw.com (the OAL''s designated public site, as 18 NYCRR used for New York). The chapter table of contents
+    lists 448 section entries of which 395 are repealed, renumbered or reserved stubs and one is the Refs & Annos page; the
+    53 live sections are one document each (block rows from the #co_document container, html_text_selector for Westlaw''s
+    div paragraphs). A cookie-bearing session receives Westlaw''s browser-check interstitial after the first page, so each
+    document is fetched with a fresh session (request.fresh_session) carrying the bhCookieSess/bhCookiePerm cookies the NYCRR
+    adapter sets. Rows: 211 (53 document, 158 block); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
+    body 35,361 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: California Franchise Tax Board
+    index_url: https://www.ftb.ca.gov/forms/index.html
+    index_document_count: 17
+    index_count_method: distinct /forms/2025/ links on the forms index
+    closure_elements:
+    - F01
+    - F02
+    - F04
+    - F05
+    target_manifest: manifests/us-ca-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-ca/form/ftb/ty2025/form-540
+    - us-ca/form/ftb/ty2025/form-540-booklet
+    notes: Served the corpus client; the booklet is HTML-first with a printable PDF (taken).
 - jurisdiction: us-co
   name: Colorado income tax regulations
   queue_status: done
@@ -25189,12 +25246,21 @@ states:
   index_url: https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=19&agencyID=122
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 1 CCR 201-2
-    Income Tax (Taxation Division) from the Secretary of State''s CCR: the current rule PDF (ruleVersionId 12424, current through 2026-08-13).
-    The extract-colorado-ccr adapter discovers the series but its section parser is built for the 9/10 CCR volume format and yields
-    no provisions for the Rule 39-22-xxx headings, so the official-documents extractor was used with labeled_sections on bold ''Rule
-    39-22-...'' headings: 105 rule rows. No us-co/regulation root row is emitted. Rows: 106 (1 document, 105 section); coverage complete,
-    0 missing, 0 extra, 0 duplicate citation paths; largest body 101,824 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    1 CCR 201-2 Income Tax (Taxation Division) from the Secretary of State''s CCR: the current rule PDF (ruleVersionId 12424,
+    current through 2026-08-13). The extract-colorado-ccr adapter discovers the series but its section parser is built for
+    the 9/10 CCR volume format and yields no provisions for the Rule 39-22-xxx headings, so the official-documents extractor
+    was used with labeled_sections on bold ''Rule 39-22-...'' headings: 105 rule rows. No us-co/regulation root row is emitted.
+    Rows: 106 (1 document, 105 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 101,824
+    chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: done
+    publisher: Colorado Department of Revenue
+    index_url: https://tax.colorado.gov/individual-income-tax-forms
+    taken_count: 0
+    notes: 'Check-pattern miss: the released us-co/form/2026-09-10-tax-state-forms-ty2025 scope already carries the 2025 DR
+      0104 Colorado Individual Income Tax Return and the DR 0104 Book (F01 ALREADY-HELD).'
 - jurisdiction: us-ct
   name: Connecticut income tax regulations
   queue_status: done
@@ -25209,12 +25275,40 @@ states:
   index_url: https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_12
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Regulations
-    of Connecticut State Agencies Title 12, Department of Revenue Services subject matter ''INCOME TAX'' (sections 12-701(a)(1)-1 to
-    12-740(c)-2) from the Secretary of the State''s eRegulations portal (getDocument HTML for subject-matter GUID {80F3E757-0000-CC89-BCB7-C50B40EC8ECF};
-    PDF GUID recorded). The portal serves the plain client with F5/TSPD script markers but full content. 186 section rows; the document''s
-    own table of contents (p > a[href^=''#_'']) is dropped. Rows: 187 (1 document, 186 section); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 20,444 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Regulations of Connecticut State Agencies Title 12, Department of Revenue Services subject matter ''INCOME TAX'' (sections
+    12-701(a)(1)-1 to 12-740(c)-2) from the Secretary of the State''s eRegulations portal (getDocument HTML for subject-matter
+    GUID {80F3E757-0000-CC89-BCB7-C50B40EC8ECF}; PDF GUID recorded). The portal serves the plain client with F5/TSPD script
+    markers but full content. 186 section rows; the document''s own table of contents (p > a[href^=''#_'']) is dropped. Rows:
+    187 (1 document, 186 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 20,444
+    chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Connecticut Department of Revenue Services
+    index_url: https://portal.ct.gov/drs/drs-forms/current-year-forms/individual-income-tax-forms
+    index_document_count: 26
+    index_count_method: distinct /-/media/drs/forms/2025/income/ PDFs on the individual income tax forms index
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-ct-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-ct/form/drs/ty2025/ct-1040
+    - us-ct/form/drs/ty2025/ct-1040-instructions
+    - us-ct/form/drs/ty2025/ct-1040-tcs
+    notes: Served the corpus client; Sitecore media URLs carry rev/hash query strings.
 - jurisdiction: us-dc
   name: District of Columbia income tax regulations
   queue_status: blocked_primary_source
@@ -25229,10 +25323,10 @@ states:
   index_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=9-1
   index_document_count: 22
   taken_count: 0
-  notes: 2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). DCMR Title
-    9 Chapter 1 (Income and Franchise Taxes). dcregs.dc.gov lists the 22 sections (HTTP 200, 196 KB, plain client and browser impersonation)
-    but exposes rule text and files only through ASP.NET __doPostBack controls (lnkFile / 'View text'); no stable GET URL exists for
-    any section, the same durable finding as the 2026-09-13 CHIP re-probe.
+  notes: 2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). DCMR
+    Title 9 Chapter 1 (Income and Franchise Taxes). dcregs.dc.gov lists the 22 sections (HTTP 200, 196 KB, plain client and
+    browser impersonation) but exposes rule text and files only through ASP.NET __doPostBack controls (lnkFile / 'View text');
+    no stable GET URL exists for any section, the same durable finding as the 2026-09-13 CHIP re-probe.
 - jurisdiction: us-de
   name: Delaware income tax regulations
   queue_status: needs_review
@@ -25247,10 +25341,11 @@ states:
   index_url: https://regulations.delaware.gov/api/AdminCode/titles
   index_document_count: 0
   taken_count: 0
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Delaware Administrative
-    Code has no income-tax title: the Registrar of Regulations'' title list (api/AdminCode/titles, HTTP 200) carries titles 1-29 with
-    no Department of Finance / Division of Revenue title (Title 12 is unclaimed property and refund offset only); the Division of Revenue
-    publishes Technical Information Memoranda, not codified regulations. Absent at the publisher; nothing extracted.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Delaware Administrative Code has no income-tax title: the Registrar of Regulations'' title list (api/AdminCode/titles,
+    HTTP 200) carries titles 1-29 with no Department of Finance / Division of Revenue title (Title 12 is unclaimed property
+    and refund offset only); the Division of Revenue publishes Technical Information Memoranda, not codified regulations.
+    Absent at the publisher; nothing extracted.'
 - jurisdiction: us-ga
   name: Georgia income tax regulations
   queue_status: done
@@ -25265,12 +25360,13 @@ states:
   index_url: https://rules.sos.ga.gov/gac/560-7
   index_document_count: 8
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Ga. Comp.
-    R. & Regs. Chapter 560-7 Income Tax Division from the Secretary of State''s Rules and Regulations site. Rule pages on rules.sos.ga.gov
-    render text only through a session-bound POST (/loadthedata.aspx) and answer browser impersonation with 403, so the publisher''s
-    Department 560 PDF download (Download_pdf.aspx, current through 2026-09-02, 1,586 pages) is the carrier, page-windowed to Chapter
-    560-7 (pages 389-822): 129 rule rows incl. repealed stubs. Index: 8 subjects 560-7-1..560-7-8. Rows: 130 (1 document, 129 section);
-    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 95,924 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Ga. Comp. R. & Regs. Chapter 560-7 Income Tax Division from the Secretary of State''s Rules and Regulations site. Rule
+    pages on rules.sos.ga.gov render text only through a session-bound POST (/loadthedata.aspx) and answer browser impersonation
+    with 403, so the publisher''s Department 560 PDF download (Download_pdf.aspx, current through 2026-09-02, 1,586 pages)
+    is the carrier, page-windowed to Chapter 560-7 (pages 389-822): 129 rule rows incl. repealed stubs. Index: 8 subjects
+    560-7-1..560-7-8. Rows: 130 (1 document, 129 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths;
+    largest body 95,924 chars.'
 - jurisdiction: us-hi
   name: Hawaii income tax regulations
   queue_status: done
@@ -25285,11 +25381,38 @@ states:
   index_url: https://tax.hawaii.gov/legal/
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). HAR Title
-    18 Chapter 235 Income Tax Law from the Department of Taxation''s own compilation (files.hawaii.gov/tax/legal/har/har_235.pdf, ''Unofficial
-    Compilation as of 12/31/2025'', 1,689 pages of which chapter 235 is pages 7-158; the remainder is blank/other material). Bold section
-    labels with the heading on the following line: 137 section rows. The department''s Tax Law and Rules index page is script-rendered.
-    Rows: 138 (1 document, 137 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 51,523 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    HAR Title 18 Chapter 235 Income Tax Law from the Department of Taxation''s own compilation (files.hawaii.gov/tax/legal/har/har_235.pdf,
+    ''Unofficial Compilation as of 12/31/2025'', 1,689 pages of which chapter 235 is pages 7-158; the remainder is blank/other
+    material). Bold section labels with the heading on the following line: 137 section rows. The department''s Tax Law and
+    Rules index page is script-rendered. Rows: 138 (1 document, 137 section); coverage complete, 0 missing, 0 extra, 0 duplicate
+    citation paths; largest body 51,523 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Hawaii Department of Taxation
+    index_url: https://tax.hawaii.gov/forms/a1_b1_1income/
+    index_document_count: 49
+    index_count_method: distinct Rev. 2025 products on the Individual Income Tax (Resident and Nonresident) forms page
+    closure_elements:
+    - F01
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-hi-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-hi/form/dotax/ty2025/form-n-11
+    - us-hi/form/dotax/ty2025/form-n-11-instructions
+    - us-hi/form/dotax/ty2025/tax-tables
+    notes: Served the corpus client.
 - jurisdiction: us-ia
   name: Iowa income tax regulations
   queue_status: done
@@ -25304,10 +25427,19 @@ states:
   index_url: https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
   index_document_count: 9
   taken_count: 9
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Iowa Administrative
-    Code 701 chapters 300-308 (individual income tax: administration, returns, net income, taxable income, credits, assessments, penalty,
-    withholding, estimated tax) from the Legislative Services Agency chapter PDFs (IAC 09/02/2026). 209 rule rows. Rows: 218 (9 document,
-    209 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 41,093 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Iowa Administrative Code 701 chapters 300-308 (individual income tax: administration, returns, net income, taxable income,
+    credits, assessments, penalty, withholding, estimated tax) from the Legislative Services Agency chapter PDFs (IAC 09/02/2026).
+    209 rule rows. Rows: 218 (9 document, 209 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths;
+    largest body 41,093 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: done
+    publisher: Iowa Department of Revenue
+    index_url: https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+    taken_count: 0
+    notes: 'Check-pattern miss: the released us-ia/form/2026-09-10-tax-state-forms-ty2025 scope already carries the 2025 IA
+      1040 Iowa Individual Income Tax Return (41-001) and the expanded instructions (F01 ALREADY-HELD).'
 - jurisdiction: us-id
   name: Idaho income tax regulations
   queue_status: done
@@ -25322,10 +25454,10 @@ states:
   index_url: https://adminrules.idaho.gov/rules/current/35/
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). IDAPA 35.01.01
-    Income Tax Administrative Rules (State Tax Commission) from the Office of the Administrative Rules Coordinator (current rules PDF,
-    2026-07-01). Label-only headings: 176 section rows. Rows: 177 (1 document, 176 section); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 29,196 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    IDAPA 35.01.01 Income Tax Administrative Rules (State Tax Commission) from the Office of the Administrative Rules Coordinator
+    (current rules PDF, 2026-07-01). Label-only headings: 176 section rows. Rows: 177 (1 document, 176 section); coverage
+    complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 29,196 chars.'
 - jurisdiction: us-il
   name: Illinois income tax regulations
   queue_status: done
@@ -25340,12 +25472,55 @@ states:
   index_url: https://www.ilga.gov/ftp/JCAR/AdminCode/086/
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 86 Ill. Adm.
-    Code Part 100 Income Tax via extract-illinois-admin-code --only-title 86 --only-part 100 (new --only-part filter). ftp.ilga.gov
-    serves a Sectigo OV R40 chain without the intermediate; the publisher''s intermediate (from the leaf certificate''s AIA URL) is
-    committed as data/certs/sectigo-public-server-authentication-ca-ov-r40.pem and supplied via REQUESTS_CA_BUNDLE. 195 section rows
-    plus title/chapter/part containers (no released us-il regulation scope). Rows: 200 (1 collection, 1 title, 1 chapter, 1 part, 195
-    section, 1 appendix); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 55,387 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    86 Ill. Adm. Code Part 100 Income Tax via extract-illinois-admin-code --only-title 86 --only-part 100 (new --only-part
+    filter). ftp.ilga.gov serves a Sectigo OV R40 chain without the intermediate; the publisher''s intermediate (from the
+    leaf certificate''s AIA URL) is committed as data/certs/sectigo-public-server-authentication-ca-ov-r40.pem and supplied
+    via REQUESTS_CA_BUNDLE. 195 section rows plus title/chapter/part containers (no released us-il regulation scope). Rows:
+    200 (1 collection, 1 title, 1 chapter, 1 part, 195 section, 1 appendix); coverage complete, 0 missing, 0 extra, 0 duplicate
+    citation paths; largest body 55,387 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Illinois Department of Revenue
+    index_url: https://tax.illinois.gov/forms/incometax/currentyear/individual.html
+    index_document_count: 29
+    index_count_method: distinct English current-year individual PDFs on the index
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-il-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-il/form/idor/ty2025/form-il-1040
+    - us-il/form/idor/ty2025/form-il-1040-instructions
+    notes: Served the corpus client.
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-15.yaml
+    source_id: us-il-ilcs-35-5
+    queue_status: blocked_primary_source
+    document_class: statute
+    versions: []
+    index_url: https://www.ilga.gov/ftp/ILCS/
+    index_document_count: null
+    taken_count: 0
+    notes: '35 ILCS 5 whole act attempted with the illinois-ilcs adapter (only_title 35, only_act 5): ilga.gov serves a TLS
+      chain without the Sectigo Public Server Authentication CA OV R40 intermediate (supplied from data/certs/wave5-tax-ca-bundle.pem)
+      and then answers HTTP 403 to the corpus client on every path (ILCS FTP directory, fulltext pages, the act table of contents,
+      which now redirects to /Legislation/ILCS/Articles); a Chrome user-agent string is served. The adapter has no browser-agent
+      option and no run note documents a fallback for ilga.gov, so the run is recorded as blocked; the released seven-section
+      resident core stays.'
 - jurisdiction: us-in
   name: Indiana income tax regulations
   queue_status: done
@@ -25360,13 +25535,13 @@ states:
   index_url: https://iar.iga.in.gov/code/2026/45
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 45 IAC Article
-    3.1 Adjusted Gross Income Tax (Department of State Revenue) from the General Assembly''s Indiana Administrative Rules and Policies
-    site. iar.iga.in.gov is a JavaScript application; its article JSON comes from the site''s own API distribution (drxya2s1hkmtl.cloudfront.net/api/adminCodeArticle,
-    referenced from the site bundle), which answers the plain client with a CloudFront 403 and browser impersonation with the article.
-    Article HTML read through json_html_field with html_text_selector (Westlaw-style div containers): 171 section rows; the article''s
-    own table of contents (ol.toc) is dropped. Rows: 172 (1 document, 171 section); coverage complete, 0 missing, 0 extra, 0 duplicate
-    citation paths; largest body 26,850 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    45 IAC Article 3.1 Adjusted Gross Income Tax (Department of State Revenue) from the General Assembly''s Indiana Administrative
+    Rules and Policies site. iar.iga.in.gov is a JavaScript application; its article JSON comes from the site''s own API distribution
+    (drxya2s1hkmtl.cloudfront.net/api/adminCodeArticle, referenced from the site bundle), which answers the plain client with
+    a CloudFront 403 and browser impersonation with the article. Article HTML read through json_html_field with html_text_selector
+    (Westlaw-style div containers): 171 section rows; the article''s own table of contents (ol.toc) is dropped. Rows: 172
+    (1 document, 171 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 26,850 chars.'
 - jurisdiction: us-ks
   name: Kansas income tax regulations
   queue_status: done
@@ -25381,11 +25556,37 @@ states:
   index_url: https://rules.ks.gov/api/policy-library-public/collections/0ae1e448-f5a1-4e09-9d6d-a488ac7c284a/sections/17ac6eb9-1370-411a-8aab-a875a2fcdd0f
   index_document_count: 130
   taken_count: 71
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). K.A.R. Article
-    92-12 Income Tax (Department of Revenue) from the Secretary of State''s rules.ks.gov policy-library API (same vendor as rules.mt.gov):
-    130 regulations listed, 71 effective; each effective regulation''s accessible-HTML document is one document (block rows). Revoked
-    numbers carry no text. Rows: 142 (71 document, 71 block); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
-    body 8,449 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    K.A.R. Article 92-12 Income Tax (Department of Revenue) from the Secretary of State''s rules.ks.gov policy-library API
+    (same vendor as rules.mt.gov): 130 regulations listed, 71 effective; each effective regulation''s accessible-HTML document
+    is one document (block rows). Revoked numbers carry no text. Rows: 142 (71 document, 71 block); coverage complete, 0 missing,
+    0 extra, 0 duplicate citation paths; largest body 8,449 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Kansas Department of Revenue
+    index_url: https://www.ksrevenue.gov/forms-ii.html
+    index_document_count: 7
+    index_count_method: PDFs with the 25 year suffix on the Individual Income forms page (186 PDF links across all years)
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-ks-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-ks/form/kdor/ty2025/form-k-40
+    - us-ks/form/kdor/ty2025/individual-income-tax-instruction-booklet
+    notes: Served the corpus client; the tax tables are inside the booklet.
 - jurisdiction: us-ky
   name: Kentucky income tax regulations
   queue_status: done
@@ -25400,11 +25601,20 @@ states:
   index_url: https://apps.legislature.ky.gov/law/kar/titles/103/
   index_document_count: 70
   taken_count: 24
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 103 KAR chapters
-    15 (general administration), 17 (individual), 18 (withholding) and 19 (miscellaneous) from the Legislative Research Commission:
-    70 regulation numbers listed, 24 current; each current regulation''s LRC PDF (the HTML pages print the text in span elements the
-    extractor does not read). Section rows per regulation. Rows: 130 (24 document, 106 section); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 4,938 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    103 KAR chapters 15 (general administration), 17 (individual), 18 (withholding) and 19 (miscellaneous) from the Legislative
+    Research Commission: 70 regulation numbers listed, 24 current; each current regulation''s LRC PDF (the HTML pages print
+    the text in span elements the extractor does not read). Section rows per regulation. Rows: 130 (24 document, 106 section);
+    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 4,938 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: blocked_primary_source
+    publisher: Kentucky Department of Revenue
+    index_url: https://revenue.ky.gov/Get-Help/Pages/Forms.aspx
+    taken_count: 0
+    notes: The Find a Form page (HTTP 200, 86 KB) is a SharePoint document-search web part populated client-side (docsearch.js);
+      the served HTML carries no form PDF links, and the former current-year forms pages (Forms/Pages/Current-Year-Individual-Income-Tax-Forms.aspx,
+      Forms/Pages/default.aspx) answer 404. No 740 URL could be confirmed from an index; nothing guessed.
 - jurisdiction: us-la
   name: Louisiana income tax regulations
   queue_status: done
@@ -25419,10 +25629,37 @@ states:
   index_url: https://www.doa.la.gov/doa/osr/louisiana-administrative-code/
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). LAC Title
-    61 Part I Chapter 13 Income: Individual from the Office of the State Register''s Title 61 volume 1 DOCX (labeled_sections between
-    the body ''Chapter 13. Income: Individual'' heading and Chapter 14): 11 section rows (§1301-§1357 as published). Rows: 12 (1 document,
-    11 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 11,397 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    LAC Title 61 Part I Chapter 13 Income: Individual from the Office of the State Register''s Title 61 volume 1 DOCX (labeled_sections
+    between the body ''Chapter 13. Income: Individual'' heading and Chapter 14): 11 section rows (§1301-§1357 as published).
+    Rows: 12 (1 document, 11 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 11,397
+    chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Louisiana Department of Revenue
+    index_url: https://revenue.louisiana.gov/tax-forms/individuals/?tax_type=individual
+    index_document_count: 5
+    index_count_method: links containing 2025 on the individuals tax-forms page (249 dam.ldr.la.gov links across all years)
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-la-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-la/form/ldr/ty2025/form-it-540
+    - us-la/form/ldr/ty2025/form-it-540-instructions
+    notes: Served the corpus client; PDFs are on the department's dam.ldr.la.gov asset host.
 - jurisdiction: us-ma
   name: Massachusetts income tax regulations
   queue_status: done
@@ -25437,11 +25674,60 @@ states:
   index_url: https://www.mass.gov/lists/dor-regulations
   index_document_count: 32
   taken_count: 17
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 830 CMR chapter
-    62 and 62B regulations from the Department of Revenue''s mass.gov regulations list (32 chapter-62/62B entries, 17 regulations taken;
-    fact sheets, working drafts, proposed and emergency versions not taken). Regulation pages fetched with browser impersonation; numbered
-    subsections ''(n) Heading'' become section rows, two unnumbered regulations (62.6.1, 62.17A.2) as heading blocks. Rows: 162 (17
-    document, 126 section, 19 block); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 32,996 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    830 CMR chapter 62 and 62B regulations from the Department of Revenue''s mass.gov regulations list (32 chapter-62/62B
+    entries, 17 regulations taken; fact sheets, working drafts, proposed and emergency versions not taken). Regulation pages
+    fetched with browser impersonation; numbered subsections ''(n) Heading'' become section rows, two unnumbered regulations
+    (62.6.1, 62.17A.2) as heading blocks. Rows: 162 (17 document, 126 section, 19 block); coverage complete, 0 missing, 0
+    extra, 0 duplicate citation paths; largest body 32,996 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Massachusetts Department of Revenue
+    index_url: https://www.mass.gov/lists/2025-massachusetts-personal-income-tax-forms-and-instructions
+    index_document_count: 45
+    index_count_method: distinct mass.gov/doc/2025-.../download links on the 2025 personal income tax forms list
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-ma-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-ma/form/dor/ty2025/form-1
+    - us-ma/form/dor/ty2025/form-1-instructions
+    notes: Served the corpus client (no impersonation needed for the document downloads).
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-15.yaml
+    source_id: us-ma-mgl-chapter-62
+    document_class: statute
+    versions:
+    - 2026-09-15-income-tax-chapter-us-ma-part-i-title-ix-chapter-62
+    coverage:
+    - version: 2026-09-15-income-tax-chapter-us-ma-part-i-title-ix-chapter-62
+      complete: true
+      provision_count: 70
+      missing: 0
+      extra: 0
+    index_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62
+    index_document_count: 70
+    taken_count: 70
+    supersedes:
+    - us-ma/statute/2026-07-13-recovery
+    notes: M.G.L. c. 62 (Taxation of Incomes), whole chapter, 68 section rows (30 are the publisher's repealed placeholders
+      with empty bodies) plus the part/title/chapter containers; wave-5 whole-chapter scope of 2026-09-15 superseding the
+      released recovery fragments (sections 3, 4, 6 and nine minor sections). Chapters 62B and 62C not taken (container-row
+      collision); see the run note.
 - jurisdiction: us-md
   name: Maryland income tax regulations
   queue_status: done
@@ -25456,12 +25742,23 @@ states:
   index_url: https://github.com/maryland-dsd/law-xml-codified (us/md/exec/comar/03/04, publication/2026-09-11)
   index_document_count: 15
   taken_count: 15
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). COMAR Title
-    03 (Comptroller) Subtitle 04 Income Tax via extract-maryland-comar --only-title 03 --only-subtitle 04 from the Division of State
-    Documents'' XML publication (publication/2026-09-11): 91 regulation rows, 15 chapters. Extracted in this run''s first session (agent
-    1). Container rows us-md/regulation, title-03 and title-03/subtitle-04 are emitted by adapter design; us-md/regulation collides
-    with every released and pending COMAR scope: needs consolidation by the controller. Rows: 109 (1 collection, 1 title, 1 subtitle,
-    15 chapter, 91 regulation); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 24,733 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    COMAR Title 03 (Comptroller) Subtitle 04 Income Tax via extract-maryland-comar --only-title 03 --only-subtitle 04 from
+    the Division of State Documents'' XML publication (publication/2026-09-11): 91 regulation rows, 15 chapters. Extracted
+    in this run''s first session (agent 1). Container rows us-md/regulation, title-03 and title-03/subtitle-04 are emitted
+    by adapter design; us-md/regulation collides with every released and pending COMAR scope: needs consolidation by the controller.
+    Rows: 109 (1 collection, 1 title, 1 subtitle, 15 chapter, 91 regulation); coverage complete, 0 missing, 0 extra, 0 duplicate
+    citation paths; largest body 24,733 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: blocked_primary_source
+    publisher: Comptroller of Maryland
+    index_url: https://services.marylandcomptroller.gov/taxes/en/individual-income-tax-forms-and-instructions?id=kb_article_view&sysparm_article=KB0010191
+    taken_count: 0
+    notes: marylandtaxes.gov redirects to marylandcomptroller.gov whose 2025 forms paths answer 404; the forms link on the
+      home page is a ServiceNow knowledge-base article (HTTP 200, 923 KB) whose served HTML holds one Angular template link
+      and no PDF or attachment references; the legacy forms/current_forms/502.pdf path redirects to a 404 (same finding as
+      the 2026-09-13 amounts probe). Not worked around.
 - jurisdiction: us-me
   name: Maine income tax regulations
   queue_status: done
@@ -25476,11 +25773,39 @@ states:
   index_url: https://www.maine.gov/revenue/publications/rules
   index_document_count: 38
   taken_count: 7
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Maine Revenue
-    Services rules 803, 805, 806, 807, 811, 812, 813 and 825 (18-125 CMR individual income tax family: withholding, composite, nonresident,
-    residency, credits, tribal income) from the MRS rules page (38 current rule PDFs listed; corporate rules and the July 2026 proposed
-    drafts not taken). Bold ''.NN Heading'' section rows. Rows: 71 (7 document, 64 section); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 16,247 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Maine Revenue Services rules 803, 805, 806, 807, 811, 812, 813 and 825 (18-125 CMR individual income tax family: withholding,
+    composite, nonresident, residency, credits, tribal income) from the MRS rules page (38 current rule PDFs listed; corporate
+    rules and the July 2026 proposed drafts not taken). Bold ''.NN Heading'' section rows. Rows: 71 (7 document, 64 section);
+    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 16,247 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Maine Revenue Services
+    index_url: https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+    index_document_count: 28
+    index_count_method: distinct PDF hrefs on the Individual Income Tax 2025 forms page
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-me-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 8
+      source_count: 8
+      missing: 0
+    taken_count: 4
+    documents:
+    - us-me/form/mrs/ty2025/form-1040me
+    - us-me/form/mrs/ty2025/form-1040me-general-instructions
+    - us-me/form/mrs/ty2025/tax-tables
+    - us-me/form/mrs/ty2025/tax-rate-schedules
+    notes: Served the corpus client.
 - jurisdiction: us-mi
   name: Michigan income tax regulations
   queue_status: done
@@ -25495,10 +25820,37 @@ states:
   index_url: https://ars.apps.lara.state.mi.us/AdminCode/DeptBureauAdminCode?Department=Treasury&Bureau=All
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Michigan Administrative
-    Code R 206.1-206.33 Income Tax (Department of Treasury) rule-set PDF from the Office of Administrative Hearings and Rules ARS site
-    (1613_2016-006TY): 32 rule rows. Rows: 33 (1 document, 32 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation
-    paths; largest body 6,365 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Michigan Administrative Code R 206.1-206.33 Income Tax (Department of Treasury) rule-set PDF from the Office of Administrative
+    Hearings and Rules ARS site (1613_2016-006TY): 32 rule rows. Rows: 33 (1 document, 32 section); coverage complete, 0 missing,
+    0 extra, 0 duplicate citation paths; largest body 6,365 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Michigan Department of Treasury
+    index_url: https://www.michigan.gov/taxes/iit-forms/2025-individual-income-tax-forms
+    index_document_count: 57
+    index_count_method: distinct PDF hrefs on the 2025 Individual Income Tax Forms page (served to the Chrome fingerprint
+      only)
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-mi-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-mi/form/treasury/ty2025/form-mi-1040
+    - us-mi/form/treasury/ty2025/mi-1040-book
+    notes: michigan.gov needs the documented chrome120 fallback (corpus client 403 site-wide).
 - jurisdiction: us-mn
   name: Minnesota income tax regulations
   queue_status: done
@@ -25513,11 +25865,38 @@ states:
   index_url: https://www.revisor.mn.gov/rules/agency/181
   index_document_count: 43
   taken_count: 7
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Minnesota
-    Rules chapters 8001, 8002, 8007, 8038, 8050, 8092 and 8093 (Department of Revenue individual income tax: definitions, individual
-    income determination, accounting methods, returns, overpayments, withholding, estimated tax) from the Revisor of Statutes'' full-chapter
-    HTML (43 Revenue chapters listed; corporate, property, sales and fully repealed chapters not taken). 20 part rows. Rows: 27 (7 document,
-    20 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 18,656 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Minnesota Rules chapters 8001, 8002, 8007, 8038, 8050, 8092 and 8093 (Department of Revenue individual income tax: definitions,
+    individual income determination, accounting methods, returns, overpayments, withholding, estimated tax) from the Revisor
+    of Statutes'' full-chapter HTML (43 Revenue chapters listed; corporate, property, sales and fully repealed chapters not
+    taken). 20 part rows. Rows: 27 (7 document, 20 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths;
+    largest body 18,656 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Minnesota Department of Revenue
+    index_url: https://www.revenue.state.mn.us/form-search?search_text=income+tax&field_tax_type=106&field_tax_year=12606
+    index_document_count: 13
+    index_count_method: results reported by the form search for income tax, tax year 2025 (10 distinct PDFs)
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-mn-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-mn/form/department-of-revenue/ty2025/form-m1
+    - us-mn/form/department-of-revenue/ty2025/form-m1-instructions
+    notes: Served the corpus client (the form search is server-rendered).
 - jurisdiction: us-mo
   name: Missouri income tax regulations
   queue_status: done
@@ -25532,10 +25911,37 @@ states:
   index_url: https://www.sos.mo.gov/adrules/csr/current/12csr/12csr
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 12 CSR 10-2
-    Income Tax (Director of Revenue) chapter PDF from the Secretary of State (current 3/31/26; the 12 CSR index page timed out on both
-    probes while the PDF served): 61 rule rows. Rows: 62 (1 document, 61 section); coverage complete, 0 missing, 0 extra, 0 duplicate
-    citation paths; largest body 74,549 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    12 CSR 10-2 Income Tax (Director of Revenue) chapter PDF from the Secretary of State (current 3/31/26; the 12 CSR index
+    page timed out on both probes while the PDF served): 61 rule rows. Rows: 62 (1 document, 61 section); coverage complete,
+    0 missing, 0 extra, 0 duplicate citation paths; largest body 74,549 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Missouri Department of Revenue
+    index_url: https://dor.mo.gov/forms/?formName=&category=7&year=2025&searchForms=Search+Forms
+    index_document_count: 35
+    index_count_method: distinct PDFs listed for Personal Tax - Individual Income Tax, year 2025
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-mo-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-mo/form/dor/ty2025/form-mo-1040
+    - us-mo/form/dor/ty2025/form-mo-1040-instructions
+    - us-mo/form/dor/ty2025/tax-chart
+    notes: Served the corpus client.
 - jurisdiction: us-ms
   name: Mississippi income tax regulations
   queue_status: done
@@ -25550,11 +25956,12 @@ states:
   index_url: https://www.dor.ms.gov/forms-resources/mississippi-tax-laws-rules-and-regulations
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Mississippi
-    Administrative Code Title 35 Part III Income and Franchise Tax from the Secretary of State''s Administrative Code PDF (linked from
-    the Department of Revenue laws page): 95 chapter rows (35.III.<subpart>.<chapter>); the individual income chapter 35.III.12.01 is
-    one 327 kB row (the publisher prints section numbers inside chapters that repeat across chapters). Rows: 96 (1 document, 95 section);
-    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 327,617 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Mississippi Administrative Code Title 35 Part III Income and Franchise Tax from the Secretary of State''s Administrative
+    Code PDF (linked from the Department of Revenue laws page): 95 chapter rows (35.III.<subpart>.<chapter>); the individual
+    income chapter 35.III.12.01 is one 327 kB row (the publisher prints section numbers inside chapters that repeat across
+    chapters). Rows: 96 (1 document, 95 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
+    body 327,617 chars.'
 - jurisdiction: us-mt
   name: Montana income tax regulations
   queue_status: done
@@ -25569,11 +25976,11 @@ states:
   index_url: https://rules.mt.gov/api/policy-library-public/collections (ARM title 42)
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). ARM Title
-    42 (Department of Revenue) Chapter 15 Income Tax via extract-montana-admin-rules --only-title 42 --only-section 42.15 (rules.mt.gov
-    policy-library API served the plain client): 50 rule rows, 9 subchapters. Root container us-mt/regulation is not carried by any
-    released us-mt scope. Rows: 62 (1 collection, 1 title, 1 chapter, 9 subchapter, 50 rule); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 4,826 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    ARM Title 42 (Department of Revenue) Chapter 15 Income Tax via extract-montana-admin-rules --only-title 42 --only-section
+    42.15 (rules.mt.gov policy-library API served the plain client): 50 rule rows, 9 subchapters. Root container us-mt/regulation
+    is not carried by any released us-mt scope. Rows: 62 (1 collection, 1 title, 1 chapter, 9 subchapter, 50 rule); coverage
+    complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 4,826 chars.'
 - jurisdiction: us-nc
   name: North Carolina income tax regulations
   queue_status: done
@@ -25588,10 +25995,61 @@ states:
   index_url: http://reports.oah.state.nc.us/ncac.asp?folderName=%5CTitle%2017%20-%20Revenue%5CChapter%2006%20-%20Individual%20Income%20Tax
   index_document_count: 218
   taken_count: 218
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 17 NCAC Chapter
-    06 Individual Income Tax from the Office of Administrative Hearings rules index: one PDF per rule (218 rule files, page rows). The
-    consolidated chapter and subchapter PDFs repeat every rule heading in a table of contents and are not the carrier. Rows: 437 (218
-    document, 219 page); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 4,943 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    17 NCAC Chapter 06 Individual Income Tax from the Office of Administrative Hearings rules index: one PDF per rule (218
+    rule files, page rows). The consolidated chapter and subchapter PDFs repeat every rule heading in a table of contents
+    and are not the carrier. Rows: 437 (218 document, 219 page); coverage complete, 0 missing, 0 extra, 0 duplicate citation
+    paths; largest body 4,943 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: North Carolina Department of Revenue
+    index_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/individual-income-tax-forms-instructions
+    index_document_count: 11
+    index_count_method: 2025 product landing pages linked from the individual income tax forms index
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-nc-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-nc/form/ncdor/ty2025/form-d-400
+    - us-nc/form/ncdor/ty2025/form-d-401-instructions
+    notes: Served the corpus client.
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    target_manifest: manifests/us-nc-gs-chapter-105-article-4-income-tax.yaml
+    source_id: us-nc-gs-105-*
+    document_class: statute
+    versions:
+    - 2026-09-15-income-tax-chapter
+    coverage:
+    - version: 2026-09-15-income-tax-chapter
+      complete: true
+      provision_count: 205
+      missing: 0
+      extra: 0
+    index_url:
+    - https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_105/Article_4.html
+    - https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_105/Article_4A.html
+    index_document_count: 103
+    taken_count: 102
+    supersedes:
+    - us-nc/statute/2026-08-03-nc-income-tax-current-union (colliding section paths under us-nc/statute/105/)
+    notes: G.S. Chapter 105 Article 4 (Income Tax, Parts 1-5, 84 sections) and Article 4A (Withholding; Estimated Income Tax
+      for Individuals, 19 sections), one official per-section HTML page each via extract-official-documents; G.S. 105-163
+      (repealed) has no per-section page and is skipped; 13 headings are repealed/recodified placeholders whose pages carry
+      the repeal note.
 - jurisdiction: us-nd
   name: North Dakota income tax regulations
   queue_status: done
@@ -25606,11 +26064,35 @@ states:
   index_url: https://ndlegis.gov/agency-rules/north-dakota-administrative-code
   index_document_count: 25
   taken_count: 7
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). N.D. Admin.
-    Code Article 81-03 chapters 81-03-01.1, 02.1, 02.2, 03.1, 03.2, 04 and 10 (individual income tax, nonresidents, withholding, estimated
-    tax, contributions) from the Legislative Council chapter PDFs (25 article 81-03 chapters listed; corporate chapters not taken):
-    43 section rows. Rows: 50 (7 document, 43 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body
-    6,471 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    N.D. Admin. Code Article 81-03 chapters 81-03-01.1, 02.1, 02.2, 03.1, 03.2, 04 and 10 (individual income tax, nonresidents,
+    withholding, estimated tax, contributions) from the Legislative Council chapter PDFs (25 article 81-03 chapters listed;
+    corporate chapters not taken): 43 section rows. Rows: 50 (7 document, 43 section); coverage complete, 0 missing, 0 extra,
+    0 duplicate citation paths; largest body 6,471 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: North Dakota Office of State Tax Commissioner
+    index_url: https://www.tax.nd.gov/forms
+    index_document_count: 22
+    index_count_method: distinct PDFs under /forms/individual/2025-iit/ on the forms index
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    target_manifest: manifests/us-nd-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-nd/form/otc/ty2025/form-nd-1
+    - us-nd/form/otc/ty2025/individual-income-tax-booklet
+    notes: Served the corpus client; the tax tables are inside the booklet.
 - jurisdiction: us-ne
   name: Nebraska income tax regulations
   queue_status: done
@@ -25625,11 +26107,38 @@ states:
   index_url: https://revenue.nebraska.gov/about/legal-information/regulations
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Nebraska Department
-    of Revenue Regulations Chapter 22 Individual Income Tax from the department''s own regulations page (HTML, REG-22-001..020): 15
-    regulation rows. The Secretary of State''s rules.nebraska.gov answers with an incomplete TLS chain (SSLCertVerificationError) as
-    recorded in the September SNAP run; the department copy is the carrier. Rows: 16 (1 document, 15 section); coverage complete, 0
-    missing, 0 extra, 0 duplicate citation paths; largest body 21,899 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Nebraska Department of Revenue Regulations Chapter 22 Individual Income Tax from the department''s own regulations page
+    (HTML, REG-22-001..020): 15 regulation rows. The Secretary of State''s rules.nebraska.gov answers with an incomplete TLS
+    chain (SSLCertVerificationError) as recorded in the September SNAP run; the department copy is the carrier. Rows: 16 (1
+    document, 15 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 21,899 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Nebraska Department of Revenue
+    index_url: https://revenue.nebraska.gov/about/forms/individual-income-tax-forms
+    index_document_count: 21
+    index_count_method: distinct PDFs under /doc/tax-forms/2025/ on the individual income tax forms index
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-ne-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-ne/form/dor/ty2025/form-1040n
+    - us-ne/form/dor/ty2025/individual-income-tax-booklet
+    - us-ne/form/dor/ty2025/tax-table
+    notes: Served the corpus client.
 - jurisdiction: us-nj
   name: New Jersey income tax regulations
   queue_status: blocked_primary_source
@@ -25644,10 +26153,11 @@ states:
   index_url: https://www.nj.gov/oal/rules/accessp/
   index_document_count: 0
   taken_count: 0
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). N.J.A.C. 18:35
-    Gross Income Tax. The Office of Administrative Law''s public-access page states that free online access to the New Jersey Administrative
-    Code is provided by LexisNexis; nj.gov posts no N.J.A.C. text (Division of Taxation lawsregs page, HTTP 200, links only to the OAL
-    search). A vendor site is not an official publisher under the source policy: no extraction.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    N.J.A.C. 18:35 Gross Income Tax. The Office of Administrative Law''s public-access page states that free online access
+    to the New Jersey Administrative Code is provided by LexisNexis; nj.gov posts no N.J.A.C. text (Division of Taxation lawsregs
+    page, HTTP 200, links only to the OAL search). A vendor site is not an official publisher under the source policy: no
+    extraction.'
 - jurisdiction: us-nm
   name: New Mexico income tax regulations
   queue_status: done
@@ -25662,10 +26172,10 @@ states:
   index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
   index_document_count: 21
   taken_count: 20
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 3.3 NMAC Personal
-    Income Taxes parts from the State Records Center and Archives (parts 1-37 probed; 21 published parts, the expired part 31 not taken):
-    269 section rows. Rows: 289 (20 document, 269 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
-    body 21,487 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    3.3 NMAC Personal Income Taxes parts from the State Records Center and Archives (parts 1-37 probed; 21 published parts,
+    the expired part 31 not taken): 269 section rows. Rows: 289 (20 document, 269 section); coverage complete, 0 missing,
+    0 extra, 0 duplicate citation paths; largest body 21,487 chars.'
 - jurisdiction: us-ny
   name: New York income tax regulations
   queue_status: done
@@ -25680,13 +26190,34 @@ states:
   index_url: https://govt.westlaw.com/nycrr/Index?transitionType=Default&contextData=(sc.Default)
   index_document_count: 82
   taken_count: 44
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 20 NYCRR Chapter
-    II Subchapter A (New York State Personal Income Tax under Article 22): 82 parts listed under its seven articles, 44 current parts
-    taken via extract-nycrr-parts (govt.westlaw.com/nycrr, the Department of State''s public NYCRR). 2,015 rows (46 documents, 228 sections,
-    nested subdivisions/paragraphs). Adapter change: repealed section ranges (''s 101.5 -- 101.7 (Repealed)'') get a range citation
-    and a second nested paragraph with the same alpha/roman label is not emitted twice. Rows: 2015 (44 part, 46 document, 228 section,
-    498 subdivision, 536 paragraph, 324 subparagraph, 220 clause, 114 subclause, 5 item); coverage complete, 0 missing, 0 extra, 0 duplicate
-    citation paths; largest body 108,526 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    20 NYCRR Chapter II Subchapter A (New York State Personal Income Tax under Article 22): 82 parts listed under its seven
+    articles, 44 current parts taken via extract-nycrr-parts (govt.westlaw.com/nycrr, the Department of State''s public NYCRR).
+    2,015 rows (46 documents, 228 sections, nested subdivisions/paragraphs). Adapter change: repealed section ranges (''s
+    101.5 -- 101.7 (Repealed)'') get a range citation and a second nested paragraph with the same alpha/roman label is not
+    emitted twice. Rows: 2015 (44 part, 46 document, 228 section, 498 subdivision, 536 paragraph, 324 subparagraph, 220 clause,
+    114 subclause, 5 item); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 108,526 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: New York State Department of Taxation and Finance
+    index_url: https://www.tax.ny.gov/forms/income_fullyear_forms.htm
+    index_document_count: 25
+    index_count_method: form pages linked on the full-year resident forms index
+    closure_elements:
+    - F01
+    target_manifest: manifests/us-ny-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
+    taken_count: 1
+    documents:
+    - us-ny/form/tax/ty2025/it-201
+    notes: Served the corpus client; the IT-201 link passes through an e-file interstitial page before the PDF.
 - jurisdiction: us-oh
   name: Ohio income tax regulations
   queue_status: done
@@ -25701,11 +26232,37 @@ states:
   index_url: https://codes.ohio.gov/ohio-administrative-code/5703
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). OAC Chapter
-    5703-7 Income Tax (Department of Taxation) via extract-ohio-administrative-code --only-agency 5703 --only-chapter 5703-7 (codes.ohio.gov):
-    14 rule rows. Extracted in this run''s first session (agent 1). Root row us-oh/regulation collides with the released consolidated
-    5101-4 scope by adapter design: needs consolidation by the controller. Rows: 17 (1 collection, 1 agency, 1 chapter, 14 rule); coverage
-    complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 5,999 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    OAC Chapter 5703-7 Income Tax (Department of Taxation) via extract-ohio-administrative-code --only-agency 5703 --only-chapter
+    5703-7 (codes.ohio.gov): 14 rule rows. Extracted in this run''s first session (agent 1). Root row us-oh/regulation collides
+    with the released consolidated 5101-4 scope by adapter design: needs consolidation by the controller. Rows: 17 (1 collection,
+    1 agency, 1 chapter, 14 rule); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 5,999 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Ohio Department of Taxation
+    index_url: https://tax.ohio.gov/individual/get-a-form
+    index_document_count: 5
+    index_count_method: 2025 individual / SD 100 products linked on the Get a Form page
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-oh-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-oh/form/odt/ty2025/form-it-1040
+    - us-oh/form/odt/ty2025/it-1040-sd-100-instructions
+    notes: tax.ohio.gov needs the documented Chrome fallback; dam.assets.ohio.gov served the corpus client.
 - jurisdiction: us-ok
   name: Oklahoma income tax regulations
   queue_status: done
@@ -25720,11 +26277,11 @@ states:
   index_url: https://rules.ok.gov/home
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). OAC Title
-    710 Chapter 50 Income (Tax Commission) from the Office of Administrative Rules'' rules API (GetSegmentsByChapterNum titleNum=710
-    chapterNum=50 served the plain client today): 172 section rows and 2 appendices; 47 revoked and 1 reserved segments excluded. Rows:
-    175 (1 document, 172 section, 2 appendix); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 15,695
-    chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    OAC Title 710 Chapter 50 Income (Tax Commission) from the Office of Administrative Rules'' rules API (GetSegmentsByChapterNum
+    titleNum=710 chapterNum=50 served the plain client today): 172 section rows and 2 appendices; 47 revoked and 1 reserved
+    segments excluded. Rows: 175 (1 document, 172 section, 2 appendix); coverage complete, 0 missing, 0 extra, 0 duplicate
+    citation paths; largest body 15,695 chars.'
 - jurisdiction: us-or
   name: Oregon income tax regulations
   queue_status: done
@@ -25739,11 +26296,39 @@ states:
   index_url: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=61
   index_document_count: 3
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). OAR Chapter
-    150 (Department of Revenue) Division 316 Personal Income Tax General Provisions via extract-oregon-administrative-rules --only-chapter
-    150 --only-division 316: 145 rule rows. Divisions 314 and 315 (income taxation generally, credits) not taken. Root row us-or/regulation
-    collides with the released TANF chapter-461 scope by adapter design: needs consolidation by the controller. Rows: 148 (1 collection,
-    1 chapter, 1 division, 145 rule); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 23,942 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    OAR Chapter 150 (Department of Revenue) Division 316 Personal Income Tax General Provisions via extract-oregon-administrative-rules
+    --only-chapter 150 --only-division 316: 145 rule rows. Divisions 314 and 315 (income taxation generally, credits) not
+    taken. Root row us-or/regulation collides with the released TANF chapter-461 scope by adapter design: needs consolidation
+    by the controller. Rows: 148 (1 collection, 1 chapter, 1 division, 145 rule); coverage complete, 0 missing, 0 extra, 0
+    duplicate citation paths; largest body 23,942 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Oregon Department of Revenue
+    index_url: https://www.oregon.gov/dor/programs/individuals/Pages/default.aspx
+    index_document_count: 3
+    index_count_method: PDF links on the individuals program page (the forms library at /dor/forms/Pages/default.aspx is a
+      JavaScript SharePoint list with no links in the served HTML)
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-or-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-or/form/dor/ty2025/form-or-40
+    - us-or/form/dor/ty2025/form-or-40-instructions
+    notes: Served the corpus client.
 - jurisdiction: us-pa
   name: Pennsylvania income tax regulations
   queue_status: done
@@ -25758,11 +26343,20 @@ states:
   index_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/061toc.html
   index_document_count: 13
   taken_count: 13
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 61 Pa. Code
-    Part I Subpart B Article V Personal Income Tax chapters 101-125 via extract-pennsylvania-code --only-title 61 --only-chapter 101,...,125
-    (new comma-separated chapter filter): 166 section rows in 13 chapters. Root rows us-pa/regulation and title-61 are not carried by
-    any released us-pa scope. Rows: 181 (1 collection, 1 title, 13 chapter, 166 section); coverage complete, 0 missing, 0 extra, 0 duplicate
-    citation paths; largest body 49,724 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    61 Pa. Code Part I Subpart B Article V Personal Income Tax chapters 101-125 via extract-pennsylvania-code --only-title
+    61 --only-chapter 101,...,125 (new comma-separated chapter filter): 166 section rows in 13 chapters. Root rows us-pa/regulation
+    and title-61 are not carried by any released us-pa scope. Rows: 181 (1 collection, 1 title, 13 chapter, 166 section);
+    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 49,724 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: blocked_primary_source
+    publisher: Pennsylvania Department of Revenue
+    index_url: https://www.pa.gov/agencies/revenue/forms-and-publications/forms-for-individuals
+    taken_count: 0
+    notes: The Personal Income Tax Forms entry redirects to a Coveo-driven search listing (forms-and-publications.html#f-copapwptopic=Personal%20Income%20Tax)
+      whose served HTML carries one unrelated PDF link and no PA-40 reference (plain and Chrome user agents alike); no PA-40
+      URL could be confirmed from an index; nothing guessed.
 - jurisdiction: us-ri
   name: Rhode Island income tax regulations
   queue_status: done
@@ -25777,10 +26371,38 @@ states:
   index_url: https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
   index_document_count: 15
   taken_count: 13
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 280-RICR-20-55
-    Personal Income Tax parts from the Department of State''s RICR (15 parts listed; 13 taken, parts 15 and 17 have no published PDF
-    on their part pages): 100 section rows. Rows: 113 (13 document, 100 section); coverage complete, 0 missing, 0 extra, 0 duplicate
-    citation paths; largest body 7,978 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    280-RICR-20-55 Personal Income Tax parts from the Department of State''s RICR (15 parts listed; 13 taken, parts 15 and
+    17 have no published PDF on their part pages): 100 section rows. Rows: 113 (13 document, 100 section); coverage complete,
+    0 missing, 0 extra, 0 duplicate citation paths; largest body 7,978 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Rhode Island Division of Taxation
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    index_document_count: 27
+    index_count_method: file-list items labelled (2025) on the personal income tax forms page
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-ri-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 8
+      source_count: 8
+      missing: 0
+    taken_count: 4
+    documents:
+    - us-ri/form/tax/ty2025/ri-1040
+    - us-ri/form/tax/ty2025/ri-1040-instructions
+    - us-ri/form/tax/ty2025/tax-tables
+    - us-ri/form/tax/ty2025/tax-rate-schedule-and-worksheets
+    notes: Served the corpus client.
 - jurisdiction: us-sc
   name: South Carolina income tax regulations
   queue_status: done
@@ -25795,10 +26417,36 @@ states:
   index_url: https://www.scstatehouse.gov/coderegs/statmast.php
   index_document_count: 1
   taken_count: 1
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). S.C. Code
-    of Regulations Chapter 117 Department of Revenue from the Legislative Services Agency chapter PDF (the department''s single regulations
-    chapter; income tax articles are inside it): 290 regulation rows. Rows: 291 (1 document, 290 section); coverage complete, 0 missing,
-    0 extra, 0 duplicate citation paths; largest body 85,648 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    S.C. Code of Regulations Chapter 117 Department of Revenue from the Legislative Services Agency chapter PDF (the department''s
+    single regulations chapter; income tax articles are inside it): 290 regulation rows. Rows: 291 (1 document, 290 section);
+    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 85,648 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: South Carolina Department of Revenue
+    index_url: https://dor.sc.gov/find-a-form?search_api_fulltext=sc1040&field_category=individual_income&field_document_type=All&field_tax_year=All
+    index_document_count: 7
+    index_count_method: PDFs with the _2025 suffix in the SC1040 search of the individual income category
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F05
+    target_manifest: manifests/us-sc-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-sc/form/dor/ty2025/sc1040
+    - us-sc/form/dor/ty2025/sc1040-instructions
+    - us-sc/form/dor/ty2025/sc1040tt
+    notes: Served the corpus client (server-rendered Drupal search).
 - jurisdiction: us-ut
   name: Utah income tax regulations
   queue_status: needs_review
@@ -25813,11 +26461,11 @@ states:
   index_url: https://adminrules.utah.gov/public/rule/R865-9I/Current%20Rules
   index_document_count: 0
   taken_count: 0
-  notes: 2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Utah Admin.
-    Code R865-9I Income Tax. adminrules.utah.gov is a JavaScript application; the public API paths in its bundle (/api/public/rule/{a}/{b}/{c},
-    getHTML/{file}, ruleversioninfo/{id}) answer every guessed argument shape with HTTP 400/204, and searchRuleDataTotal returns the
-    agency tree with empty rule lists, so the rule's current-file id (the getfile uuid the July R986 manifest used) could not be discovered
-    without the browser. Not extracted; needs a session with the browser to capture the file id.
+  notes: 2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Utah
+    Admin. Code R865-9I Income Tax. adminrules.utah.gov is a JavaScript application; the public API paths in its bundle (/api/public/rule/{a}/{b}/{c},
+    getHTML/{file}, ruleversioninfo/{id}) answer every guessed argument shape with HTTP 400/204, and searchRuleDataTotal returns
+    the agency tree with empty rule lists, so the rule's current-file id (the getfile uuid the July R986 manifest used) could
+    not be discovered without the browser. Not extracted; needs a session with the browser to capture the file id.
 - jurisdiction: us-va
   name: Virginia income tax regulations
   queue_status: done
@@ -25832,11 +26480,38 @@ states:
   index_url: https://law.lis.virginia.gov/admincode/title23/agency10/
   index_document_count: 2
   taken_count: 2
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). 23VAC10-110
-    Individual Income Tax and 23VAC10-140 Income Tax Withholding via extract-virginia-vac --only-title 23 --only-agency 10 --only-chapter
-    110,140 (new comma-separated chapter filter): 72 section rows. Root rows are not carried by any released us-va scope. Rows: 77 (1
-    collection, 1 title, 1 agency, 2 chapter, 72 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
-    body 9,514 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    23VAC10-110 Individual Income Tax and 23VAC10-140 Income Tax Withholding via extract-virginia-vac --only-title 23 --only-agency
+    10 --only-chapter 110,140 (new comma-separated chapter filter): 72 section rows. Root rows are not carried by any released
+    us-va scope. Rows: 77 (1 collection, 1 title, 1 agency, 2 chapter, 72 section); coverage complete, 0 missing, 0 extra,
+    0 duplicate citation paths; largest body 9,514 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Virginia Department of Taxation
+    index_url: https://www.tax.virginia.gov/forms/search?category=1&year=657
+    index_document_count: 40
+    index_count_method: PDF hrefs on the Individual Income Tax forms search for year 2025
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-va-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-va/form/tax/ty2025/form-760
+    - us-va/form/tax/ty2025/form-760-instructions
+    - us-va/form/tax/ty2025/tax-table
+    notes: Served the corpus client.
 - jurisdiction: us-vt
   name: Vermont income tax regulations
   queue_status: done
@@ -25851,10 +26526,11 @@ states:
   index_url: https://tax.vermont.gov/research-and-reports/legal-library/regulations
   index_document_count: 17
   taken_count: 2
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Vermont Department
-    of Taxes income tax regulations §1.5811(21)(B)(ii) Capital Gains Exclusion and §1.5811(11)(A)(i) Domicile from the department''s
-    regulations page (17 regulations listed; the two individual income tax regulations taken, page rows). Rows: 14 (2 document, 12 page);
-    coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 3,061 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Vermont Department of Taxes income tax regulations §1.5811(21)(B)(ii) Capital Gains Exclusion and §1.5811(11)(A)(i) Domicile
+    from the department''s regulations page (17 regulations listed; the two individual income tax regulations taken, page
+    rows). Rows: 14 (2 document, 12 page); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body
+    3,061 chars.'
 - jurisdiction: us-wi
   name: Wisconsin income tax regulations
   queue_status: done
@@ -25869,10 +26545,36 @@ states:
   index_url: https://docs.legis.wisconsin.gov/code/admin_code/tax
   index_document_count: 22
   taken_count: 2
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Wis. Admin.
-    Code chapters Tax 2 and Tax 3 (income taxation: returns, records, gross income; deductions, exclusions, exemptions) from the Legislative
-    Reference Bureau chapter PDFs (22 Tax chapters listed): 64 section rows. Rows: 66 (2 document, 64 section); coverage complete, 0
-    missing, 0 extra, 0 duplicate citation paths; largest body 112,676 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    Wis. Admin. Code chapters Tax 2 and Tax 3 (income taxation: returns, records, gross income; deductions, exclusions, exemptions)
+    from the Legislative Reference Bureau chapter PDFs (22 Tax chapters listed): 64 section rows. Rows: 66 (2 document, 64
+    section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 112,676 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: Wisconsin Department of Revenue
+    index_url: https://www.revenue.wi.gov/Pages/Form/2025Individual.aspx
+    index_document_count: 173
+    index_count_method: distinct TaxForms2025/*.pdf links on the 2025 Individual forms page
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    - F05
+    target_manifest: manifests/us-wi-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    taken_count: 2
+    documents:
+    - us-wi/form/dor/ty2025/form-1
+    - us-wi/form/dor/ty2025/form-1-instructions
+    notes: Served the corpus client.
 - jurisdiction: us-wv
   name: West Virginia income tax regulations
   queue_status: done
@@ -25887,8 +26589,84 @@ states:
   index_url: https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
   index_document_count: 6
   taken_count: 6
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). W. Va. Code
-    of State Rules 110-21 Personal Income Tax and its active series 110-21A, 21B, 21C, 21G and 21H from the Secretary of State''s Code
-    of State Rules (rule.aspx?rule=110-21; final-file PDFs via readfile.aspx). The files are scanned images: ocr: true, 49 page rows.
-    The 1990 110-21 final file is the 3-page filing on record. Rows: 55 (6 document, 49 page); coverage complete, 0 missing, 0 extra,
-    0 duplicate citation paths; largest body 4,124 chars.'
+  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
+    W. Va. Code of State Rules 110-21 Personal Income Tax and its active series 110-21A, 21B, 21C, 21G and 21H from the Secretary
+    of State''s Code of State Rules (rule.aspx?rule=110-21; final-file PDFs via readfile.aspx). The files are scanned images:
+    ocr: true, 49 page rows. The 1990 110-21 final file is the 3-page filing on record. Rows: 55 (6 document, 49 page); coverage
+    complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 4,124 chars.'
+  ty2025_forms_closure_scope:
+    run_note: docs/ingest-runs/2026-09-15-tax.md
+    queue_status: agent_ready
+    publisher: West Virginia Tax Division
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    index_document_count: 20
+    index_count_method: distinct /Documents/PIT/2025/*.pdf links on the Individuals page
+    closure_elements:
+    - F01
+    - F02
+    - F03
+    - F04
+    target_manifest: manifests/us-wv-individual-income-tax-forms-ty2025-closure.yaml
+    document_class: form
+    version: 2026-09-15-income-tax-forms-ty2025
+    coverage:
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
+    taken_count: 3
+    documents:
+    - us-wv/form/tax/ty2025/it-140-forms-and-instructions
+    - us-wv/form/tax/ty2025/it-140-tax-table
+    - us-wv/form/tax/ty2025/it-140-tax-rate-schedules
+    notes: Served the corpus client.
+- jurisdiction: us
+  name: 'Federal (wave 5 closure: IRS forms/publications, revenue procedures, 26 CFR 301.7701-18)'
+  queue_status: agent_ready
+  source_kind: official_pdf_and_html_forms_instructions
+  primary_source_url: https://www.irs.gov/forms-instructions
+  target_manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: form
+    version: 2026-09-15-irs-forms-ty2025
+  lead_counts: {}
+  candidate_sources: []
+  index_url: https://www.irs.gov/forms-instructions
+  index_document_count: 35
+  taken_count: 28
+  scopes:
+  - document_class: form
+    version: 2026-09-15-irs-forms-ty2025
+    coverage:
+      version: 2026-09-15-irs-forms-ty2025
+      complete: true
+      provision_count: 886
+      missing: 0
+      extra: 0
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+  - document_class: guidance
+    version: 2026-09-15-irs-guidance-rev-proc
+    coverage:
+      version: 2026-09-15-irs-guidance-rev-proc
+      complete: true
+      provision_count: 31
+      missing: 0
+      extra: 0
+    manifest: manifests/us-irs-guidance-rev-proc-2024-40-2025-19.yaml
+  - document_class: regulation
+    version: 2026-09-15-title-26-part-301-closure-title-26-part-301
+    coverage:
+      version: 2026-09-15-title-26-part-301-closure-title-26-part-301
+      complete: true
+      provision_count: 3
+      missing: 0
+      extra: 0
+    manifest: null
+  notes: '2026-09-15 wave-5 tax closure (docs/ingest-runs/2026-09-15-tax.md): 28 IRS products the 2026-09-14 recount marked
+    EXTRACTABLE (Schedule 1-A, Schedules C/E with instructions, Forms 2441/8863/6251/8959/8960/8995/8995-A/8880 with instructions,
+    2026 Form 1040-ES and W-4, Publications 501/596/970 (2025 HTML editions), Form 1040-SR (product id f1040s), Publication
+    15-T (2026 HTML and 2025 PDF editions)) via scripts/build_tax_forms_manifests.py --wave5-federal; Rev. Proc. 2025-19 (IRB
+    2025-23) and Rev. Proc. 2024-40 (IRB 2024-45) as guidance; 26 CFR 301.7701-18 via extract-ecfr --only-part 301 --section
+    301.7701-18 (eCFR as of 2026-09-11). 26 CFR part 1/31 sections, 26 U.S.C. 71/215 were already held (see the decisions
+    CSV).'

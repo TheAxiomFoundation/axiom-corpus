@@ -377,9 +377,100 @@ def build_statute(*, verify_only: bool = False) -> None:
     )
 
 
+# --------------------------------------------------------------------- wave 5: North Carolina
+
+NC_ARTICLE_URL = "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_105/Article_{article}.html"
+NC_SECTION_URL = "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-{section}.html"
+NC_ARTICLES = ("4", "4A")
+# Sections whose heading the by-article page lists but for which the General Assembly
+# publishes no per-section page (HTTP 404 on 2026-09-14): repealed placeholders.
+NC_NO_SECTION_PAGE = {"163"}
+W5_SOURCE_AS_OF = "2026-09-15"
+W5_STATUTE_VERSION = "2026-09-15-income-tax-chapter"
+
+
+def build_north_carolina(session: requests.Session) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """G.S. Chapter 105 Articles 4 (Income Tax) and 4A (Withholding; Estimated Income Tax
+    for Individuals): one official per-section HTML page each, the section list read from
+    the General Assembly's by-article HTML (section headings ``§ 105-N.``)."""
+    rows: list[tuple[str, str, str, str]] = []
+    seen: set[str] = set()
+    part = ""
+    for article in NC_ARTICLES:
+        html = _get(session, NC_ARTICLE_URL.format(article=article))
+        pattern = re.compile(
+            r"(?:Part (?P<part>\d+)\.\s*(?P<part_heading>[^<]{0,80}))"
+            r"|(?:(?:&sect;|&#167;|§)(?:&nbsp;|\s)*105-(?P<section>1[3-6][0-9](?:\.[0-9]+)?[A-Z]?)\.(?:&nbsp;|\s)*(?P<heading>[^<]{0,200}))"
+        )
+        count = 0
+        for match in pattern.finditer(html):
+            if match.group("part"):
+                part = f"Part {match.group('part')}. {match.group('part_heading').strip()}"
+                continue
+            section = match.group("section")
+            if section in seen or section in NC_NO_SECTION_PAGE:
+                continue
+            seen.add(section)
+            heading = re.sub(r"\s+", " ", match.group("heading")).strip()
+            rows.append((article, section, heading, part))
+            count += 1
+        if count < 10:
+            raise RuntimeError(f"G.S. 105 Article {article} page listed only {count} sections")
+    documents = [
+        _statute_document(
+            jurisdiction="us-nc",
+            source_id=f"us-nc-gs-105-{section.replace('.', '-')}",
+            title=f"G.S. 105-{section}. {heading}".strip(),
+            source_url=NC_SECTION_URL.format(section=section),
+            source_format="html",
+            citation_path=f"us-nc/statute/105/105-{section}",
+            extraction={"html_content_selector": "body"},
+            authority="North Carolina General Assembly",
+            index_url=NC_ARTICLE_URL.format(article=article),
+            metadata={"chapter": "105", "article": article, "part": part_heading, "section": f"105-{section}",
+                      "repealed_or_renumbered": bool(re.match(r"(?i)^(repealed|recodified|transferred|reserved)", heading))},
+        )
+        for article, section, heading, part_heading in rows
+    ]
+    for doc in documents:
+        doc["source_as_of"] = W5_SOURCE_AS_OF
+        doc["expression_date"] = W5_SOURCE_AS_OF
+        doc["metadata"]["source_status"] = f"current_official_codified_text_as_of_{W5_SOURCE_AS_OF}"
+        doc["metadata"]["source_family"] = "state-income-tax-chapter-2026-09-15"
+    inventory = {
+        "index_url": [NC_ARTICLE_URL.format(article=a) for a in NC_ARTICLES],
+        "index_document_count": len(rows),
+        "index_count_method": "section headings on the General Assembly by-article HTML pages for Articles 4 and 4A",
+        "taken_count": len(documents),
+        "repealed_or_renumbered_stubs": sum(1 for d in documents if d["metadata"]["repealed_or_renumbered"]),
+        "no_section_page": sorted(NC_NO_SECTION_PAGE),
+        "articles": {a: sum(1 for r in rows if r[0] == a) for a in NC_ARTICLES},
+    }
+    return documents, inventory
+
+
+def build_north_carolina_statute(*, verify_only: bool = False) -> None:
+    session = _session()
+    docs, inv = build_north_carolina(session)
+    print(json.dumps({"us-nc": inv}, indent=1))
+    if verify_only:
+        return
+    _write_manifest(
+        MANIFESTS / "us-nc-gs-chapter-105-article-4-income-tax.yaml",
+        {"version": W5_STATUTE_VERSION, "documents": docs},
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--family", choices=("statute", "amounts", "queue"), required=True)
+    parser.add_argument(
+        "--family",
+        choices=("statute", "amounts", "queue", "forms", "forms-queue", "nc-statute"),
+        required=True,
+        help="wave 5 (2026-09-15): forms = TY2025 state resident-return manifests from "
+        "state_tax_ty2025_forms.py; forms-queue = their queue rows; nc-statute = the North "
+        "Carolina G.S. Chapter 105 Article 4 section manifest",
+    )
     parser.add_argument("--verify", action="store_true", help="read the indexes and print counts without writing")
     args = parser.parse_args()
     if args.family == "statute":
@@ -390,6 +481,19 @@ def main() -> int:
 
     if args.family == "amounts":
         build_amounts(verify_only=args.verify)
+        return 0
+    if args.family == "forms":
+        from state_tax_ty2025_forms import build_forms
+
+        build_forms(verify_only=args.verify)
+        return 0
+    if args.family == "forms-queue":
+        from state_tax_ty2025_forms import update_queue as update_forms_queue
+
+        update_forms_queue()
+        return 0
+    if args.family == "nc-statute":
+        build_north_carolina_statute(verify_only=args.verify)
         return 0
     update_queue()
     return 0
