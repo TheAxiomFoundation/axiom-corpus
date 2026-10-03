@@ -95,6 +95,13 @@ jobs:
         if: github.event_name != 'schedule'
         env:
           AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
+          # Read-only R2 token for corpus bytes kept outside git
+          # (docs/corpus-storage.md). Unused until .axiom/corpus-locks exists.
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_REF="${{ github.event.pull_request.base.sha }}"
@@ -108,11 +115,76 @@ jobs:
             --base-ref "$BASE_REF" \
             --head-ref "${{ github.sha }}"
 
+      - name: Audit every corpus lock entry's attestation
+        # The guard checks lock changes against the base; this checks every
+        # entry against signed manifests and the base branch's first-parent
+        # history. Like the guard, it runs the verifier installed from the
+        # base commit, so a pull request cannot change the verifier's code
+        # (this workflow file itself still comes from the pull request, so
+        # review of workflow changes stays the trust root). No-op without
+        # lock files.
+        env:
+          AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
+        run: |
+          if [ ! -d .axiom/corpus-locks ]; then
+            echo "No corpus lock files; corpus bytes are tracked in git."
+            exit 0
+          fi
+          if ! axiom-corpus-ingest corpus verify --help 2>/dev/null | grep -q -- '--attest'; then
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              # Only the pull request that adds lock audits has a base without them.
+              echo "The base commit's verifier predates lock audits; auditing with the checked-out code."
+            else
+              # push and schedule runs audit the branch's own commit with its own code.
+              echo "No base verifier on ${{ github.event_name }} runs; auditing with the checked-out code."
+            fi
+            python -I -m pip install -e "$GITHUB_WORKSPACE"
+          fi
+          axiom-corpus-ingest corpus verify --attest --ref "${{ github.sha }}"
+
       - name: Install dependencies
         run: |
           cd "$RUNNER_TEMP"
           python -I -m pip install --upgrade pip
           python -I -m pip install -e "${GITHUB_WORKSPACE}[dev]"
+
+      - name: Check R2 serves every new corpus lock entry
+        # Every object a lock entry names must be fetchable before it merges;
+        # pushes and the daily run check every entry. No-op without lock files.
+        env:
+          # Read-only R2 token for corpus bytes kept outside git
+          # (docs/corpus-storage.md). Unused until .axiom/corpus-locks exists.
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
+        run: |
+          if [ ! -d .axiom/corpus-locks ]; then
+            echo "No corpus lock files; corpus bytes are tracked in git."
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            axiom-corpus-ingest corpus verify --remote \
+              --changed-since "${{ github.event.pull_request.base.sha }}"
+          else
+            axiom-corpus-ingest corpus verify --remote
+          fi
+
+      - name: Fetch the corpus the tests read
+        # Tests read real corpus data (often whole release selectors), and
+        # tests/conftest.py stops the session if any locked file is absent.
+        # --no-cache streams verified bytes into place: runners have no
+        # copy-on-write clones, so a cache would double disk use. The full
+        # history checkout above serves migrated files from git objects.
+        # No-op without lock files.
+        env:
+          # Read-only R2 token for corpus bytes kept outside git
+          # (docs/corpus-storage.md). Unused until .axiom/corpus-locks exists.
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
+        run: axiom-corpus-ingest corpus fetch --all --no-cache --workers 32
 
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
@@ -146,6 +218,25 @@ jobs:
         uses: actions/setup-python@v6.2.0
         with:
           python-version: "3.14"
+
+      - name: Fetch every locked provisions file
+        # The scan reads every provisions JSONL; with corpus bytes outside git
+        # they come from R2. No-op without lock files.
+        env:
+          # Read-only R2 token for corpus bytes kept outside git
+          # (docs/corpus-storage.md). Unused until .axiom/corpus-locks exists.
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
+        run: |
+          if [ -d .axiom/corpus-locks ]; then
+            python -I -m pip install -e .
+            axiom-corpus-ingest corpus fetch --path data/corpus/provisions --no-cache --workers 32
+          else
+            echo "No corpus lock files; corpus bytes are tracked in git."
+          fi
 
       - name: Validate citation paths against the grammar
         run: |
@@ -196,12 +287,16 @@ jobs:
       - name: Test atomic named-release migration in PostgreSQL
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+          # Database-only tests: they read no corpus files, so this job skips the
+          # corpus fetch (tests/conftest.py).
+          AXIOM_CORPUS_PARTIAL_TESTS: "1"
         run: |
           pytest -v tests/test_atomic_release_postgres.py
 
       - name: Test work queue claims in PostgreSQL
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+          AXIOM_CORPUS_PARTIAL_TESTS: "1"
         run: |
           pytest -v tests/test_ops_work_queue_postgres.py
 
@@ -259,7 +354,30 @@ jobs:
           python-version: "3.14"
       - name: Install package
         run: python -I -m pip install -e .
+      - name: Fetch the corpus the selectors name
+        # Deep validation reads every selected scope's artifacts; with corpus
+        # bytes outside git they come from R2. No-op without lock files.
+        env:
+          # Read-only R2 token for corpus bytes kept outside git
+          # (docs/corpus-storage.md). Unused until .axiom/corpus-locks exists.
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
+        run: |
+          if [ -d .axiom/corpus-locks ]; then
+            set --
+            for selector in manifests/releases/*.json; do set -- "$@" --release "$selector"; done
+            axiom-corpus-ingest corpus fetch --no-cache --workers 32 "$@"
+          else
+            echo "No corpus lock files; corpus bytes are tracked in git."
+          fi
       - name: Deep-validate every named release selector
+        # The step above fetched every selected scope; validation itself
+        # never reaches the network.
+        env:
+          AXIOM_CORPUS_NO_FETCH: "1"
         run: |
           found=0
           for selector in manifests/releases/*.json; do
