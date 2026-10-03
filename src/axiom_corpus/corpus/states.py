@@ -14,6 +14,7 @@ import zipfile
 from collections.abc import Iterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from dataclasses import replace as _dataclass_replace
 from datetime import date
 from io import BytesIO, TextIOWrapper
 from pathlib import Path
@@ -27,7 +28,18 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
-from axiom_corpus.corpus.citation_segment import citation_segment
+from axiom_corpus.corpus.california_versions import (
+    ALL_VERSIONS,
+    LegInfoPicker,
+    LegInfoPickerLink,
+    LegInfoVersion,
+    leginfo_note_clauses,
+    leginfo_page_version,
+    leginfo_variant_slug,
+    parse_leginfo_picker,
+    validate_leginfo_selector,
+)
+from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -511,14 +523,23 @@ class _CaliforniaSection:
     article: str | None
     content_file: str | None
     content_sha256: str
+    variant: str | None = None
 
     @property
     def code_token(self) -> str:
         return self.law_code.lower()
 
     @property
-    def citation_path(self) -> str:
+    def canonical_citation_path(self) -> str:
         return f"us-ca/statute/{self.code_token}/{_california_section_token(self.section)}"
+
+    @property
+    def citation_path(self) -> str:
+        """The plain section path, or its ``--<variant>`` sibling for a pinned version."""
+        return (
+            f"us-ca/statute/{self.code_token}/"
+            f"{_california_section_variant_token(self.section, self.variant)}"
+        )
 
 
 @dataclass(frozen=True)
@@ -2376,11 +2397,31 @@ def extract_california_code_sections(
     ``preserve_tables`` keeps every table cell and row label (see
     ``_california_html_section_body``); it defaults to False so rerunning an
     existing scope reproduces its output under the same version.
+
+    A section spec may select concurrent LegInfo versions: ``WIC:11450@all``
+    captures every version LegInfo's picker offers, and
+    ``WIC:11450@operative-2024-07-01`` captures one of them (see
+    ``california_versions.leginfo_variant_slug``). Each selected version is
+    written at its own same-number variant path
+    (``us-ca/statute/wic/11450--operative-2024-07-01``), never at the plain path,
+    and the picker that offered the versions is retained under
+    ``california-leginfo-pickers/``. A selection LegInfo cannot satisfy exactly
+    raises :class:`CaliforniaVersionError`. Specs without a selector behave
+    exactly as before.
     """
     jurisdiction = "us-ca"
-    selected = tuple(dict.fromkeys(_california_section_spec(section) for section in sections))
+    selected = tuple(dict.fromkeys(_california_section_request(section) for section in sections))
     if not selected:
         raise ValueError("extract_california_code_sections: sections must be non-empty")
+    requested: dict[tuple[str, str], list[str | None]] = {}
+    for law_code, section_num, selector in selected:
+        requested.setdefault((law_code, _california_section_token(section_num)), []).append(selector)
+    for (law_code, token), selectors in requested.items():
+        if len(selectors) > 1 and any(selector is not None for selector in selectors):
+            raise ValueError(
+                f"extract_california_code_sections: {law_code} {token} is requested more than "
+                "once with a version selector; request it once (with @all for every version)"
+            )
     run_id = _california_sections_run_id(version, selected)
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
@@ -2394,58 +2435,104 @@ def extract_california_code_sections(
     errors: list[str] = []
     seen_citation_paths: set[str] = set()
 
-    for index, (law_code, section_num) in enumerate(selected):
+    for index, (law_code, section_num, selector) in enumerate(selected):
         if index:
             time.sleep(max(request_delay_seconds, 0.0))
         source_url = _california_section_url(law_code, section_num)
-        relative_name = _california_section_html_relative_name(law_code, section_num)
+        pages: list[tuple[bytes, str, _CaliforniaCapturedVersion | None]] = []
+        capture: _CaliforniaVersionCapture | None = None
         try:
-            html_bytes = _load_california_section_html(
-                session,
-                source_url=source_url,
-                download_root=cache_root,
-                relative_name=relative_name,
-                timeout_seconds=timeout_seconds,
-                request_attempts=request_attempts,
-            )
+            if selector is None:
+                relative_name = _california_section_html_relative_name(law_code, section_num)
+                html_bytes = _load_california_section_html(
+                    session,
+                    source_url=source_url,
+                    download_root=cache_root,
+                    relative_name=relative_name,
+                    timeout_seconds=timeout_seconds,
+                    request_attempts=request_attempts,
+                )
+                pages.append((html_bytes, relative_name, None))
+            else:
+                capture = _load_california_section_versions(
+                    session,
+                    law_code=law_code,
+                    section_num=section_num,
+                    selector=selector,
+                    source_url=source_url,
+                    download_root=cache_root,
+                    timeout_seconds=timeout_seconds,
+                    request_attempts=request_attempts,
+                    request_delay_seconds=request_delay_seconds,
+                )
+                pages.extend(
+                    (
+                        captured.html_bytes,
+                        _california_section_html_relative_name(
+                            law_code, section_num, captured.variant
+                        ),
+                        captured,
+                    )
+                    for captured in capture.versions
+                )
         except requests.RequestException as exc:
+            if selector is not None:
+                raise CaliforniaVersionError(f"{law_code} {section_num}@{selector}: {exc}") from exc
             errors.append(f"{law_code} {section_num}: {exc}")
             continue
-        html_sha = sha256_bytes(html_bytes)
-        if not _california_html_has_section(html_bytes):
-            errors.append(f"{law_code} {section_num}: no single_law_section found")
-            continue
-        section = _california_section_from_html(
-            law_code=law_code,
-            section=section_num,
-            html_bytes=html_bytes,
-            content_sha256=html_sha,
-            preserve_tables=preserve_tables,
-        )
-        if section.citation_path in seen_citation_paths:
-            continue
-        seen_citation_paths.add(section.citation_path)
-        artifact_path = store.source_path(
-            jurisdiction,
-            DocumentClass.STATUTE,
-            run_id,
-            relative_name,
-        )
-        store.write_bytes(artifact_path, html_bytes)
-        source_paths.append(artifact_path)
-        source_key = _state_source_key(jurisdiction, run_id, relative_name)
-        items.append(
-            SourceInventoryItem(
-                citation_path=section.citation_path,
-                source_url=section.source_url,
-                source_path=source_key,
-                source_format=CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
-                sha256=html_sha,
-                metadata=_california_section_metadata(section),
+        picker_source_key: str | None = None
+        if capture is not None and capture.picker_bytes is not None:
+            picker_relative_name = _california_picker_html_relative_name(law_code, section_num)
+            picker_path = store.source_path(
+                jurisdiction, DocumentClass.STATUTE, run_id, picker_relative_name
             )
-        )
-        records.append(
-            _california_section_provision(
+            store.write_bytes(picker_path, capture.picker_bytes)
+            source_paths.append(picker_path)
+            picker_source_key = _state_source_key(jurisdiction, run_id, picker_relative_name)
+        for html_bytes, relative_name, captured in pages:
+            html_sha = sha256_bytes(html_bytes)
+            if not _california_html_has_section(html_bytes):
+                errors.append(f"{law_code} {section_num}: no single_law_section found")
+                continue
+            section = _california_section_from_html(
+                law_code=law_code,
+                section=section_num,
+                html_bytes=html_bytes,
+                content_sha256=html_sha,
+                preserve_tables=preserve_tables,
+            )
+            extra_metadata: dict[str, Any] = {}
+            if capture is not None and captured is not None:
+                section, extra_metadata = _california_version_section(
+                    section,
+                    capture=capture,
+                    captured=captured,
+                    picker_source_key=picker_source_key,
+                )
+            if section.citation_path in seen_citation_paths:
+                continue
+            seen_citation_paths.add(section.citation_path)
+            artifact_path = store.source_path(
+                jurisdiction,
+                DocumentClass.STATUTE,
+                run_id,
+                relative_name,
+            )
+            store.write_bytes(artifact_path, html_bytes)
+            source_paths.append(artifact_path)
+            source_key = _state_source_key(jurisdiction, run_id, relative_name)
+            metadata = _california_section_metadata(section) | extra_metadata
+            items.append(
+                SourceInventoryItem(
+                    citation_path=section.citation_path,
+                    source_url=section.source_url,
+                    source_path=source_key,
+                    source_format=CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
+                    sha256=html_sha,
+                    metadata=metadata,
+                )
+            )
+            record = _california_section_provision(
                 section,
                 version=run_id,
                 source_path=source_key,
@@ -2453,7 +2540,9 @@ def extract_california_code_sections(
                 source_as_of=source_as_of_text,
                 expression_date=expression_date_text,
             )
-        )
+            records.append(
+                _dataclass_replace(record, metadata=metadata) if extra_metadata else record
+            )
 
     if not items:
         detail = f": {'; '.join(errors)}" if errors else ""
@@ -2474,7 +2563,7 @@ def extract_california_code_sections(
     store.write_json(coverage_path, coverage.to_mapping())
     return StateStatuteExtractReport(
         jurisdiction=jurisdiction,
-        title_count=len({law_code for law_code, _ in selected}),
+        title_count=len({spec[0] for spec in selected}),
         container_count=0,
         section_count=len(records),
         provisions_written=len(records),
@@ -5282,6 +5371,23 @@ def _california_section_url(law_code: str, section: str) -> str:
 
 
 def _california_section_spec(value: str) -> tuple[str, str]:
+    """Parse an unpinned section spec. Version-pinned specs go through
+    :func:`_california_section_request`."""
+    law_code, section, variant = _california_section_request(value)
+    if variant is not None:
+        raise ValueError(f"California section spec pins a LegInfo version: {value!r}")
+    return (law_code, section)
+
+
+def _california_section_request(value: str) -> tuple[str, str, str | None]:
+    """Parse ``LAW:SECTION``, ``LAW SECTION`` or a LegInfo URL, with an optional selector.
+
+    ``LAW:SECTION@all`` selects every concurrent LegInfo version of the section
+    and ``LAW:SECTION@<variant slug>`` selects one (see
+    ``california_versions.leginfo_variant_slug``). Without a selector the third
+    element is ``None`` and the request is exactly the historical
+    ``(law_code, section)`` spec. URL specs never carry a selector.
+    """
     text = value.strip()
     if not text:
         raise ValueError("California section spec must not be empty")
@@ -5291,7 +5397,7 @@ def _california_section_spec(value: str) -> tuple[str, str]:
         law_code = (query.get("lawCode") or query.get("lawcode") or [""])[0].strip().upper()
         section = (query.get("sectionNum") or query.get("sectionnum") or [""])[0].strip()
         if law_code and section:
-            return (law_code, section)
+            return (law_code, section, None)
         raise ValueError(f"California section URL must include lawCode and sectionNum: {value!r}")
     if ":" in text:
         law_code, section = text.split(":", 1)
@@ -5304,25 +5410,48 @@ def _california_section_spec(value: str) -> tuple[str, str]:
         law_code, section = parts
     law_code = law_code.strip().upper()
     section = section.strip()
+    selector: str | None = None
+    if "@" in section:
+        section, raw_selector = section.rsplit("@", 1)
+        section = section.strip()
+        selector = validate_leginfo_selector(raw_selector)
     if not re.fullmatch(r"[A-Z0-9]+", law_code) or not section:
         raise ValueError(f"invalid California section spec: {value!r}")
-    return (law_code, section)
+    return (law_code, section, selector)
 
 
-def _california_sections_run_id(version: str, sections: tuple[tuple[str, str], ...]) -> str:
+def _california_sections_run_id(
+    version: str, sections: tuple[tuple[str, str] | tuple[str, str, str | None], ...]
+) -> str:
+    """Return the scope version for a set of section requests.
+
+    Unpinned requests (2-tuples, or 3-tuples ending in ``None``) give the
+    historical token ``<code>-<section>``; a pinned request adds its variant
+    (``wic-11450--stats-2024-ch-798-sec-2``).
+    """
     scope = "-".join(
-        f"{law_code.lower()}-{_california_section_token(section)}"
-        for law_code, section in sections
+        f"{spec[0].lower()}-"
+        f"{_california_section_variant_token(spec[1], spec[2] if len(spec) > 2 else None)}"
+        for spec in sections
     )
     if len(scope) > 120:
         scope = hashlib.sha256(scope.encode("utf-8")).hexdigest()[:16]
     return f"{version}-us-ca-sections-{scope}"
 
 
-def _california_section_html_relative_name(law_code: str, section: str) -> str:
+def _california_section_html_relative_name(
+    law_code: str, section: str, variant: str | None = None
+) -> str:
     return (
         "california-leginfo-sections/"
-        f"{law_code.upper()}-{_california_section_token(section)}.html"
+        f"{law_code.upper()}-{_california_section_variant_token(section, variant)}.html"
+    )
+
+
+def _california_picker_html_relative_name(law_code: str, section: str) -> str:
+    """Where the ``selectFromMultiples`` page behind pinned versions is kept."""
+    return (
+        f"california-leginfo-pickers/{law_code.upper()}-{_california_section_token(section)}.html"
     )
 
 
@@ -5340,15 +5469,12 @@ def _load_california_section_html(
         content = cache_path.read_bytes()
         if _california_html_has_section(content):
             return content
-    attempts = max(request_attempts, 1)
-    response: requests.Response | None = None
-    for attempt in range(attempts):
-        response = session.get(source_url, timeout=timeout_seconds)
-        if response.status_code < 500 or attempt == attempts - 1:
-            break
-        time.sleep(min(2**attempt, 8))
-    assert response is not None
-    response.raise_for_status()
+    response = _california_get(
+        session,
+        source_url,
+        timeout_seconds=timeout_seconds,
+        request_attempts=request_attempts,
+    )
     content = _resolve_california_multiple_section_html(
         session,
         source_url=source_url,
@@ -5359,6 +5485,301 @@ def _load_california_section_html(
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_bytes(content)
     return content
+
+
+def _california_get(
+    session: requests.Session,
+    url: str,
+    *,
+    timeout_seconds: float,
+    request_attempts: int,
+) -> requests.Response:
+    """GET ``url``, retrying only 5xx answers with capped exponential backoff."""
+    attempts = max(request_attempts, 1)
+    response: requests.Response | None = None
+    for attempt in range(attempts):
+        response = session.get(url, timeout=timeout_seconds)
+        if response.status_code < 500 or attempt == attempts - 1:
+            break
+        time.sleep(min(2**attempt, 8))
+    assert response is not None
+    response.raise_for_status()
+    return response
+
+
+@dataclass(frozen=True)
+class _CaliforniaCapturedVersion:
+    """One concurrent LegInfo version page and its variant slug."""
+
+    variant: str
+    html_bytes: bytes
+    version: LegInfoVersion
+    link: LegInfoPickerLink | None
+
+
+@dataclass(frozen=True)
+class _CaliforniaVersionCapture:
+    """The selected versions of one section and the picker that offered them."""
+
+    selector: str
+    picker_bytes: bytes | None
+    picker: LegInfoPicker | None
+    versions: tuple[_CaliforniaCapturedVersion, ...]
+
+    @property
+    def variants(self) -> tuple[str, ...]:
+        return tuple(captured.variant for captured in self.versions)
+
+
+class CaliforniaVersionError(ValueError):
+    """Concurrent LegInfo versions could not be captured exactly as selected."""
+
+
+def _california_page_variant(
+    html_bytes: bytes, *, label: str
+) -> tuple[LegInfoVersion, str] | None:
+    """Return a version page's triple and its variant slug, or ``None`` without a triple.
+
+    A note the slug rules cannot read (an impossible date, an unsafe op value)
+    raises :class:`CaliforniaVersionError` with that cause.
+    """
+    version = leginfo_page_version(html_bytes)
+    if version is None:
+        return None
+    soup = BeautifulSoup(html_bytes, "html.parser")
+    history = _california_html_history(soup.find(id="single_law_section") or soup)
+    try:
+        return version, leginfo_variant_slug(history, version)
+    except ValueError as exc:
+        raise CaliforniaVersionError(f"{label}: {exc}") from exc
+
+
+def _select_california_versions(
+    captured: list[_CaliforniaCapturedVersion],
+    *,
+    selector: str,
+    label: str,
+) -> tuple[_CaliforniaCapturedVersion, ...]:
+    slugs = [item.variant for item in captured]
+    duplicates = sorted({slug for slug in slugs if slugs.count(slug) > 1})
+    if duplicates:
+        raise CaliforniaVersionError(
+            f"{label}: concurrent LegInfo versions share variant slug {', '.join(duplicates)}"
+        )
+    if selector == ALL_VERSIONS:
+        return tuple(captured)
+    chosen = tuple(item for item in captured if item.variant == selector)
+    if not chosen:
+        raise CaliforniaVersionError(
+            f"{label}: LegInfo offers {', '.join(slugs) or 'no version'}, not {selector}"
+        )
+    return chosen
+
+
+def _cached_california_versions(
+    download_root: Path,
+    *,
+    law_code: str,
+    section_num: str,
+    selector: str,
+    label: str,
+) -> _CaliforniaVersionCapture | None:
+    """Rebuild a capture from the download cache, or return ``None`` if it is incomplete.
+
+    The cache must hold the picker and a version page for every link it offers,
+    each named by its own variant slug, so a rerun from retained bytes needs no
+    request and selects exactly what the network run selected. Without a cached
+    picker the section is refetched, so missing versions cannot pass for a
+    single-version section. Two cached pages of one version raise.
+    """
+    token = _california_section_token(section_num)
+    picker_path = download_root / _california_picker_html_relative_name(law_code, section_num)
+    pages_dir = download_root / "california-leginfo-sections"
+    by_version: dict[tuple[str, str, str], tuple[bytes, LegInfoVersion, str]] = {}
+    if pages_dir.is_dir():
+        for path in sorted(pages_dir.glob(f"{law_code.upper()}-{token}--*.html")):
+            content = path.read_bytes()
+            if not _california_html_has_section(content):
+                continue
+            identified = _california_page_variant(content, label=label)
+            if identified is None:
+                continue
+            page_version, slug = identified
+            expected_name = _california_section_html_relative_name(law_code, section_num, slug)
+            if path.name != Path(expected_name).name:
+                continue
+            if page_version.normalized() in by_version:
+                raise CaliforniaVersionError(
+                    f"{label}: the download cache holds two pages of {page_version.label}"
+                )
+            by_version[page_version.normalized()] = (content, page_version, slug)
+    if not picker_path.exists():
+        return None
+    picker_bytes = picker_path.read_bytes()
+    picker = parse_leginfo_picker(picker_bytes)
+    if picker is None or not picker.links:
+        return None
+    if any(link.version.normalized() not in by_version for link in picker.links):
+        return None
+    captured = [
+        _CaliforniaCapturedVersion(
+            variant=by_version[link.version.normalized()][2],
+            html_bytes=by_version[link.version.normalized()][0],
+            version=by_version[link.version.normalized()][1],
+            link=link,
+        )
+        for link in picker.links
+    ]
+    return _CaliforniaVersionCapture(
+        selector=selector,
+        picker_bytes=picker_bytes,
+        picker=picker,
+        versions=_select_california_versions(captured, selector=selector, label=label),
+    )
+
+
+def _load_california_section_versions(
+    session: requests.Session,
+    *,
+    law_code: str,
+    section_num: str,
+    selector: str,
+    source_url: str,
+    download_root: Path | None,
+    timeout_seconds: float,
+    request_attempts: int,
+    request_delay_seconds: float,
+) -> _CaliforniaVersionCapture:
+    """Capture every concurrent LegInfo version of a section, then keep the selected ones.
+
+    LegInfo serves a multi-version section as a ``selectFromMultiples``
+    picker. Its links post back through one JSF form, and the view state in
+    that form is good for one post: a second post with the same token gets the
+    picker again (observed live on 2026-09-25 and 2026-09-26; the legacy
+    resolver therefore keeps whichever post happens to succeed). So every
+    version gets its own GET of the picker, whose version list must not change,
+    then one POST of that link with that GET's form fields. A response is
+    accepted only when it is a section page whose ``printPopup()`` triple is
+    the link's. Every version is fetched, whatever the selector, so a variant
+    slug shared by two versions is always caught. Any failure raises
+    :class:`CaliforniaVersionError`.
+
+    With ``download_root`` the first picker and every version page are cached
+    (pages under their variant slugs), and a complete cache is reused with no
+    request at all.
+    """
+    label = f"{law_code} {section_num}@{selector}"
+    if download_root is not None:
+        cached = _cached_california_versions(
+            download_root,
+            law_code=law_code,
+            section_num=section_num,
+            selector=selector,
+            label=label,
+        )
+        if cached is not None:
+            return cached
+    response = _california_get(
+        session,
+        source_url,
+        timeout_seconds=timeout_seconds,
+        request_attempts=request_attempts,
+    )
+    picker_bytes: bytes | None = None
+    picker: LegInfoPicker | None = None
+    captured: list[_CaliforniaCapturedVersion] = []
+    if _california_html_has_section(response.content):
+        identified = _california_page_variant(response.content, label=label)
+        if identified is None:
+            raise CaliforniaVersionError(f"{label}: LegInfo's section page has no version triple")
+        captured.append(
+            _CaliforniaCapturedVersion(identified[1], response.content, identified[0], None)
+        )
+    else:
+        picker = parse_leginfo_picker(response.content)
+        if picker is None or not picker.links:
+            raise CaliforniaVersionError(
+                f"{label}: LegInfo returned neither a section nor a picker"
+            )
+        picker_bytes = response.content
+        current = picker
+        attempts = max(request_attempts, 1)
+        for link in picker.links:
+            post: requests.Response | None = None
+            for attempt in range(attempts):
+                try:
+                    if link.index or attempt:
+                        # The form's view state is spent by any post, so every
+                        # post after the first, retries included, needs a fresh GET.
+                        time.sleep(max(request_delay_seconds, 0.0))
+                        fresh = _california_get(
+                            session,
+                            source_url,
+                            timeout_seconds=timeout_seconds,
+                            request_attempts=request_attempts,
+                        )
+                        reparsed = parse_leginfo_picker(fresh.content)
+                        if reparsed is None or reparsed.versions != picker.versions:
+                            raise CaliforniaVersionError(
+                                f"{label}: LegInfo's picker changed while its versions were "
+                                "fetched"
+                            )
+                        current = reparsed
+                    post = session.post(
+                        urljoin(source_url, current.action),
+                        data=current.post_payload(current.links[link.index]),
+                        timeout=timeout_seconds,
+                    )
+                    post.raise_for_status()
+                    break
+                except requests.RequestException:
+                    if attempt == attempts - 1:
+                        raise
+                    time.sleep(min(2**attempt, 8))
+            assert post is not None
+            content = post.content
+            identified = (
+                _california_page_variant(content, label=label)
+                if _california_html_has_section(content)
+                else None
+            )
+            if identified is None or not identified[0].same_as(link.version):
+                raise CaliforniaVersionError(
+                    f"{label}: posting LegInfo's {link.version.label} link did not return it"
+                )
+            captured.append(_CaliforniaCapturedVersion(identified[1], content, identified[0], link))
+    capture = _CaliforniaVersionCapture(
+        selector=selector,
+        picker_bytes=picker_bytes,
+        picker=picker,
+        versions=_select_california_versions(captured, selector=selector, label=label),
+    )
+    if download_root is not None:
+        if picker_bytes is not None:
+            picker_cache = download_root / _california_picker_html_relative_name(
+                law_code, section_num
+            )
+            picker_cache.parent.mkdir(parents=True, exist_ok=True)
+            picker_cache.write_bytes(picker_bytes)
+        for item in captured:
+            page_cache = download_root / _california_section_html_relative_name(
+                law_code, section_num, item.variant
+            )
+            page_cache.parent.mkdir(parents=True, exist_ok=True)
+            page_cache.write_bytes(item.html_bytes)
+    return capture
+
+
+def _california_print_section_url(
+    law_code: str, section_param: str, version: LegInfoVersion
+) -> str:
+    """LegInfo's GET-addressable page for one version (its ``printPopup()`` target)."""
+    return (
+        f"{CALIFORNIA_LEGINFO_BASE_URL}/faces/printCodeSectionWindow.xhtml"
+        f"?lawCode={quote(law_code)}&sectionNum={quote(section_param)}"
+        f"&op_statues={quote(version.op_statues)}&op_chapter={quote(version.op_chapter)}"
+        f"&op_section={quote(version.op_section)}"
+    )
 
 
 def _california_html_has_section(html_bytes: bytes) -> bool:
@@ -5553,6 +5974,10 @@ def _california_section_token(section: str) -> str:
     return _clean_path_token(section.rstrip("."))
 
 
+def _california_section_variant_token(section: str, variant: str | None) -> str:
+    return variant_segment(_california_section_token(section), variant)
+
+
 def _california_section_heading_body(
     content_bytes: bytes,
     *,
@@ -5675,7 +6100,79 @@ def _california_section_metadata(section: _CaliforniaSection) -> dict[str, Any]:
         "content_file": section.content_file,
         "content_sha256": section.content_sha256,
         "references_to": list(section.references_to),
+    } | (
+        {
+            "variant": section.variant,
+            "canonical_citation_path": section.canonical_citation_path,
+        }
+        if section.variant
+        else {}
+    )
+
+
+def _california_version_section(
+    section: _CaliforniaSection,
+    *,
+    capture: _CaliforniaVersionCapture,
+    captured: _CaliforniaCapturedVersion,
+    picker_source_key: str | None,
+) -> tuple[_CaliforniaSection, dict[str, Any]]:
+    """Turn one captured version page into its variant row and provenance metadata.
+
+    The row takes the version's own ``printPopup()`` triple as ``op_*`` and
+    LegInfo's GET-addressable print page for that triple as ``source_url``
+    (the display URL answers with the picker). The metadata records every
+    version the picker offered, in picker order, the variant paths this
+    capture carries, and the exact form post that retrieved this version,
+    without its per-request view state.
+    """
+    version = captured.version
+    section_param = (
+        captured.link.param_map.get("sectionNum") if captured.link is not None else None
+    ) or f"{section.section.rstrip('.')}."
+    display_url = _california_section_url(section.law_code, section.section)
+    variant_section = _dataclass_replace(
+        section,
+        variant=captured.variant,
+        op_statues=version.op_statues,
+        op_chapter=version.op_chapter,
+        op_section=version.op_section,
+        source_url=_california_print_section_url(section.law_code, section_param, version),
+    )
+    metadata: dict[str, Any] = {
+        "leginfo_version_label": version.label,
+        "variant_citation_paths": [
+            _dataclass_replace(section, variant=variant).citation_path
+            for variant in capture.variants
+        ],
     }
+    metadata["leginfo_note_clauses"] = leginfo_note_clauses(section.history)
+    metadata["leginfo_version_count"] = (
+        len(capture.picker.links) if capture.picker is not None else 1
+    )
+    if capture.picker is not None and captured.link is not None:
+        metadata["leginfo_picker"] = {
+            "source_path": picker_source_key,
+            "sha256": sha256_bytes(capture.picker_bytes or b""),
+            "index": captured.link.index,
+            "versions": [
+                {
+                    "op_statues": link.version.op_statues,
+                    "op_chapter": link.version.op_chapter,
+                    "op_section": link.version.op_section,
+                    "text": link.text,
+                }
+                for link in capture.picker.links
+            ],
+        }
+        metadata["leginfo_retrieval"] = {
+            "method": "POST",
+            "url": urljoin(display_url, capture.picker.action),
+            "fields": capture.picker.retrieval_fields(captured.link),
+        }
+    else:
+        metadata["leginfo_retrieval"] = {"method": "GET", "url": display_url}
+    return variant_section, metadata
 
 
 def _california_section_provision(
@@ -5712,7 +6209,8 @@ def _california_section_provision(
         identifiers={
             "california:law_code": section.law_code,
             "california:section": section.section,
-        },
+        }
+        | ({"california:variant": section.variant} if section.variant else {}),
         metadata=_california_section_metadata(section),
     )
 
