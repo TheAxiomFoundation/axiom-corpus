@@ -2424,8 +2424,64 @@ states:
     limits, deductions and allotment tables. The selected scope us-va/manual/2026-07-21-va-snap-manual holds the full manual
     with the same FY 2026 figures (us-va/manual/dss/snap/full-manual prints ''October 1, 2025'', $1,696, $1,305, $2,608).
     The transmittals page lists #25-#36. Nothing new to take.'
+- jurisdiction: us-ma
+  name: Massachusetts
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_charts
+  primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  target_manifest: manifests/us-ma-snap-eligibility-charts.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: guidance
+    version: 2026-09-15-snap-eligibility-charts
+  index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  index_document_count: 21
+  taken_count: 14
+  index_families:
+    eligibility_charts_pdf:
+      found: 21
+      taken: 14
+    snap_issuance_tables_pdf:
+      found: 2
+      taken: 1
+  closure_elements:
+  - snap_s17
+  - snap_s18
+  - snap_s15
+  - snap_s16
+  - snap_s04
+  - snap_s05
+  - snap_s06
+  - snap_s21
+  - snap_s19
+  - snap_s02
+  run_note: docs/ingest-runs/2026-09-15-snap-wic.md
+  citation_paths:
+  - us-ma/guidance/dta/eligibility-charts/fy2026/gross-income-standard-130
+  - us-ma/guidance/dta/eligibility-charts/fy2026/categorical-eligibility-income-standards-200
+  - us-ma/guidance/dta/eligibility-charts/fy2026/net-income-standards
+  - us-ma/guidance/dta/eligibility-charts/fy2026/elderly-disabled-special-circumstances-165
+  - us-ma/guidance/dta/eligibility-charts/fy2026/maximum-benefit-levels
+  - us-ma/guidance/dta/eligibility-charts/fy2026/standard-deduction
+  - us-ma/guidance/dta/eligibility-charts/fy2026/standard-utility-allowances
+  - us-ma/guidance/dta/eligibility-charts/fy2026/maximum-shelter-deduction
+  - us-ma/guidance/dta/eligibility-charts/fy2026/homeless-deduction
+  - us-ma/guidance/dta/eligibility-charts/fy2026/minimum-benefit-level
+  - us-ma/guidance/dta/eligibility-charts/fy2026/maximum-asset-limit
+  - us-ma/guidance/dta/eligibility-charts/fy2026/disaster-snap-income-and-asset-standard
+  - us-ma/guidance/dta/eligibility-charts/fy2026/bay-state-cap-shelter-standards
+  - us-ma/guidance/dta/eligibility-charts/fy2026/bay-state-cap-standard-utility-allowance
+  notes: '2026-09-15 closure run (docs/ingest-runs/2026-09-15-snap-wic.md): The DTA ''Program eligibility charts and tables''
+    list posts the SNAP standards 106 CMR 364-366 reference by cross-reference as one PDF per standard (income standards at
+    130%/165%/200%/100% FPL, maximum benefit levels, standard deduction, SUAs, maximum shelter and homeless deductions, minimum
+    benefit, asset limit, Disaster SNAP standards, Bay State CAP shelter and SUA standards). The 2026-09-14 transmittal run
+    took only the 1-10 person issuance tables from this list; the 14 SNAP charts are taken here (the 11-20 person issuance
+    table, 101 pages, and the seven TAFDC/EAEDC/SSP charts are not). Every chart but the Bay State CAP shelter standards prints
+    its effective date (10/01/2025; the 200% categorical-eligibility standards 02/01/2026).'
 status_counts:
-  agent_ready: 41
+  agent_ready: 42
   done: 22
   blocked_primary_source: 7
   needs_review: 2
