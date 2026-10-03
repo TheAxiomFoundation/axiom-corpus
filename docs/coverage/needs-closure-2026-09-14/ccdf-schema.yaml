@@ -1,0 +1,1044 @@
+program: ccdf
+title: CCDF (Child Care and Development Fund) needs schema, law-derived
+date: '2026-09-11'
+method: Elements are enumerated from (1) the CCDBG Act, 42 U.S.C. 9857-9858r (section groups; text not in the corpus); (2) every live section
+  of 45 CFR 98 (61 sections, eCFR structure 2026-09-09, scope us/regulation/2026-09-11-title-45-part-98); (3) the ACF-118 FFY 2025-2027 plan preprint
+  structure (10 sections, 41 subsections, numbered questions such as 2.2.1-2.2.9, 3.1.1-3.3.1, 4.3.1-4.4.3, read from the Oklahoma plan bodies)
+  and the state rulebooks and rate/copay schedules the run notes inventoried. State-level elements are the values and options 45 CFR 98.16 requires
+  a Lead Agency to set in its plan; each carries a 'facts' list. PolicyEngine's gov/hhs/ccdf and 37 state child-care trees are a cross-check only
+  (pe_modeled).
+levels:
+  federal: set by statute/regulation, inherited by every state; checked once at jurisdiction us
+  federal_with_state_option: federal rule the Lead Agency elects or parameterizes in its plan; checked per state
+  state: set entirely by the state; checked per state
+federal_statute_elements:
+- id: ccdf-f-usc-1
+  citation: 42 U.S.C. 9857-9857a
+  name: CCDBG Act short title and goals (sec. 658A)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: ccdf-f-usc-2
+  citation: 42 U.S.C. 9858
+  name: Authorization of appropriations (sec. 658B)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: ccdf-f-usc-3
+  citation: 42 U.S.C. 9858a
+  name: Lead agency designation (sec. 658D)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: ccdf-f-usc-4
+  citation: 42 U.S.C. 9858c
+  name: 'Application and plan (sec. 658E): plan contents incl. eligibility (658E(c)(2)), sliding fee scale, payment rates, health and safety,
+    12-month eligibility, priority, consumer education'
+  level: federal (state option)
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: ccdf-f-usc-5
+  citation: 42 U.S.C. 9858d-9858m
+  name: 'Sections 658F-658O: limitations on State allotments, activities to improve quality (658G), background checks (658H), administration and
+    enforcement (658I), payments, annual report and audits, Secretary''s report, hotline, allotments (658O)'
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: ccdf-f-usc-6
+  citation: 42 U.S.C. 9858n
+  name: 'Definitions (sec. 658P): child care certificate, eligible child, family child care provider, State median income, etc.'
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: ccdf-f-usc-7
+  citation: 42 U.S.C. 9858o-9858r
+  name: 'Sections 658Q-658T: severability, parental rights and responsibilities, miscellaneous, limitation'
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 105 subchapter II-B)
+  corpus_family_status: 'absent: no us/statute scope carries us/statute/42/9857-9858r (queue federal row; citation_path scan 2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+federal_regulation_elements:
+- id: ccdf-f-cfr-98.1
+  citation: 45 CFR 98.1
+  name: Purposes.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.2
+  citation: 45 CFR 98.2
+  name: Definitions.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s02
+  - ccdf-s07
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.3
+  citation: 45 CFR 98.3
+  name: Effect on State law.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s29
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.10
+  citation: 45 CFR 98.10
+  name: Lead Agency responsibilities.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.11
+  citation: 45 CFR 98.11
+  name: Administration under contracts and agreements.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.12
+  citation: 45 CFR 98.12
+  name: Coordination and consultation.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.13
+  citation: 45 CFR 98.13
+  name: Applying for Funds.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.14
+  citation: 45 CFR 98.14
+  name: Plan process.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.15
+  citation: 45 CFR 98.15
+  name: Assurances and certifications.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.16
+  citation: 45 CFR 98.16
+  name: Plan provisions.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s26
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.17
+  citation: 45 CFR 98.17
+  name: Period covered by Plan.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.18
+  citation: 45 CFR 98.18
+  name: Approval and disapproval of Plans and Plan amendments.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s28
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.19
+  citation: 45 CFR 98.19
+  name: Requests for temporary waivers.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.20
+  citation: 45 CFR 98.20
+  name: A child's eligibility for child care services.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s02
+  - ccdf-s03
+  - ccdf-s04
+  - ccdf-s06
+  - ccdf-s08
+  - ccdf-s09
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.21
+  citation: 45 CFR 98.21
+  name: Eligibility determination processes.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s05
+  - ccdf-s07
+  - ccdf-s11
+  - ccdf-s12
+  - ccdf-s13
+  - ccdf-s14
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.30
+  citation: 45 CFR 98.30
+  name: Parental choice.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s18
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.31
+  citation: 45 CFR 98.31
+  name: Parental access.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.32
+  citation: 45 CFR 98.32
+  name: Parental complaints.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.33
+  citation: 45 CFR 98.33
+  name: Consumer and provider education.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s24
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.34
+  citation: 45 CFR 98.34
+  name: Parental rights and responsibilities.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.40
+  citation: 45 CFR 98.40
+  name: Compliance with applicable State and local regulatory requirements.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s23
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.41
+  citation: 45 CFR 98.41
+  name: Health and safety requirements.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s23
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.42
+  citation: 45 CFR 98.42
+  name: Enforcement of licensing and health and safety requirements.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s23
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.43
+  citation: 45 CFR 98.43
+  name: Criminal background checks.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s23
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.44
+  citation: 45 CFR 98.44
+  name: Training and professional development.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.45
+  citation: 45 CFR 98.45
+  name: Equal access.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s15
+  - ccdf-s16
+  - ccdf-s17
+  - ccdf-s19
+  - ccdf-s20
+  - ccdf-s21
+  - ccdf-s22
+  - ccdf-s30
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.46
+  citation: 45 CFR 98.46
+  name: Priority for child care services.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s10
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.47
+  citation: 45 CFR 98.47
+  name: List of providers.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.48
+  citation: 45 CFR 98.48
+  name: Nondiscrimination in admissions on the basis of religion.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.49
+  citation: 45 CFR 98.49
+  name: Nondiscrimination in employment on the basis of religion.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.50
+  citation: 45 CFR 98.50
+  name: Child care services.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.51
+  citation: 45 CFR 98.51
+  name: Services for children experiencing homelessness.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s10
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.52
+  citation: 45 CFR 98.52
+  name: Child care resource and referral system.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.53
+  citation: 45 CFR 98.53
+  name: Activities to improve the quality of child care.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.54
+  citation: 45 CFR 98.54
+  name: Administrative costs.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.55
+  citation: 45 CFR 98.55
+  name: Matching fund requirements.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.56
+  citation: 45 CFR 98.56
+  name: Restrictions on the use of funds.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.57
+  citation: 45 CFR 98.57
+  name: Cost allocation.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.60
+  citation: 45 CFR 98.60
+  name: Availability of funds.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.61
+  citation: 45 CFR 98.61
+  name: Allotments from the Discretionary Fund.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.62
+  citation: 45 CFR 98.62
+  name: Allotments from the Mandatory Fund.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.63
+  citation: 45 CFR 98.63
+  name: Allotments from the Matching Fund.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.64
+  citation: 45 CFR 98.64
+  name: Reallotment and redistribution of funds.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.65
+  citation: 45 CFR 98.65
+  name: Audits and financial reporting.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.66
+  citation: 45 CFR 98.66
+  name: Disallowance procedures.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.67
+  citation: 45 CFR 98.67
+  name: Fiscal requirements.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.68
+  citation: 45 CFR 98.68
+  name: Program integrity.
+  level: federal (state option)
+  sets_state_elements:
+  - ccdf-s25
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.70
+  citation: 45 CFR 98.70
+  name: Reporting requirements.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.71
+  citation: 45 CFR 98.71
+  name: Content of report.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.80
+  citation: 45 CFR 98.80
+  name: General procedures and requirements.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.81
+  citation: 45 CFR 98.81
+  name: Application and Plan procedures.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.82
+  citation: 45 CFR 98.82
+  name: Coordination.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.83
+  citation: 45 CFR 98.83
+  name: Requirements for tribal programs.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.84
+  citation: 45 CFR 98.84
+  name: Construction and renovation of child care facilities.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.90
+  citation: 45 CFR 98.90
+  name: Monitoring.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.91
+  citation: 45 CFR 98.91
+  name: Non-compliance.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.92
+  citation: 45 CFR 98.92
+  name: Penalties and sanctions.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.93
+  citation: 45 CFR 98.93
+  name: Complaints.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.100
+  citation: 45 CFR 98.100
+  name: Error Rate Report.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.101
+  citation: 45 CFR 98.101
+  name: Case Review Methodology.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+- id: ccdf-f-cfr-98.102
+  citation: 45 CFR 98.102
+  name: Content of Error Rate Reports.
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR)
+  corpus_family_status: 'present: us/regulation/2026-09-11-title-45-part-98 (taken 2026-09-11, 73 rows, complete coverage)'
+  pe_modeled: 'no'
+federal_guidance_elements:
+- id: ccdf-f-acf-guidance
+  citation: ACF OCC Program Instructions / Information Memoranda (CCDF-ACF-PI/IM series), FFY 2025-2027 Plan preprint and instructions
+  name: ACF OCC guidance incl. the ACF-118 preprint and instructions
+  level: federal
+  family: ACF guidance (acf.gov/occ)
+  corpus_family_status: not in the corpus (the FY 2025-2027 index page lists no preprint/instructions; queue federal row)
+  pe_modeled: 'no'
+state_elements:
+- id: ccdf-s01
+  name: Lead Agency and policy-setting authority (statewide vs local variation)
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 9858b (Lead Agency); 45 CFR 98.10-98.11, 98.16(a),(d)
+  carrying_families: CCDF state plan 1.1-1.2
+  plan_sections:
+  - '1.1'
+  - '1.2'
+  facts:
+  - Lead Agency identity
+  - whether eligibility, copays or rates vary by locality (1.2)
+  evidence_pattern: Lead Agency
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s02
+  name: Child age limit (under 13; optional to 19 if incapable of self-care/under court supervision)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.20(a)(1); 98.16(g)(2)
+  carrying_families: CCDF state plan 2.2.1; state rulebook
+  plan_sections:
+  - '2.2'
+  facts:
+  - age limit for a child (13)
+  - extended age limit (up to 19) for children incapable of self-care or under court supervision
+  evidence_pattern: age of children served|through age 12|under (?:age )?13|younger than (?:age )?13|age 13
+  pe_modeled: yes (age_limit / child_age_limit in gov/hhs/ccdf and 37 state trees)
+  document_element: false
+- id: ccdf-s03
+  name: 'Reason for care: definitions of working, job training/education, job search; minimum activity hours'
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.20(a)(3), 98.16(g)(3),(4),(6); state option
+  carrying_families: CCDF state plan 2.2.2; state rulebook
+  plan_sections:
+  - '2.2'
+  facts:
+  - definition of working (incl. self-employment, hours)
+  - definition of job training / education
+  - job search allowed at initial eligibility and its duration
+  - minimum weekly hours where set
+  evidence_pattern: reason for care|job search|minimum (?:number of )?hours|hours (?:per|a) week
+  pe_modeled: partial (activity hours in AL, IA, KS, KY, LA, MA, MN, MT, NJ, OK, RI, SC, SD, TN, TX, UT, VA, WV)
+  document_element: false
+- id: ccdf-s04
+  name: Initial income eligibility limit (share of SMI or FPL by family size)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.20(a)(2)(i), 98.21(b); 98.16(i)(5)
+  carrying_families: CCDF state plan 2.2.3-2.2.4; state rulebook; annual income limit tables
+  plan_sections:
+  - '2.2'
+  facts:
+  - initial income limit as % SMI or % FPL by family size
+  - SMI year / table in use
+  - local variation
+  evidence_pattern: 'Initial eligibility: income limits|income (?:eligibility )?limits?|percent(?:age)? of (?:the )?(?:State Median Income|SMI|federal
+    poverty|FPL)'
+  pe_modeled: yes (income_limit_smi / smi_rate / fpl_rate parameters)
+  document_element: false
+- id: ccdf-s05
+  name: Graduated phase-out / exit threshold at redetermination (second tier up to 85% SMI)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.21(b); 98.16(h)(2)
+  carrying_families: CCDF state plan 2.5.5; state rulebook
+  plan_sections:
+  - '2.5'
+  facts:
+  - exit / redetermination income threshold (% SMI)
+  - phase-out design (second tier, sliding fee steps)
+  evidence_pattern: graduated phase-?out|second tier|85\s?(?:%|percent)
+  pe_modeled: yes where modeled (exit/redetermination SMI rates in CO, DC, IL, IN, MA, MD, MI, MN, MO, ND, NE, NJ, NM, OH, TN, VA, WY)
+  document_element: false
+- id: ccdf-s06
+  name: Family asset limit ($1,000,000 certification)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.20(a)(2)(ii)
+  carrying_families: CCDF state plan 2.2.6
+  plan_sections:
+  - '2.2'
+  facts:
+  - family assets must not exceed $1,000,000 (self-certification method)
+  evidence_pattern: asset limit|\$1,000,000|1 million|million
+  pe_modeled: partial (gov/hhs/ccdf/asset_limit; DC, IA, IN, MA, TX)
+  document_element: false
+- id: ccdf-s07
+  name: Countable income definition and treatment of irregular fluctuations in earnings
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.21(c); 98.16(h)(3)
+  carrying_families: CCDF state plan 2.2.5; state rulebook
+  plan_sections:
+  - '2.2'
+  facts:
+  - countable income sources and exclusions
+  - income averaging / treatment of irregular earnings
+  - family size definition
+  evidence_pattern: irregular fluctuation|countable income|define(?:s|d)? (?:family )?income|gross income|income (?:definition|calculation|is
+    defined|includes)
+  pe_modeled: yes (countable_income/sources lists in most state trees)
+  document_element: false
+- id: ccdf-s08
+  name: Additional state eligibility criteria and residency (98.20(b))
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.20(b); 98.16(i)(5)
+  carrying_families: CCDF state plan 2.2.7; state rulebook
+  plan_sections:
+  - '2.2'
+  facts:
+  - residency requirement
+  - immigration status of the child (qualified alien test)
+  - other state conditions (cooperation with child support etc.)
+  evidence_pattern: Additional eligibility criteria|additional (?:eligibility )?(?:criteria|conditions|rules)|resid
+  pe_modeled: partial (immigration status lists in DC, IL, MA, NH, NM)
+  document_element: false
+- id: ccdf-s09
+  name: Protective services and foster care eligibility (waiver of income/activity requirements)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.20(a)(3)(ii); 98.16(g)(7)
+  carrying_families: CCDF state plan 2.2 / 2.3
+  plan_sections:
+  - '2.2'
+  - '2.3'
+  facts:
+  - definition of protective services (sub-populations)
+  - income and activity waivers for those children
+  - respite care
+  evidence_pattern: protective services|foster care
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s10
+  name: Priority groups and definition of very low income; homeless enrollment grace period
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.46, 98.51; 98.16(g)(8)
+  carrying_families: CCDF state plan 2.3.1-2.3.3
+  plan_sections:
+  - '2.3'
+  facts:
+  - very-low-income definition
+  - priority populations and how priority is given (waitlist, higher limits)
+  - homeless grace period for documentation (days)
+  evidence_pattern: priorit|very low income|homeless
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s11
+  name: Minimum 12-month eligibility period and temporary changes
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.21(a); 98.16(h)(1)
+  carrying_families: CCDF state plan 2.5.2; state rulebook
+  plan_sections:
+  - '2.5'
+  facts:
+  - 12-month eligibility period
+  - temporary changes that do not end eligibility (list)
+  - longer periods where used
+  evidence_pattern: 12[- ]month|twelve[- ]month|temporary change
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s12
+  name: Job search and continued assistance after loss of activity (minimum three months)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.21(a)(2); 98.16(h)
+  carrying_families: CCDF state plan 2.5.3; state rulebook
+  plan_sections:
+  - '2.5'
+  facts:
+  - continued assistance period after loss of work/activity (at least 3 months)
+  - job search period at redetermination
+  evidence_pattern: job search|three months|3 months|loss of (?:work|employment)
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s13
+  name: Change reporting requirements during the eligibility period
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.21(h); 98.16(h)(8)
+  carrying_families: CCDF state plan 2.5.4; state rulebook
+  plan_sections:
+  - '2.5'
+  facts:
+  - changes families must report (income over 85% SMI, loss of residency, cessation of activity beyond 3 months)
+  - reporting deadline
+  evidence_pattern: report(?:ing)? changes|changes? in (?:circumstances|income)
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s14
+  name: Presumptive eligibility (optional, up to three months)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.21(e); 98.16(h)(5)
+  carrying_families: CCDF state plan 2.1 / 2.5
+  plan_sections:
+  - '2.1'
+  - '2.5'
+  facts:
+  - presumptive eligibility adopted
+  - period (up to 3 months) and conditions
+  evidence_pattern: presumptive
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s15
+  name: Family co-payment cap (7% of income) and sliding fee scale by income and family size
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(l); 98.16(k)
+  carrying_families: CCDF state plan 3.1.1-3.1.2 (fee table); state copay schedule
+  plan_sections:
+  - '3.1'
+  facts:
+  - maximum copay as % of gross income (7)
+  - 'sliding fee scale table: income bands x family size -> copay'
+  - statewide or local scales
+  evidence_pattern: 7\s?(?:%|percent)|sliding[- ]fee scale|co-?payment
+  pe_modeled: yes (copay / sliding_fee / family_share parameters in most state trees)
+  document_element: false
+- id: ccdf-s16
+  name: Co-payment calculation method (per child / per family, dollar vs percent)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(l)(2); 98.16(k)
+  carrying_families: CCDF state plan 3.2.1; state rulebook
+  plan_sections:
+  - '3.2'
+  facts:
+  - copay assessed per family or per child (discount for additional children)
+  - flat dollar vs percent of income
+  - part-time adjustments
+  evidence_pattern: contribution|co-?payment|fee is
+  pe_modeled: yes where modeled (copay per-child/per-family rules in DC, KY, MA, MO, NJ, TX, VA, WV)
+  document_element: false
+- id: ccdf-s17
+  name: Co-payment waiver criteria (income at/below 150% FPL, protective services, homelessness, disability, Head Start)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(l)(4); 98.16(k)
+  carrying_families: CCDF state plan 3.3.1; state rulebook
+  plan_sections:
+  - '3.3'
+  facts:
+  - income threshold below which copay is waived
+  - categorical waivers (protective services, homeless, disability, Head Start enrollment)
+  evidence_pattern: waiv
+  pe_modeled: partial (copay waiver thresholds in CA, ND, NM, OH, SC, TN)
+  document_element: false
+- id: ccdf-s18
+  name: Provider options, parental choice, certificates vs grants/contracts, in-home care limits
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.30, 98.16(i)(2), 98.16(q); 42 U.S.C. 9858c(c)(2)(A)
+  carrying_families: CCDF state plan 4.1.1
+  plan_sections:
+  - '4.1'
+  facts:
+  - provider types payable (center, family, in-home, relative)
+  - limits on in-home care
+  - certificates vs contracts/grants
+  evidence_pattern: in-home|relative|certificate|contract|grant|parent choice|parental choice
+  pe_modeled: partial (provider-type rate categories only)
+  document_element: false
+- id: ccdf-s19
+  name: Market rate survey or alternative methodology and narrow cost analysis (basis for rates)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(c)-(f); 98.16(r)
+  carrying_families: CCDF state plan 4.2; MRS/cost reports (state-published, not taken)
+  plan_sections:
+  - '4.2'
+  facts:
+  - MRS year and percentile targeted
+  - alternative methodology (cost model) where used
+  - narrow cost analysis results
+  evidence_pattern: market rate survey|alternative methodology|narrow cost analysis|cost estimation
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s20
+  name: Base payment rates by provider type, age of child and region
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(a),(f)(2); 98.16(r)
+  carrying_families: CCDF state plan 4.3.1-4.3.2 (rate tables as of plan date); state rate schedule
+  plan_sections:
+  - '4.3'
+  facts:
+  - 'rate table: provider type x age group x region (x unit: hour/day/week/month)'
+  - rate unit definitions (full-time / part-time hours)
+  - effective date
+  evidence_pattern: base payment rates?|payment rates?
+  pe_modeled: yes (rates / reimbursement_rates / market_rate parameters in most state trees)
+  document_element: false
+- id: ccdf-s21
+  name: Tiered, differential and add-on rates (quality, special needs, non-traditional hours, infants)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(k); 98.16(r),(x)
+  carrying_families: CCDF state plan 4.3.3; state rate schedule
+  plan_sections:
+  - '4.3'
+  facts:
+  - quality-tier multipliers or bonuses
+  - special-needs add-on
+  - non-traditional hours add-on
+  - infant/toddler differential
+  evidence_pattern: tiered|differential|add-?ons?
+  pe_modeled: partial (quality/special-needs multipliers in AK, AZ, IN, ND, OH, SC, SD, TN, TX, WV)
+  document_element: false
+- id: ccdf-s22
+  name: 'Payment practices: enrollment-based payment, absence policy, timeliness, registration fees'
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(m); 98.16(cc)
+  carrying_families: CCDF state plan 4.4.1-4.4.3; state rulebook
+  plan_sections:
+  - '4.4'
+  facts:
+  - payment on enrollment vs attendance
+  - paid absence days
+  - registration / mandatory fees paid
+  - payment timeliness (21 days)
+  evidence_pattern: enrollment|absence|prospective|21 (?:calendar )?days|registration fee
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s23
+  name: 'Provider standards: licensing, ratios/group size, health and safety, background checks, relative exemptions'
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.40-98.44; 98.16(l)-(p),(u)
+  carrying_families: CCDF state plan section 5; state licensing rules (not in scope of this check)
+  plan_sections:
+  - '5.1'
+  - '5.2'
+  - '5.3'
+  - '5.7'
+  - '5.8'
+  facts:
+  - licensing thresholds and exemptions
+  - ratios and group sizes by age
+  - health and safety topics and training hours
+  - background check components
+  - relative-provider exemptions
+  evidence_pattern: licens|health and safety|background check|ratio
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s24
+  name: Exception to TANF work penalties for single parents of children under six (definitions of appropriate/affordable/reasonable-distance child
+    care)
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 607(e)(2); 45 CFR 98.16(v), 98.33(f)
+  carrying_families: CCDF state plan 2.2.9
+  plan_sections:
+  - '2.2'
+  facts:
+  - definitions of appropriate child care, reasonable distance, unsuitability of informal care, affordable arrangements
+  - how the exception is communicated
+  evidence_pattern: Exception to TANF work requirements|under (?:age )?six|under (?:age )?6
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s25
+  name: 'Program integrity: fraud investigation, recovery of misspent funds, client and provider sanctions'
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.68; 98.16(dd)
+  carrying_families: CCDF state plan 10.1-10.2; state rulebook
+  plan_sections:
+  - '10.2'
+  facts:
+  - overpayment recovery from families and providers
+  - sanctions and disqualification periods
+  - IPV definition
+  evidence_pattern: fraud|recover|sanction
+  pe_modeled: 'no'
+  document_element: false
+- id: ccdf-s26
+  name: CCDF state plan FFY 2025-2027 (ACF-118) as the certified/approved document
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 9858c; 45 CFR 98.13-98.18
+  carrying_families: CCDF state plan (Lead Agency publication reached via the ACF index)
+  plan_sections:
+  - root
+  facts:
+  - the plan document itself (10 sections, 41 subsections), its plan status (certified/approved) and period
+  evidence_pattern: null
+  pe_modeled: 'no'
+  document_element: true
+- id: ccdf-s27
+  name: 'Plan Appendix 1: Lead Agency implementation plan for federal non-compliances (waived requirements)'
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.18(b), 98.16 (Appendix 1 template)
+  carrying_families: ACF-hosted Appendix PDF on the FY 2025-2027 index (51 listed, 0 taken)
+  plan_sections: []
+  facts:
+  - which federal requirements the state is not yet meeting and the corrective plan/dates
+  evidence_pattern: null
+  pe_modeled: 'no'
+  document_element: true
+- id: ccdf-s28
+  name: Plan amendments approved after the initial plan (consolidated amended plans)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.18(b)
+  carrying_families: amended plans posted on Lead Agency pages (inventoried, not taken except where the only posted version)
+  plan_sections: []
+  facts:
+  - amended values (income limits, copays, rates) and their approval dates
+  evidence_pattern: null
+  pe_modeled: 'no'
+  document_element: true
+- id: ccdf-s29
+  name: State CCDF subsidy rulebook (state regulation or policy manual operationalizing eligibility, copays and rates)
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.3 (state law), 98.16(i)(5); state law
+  carrying_families: state regulation/manual for the subsidy program (CCAP/CCS/ERDC/Wisconsin Shares etc.)
+  plan_sections: []
+  facts:
+  - the operative eligibility, copay, authorization-hours and payment rules the plan summarizes
+  evidence_pattern: null
+  pe_modeled: yes (PolicyEngine state child-care trees cite these manuals)
+  document_element: true
+- id: ccdf-s30
+  name: Current-year payment rate schedule and copay schedule updates (rate sheets, transmittals) after the plan snapshot
+  level: federal_with_state_option
+  law_basis: 45 CFR 98.45(f)(2) (rates follow the latest MRS; re-evaluated at least every 3 years)
+  carrying_families: state rate schedules / MRS sheets / transmittals (state-published)
+  plan_sections: []
+  facts:
+  - current rate table and copay table with effective dates
+  evidence_pattern: null
+  pe_modeled: yes (PE parameters carry dated rate values)
+  document_element: true
+policyengine_cross_check:
+  source: policyengine-us gov/hhs/ccdf (age_limit, amount, asset_limit, copay_percent, county_cluster, income_limit_smi) and 37 state child-care
+    trees (ak al az ca co dc hi il in ks ky la ma md me mi mn mo mt nd ne nh nj nm oh ok or ri sc tn tx ut va wi wv wy; walked 2026-09-12)
+  elements_the_law_has_that_pe_lacks:
+  - ccdf-s01
+  - ccdf-s09
+  - ccdf-s10
+  - ccdf-s11
+  - ccdf-s12
+  - ccdf-s13
+  - ccdf-s14
+  - ccdf-s19
+  - ccdf-s22
+  - ccdf-s23
+  - ccdf-s24
+  - ccdf-s25
+  - ccdf-s26
+  - ccdf-s27
+  - ccdf-s28
+  elements_pe_models_partially:
+  - ccdf-s03
+  - ccdf-s06
+  - ccdf-s08
+  - ccdf-s17
+  - ccdf-s18
+  - ccdf-s21
+  rulespec_us_note: rulespec-us has no CCDF program wrappers; the only CCDF policies are us-az/policies/des/ccap/income-fee-schedule-ffy2026 and
+    us-az/regulations/aac/title-6/chapter-5/article-49/R6-5-4912, R6-5-4915 (grep 2026-09-12).
+schema_uncertainties:
+- Exact section letters of 42 U.S.C. 9858d-9858m and 9858o-9858r are grouped, not enumerated one by one, because the statute text is not in the
+  corpus; take the title before treating the statute rows as section-complete.
+- Plan-carried elements are PRESENT when the plan subsection body carries the element's vocabulary; the plan reports values as of 2024-10-01 (or
+  the taken amendment), so current-year copay and rate schedules are a separate element (ccdf-s30).
+- Provider standards (ccdf-s23) are summarized by the plan; the state licensing code itself is out of scope of this check.
+- The plan is a certified description of policy; whether an encoder may cite it in place of the state rule is a rules-repo decision, so ccdf-s29
+  (the state rulebook) is tracked separately.
