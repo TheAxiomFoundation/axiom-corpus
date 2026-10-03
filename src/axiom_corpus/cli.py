@@ -14,7 +14,7 @@ from axiom_corpus.parsers.us.statutes import download_title
 from axiom_corpus.storage.guidance import GuidanceStorage
 
 console = Console()
-DEFAULT_ENCODING_MODEL = "claude-sonnet-4-20250514"
+DEFAULT_ENCODING_MODEL = "claude-sonnet-5-5"
 DEFAULT_ENCODING_WORKSPACE = Path.home() / ".axiom" / "workspace"
 
 
