@@ -28,7 +28,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
-from axiom_corpus.corpus.resolver import ensure_corpus_paths, require_materialized
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.states import (
     CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
     _california_html_current_section_div,
@@ -170,7 +170,8 @@ def ensure_corpus_inputs(base: Path, jurisdiction: str = "us-ca") -> None:
             if record.get("source_format") == CALIFORNIA_SECTION_HTML_SOURCE_FORMAT
         }
     )
-    ensure_corpus_paths([(base / source).absolute() for source in sources])
+    # Resolved against the checkout holding ``base``, not the working directory.
+    require_materialized([(base / source).absolute() for source in sources], fetch=True)
 
 
 def main() -> int:

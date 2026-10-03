@@ -35,7 +35,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import DocumentClass
-from axiom_corpus.corpus.resolver import ensure_corpus_paths
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.states import (
     _california_html_has_section,
     _california_section_html_relative_name,
@@ -249,9 +249,13 @@ def build_successor(base: Path, retained_base: Path, successor: Successor) -> di
 
 
 def ensure_corpus_inputs(retained_base: Path = RETAINED_BASE) -> None:
-    """Fetch each original scope's inventory and retained pages. No-op without locks."""
+    """Fetch each original scope's inventory and retained pages. No-op without locks.
+
+    Resolved against the checkout holding ``retained_base``, which need not be
+    this script's own or the working directory's.
+    """
     store = CorpusArtifactStore(retained_base)
-    ensure_corpus_paths(
+    require_materialized(
         [
             path.absolute()
             for successor in SUCCESSORS
@@ -260,7 +264,7 @@ def ensure_corpus_inputs(retained_base: Path = RETAINED_BASE) -> None:
                 retained_base / _source_key(successor.original_version),
             )
         ],
-        repo=REPO_ROOT,
+        fetch=True,
     )
 
 
