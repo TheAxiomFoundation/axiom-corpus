@@ -49,7 +49,7 @@ ANCHORS_DIR = REPO_ROOT / "data" / "corpus" / "anchors"
 
 # --- Target 1: 7 CFR 273.9 (federal, paragraph-tree parse) ---
 # The release-carried scope. #344 replaced ``2026-05-10-snap-7-cfr-273`` with
-# this self-contained successor (it adds the part, chapter and title parents);
+# this self-contained successor (it adds the part 273 and subpart parents);
 # the 273.9 row kept its id and body, so only the anchors' ``version`` moved.
 CFR_SCOPE = "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
 CFR_PROVISIONS = PROVISIONS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
@@ -655,10 +655,10 @@ def test_committed_anchor_artifact_tracks_its_provisions(anchors_path: Path) -> 
             f"in {_repo_relative(provisions_path)}"
         )
         assert anchor.parent_citation_path == parent.citation_path
-        assert (anchor.jurisdiction, anchor.document_class) == (
-            jurisdiction,
-            document_class,
-        )
+        assert (
+            anchor.jurisdiction,
+            anchor.document_class,
+        ) == (parent.jurisdiction, parent.document_class) == (jurisdiction, document_class)
         assert anchor.version == parent.version, (
             f"{anchor.citation_path}: anchor version {anchor.version!r} != parent "
             f"version {parent.version!r}"

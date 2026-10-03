@@ -24,10 +24,11 @@ the publisher actually asserts as identified nodes.
 Paragraph hierarchy *inside* a CFR section — `7 CFR 273.9(d)(6)(iii)` — is
 indentation typography, not identified nodes. Two reasonable parsers disagree
 about where `(d)(6)(iii)` ends, and an upstream typography change can flip the
-answer while the law is unchanged. Because a provision's identity is
-`uuid5("axiom:" + citation_path)`, baking a parser's guess into the citation
-path would make that guess **load-bearing for every grounding, claim, and
-staleness pin**.
+answer while the law is unchanged. Because a provision's identity derives from
+its citation path (`uuid5("axiom:" + citation_path)`; when staging, Supabase
+replaces that id with one that also folds in the version), baking a parser's
+guess into the citation path would make that guess **load-bearing for every
+grounding, claim, and staleness pin**.
 
 The asymmetry that decides which layer absorbs sub-frontier structure:
 
