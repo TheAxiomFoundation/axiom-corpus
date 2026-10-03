@@ -42,6 +42,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseManifest,
     resolve_release_manifest_path,
 )
+from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
@@ -183,6 +184,7 @@ def publish_named_release(
     release = ReleaseManifest.load(selector_path)
     _require_canonical_selector(root, selector_path, release)
     quality_profile = _require_publishable_quality_profile(release)
+    ensure_corpus_scopes(release.scope_keys, repo=root)
     publication_started = time.monotonic()
     emit_progress(
         progress_stream,
@@ -438,6 +440,7 @@ def plan_named_release(
     release = ReleaseManifest.load(selector_path)
     _require_canonical_selector(repo_root.resolve(), selector_path, release)
     _require_publishable_quality_profile(release)
+    ensure_corpus_scopes(release.scope_keys, repo=repo_root.resolve())
     report = validate_release(base, release, max_issues=200)
     _require_deep_validation(report, phase="dry-run")
     base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()

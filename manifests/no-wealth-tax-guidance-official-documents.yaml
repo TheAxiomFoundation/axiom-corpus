@@ -1,0 +1,120 @@
+# Official Norwegian Tax Administration guidance for the 2022 and 2023
+# wealth-tax rate, allowance, and asset-valuation inputs. The operative annual
+# parliamentary tax decisions are captured separately as statutes.
+documents:
+  - source_id: no-forskuddsmeldingen-2022-wealth-tax
+    jurisdiction: 'no'
+    document_class: guidance
+    citation_path: no/guidance/skatteetaten/forskuddsmeldingen-2022/formuesskatt
+    title: Forskuddsmeldingen 2022
+    source_url: 'https://www.skatteetaten.no/rettskilder/type/skattedirektoratets-meldinger/forskuddsmeldingen-2022/'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2021-12-14'
+    language: 'no'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<heading>Formue|Boligeiendom|Formuesverdi av aksjer, egenkapitalbevis og verdipapirfondsandeler|Formuesverdi for deltaker i selskap med deltakerfastsetting)$'
+      section_label_template: '{heading}'
+      section_label_replacements:
+        Formue: formue
+        Boligeiendom: boligeiendom
+        'Formuesverdi av aksjer, egenkapitalbevis og verdipapirfondsandeler': formuesverdi-aksjer
+        'Formuesverdi for deltaker i selskap med deltakerfastsetting': formuesverdi-deltaker
+      stop_text_pattern: '^Formuesverdi næringseiendom$'
+    metadata:
+      primary_source: true
+      source_authority: Skattedirektoratet / Skatteetaten
+      source_family: wealth-tax/annual-guidance
+      source_note: >-
+        Notice issued 14 December 2021 for income year 2022. Its stable
+        wealth sections state the individual and joint allowances, combined
+        default or maximum rates, doubled joint top-rate threshold, primary
+        and secondary residence valuation, and 75 percent share valuation.
+  - source_id: no-tax-value-housing-2022
+    jurisdiction: 'no'
+    document_class: guidance
+    citation_path: no/guidance/skatteetaten/2022/tax-value-housing
+    title: Formuesverdi bolig, inntektsåret 2022
+    source_url: 'https://www.skatteetaten.no/satser/formuesverdi-bolig/?year=2022'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-01-01'
+    language: 'no'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<heading>Formuesverdi boligeiendom|Formuesverdien skal ikke overstige:)$'
+      section_label_template: '{heading}'
+      section_label_replacements:
+        Formuesverdi boligeiendom: formuesverdi-boligeiendom
+        'Formuesverdien skal ikke overstige:': maksimal-formuesverdi
+      stop_text_pattern: '^Om Skatteetaten$'
+    metadata:
+      primary_source: true
+      source_authority: Norwegian Tax Administration
+      source_family: wealth-tax/asset-valuation
+      source_note: >-
+        Historical 2022 rate page: primary dwelling at 25 percent through NOK
+        10 million and 50 percent above; secondary dwelling at 95 percent.
+  - source_id: no-forskuddsmeldingen-2023-wealth-tax
+    jurisdiction: 'no'
+    document_class: guidance
+    citation_path: no/guidance/skatteetaten/forskuddsmeldingen-2023/formuesskatt
+    title: Forskuddsmeldingen 2023
+    source_url: 'https://www.skatteetaten.no/rettskilder/type/skattedirektoratets-meldinger/forskuddsmeldingen-2023/'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-12-21'
+    language: 'no'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<heading>Formue|Boligeiendom|Formuesverdi av aksjer, egenkapitalbevis og verdipapirfondsandeler|Formuesverdi for deltaker i selskap med deltakerfastsetting)$'
+      section_label_template: '{heading}'
+      section_label_replacements:
+        Formue: formue
+        Boligeiendom: boligeiendom
+        'Formuesverdi av aksjer, egenkapitalbevis og verdipapirfondsandeler': formuesverdi-aksjer
+        'Formuesverdi for deltaker i selskap med deltakerfastsetting': formuesverdi-deltaker
+      stop_text_pattern: '^Formuesverdi næringseiendom$'
+    metadata:
+      primary_source: true
+      source_authority: Skattedirektoratet / Skatteetaten
+      source_family: wealth-tax/annual-guidance
+      source_note: >-
+        Notice issued 21 December 2022 for income year 2023. Its stable
+        wealth sections state the allowances, combined default or maximum
+        rates, doubled joint top-rate threshold, primary and secondary
+        residence valuation, and 80 percent share valuation.
+  - source_id: no-tax-value-housing-2023
+    jurisdiction: 'no'
+    document_class: guidance
+    citation_path: no/guidance/skatteetaten/2023/tax-value-housing
+    title: Formuesverdi bolig, inntektsåret 2023
+    source_url: 'https://www.skatteetaten.no/satser/formuesverdi-bolig/?year=2023'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2023-01-01'
+    language: 'no'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<heading>Formuesverdi boligeiendom|Formuesverdien skal ikke overstige:)$'
+      section_label_template: '{heading}'
+      section_label_replacements:
+        Formuesverdi boligeiendom: formuesverdi-boligeiendom
+        'Formuesverdien skal ikke overstige:': maksimal-formuesverdi
+      stop_text_pattern: '^Om Skatteetaten$'
+    metadata:
+      primary_source: true
+      source_authority: Norwegian Tax Administration
+      source_family: wealth-tax/asset-valuation
+      source_note: >-
+        Historical 2023 rate page: primary dwelling at 25 percent through NOK
+        10 million and 70 percent above; secondary dwelling at 100 percent.
