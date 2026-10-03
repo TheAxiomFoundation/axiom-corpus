@@ -562,6 +562,77 @@ def test_resolver_raises_when_bytes_are_unavailable(tmp_path: Path) -> None:
         resolver.ensure_scopes([SCOPE])
 
 
+def test_repro_script_fetches_the_locked_inputs_it_reads_and_not_its_outputs(
+    tmp_path: Path, monkeypatch
+) -> None:
+    from axiom_corpus.corpus import resolver as corpus_resolver
+    from scripts.repro import us_ny_tax_article_22_line_structure as repro
+
+    released = f"us-ny/statute/{repro.SOURCE_VERSION}"
+    successor = f"us-ny/statute/{repro.VERSION}"
+    # The reproduction reads the released scope's sources, inventory and provisions.
+    inputs = {
+        f"data/corpus/sources/{released}/official-documents/601.html": b"<html>601</html>",
+        f"data/corpus/sources/{released}/official-documents/606.html": b"<html>606</html>",
+        f"data/corpus/inventory/{released}.json": b'{"items": []}\n',
+        f"data/corpus/provisions/{released}.jsonl": b'{"citation_path": "a"}\n',
+    }
+    # It never reads the released coverage, and it writes the successor scope,
+    # whose version starts with the released one.
+    others = {
+        f"data/corpus/coverage/{released}.json": b'{"complete": true}\n',
+        f"data/corpus/sources/{successor}/official-documents/601.html": b"<html>new</html>",
+        f"data/corpus/inventory/{successor}.json": b'{"items": [1]}\n',
+        f"data/corpus/provisions/{successor}.jsonl": b'{"citation_path": "b"}\n',
+        f"data/corpus/coverage/{successor}.json": b'{"complete": false}\n',
+    }
+    files = {**inputs, **others}
+    repo = _init_repo(tmp_path / "repo")
+    remote, _fake = _remote({content_key(_sha(d)): d for d in files.values()})
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH", raising=False)
+
+    def use_fresh_resolver() -> None:
+        resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[remote])
+        monkeypatch.setitem(corpus_resolver._RESOLVERS, repo.resolve(), resolver)
+
+    def present() -> set[str]:
+        root = repo / "data" / "corpus"
+        return {p.relative_to(repo).as_posix() for p in root.rglob("*") if p.is_file()}
+
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo)
+    assert not (repo / "data").exists()
+
+    for scope in {scope_for_path(path) for path in files}:
+        write_lock(repo, _scope_lock({p: d for p, d in files.items() if scope_for_path(p) == scope}, scope))
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo, source_base=tmp_path / "elsewhere")
+    assert not (repo / "data").exists()
+
+    repro.ensure_corpus_inputs(repo=repo)
+    assert present() == set(inputs)
+    assert all((repo / path).read_bytes() == data for path, data in inputs.items())
+
+    # main() always passes --source-base (default data/corpus), which the helper
+    # resolves; a symlinked spelling of the checkout resolves to the same files.
+    (tmp_path / "link").symlink_to(repo)
+    for source_base in (repo / "data" / "corpus", tmp_path / "link" / "data" / "corpus"):
+        for path in inputs:
+            (repo / path).unlink()
+        use_fresh_resolver()
+        repro.ensure_corpus_inputs(repo=repo, source_base=source_base)
+        assert present() == set(inputs)
+
+    # From another directory, a relative --source-base names <cwd>/data/corpus,
+    # which is what the script reads; that is outside the checkout.
+    for path in inputs:
+        (repo / path).unlink()
+    monkeypatch.chdir(tmp_path)
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo, source_base=Path("data/corpus"))
+    assert present() == set()
+
+
 def test_cli_inputs_name_paths_selectors_and_optional_scopes(tmp_path: Path, monkeypatch) -> None:
     import argparse
 
