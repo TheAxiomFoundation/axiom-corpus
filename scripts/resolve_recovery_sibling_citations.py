@@ -33,6 +33,7 @@ import hashlib
 import importlib
 import json
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -142,6 +143,29 @@ def _resolve(resolver: Any, release: Any, path: str) -> dict[str, Any]:
     }
 
 
+def require_provisions(root: Path, scopes: set[Scope]) -> None:
+    """Stop with the fetch command when a provisions file this run reads is absent.
+
+    Corpus files are fetched, not tracked, and axiom-encode's venv cannot import
+    this repository's resolver, so fetching is its own step.
+    """
+    missing = sorted(
+        f"data/corpus/provisions/{jurisdiction}/{document_class}/{version}.jsonl"
+        for jurisdiction, document_class, version in scopes
+        if not (
+            root / "data/corpus/provisions" / jurisdiction / document_class / f"{version}.jsonl"
+        ).is_file()
+    )
+    if missing:
+        listing = Path(tempfile.gettempdir()) / "resolve_recovery_sibling_citations.fetch"
+        listing.write_text("\n".join(missing) + "\n", encoding="utf-8")
+        raise SystemExit(
+            f"{len(missing)} provisions file(s) are not fetched (first: {missing[0]}). "
+            f"From {root}, run\n  uv run axiom-corpus-ingest corpus fetch --paths-from {listing}\n"
+            "and run this script again."
+        )
+
+
 def downstream(root: Path, encode_src: Path, index_path: Path) -> dict[str, Any]:
     sys.path.insert(0, str(encode_src))
     resolver = importlib.import_module("axiom_encode.corpus_resolver")
@@ -155,6 +179,11 @@ def downstream(root: Path, encode_src: Path, index_path: Path) -> dict[str, Any]
         ]
         for path in sorted((root / "manifests" / "releases").glob("*.json"))
     }
+    require_provisions(
+        root,
+        {scope for name in KEY_SELECTORS for scope in selectors[name]}
+        | {_scope(item) for swap in SWAPS.values() for item in swap.get("add", [])},
+    )
     report: dict[str, Any] = {}
     for key, swap in SWAPS.items():
         scope = _scope(key)

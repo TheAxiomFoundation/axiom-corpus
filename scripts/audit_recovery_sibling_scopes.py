@@ -63,6 +63,8 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 DEFAULT_OUTPUT = Path("docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.json")
 TEXT_TAGS = ("h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "table", "blockquote")
 NO_TEXT_VERDICTS = (
@@ -819,6 +821,29 @@ def audit_scope(base: Path, repo_root: Path, scope: ScopeAudit) -> dict[str, Any
     }
 
 
+def ensure_corpus_inputs(base: Path, repo_root: Path) -> None:
+    """Fetch the locked corpus files the audit reads. Does nothing without locks.
+
+    First each scope's provisions and its carriers' provisions, then the sources
+    (with their provenance sidecars) that the scope's rows name.
+    """
+    provisions = [
+        base / "provisions" / scope.jurisdiction / scope.document_class / f"{version}.jsonl"
+        for scope in SCOPES
+        for version in (scope.version, *scope.carriers)
+    ]
+    ensure_corpus_paths([path.absolute() for path in provisions], repo=repo_root)
+    sources = sorted({row["source_path"] for scope in SCOPES for row in _scope_rows(base, scope)})
+    ensure_corpus_paths(
+        [
+            path.absolute()
+            for source in sources
+            for path in (base / source, (base / source).parent.parent / "provenance")
+        ],
+        repo=repo_root,
+    )
+
+
 def audit(base: Path, repo_root: Path) -> dict[str, Any]:
     return {
         "generated_by": "scripts/audit_recovery_sibling_scopes.py",
@@ -832,6 +857,7 @@ def main() -> int:
     parser.add_argument("--repo-root", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
+    ensure_corpus_inputs(args.base, args.repo_root)
     report = audit(args.base, args.repo_root)
     args.output.write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
