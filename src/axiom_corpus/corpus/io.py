@@ -9,14 +9,14 @@ from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 
 
 def load_source_inventory(path: str | Path) -> tuple[SourceInventoryItem, ...]:
-    data = json.loads(Path(path).read_text())
+    data = json.loads(_fetched(Path(path)).read_text())
     rows = data.get("items", data if isinstance(data, list) else [])
     return tuple(SourceInventoryItem.from_mapping(row) for row in rows)
 
 
 def load_provisions(path: str | Path) -> tuple[ProvisionRecord, ...]:
     records: list[ProvisionRecord] = []
-    p = Path(path)
+    p = _fetched(Path(path))
     if not p.exists():
         return ()
     for line in p.read_text().splitlines():
@@ -25,3 +25,17 @@ def load_provisions(path: str | Path) -> tuple[ProvisionRecord, ...]:
         data = json.loads(line)
         records.append(ProvisionRecord.from_mapping(data))
     return tuple(records)
+
+
+def _fetched(path: Path) -> Path:
+    """Fetch a locked corpus file this checkout lacks (docs/corpus-storage.md).
+
+    Without this, an unfetched provisions file would read as an empty scope.
+    Paths that no lock names behave exactly as before.
+    """
+    if path.exists():
+        return path
+    from axiom_corpus.corpus.resolver import fetch_locked_file
+
+    fetch_locked_file(path)
+    return path
