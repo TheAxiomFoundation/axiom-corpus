@@ -19,6 +19,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest
+from axiom_corpus.corpus.resolver import require_materialized
 
 REPO = Path(__file__).parents[1]
 BASE = REPO / "data/corpus"
@@ -53,6 +54,9 @@ def main() -> int:
             raise ValueError("source issue lacks a complete scope")
         scope = (jurisdiction, document_class, version)
         source_root = store.source_path(*scope, "")
+        # Corpus bytes may live outside git: a partly fetched directory would
+        # look like an unambiguous single snapshot.
+        require_materialized([source_root], fetch=True)
         sources = sorted(
             path
             for path in source_root.rglob("*")
