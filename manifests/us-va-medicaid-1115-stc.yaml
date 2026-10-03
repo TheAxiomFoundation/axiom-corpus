@@ -1,0 +1,59 @@
+version: 2026-09-15-medicaid-1115-stc
+documents:
+- source_id: us-va-cms-1115-stc-btcsshv
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia section 1115 demonstration "Building and Transforming Coverage, Services, and Supports for a Healthier
+    Virginia": CMS approval document and special terms and conditions (2026-07-31)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/va-btcsshv-1115-demo-rnwl-2026-apprvl-07312026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-07-31'
+  citation_path: us-va/policy/cms/1115-stc/btcsshv
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: Building and Transforming Coverage, Services, and Supports for a Healthier Virginia
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83451
+    index_link_text: Demonstration Approval
+    approval_date: '2026-07-31'
+    carries: '2026 renewal STCs: ARTS, former foster care youth, GAP legacy populations, SMI, the demonstration''s eligibility
+      groups'
+    source_discovery_group: us-va/policy/cms-1115-stc
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-09-14;
+      TLS verified, no mirror
+    carries_elements: 'M-ST-1315 (closure schema: CMS-approved 1115 demonstration special terms and conditions)'
+- source_id: us-va-cms-1115-stc-famis-moms-famis-select
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia section 1115 demonstration "Virginia FAMIS MOMS and FAMIS Select": CMS approval document and special terms
+    and conditions (2021-11-18)'
+  source_url: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/va/va-famis-moms-famis-select-11182021-ca.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2021-11-18'
+  citation_path: us-va/policy/cms/1115-stc/famis-moms-famis-select
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: Virginia FAMIS MOMS and FAMIS Select
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83426
+    index_link_text: Demonstration Approval
+    approval_date: '2021-11-18'
+    carries: 'current STCs: CHIP-funded pregnant women (FAMIS MOMS) and premium assistance (FAMIS Select) eligibility'
+    source_discovery_group: us-va/policy/cms-1115-stc
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-09-14;
+      TLS verified, no mirror
+    carries_elements: 'M-ST-1315 (closure schema: CMS-approved 1115 demonstration special terms and conditions)'

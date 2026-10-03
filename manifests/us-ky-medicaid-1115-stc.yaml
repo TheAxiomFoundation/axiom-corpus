@@ -1,0 +1,31 @@
+version: 2026-09-15-medicaid-1115-stc
+documents:
+- source_id: us-ky-cms-1115-stc-teamky
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky section 1115 demonstration "TEAMKY (formerly KY HEALTH)": CMS approval document and special terms and conditions
+    (2025-03-20)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/ky-teamky-appvl-03202025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-03-20'
+  citation_path: us-ky/policy/cms/1115-stc/teamky
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: TEAMKY (formerly KY HEALTH)
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81806
+    index_link_text: Demonstration Approval – Technical Corrections
+    approval_date: '2025-03-20'
+    carries: 'current STCs (technical corrections to the 2024-12-12 extension approval): SUD/SMI, reentry, former foster care
+      youth from other states and the demonstration''s eligibility and enrollment terms'
+    source_discovery_group: us-ky/policy/cms-1115-stc
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-09-14;
+      TLS verified, no mirror
+    carries_elements: 'M-ST-1315 (closure schema: CMS-approved 1115 demonstration special terms and conditions)'
