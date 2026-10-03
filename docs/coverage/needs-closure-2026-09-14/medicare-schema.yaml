@@ -1,0 +1,815 @@
+program: medicare
+title: Medicare (federal Parts A, B, D and state Medicare Savings Programs)
+date: '2026-09-11'
+method: 'Law-derived: one element per statute section, CFR subpart/section, POMS/IOM subchapter or chapter, annual notice family, and state plan
+  section / state rule family. PolicyEngine-US (policyengine_us/parameters and variables, walked 2026-09-11) and rulespec-us are cross-checks
+  only: pe_modeled = yes/partial/no per element.'
+sources:
+- 42 U.S.C. 426, 1395c-1395w-114 (subchapter XVIII eligibility, premium and cost-sharing sections)
+- 42 U.S.C. 1396a(a)(10)(E), 1396d(p), 1396u-3
+- 42 CFR 406, 407, 408, 423 (subparts B, D, P), 435
+- CMS IOM index (25 publications) and the four held publications
+- POMS part HI chapter list
+- manifests/medicare-agent-queue.yaml, run notes 2026-09-10-medicare-cms-iom-100-01/-100-24, 2026-09-11-medicare-cms-iom-100-02-100-04
+- 'state MSP rules: the selected Medicaid eligibility scopes (manifests/medicaid-agent-queue.yaml)'
+- 'cross-check: policyengine_us gov/hhs/medicare (26 leaves incl. savings_programs) and variables; rulespec-us us/policies/cms/original-medicare-part-a-b.yaml,
+  us/statutes/42/426, 42/1396a'
+uncertainties:
+- Subchapter XVIII was reduced to the eligibility/premium/cost-sharing sections; payment-system sections (1395ww etc.) are out of scope for a
+  household encoding.
+- Part C (Medicare Advantage) is represented by two statute sections and Pub 100-16 only.
+- The state MSP scan is keyword-based over the selected Medicaid scopes; PRESENT for MED-ST-2/3/4/6/7 means a row was found with the term near
+  the relevant text, not that the row was read end to end.
+- States that set MSP standards in an annual standards chart outside the manual (many) will show MED-ST-7 as REVIEW even when the manual is complete.
+element_count: 68
+policyengine_cross_check:
+  note: Elements the law has that PolicyEngine-US does not model (pe_modeled = no) and models only in part (partial). PolicyEngine is a cross-check,
+    not the bar.
+  not_modeled_count: 38
+  partial_count: 15
+  modeled_count: 15
+  not_modeled:
+  - 'MED-F-USC-426-1: 42 U.S.C. 426-1: End stage renal disease program entitlement'
+  - 'MED-F-USC-1395c: 42 U.S.C. 1395c: Description of Part A program'
+  - 'MED-F-USC-1395d: 42 U.S.C. 1395d: Scope of Part A benefits (inpatient, SNF, home health, hospice)'
+  - 'MED-F-USC-1395i-2a: 42 U.S.C. 1395i-2a: Part A for qualified disabled and working individuals (QDWI premium)'
+  - 'MED-F-USC-1395k: 42 U.S.C. 1395k: Scope of Part B benefits'
+  - 'MED-F-USC-1395p: 42 U.S.C. 1395p: Part B enrollment periods (IEP, GEP, SEPs)'
+  - 'MED-F-USC-1395q: 42 U.S.C. 1395q: Part B coverage period'
+  - 'MED-F-USC-1395s: 42 U.S.C. 1395s: Payment of Part B premiums'
+  - 'MED-F-USC-1395v: 42 U.S.C. 1395v: State buy-in agreements'
+  - 'MED-F-USC-1395w-21: 42 U.S.C. 1395w-21: Part C eligibility, election and enrollment'
+  - 'MED-F-USC-1395w-22: 42 U.S.C. 1395w-22: Part C benefits and beneficiary protections'
+  - 'MED-F-USC-1395w-101: 42 U.S.C. 1395w-101: Part D eligibility, enrollment and information'
+  - 'MED-F-USC-1395w-102: 42 U.S.C. 1395w-102: Part D prescription drug benefit (deductible, cost-sharing, out-of-pocket cap)'
+  - 'MED-F-USC-1395w-114: 42 U.S.C. 1395w-114: Part D premium and cost-sharing subsidies for low-income individuals (LIS / Extra Help)'
+  - 'MED-F-CFR-423-B: 42 CFR 423 subpart B: Part D eligibility, enrollment and disenrollment'
+  - 'MED-F-CFR-423-P: 42 CFR 423 subpart P: premium and cost-sharing subsidies for low-income individuals'
+  - 'MED-F-IOM-100-01-1: IOM Pub 100-01 ch.1: General program benefits and administration'
+  - 'MED-F-IOM-100-01-4: IOM Pub 100-01 ch.4: Physician certification and recertification'
+  - 'MED-F-IOM-100-01-5: IOM Pub 100-01 ch.5: Definitions'
+  - 'MED-F-IOM-100-01-6: IOM Pub 100-01 ch.6: Disclosure of information'
+  - 'MED-F-IOM-100-01-7: IOM Pub 100-01 ch.7: Contractor responsibilities'
+  - 'MED-F-IOM-100-24-2: IOM Pub 100-24 ch.2: Data exchange processes'
+  - 'MED-F-IOM-100-24-3: IOM Pub 100-24 ch.3: Data exchange'
+  - 'MED-F-IOM-100-24-4: IOM Pub 100-24 ch.4: Code descriptions'
+  - 'MED-F-IOM-100-24-5: IOM Pub 100-24 ch.5: Premium billing'
+  - 'MED-F-IOM-100-24-6: IOM Pub 100-24 ch.6: Problem cases and resources'
+  - 'MED-F-IOM-100-02: IOM Pub 100-02 Medicare Benefit Policy Manual (17 chapters: covered services, durations, exclusions)'
+  - 'MED-F-IOM-100-04: IOM Pub 100-04 Medicare Claims Processing Manual (39 chapters incl. ch.30 financial liability, ch.28 Medigap/Medicaid coordination)'
+  - 'MED-F-IOM-100-18: IOM Pub 100-18 Medicare Prescription Drug Benefit Manual (Part D eligibility, enrollment, LIS)'
+  - 'MED-F-IOM-100-16: IOM Pub 100-16 Medicare Managed Care Manual (Part C eligibility, enrollment, benefits)'
+  - 'MED-F-IOM-100-03: IOM Pub 100-03 National Coverage Determinations Manual'
+  - 'MED-F-IOM-100-05: IOM Pub 100-05 Medicare Secondary Payer Manual'
+  - 'MED-F-POMS-HI-00801: POMS HI 00801: Hospital insurance entitlement (age, disability, ESRD)'
+  - 'MED-F-POMS-HI-00805: POMS HI 00805: Supplementary medical insurance enrollment'
+  - 'MED-F-POMS-HI-00815: POMS HI 00815: State buy-in'
+  - 'MED-F-POMS-HI-01001: POMS HI 01001: Premium billing and collection (Part A/B premiums, penalties)'
+  - 'MED-F-POMS-HI-03001: POMS HI 03001-03050: Medicare Part D Extra Help (LIS) eligibility, income and resources'
+  - 'MED-ST-5: State buy-in coverage groups (Part B / Part A buy-in status per state)'
+  partial:
+  - 'MED-F-USC-1395l: 42 U.S.C. 1395l: Part B payment: deductible, coinsurance'
+  - 'MED-F-USC-1396u-3: 42 U.S.C. 1396u-3: Qualifying individuals (QI) program and federal allotments'
+  - 'MED-F-CFR-406: 42 CFR 406: Hospital insurance eligibility and entitlement (subparts A-D)'
+  - 'MED-F-CFR-407: 42 CFR 407: Supplementary medical insurance enrollment and entitlement (subparts A-D incl. state buy-in)'
+  - 'MED-F-CFR-423-D: 42 CFR 423 subpart D: Part D premiums, cost-sharing, IRMAA (423.286)'
+  - 'MED-F-CFR-435-MSP: 42 CFR 435 provisions used by MSP determinations (435.4 definitions, 435.601/435.725 financial methodologies, 435.914-.916
+    redeterminations)'
+  - 'MED-F-IOM-100-01-2: IOM Pub 100-01 ch.2: Hospital insurance and SMI entitlement, enrollment periods, state buy-in'
+  - 'MED-F-IOM-100-01-3: IOM Pub 100-01 ch.3: Deductibles, coinsurance amounts and payment limitations (Part B premium 20.6)'
+  - 'MED-F-IOM-100-24-1: IOM Pub 100-24 ch.1: State payment of Medicare premiums, program overview and policy (buy-in groups, QMB Part A)'
+  - 'MED-F-POMS-HI-01101: POMS HI 01101: Income-related monthly adjustment amount (Part B and D)'
+  - 'MED-F-ANN-D: Annual Part D base beneficiary premium, IRMAA and standard benefit parameters (CMS annual release)'
+  - 'MED-F-ANN-LIS: Annual Part D LIS resource limits and MSP resource standards (CMS annual LIS/MSP resource memo)'
+  - 'MED-ST-4: MSP income methodology and state disregards ($20 general disregard, SSI methodology, state-specific disregards)'
+  - 'MED-ST-6: State payment of Medicare cost-sharing for QMBs / balance-billing protection (state plan option)'
+  - 'MED-ST-7: Current-year MSP income/resource figures table (state standards chart)'
+rulespec_cross_check:
+  note: Elements with a RuleSpec encoding in rulespec-us (or rulespec-us-ca/co/ny); every other element has none.
+  encoded:
+  - 'MED-F-USC-426: rulespec-us us/statutes/42/426/{a,a/1,a/2,b,b/1,b/2,c,d,e,f,h,h/1}'
+  - 'MED-F-USC-1396a: rulespec-us us/statutes/42/1396a/{a/10,e,e/14,f,l,m,xx}'
+  - 'MED-F-USC-1396d: rulespec-us us/statutes/42/1396d/{a/i,n} (1396d(p) QMB standards not encoded)'
+  - 'MED-F-CFR-435-MSP: rulespec-us us/regulations/42-cfr/435/{121,601/d/1,...}'
+  - 'MED-F-GUID-CMS-AB: rulespec-us us/policies/cms/original-medicare-part-a-b'
+  - 'MED-ST-1: rulespec-us us-ct/policies/dss/upm/{4005-10,5030-15} (MSP mentions only)'
+elements:
+- id: MED-F-USC-426
+  name: '42 U.S.C. 426: Entitlement to hospital insurance benefits (age 65, disability 24-month wait)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: rulespec-us us/statutes/42/426/{a,a/1,a/2,b,b/1,b/2,c,d,e,f,h,h/1}
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-426-1
+  name: '42 U.S.C. 426-1: End stage renal disease program entitlement'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395c
+  name: '42 U.S.C. 1395c: Description of Part A program'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395d
+  name: '42 U.S.C. 1395d: Scope of Part A benefits (inpatient, SNF, home health, hospice)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395e
+  name: '42 U.S.C. 1395e: Part A deductibles and coinsurance'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395i-2
+  name: '42 U.S.C. 1395i-2: Voluntary Part A enrollment and premium (incl. reduced premium at 30-39 quarters)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395i-2a
+  name: '42 U.S.C. 1395i-2a: Part A for qualified disabled and working individuals (QDWI premium)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395k
+  name: '42 U.S.C. 1395k: Scope of Part B benefits'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395l
+  name: '42 U.S.C. 1395l: Part B payment: deductible, coinsurance'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395o
+  name: '42 U.S.C. 1395o: Part B eligibility'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395p
+  name: '42 U.S.C. 1395p: Part B enrollment periods (IEP, GEP, SEPs)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395q
+  name: '42 U.S.C. 1395q: Part B coverage period'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395r
+  name: '42 U.S.C. 1395r: Part B premiums, hold-harmless, late enrollment penalty, income-related adjustment (IRMAA)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395s
+  name: '42 U.S.C. 1395s: Payment of Part B premiums'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395v
+  name: '42 U.S.C. 1395v: State buy-in agreements'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395w-21
+  name: '42 U.S.C. 1395w-21: Part C eligibility, election and enrollment'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395w-22
+  name: '42 U.S.C. 1395w-22: Part C benefits and beneficiary protections'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395w-101
+  name: '42 U.S.C. 1395w-101: Part D eligibility, enrollment and information'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395w-102
+  name: '42 U.S.C. 1395w-102: Part D prescription drug benefit (deductible, cost-sharing, out-of-pocket cap)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395w-113
+  name: '42 U.S.C. 1395w-113: Part D premiums, late enrollment penalty, income-related adjustment'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1395w-114
+  name: '42 U.S.C. 1395w-114: Part D premium and cost-sharing subsidies for low-income individuals (LIS / Extra Help)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1396a
+  name: '42 U.S.C. 1396a: State plan requirements incl. 1396a(a)(10)(E) mandatory MSP groups (QMB, SLMB, QI, QDWI)'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: rulespec-us us/statutes/42/1396a/{a/10,e,e/14,f,l,m,xx}
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1396d
+  name: '42 U.S.C. 1396d: Definitions incl. 1396d(p) QMB income/resource standards and Medicare cost-sharing, 1396d(s) QDWI'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: 'yes'
+  rulespec_encoded: rulespec-us us/statutes/42/1396d/{a/i,n} (1396d(p) QMB standards not encoded)
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-USC-1396u-3
+  name: '42 U.S.C. 1396u-3: Qualifying individuals (QI) program and federal allotments'
+  level: federal
+  family: statute (US Code Title 42 ch. 7 subch. XVIII / XIX)
+  set_by: Congress
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395 et seq.
+  - 42 U.S.C. 1396a, 1396d, 1396u-3
+  note: ''
+- id: MED-F-CFR-406
+  name: '42 CFR 406: Hospital insurance eligibility and entitlement (subparts A-D)'
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 CFR 406, 407, 408, 423
+  note: ''
+- id: MED-F-CFR-407
+  name: '42 CFR 407: Supplementary medical insurance enrollment and entitlement (subparts A-D incl. state buy-in)'
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 CFR 406, 407, 408, 423
+  note: ''
+- id: MED-F-CFR-408
+  name: '42 CFR 408: Premiums for SMI (subparts A-H: amounts, IRMAA, late enrollment, collection, state payment)'
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 CFR 406, 407, 408, 423
+  note: ''
+- id: MED-F-CFR-423-B
+  name: '42 CFR 423 subpart B: Part D eligibility, enrollment and disenrollment'
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 CFR 406, 407, 408, 423
+  note: ''
+- id: MED-F-CFR-423-D
+  name: '42 CFR 423 subpart D: Part D premiums, cost-sharing, IRMAA (423.286)'
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 CFR 406, 407, 408, 423
+  note: ''
+- id: MED-F-CFR-423-P
+  name: '42 CFR 423 subpart P: premium and cost-sharing subsidies for low-income individuals'
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 CFR 406, 407, 408, 423
+  note: ''
+- id: MED-F-CFR-435-MSP
+  name: 42 CFR 435 provisions used by MSP determinations (435.4 definitions, 435.601/435.725 financial methodologies, 435.914-.916 redeterminations)
+  level: federal
+  family: regulation (eCFR)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: rulespec-us us/regulations/42-cfr/435/{121,601/d/1,...}
+  derived_from:
+  - 42 CFR 435
+  note: part 435 is selected in full
+- id: MED-F-IOM-100-01-1
+  name: 'IOM Pub 100-01 ch.1: General program benefits and administration'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-01-2
+  name: 'IOM Pub 100-01 ch.2: Hospital insurance and SMI entitlement, enrollment periods, state buy-in'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-01-3
+  name: 'IOM Pub 100-01 ch.3: Deductibles, coinsurance amounts and payment limitations (Part B premium 20.6)'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-01-4
+  name: 'IOM Pub 100-01 ch.4: Physician certification and recertification'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-01-5
+  name: 'IOM Pub 100-01 ch.5: Definitions'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-01-6
+  name: 'IOM Pub 100-01 ch.6: Disclosure of information'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-01-7
+  name: 'IOM Pub 100-01 ch.7: Contractor responsibilities'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-24-1
+  name: 'IOM Pub 100-24 ch.1: State payment of Medicare premiums, program overview and policy (buy-in groups, QMB Part A)'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-24-2
+  name: 'IOM Pub 100-24 ch.2: Data exchange processes'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-24-3
+  name: 'IOM Pub 100-24 ch.3: Data exchange'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-24-4
+  name: 'IOM Pub 100-24 ch.4: Code descriptions'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-24-5
+  name: 'IOM Pub 100-24 ch.5: Premium billing'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-24-6
+  name: 'IOM Pub 100-24 ch.6: Problem cases and resources'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-02
+  name: 'IOM Pub 100-02 Medicare Benefit Policy Manual (17 chapters: covered services, durations, exclusions)'
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-04
+  name: IOM Pub 100-04 Medicare Claims Processing Manual (39 chapters incl. ch.30 financial liability, ch.28 Medigap/Medicaid coordination)
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-18
+  name: IOM Pub 100-18 Medicare Prescription Drug Benefit Manual (Part D eligibility, enrollment, LIS)
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-16
+  name: IOM Pub 100-16 Medicare Managed Care Manual (Part C eligibility, enrollment, benefits)
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-03
+  name: IOM Pub 100-03 National Coverage Determinations Manual
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-IOM-100-05
+  name: IOM Pub 100-05 Medicare Secondary Payer Manual
+  level: federal
+  family: agency manual (CMS IOM)
+  set_by: CMS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - CMS Internet-Only Manuals index
+  note: ''
+- id: MED-F-POMS-HI-00801
+  name: 'POMS HI 00801: Hospital insurance entitlement (age, disability, ESRD)'
+  level: federal
+  family: agency manual (SSA POMS part HI)
+  set_by: SSA
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - POMS HI chapter list
+  note: ''
+- id: MED-F-POMS-HI-00805
+  name: 'POMS HI 00805: Supplementary medical insurance enrollment'
+  level: federal
+  family: agency manual (SSA POMS part HI)
+  set_by: SSA
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - POMS HI chapter list
+  note: ''
+- id: MED-F-POMS-HI-00815
+  name: 'POMS HI 00815: State buy-in'
+  level: federal
+  family: agency manual (SSA POMS part HI)
+  set_by: SSA
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - POMS HI chapter list
+  note: ''
+- id: MED-F-POMS-HI-01001
+  name: 'POMS HI 01001: Premium billing and collection (Part A/B premiums, penalties)'
+  level: federal
+  family: agency manual (SSA POMS part HI)
+  set_by: SSA
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - POMS HI chapter list
+  note: ''
+- id: MED-F-POMS-HI-01101
+  name: 'POMS HI 01101: Income-related monthly adjustment amount (Part B and D)'
+  level: federal
+  family: agency manual (SSA POMS part HI)
+  set_by: SSA
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - POMS HI chapter list
+  note: ''
+- id: MED-F-POMS-HI-03001
+  name: 'POMS HI 03001-03050: Medicare Part D Extra Help (LIS) eligibility, income and resources'
+  level: federal
+  family: agency manual (SSA POMS part HI)
+  set_by: SSA
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - POMS HI chapter list
+  note: ''
+- id: MED-F-ANN-AB
+  name: Annual Part A premium, Part A deductible/coinsurance, Part B premium/deductible and IRMAA brackets (CMS Federal Register notices / fact
+    sheet)
+  level: federal
+  family: annual notice (Federal Register / CMS)
+  set_by: CMS/HHS
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395e, 1395i-2, 1395r, 1395w-113, 1395w-114, 1396d(p)
+  note: ''
+- id: MED-F-ANN-D
+  name: Annual Part D base beneficiary premium, IRMAA and standard benefit parameters (CMS annual release)
+  level: federal
+  family: annual notice (Federal Register / CMS)
+  set_by: CMS/HHS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395e, 1395i-2, 1395r, 1395w-113, 1395w-114, 1396d(p)
+  note: ''
+- id: MED-F-ANN-LIS
+  name: Annual Part D LIS resource limits and MSP resource standards (CMS annual LIS/MSP resource memo)
+  level: federal
+  family: annual notice (Federal Register / CMS)
+  set_by: CMS/HHS
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395e, 1395i-2, 1395r, 1395w-113, 1395w-114, 1396d(p)
+  note: ''
+- id: MED-F-ANN-POVERTY
+  name: HHS poverty guidelines (MSP income standards basis)
+  level: federal
+  family: annual notice (Federal Register / CMS)
+  set_by: CMS/HHS
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1395e, 1395i-2, 1395r, 1395w-113, 1395w-114, 1396d(p)
+  note: ''
+- id: MED-F-GUID-CMS-AB
+  name: CMS 'Original Medicare (Part A and B) Eligibility and Enrollment' guidance page (IEP/GEP/SEP, premiums, IRMAA, LEP)
+  level: federal
+  family: agency guidance (cms.gov)
+  set_by: CMS
+  pe_modeled: 'yes'
+  rulespec_encoded: rulespec-us us/policies/cms/original-medicare-part-a-b
+  derived_from:
+  - cms.gov
+  note: encoded in rulespec-us us/policies/cms/original-medicare-part-a-b.yaml
+- id: MED-ST-1
+  name: MSP coverage groups defined in the state Medicaid rule/manual (QMB, SLMB, QI, QDWI)
+  level: state
+  family: state Medicaid regulation or eligibility manual
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: 'yes'
+  rulespec_encoded: rulespec-us us-ct/policies/dss/upm/{4005-10,5030-15} (MSP mentions only)
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''
+- id: MED-ST-2
+  name: MSP income standards (percent of FPL, state options above the federal floor)
+  level: state
+  family: state Medicaid regulation/manual
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''
+- id: MED-ST-3
+  name: MSP resource test (whether applied; limits)
+  level: state
+  family: state Medicaid regulation/manual
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''
+- id: MED-ST-4
+  name: MSP income methodology and state disregards ($20 general disregard, SSI methodology, state-specific disregards)
+  level: state
+  family: state Medicaid regulation/manual
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''
+- id: MED-ST-5
+  name: State buy-in coverage groups (Part B / Part A buy-in status per state)
+  level: state
+  family: CMS IOM Pub 100-24 ch.1 (1.6-1.7) and state buy-in agreement
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''
+- id: MED-ST-6
+  name: State payment of Medicare cost-sharing for QMBs / balance-billing protection (state plan option)
+  level: state
+  family: state Medicaid regulation/manual
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''
+- id: MED-ST-7
+  name: Current-year MSP income/resource figures table (state standards chart)
+  level: state
+  family: state Medicaid manual table or annual notice
+  set_by: state Medicaid agency (federal floor in 42 U.S.C. 1396d(p), 1396a(a)(10)(E))
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 1396a(a)(10)(E)
+  - 42 U.S.C. 1396d(p)
+  - CMS IOM Pub 100-24
+  note: ''

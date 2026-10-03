@@ -1,0 +1,4075 @@
+program: medicaid
+date: '2026-09-11'
+schema_version: 2
+method: 'Elements are derived from the program''s legal structure, not from a model. (1) 42 U.S.C. 1396a and the sections it invokes (1396b(v),
+  1396d, 1396o, 1396p, 1396r-5, 1396r-6, 1396u-1, 1320b-7, 1382-1382c, 8 U.S.C. 1611-1641, 1315) / 42 U.S.C. 1397aa-1397mm. (2) Every section
+  of 42 CFR 435 (as held in us/regulation/2026-06-25-title-42-part-435 plus the CMS-2454-IFC 435.550-563 scope), 436 (us/regulation/2026-09-11-title-42-part-436),
+  447 subpart A (eCFR structure 2026-09-09; not held) and 457 (us/regulation/2026-07-13-recovery-r2026-07-17-dedup). (3) The structure of the
+  state rulebooks held in the corpus (tables of contents of the 2026-09-10 Medicaid and CHIP state scopes: definitions, application, coverage
+  groups, non-financial, household/assistance unit, income, resources, MAGI and non-MAGI budgeting, LTC/HCBS post-eligibility, transfers and trusts,
+  spousal impoverishment, medically needy/spend-down, MSP, presumptive and continuous eligibility, renewals and changes, notices and hearings,
+  appendix income/resource tables), the approved state plan and SPAs, and annual income-level tables. PolicyEngine (policyengine-us 84253b6, 2026-08-17:
+  parameters gov/hhs/medicaid, gov/hhs/chip, gov/aca, gov/states/*/hhs/chip, gov/states/{ar,va}/*/medicaid and the matching variables) and rulespec-us
+  (c8951033, 2026-08-08: us-xx/policies/cms/*-chip-eligibility and *-medicaid-chip-bhp-eligibility-levels wrappers, us/policies/medicaid/magi_household_income_pipeline,
+  us-ga dfcs/medicaid/2578, oracle-coverage-pending entries) are recorded per element as a cross-check in pe_modeled / rulespec.'
+levels:
+  federal_only: 'federal text sets the element; every state inherits it (state matrix rows: INHERITED, or NOT_APPLICABLE for part 436 which governs
+    only GU/PR/VI)'
+  federal_with_state_option: federal text sets the rule; the state elects or implements; the state row is checked against the state's held documents
+  state: a state-set value or state-authored rule; the state row is checked; the federal row records the federal authority
+search_confidence:
+  high: 'search_patterns (strong) exist: a body match in the state''s program or pointer scopes is PRESENT with the matched provision (subject
+    to needs_number and neg_context)'
+  low: 'only weak_patterns exist: a match is a candidate and is reported REVIEW with the candidate cited'
+  n/a: no text search; the cell is settled by the federal row, a CMS compilation, the state plan family or the queue row
+pass_2_note: Schema version 2 (2026-09-12). Pass 1 (2026-09-11) marked PRESENT on single-word patterns and on hits in SNAP, TANF and CalFresh
+  scopes; pass 2 restricts the search universe to the state's Medicaid and CHIP scopes plus the pointer scopes of done-by-pointer states, splits
+  patterns into strong and weak, requires a value signal for state-set standards, rejects Medicare and ACA contexts for cost-sharing elements,
+  and names the CMS-posted state plan family that carries an election when the state text does not. 42 CFR 457.344 is held only as a removal notice
+  in the CMS-2454-IFC conforming-amendments scope and is not an element.
+title: Medicaid needs schema (law-derived)
+labels:
+- medicaid
+aliases:
+  medicaid_chip_bhp: us manifest tag
+pe_cross_check_summary: 'PolicyEngine models: MAGI groups and income limits (children by age band, pregnant + postpartum, parents/caretakers incl.
+  deprivation and student options, adult group), SSI-recipient and 209(b) classification, optional aged/blind/disabled income and asset limits
+  and disregards, medically needy categories and income/asset limits, MAGI household and income counting, immigration eligibility and five-year
+  bar, emergency Medicaid, LTC home equity limit, community engagement (age range, hours, dependent and foster-care limits), working-disabled
+  buy-in premium, 1115 MEC adult, FMAP. PolicyEngine does not model: presumptive eligibility, continuous eligibility, retroactive eligibility,
+  MSP (QMB/SLMB/QI/QDWI), spousal impoverishment, transfers/look-back, trusts, estate recovery, post-eligibility treatment of income, TMA, Medicaid
+  premiums and copayments (447), BCCP/TB/family-planning/HCBS/Katie Beckett groups, 1902(r)(2) methodologies, deeming, verification, renewals,
+  notices, hearings, state plan content.'
+element_count: 302
+elements:
+- id: M-ST-1396a-a10
+  title: '1902(a)(10): mandatory and optional categorically needy groups, medically needy option, MSP (A)(i)-(ii), (C), (E)'
+  federal_citation: 42 U.S.C. 1396a(a)(10)
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: partial (gov/hhs/medicaid/eligibility/categories/*)
+  rulespec: us:statutes/42 (a/10 held; cited by state cms wrappers)
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held as us/statute/42/1396a/a/10. Per-group elements are the 42 CFR 435 subparts B-D sections below.
+  weak_patterns: []
+- id: M-ST-1396a-a17
+  title: '1902(a)(17): reasonable income and resource standards and methodologies; 1902(r)(2) less-restrictive methodologies'
+  federal_citation: 42 U.S.C. 1396a(a)(17), 1396a(r)(2)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - less restrictive (methodolog|income|resource)|more liberal (methodolog|income|resource)|1902\(r\)\(2\)
+  search_confidence: high
+  notes: 'Statute subsection not held (the Medicaid statute scope holds 1396a(a)(10) only under (a), plus (e)(1)-(16), (f), (l)(1)-(4), (m)(1)-(4)).
+    State-level: which disregards/methodologies the state elected.'
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-ST-1396a-a34
+  title: '1902(a)(34): retroactive eligibility (three months before application)'
+  federal_citation: 42 U.S.C. 1396a(a)(34); 42 CFR 435.915
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - retroactive (medicaid|medical assistance|coverage|eligibility|period|months?|assistance|benefits?)|(three|3) (calendar )?months? (prior to|before|preceding|immediately
+    preceding) the (month of |date of )?(application|filing)
+  search_confidence: high
+  notes: Statute subsection not held. Several states limit retroactive coverage under 1115 demonstrations.
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-ST-1396a-a47
+  title: '1902(a)(47), 1920, 1920A, 1920B, 1920C: presumptive eligibility authority'
+  federal_citation: 42 U.S.C. 1396a(a)(47), 1396r-1, 1396r-1a, 1396r-1b, 1396r-1c
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Not held. State elections are elements 435.1102, 435.1103, 435.1110.
+  weak_patterns: []
+- id: M-ST-1396a-e12
+  title: '1902(e)(12): 12-month continuous eligibility for children (mandatory from 2024-01-01)'
+  federal_citation: 42 U.S.C. 1396a(e)(12); 42 CFR 435.926
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1396a/e/12). State implementation is element 435.926.
+  weak_patterns: []
+- id: M-ST-1396a-e14
+  title: '1902(e)(14): MAGI income determination, 5-percentage-point disregard'
+  federal_citation: 42 U.S.C. 1396a(e)(14); 42 CFR 435.603
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (gov/hhs/medicaid/income/*, household/*)
+  rulespec: us:policies/medicaid/magi_household_income_pipeline
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1396a/e/14).
+  weak_patterns: []
+- id: M-ST-1396a-e16
+  title: '1902(e)(16): 12-month postpartum coverage option'
+  federal_citation: 42 U.S.C. 1396a(e)(16); 42 CFR 435.170
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (categories/pregnant/postpartum_coverage)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held. State election is element 435.170.
+  weak_patterns: []
+- id: M-ST-1396a-k
+  title: '1902(k) and 1902(a)(10)(A)(i)(VIII): adult group (expansion) and benchmark benefits'
+  federal_citation: 42 U.S.C. 1396a(k); 42 CFR 435.119
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (categories/adult/*)
+  rulespec: us-xx cms eligibility-levels wrappers (expansion flag)
+  search_patterns: []
+  search_confidence: n/a
+  notes: 1396a(k) not held (a(10) is). State election is element 435.119.
+  weak_patterns: []
+- id: M-ST-1396a-l
+  title: '1902(l): poverty-level pregnant women, infants and children; income levels'
+  federal_citation: 42 U.S.C. 1396a(l); 42 CFR 435.116, 435.118
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'yes'
+  rulespec: 'yes'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1396a/l).
+  weak_patterns: []
+- id: M-ST-1396a-m
+  title: '1902(m): optional poverty-level aged and disabled group (100% FPL)'
+  federal_citation: 42 U.S.C. 1396a(m)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: partial (categories/senior_or_disabled/*)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: Held (us/statute/42/1396a/m). No 42 CFR 435 section implements it; the state election appears only in the state plan and manual.
+  weak_patterns:
+  - poverty.level (aged|disabled|elderly)|100 ?(%|percent) (of the )?(FPL|federal poverty).{0,80}(aged|disabled|65)|(aged|disabled).{0,80}100
+    ?(%|percent) (of the )?(FPL|federal poverty)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-ST-1396a-xx
+  title: '1902(xx): community engagement requirement (P.L. 119-21 sec. 71119)'
+  federal_citation: 42 U.S.C. 1396a(xx); 42 CFR 435.550-435.563
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (eligibility/work_requirements/*, variables *community_engagement*)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1396a/xx and the CMS-2454-IFC scope). State implementation is elements 435.551-435.561.
+  weak_patterns: []
+- id: M-ST-1396a-f
+  title: '1902(f): states using more restrictive standards than SSI (209(b))'
+  federal_citation: 42 U.S.C. 1396a(f); 42 CFR 435.121
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (ssi_recipient/classification/section_209b)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1396a/f).
+  weak_patterns: []
+- id: M-ST-1396b-v
+  title: '1903(v): emergency medical assistance for noncitizens not lawfully admitted'
+  federal_citation: 42 U.S.C. 1396b(v); 42 CFR 435.139, 435.406
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (emergency_medicaid/*)
+  rulespec: 'no'
+  search_patterns:
+  - emergency medical (assistance|services|condition)|emergency medicaid|emergency (services )?(for|to) (non-?citizens|aliens|undocumented)|\bEMA\b|alien
+    emergency
+  search_confidence: high
+  notes: Held (us/statute/42/1396b/v).
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-ST-1396d-a
+  title: '1905(a): medical assistance (benefit) definition'
+  federal_citation: 42 U.S.C. 1396d(a)
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held. The state benefit package is element M-SS-BENEFITS.
+  weak_patterns: []
+- id: M-ST-1396d-n
+  title: '1905(n): qualified pregnant woman or child'
+  federal_citation: 42 U.S.C. 1396d(n)
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: M-ST-1396d-p
+  title: '1905(p): qualified Medicare beneficiary; Medicare cost-sharing; MSP resource standards'
+  federal_citation: 42 U.S.C. 1396d(p); 42 CFR 435.123-435.126
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held. State implementation is elements 435.123-435.126.
+  weak_patterns: []
+- id: M-ST-1396d-b-y
+  title: '1905(b), (y), (z): FMAP, expansion FMAP'
+  federal_citation: 42 U.S.C. 1396d(b), (y), (z)
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (cost_share/fmap, expansion_fmap)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Not held (only 1396d(a), (n), (p), (q) are). Financing, not eligibility.
+  weak_patterns: []
+- id: M-ST-1396o
+  title: '1916, 1916A: premiums and cost sharing'
+  federal_citation: 42 U.S.C. 1396o, 1396o-1; 42 CFR 447.50-447.57
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Not held. State elections are elements 447.52-447.57.
+  weak_patterns: []
+- id: M-ST-1396p-c
+  title: '1917(c): transfers of assets for less than fair market value; look-back period; penalty period'
+  federal_citation: 42 U.S.C. 1396p(c)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - transfer of (assets|resources|property)|look-?back period|penalty period|uncompensated (transfer|value)
+  search_confidence: high
+  notes: 'Not held (only 1396p(f)). State-set: penalty divisor, hardship waiver.'
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-ST-1396p-b
+  title: '1917(b): estate recovery'
+  federal_citation: 42 U.S.C. 1396p(b)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - estate recovery|recover(y|ed) from the estate|estate claim
+  search_confidence: high
+  notes: Not held.
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-ST-1396p-d
+  title: '1917(d): treatment of trusts (including special needs and pooled trusts; qualified income trusts)'
+  federal_citation: 42 U.S.C. 1396p(d)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - special needs trust|pooled trust|qualified income trust|miller trust|treatment of trusts|trust(s)? (established|created).{0,60}(medicaid|assets)
+  search_confidence: high
+  notes: Not held.
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-ST-1396p-f
+  title: '1917(f): home equity limit for long-term care eligibility'
+  federal_citation: 42 U.S.C. 1396p(f)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (long_term_care/home_equity/*)
+  rulespec: 'no'
+  search_patterns:
+  - home equity (limit|interest|value|cap|standard|threshold)|equity (interest |value )?in (the |their |his or her |a )?home.{0,120}(exceed|limit|\$|more
+    than|greater than)
+  search_confidence: high
+  notes: 'Held (us/statute/42/1396p/f). State-set: the elected limit between the federal floor and ceiling.'
+  weak_patterns:
+  - home equity
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-ST-1396r-5
+  title: '1924: spousal impoverishment (community spouse resource and income allowances)'
+  federal_citation: 42 U.S.C. 1396r-5
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - spousal impoverishment|community spouse|spousal (resource|income) (allowance|standard)|\bCSRA\b|\bMMMNA\b|minimum monthly maintenance
+  search_confidence: high
+  notes: 'Not held. State-set: CSRA within the federal range, MMMNA, excess shelter standard.'
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-ST-1396r-6
+  title: '1925: transitional medical assistance'
+  federal_citation: 42 U.S.C. 1396r-6; 42 CFR 435.112
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - transitional medical assistance|transitional medicaid|\bTMA\b|extended medicaid|(4|four|6|six|12|twelve).month (extended|extension|transitional)|medical
+    extension
+  search_confidence: high
+  notes: Not held.
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-ST-1396u-1
+  title: '1931: low-income families (AFDC-related) group'
+  federal_citation: 42 U.S.C. 1396u-1; 42 CFR 435.110
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (categories/parent/*)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1396u–1, en-dash in the citation path; a, b, c, d, e, f, g, h, i).
+  weak_patterns: []
+- id: M-ST-1396a-a10Aii-buyin
+  title: '1902(a)(10)(A)(ii)(XIII), (XV), (XVI): working disabled buy-in groups (Ticket to Work)'
+  federal_citation: 42 U.S.C. 1396a(a)(10)(A)(ii)(XIII),(XV),(XVI)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (variables is_working_disabled_buy_in_for_medicaid, medicaid_working_disabled_buy_in_premium)
+  rulespec: 'no'
+  search_patterns:
+  - working disabled|medicaid buy-?in|ticket to work|workers with disabilities|working people with disabilities|employed (individuals|persons)
+    with disabilities|\bMAWD\b|\bMWD\b|health coverage for workers
+  search_confidence: high
+  notes: Held inside us/statute/42/1396a/a/10. No 42 CFR 435 section implements these groups.
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-ST-1320b-7
+  title: '1137: income and eligibility verification system (IEVS)'
+  federal_citation: 42 U.S.C. 1320b-7; 42 CFR 435.940-435.965
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Not held. State implementation is elements 435.945-435.956.
+  weak_patterns: []
+- id: M-ST-1382
+  title: Title XVI SSI eligibility criteria referenced by 1902(a)(10)(A)(i)(II) and 1902(f)
+  federal_citation: 42 U.S.C. 1382, 1382a, 1382b, 1382c
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: partial (gov/ssa)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute 2026-06-20 SSI Title XVI scope).
+  weak_patterns: []
+- id: M-ST-8usc-1611
+  title: 'PRWORA noncitizen eligibility: 8 U.S.C. 1611, 1612, 1613 (five-year bar), 1641 (qualified alien)'
+  federal_citation: 8 U.S.C. 1611, 1612, 1613, 1641; invoked by 42 U.S.C. 1396b(v) and 42 CFR 435.406
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (eligibility/eligible_immigration_statuses, five_year_bar_years, bar_exempt_immigration_statuses)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: 'Corrected 2026-09-12: 8 U.S.C. 1612, 1613 and 1641 are held (us/statute/8/1612, 1613, 1641 in the released 2026-07-13-recovery statute
+    scope); 8 U.S.C. 1611 is not. State election (CHIPRA 214 lawfully residing children and pregnant women) is element 435.406.'
+  weak_patterns: []
+- id: M-ST-1315
+  title: '1115 demonstration: state-specific eligibility terms (special terms and conditions)'
+  federal_citation: 42 U.S.C. 1315
+  level: state
+  carrying_family_state: CMS-approved 1115 demonstration special terms and conditions (medicaid.gov)
+  pe_modeled: partial (variables is_medicaid_1115_mec_adult; states/ar work requirements)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: 1315 not held. Which states run 1115 eligibility demonstrations cannot be settled from the corpus; the pattern only finds mentions. A
+    mention of a section 1115 demonstration is only a candidate; the terms live in the CMS special terms and conditions, not in the manual.
+  weak_patterns:
+  - 1115 (demonstration|waiver)|section 1115|demonstration (waiver|project|program)
+- id: M-ST-1396a-a3
+  title: '1902(a)(3): fair hearings (42 CFR 431 subpart E is outside the regulation set requested for this check)'
+  federal_citation: 42 U.S.C. 1396a(a)(3); 42 CFR 431.200-431.250
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - fair hearing|administrative hearing|appeal(s)? (process|rights|procedure)|right to (a )?(hearing|appeal)
+  search_confidence: high
+  notes: Statute subsection not held; 42 CFR 431 not in the corpus. Every held state manual has a hearings chapter, so the element is listed at
+    the state level.
+  weak_patterns: []
+  plan_family: Medicaid state plan section 4.2 (fair hearings) on medicaid.gov
+- id: M-ST-1396a-a25
+  title: '1902(a)(25): third party liability and assignment of rights'
+  federal_citation: 42 U.S.C. 1396a(a)(25); 42 CFR 433 subpart D; 435.610
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - third.party liability|\bTPL\b|third.party (resource|payer|coverage)|assignment of rights
+  search_confidence: high
+  notes: Statute subsection not held; 42 CFR 433 not in the corpus.
+  weak_patterns: []
+  plan_family: Medicaid state plan section 4.22 (third party liability) on medicaid.gov
+- id: M-435-2
+  title: '42 CFR 435.2: Purpose and applicability'
+  federal_citation: 42 CFR 435.2
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/2
+  weak_patterns: []
+- id: M-435-3
+  title: '42 CFR 435.3: Basis'
+  federal_citation: 42 CFR 435.3
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/3
+  weak_patterns: []
+- id: M-435-4
+  title: '42 CFR 435.4: Definitions and use of terms (state option: caretaker relative, dependent child age)'
+  federal_citation: 42 CFR 435.4
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: partial (household/child_age_limit, parent/dependent_child/*)
+  rulespec: 'no'
+  search_patterns:
+  - caretaker relative|specified relative|degree of relationship
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/4
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-10
+  title: '42 CFR 435.10: State plan requirements (the approved state plan)'
+  federal_citation: 42 CFR 435.10
+  level: state
+  carrying_family_state: approved Medicaid state plan (attachments 2.2-A, 2.6-A, supplements) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: The state plan itself; medicaid.gov posts every state plan.
+  state_plan: true
+  cfr_path: us/regulation/42/435/10
+  weak_patterns: []
+- id: M-435-100
+  title: '42 CFR 435.100: Scope (subpart B mandatory coverage)'
+  federal_citation: 42 CFR 435.100
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/100
+  weak_patterns: []
+- id: M-435-110
+  title: '42 CFR 435.110: Parents and other caretaker relatives (state income standard)'
+  federal_citation: 42 CFR 435.110
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/parent/income_limit)
+  rulespec: us-xx cms eligibility-levels wrappers (parent/caretaker level)
+  search_patterns:
+  - parents? (and|or|&) (other )?caretaker relatives?|caretaker relatives?|low.income famil(y|ies) with (dependent )?children|section 1931|1931
+    (group|families)
+  search_confidence: high
+  notes: ''
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  cfr_path: us/regulation/42/435/110
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-112
+  title: '42 CFR 435.112: Families terminated from AFDC because of increased earnings or hours (extended coverage)'
+  federal_citation: 42 CFR 435.112
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - increased earnings|increase in earnings|transitional medical assistance|extended medicaid|medical extension
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/112
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-115
+  title: '42 CFR 435.115: Families with eligibility extended because of increased spousal support'
+  federal_citation: 42 CFR 435.115
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/115
+  weak_patterns:
+  - (spousal|child) support.{0,120}(four|4).month|(four|4).month.{0,120}(spousal|child) support
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-116
+  title: '42 CFR 435.116: Pregnant women (state income standard, 133-185% FPL or higher)'
+  federal_citation: 42 CFR 435.116
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/pregnant/income_limit)
+  rulespec: us-xx cms eligibility-levels wrappers
+  search_patterns:
+  - pregnan\w*
+  search_confidence: high
+  notes: ''
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  cfr_path: us/regulation/42/435/116
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-117
+  title: '42 CFR 435.117: Deemed newborn children'
+  federal_citation: 42 CFR 435.117
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - deemed newborn|newborn.{0,150}(deemed|automatically|continuous(ly)? eligib|eligible (until|through|for (the )?(first )?(year|12 months|twelve
+    months))|remains eligible)|continuously eligible newborn|child born to a (woman|mother|pregnant).{0,120}(medicaid|medical assistance|eligible)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/117
+  weak_patterns:
+  - newborn
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-118
+  title: '42 CFR 435.118: Infants and children under age 19 (state income standards by age band)'
+  federal_citation: 42 CFR 435.118
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/infant, young_child, older_child income_limit + age_range)
+  rulespec: us-xx cms eligibility-levels wrappers
+  search_patterns:
+  - (infants?|children).{0,60}under (age )?19|under (age )?19|age[sd]? (0|1|6).{0,20}(to|through|-).{0,10}(1|5|18|19)|children.{0,40}(1 through
+    5|6 through 18|ages? 1-5|ages? 6-18)
+  search_confidence: high
+  notes: ''
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  cfr_path: us/regulation/42/435/118
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-119
+  title: '42 CFR 435.119: Coverage for individuals age 19 or older and under 65 at or below 133% FPL (adult group; state election)'
+  federal_citation: 42 CFR 435.119
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/adult/*)
+  rulespec: us-xx cms eligibility-levels wrappers (expansion flag)
+  search_patterns:
+  - adult group|expansion (adult|group|population)|new adult group|MAGI adult|(133|138) ?(%|percent).{0,60}(FPL|poverty)|group VIII|VIII group
+  search_confidence: high
+  notes: ''
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  cfr_path: us/regulation/42/435/119
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-120
+  title: '42 CFR 435.120: Individuals receiving SSI (1634 states)'
+  federal_citation: 42 CFR 435.120
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (ssi_recipient/*)
+  rulespec: us-ga:policies/dfcs/medicaid/2578
+  search_patterns:
+  - SSI recipient|receiv(e|es|ing) SSI|supplemental security income.{0,60}(eligib|automatic|categorically)|1634
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/120
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-121
+  title: '42 CFR 435.121: Individuals in states using more restrictive requirements than SSI (209(b))'
+  federal_citation: 42 CFR 435.121
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (ssi_recipient/classification/section_209b)
+  rulespec: 'no'
+  search_patterns:
+  - 209\(b\)|more restrictive.{0,60}(SSI|than)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/121
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-122
+  title: '42 CFR 435.122: Individuals ineligible for SSI or optional state supplements because of requirements that do not apply under Medicaid'
+  federal_citation: 42 CFR 435.122
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/122
+  weak_patterns:
+  - ineligible for SSI (solely|only|because)|not eligible for SSI (solely|only|because)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-123
+  title: '42 CFR 435.123: Qualified Medicare beneficiaries (QMB)'
+  federal_citation: 42 CFR 435.123
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - qualified medicare beneficiar|\bQMB\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/123
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-124
+  title: '42 CFR 435.124: Specified low-income Medicare beneficiaries (SLMB)'
+  federal_citation: 42 CFR 435.124
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - specified low.income medicare|\bSLMB\b|\bSLIMB\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/124
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-125
+  title: '42 CFR 435.125: Qualifying individuals (QI)'
+  federal_citation: 42 CFR 435.125
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - qualifying individual|\bQI-?1\b|\bQI\b program|\bQMB-?E\b|\bMQB-?E\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/125
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-126
+  title: '42 CFR 435.126: Qualified disabled and working individuals (QDWI)'
+  federal_citation: 42 CFR 435.126
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - qualified disabled (and|&) working|\bQDWI\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/126
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-130
+  title: '42 CFR 435.130: Individuals receiving mandatory state supplements'
+  federal_citation: 42 CFR 435.130
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/130
+  weak_patterns:
+  - mandatory state supplement
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-131
+  title: '42 CFR 435.131: Essential spouses in December 1973'
+  federal_citation: 42 CFR 435.131
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - essential spouse
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/131
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-132
+  title: '42 CFR 435.132: Institutionalized individuals eligible in December 1973'
+  federal_citation: 42 CFR 435.132
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/132
+  weak_patterns:
+  - december 1973|(institutionalized|in an institution).{0,60}1973
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-133
+  title: '42 CFR 435.133: Blind and disabled individuals eligible in December 1973'
+  federal_citation: 42 CFR 435.133
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/133
+  weak_patterns:
+  - (blind|disabled).{0,60}(december )?1973|1973.{0,60}(blind|disabled)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-134
+  title: '42 CFR 435.134: Individuals who would be eligible except for the 1972 OASDI increase'
+  federal_citation: 42 CFR 435.134
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/134
+  weak_patterns:
+  - pub(lic)? ?(law|l\.) ?92-336|1972.{0,60}(OASDI|social security) (increase|benefit)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-135
+  title: '42 CFR 435.135: Individuals ineligible for cash assistance because of OASDI cost-of-living increases (Pickle)'
+  federal_citation: 42 CFR 435.135
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - pickle|cost.of.living.{0,80}(OASDI|social security|RSDI).{0,80}(disregard|ineligible|lost)|503 (group|eligib)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/135
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-136
+  title: '42 CFR 435.136: State agency one-time notice and annual review requirements (Pickle)'
+  federal_citation: 42 CFR 435.136
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/136
+  weak_patterns: []
+- id: M-435-137
+  title: '42 CFR 435.137: Disabled widows and widowers ineligible for SSI because of the 1983 benefit increase'
+  federal_citation: 42 CFR 435.137
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - disabled widow
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/137
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-138
+  title: '42 CFR 435.138: Disabled widows and widowers aged 60 through 64'
+  federal_citation: 42 CFR 435.138
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/138
+  weak_patterns:
+  - disabled widow.{0,80}(60|sixty)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-139
+  title: '42 CFR 435.139: Coverage for certain aliens (emergency services)'
+  federal_citation: 42 CFR 435.139
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - emergency medical (assistance|services|condition)|emergency medicaid|alien emergency
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/139
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-145
+  title: '42 CFR 435.145: Children with title IV-E adoption assistance, foster care or guardianship care'
+  federal_citation: 42 CFR 435.145
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (title )?IV-?E\b|foster care (maintenance )?payments?.{0,150}(medicaid|medical assistance|eligib|automatically)|(adoption assistance|guardianship
+    assistance).{0,150}(medicaid|medical assistance|eligib|automatically)|(medicaid|medical assistance).{0,120}(foster care|adoption assistance)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/145
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-150
+  title: '42 CFR 435.150: Former foster care children (to age 26)'
+  federal_citation: 42 CFR 435.150
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - former foster care|aged out of foster care|(in|receiving) foster care.{0,120}(18th birthday|age 18|turned 18|attain(ed|ing) (age )?18).{0,160}(26|twenty-six)|(under
+    (age )?26|age 26|26th birthday).{0,160}foster care
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/150
+  weak_patterns:
+  - foster care
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-170
+  title: '42 CFR 435.170: Pregnant women eligible for extended or continuous eligibility (postpartum; state 12-month option)'
+  federal_citation: 42 CFR 435.170
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/pregnant/postpartum_coverage)
+  rulespec: 'no'
+  search_patterns:
+  - postpartum (period|coverage|care|eligibility)|(12|twelve|60|sixty).(month|day)s? (postpartum|after (the )?(end of )?pregnancy)|postpartum.{0,80}(12|twelve|60|sixty).(month|day)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/170
+  weak_patterns:
+  - postpartum
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-172
+  title: '42 CFR 435.172: Continuous eligibility for hospitalized children (inpatient at age 19)'
+  federal_citation: 42 CFR 435.172
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/172
+  weak_patterns:
+  - (inpatient|hospitalized).{0,120}(19th birthday|turns 19|age 19|attains age 19)|(19th birthday|turns 19).{0,120}(inpatient|hospital)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-200
+  title: '42 CFR 435.200: Scope (subpart C options for coverage)'
+  federal_citation: 42 CFR 435.200
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/200
+  weak_patterns: []
+- id: M-435-201
+  title: '42 CFR 435.201: Individuals included in optional groups'
+  federal_citation: 42 CFR 435.201
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/201
+  weak_patterns: []
+- id: M-435-210
+  title: '42 CFR 435.210: Optional eligibility for individuals meeting the income and resource requirements of the cash assistance programs'
+  federal_citation: 42 CFR 435.210
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (variables is_optional_senior_or_disabled_*)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/210
+  weak_patterns:
+  - optional.{0,60}(aged|blind|disabled).{0,120}(SSI|cash assistance) (income|standard|requirement)|meet(s)? the (income and resource|financial)
+    requirements (of|for) SSI
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-211
+  title: '42 CFR 435.211: Optional eligibility for individuals who would be eligible for cash assistance if not institutionalized'
+  federal_citation: 42 CFR 435.211
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/211
+  weak_patterns:
+  - would be eligible for (SSI|cash assistance).{0,80}(not )?(in|institution)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-212
+  title: '42 CFR 435.212: Individuals who would be ineligible if not enrolled in an MCO or PCCM (guaranteed eligibility)'
+  federal_citation: 42 CFR 435.212
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/212
+  weak_patterns: []
+- id: M-435-213
+  title: '42 CFR 435.213: Optional eligibility for individuals needing treatment for breast or cervical cancer'
+  federal_citation: 42 CFR 435.213
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - breast (and|or|&) cervical cancer|\bBCC(P|T|CP)\b|\bBCCPT\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/213
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-214
+  title: '42 CFR 435.214: Eligibility limited to family planning and related services'
+  federal_citation: 42 CFR 435.214
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - family planning (program|only|benefit|group|coverage|services)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/214
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-215
+  title: '42 CFR 435.215: Individuals infected with tuberculosis'
+  federal_citation: 42 CFR 435.215
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - tuberculosis|\bTB\b (infected|program|group|related)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/215
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-217
+  title: '42 CFR 435.217: Individuals receiving home and community-based waiver services (special income level)'
+  federal_citation: 42 CFR 435.217
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - home and community.based (services )?waiver|\bHCBS\b waiver|1915\(c\)|waiver (services|group|program)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/217
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-218
+  title: '42 CFR 435.218: Individuals with MAGI-based income above 133% FPL (state option)'
+  federal_citation: 42 CFR 435.218
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/218
+  weak_patterns:
+  - (above|over|exceed(s|ing)?|more than|greater than) 133 ?(%|percent)|1902\(hh\)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-219
+  title: '42 CFR 435.219: Individuals receiving state plan home and community-based services (1915(i))'
+  federal_citation: 42 CFR 435.219
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - 1915\(i\)|state plan home and community.based
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/219
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-220
+  title: '42 CFR 435.220: Optional eligibility for parents and other caretaker relatives above the 1931 standard'
+  federal_citation: 42 CFR 435.220
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/220
+  weak_patterns:
+  - optional.{0,60}(parent|caretaker)|caretaker relative.{0,120}(optional|above|higher income)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-222
+  title: '42 CFR 435.222: Optional eligibility for reasonable classifications of individuals under age 21 (income)'
+  federal_citation: 42 CFR 435.222
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/222
+  weak_patterns:
+  - reasonable classification|under (age )?21.{0,120}(optional|reasonable)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-223
+  title: '42 CFR 435.223: Other optional eligibility for reasonable classifications of individuals under age 21'
+  federal_citation: 42 CFR 435.223
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/223
+  weak_patterns:
+  - reasonable classification
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-225
+  title: '42 CFR 435.225: Individuals under age 19 who would be eligible if in a medical institution (Katie Beckett/TEFRA)'
+  federal_citation: 42 CFR 435.225
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - katie beckett|\bTEFRA\b|(disabled )?child(ren)? (living )?at home.{0,120}(institution|would be eligible)|would (otherwise )?be eligible.{0,60}(institution|hospital|nursing).{0,120}(home|child)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/225
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-226
+  title: '42 CFR 435.226: Optional eligibility for independent foster care adolescents'
+  federal_citation: 42 CFR 435.226
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - independent foster care adolescent
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/226
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-227
+  title: '42 CFR 435.227: Optional eligibility for individuals under 21 under state adoption assistance agreements'
+  federal_citation: 42 CFR 435.227
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/227
+  weak_patterns:
+  - (state|non-?IV-?E) adoption assistance|adoption (assistance|subsidy).{0,80}(state|non-?IV-?E)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-229
+  title: '42 CFR 435.229: Optional targeted low-income children (Medicaid-expansion CHIP)'
+  federal_citation: 42 CFR 435.229
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - targeted low.income child|title XXI|medicaid expansion (CHIP|program)|M-?CHIP|CHIP.{0,60}medicaid expansion|expansion CHIP
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/229
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-230
+  title: '42 CFR 435.230: Aged, blind and disabled individuals in 209(b) states (optional)'
+  federal_citation: 42 CFR 435.230
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/senior_or_disabled/*)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/230
+  weak_patterns:
+  - 209\(b\)
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-232
+  title: '42 CFR 435.232: Individuals receiving only optional state supplements (1634 states)'
+  federal_citation: 42 CFR 435.232
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - optional state supplement|state supplement(ary|al) (payment|program)|\bSSP\b|\bOSS\b|state supplementation
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/232
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-234
+  title: '42 CFR 435.234: Individuals receiving only optional state supplements in 209(b) states'
+  federal_citation: 42 CFR 435.234
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/234
+  weak_patterns:
+  - optional state supplement.{0,120}209\(b\)|209\(b\).{0,120}optional state supplement
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-236
+  title: '42 CFR 435.236: Individuals in institutions eligible under a special income level (300% of SSI)'
+  federal_citation: 42 CFR 435.236
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - special income (level|limit|standard|group)|300 ?(%|percent) (of )?(the )?(SSI|federal benefit rate|FBR|maximum SSI)|institutional(ized)?
+    (income )?(cap|limit|standard)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/236
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-300
+  title: '42 CFR 435.300: Scope (subpart D medically needy)'
+  federal_citation: 42 CFR 435.300
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/300
+  weak_patterns: []
+- id: M-435-301
+  title: '42 CFR 435.301: General rules for medically needy coverage (state election)'
+  federal_citation: 42 CFR 435.301
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (categories/medically_needy/*)
+  rulespec: 'no'
+  search_patterns:
+  - medically needy
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/301
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-308
+  title: '42 CFR 435.308: Medically needy coverage of individuals under age 21'
+  federal_citation: 42 CFR 435.308
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/308
+  weak_patterns:
+  - medically needy.{0,120}(under (age )?21|child)|(child|under (age )?21).{0,120}medically needy
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-310
+  title: '42 CFR 435.310: Medically needy coverage of parents and other caretaker relatives'
+  federal_citation: 42 CFR 435.310
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/310
+  weak_patterns:
+  - medically needy.{0,120}(parent|caretaker)|(parent|caretaker).{0,120}medically needy
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-320
+  title: '42 CFR 435.320: Medically needy coverage of the aged (SSI states)'
+  federal_citation: 42 CFR 435.320
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/320
+  weak_patterns:
+  - medically needy.{0,120}(aged|elderly|65)|(aged|elderly|65).{0,120}medically needy
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-322
+  title: '42 CFR 435.322: Medically needy coverage of the blind (SSI states)'
+  federal_citation: 42 CFR 435.322
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/322
+  weak_patterns:
+  - medically needy.{0,120}blind|blind.{0,120}medically needy
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-324
+  title: '42 CFR 435.324: Medically needy coverage of the disabled (SSI states)'
+  federal_citation: 42 CFR 435.324
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/324
+  weak_patterns:
+  - medically needy.{0,120}disab|disab.{0,120}medically needy
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-326
+  title: '42 CFR 435.326: Medically needy individuals who would be ineligible if not enrolled in an MCO or PCCM'
+  federal_citation: 42 CFR 435.326
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/326
+  weak_patterns: []
+- id: M-435-330
+  title: '42 CFR 435.330: Medically needy coverage of the aged, blind and disabled in 209(b) states'
+  federal_citation: 42 CFR 435.330
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/330
+  weak_patterns:
+  - medically needy.{0,200}209\(b\)|209\(b\).{0,200}medically needy
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-340
+  title: '42 CFR 435.340: Protected medically needy coverage for blind and disabled individuals eligible in December 1973'
+  federal_citation: 42 CFR 435.340
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/340
+  weak_patterns: []
+- id: M-435-350
+  title: '42 CFR 435.350: Medically needy coverage for certain aliens'
+  federal_citation: 42 CFR 435.350
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/350
+  weak_patterns: []
+- id: M-435-400
+  title: '42 CFR 435.400: Scope (subpart E general eligibility requirements)'
+  federal_citation: 42 CFR 435.400
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/400
+  weak_patterns: []
+- id: M-435-401
+  title: '42 CFR 435.401: General rules'
+  federal_citation: 42 CFR 435.401
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/401
+  weak_patterns: []
+- id: M-435-403
+  title: '42 CFR 435.403: State residence'
+  federal_citation: 42 CFR 435.403
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - state residen|residency requirement|resident of (the state|this state|\w+)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/403
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-404
+  title: '42 CFR 435.404: Applicant''s choice of category'
+  federal_citation: 42 CFR 435.404
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/404
+  weak_patterns: []
+- id: M-435-406
+  title: '42 CFR 435.406: Citizenship and noncitizen eligibility (state option: lawfully residing children and pregnant women)'
+  federal_citation: 42 CFR 435.406
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (eligibility/eligible_immigration_statuses, five_year_bar_years, undocumented_immigrant)
+  rulespec: 'no'
+  search_patterns:
+  - qualified (alien|non-?citizen|immigrant)|lawfully (present|residing)|citizenship (and|or|&) (alien|immigra|non-?citizen)|immigration status|non-?citizen
+    eligib|five.year bar|5.year bar
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/406
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-407
+  title: '42 CFR 435.407: Types of acceptable documentary evidence of citizenship'
+  federal_citation: 42 CFR 435.407
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (documentary )?evidence of citizenship|(proof|verification|documentation) of (U\.?S\.? )?citizenship|citizenship (documentation|verification)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/407
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-500
+  title: '42 CFR 435.500: Scope (subpart F categorical requirements)'
+  federal_citation: 42 CFR 435.500
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/500
+  weak_patterns: []
+- id: M-435-520
+  title: '42 CFR 435.520: Age requirements for the aged'
+  federal_citation: 42 CFR 435.520
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/520
+  weak_patterns:
+  - age(d)? 65|65 years (of age|or older)|sixty.five
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-530
+  title: '42 CFR 435.530: Definition of blindness'
+  federal_citation: 42 CFR 435.530
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - blind(ness)?.{0,80}(defin|20/200|central visual acuity)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/530
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-531
+  title: '42 CFR 435.531: Determinations of blindness'
+  federal_citation: 42 CFR 435.531
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/531
+  weak_patterns:
+  - (determination|determining) of blindness|blindness.{0,60}(determin|review)
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-540
+  title: '42 CFR 435.540: Definition of disability'
+  federal_citation: 42 CFR 435.540
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/540
+  weak_patterns:
+  - defin(ition|ed).{0,40}disab|disab(ility|led).{0,60}(defin|means|as defined)
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-541
+  title: '42 CFR 435.541: Determinations of disability (state determination or SSA)'
+  federal_citation: 42 CFR 435.541
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - disability determination|(determination|determining) of disability|\bMRT\b|medical review team|disability (review|examin)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/541
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-550
+  title: '42 CFR 435.550: Community engagement: basis and scope (CMS-2454-IFC)'
+  federal_citation: 42 CFR 435.550
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01 (states may implement earlier); state manuals held on 2026-09-10 predate implementation
+  cfr_path: us/regulation/42/435/550
+  weak_patterns: []
+- id: M-435-551
+  title: '42 CFR 435.551: Community engagement: applicable individual'
+  federal_citation: 42 CFR 435.551
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (work_requirements/*)
+  rulespec: 'no'
+  search_patterns:
+  - community engagement
+  search_confidence: high
+  notes: Held in the CMS-2454-IFC corrected scope.
+  absent_note: IFC compliance date 2027-01-01; state manuals held predate implementation
+  cfr_path: us/regulation/42/435/551
+  weak_patterns:
+  - work requirement
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-552
+  title: '42 CFR 435.552: Community engagement: demonstrating community engagement (80 hours)'
+  federal_citation: 42 CFR 435.552
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (work_requirements/monthly_hours_threshold)
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}(80|eighty) hours|(80|eighty) hours.{0,300}community engagement
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/552
+  weak_patterns:
+  - (80|eighty) hours
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-553
+  title: '42 CFR 435.553: Community engagement: mandatory exceptions'
+  federal_citation: 42 CFR 435.553
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: partial (variables *_for_medicaid_ce)
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}exception|exception.{0,300}community engagement
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/553
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-554
+  title: '42 CFR 435.554: Community engagement: specified excluded individuals'
+  federal_citation: 42 CFR 435.554
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: partial
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}exclu|exclu.{0,300}community engagement
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/554
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-555
+  title: '42 CFR 435.555: Community engagement: optional exception for short-term hardship events'
+  federal_citation: 42 CFR 435.555
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - short.term hardship
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/555
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-556
+  title: '42 CFR 435.556: Community engagement: assessing compliance'
+  federal_citation: 42 CFR 435.556
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}(assess|compliance)
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/556
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-557
+  title: '42 CFR 435.557: Community engagement: verifying compliance or exception'
+  federal_citation: 42 CFR 435.557
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}verif
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/557
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-558
+  title: '42 CFR 435.558: Community engagement: noncompliance procedures'
+  federal_citation: 42 CFR 435.558
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}(noncompliance|non-compliance|disenroll)
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/558
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-559
+  title: '42 CFR 435.559: Community engagement: implementation timing'
+  federal_citation: 42 CFR 435.559
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}(implement|effective)
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/559
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-560
+  title: '42 CFR 435.560: Community engagement: good faith effort exemption'
+  federal_citation: 42 CFR 435.560
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/560
+  weak_patterns: []
+- id: M-435-561
+  title: '42 CFR 435.561: Community engagement: state requirements for outreach'
+  federal_citation: 42 CFR 435.561
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - community engagement.{0,300}outreach
+  search_confidence: high
+  notes: ''
+  absent_note: IFC compliance date 2027-01-01
+  cfr_path: us/regulation/42/435/561
+  weak_patterns: []
+  neg_context: waiver|day support|supported employment|employment services|community coaching|residential|habilitation|\bDD\b|developmental
+  plan_family: community-engagement implementation SPA or 1115 terms (not yet posted for any state; IFC compliance date 2027-01-01)
+- id: M-435-562
+  title: '42 CFR 435.562: Community engagement: state data submission for monitoring'
+  federal_citation: 42 CFR 435.562
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/562
+  weak_patterns: []
+- id: M-435-563
+  title: '42 CFR 435.563: Community engagement: prohibition of waivers'
+  federal_citation: 42 CFR 435.563
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/563
+  weak_patterns: []
+- id: M-435-600
+  title: '42 CFR 435.600: Scope (subpart G financial eligibility requirements)'
+  federal_citation: 42 CFR 435.600
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/600
+  weak_patterns: []
+- id: M-435-601
+  title: '42 CFR 435.601: Application of financial eligibility methodologies (less restrictive methodologies)'
+  federal_citation: 42 CFR 435.601
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: partial (senior_or_disabled/income/disregard)
+  rulespec: 'no'
+  search_patterns:
+  - less restrictive|more liberal|1902\(r\)\(2\)|income disregard|resource disregard
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/601
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-602
+  title: '42 CFR 435.602: Financial responsibility of relatives and other individuals (spousal and parental deeming)'
+  federal_citation: 42 CFR 435.602
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: partial (income/deemed/*)
+  rulespec: 'no'
+  search_patterns:
+  - deem(ed|ing) (income|resources)|financial responsibility of relatives|spouse.{0,80}(deem|financially responsible)|parent.{0,80}deem
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/602
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-603
+  title: '42 CFR 435.603: Application of modified adjusted gross income (MAGI): household, income, budget period, 5% disregard'
+  federal_citation: 42 CFR 435.603
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (income/*, household/*)
+  rulespec: us:policies/medicaid/magi_household_income_pipeline
+  search_patterns:
+  - modified adjusted gross income|\bMAGI\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/603
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-610
+  title: '42 CFR 435.610: Assignment of rights to benefits (third party liability)'
+  federal_citation: 42 CFR 435.610
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - assignment of rights|third.party liability|\bTPL\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/610
+  weak_patterns: []
+  plan_family: Medicaid state plan section 4.22 on medicaid.gov
+- id: M-435-622
+  title: '42 CFR 435.622: Individuals in institutions eligible under a special income level (financial rules)'
+  federal_citation: 42 CFR 435.622
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - special income (level|limit|standard)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/622
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-631
+  title: '42 CFR 435.631: General requirements for determining income eligibility in 209(b) states'
+  federal_citation: 42 CFR 435.631
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/631
+  weak_patterns:
+  - 209\(b\)
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-435-640
+  title: '42 CFR 435.640: Protected Medicaid eligibility for individuals eligible in December 1973'
+  federal_citation: 42 CFR 435.640
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/640
+  weak_patterns: []
+- id: M-435-700
+  title: '42 CFR 435.700: Scope (subpart H post-eligibility)'
+  federal_citation: 42 CFR 435.700
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/700
+  weak_patterns: []
+- id: M-435-725
+  title: '42 CFR 435.725: Post-eligibility treatment of income of institutionalized individuals in SSI states (patient liability, personal needs
+    allowance)'
+  federal_citation: 42 CFR 435.725
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - post.eligibility|patient liability|personal needs allowance|patient pay(ment)?|share of cost|cost of care contribution|\bPNA\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/725
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-435-726
+  title: '42 CFR 435.726: Post-eligibility treatment of income of individuals receiving HCBS waiver services (maintenance needs allowance)'
+  federal_citation: 42 CFR 435.726
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (post.eligibility|maintenance needs|personal needs).{0,200}(waiver|home and community|HCBS)|(waiver|HCBS).{0,200}(post.eligibility|maintenance
+    needs allowance)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/726
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-435-733
+  title: '42 CFR 435.733: Post-eligibility treatment of income in 209(b) states'
+  federal_citation: 42 CFR 435.733
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/733
+  weak_patterns:
+  - post.eligibility.{0,200}209\(b\)
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-435-735
+  title: '42 CFR 435.735: Post-eligibility treatment of income and resources for HCBS in 209(b) states'
+  federal_citation: 42 CFR 435.735
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/735
+  weak_patterns:
+  - 209\(b\)
+  plan_family: Medicaid state plan attachment 2.6-A supplements 8a-8c and 9-12 (post-eligibility, transfers, trusts, estate recovery, spousal
+    impoverishment) on medicaid.gov
+- id: M-435-800
+  title: '42 CFR 435.800: Scope (subpart I medically needy financial requirements)'
+  federal_citation: 42 CFR 435.800
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/800
+  weak_patterns: []
+- id: M-435-811
+  title: '42 CFR 435.811: Medically needy income standard: general requirements (state-set MNIL)'
+  federal_citation: 42 CFR 435.811
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes (medically_needy/limit/income/*)
+  rulespec: 'no'
+  search_patterns:
+  - medically needy income (level|standard|limit)|\bMNIL\b|protected income level|\bPIL\b|medically needy (standard|level)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/811
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A supplement (medically needy income and resource levels) on medicaid.gov
+- id: M-435-814
+  title: '42 CFR 435.814: Medically needy income standard: state plan requirements'
+  federal_citation: 42 CFR 435.814
+  level: state
+  carrying_family_state: approved Medicaid state plan (attachments 2.2-A, 2.6-A, supplements) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  state_plan: true
+  cfr_path: us/regulation/42/435/814
+  weak_patterns: []
+- id: M-435-831
+  title: '42 CFR 435.831: Income eligibility (spend-down, budget period)'
+  federal_citation: 42 CFR 435.831
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (variables medicaid_medically_needy_medical_expenses)
+  rulespec: 'no'
+  search_patterns:
+  - spend.?down|excess income|incurred medical expenses.{0,120}(deduct|excess|spend)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/831
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A supplement (medically needy income and resource levels) on medicaid.gov
+- id: M-435-832
+  title: '42 CFR 435.832: Post-eligibility treatment of income of institutionalized medically needy individuals'
+  federal_citation: 42 CFR 435.832
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/832
+  weak_patterns:
+  - medically needy.{0,200}(post.eligibility|patient liability|institution)
+  plan_family: Medicaid state plan attachment 2.6-A supplement (medically needy income and resource levels) on medicaid.gov
+- id: M-435-840
+  title: '42 CFR 435.840: Medically needy resource standard: general requirements (state-set)'
+  federal_citation: 42 CFR 435.840
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes (medically_needy/limit/assets/*)
+  rulespec: 'no'
+  search_patterns:
+  - medically needy resource (standard|limit|level)|resource (limit|standard|level).{0,120}medically needy
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/840
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A supplement (medically needy income and resource levels) on medicaid.gov
+- id: M-435-843
+  title: '42 CFR 435.843: Medically needy resource standard: state plan requirements'
+  federal_citation: 42 CFR 435.843
+  level: state
+  carrying_family_state: approved Medicaid state plan (attachments 2.2-A, 2.6-A, supplements) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  state_plan: true
+  cfr_path: us/regulation/42/435/843
+  weak_patterns: []
+- id: M-435-845
+  title: '42 CFR 435.845: Medically needy resource eligibility'
+  federal_citation: 42 CFR 435.845
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/845
+  weak_patterns:
+  - medically needy.{0,200}resource
+  plan_family: Medicaid state plan attachment 2.6-A supplement (medically needy income and resource levels) on medicaid.gov
+- id: M-435-900
+  title: '42 CFR 435.900: Scope (subpart J eligibility in the states and DC)'
+  federal_citation: 42 CFR 435.900
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/900
+  weak_patterns: []
+- id: M-435-901
+  title: '42 CFR 435.901: Consistency with objectives and statutes'
+  federal_citation: 42 CFR 435.901
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/901
+  weak_patterns: []
+- id: M-435-902
+  title: '42 CFR 435.902: Simplicity of administration'
+  federal_citation: 42 CFR 435.902
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/902
+  weak_patterns: []
+- id: M-435-903
+  title: '42 CFR 435.903: Adherence of local agencies to state plan requirements'
+  federal_citation: 42 CFR 435.903
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/903
+  weak_patterns: []
+- id: M-435-904
+  title: '42 CFR 435.904: Establishment of outstation locations'
+  federal_citation: 42 CFR 435.904
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/904
+  weak_patterns:
+  - outstation
+- id: M-435-905
+  title: '42 CFR 435.905: Availability and accessibility of program information'
+  federal_citation: 42 CFR 435.905
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/905
+  weak_patterns: []
+- id: M-435-906
+  title: '42 CFR 435.906: Opportunity to apply'
+  federal_citation: 42 CFR 435.906
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/906
+  weak_patterns: []
+- id: M-435-907
+  title: '42 CFR 435.907: Application (single streamlined application; state options)'
+  federal_citation: 42 CFR 435.907
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - application (form|process|procedures?|requirements?)|single streamlined application|apply(ing)? for (medicaid|medical assistance|benefits|coverage)|how
+    to apply
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/907
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-908
+  title: '42 CFR 435.908: Assistance with application and renewal (application assisters, certified counselors)'
+  federal_citation: 42 CFR 435.908
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/908
+  weak_patterns:
+  - application assist|assist(ance)? (with|in) (completing|the) (an )?application|certified application counselor|navigator
+- id: M-435-909
+  title: '42 CFR 435.909: Automatic entitlement following eligibility determination under other programs'
+  federal_citation: 42 CFR 435.909
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/909
+  weak_patterns: []
+- id: M-435-910
+  title: '42 CFR 435.910: Use of social security number'
+  federal_citation: 42 CFR 435.910
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - social security number|\bSSN\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/910
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-911
+  title: '42 CFR 435.911: Determination of eligibility (highest applicable group, MAGI and non-MAGI)'
+  federal_citation: 42 CFR 435.911
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - determination of eligibility|eligibility determination|determin(e|ing) eligibility
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/911
+  weak_patterns: []
+- id: M-435-912
+  title: '42 CFR 435.912: Timely determination and redetermination of eligibility (45/90-day standards)'
+  federal_citation: 42 CFR 435.912
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (45|forty.five) (calendar )?days|(90|ninety) (calendar )?days|timel(y|iness) (standard|determination)|reasonable promptness|standard of promptness
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/912
+  weak_patterns: []
+- id: M-435-914
+  title: '42 CFR 435.914: Case documentation'
+  federal_citation: 42 CFR 435.914
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/914
+  weak_patterns: []
+- id: M-435-915
+  title: '42 CFR 435.915: Effective date of eligibility (retroactive months)'
+  federal_citation: 42 CFR 435.915
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - effective date of (eligibility|coverage|medicaid|medical assistance)|(begin(ning)?|start) date of (eligibility|coverage|medicaid)|eligibility
+    (begins|shall begin|will begin|may begin)|retroactive (coverage|eligibility|period|months?|medicaid|medical assistance)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/915
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-916
+  title: '42 CFR 435.916: Regularly scheduled renewals (12-month; ex parte)'
+  federal_citation: 42 CFR 435.916
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - \brenewals?\b|redetermination|recertification|ex parte|annual (review|redetermination)|passive renewal
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/916
+  weak_patterns: []
+  plan_family: Medicaid state plan sections 2.1-2.5 (application, residency, blindness, disability) on medicaid.gov
+- id: M-435-917
+  title: '42 CFR 435.917: Notice of agency''s decision (adequate notice, adverse action)'
+  federal_citation: 42 CFR 435.917
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - notice of (adverse )?action|adequate notice|written notice|timely notice|advance notice|notice requirements
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/917
+  weak_patterns: []
+- id: M-435-918
+  title: '42 CFR 435.918: Use of electronic notices'
+  federal_citation: 42 CFR 435.918
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/918
+  weak_patterns:
+  - electronic notice|electronic(ally)? (delivered )?notic
+- id: M-435-919
+  title: '42 CFR 435.919: Changes in circumstances (reporting and acting on changes)'
+  federal_citation: 42 CFR 435.919
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - change(s)? in circumstance|report(ing)? (a )?change|reported change|change report
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/919
+  weak_patterns: []
+- id: M-435-920
+  title: '42 CFR 435.920: Verification of SSNs'
+  federal_citation: 42 CFR 435.920
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (verif|validat).{0,60}(SSN|social security number)|(SSN|social security number).{0,60}(verif|validat)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/920
+  weak_patterns: []
+  plan_family: MAGI-based verification plan (state-submitted, posted by CMS on medicaid.gov)
+- id: M-435-923
+  title: '42 CFR 435.923: Authorized representatives'
+  federal_citation: 42 CFR 435.923
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - authorized representative
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/923
+  weak_patterns: []
+- id: M-435-926
+  title: '42 CFR 435.926: Continuous eligibility for children (12 months, mandatory 2024)'
+  federal_citation: 42 CFR 435.926
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - continuous eligibility|(12|twelve).month continuous|continuous coverage (for|of) children|continuous(ly)? eligib
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/926
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: M-435-927
+  title: '42 CFR 435.927: Requirements for states to submit data on redeterminations'
+  federal_citation: 42 CFR 435.927
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/927
+  weak_patterns: []
+- id: M-435-928
+  title: '42 CFR 435.928: Reduction in FMAP for failure to submit data'
+  federal_citation: 42 CFR 435.928
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/928
+  weak_patterns: []
+- id: M-435-930
+  title: '42 CFR 435.930: Furnishing Medicaid'
+  federal_citation: 42 CFR 435.930
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/930
+  weak_patterns: []
+- id: M-435-940
+  title: '42 CFR 435.940: Basis and scope (verification of eligibility)'
+  federal_citation: 42 CFR 435.940
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/940
+  weak_patterns: []
+- id: M-435-945
+  title: '42 CFR 435.945: General requirements (verification plan)'
+  federal_citation: 42 CFR 435.945
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - verification plan|verif(y|ication) of (income|eligibility|information)|verification (requirement|standard|procedure)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/945
+  weak_patterns: []
+  plan_family: MAGI-based verification plan (state-submitted, posted by CMS on medicaid.gov)
+- id: M-435-948
+  title: '42 CFR 435.948: Verifying financial information (electronic data sources, reasonable compatibility)'
+  federal_citation: 42 CFR 435.948
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - electronic (data )?source|reasonabl(e|y) compatib|federal data services hub|\bIEVS\b|data (match|exchange)|the hub\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/948
+  weak_patterns: []
+  plan_family: MAGI-based verification plan (state-submitted, posted by CMS on medicaid.gov)
+- id: M-435-949
+  title: '42 CFR 435.949: Verification through an electronic service'
+  federal_citation: 42 CFR 435.949
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  cfr_path: us/regulation/42/435/949
+  weak_patterns:
+  - electronic (verification )?service|federal data services hub|the hub\b
+  plan_family: MAGI-based verification plan (state-submitted, posted by CMS on medicaid.gov)
+- id: M-435-952
+  title: '42 CFR 435.952: Use of information and requests for additional information (reasonable compatibility standard)'
+  federal_citation: 42 CFR 435.952
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - reasonabl(e|y) compatib
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/952
+  weak_patterns: []
+  plan_family: MAGI-based verification plan (state-submitted, posted by CMS on medicaid.gov)
+- id: M-435-956
+  title: '42 CFR 435.956: Verification of other non-financial information (citizenship, immigration, residency, SSN)'
+  federal_citation: 42 CFR 435.956
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - verif.{0,80}(citizenship|immigration|residency|residence|age|identity)|(citizenship|immigration|residency).{0,80}verif
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/956
+  weak_patterns: []
+  plan_family: MAGI-based verification plan (state-submitted, posted by CMS on medicaid.gov)
+- id: M-435-960
+  title: '42 CFR 435.960: Standardized formats for furnishing and obtaining information'
+  federal_citation: 42 CFR 435.960
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/960
+  weak_patterns: []
+- id: M-435-965
+  title: '42 CFR 435.965: Delay of effective date'
+  federal_citation: 42 CFR 435.965
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/965
+  weak_patterns: []
+- id: M-435-1000
+  title: '42 CFR 435.1000: Scope (subpart K FFP)'
+  federal_citation: 42 CFR 435.1000
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1000
+  weak_patterns: []
+- id: M-435-1001
+  title: '42 CFR 435.1001: FFP for administration'
+  federal_citation: 42 CFR 435.1001
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1001
+  weak_patterns: []
+- id: M-435-1002
+  title: '42 CFR 435.1002: FFP for services'
+  federal_citation: 42 CFR 435.1002
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1002
+  weak_patterns: []
+- id: M-435-1003
+  title: '42 CFR 435.1003: FFP for redeterminations'
+  federal_citation: 42 CFR 435.1003
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1003
+  weak_patterns: []
+- id: M-435-1004
+  title: '42 CFR 435.1004: Beneficiaries overcoming certain conditions of eligibility'
+  federal_citation: 42 CFR 435.1004
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1004
+  weak_patterns: []
+- id: M-435-1005
+  title: '42 CFR 435.1005: Beneficiaries in institutions under a special income standard'
+  federal_citation: 42 CFR 435.1005
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1005
+  weak_patterns: []
+- id: M-435-1006
+  title: '42 CFR 435.1006: Beneficiaries of optional state supplements only'
+  federal_citation: 42 CFR 435.1006
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1006
+  weak_patterns: []
+- id: M-435-1007
+  title: '42 CFR 435.1007: Categorically needy, medically needy and QMB (FFP limits)'
+  federal_citation: 42 CFR 435.1007
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1007
+  weak_patterns: []
+- id: M-435-1008
+  title: '42 CFR 435.1008: FFP for individuals who declared citizenship pending verification'
+  federal_citation: 42 CFR 435.1008
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1008
+  weak_patterns: []
+- id: M-435-1009
+  title: '42 CFR 435.1009: Institutionalized individuals (IMD exclusion)'
+  federal_citation: 42 CFR 435.1009
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1009
+  weak_patterns: []
+- id: M-435-1010
+  title: '42 CFR 435.1010: Definitions relating to institutional status'
+  federal_citation: 42 CFR 435.1010
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1010
+  weak_patterns: []
+- id: M-435-1011
+  title: '42 CFR 435.1011: Requirement for mandatory state supplements'
+  federal_citation: 42 CFR 435.1011
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1011
+  weak_patterns: []
+- id: M-435-1012
+  title: '42 CFR 435.1012: Requirement for maintenance of optional state supplement expenditures'
+  federal_citation: 42 CFR 435.1012
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1012
+  weak_patterns: []
+- id: M-435-1015
+  title: '42 CFR 435.1015: FFP for premium assistance for plans in the individual market'
+  federal_citation: 42 CFR 435.1015
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1015
+  weak_patterns: []
+- id: M-435-1100
+  title: '42 CFR 435.1100: Basis for presumptive eligibility'
+  federal_citation: 42 CFR 435.1100
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1100
+  weak_patterns: []
+- id: M-435-1101
+  title: '42 CFR 435.1101: Definitions related to presumptive eligibility'
+  federal_citation: 42 CFR 435.1101
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1101
+  weak_patterns: []
+- id: M-435-1102
+  title: '42 CFR 435.1102: Children covered under presumptive eligibility (state option)'
+  federal_citation: 42 CFR 435.1102
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - presumptive(ly)? eligib.{0,200}(child|kids)|(child|kids).{0,200}presumptive(ly)? eligib
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/1102
+  weak_patterns:
+  - presumptive(ly)? eligib
+  plan_family: Medicaid state plan presumptive-eligibility pages (S-series eligibility SPAs) on medicaid.gov
+- id: M-435-1103
+  title: '42 CFR 435.1103: Presumptive eligibility for other individuals (pregnant women, adults, BCCP; state option)'
+  federal_citation: 42 CFR 435.1103
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - presumptive(ly)? eligib.{0,200}(pregnan|adult|parent|caretaker|family planning|breast)|(pregnan|adult).{0,200}presumptive(ly)? eligib
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/1103
+  weak_patterns:
+  - presumptive(ly)? eligib
+  plan_family: Medicaid state plan presumptive-eligibility pages (S-series eligibility SPAs) on medicaid.gov
+- id: M-435-1110
+  title: '42 CFR 435.1110: Presumptive eligibility determined by hospitals (mandatory)'
+  federal_citation: 42 CFR 435.1110
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - hospital presumptive|presumptive(ly)? eligib.{0,150}hospital|qualified hospital|\bHPE\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/1110
+  weak_patterns:
+  - presumptive(ly)? eligib
+  plan_family: Medicaid state plan presumptive-eligibility pages (S-series eligibility SPAs) on medicaid.gov
+- id: M-435-1200
+  title: '42 CFR 435.1200: Medicaid agency responsibilities for coordinated eligibility and enrollment with CHIP, Exchange and BHP'
+  federal_citation: 42 CFR 435.1200
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - insurance affordability program|(exchange|marketplace).{0,120}(coordinat|transfer|refer)|(coordinat|transfer|refer).{0,120}(exchange|marketplace)|account
+    transfer|healthplanfinder|federally.facilitated
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/1200
+  weak_patterns: []
+- id: M-435-1205
+  title: '42 CFR 435.1205: Alignment with Exchange initial open enrollment period'
+  federal_citation: 42 CFR 435.1205
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  cfr_path: us/regulation/42/435/1205
+  weak_patterns: []
+- id: M-436-1
+  title: '42 CFR 436.1: Purpose and applicability'
+  federal_citation: 42 CFR 436.1
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1
+  territories_only: true
+  weak_patterns: []
+- id: M-436-2
+  title: '42 CFR 436.2: Basis'
+  federal_citation: 42 CFR 436.2
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/2
+  territories_only: true
+  weak_patterns: []
+- id: M-436-3
+  title: '42 CFR 436.3: Definitions and use of terms'
+  federal_citation: 42 CFR 436.3
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/3
+  territories_only: true
+  weak_patterns: []
+- id: M-436-10
+  title: '42 CFR 436.10: State plan requirements'
+  federal_citation: 42 CFR 436.10
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/10
+  territories_only: true
+  weak_patterns: []
+- id: M-436-100
+  title: '42 CFR 436.100: Scope'
+  federal_citation: 42 CFR 436.100
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/100
+  territories_only: true
+  weak_patterns: []
+- id: M-436-110
+  title: '42 CFR 436.110: Individuals receiving cash assistance'
+  federal_citation: 42 CFR 436.110
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/110
+  territories_only: true
+  weak_patterns: []
+- id: M-436-111
+  title: '42 CFR 436.111: Individuals not eligible for cash assistance because of a requirement not applicable under Medicaid'
+  federal_citation: 42 CFR 436.111
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/111
+  territories_only: true
+  weak_patterns: []
+- id: M-436-112
+  title: '42 CFR 436.112: Individuals who would be eligible for cash assistance except for increased OASDI'
+  federal_citation: 42 CFR 436.112
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/112
+  territories_only: true
+  weak_patterns: []
+- id: M-436-114
+  title: '42 CFR 436.114: Individuals deemed to be receiving AFDC'
+  federal_citation: 42 CFR 436.114
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/114
+  territories_only: true
+  weak_patterns: []
+- id: M-436-116
+  title: '42 CFR 436.116: Families terminated from AFDC because of increased earnings or hours'
+  federal_citation: 42 CFR 436.116
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/116
+  territories_only: true
+  weak_patterns: []
+- id: M-436-118
+  title: '42 CFR 436.118: Children with adoption assistance or foster care maintenance payments'
+  federal_citation: 42 CFR 436.118
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/118
+  territories_only: true
+  weak_patterns: []
+- id: M-436-120
+  title: '42 CFR 436.120: Qualified pregnant women and children who are not qualified family members'
+  federal_citation: 42 CFR 436.120
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/120
+  territories_only: true
+  weak_patterns: []
+- id: M-436-121
+  title: '42 CFR 436.121: Qualified family members'
+  federal_citation: 42 CFR 436.121
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/121
+  territories_only: true
+  weak_patterns: []
+- id: M-436-122
+  title: '42 CFR 436.122: Pregnant women eligible for extended coverage'
+  federal_citation: 42 CFR 436.122
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/122
+  territories_only: true
+  weak_patterns: []
+- id: M-436-124
+  title: '42 CFR 436.124: Newborn children'
+  federal_citation: 42 CFR 436.124
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/124
+  territories_only: true
+  weak_patterns: []
+- id: M-436-128
+  title: '42 CFR 436.128: Coverage for certain qualified aliens'
+  federal_citation: 42 CFR 436.128
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/128
+  territories_only: true
+  weak_patterns: []
+- id: M-436-200
+  title: '42 CFR 436.200: Scope'
+  federal_citation: 42 CFR 436.200
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/200
+  territories_only: true
+  weak_patterns: []
+- id: M-436-201
+  title: '42 CFR 436.201: Individuals included in optional groups'
+  federal_citation: 42 CFR 436.201
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/201
+  territories_only: true
+  weak_patterns: []
+- id: M-436-210
+  title: '42 CFR 436.210: Individuals who meet the income and resource requirements of the cash assistance programs'
+  federal_citation: 42 CFR 436.210
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/210
+  territories_only: true
+  weak_patterns: []
+- id: M-436-211
+  title: '42 CFR 436.211: Individuals who would be eligible for cash assistance if not in medical institutions'
+  federal_citation: 42 CFR 436.211
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/211
+  territories_only: true
+  weak_patterns: []
+- id: M-436-212
+  title: '42 CFR 436.212: Individuals who would be eligible for cash assistance if the state plan were as broad as allowed'
+  federal_citation: 42 CFR 436.212
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/212
+  territories_only: true
+  weak_patterns: []
+- id: M-436-217
+  title: '42 CFR 436.217: Individuals receiving home and community-based services'
+  federal_citation: 42 CFR 436.217
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/217
+  territories_only: true
+  weak_patterns: []
+- id: M-436-219
+  title: '42 CFR 436.219: Individuals receiving state plan home and community-based services'
+  federal_citation: 42 CFR 436.219
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/219
+  territories_only: true
+  weak_patterns: []
+- id: M-436-220
+  title: '42 CFR 436.220: Individuals who would meet AFDC requirements if child care costs were paid from earnings'
+  federal_citation: 42 CFR 436.220
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/220
+  territories_only: true
+  weak_patterns: []
+- id: M-436-222
+  title: '42 CFR 436.222: Individuals under age 21 who meet AFDC income and resource requirements'
+  federal_citation: 42 CFR 436.222
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/222
+  territories_only: true
+  weak_patterns: []
+- id: M-436-224
+  title: '42 CFR 436.224: Individuals under age 21 under state adoption assistance agreements'
+  federal_citation: 42 CFR 436.224
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/224
+  territories_only: true
+  weak_patterns: []
+- id: M-436-229
+  title: '42 CFR 436.229: Optional targeted low-income children'
+  federal_citation: 42 CFR 436.229
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/229
+  territories_only: true
+  weak_patterns: []
+- id: M-436-230
+  title: '42 CFR 436.230: Essential spouses of aged, blind or disabled individuals receiving cash assistance'
+  federal_citation: 42 CFR 436.230
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/230
+  territories_only: true
+  weak_patterns: []
+- id: M-436-300
+  title: '42 CFR 436.300: Scope'
+  federal_citation: 42 CFR 436.300
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/300
+  territories_only: true
+  weak_patterns: []
+- id: M-436-301
+  title: '42 CFR 436.301: General rules (medically needy)'
+  federal_citation: 42 CFR 436.301
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/301
+  territories_only: true
+  weak_patterns: []
+- id: M-436-308
+  title: '42 CFR 436.308: Medically needy coverage of individuals under age 21'
+  federal_citation: 42 CFR 436.308
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/308
+  territories_only: true
+  weak_patterns: []
+- id: M-436-310
+  title: '42 CFR 436.310: Medically needy coverage of specified relatives'
+  federal_citation: 42 CFR 436.310
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/310
+  territories_only: true
+  weak_patterns: []
+- id: M-436-320
+  title: '42 CFR 436.320: Medically needy coverage of the aged'
+  federal_citation: 42 CFR 436.320
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/320
+  territories_only: true
+  weak_patterns: []
+- id: M-436-321
+  title: '42 CFR 436.321: Medically needy coverage of the blind'
+  federal_citation: 42 CFR 436.321
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/321
+  territories_only: true
+  weak_patterns: []
+- id: M-436-322
+  title: '42 CFR 436.322: Medically needy coverage of the disabled'
+  federal_citation: 42 CFR 436.322
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/322
+  territories_only: true
+  weak_patterns: []
+- id: M-436-330
+  title: '42 CFR 436.330: Coverage for certain aliens'
+  federal_citation: 42 CFR 436.330
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/330
+  territories_only: true
+  weak_patterns: []
+- id: M-436-400
+  title: '42 CFR 436.400: Scope'
+  federal_citation: 42 CFR 436.400
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/400
+  territories_only: true
+  weak_patterns: []
+- id: M-436-401
+  title: '42 CFR 436.401: General rules'
+  federal_citation: 42 CFR 436.401
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/401
+  territories_only: true
+  weak_patterns: []
+- id: M-436-403
+  title: '42 CFR 436.403: State residence'
+  federal_citation: 42 CFR 436.403
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/403
+  territories_only: true
+  weak_patterns: []
+- id: M-436-404
+  title: '42 CFR 436.404: Applicant''s choice of category'
+  federal_citation: 42 CFR 436.404
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/404
+  territories_only: true
+  weak_patterns: []
+- id: M-436-406
+  title: '42 CFR 436.406: Citizenship and alienage'
+  federal_citation: 42 CFR 436.406
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/406
+  territories_only: true
+  weak_patterns: []
+- id: M-436-407
+  title: '42 CFR 436.407: Types of acceptable documentary evidence of citizenship'
+  federal_citation: 42 CFR 436.407
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/407
+  territories_only: true
+  weak_patterns: []
+- id: M-436-500
+  title: '42 CFR 436.500: Scope'
+  federal_citation: 42 CFR 436.500
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/500
+  territories_only: true
+  weak_patterns: []
+- id: M-436-510
+  title: '42 CFR 436.510: Determination of dependency'
+  federal_citation: 42 CFR 436.510
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/510
+  territories_only: true
+  weak_patterns: []
+- id: M-436-520
+  title: '42 CFR 436.520: Age requirements for the aged'
+  federal_citation: 42 CFR 436.520
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/520
+  territories_only: true
+  weak_patterns: []
+- id: M-436-522
+  title: '42 CFR 436.522: Determination of age'
+  federal_citation: 42 CFR 436.522
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/522
+  territories_only: true
+  weak_patterns: []
+- id: M-436-530
+  title: '42 CFR 436.530: Definition of blindness'
+  federal_citation: 42 CFR 436.530
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/530
+  territories_only: true
+  weak_patterns: []
+- id: M-436-531
+  title: '42 CFR 436.531: Determination of blindness'
+  federal_citation: 42 CFR 436.531
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/531
+  territories_only: true
+  weak_patterns: []
+- id: M-436-540
+  title: '42 CFR 436.540: Definition of disability'
+  federal_citation: 42 CFR 436.540
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/540
+  territories_only: true
+  weak_patterns: []
+- id: M-436-541
+  title: '42 CFR 436.541: Determination of disability'
+  federal_citation: 42 CFR 436.541
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/541
+  territories_only: true
+  weak_patterns: []
+- id: M-436-600
+  title: '42 CFR 436.600: Scope'
+  federal_citation: 42 CFR 436.600
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/600
+  territories_only: true
+  weak_patterns: []
+- id: M-436-601
+  title: '42 CFR 436.601: Application of financial eligibility methodologies'
+  federal_citation: 42 CFR 436.601
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/601
+  territories_only: true
+  weak_patterns: []
+- id: M-436-602
+  title: '42 CFR 436.602: Financial responsibility of relatives and other individuals'
+  federal_citation: 42 CFR 436.602
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/602
+  territories_only: true
+  weak_patterns: []
+- id: M-436-610
+  title: '42 CFR 436.610: Assignment of rights to benefits'
+  federal_citation: 42 CFR 436.610
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/610
+  territories_only: true
+  weak_patterns: []
+- id: M-436-800
+  title: '42 CFR 436.800: Scope'
+  federal_citation: 42 CFR 436.800
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/800
+  territories_only: true
+  weak_patterns: []
+- id: M-436-811
+  title: '42 CFR 436.811: Medically needy income standard: general requirements'
+  federal_citation: 42 CFR 436.811
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/811
+  territories_only: true
+  weak_patterns: []
+- id: M-436-814
+  title: '42 CFR 436.814: Medically needy income standard: state plan requirements'
+  federal_citation: 42 CFR 436.814
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/814
+  territories_only: true
+  weak_patterns: []
+- id: M-436-831
+  title: '42 CFR 436.831: Income eligibility'
+  federal_citation: 42 CFR 436.831
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/831
+  territories_only: true
+  weak_patterns: []
+- id: M-436-832
+  title: '42 CFR 436.832: Post-eligibility treatment of income of institutionalized individuals'
+  federal_citation: 42 CFR 436.832
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/832
+  territories_only: true
+  weak_patterns: []
+- id: M-436-840
+  title: '42 CFR 436.840: Medically needy resource standard: general requirements'
+  federal_citation: 42 CFR 436.840
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/840
+  territories_only: true
+  weak_patterns: []
+- id: M-436-843
+  title: '42 CFR 436.843: Medically needy resource standard: state plan requirements'
+  federal_citation: 42 CFR 436.843
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/843
+  territories_only: true
+  weak_patterns: []
+- id: M-436-845
+  title: '42 CFR 436.845: Medically needy resource eligibility'
+  federal_citation: 42 CFR 436.845
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/845
+  territories_only: true
+  weak_patterns: []
+- id: M-436-900
+  title: '42 CFR 436.900: Scope'
+  federal_citation: 42 CFR 436.900
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/900
+  territories_only: true
+  weak_patterns: []
+- id: M-436-901
+  title: '42 CFR 436.901: General requirements'
+  federal_citation: 42 CFR 436.901
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/901
+  territories_only: true
+  weak_patterns: []
+- id: M-436-909
+  title: '42 CFR 436.909: Automatic entitlement following eligibility under other programs'
+  federal_citation: 42 CFR 436.909
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/909
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1000
+  title: '42 CFR 436.1000: Scope'
+  federal_citation: 42 CFR 436.1000
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1000
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1001
+  title: '42 CFR 436.1001: FFP for administration'
+  federal_citation: 42 CFR 436.1001
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1001
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1002
+  title: '42 CFR 436.1002: FFP for services'
+  federal_citation: 42 CFR 436.1002
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1002
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1003
+  title: '42 CFR 436.1003: Beneficiaries overcoming certain conditions of eligibility'
+  federal_citation: 42 CFR 436.1003
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1003
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1004
+  title: '42 CFR 436.1004: FFP for individuals who declared citizenship'
+  federal_citation: 42 CFR 436.1004
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1004
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1005
+  title: '42 CFR 436.1005: Institutionalized individuals'
+  federal_citation: 42 CFR 436.1005
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1005
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1006
+  title: '42 CFR 436.1006: Definitions relating to institutional status'
+  federal_citation: 42 CFR 436.1006
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1006
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1100
+  title: '42 CFR 436.1100: Basis and scope (presumptive eligibility)'
+  federal_citation: 42 CFR 436.1100
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1100
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1101
+  title: '42 CFR 436.1101: Definitions related to presumptive eligibility period for children'
+  federal_citation: 42 CFR 436.1101
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1101
+  territories_only: true
+  weak_patterns: []
+- id: M-436-1102
+  title: '42 CFR 436.1102: General rules'
+  federal_citation: 42 CFR 436.1102
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 436 governs eligibility in Guam, Puerto Rico and the Virgin Islands; not applicable to the 50 states and DC (state rows NOT_APPLICABLE).
+  cfr_path: us/regulation/42/436/1102
+  territories_only: true
+  weak_patterns: []
+- id: M-447-1
+  title: '42 CFR 447.1: Purpose'
+  federal_citation: 42 CFR 447.1
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/1
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-10
+  title: '42 CFR 447.10: Prohibition against reassignment of provider claims'
+  federal_citation: 42 CFR 447.10
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/10
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-15
+  title: '42 CFR 447.15: Acceptance of state payment as payment in full'
+  federal_citation: 42 CFR 447.15
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/15
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-20
+  title: '42 CFR 447.20: Provider restrictions: state plan requirements'
+  federal_citation: 42 CFR 447.20
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/20
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-21
+  title: '42 CFR 447.21: Reduction of payments to providers'
+  federal_citation: 42 CFR 447.21
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/21
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-25
+  title: '42 CFR 447.25: Direct payments to certain beneficiaries for physicians'' or dentists'' services'
+  federal_citation: 42 CFR 447.25
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/25
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-26
+  title: '42 CFR 447.26: Prohibition on payment for provider-preventable conditions'
+  federal_citation: 42 CFR 447.26
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/26
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-30
+  title: '42 CFR 447.30: Withholding the federal share to recover Medicare overpayments'
+  federal_citation: 42 CFR 447.30
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/30
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-31
+  title: '42 CFR 447.31: Withholding Medicare payments to recover Medicaid overpayments'
+  federal_citation: 42 CFR 447.31
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/31
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-40
+  title: '42 CFR 447.40: Payments for reserving beds in institutions'
+  federal_citation: 42 CFR 447.40
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/40
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-45
+  title: '42 CFR 447.45: Timely claims payment'
+  federal_citation: 42 CFR 447.45
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/45
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-46
+  title: '42 CFR 447.46: Timely claims payment by MCOs'
+  federal_citation: 42 CFR 447.46
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/46
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-50
+  title: '42 CFR 447.50: Premiums and cost sharing: basis and purpose'
+  federal_citation: 42 CFR 447.50
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/50
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-51
+  title: '42 CFR 447.51: Definitions (cost sharing)'
+  federal_citation: 42 CFR 447.51
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/51
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-88
+  title: '42 CFR 447.88: Options for claiming FFP for section 1920A presumptive eligibility payments'
+  federal_citation: 42 CFR 447.88
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/88
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-90
+  title: '42 CFR 447.90: FFP: conditions related to pending investigations of credible allegations of fraud'
+  federal_citation: 42 CFR 447.90
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Part 447 is not in the corpus (eCFR structure 2026-09-09 lists subpart A sections 447.1-447.90).
+  cfr_path: us/regulation/42/447/90
+  ecfr_missing: true
+  weak_patterns: []
+- id: M-447-52
+  title: '42 CFR 447.52: Cost sharing (copayments; state election and amounts)'
+  federal_citation: 42 CFR 447.52
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation / state plan attachment 4.18
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - \bco-?pay(ment)?s?\b|cost.sharing|\bcoinsurance\b
+  search_confidence: high
+  notes: Part 447 not held.
+  cfr_path: us/regulation/42/447/52
+  ecfr_missing: true
+  weak_patterns: []
+  neg_context: medicare|part [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare
+  plan_family: Medicaid state plan attachment 4.18-A to 4.18-F (premiums and cost sharing) on medicaid.gov
+- id: M-447-53
+  title: '42 CFR 447.53: Cost sharing for drugs (preferred/non-preferred)'
+  federal_citation: 42 CFR 447.53
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (co-?pay(ment)?|cost.sharing).{0,120}(drug|prescription|pharmacy)|(drug|prescription|pharmacy).{0,120}(co-?pay(ment)?|cost.sharing)
+  search_confidence: high
+  notes: Part 447 not held.
+  cfr_path: us/regulation/42/447/53
+  ecfr_missing: true
+  weak_patterns: []
+  neg_context: medicare|part [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare
+  plan_family: Medicaid state plan attachment 4.18-A to 4.18-F (premiums and cost sharing) on medicaid.gov
+- id: M-447-54
+  title: '42 CFR 447.54: Cost sharing for non-emergency use of the emergency department'
+  federal_citation: 42 CFR 447.54
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (non-?emergenc(y|ies)|emergency (department|room)).{0,120}(co-?pay(ment)?|cost.sharing)|(co-?pay(ment)?|cost.sharing).{0,120}emergency (department|room)
+  search_confidence: high
+  notes: Part 447 not held.
+  cfr_path: us/regulation/42/447/54
+  ecfr_missing: true
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 4.18-A to 4.18-F (premiums and cost sharing) on medicaid.gov
+- id: M-447-55
+  title: '42 CFR 447.55: Premiums (state election, amounts, groups)'
+  federal_citation: 42 CFR 447.55
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (variables medicaid_premium, medicaid_working_disabled_buy_in_premium)
+  rulespec: 'no'
+  search_patterns:
+  - (medicaid|medical assistance|program|buy-?in|enrollment|monthly|sliding.scale|premium.based) premiums?\b|premiums? (amounts?|schedule|payments?|are|is|shall|will|must)
+    (be )?(charged|required|paid|due|\$|based)|\$\s?\d[\d,.]*\s?(per|a|/) ?month.{0,80}premium|premiums?.{0,100}\$\s?\d
+  search_confidence: high
+  notes: Part 447 not held.
+  cfr_path: us/regulation/42/447/55
+  ecfr_missing: true
+  weak_patterns:
+  - premium
+  neg_context: medicare|part [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare
+  plan_family: Medicaid state plan attachment 4.18-A to 4.18-F (premiums and cost sharing) on medicaid.gov
+- id: M-447-56
+  title: '42 CFR 447.56: Limitations on premiums and cost sharing (exempt groups, 5% aggregate cap)'
+  federal_citation: 42 CFR 447.56
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - (cost.sharing|co-?pay(ment)?s?|premiums?).{0,200}(exempt|5 ?(%|percent)|five percent|aggregate (limit|cap|maximum)|out.of.pocket (maximum|limit))|(exempt|5
+    ?(%|percent) of.{0,40}income|aggregate (limit|cap)).{0,150}(cost.sharing|co-?pay|premium)
+  search_confidence: high
+  notes: Part 447 not held.
+  cfr_path: us/regulation/42/447/56
+  ecfr_missing: true
+  weak_patterns: []
+  neg_context: individual (shared )?responsibility|marketplace|exchange|qualified health plan|\bAPTC\b|premium tax credit|premium assistance|medicare|part
+    [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare
+  plan_family: Medicaid state plan attachment 4.18-A to 4.18-F (premiums and cost sharing) on medicaid.gov
+- id: M-447-57
+  title: '42 CFR 447.57: Beneficiary and public notice requirements for cost sharing'
+  federal_citation: 42 CFR 447.57
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: Part 447 not held.
+  cfr_path: us/regulation/42/447/57
+  ecfr_missing: true
+  weak_patterns:
+  - public (schedule|notice).{0,120}(cost.sharing|co-?pay|premium)
+  plan_family: Medicaid state plan attachment 4.18-A to 4.18-F (premiums and cost sharing) on medicaid.gov
+- id: M-SS-STATE-PLAN
+  title: Approved Medicaid state plan (current compiled plan with eligibility attachments)
+  federal_citation: 42 U.S.C. 1396a(a); 42 CFR 435.10, 430.10
+  level: state
+  carrying_family_state: approved Medicaid state plan (attachments 2.2-A, 2.6-A, supplements) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: No state plan document is held for any state; medicaid.gov posts every approved plan (https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments).
+  state_plan: true
+  weak_patterns: []
+- id: M-SS-SPA
+  title: Medicaid state plan amendments (eligibility SPAs on record)
+  federal_citation: 42 CFR 430.12
+  level: state
+  carrying_family_state: CMS Medicaid SPA index (medicaid.gov)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: No Medicaid SPA document is held for any state (the corpus CHIP SPA scope holds CHIP SPAs only).
+  state_plan: true
+  weak_patterns: []
+- id: M-SS-INCOME-TABLE
+  title: Current-year MAGI income standards table (children by age band, pregnant, parents, adults) as a percentage of FPL
+  federal_citation: 42 CFR 435.110, 435.116, 435.118, 435.119; state plan supplement to attachment 2.6-A
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes (categories/*/income_limit)
+  rulespec: us-xx:policies/cms/<state>-medicaid-chip-bhp-eligibility-levels
+  search_patterns:
+  - income (limit|standard|level|guideline|chart|table)s?.{0,160}(%|percent).{0,40}(FPL|poverty)|(%|percent) (of (the )?)?(FPL|federal poverty).{0,160}income
+    (limit|standard|level)|poverty (level|guideline)s? (chart|table)
+  search_confidence: high
+  notes: 'Federal fallback: the CMS Medicaid/CHIP/BHP eligibility-levels table (state decisions as of 2023-12-01) carries every state. Pass 2:
+    the CMS 2023-12-01 compilation does not satisfy a current-year table; it is cited in the evidence note but the cell stays a gap.'
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  weak_patterns: []
+  needs_number: true
+  no_fallback: true
+- id: M-SS-RESOURCE-TABLE
+  title: Non-MAGI (aged, blind, disabled) income and resource limits table
+  federal_citation: 42 CFR 435.121, 435.230, 435.601, 435.840; state plan
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes (categories/senior_or_disabled/assets/limit/*, income/limit/*)
+  rulespec: 'no'
+  search_patterns:
+  - resource (limit|standard|level|maximum)s?.{0,120}\$\s?\d|\$\s?2,?000|\$\s?3,?000|asset (limit|test).{0,120}\$\s?\d|countable (resources|assets).{0,120}(limit|exceed).{0,60}\$
+  search_confidence: high
+  notes: ''
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: M-SS-BENEFITS
+  title: Covered services / benefit package (state plan attachment 3.1-A, alternative benefit plan)
+  federal_citation: 42 U.S.C. 1396d(a), 1396u-7; 42 CFR 440
+  level: state
+  carrying_family_state: state plan attachment 3.1 / provider or member handbook
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: 42 CFR 440 not in the corpus; benefit rules mostly live outside eligibility manuals.
+  weak_patterns:
+  - covered services|benefit package|scope of (covered )?(services|benefits)|alternative benefit plan|\bABP\b|EPSDT
+  plan_family: Medicaid state plan attachment 3.1-A/B (amount, duration and scope) on medicaid.gov
+- id: M-SS-HEARINGS
+  title: Fair hearings and appeals chapter of the state rulebook
+  federal_citation: 42 CFR 431 subpart E (not in the corpus); 42 U.S.C. 1396a(a)(3)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - fair hearing|administrative hearing|appeal(s)? (process|rights|procedure)|right to (a )?(hearing|appeal)|request(ing)? a hearing
+  search_confidence: high
+  notes: Duplicate view of M-ST-1396a-a3 from the state-structure side; kept because every held manual carries the chapter.
+  weak_patterns: []
+  plan_family: Medicaid state plan section 4.2 (fair hearings) on medicaid.gov
