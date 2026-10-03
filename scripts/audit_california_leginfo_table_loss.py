@@ -28,6 +28,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths, require_materialized
 from axiom_corpus.corpus.states import (
     CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
     _california_html_current_section_div,
@@ -150,12 +151,35 @@ def audit(base: Path, jurisdiction: str = "us-ca") -> dict[str, Any]:
     return {"jurisdiction": jurisdiction, "scopes": scopes}
 
 
+def ensure_corpus_inputs(base: Path, jurisdiction: str = "us-ca") -> None:
+    """Fetch the locked files the audit reads. Does nothing without locks.
+
+    The audit walks every provisions file of the jurisdiction, so all of them
+    must be present (a partly fetched directory would silently shrink the
+    report); then it reads the LegInfo pages those rows name.
+    """
+    provisions_dir = (base / "provisions" / jurisdiction).absolute()
+    require_materialized([provisions_dir], fetch=True)
+    sources = sorted(
+        {
+            record["source_path"]
+            for provisions_path in provisions_dir.glob("*/*.jsonl")
+            for line in provisions_path.read_text().splitlines()
+            if line.strip()
+            for record in (json.loads(line),)
+            if record.get("source_format") == CALIFORNIA_SECTION_HTML_SOURCE_FORMAT
+        }
+    )
+    ensure_corpus_paths([(base / source).absolute() for source in sources])
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--base", type=Path, default=Path("data/corpus"))
     parser.add_argument("--jurisdiction", default="us-ca")
     parser.add_argument("--output", type=Path, help="Write the JSON report here.")
     args = parser.parse_args()
+    ensure_corpus_inputs(args.base, args.jurisdiction)
     report = audit(args.base, args.jurisdiction)
     text = json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
     if args.output:
