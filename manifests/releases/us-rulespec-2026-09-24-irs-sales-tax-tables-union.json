@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-08-23-canada-338-suspension-union. Carries every other scope of that release unchanged and adds the IRS Optional State and Local Sales Tax Tables for tax years 2021-2025, the tables prescribed under 26 U.S.C. 164(b)(5)(H), with the Schedule A line 5a instructions and sales tax deduction worksheet (us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021, 8 provisions; us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025, 32 provisions). Its us-ca statute scopes differ from that release: us-ca/statute/2026-07-13-recovery (defective recovery rows, see axiom-corpus#748) and us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5 are replaced by us-ca/statute/2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7. The chapter scope carries all six PIT core sections with byte-identical bodies and, at the same citation paths, the ten R&TC sections whose recovery rows are empty roots. The recovery scope's page-chrome block rows and its us-ca/statute/wic/11450/a/1/A root hold no statute text and are dropped; WIC 11450 stays in the CalWORKs scope.",
+  "description": "Successor to us-rulespec-2026-08-23-canada-338-suspension-union. Carries every other scope of that release unchanged and adds the IRS Optional State and Local Sales Tax Tables for tax years 2021-2025, the tables prescribed under 26 U.S.C. 164(b)(5)(H), with the Schedule A line 5a instructions and sales tax deduction worksheet (us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021, 8 provisions; us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025, 32 provisions). Its us-ca statute scopes differ from that release: us-ca/statute/2026-07-13-recovery (defective recovery rows, see axiom-corpus#748) and us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5 are replaced by us-ca/statute/2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7. The chapter scope carries all six PIT core sections with byte-identical bodies and, at the same citation paths, the ten R&TC sections whose recovery rows are empty roots. The recovery scope's page-chrome block rows and its us-ca/statute/wic/11450/a/1/A root hold no statute text and are dropped; WIC 11450 stays in the CalWORKs scope. Two later rulings change it further. As axiom-corpus#757 recommends (Max, d477): us-ny/statute/2026-07-13-recovery and the NY article 22 core scope are replaced by us-ny/statute/2026-09-14-income-tax-chapter; the ME, MN, UT and MI statute recovery scopes by their 2026-09-14 income tax chapter scopes (three for MN); us-co/regulation/2026-07-13-recovery by its tanf-consolidated successor; and seven recovery scopes that hold no legal text another scope does not already carry (FL, SC and TN regulation; IL, IN, SC and UT manual) are dropped. SC statute and MT regulation recovery stay until their successor scopes exist. The CalWORKs scope and the income tax chapter scope are replaced by their table-preserving successors (2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables and 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables, axiom-corpus#742), which keep the repeated table cells and clauses the original extraction dropped.",
   "name": "us-rulespec-2026-09-24-irs-sales-tax-tables-union",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -416,7 +416,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018"
+      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables"
     },
     {
       "document_class": "statute",
@@ -431,7 +431,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables"
     },
     {
       "document_class": "policy",
@@ -446,7 +446,7 @@
     {
       "document_class": "regulation",
       "jurisdiction": "us-co",
-      "version": "2026-07-13-recovery"
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated"
     },
     {
       "document_class": "regulation",
@@ -542,11 +542,6 @@
       "document_class": "regulation",
       "jurisdiction": "us-fl",
       "version": "2026-05-29-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us-fl",
-      "version": "2026-07-13-recovery"
     },
     {
       "document_class": "statute",
@@ -669,11 +664,6 @@
       "version": "2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained"
     },
     {
-      "document_class": "manual",
-      "jurisdiction": "us-il",
-      "version": "2026-07-13-recovery-r2026-07-17-dedup"
-    },
-    {
       "document_class": "statute",
       "jurisdiction": "us-il",
       "version": "2026-06-26-ilcs-320-30-us-il-chapter-320-act-30-r2026-07-15-self-contained"
@@ -702,11 +692,6 @@
       "document_class": "manual",
       "jurisdiction": "us-in",
       "version": "2026-07-04-in-ssp-sapn"
-    },
-    {
-      "document_class": "manual",
-      "jurisdiction": "us-in",
-      "version": "2026-07-13-recovery"
     },
     {
       "document_class": "statute",
@@ -856,7 +841,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-me",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-me-title-36"
     },
     {
       "document_class": "guidance",
@@ -871,7 +856,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-mi",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-mi-chapter-206"
     },
     {
       "document_class": "guidance",
@@ -891,7 +876,17 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-mn",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-142g"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-mn",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-256p"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-mn",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-290"
     },
     {
       "document_class": "manual",
@@ -1081,12 +1076,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ny",
-      "version": "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ny",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter"
     },
     {
       "document_class": "guidance",
@@ -1184,19 +1174,9 @@
       "version": "2026-05-27-sc-snap-manual"
     },
     {
-      "document_class": "manual",
-      "jurisdiction": "us-sc",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "regulation",
       "jurisdiction": "us-sc",
       "version": "2026-05-29-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us-sc",
-      "version": "2026-07-13-recovery"
     },
     {
       "document_class": "statute",
@@ -1244,11 +1224,6 @@
       "version": "2026-05-29-r2026-07-15-self-contained"
     },
     {
-      "document_class": "regulation",
-      "jurisdiction": "us-tn",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "statute",
       "jurisdiction": "us-tn",
       "version": "2026-07-24-tn-hall-income-tax-zero-rate-statute"
@@ -1269,11 +1244,6 @@
       "version": "2026-05-27-ut-manuals-r2026-07-15-self-contained"
     },
     {
-      "document_class": "manual",
-      "jurisdiction": "us-ut",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "regulation",
       "jurisdiction": "us-ut",
       "version": "2026-07-02-ut-fep-official-documents"
@@ -1286,7 +1256,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ut",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-title-59"
     },
     {
       "document_class": "manual",
