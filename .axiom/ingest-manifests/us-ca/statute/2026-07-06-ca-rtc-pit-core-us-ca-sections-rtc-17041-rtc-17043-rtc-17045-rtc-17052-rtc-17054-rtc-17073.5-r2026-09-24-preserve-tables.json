@@ -1,0 +1,74 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables.json",
+      "sha256": "c972c3fbae4d9acd3b6f5ad123c9dba941f0d1d396ef37988d3dd71a061731e7"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables.json",
+      "sha256": "842d67fb75172724adee457668d151511d5b09381b828f42be1d65734b3a9f72"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables.jsonl",
+      "sha256": "20e334a930b92568e030d34534c9e26f5c5b1d57bdd4fdb7902633df6e611109"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables/california-leginfo-sections/RTC-17041.html",
+      "sha256": "acae761595076361ea23564890e4779dcdb55b0225ed89836570fd44b5c69433"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables/california-leginfo-sections/RTC-17043.html",
+      "sha256": "cc9bbc2d8c14f77dfac9eff27f3045be1d83151d2a2db217953bf15864f1f7d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables/california-leginfo-sections/RTC-17045.html",
+      "sha256": "df0defa98efc1a94e45338603897ae2327779e00d75b17414ca25bfedb0627e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables/california-leginfo-sections/RTC-17052.html",
+      "sha256": "b0109e3cbb14a528423c83e6a41ad5145e711f702baff33ae24c84204601427d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables/california-leginfo-sections/RTC-17054.html",
+      "sha256": "4604b5e2994a4acdcb554abea7b3b4766b13a3e03fcb294bf33aa2ff6ebb1442"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables/california-leginfo-sections/RTC-17073.5.html",
+      "sha256": "745d5d53667027d377dbde7cd078eca4433f3fcb77a17e06ec6a61f494b5493a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ceb434a381626d3ee397dad6c56babdf88128514",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_ca_leginfo_preserve_tables_successors.py --base data/corpus (run note: docs/ingest-runs/2026-09-24-ca-leginfo-preserve-tables-successors.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-24T20:13:54.541056+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-24-ca-leginfo-preserve-tables-successors.md",
+      "sha256": "68f038c0fd5da617d969c54ae34906137997c97d4b215f3252374c7dc9cafa39"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KYIPM180YTUElr9N624t/x0WV8NEDchf4+SWuStNskUYSn+CHcDhfiGfKiiV4PUty5qLDb6Rxk9ju8Pr4tKDDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5-r2026-09-24-preserve-tables"
+}
