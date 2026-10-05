@@ -409,10 +409,11 @@ BEGIN
       WHERE NOT parent.path = ANY (walk.chain)
     ),
     -- A walk whose next step returns into its own chain closed a cycle: the
-    -- cycle is the chain from that path on.
+    -- cycle is the chain from that path on. "Smallest" is code-point order,
+    -- Python's.
     cycles AS (
       SELECT DISTINCT (
-        SELECT min(member)
+        SELECT min(member COLLATE "C")
         FROM unnest(walk.chain[array_position(walk.chain, walk.cursor):]) AS member
       ) AS smallest
       FROM walk
