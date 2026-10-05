@@ -2860,6 +2860,13 @@ _PLAN_REQUESTS = {
         "SELECT * FROM corpus.current_navigation_nodes WHERE jurisdiction = 'us' "
         "AND doc_type = 'statute' AND parent_path = 'us/statute/2' ORDER BY sort_key LIMIT 100"
     ),
+    # SupabaseQuery.get_section_with_children's page of a layered title's children.
+    "current_navigation_nodes?select=provision_id&parent_path=eq.us/statute/2"
+    "&order=sort_key,path,id&limit=1000 (client children page)": (
+        "SELECT provision_id FROM corpus.current_navigation_nodes WHERE jurisdiction = 'us' "
+        "AND parent_path = 'us/statute/2' AND doc_type = 'statute' "
+        "ORDER BY sort_key, path, id LIMIT 1000 OFFSET 0"
+    ),
     "rpc/get_root_document_counts": "SELECT * FROM corpus.get_root_document_counts()",
     "navigation_nodes?parent_path=eq.us/statute/3 (direct read, anon policy)": (
         "SELECT * FROM corpus.navigation_nodes WHERE jurisdiction = 'us' "
@@ -2938,6 +2945,14 @@ def test_serving_plans_stay_index_driven_at_representative_scale(scale_dsn: str)
                 for n in nodes
             ), request
             assert not any(n["Node Type"] in {"Sort", "WindowAgg"} for n in nodes), request
+        children = plans[
+            "current_navigation_nodes?select=provision_id&parent_path=eq.us/statute/2"
+            "&order=sort_key,path,id&limit=1000 (client children page)"
+        ]
+        assert not any(
+            n["Node Type"] == "Seq Scan" and n.get("Relation Name") == "navigation_nodes"
+            for n in children
+        )
         page = plans[
             "current_navigation_nodes?jurisdiction=eq.us&order=citation_path.asc&limit=1000"
         ]
