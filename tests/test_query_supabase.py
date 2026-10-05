@@ -282,8 +282,8 @@ class _EmulatedPostgrest:
 
     Filters ``eq.``, ``in.(...)``, ``gte.``, ``lt.`` and ``is.null``; ``order``
     by ascending columns with nulls last, as PostgreSQL orders them; ``limit``,
-    ``offset`` and ``select``. A filter or selected column the relation lacks is
-    an error, as PostgREST answers 400. Every response is capped at
+    ``offset`` and ``select``. A filter, order or selected column the relation
+    lacks is an error, as PostgREST answers 400. Every response is capped at
     ``max_rows`` rows, as db-max-rows caps it (1,000 on Supabase by default).
     """
 
@@ -325,6 +325,8 @@ class _EmulatedPostgrest:
                 rows = [row for row in rows if _matches(row.get(key), value)]
         for column in reversed([c for c in order.split(",") if c]):
             name = column.removesuffix(".asc")
+            if name not in known:
+                raise ValueError(f"column {table}.{name} does not exist")
             rows.sort(key=lambda row, name=name: (row.get(name) is None, row.get(name) or 0))
         rows = rows[offset:]
         if limit is not None:
@@ -382,6 +384,8 @@ def _records(version: str, tree: Tree) -> list[ProvisionRecord]:
 def _release_scopes(
     versions: Sequence[str], *, base: str | None, layer_column: bool
 ) -> list[dict[str, Any]]:
+    """Membership rows in the order given: PostgREST returns an unordered
+    request's rows in whatever order the plan produces."""
     rows = []
     for version in versions:
         row: dict[str, Any] = {
@@ -430,18 +434,21 @@ def _layered_postgrest(
     *,
     max_rows: int = 1000,
     extra_navigation: Iterable[dict[str, Any]] = (),
+    base_version: str = "2026-04-29-base",
+    base_position: int = 0,
 ) -> _EmulatedPostgrest:
     """A pair served with a base scope: the primary rows, and base rows no
     primary path shadows. Navigation is build_navigation_nodes over them, which
     the merge of 20260927110000 equals on well-formed pairs
-    (tests/test_layered_serving_postgres.py)."""
+    (tests/test_layered_serving_postgres.py). The base scope's membership row
+    comes at ``base_position`` among the primary scopes' (clamped)."""
     primary = [record for version, tree in primaries.items() for record in _records(version, tree)]
     shadowing = {record.citation_path for record in primary}
     winners = primary + [
-        record
-        for record in _records("2026-04-29-base", base)
-        if record.citation_path not in shadowing
+        record for record in _records(base_version, base) if record.citation_path not in shadowing
     ]
+    versions = list(primaries)
+    versions.insert(min(base_position, len(versions)), base_version)
     return _EmulatedPostgrest(
         {
             "current_provisions": list(iter_supabase_rows(winners)),
@@ -450,7 +457,7 @@ def _layered_postgrest(
             ]
             + list(extra_navigation),
             "current_release_scopes": _release_scopes(
-                ["2026-04-29-base", *primaries], base="2026-04-29-base", layer_column=True
+                versions, base=base_version, layer_column=True
             ),
         },
         max_rows=max_rows,
@@ -499,14 +506,21 @@ def test_unlayered_children_are_the_parent_id_children_origin_main_returns() -> 
         expected = _origin_main_children(query, "fx/statute/1")
         assert [child.citation_path for child in expected] == ["fx/statute/1/1"]
         assert _children(query, "fx/statute/1") == expected
-        # The probe reads every column: before 20260927110000 the view has no
-        # layer column, so a filter on it would be an error.
-        table, params = postgrest.requests[-2]
-        assert table == "current_release_scopes"
-        assert dict(params) == {
+        # The probe reads every column, and orders by columns the view had
+        # before 20260927110000: it has no layer column until then, so a filter
+        # or order on it would be an error.
+        probes = [
+            dict(params)
+            for table, params in postgrest.requests
+            if table == "current_release_scopes"
+        ]
+        assert probes[0] == {
             "select": "*",
             "jurisdiction": "eq.fx",
             "document_class": "eq.statute",
+            "order": "release_name,version",
+            "limit": "1000",
+            "offset": "0",
         }
 
 
@@ -595,6 +609,25 @@ def test_layered_children_page_through_the_row_cap() -> None:
         )
         children = _children(_query(postgrest), "fx/statute/1")
         assert len(children) == 1300
+        assert [child.citation_path for child in children] == _layered_children(
+            postgrest, "fx/statute/1"
+        )
+
+
+def test_the_base_scope_is_found_wherever_membership_lists_it() -> None:
+    """Review round 2, Sol P2, reproduced: 1,000 primary scopes, each adding a
+    section to a base title, listed ahead of the base scope in membership. A
+    probe that read one capped response never saw the base row and fell back
+    to the versioned parent id."""
+    base = (("fx/statute/1", None, 1), ("fx/statute/1/0000", "fx/statute/1", 0))
+    primaries = {
+        f"2026-01-01-p{index:04d}": ((f"fx/statute/1/{index:04d}", None, index),)
+        for index in range(1, 1001)
+    }
+    for base_position in (0, 500, 1000):
+        postgrest = _layered_postgrest(base, primaries, base_position=base_position)
+        children = _children(_query(postgrest), "fx/statute/1")
+        assert len(children) == 1001, base_position
         assert [child.citation_path for child in children] == _layered_children(
             postgrest, "fx/statute/1"
         )
@@ -735,12 +768,25 @@ def _layered_pair(draw: st.DrawFn) -> tuple[Tree, dict[str, Tree]]:
     pair=_layered_pair(),
     path=st.sampled_from(["fx/statute/1", "fx/statute/1/0", "fx/statute/1/1"]),
     max_rows=st.integers(1, 3),
+    # Where the base scope's membership row comes, as stored and as ordered.
+    base_position=st.integers(0, 2),
+    base_version=st.sampled_from(["2026-04-29-base", "2026-12-31-base"]),
 )
 def test_layered_children_are_the_served_navigation_children(
-    pair: tuple[Tree, dict[str, Tree]], path: str, max_rows: int
+    pair: tuple[Tree, dict[str, Tree]],
+    path: str,
+    max_rows: int,
+    base_position: int,
+    base_version: str,
 ) -> None:
     base, primaries = pair
-    postgrest = _layered_postgrest(base, primaries, max_rows=max_rows)
+    postgrest = _layered_postgrest(
+        base,
+        primaries,
+        max_rows=max_rows,
+        base_position=base_position,
+        base_version=base_version,
+    )
     query = _query(postgrest)
     if query.get_section(path, "fx") is None:
         return

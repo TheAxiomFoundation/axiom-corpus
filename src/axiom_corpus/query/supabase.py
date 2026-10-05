@@ -320,19 +320,24 @@ class SupabaseQuery:
     def _serves_base_layer(self, rule: Rule) -> bool:
         """Whether the release serving the rule's pair serves a base scope.
 
-        Selects every column: until 20260927110000 is applied the view has no
-        ``layer`` column, so a filter on it would be an error, and no pair is
-        served with a base scope.
+        Reads every membership row of the pair, past the row cap: the base
+        scope's row can come anywhere among a release's scopes. Selects every
+        column and orders by columns the view has always had: until
+        20260927110000 is applied the view has no ``layer`` column, so a filter
+        or order on it would be an error, and no pair is served with a base
+        scope. One release serves a pair, so its versions order the rows
+        totally.
         """
-        scopes = self._request(
+        scopes = self._all_rows(
             "current_release_scopes",
             {
                 "select": "*",
                 "jurisdiction": f"eq.{rule.jurisdiction}",
                 "document_class": f"eq.{rule.doc_type or 'unknown'}",
+                "order": "release_name,version",
             },
         )
-        return isinstance(scopes, list) and any(scope.get("layer") == "base" for scope in scopes)
+        return any(scope.get("layer") == "base" for scope in scopes)
 
     def _navigation_children(self, rule: Rule) -> list[dict[str, Any]]:
         """Every served navigation node under ``rule``, in navigation order."""
