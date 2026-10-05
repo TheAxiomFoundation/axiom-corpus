@@ -635,9 +635,7 @@ def _release_object(connection: Any, name: str, scopes: Sequence[Scope]) -> dict
                     "actual_navigation": entry["navigation_rows"],
                     "expected_provision_projection_sha256": entry["provision_projection_sha256"],
                     "actual_provision_projection_sha256": entry["provision_projection_sha256"],
-                    "expected_navigation_projection_sha256": entry[
-                        "navigation_projection_sha256"
-                    ],
+                    "expected_navigation_projection_sha256": entry["navigation_projection_sha256"],
                     "actual_navigation_projection_sha256": entry["navigation_projection_sha256"],
                 }
                 for entry in sorted(
@@ -756,8 +754,8 @@ def _snapshot(connection: Any) -> dict[str, Any]:
             connection, "SELECT * FROM corpus.layered_shadowed_rows ORDER BY 1, 2, 3"
         ),
         "overrides": _rows(
-            connection, "SELECT id, parent_path, depth FROM corpus.layered_navigation_overrides "
-            "ORDER BY 1"
+            connection,
+            "SELECT id, parent_path, depth FROM corpus.layered_navigation_overrides ORDER BY 1",
         ),
         "counts": _rows(
             connection,
@@ -1181,7 +1179,9 @@ def test_each_citation_path_serves_the_primary_row_when_both_layers_carry_it(db:
 
 def test_primary_wins_whatever_the_dates_and_scope_order(db: Any) -> None:
     newer_base = replace(BASE, version="2026-12-31-base", expression_date="2026-12-31")
-    older_primary = replace(PRIMARY_TITLE, version="2026-01-01-title-1", expression_date="2026-01-01")
+    older_primary = replace(
+        PRIMARY_TITLE, version="2026-01-01-title-1", expression_date="2026-01-01"
+    )
     _publish(db, "fx-rulespec-2026-09-23", older_primary, newer_base)
     assert _rows(
         db,
@@ -1196,7 +1196,9 @@ def test_served_and_suppressed_rows_partition_the_staged_rows(db: Any) -> None:
     staged = _ids(db, "corpus.provisions")
     assert current.isdisjoint(legacy)
     assert current | legacy == staged
-    shadowed = {row[0] for row in _rows(db, "SELECT provision_id::text FROM corpus.layered_shadowed_rows")}
+    shadowed = {
+        row[0] for row in _rows(db, "SELECT provision_id::text FROM corpus.layered_shadowed_rows")
+    }
     assert shadowed == {
         _provision_id(path, BASE.version)
         for path in ("fx/statute/1", "fx/statute/1/1", "fx/statute/2/2")
@@ -1258,7 +1260,9 @@ def test_navigation_overrides_hold_only_rows_whose_tree_fields_changed(db: Any) 
     overrides = _navigation(db, "corpus.layered_navigation_overrides")
     for node_id, row in overrides.items():
         assert any(row[column] != stored[node_id][column] for column in TREE_COLUMNS), row["path"]
-        assert {column: row[column] for column in NAVIGATION_COLUMNS if column not in TREE_COLUMNS} == {
+        assert {
+            column: row[column] for column in NAVIGATION_COLUMNS if column not in TREE_COLUMNS
+        } == {
             column: stored[node_id][column]
             for column in NAVIGATION_COLUMNS
             if column not in TREE_COLUMNS
@@ -1269,8 +1273,7 @@ def test_direct_navigation_reads_hide_shadowed_base_rows(db: Any) -> None:
     _publish_layered(db)
     served_ids = set(_navigation(db))
     shadowed = {
-        row[0]
-        for row in _rows(db, "SELECT navigation_id FROM corpus.layered_shadowed_rows")
+        row[0] for row in _rows(db, "SELECT navigation_id FROM corpus.layered_shadowed_rows")
     }
     for role in ("anon", "authenticated"):
         visible = _ids(db, "corpus.navigation_nodes", role=role)
@@ -1324,7 +1327,9 @@ def test_failed_evidence_leaves_every_pointer_scope_and_derived_row_unchanged(db
     before = _snapshot(db)
     successor = replace(PRIMARY_TITLE, version="2026-09-25-title-1")
     _stage(db, successor)
-    release_object = _release_object(db, "fx-rulespec-2026-09-25", (BASE, successor, PRIMARY_SECTIONS))
+    release_object = _release_object(
+        db, "fx-rulespec-2026-09-25", (BASE, successor, PRIMARY_SECTIONS)
+    )
     with db.cursor() as cursor:
         cursor.execute(
             "DELETE FROM corpus.provisions WHERE version = %s AND citation_path = %s",
@@ -1340,8 +1345,14 @@ def test_failed_evidence_leaves_every_pointer_scope_and_derived_row_unchanged(db
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [
-        (lambda scopes: [{**s, "layer": "primary"} if "layer" in s else s for s in scopes], "unsupported layer"),
-        (lambda scopes: [{k: v for k, v in s.items() if k != "layer"} for s in scopes], "reserved for releases with a base scope"),
+        (
+            lambda scopes: [{**s, "layer": "primary"} if "layer" in s else s for s in scopes],
+            "unsupported layer",
+        ),
+        (
+            lambda scopes: [{k: v for k, v in s.items() if k != "layer"} for s in scopes],
+            "reserved for releases with a base scope",
+        ),
     ],
 )
 def test_v4_layer_rules_are_enforced_by_activation(db: Any, mutate: Any, message: str) -> None:
@@ -1380,9 +1391,15 @@ def test_two_base_scopes_for_one_pair_are_rejected(db: Any) -> None:
 
 
 def test_successor_keeps_the_base_and_unrelated_pairs(db: Any) -> None:
-    _publish(db, "fy-rulespec-2026-09-01", replace(OTHER_PAIR, jurisdiction="fy", nodes=(
-        Node("fy/regulation/1", heading="Chapter 1", ordinal=1),
-    )))
+    _publish(
+        db,
+        "fy-rulespec-2026-09-01",
+        replace(
+            OTHER_PAIR,
+            jurisdiction="fy",
+            nodes=(Node("fy/regulation/1", heading="Chapter 1", ordinal=1),),
+        ),
+    )
     _publish_layered(db)
     unrelated = _rows(db, "SELECT * FROM corpus.active_scope_pointer WHERE jurisdiction = 'fy'")
     first = _snapshot(db)
@@ -1405,7 +1422,10 @@ def test_successor_keeps_the_base_and_unrelated_pairs(db: Any) -> None:
     assert served["fx/statute/1/2"] == successor.version
     assert served["fx/statute/2/2"] == BASE.version
     assert "fx/statute/2/5/x" not in served
-    assert _rows(db, "SELECT * FROM corpus.active_scope_pointer WHERE jurisdiction = 'fy'") == unrelated
+    assert (
+        _rows(db, "SELECT * FROM corpus.active_scope_pointer WHERE jurisdiction = 'fy'")
+        == unrelated
+    )
     assert _tree(_pair_rows(_navigation(db), ("fx", "statute"))) == _tree(
         _reference_merged_tree((BASE, successor))
     )
@@ -1431,9 +1451,10 @@ def test_reaffirming_the_serving_release_writes_nothing(db: Any) -> None:
     result = _activate(db, release_object)
     assert result["scopes"]["activated"] == []
     assert _snapshot(db) == before
-    assert _rows(
-        db, "SELECT xmin::text, id FROM corpus.layered_navigation_overrides ORDER BY id"
-    ) == xmins
+    assert (
+        _rows(db, "SELECT xmin::text, id FROM corpus.layered_navigation_overrides ORDER BY id")
+        == xmins
+    )
 
 
 def test_any_pointer_move_keeps_the_derived_state_in_step(db: Any) -> None:
@@ -1696,7 +1717,10 @@ def _check_layered_pair(dsn: str, scopes: tuple[Scope, ...]) -> dict[str, dict[s
         assert current == _reference_served_provisions(scopes)
         assert current.isdisjoint(legacy)
         assert current | legacy == _ids(connection, "corpus.provisions")
-        paths = [row[0] for row in _rows(connection, "SELECT citation_path FROM corpus.current_provisions")]
+        paths = [
+            row[0]
+            for row in _rows(connection, "SELECT citation_path FROM corpus.current_provisions")
+        ]
         assert len(paths) == len(set(paths))
         served = _navigation(connection)
         assert _tree(served) == _tree(_reference_merged_tree(scopes))
@@ -1711,9 +1735,9 @@ def _check_layered_pair(dsn: str, scopes: tuple[Scope, ...]) -> dict[str, dict[s
         assert _rows(connection, "SELECT * FROM corpus.get_root_document_counts()") == sorted(
             (j, dc, count) for (j, dc), count in roots.items()
         )
-        assert _rows(
-            connection, "SELECT provision_count FROM corpus.current_provision_counts"
-        ) == [(len(current),)]
+        assert _rows(connection, "SELECT provision_count FROM corpus.current_provision_counts") == [
+            (len(current),)
+        ]
         if not layered:
             _assert_matches_reference(connection)
         return served
@@ -1781,10 +1805,22 @@ def test_registration_accepts_a_v4_object_without_serving_it(db: Any) -> None:
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [
-        (lambda scopes: [{**s, "layer": "primary"} if "layer" in s else s for s in scopes], "unsupported layer"),
-        (lambda scopes: [{**s, "layer": "Base"} if "layer" in s else s for s in scopes], "unsupported layer"),
-        (lambda scopes: [{k: v for k, v in s.items() if k != "layer"} for s in scopes], "reserved for releases with a base scope"),
-        (lambda scopes: [*scopes, {**scopes[0], "version": "2026-05-01-base"}], "more than one base scope"),
+        (
+            lambda scopes: [{**s, "layer": "primary"} if "layer" in s else s for s in scopes],
+            "unsupported layer",
+        ),
+        (
+            lambda scopes: [{**s, "layer": "Base"} if "layer" in s else s for s in scopes],
+            "unsupported layer",
+        ),
+        (
+            lambda scopes: [{k: v for k, v in s.items() if k != "layer"} for s in scopes],
+            "reserved for releases with a base scope",
+        ),
+        (
+            lambda scopes: [*scopes, {**scopes[0], "version": "2026-05-01-base"}],
+            "more than one base scope",
+        ),
     ],
 )
 def test_registration_enforces_v4_layer_rules(db: Any, mutate: Any, message: str) -> None:

@@ -259,14 +259,20 @@ class _LayeredCitationOwners:
     """Track which release scope owns each citation path in each layer."""
 
     def __init__(self) -> None:
-        self._owners: dict[tuple[str, str], ReleaseScope] = {}
+        # One map per layer, keyed by the path itself: a release's citation
+        # set is held once per layer, without a tuple per path.
+        self._owners: dict[str, dict[str, ReleaseScope]] = {
+            LAYER_BASE: {},
+            LAYER_PRIMARY: {},
+        }
 
     def claim(self, citation_path: str, scope: ReleaseScope) -> tuple[str, str] | None:
         """Record ``scope`` as an owner of ``citation_path``; return any conflict.
 
         Duplicates inside one scope are reported by ``_validate_provisions``.
         """
-        owner = self._owners.get((scope.layer, citation_path))
+        owners = self._owners[scope.layer]
+        owner = owners.get(citation_path)
         if owner is not None and owner != scope:
             return (
                 "duplicate_release_citation",
@@ -275,9 +281,9 @@ class _LayeredCitationOwners:
                     f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
                 ),
             )
-        self._owners.setdefault((scope.layer, citation_path), scope)
+        owners.setdefault(citation_path, scope)
         other_layer = LAYER_PRIMARY if scope.is_base else LAYER_BASE
-        other = self._owners.get((other_layer, citation_path))
+        other = self._owners[other_layer].get(citation_path)
         if other is not None and other.pair != scope.pair:
             return (
                 "layered_citation_outside_pair",

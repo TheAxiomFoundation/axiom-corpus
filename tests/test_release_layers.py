@@ -28,6 +28,7 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.corpus_locks import CorpusLock, LockEntry, write_lock
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.release_quality import _LayeredCitationOwners, validate_release
 from axiom_corpus.corpus.releases import (
@@ -610,6 +611,105 @@ def test_layered_successor_keeps_historical_primary_scope_identity(tmp_path: Pat
         assert publish._scope_publication_identity(
             content, key
         ) == publish._scope_publication_identity(historical, key)
+
+
+BASE_KEY = ("fx", "statute", "2026-04-29-fx-base")
+
+
+def _locked_base_tree(root: Path, *, tamper: bool = False) -> ReleaseManifest:
+    """The layered tree with the base scope's bytes outside git.
+
+    Corpus bytes may live outside git, pinned by committed lock files
+    (docs/corpus-storage.md); a restored base scope's artifacts will. The
+    primary scopes stay tracked. With ``tamper`` the lock pins other bytes for
+    the base provisions file.
+    """
+    store = CorpusArtifactStore(root / "data" / "corpus")
+    for jurisdiction, document_class, version, title in FIXTURE_SCOPES:
+        _write_scope(store, jurisdiction, document_class, version, title)
+    _write_scope(store, *BASE_KEY, "1", ("1", "2", "3"))
+    stem = "/".join(BASE_KEY)
+    base_files = sorted(
+        path
+        for prefix in ("sources", "inventory", "provisions", "coverage")
+        for path in (root / "data" / "corpus" / prefix).rglob("*")
+        if path.is_file()
+        and path.relative_to(root / "data" / "corpus" / prefix).as_posix().startswith(stem)
+    )
+    entries = []
+    for path in base_files:
+        data = path.read_bytes()
+        if tamper and path.suffix == ".jsonl":
+            data += b"\n"
+        entries.append(
+            LockEntry(
+                path.relative_to(root).as_posix(), hashlib.sha256(data).hexdigest(), len(data)
+            )
+        )
+    write_lock(root, CorpusLock.from_entries(BASE_KEY, entries))
+    (root / ".gitignore").write_text(f"data/corpus/*/{stem}*\n")
+    return _commit(
+        root,
+        {
+            "name": "fx-rulespec-2026-09-28",
+            "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
+            "scopes": [
+                {"jurisdiction": j, "document_class": dc, "version": v}
+                for j, dc, v, _title in FIXTURE_SCOPES
+            ]
+            + [
+                dict(zip(("jurisdiction", "document_class", "version"), BASE_KEY, strict=True))
+                | {"layer": "base"}
+            ],
+        },
+    )
+
+
+@pytest.fixture
+def no_corpus_fetch(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    """Keep corpus resolution off R2 and the developer's shared cache."""
+    from axiom_corpus.corpus import content_store
+    from axiom_corpus.corpus import resolver as resolver_module
+
+    def refuse(cls: Any, **_kwargs: Any) -> Any:
+        raise RuntimeError("R2 is disabled in tests")
+
+    monkeypatch.setattr(content_store.R2ObjectStore, "from_environment", classmethod(refuse))
+    monkeypatch.setenv("AXIOM_CORPUS_CACHE", str(tmp_path / "cache"))
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+
+
+@pytest.mark.usefixtures("no_corpus_fetch")
+def test_lock_pinned_base_scope_builds_and_signs_v4_content(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    release = _locked_base_tree(repo)
+    tracked = subprocess.run(
+        ["git", "-C", str(repo), "ls-files"], check=True, capture_output=True, text=True
+    ).stdout.split()
+    assert not any("2026-04-29-fx-base" in path for path in tracked if path.startswith("data/"))
+    assert ".axiom/corpus-locks/fx/statute/2026-04-29-fx-base.json" in tracked
+
+    content = _content(repo, release)
+    signed = sign_release_object(build_unsigned_release_object(content), private_key=PRIVATE_KEY)
+
+    assert signed["schema_version"] == RELEASE_OBJECT_SCHEMA_V4
+    base = [scope for scope in signed["content"]["scopes"] if scope.get("layer") == "base"]
+    assert [(s["jurisdiction"], s["document_class"], s["version"]) for s in base] == [BASE_KEY]
+    assert base[0]["provision_rows"] == 4
+    assert any(
+        entry["path"] == "data/corpus/provisions/fx/statute/2026-04-29-fx-base.jsonl"
+        for entry in signed["content"]["artifacts"]
+    )
+    verify_release_object(signed, public_key=PUBLIC_KEY)
+
+
+@pytest.mark.usefixtures("no_corpus_fetch")
+def test_lock_pinned_base_scope_must_match_its_lock(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    release = _locked_base_tree(repo, tamper=True)
+
+    with pytest.raises(ReleaseManifestError, match="pinned by a committed corpus lock"):
+        _content(repo, release)
 
 
 def test_v4_without_a_base_scope_fails_verification(tmp_path: Path) -> None:
