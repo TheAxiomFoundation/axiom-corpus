@@ -7,13 +7,17 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
-from typing import Any
+from typing import Any, NamedTuple
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.document_sections import split_document_body
-from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.io import (
+    SourceInventoryReference,
+    iter_provisions,
+    load_source_inventory_references,
+)
+from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.releases import (
     LAYER_BASE,
@@ -239,15 +243,15 @@ def _release_citation_paths(
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
         try:
-            provisions = load_provisions(path)
+            citation_paths = [record.citation_path for record in iter_provisions(path)]
         except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             continue
-        for record in provisions:
-            conflict = owners.claim(record.citation_path, scope)
+        for citation_path in citation_paths:
+            conflict = owners.claim(citation_path, scope)
             if require_unique and conflict is not None:
                 code, message = conflict
                 collector.add("error", code, message, scope=scope, path=path)
-            paths.add(record.citation_path)
+            paths.add(citation_path)
     return paths
 
 
@@ -287,6 +291,70 @@ class _LayeredCitationOwners:
                 ),
             )
         return None
+
+
+class _ProvisionFacts(NamedTuple):
+    """What the scope checks read from one provision record.
+
+    Each field holds the record's value unchanged, except that the body, which
+    is most of a record's bytes, is kept only as the two facts the checks read
+    from it, and the heading only where the body has no text (the one place a
+    check reads it). Validation therefore holds compact per-row metadata
+    rather than every provision body, and reports exactly what it did with the
+    full records.
+    """
+
+    citation_path: str
+    id: str | None
+    jurisdiction: str
+    document_class: str
+    version: str | None
+    source_path: str | None
+    parent_citation_path: str | None
+    parent_id: str | None
+    source_as_of: str | None
+    expression_date: str | None
+    has_body_text: bool
+    heading: str | None
+    # A "document" record whose body splits on its own top-level section
+    # markers; the unsectioned-document warning applies only to these.
+    sectioned_document: bool
+
+
+def _provision_facts(record: ProvisionRecord, shared: dict[object, object]) -> _ProvisionFacts:
+    body = record.body
+    has_body_text = bool(body and body.strip())
+    return _ProvisionFacts(
+        citation_path=record.citation_path,
+        id=record.id,
+        jurisdiction=_shared(record.jurisdiction, shared),
+        document_class=_shared(record.document_class, shared),
+        version=_shared(record.version, shared),
+        source_path=_shared(record.source_path, shared),
+        parent_citation_path=record.parent_citation_path,
+        parent_id=record.parent_id,
+        source_as_of=_shared(record.source_as_of, shared),
+        expression_date=_shared(record.expression_date, shared),
+        has_body_text=has_body_text,
+        heading=None if has_body_text else record.heading,
+        sectioned_document=_sectioned_document(record),
+    )
+
+
+def _sectioned_document(record: ProvisionRecord | _ProvisionFacts) -> bool:
+    """Whether a document record's body splits on its own section markers."""
+    if isinstance(record, _ProvisionFacts):
+        return record.sectioned_document
+    body = record.body
+    return record.kind == "document" and bool(body) and split_document_body(body or "") is not None
+
+
+def _shared[T](value: T, shared: dict[object, object]) -> T:
+    # Every row of a scope repeats a few jurisdiction, class, version, source
+    # and date strings; one object per value keeps the facts compact.
+    if type(value) is str:
+        return shared.setdefault(value, value)  # type: ignore[return-value]
+    return value
 
 
 def _validate_artifact_report(
@@ -419,14 +487,14 @@ def _load_inventory_for_validation(
     path: Path,
     scope: ReleaseScope,
     collector: _IssueCollector,
-) -> tuple[SourceInventoryItem, ...] | None:
+) -> tuple[SourceInventoryReference, ...] | None:
     if not path.exists():
         collector.add(
             "error", "missing_inventory", "inventory artifact is missing", scope=scope, path=path
         )
         return None
     try:
-        return load_source_inventory(path)
+        return load_source_inventory_references(path)
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         collector.add("error", "invalid_inventory", str(exc), scope=scope, path=path)
         return None
@@ -436,14 +504,15 @@ def _load_provisions_for_validation(
     path: Path,
     scope: ReleaseScope,
     collector: _IssueCollector,
-) -> tuple[ProvisionRecord, ...] | None:
+) -> tuple[_ProvisionFacts, ...] | None:
     if not path.exists():
         collector.add(
             "error", "missing_provisions", "provisions artifact is missing", scope=scope, path=path
         )
         return None
     try:
-        return load_provisions(path)
+        shared: dict[object, object] = {}
+        return tuple(_provision_facts(record, shared) for record in iter_provisions(path))
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         collector.add("error", "invalid_provisions", str(exc), scope=scope, path=path)
         return None
@@ -478,7 +547,7 @@ def _load_coverage_for_validation(
 
 def _validate_inventory(
     root: Path,
-    inventory: tuple[SourceInventoryItem, ...],
+    inventory: tuple[SourceInventoryReference, ...],
     scope: ReleaseScope,
     collector: _IssueCollector,
 ) -> set[str]:
@@ -655,7 +724,7 @@ def _validate_source_file(
 
 def _validate_provisions(
     root: Path,
-    provisions: tuple[ProvisionRecord, ...],
+    provisions: tuple[_ProvisionFacts, ...],
     inventory_source_paths: set[str],
     scope: ReleaseScope,
     collector: _IssueCollector,
@@ -672,8 +741,8 @@ def _validate_provisions(
             f"invalid document_class {scope.document_class}",
             scope=scope,
         )
-    by_path: dict[str, ProvisionRecord] = {}
-    by_id: dict[str, ProvisionRecord] = {}
+    by_path: dict[str, _ProvisionFacts] = {}
+    by_id: dict[str, _ProvisionFacts] = {}
     checked_source_paths: set[str] = set()
     for record in provisions:
         if record.citation_path in by_path:
@@ -735,8 +804,8 @@ def _validate_provisions(
 
 
 def _warn_unsectioned_document(
-    record: ProvisionRecord,
-    by_path: dict[str, ProvisionRecord],
+    record: ProvisionRecord | _ProvisionFacts,
+    by_path: Mapping[str, object],
     scope: ReleaseScope,
     collector: _IssueCollector,
 ) -> None:
@@ -747,12 +816,10 @@ def _warn_unsectioned_document(
     per-capture form variants, /values supplements) already make the
     document navigable, so they silence the warning.
     """
-    if record.kind != "document" or not record.body:
+    if not _sectioned_document(record):
         return
     prefix = record.citation_path + "/"
     if any(path.startswith(prefix) for path in by_path):
-        return
-    if split_document_body(record.body) is None:
         return
     collector.add(
         "warning",
@@ -766,8 +833,8 @@ def _warn_unsectioned_document(
 
 
 def _validate_provision_record(
-    record: ProvisionRecord,
-    by_path: dict[str, ProvisionRecord],
+    record: _ProvisionFacts,
+    by_path: dict[str, _ProvisionFacts],
     scope: ReleaseScope,
     collector: _IssueCollector,
     release_citation_paths: set[str],
@@ -795,7 +862,7 @@ def _validate_provision_record(
             f"{record.citation_path} has version {record.version}",
             scope=scope,
         )
-    if not ((record.body and record.body.strip()) or (record.heading and record.heading.strip())):
+    if not (record.has_body_text or (record.heading and record.heading.strip())):
         collector.add(
             "warning",
             "empty_provision_text",
@@ -845,7 +912,7 @@ def _validate_provision_record(
 def _validate_date(
     value: str | None,
     field: str,
-    record: ProvisionRecord,
+    record: _ProvisionFacts,
     scope: ReleaseScope,
     collector: _IssueCollector,
     *,

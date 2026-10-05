@@ -34,6 +34,9 @@ _CONDITIONAL_WRITE_CONFLICT_CODES = {
     "PreconditionFailed",
 }
 _MAX_CONDITIONAL_WRITE_ATTEMPTS = 3
+# Artifact objects are verified from R2 in reads of this size, never whole: a
+# provisions artifact can be 756 MB, and sixteen staging workers run at once.
+_R2_READ_BYTES = 1024 * 1024
 # Publication drives R2 from a bounded thread pool. Sixteen workers keep a
 # 17,000-object release inside one CI job without approaching R2's per-bucket
 # request limits; ``publish_corpus.py --r2-workers`` overrides it.
@@ -248,8 +251,11 @@ def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _
                 f"expected {entry.sha256}, got {actual_digest}"
             )
 
-        remote = _read_object_or_none(client, bucket=bucket, key=entry.key)
-        if remote is None:
+        if _verify_object_or_none(
+            client, bucket=bucket, key=entry.key, sha256=entry.sha256, size=entry.size
+        ):
+            was_uploaded = False
+        else:
             was_uploaded = _put_snapshot_if_absent(
                 client,
                 bucket=bucket,
@@ -259,16 +265,13 @@ def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _
                 sha256=entry.sha256,
                 size=entry.size,
             )
-        else:
-            _verify_bytes(remote, sha256=entry.sha256, size=entry.size, label=entry.key)
-            was_uploaded = False
 
     # Always read after the upload decision. Metadata, ETags, and upload
     # return values are not evidence that R2 persisted the expected bytes.
-    readback = _read_object_or_none(client, bucket=bucket, key=entry.key)
-    if readback is None:
+    if not _verify_object_or_none(
+        client, bucket=bucket, key=entry.key, sha256=entry.sha256, size=entry.size
+    ):
         raise ReleaseManifestError(f"R2 readback is missing after staging: {entry.key}")
-    _verify_bytes(readback, sha256=entry.sha256, size=entry.size, label=entry.key)
     return _StagedArtifact(index=entry.index, key=entry.key, size=entry.size, uploaded=was_uploaded)
 
 
@@ -367,9 +370,7 @@ def _put_snapshot_if_absent(
         except ClientError as exc:
             if not _is_conditional_write_conflict(exc):
                 raise
-            remote = _read_object_or_none(client, bucket=bucket, key=key)
-            if remote is not None:
-                _verify_bytes(remote, sha256=sha256, size=size, label=key)
+            if _verify_object_or_none(client, bucket=bucket, key=key, sha256=sha256, size=size):
                 return False
             if attempt + 1 == _MAX_CONDITIONAL_WRITE_ATTEMPTS:
                 raise ReleaseManifestError(
@@ -425,7 +426,7 @@ def _is_conditional_write_conflict(exc: ClientError) -> bool:
     return code in _CONDITIONAL_WRITE_CONFLICT_CODES or status in {409, 412}
 
 
-def _read_object_or_none(client: Any, *, bucket: str, key: str) -> bytes | None:
+def _object_body_or_none(client: Any, *, bucket: str, key: str) -> Any | None:
     try:
         response = client.get_object(Bucket=bucket, Key=key)
     except ClientError as exc:
@@ -439,6 +440,14 @@ def _read_object_or_none(client: Any, *, bucket: str, key: str) -> bytes | None:
     body = response.get("Body")
     if body is None:
         raise ReleaseManifestError(f"R2 returned no body for {key}")
+    return body
+
+
+def _read_object_or_none(client: Any, *, bucket: str, key: str) -> bytes | None:
+    """Read a whole object; only for small ones, such as signed release objects."""
+    body = _object_body_or_none(client, bucket=bucket, key=key)
+    if body is None:
+        return None
     with closing(body):
         raw = body.read()
     if isinstance(raw, str):
@@ -446,6 +455,48 @@ def _read_object_or_none(client: Any, *, bucket: str, key: str) -> bytes | None:
     if not isinstance(raw, bytes):
         raise ReleaseManifestError(f"R2 returned a non-byte body for {key}")
     return raw
+
+
+def _verify_object_or_none(
+    client: Any,
+    *,
+    bucket: str,
+    key: str,
+    sha256: str,
+    size: int,
+) -> bool:
+    """Stream one artifact object and verify its bytes; ``False`` if absent.
+
+    Reads in bounded chunks and holds only a running hash and length, then
+    fails exactly as reading the whole object and calling ``_verify_bytes``
+    did: byte count first, then SHA-256.
+    """
+    body = _object_body_or_none(client, bucket=bucket, key=key)
+    if body is None:
+        return False
+    digest = hashlib.sha256()
+    length = 0
+    with closing(body):
+        while True:
+            chunk = body.read(_R2_READ_BYTES)
+            if isinstance(chunk, str):
+                chunk = chunk.encode("utf-8")
+            if not isinstance(chunk, bytes):
+                raise ReleaseManifestError(f"R2 returned a non-byte body for {key}")
+            if not chunk:
+                break
+            digest.update(chunk)
+            length += len(chunk)
+    if length != size:
+        raise ReleaseManifestError(
+            f"R2 readback byte count mismatch for {key}: expected {size}, got {length}"
+        )
+    actual = digest.hexdigest()
+    if actual != sha256:
+        raise ReleaseManifestError(
+            f"R2 readback sha256 mismatch for {key}: expected {sha256}, got {actual}"
+        )
+    return True
 
 
 def _verify_bytes(payload: bytes, *, sha256: str, size: int, label: str) -> None:

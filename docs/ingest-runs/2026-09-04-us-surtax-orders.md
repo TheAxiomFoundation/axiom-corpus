@@ -98,18 +98,100 @@ PYTHONPATH=src .venv/bin/python \
   --finance-tsv <path>/pins/2026-08-25-finance-product-list-extracted.tsv
 ```
 
-Run twice; generated artifact hashes were identical both times:
+Run twice; generated artifact hashes were identical both times. Current
+artifacts, rebuilt 2026-09-27 for the Gazette provenance update below:
 
 | Artifact | SHA-256 |
 |---|---|
 | `coverage/ca/rulemaking/2026-09-04-us-surtax-orders.json` | `ef5af7c89244b7cff225479a0200bcb4d152f55bc5763fe9d73c64f91b9225ba` |
-| `inventory/ca/rulemaking/2026-09-04-us-surtax-orders.json` | `cc0a97405eda17bfe58ce1dbce7279e1efb75e8a67f887d67f5849487d1e844e` |
-| `provisions/ca/rulemaking/2026-09-04-us-surtax-orders.jsonl` | `fc25052140c773bed482721d1ca0044dbdfa8bbe7a4cafb8ddb3e73cd6da50ec` |
+| `inventory/ca/rulemaking/2026-09-04-us-surtax-orders.json` | `d51774e9a688d0e8f804323ede425eb0dc51c160726311690d2a519f03c1b133` |
+| `provisions/ca/rulemaking/2026-09-04-us-surtax-orders.jsonl` | `40892f30f491cddafc476a20696caaabe20cb02e3bb5c7544166d6fa50eb30e0` |
+
+Earlier builds, for the record:
+- 2026-09-17 original ingest: inventory `cc0a9740…`, provisions `fc250521…`.
+- 2026-09-19 confirmed-SOR rebuild: inventory `283e204d…`, provisions
+  `185d3a73…`.
+- Coverage has been `ef5af7c8…` throughout.
+
+Before the 2026-09-27 edit, the unmodified builder reproduced the 2026-09-19
+artifacts on origin/main (`f1916d73`) byte for byte.
 
 The builder verifies its own output before writing: 2 documents, 643
 tariff-item rows, 629 rate-bearing items in the expected tiers, 14 Chapter
 98/99 items, amending-Order items restricted to HS 72/73/76, and complete
 coverage.
+
+## Gazette publication — 2026-09-23 (recorded 2026-09-27)
+
+Both Orders appear in **Canada Gazette, Part II, Vol. 160, No. 19**, dated
+2026-09-23:
+
+| Gazetted header | P.C. |
+|---|---|
+| "Registration SOR/2026-186 September 4, 2026" | 2026-785 |
+| "Registration SOR/2026-187 September 4, 2026" | 2026-786 |
+
+The registration numbers now rest on the gazetted face of each instrument, not
+only on the PCO registry field.
+
+- **Official PDF version**:
+  `https://gazette.gc.ca/rp-pr/p2/2026/2026-09-23/pdf/g2-16019.pdf`
+  (84 pages, 1,050,883 bytes, SHA-256
+  `d840cec7f243347257415351dfd399f82930cc051fae9bff867874edd89d72bb`).
+  - Its notice to readers says the PDF has been the official version since
+    April 1, 2003, and the HTML is an alternate format.
+  - SOR/2026-186 and its Regulatory Impact Analysis Statement are on PDF pages
+    5–26; SOR/2026-187 is on pages 27–37.
+- **HTML alternate format**: `…/2026-09-23/html/sor-dors186-eng.html` (56,969
+  bytes, `1fc326e7…`) and `…/sor-dors187-eng.html` (28,829 bytes,
+  `17c40e37…`), plus the `-fra` pages.
+- All files were captured 2026-09-24 and re-fetched byte-identical on
+  2026-09-27.
+
+**The gazetted text matches the ingested Order in Council text.** Two
+independent comparisons against this scope on origin/main `f1916d73` both
+found no substantive difference:
+- a block comparator;
+- a separate word-level and number-token comparison, which caught all five
+  edits injected to test it.
+
+The checks covered:
+- operative text;
+- every schedule's membership and order: 186 Schedules 1–4 = 21/172/142/14,
+  187 Schedules 1/1.1/2/2.1 = 2/27/21/244;
+- every rate;
+- SOR, P.C. and date metadata.
+
+The official PDF agrees independently: each of the 643 tariff items appears
+exactly twice (EN and FR columns), and the sets equal the ingested schedules.
+
+The only differences are editorial:
+- footnote-marker placement: the OIC page's "(2025)1" vs the Gazette's
+  footnote link;
+- footnote bodies inline (OIC) vs a separate block (Gazette);
+- footnotes a–d, which the Gazette adds to cite the enabling statutes;
+- "1(1)" vs "1 (1)";
+- the Gazette's "N.B." pointer on SOR/2026-187 to the RIAS.
+
+The RIAS is not part of either Order and is not ingested.
+
+**What this update changes.** Every provision's `registration_status` now
+records the Gazette publication. It replaces the 2026-09-19 note "Not yet
+carried in the Canada Gazette Part II as of 2026-09-19".
+
+`coming_into_force` on the 331 P.C. 2026-0786 rows had copied the P.C.
+2026-0785 wording. It now follows section 4 of the amending Order: "on the day
+on which the United States Surtax Order (2026) comes into force", with the
+same registered-after proviso. Both Orders were registered 2026-09-04, so the
+date is unchanged: 2026-09-08.
+
+No provision text, schedule, tariff item or rate changes, and coverage is
+byte-identical.
+
+The same Gazette edition carries an **erratum to SOR/2026-154**, the 2026-07-01
+*Order Amending the United States Surtax Remission Order (2025)*. It adds a
+missing paragraph (a) to the French version of section 89 (art. 44.161). It
+does not affect this scope, which does not ingest SOR/2026-154.
 
 ## Registration status — CONFIRMED 2026-09-19
 
@@ -137,7 +219,8 @@ Order itself — carries no SOR, DORS or P.C. number at all.
 Two caveats carried forward: this is the PCO registration database, not the
 gazetted face of the instrument (neither Order's text prints its own
 registration number), so Gazette Part II Vol. 160 No. 19 of 2026-09-23 remains
-the documentary close-out; and the CN 25-11 citation is not new — that file is
+the documentary close-out (resolved 2026-09-27; see the Gazette section
+above); and the CN 25-11 citation is not new — that file is
 byte-identical to its 2026-09-17 pin, so the number was already in pinned bytes
 and simply had not been extracted.
 
