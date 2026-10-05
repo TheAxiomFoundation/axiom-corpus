@@ -1,0 +1,51 @@
+documents:
+  - source_id: us-ct-cga-current-section-19a-754c
+    jurisdiction: us-ct
+    document_class: statute
+    title: >-
+      Connecticut General Statutes Section 19a-754c, Covered Connecticut
+      program, waivers, prior approval and reports
+    source_url: https://www.cga.ct.gov/current/pub/chap_368dd.htm#sec_19a-754c
+    source_format: html
+    source_as_of: "2026-08-13"
+    expression_date: "2026-01-01"
+    citation_path: us-ct/statute/19a-754c
+    request:
+      verify_tls: false
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:has(span#sec_19a-754c)'
+      html_stop_selector: 'p:has(span#sec_19a-754d)'
+      citation_suffix: operative-text
+      section_heading: >-
+        Section 19a-754c. Covered Connecticut program. Waivers. Prior
+        approval. Reports.
+    metadata:
+      primary_source: true
+      source_authority: Connecticut General Assembly
+      legal_identifier: Connecticut General Statutes Section 19a-754c
+      legal_authority_url: >-
+        https://www.cga.ct.gov/current/pub/chap_368dd.htm#sec_19a-754c
+      document_subtype: general_statutes_current
+      program: covered_connecticut
+      tax_year: "2026"
+      source_status: current_official_codified_statute
+      certification_scope: covered_connecticut_premium_and_cost_sharing_subsidy_program
+      final_return_certification: false
+      source_family: healthcare/state-premium-assistance
+      source_note: >-
+        Exact current codified source unit for Section 19a-754c, the Covered
+        Connecticut program (enacted June Sp. Sess. P.A. 21-2, S. 16; amended
+        P.A. 22-118, S. 252 and P.A. 24-138, S. 16). The anchor range starts
+        at the Section 19a-754c body heading and stops before Section
+        19a-754d, excluding the chapter table of contents, sibling sections,
+        and navigation. The section establishes the program within the
+        Department of Social Services, requires premium and cost-sharing
+        subsidies sufficient to ensure fully subsidized silver-level exchange
+        coverage for eligible enrollees with household income up to 175 per
+        cent of the federal poverty level (adults aged 19 to 64 on and after
+        July 1, 2022), provides dental and nonemergency medical transportation
+        services, and excludes program benefits from chapter 229 income. It
+        supports the rulespec-us encoding at us-ct/statutes/19a-754c and the
+        premium-subsidy oracle comparison against PolicyEngine-US
+        ct_covered_connecticut.
