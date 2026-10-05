@@ -35,7 +35,11 @@
 -- joins a served pair re-derives it; a signed release object cannot change or,
 -- while it has membership, go; released rows refuse TRUNCATE as they already
 -- refuse row writes; only the derivation writes the derived tables, and only
--- under READ COMMITTED.
+-- under READ COMMITTED. A write that involves no release signing a base scope
+-- for the pair it touches derives nothing, so pointer moves and membership
+-- inserts of every release before release-object/v4 run under any isolation
+-- level, as before; TRUNCATE of the pointers, membership or released rows
+-- runs only under READ COMMITTED.
 --
 -- NOT applied by any workflow. publish.yml and register-release-object.yml
 -- re-apply only 20260722021000 and the registration RPC (20260927100000), and
@@ -46,12 +50,14 @@
 -- derives a served base layer: its statements lock tables serving reads go
 -- through until it commits, so when a base scope is served (re-applying it
 -- after a layered activation) run SELECT corpus.rederive_layered_serving() as
--- its own transaction afterwards (section 3). Deployment is in
--- docs/named-release-publication.md.
+-- its own transaction afterwards (section 3). It takes those locks first, in
+-- the order serving reads take theirs (section 2), so a read waits for it and
+-- never deadlocks with it. Deployment is in docs/named-release-publication.md.
 
 -- Give up rather than queue serving reads behind a lock this file waits for:
 -- while a statement here waits, reads that need a conflicting lock queue
--- behind it. On a timeout, retry at a quieter moment.
+-- behind it. On a timeout the transaction rolls back whole; retry at a
+-- quieter moment.
 SET lock_timeout = '2s';
 
 -- ---------------------------------------------------------------------------
@@ -99,6 +105,44 @@ CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
 -- ---------------------------------------------------------------------------
 -- 2. Signed layer on release membership. Historical rows default to primary.
 -- ---------------------------------------------------------------------------
+
+-- First, every ACCESS EXCLUSIVE lock this file takes on a relation serving
+-- reads use, in the order those reads take theirs: a read locks the relation
+-- it names, then the relations its definition or policy names, and
+-- current_release_scopes before release_scopes, which it is defined over.
+-- While the file waits for one of these relations it then holds none that a
+-- read takes after it, so no read it waits for can be waiting for it: reads
+-- queue behind the file and neither deadlocks
+-- (tests/test_layered_serving_postgres.py checks both orders). Nothing later
+-- in the file takes a lock a read waits for on any other existing relation.
+-- LOCK TABLE on a view would also lock every relation beneath it, in the
+-- view's order, so a view is locked by setting its owner to its owner, which
+-- takes ACCESS EXCLUSIVE on the view alone and changes nothing.
+DO $$
+DECLARE
+  v_relation regclass;
+BEGIN
+  FOREACH v_relation IN ARRAY ARRAY[
+    to_regclass('corpus.current_provisions'),
+    to_regclass('corpus.legacy_provisions'),
+    to_regclass('corpus.current_navigation_nodes'),
+    to_regclass('corpus.navigation_nodes'),
+    to_regclass('corpus.current_release_scopes'),
+    to_regclass('corpus.release_scopes')
+  ] LOOP
+    CONTINUE WHEN v_relation IS NULL;
+    IF (SELECT relkind FROM pg_class WHERE oid = v_relation) = 'v' THEN
+      EXECUTE format(
+        'ALTER VIEW %s OWNER TO %I',
+        v_relation,
+        (SELECT pg_get_userbyid(relowner) FROM pg_class WHERE oid = v_relation)
+      );
+    ELSE
+      EXECUTE format('LOCK TABLE %s IN ACCESS EXCLUSIVE MODE', v_relation);
+    END IF;
+  END LOOP;
+END $$;
+
 ALTER TABLE corpus.release_scopes
   ADD COLUMN IF NOT EXISTS layer text NOT NULL DEFAULT 'primary';
 ALTER TABLE corpus.release_scopes
@@ -202,8 +246,22 @@ CREATE INDEX IF NOT EXISTS idx_layered_navigation_overrides_parent_sort
 CREATE INDEX IF NOT EXISTS idx_layered_navigation_overrides_path
   ON corpus.layered_navigation_overrides (path);
 
-ALTER TABLE corpus.layered_shadowed_rows ENABLE ROW LEVEL SECURITY;
-ALTER TABLE corpus.layered_navigation_overrides ENABLE ROW LEVEL SECURITY;
+-- ENABLE ROW LEVEL SECURITY takes ACCESS EXCLUSIVE, which serving reads of
+-- the tables wait for once they exist (re-applying the file), and those reads
+-- take these locks in different orders: only where it is not enabled yet.
+DO $$
+DECLARE
+  v_table regclass;
+BEGIN
+  FOREACH v_table IN ARRAY ARRAY[
+    'corpus.layered_shadowed_rows'::regclass,
+    'corpus.layered_navigation_overrides'::regclass
+  ] LOOP
+    IF NOT (SELECT relrowsecurity FROM pg_class WHERE oid = v_table) THEN
+      EXECUTE format('ALTER TABLE %s ENABLE ROW LEVEL SECURITY', v_table);
+    END IF;
+  END LOOP;
+END $$;
 REVOKE ALL ON corpus.layered_shadowed_rows, corpus.layered_navigation_overrides
   FROM anon, authenticated, service_role, PUBLIC;
 GRANT SELECT ON corpus.layered_shadowed_rows, corpus.layered_navigation_overrides
@@ -322,12 +380,16 @@ GRANT EXECUTE ON FUNCTION corpus.analyze_layered_serving() TO postgres;
 
 -- Recompute one pair's derived state from the release that now serves it.
 --
--- Only under READ COMMITTED: there each statement reads what was committed
--- when it started, and every caller holds a lock (EXCLUSIVE on
--- active_scope_pointer, or the row lock of a pointer write) that orders it
--- after any concurrent membership insert, which re-derives its own pair
--- (sync_layered_serving_membership). A REPEATABLE READ or SERIALIZABLE
--- snapshot taken before such an insert committed would miss its rows.
+-- Only under READ COMMITTED, where each statement reads what was committed
+-- when it started, and only once ordered against every other writer of the
+-- pair's derived rows, so that no write it does not see is in progress: a
+-- trigger caller already is (a pointer write holds the pair's pointer row,
+-- a membership insert EXCLUSIVE on active_scope_pointer), and a direct call
+-- (rederive_layered_serving, or an owner) takes EXCLUSIVE on
+-- active_scope_pointer before reading anything, which every pointer write
+-- (ROW EXCLUSIVE), activation, membership insert and re-derivation
+-- (EXCLUSIVE) conflicts with. A REPEATABLE READ or SERIALIZABLE snapshot
+-- taken before such a write committed would miss its rows.
 CREATE OR REPLACE FUNCTION corpus.refresh_layered_serving(
   p_jurisdiction text,
   p_document_class text
@@ -355,10 +417,9 @@ BEGIN
       'layered serving is derived only under READ COMMITTED isolation, not %',
       current_setting('transaction_isolation');
   END IF;
-  -- Every caller already holds this or a stronger lock on the pointers; a
-  -- direct call takes it too, so it is ordered against every activation,
-  -- membership insert and full re-derivation (they take EXCLUSIVE).
-  LOCK TABLE corpus.active_scope_pointer IN ROW EXCLUSIVE MODE;
+  IF pg_trigger_depth() = 0 THEN
+    LOCK TABLE corpus.active_scope_pointer IN EXCLUSIVE MODE;
+  END IF;
   PERFORM set_config('corpus.layered_serving_derivation', 'on', true);
   DELETE FROM corpus.layered_shadowed_rows shadowed
   WHERE shadowed.jurisdiction = p_jurisdiction
@@ -732,9 +793,81 @@ REVOKE EXECUTE ON FUNCTION corpus.refresh_layered_serving(text, text)
   FROM anon, authenticated, service_role, PUBLIC;
 GRANT EXECUTE ON FUNCTION corpus.refresh_layered_serving(text, text) TO postgres;
 
+-- Whether a release signs a base scope for a pair. Only a pair served by such
+-- a release can have derived rows: membership carries only the layers its
+-- release object signs (guard_release_scope_membership_insert below, and
+-- activation compares the two). A signed object is immutable and is visible to
+-- any transaction that can name its release (pointers and membership reference
+-- it), so the answer is the same under any snapshot. An object that cannot be
+-- found counts as signing one.
+CREATE OR REPLACE FUNCTION corpus.release_layers_pair(
+  p_release_name text,
+  p_jurisdiction text,
+  p_document_class text
+)
+RETURNS boolean
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = corpus, public
+AS $$
+  SELECT COALESCE(
+    (
+      SELECT objects.release_object #> '{content,scopes}' @> jsonb_build_array(
+        jsonb_build_object(
+          'jurisdiction', p_jurisdiction,
+          'document_class', p_document_class,
+          'layer', 'base'
+        )
+      )
+      FROM corpus.release_objects objects
+      WHERE objects.release_name = p_release_name
+    ),
+    true
+  )
+$$;
+
+REVOKE EXECUTE ON FUNCTION corpus.release_layers_pair(text, text, text)
+  FROM anon, authenticated, service_role, PUBLIC;
+
+-- TRUNCATE removes every row, including rows committed after its
+-- transaction's snapshot, and fires its BEFORE and AFTER TRUNCATE triggers
+-- while it holds ACCESS EXCLUSIVE on the table. The TRUNCATE triggers here
+-- (the pointers' cleanup in sync_layered_serving, and the membership and
+-- released-row guards) read what it removes, and read it right only under
+-- READ COMMITTED: each of their statements, as a statement of a volatile
+-- function, then reads a fresh snapshot, which sees every row committed
+-- before the lock was granted, while no write the lock conflicts with is in
+-- progress. A REPEATABLE READ or SERIALIZABLE snapshot taken before an
+-- activation committed sees nothing it released, so under those levels they
+-- refuse the TRUNCATE.
+CREATE OR REPLACE FUNCTION corpus.guard_truncate_reads_committed_state(p_table text)
+RETURNS void
+LANGUAGE plpgsql
+SET search_path = corpus, public
+AS $$
+BEGIN
+  IF current_setting('transaction_isolation') <> 'read committed' THEN
+    RAISE EXCEPTION
+      'corpus.% is truncated only under READ COMMITTED isolation, not %',
+      p_table,
+      current_setting('transaction_isolation');
+  END IF;
+END;
+$$;
+
+REVOKE EXECUTE ON FUNCTION corpus.guard_truncate_reads_committed_state(text)
+  FROM anon, authenticated, service_role, PUBLIC;
+
 -- Keep the derived state in step with active_scope_pointer in the same
 -- transaction as every pointer move, whoever makes it: activation, a
 -- maintenance repoint, or a removal.
+--
+-- Only a pair served, before or after the move, by a release that signs a
+-- base scope for it has derived rows to change. A move between releases that
+-- sign none for the pair (every release before release-object/v4) derives
+-- nothing, takes no further lock and, as before layered serving, runs under
+-- any isolation level.
 CREATE OR REPLACE FUNCTION corpus.sync_layered_serving()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -745,7 +878,12 @@ DECLARE
   v_deriving text := current_setting('corpus.layered_serving_derivation', true);
 BEGIN
   IF TG_OP = 'TRUNCATE' THEN
-    -- Nothing is served: nothing is derived, whatever a snapshot shows.
+    -- Nothing is served: nothing is derived. TRUNCATE removed every pointer,
+    -- including any committed after this transaction's snapshot, so the
+    -- derived rows are removed by statements that each read a fresh snapshot,
+    -- taken while TRUNCATE holds ACCESS EXCLUSIVE on the pointers, which
+    -- every derivation conflicts with: only under READ COMMITTED.
+    PERFORM corpus.guard_truncate_reads_committed_state(TG_TABLE_NAME);
     PERFORM set_config('corpus.layered_serving_derivation', 'on', true);
     DELETE FROM corpus.layered_shadowed_rows;
     DELETE FROM corpus.layered_navigation_overrides;
@@ -759,7 +897,10 @@ BEGIN
        AND (OLD.jurisdiction, OLD.document_class)
            IS DISTINCT FROM (NEW.jurisdiction, NEW.document_class)
      ) THEN
-    PERFORM corpus.refresh_layered_serving(OLD.jurisdiction, OLD.document_class);
+    -- The old pair is no longer served by this row.
+    IF corpus.release_layers_pair(OLD.release_name, OLD.jurisdiction, OLD.document_class) THEN
+      PERFORM corpus.refresh_layered_serving(OLD.jurisdiction, OLD.document_class);
+    END IF;
   END IF;
   IF TG_OP = 'INSERT'
      OR (
@@ -768,7 +909,16 @@ BEGIN
            IS DISTINCT FROM
            (NEW.jurisdiction, NEW.document_class, NEW.release_name, NEW.content_sha256)
      ) THEN
-    PERFORM corpus.refresh_layered_serving(NEW.jurisdiction, NEW.document_class);
+    -- The new pair is served by a new release; when the pair is unchanged,
+    -- its derived rows are the old release's until re-derived.
+    IF corpus.release_layers_pair(NEW.release_name, NEW.jurisdiction, NEW.document_class) THEN
+      PERFORM corpus.refresh_layered_serving(NEW.jurisdiction, NEW.document_class);
+    ELSIF TG_OP = 'UPDATE'
+          AND (OLD.jurisdiction, OLD.document_class) = (NEW.jurisdiction, NEW.document_class) THEN
+      IF corpus.release_layers_pair(OLD.release_name, OLD.jurisdiction, OLD.document_class) THEN
+        PERFORM corpus.refresh_layered_serving(NEW.jurisdiction, NEW.document_class);
+      END IF;
+    END IF;
   END IF;
   RETURN NULL;
 END;
@@ -791,7 +941,8 @@ FOR EACH STATEMENT EXECUTE FUNCTION corpus.sync_layered_serving();
 -- rejected, and a TRUNCATE of any. Activation inserts membership; an inserted
 -- row must be one of its release object's signed scopes with its signed layer
 -- (guard_release_scope_membership_insert): a row can no longer be deleted, so
--- a stray one would stay.
+-- a stray one would stay. TRUNCATE is refused outside READ COMMITTED
+-- (guard_truncate_reads_committed_state).
 CREATE OR REPLACE FUNCTION corpus.guard_release_scope_membership()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -800,6 +951,7 @@ SET search_path = corpus, public
 AS $$
 BEGIN
   IF TG_OP = 'TRUNCATE' THEN
+    PERFORM corpus.guard_truncate_reads_committed_state(TG_TABLE_NAME);
     IF EXISTS (SELECT 1 FROM corpus.release_scopes) THEN
       RAISE EXCEPTION
         'membership of a signed corpus release is immutable: cannot truncate corpus.release_scopes';
@@ -900,9 +1052,16 @@ FOR EACH STATEMENT EXECUTE FUNCTION corpus.guard_release_scope_membership_insert
 -- pair its release already serves when membership was altered before the
 -- guard above existed and is restored, by re-activating the release (whose
 -- pointer then does not move) or by inserting the row: re-derive that pair in
--- the same statement. The pointers are locked before they are read, which
--- orders this after any activation or pointer write in progress, and that
--- write's derivation after this one.
+-- the same statement.
+--
+-- Only a row of a release that signs a base scope for the row's pair can
+-- change what is derived (release_layers_pair). Membership of other releases,
+-- every release before release-object/v4 included, is inserted as before
+-- layered serving: no lock, under any isolation level. Otherwise the insert
+-- runs only under READ COMMITTED and locks the pointers EXCLUSIVE before it
+-- reads them, which orders it after any activation or pointer write in
+-- progress, and that write's derivation after this one. Activation already
+-- holds that lock; an owner restoring a row takes it.
 CREATE OR REPLACE FUNCTION corpus.sync_layered_serving_membership()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -912,12 +1071,23 @@ AS $$
 DECLARE
   pair record;
 BEGIN
-  IF NOT EXISTS (SELECT 1 FROM inserted_scopes) THEN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM (
+      SELECT DISTINCT inserted.release_name, inserted.jurisdiction, inserted.document_class
+      FROM inserted_scopes inserted
+    ) inserted
+    WHERE corpus.release_layers_pair(
+      inserted.release_name,
+      inserted.jurisdiction,
+      inserted.document_class
+    )
+  ) THEN
     RETURN NULL;
   END IF;
   IF current_setting('transaction_isolation') <> 'read committed' THEN
     RAISE EXCEPTION
-      'release membership is inserted only under READ COMMITTED isolation, not %',
+      'release membership of a layered release is inserted only under READ COMMITTED isolation, not %',
       current_setting('transaction_isolation');
   END IF;
   LOCK TABLE corpus.active_scope_pointer IN EXCLUSIVE MODE;
@@ -928,6 +1098,11 @@ BEGIN
       ON active.jurisdiction = inserted.jurisdiction
      AND active.document_class = inserted.document_class
      AND active.release_name = inserted.release_name
+    WHERE corpus.release_layers_pair(
+      inserted.release_name,
+      inserted.jurisdiction,
+      inserted.document_class
+    )
     ORDER BY 1, 2
   LOOP
     PERFORM corpus.refresh_layered_serving(pair.jurisdiction, pair.document_class);
@@ -989,7 +1164,8 @@ FOR EACH ROW EXECUTE FUNCTION corpus.guard_release_object_immutable();
 -- copies released navigation rows. service_role has no TRUNCATE privilege;
 -- for the owner, a TRUNCATE that would remove a row of a signed release's
 -- scope is rejected, layered or not. A table holding only unreleased staged
--- rows can still be truncated.
+-- rows can still be truncated, under READ COMMITTED
+-- (guard_truncate_reads_committed_state, above).
 CREATE OR REPLACE FUNCTION corpus.guard_released_scope_rows_truncate()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -999,6 +1175,7 @@ AS $$
 DECLARE
   v_released text;
 BEGIN
+  PERFORM corpus.guard_truncate_reads_committed_state(TG_TABLE_NAME);
   EXECUTE format(
     $query$
       SELECT scopes.jurisdiction || '/' || scopes.document_class || '/' || scopes.version
@@ -1359,38 +1536,40 @@ STABLE
 SECURITY DEFINER
 SET search_path = corpus, public
 AS $$
-  WITH layered_pairs AS (
-    SELECT base.jurisdiction, base.document_class
-    FROM corpus.current_release_scopes base
-    WHERE base.layer = 'base'
-  ),
-  roots AS (
+  -- navigation_nodes is named before current_release_scopes, so this takes
+  -- its locks in the order every other serving read takes them (section 2).
+  WITH roots AS (
     -- Pairs served without a base scope: the previous count, index-only.
     SELECT n.jurisdiction, n.doc_type
-    FROM corpus.current_release_scopes s
-    JOIN corpus.navigation_nodes n
-      ON n.jurisdiction = s.jurisdiction
-     AND COALESCE(NULLIF(n.doc_type, ''), 'unknown') = s.document_class
-     AND n.version = s.version
+    FROM corpus.navigation_nodes n
+    JOIN corpus.current_release_scopes s
+      ON s.jurisdiction = n.jurisdiction
+     AND s.document_class = COALESCE(NULLIF(n.doc_type, ''), 'unknown')
+     AND s.version = n.version
     WHERE n.parent_path IS NULL
       AND NOT EXISTS (
         SELECT 1
-        FROM layered_pairs
-        WHERE layered_pairs.jurisdiction = s.jurisdiction
-          AND layered_pairs.document_class = s.document_class
+        FROM corpus.current_release_scopes base
+        WHERE base.layer = 'base'
+          AND base.jurisdiction = s.jurisdiction
+          AND base.document_class = s.document_class
       )
     UNION ALL
     -- Layered pairs: stored roots neither shadowed nor overridden ...
     SELECT n.jurisdiction, n.doc_type
-    FROM layered_pairs
+    FROM corpus.navigation_nodes n
     JOIN corpus.current_release_scopes s
-      ON s.jurisdiction = layered_pairs.jurisdiction
-     AND s.document_class = layered_pairs.document_class
-    JOIN corpus.navigation_nodes n
-      ON n.jurisdiction = s.jurisdiction
-     AND COALESCE(NULLIF(n.doc_type, ''), 'unknown') = s.document_class
-     AND n.version = s.version
+      ON s.jurisdiction = n.jurisdiction
+     AND s.document_class = COALESCE(NULLIF(n.doc_type, ''), 'unknown')
+     AND s.version = n.version
     WHERE n.parent_path IS NULL
+      AND EXISTS (
+        SELECT 1
+        FROM corpus.current_release_scopes base
+        WHERE base.layer = 'base'
+          AND base.jurisdiction = s.jurisdiction
+          AND base.document_class = s.document_class
+      )
       AND NOT EXISTS (
         SELECT 1
         FROM corpus.layered_shadowed_rows shadowed
@@ -1429,10 +1608,11 @@ GRANT EXECUTE ON FUNCTION corpus.get_root_document_counts() TO postgres, service
 -- object, membership equality, per-pair pointer movement, history, count
 -- refresh). New: v4 acceptance and layer rules, a v4-only check that each
 -- layered pair keeps citation paths unique within each layer, the layer in
--- stored membership and in both membership comparisons. Each pointer move
--- fires sync_layered_serving, which derives the pair's shadowed rows and
--- merged navigation in this transaction. Any failure raises and rolls the
--- whole activation back.
+-- stored membership and in both membership comparisons. Each pointer move to
+-- or from a release that signs a base scope for the pair fires
+-- sync_layered_serving, which derives the pair's shadowed rows and merged
+-- navigation in this transaction. Any failure raises and rolls the whole
+-- activation back.
 -- ---------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION corpus.activate_corpus_release(p_release_object jsonb)
 RETURNS jsonb

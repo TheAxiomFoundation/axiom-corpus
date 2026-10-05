@@ -262,13 +262,18 @@ included.
 The derived tables stay a function of what is served, whoever writes, short
 of turning triggers off:
 
-- Any change to `corpus.active_scope_pointer` re-derives its pair.
+- Any change to `corpus.active_scope_pointer` that moves a pair to or from a
+  release signing a base scope for it re-derives the pair. The pointer
+  trigger takes no lock beyond the row lock of the write; a pointer row write
+  orders it against other writes of the same pair.
 - Membership of a signed release is immutable. An `UPDATE`, `DELETE` or
   `TRUNCATE` of `corpus.release_scopes` is rejected, and an inserted row must
   be one of its release object's signed scopes, with its signed layer (checked
   once per statement). A signed scope that joins a pair its release already
   serves (membership altered before this guard and restored) re-derives that
-  pair in the same statement.
+  pair in the same statement. Such an insert into a release that signs a base
+  scope takes `EXCLUSIVE` on `active_scope_pointer` (activation already holds
+  it; an owner restoring a row takes it); any other insert takes no lock.
 - A signed release object is immutable too: only its `created_at` may change,
   and an object with membership cannot be deleted, so no statement can hide it
   from the membership and released-row guards.
@@ -276,10 +281,24 @@ of turning triggers off:
   holds a row of a signed release's scope, as row writes already are.
 - The derived tables are written only by the derivation: any other write is
   rejected.
-- Derivation, and an insert into membership, run only under `READ COMMITTED`.
-  An older `REPEATABLE READ` or `SERIALIZABLE` snapshot could miss membership
-  committed meanwhile.
+- A direct `SELECT corpus.refresh_layered_serving(...)` takes `EXCLUSIVE` on
+  `active_scope_pointer` before it reads anything, so it cannot interleave
+  with a pointer write, an activation or a re-derivation.
 - `SELECT corpus.rederive_layered_serving()` re-derives every served pair.
+
+**Isolation.** Writes that involve no release signing a base scope for the pair
+they touch derive nothing, so activating, re-activating or rolling back a
+v2 or v3 release, a hand repoint or removal of a pointer between such
+releases, and inserting their membership work under any isolation level, as
+before. Whatever involves a release that signs a base scope for the pair
+(activating it, moving a pair to or from it, inserting its membership) runs
+only under `READ COMMITTED` and is refused whole otherwise: a `REPEATABLE
+READ` or `SERIALIZABLE` snapshot taken before another session's write
+committed would derive from rows it cannot see. So do `rederive` and a direct
+`refresh`. `TRUNCATE` of `active_scope_pointer`, `release_scopes`,
+`provisions` or `navigation_nodes` also runs only under `READ COMMITTED`,
+layered or not: `TRUNCATE` removes rows its own snapshot cannot see, so its
+guards must read a fresh one.
 
 Each derivation that changes the derived tables runs `ANALYZE` on both.
 Staged rows do not keep a provision's citation label, so where the merge moves
@@ -301,16 +320,33 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    `CREATE INDEX CONCURRENTLY IF NOT EXISTS` and their exact definitions, then
    confirm `pg_index.indisvalid` for both. The file refuses to run over an
    invalid one.
-2. Apply the file in one transaction. Until it commits it holds `ACCESS
-   EXCLUSIVE`, which serving reads wait for, on the four serving views it
-   replaces, `navigation_nodes` (its read policies), `release_scopes` (the new
-   column) and the two derived tables. Its triggers take only `SHARE ROW
-   EXCLUSIVE` on `provisions`, `active_scope_pointer` and `release_objects`.
-   The file does no derivation work, so the transaction is short: re-applied
-   to a local copy of 401,299 rows per table, its indexes already built, it
-   took 8 ms. It sets `lock_timeout` to 2 s, so
-   a statement that cannot get its lock fails rather than queueing reads behind
-   it; on a timeout, wait and retry.
+2. Apply the file in one transaction, with no publication or activation
+   running. Until it commits it holds `ACCESS EXCLUSIVE` on the four serving
+   views it replaces, `navigation_nodes` (its read policies) and
+   `release_scopes` (the new column), and, the first time, on the two derived
+   tables it creates. It takes those locks before anything else, in the order
+   serving reads take theirs (`current_provisions`, `legacy_provisions`,
+   `current_navigation_nodes`, `navigation_nodes`, `current_release_scopes`,
+   `release_scopes`), so a read either finishes before the file gets the lock
+   it needs or waits for the file, and the two never deadlock. Its triggers
+   take only `SHARE ROW EXCLUSIVE` on `provisions`, `active_scope_pointer` and
+   `release_objects`, which writes wait for and reads do not. The file does no
+   derivation work, so the transaction is short: re-applied to a local copy of
+   401,299 rows per table, its indexes already built, it took 8 ms.
+
+   What a concurrent read sees: a read that got its locks before the file got
+   the one it needs runs with the old definitions, and the file waits for it;
+   a read that needs a relation the file holds, or is queued for, waits until
+   the file commits and then runs with the new definitions (or, if the file
+   rolled back, the old ones). On a local PostgreSQL 14
+   database, applying the file 40 times in a row under 12 looping anon
+   readers deadlocked no read and no application
+   (`tests/test_layered_serving_postgres.py` holds the lock-order tests).
+
+   The file sets `lock_timeout` to 2 s, so a statement that cannot get its
+   lock within 2 s fails rather than queueing reads behind it for longer. A
+   failed run (a lock timeout, or any other error) rolls the whole transaction
+   back and changes nothing: wait for a quieter moment and run it again.
 3. The first time, no base scope is served: the file empties the derived
    tables and every view returns what it returned before. When a base scope is
    served (re-applying the file after a layered activation), it prints a notice
