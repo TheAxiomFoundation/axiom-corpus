@@ -4,11 +4,12 @@
 
 This is the source prerequisite for
 [rulespec-us#1469](https://github.com/TheAxiomFoundation/rulespec-us/issues/1469).
-Local extraction is complete; **signed ingest, object upload, release admission,
-and RuleSpec corpus-pin approval are still pending**. This PR adds source
-manifests and an unsigned audit, not an admitted corpus release or executable
-Kansas rules. No production signing/upload credentials were configured in the
-workspace used for this run.
+Extraction and signing are complete. This PR includes four signed ingest
+manifests and four corpus locks covering all 33 artifacts. **Object upload,
+release admission, and RuleSpec corpus-pin approval are still pending**. The
+October 2 audit remains a record of the original unsigned extraction; the
+October 5 signing evidence is recorded below. This is not an admitted corpus
+release or executable Kansas rules.
 
 Official documents determine the rules. The tracking issue supplies discovery
 leads and a review checklist; its proposed formulas, module paths, tests, and
@@ -151,11 +152,19 @@ Follow-up checks after materializing all 56,318 existing locked artifacts:
   flows, and low risk; the diff contains only schema, run-note, and changelog
   changes.
 
-The existing GitHub CI run for `2462155a` passed 5,153 tests, with 107 skipped,
+The earlier GitHub CI run for `2462155a` passed 5,153 tests, with 107 skipped,
 208 deselected, and 90.17% coverage. It did not admit these new scopes: the
 ingest guard saw no protected changes and remote verification checked zero
-new lock entries. Signed manifests, locks, uploads, and their verification
-are still pending until the custodian signing environment is available.
+new lock entries.
+
+All four extractions were repeated from clean tracked commit
+`b5f170b65eeec17aaab592fd21f01bd7084dceb5`. All 33 generated artifacts remained
+byte-identical to the original audit. The existing local ingest signing key
+was verified against the repository's configured ingest public key, then used
+to sign all four scopes with this generator commit. Each scope now has a signed
+manifest under `.axiom/ingest-manifests/` and a matching lock under
+`.axiom/corpus-locks/`. No replacement key or trust-root change was needed.
+R2 upload credentials have not yet been located; no object upload is claimed.
 
 ## Reproduce extraction
 
@@ -224,12 +233,11 @@ do not silently update hashes to make the comparison pass. Generated artifact
 hashes are also recorded for comparison with the original run; a rerun must
 have its own honest generator provenance.
 
-## Custodian handoff
+## Signing reproduction and remaining upload
 
-The remaining actions use the existing corpus process, not an enrollment or
-notary rollout. A custodian with the ingest signing key and object-upload access
-can reproduce/verify these captures, then sign all four scopes from a clean
-tracked checkout using the installed production credentials:
+The signing step below is recorded for reproduction. It has already completed
+for all four scopes using `--lock`; `--push` still requires object-upload access.
+Use a clean tracked checkout and verify the audit hashes before re-signing:
 
 ```bash
 uv run python - <<'PY'
@@ -261,11 +269,21 @@ for name in (
 PY
 ```
 
-Commit the resulting four signed manifests and four locks on this branch.
-Do not commit raw corpus bytes or generate a throwaway signing key. Keep this
-PR in draft until the signed artifacts and uploaded objects are present and
-the ingest guard passes. Corpus merges must preserve history: **no squash or
-rebase merge**.
+The remaining upload can use the existing signed manifests and locks:
+
+```bash
+uv run axiom-corpus-ingest corpus push \
+  us-ks/manual/2026-10-02-ks-lieap-historical \
+  us-ks/policy/2026-10-02-ks-liheap-plan-fy2025 \
+  us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025 \
+  us/guidance/2026-10-02-hhs-poverty-2024-2025
+uv run axiom-corpus-ingest corpus verify --remote --changed-since origin/main
+uv run axiom-corpus-ingest guard-ingested --base-ref origin/main --head-ref HEAD
+```
+
+Keep raw corpus bytes out of Git. Keep this PR in draft until uploaded objects
+are present and the ingest guard and CI pass. Corpus merges must preserve
+history: **no squash or rebase merge**.
 
 After ingestion, a separately approved immutable release and RuleSpec pin
 update must include the new scopes and existing FY2026 plan/matrix. Publication
