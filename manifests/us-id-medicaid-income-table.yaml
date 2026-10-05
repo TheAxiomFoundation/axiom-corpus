@@ -1,0 +1,32 @@
+version: 2026-09-15-medicaid-income-table-2026
+documents:
+- source_id: us-id-income_table-program-income-limits
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Department of Health and Welfare: Medicaid Program Income Limits (2026)'
+  source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-id/policy/dhw/medicaid/program-income-limits
+  extraction:
+    html_content_selector: article
+    html_drop_selectors:
+    - nav
+    - header
+    - footer
+    - script
+    - style
+    - p.Footer
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare
+    program: MEDICAID
+    state: Idaho
+    document_subtype: annual_income_table_html
+    table_index_url: https://healthandwelfare.idaho.gov/services-programs/medicaid-health/apply-medicaid
+    carries: the agency's per-program income-limit tables (13 tables, household size by dollar amount, 2026); carries M-SS-INCOME-TABLE
+    source_discovery_group: us-id/policy/income_table
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); publisher index https://healthandwelfare.idaho.gov/services-programs/medicaid-health/apply-medicaid
+    publisher_note: publisher answered the plain extractor client HTTP 200 on 2026-09-15; TLS verified, no mirror
+    carries_elements: M-SS-INCOME-TABLE C-SS-INCOME-PREMIUM-TABLE

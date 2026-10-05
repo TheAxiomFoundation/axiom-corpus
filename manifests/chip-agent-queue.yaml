@@ -25,6 +25,8 @@ policy:
   - 'CMS state plan family (2026-09-13): one `family: cms_state_plan` row per state for the medicaid.gov SPA index and eligibility-bearing
     approval packages, version 2026-09-13-chip-state-plan, document_class policy, citation root us-xx/policy/cms/chip-state-plan.
     Generator: scripts/build_cms_state_plan_manifests.py --program chip.'
+  - 'Income table family (2026-09-15, wave-5 closure): `family: income_table` rows for the annual income-level / premium table
+    the agency posts as text, version 2026-09-15-chip-income-premium-table-2026, citation path per state. Generator: scripts/build_medicaid_income_table_manifests.py.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -33,7 +35,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   done: 14
-  agent_ready: 84
+  agent_ready: 86
   blocked_primary_source: 10
 states:
 - jurisdiction: us
@@ -2338,6 +2340,29 @@ states:
     pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program chip.'
+- jurisdiction: us-me
+  name: Maine
+  family: income_table
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-me-chip-income-table.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: policy
+    version: 2026-09-15-chip-income-premium-table-2026
+  queue_status: agent_ready
+  source_kind: official_annual_income_table
+  primary_source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/2026%20MaineCare%20Eligibility%20Guidelines%206.23..26_1.pdf
+  index_url: https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    annual_income_table_pdf:
+      found: 1
+      taken: 1
+  notes: 'Income table row (2026-09-15, wave-5 closure): the annual eligibility-guidelines chart: monthly income limits by
+    household size and FPL percentage for every MaineCare and CubCare coverage group; carries C-SS-INCOME-PREMIUM-TABLE and
+    M-SS-INCOME-TABLE. Fetched with the plain extractor client (HTTP 200, 150,684 bytes, 0.2 s). Generator: scripts/build_medicaid_income_table_manifests.py.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: done
@@ -4087,6 +4112,30 @@ states:
     pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program chip.'
+- jurisdiction: us-sc
+  name: South Carolina
+  family: income_table
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-sc-chip-income-table.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: policy
+    version: 2026-09-15-chip-income-premium-table-2026
+  queue_status: agent_ready
+  source_kind: official_annual_income_table
+  primary_source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    annual_income_table_html:
+      found: 1
+      taken: 1
+  notes: 'Income table row (2026-09-15, wave-5 closure): the agency''s per-program income and resource limit tables (12 tables,
+    monthly and annual by family size, effective 03/01/2026), including Partners for Healthy Children (CHIP); carries C-SS-INCOME-PREMIUM-TABLE
+    (no CHIP premiums in SC) and M-SS-INCOME-TABLE. Fetched with the plain extractor client (HTTP 200, 24,762 characters under
+    the content selector, 0.2 s). Generator: scripts/build_medicaid_income_table_manifests.py.'
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}

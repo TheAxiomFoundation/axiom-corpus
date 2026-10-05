@@ -54,6 +54,20 @@ policy:
   - 'CMS state plan family (2026-09-13): one `family: cms_state_plan` row per state for the medicaid.gov SPA index and eligibility-bearing
     approval packages, version 2026-09-13-medicaid-state-plan, document_class policy, citation root us-xx/policy/cms/medicaid-state-plan.
     Generator: scripts/build_cms_state_plan_manifests.py --program medicaid.'
+  - 'MAGI verification plan family (2026-09-15, wave-5 closure): one `family: magi_verification_plan` row per state for the
+    CMS-posted MAGI-based eligibility verification plan (https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans),
+    version 2026-09-15-medicaid-magi-verification-plan, document_class policy, citation root us-xx/policy/cms/magi-verification-plan.
+    Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+  - 'CMS 1115 STC family (2026-09-15, wave-5 closure): one `family: cms_1115_stc` row per M-ST-1315 target state (AK ID KY
+    MT ND NE NV PA SC SD VA WI WY) for the current CMS approval document and special terms and conditions of the state''s
+    approved eligibility demonstration(s) on https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list,
+    version 2026-09-15-medicaid-1115-stc, document_class policy, citation root us-xx/policy/cms/1115-stc; states with no approved
+    eligibility demonstration keep a row with the reason. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  - 'Batch 8 (2026-09-15, wave-5 closure): the Wyoming EOM (Google Sites) taken with the div.UtePc content selector under
+    version 2026-09-15-medicaid-eligibility-manual-closure; image-only Tables and dead index links inventoried and not taken.
+    Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 8 --only us-wy; see docs/ingest-runs/2026-09-15-medicaid-chip.md.'
+  - 'Income table family (2026-09-15, wave-5 closure): `family: income_table` rows for the annual income-level / premium table
+    the agency posts as text, version 2026-09-15-medicaid-income-table-2026, citation path per state. Generator: scripts/build_medicaid_income_table_manifests.py.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -61,8 +75,8 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  needs_review: 2
-  agent_ready: 96
+  needs_review: 7
+  agent_ready: 157
   blocked_primary_source: 7
   done: 6
 states:
@@ -1470,6 +1484,52 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ak
+  name: Alaska
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ak-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/alaska-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-ak
+  name: Alaska
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-ak
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: needs_review
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 0
+  taken_count: 0
+  index_families: {}
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; the only approved 1115 is Alaska Behavioral Health
+    Reform (SUD/SMI service authority, approved 2024-03-26); the other listed items are 1915(c) waivers; no eligibility demonstration
+    (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an eligibility demonstration
+    is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-al
   name: Alabama
   lead_counts: {}
@@ -1610,6 +1670,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-al
+  name: Alabama
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-al-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/alabama-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ar
   name: Arkansas
   queue_status: agent_ready
@@ -1809,6 +1894,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ar
+  name: Arkansas
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ar-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ar
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/arkansas-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}
@@ -1962,6 +2072,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-az
+  name: Arizona
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-az-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-az
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/arizona-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ca
   name: California
   lead_counts: {}
@@ -2122,6 +2257,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ca
+  name: California
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ca-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/california-verification-plan-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-co
   name: Colorado
   lead_counts: {}
@@ -2283,6 +2443,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-co
+  name: Colorado
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-co-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-co
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/colorado-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ct
   name: Connecticut
   lead_counts: {}
@@ -2451,6 +2639,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ct
+  name: Connecticut
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ct-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/connecticut-verification-plan.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-dc
   name: District of Columbia
   lead_counts: {}
@@ -2622,6 +2835,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-dc
+  name: District of Columbia
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-dc-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/dc-verification-plan-tempate-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-de
   name: Delaware
   lead_counts: {}
@@ -2772,6 +3013,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-de
+  name: Delaware
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-de-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/delaware-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-fl
   name: Florida
   lead_counts: {}
@@ -2885,6 +3154,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-fl
+  name: Florida
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-fl-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/florida-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ga
   name: Georgia
   lead_counts: {}
@@ -3038,6 +3332,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ga
+  name: Georgia
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ga-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/georgia-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-gu
   name: Guam
   lead_counts: {}
@@ -3196,6 +3515,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-hi
+  name: Hawaii
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-hi-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/hawaii-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ia
   name: Iowa
   lead_counts: {}
@@ -3334,6 +3678,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ia
+  name: Iowa
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ia-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/iowa-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-id
   name: Idaho
   lead_counts: {}
@@ -3469,6 +3838,75 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-id
+  name: Idaho
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-id-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/idaho-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-id
+  name: Idaho
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: needs_review
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 0
+  taken_count: 0
+  index_families: {}
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Idaho Medicaid Reform Waiver is pending (no approval
+    document); Idaho Childless Adults and Children''s Access Card are legacy listings without a current approval; Idaho Medicaid
+    Plus (ID-04) is a 1915(b) waiver; Idaho Behavioral Health Transformation is SUD/SMI (read on the live list with the Approved
+    filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+- jurisdiction: us-id
+  name: Idaho
+  family: income_table
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-id-medicaid-income-table.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-09-15-medicaid-income-table-2026
+  queue_status: agent_ready
+  source_kind: official_annual_income_table
+  primary_source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+  index_url: https://healthandwelfare.idaho.gov/services-programs/medicaid-health/apply-medicaid
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    annual_income_table_html:
+      found: 1
+      taken: 1
+  notes: 'Income table row (2026-09-15, wave-5 closure): the agency''s per-program income-limit tables (13 tables, household
+    size by dollar amount, 2026); carries M-SS-INCOME-TABLE. Fetched with the plain extractor client (HTTP 200, 4,507 characters
+    under the content selector, 0.5 s). Generator: scripts/build_medicaid_income_table_manifests.py.'
 - jurisdiction: us-il
   name: Illinois
   lead_counts: {}
@@ -3601,6 +4039,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-il
+  name: Illinois
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-il-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-il
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/illinois-magi-based-verification-plan.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-in
   name: Indiana
   lead_counts: {}
@@ -3730,6 +4196,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-in
+  name: Indiana
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-in-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-in
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/indiana-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ks
   name: Kansas
   lead_counts: {}
@@ -3880,6 +4374,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ks
+  name: Kansas
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ks-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/kansas-magi-based-verification-plan.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
@@ -4021,6 +4540,55 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ky
+  name: Kentucky
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ky-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/kentucky-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-ky
+  name: Kentucky
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ky-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 1
+      taken: 1
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 1 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81806
+    (plain extractor client, HTTP 200, 0.1 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers
+    listed alongside are not taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-la
   name: Louisiana
   lead_counts: {}
@@ -4165,6 +4733,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-la
+  name: Louisiana
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-la-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/downloads/louisiana-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ma
   name: Massachusetts
   lead_counts: {}
@@ -4327,6 +4923,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ma
+  name: Massachusetts
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ma-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/massachusetts-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-md
   name: Maryland
   lead_counts: {}
@@ -4480,6 +5104,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-md
+  name: Maryland
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-md-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-md
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/maryland-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-me
   name: Maine
   lead_counts: {}
@@ -4630,6 +5279,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-me
+  name: Maine
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-me-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/maine-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-mi
   name: Michigan
   lead_counts: {}
@@ -4789,6 +5466,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-mi
+  name: Michigan
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mi-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-mi
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/michigan-medicaid-and-chip-verification-plan.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-mn
   name: Minnesota
   lead_counts: {}
@@ -4924,6 +5626,56 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-mn
+  name: Minnesota
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mn-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/minnesota-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-mn
+  name: Minnesota
+  family: income_table
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mn-medicaid-income-table.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: manual
+    version: 2026-09-15-medicaid-income-table-2026
+  queue_status: agent_ready
+  source_kind: official_annual_income_table
+  primary_source_url: https://hcopub.dhs.state.mn.us/epm/appendix_f.htm
+  index_url: https://hcopub.dhs.state.mn.us/epm/home.htm
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    annual_income_table_html:
+      found: 1
+      taken: 1
+  notes: 'Income table row (2026-09-15, wave-5 closure): the EPM''s standards appendix: federal poverty guidelines, MA income
+    and asset standards, community spouse allowances, MinnesotaCare income limits and the pointer to the MinnesotaCare premium
+    table (DHS-4139); the one EPM topic the 2026-09-10 scope left untaken; carries M-SS-INCOME-TABLE and, for MinnesotaCare,
+    C-SS-INCOME-PREMIUM-TABLE. Fetched with the plain extractor client (HTTP 200, 11,796 characters under the content selector,
+    0.2 s). Generator: scripts/build_medicaid_income_table_manifests.py.'
 - jurisdiction: us-mo
   name: Missouri
   lead_counts: {}
@@ -5077,6 +5829,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-mo
+  name: Missouri
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mo-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/medicaidchip-eligibility-verification-plans/downloads/missouri-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    mitigation_plan_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   lead_counts: {}
@@ -5263,6 +6043,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ms
+  name: Mississippi
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ms-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/mississippi-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-mt
   name: Montana
   lead_counts: {}
@@ -5413,6 +6218,56 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-mt
+  name: Montana
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mt-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-mt
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/montana-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-mt
+  name: Montana
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mt-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-mt
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 2
+      taken: 2
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 2 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/82401,
+    https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/82401 (plain extractor client, HTTP
+    200, 0.2 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers listed alongside are not
+    taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-nc
   name: North Carolina
   lead_counts: {}
@@ -5629,6 +6484,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-nc
+  name: North Carolina
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nc-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/north-carolina-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-nd
   name: North Dakota
   lead_counts: {}
@@ -5767,6 +6647,52 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-nd
+  name: North Dakota
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nd-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-nd
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/north-dakota-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-nd
+  name: North Dakota
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-nd
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: needs_review
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 0
+  taken_count: 0
+  index_families: {}
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; no 1115 eligibility demonstration; the listed items
+    are 1915(c) waivers, the ND-04 1915(b) managed-care waiver for the new adult group and the COVID-19 managed-care risk-mitigation
+    demonstration (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an
+    eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-ne
   name: Nebraska
   lead_counts: {}
@@ -5905,6 +6831,52 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ne
+  name: Nebraska
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ne-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/nebraska-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-ne
+  name: Nebraska
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-ne
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: needs_review
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 0
+  taken_count: 0
+  index_families: {}
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Nebraska Heritage Health Adult 1115 (the expansion
+    premium/wellness demonstration) was terminated at the state''s request (CMS approval to terminate 2021-09-02); the SUD
+    demonstration is service authority only (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT
+    for the state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-nh
   name: New Hampshire
   lead_counts: {}
@@ -6058,6 +7030,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-nh
+  name: New Hampshire
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nh-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/new-hampshire-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-nj
   name: New Jersey
   lead_counts: {}
@@ -6205,6 +7205,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-nj
+  name: New Jersey
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nj-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/new-jersey-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-nm
   name: New Mexico
   lead_counts: {}
@@ -6343,6 +7368,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-nm
+  name: New Mexico
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nm-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/new-mexico-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-nv
   name: Nevada
   lead_counts: {}
@@ -6487,6 +7537,55 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-nv
+  name: Nevada
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nv-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-nv
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/nevada-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-nv
+  name: Nevada
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-nv
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: needs_review
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 0
+  taken_count: 0
+  index_families: {}
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Nevada Healthy Futures is pending; the Nevada Comprehensive
+    Care Waiver approvals are 2014-2015 STC amendments of an expired demonstration; SUD/OUD, reentry and CCBHC demonstrations
+    are service authority (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the state
+    until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-ny
   name: New York
   lead_counts: {}
@@ -6649,6 +7748,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ny
+  name: New York
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ny-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/new-york-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-oh
   name: Ohio
   lead_counts: {}
@@ -6829,6 +7953,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-oh
+  name: Ohio
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-oh-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/ohio-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ok
   name: Oklahoma
   lead_counts: {}
@@ -6976,6 +8128,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ok
+  name: Oklahoma
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ok-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ok
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/oklahoma-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-or
   name: Oregon
   lead_counts: {}
@@ -7134,6 +8311,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-or
+  name: Oregon
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-or-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/oregon-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-pa
   name: Pennsylvania
   lead_counts: {}
@@ -7278,6 +8480,56 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-pa
+  name: Pennsylvania
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-pa-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-pa
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/pennsylvania-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-pa
+  name: Pennsylvania
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-pa-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-pa
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 2
+      taken: 2
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 2 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83081,
+    https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/159451 (plain extractor client, HTTP
+    200, 0.2 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers listed alongside are not
+    taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-pr
   name: Puerto Rico
   lead_counts: {}
@@ -7474,6 +8726,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ri
+  name: Rhode Island
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ri-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/rhode-island-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-sc
   name: South Carolina
   lead_counts: {}
@@ -7636,6 +8913,52 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-sc
+  name: South Carolina
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-sc-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/south-carolina-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-sc
+  name: South Carolina
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-sc
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: needs_review
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 0
+  taken_count: 0
+  index_families: {}
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Healthy Connections Works and Palmetto Pathways to
+    Independence (community engagement, 2019 approvals) are withdrawn; the 2025 Palmetto Pathways and Transitioning to Preconception
+    Care applications are pending (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the
+    state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}
@@ -7768,6 +9091,55 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-sd
+  name: South Dakota
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-sd-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/south-dakota-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-sd
+  name: South Dakota
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-sd-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 1
+      taken: 1
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 1 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83191
+    (plain extractor client, HTTP 200, 0.1 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers
+    listed alongside are not taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-tn
   name: Tennessee
   lead_counts: {}
@@ -7906,6 +9278,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-tn
+  name: Tennessee
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-tn-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-tn
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/tennessee-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    mitigation_plan_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-tx
   name: Texas
   lead_counts: {}
@@ -8083,6 +9483,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-tx
+  name: Texas
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-tx-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/texas-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-ut
   name: Utah
   lead_counts: {}
@@ -8239,6 +9664,31 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-ut
+  name: Utah
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ut-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/utah-updated-verification-plan-template.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-va
   name: Virginia
   queue_status: agent_ready
@@ -8404,6 +9854,56 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-va
+  name: Virginia
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-va-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2023-12/virginia-magi-verification-plan.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-va
+  name: Virginia
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-va-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 2
+      taken: 2
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 2 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83451,
+    https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83426 (plain extractor client, HTTP
+    200, 0.2 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers listed alongside are not
+    taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-vi
   name: Virgin Islands
   lead_counts: {}
@@ -8602,6 +10102,37 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-vt
+  name: Vermont
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-vt-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/vermont-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 4
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    mitigation_plan_pdf:
+      found: 2
+      taken: 0
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (4 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-wa
   name: Washington
   lead_counts: {}
@@ -8782,6 +10313,34 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-wa
+  name: Washington
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wa-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-wa
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/washington-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-wi
   name: Wisconsin
   lead_counts: {}
@@ -8920,6 +10479,59 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-wi
+  name: Wisconsin
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wi-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/wisconsin-updated-verification-plan-template.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-wi
+  name: Wisconsin
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wi-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 2
+      taken: 2
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 2 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83631,
+    https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83576 (plain extractor client, HTTP
+    200, 0.2 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers listed alongside are not
+    taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
 - jurisdiction: us-wv
   name: West Virginia
   lead_counts: {}
@@ -9041,37 +10653,70 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-wv
+  name: West Virginia
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wv-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-wv
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/west-virginia-verification-plan-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (1 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
 - jurisdiction: us-wy
   name: Wyoming
   lead_counts: {}
   candidate_sources: []
-  queue_status: needs_review
+  queue_status: agent_ready
   source_kind: official_html_manual_pages
-  primary_source_url: https://ecom.wyo.gov/
+  primary_source_url: https://ecom.wyo.gov/m100-purpose
   target_manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
   target_scope:
     jurisdiction: us-wy
     document_class: manual
-    version: 2026-09-10-medicaid-state-eligibility-manual
+    version: 2026-09-15-medicaid-eligibility-manual-closure
   index_url: https://ecom.wyo.gov/
-  index_document_count: 124
-  taken_count: 0
+  index_document_count: 135
+  taken_count: 121
   index_families:
     manual_policy_page_html:
       found: 107
-      taken: 0
+      taken: 107
     eligibility_table_html:
       found: 17
+      taken: 14
+    eligibility_table_image_only:
+      found: 3
       taken: 0
-  notes: 'Batch 5 (2026-09-11): needs_review. Wyoming''s Medicaid eligibility manual is the WDH Eligibility Online Manual
-    (EOM) at ecom.wyo.gov, confirmed on the WDH Medicaid programs-and-eligibility page; the index was inventoried in full
-    (107 M-series policy pages plus 17 eligibility Tables; the Home/Welcome/What''s New/Fact Sheets pages are not policy).
-    The EOM is published on Google Sites, whose page body is span-and-div soup with generated class names; the official-documents
-    HTML extractor''s block-text model reduces each page to the site title (''Eligibility Online Manual'') rather than the
-    policy text, so the pages are not cleanly extractable through the generic path and no hollow provisions were kept. Reviewer
-    judgment: not a publisher block (the site answers HTTP 200) and not worth a one-state Google-Sites text adapter in this
-    batch; recorded needs_review with the index located and inventoried. Follow-on: a Google-Sites content adapter, or a WDH-provided
-    export, then take the 124 pages under us-wy/manual/wdh/medicaid.'
+    dead_index_link:
+      found: 0
+      taken: 0
+    site_page_html:
+      found: 8
+      taken: 0
+  notes: 'Batch 8 (2026-09-15): 121 documents taken from the publisher''s own index (135 documents inventoried across 5 families;
+    121 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-15-medicaid-chip.md.
+    Batch 8 (2026-09-15, wave-5 closure): the batch-5 needs_review row is resolved. The EOM pages are Google Sites; the policy
+    text is the div.UtePc content column (the batch-5 [role=''main''] selector matched the site title only), so the M-series
+    pages and the text Tables are taken with that selector under 2026-09-15-medicaid-eligibility-manual-closure; each page
+    was fetched once by the generator, index links the site answers 404 are inventoried as dead_index_link, and Tables whose
+    content column is an image without text are inventoried as eligibility_table_image_only and not taken (OUTREACH: a text
+    or spreadsheet export from WDH). See docs/ingest-runs/2026-09-15-medicaid-chip.md.'
 - jurisdiction: us-wy
   name: Wyoming
   family: cms_state_plan
@@ -9165,3 +10810,55 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
+- jurisdiction: us-wy
+  name: Wyoming
+  family: magi_verification_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wy-medicaid-magi-verification-plan.yaml
+  target_scope:
+    jurisdiction: us-wy
+    document_class: policy
+    version: 2026-09-15-medicaid-magi-verification-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_magi_verification_plan
+  primary_source_url: https://www.medicaid.gov/sites/default/files/2019-12/wyoming-verification-plan-template-final.pdf
+  index_url: https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    magi_verification_plan_pdf:
+      found: 1
+      taken: 1
+    disaster_addendum_pdf:
+      found: 1
+      taken: 0
+  notes: 'MAGI verification plan row (2026-09-15, wave-5 closure): CMS posts the state''s 42 CFR 435.945(j) MAGI-based eligibility
+    verification plan on the medicaid.gov verification-plans index (2 document(s) listed for the state; the verification plan
+    taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
+    for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
+    compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-wy
+  name: Wyoming
+  family: cms_1115_stc
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wy-medicaid-1115-stc.yaml
+  target_scope:
+    jurisdiction: us-wy
+    document_class: policy
+    version: 2026-09-15-medicaid-1115-stc
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    approved_eligibility_demonstration_stc_pdf:
+      found: 1
+      taken: 1
+  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): 1 approved eligibility demonstration(s) with the current approval
+    document (STCs) taken from the demonstration page(s) https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83646
+    (plain extractor client, HTTP 200, 0.1 s). Service-only demonstrations (SUD/SMI, reentry, CCBHC) and the 1915(b)/(c) waivers
+    listed alongside are not taken. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
