@@ -29,11 +29,12 @@ from __future__ import annotations
 import json
 import re
 from collections import defaultdict
-from collections.abc import Iterable
-from dataclasses import dataclass, replace
-from typing import Any
+from collections.abc import Callable, Iterable
+from dataclasses import dataclass
+from typing import Any, NamedTuple
 from uuid import NAMESPACE_URL, UUID, uuid5
 
+from axiom_corpus.corpus.deferred import DeferredError, replayed
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -114,6 +115,73 @@ def deterministic_navigation_id(path: str, version: str | None = None) -> str:
     return str(uuid5(NAMESPACE_URL, identity))
 
 
+class NavigationSource(NamedTuple):
+    """What the navigation build reads from one provision record.
+
+    The record's body and metadata are not kept, so a whole scope's sources
+    hold compact per-row metadata only. Values derived from the record (label
+    text, provision id, rulespec flag, status) are computed once here; one
+    that raises is kept as the exception and raised at the point of the build
+    that used the value before, so the build fails, or succeeds, exactly as it
+    did with the full records.
+    """
+
+    jurisdiction: str
+    document_class: str
+    citation_path: str
+    parent_citation_path: str | None
+    version: str | None
+    ordinal: int | None
+    has_rulespec: bool | DeferredError
+    label_text: str | None | DeferredError
+    provision_id: str | DeferredError
+    status: str | None | DeferredError
+
+
+def navigation_source(
+    record: ProvisionRecord,
+    shared: dict[object, object] | None = None,
+) -> NavigationSource:
+    """Reduce one provision record to what the navigation build reads.
+
+    Passing one ``shared`` dict for a whole scope stores each repeated
+    jurisdiction, class and version string once.
+    """
+    cache = shared if shared is not None else {}
+    return NavigationSource(
+        jurisdiction=_shared(record.jurisdiction, cache),
+        document_class=_shared(record.document_class, cache),
+        citation_path=record.citation_path,
+        parent_citation_path=record.parent_citation_path,
+        version=_shared(record.version, cache),
+        ordinal=record.ordinal,
+        has_rulespec=_deferred(_has_rulespec, record),
+        label_text=_deferred(_label_text, record),
+        provision_id=_deferred(_provision_id_for_navigation, record),
+        status=_deferred(_status_for, record),
+    )
+
+
+def _shared[T](value: T, shared: dict[object, object]) -> T:
+    if type(value) is str:
+        return shared.setdefault(value, value)  # type: ignore[return-value]
+    return value
+
+
+def _deferred[T](
+    derive: Callable[[ProvisionRecord], T],
+    record: ProvisionRecord,
+) -> T | DeferredError:
+    try:
+        return derive(record)
+    except Exception as exc:
+        return DeferredError(exc)
+
+
+def _has_rulespec(record: ProvisionRecord) -> bool:
+    return bool(record.has_rulespec)
+
+
 def build_navigation_nodes(
     records: Iterable[ProvisionRecord],
     *,
@@ -137,78 +205,111 @@ def build_navigation_nodes(
     ``has_rulespec=False``. Ancestor ``encoded_descendant_count`` then
     propagates from those augmented values, so encoded-only browsing is
     discoverable from the top of the tree.
+
+    ``records`` is read once and each record is reduced to a
+    :class:`NavigationSource` as it arrives, so a streamed iterable keeps
+    memory to compact per-row metadata rather than provision bodies.
     """
-    filtered: list[ProvisionRecord] = []
+    shared: dict[object, object] = {}
+    return build_navigation_nodes_from_sources(
+        (navigation_source(record, shared) for record in records),
+        jurisdiction=jurisdiction,
+        document_class=document_class,
+        encoded_paths=encoded_paths,
+    )
+
+
+def build_navigation_nodes_from_sources(
+    sources: Iterable[NavigationSource],
+    *,
+    jurisdiction: str | None = None,
+    document_class: str | None = None,
+    encoded_paths: Iterable[str] | None = None,
+) -> tuple[NavigationNode, ...]:
+    """:func:`build_navigation_nodes` over already-reduced records."""
+    filtered: list[NavigationSource] = []
     seen_paths: set[str] = set()
-    for record in records:
-        if jurisdiction is not None and record.jurisdiction != jurisdiction:
+    for source in sources:
+        if jurisdiction is not None and source.jurisdiction != jurisdiction:
             continue
-        if document_class is not None and record.document_class != document_class:
+        if document_class is not None and source.document_class != document_class:
             continue
-        if record.citation_path in seen_paths:
+        if source.citation_path in seen_paths:
             # Provisions JSONL should be unique per citation_path, but be
             # defensive: collapse duplicates rather than emitting two nodes.
             continue
-        seen_paths.add(record.citation_path)
-        filtered.append(record)
+        seen_paths.add(source.citation_path)
+        filtered.append(source)
 
     encoded_set: set[str] = set(encoded_paths) if encoded_paths is not None else set()
 
-    by_path: dict[str, ProvisionRecord] = {r.citation_path: r for r in filtered}
+    by_path: dict[str, NavigationSource] = {source.citation_path: source for source in filtered}
 
     parent_paths: dict[str, str | None] = {}
-    for record in filtered:
-        parent_paths[record.citation_path] = _resolve_parent_path(record, by_path)
+    for source in filtered:
+        parent_paths[source.citation_path] = _resolve_parent_path(source, by_path)
 
     _break_parent_cycles(parent_paths)
 
     depths = _resolve_depths(parent_paths)
 
-    nodes: dict[str, NavigationNode] = {}
-    for record in filtered:
-        path = record.citation_path
-        parent_path = parent_paths[path]
-        segment = _segment(path, parent_path)
-        nodes[path] = NavigationNode(
-            id=deterministic_navigation_id(path, record.version),
-            jurisdiction=record.jurisdiction,
-            doc_type=record.document_class,
-            path=path,
-            parent_path=parent_path,
-            segment=segment,
-            label=_label_for(record, segment),
-            sort_key=_sort_key(record, segment),
-            depth=depths[path],
-            provision_id=_provision_id_for_navigation(record),
-            citation_path=path,
-            version=record.version,
-            has_rulespec=bool(record.has_rulespec) or path in encoded_set,
-            status=_status_for(record),
-        )
-
-    children_by_parent: dict[str, list[NavigationNode]] = defaultdict(list)
-    for node in nodes.values():
-        if node.parent_path is not None and node.parent_path in nodes:
-            children_by_parent[node.parent_path].append(node)
+    # Child and encoded-descendant counts depend only on the resolved tree, so
+    # they are computed before the nodes and each node is built once, final.
+    # A rulespec flag that raised counts as False here; the node loop raises
+    # it before any count is returned.
+    has_rulespec = {
+        source.citation_path: source.has_rulespec is True or source.citation_path in encoded_set
+        for source in filtered
+    }
+    child_counts: dict[str, int] = defaultdict(int)
+    for parent_path in parent_paths.values():
+        if parent_path is not None and parent_path in parent_paths:
+            child_counts[parent_path] += 1
 
     encoded_descendants: dict[str, int] = defaultdict(int)
-    for node in sorted(nodes.values(), key=lambda n: -n.depth):
-        own = (1 if node.has_rulespec else 0) + encoded_descendants[node.path]
-        if node.parent_path is not None and node.parent_path in nodes:
-            encoded_descendants[node.parent_path] += own
+    for path in sorted(parent_paths, key=lambda p: -depths[p]):
+        own = (1 if has_rulespec[path] else 0) + encoded_descendants[path]
+        parent_path = parent_paths[path]
+        if parent_path is not None and parent_path in parent_paths:
+            encoded_descendants[parent_path] += own
 
-    finalized = [
-        replace(
-            node,
-            has_children=bool(children_by_parent.get(node.path)),
-            child_count=len(children_by_parent.get(node.path, ())),
-            encoded_descendant_count=encoded_descendants[node.path],
+    nodes: list[NavigationNode] = []
+    for source in filtered:
+        path = source.citation_path
+        parent_path = parent_paths[path]
+        segment = _segment(path, parent_path)
+        # Each value is derived, or its held error raised, in the order the
+        # node fields were computed when this loop read full records.
+        node_id = deterministic_navigation_id(path, source.version)
+        label_text = replayed(source.label_text)
+        sort_key = _sort_key(source.ordinal, segment)
+        provision_id = replayed(source.provision_id)
+        replayed(source.has_rulespec)
+        status = replayed(source.status)
+        nodes.append(
+            NavigationNode(
+                id=node_id,
+                jurisdiction=source.jurisdiction,
+                doc_type=source.document_class,
+                path=path,
+                parent_path=parent_path,
+                segment=segment,
+                label=segment if label_text is None else label_text,
+                sort_key=sort_key,
+                depth=depths[path],
+                provision_id=provision_id,
+                citation_path=path,
+                version=source.version,
+                has_children=child_counts[path] > 0,
+                child_count=child_counts[path],
+                has_rulespec=has_rulespec[path],
+                encoded_descendant_count=encoded_descendants[path],
+                status=status,
+            )
         )
-        for node in nodes.values()
-    ]
     return tuple(
         sorted(
-            finalized,
+            nodes,
             key=lambda n: (n.parent_path or "", n.sort_key, n.path),
         )
     )
@@ -240,16 +341,16 @@ def group_nodes_by_scope(
 
 
 def _resolve_parent_path(
-    record: ProvisionRecord,
-    by_path: dict[str, ProvisionRecord],
+    source: NavigationSource,
+    by_path: dict[str, NavigationSource],
 ) -> str | None:
-    explicit = record.parent_citation_path
-    if explicit and explicit != record.citation_path and explicit in by_path:
+    explicit = source.parent_citation_path
+    if explicit and explicit != source.citation_path and explicit in by_path:
         return explicit
-    parts = record.citation_path.split("/")
+    parts = source.citation_path.split("/")
     for size in range(len(parts) - 1, 0, -1):
         candidate = "/".join(parts[:size])
-        if candidate in by_path and candidate != record.citation_path:
+        if candidate in by_path and candidate != source.citation_path:
             return candidate
     return None
 
@@ -310,13 +411,14 @@ def _segment(path: str, parent_path: str | None) -> str:
     return path
 
 
-def _label_for(record: ProvisionRecord, segment: str) -> str:
+def _label_text(record: ProvisionRecord) -> str | None:
+    """The node label from heading or citation label; ``None`` means the segment."""
     for candidate in (record.heading, record.citation_label):
         if candidate:
             text = candidate.strip()
             if text:
                 return text
-    return segment
+    return None
 
 
 def _status_for(record: ProvisionRecord) -> str | None:
@@ -331,7 +433,7 @@ _SORT_NUMERIC_RUN = re.compile(r"(\d+)")
 _SORT_PAD_WIDTH = 12
 
 
-def _sort_key(record: ProvisionRecord, segment: str) -> str:
+def _sort_key(ordinal: object, segment: str) -> str:
     """Return a natural-order sort key.
 
     Falling back to a derivation that already exists in `corpus.provisions`:
@@ -340,11 +442,7 @@ def _sort_key(record: ProvisionRecord, segment: str) -> str:
     leading ordinal slot keeps explicit `ordinal` values authoritative when
     set.
     """
-    ordinal_slot = (
-        f"{record.ordinal:08d}"
-        if isinstance(record.ordinal, int) and record.ordinal >= 0
-        else "z" * 8
-    )
+    ordinal_slot = f"{ordinal:08d}" if isinstance(ordinal, int) and ordinal >= 0 else "z" * 8
     normalized = _normalize_sort_segment(segment)
     return f"{ordinal_slot}|{normalized}"
 
