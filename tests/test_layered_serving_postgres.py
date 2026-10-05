@@ -44,6 +44,8 @@ from axiom_corpus.corpus.navigation import (
     _resolve_depths,
     _segment,
     build_navigation_nodes,
+    merge_layered_parent_paths,
+    scope_parent_paths,
 )
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
@@ -2560,6 +2562,20 @@ def _check_layered_pair(dsn: str, scopes: tuple[Scope, ...]) -> dict[str, dict[s
         ) == [(len(current),) * 3]
         served = _navigation(connection)
         assert _tree(served) == _tree(_reference_merged_tree(scopes))
+        bases = [scope for scope in scopes if scope.layer == LAYER_BASE]
+        if bases:
+            # Release validation predicts the tree serving builds.
+            predicted = merge_layered_parent_paths(
+                scope_parent_paths((node.path, node.parent) for node in bases[0].nodes),
+                [
+                    scope_parent_paths((node.path, node.parent) for node in scope.nodes)
+                    for scope in scopes
+                    if scope.layer == LAYER_PRIMARY
+                ],
+            )
+            assert predicted.parent_paths == {
+                row["path"]: row["parent_path"] for row in served.values()
+            }
         assert {row["provision_id"] for row in served.values()} == current
         for role in ("anon", "authenticated"):
             assert _ids(connection, "corpus.navigation_nodes", role=role) == set(served)

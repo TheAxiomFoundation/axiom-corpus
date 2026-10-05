@@ -30,7 +30,16 @@ from hypothesis import strategies as st
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.corpus_locks import CorpusLock, LockEntry, write_lock
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
-from axiom_corpus.corpus.release_quality import _LayeredCitationOwners, validate_release
+from axiom_corpus.corpus.navigation import (
+    build_navigation_nodes,
+    merge_layered_parent_paths,
+    scope_parent_paths,
+)
+from axiom_corpus.corpus.release_quality import (
+    ReleaseValidationReport,
+    _LayeredCitationOwners,
+    validate_release,
+)
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     LAYER_BASE,
@@ -929,6 +938,270 @@ def test_parent_closure_stays_per_scope_across_layers(
     assert report.ok is ok, report.to_mapping()
     codes = {(issue.code, issue.version) for issue in report.issues if issue.severity == "error"}
     assert codes == (set() if ok else {("missing_parent_citation", "v-sections")})
+
+
+# ---------------------------------------------------------------------------
+# Validation: how serving merges a layered pair's trees.
+# ---------------------------------------------------------------------------
+
+Rows = Sequence[tuple[str, str | None]]
+
+
+def _write_tree_scope(store: CorpusArtifactStore, version: str, rows: Rows) -> None:
+    """A complete fx/statute scope of (citation path, declared parent) rows."""
+    source = store.source_path("fx", "statute", version, "statute.xml")
+    source_sha = store.write_text(source, "<statute>Official text.</statute>")
+    source_rel = source.relative_to(store.root).as_posix()
+    store.write_inventory(
+        store.inventory_path("fx", "statute", version),
+        [
+            SourceInventoryItem(citation_path=path, source_path=source_rel, sha256=source_sha)
+            for path, _parent in rows
+        ],
+    )
+    store.write_provisions(
+        store.provisions_path("fx", "statute", version),
+        [
+            ProvisionRecord(
+                jurisdiction="fx",
+                document_class="statute",
+                citation_path=path,
+                parent_citation_path=parent,
+                version=version,
+                heading=f"Heading {path}",
+                body=f"Text of {path}.",
+                kind="section",
+                source_path=source_rel,
+                expression_date="2026-09-01",
+            )
+            for path, parent in rows
+        ],
+    )
+    store.write_json(
+        store.coverage_path("fx", "statute", version),
+        {
+            "complete": True,
+            "source_count": len(rows),
+            "provision_count": len(rows),
+            "matched_count": len(rows),
+            "missing_from_provisions": [],
+            "extra_provisions": [],
+        },
+    )
+
+
+def _validate_layered(
+    tmp_path: Path, base: Rows | None, *primaries: Rows
+) -> ReleaseValidationReport:
+    store = CorpusArtifactStore(tmp_path / "data" / "corpus")
+    scopes = []
+    if base is not None:
+        _write_tree_scope(store, "v-base", base)
+        scopes.append(ReleaseScope("fx", "statute", "v-base", layer=LAYER_BASE))
+    for index, rows in enumerate(primaries):
+        _write_tree_scope(store, f"v-primary-{index}", rows)
+        scopes.append(ReleaseScope("fx", "statute", f"v-primary-{index}"))
+    return validate_release(
+        store.root,
+        ReleaseManifest(
+            name="fx-layered",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+    )
+
+
+def _layered_warnings(report: ReleaseValidationReport) -> list[tuple[str, str, str | None]]:
+    assert report.ok and report.error_count == 0, report.to_mapping()
+    return [
+        (issue.code, issue.message, issue.version)
+        for issue in report.issues
+        if issue.code.startswith("layered_")
+    ]
+
+
+_BASE_TITLE_1 = (
+    ("fx/statute/1", None),
+    ("fx/statute/1/1", "fx/statute/1"),
+    ("fx/statute/1/2", "fx/statute/1"),
+)
+
+
+def test_a_primary_root_under_no_served_ancestor_is_a_warning(tmp_path: Path) -> None:
+    """A mistyped path (l for 1) would otherwise become a top-level document silently."""
+    report = _validate_layered(tmp_path, _BASE_TITLE_1, (("fx/statute/l/5", None),))
+
+    assert _layered_warnings(report) == [
+        (
+            "layered_primary_root_unattached",
+            "fx/statute/l/5 is a root of its primary scope, and fx/statute serves neither "
+            "it nor any ancestor path, so serving lists it as a new top-level document; "
+            "check its citation path",
+            "v-primary-0",
+        )
+    ]
+
+
+def test_primary_roots_the_merge_attaches_raise_no_warning(tmp_path: Path) -> None:
+    report = _validate_layered(
+        tmp_path,
+        _BASE_TITLE_1,
+        # Under a base title, and a base twin's place.
+        (("fx/statute/1/5", None), ("fx/statute/1/1", None)),
+        # A primary title of its own, re-encoding the base title.
+        (("fx/statute/1", None), ("fx/statute/1/2", "fx/statute/1")),
+    )
+
+    assert _layered_warnings(report) == []
+
+
+def test_a_new_title_warns_once_and_its_sections_attach_to_it(tmp_path: Path) -> None:
+    report = _validate_layered(
+        tmp_path,
+        _BASE_TITLE_1,
+        (("fx/statute/9", None), ("fx/statute/9/1", "fx/statute/9")),
+        (("fx/statute/9/2", None),),
+    )
+
+    assert [(code, version) for code, _message, version in _layered_warnings(report)] == [
+        ("layered_primary_root_unattached", "v-primary-0")
+    ]
+
+
+def test_a_parent_cycle_between_the_layers_is_a_warning(tmp_path: Path) -> None:
+    """The base puts b under a; the primary scope puts a under b."""
+    report = _validate_layered(
+        tmp_path,
+        (
+            ("fx/statute/1", None),
+            ("fx/statute/1/a", "fx/statute/1"),
+            ("fx/statute/1/b", "fx/statute/1/a"),
+        ),
+        (("fx/statute/1/a", "fx/statute/1/b"), ("fx/statute/1/b", None)),
+    )
+
+    assert _layered_warnings(report) == [
+        (
+            "layered_parent_cycle_broken",
+            "the base and primary scopes of fx/statute disagree about parents, forming the "
+            "cycle fx/statute/1/a -> fx/statute/1/b -> fx/statute/1/a; serving makes "
+            "fx/statute/1/a a top-level document",
+            "v-primary-0",
+        )
+    ]
+
+
+def test_releases_without_a_base_scope_get_no_layered_warning(tmp_path: Path) -> None:
+    report = _validate_layered(tmp_path, None, (("fx/statute/9", None),), _BASE_TITLE_1)
+
+    assert _layered_warnings(report) == []
+
+
+_TREE_PATHS = st.sampled_from(
+    [
+        "fx/statute/1",
+        "fx/statute/1/a",
+        "fx/statute/1/b",
+        "fx/statute/1/a/i",
+        "fx/statute/2",
+        "fx/statute/2/a",
+    ]
+)
+_TREE = st.lists(
+    st.tuples(_TREE_PATHS, st.one_of(st.none(), _TREE_PATHS)),
+    min_size=1,
+    max_size=6,
+    unique_by=lambda row: row[0],
+)
+
+
+@settings(max_examples=300, deadline=None)
+@given(base=_TREE, primaries=st.lists(_TREE, max_size=3))
+def test_the_merged_tree_is_a_forest_of_the_served_paths(
+    base: list[tuple[str, str | None]], primaries: list[list[tuple[str, str | None]]]
+) -> None:
+    merged = merge_layered_parent_paths(
+        scope_parent_paths(base), [scope_parent_paths(rows) for rows in primaries]
+    )
+    served = {path for path, _parent in base} | {path for rows in primaries for path, _ in rows}
+    assert set(merged.parent_paths) == served
+    for path in served:
+        seen = set()
+        cursor: str | None = path
+        while cursor is not None:
+            assert cursor not in seen, "parent cycle left in the merged tree"
+            seen.add(cursor)
+            cursor = merged.parent_paths[cursor]
+    for cycle in merged.broken_cycles:
+        assert cycle[0] == min(cycle)
+        assert merged.parent_paths[cycle[0]] is None
+    first_owner = {}
+    for index, rows in enumerate(primaries):
+        for path, _parent in rows:
+            first_owner.setdefault(path, index)
+    base_paths = {path for path, _parent in base}
+    for index, path in merged.new_roots:
+        assert first_owner[path] == index
+        assert path not in base_paths
+        assert not any(path.startswith(other + "/") for other in served)
+
+
+@settings(max_examples=300, deadline=None)
+@given(data=st.data())
+def test_the_merge_equals_building_navigation_over_the_winning_records(
+    data: st.DataObject,
+) -> None:
+    """Every declared parent the immediate path prefix, the base closed under
+    ancestors, no primary scope skipping a level between two of its own paths:
+    merging equals build_navigation_nodes over what is served. (A scope that
+    skips one keeps its own parent, as serving does.)"""
+    universe = [
+        "fx/statute/1",
+        "fx/statute/1/a",
+        "fx/statute/1/b",
+        "fx/statute/1/a/i",
+        "fx/statute/2",
+        "fx/statute/2/a",
+    ]
+    base_paths = set(data.draw(st.lists(st.sampled_from(universe), min_size=1)))
+    base_paths |= {path.rsplit("/", 1)[0] for path in base_paths if path.count("/") > 2}
+    base_paths |= {"/".join(path.split("/")[:3]) for path in base_paths}
+    taken: set[str] = set()
+    primaries: list[list[str]] = []
+    for _index in range(data.draw(st.integers(0, 2))):
+        chosen = set(data.draw(st.lists(st.sampled_from(universe)))) - taken
+        for path in sorted(chosen, key=lambda path: path.count("/")):
+            parts = path.split("/")
+            ancestors = {"/".join(parts[:size]) for size in range(3, len(parts))}
+            if ancestors & chosen and "/".join(parts[:-1]) not in chosen:
+                chosen.discard(path)
+        taken.update(chosen)
+        primaries.append(sorted(chosen))
+
+    def rows(paths: Sequence[str]) -> list[tuple[str, str | None]]:
+        within = set(paths)
+        return [
+            (path, path.rsplit("/", 1)[0] if path.rsplit("/", 1)[0] in within else None)
+            for path in sorted(paths)
+        ]
+
+    merged = merge_layered_parent_paths(
+        scope_parent_paths(rows(sorted(base_paths))),
+        [scope_parent_paths(rows(paths)) for paths in primaries],
+    )
+    winners = [
+        ProvisionRecord(
+            jurisdiction="fx",
+            document_class="statute",
+            citation_path=path,
+            parent_citation_path=parent,
+            version="v",
+        )
+        for path, parent in rows(sorted(base_paths | taken))
+    ]
+    built = {node.path: node.parent_path for node in build_navigation_nodes(winners)}
+    assert merged.parent_paths == built
+    assert merged.broken_cycles == ()
 
 
 def test_same_path_in_two_primary_scopes_still_fails(tmp_path: Path) -> None:

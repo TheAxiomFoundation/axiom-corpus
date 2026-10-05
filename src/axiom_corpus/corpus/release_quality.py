@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -18,6 +18,7 @@ from axiom_corpus.corpus.io import (
     load_source_inventory_references,
 )
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
+from axiom_corpus.corpus.navigation import merge_layered_parent_paths, scope_parent_paths
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.releases import (
     LAYER_BASE,
@@ -164,13 +165,16 @@ def validate_release(
             "legacy_release_citation_uniqueness_grandfathered",
             "known historical release predates release-wide citation uniqueness enforcement",
         )
+    layered_parents = _LayeredScopeParents(release)
     release_citation_paths = _release_citation_paths(
         store,
         release,
         artifact_rows,
         collector,
         require_unique=require_unique_citations,
+        layered_parents=layered_parents,
     )
+    layered_parents.report(collector)
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             collector.add(
@@ -213,6 +217,7 @@ def _release_citation_paths(
     collector: _IssueCollector,
     *,
     require_unique: bool,
+    layered_parents: _LayeredScopeParents | None = None,
 ) -> set[str]:
     """Check release-wide citation uniqueness and collect every citation path.
 
@@ -226,7 +231,9 @@ def _release_citation_paths(
     a declared parent in the record's own scope, because Supabase derives a
     row's parent id from the parent's path and the row's own version. A primary
     scope that leaves its parent title to the base declares no parent for that
-    section; serving hangs it under the base tree (20260927110000).
+    section; serving hangs it under the base tree (20260927110000), and
+    ``layered_parents`` records each layered pair's parents on the way, so
+    the merged tree can be checked once every scope is read.
     Parsing errors remain owned by ``_validate_scope`` so they are reported once.
     """
     paths: set[str] = set()
@@ -246,7 +253,10 @@ def _release_citation_paths(
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
         try:
-            citation_paths = [record.citation_path for record in iter_provisions(path)]
+            if layered_parents is None:
+                citation_paths = [record.citation_path for record in iter_provisions(path)]
+            else:
+                citation_paths = layered_parents.read(scope, iter_provisions(path))
         except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             continue
         for citation_path in citation_paths:
@@ -300,6 +310,73 @@ class _LayeredCitationOwners:
                 ),
             )
         return None
+
+
+class _LayeredScopeParents:
+    """Check how serving merges each pair that has a base scope.
+
+    Serving places a primary root under its base twin's parent, else under its
+    nearest ancestor path the pair serves (20260927110000), so a root whose
+    path is mistyped silently becomes a new top-level document, and two layers
+    that disagree about which of two paths is the ancestor form a parent cycle
+    that serving breaks. Neither is an error; both are warned about.
+    """
+
+    def __init__(self, release: ReleaseManifest) -> None:
+        self._release = release
+        self._pairs = {scope.pair for scope in release.scopes if scope.is_base}
+        # The navigation parent of each path, per scope of a layered pair.
+        self._parents: dict[ReleaseScope, dict[str, str | None]] = {}
+
+    def read(self, scope: ReleaseScope, records: Iterable[ProvisionRecord]) -> list[str]:
+        """Return the scope's citation paths, keeping its parents if it is layered."""
+        if scope.pair not in self._pairs:
+            return [record.citation_path for record in records]
+        entries = [(record.citation_path, record.parent_citation_path) for record in records]
+        self._parents[scope] = scope_parent_paths(entries)
+        return [path for path, _parent in entries]
+
+    def report(self, collector: _IssueCollector) -> None:
+        for base in self._release.scopes:
+            if not base.is_base:
+                continue
+            primaries = [
+                scope
+                for scope in self._release.scopes
+                if scope.pair == base.pair and not scope.is_base
+            ]
+            if any(scope not in self._parents for scope in (base, *primaries)):
+                # A scope was not read; its own checks report why.
+                continue
+            merged = merge_layered_parent_paths(
+                self._parents[base], [self._parents[scope] for scope in primaries]
+            )
+            pair = f"{base.jurisdiction}/{base.document_class}"
+            for index, path in merged.new_roots:
+                collector.add(
+                    "warning",
+                    "layered_primary_root_unattached",
+                    (
+                        f"{path} is a root of its primary scope, and {pair} serves neither "
+                        "it nor any ancestor path, so serving lists it as a new top-level "
+                        "document; check its citation path"
+                    ),
+                    scope=primaries[index],
+                )
+            owners = dict.fromkeys(self._parents[base], base)
+            for scope in reversed(primaries):
+                owners.update(dict.fromkeys(self._parents[scope], scope))
+            for cycle in merged.broken_cycles:
+                collector.add(
+                    "warning",
+                    "layered_parent_cycle_broken",
+                    (
+                        f"the base and primary scopes of {pair} disagree about parents, "
+                        f"forming the cycle {' -> '.join((*cycle, cycle[0]))}; serving "
+                        f"makes {cycle[0]} a top-level document"
+                    ),
+                    scope=owners[cycle[0]],
+                )
 
 
 class _ProvisionFacts(NamedTuple):
