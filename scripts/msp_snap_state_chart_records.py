@@ -1164,3 +1164,118 @@ SNAP_STATES: list[State] = [
         pointer_scope={"jurisdiction": "us-va", "document_class": "manual", "version": "2026-07-21-va-snap-manual"},
     ),
 ]
+
+
+# ----------------------------------------------------------------------------- SNAP charts
+# Wave 5 (2026-09-15, docs/ingest-runs/2026-09-15-snap-wic.md): the publisher's standing
+# per-standard eligibility charts, one scope per state, version
+# 2026-09-15-snap-eligibility-charts. Massachusetts only in this pass: the DTA "Program
+# eligibility charts and tables" list (21 PDFs, 14 of them SNAP; the other seven are TAFDC,
+# EAEDC and SSP standards, not taken) is the family the 2026-09-14 transmittal run took the
+# issuance tables from. Every PDF below was downloaded with browser impersonation (mass.gov
+# answers HTTP 403 to the plain client) and its text layer read on 2026-09-15; the effective
+# date printed on the chart is the expression date (two charts print none: the homeless
+# deduction, whose $199 is the FY 2026 figure, and the undated Bay State CAP shelter
+# standards, dated by the file's HTTP Last-Modified header).
+_MA_CHARTS_INDEX = "https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables"
+
+
+def _ma_chart(slug: str, title: str, doc_slug: str, expression_date: str, element: str, **metadata) -> Doc:
+    return Doc(
+        f"us-ma-dta-eligibility-chart-{slug}",
+        title,
+        _MA_CHARTS_INDEX,
+        f"us-ma/guidance/dta/eligibility-charts/fy2026/{slug}",
+        expression_date,
+        download_url=f"https://www.mass.gov/doc/{doc_slug}/download",
+        request=IMPERSONATE,
+        metadata={"document_subtype": "eligibility_chart", "fiscal_year": "2026", "closure_element": element, **metadata},
+    )
+
+
+SNAP_CHARTS_STATES: list[State] = [
+    State(
+        "us-ma", "Massachusetts Department of Transitional Assistance (DTA)",
+        _MA_CHARTS_INDEX, 21, "official_pdf_eligibility_charts",
+        "The DTA 'Program eligibility charts and tables' list posts the SNAP standards 106 CMR 364-366 reference by "
+        "cross-reference as one PDF per standard (income standards at 130%/165%/200%/100% FPL, maximum benefit "
+        "levels, standard deduction, SUAs, maximum shelter and homeless deductions, minimum benefit, asset limit, "
+        "Disaster SNAP standards, Bay State CAP shelter and SUA standards). The 2026-09-14 transmittal run took only "
+        "the 1-10 person issuance tables from this list; the 14 SNAP charts are taken here (the 11-20 person issuance "
+        "table, 101 pages, and the seven TAFDC/EAEDC/SSP charts are not). Every chart but the Bay State CAP shelter "
+        "standards prints its effective date (10/01/2025; the 200% categorical-eligibility standards 02/01/2026).",
+        document_class="guidance",
+        documents=[
+            _ma_chart("gross-income-standard-130",
+                      "Maximum Gross Monthly Income Standard (130% of Poverty) as referenced at 106 CMR 364.950, "
+                      "non-categorically eligible households (effective 10/1/2025)",
+                      "maximum-gross-monthly-income-standard-130-of-poverty-as-referenced-at-106-cmr-364950-non-"
+                      "categorically-eligible-households", "2025-10-01", "snap_s17", cmr_reference="106 CMR 364.950"),
+            _ma_chart("categorical-eligibility-income-standards-200",
+                      "Gross Monthly Categorical Eligibility Income Standards (200% of Poverty) as referenced at "
+                      "106 CMR 364.976 (effective 02/01/2026)",
+                      "gross-monthly-categorical-eligibility-income-standards-as-referenced-at-106-cmr-364976",
+                      "2026-02-01", "snap_s02", cmr_reference="106 CMR 364.976"),
+            _ma_chart("net-income-standards",
+                      "Maximum Allowable Monthly Net Income Standards (100% of Poverty) as referenced at 106 CMR 364.970 "
+                      "(effective 10/01/2025)",
+                      "maximum-allowable-monthly-net-income-standards-as-referenced-at-106-cmr-364970-1", "2025-10-01",
+                      "snap_s17", cmr_reference="106 CMR 364.970"),
+            _ma_chart("elderly-disabled-special-circumstances-165",
+                      "Standards for Special Circumstances Involving an Elderly and Disabled Individual (165% of Poverty) "
+                      "as referenced at 106 CMR 364.975 (effective 10/01/2025)",
+                      "standards-for-special-circumstances-involving-an-elderly-and-disabled-individual-as-referenced-at-"
+                      "106-cmr-364975", "2025-10-01", "snap_s17", cmr_reference="106 CMR 364.975"),
+            _ma_chart("maximum-benefit-levels",
+                      "Maximum Benefit Levels as referenced at 106 CMR 364.600 (effective 10/01/2025)",
+                      "maximum-benefit-levels-as-referenced-at-106-cmr-364600", "2025-10-01", "snap_s18",
+                      cmr_reference="106 CMR 364.600"),
+            _ma_chart("standard-deduction",
+                      "Standard Deduction as referenced at 106 CMR 364.400 (effective 10/1/2025)",
+                      "standard-deduction-as-referenced-at-106-cmr-364400-1", "2025-10-01", "snap_s15",
+                      cmr_reference="106 CMR 364.400"),
+            _ma_chart("standard-utility-allowances",
+                      "Standard Utility Allowances (SUA) as referenced at 106 CMR 364.945 (effective 10/01/2025)",
+                      "standard-utility-allowance-sua-as-referenced-at-106-cmr-364945", "2025-10-01", "snap_s04",
+                      cmr_reference="106 CMR 364.945", also_closes="snap_s05, snap_s06"),
+            _ma_chart("maximum-shelter-deduction",
+                      "Maximum Shelter Deduction as referenced at 106 CMR 364.550 (effective 10/01/2025)",
+                      "maximum-shelter-deduction-as-referenced-at-106-cmr-364550-1", "2025-10-01", "snap_s16",
+                      cmr_reference="106 CMR 364.550"),
+            _ma_chart("homeless-deduction",
+                      "Homeless Deduction as referenced at 106 CMR 365.520(B)(3)(b)(2)",
+                      "homeless-deduction-as-referenced-at-365520b3b2", "2025-10-01", "snap_s16",
+                      cmr_reference="106 CMR 365.520(B)(3)(b)(2)",
+                      expression_date_note="the chart prints no effective date; its $199 is the FY 2026 homeless "
+                                           "shelter deduction (HTTP Last-Modified 2025-12-09)"),
+            _ma_chart("minimum-benefit-level",
+                      "Minimum Benefit Level for certain categorically-eligible one- and two-person households as "
+                      "referenced at 106 CMR 365.180 (effective 10/01/2025)",
+                      "minimum-benefit-level-for-certain-categorically-eligible-one-and-two-person-households-as-"
+                      "referenced-at-106-cmr-365180-0", "2025-10-01", "snap_s19", cmr_reference="106 CMR 365.180"),
+            _ma_chart("maximum-asset-limit",
+                      "Maximum Asset Limit as referenced at 106 CMR 363.110 (effective 10/1/2025)",
+                      "maximum-asset-limit-as-referenced-at-106-cmr-363110", "2025-10-01", "snap_s21",
+                      cmr_reference="106 CMR 363.110"),
+            _ma_chart("disaster-snap-income-and-asset-standard",
+                      "Disaster SNAP Program Maximum Gross Monthly Income and Asset Standard as referenced at "
+                      "106 CMR 364.946 (effective 10/01/2025)",
+                      "disaster-snap-program-maximum-gross-monthly-income-and-asset-standard-as-referenced-at-106-cmr-"
+                      "364946", "2025-10-01", "snap_s17", cmr_reference="106 CMR 364.946"),
+            _ma_chart("bay-state-cap-shelter-standards",
+                      "Bay State CAP High and Low Shelter Standards as referenced at 106 CMR 366.910(F)",
+                      "bay-state-cap-high-and-low-shelter-as-referenced-at-106-cmr-366910f", "2024-09-27", "snap_s39",
+                      cmr_reference="106 CMR 366.910(F)",
+                      expression_date_note="the chart prints no effective date; dated by the file's HTTP "
+                                           "Last-Modified header (2024-09-27)"),
+            _ma_chart("bay-state-cap-standard-utility-allowance",
+                      "Bay State CAP Standard Utility Allowance as referenced at 106 CMR 366.910 (effective 10/01/2025)",
+                      "bay-state-cap-standard-utility-allowance-as-referenced-at-106-cmr-366910-2", "2025-10-01",
+                      "snap_s39", cmr_reference="106 CMR 366.910"),
+        ],
+        index_families={
+            "eligibility_charts_pdf": {"found": 21, "taken": 14},
+            "snap_issuance_tables_pdf": {"found": 2, "taken": 1},
+        },
+    ),
+]

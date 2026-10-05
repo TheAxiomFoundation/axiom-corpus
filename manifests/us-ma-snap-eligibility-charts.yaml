@@ -1,0 +1,501 @@
+version: 2026-09-15-snap-eligibility-charts
+documents:
+- source_id: us-ma-dta-eligibility-chart-gross-income-standard-130
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Maximum Gross Monthly Income Standard (130% of Poverty) as referenced at 106 CMR 364.950, non-categorically eligible
+    households (effective 10/1/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/maximum-gross-monthly-income-standard-130-of-poverty-as-referenced-at-106-cmr-364950-non-categorically-eligible-households/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/gross-income-standard-130
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s17
+    cmr_reference: 106 CMR 364.950
+- source_id: us-ma-dta-eligibility-chart-categorical-eligibility-income-standards-200
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Gross Monthly Categorical Eligibility Income Standards (200% of Poverty) as referenced at 106 CMR 364.976 (effective
+    02/01/2026)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/gross-monthly-categorical-eligibility-income-standards-as-referenced-at-106-cmr-364976/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-02-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/categorical-eligibility-income-standards-200
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s02
+    cmr_reference: 106 CMR 364.976
+- source_id: us-ma-dta-eligibility-chart-net-income-standards
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Maximum Allowable Monthly Net Income Standards (100% of Poverty) as referenced at 106 CMR 364.970 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/maximum-allowable-monthly-net-income-standards-as-referenced-at-106-cmr-364970-1/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/net-income-standards
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s17
+    cmr_reference: 106 CMR 364.970
+- source_id: us-ma-dta-eligibility-chart-elderly-disabled-special-circumstances-165
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Standards for Special Circumstances Involving an Elderly and Disabled Individual (165% of Poverty) as referenced
+    at 106 CMR 364.975 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/standards-for-special-circumstances-involving-an-elderly-and-disabled-individual-as-referenced-at-106-cmr-364975/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/elderly-disabled-special-circumstances-165
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s17
+    cmr_reference: 106 CMR 364.975
+- source_id: us-ma-dta-eligibility-chart-maximum-benefit-levels
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Maximum Benefit Levels as referenced at 106 CMR 364.600 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/maximum-benefit-levels-as-referenced-at-106-cmr-364600/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/maximum-benefit-levels
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s18
+    cmr_reference: 106 CMR 364.600
+- source_id: us-ma-dta-eligibility-chart-standard-deduction
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Standard Deduction as referenced at 106 CMR 364.400 (effective 10/1/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/standard-deduction-as-referenced-at-106-cmr-364400-1/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/standard-deduction
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s15
+    cmr_reference: 106 CMR 364.400
+- source_id: us-ma-dta-eligibility-chart-standard-utility-allowances
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Standard Utility Allowances (SUA) as referenced at 106 CMR 364.945 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/standard-utility-allowance-sua-as-referenced-at-106-cmr-364945/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/standard-utility-allowances
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s04
+    cmr_reference: 106 CMR 364.945
+    also_closes: snap_s05, snap_s06
+- source_id: us-ma-dta-eligibility-chart-maximum-shelter-deduction
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Maximum Shelter Deduction as referenced at 106 CMR 364.550 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/maximum-shelter-deduction-as-referenced-at-106-cmr-364550-1/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/maximum-shelter-deduction
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s16
+    cmr_reference: 106 CMR 364.550
+- source_id: us-ma-dta-eligibility-chart-homeless-deduction
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Homeless Deduction as referenced at 106 CMR 365.520(B)(3)(b)(2)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/homeless-deduction-as-referenced-at-365520b3b2/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/homeless-deduction
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s16
+    cmr_reference: 106 CMR 365.520(B)(3)(b)(2)
+    expression_date_note: the chart prints no effective date; its $199 is the FY 2026 homeless shelter deduction (HTTP Last-Modified
+      2025-12-09)
+- source_id: us-ma-dta-eligibility-chart-minimum-benefit-level
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Minimum Benefit Level for certain categorically-eligible one- and two-person households as referenced at 106 CMR
+    365.180 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/minimum-benefit-level-for-certain-categorically-eligible-one-and-two-person-households-as-referenced-at-106-cmr-365180-0/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/minimum-benefit-level
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s19
+    cmr_reference: 106 CMR 365.180
+- source_id: us-ma-dta-eligibility-chart-maximum-asset-limit
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Maximum Asset Limit as referenced at 106 CMR 363.110 (effective 10/1/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/maximum-asset-limit-as-referenced-at-106-cmr-363110/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/maximum-asset-limit
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s21
+    cmr_reference: 106 CMR 363.110
+- source_id: us-ma-dta-eligibility-chart-disaster-snap-income-and-asset-standard
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Disaster SNAP Program Maximum Gross Monthly Income and Asset Standard as referenced at 106 CMR 364.946 (effective
+    10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/disaster-snap-program-maximum-gross-monthly-income-and-asset-standard-as-referenced-at-106-cmr-364946/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/disaster-snap-income-and-asset-standard
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s17
+    cmr_reference: 106 CMR 364.946
+- source_id: us-ma-dta-eligibility-chart-bay-state-cap-shelter-standards
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Bay State CAP High and Low Shelter Standards as referenced at 106 CMR 366.910(F)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/bay-state-cap-high-and-low-shelter-as-referenced-at-106-cmr-366910f/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2024-09-27'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/bay-state-cap-shelter-standards
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s39
+    cmr_reference: 106 CMR 366.910(F)
+    expression_date_note: the chart prints no effective date; dated by the file's HTTP Last-Modified header (2024-09-27)
+- source_id: us-ma-dta-eligibility-chart-bay-state-cap-standard-utility-allowance
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Bay State CAP Standard Utility Allowance as referenced at 106 CMR 366.910 (effective 10/01/2025)
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/bay-state-cap-standard-utility-allowance-as-referenced-at-106-cmr-366910-2/download
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/eligibility-charts/fy2026/bay-state-cap-standard-utility-allowance
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s17
+    - snap_s18
+    - snap_s15
+    - snap_s16
+    - snap_s04
+    - snap_s05
+    - snap_s06
+    - snap_s21
+    - snap_s19
+    - snap_s02
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s17/snap_s18/snap_s15/snap_s16/snap_s04/snap_s05/snap_s06/snap_s21/snap_s19/snap_s02
+    document_subtype: eligibility_chart
+    fiscal_year: '2026'
+    closure_element: snap_s39
+    cmr_reference: 106 CMR 366.910
