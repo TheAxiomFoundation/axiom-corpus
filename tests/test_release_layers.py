@@ -972,6 +972,7 @@ def _write_tree_scope(store: CorpusArtifactStore, version: str, rows: Rows) -> N
                 body=f"Text of {path}.",
                 kind="section",
                 source_path=source_rel,
+                source_as_of="2026-09-01",
                 expression_date="2026-09-01",
             )
             for path, parent in rows
@@ -1034,9 +1035,9 @@ def test_a_primary_root_under_no_served_ancestor_is_a_warning(tmp_path: Path) ->
     assert _layered_warnings(report) == [
         (
             "layered_primary_root_unattached",
-            "fx/statute/l/5 is a root of its primary scope, and fx/statute serves neither "
-            "it nor any ancestor path, so serving lists it as a new top-level document; "
-            "check its citation path",
+            "fx/statute serves no ancestor path of 1 root(s) of this primary scope, so "
+            "serving lists each as a new top-level document; check their citation paths: "
+            "fx/statute/l/5",
             "v-primary-0",
         )
     ]
@@ -1083,12 +1084,54 @@ def test_a_parent_cycle_between_the_layers_is_a_warning(tmp_path: Path) -> None:
     assert _layered_warnings(report) == [
         (
             "layered_parent_cycle_broken",
-            "the base and primary scopes of fx/statute disagree about parents, forming the "
-            "cycle fx/statute/1/a -> fx/statute/1/b -> fx/statute/1/a; serving makes "
+            "the scopes of fx/statute disagree about parents, so its merged navigation has "
+            "the cycle fx/statute/1/a -> fx/statute/1/b -> fx/statute/1/a; serving makes "
             "fx/statute/1/a a top-level document",
             "v-primary-0",
         )
     ]
+
+
+def test_new_documents_of_a_flat_class_warn_once_per_scope_after_the_errors(
+    tmp_path: Path,
+) -> None:
+    """Guidance-like classes make every new document a root: one warning per
+    scope, listed after the scope checks, so a capped list still shows errors."""
+    store = CorpusArtifactStore(tmp_path / "data" / "corpus")
+    _write_tree_scope(store, "v-base", (("fx/statute/a", None),))
+    _write_tree_scope(store, "v-new", [(f"fx/statute/d{index:02d}", None) for index in range(8)])
+    records = store.provisions_path("fx", "statute", "v-new")
+    # One error the scope check reports.
+    lines = records.read_text().splitlines()
+    damaged = json.loads(lines[0])
+    damaged["expression_date"] = None
+    records.write_text("\n".join([json.dumps(damaged), *lines[1:]]) + "\n")
+    release = ReleaseManifest(
+        name="fx-layered",
+        scopes=(
+            ReleaseScope("fx", "statute", "v-base", layer=LAYER_BASE),
+            ReleaseScope("fx", "statute", "v-new"),
+        ),
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+    )
+
+    report = validate_release(store.root, release, max_issues=1)
+
+    assert report.error_count == 1
+    assert [(issue.severity, issue.code) for issue in report.issues] == [
+        ("error", "missing_expression_date")
+    ]
+    full = validate_release(store.root, release)
+    layered = [issue for issue in full.issues if issue.code.startswith("layered_")]
+    assert [(issue.code, issue.version) for issue in layered] == [
+        ("layered_primary_root_unattached", "v-new")
+    ]
+    assert layered[0].message.endswith(
+        "fx/statute/d00, fx/statute/d01, fx/statute/d02, fx/statute/d03, fx/statute/d04 and 3 more"
+    )
+    assert full.issues.index(layered[0]) > max(
+        index for index, issue in enumerate(full.issues) if issue.severity == "error"
+    )
 
 
 def test_releases_without_a_base_scope_get_no_layered_warning(tmp_path: Path) -> None:

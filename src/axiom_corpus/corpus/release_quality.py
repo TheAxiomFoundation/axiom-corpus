@@ -174,7 +174,6 @@ def validate_release(
         require_unique=require_unique_citations,
         layered_parents=layered_parents,
     )
-    layered_parents.report(collector)
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             collector.add(
@@ -194,6 +193,8 @@ def validate_release(
             release_citation_paths,
             require_expression_dates=release.requires_complete_expression_dates,
         )
+    # After the scope checks, so a capped issue list shows their errors first.
+    layered_parents.report(collector)
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
@@ -352,14 +353,21 @@ class _LayeredScopeParents:
                 self._parents[base], [self._parents[scope] for scope in primaries]
             )
             pair = f"{base.jurisdiction}/{base.document_class}"
+            # One warning per scope: a class of flat documents (each one a
+            # root) would otherwise warn once per new document.
+            new_roots: dict[int, list[str]] = {}
             for index, path in merged.new_roots:
+                new_roots.setdefault(index, []).append(path)
+            for index, paths in sorted(new_roots.items()):
+                shown = ", ".join(sorted(paths)[:5])
+                more = f" and {len(paths) - 5} more" if len(paths) > 5 else ""
                 collector.add(
                     "warning",
                     "layered_primary_root_unattached",
                     (
-                        f"{path} is a root of its primary scope, and {pair} serves neither "
-                        "it nor any ancestor path, so serving lists it as a new top-level "
-                        "document; check its citation path"
+                        f"{pair} serves no ancestor path of {len(paths)} root(s) of this "
+                        "primary scope, so serving lists each as a new top-level document; "
+                        f"check their citation paths: {shown}{more}"
                     ),
                     scope=primaries[index],
                 )
@@ -371,9 +379,9 @@ class _LayeredScopeParents:
                     "warning",
                     "layered_parent_cycle_broken",
                     (
-                        f"the base and primary scopes of {pair} disagree about parents, "
-                        f"forming the cycle {' -> '.join((*cycle, cycle[0]))}; serving "
-                        f"makes {cycle[0]} a top-level document"
+                        f"the scopes of {pair} disagree about parents, so its merged "
+                        f"navigation has the cycle {' -> '.join((*cycle, cycle[0]))}; "
+                        f"serving makes {cycle[0]} a top-level document"
                     ),
                     scope=owners[cycle[0]],
                 )

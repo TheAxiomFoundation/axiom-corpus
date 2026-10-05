@@ -259,18 +259,27 @@ counts served roots only, as open PR #666 defined it; the repository's earlier
 `20260910120000` counted every stored root, superseded and unreleased versions
 included.
 
-The derived tables stay a function of what is served, whoever writes:
+The derived tables stay a function of what is served, whoever writes, short
+of turning triggers off:
 
 - Any change to `corpus.active_scope_pointer` re-derives its pair.
 - Membership of a signed release is immutable. An `UPDATE`, `DELETE` or
   `TRUNCATE` of `corpus.release_scopes` is rejected, and an inserted row must
-  be one of its release object's signed scopes, with its signed layer. A signed
-  scope that joins a pair its release already serves (membership altered before
-  this guard and restored) re-derives that pair in the same statement.
+  be one of its release object's signed scopes, with its signed layer (checked
+  once per statement). A signed scope that joins a pair its release already
+  serves (membership altered before this guard and restored) re-derives that
+  pair in the same statement.
+- A signed release object is immutable too: only its `created_at` may change,
+  and an object with membership cannot be deleted, so no statement can hide it
+  from the membership and released-row guards.
 - `TRUNCATE` of `provisions` or `navigation_nodes` is rejected while either
   holds a row of a signed release's scope, as row writes already are.
-- `SELECT corpus.rederive_layered_serving()` re-derives every served pair, for
-  example after derived rows were written by hand.
+- The derived tables are written only by the derivation: any other write is
+  rejected.
+- Derivation, and an insert into membership, run only under `READ COMMITTED`.
+  An older `REPEATABLE READ` or `SERIALIZABLE` snapshot could miss membership
+  committed meanwhile.
+- `SELECT corpus.rederive_layered_serving()` re-derives every served pair.
 
 Each derivation that changes the derived tables runs `ANALYZE` on both.
 Staged rows do not keep a provision's citation label, so where the merge moves
@@ -292,20 +301,27 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    `CREATE INDEX CONCURRENTLY IF NOT EXISTS` and their exact definitions, then
    confirm `pg_index.indisvalid` for both. The file refuses to run over an
    invalid one.
-2. Apply the file in one transaction. Its `ALTER TABLE`, `CREATE POLICY` and
-   `CREATE OR REPLACE VIEW` statements take locks that serving reads wait for
-   until it commits, so the file does no derivation work. It sets
-   `lock_timeout` to 2 s, so a statement that cannot get its lock fails rather
-   than queueing reads behind it; on a timeout, wait and retry.
+2. Apply the file in one transaction. Until it commits it holds `ACCESS
+   EXCLUSIVE`, which serving reads wait for, on the four serving views it
+   replaces, `navigation_nodes` (its read policies), `release_scopes` (the new
+   column) and the two derived tables. Its triggers take only `SHARE ROW
+   EXCLUSIVE` on `provisions`, `active_scope_pointer` and `release_objects`.
+   The file does no derivation work, so the transaction is short: about 10 ms
+   on a local copy of 401,299 rows per table. It sets `lock_timeout` to 2 s, so
+   a statement that cannot get its lock fails rather than queueing reads behind
+   it; on a timeout, wait and retry.
 3. The first time, no base scope is served: the file empties the derived
    tables and every view returns what it returned before. When a base scope is
    served (re-applying the file after a layered activation), it prints a notice
    and leaves the derived state as the triggers kept it. Then run
-   `SELECT corpus.rederive_layered_serving();` as its own transaction. It takes
-   the lock activation takes on `active_scope_pointer` (`EXCLUSIVE`, which
-   blocks activations and pointer writes, not reads), writes and analyzes only
-   the two derived tables, and serving reads see the previous state until it
-   commits. Deriving the whole corpus took 15 to 28 s on a 1.5M-row local copy.
+   `SELECT corpus.rederive_layered_serving();` as its own transaction, under
+   `READ COMMITTED`. It takes the locks activation takes and no other:
+   `EXCLUSIVE` on `active_scope_pointer` (which blocks activations and pointer
+   writes, not reads), and row writes and `ANALYZE` on the two derived tables.
+   Only when the shadowed provisions change does it also refresh
+   `current_provision_counts`, as activation does; count reads wait for that
+   refresh. Serving reads see the previous state until it commits. It took
+   2.9 s on the 401,299-row copy and 7.3 s for the derivation at 1.52M rows.
 
 ## Commands
 

@@ -798,6 +798,18 @@ def _attempt(
     return None
 
 
+@contextmanager
+def _triggers_off(connection: Any) -> Iterator[Any]:
+    """Write as an owner could only by turning the guards off (a superuser setting)."""
+    with connection.cursor() as cursor:
+        cursor.execute("SET session_replication_role = replica")
+        try:
+            yield cursor
+        finally:
+            cursor.execute("RESET session_replication_role")
+    connection.commit()
+
+
 def _derived_rows(cursor: Any) -> dict[str, list[tuple[Any, ...]]]:
     cursor.execute("SELECT * FROM corpus.layered_shadowed_rows ORDER BY 1, 2, 3")
     shadowed = cursor.fetchall()
@@ -814,12 +826,7 @@ def _assert_serving_is_consistent(connection: Any) -> None:
     """
     with connection.cursor() as cursor:
         stored = _derived_rows(cursor)
-        cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
-        cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
-        cursor.execute(
-            "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
-            "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
-        )
+        cursor.execute("SELECT corpus.rederive_layered_serving()")
         fresh = _derived_rows(cursor)
     connection.rollback()
     assert stored == fresh
@@ -1915,31 +1922,82 @@ STRAY = Scope(
     (Node("fx/statute/3/1", heading="Section 3-1 (stray)", ordinal=1),),
 )
 
+# A statement that removes the release object and puts it back, so the
+# foreign keys, checked at the end of the statement, still hold.
+_HIDE_THE_OBJECT = (
+    "WITH hidden AS (DELETE FROM corpus.release_objects WHERE release_name = %(release)s "
+    "RETURNING *), restored AS (INSERT INTO corpus.release_objects "
+    "SELECT * FROM hidden RETURNING 1) "
+)
 _SERVED_INPUT_WRITES = {
     "demote the base scope": (
         "UPDATE corpus.release_scopes SET layer = 'primary' "
-        "WHERE release_name = %(release)s AND layer = 'base'"
+        "WHERE release_name = %(release)s AND layer = 'base'",
+        "immutable",
     ),
     "move a primary scope to another version": (
         "UPDATE corpus.release_scopes SET version = %(stray)s "
-        "WHERE release_name = %(release)s AND version = %(primary)s"
+        "WHERE release_name = %(release)s AND version = %(primary)s",
+        "immutable",
     ),
     "delete a primary scope": (
         "DELETE FROM corpus.release_scopes "
-        "WHERE release_name = %(release)s AND version = %(primary)s"
+        "WHERE release_name = %(release)s AND version = %(primary)s",
+        "immutable",
     ),
     "delete the base scope": (
-        "DELETE FROM corpus.release_scopes WHERE release_name = %(release)s AND version = %(base)s"
+        "DELETE FROM corpus.release_scopes WHERE release_name = %(release)s AND version = %(base)s",
+        "immutable",
     ),
     "add an unsigned primary scope": (
         "INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, version) "
-        "VALUES (%(release)s, 'fx', 'statute', %(stray)s)"
+        "VALUES (%(release)s, 'fx', 'statute', %(stray)s)",
+        "not one of its signed scopes",
     ),
-    "truncate membership": "TRUNCATE corpus.release_scopes",
-    "truncate release objects": "TRUNCATE corpus.release_objects CASCADE",
-    "truncate navigation": "TRUNCATE corpus.navigation_nodes",
-    "truncate provisions": "TRUNCATE corpus.provisions CASCADE",
-    "truncate both staged tables": "TRUNCATE corpus.provisions, corpus.navigation_nodes CASCADE",
+    "delete a scope while the object is hidden": (
+        _HIDE_THE_OBJECT + "DELETE FROM corpus.release_scopes "
+        "WHERE release_name = %(release)s AND version = %(primary)s",
+        "immutable",
+    ),
+    "add a scope while the object is hidden": (
+        _HIDE_THE_OBJECT + "INSERT INTO corpus.release_scopes "
+        "(release_name, jurisdiction, document_class, version) "
+        "VALUES (%(release)s, 'fx', 'statute', %(stray)s)",
+        "immutable",
+    ),
+    "delete a released navigation row while the object is hidden": (
+        _HIDE_THE_OBJECT + "DELETE FROM corpus.navigation_nodes "
+        "WHERE version = %(primary)s AND path = 'fx/statute/1/4'",
+        "immutable",
+    ),
+    "sign an extra scope into the stored object": (
+        "UPDATE corpus.release_objects SET release_object = jsonb_set(release_object, "
+        "'{content,scopes}', (release_object #> '{content,scopes}') || jsonb_build_array("
+        "jsonb_build_object('jurisdiction', 'fx', 'document_class', 'statute', "
+        "'version', %(stray)s))) WHERE release_name = %(release)s",
+        "immutable",
+    ),
+    "delete the release object": (
+        "DELETE FROM corpus.release_objects WHERE release_name = %(release)s",
+        "immutable",
+    ),
+    "truncate membership": ("TRUNCATE corpus.release_scopes", "immutable"),
+    "truncate release objects": ("TRUNCATE corpus.release_objects CASCADE", "immutable"),
+    "truncate navigation": ("TRUNCATE corpus.navigation_nodes", "immutable"),
+    "truncate provisions": ("TRUNCATE corpus.provisions CASCADE", "immutable"),
+    "truncate both staged tables": (
+        "TRUNCATE corpus.provisions, corpus.navigation_nodes CASCADE",
+        "immutable",
+    ),
+    "delete derived rows": ("DELETE FROM corpus.layered_navigation_overrides", "derivation"),
+    "truncate a derived table": ("TRUNCATE corpus.layered_shadowed_rows", "derivation"),
+    "add a derived row": (
+        "INSERT INTO corpus.layered_shadowed_rows (jurisdiction, document_class, "
+        "citation_path, release_name, content_sha256, base_version, navigation_id) "
+        "VALUES ('fx', 'statute', 'fx/statute/9', %(release)s, repeat('0', 64), "
+        "%(base)s, 'n')",
+        "derivation",
+    ),
 }
 
 
@@ -1949,9 +2007,10 @@ def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str)
     _publish_layered(db)
     before = _snapshot(db)
     stored = _stored(db)
+    statement, message = _SERVED_INPUT_WRITES[write]
     error = _attempt(
         db,
-        _SERVED_INPUT_WRITES[write],
+        statement,
         {
             "release": LAYERED_RELEASE,
             "stray": STRAY.version,
@@ -1963,7 +2022,7 @@ def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str)
     # derivation from scratch serves, and nothing changed.
     _assert_serving_is_consistent(db)
     assert isinstance(error, errors.RaiseException), error
-    assert "immutable" in str(error)
+    assert message in str(error)
     assert _snapshot(db) == before
     assert _stored(db) == stored
 
@@ -2066,6 +2125,84 @@ def test_reactivating_an_earlier_signed_release_restores_its_serving(db: Any) ->
     assert (again["shadowed"], again["overrides"]) == (served["shadowed"], served["overrides"])
 
 
+def test_release_objects_change_only_their_publication_time(db: Any) -> None:
+    _publish_layered(db)
+    assert (
+        _attempt(
+            db,
+            "UPDATE corpus.release_objects SET created_at = created_at + interval '1 day' "
+            "WHERE release_name = %s",
+            (LAYERED_RELEASE,),
+        )
+        is None
+    )
+    for statement in (
+        "UPDATE corpus.release_objects SET content_sha256 = repeat('0', 64) "
+        "WHERE release_name = %s",
+        "UPDATE corpus.release_objects SET release_name = 'fx-renamed' WHERE release_name = %s",
+    ):
+        error = _attempt(db, statement, (LAYERED_RELEASE,))
+        assert isinstance(error, errors.RaiseException), statement
+    # An object no release membership names (registered, never activated) can go.
+    _stage(db, STRAY)
+    _stage_object(db, _release_object(db, "fx-rulespec-2026-09-26-stray", (STRAY,)))
+    assert (
+        _attempt(
+            db,
+            "DELETE FROM corpus.release_objects WHERE release_name = 'fx-rulespec-2026-09-26-stray'",
+        )
+        is None
+    )
+    _assert_serving_is_consistent(db)
+
+
+@pytest.mark.parametrize("isolation", ["REPEATABLE READ", "SERIALIZABLE"])
+def test_derivation_and_membership_inserts_need_read_committed(db: Any, isolation: str) -> None:
+    """A snapshot older than the statement could miss membership committed meanwhile."""
+    _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
+    _stage(db, *LAYERED_SCOPES)
+    release_object = _release_object(db, LAYERED_RELEASE, LAYERED_SCOPES)
+    _stage_object(db, release_object)
+    before = _snapshot(db)
+    statements = (
+        # A pointer write, which re-derives its pair.
+        "DELETE FROM corpus.active_scope_pointer WHERE document_class = 'statute'",
+        # A signed scope inserted into membership, which re-derives a served pair.
+        "INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, version) "
+        f"VALUES ('{LAYERED_RELEASE}', 'fx', 'regulation', '{OTHER_PAIR.version}')",
+        "SELECT corpus.rederive_layered_serving()",
+        "SELECT corpus.refresh_layered_serving('fx', 'statute')",
+    )
+    for statement in statements:
+        with db.cursor() as cursor:
+            cursor.execute(f"SET TRANSACTION ISOLATION LEVEL {isolation}")
+            with pytest.raises(errors.RaiseException, match="only under READ COMMITTED"):
+                cursor.execute(statement)
+        db.rollback()
+    assert _snapshot(db) == before
+    _activate(db, release_object)
+    _assert_serving_is_consistent(db)
+
+
+_COUNTS = (
+    "SELECT jurisdiction, document_class, provision_count, body_count, top_level_count, "
+    "rulespec_count FROM corpus.current_provision_counts ORDER BY 1, 2"
+)
+
+
+def test_rederivation_refreshes_served_counts_when_the_shadowed_rows_change(db: Any) -> None:
+    _publish_layered(db)
+    counts = _rows(db, _COUNTS)
+    with _triggers_off(db) as cursor:
+        # Derived rows lost by hand, and the counts refreshed over them.
+        cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+        cursor.execute("REFRESH MATERIALIZED VIEW corpus.current_provision_counts")
+    assert _rows(db, _COUNTS) != counts
+    _rows(db, "SELECT corpus.rederive_layered_serving()")
+    assert _rows(db, _COUNTS) == counts
+    _assert_serving_is_consistent(db)
+
+
 # ---------------------------------------------------------------------------
 # Deployment: the file never derives a served base layer; the derivation is
 # its own step.
@@ -2077,10 +2214,9 @@ def test_applying_the_file_with_a_base_scope_served_leaves_the_derivation_to_its
 ) -> None:
     _publish_layered(db)
     served = _snapshot(db)
-    with db.cursor() as cursor:
+    with _triggers_off(db) as cursor:
         # Removed by hand, so only a derivation brings them back.
         cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
-    db.commit()
     del db.notices[:]
     with db.cursor() as cursor:
         cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
@@ -2094,12 +2230,13 @@ def test_applying_the_file_with_a_base_scope_served_leaves_the_derivation_to_its
 
 def test_applying_the_file_with_no_base_scope_served_empties_the_derived_state(db: Any) -> None:
     _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
-    with db.cursor() as cursor:
+    with _triggers_off(db) as cursor:
         cursor.execute(
             "INSERT INTO corpus.layered_shadowed_rows (jurisdiction, document_class, "
             "citation_path, release_name, content_sha256, base_version, navigation_id) "
             "VALUES ('fx', 'statute', 'fx/statute/9', 'stale', repeat('0', 64), 'v', 'n')"
         )
+    with db.cursor() as cursor:
         cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
     db.commit()
     assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_shadowed_rows") == [(0,)]
@@ -2122,12 +2259,14 @@ def test_rederivation_takes_only_activation_locks_and_blocks_no_read(
                 "JOIN pg_class relation ON relation.oid = lock.relation "
                 "JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace "
                 "WHERE lock.pid = pg_backend_pid() AND namespace.nspname = 'corpus' "
-                "AND relation.relkind = 'r'"
+                "AND relation.relkind IN ('r', 'm')"
             )
             locks = set(cursor.fetchall())
         derived = {"layered_shadowed_rows", "layered_navigation_overrides"}
         # Activation takes EXCLUSIVE on the pointers and, deriving, writes and
-        # analyzes the two derived tables; everything else is only read.
+        # analyzes the two derived tables; everything else is only read. The
+        # derived state did not change, so current_provision_counts is not
+        # refreshed (the lock its refresh takes is not held).
         assert ("active_scope_pointer", "ExclusiveLock") in locks
         assert {(relation, mode) for relation, mode in locks if mode != "AccessShareLock"} <= {
             ("active_scope_pointer", "ExclusiveLock")
@@ -2193,15 +2332,20 @@ def test_derivation_analyzes_the_layered_tables(db: Any) -> None:
     _activate(db, _release_object(db, "fx-rulespec-2026-09-30", (PRIMARY_TITLE, OTHER_PAIR)))
     assert estimated() == actual() == dict.fromkeys(tables, 0.0)
     _publish_layered(db)
-    with db.cursor() as cursor:
+    with _triggers_off(db) as cursor:
         cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
         cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
         cursor.execute("ANALYZE corpus.layered_shadowed_rows")
         cursor.execute("ANALYZE corpus.layered_navigation_overrides")
-        cursor.execute("SELECT corpus.rederive_layered_serving()")
-    db.commit()
+    assert estimated() == dict.fromkeys(tables, 0.0)
+    _rows(db, "SELECT corpus.rederive_layered_serving()")
     assert min(actual().values()) > 0
     assert estimated() == actual()
+    # Removing every pointer empties the tables, and analyzes them.
+    with db.cursor() as cursor:
+        cursor.execute("TRUNCATE corpus.active_scope_pointer, corpus.scope_activation_history")
+    db.commit()
+    assert estimated() == actual() == dict.fromkeys(tables, 0.0)
 
 
 def test_a_blank_heading_follows_its_segment_as_navigation_py_does(db: Any) -> None:
