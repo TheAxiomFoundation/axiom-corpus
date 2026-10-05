@@ -34,8 +34,53 @@
 -- applied, the activation RPC of 20260719043000 rejects every
 -- release-object/v4 object. Every statement is re-runnable.
 
+-- Give up rather than queue serving reads behind a lock this file waits for.
+SET lock_timeout = '10s';
+
 -- ---------------------------------------------------------------------------
--- 1. Signed layer on release membership. Historical rows default to primary.
+-- 1. Navigation indexes.
+--
+-- current_navigation_nodes (section 5) tests served scopes with a hashed
+-- filter, so a per-jurisdiction page ordered by citation_path is an ordered
+-- index scan that stops after the page, whatever the share of stored versions
+-- the jurisdiction serves; this index makes that scan possible. The scope
+-- index is the definition of open PR #699 (either migration makes the other a
+-- no-op); it keeps scope-driven reads of one served scope cheap. On a live
+-- database build both with CREATE INDEX CONCURRENTLY before applying this file
+-- (it then skips them), so staging writes are not blocked for the build. They
+-- come first, before any statement locks a table serving reads.
+-- ---------------------------------------------------------------------------
+DO $$
+DECLARE
+  v_invalid text;
+BEGIN
+  -- A failed CREATE INDEX CONCURRENTLY leaves an INVALID index under the name,
+  -- and CREATE INDEX IF NOT EXISTS would then silently keep it.
+  SELECT string_agg(indexrelid::regclass::text, ', ')
+  INTO v_invalid
+  FROM pg_index
+  WHERE NOT indisvalid
+    AND indexrelid IN (
+      to_regclass('corpus.idx_navigation_nodes_jurisdiction_citation_path'),
+      to_regclass('corpus.idx_navigation_nodes_release_scope_version')
+    );
+  IF v_invalid IS NOT NULL THEN
+    RAISE EXCEPTION 'drop and rebuild invalid index before applying: %', v_invalid;
+  END IF;
+END $$;
+
+CREATE INDEX IF NOT EXISTS idx_navigation_nodes_jurisdiction_citation_path
+  ON corpus.navigation_nodes (jurisdiction, citation_path);
+CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
+  ON corpus.navigation_nodes (
+    jurisdiction,
+    (COALESCE(NULLIF(doc_type, ''), 'unknown')),
+    version
+  )
+  INCLUDE (citation_path, has_children, child_count, has_rulespec);
+
+-- ---------------------------------------------------------------------------
+-- 2. Signed layer on release membership. Historical rows default to primary.
 -- ---------------------------------------------------------------------------
 ALTER TABLE corpus.release_scopes
   ADD COLUMN IF NOT EXISTS layer text NOT NULL DEFAULT 'primary';
@@ -64,28 +109,6 @@ JOIN corpus.active_scope_pointer active
  AND active.release_name = scopes.release_name;
 
 GRANT SELECT ON corpus.current_release_scopes TO anon, authenticated;
-
--- ---------------------------------------------------------------------------
--- 2. Navigation indexes.
---
--- current_navigation_nodes (section 5) tests served scopes with a hashed
--- filter, so a per-jurisdiction page ordered by citation_path is an ordered
--- index scan that stops after the page, whatever the share of stored versions
--- the jurisdiction serves; this index makes that scan possible. The scope
--- index is the definition of open PR #699 (either migration makes the other a
--- no-op); it keeps scope-driven reads of one served scope cheap. On a live
--- database build both with CREATE INDEX CONCURRENTLY before applying this file
--- (it then skips them), so staging writes are not blocked for the build.
--- ---------------------------------------------------------------------------
-CREATE INDEX IF NOT EXISTS idx_navigation_nodes_jurisdiction_citation_path
-  ON corpus.navigation_nodes (jurisdiction, citation_path);
-CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
-  ON corpus.navigation_nodes (
-    jurisdiction,
-    (COALESCE(NULLIF(doc_type, ''), 'unknown')),
-    version
-  )
-  INCLUDE (citation_path, has_children, child_count, has_rulespec);
 
 -- ---------------------------------------------------------------------------
 -- 3. Derived serving state for layered pairs.
@@ -133,8 +156,15 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_layered_shadowed_rows_navigation_id
 --   * depth, has_children, child_count and encoded_descendant_count are
 --     recomputed over the merged tree; segment and sort_key are recomputed for
 --     a node whose parent changed, and so is its label when the stored label
---     was the segment (build_navigation_nodes' fallback for a node without a
---     heading or citation label).
+--     was the segment fallback (the provision has no heading).
+--
+-- Where every provision declares its immediate path prefix as its parent and
+-- a primary scope never skips a level the base carries, this is exactly
+-- build_navigation_nodes run over the served records (tested). Staged rows do
+-- not keep a provision's declared parent path, only its versioned parent id,
+-- so a primary root the base does not carry goes under its nearest served
+-- path prefix even if it declares a parent that is not a prefix (an eCFR
+-- section declares its subpart): it lands under the part instead.
 CREATE TABLE IF NOT EXISTS corpus.layered_navigation_overrides (
   LIKE corpus.navigation_nodes INCLUDING DEFAULTS,
   release_name text NOT NULL,
@@ -164,8 +194,9 @@ GRANT SELECT ON corpus.layered_shadowed_rows, corpus.layered_navigation_override
 
 -- The sort-key segment normalization of navigation._normalize_sort_segment:
 -- lower-case, every run of digits left-padded with zeros to 12 characters
--- (longer runs unchanged). Citation path segments are ASCII
--- (schema/citation-path.v1.json), where lower() agrees with Python's.
+-- (longer runs unchanged). Citation path segments are ASCII letters, digits,
+-- space, '.', ':', '-' and the en dash (schema/citation-path.v1.json), where
+-- lower() and the digit test agree with Python's.
 CREATE OR REPLACE FUNCTION corpus.navigation_sort_segment(p_segment text)
 RETURNS text
 LANGUAGE sql
@@ -481,9 +512,18 @@ BEGIN
   merged AS (
     SELECT
       derived.*,
+      -- build_navigation_nodes labels a node with its heading (or citation
+      -- label) and falls back to the segment; only a fallback label follows a
+      -- changed segment.
       CASE
         WHEN derived.merged_segment IS DISTINCT FROM derived.segment
          AND derived.label = derived.segment
+         AND NOT EXISTS (
+           SELECT 1
+           FROM corpus.provisions provision
+           WHERE provision.id = derived.provision_id::uuid
+             AND btrim(provision.heading, E' \t\n\r\x0b\x0c') <> ''
+         )
           THEN derived.merged_segment
         ELSE derived.label
       END AS merged_label,
@@ -621,12 +661,17 @@ AFTER TRUNCATE ON corpus.active_scope_pointer
 FOR EACH STATEMENT EXECUTE FUNCTION corpus.sync_layered_serving();
 
 -- Derive the state of every pair served now (nothing for pairs without a base
--- scope), so re-applying this file leaves it exact.
-DELETE FROM corpus.layered_shadowed_rows;
-DELETE FROM corpus.layered_navigation_overrides;
-SELECT corpus.refresh_layered_serving(active.jurisdiction, active.document_class)
-FROM corpus.active_scope_pointer active
-ORDER BY active.jurisdiction, active.document_class;
+-- scope), so re-applying this file leaves it exact. The lock keeps an
+-- activation from moving a pointer meanwhile.
+DO $$
+BEGIN
+  LOCK TABLE corpus.active_scope_pointer IN EXCLUSIVE MODE;
+  DELETE FROM corpus.layered_shadowed_rows;
+  DELETE FROM corpus.layered_navigation_overrides;
+  PERFORM corpus.refresh_layered_serving(active.jurisdiction, active.document_class)
+  FROM corpus.active_scope_pointer active
+  ORDER BY active.jurisdiction, active.document_class;
+END $$;
 
 -- ---------------------------------------------------------------------------
 -- 4. Winner views over provisions: the previous rules, less shadowed rows.
@@ -1382,3 +1427,5 @@ REVOKE EXECUTE ON FUNCTION corpus.activate_corpus_release(jsonb)
   FROM anon, authenticated, service_role, PUBLIC;
 
 NOTIFY pgrst, 'reload schema';
+
+RESET lock_timeout;

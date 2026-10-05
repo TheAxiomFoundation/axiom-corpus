@@ -755,8 +755,7 @@ def _snapshot(connection: Any) -> dict[str, Any]:
             connection, "SELECT * FROM corpus.layered_shadowed_rows ORDER BY 1, 2, 3"
         ),
         "overrides": _rows(
-            connection,
-            "SELECT id, parent_path, depth FROM corpus.layered_navigation_overrides ORDER BY 1",
+            connection, "SELECT * FROM corpus.layered_navigation_overrides ORDER BY id"
         ),
         "counts": _rows(
             connection,
@@ -798,6 +797,12 @@ def _reference_merged_tree(scopes: Sequence[Scope]) -> dict[str, dict[str, Any]]
     """
     primary = [row for s in scopes if s.layer == LAYER_PRIMARY for row in _staged_navigation(s)]
     base = [row for s in scopes if s.layer == LAYER_BASE for row in _staged_navigation(s)]
+    headed = {
+        (scope.version, node.path)
+        for scope in scopes
+        for node in scope.nodes
+        if node.heading and node.heading.strip()
+    }
     primary_paths = {row["path"] for row in primary}
     base_by_path = {row["path"]: row for row in base}
     winners = [dict(row, layer=LAYER_PRIMARY) for row in primary] + [
@@ -838,7 +843,7 @@ def _reference_merged_tree(scopes: Sequence[Scope]) -> dict[str, dict[str, Any]]
         if parent != row["parent_path"]:
             new_segment = _segment(path, parent)
             if new_segment != segment:
-                if label == segment:
+                if label == segment and (row["version"], path) not in headed:
                     label = new_segment
                 sort_key = sort_key.split("|", 1)[0] + "|" + _normalize_sort_segment(new_segment)
                 segment = new_segment
@@ -854,6 +859,18 @@ def _reference_merged_tree(scopes: Sequence[Scope]) -> dict[str, dict[str, Any]]
             "encoded_descendant_count": encoded[path],
         }
     return merged
+
+
+def _built_over_winners(scopes: Sequence[Scope]) -> dict[str, dict[str, Any]]:
+    """build_navigation_nodes run over the records the pair serves."""
+    primary_paths = {n.path for s in scopes if s.layer == LAYER_PRIMARY for n in s.nodes}
+    winners = [
+        record
+        for scope in scopes
+        for record in scope.records()
+        if scope.layer == LAYER_PRIMARY or record.citation_path not in primary_paths
+    ]
+    return {node.id: node.to_supabase_row() for node in build_navigation_nodes(winners)}
 
 
 def _tree(rows: Mapping[str, Mapping[str, Any]]) -> dict[str, tuple[Any, ...]]:
@@ -1250,15 +1267,29 @@ def test_merged_navigation_places_primary_nodes_in_the_base_tree(db: Any) -> Non
         if row["encoded_descendant_count"]
     }
     assert encoded == {"fx/statute/1": 2, "fx/statute/2": 3, "fx/statute/2/2": 1}
-    assert _tree(_pair_rows(served, ("fx", "statute"))) == _tree(
-        _reference_merged_tree((BASE, PRIMARY_TITLE, PRIMARY_SECTIONS))
-    )
+    statute = (BASE, PRIMARY_TITLE, PRIMARY_SECTIONS)
+    assert _tree(_pair_rows(served, ("fx", "statute"))) == _tree(_reference_merged_tree(statute))
+    assert _tree(_pair_rows(served, ("fx", "statute"))) == _tree(_built_over_winners(statute))
+    assert _rows(
+        db,
+        "SELECT COUNT(*), COUNT(DISTINCT id), COUNT(DISTINCT path) "
+        "FROM corpus.current_navigation_nodes WHERE doc_type = 'statute'",
+    ) == [(13, 13, 13)]
 
 
 def test_navigation_overrides_hold_only_rows_whose_tree_fields_changed(db: Any) -> None:
     _publish_layered(db)
     stored = _navigation(db, "corpus.navigation_nodes")
     overrides = _navigation(db, "corpus.layered_navigation_overrides")
+    # Title 1 and title 2 (children and encoded counts), 2/2 and 2/5/x
+    # (re-parented), 2/2/b (one level deeper).
+    assert {row["path"] for row in overrides.values()} == {
+        "fx/statute/1",
+        "fx/statute/2",
+        "fx/statute/2/2",
+        "fx/statute/2/2/b",
+        "fx/statute/2/5/x",
+    }
     for node_id, row in overrides.items():
         assert any(row[column] != stored[node_id][column] for column in TREE_COLUMNS), row["path"]
         assert {
@@ -1531,6 +1562,247 @@ def test_a_parent_cycle_between_layers_is_broken_at_its_smallest_path(db: Any) -
     assert _tree(served) == _tree(_reference_merged_tree((base, primary)))
 
 
+def test_a_cycle_is_broken_in_code_point_order(db: Any) -> None:
+    """'B' sorts before 'a' by code point, as in Python; en_US collation disagrees."""
+    base = Scope(
+        "fx",
+        "statute",
+        "2026-04-29-cycle-case",
+        (
+            Node("fx/statute/9", heading="Title 9"),
+            Node("fx/statute/9/a", "fx/statute/9", "a"),
+            Node("fx/statute/9/B", "fx/statute/9/a", "B under a"),
+        ),
+        layer=LAYER_BASE,
+    )
+    primary = Scope(
+        "fx",
+        "statute",
+        "2026-09-20-cycle-case",
+        (Node("fx/statute/9/B", None, "B"), Node("fx/statute/9/a", "fx/statute/9/B", "a under B")),
+    )
+    _publish(db, "fx-rulespec-2026-09-20-cycle-case", base, primary)
+    served = _pair_rows(_navigation(db), ("fx", "statute"))
+    assert {row["path"]: row["parent_path"] for row in served.values()} == {
+        "fx/statute/9": None,
+        "fx/statute/9/B": None,
+        "fx/statute/9/a": "fx/statute/9/B",
+    }
+    assert _tree(served) == _tree(_reference_merged_tree((base, primary)))
+
+
+def test_a_cycle_is_broken_at_its_own_smallest_member_not_its_tail(db: Any) -> None:
+    base = Scope(
+        "fx",
+        "statute",
+        "2026-04-29-cycle-tail",
+        (
+            Node("fx/statute/2", heading="Title 2"),
+            Node("fx/statute/2/1", "fx/statute/2", "2-1"),
+            Node("fx/statute/2/2", "fx/statute/2/1", "2-2 under 2-1"),
+            Node("fx/statute/1", "fx/statute/2/2", "1 under 2-2"),
+        ),
+        layer=LAYER_BASE,
+    )
+    primary = Scope(
+        "fx",
+        "statute",
+        "2026-09-20-cycle-tail",
+        (
+            Node("fx/statute/2/2", None, "2-2"),
+            Node("fx/statute/2/1", "fx/statute/2/2", "2-1 under 2-2"),
+        ),
+    )
+    _publish(db, "fx-rulespec-2026-09-20-cycle-tail", base, primary)
+    served = _pair_rows(_navigation(db), ("fx", "statute"))
+    # fx/statute/1 hangs from the cycle and is smaller than every member, but
+    # only a member of the cycle may become its root.
+    assert {row["path"]: row["parent_path"] for row in served.values()} == {
+        "fx/statute/2": None,
+        "fx/statute/2/1": None,
+        "fx/statute/2/2": "fx/statute/2/1",
+        "fx/statute/1": "fx/statute/2/2",
+    }
+    assert _tree(served) == _tree(_reference_merged_tree((base, primary)))
+
+
+def test_a_headed_node_keeps_its_label_when_its_segment_changes(db: Any) -> None:
+    base = Scope(
+        "fx",
+        "statute",
+        "2026-04-29-label",
+        (Node("fx/statute/2", heading="Title 2"), Node("fx/statute/2/1", "fx/statute/2", "2-1")),
+        layer=LAYER_BASE,
+    )
+    # Heading "x" equals the stored segment of the scope root fx/statute/2/5/x.
+    primary = Scope("fx", "statute", "2026-09-20-label", (Node("fx/statute/2/5/x", None, "x"),))
+    _publish(db, "fx-rulespec-2026-09-20-label", base, primary)
+    served = _pair_rows(_navigation(db), ("fx", "statute"))
+    node = next(row for row in served.values() if row["path"] == "fx/statute/2/5/x")
+    assert (node["segment"], node["label"]) == ("5/x", "x")
+    assert _tree(served) == _tree(_built_over_winners((base, primary)))
+
+
+REGULATION_BASE = Scope(
+    "fx",
+    "regulation",
+    "2026-05-01-regulation-base",
+    (
+        Node("fx/regulation/1", heading="Chapter 1", ordinal=1),
+        Node("fx/regulation/1/1", "fx/regulation/1", "Part 1", 1),
+        Node("fx/regulation/1/2", "fx/regulation/1", "Part 2", 2),
+    ),
+    layer=LAYER_BASE,
+)
+REGULATION_PRIMARY = Scope(
+    "fx",
+    "regulation",
+    "2026-09-20-regulation",
+    (
+        Node("fx/regulation/1/1", "fx/regulation/1", "Part 1 (encoded)", 1, encoded=True),
+        Node("fx/regulation/1/9", "fx/regulation/1", "Part 9 (new)", 9, encoded=True),
+    ),
+)
+
+
+def test_two_layered_pairs_register_activate_and_move_independently(db: Any) -> None:
+    """The restoration's shape: us/statute and us/regulation bases in one release."""
+
+    def derived(document_class: str) -> dict[str, Any]:
+        return {
+            "shadowed": _rows(
+                db,
+                "SELECT * FROM corpus.layered_shadowed_rows WHERE document_class = %s ORDER BY 3",
+                (document_class,),
+            ),
+            "overrides": _rows(
+                db,
+                "SELECT * FROM corpus.layered_navigation_overrides "
+                "WHERE document_class = %s ORDER BY id",
+                (document_class,),
+            ),
+        }
+
+    scopes = (BASE, PRIMARY_TITLE, REGULATION_BASE, REGULATION_PRIMARY)
+    _stage(db, *scopes)
+    release_object = _release_object(db, "fx-rulespec-2026-09-20-two-bases", scopes)
+    assert _stage_object(db, release_object)["inserted"] is True
+    _activate(db, release_object)
+    served = _navigation(db)
+    for pair, pair_scopes in (
+        (("fx", "statute"), (BASE, PRIMARY_TITLE)),
+        (("fx", "regulation"), (REGULATION_BASE, REGULATION_PRIMARY)),
+    ):
+        assert _tree(_pair_rows(served, pair)) == _tree(_reference_merged_tree(pair_scopes))
+    regulation = derived("regulation")
+    assert regulation["shadowed"]
+    successor = replace(PRIMARY_TITLE, version="2026-09-29-title-1")
+    _stage(db, successor)
+    _activate(db, _release_object(db, "fx-rulespec-2026-09-29-statute", (BASE, successor)))
+    assert derived("regulation") == regulation
+
+
+def test_activation_compares_the_stored_layer_with_the_signed_one(db: Any) -> None:
+    release_object = _publish_layered(db)
+    with db.cursor() as cursor:
+        cursor.execute(
+            "UPDATE corpus.release_scopes SET layer = 'primary' "
+            "WHERE release_name = %s AND layer = 'base'",
+            (LAYERED_RELEASE,),
+        )
+        # Force a pointer move, so activation reaches its membership check.
+        cursor.execute("DELETE FROM corpus.active_scope_pointer WHERE document_class = 'statute'")
+    db.commit()
+    with pytest.raises(errors.RaiseException, match="membership differs"):
+        _activate(db, release_object)
+    db.rollback()
+
+
+def test_service_role_cannot_write_the_derived_state(db: Any) -> None:
+    _publish_layered(db)
+    for table in ("layered_shadowed_rows", "layered_navigation_overrides"):
+        for statement in (f"DELETE FROM corpus.{table}", f"TRUNCATE corpus.{table}"):
+            with _as_role(db, "service_role") as cursor:
+                with pytest.raises(errors.InsufficientPrivilege):
+                    cursor.execute(statement)
+
+
+def test_a_pointer_moved_to_another_pair_clears_the_old_pair(db: Any) -> None:
+    _publish_layered(db)
+    with db.cursor() as cursor:
+        cursor.execute(
+            "DELETE FROM corpus.active_scope_pointer "
+            "WHERE jurisdiction = 'fx' AND document_class = 'regulation'"
+        )
+        cursor.execute(
+            "UPDATE corpus.active_scope_pointer SET document_class = 'regulation' "
+            "WHERE jurisdiction = 'fx' AND document_class = 'statute'"
+        )
+    db.commit()
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_shadowed_rows") == [(0,)]
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_navigation_overrides") == [(0,)]
+
+
+def test_the_ambiguity_check_covers_only_layered_pairs(db: Any) -> None:
+    """A path twice in an unlayered pair is release validation's to reject, as before."""
+    twin = replace(
+        OTHER_PAIR,
+        version="2026-09-02-regs",
+        nodes=(Node("fx/regulation/1/1", "fx/regulation/1", "Part 1 again", 1),),
+    )
+    _publish(db, "fx-rulespec-2026-09-20-unlayered-twin", BASE, PRIMARY_TITLE, OTHER_PAIR, twin)
+    assert _rows(
+        db,
+        "SELECT COUNT(*) FROM corpus.current_provisions WHERE citation_path = 'fx/regulation/1/1'",
+    ) == [(2,)]
+
+
+_SEGMENT_TEXT = st.text(alphabet="aZ09 .:-–/", min_size=1, max_size=30)
+
+
+@settings(
+    max_examples=200,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(
+    path=_SEGMENT_TEXT, parent=st.one_of(st.none(), _SEGMENT_TEXT), digits=st.integers(0, 10**14)
+)
+def test_sql_segment_helpers_equal_navigation_py(
+    layered_dsn: str, path: str, parent: str | None, digits: int
+) -> None:
+    segment = f"{path}{digits}"
+    with closing(psycopg2.connect(layered_dsn)) as connection, connection.cursor() as cursor:
+        cursor.execute(
+            "SELECT corpus.navigation_sort_segment(%s), corpus.navigation_segment(%s, %s)",
+            (segment, path, parent),
+        )
+        sort_segment, sql_segment = cursor.fetchone()
+    assert sort_segment == _normalize_sort_segment(segment)
+    assert sql_segment == _segment(path, parent)
+
+
+@pytest.fixture(scope="module")
+def pre_layer_dsn() -> Iterator[str]:
+    yield from _create_database(layered=False)
+
+
+def test_memberships_that_exist_when_the_migration_is_applied_become_primary(
+    pre_layer_dsn: str,
+) -> None:
+    """Production applies the file to a database with activated releases."""
+    with closing(psycopg2.connect(pre_layer_dsn)) as connection:
+        _publish(connection, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
+        _publish(connection, "fx-rulespec-2026-09-02", replace(BASE, layer=LAYER_PRIMARY))
+        with connection.cursor() as cursor:
+            cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        connection.commit()
+        assert _rows(connection, "SELECT DISTINCT layer FROM corpus.release_scopes") == [
+            ("primary",)
+        ]
+        _assert_matches_reference(connection)
+
+
 def test_references_follow_the_served_row_of_each_path(db: Any) -> None:
     _stage(db, BASE, PRIMARY_TITLE)
     base_section = _provision_id("fx/statute/1/1", BASE.version)
@@ -1723,6 +1995,11 @@ def _check_layered_pair(dsn: str, scopes: tuple[Scope, ...]) -> dict[str, dict[s
             for row in _rows(connection, "SELECT citation_path FROM corpus.current_provisions")
         ]
         assert len(paths) == len(set(paths))
+        assert _rows(
+            connection,
+            "SELECT COUNT(*), COUNT(DISTINCT id), COUNT(DISTINCT path) "
+            "FROM corpus.current_navigation_nodes",
+        ) == [(len(current),) * 3]
         served = _navigation(connection)
         assert _tree(served) == _tree(_reference_merged_tree(scopes))
         assert {row["provision_id"] for row in served.values()} == current
@@ -1754,15 +2031,7 @@ def test_merge_equals_building_navigation_over_the_winning_records(
     layered_dsn: str, scopes: tuple[Scope, ...]
 ) -> None:
     served = _check_layered_pair(layered_dsn, scopes)
-    primary_paths = {n.path for s in scopes if s.layer == LAYER_PRIMARY for n in s.nodes}
-    winners = [
-        record
-        for scope in scopes
-        for record in scope.records()
-        if scope.layer == LAYER_PRIMARY or record.citation_path not in primary_paths
-    ]
-    built = {node.id: node.to_supabase_row() for node in build_navigation_nodes(winners)}
-    assert _tree(served) == _tree(built)
+    assert _tree(served) == _tree(_built_over_winners(scopes))
 
 
 @settings(
@@ -2063,11 +2332,18 @@ def test_serving_plans_stay_index_driven_at_representative_scale(scale_dsn: str)
 
         for request in list(_PLAN_REQUESTS)[:2]:
             nodes = plans[request]
-            scans = [n for n in nodes if n.get("Relation Name") == "provisions"]
-            assert scans and all(
-                n["Node Type"] == "Index Scan"
-                and n["Index Name"] == "idx_provisions_citation_path_version"
-                for n in scans
+            # An index scan, or a bitmap scan of the same index: the planner
+            # picks between them by a narrow cost margin.
+            index_scans = [
+                n
+                for n in nodes
+                if n["Node Type"] in {"Index Scan", "Bitmap Index Scan"}
+                and n.get("Index Name") == "idx_provisions_citation_path_version"
+            ]
+            assert index_scans, request
+            assert not any(
+                n["Node Type"] == "Seq Scan" and n.get("Relation Name") == "provisions"
+                for n in nodes
             ), request
             assert not any(n["Node Type"] in {"Sort", "WindowAgg"} for n in nodes), request
         page = plans[
