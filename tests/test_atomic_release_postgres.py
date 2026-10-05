@@ -388,9 +388,11 @@ def _reset_database(dsn: str) -> None:
         "navigation_nodes",
     ]
     with closing(psycopg2.connect(dsn)) as connection, connection.cursor() as cursor:
-        cursor.execute("SELECT to_regclass('corpus.navigation_layer_summaries') IS NOT NULL")
-        if cursor.fetchone()[0]:
-            tables.append("navigation_layer_summaries")
+        # The layered serving migration derives these from the active pointers.
+        for table in ("layered_shadowed_rows", "layered_navigation_overrides"):
+            cursor.execute("SELECT to_regclass(%s) IS NOT NULL", (f"corpus.{table}",))
+            if cursor.fetchone()[0]:
+                tables.append(table)
         cursor.execute(
             sql.SQL("TRUNCATE TABLE {}").format(
                 sql.SQL(", ").join(sql.Identifier("corpus", table) for table in tables)
