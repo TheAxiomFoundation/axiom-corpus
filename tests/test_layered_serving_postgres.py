@@ -23,6 +23,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import uuid
 from collections import Counter
 from collections.abc import Iterator, Mapping, Sequence
@@ -1843,3 +1844,246 @@ def test_registration_migration_holds_only_the_registration_function() -> None:
         "REVOKE EXECUTE ON FUNCTION corpus.stage_corpus_release_object(jsonb)",
         "GRANT EXECUTE ON FUNCTION corpus.stage_corpus_release_object(jsonb)",
     ]
+
+
+# ---------------------------------------------------------------------------
+# Query plans at representative scale.
+#
+# The May base layers restore 306,923 rows to us (60,446 statute and 246,477
+# regulation). This builds them, 48 primary us scopes (24 statute, 24
+# regulation; half without their title or part row, so their sections are
+# roots of their scope) colliding with 456 base paths, superseded us history
+# and other jurisdictions, serves them through the active scope map (whose
+# trigger derives the layered state), and checks the plans of the requests the
+# serving views answer. AXIOM_CORPUS_PLAN_SCALE=production adds the stored
+# history production has (1.52M rows per table); AXIOM_CORPUS_PLAN_REPORT=<file>
+# writes EXPLAIN (ANALYZE, BUFFERS) of each request, run as anon under the 3 s
+# anon statement timeout.
+# ---------------------------------------------------------------------------
+
+_SCALE = {
+    "ci": {"history_versions": 4, "history_rows": 10_000, "others": 10, "other_rows": 2_000},
+    "production": {
+        "history_versions": 40,
+        "history_rows": 10_000,
+        "others": 200,
+        "other_rows": 2_000,
+    },
+}[os.environ.get("AXIOM_CORPUS_PLAN_SCALE", "ci")]
+
+_SCALE_ROWS = """
+CREATE TEMP TABLE scale_rows (
+  jurisdiction text, doc_type text, version text, path text, parent_path text,
+  depth int, ordinal int, has_rulespec boolean DEFAULT false
+);
+-- us/statute base: 53 titles, 60,393 sections.
+INSERT INTO scale_rows
+SELECT 'us', 'statute', '2026-04-29', 'us/statute/' || t, NULL, 0, t
+FROM generate_series(1, 53) t;
+INSERT INTO scale_rows
+SELECT 'us', 'statute', '2026-04-29', 'us/statute/' || (1 + i % 53) || '/' || (i / 53 + 1),
+       'us/statute/' || (1 + i % 53), 1, i / 53 + 1
+FROM generate_series(0, 60392) i;
+-- us/regulation base: 49 titles, 4,900 parts, 241,528 sections.
+INSERT INTO scale_rows
+SELECT 'us', 'regulation', '2026-05-01', 'us/regulation/' || t, NULL, 0, t
+FROM generate_series(1, 49) t;
+INSERT INTO scale_rows
+SELECT 'us', 'regulation', '2026-05-01',
+       'us/regulation/' || (1 + i % 49) || '/' || (i / 49 + 1),
+       'us/regulation/' || (1 + i % 49), 1, i / 49 + 1
+FROM generate_series(0, 4899) i;
+INSERT INTO scale_rows
+SELECT 'us', 'regulation', '2026-05-01',
+       'us/regulation/' || (1 + p % 49) || '/' || (p / 49 + 1) || '/' || (p / 49 + 1)
+         || '.' || (i / 4900 + 1),
+       'us/regulation/' || (1 + p % 49) || '/' || (p / 49 + 1), 2, i / 4900 + 1
+FROM generate_series(0, 241527) i, LATERAL (SELECT i % 4900 AS p) part;
+-- 48 primary scopes of 300 rows; odd ones carry their title or part row.
+INSERT INTO scale_rows
+SELECT 'us', 'statute', '2026-09-' || lpad(k::text, 2, '0') || '-statute-' || k,
+       'us/statute/' || (1 + k * 2) || '/' || CASE WHEN i < 290
+         THEN (1000 + k * 300 + i)::text || 'x' ELSE (i - 289)::text END,
+       CASE WHEN k % 2 = 1 THEN 'us/statute/' || (1 + k * 2) END,
+       CASE WHEN k % 2 = 1 THEN 1 ELSE 0 END, i
+FROM generate_series(0, 23) k, generate_series(0, 298) i;
+INSERT INTO scale_rows
+SELECT 'us', 'statute', '2026-09-' || lpad(k::text, 2, '0') || '-statute-' || k,
+       'us/statute/' || (1 + k * 2), NULL, 0, 1
+FROM generate_series(0, 23) k WHERE k % 2 = 1;
+INSERT INTO scale_rows
+SELECT 'us', 'regulation', '2026-09-' || lpad(k::text, 2, '0') || '-regulation-' || k,
+       'us/regulation/' || (1 + k * 2) || '/' || (k + 1) || '/' || (k + 1) || '.'
+         || CASE WHEN i < 290 THEN (1000 + i)::text ELSE (i - 289)::text END,
+       CASE WHEN k % 2 = 1 THEN 'us/regulation/' || (1 + k * 2) || '/' || (k + 1) END,
+       CASE WHEN k % 2 = 1 THEN 1 ELSE 0 END, i
+FROM generate_series(0, 23) k, generate_series(0, 298) i;
+INSERT INTO scale_rows
+SELECT 'us', 'regulation', '2026-09-' || lpad(k::text, 2, '0') || '-regulation-' || k,
+       'us/regulation/' || (1 + k * 2) || '/' || (k + 1), NULL, 0, 1
+FROM generate_series(0, 23) k WHERE k % 2 = 1;
+UPDATE scale_rows SET has_rulespec = true
+WHERE version LIKE '2026-09-%' AND ordinal % 7 = 0;
+-- Superseded us history and other jurisdictions (half served, half stored).
+INSERT INTO scale_rows
+SELECT 'us', 'statute', '2026-0' || (1 + v % 6) || '-history-' || v,
+       'us/statute/' || (1 + i % 53) || '/' || (i / 53 + 1),
+       'us/statute/' || (1 + i % 53), 1, i
+FROM generate_series(0, {history_versions} - 1) v,
+     generate_series(v * 1000, v * 1000 + {history_rows} - 1) i;
+INSERT INTO scale_rows
+SELECT 'x' || j, 'statute', CASE WHEN h = 0 THEN 'served' ELSE 'stored' END,
+       'x' || j || '/statute/' || (i / 100) || CASE WHEN i % 100 = 0 THEN ''
+         ELSE '/' || (i % 100) END,
+       CASE WHEN i % 100 = 0 THEN NULL ELSE 'x' || j || '/statute/' || (i / 100) END,
+       CASE WHEN i % 100 = 0 THEN 0 ELSE 1 END, i
+FROM generate_series(1, {others}) j, generate_series(0, 1) h,
+     generate_series(0, {other_rows} - 1) i;
+
+INSERT INTO corpus.provisions (id, citation_path, jurisdiction, doc_type, version, body,
+  parent_id, level, ordinal, heading, source_path, expression_date, has_rulespec)
+SELECT md5('p' || version || path)::uuid, path, jurisdiction, doc_type, version,
+       repeat(md5(path), 12),
+       CASE WHEN parent_path IS NOT NULL THEN md5('p' || version || parent_path)::uuid END,
+       depth, ordinal, 'Heading ' || path, 'sources/' || jurisdiction || '/' || version,
+       DATE '2026-01-01', has_rulespec
+FROM scale_rows;
+INSERT INTO corpus.navigation_nodes (id, jurisdiction, doc_type, path, parent_path, segment,
+  label, sort_key, depth, provision_id, citation_path, has_children, child_count,
+  has_rulespec, encoded_descendant_count, status, version)
+SELECT md5('n' || r.version || r.path), r.jurisdiction, r.doc_type, r.path, r.parent_path,
+       regexp_replace(r.path, '^.*/', ''), 'Heading ' || r.path,
+       lpad(r.ordinal::text, 8, '0') || '|' || regexp_replace(r.path, '^.*/', ''),
+       r.depth, md5('p' || r.version || r.path)::uuid::text, r.path,
+       COALESCE(c.n, 0) > 0, COALESCE(c.n, 0), r.has_rulespec, 0, NULL, r.version
+FROM scale_rows r
+LEFT JOIN (
+  SELECT version, parent_path, COUNT(*)::int AS n
+  FROM scale_rows WHERE parent_path IS NOT NULL GROUP BY 1, 2
+) c ON c.version = r.version AND c.parent_path = r.path;
+
+INSERT INTO corpus.release_objects (release_name, content_sha256, release_object)
+VALUES
+  ('scale-served', repeat('a', 64), '{"content": {"created_at": "2026-10-01T00:00:00Z"}}'),
+  ('scale-history', repeat('b', 64), '{"content": {"created_at": "2026-01-01T00:00:00Z"}}');
+INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, version, layer)
+SELECT DISTINCT 'scale-served', jurisdiction, doc_type, version,
+       CASE WHEN version IN ('2026-04-29', '2026-05-01') THEN 'base' ELSE 'primary' END
+FROM scale_rows WHERE version NOT LIKE '%history%' AND version <> 'stored';
+INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, version)
+SELECT DISTINCT 'scale-history', jurisdiction, doc_type, version
+FROM scale_rows WHERE version LIKE '%history%' OR version = 'stored';
+"""
+# Serving the release fires sync_layered_serving for every pair: the layered
+# state of us/statute and us/regulation is derived here, as activation would.
+_SCALE_SERVE = """
+INSERT INTO corpus.active_scope_pointer (jurisdiction, document_class, release_name,
+  content_sha256)
+SELECT DISTINCT jurisdiction, document_class, 'scale-served', repeat('a', 64)
+FROM corpus.release_scopes WHERE release_name = 'scale-served';
+"""
+
+_PLAN_REQUESTS = {
+    "current_provisions?citation_path=eq.<base-only path>": (
+        "SELECT * FROM corpus.current_provisions WHERE citation_path = 'us/statute/30/500'"
+    ),
+    "current_provisions?citation_path=eq.<collision path>": (
+        "SELECT * FROM corpus.current_provisions WHERE citation_path = 'us/statute/3/1'"
+    ),
+    "current_navigation_nodes?jurisdiction=eq.us&order=citation_path.asc&limit=1000": (
+        "SELECT jurisdiction, doc_type, citation_path, has_children, child_count, has_rulespec, "
+        "version FROM corpus.current_navigation_nodes WHERE jurisdiction = 'us' "
+        "ORDER BY citation_path LIMIT 1000"
+    ),
+    "current_navigation_nodes?parent_path=eq.us/statute/2&order=sort_key (merged children)": (
+        "SELECT * FROM corpus.current_navigation_nodes WHERE jurisdiction = 'us' "
+        "AND doc_type = 'statute' AND parent_path = 'us/statute/2' ORDER BY sort_key LIMIT 100"
+    ),
+    "rpc/get_root_document_counts": "SELECT * FROM corpus.get_root_document_counts()",
+    "navigation_nodes?parent_path=eq.us/statute/3 (direct read, anon policy)": (
+        "SELECT * FROM corpus.navigation_nodes WHERE jurisdiction = 'us' "
+        "AND doc_type = 'statute' AND parent_path = 'us/statute/3' ORDER BY sort_key LIMIT 100"
+    ),
+}
+
+
+@pytest.fixture(scope="module")
+def scale_dsn() -> Iterator[str]:
+    yield from _create_database(layered=True)
+
+
+def _plan_nodes(plan: Mapping[str, Any]) -> Iterator[Mapping[str, Any]]:
+    yield plan
+    for child in plan.get("Plans", ()):
+        yield from _plan_nodes(child)
+
+
+def test_serving_plans_stay_index_driven_at_representative_scale(scale_dsn: str) -> None:
+    with closing(psycopg2.connect(scale_dsn)) as connection:
+        with connection.cursor() as cursor:
+            scale_sql = _SCALE_ROWS
+            for name, value in _SCALE.items():
+                scale_sql = scale_sql.replace("{" + name + "}", str(value))
+            cursor.execute(scale_sql)
+        connection.commit()
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            # Staged rows are analyzed long before activation in production.
+            cursor.execute("VACUUM ANALYZE")
+            started = time.monotonic()
+            cursor.execute(_SCALE_SERVE)
+            derivation_seconds = time.monotonic() - started
+            cursor.execute("VACUUM ANALYZE")
+            cursor.execute("SELECT COUNT(*) FROM corpus.provisions")
+            (provision_rows,) = cursor.fetchone()
+            cursor.execute(
+                "SELECT COUNT(*) FROM corpus.provisions WHERE version IN ('2026-04-29', '2026-05-01')"
+            )
+            (base_rows,) = cursor.fetchone()
+            cursor.execute("SELECT COUNT(*) FROM corpus.layered_shadowed_rows")
+            (shadowed,) = cursor.fetchone()
+        connection.autocommit = False
+        assert base_rows == 306_923
+        assert provision_rows >= 300_000
+        assert shadowed == 456
+
+        plans: dict[str, list[Mapping[str, Any]]] = {}
+        report: list[str] = []
+        with _as_role(connection, "anon") as cursor:
+            cursor.execute("SET statement_timeout = '3s'")
+            for request, query in _PLAN_REQUESTS.items():
+                cursor.execute("EXPLAIN (FORMAT JSON) " + query)
+                plans[request] = list(_plan_nodes(cursor.fetchone()[0][0]["Plan"]))
+                cursor.execute("EXPLAIN (ANALYZE, BUFFERS) " + query)
+                report.append(
+                    f"### {request}\n\n```\n"
+                    + "\n".join(row[0] for row in cursor.fetchall())
+                    + "\n```\n"
+                )
+
+        for request in list(_PLAN_REQUESTS)[:2]:
+            nodes = plans[request]
+            scans = [n for n in nodes if n.get("Relation Name") == "provisions"]
+            assert scans and all(
+                n["Node Type"] == "Index Scan"
+                and n["Index Name"] == "idx_provisions_citation_path_version"
+                for n in scans
+            ), request
+            assert not any(n["Node Type"] in {"Sort", "WindowAgg"} for n in nodes), request
+        page = plans[
+            "current_navigation_nodes?jurisdiction=eq.us&order=citation_path.asc&limit=1000"
+        ]
+        assert page[0]["Node Type"] == "Limit"
+        assert page[1]["Node Type"] == "Merge Append"
+        assert not any(
+            n["Node Type"] == "Seq Scan" and n.get("Relation Name") == "navigation_nodes"
+            for n in page
+        )
+        report_path = os.environ.get("AXIOM_CORPUS_PLAN_REPORT")
+        if report_path:
+            Path(report_path).write_text(
+                f"{provision_rows} provision rows, {base_rows} base rows, {shadowed} shadowed; "
+                f"serving the release derived the layered state in {derivation_seconds:.1f} s.\n\n"
+                + "\n".join(report),
+                encoding="utf-8",
+            )

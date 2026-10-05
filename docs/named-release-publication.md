@@ -192,6 +192,64 @@ Activated named objects remain publicly readable from
 only provision/navigation visibility follows the pointer. This preserves
 historical evaluation reproducibility without reviving a mutable alias.
 
+## Layered scopes
+
+A release may serve a base scope underneath its primary scopes: a whole-Code
+base published once and reused unchanged by every successor, with newly
+encoded sections layered over it. Precedence is per
+`(jurisdiction, document_class)` pair: for a citation path both layers of a
+pair carry, serving picks the primary row, whatever the versions' dates or the
+scopes' order; every other base row is served.
+
+**Selectors.** A scope may carry `"layer": "base"`. A primary scope has no
+`layer` key; an explicit `"primary"` or any other value is rejected, so each
+scope has one encoding and historical selectors and signed scope dictionaries
+keep their bytes. A release carries at most one base scope per pair.
+Validation keeps citation paths unique within each layer, accepts a
+base/primary overlap only inside one pair, and resolves parents across both
+layers. A base scope's artifacts may be pinned by a committed corpus lock
+rather than tracked in git (`docs/corpus-storage.md`).
+
+**Release objects.** A release without a base scope signs
+`axiom-corpus/release-object/v3`, byte for byte as before
+(`tests/fixtures/release_layers/pre_layer_v3_release.json`). One with a base
+scope signs `axiom-corpus/release-object/v4`: v3 plus `"layer": "base"` on base
+scope entries, covered by `selector_sha256`. Verification rejects a v4 object
+without a base scope and a v2 or v3 object with a layer anywhere. A scope's
+signed dictionary includes its layer, so a version released in one layer
+cannot be reused in the other.
+
+**Registration** (`corpus.stage_corpus_release_object`) accepts v4 from
+`supabase/migrations/20260927100000_stage_signed_release_object_v4.sql`, which
+`scripts/apply_release_object_staging_migration.py` applies on every publish
+and register-release-object run; v2 and v3 objects register exactly as before.
+
+**Serving** needs `supabase/migrations/20260927110000_layered_release_serving.sql`,
+which no workflow applies; until it is applied, activation rejects every v4
+object. It records each scope's signed layer in `corpus.release_scopes.layer`
+(historical rows are primary) and, whenever a pair's serving release changes,
+derives two tables in the same transaction (a trigger on
+`corpus.active_scope_pointer`):
+
+- `corpus.layered_shadowed_rows`: the base provision and navigation rows a
+  primary row of the pair shadows. `current_provisions` and the
+  `navigation_nodes` read policies exclude them; `legacy_provisions` includes
+  them.
+- `corpus.layered_navigation_overrides`: the merged tree. A primary node keeps
+  the parent its own scope gives it; a node that is a root of its scope takes
+  its base twin's parent, or the nearest served ancestor path when the base
+  does not carry its path; depth, child and encoded-descendant counts are
+  recomputed. `current_navigation_nodes` serves these rows in place of the
+  stored ones. A direct `navigation_nodes` read returns the stored per-scope
+  tree fields, so tree browsing should read `current_navigation_nodes`.
+
+Both tables are empty for a pair served without a base scope, so serving is
+then exactly what it was. Served counts (`current_provision_counts`,
+`get_root_document_counts()`) count winners; a scope's signed and staged row
+count still includes its shadowed base rows. `SupabaseQuery` finds a
+section's direct children through the served navigation tree, since a served
+title's sections may be base rows whose `parent_id` names the base title.
+
 ## Commands
 
 Local preflight without external writes:
