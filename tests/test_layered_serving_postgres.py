@@ -2140,6 +2140,11 @@ def test_release_objects_change_only_their_publication_time(db: Any) -> None:
         "UPDATE corpus.release_objects SET content_sha256 = repeat('0', 64) "
         "WHERE release_name = %s",
         "UPDATE corpus.release_objects SET release_name = 'fx-renamed' WHERE release_name = %s",
+        # Equal as jsonb, not as signed bytes.
+        "UPDATE corpus.release_objects SET release_object = jsonb_set(release_object, "
+        "'{content,scopes,0,provision_rows}', to_jsonb("
+        "(release_object #>> '{content,scopes,0,provision_rows}')::numeric + 0.000)) "
+        "WHERE release_name = %s",
     ):
         error = _attempt(db, statement, (LAYERED_RELEASE,))
         assert isinstance(error, errors.RaiseException), statement
@@ -2154,6 +2159,40 @@ def test_release_objects_change_only_their_publication_time(db: Any) -> None:
         is None
     )
     _assert_serving_is_consistent(db)
+
+
+def test_merge_into_membership_meets_the_same_guards(db: Any) -> None:
+    """MERGE (PostgreSQL 15 and later, CI's version) inserts and updates through
+    the same row and statement triggers."""
+    with db.cursor() as cursor:
+        cursor.execute("SHOW server_version_num")
+        (version,) = cursor.fetchone()
+    db.rollback()
+    if int(version) < 150000:
+        pytest.skip("MERGE needs PostgreSQL 15")
+    _stage(db, STRAY)
+    _publish_layered(db)
+    before = _snapshot(db)
+    merge = (
+        "MERGE INTO corpus.release_scopes scopes USING (SELECT %(release)s AS release_name, "
+        "'fx' AS jurisdiction, 'statute' AS document_class, %(version)s AS version) source "
+        "ON scopes.release_name = source.release_name "
+        "AND scopes.jurisdiction = source.jurisdiction "
+        "AND scopes.document_class = source.document_class "
+        "AND scopes.version = source.version "
+        "WHEN MATCHED THEN UPDATE SET layer = 'base' "
+        "WHEN NOT MATCHED THEN INSERT (release_name, jurisdiction, document_class, version) "
+        "VALUES (source.release_name, source.jurisdiction, source.document_class, source.version)"
+    )
+    for version, message in (
+        (STRAY.version, "not one of its signed scopes"),
+        (PRIMARY_TITLE.version, "immutable"),
+    ):
+        error = _attempt(db, merge, {"release": LAYERED_RELEASE, "version": version})
+        assert isinstance(error, errors.RaiseException), version
+        assert message in str(error)
+        _assert_serving_is_consistent(db)
+        assert _snapshot(db) == before
 
 
 @pytest.mark.parametrize("isolation", ["REPEATABLE READ", "SERIALIZABLE"])
@@ -2269,7 +2308,9 @@ def test_rederivation_takes_only_activation_locks_and_blocks_no_read(
         # refreshed (the lock its refresh takes is not held).
         assert ("active_scope_pointer", "ExclusiveLock") in locks
         assert {(relation, mode) for relation, mode in locks if mode != "AccessShareLock"} <= {
-            ("active_scope_pointer", "ExclusiveLock")
+            ("active_scope_pointer", "ExclusiveLock"),
+            # What a pointer write takes, and each pair's refresh with it.
+            ("active_scope_pointer", "RowExclusiveLock"),
         } | {
             (relation, mode)
             for relation in derived

@@ -211,8 +211,10 @@ GRANT SELECT ON corpus.layered_shadowed_rows, corpus.layered_navigation_override
 
 -- Only the derivation below writes the two tables; it marks its own writes
 -- with the transaction-local setting corpus.layered_serving_derivation. Any
--- other write, the owner's included, is rejected, so the tables cannot drift
--- from what is served. corpus.rederive_layered_serving() rebuilds them.
+-- other write is rejected, the owner's included, so the tables cannot drift
+-- from what is served by accident (an owner who sets that setting, or turns
+-- triggers off, can still write them). corpus.rederive_layered_serving()
+-- rebuilds them.
 CREATE OR REPLACE FUNCTION corpus.guard_layered_serving_write()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -353,6 +355,10 @@ BEGIN
       'layered serving is derived only under READ COMMITTED isolation, not %',
       current_setting('transaction_isolation');
   END IF;
+  -- Every caller already holds this or a stronger lock on the pointers; a
+  -- direct call takes it too, so it is ordered against every activation,
+  -- membership insert and full re-derivation (they take EXCLUSIVE).
+  LOCK TABLE corpus.active_scope_pointer IN ROW EXCLUSIVE MODE;
   PERFORM set_config('corpus.layered_serving_derivation', 'on', true);
   DELETE FROM corpus.layered_shadowed_rows shadowed
   WHERE shadowed.jurisdiction = p_jurisdiction
@@ -952,8 +958,9 @@ SET search_path = corpus, public
 AS $$
 BEGIN
   IF TG_OP = 'UPDATE' THEN
-    IF (NEW.release_name, NEW.content_sha256, NEW.release_object)
-       IS DISTINCT FROM (OLD.release_name, OLD.content_sha256, OLD.release_object) THEN
+    -- As text: jsonb equality would let 10 become 10.000.
+    IF (NEW.release_name, NEW.content_sha256, NEW.release_object::text)
+       IS DISTINCT FROM (OLD.release_name, OLD.content_sha256, OLD.release_object::text) THEN
       RAISE EXCEPTION 'signed corpus release object % is immutable', OLD.release_name;
     END IF;
     RETURN NEW;
