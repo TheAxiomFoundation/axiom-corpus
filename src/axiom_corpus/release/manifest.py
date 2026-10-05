@@ -30,6 +30,12 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 
+from axiom_corpus.corpus.corpus_locks import (
+    LOCK_ROOT,
+    LockSet,
+    load_locks_at_ref,
+    scope_for_path,
+)
 from axiom_corpus.corpus.io import (
     iter_nonblank_lines,
     iter_provisions,
@@ -220,6 +226,11 @@ def build_release_content(
         raise ReleaseManifestError("immutable releases require corpus_base data/corpus")
 
     root = repo_root.resolve()
+    # Corpus bytes may live outside git (docs/corpus-storage.md): make sure
+    # every locked file of the selected scopes is present before hashing.
+    from axiom_corpus.corpus.resolver import ensure_corpus_scopes
+
+    ensure_corpus_scopes(release.scope_keys, repo=root)
     base_path = (root / base).resolve()
     try:
         base_path.relative_to(root)
@@ -1179,9 +1190,81 @@ def _require_tracked_release_inputs(
     except (FileNotFoundError, subprocess.CalledProcessError) as exc:
         raise ReleaseManifestError("cannot verify tracked release inputs") from exc
     tracked = {item.decode("utf-8") for item in result.stdout.split(b"\0") if item}
-    missing = sorted(required - tracked)
+    untracked = required - tracked
+    locked = _committed_corpus_locks(repo_root) if untracked or _has_lock_root(repo_root) else None
+    if locked is not None:
+        untracked -= _artifacts_pinned_by_locks(artifacts, locked)
+        _require_complete_locked_scopes(release, artifacts, locked)
+    missing = sorted(untracked)
     if missing:
-        raise ReleaseManifestError("release inputs must be tracked in Git: " + ", ".join(missing))
+        raise ReleaseManifestError(
+            "release inputs must be tracked in Git or pinned by a committed corpus lock "
+            "with the same sha256: " + ", ".join(missing)
+        )
+
+
+def _has_lock_root(repo_root: Path) -> bool:
+    return (repo_root / LOCK_ROOT).is_dir()
+
+
+def _committed_corpus_locks(repo_root: Path) -> LockSet:
+    """Lock files as committed at HEAD (publication already requires a clean tree)."""
+    try:
+        locks = load_locks_at_ref(repo_root, "HEAD")
+    except (subprocess.CalledProcessError, OSError, ValueError) as exc:
+        raise ReleaseManifestError(f"cannot read committed corpus locks: {exc}") from exc
+    if locks.errors:
+        raise ReleaseManifestError("invalid corpus lock files: " + "; ".join(locks.errors))
+    return locks
+
+
+def _artifacts_pinned_by_locks(
+    artifacts: Sequence[Mapping[str, Any]],
+    locks: LockSet,
+) -> set[str]:
+    pinned: set[str] = set()
+    for entry in artifacts:
+        path = entry.get("path")
+        lock_entry = locks.by_path.get(path) if isinstance(path, str) else None
+        if (
+            lock_entry is not None
+            and lock_entry.sha256 == entry.get("sha256")
+            and lock_entry.size == entry.get("bytes")
+        ):
+            pinned.add(lock_entry.path)
+    return pinned
+
+
+def _require_complete_locked_scopes(
+    release: ReleaseManifest,
+    artifacts: Sequence[Mapping[str, Any]],
+    locks: LockSet,
+) -> None:
+    """A locked scope's artifacts must be exactly its lock entries.
+
+    Source files are enumerated from the worktree, so a scope that was only
+    partly fetched would otherwise sign a release that silently omits files.
+    """
+    # Group once: comparing every artifact with every scope took minutes on
+    # the largest union release.
+    artifacts_by_scope: dict[tuple[str, str, str], set[str]] = {}
+    for entry in artifacts:
+        path = str(entry.get("path"))
+        key = scope_for_path(path)
+        if key is not None:
+            artifacts_by_scope.setdefault(key, set()).add(path)
+    for scope in release.scopes:
+        lock = locks.locks.get(scope.key)
+        if lock is None:
+            continue
+        locked_paths = {entry.path for entry in lock.files}
+        absent = sorted(locked_paths - artifacts_by_scope.get(scope.key, set()))
+        if absent:
+            raise ReleaseManifestError(
+                f"release scope {'/'.join(scope.key)} is not fully materialized; "
+                f"run `axiom-corpus-ingest corpus fetch {'/'.join(scope.key)}` "
+                f"(missing: {', '.join(absent[:5])})"
+            )
 
 
 def _git_provenance(repo_root: Path) -> dict[str, str] | None:

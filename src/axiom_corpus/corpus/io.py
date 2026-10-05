@@ -45,7 +45,7 @@ class SourceInventoryReference(NamedTuple):
 
 
 def load_source_inventory(path: str | Path) -> tuple[SourceInventoryItem, ...]:
-    data = json.loads(Path(path).read_text())
+    data = json.loads(_fetched(Path(path)).read_text())
     rows = data.get("items", data if isinstance(data, list) else [])
     return tuple(SourceInventoryItem.from_mapping(row) for row in rows)
 
@@ -59,7 +59,7 @@ def load_source_inventory_references(path: str | Path) -> tuple[SourceInventoryR
     encoding) is handed to ``load_source_inventory`` itself, so the result or
     the exception is the whole-file reader's own in every case.
     """
-    p = Path(path)
+    p = _fetched(Path(path))
     streamed = _stream_inventory_references(p)
     if streamed is not None:
         return streamed
@@ -83,7 +83,7 @@ def iter_provisions(path: str | Path) -> Iterator[ProvisionRecord]:
 
     A caller that stops on an exception must discard what it has consumed.
     """
-    p = Path(path)
+    p = _fetched(Path(path))
     if not p.exists():
         return
     failure: Exception | None = None
@@ -256,3 +256,17 @@ class _JsonTextStream:
                 return False, None
             # Grow geometrically so a large value is re-parsed O(log n) times.
             read_size *= 2
+
+
+def _fetched(path: Path) -> Path:
+    """Fetch a locked corpus file this checkout lacks (docs/corpus-storage.md).
+
+    Without this, an unfetched provisions file would read as an empty scope.
+    Paths that no lock names behave exactly as before.
+    """
+    if path.exists():
+        return path
+    from axiom_corpus.corpus.resolver import fetch_locked_file
+
+    fetch_locked_file(path)
+    return path
