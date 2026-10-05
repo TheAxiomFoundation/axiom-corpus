@@ -1,13 +1,22 @@
 """Tests for the query supabase module.
 
 Tests cover Rule/Section dataclasses and SupabaseQuery class.
-HTTP calls are mocked.
+HTTP calls are mocked, or served by an emulated PostgREST over rows built by
+the corpus's own projection and navigation code.
 """
 
 import os
+from collections.abc import Iterable, Mapping, Sequence
+from typing import Any
 from unittest.mock import patch
 
-from axiom_corpus.query.supabase import Rule, Section, SupabaseQuery
+from hypothesis import given, settings
+from hypothesis import strategies as st
+
+from axiom_corpus.corpus.models import ProvisionRecord
+from axiom_corpus.corpus.navigation import build_navigation_nodes
+from axiom_corpus.corpus.supabase import iter_supabase_rows
+from axiom_corpus.query.supabase import CHILD_ID_BATCH, Rule, Section, SupabaseQuery
 
 
 def _make_rule(**kwargs):
@@ -169,10 +178,7 @@ class TestSupabaseQuery:
         assert SupabaseQuery._normalize_citation_path("usc/26/32") == "us/statute/26/32"
 
     def test_normalizes_full_citation_path(self):
-        assert (
-            SupabaseQuery._normalize_citation_path("us/statute/26/32")
-            == "us/statute/26/32"
-        )
+        assert SupabaseQuery._normalize_citation_path("us/statute/26/32") == "us/statute/26/32"
         assert (
             SupabaseQuery._normalize_citation_path("statute/tax/606", jurisdiction="us-ny")
             == "us-ny/statute/tax/606"
@@ -219,111 +225,6 @@ class TestSupabaseQuery:
         ]
         assert all(name != "source_path" for name, _ in child_params)
 
-    def test_get_section_children_follow_the_served_navigation_tree(self):
-        """A served title's children may be rows of another scope (a base layer)."""
-        query = SupabaseQuery(url="https://test.supabase.co", anon_key="test-key")
-        parent = _make_rule(id="title-primary", citation_path="us/statute/26").__dict__
-        base_child = _make_rule(
-            id="section-base",
-            citation_path="us/statute/26/1",
-            parent_id="title-base",
-        ).__dict__
-        primary_child = _make_rule(
-            id="section-primary",
-            citation_path="us/statute/26/32",
-            parent_id="title-primary",
-        ).__dict__
-        nodes = [{"provision_id": "section-base"}, {"provision_id": "section-primary"}]
-
-        with patch.object(
-            query, "_request", side_effect=[[parent], nodes, [primary_child, base_child]]
-        ) as request:
-            section = query.get_section_with_children("us/statute/26")
-
-        assert section is not None
-        assert [child.id for child in section.children] == ["section-base", "section-primary"]
-        nav_table, nav_params = request.call_args_list[1].args
-        assert nav_table == "current_navigation_nodes"
-        assert nav_params == {
-            "select": "provision_id",
-            "jurisdiction": "eq.us",
-            "parent_path": "eq.us/statute/26",
-            "order": "sort_key,path",
-        }
-        rows_table, rows_params = request.call_args_list[2].args
-        assert rows_table == "current_provisions"
-        assert rows_params == {"id": "in.(section-base,section-primary)"}
-
-    def test_get_section_children_batch_long_id_lists(self):
-        from axiom_corpus.query.supabase import CHILD_ID_BATCH
-
-        query = SupabaseQuery(url="https://test.supabase.co", anon_key="test-key")
-        parent = _make_rule(id="title", citation_path="us/statute/42").__dict__
-        ids = [f"section-{index:04d}" for index in range(CHILD_ID_BATCH + 5)]
-        rows = {
-            provision_id: _make_rule(
-                id=provision_id, citation_path=f"us/statute/42/{provision_id}"
-            ).__dict__
-            for provision_id in ids
-        }
-
-        def respond(table, params):
-            if table == "current_provisions" and "citation_path" in params:
-                return [parent]
-            if table == "current_navigation_nodes":
-                return [{"provision_id": provision_id} for provision_id in ids]
-            requested = params["id"].removeprefix("in.(").removesuffix(")").split(",")
-            # The last child is not served: it is left out, not invented.
-            return [rows[i] for i in requested if i != ids[-1]]
-
-        with patch.object(query, "_request", side_effect=respond) as request:
-            section = query.get_section_with_children("us/statute/42")
-
-        assert section is not None
-        assert [child.id for child in section.children] == ids[:-1]
-        id_requests = [
-            call.args[1]["id"] for call in request.call_args_list if "id" in call.args[1]
-        ]
-        assert len(id_requests) == 2
-        assert id_requests[0].count(",") == CHILD_ID_BATCH - 1
-
-    def test_get_section_children_keep_one_row_per_citation_path(self):
-        query = SupabaseQuery(url="https://test.supabase.co", anon_key="test-key")
-        parent = _make_rule(id="title-a", citation_path="us/statute/26").__dict__
-        other_scope = _make_rule(
-            id="section-b", citation_path="us/statute/26/1", parent_id="title-b"
-        ).__dict__
-        own_scope = _make_rule(
-            id="section-a", citation_path="us/statute/26/1", parent_id="title-a"
-        ).__dict__
-        sibling = _make_rule(
-            id="section-2", citation_path="us/statute/26/2", parent_id="title-b"
-        ).__dict__
-        nodes = [
-            {"provision_id": "section-b"},
-            {"provision_id": "section-a"},
-            {"provision_id": "section-2"},
-        ]
-
-        with patch.object(
-            query, "_request", side_effect=[[parent], nodes, [own_scope, other_scope, sibling]]
-        ):
-            section = query.get_section_with_children("us/statute/26")
-
-        assert section is not None
-        assert [child.id for child in section.children] == ["section-a", "section-2"]
-
-    def test_get_section_children_of_a_leaf_skip_the_provision_lookup(self):
-        query = SupabaseQuery(url="https://test.supabase.co", anon_key="test-key")
-        leaf = _make_rule(citation_path="us/statute/26/32/a").__dict__
-
-        with patch.object(query, "_request", side_effect=[[leaf], []]) as request:
-            section = query.get_section_with_children("us/statute/26/32/a")
-
-        assert section is not None
-        assert section.children == []
-        assert request.call_count == 2
-
     def test_get_section_children_of_legacy_rows_use_parent_ids(self):
         query = SupabaseQuery(
             url="https://test.supabase.co",
@@ -369,3 +270,480 @@ class TestSupabaseQuery:
         assert table == "current_provision_counts"
         assert params["select"] == "jurisdiction,provision_count"
         assert stats == {"us": 2, "us-co": 3, "total": 5}
+
+
+# ---------------------------------------------------------------------------
+# Direct children, through an emulated PostgREST.
+# ---------------------------------------------------------------------------
+
+
+class _EmulatedPostgrest:
+    """The part of PostgREST the query client uses, over in-memory rows.
+
+    Filters ``eq.``, ``in.(...)``, ``gte.``, ``lt.`` and ``is.null``; ``order``
+    by ascending columns with nulls last, as PostgreSQL orders them; ``limit``,
+    ``offset`` and ``select``. A filter or selected column the relation lacks is
+    an error, as PostgREST answers 400. Every response is capped at
+    ``max_rows`` rows, as db-max-rows caps it (1,000 on Supabase by default).
+    """
+
+    def __init__(
+        self,
+        tables: Mapping[str, Sequence[Mapping[str, Any]]],
+        *,
+        columns: Mapping[str, Iterable[str]] | None = None,
+        max_rows: int = 1000,
+    ) -> None:
+        self.tables = {name: [dict(row) for row in rows] for name, rows in tables.items()}
+        self.columns = {
+            name: set((columns or {}).get(name, ())) | {key for row in rows for key in row}
+            for name, rows in tables.items()
+        }
+        self.max_rows = max_rows
+        self.requests: list[tuple[str, list[tuple[str, str]]]] = []
+
+    def __call__(
+        self, table: str, params: Any = None, single: bool = False
+    ) -> list[dict[str, Any]]:
+        items = list(params.items()) if isinstance(params, Mapping) else list(params or [])
+        self.requests.append((table, items))
+        rows = list(self.tables[table])
+        known = self.columns[table]
+        order, limit, offset, select = "", None, 0, "*"
+        for key, value in items:
+            if key == "order":
+                order = value
+            elif key == "limit":
+                limit = int(value)
+            elif key == "offset":
+                offset = int(value)
+            elif key == "select":
+                select = value
+            else:
+                if key not in known:
+                    raise ValueError(f"column {table}.{key} does not exist")
+                rows = [row for row in rows if _matches(row.get(key), value)]
+        for column in reversed([c for c in order.split(",") if c]):
+            name = column.removesuffix(".asc")
+            rows.sort(key=lambda row, name=name: (row.get(name) is None, row.get(name) or 0))
+        rows = rows[offset:]
+        if limit is not None:
+            rows = rows[:limit]
+        rows = rows[: self.max_rows]
+        if select == "*":
+            return [dict(row) for row in rows]
+        selected = select.split(",")
+        for name in selected:
+            if name not in known:
+                raise ValueError(f"column {table}.{name} does not exist")
+        return [{name: row.get(name) for name in selected} for row in rows]
+
+
+def _matches(value: Any, spec: str) -> bool:
+    operator, _, operand = spec.partition(".")
+    if operator == "is":
+        assert operand == "null", spec
+        return value is None
+    if value is None:
+        return False
+    if operator == "eq":
+        return str(value) == operand
+    if operator == "in":
+        return str(value) in operand.removeprefix("(").removesuffix(")").split(",")
+    if operator == "gte":
+        return str(value) >= operand
+    if operator == "lt":
+        return str(value) < operand
+    raise AssertionError(spec)
+
+
+Tree = Sequence[tuple[str, str | None, int | None]]
+
+
+def _records(version: str, tree: Tree) -> list[ProvisionRecord]:
+    """One staged scope of fx/statute: (path, declared parent, ordinal) per row."""
+    return [
+        ProvisionRecord(
+            jurisdiction="fx",
+            document_class="statute",
+            citation_path=path,
+            parent_citation_path=parent,
+            version=version,
+            heading=f"Heading {path}",
+            body=f"Text of {path} in {version}.",
+            ordinal=ordinal,
+            source_path=f"sources/fx/statute/{version}/source.xml",
+            expression_date="2026-09-01",
+        )
+        for path, parent, ordinal in tree
+    ]
+
+
+def _release_scopes(
+    versions: Sequence[str], *, base: str | None, layer_column: bool
+) -> list[dict[str, Any]]:
+    rows = []
+    for version in versions:
+        row: dict[str, Any] = {
+            "release_name": "fx-rulespec",
+            "jurisdiction": "fx",
+            "document_class": "statute",
+            "version": version,
+            "synced_at": "2026-10-01T00:00:00Z",
+        }
+        if layer_column:
+            row["layer"] = "base" if version == base else "primary"
+        rows.append(row)
+    return rows
+
+
+_SCOPE_COLUMNS = ("release_name", "jurisdiction", "document_class", "version", "synced_at")
+
+
+def _unlayered_postgrest(
+    scopes: Mapping[str, Tree], *, layer_column: bool = True, max_rows: int = 1000
+) -> _EmulatedPostgrest:
+    """A pair served without a base scope: every served scope's rows as staged."""
+    records = {version: _records(version, tree) for version, tree in scopes.items()}
+    return _EmulatedPostgrest(
+        {
+            "current_provisions": [
+                row for scope in records.values() for row in iter_supabase_rows(scope)
+            ],
+            "current_navigation_nodes": [
+                node.to_supabase_row()
+                for scope in records.values()
+                for node in build_navigation_nodes(scope)
+            ],
+            "current_release_scopes": _release_scopes(
+                list(scopes), base=None, layer_column=layer_column
+            ),
+        },
+        columns={"current_release_scopes": _SCOPE_COLUMNS + (("layer",) if layer_column else ())},
+        max_rows=max_rows,
+    )
+
+
+def _layered_postgrest(
+    base: Tree,
+    primaries: Mapping[str, Tree],
+    *,
+    max_rows: int = 1000,
+    extra_navigation: Iterable[dict[str, Any]] = (),
+) -> _EmulatedPostgrest:
+    """A pair served with a base scope: the primary rows, and base rows no
+    primary path shadows. Navigation is build_navigation_nodes over them, which
+    the merge of 20260927110000 equals on well-formed pairs
+    (tests/test_layered_serving_postgres.py)."""
+    primary = [record for version, tree in primaries.items() for record in _records(version, tree)]
+    shadowing = {record.citation_path for record in primary}
+    winners = primary + [
+        record
+        for record in _records("2026-04-29-base", base)
+        if record.citation_path not in shadowing
+    ]
+    return _EmulatedPostgrest(
+        {
+            "current_provisions": list(iter_supabase_rows(winners)),
+            "current_navigation_nodes": [
+                node.to_supabase_row() for node in build_navigation_nodes(winners)
+            ]
+            + list(extra_navigation),
+            "current_release_scopes": _release_scopes(
+                ["2026-04-29-base", *primaries], base="2026-04-29-base", layer_column=True
+            ),
+        },
+        max_rows=max_rows,
+    )
+
+
+def _query(postgrest: _EmulatedPostgrest) -> SupabaseQuery:
+    query = SupabaseQuery(url="https://test.supabase.co", anon_key="test-key")
+    query._request = postgrest  # type: ignore[method-assign]
+    return query
+
+
+def _origin_main_children(query: SupabaseQuery, path: str, jurisdiction: str = "fx") -> list[Rule]:
+    """get_section_with_children(deep=False) exactly as origin/main (595a64c5) has it."""
+    rule = query.get_section(path, jurisdiction)
+    assert rule is not None
+    params = {
+        "parent_id": f"eq.{rule.id}",
+        "order": "ordinal",
+    }
+    children_data = query._request(query.provisions_table, params) or []
+    return [query._to_rule(c) for c in children_data]
+
+
+def _children(query: SupabaseQuery, path: str) -> list[Rule]:
+    section = query.get_section_with_children(path, jurisdiction="fx")
+    assert section is not None
+    return section.children
+
+
+# A title, a section that declares it, and one that declares no parent: the
+# staged navigation hangs the second under the title, the provision rows do not.
+_UNDECLARED_CHILD = (
+    ("fx/statute/1", None, 1),
+    ("fx/statute/1/1", "fx/statute/1", 1),
+    ("fx/statute/1/2", None, 2),
+)
+
+
+def test_unlayered_children_are_the_parent_id_children_origin_main_returns() -> None:
+    for layer_column in (True, False):
+        postgrest = _unlayered_postgrest(
+            {"2026-09-01": _UNDECLARED_CHILD}, layer_column=layer_column
+        )
+        query = _query(postgrest)
+        expected = _origin_main_children(query, "fx/statute/1")
+        assert [child.citation_path for child in expected] == ["fx/statute/1/1"]
+        assert _children(query, "fx/statute/1") == expected
+        # The probe reads every column: before 20260927110000 the view has no
+        # layer column, so a filter on it would be an error.
+        table, params = postgrest.requests[-2]
+        assert table == "current_release_scopes"
+        assert dict(params) == {
+            "select": "*",
+            "jurisdiction": "eq.fx",
+            "document_class": "eq.statute",
+        }
+
+
+def test_unlayered_children_with_a_path_in_two_scopes_match_origin_main() -> None:
+    """A release cut before citation paths were unique can serve a title twice."""
+    tree = (("fx/statute/1", None, 1),) + tuple(
+        (f"fx/statute/1/{index:04d}", "fx/statute/1", index) for index in range(1000)
+    )
+    query = _query(_unlayered_postgrest({"2026-09-01": tree, "2026-09-02": tree}))
+    expected = _origin_main_children(query, "fx/statute/1")
+    assert len(expected) == 1000
+    assert _children(query, "fx/statute/1") == expected
+
+
+@settings(max_examples=150, deadline=None)
+@given(
+    scopes=st.dictionaries(
+        st.sampled_from(["2026-09-01", "2026-09-02", "2026-09-03"]),
+        st.lists(
+            st.tuples(
+                st.sampled_from(
+                    [
+                        "fx/statute/1",
+                        "fx/statute/1/a",
+                        "fx/statute/1/b",
+                        "fx/statute/1/c",
+                        "fx/statute/1/a/i",
+                        "fx/statute/2",
+                    ]
+                ),
+                st.sampled_from([None, "fx/statute/1", "fx/statute/1/a", "fx/statute/2"]),
+                st.sampled_from([None, 1, 2, 3]),
+            ),
+            min_size=1,
+            max_size=6,
+            unique_by=lambda row: row[0],
+        ),
+        min_size=1,
+    ),
+    path=st.sampled_from(["fx/statute/1", "fx/statute/1/a", "fx/statute/2"]),
+    max_rows=st.integers(1, 4),
+    layer_column=st.booleans(),
+)
+def test_unlayered_children_equal_origin_main_on_any_served_rows(
+    scopes: dict[str, list[tuple[str, str | None, int | None]]],
+    path: str,
+    max_rows: int,
+    layer_column: bool,
+) -> None:
+    query = _query(_unlayered_postgrest(scopes, layer_column=layer_column, max_rows=max_rows))
+    if query.get_section(path, "fx") is None:
+        assert query.get_section_with_children(path, jurisdiction="fx") is None
+        return
+    assert _children(query, path) == _origin_main_children(query, path)
+
+
+def _layered_children(postgrest: _EmulatedPostgrest, path: str) -> list[str | None]:
+    """The served children of ``path`` in served navigation order."""
+    nodes = sorted(
+        (
+            node
+            for node in postgrest.tables["current_navigation_nodes"]
+            if node["parent_path"] == path
+        ),
+        key=lambda node: (node["sort_key"], node["path"]),
+    )
+    paths: list[str | None] = []
+    for node in nodes:
+        if node["path"] not in paths:
+            paths.append(node["path"])
+    return paths
+
+
+# A base title of 700 sections, and a primary scope that adds 600 sections
+# without its title: once merged, 1,300 children of one title.
+_BASE_TITLE = (("fx/statute/1", None, 1),) + tuple(
+    (f"fx/statute/1/{index:04d}", "fx/statute/1", index) for index in range(700)
+)
+_NEW_SECTIONS = tuple((f"fx/statute/1/{index:04d}", None, index) for index in range(700, 1300))
+
+
+def test_layered_children_page_through_the_row_cap() -> None:
+    for max_rows in (1000, 250):
+        postgrest = _layered_postgrest(
+            _BASE_TITLE, {"2026-09-20-sections": _NEW_SECTIONS}, max_rows=max_rows
+        )
+        children = _children(_query(postgrest), "fx/statute/1")
+        assert len(children) == 1300
+        assert [child.citation_path for child in children] == _layered_children(
+            postgrest, "fx/statute/1"
+        )
+
+
+def test_layered_children_page_before_keeping_one_per_path() -> None:
+    """Navigation that serves a child twice (two scopes of one layer carrying it,
+    which validation and activation reject) still yields every child once."""
+    titled = (("fx/statute/1", None, 1),) + tuple(
+        (f"fx/statute/1/{index:04d}", "fx/statute/1", index) for index in range(1000)
+    )
+    twin = tuple((path, None, ordinal) for path, _parent, ordinal in titled[1:])
+    twin_rows = [
+        node.to_supabase_row() for node in build_navigation_nodes(_records("2026-09-21-twin", twin))
+    ]
+    for row in twin_rows:
+        row["parent_path"] = "fx/statute/1"
+    postgrest = _layered_postgrest(
+        (("fx/statute/1", None, 1),),
+        {"2026-09-20-title": titled},
+        extra_navigation=twin_rows,
+    )
+    postgrest.tables["current_provisions"].extend(
+        iter_supabase_rows(_records("2026-09-21-twin", twin))
+    )
+    children = _children(_query(postgrest), "fx/statute/1")
+    assert len(children) == 1000
+    title_id = _query(postgrest).get_section("fx/statute/1", "fx").id  # type: ignore[union-attr]
+    # One child per path, the title's own scope's.
+    assert all(child.parent_id == title_id for child in children)
+
+
+def test_layered_children_follow_the_served_navigation_tree() -> None:
+    """A primary title's children may be base rows, and a base title's primary rows."""
+    postgrest = _layered_postgrest(
+        (
+            ("fx/statute/1", None, 1),
+            ("fx/statute/1/1", "fx/statute/1", 1),
+            ("fx/statute/1/2", "fx/statute/1", 2),
+            ("fx/statute/2", None, 2),
+            ("fx/statute/2/1", "fx/statute/2", 1),
+        ),
+        {
+            "2026-09-20-title-1": (
+                ("fx/statute/1", None, 1),
+                ("fx/statute/1/3", "fx/statute/1", 3),
+            ),
+            "2026-09-21-title-2": (("fx/statute/2/2", None, 2),),
+        },
+    )
+    query = _query(postgrest)
+    assert [(c.citation_path, c.id) for c in _children(query, "fx/statute/1")] == [
+        (row["citation_path"], row["id"])
+        for path in ("fx/statute/1/1", "fx/statute/1/2", "fx/statute/1/3")
+        for row in postgrest.tables["current_provisions"]
+        if row["citation_path"] == path
+    ]
+    assert [c.citation_path for c in _children(query, "fx/statute/2")] == [
+        "fx/statute/2/1",
+        "fx/statute/2/2",
+    ]
+    navigation = [
+        dict(params) for table, params in postgrest.requests if table == "current_navigation_nodes"
+    ]
+    assert navigation[0] == {
+        "select": "provision_id",
+        "jurisdiction": "eq.fx",
+        "parent_path": "eq.fx/statute/1",
+        "doc_type": "eq.statute",
+        "order": "sort_key,path,id",
+        "limit": "1000",
+        "offset": "0",
+    }
+
+
+def test_layered_children_are_read_back_in_id_batches() -> None:
+    sections = tuple(
+        (f"fx/statute/1/{index:04d}", None, index) for index in range(CHILD_ID_BATCH + 5)
+    )
+    postgrest = _layered_postgrest((("fx/statute/1", None, 1),), {"2026-09-20": sections})
+    children = _children(_query(postgrest), "fx/statute/1")
+    assert len(children) == CHILD_ID_BATCH + 5
+    batches = [
+        dict(params)["id"]
+        for table, params in postgrest.requests
+        if table == "current_provisions" and "id" in dict(params)
+    ]
+    assert [batch.count(",") + 1 for batch in batches] == [CHILD_ID_BATCH, 5]
+
+
+def test_layered_leaf_has_no_children_and_reads_no_provisions() -> None:
+    postgrest = _layered_postgrest(_BASE_TITLE[:2], {"2026-09-20": _NEW_SECTIONS[:1]})
+    assert _children(_query(postgrest), "fx/statute/1/0000") == []
+    assert not any(
+        "id" in dict(params)
+        for table, params in postgrest.requests
+        if table == "current_provisions"
+    )
+
+
+@st.composite
+def _layered_pair(draw: st.DrawFn) -> tuple[Tree, dict[str, Tree]]:
+    """A base closed under ancestors and primary scopes over its paths and new
+    ones, every declared parent the immediate path prefix (the well-formed case)."""
+    paths = (
+        ["fx/statute/1"]
+        + [f"fx/statute/1/{i}" for i in range(6)]
+        + [f"fx/statute/1/{i}/{j}" for i in range(3) for j in ("a", "b")]
+    )
+    base_paths = {"fx/statute/1"} | set(draw(st.lists(st.sampled_from(paths[1:7]), max_size=6)))
+    base_paths |= {
+        p for p in paths[7:] if p.rsplit("/", 1)[0] in base_paths and draw(st.booleans())
+    }
+
+    def row(path: str, scope_paths: set[str]) -> tuple[str, str | None, int | None]:
+        parent = path.rsplit("/", 1)[0]
+        return (
+            path,
+            parent if parent in scope_paths else None,
+            draw(st.sampled_from([None, 1, 2])),
+        )
+
+    base = tuple(row(path, base_paths) for path in paths if path in base_paths)
+    primaries: dict[str, Tree] = {}
+    taken: set[str] = set()
+    for index in range(draw(st.integers(1, 2))):
+        chosen = set(draw(st.lists(st.sampled_from(paths), max_size=8))) - taken
+        taken |= chosen
+        if chosen:
+            primaries[f"2026-09-2{index}"] = tuple(
+                row(path, chosen) for path in paths if path in chosen
+            )
+    return base, primaries
+
+
+@settings(max_examples=150, deadline=None)
+@given(
+    pair=_layered_pair(),
+    path=st.sampled_from(["fx/statute/1", "fx/statute/1/0", "fx/statute/1/1"]),
+    max_rows=st.integers(1, 3),
+)
+def test_layered_children_are_the_served_navigation_children(
+    pair: tuple[Tree, dict[str, Tree]], path: str, max_rows: int
+) -> None:
+    base, primaries = pair
+    postgrest = _layered_postgrest(base, primaries, max_rows=max_rows)
+    query = _query(postgrest)
+    if query.get_section(path, "fx") is None:
+        return
+    assert [child.citation_path for child in _children(query, path)] == _layered_children(
+        postgrest, path
+    )

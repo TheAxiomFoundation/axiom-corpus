@@ -53,6 +53,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.corpus.supabase import iter_supabase_rows
+from axiom_corpus.query.supabase import SupabaseQuery
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_SCHEMA_V3,
     RELEASE_OBJECT_SCHEMA_V4,
@@ -2229,6 +2230,81 @@ def test_memberships_that_exist_when_the_migration_is_applied_become_primary(
             ("primary",)
         ]
         _assert_matches_reference(connection)
+
+
+class _ServedRest:
+    """The query client's PostgREST requests, answered by the serving views as anon.
+
+    Filters ``eq.`` and ``in.(...)``, ``order``, ``limit``, ``offset`` and
+    ``select``, with every response capped at ``max_rows`` rows, as
+    db-max-rows caps a PostgREST response.
+    """
+
+    def __init__(self, connection: Any, *, max_rows: int) -> None:
+        self.connection = connection
+        self.max_rows = max_rows
+
+    def __call__(self, table: str, params: Any = None, single: bool = False) -> list[dict]:
+        items = list(params.items()) if isinstance(params, Mapping) else list(params or [])
+        conditions: list[Any] = []
+        arguments: list[Any] = []
+        order: list[Any] = []
+        limit, offset, select = self.max_rows, 0, "*"
+        for key, value in items:
+            if key == "order":
+                order = [sql.Identifier(column) for column in value.split(",")]
+            elif key == "limit":
+                limit = min(int(value), self.max_rows)
+            elif key == "offset":
+                offset = int(value)
+            elif key == "select":
+                select = value
+            else:
+                operator, _, operand = value.partition(".")
+                if operator == "eq":
+                    conditions.append(sql.SQL("{}::text = %s").format(sql.Identifier(key)))
+                    arguments.append(operand)
+                else:
+                    assert operator == "in", value
+                    conditions.append(sql.SQL("{}::text = ANY(%s)").format(sql.Identifier(key)))
+                    arguments.append(operand.removeprefix("(").removesuffix(")").split(","))
+        query = sql.SQL("SELECT {} FROM corpus.{}{}{} LIMIT %s OFFSET %s").format(
+            sql.SQL("*")
+            if select == "*"
+            else sql.SQL(", ").join(sql.Identifier(column) for column in select.split(",")),
+            sql.Identifier(table),
+            sql.SQL(" WHERE ") + sql.SQL(" AND ").join(conditions) if conditions else sql.SQL(""),
+            sql.SQL(" ORDER BY ") + sql.SQL(", ").join(order) if order else sql.SQL(""),
+        )
+        with _as_role(self.connection, "anon") as cursor:
+            cursor.execute(query, (*arguments, limit, offset))
+            names = [column.name for column in cursor.description]
+            return [dict(zip(names, row, strict=True)) for row in cursor.fetchall()]
+
+
+def test_the_query_client_reads_children_through_the_serving_views(db: Any) -> None:
+    """Merged children for a layered pair, parent ids for an unlayered one."""
+    _publish_layered(db)
+    query = SupabaseQuery(url="https://test.supabase.co", anon_key="test-key")
+    query._request = _ServedRest(db, max_rows=2)  # type: ignore[method-assign]
+    section = query.get_section_with_children("fx/statute/2", jurisdiction="fx")
+    assert section is not None
+    assert [(child.citation_path, child.id) for child in section.children] == [
+        ("fx/statute/2/1", _provision_id("fx/statute/2/1", BASE.version)),
+        ("fx/statute/2/2", _provision_id("fx/statute/2/2", PRIMARY_SECTIONS.version)),
+        ("fx/statute/2/5/x", _provision_id("fx/statute/2/5/x", PRIMARY_SECTIONS.version)),
+    ]
+    section = query.get_section_with_children("fx/statute/1", jurisdiction="fx")
+    assert section is not None
+    assert [child.citation_path for child in section.children] == [
+        "fx/statute/1/1",
+        "fx/statute/1/2",
+        "fx/statute/1/3",
+        "fx/statute/1/4",
+    ]
+    section = query.get_section_with_children("fx/regulation/1", jurisdiction="fx")
+    assert section is not None
+    assert [child.citation_path for child in section.children] == ["fx/regulation/1/1"]
 
 
 def test_references_follow_the_served_row_of_each_path(db: Any) -> None:
