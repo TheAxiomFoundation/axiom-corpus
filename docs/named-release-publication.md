@@ -209,7 +209,12 @@ Validation keeps citation paths unique within each layer and accepts a
 base/primary overlap only inside one pair. Parent closure stays per scope: a
 row's parent id is derived from the parent's path and the row's own version,
 so a primary section whose title is only in the base declares no parent, and
-serving places it under the base title. A base scope's artifacts may be pinned
+serving places it under the base title. Validation merges each layered
+pair's trees as serving does and warns (it does not fail) when a primary root
+lands under no served ancestor, so a mistyped path would become a new
+top-level document (`layered_primary_root_unattached`), and when the two layers
+disagree about which of two paths is the ancestor, so serving breaks a parent
+cycle (`layered_parent_cycle_broken`). A base scope's artifacts may be pinned
 by a committed corpus lock rather than tracked in git
 (`docs/corpus-storage.md`).
 
@@ -249,9 +254,58 @@ derives two tables in the same transaction (a trigger on
 Both tables are empty for a pair served without a base scope, so serving is
 then exactly what it was. Served counts (`current_provision_counts`,
 `get_root_document_counts()`) count winners; a scope's signed and staged row
-count still includes its shadowed base rows. `SupabaseQuery` finds a
-section's direct children through the served navigation tree, since a served
-title's sections may be base rows whose `parent_id` names the base title.
+count still includes its shadowed base rows. `get_root_document_counts()`
+counts served roots only, as open PR #666 defined it; the repository's earlier
+`20260910120000` counted every stored root, superseded and unreleased versions
+included.
+
+The derived tables stay a function of what is served, whoever writes:
+
+- Any change to `corpus.active_scope_pointer` re-derives its pair.
+- Membership of a signed release is immutable. An `UPDATE`, `DELETE` or
+  `TRUNCATE` of `corpus.release_scopes` is rejected, and an inserted row must
+  be one of its release object's signed scopes, with its signed layer. A signed
+  scope that joins a pair its release already serves (membership altered before
+  this guard and restored) re-derives that pair in the same statement.
+- `TRUNCATE` of `provisions` or `navigation_nodes` is rejected while either
+  holds a row of a signed release's scope, as row writes already are.
+- `SELECT corpus.rederive_layered_serving()` re-derives every served pair, for
+  example after derived rows were written by hand.
+
+Each derivation that changes the derived tables runs `ANALYZE` on both.
+Staged rows do not keep a provision's citation label, so where the merge moves
+a node that has no heading and whose citation label equals its old segment,
+the served label follows the new segment while `build_navigation_nodes` would
+keep the citation label. That label is the only known difference.
+
+`SupabaseQuery.get_section_with_children` returns, for a pair served without a
+base scope, the `parent_id` children it always returned. For a layered pair, a
+served title's sections may be base rows whose `parent_id` names the base
+title, so it reads the served navigation tree, paging past PostgREST's row cap,
+and keeps one child per path.
+
+### Deploying the serving migration
+
+Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
+
+1. Build the two `navigation_nodes` indexes of section 1 of the file with
+   `CREATE INDEX CONCURRENTLY IF NOT EXISTS` and their exact definitions, then
+   confirm `pg_index.indisvalid` for both. The file refuses to run over an
+   invalid one.
+2. Apply the file in one transaction. Its `ALTER TABLE`, `CREATE POLICY` and
+   `CREATE OR REPLACE VIEW` statements take locks that serving reads wait for
+   until it commits, so the file does no derivation work. It sets
+   `lock_timeout` to 2 s, so a statement that cannot get its lock fails rather
+   than queueing reads behind it; on a timeout, wait and retry.
+3. The first time, no base scope is served: the file empties the derived
+   tables and every view returns what it returned before. When a base scope is
+   served (re-applying the file after a layered activation), it prints a notice
+   and leaves the derived state as the triggers kept it. Then run
+   `SELECT corpus.rederive_layered_serving();` as its own transaction. It takes
+   the lock activation takes on `active_scope_pointer` (`EXCLUSIVE`, which
+   blocks activations and pointer writes, not reads), writes and analyzes only
+   the two derived tables, and serving reads see the previous state until it
+   commits. Deriving the whole corpus took 15 to 28 s on a 1.5M-row local copy.
 
 ## Commands
 
