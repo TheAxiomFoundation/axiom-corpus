@@ -21,6 +21,7 @@ Usage:
 
 import os
 from dataclasses import dataclass
+from typing import Any
 
 import httpx
 
@@ -34,6 +35,9 @@ DEFAULT_AXIOM_SUPABASE_ANON_KEY = (
 )
 DEFAULT_DOC_TYPE = "statute"
 DOC_TYPE_SEGMENTS = {"statute", "regulation", "rulemaking"}
+# Provision ids per `id=in.(...)` request: each UUID adds about 37 characters
+# to the URL, and gateways reject long request lines.
+CHILD_ID_BATCH = 100
 QueryParams = dict[str, str] | list[tuple[str, str]]
 
 
@@ -122,6 +126,7 @@ class SupabaseQuery:
             raise ValueError("SUPABASE_ANON_KEY env var required")
         self.rest_url = f"{self.url}/rest/v1"
         self.provisions_table = "provisions" if include_legacy else "current_provisions"
+        self.navigation_table = "current_navigation_nodes"
         self.provision_counts_table = (
             "provision_counts" if include_legacy else "current_provision_counts"
         )
@@ -251,15 +256,46 @@ class SupabaseQuery:
             children_data = self._request(self.provisions_table, params) or []
             children = [self._to_rule(c) for c in children_data]
         else:
-            # Fetch only direct children
+            children = self._direct_children(rule)
+
+        return Section(rule=rule, children=children)
+
+    def _direct_children(self, rule: Rule) -> list[Rule]:
+        """Fetch the served direct children of ``rule``, in navigation order.
+
+        A served section's children can come from more than one scope: where
+        a base scope is served under primary scopes, a primary title's
+        sections may be base rows whose ``parent_id`` names the base title's
+        versioned id, not the served title's. The served navigation tree links
+        children by stable parent path, so the children are its nodes under
+        the rule's citation path, read back from the served provisions by
+        their winning ids.
+        """
+        if self.provisions_table != "current_provisions" or not rule.citation_path:
+            # All stored rows: no single served tree to follow.
             params = {
                 "parent_id": f"eq.{rule.id}",
                 "order": "ordinal",
             }
             children_data = self._request(self.provisions_table, params) or []
-            children = [self._to_rule(c) for c in children_data]
+            return [self._to_rule(c) for c in children_data]
 
-        return Section(rule=rule, children=children)
+        nodes = self._request(
+            self.navigation_table,
+            {
+                "select": "provision_id",
+                "jurisdiction": f"eq.{rule.jurisdiction}",
+                "parent_path": f"eq.{rule.citation_path}",
+                "order": "sort_key,path",
+            },
+        )
+        ids = [str(node["provision_id"]) for node in nodes or [] if node.get("provision_id")]
+        rows: dict[str, dict[str, Any]] = {}
+        for start in range(0, len(ids), CHILD_ID_BATCH):
+            batch = ids[start : start + CHILD_ID_BATCH]
+            for row in self._request(self.provisions_table, {"id": f"in.({','.join(batch)})"}) or []:
+                rows[str(row["id"])] = row
+        return [self._to_rule(rows[provision_id]) for provision_id in ids if provision_id in rows]
 
     def get_section_deep(
         self,
