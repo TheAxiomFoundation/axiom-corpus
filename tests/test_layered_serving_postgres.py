@@ -168,8 +168,12 @@ TREE_COLUMNS = (
     "encoded_descendant_count",
 )
 
-# Root-document counts as open PR #666 (20260910140000) defines them; the
-# 20260910150000 index comment says production runs this definition.
+# Root-document counts as open PR #666 (20260910140000) defines them: served
+# roots only, the intended definition. The 20260910150000 index comment assumes
+# it, and production's function returns it (checked read-only, in the PR
+# body). This repository last defined the function in 20260910120000, which
+# counts every stored root; test_root_counts_are_served_roots_not_every_stored_root
+# shows where the two differ.
 PR_666_ROOT_COUNTS = """
 CREATE OR REPLACE FUNCTION corpus.get_root_document_counts()
 RETURNS TABLE (
@@ -1412,6 +1416,56 @@ def test_root_counts_count_the_roots_the_view_serves(db: Any) -> None:
     with _as_role(db, "anon") as cursor:
         cursor.execute("SELECT * FROM corpus.get_root_document_counts()")
         assert cursor.fetchall() == expected
+
+
+def _root_count(scope: Scope) -> int:
+    return sum(1 for row in _staged_navigation(scope) if row["parent_path"] is None)
+
+
+def test_root_counts_are_served_roots_not_every_stored_root(db: Any) -> None:
+    """This repository's 20260910120000 counts every stored root. The intended
+    count (#666, this migration) leaves out roots of superseded and of never
+    released scopes, so the two differ wherever such roots are stored."""
+    with db.cursor() as cursor:
+        cursor.execute(
+            _migration_slice(
+                "20260910120000_root_document_counts.sql",
+                "CREATE OR REPLACE FUNCTION corpus.get_root_document_counts()",
+                "GRANT EXECUTE",
+            ).replace(
+                "corpus.get_root_document_counts()", "reference.repository_root_document_counts()"
+            )
+        )
+    db.commit()
+
+    def counts() -> tuple[list[tuple[Any, ...]], ...]:
+        return (
+            _rows(db, "SELECT * FROM corpus.get_root_document_counts()"),
+            _rows(db, "SELECT * FROM reference.root_document_counts ORDER BY 1, 2"),
+            _rows(db, "SELECT * FROM reference.repository_root_document_counts()"),
+        )
+
+    _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
+    served, pr_666, repository = counts()
+    assert served == pr_666 == repository
+    successor = replace(PRIMARY_TITLE, version="2026-09-25-title-1")
+    _publish(db, "fx-rulespec-2026-09-25", successor, OTHER_PAIR)
+    _stage(db, STRAY)
+    served, pr_666, repository = counts()
+    assert (
+        served
+        == pr_666
+        == [
+            ("fx", "regulation", _root_count(OTHER_PAIR)),
+            ("fx", "statute", _root_count(successor)),
+        ]
+    )
+    # The repository's definition adds the superseded and the unreleased roots.
+    assert repository == [
+        ("fx", "regulation", _root_count(OTHER_PAIR)),
+        ("fx", "statute", sum(map(_root_count, (successor, PRIMARY_TITLE, STRAY)))),
+    ]
+    assert repository != served
 
 
 def test_same_layer_duplicate_in_a_layered_pair_is_rejected_atomically(db: Any) -> None:
