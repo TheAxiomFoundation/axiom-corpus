@@ -306,8 +306,9 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    replaces, `navigation_nodes` (its read policies), `release_scopes` (the new
    column) and the two derived tables. Its triggers take only `SHARE ROW
    EXCLUSIVE` on `provisions`, `active_scope_pointer` and `release_objects`.
-   The file does no derivation work, so the transaction is short: about 10 ms
-   on a local copy of 401,299 rows per table. It sets `lock_timeout` to 2 s, so
+   The file does no derivation work, so the transaction is short: re-applied
+   to a local copy of 401,299 rows per table, its indexes already built, it
+   took 8 ms. It sets `lock_timeout` to 2 s, so
    a statement that cannot get its lock fails rather than queueing reads behind
    it; on a timeout, wait and retry.
 3. The first time, no base scope is served: the file empties the derived
