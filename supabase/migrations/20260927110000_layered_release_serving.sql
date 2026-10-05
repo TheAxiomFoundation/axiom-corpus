@@ -56,9 +56,17 @@
 
 -- Give up rather than queue serving reads behind a lock this file waits for:
 -- while a statement here waits, reads that need a conflicting lock queue
--- behind it. On a timeout the transaction rolls back whole; retry at a
--- quieter moment.
+-- behind it. Each lock wait is capped at 2 s; on a timeout the transaction
+-- rolls back whole; retry at a quieter moment.
 SET lock_timeout = '2s';
+
+-- One application at a time. Section 1 locks navigation_nodes before section
+-- 2 takes its locks in order, so two applications at once would each hold
+-- what the other waits for.
+SELECT pg_advisory_xact_lock(
+  hashtext('corpus'),
+  hashtext('20260927110000_layered_release_serving')
+);
 
 -- ---------------------------------------------------------------------------
 -- 1. Navigation indexes.
@@ -107,17 +115,21 @@ CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
 -- ---------------------------------------------------------------------------
 
 -- First, every ACCESS EXCLUSIVE lock this file takes on a relation serving
--- reads use, in the order those reads take theirs: a read locks the relation
--- it names, then the relations its definition or policy names, and
+-- reads use (section 1 took only SHARE on navigation_nodes, which no read
+-- waits for), in the order those reads take theirs: a read locks the
+-- relation it names, then the relations its definition or policy names, and
 -- current_release_scopes before release_scopes, which it is defined over.
 -- While the file waits for one of these relations it then holds none that a
 -- read takes after it, so no read it waits for can be waiting for it: reads
 -- queue behind the file and neither deadlocks
--- (tests/test_layered_serving_postgres.py checks both orders). Nothing later
--- in the file takes a lock a read waits for on any other existing relation.
--- LOCK TABLE on a view would also lock every relation beneath it, in the
--- view's order, so a view is locked by setting its owner to its owner, which
--- takes ACCESS EXCLUSIVE on the view alone and changes nothing.
+-- (tests/test_layered_serving_postgres.py checks both orders). A read here is
+-- one statement, as every PostgREST request and RPC call is; a transaction
+-- that reads one relation and then another in a later statement can still
+-- deadlock with the file, which then rolls back. Nothing later in the file
+-- takes a lock a read waits for on any other existing relation. LOCK TABLE on
+-- a view would also lock every relation beneath it, in the view's order, so a
+-- view is locked by setting its owner to its owner, which takes ACCESS
+-- EXCLUSIVE on the view alone and changes nothing.
 DO $$
 DECLARE
   v_relation regclass;
@@ -380,16 +392,20 @@ GRANT EXECUTE ON FUNCTION corpus.analyze_layered_serving() TO postgres;
 
 -- Recompute one pair's derived state from the release that now serves it.
 --
--- Only under READ COMMITTED, where each statement reads what was committed
--- when it started, and only once ordered against every other writer of the
--- pair's derived rows, so that no write it does not see is in progress: a
--- trigger caller already is (a pointer write holds the pair's pointer row,
--- a membership insert EXCLUSIVE on active_scope_pointer), and a direct call
+-- Only under READ COMMITTED (READ UNCOMMITTED runs as it), where each
+-- statement reads what was committed when it started, and only once ordered
+-- against every other writer of the pair's derived rows, so that no write it
+-- does not see is in progress: a trigger caller already is (a pointer write
+-- holds the pair's pointer row, a membership insert into a layered release
+-- EXCLUSIVE on active_scope_pointer), and a direct call
 -- (rederive_layered_serving, or an owner) takes EXCLUSIVE on
 -- active_scope_pointer before reading anything, which every pointer write
--- (ROW EXCLUSIVE), activation, membership insert and re-derivation
+-- (ROW EXCLUSIVE), activation, layered membership insert and re-derivation
 -- (EXCLUSIVE) conflicts with. A REPEATABLE READ or SERIALIZABLE snapshot
--- taken before such a write committed would miss its rows.
+-- taken before such a write committed would miss its rows. Call it directly
+-- in a transaction of its own: one that has already written a pointer holds
+-- ROW EXCLUSIVE, and two such transactions asking for EXCLUSIVE deadlock (a
+-- pointer write derives its pair anyway).
 CREATE OR REPLACE FUNCTION corpus.refresh_layered_serving(
   p_jurisdiction text,
   p_document_class text
@@ -412,7 +428,7 @@ DECLARE
   v_broken integer;
   v_deriving text := current_setting('corpus.layered_serving_derivation', true);
 BEGIN
-  IF current_setting('transaction_isolation') <> 'read committed' THEN
+  IF current_setting('transaction_isolation') NOT IN ('read committed', 'read uncommitted') THEN
     RAISE EXCEPTION
       'layered serving is derived only under READ COMMITTED isolation, not %',
       current_setting('transaction_isolation');
@@ -793,38 +809,77 @@ REVOKE EXECUTE ON FUNCTION corpus.refresh_layered_serving(text, text)
   FROM anon, authenticated, service_role, PUBLIC;
 GRANT EXECUTE ON FUNCTION corpus.refresh_layered_serving(text, text) TO postgres;
 
--- Whether a release signs a base scope for a pair. Only a pair served by such
--- a release can have derived rows: membership carries only the layers its
--- release object signs (guard_release_scope_membership_insert below, and
--- activation compares the two). A signed object is immutable and is visible to
--- any transaction that can name its release (pointers and membership reference
--- it), so the answer is the same under any snapshot. An object that cannot be
--- found counts as signing one.
+-- Whether a release serves a pair with a base scope. Only a pair served, before
+-- or after a pointer write, by such a release has derived rows to change.
+--
+-- Under READ COMMITTED (or READ UNCOMMITTED, which PostgreSQL runs as READ
+-- COMMITTED) the release's membership answers, by index and exactly as the
+-- derivation reads it: each statement sees what was committed before it, and
+-- a membership insert that could add a base row takes EXCLUSIVE on the
+-- pointers (sync_layered_serving_membership), so it is ordered against the
+-- pointer write that asks. Under REPEATABLE READ or SERIALIZABLE the
+-- snapshot may predate membership committed since, so the signed release
+-- object answers: membership carries only the layers its object signs,
+-- compared with ->> as guard_release_scope_membership_insert compares them;
+-- an object is immutable, and is visible to any transaction that can name
+-- its release (pointers and membership reference it), so the answer holds
+-- under any snapshot. Its base pairs are read once per release per
+-- transaction. An object that cannot be found counts as layering every pair.
 CREATE OR REPLACE FUNCTION corpus.release_layers_pair(
   p_release_name text,
   p_jurisdiction text,
   p_document_class text
 )
 RETURNS boolean
-LANGUAGE sql
-STABLE
+LANGUAGE plpgsql
 SECURITY DEFINER
 SET search_path = corpus, public
 AS $$
-  SELECT COALESCE(
-    (
-      SELECT objects.release_object #> '{content,scopes}' @> jsonb_build_array(
-        jsonb_build_object(
-          'jurisdiction', p_jurisdiction,
-          'document_class', p_document_class,
-          'layer', 'base'
-        )
-      )
-      FROM corpus.release_objects objects
-      WHERE objects.release_name = p_release_name
-    ),
-    true
-  )
+DECLARE
+  v_memo text := 'corpus.layered_base_pairs_' || md5(p_release_name);
+  v_base_pairs text;
+BEGIN
+  IF current_setting('transaction_isolation') IN ('read committed', 'read uncommitted') THEN
+    RETURN EXISTS (
+      SELECT 1
+      FROM corpus.release_scopes scopes
+      WHERE scopes.release_name = p_release_name
+        AND scopes.jurisdiction = p_jurisdiction
+        AND scopes.document_class = p_document_class
+        AND scopes.layer = 'base'
+    );
+  END IF;
+  v_base_pairs := NULLIF(current_setting(v_memo, true), '');
+  IF v_base_pairs IS NULL THEN
+    SELECT COALESCE(
+      (
+        SELECT jsonb_agg(DISTINCT jsonb_build_array(
+          scope.value ->> 'jurisdiction',
+          scope.value ->> 'document_class'
+        ))
+        FROM jsonb_array_elements(
+          CASE
+            WHEN jsonb_typeof(objects.release_object #> '{content,scopes}') = 'array'
+              THEN objects.release_object #> '{content,scopes}'
+            ELSE '[]'::jsonb
+          END
+        ) scope(value)
+        WHERE COALESCE(scope.value ->> 'layer', 'primary') = 'base'
+      ),
+      '[]'::jsonb
+    )::text
+    INTO v_base_pairs
+    FROM corpus.release_objects objects
+    WHERE objects.release_name = p_release_name;
+    IF NOT FOUND THEN
+      RETURN true;
+    END IF;
+    PERFORM set_config(v_memo, v_base_pairs, true);
+  END IF;
+  RETURN v_base_pairs::jsonb @> jsonb_build_array(
+    jsonb_build_array(p_jurisdiction, p_document_class)
+  );
+END;
 $$;
 
 REVOKE EXECUTE ON FUNCTION corpus.release_layers_pair(text, text, text)
@@ -847,7 +902,7 @@ LANGUAGE plpgsql
 SET search_path = corpus, public
 AS $$
 BEGIN
-  IF current_setting('transaction_isolation') <> 'read committed' THEN
+  IF current_setting('transaction_isolation') NOT IN ('read committed', 'read uncommitted') THEN
     RAISE EXCEPTION
       'corpus.% is truncated only under READ COMMITTED isolation, not %',
       p_table,
@@ -1054,14 +1109,17 @@ FOR EACH STATEMENT EXECUTE FUNCTION corpus.guard_release_scope_membership_insert
 -- pointer then does not move) or by inserting the row: re-derive that pair in
 -- the same statement.
 --
--- Only a row of a release that signs a base scope for the row's pair can
--- change what is derived (release_layers_pair). Membership of other releases,
--- every release before release-object/v4 included, is inserted as before
--- layered serving: no lock, under any isolation level. Otherwise the insert
--- runs only under READ COMMITTED and locks the pointers EXCLUSIVE before it
--- reads them, which orders it after any activation or pointer write in
--- progress, and that write's derivation after this one. Activation already
--- holds that lock; an owner restoring a row takes it.
+-- Only a row of a release whose signed object has a base scope for the row's
+-- pair can change what is derived. Membership of other releases, every
+-- release before release-object/v4 included, is inserted as before layered
+-- serving: no lock, under any isolation level. The signed object decides,
+-- read once per inserted release per statement and compared with ->> as
+-- guard_release_scope_membership_insert compares it: no concurrent insert can
+-- change its answer, so the decision needs no lock. Otherwise the insert runs
+-- only under READ COMMITTED and locks the pointers EXCLUSIVE before it reads
+-- them, which orders it after any activation or pointer write in progress,
+-- and that write's derivation after this one. Activation already holds that
+-- lock; an owner restoring a row takes it.
 CREATE OR REPLACE FUNCTION corpus.sync_layered_serving_membership()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -1070,39 +1128,56 @@ SET search_path = corpus, public
 AS $$
 DECLARE
   pair record;
+  v_layered jsonb;
 BEGIN
-  IF NOT EXISTS (
-    SELECT 1
-    FROM (
-      SELECT DISTINCT inserted.release_name, inserted.jurisdiction, inserted.document_class
-      FROM inserted_scopes inserted
-    ) inserted
-    WHERE corpus.release_layers_pair(
-      inserted.release_name,
-      inserted.jurisdiction,
-      inserted.document_class
-    )
-  ) THEN
+  WITH releases AS (
+    SELECT DISTINCT inserted.release_name
+    FROM inserted_scopes inserted
+  ),
+  base_pairs AS MATERIALIZED (
+    SELECT
+      objects.release_name,
+      scope.value ->> 'jurisdiction' AS jurisdiction,
+      scope.value ->> 'document_class' AS document_class
+    FROM releases
+    JOIN corpus.release_objects objects
+      ON objects.release_name = releases.release_name
+    CROSS JOIN LATERAL jsonb_array_elements(
+      CASE
+        WHEN jsonb_typeof(objects.release_object #> '{content,scopes}') = 'array'
+          THEN objects.release_object #> '{content,scopes}'
+        ELSE '[]'::jsonb
+      END
+    ) scope(value)
+    WHERE COALESCE(scope.value ->> 'layer', 'primary') = 'base'
+  )
+  SELECT jsonb_agg(DISTINCT jsonb_build_array(
+    inserted.release_name,
+    inserted.jurisdiction,
+    inserted.document_class
+  ))
+  INTO v_layered
+  FROM inserted_scopes inserted
+  JOIN base_pairs
+    ON base_pairs.release_name = inserted.release_name
+   AND base_pairs.jurisdiction = inserted.jurisdiction
+   AND base_pairs.document_class = inserted.document_class;
+  IF v_layered IS NULL THEN
     RETURN NULL;
   END IF;
-  IF current_setting('transaction_isolation') <> 'read committed' THEN
+  IF current_setting('transaction_isolation') NOT IN ('read committed', 'read uncommitted') THEN
     RAISE EXCEPTION
       'release membership of a layered release is inserted only under READ COMMITTED isolation, not %',
       current_setting('transaction_isolation');
   END IF;
   LOCK TABLE corpus.active_scope_pointer IN EXCLUSIVE MODE;
   FOR pair IN
-    SELECT DISTINCT inserted.jurisdiction, inserted.document_class
-    FROM inserted_scopes inserted
+    SELECT DISTINCT active.jurisdiction, active.document_class
+    FROM jsonb_array_elements(v_layered) layered(value)
     JOIN corpus.active_scope_pointer active
-      ON active.jurisdiction = inserted.jurisdiction
-     AND active.document_class = inserted.document_class
-     AND active.release_name = inserted.release_name
-    WHERE corpus.release_layers_pair(
-      inserted.release_name,
-      inserted.jurisdiction,
-      inserted.document_class
-    )
+      ON active.release_name = layered.value ->> 0
+     AND active.jurisdiction = layered.value ->> 1
+     AND active.document_class = layered.value ->> 2
     ORDER BY 1, 2
   LOOP
     PERFORM corpus.refresh_layered_serving(pair.jurisdiction, pair.document_class);
@@ -1237,7 +1312,7 @@ DECLARE
   v_deriving text := current_setting('corpus.layered_serving_derivation', true);
   v_shadowed_provisions text;
 BEGIN
-  IF current_setting('transaction_isolation') <> 'read committed' THEN
+  IF current_setting('transaction_isolation') NOT IN ('read committed', 'read uncommitted') THEN
     RAISE EXCEPTION
       'layered serving is derived only under READ COMMITTED isolation, not %',
       current_setting('transaction_isolation');

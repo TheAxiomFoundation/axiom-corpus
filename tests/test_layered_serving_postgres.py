@@ -3006,6 +3006,7 @@ def test_serving_reads_take_their_locks_in_the_order_the_file_takes_its_own(
     waits for the file while the file waits for the read."""
     _publish_layered(db)
     later = set(_EXCLUSIVE_LOCK_ORDER[_EXCLUSIVE_LOCK_ORDER.index(blocked_at) + 1 :])
+    waited: set[str] = set()
     with _observer(layered_dsn) as observer:
         for read, (role, query) in _SERVING_READS.items():
             with closing(psycopg2.connect(layered_dsn)) as holder:
@@ -3024,15 +3025,35 @@ def test_serving_reads_take_their_locks_in_the_order_the_file_takes_its_own(
                         break
                     time.sleep(0.02)
                 if waiting:
+                    waited.add(read)
                     assert not (_held(observer, reader) & later), (read, blocked_at)
                 holder.rollback()
                 reader.join()
                 assert reader.error is None, (read, reader.error)
+    # Not vacuous: the read of the blocked relation (or, for release_scopes,
+    # of the view over it) waited for it.
+    named = {
+        "corpus.current_provisions": "current_provisions",
+        "corpus.legacy_provisions": "legacy_provisions",
+        "corpus.current_navigation_nodes": "current_navigation_nodes",
+        "corpus.navigation_nodes": "navigation_nodes",
+        "corpus.current_release_scopes": "current_release_scopes",
+        "corpus.release_scopes": "current_release_scopes",
+    }
+    assert named[blocked_at] in waited, waited
+
+
+def _migration_text(lock_timeout: str = "30s") -> str:
+    """The file, waiting up to ``lock_timeout`` per lock instead of 2 s, so that
+    a slow test runner cannot turn a wait a test arranges into a timeout."""
+    text = LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8")
+    assert text.count("SET lock_timeout = '2s';") == 1
+    return text.replace("SET lock_timeout = '2s';", f"SET lock_timeout = '{lock_timeout}';")
 
 
 def _applying(connection: Any) -> None:
     with connection.cursor() as cursor:
-        cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        cursor.execute(_migration_text())
     connection.rollback()
 
 
@@ -3049,9 +3070,17 @@ def first_application_dsn() -> Iterator[str]:
 @pytest.fixture(params=["first application", "re-application"])
 def applied_dsn(request: Any, first_application_dsn: str, layered_dsn: str, db: Any) -> str:
     if request.param == "first application":
+        assert _rows_at(
+            first_application_dsn, "SELECT to_regclass('corpus.layered_shadowed_rows')"
+        ) == [(None,)]
         return first_application_dsn
     _publish_layered(db)
     return layered_dsn
+
+
+def _rows_at(dsn: str, query: str) -> list[tuple[Any, ...]]:
+    with closing(psycopg2.connect(dsn)) as connection:
+        return _rows(connection, query)
 
 
 def test_the_file_takes_access_exclusive_only_where_it_orders_it(applied_dsn: str) -> None:
@@ -3131,6 +3160,165 @@ def test_applying_the_file_under_serving_reads_does_not_deadlock(
     assert queued.error is None, queued.error
     with closing(psycopg2.connect(applied_dsn)) as check:
         assert queued.result == _reading(role, query)(check)
+
+
+def test_two_applications_at_once_wait_for_each_other(applied_dsn: str) -> None:
+    """Review round 3: section 1 locks navigation_nodes (SHARE) before the
+    ordered locks of section 2, so two applications at once each held what
+    the other waited for. The second now waits for the first to finish."""
+    with closing(psycopg2.connect(applied_dsn)) as in_flight, _observer(applied_dsn) as observer:
+        with in_flight.cursor() as cursor:
+            cursor.execute("SET ROLE anon")
+            cursor.execute("SELECT COUNT(*) FROM corpus.current_provisions")
+        first = _Background(applied_dsn, _applying)
+        _wait_until_waiting(observer, first)
+        second = _Background(applied_dsn, _applying)
+        _wait_until_waiting(observer, second)
+        in_flight.rollback()
+        first.join()
+        second.join()
+    assert first.error is None, first.error
+    assert second.error is None, second.error
+
+
+def test_applying_the_file_under_looping_serving_reads_deadlocks_nothing(
+    applied_dsn: str,
+) -> None:
+    """Review round 2, Opus 1, as a loop: every serving read, repeated by
+    several sessions (some holding a read of current_release_scopes in flight),
+    while the file is applied again and again."""
+    stop = threading.Event()
+    failures: list[BaseException] = []
+    counts = Counter[str]()
+
+    def loop(index: int) -> None:
+        with closing(psycopg2.connect(applied_dsn)) as connection:
+            connection.autocommit = True
+            with connection.cursor() as cursor:
+                reads = list(_SERVING_READS.values())
+                turn = 0
+                while not stop.is_set():
+                    role, query = reads[turn % len(reads)]
+                    if index % 3 == 0:
+                        role, query = (
+                            "anon",
+                            "SELECT pg_sleep(0.02), release_name FROM corpus.current_release_scopes",
+                        )
+                    turn += 1
+                    try:
+                        # Before the file, legacy_provisions is the owner's
+                        # alone (the file grants it to service_role).
+                        if role != "service_role":
+                            cursor.execute(sql.SQL("SET ROLE {}").format(sql.Identifier(role)))
+                        cursor.execute(query)
+                        cursor.fetchall()
+                        cursor.execute("RESET ROLE")
+                        counts["read"] += 1
+                    except psycopg2.Error as exc:
+                        failures.append(exc)
+                        return
+
+    readers = [threading.Thread(target=loop, args=(index,), daemon=True) for index in range(9)]
+    for reader in readers:
+        reader.start()
+    try:
+        with closing(psycopg2.connect(applied_dsn)) as connection:
+            for _application in range(8):
+                _applying(connection)
+                time.sleep(0.05)
+    finally:
+        stop.set()
+        for reader in readers:
+            reader.join(30)
+    assert not failures, failures
+    assert counts["read"] > 0
+
+
+# A layered pair whose document class, as signed, is a JSON number: the
+# guards read signed scopes with ->>, which gives the text "2026".
+def _numeric_class(scope: Scope) -> Scope:
+    def renamed(path: str | None) -> str | None:
+        return path.replace("fx/statute", "fx/2026") if path else None
+
+    return replace(
+        scope,
+        document_class="2026",
+        nodes=tuple(
+            replace(n, path=str(renamed(n.path)), parent=renamed(n.parent)) for n in scope.nodes
+        ),
+    )
+
+
+@pytest.mark.parametrize("isolation", ["READ COMMITTED", "REPEATABLE READ"])
+def test_layering_is_read_from_signed_scopes_as_the_guards_read_them(
+    db: Any, isolation: str
+) -> None:
+    """Review round 3: the skip check compared signed scopes with jsonb
+    containment, the guards with ->>, so a base scope signed with a non-string
+    document class was served with nothing derived. Python's ReleaseScope
+    rejects such a value; the database does not check signatures, so an owner
+    can activate one."""
+    base, primary = _numeric_class(BASE), _numeric_class(PRIMARY_TITLE)
+    _stage(db, base, primary)
+    scopes = []
+    for scope in (base, primary):
+        entry = {
+            "jurisdiction": "fx",
+            "document_class": 2026,
+            "version": scope.version,
+            **_evidence(db, scope),
+        }
+        if scope.layer == LAYER_BASE:
+            entry["layer"] = LAYER_BASE
+        scopes.append(entry)
+    content = {
+        "release": "fx-numeric-class",
+        "created_at": "2026-10-01T00:00:00Z",
+        "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
+        "scopes": scopes,
+        "validation": {"passed": True, "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE},
+    }
+    crafted = _reseal(
+        {"schema_version": RELEASE_OBJECT_SCHEMA_V4, "release": "fx-numeric-class"}, content
+    )
+    with db.cursor() as cursor:
+        cursor.execute(f"SET TRANSACTION ISOLATION LEVEL {isolation}")
+        if isolation == "READ COMMITTED":
+            cursor.execute("SELECT corpus.activate_corpus_release(%s::jsonb)", (Json(crafted),))
+        else:
+            with pytest.raises(errors.RaiseException, match="only under READ COMMITTED"):
+                cursor.execute("SELECT corpus.activate_corpus_release(%s::jsonb)", (Json(crafted),))
+    if isolation == "READ COMMITTED":
+        db.commit()
+        assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_shadowed_rows") != [(0,)]
+        with db.cursor() as cursor:
+            cursor.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ")
+            cursor.execute("SELECT corpus.release_layers_pair('fx-numeric-class', 'fx', '2026')")
+            assert cursor.fetchone() == (True,)
+    db.rollback()
+    _assert_serving_is_consistent(db)
+
+
+def test_read_uncommitted_counts_as_read_committed(db: Any) -> None:
+    """PostgreSQL runs READ UNCOMMITTED as READ COMMITTED: what that allows,
+    this allows."""
+    _stage(db, STRAY)
+    assert (
+        _attempt(
+            db,
+            "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; "
+            "TRUNCATE corpus.provisions, corpus.navigation_nodes CASCADE",
+        )
+        is None
+    )
+    _stage(db, *LAYERED_SCOPES)
+    release_object = _release_object(db, LAYERED_RELEASE, LAYERED_SCOPES)
+    with db.cursor() as cursor:
+        cursor.execute("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED")
+        cursor.execute("SELECT corpus.activate_corpus_release(%s::jsonb)", (Json(release_object),))
+    db.commit()
+    _assert_serving_is_consistent(db)
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_shadowed_rows") != [(0,)]
 
 
 # ---------------------------------------------------------------------------
