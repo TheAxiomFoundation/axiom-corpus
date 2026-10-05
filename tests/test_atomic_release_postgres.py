@@ -65,6 +65,19 @@ STAGED_RELEASE_OBJECT_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260803175000_stage_signed_release_object.sql"
 )
+# Re-applied by the publish and register workflows on every run, so it is part
+# of the schema these tests exercise from the moment it merges.
+STAGED_RELEASE_OBJECT_V4_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260927100000_stage_signed_release_object_v4.sql"
+)
+# Applied by hand before the first layered release is activated. Every test in
+# this module runs both without it and with it: with no base scope active the
+# layered schema must behave exactly like the schema before it.
+LAYERED_SERVING_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260927110000_layered_release_serving.sql"
+)
 REQUIRED_ROLES = ("anon", "authenticated", "service_role", "postgres")
 TEST_SIGNING_KEY = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
 TEST_PUBLIC_KEY = base64.b64encode(
@@ -310,8 +323,8 @@ def _release_object(
     }
 
 
-@pytest.fixture(scope="module")
-def postgres_dsn() -> Iterator[str]:
+@pytest.fixture(scope="module", params=["pre-layer", "layered"])
+def postgres_dsn(request: pytest.FixtureRequest) -> Iterator[str]:
     assert DATABASE_URL is not None
     database_name = f"axiom_atomic_release_{uuid.uuid4().hex}"
     created_roles: list[str] = []
@@ -344,6 +357,9 @@ def postgres_dsn() -> Iterator[str]:
                     cursor.execute(COMPACT_RELEASE_OBJECTS_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(CHUNKED_ACTIVATION_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(STAGED_RELEASE_OBJECT_MIGRATION.read_text(encoding="utf-8"))
+                    cursor.execute(STAGED_RELEASE_OBJECT_V4_MIGRATION.read_text(encoding="utf-8"))
+                    if request.param == "layered":
+                        cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
                 connection.commit()
             yield dsn
         finally:
@@ -361,19 +377,24 @@ def postgres_dsn() -> Iterator[str]:
 
 
 def _reset_database(dsn: str) -> None:
+    tables = [
+        "scope_activation_history",
+        "active_scope_pointer",
+        "active_release_pointer",
+        "release_activation_upload_chunks",
+        "release_scopes",
+        "release_objects",
+        "provisions",
+        "navigation_nodes",
+    ]
     with closing(psycopg2.connect(dsn)) as connection, connection.cursor() as cursor:
+        cursor.execute("SELECT to_regclass('corpus.navigation_layer_summaries') IS NOT NULL")
+        if cursor.fetchone()[0]:
+            tables.append("navigation_layer_summaries")
         cursor.execute(
-            """
-            TRUNCATE TABLE
-              corpus.scope_activation_history,
-              corpus.active_scope_pointer,
-              corpus.active_release_pointer,
-              corpus.release_activation_upload_chunks,
-              corpus.release_scopes,
-              corpus.release_objects,
-              corpus.provisions,
-              corpus.navigation_nodes
-            """
+            sql.SQL("TRUNCATE TABLE {}").format(
+                sql.SQL(", ").join(sql.Identifier("corpus", table) for table in tables)
+            )
         )
         cursor.execute("REFRESH MATERIALIZED VIEW corpus.current_provision_counts")
         connection.commit()
