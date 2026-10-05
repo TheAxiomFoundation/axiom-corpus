@@ -260,10 +260,15 @@ counts served roots only, as open PR #666 defined it; the repository's earlier
 included.
 
 The derived tables stay a function of what is served, whoever writes, short
-of turning triggers off:
+of an owner bypassing the guards (turning triggers off with
+`session_replication_role = replica`, or setting
+`corpus.layered_serving_derivation` or a `corpus.layered_base_pairs_*`
+setting by hand):
 
 - Any change to `corpus.active_scope_pointer` that moves a pair to or from a
-  release with a base scope for it re-derives the pair. The pointer trigger
+  release with a base scope for it re-derives the pair, and so does any move
+  of a pair that still has derived rows (left behind by membership altered
+  with triggers off). The pointer trigger
   takes no further lock on `active_scope_pointer`: the row lock of the write
   orders it against other writes of the same pair. When it derives, it writes
   the two derived tables and analyzes them, which holds `SHARE UPDATE
@@ -348,24 +353,26 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
      -f supabase/migrations/20260927110000_layered_release_serving.sql
    ```
 
-   Without `--single-transaction`, psql commits each statement on its own,
-   and neither the lock order below nor the roll-back on failure holds. The
-   file first takes a transaction-level advisory lock, so a second
-   application waits for the first. Section 1 takes `SHARE` on
-   `navigation_nodes`, which reads do not wait for. Then, before anything a
-   read waits for, it takes `ACCESS EXCLUSIVE` on the four serving views it
-   replaces, `navigation_nodes` (its read policies) and `release_scopes` (the
-   new column), in the order serving reads take their locks:
-   `current_provisions`, `legacy_provisions`, `current_navigation_nodes`,
-   `navigation_nodes`, `current_release_scopes`, `release_scopes`. It holds
-   them until it commits, and the first time also holds the two derived
-   tables it creates, which no read can reach yet. Its triggers take only
-   `SHARE ROW EXCLUSIVE` on `provisions`, `active_scope_pointer` and
-   `release_objects`, which writes wait for and reads do not. The file does no
-   derivation work, so the transaction is short: on a local PostgreSQL 14 copy
-   of 401,299 rows per table, its indexes already built, a re-application took
-   8 ms, and a first application of a small database 11 ms (one-off
-   measurements, not part of the test suite).
+   Without `--single-transaction`, psql commits each statement on its own, and
+   neither the lock order below nor the roll-back on failure holds. The file
+   first takes a transaction-level advisory lock, so a second application waits
+   for the first. Section 1 takes `SHARE` on `navigation_nodes`, which reads do
+   not wait for. Next it takes `SHARE ROW EXCLUSIVE`, which writes wait for and
+   reads do not, on `provisions`, `navigation_nodes`, `active_scope_pointer`,
+   `release_objects`, `release_scopes` and (when re-applied) the two derived
+   tables, in the order activation takes its locks, so that a write in progress
+   delays the file before it holds anything a read waits for. Then it takes
+   `ACCESS EXCLUSIVE` on the four serving views it replaces, `navigation_nodes`
+   (its read policies) and `release_scopes` (the new column), in the order
+   serving reads take their locks: `current_provisions`, `legacy_provisions`,
+   `current_navigation_nodes`, `navigation_nodes`, `current_release_scopes`,
+   `release_scopes`. It holds them until it commits, and the first time also
+   holds the two derived tables it creates, which no read can reach yet. After
+   those it waits for no lock. The file does no derivation work, so the
+   transaction is short: on a local PostgreSQL 14 copy of 401,299 rows per
+   table, its indexes already built, a re-application took 8 ms, and a first
+   application of a small database 11 ms (one-off measurements, not part of the
+   test suite).
 
    What a concurrent read sees. A read here is one statement, as every
    PostgREST request and RPC call is. A read that got its locks before the file
@@ -375,13 +382,13 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    file rolled back, the old ones). Because the file takes its locks in the
    readers' order, a read and the file never deadlock. A read can still fail if
    the file holds it past the read's own statement timeout (Supabase gives anon
-   3 s by default): the file can wait up to 2 s for each of its six locks in
-   turn while reads queue behind the ones it holds. A transaction that reads
-   one relation and then another in a later statement is outside that guarantee
-   and can deadlock with the file, which then rolls back. In a local PostgreSQL
-   14 run, applying the file 40 times in a row under 12 looping anon readers
-   deadlocked no read and no application, where the previous file deadlocked 40
-   of 40 re-applications;
+   3 s by default): the file can wait up to 2 s for each of its six `ACCESS
+   EXCLUSIVE` locks in turn while reads queue behind the ones it holds. A
+   transaction that reads one relation and then another in a later statement is
+   outside that guarantee and can deadlock with the file, which then rolls
+   back. In a local PostgreSQL 14 run, applying the file 40 times in a row
+   under 12 looping anon readers deadlocked no read and no application, where
+   the previous file deadlocked 40 of 40 re-applications;
    `test_applying_the_file_under_looping_serving_reads_deadlocks_nothing` runs
    a shorter loop of the same kind, and the lock-order tests check both orders.
 

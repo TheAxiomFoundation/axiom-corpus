@@ -2675,14 +2675,18 @@ def _wait_until_waiting(observer: Any, session: _Background, relation: str | Non
 
 
 def _held(observer: Any, session: _Background, mode: str | None = None) -> set[str]:
-    """Relations ``session`` holds a lock on, in ``mode`` if given."""
+    """Relations ``session`` holds a lock on, in ``mode`` if given: tables,
+    views and materialized views another session can see (one the session
+    created and has not committed is invisible, so nothing can wait for it)."""
     query = (
-        "SELECT DISTINCT relation::regclass::text FROM pg_locks "
-        "WHERE pid = %s AND granted AND locktype = 'relation'"
+        "SELECT DISTINCT lock.relation::regclass::text FROM pg_locks lock "
+        "JOIN pg_class relation ON relation.oid = lock.relation "
+        "WHERE lock.pid = %s AND lock.granted AND lock.locktype = 'relation' "
+        "AND relation.relkind IN ('r', 'v', 'm', 'p')"
     )
     params: list[Any] = [session.pid]
     if mode is not None:
-        query += " AND mode = %s"
+        query += " AND lock.mode = %s"
         params.append(mode)
     with observer.cursor() as cursor:
         cursor.execute(query, params)
@@ -3297,6 +3301,94 @@ def test_layering_is_read_from_signed_scopes_as_the_guards_read_them(
             assert cursor.fetchone() == (True,)
     db.rollback()
     _assert_serving_is_consistent(db)
+
+
+def test_layering_is_matched_by_pair_not_by_its_values(db: Any) -> None:
+    """Review round 4: under REPEATABLE READ the signed base pairs are matched
+    from a memo, and nested-array containment ignores element order, so
+    ('statute', 'fx') matched ('fx', 'statute'). Membership answers under READ
+    COMMITTED; both must agree."""
+    _publish_layered(db)
+    pairs = {
+        ("fx", "statute"): True,
+        ("statute", "fx"): False,
+        ("fx", "fx"): False,
+        ("fx", "regulation"): False,
+    }
+    for isolation in ("READ COMMITTED", "REPEATABLE READ"):
+        with db.cursor() as cursor:
+            cursor.execute(f"SET TRANSACTION ISOLATION LEVEL {isolation}")
+            for (jurisdiction, document_class), layered in pairs.items():
+                # Twice: the second answer under REPEATABLE READ is the memo's.
+                for _call in range(2):
+                    cursor.execute(
+                        "SELECT corpus.release_layers_pair(%s, %s, %s)",
+                        (LAYERED_RELEASE, jurisdiction, document_class),
+                    )
+                    assert cursor.fetchone() == (layered,), (
+                        isolation,
+                        jurisdiction,
+                        document_class,
+                    )
+        db.rollback()
+
+
+def test_a_pointer_move_clears_derived_rows_left_by_tampering(db: Any) -> None:
+    """Review round 4, outside the guarantee: a base membership row removed
+    with triggers off leaves the pair's derived rows behind; moving the pair's
+    pointer to a release without a base scope still re-derives it."""
+    _publish(db, _UNLAYERED_RELEASE, PRIMARY_TITLE, OTHER_PAIR)
+    _publish_layered(db)
+    with _triggers_off(db) as cursor:
+        cursor.execute(
+            "DELETE FROM corpus.release_scopes WHERE release_name = %s AND layer = 'base'",
+            (LAYERED_RELEASE,),
+        )
+    assert _attempt(db, _REPOINT, (_UNLAYERED_RELEASE,)) is None
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_shadowed_rows") == [(0,)]
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_navigation_overrides") == [(0,)]
+    _assert_serving_is_consistent(db)
+
+
+# Relations writes use that the file locks against writes (its triggers,
+# indexes and deletes); the derived tables exist only once it was applied.
+_WRITTEN = (
+    "corpus.provisions",
+    "corpus.navigation_nodes",
+    "corpus.active_scope_pointer",
+    "corpus.release_objects",
+    "corpus.release_scopes",
+    "corpus.layered_shadowed_rows",
+    "corpus.layered_navigation_overrides",
+)
+
+
+@pytest.mark.parametrize("written", _WRITTEN)
+def test_a_write_in_progress_delays_the_file_before_it_blocks_reads(
+    applied_dsn: str, written: str
+) -> None:
+    """Review round 4: with a write in progress the file used to wait for it
+    while holding ACCESS EXCLUSIVE on the serving views, so reads queued for up
+    to 2 s. It now waits before holding anything a read waits for."""
+    if _rows_at(applied_dsn, f"SELECT to_regclass('{written}')") == [(None,)]:
+        pytest.skip(f"{written} is created by the file")
+    with closing(psycopg2.connect(applied_dsn)) as writer, _observer(applied_dsn) as observer:
+        with writer.cursor() as cursor:
+            cursor.execute(sql.SQL("LOCK TABLE {} IN ROW EXCLUSIVE MODE").format(sql.SQL(written)))
+        applying = _Background(applied_dsn, _applying)
+        _wait_until_waiting(observer, applying, written)
+        assert _held(observer, applying, "AccessExclusiveLock") == set()
+        with closing(psycopg2.connect(applied_dsn)) as reader, reader.cursor() as cursor:
+            cursor.execute("SET lock_timeout = '1s'")
+            for read in ("current_provisions", "current_navigation_nodes", "navigation_nodes"):
+                role, query = _SERVING_READS[read]
+                cursor.execute(sql.SQL("SET ROLE {}").format(sql.Identifier(role)))
+                cursor.execute(query)
+                cursor.execute("RESET ROLE")
+            reader.rollback()
+        writer.rollback()
+        applying.join()
+    assert applying.error is None, applying.error
 
 
 def test_read_uncommitted_counts_as_read_committed(db: Any) -> None:
