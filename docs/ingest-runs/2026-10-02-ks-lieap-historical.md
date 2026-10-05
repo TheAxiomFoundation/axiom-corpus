@@ -101,6 +101,62 @@ adoption dates or rounding rules.
   self-employment treatment must be derived from the dated sources. PE's
   annual-income and household proxies belong in oracle mappings/dispositions.
 
+## Admission review, 2026-10-05
+
+The user's reference-library copies of the FY2025 plan and benefit matrix
+match the official-source SHA-256 values in the original audit. The FY2026
+plan and matrix copies also match their existing corpus locks. The Drive
+library supplies corroborating copies and source-discovery context; its
+implementation notes do not replace official sources or resolve the policy
+questions above. No duplicate FY2026 scope or Drive-only source was added.
+
+Review verified all 33 local artifact hashes, re-downloaded all 21 official
+sources with matching hashes, and reproduced all 42 content records from the
+retained snapshots. The 63 rows include 21 document roots. All new citation
+paths are unique and pass grammar and identity checks.
+
+The full provision tree at PR head `2462155a92f7b95ca5464bc852097d5ddea49259`
+contains 587,613 rows. Including the four new local scopes yields 587,676 rows
+and 435,225 unique citation paths. Scanning this union reproduced exactly two
+ratchet failures:
+
+| Family | Previous ceiling | New paths | Union count / revised ceiling |
+| --- | ---: | ---: | ---: |
+| `block_n` | 75,916 | 19 | 75,935 |
+| `page_n` | 150,654 | 3 | 150,657 |
+
+The 19 blocks are the 17 dated KEESM HTML pages and two article-specific HHS
+notices. The three page paths preserve the FY2025 matrix's PDF-page extraction.
+These are the existing adapter's documented units for this intake, with raw
+snapshots retained for layout and subsection interpretation. The schema change
+allows exactly this measured increase. Other family ceilings and the empty
+identity-drift baseline stay fixed. A full-corpus scan after admission remains
+required; a scoped scan cannot verify these ceilings.
+
+With every existing locked provision file materialized and the four new local
+scopes present, `uv run --extra dev python scripts/validate_citation_paths.py`
+passes for all 587,676 rows after this adjustment, with no grammar failures,
+ratchet regressions, or new identity drift. Strict local deep validation of
+the four scopes also passes with zero errors and zero warnings.
+
+Follow-up checks after materializing all 56,318 existing locked artifacts:
+
+- Full `uv run --extra dev python -m pytest -q`: **5,156 passed**, 104 skipped,
+  208 deselected, 47 warnings. The repository's ingest public key was supplied
+  for verification; partial-test mode was not used.
+- Ruff, mypy (98 files), Towncrier against `origin/main`, and Git diff checks:
+  passed.
+- All four scopes pass the signer's lockability preflight.
+- GitNexus reports documentation-section changes, zero affected execution
+  flows, and low risk; the diff contains only schema, run-note, and changelog
+  changes.
+
+The existing GitHub CI run for `2462155a` passed 5,153 tests, with 107 skipped,
+208 deselected, and 90.17% coverage. It did not admit these new scopes: the
+ingest guard saw no protected changes and remote verification checked zero
+new lock entries. Signed manifests, locks, uploads, and their verification
+are still pending until the custodian signing environment is available.
+
 ## Reproduce extraction
 
 The recorded extraction ran from clean tracked commit
@@ -219,7 +275,7 @@ reviewed-commit promotion for eligible rule/test files, followed by protected
 validation/signing approval. Do not mark that end-to-end experiment complete
 until its CI and unchanged-byte evidence exist.
 
-## Validation
+## Original extraction validation, 2026-10-02
 
 - Four live official-document extractions: 21 documents, 63 rows; complete
   structural coverage, zero missing/extra/duplicate citations.
