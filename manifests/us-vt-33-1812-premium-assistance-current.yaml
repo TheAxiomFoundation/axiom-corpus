@@ -1,0 +1,47 @@
+documents:
+  - source_id: us-vt-legislature-section-33-1812
+    jurisdiction: us-vt
+    document_class: statute
+    title: >-
+      Vermont Statutes Annotated Title 33, Section 1812, Financial assistance
+      to individuals (Vermont Health Benefit Exchange premium and cost-sharing
+      assistance)
+    source_url: https://legislature.vermont.gov/statutes/section/33/018/01812
+    source_format: html
+    source_as_of: "2026-08-14"
+    expression_date: "2026-01-01"
+    citation_path: us-vt/statute/33/1812
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: 'ul.item-list.statutes-detail'
+    metadata:
+      primary_source: true
+      source_authority: Vermont General Assembly
+      legal_identifier: 33 V.S.A. § 1812
+      legal_authority_url: >-
+        https://legislature.vermont.gov/statutes/section/33/018/01812
+      document_subtype: state_statute
+      program: vermont_premium_assistance
+      tax_year: "2026"
+      source_status: current_official_codified_statute
+      certification_scope: vermont_premium_and_cost_sharing_assistance_program
+      final_return_certification: false
+      source_family: healthcare/state-premium-assistance
+      source_note: >-
+        Current official codified source unit for 33 V.S.A. § 1812, the
+        Vermont Health Benefit Exchange financial-assistance program (added
+        2013, No. 50, § E.307.1, eff. Oct. 1, 2013; amended 2015, No. 23, § 54;
+        2017, No. 88 (Adj. Sess.), § 4, eff. Feb. 20, 2018). The content
+        selector captures the single-section statute body from the Vermont
+        General Assembly statutes site. Subsection (a) establishes premium
+        assistance for individuals and families eligible for federal premium
+        tax credits under 26 U.S.C. § 36B with income at or below 300 per cent
+        of the federal poverty level, and directs the Department of Vermont
+        Health Access to reduce the premium contribution by 1.5 per cent below
+        the amount established in § 36B on a sliding MAGI scale for the same
+        qualified health benefit plans. Subsection (b) establishes cost-sharing
+        assistance on a sliding actuarial-value schedule (94/87/77/73 per cent
+        by FPL band). It supports the rulespec-us reference encoding at
+        us-vt/statutes/33/1812 and the premium-subsidy oracle comparison
+        against PolicyEngine-US vt_premium_assistance (policyengine-us#9245).
