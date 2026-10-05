@@ -15,6 +15,7 @@ from typing import Any
 import pytest
 
 from axiom_corpus.corpus import content_store
+from axiom_corpus.corpus import io as io_module
 from axiom_corpus.corpus import resolver as resolver_module
 from axiom_corpus.corpus.content_store import ContentCache, content_key
 from axiom_corpus.corpus.corpus_locks import CorpusLock, LockEntry, write_lock
@@ -66,6 +67,10 @@ def _use_fake_remote(repo: Path, tmp_path: Path) -> None:
     resolver_module._RESOLVERS[repo.resolve()] = CorpusResolver(
         repo, cache=ContentCache(tmp_path / "cache"), sources=[remote]
     )
+
+
+def _refuse_whole_file_read(path: object) -> None:
+    raise AssertionError(f"inventory was read whole, not streamed: {path}")
 
 
 def _outcome(read: Callable[[], Any]) -> tuple[Any, ...]:
@@ -127,7 +132,10 @@ def test_locked_absent_files_are_fetched_before_streaming(
     ]
     assert (repo / PROVISIONS).read_bytes() == FILES[PROVISIONS]
 
+    # The fetched inventory must be streamed: if the reader skipped its own fetch,
+    # the whole-file fallback would fetch it and then read it whole.
     assert not (repo / INVENTORY).exists()
+    monkeypatch.setattr(io_module, "load_source_inventory", _refuse_whole_file_read)
     references = load_source_inventory_references(repo / INVENTORY)
     assert [reference.citation_path for reference in references] == ["nz/statute/a"]
     assert (repo / INVENTORY).read_bytes() == FILES[INVENTORY]
