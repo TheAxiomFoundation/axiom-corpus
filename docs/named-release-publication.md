@@ -266,9 +266,9 @@ of an owner bypassing the guards (turning triggers off with
 setting by hand):
 
 - Any change to `corpus.active_scope_pointer` that moves a pair to or from a
-  release with a base scope for it re-derives the pair, and so does any move
-  of a pair that still has derived rows (left behind by membership altered
-  with triggers off). The pointer trigger
+  release with a base scope for it re-derives the pair, and so does any move,
+  under `READ COMMITTED`, of a pair that still has derived rows (left behind
+  by membership altered with triggers off). The pointer trigger
   takes no further lock on `active_scope_pointer`: the row lock of the write
   orders it against other writes of the same pair. When it derives, it writes
   the two derived tables and analyzes them, which holds `SHARE UPDATE
@@ -358,22 +358,26 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    first takes a transaction-level advisory lock, so a second application waits
    for the first. Section 1 takes `SHARE` on `navigation_nodes`, which reads do
    not wait for. Next it takes `SHARE ROW EXCLUSIVE`, which writes wait for and
-   reads do not, on `provisions`, `navigation_nodes`, `active_scope_pointer`,
-   `release_objects`, `release_scopes` and (when re-applied) the two derived
-   tables, in the order activation takes its locks, so that a write in progress
-   delays the file before it holds anything a read waits for. Then it takes
-   `ACCESS EXCLUSIVE` on the four serving views it replaces, `navigation_nodes`
-   (its read policies) and `release_scopes` (the new column), in the order
-   serving reads take their locks: `current_provisions`, `legacy_provisions`,
+   reads do not, on `provisions`, `navigation_nodes`, `release_objects`,
+   `release_scopes`, `active_scope_pointer` and (when re-applied) the two
+   derived tables, in an order consistent with activation, membership inserts
+   and derivations, so that a write in progress delays the file before it holds
+   anything a read waits for. Then it takes `ACCESS EXCLUSIVE` on the four
+   serving views it replaces, `navigation_nodes` (its read policies) and
+   `release_scopes` (the new column), in the order serving reads take their
+   locks: `current_provisions`, `legacy_provisions`,
    `current_navigation_nodes`, `navigation_nodes`, `current_release_scopes`,
    `release_scopes`. It holds them until it commits, and the first time also
    holds the two derived tables it creates, which no read can reach yet. After
-   those it waits for no lock. The file does no derivation work, so the
-   transaction is short: on an otherwise idle local PostgreSQL 14 copy of
-   401,299 rows per table, its indexes already built, a re-application took 8
-   ms, and a first application of a small database 11 ms. These are one-off
-   measurements, not part of the test suite, of the file before its last
-   change, which added one statement that only takes locks.
+   those it waits for no lock a read or a row write can hold (an owner's
+   uncommitted `GRANT` on one of its objects would still make it wait, up to
+   its lock timeout). The file does no derivation work, so the transaction is
+   short. In one-off local measurements on PostgreSQL 14 (not part of the test
+   suite), an earlier revision of the file, re-applied to an otherwise idle
+   copy of 401,299 rows per table with its indexes built, took 8 ms; the
+   current file, applied 20 times to the small test fixture on a busy machine,
+   took a median of 12 ms re-applied and 92 ms the first time, which creates
+   the derived tables and indexes.
 
    What a concurrent read sees. A read here is one statement, as every
    PostgREST request and RPC call is. A read that got its locks before the file

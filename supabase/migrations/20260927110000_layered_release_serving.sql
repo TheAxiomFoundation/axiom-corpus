@@ -116,9 +116,13 @@ CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
 
 -- First, SHARE ROW EXCLUSIVE, which no read waits for, on every existing
 -- relation writes use that the file's triggers, indexes and deletes lock
--- later, in the order activation takes its locks. A write in progress then
--- delays the file before it holds anything a read waits for, and once it
--- holds the ACCESS EXCLUSIVE locks below the file waits for nothing more.
+-- later. A write in progress then delays the file before it holds anything a
+-- read waits for, and once it holds the ACCESS EXCLUSIVE locks below the file
+-- waits for no lock a read or a row write can hold. The order: provisions
+-- first, as activation takes it first, so the two cannot both hold a lock the
+-- other waits for; the release tables before the pointers, as a membership
+-- insert takes release_scopes before its trigger locks the pointers; the
+-- derived tables last, as every derivation locks the pointers before them.
 DO $$
 DECLARE
   v_relation regclass;
@@ -126,9 +130,9 @@ BEGIN
   FOREACH v_relation IN ARRAY ARRAY[
     to_regclass('corpus.provisions'),
     to_regclass('corpus.navigation_nodes'),
-    to_regclass('corpus.active_scope_pointer'),
     to_regclass('corpus.release_objects'),
     to_regclass('corpus.release_scopes'),
+    to_regclass('corpus.active_scope_pointer'),
     to_regclass('corpus.layered_shadowed_rows'),
     to_regclass('corpus.layered_navigation_overrides')
   ] LOOP
@@ -915,7 +919,8 @@ REVOKE EXECUTE ON FUNCTION corpus.release_layers_pair(text, text, text)
 
 -- Whether a pair has derived rows. Untouched, only a pair served by a release
 -- that layers it has any; one left over (membership altered with triggers
--- off) is removed by re-deriving the pair the next time its pointer moves.
+-- off) is removed by re-deriving the pair the next time its pointer moves
+-- under READ COMMITTED.
 CREATE OR REPLACE FUNCTION corpus.pair_has_derived_rows(
   p_jurisdiction text,
   p_document_class text
@@ -977,10 +982,11 @@ REVOKE EXECUTE ON FUNCTION corpus.guard_truncate_reads_committed_state(text)
 -- maintenance repoint, or a removal.
 --
 -- Only a pair served, before or after the move, by a release that layers it
--- (release_layers_pair), or still holding derived rows, has derived rows to
--- change. A move between releases that layer it not (every release before
--- release-object/v4) derives nothing, takes no further lock and, as before
--- layered serving, runs under any isolation level.
+-- (release_layers_pair), or, as a READ COMMITTED statement sees it, still
+-- holding derived rows, has derived rows to change. A move between releases
+-- that layer it not (every release before release-object/v4) derives
+-- nothing, takes no further lock on the pointers and, as before layered
+-- serving, runs under any isolation level.
 CREATE OR REPLACE FUNCTION corpus.sync_layered_serving()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -989,6 +995,10 @@ SET search_path = corpus, public
 AS $$
 DECLARE
   v_deriving text := current_setting('corpus.layered_serving_derivation', true);
+  -- Only a fresh snapshot shows which derived rows exist now: an older one can
+  -- show rows a concurrent pointer removal has since cleared.
+  v_fresh boolean := current_setting('transaction_isolation')
+    IN ('read committed', 'read uncommitted');
 BEGIN
   IF TG_OP = 'TRUNCATE' THEN
     -- Nothing is served: nothing is derived. TRUNCATE removed every pointer,
@@ -1012,7 +1022,7 @@ BEGIN
      ) THEN
     -- The old pair is no longer served by this row.
     IF corpus.release_layers_pair(OLD.release_name, OLD.jurisdiction, OLD.document_class)
-       OR corpus.pair_has_derived_rows(OLD.jurisdiction, OLD.document_class) THEN
+       OR (v_fresh AND corpus.pair_has_derived_rows(OLD.jurisdiction, OLD.document_class)) THEN
       PERFORM corpus.refresh_layered_serving(OLD.jurisdiction, OLD.document_class);
     END IF;
   END IF;
@@ -1026,7 +1036,7 @@ BEGIN
     -- The new pair is served by a new release; when the pair is unchanged,
     -- its derived rows are the old release's until re-derived.
     IF corpus.release_layers_pair(NEW.release_name, NEW.jurisdiction, NEW.document_class)
-       OR corpus.pair_has_derived_rows(NEW.jurisdiction, NEW.document_class) THEN
+       OR (v_fresh AND corpus.pair_has_derived_rows(NEW.jurisdiction, NEW.document_class)) THEN
       PERFORM corpus.refresh_layered_serving(NEW.jurisdiction, NEW.document_class);
     ELSIF TG_OP = 'UPDATE'
           AND (OLD.jurisdiction, OLD.document_class) = (NEW.jurisdiction, NEW.document_class) THEN

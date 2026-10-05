@@ -3391,6 +3391,86 @@ def test_a_write_in_progress_delays_the_file_before_it_blocks_reads(
     assert applying.error is None, applying.error
 
 
+@pytest.mark.parametrize("isolation", _SNAPSHOT_ISOLATIONS)
+@pytest.mark.parametrize("move", ["activation", "pointer insert"])
+def test_an_unlayered_move_after_a_concurrent_removal_works_under_any_isolation(
+    layered_dsn: str, db: Any, isolation: str, move: str
+) -> None:
+    """Review round 5: a snapshot taken before another session removed a
+    layered pointer still shows the pair's derived rows. Moving the pair to a
+    release without a base scope under that snapshot works, as it did before
+    layered serving; only a READ COMMITTED statement reads derived rows to
+    decide."""
+    unlayered = _publish(db, _UNLAYERED_RELEASE, PRIMARY_TITLE, OTHER_PAIR)
+    _publish_layered(db)
+    with closing(psycopg2.connect(layered_dsn)) as old:
+        with old.cursor() as cursor:
+            cursor.execute(f"SET TRANSACTION ISOLATION LEVEL {isolation}")
+            cursor.execute("SELECT COUNT(*) FROM corpus.layered_shadowed_rows")
+            assert cursor.fetchone() != (0,)
+        assert (
+            _attempt(
+                db,
+                "DELETE FROM corpus.active_scope_pointer "
+                "WHERE jurisdiction = 'fx' AND document_class = 'statute'",
+            )
+            is None
+        )
+        statement, params = (
+            ("SELECT corpus.activate_corpus_release(%s::jsonb)", (Json(unlayered),))
+            if move == "activation"
+            else (
+                "INSERT INTO corpus.active_scope_pointer (jurisdiction, document_class, "
+                "release_name, content_sha256) VALUES ('fx', 'statute', %s, %s)",
+                (unlayered["release"], unlayered["content_sha256"]),
+            )
+        )
+        assert _attempt(old, statement, params) is None
+    _assert_serving_is_consistent(db)
+
+
+def test_restoring_a_base_row_while_the_file_is_applied_does_not_deadlock(
+    layered_dsn: str, db: Any
+) -> None:
+    """Review round 5: a membership insert takes release_scopes, then its
+    trigger locks the pointers; the file locked the pointers before
+    release_scopes. An owner restoring a base row (lost with triggers off)
+    while the file is applied deadlocked with it."""
+    _publish_layered(db)
+    with _triggers_off(db) as cursor:
+        cursor.execute(
+            "DELETE FROM corpus.release_scopes WHERE release_name = %s AND layer = 'base'",
+            (LAYERED_RELEASE,),
+        )
+    restore = (
+        "INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, "
+        "version, layer) VALUES (%s, 'fx', 'statute', %s, 'base')"
+    )
+    with (
+        closing(psycopg2.connect(layered_dsn)) as holder,
+        _observer(layered_dsn) as observer,
+    ):
+        # Hold the release object's row, so the restore's foreign key check
+        # waits after the insert took release_scopes and before its trigger
+        # locks the pointers.
+        with holder.cursor() as cursor:
+            cursor.execute(
+                "SELECT 1 FROM corpus.release_objects WHERE release_name = %s FOR UPDATE",
+                (LAYERED_RELEASE,),
+            )
+        restoring = _Background(layered_dsn, _committing(restore, (LAYERED_RELEASE, BASE.version)))
+        _wait_until_waiting(observer, restoring)
+        assert "corpus.release_scopes" in _held(observer, restoring, "RowExclusiveLock")
+        applying = _Background(layered_dsn, _applying)
+        _wait_until_waiting(observer, applying, "corpus.release_scopes")
+        holder.rollback()
+        restoring.join()
+        applying.join()
+    assert restoring.error is None, restoring.error
+    assert applying.error is None, applying.error
+    _assert_serving_is_consistent(db)
+
+
 def test_read_uncommitted_counts_as_read_committed(db: Any) -> None:
     """PostgreSQL runs READ UNCOMMITTED as READ COMMITTED: what that allows,
     this allows."""
