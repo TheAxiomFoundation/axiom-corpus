@@ -205,10 +205,13 @@ scopes' order; every other base row is served.
 `layer` key; an explicit `"primary"` or any other value is rejected, so each
 scope has one encoding and historical selectors and signed scope dictionaries
 keep their bytes. A release carries at most one base scope per pair.
-Validation keeps citation paths unique within each layer, accepts a
-base/primary overlap only inside one pair, and resolves parents across both
-layers. A base scope's artifacts may be pinned by a committed corpus lock
-rather than tracked in git (`docs/corpus-storage.md`).
+Validation keeps citation paths unique within each layer and accepts a
+base/primary overlap only inside one pair. Parent closure stays per scope: a
+row's parent id is derived from the parent's path and the row's own version,
+so a primary section whose title is only in the base declares no parent, and
+serving places it under the base title. A base scope's artifacts may be pinned
+by a committed corpus lock rather than tracked in git
+(`docs/corpus-storage.md`).
 
 **Release objects.** A release without a base scope signs
 `axiom-corpus/release-object/v3`, byte for byte as before

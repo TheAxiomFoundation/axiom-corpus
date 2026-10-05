@@ -295,7 +295,19 @@ class SupabaseQuery:
             batch = ids[start : start + CHILD_ID_BATCH]
             for row in self._request(self.provisions_table, {"id": f"in.({','.join(batch)})"}) or []:
                 rows[str(row["id"])] = row
-        return [self._to_rule(rows[provision_id]) for provision_id in ids if provision_id in rows]
+        children: dict[str, Rule] = {}
+        for provision_id in ids:
+            if provision_id not in rows:
+                continue
+            child = self._to_rule(rows[provision_id])
+            key = child.citation_path or child.id
+            kept = children.get(key)
+            # A release cut before citation paths were unique across scopes can
+            # serve one path from two scopes: keep one child per path, the
+            # rule's own scope's where it has one.
+            if kept is None or (kept.parent_id != rule.id and child.parent_id == rule.id):
+                children[key] = child
+        return list(children.values())
 
     def get_section_deep(
         self,

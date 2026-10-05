@@ -214,17 +214,20 @@ def _release_citation_paths(
     *,
     require_unique: bool,
 ) -> set[str]:
-    """Collect parents available anywhere in the local release cut.
-
-    A release may deliberately split a legal hierarchy across source snapshots.
-    Parent integrity is therefore a release-wide invariant, not a scope-local one.
-    Parsing errors remain owned by ``_validate_scope`` so they are reported once.
+    """Check release-wide citation uniqueness and collect every citation path.
 
     Citation uniqueness is per layer: a base scope may carry a path a primary
     scope also carries (serving picks the primary row), but two scopes of the
     same layer may not, and the overlap must stay inside one
     (jurisdiction, document_class) pair because serving resolves precedence
-    per pair. The returned path set is the union of both layers.
+    per pair. The returned path set covers both layers.
+
+    Parent closure is not release-wide: ``_validate_provision_record`` requires
+    a declared parent in the record's own scope, because Supabase derives a
+    row's parent id from the parent's path and the row's own version. A primary
+    scope that leaves its parent title to the base declares no parent for that
+    section; serving hangs it under the base tree (20260927110000).
+    Parsing errors remain owned by ``_validate_scope`` so they are reported once.
     """
     paths: set[str] = set()
     owners = _LayeredCitationOwners()

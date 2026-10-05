@@ -37,6 +37,7 @@ from axiom_corpus.corpus.releases import (
     LAYER_PRIMARY,
     ReleaseManifest,
     ReleaseScope,
+    _parse_scope,
 )
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_SCHEMA_V3,
@@ -472,13 +473,7 @@ def test_selector_encoding_round_trips_every_layer(release: ReleaseManifest) -> 
     loaded = ReleaseManifest(
         name=release.name,
         scopes=tuple(
-            ReleaseScope(
-                raw["jurisdiction"],
-                raw["document_class"],
-                raw["version"],
-                layer=raw.get("layer", LAYER_PRIMARY),
-            )
-            for raw in payload["scopes"]
+            _parse_scope(raw, manifest_path=Path("<generated>")) for raw in payload["scopes"]
         ),
         quality_profile=release.quality_profile,
     )
@@ -866,6 +861,74 @@ def test_layered_release_validates_with_a_base_primary_overlap(tmp_path: Path) -
 
     assert report.ok, report.to_mapping()
     assert report.error_count == 0
+
+
+def _write_section_only_scope(
+    store: CorpusArtifactStore, version: str, *, declared_parent: str | None
+) -> None:
+    """A primary scope with section 1/5 of title 1 and not the title itself."""
+    source = store.source_path("fx", "statute", version, "title-1.xml")
+    source_sha = store.write_text(source, "<title n='1'>Amended text.</title>")
+    source_rel = source.relative_to(store.root).as_posix()
+    path = "fx/statute/1/5"
+    store.write_inventory(
+        store.inventory_path("fx", "statute", version),
+        [SourceInventoryItem(citation_path=path, source_path=source_rel, sha256=source_sha)],
+    )
+    store.write_provisions(
+        store.provisions_path("fx", "statute", version),
+        [
+            ProvisionRecord(
+                jurisdiction="fx",
+                document_class="statute",
+                citation_path=path,
+                parent_citation_path=declared_parent,
+                version=version,
+                heading="Section 5",
+                body="Section 5 text.",
+                kind="section",
+                source_path=source_rel,
+                expression_date="2026-09-01",
+            )
+        ],
+    )
+    store.write_json(
+        store.coverage_path("fx", "statute", version),
+        {
+            "complete": True,
+            "source_count": 1,
+            "provision_count": 1,
+            "matched_count": 1,
+            "missing_from_provisions": [],
+            "extra_provisions": [],
+        },
+    )
+
+
+@pytest.mark.parametrize(("declared_parent", "ok"), [("fx/statute/1", False), (None, True)])
+def test_parent_closure_stays_per_scope_across_layers(
+    tmp_path: Path, declared_parent: str | None, ok: bool
+) -> None:
+    """A row's parent id is versioned by the row's own scope, so a declared
+    parent must be in that scope even when the base carries it. A section that
+    leaves its title to the base declares no parent; serving places it."""
+    store = CorpusArtifactStore(tmp_path / "data" / "corpus")
+    _write_scope(store, "fx", "statute", "v-base", "1", ("1", "2"))
+    _write_section_only_scope(store, "v-sections", declared_parent=declared_parent)
+    release = ReleaseManifest(
+        name="fx-section-over-base",
+        scopes=(
+            ReleaseScope("fx", "statute", "v-base", layer=LAYER_BASE),
+            ReleaseScope("fx", "statute", "v-sections"),
+        ),
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+    )
+
+    report = validate_release(store.root, release)
+
+    assert report.ok is ok, report.to_mapping()
+    codes = {(issue.code, issue.version) for issue in report.issues if issue.severity == "error"}
+    assert codes == (set() if ok else {("missing_parent_citation", "v-sections")})
 
 
 def test_same_path_in_two_primary_scopes_still_fails(tmp_path: Path) -> None:
