@@ -1,0 +1,179 @@
+version: 2026-09-15-medicare-cms-iom-100-03
+documents:
+- source_id: us-cms-iom-100-03-chapter-1-part-1
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations, Part
+    1 (Sections 10 - 80.12)
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-05-28'
+  citation_path: us/manual/cms/iom/100-03/chapter-1-part-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Local\ Medical\ review\ Policies\.$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-03
+    publication_title: Medicare National Coverage Determinations (NCD) Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    chapter: 1
+    chapter_title: Coverage Determinations
+    latest_transmittal: Rev. 13806, issued 2026-05-28
+    expression_date_source: 'TOC header ''(Rev. 13806; Issued: 05-28-26)'''
+    pdf_page_count: 136
+    body_start_page: 6
+    toc_section_count: 110
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-03
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    http_last_modified: Wed, 03 Jun 2026 12:57:34 GMT
+    chapter_part: 1
+    chapter_part_sections: Sections 10 - 80.12
+    chapter_part_note: the publisher posts this chapter as part PDFs; each part is one document keyed chapter-N-part-M and
+      the section labels run continuously across the parts
+- source_id: us-cms-iom-100-03-chapter-1-part-2
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations, Part
+    2 (Sections 90 - 160.26)
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2023-10-12'
+  citation_path: us/manual/cms/iom/100-03/chapter-1-part-2
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^160\.27\ –\ Transcutaneous\ Electrical\ Nerve\ Stimulation\ \(TENS\)\ for\ Chronic\ Low\ Back\ Pain\
+      \(CLBP\)$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-03
+    publication_title: Medicare National Coverage Determinations (NCD) Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    chapter: 1
+    chapter_title: Coverage Determinations
+    latest_transmittal: Rev. 12299, issued 2023-10-12
+    expression_date_source: TOC header '(Rev. 12299, 10-12-23)'
+    pdf_page_count: 87
+    body_start_page: 4
+    toc_section_count: 103
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-03
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    http_last_modified: Tue, 14 Nov 2023 12:56:26 GMT
+    chapter_part: 2
+    chapter_part_sections: Sections 90 - 160.26
+    chapter_part_note: the publisher posts this chapter as part PDFs; each part is one document keyed chapter-N-part-M and
+      the section labels run continuously across the parts
+- source_id: us-cms-iom-100-03-chapter-1-part-3
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations, Part
+    3 (Sections 170 - 190.34)
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2023-06-29'
+  citation_path: us/manual/cms/iom/100-03/chapter-1-part-3
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^190\.34\ \-\ Fecal\ Occult\ Blood\ Test$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-03
+    publication_title: Medicare National Coverage Determinations (NCD) Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    chapter: 1
+    chapter_title: Coverage Determinations
+    latest_transmittal: Rev. 12112, issued 2023-06-29
+    expression_date_source: TOC header '(Rev. 12112, Issued; 06-29-23)'
+    pdf_page_count: 47
+    body_start_page: 3
+    toc_section_count: 42
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-03
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    http_last_modified: Thu, 10 Aug 2023 16:32:07 GMT
+    chapter_part: 3
+    chapter_part_sections: Sections 170 - 190.34
+    chapter_part_note: the publisher posts this chapter as part PDFs; each part is one document keyed chapter-N-part-M and
+      the section labels run continuously across the parts
+- source_id: us-cms-iom-100-03-chapter-1-part-4
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations, Part
+    4 (Sections 200 - 310.1)
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-05-29'
+  citation_path: us/manual/cms/iom/100-03/chapter-1-part-4
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^310\.1\ \-\ Routine\ Costs\ in\ Clinical\ Trials\ \(Effective\ July\ 9,\ 2007\)$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-03
+    publication_title: Medicare National Coverage Determinations (NCD) Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    chapter: 1
+    chapter_title: Coverage Determinations
+    latest_transmittal: Rev. 13808, issued 2026-05-29
+    expression_date_source: 'TOC header ''(Rev. 13808; Issued: 05-29-26)'''
+    pdf_page_count: 135
+    body_start_page: 5
+    toc_section_count: 136
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-03
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    http_last_modified: Wed, 03 Jun 2026 13:01:28 GMT
+    chapter_part: 4
+    chapter_part_sections: Sections 200 - 310.1
+    chapter_part_note: the publisher posts this chapter as part PDFs; each part is one document keyed chapter-N-part-M and
+      the section labels run continuously across the parts

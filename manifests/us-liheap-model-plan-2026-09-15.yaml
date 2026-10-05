@@ -1,0 +1,329 @@
+version: 2026-09-15-liheap-model-plan
+documents:
+- source_id: us-acf-ocs-liheap-at-2026-4
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2026-4: Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2027 (FY27) (page)'
+  source_url: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-10'
+  citation_path: us/guidance/acf/ocs/liheap-at/2026-4
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2027'
+    action_transmittal: LIHEAP-AT-2026-4
+    action_transmittal_date: '2026-06-10'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: &id001
+    - LIHEAP-F-GUID-MODELPLAN
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_page
+- source_id: us-acf-ocs-liheap-at-2026-4-transmittal
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2026-4: Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2027 (transmittal)'
+  source_url: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_AT_LIHEAP_Model-Plan_FY27_Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-10'
+  citation_path: us/guidance/acf/ocs/liheap-at/2026-4/transmittal
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2027'
+    action_transmittal: LIHEAP-AT-2026-4
+    action_transmittal_date: '2026-06-10'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id001
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal
+    pdf_page_count: 7
+    expression_date_note: the transmittal's printed DATE line, 2026-06-10
+- source_id: us-acf-ocs-liheap-at-2026-4-attachment-1-oldc-cloning-instructions
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2026-4 Attachment 1: OLDC instructions for cloning the FY26 Model Plan into the FY27 Model Plan'
+  source_url: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+  download_url: https://acf.gov/sites/default/files/documents/ocs/Att-1_LIHEAP_AT_Model-Plan_FY27_CloningInstructions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-10'
+  citation_path: us/guidance/acf/ocs/liheap-at/2026-4/attachment-1-oldc-cloning-instructions
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2027'
+    action_transmittal: LIHEAP-AT-2026-4
+    action_transmittal_date: '2026-06-10'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id001
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_attachment
+    expression_date_note: the attachments carry the transmittal's date, 2026-06-10
+    pdf_page_count: 4
+- source_id: us-acf-ocs-liheap-at-2026-4-attachment-2-model-plan-reference-guide
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2026-4 Attachment 2: LIHEAP Model Plan Reference Guide (FY 2027)'
+  source_url: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+  download_url: https://acf.gov/sites/default/files/documents/ocs/Att-2_LIHEAP_AT_Model-Plan_FY27_Att-2_ReferenceGuide.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-10'
+  citation_path: us/guidance/acf/ocs/liheap-at/2026-4/attachment-2-model-plan-reference-guide
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2027'
+    action_transmittal: LIHEAP-AT-2026-4
+    action_transmittal_date: '2026-06-10'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id001
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_attachment
+    expression_date_note: the attachments carry the transmittal's date, 2026-06-10
+    pdf_page_count: 41
+- source_id: us-acf-ocs-liheap-at-2026-4-attachment-3-model-plan-template
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2026-4 Attachment 3: LIHEAP Model Plan template (OMB Clearance No. 0970-0075, FY 2027)'
+  source_url: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+  download_url: https://acf.gov/sites/default/files/documents/ocs/Att-3_LIHEAP-Model-Plan-Template_508_5.8.26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-10'
+  citation_path: us/guidance/acf/ocs/liheap-at/2026-4/attachment-3-model-plan-template
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2027'
+    action_transmittal: LIHEAP-AT-2026-4
+    action_transmittal_date: '2026-06-10'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id001
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_attachment
+    expression_date_note: the attachments carry the transmittal's date, 2026-06-10
+    pdf_page_count: 44
+    omb_control_number: 0970-0075
+- source_id: us-acf-ocs-liheap-at-2025-04
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2025-04: LIHEAP-AT-2025-04 Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2026 (FY26)
+    (page)'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-02'
+  citation_path: us/guidance/acf/ocs/liheap-at/2025-04
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2026'
+    action_transmittal: LIHEAP-AT-2025-04
+    action_transmittal_date: '2025-04-02'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: &id002
+    - LIHEAP-F-GUID-MODELPLAN
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_page
+- source_id: us-acf-ocs-liheap-at-2025-04-transmittal
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2025-04: Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2026 (transmittal)'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Model-Plan-AT_FY26_040225.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-02'
+  citation_path: us/guidance/acf/ocs/liheap-at/2025-04/transmittal
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2026'
+    action_transmittal: LIHEAP-AT-2025-04
+    action_transmittal_date: '2025-04-02'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id002
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal
+    pdf_page_count: 6
+    expression_date_note: the transmittal's printed DATE line, 2025-04-02
+- source_id: us-acf-ocs-liheap-at-2025-04-attachment-1-oldc-cloning-instructions
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP-AT-2025-04 Attachment 1: OLDC instructions for cloning the FY25 Model Plan into the FY26 Model Plan'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_AT_Att-1_Cloning-Instructions_FY2026.docx
+  source_format: docx
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-02'
+  citation_path: us/guidance/acf/ocs/liheap-at/2025-04/attachment-1-oldc-cloning-instructions
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2026'
+    action_transmittal: LIHEAP-AT-2025-04
+    action_transmittal_date: '2025-04-02'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id002
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_attachment
+    expression_date_note: the attachments carry the transmittal's date, 2025-04-02
+- source_id: us-acf-ocs-liheap-at-2025-04-attachment-model-plan-reference-guide
+  jurisdiction: us
+  document_class: guidance
+  title: LIHEAP-AT-2025-04 LIHEAP Model Plan Reference Guide (FY 2026)
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP-Model-Plan-Reference-Guide_FY26-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-02'
+  citation_path: us/guidance/acf/ocs/liheap-at/2025-04/attachment-model-plan-reference-guide
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2026'
+    action_transmittal: LIHEAP-AT-2025-04
+    action_transmittal_date: '2025-04-02'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id002
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_attachment
+    expression_date_note: the attachments carry the transmittal's date, 2025-04-02
+    pdf_page_count: 41
+- source_id: us-acf-ocs-liheap-at-2025-04-attachment-model-plan-template
+  jurisdiction: us
+  document_class: guidance
+  title: LIHEAP-AT-2025-04 LIHEAP Model Plan template (OMB Clearance No. 0970-0075, FY 2026, Word)
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Model-Plan-Template-draft_032025.docx
+  source_format: docx
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-02'
+  citation_path: us/guidance/acf/ocs/liheap-at/2025-04/attachment-model-plan-template
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    program: LIHEAP
+    fiscal_year: '2026'
+    action_transmittal: LIHEAP-AT-2025-04
+    action_transmittal_date: '2025-04-02'
+    action_transmittal_page: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+    index_url: https://acf.gov/ocs/resource/liheap-action-transmittals
+    source_discovery_group: us/guidance/acf/ocs
+    closure_elements: *id002
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP action
+      transmittals index https://acf.gov/ocs/resource/liheap-action-transmittals
+    access_note: 'acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, x-amzn-waf-action:
+      challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served (fingerprint-only wall, no CAPTCHA
+      or JavaScript challenge solved, TLS verification on), so the family is fetched with browser impersonation; the same
+      host served the plain client on 2026-09-13'
+    document_subtype: action_transmittal_attachment
+    expression_date_note: the attachments carry the transmittal's date, 2025-04-02
+    omb_control_number: 0970-0075
