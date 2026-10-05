@@ -73,7 +73,9 @@ STAGED_RELEASE_OBJECT_V4_MIGRATION = (
 )
 # Applied by hand before the first layered release is activated. Every test in
 # this module runs both without it and with it: with no base scope active the
-# layered schema must behave exactly like the schema before it.
+# layered schema must behave exactly like the schema before it, except that it
+# rejects owner-level writes that would change a signed release's membership
+# or truncate released rows (test_idempotent_retry_rejects_extra_stored_membership).
 LAYERED_SERVING_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260927110000_layered_release_serving.sql"
@@ -393,11 +395,16 @@ def _reset_database(dsn: str) -> None:
             cursor.execute("SELECT to_regclass(%s) IS NOT NULL", (f"corpus.{table}",))
             if cursor.fetchone()[0]:
                 tables.append(table)
+        # The layered migration makes signed membership and released rows
+        # refuse TRUNCATE, so a test database is emptied with triggers off (a
+        # superuser setting).
+        cursor.execute("SET session_replication_role = replica")
         cursor.execute(
             sql.SQL("TRUNCATE TABLE {}").format(
                 sql.SQL(", ").join(sql.Identifier("corpus", table) for table in tables)
             )
         )
+        cursor.execute("RESET session_replication_role")
         cursor.execute("REFRESH MATERIALIZED VIEW corpus.current_provision_counts")
         connection.commit()
 
@@ -1209,20 +1216,32 @@ def test_idempotent_retry_rejects_extra_stored_membership(clean_postgres: str) -
         connection.commit()
         pointer = _active_pointer(connection)
 
+        extra_membership = (
+            """
+            INSERT INTO corpus.release_scopes (
+              release_name, jurisdiction, document_class, version
+            ) VALUES (%s, %s, %s, %s)
+            """,
+            (
+                "membership-release",
+                extra_identity["jurisdiction"],
+                extra_identity["document_class"],
+                extra_identity["version"],
+            ),
+        )
         with connection.cursor() as cursor:
-            cursor.execute(
-                """
-                INSERT INTO corpus.release_scopes (
-                  release_name, jurisdiction, document_class, version
-                ) VALUES (%s, %s, %s, %s)
-                """,
-                (
-                    "membership-release",
-                    extra_identity["jurisdiction"],
-                    extra_identity["document_class"],
-                    extra_identity["version"],
-                ),
-            )
+            cursor.execute("SELECT to_regclass('corpus.layered_shadowed_rows') IS NOT NULL")
+            layered = cursor.fetchone()[0]
+            if layered:
+                # The layered migration admits only a release's signed scopes
+                # to its membership, which can no longer be deleted; the extra
+                # row stands for membership altered before that guard.
+                with pytest.raises(errors.RaiseException, match="not one of its signed scopes"):
+                    cursor.execute(*extra_membership)
+                connection.rollback()
+                cursor.execute("SET session_replication_role = replica")
+            cursor.execute(*extra_membership)
+            cursor.execute("RESET session_replication_role")
         connection.commit()
 
         with pytest.raises(errors.RaiseException, match="membership differs"):

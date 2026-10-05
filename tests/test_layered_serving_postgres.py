@@ -419,11 +419,15 @@ def db(layered_dsn: str) -> Iterator[Any]:
 
 def _reset(dsn: str) -> None:
     with closing(psycopg2.connect(dsn)) as connection, connection.cursor() as cursor:
+        # Signed membership and released rows refuse TRUNCATE, so a test
+        # database is emptied with triggers off (a superuser setting).
+        cursor.execute("SET session_replication_role = replica")
         cursor.execute(
             sql.SQL("TRUNCATE TABLE {}").format(
                 sql.SQL(", ").join(sql.Identifier("corpus", table) for table in RESET_TABLES)
             )
         )
+        cursor.execute("RESET session_replication_role")
         cursor.execute("REFRESH MATERIALIZED VIEW corpus.current_provision_counts")
         connection.commit()
 
@@ -765,6 +769,68 @@ def _snapshot(connection: Any) -> dict[str, Any]:
     }
 
 
+def _stored(connection: Any) -> list[tuple[Any, ...]]:
+    return _rows(
+        connection,
+        "SELECT (SELECT COUNT(*) FROM corpus.provisions), "
+        "(SELECT COUNT(*) FROM corpus.navigation_nodes)",
+    )
+
+
+def _attempt(
+    connection: Any, statement: str, params: Sequence[Any] | Mapping[str, Any] = ()
+) -> Exception | None:
+    """Run one owner-level write and commit it; return the error it raised, if any."""
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(statement, params)
+        connection.commit()
+    except psycopg2.Error as exc:
+        connection.rollback()
+        return exc
+    return None
+
+
+def _derived_rows(cursor: Any) -> dict[str, list[tuple[Any, ...]]]:
+    cursor.execute("SELECT * FROM corpus.layered_shadowed_rows ORDER BY 1, 2, 3")
+    shadowed = cursor.fetchall()
+    cursor.execute("SELECT * FROM corpus.layered_navigation_overrides ORDER BY id")
+    return {"shadowed": shadowed, "overrides": cursor.fetchall()}
+
+
+def _assert_serving_is_consistent(connection: Any) -> None:
+    """What is served is what a derivation from scratch would serve.
+
+    The derived tables equal a fresh derivation of every served pair (made in a
+    transaction that is rolled back), each pair serves a citation path at most
+    once in each view, and navigation serves exactly the served provisions.
+    """
+    with connection.cursor() as cursor:
+        stored = _derived_rows(cursor)
+        cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+        cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+        cursor.execute(
+            "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+            "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+        )
+        fresh = _derived_rows(cursor)
+    connection.rollback()
+    assert stored == fresh
+    provisions = _rows(
+        connection,
+        "SELECT jurisdiction, COALESCE(NULLIF(doc_type, ''), 'unknown'), citation_path, id::text "
+        "FROM corpus.current_provisions",
+    )
+    navigation = _rows(
+        connection,
+        "SELECT jurisdiction, COALESCE(NULLIF(doc_type, ''), 'unknown'), path, provision_id::text "
+        "FROM corpus.current_navigation_nodes",
+    )
+    assert len({row[:3] for row in provisions}) == len(provisions)
+    assert len({row[:3] for row in navigation}) == len(navigation)
+    assert {row[3] for row in navigation if row[3]} == {row[3] for row in provisions}
+
+
 # ---------------------------------------------------------------------------
 # Python reference model of layered serving.
 # ---------------------------------------------------------------------------
@@ -991,20 +1057,29 @@ def test_migration_keeps_every_serving_column_and_appends_the_layer(db: Any) -> 
     assert columns["corpus.navigation_nodes"] == list(NAVIGATION_COLUMNS)
 
 
-def test_migration_is_rerunnable_and_rederives_the_same_state(db: Any) -> None:
+def test_migration_is_rerunnable_and_rederivation_reproduces_the_state(db: Any) -> None:
     _publish_layered(db)
     before = _snapshot(db)
     with db.cursor() as cursor:
         cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
     db.commit()
     assert _snapshot(db) == before
+    _rows(db, "SELECT corpus.rederive_layered_serving()")
+    assert _snapshot(db) == before
 
 
 def test_historical_memberships_become_primary(db: Any) -> None:
     _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE)
     assert _rows(db, "SELECT DISTINCT layer FROM corpus.release_scopes") == [("primary",)]
+    # The membership guard rejects the write first; with triggers off (as an
+    # owner could), the check constraint still holds the layer to its values.
+    assert isinstance(
+        _attempt(db, "UPDATE corpus.release_scopes SET layer = 'secondary'"),
+        errors.RaiseException,
+    )
     with pytest.raises(errors.CheckViolation):
         with db.cursor() as cursor:
+            cursor.execute("SET session_replication_role = replica")
             cursor.execute("UPDATE corpus.release_scopes SET layer = 'secondary'")
     db.rollback()
 
@@ -1704,18 +1779,30 @@ def test_two_layered_pairs_register_activate_and_move_independently(db: Any) -> 
 
 def test_activation_compares_the_stored_layer_with_the_signed_one(db: Any) -> None:
     release_object = _publish_layered(db)
+    before = _snapshot(db)
+    demote_base = (
+        "UPDATE corpus.release_scopes SET layer = 'primary' "
+        "WHERE release_name = %s AND layer = 'base'"
+    )
+    error = _attempt(db, demote_base, (LAYERED_RELEASE,))
+    # Checked right after the write: nothing it would have changed is served.
+    assert isinstance(error, errors.RaiseException), error
+    assert "immutable" in str(error)
+    assert _snapshot(db) == before
+    _assert_serving_is_consistent(db)
+    # Second line of defence, for membership altered before the guard existed
+    # (simulated with triggers off): activation compares the stored layer with
+    # the signed one and refuses, and serving is left as it was.
     with db.cursor() as cursor:
-        cursor.execute(
-            "UPDATE corpus.release_scopes SET layer = 'primary' "
-            "WHERE release_name = %s AND layer = 'base'",
-            (LAYERED_RELEASE,),
-        )
-        # Force a pointer move, so activation reaches its membership check.
-        cursor.execute("DELETE FROM corpus.active_scope_pointer WHERE document_class = 'statute'")
+        cursor.execute("SET session_replication_role = replica")
+        cursor.execute(demote_base, (LAYERED_RELEASE,))
+        cursor.execute("RESET session_replication_role")
     db.commit()
+    altered = _snapshot(db)
     with pytest.raises(errors.RaiseException, match="membership differs"):
         _activate(db, release_object)
     db.rollback()
+    assert _snapshot(db) == altered
 
 
 def test_service_role_cannot_write_the_derived_state(db: Any) -> None:
@@ -1757,6 +1844,326 @@ def test_the_ambiguity_check_covers_only_layered_pairs(db: Any) -> None:
     ) == [(2,)]
 
 
+# ---------------------------------------------------------------------------
+# The derived state stays what a derivation from scratch gives: an owner-level
+# write to what it is derived from is rejected, or re-derives in the same
+# statement.
+# ---------------------------------------------------------------------------
+
+# A staged scope no release signs, carrying a path the base carries.
+STRAY = Scope(
+    "fx",
+    "statute",
+    "2026-09-25-stray",
+    (Node("fx/statute/3/1", heading="Section 3-1 (stray)", ordinal=1),),
+)
+
+_SERVED_INPUT_WRITES = {
+    "demote the base scope": (
+        "UPDATE corpus.release_scopes SET layer = 'primary' "
+        "WHERE release_name = %(release)s AND layer = 'base'"
+    ),
+    "move a primary scope to another version": (
+        "UPDATE corpus.release_scopes SET version = %(stray)s "
+        "WHERE release_name = %(release)s AND version = %(primary)s"
+    ),
+    "delete a primary scope": (
+        "DELETE FROM corpus.release_scopes "
+        "WHERE release_name = %(release)s AND version = %(primary)s"
+    ),
+    "delete the base scope": (
+        "DELETE FROM corpus.release_scopes WHERE release_name = %(release)s AND version = %(base)s"
+    ),
+    "add an unsigned primary scope": (
+        "INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, version) "
+        "VALUES (%(release)s, 'fx', 'statute', %(stray)s)"
+    ),
+    "truncate membership": "TRUNCATE corpus.release_scopes",
+    "truncate release objects": "TRUNCATE corpus.release_objects CASCADE",
+    "truncate navigation": "TRUNCATE corpus.navigation_nodes",
+    "truncate provisions": "TRUNCATE corpus.provisions CASCADE",
+    "truncate both staged tables": "TRUNCATE corpus.provisions, corpus.navigation_nodes CASCADE",
+}
+
+
+@pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+    _stage(db, STRAY)
+    _publish_layered(db)
+    before = _snapshot(db)
+    stored = _stored(db)
+    error = _attempt(
+        db,
+        _SERVED_INPUT_WRITES[write],
+        {
+            "release": LAYERED_RELEASE,
+            "stray": STRAY.version,
+            "primary": PRIMARY_TITLE.version,
+            "base": BASE.version,
+        },
+    )
+    # Checked right after the write: serving is still exactly what a
+    # derivation from scratch serves, and nothing changed.
+    _assert_serving_is_consistent(db)
+    assert isinstance(error, errors.RaiseException), error
+    assert "immutable" in str(error)
+    assert _snapshot(db) == before
+    assert _stored(db) == stored
+
+
+def test_released_rows_and_membership_refuse_truncate_for_every_release(db: Any) -> None:
+    """The statement-level twin of the released-row guard, layered or not."""
+    _publish(db, "fx-rulespec-2026-09-01", OTHER_PAIR)
+    for statement in (
+        "TRUNCATE corpus.navigation_nodes",
+        "TRUNCATE corpus.provisions CASCADE",
+        "TRUNCATE corpus.release_scopes",
+    ):
+        error = _attempt(db, statement)
+        assert isinstance(error, errors.RaiseException), statement
+        assert "immutable" in str(error)
+    _assert_matches_reference(db)
+
+
+def test_truncate_still_clears_rows_no_release_signs(db: Any) -> None:
+    _stage(db, BASE, OTHER_PAIR)
+    assert _attempt(db, "TRUNCATE corpus.provisions, corpus.navigation_nodes CASCADE") is None
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.provisions") == [(0,)]
+
+
+def test_only_signed_scopes_join_membership(db: Any) -> None:
+    """Membership rows of a signed release cannot be deleted, so no stray one gets in."""
+    _stage(db, STRAY, PRIMARY_TITLE)
+    release_object = _release_object(db, "fx-rulespec-2026-09-01", (PRIMARY_TITLE,))
+    _stage_object(db, release_object)
+    insert = (
+        "INSERT INTO corpus.release_scopes "
+        "(release_name, jurisdiction, document_class, version, layer) "
+        "VALUES ('fx-rulespec-2026-09-01', 'fx', 'statute', %s, %s)"
+    )
+    for version, layer in ((STRAY.version, "primary"), (PRIMARY_TITLE.version, "base")):
+        error = _attempt(db, insert, (version, layer))
+        assert isinstance(error, errors.RaiseException), (version, layer)
+        assert "not one of its signed scopes" in str(error)
+    assert _attempt(db, insert, (PRIMARY_TITLE.version, "primary")) is None
+    _activate(db, release_object)
+    assert _ids(db, "corpus.current_provisions") == {
+        _provision_id(node.path, PRIMARY_TITLE.version) for node in PRIMARY_TITLE.nodes
+    }
+
+
+@pytest.mark.parametrize("restore", ["reactivation", "insert"])
+def test_restoring_membership_lost_before_the_guard_rederives_the_pair(
+    db: Any, restore: str
+) -> None:
+    """Membership altered before the guard existed (simulated with triggers off)
+    is restored by re-activating the release, or by inserting the signed scope
+    back. Its pointer does not move, so the restored row re-derives the pair."""
+    release_object = _publish_layered(db)
+    expected = _snapshot(db)
+    with db.cursor() as cursor:
+        cursor.execute("SET session_replication_role = replica")
+        cursor.execute(
+            "DELETE FROM corpus.release_scopes WHERE release_name = %s AND version = %s",
+            (LAYERED_RELEASE, PRIMARY_TITLE.version),
+        )
+        cursor.execute("RESET session_replication_role")
+        # The owner brings the derived state in line with what is now served.
+        cursor.execute("SELECT corpus.refresh_layered_serving('fx', 'statute')")
+    db.commit()
+    _assert_serving_is_consistent(db)
+    assert _snapshot(db)["overrides"] != expected["overrides"]
+    if restore == "reactivation":
+        assert _activate(db, release_object)["scopes"]["activated"] == []
+    else:
+        restored = _attempt(
+            db,
+            "INSERT INTO corpus.release_scopes "
+            "(release_name, jurisdiction, document_class, version) "
+            "VALUES (%s, 'fx', 'statute', %s)",
+            (LAYERED_RELEASE, PRIMARY_TITLE.version),
+        )
+        assert restored is None
+    _assert_serving_is_consistent(db)
+    assert _snapshot(db) == expected
+
+
+def test_reactivating_an_earlier_signed_release_restores_its_serving(db: Any) -> None:
+    first = _publish_layered(db)
+    served = _snapshot(db)
+    _activate(
+        db,
+        _release_object(db, "fx-rulespec-2026-09-30-base", (BASE, PRIMARY_SECTIONS, OTHER_PAIR)),
+    )
+    _assert_serving_is_consistent(db)
+    assert _snapshot(db)["overrides"] != served["overrides"]
+    result = _activate(db, first)
+    assert {
+        (pair["jurisdiction"], pair["document_class"]) for pair in result["scopes"]["activated"]
+    } == {
+        ("fx", "regulation"),
+        ("fx", "statute"),
+    }
+    _assert_serving_is_consistent(db)
+    again = _snapshot(db)
+    assert (again["shadowed"], again["overrides"]) == (served["shadowed"], served["overrides"])
+
+
+# ---------------------------------------------------------------------------
+# Deployment: the file never derives a served base layer; the derivation is
+# its own step.
+# ---------------------------------------------------------------------------
+
+
+def test_applying_the_file_with_a_base_scope_served_leaves_the_derivation_to_its_own_step(
+    db: Any,
+) -> None:
+    _publish_layered(db)
+    served = _snapshot(db)
+    with db.cursor() as cursor:
+        # Removed by hand, so only a derivation brings them back.
+        cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+    db.commit()
+    del db.notices[:]
+    with db.cursor() as cursor:
+        cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+    db.commit()
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_navigation_overrides") == [(0,)]
+    assert any("rederive_layered_serving" in notice for notice in db.notices), db.notices
+    assert _rows(db, "SELECT corpus.rederive_layered_serving()") == [(len(served["shadowed"]),)]
+    _assert_serving_is_consistent(db)
+    assert _snapshot(db) == served
+
+
+def test_applying_the_file_with_no_base_scope_served_empties_the_derived_state(db: Any) -> None:
+    _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
+    with db.cursor() as cursor:
+        cursor.execute(
+            "INSERT INTO corpus.layered_shadowed_rows (jurisdiction, document_class, "
+            "citation_path, release_name, content_sha256, base_version, navigation_id) "
+            "VALUES ('fx', 'statute', 'fx/statute/9', 'stale', repeat('0', 64), 'v', 'n')"
+        )
+        cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+    db.commit()
+    assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_shadowed_rows") == [(0,)]
+    _assert_matches_reference(db)
+
+
+def test_rederivation_takes_only_activation_locks_and_blocks_no_read(
+    layered_dsn: str, db: Any
+) -> None:
+    _publish_layered(db)
+    served = set(_navigation(db))
+    with (
+        closing(psycopg2.connect(layered_dsn)) as deriving,
+        closing(psycopg2.connect(layered_dsn)) as other,
+    ):
+        with deriving.cursor() as cursor:
+            cursor.execute("SELECT corpus.rederive_layered_serving()")
+            cursor.execute(
+                "SELECT relation.relname, lock.mode FROM pg_locks lock "
+                "JOIN pg_class relation ON relation.oid = lock.relation "
+                "JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace "
+                "WHERE lock.pid = pg_backend_pid() AND namespace.nspname = 'corpus' "
+                "AND relation.relkind = 'r'"
+            )
+            locks = set(cursor.fetchall())
+        derived = {"layered_shadowed_rows", "layered_navigation_overrides"}
+        # Activation takes EXCLUSIVE on the pointers and, deriving, writes and
+        # analyzes the two derived tables; everything else is only read.
+        assert ("active_scope_pointer", "ExclusiveLock") in locks
+        assert {(relation, mode) for relation, mode in locks if mode != "AccessShareLock"} <= {
+            ("active_scope_pointer", "ExclusiveLock")
+        } | {
+            (relation, mode)
+            for relation in derived
+            for mode in ("RowExclusiveLock", "ShareUpdateExclusiveLock")
+        }
+        # Serving reads go on, and see the committed state, while it is open.
+        with other.cursor() as cursor:
+            cursor.execute("SET lock_timeout = '1s'")
+            cursor.execute("SET ROLE anon")
+            cursor.execute("SELECT id FROM corpus.current_navigation_nodes")
+            assert {row[0] for row in cursor.fetchall()} == served
+            cursor.execute("SELECT id FROM corpus.navigation_nodes")
+            assert {row[0] for row in cursor.fetchall()} == served
+            cursor.execute("SELECT COUNT(*) FROM corpus.current_provisions")
+            cursor.execute("SELECT * FROM corpus.get_root_document_counts()")
+        other.rollback()
+        # A pointer write waits for it, as it waits for an activation.
+        with other.cursor() as cursor:
+            cursor.execute("SET lock_timeout = '200ms'")
+            with pytest.raises(errors.LockNotAvailable):
+                cursor.execute("UPDATE corpus.active_scope_pointer SET activated_at = now()")
+        other.rollback()
+        deriving.commit()
+    _assert_serving_is_consistent(db)
+
+
+def test_derivation_analyzes_the_layered_tables(db: Any) -> None:
+    """Planner statistics follow the derived rows; an unlayered activation leaves them alone."""
+    tables = ("layered_shadowed_rows", "layered_navigation_overrides")
+    with db.cursor() as cursor:
+        for table in tables:
+            # Keep autovacuum from analyzing between the checks below.
+            cursor.execute(f"ALTER TABLE corpus.{table} SET (autovacuum_enabled = false)")
+    db.commit()
+
+    def estimated() -> dict[str, float]:
+        return {
+            relation: float(rows)
+            for relation, rows in _rows(
+                db,
+                "SELECT relname, reltuples FROM pg_class WHERE oid IN "
+                "('corpus.layered_shadowed_rows'::regclass, "
+                "'corpus.layered_navigation_overrides'::regclass)",
+            )
+        }
+
+    def actual() -> dict[str, float]:
+        return {
+            table: float(_rows(db, f"SELECT COUNT(*) FROM corpus.{table}")[0][0])
+            for table in tables
+        }
+
+    # Emptied by TRUNCATE in the reset: never analyzed since.
+    assert set(estimated().values()) == {-1.0}
+    _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
+    assert set(estimated().values()) == {-1.0}
+    _publish_layered(db)
+    assert min(actual().values()) > 0
+    assert estimated() == actual()
+    _activate(db, _release_object(db, "fx-rulespec-2026-09-30", (PRIMARY_TITLE, OTHER_PAIR)))
+    assert estimated() == actual() == dict.fromkeys(tables, 0.0)
+    _publish_layered(db)
+    with db.cursor() as cursor:
+        cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+        cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+        cursor.execute("ANALYZE corpus.layered_shadowed_rows")
+        cursor.execute("ANALYZE corpus.layered_navigation_overrides")
+        cursor.execute("SELECT corpus.rederive_layered_serving()")
+    db.commit()
+    assert min(actual().values()) > 0
+    assert estimated() == actual()
+
+
+def test_a_blank_heading_follows_its_segment_as_navigation_py_does(db: Any) -> None:
+    """A heading of only non-ASCII spaces is no heading to str.strip()."""
+    sections = replace(
+        PRIMARY_SECTIONS,
+        nodes=(Node("fx/statute/2/5/x", None, " 　", None, encoded=True),),
+    )
+    _publish(db, "fx-rulespec-2026-09-22-blank", BASE, sections)
+    node = _navigation(db)[
+        next(row["id"] for row in _staged_navigation(sections) if row["path"] == "fx/statute/2/5/x")
+    ]
+    assert (node["parent_path"], node["segment"], node["label"]) == (
+        "fx/statute/2",
+        "5/x",
+        "5/x",
+    )
+
+
 _SEGMENT_TEXT = st.text(alphabet="aZ09 .:-–/", min_size=1, max_size=30)
 
 
@@ -1780,6 +2187,27 @@ def test_sql_segment_helpers_equal_navigation_py(
         sort_segment, sql_segment = cursor.fetchone()
     assert sort_segment == _normalize_sort_segment(segment)
     assert sql_segment == _segment(path, parent)
+
+
+# Every character str.isspace() accepts, and two that it does not.
+_HEADING_TEXT = st.text(
+    alphabet=("\t\n\x0b\x0c\r\x1c\x1d\x1e\x1f \x85\xa0                　​H"),
+    max_size=6,
+)
+
+
+@settings(
+    max_examples=300,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(heading=st.one_of(st.none(), _HEADING_TEXT))
+def test_sql_heading_blankness_equals_python_strip(layered_dsn: str, heading: str | None) -> None:
+    """navigation._label_text falls back to the segment exactly when this is true."""
+    with closing(psycopg2.connect(layered_dsn)) as connection, connection.cursor() as cursor:
+        cursor.execute("SELECT corpus.navigation_heading_is_blank(%s)", (heading,))
+        (blank,) = cursor.fetchone()
+    assert blank is (heading is None or not heading.strip())
 
 
 @pytest.fixture(scope="module")
@@ -1914,7 +2342,7 @@ def _well_formed_pair(draw: st.DrawFn) -> tuple[Scope, ...]:
         return Node(
             path,
             universe[path],
-            draw(st.sampled_from([None, f"H {path}"])),
+            draw(st.sampled_from([None, f"H {path}", "\u00a0"])),
             draw(st.sampled_from([None, 1, 2, 3])),
             draw(st.booleans()),
         )
@@ -1956,7 +2384,7 @@ def _arbitrary_pair(draw: st.DrawFn) -> tuple[Scope, ...]:
                 Node(
                     path,
                     draw(st.sampled_from([None, *pool])),
-                    draw(st.sampled_from([None, "H"])),
+                    draw(st.sampled_from([None, "H", "\u00a0\u3000"])),
                     draw(st.sampled_from([None, 1, 2])),
                     draw(st.booleans()),
                 )
@@ -2231,10 +2659,28 @@ LEFT JOIN (
   FROM scale_rows WHERE parent_path IS NOT NULL GROUP BY 1, 2
 ) c ON c.version = r.version AND c.parent_path = r.path;
 
+-- Membership is checked against the signed scope list of its release object.
 INSERT INTO corpus.release_objects (release_name, content_sha256, release_object)
-VALUES
-  ('scale-served', repeat('a', 64), '{"content": {"created_at": "2026-10-01T00:00:00Z"}}'),
-  ('scale-history', repeat('b', 64), '{"content": {"created_at": "2026-01-01T00:00:00Z"}}');
+SELECT release_name, content_sha256,
+       jsonb_build_object('content', jsonb_build_object('created_at', created_at, 'scopes', scopes))
+FROM (
+  SELECT 'scale-served' AS release_name, repeat('a', 64) AS content_sha256,
+         '2026-10-01T00:00:00Z' AS created_at,
+         jsonb_agg(
+           jsonb_build_object('jurisdiction', jurisdiction, 'document_class', doc_type,
+                              'version', version)
+           || CASE WHEN version IN ('2026-04-29', '2026-05-01')
+                THEN jsonb_build_object('layer', 'base') ELSE '{}'::jsonb END
+         ) AS scopes
+  FROM (SELECT DISTINCT jurisdiction, doc_type, version FROM scale_rows
+        WHERE version NOT LIKE '%history%' AND version <> 'stored') served
+  UNION ALL
+  SELECT 'scale-history', repeat('b', 64), '2026-01-01T00:00:00Z',
+         jsonb_agg(jsonb_build_object('jurisdiction', jurisdiction, 'document_class', doc_type,
+                                      'version', version))
+  FROM (SELECT DISTINCT jurisdiction, doc_type, version FROM scale_rows
+        WHERE version LIKE '%history%' OR version = 'stored') history
+) objects;
 INSERT INTO corpus.release_scopes (release_name, jurisdiction, document_class, version, layer)
 SELECT DISTINCT 'scale-served', jurisdiction, doc_type, version,
        CASE WHEN version IN ('2026-04-29', '2026-05-01') THEN 'base' ELSE 'primary' END
