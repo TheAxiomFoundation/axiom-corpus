@@ -369,10 +369,11 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    `release_scopes`. It holds them until it commits, and the first time also
    holds the two derived tables it creates, which no read can reach yet. After
    those it waits for no lock. The file does no derivation work, so the
-   transaction is short: on a local PostgreSQL 14 copy of 401,299 rows per
-   table, its indexes already built, a re-application took 8 ms, and a first
-   application of a small database 11 ms (one-off measurements, not part of the
-   test suite).
+   transaction is short: on an otherwise idle local PostgreSQL 14 copy of
+   401,299 rows per table, its indexes already built, a re-application took 8
+   ms, and a first application of a small database 11 ms. These are one-off
+   measurements, not part of the test suite, of the file before its last
+   change, which added one statement that only takes locks.
 
    What a concurrent read sees. A read here is one statement, as every
    PostgREST request and RPC call is. A read that got its locks before the file
