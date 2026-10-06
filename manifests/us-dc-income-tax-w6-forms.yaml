@@ -40,6 +40,7 @@ documents:
   citation_path: us-dc/form/otr/ty2024/d-40-booklet
   extraction:
     segmentation: single_block
+    force_ocr: true
   metadata:
     primary_source: true
     source_authority: District of Columbia Office of Tax and Revenue
@@ -50,6 +51,7 @@ documents:
     first_page_first_line: District of Columbia (DC) Individual Income Tax Forms and Instructions All Individual Income Tax
       Filers 2024 Revised 09/2024
     tax_year: '2024'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
     wave6_work_order_rows:
     - 313
 - source_id: us-dc-w6-otr-ty2021-d-40-booklet
@@ -63,6 +65,7 @@ documents:
   citation_path: us-dc/form/otr/ty2021/d-40-booklet
   extraction:
     segmentation: single_block
+    force_ocr: true
   metadata:
     primary_source: true
     source_authority: District of Columbia Office of Tax and Revenue
@@ -73,5 +76,6 @@ documents:
     first_page_first_line: District of Columbia (DC) Individual Income Tax Forms and Instructions D-40 All Individual Income
       Tax Filers 2021 Revised 07/2021
     tax_year: '2021'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
     wave6_work_order_rows:
     - 314

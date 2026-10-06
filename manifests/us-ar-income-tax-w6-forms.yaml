@@ -39,6 +39,7 @@ documents:
   citation_path: us-ar/form/dfa/ty2015/long-booklet-with-tax-tables
   extraction:
     segmentation: single_block
+    force_ocr: true
   metadata:
     primary_source: true
     source_authority: Arkansas Department of Finance and Administration
@@ -48,6 +49,7 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Arkansas 2015 Individual Income Tax Forms and Instructions
     tax_year: '2015'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
     wave6_work_order_rows:
     - 84
 - source_id: us-ar-w6-dfa-ty2016-long-booklet-with-tax-tables
@@ -61,6 +63,7 @@ documents:
   citation_path: us-ar/form/dfa/ty2016/long-booklet-with-tax-tables
   extraction:
     segmentation: single_block
+    force_ocr: true
   metadata:
     primary_source: true
     source_authority: Arkansas Department of Finance and Administration
@@ -70,6 +73,7 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Arkansas 2016 Individual Income Tax Forms and Instructions Long Booklet
     tax_year: '2016'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
     wave6_work_order_rows:
     - 85
 - source_id: us-ar-w6-dfa-ty2017-ar1000f-ar1000nr-instructions
@@ -105,6 +109,7 @@ documents:
   citation_path: us-ar/form/dfa/ty2018/ar1000f-ar1000nr-instructions
   extraction:
     segmentation: single_block
+    force_ocr: true
   metadata:
     primary_source: true
     source_authority: Arkansas Department of Finance and Administration
@@ -114,6 +119,7 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Arkansas 2018 Individual Income Tax Forms and Instructions Long Booklet
     tax_year: '2018'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
     wave6_work_order_rows:
     - 71
 - source_id: us-ar-w6-dfa-ty2019-ar1000f-ar1000nr-instructions

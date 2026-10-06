@@ -94,6 +94,10 @@ def _slug(value: str) -> str:
 # control characters in the body. These are short forms (1 to 3 pages) and are OCRed with the
 # local Tesseract CLI at 200 dpi (the PR #753 precedent for the D-40 2023 booklet).
 FORCE_OCR_ROWS = {38, 43, 44, 46, 47, 48, 50, 54, 55, 57, 58, 61, 63, 65, 68, 69, 312}
+# Booklets whose embedded form pages use the same fonts (pages with more than 3 percent
+# control characters: AR 2015 10 of 56, AR 2016 14 of 52, AR 2018 11 of 52, DC 2021 11 of 104,
+# DC 2024 41 of 96, GA 2021 6 of 60); the whole booklet is OCRed so those pages carry text.
+FORCE_OCR_ROWS |= {84, 85, 71, 313, 314, 329}
 OCR_NOTE = ("text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR "
             "(tesseract, 200 dpi, force_ocr)")
 
@@ -781,6 +785,15 @@ PRESENT_NOTES = {
     397: "www.capitol.hawaii.gov blocked (Cloudflare); the same bill PDF is taken from the Legislature's data host",
     398: "www.capitol.hawaii.gov blocked (Cloudflare); the same session-law PDF is taken from the Legislature's data host",
     395: "www.capitol.hawaii.gov blocked (Cloudflare); the same HRS section file is taken from the Legislature's data host",
+    251: "Justia mirror of Colo. Const. art. X; the official text is the OLLS compilation of the Constitution (CRS 2025 title 00), taken one row per page",
+}
+
+# Notes for rows whose starting action was a block or a dead link, by host.
+ACTION_HOST_NOTES = {
+    ("BLOCKED-CHECK", "tax.colorado.gov"): "tax.colorado.gov answers the corpus client with HTTP 403 (CloudFront) and serves the extractor's built-in Chrome user-agent retry (documented 2026-09-14); no impersonation",
+    ("BLOCKED-CHECK", "www.ftb.ca.gov"): "ftb.ca.gov answered the corpus client with HTTP 200 on 2026-10-06; the triage 403 did not reproduce",
+    ("DEAD-LINK", "www.cga.ct.gov"): "the triage URLError is cga.ct.gov's missing Go Daddy G2 intermediate; fetched with the committed data/certs/state-tax-statute-ca-bundle.pem, TLS verified",
+    ("DEAD-LINK", "cga.ct.gov"): "the triage URLError is cga.ct.gov's missing Go Daddy G2 intermediate; fetched with the committed CA bundle, TLS verified",
 }
 
 
@@ -857,6 +870,10 @@ def write_decisions(work_order: Path) -> dict[str, int]:
             scope = f"{e['jurisdiction']}/{e['document_class']}/{_version(e['st'], e['family'])}"
             status, path, url = "PRESENT", e["citation_path"], e["source_url"]
             note = PRESENT_NOTES.get(i, "")
+            host = (r["bundle_url"].split("/") + ["", "", ""])[2]
+            host_note = ACTION_HOST_NOTES.get((r["action"], host))
+            if host_note:
+                note = f"{note}; {host_note}" if note else host_note
             if r["action"] == "EXTRACT-MANIFEST" and r["bundle_path"] and r["bundle_path"] != path:
                 note = (note + "; " if note else "") + (
                     f"manifest {r['manifest_on_main']} path {r['bundle_path']} is not grammar-valid "
