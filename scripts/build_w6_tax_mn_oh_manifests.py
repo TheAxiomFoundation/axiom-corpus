@@ -658,7 +658,7 @@ for ty, ident, title, url, rows, req in [
     (2023, "form-it-1040", "2023 Ohio IT 1040, Individual Income Tax Return", OHD + "2023/1040-bundle-original.pdf",
      [OH_MANIFEST + "dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/1040-bundle-original"], None),
     (2023, "it-1040-sd-100-instructions", "Tax Year 2023 Ohio IT 1040 / SD 100 Instructions", OHD + "2023/it1040-sd100-instructionbooklet.pdf",
-     [OH_MANIFEST + "dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/it1040-sd100-instructionboo"], None),
+     [OH_MANIFEST + "dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/it1040-sd100-instructionbooklet"], None),
     (2024, "it-1040-sd-100-instructions", "Tax Year 2024 Ohio IT 1040 / SD 100 Instructions",
      "https://dam.assets.ohio.gov/image/upload/v1735920104/tax.ohio.gov/forms/ohio_individual/individual/2024/it1040-booklet.pdf",
      [OH_MANIFEST + "dam.assets.ohio.gov/image/upload/v1735920104/tax.ohio.gov/forms/ohio_individual/individual/2024/it1040-booklet"], None),
@@ -693,13 +693,253 @@ statute("us-oh", "session-laws/136th-ga/hb96", "Am. Sub. H.B. 96, 136th General 
 
 
 # --------------------------------------------------------------------------------------------
+# Decisions for the work-order rows that no new document closes (held, blocked, absent, ...).
+# Keys are work-order ids; values (status, scope jur/class/version, citation_path, official_url, note).
+LEXIS_MS = ("Mississippi Code of 1972 is published only through LexisNexis (advance.lexis.com) behind its robot "
+            "check; wave-4/5 notes record the block (probed once 2026-09-13); not retried.")
+MO143 = "us-mo/statute/2026-07-16-pit-central-us-mo-143"
+MT15 = "us-mt/statute/2026-07-16-pit-central-us-mt-title-15"
+NE77 = "us-ne/statute/2026-09-14-income-tax-chapter-r2-us-ne-title-77"
+NMPIT = "us-nm/statute/2026-07-16-pit-central"
+MTREG = "us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15"
+MT_REPEALED = ("Rule repealed: the official ARM publisher rules.mt.gov (API /api/policy-library-public, read with "
+               "extract-montana-admin-rules --include-not-effective on 2026-10-06) serves only a '(REPEALED)' stub with "
+               "the authorizing/implementing statute history; the pre-repeal rule text is no longer published officially "
+               "(the bundle's address is the retired gateway, now the app shell).")
+RV_ = "https://revisor.mo.gov/main/OneSection.aspx?"
+RVW = "https://www.revisor.mo.gov/main/OneSection.aspx?"
+
+
+def _held(scope, path, note, url=""):
+    return ("ALREADY-HELD", scope, path, url, note)
+
+
+def _mo_current(section, url):
+    return _held(MO143, f"us-mo/statute/{section}",
+                 f"RSMo {section}: the version this address serves is the current one (no end date in the revisor's "
+                 "'All versions' table, read 2026-10-06); the chapter 143 scope holds the current section.", url)
+
+
+def _mt(section, url, scope=MT15):
+    return _held(scope, f"us-mt/statute/{section}", f"MCA {section} (current edition) held; address redirects to "
+                 "mca.legmt.gov.", url)
+
+
+def _ne(section, url):
+    return _held(NE77, f"us-ne/statute/77/{section}", f"Neb. Rev. Stat. {section} held in the whole Chapter 77 scope.", url)
+
+
+DECISIONS: dict[str, tuple[str, str, str, str, str]] = {
+    "us-mn/guidance/department-of-revenue/inflation-adjusted-amounts/2026/income-tax-brackets": _held(
+        "us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026",
+        "us-mn/guidance/department-of-revenue/inflation-adjusted-amounts/2026/income-tax-brackets",
+        "Exact path held (released scope). The same PDF is also held as one body in "
+        "us-mn/guidance/2026-09-14-ty2026-indexed-amounts (us-mn/guidance/department-of-revenue/ty2026/inflation-adjusted-amounts), "
+        "which the wave-4 note recommends instead (the released per-bracket rows captured the 'Statutory Year' column).",
+        "https://www.revenue.state.mn.us/sites/default/files/2025-12/inflation-adjusted-amounts-2026.pdf"),
+    "https://www.revisor.mn.gov/statutes/cite/290.0693/pdf": _held(
+        "us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290", "us-mn/statute/290.0693",
+        "PDF rendering of Minn. Stat. 290.0693 (2025 Minnesota Statutes); the section is held in the chapter 290 scope.",
+        "https://www.revisor.mn.gov/statutes/cite/290.0693/pdf"),
+    "us-mo/form/individual_income_tax_forms/dor.mo.gov/forms/mo-1040-20instructions_2025": _held(
+        "us-mo/form/2026-09-15-income-tax-forms-ty2025", "us-mo/form/dor/ty2025/form-mo-1040-instructions",
+        "Same file (MO-1040 Instructions_2025.pdf) taken by wave 5 (open PR #716; local scope).",
+        "https://dor.mo.gov/forms/MO-1040%20Instructions_2025.pdf"),
+    RV_ + "section=143.011&bid=51511&hl=": _mo_current("143.011", RV_ + "section=143.011&bid=51511&hl="),
+    RV_ + "section=143.021": _mo_current("143.021", RV_ + "section=143.021"),
+    RV_ + "section=143.022": _mo_current("143.022", RV_ + "section=143.022"),
+    RV_ + "section=143.121": _mo_current("143.121", RV_ + "section=143.121"),
+    RV_ + "section=143.124": _mo_current("143.124", RV_ + "section=143.124"),
+    RV_ + "section=143.125": _mo_current("143.125", RV_ + "section=143.125"),
+    RV_ + "section=143.141&bid=7212": _mo_current("143.141", RV_ + "section=143.141&bid=7212"),
+    RV_ + "section=143.171&bid=49937&hl=federal+income+tax+deduction%u2044": _mo_current(
+        "143.171", RV_ + "section=143.171&bid=49937&hl=federal+income+tax+deduction%u2044"),
+    RV_ + "section=143.177&bid=49978&hl=": _mo_current("143.177", RV_ + "section=143.177&bid=49978&hl="),
+    "https://www.revisor.mo.gov/main/OneChapter.aspx?chapter=143": _held(
+        MO143, "us-mo/statute/chapter-143", "RSMo chapter 143 held whole (chapter container and every section).",
+        "https://www.revisor.mo.gov/main/OneChapter.aspx?chapter=143"),
+    RVW + "section=143.111&bid=7201&hl=": _mo_current("143.111", RVW + "section=143.111&bid=7201&hl="),
+    RVW + "section=143.121": _mo_current("143.121", RVW + "section=143.121"),
+    RVW + "section=143.121&bid=57543": _mo_current("143.121", RVW + "section=143.121&bid=57543"),
+    RVW + "section=143.161": _mo_current("143.161", RVW + "section=143.161"),
+    "https://www.dor.ms.gov/individual/tax-rates": _held(
+        "us-ms/guidance/2026-09-14-ty2026-indexed-amounts", "us-ms/guidance/dor/ty2026/general-information",
+        "Address redirects to https://www.dor.ms.gov/general-information, the page the wave-4 amounts scope holds.",
+        "https://www.dor.ms.gov/general-information"),
+    "https://law.justia.com/codes/mississippi/title-27/chapter-7/article-1/section-27-7-5/": _held(
+        "us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5", "us-ms/statute/27-7-5",
+        "Justia mirror; current Miss. Code 27-7-5 is held from the official HB 1 (2025) text. " + LEXIS_MS),
+    "https://law.justia.com/codes/mississippi/2020/title-27/chapter-7/article-1/section-27-7-15/": ("OUTREACH", "", "", "", "2020 edition of Miss. Code 27-7-15 (Justia mirror). " + LEXIS_MS),
+    "https://law.justia.com/codes/mississippi/2020/title-27/chapter-7/article-1/section-27-7-18/": ("OUTREACH", "", "", "", "2020 edition of Miss. Code 27-7-18 (Justia mirror). " + LEXIS_MS),
+    "https://law.justia.com/codes/mississippi/2020/title-27/chapter-7/article-1/section-27-7-22-39/": ("OUTREACH", "", "", "", "2020 edition of Miss. Code 27-7-22.39 (Justia mirror). " + LEXIS_MS + " The 2023 amendment of 27-7-22.39 is printed in the signed HB 1671 (2023) text taken as us-ms/statute/session-laws/2023/hb1671."),
+    "https://law.justia.com/codes/mississippi/title-27/chapter-7/article-1/section-27-7-15/": ("OUTREACH", "", "", "", "Miss. Code 27-7-15 (Justia mirror). " + LEXIS_MS),
+    "https://law.justia.com/codes/mississippi/title-27/chapter-7/article-1/section-27-7-17/": ("OUTREACH", "", "", "", "Miss. Code 27-7-17 (Justia mirror). " + LEXIS_MS),
+    "https://law.justia.com/codes/mississippi/title-27/chapter-7/article-1/section-27-7-21/": ("OUTREACH", "", "", "", "Miss. Code 27-7-21 (Justia mirror). " + LEXIS_MS),
+    "https://www.law.cornell.edu/regulations/mississippi/35-Miss-Code-R-SS-3-02-11-103": _held(
+        "us-ms/regulation/2026-09-14-income-tax-regulations", "us-ms/regulation/title-35/part-iii/35.III.12.01",
+        "35 Miss. Admin. Code Pt. III, Subpt. 02, Ch. 11 (Individual Non-Business Deductions), Rule 103 (Cornell mirror). "
+        "The SOS Part III PDF is held; its body row 35.III.12.01 carries the Part III text after the table of contents, "
+        "including Subpart 02 Chapter 11 rules 100-103 (the chapter-level split is recorded in the 2026-09-14 regulations note)."),
+    "https://archive.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0910/0150-0300-0210-0910.html": _mt("15-30-2191", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0910/0150-0300-0210-0910.html"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0030/0150-0300-0210-0030.html": _mt("15-30-2103", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0030/0150-0300-0210-0030.html"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0100/0150-0300-0210-0100.html": _mt("15-30-2110", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0100/0150-0300-0210-0100.html"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0200/0150-0300-0210-0200.html": _mt("15-30-2120", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0200/0150-0300-0210-0200.html"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0180/0150-0300-0230-0180.html": _mt("15-30-2318", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0180/0150-0300-0230-0180.html", scope="us-mt/statute/2026-07-13-recovery"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html": _mt("15-30-2337", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0380/0150-0300-0230-0380.html": _mt("15-30-2338", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0380/0150-0300-0230-0380.html"),
+    "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0400/0150-0300-0230-0400.html": _mt("15-30-2340", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0400/0150-0300-0230-0400.html"),
+    "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0100/0150-0300-0210-0100.html": _mt("15-30-2110", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0100/0150-0300-0210-0100.html"),
+    "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0200/0150-0300-0210-0200.html": _mt("15-30-2120", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0200/0150-0300-0210-0200.html"),
+    "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html": _mt("15-30-2337", "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html"),
+    "https://rules.mt.gov/gateway/RuleNo.asp?RN=42%2E15%2E215": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.215 (Senior interest income exclusion). " + MT_REPEALED),
+    "https://rules.mt.gov/gateway/RuleNo.asp?RN=42%2E15%2E217": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.217 (Disability income exclusion). " + MT_REPEALED),
+    "https://rules.mt.gov/gateway/RuleNo.asp?RN=42%2E15%2E523": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.523 (Standard deduction). " + MT_REPEALED),
+    "https://rules.mt.gov/gateway/RuleNo.asp?RN=42%2E4%2E502": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.4.502 (Capital gain credit). " + MT_REPEALED),
+    "https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.524 (Itemized deductions of married taxpayers). " + MT_REPEALED),
+    "https://regulations.justia.com/states/montana/department-42/chapter-42-15/subchapter-42-15-4/rule-42-15-402/": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.402 (Personal exemptions; Justia mirror). " + MT_REPEALED),
+    "https://regulations.justia.com/states/montana/department-42/chapter-42-15/subchapter-42-15-4/rule-42-15-403/": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.403 (Exemptions for dependents; Justia mirror). " + MT_REPEALED),
+    "https://www.law.cornell.edu/regulations/montana/Mont-Admin-r-42.15.322": ("ABSENT", "", "", "https://rules.mt.gov/api/policy-library-public", "ARM 42.15.322 (Separate returns for married taxpayers; Cornell mirror). " + MT_REPEALED),
+    "https://rules.mt.gov/gateway/Subchapterhome.asp?scn=42%2E15%2E2": _held(
+        MTREG, "us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-2",
+        "ARM subchapter 42.15.2 (Montana additions and subtractions), effective rules held; the gateway address now "
+        "serves the rules.mt.gov app shell.", "https://rules.mt.gov/api/policy-library-public"),
+    "https://leg.mt.gov/bills/2023/billpdf/HB0192.pdf": ("OUTREACH", "", "", "https://bills.legmt.gov/",
+        "2023 HB 192: the legacy bill-PDF path answers 404 (also under archive.legmt.gov); the Legislature now serves "
+        "bill text only through the JavaScript bill explorer (bills.legmt.gov, API bearbeta.legmt.gov/docs/v1/documents/"
+        "getBillText, which needs the explorer's internal bill ids) and docs.legmt.gov download tickets; the ticket for "
+        "HB 192 could not be discovered without the browser application."),
+    "https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2023/08/2022-Montana-Property-Tax-Rebate-Form-MPTR22.pdf": ("ABSENT", "", "", "",
+        "mtrevenue.gov (retired WordPress host) answers 404; revenue.mt.gov site search for the 2022 property tax rebate "
+        "form returned no file (2026-10-06); the rebate (HB 222, 2023) claim period has closed. The enacting HB 222 text "
+        "is taken as us-mt/statute/session-laws/2023/hb222."),
+    "https://mtrevenue.gov/wp-content/uploads/mdocs/2021%20form%202441-m.pdf": ("ABSENT", "", "", "",
+        "mtrevenue.gov answers 404; the department's Form 2441-M publication page "
+        "(revenue.mt.gov/publications/child-and-dependent-care-expense-deduction-form-2441-m) lists only the 2022 and 2023 "
+        "files, and the revenue.mt.gov files path for a 2021 file answers 404. The 2021 Form 2 (taken) references 2441-M on "
+        "Schedule III line 14."),
+    "https://www.ncdor.gov/taxes-forms/tax-rate-schedules": _held(
+        "us-nc/guidance/2026-09-14-ty2026-indexed-amounts", "us-nc/guidance/ncdor/ty2026/tax-rate-schedules",
+        "Address redirects to /taxes-forms/individual-income-tax/tax-rate-schedules, the page the wave-4 amounts scope holds.",
+        "https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules"),
+    "us-nd/form/individual_income_tax_forms/tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/2025-individual-income-tax-booklet": _held(
+        "us-nd/form/2026-09-15-income-tax-forms-ty2025", "us-nd/form/otc/ty2025/individual-income-tax-booklet",
+        "Same file (2025-individual-income-tax-booklet.pdf) taken by wave 5 (open PR #716; local scope).",
+        "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/2025-individual-income-tax-booklet.pdf"),
+    "https://ndlegis.gov/cencode/t57c38.pdf": _held(
+        "us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38", "us-nd/statute/57",
+        "N.D.C.C. chapter 57-38 (Income Tax) held section by section (us-nd/statute/57/57-38-01 ...) from the same "
+        "Legislative Council chapter PDF.", "https://ndlegis.gov/cencode/t57c38.pdf"),
+    "https://law.justia.com/codes/north-dakota/2022/title-57/chapter-57-38/": _held(
+        "us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38", "us-nd/statute/57",
+        "Justia mirror of N.D.C.C. chapter 57-38 (2022 edition); the current official chapter is held.",
+        "https://ndlegis.gov/cencode/t57c38.pdf"),
+    "https://legiscan.com/ND/text/HB1515/2021/X1": ("OUTREACH", "", "", "https://ndlegis.gov/assembly/67-2021/regular/bill-index",
+        "LegiScan mirror of 2021 HB 1515. The Legislative Council's 67th-assembly bill index answers HTTP 403 to the corpus "
+        "client and to a browser user agent (2026-10-06), and the bill-overview paths (regular/bill-overview/bo1515.html, "
+        "regular/bill-index/bi1515.html) answer 404, so the official bill or session-law text could not be reached; not "
+        "worked around."),
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2715.07": _ne("77-2715.07", "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2715.07"),
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2716": _ne("77-2716", "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2716"),
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2716.01": _ne("77-2716.01", "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2716.01"),
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=77-3605": _ne("77-3605", "https://nebraskalegislature.gov/laws/statutes.php?statute=77-3605"),
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202": _ne("77-7202", "https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202"),
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203": _ne("77-7203", "https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203"),
+    "https://www.nebraskalegislature.gov/laws/statutes.php?statute=77-2715.03": _ne("77-2715.03", "https://www.nebraskalegislature.gov/laws/statutes.php?statute=77-2715.03"),
+    "https://www.nebraskalegislature.gov/laws/statutes.php?statute=77-2716": _ne("77-2716", "https://www.nebraskalegislature.gov/laws/statutes.php?statute=77-2716"),
+    "https://gc.nh.gov/rsa/html/V/77/77-mrg.htm": _held(
+        "us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77", "us-nh/statute/chapter-77",
+        "RSA chapter 77 (Taxation of Incomes), repealed eff. 2025-01-01: the repeal page is held.",
+        "https://gc.nh.gov/rsa/html/V/77/77-mrg.htm"),
+    "https://lis.njleg.state.nj.us/nxt/gateway.dll?f=templates&fn=default.htm&vid=Publish:10.1048/Enu": ("OUT-OF-SCOPE", "", "", "https://lis.njleg.state.nj.us/nxt/gateway.dll?f=templates&fn=default.htm&vid=Publish:10.1048/Enu",
+        "Entry page of the Legislature's statutes search application (frameset template, 'Simple Search / Advanced "
+        "Search', no document text). The statutes themselves are held from the Legislature's bulk text release: Title "
+        "54A (us-nj/statute/2026-07-16-pit-central-us-nj-title-54a) and Title 54 (taken in this wave)."),
+    "https://www.njleg.state.nj.us/bill-search/2020/A5535": ("OUTREACH", "", "", "https://www.njleg.state.nj.us/bill-search/2020/A5535",
+        "Bill-search page of the Legislature's Next.js application (HTTP 200, 25 KB shell with reCAPTCHA, no bill text "
+        "in the HTML); not worked around. The enacted EITC age change of the 2020-2021 session is taken from "
+        "pub.njleg.gov as P.L.2021, c.130 (us-nj/statute/session-laws/2021/pl-2021-c130); whether A5535 is that law "
+        "was not confirmable from the shell."),
+    "https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf": _held(
+        "us-nj/form/2026-09-10-tax-state-forms-ty2025", "us-nj/form/taxation/ty2025/nj-1040-instructions",
+        "Address redirects to nj.gov .../pdf/current/1040i.pdf (2025 NJ-1040 instructions), the file the 2026-09-10 scope holds.",
+        "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf"),
+    "https://law.justia.com/codes/new-jersey/2022/title-54/section-54-8a-36/": (
+        "PRESENT", "us-nj/statute/2026-10-06-w6-income-tax-statute-nj-us-nj-title-54", "us-nj/statute/54:8a-36",
+        "https://pub.njleg.state.nj.us/Statutes/STATUTES-TEXT.zip",
+        "Justia mirror (2022 edition) of N.J.S.A. 54:8A-36 (computation of gross income from federal adjusted gross "
+        "income). Title 54 is outside the held Title 54A scope, so the whole of Title 54 (2,150 rows) was taken from the "
+        "Legislature's bulk statutes text with the new-jersey-statutes adapter "
+        "(manifests/state-income-tax-w6-tax-mn-oh-statutes.yaml)."),
+    "https://law.justia.com/codes/new-jersey/title-54a/section-54a-3-1-1/": _held(
+        "us-nj/statute/2026-07-16-pit-central-us-nj-title-54a", "us-nj/statute/54a:3-1.1",
+        "Justia mirror; N.J.S.A. 54A:3-1.1 held from the Legislature's bulk text (Title 54A)."),
+    "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-18-35-2-9": ("OUTREACH", "", "", "",
+        "N.J.A.C. 18:35-2.9 (Cornell mirror). The New Jersey Administrative Code is published online only through "
+        "LexisNexis (OAL public-access page; 2026-09-14 regulations note); nj.gov posts no N.J.A.C. 18:35 text."),
+    "https://www.nj.gov/treasury/taxation/staynj/calculation.shtml": ("ABSENT", "", "", "https://www.nj.gov/treasury/taxation/staynj/index.shtml",
+        "404 on 2026-10-06; the Stay NJ index page (taken as us-nj/guidance/taxation/stay-nj) links no calculation page. "
+        "The program's benefit computation is in P.L.2024, c.88 and P.L.2026, c.27 (taken)."),
+    "https://nmonesource.com/nmos/nmsa/en/item/4340/index.do": _held(
+        NMPIT, "us-nm/statute/chapter-7",
+        "NMOneSource (the New Mexico Compilation Commission's official site) chapter 7 landing page; NMSA chapter 7 "
+        "(Taxation) is held from the same publisher.", "https://nmonesource.com/nmos/nmsa/en/item/4340/index.do"),
+    **{u: ("OUTREACH", "", "", u,
+           f"NMOneSource session-laws volume page ({t}) of the official Compilation Commission site: the HTML is an "
+           "application shell (about 13 KB, no chapter list or text); chapters load only through the browser "
+           "application. Not worked around; the specific chapter the bundle needs is not identified by the volume address.")
+       for u, t in [("https://nmonesource.com/nmos/nmsl/en/item/18453/index.do", "Laws 2022, 2nd Session"),
+                    ("https://nmonesource.com/nmos/nmsl/en/item/18454/index.do", "Laws 2022, 3rd Special Session"),
+                    ("https://nmonesource.com/nmos/nmsl/en/item/18775/index.do", "Laws 2023, 1st Session")]},
+    "https://law.justia.com/codes/new-mexico/2013/chapter-7/article-2/section-7-2-5.8": _held(
+        "us-nm/statute/2026-07-13-recovery", "us-nm/statute/7-2-5.8",
+        "Justia mirror (2013 edition) of NMSA 7-2-5.8; the current official section is held."),
+    "https://law.justia.com/codes/new-mexico/chapter-7/article-2/section-7-2-14/": _held(NMPIT, "us-nm/statute/7-2-14", "Justia mirror; NMSA 7-2-14 held."),
+    "https://law.justia.com/codes/new-mexico/chapter-7/article-2/section-7-2-2/": _held(NMPIT, "us-nm/statute/7-2-2", "Justia mirror; NMSA 7-2-2 held."),
+    "https://law.justia.com/codes/new-mexico/chapter-7/article-2/section-7-2-7-d-1/": _held(NMPIT, "us-nm/statute/7-2-7", "Justia mirror of NMSA 7-2-7(D)(1); section 7-2-7 held."),
+    "https://www.law.cornell.edu/regulations/new-mexico/N-M-Admin-Code-SS-3.3.1.10": _held(
+        "us-nm/regulation/2026-09-14-income-tax-regulations", "us-nm/regulation/nmac/3/3/1/3.3.1.10",
+        "Cornell mirror; 3.3.1.10 NMAC held from the State Records Center and Archives."),
+    "https://newyork.public.law/laws/n.y._tax_law_section_612": _held(
+        "us-ny/statute/2026-09-14-income-tax-chapter", "us-ny/statute/TAX/612",
+        "Third-party mirror; N.Y. Tax Law 612 held from nysenate.gov (Article 22 scope)."),
+    "https://www.law.cornell.edu/regulations/new-york/20-NYCRR-112.2": _held(
+        "us-ny/regulation/2026-09-14-income-tax-regulations", "us-ny/regulation/20-nycrr/112/2",
+        "Cornell mirror; 20 NYCRR 112.2 held from the Department of State's NYCRR (govt.westlaw.com)."),
+    "https://www.law.cornell.edu/regulations/new-york/20-NYCRR-112.3": _held(
+        "us-ny/regulation/2026-09-14-income-tax-regulations", "us-ny/regulation/20-nycrr/112/3",
+        "Cornell mirror; 20 NYCRR 112.3 held from the Department of State's NYCRR (govt.westlaw.com)."),
+    "https://www.law.cornell.edu/regulations/new-york/20-NYCRR-132.1": ("OUTREACH", "", "", "https://govt.westlaw.com/nycrr/Browse/Home/NewYork/UnofficialNewYorkCodesRulesandRegulations?guid=I6249be50bb0a11ddbc9eb83b015f151b",
+        "20 NYCRR 132.1 (Cornell mirror). The held Part 132 has only its container and notes: the 2026-09-14 adapter run "
+        "did not descend into Part 132's subparts. The official NYCRR host answered HTTP 403 to the corpus client "
+        "(also with the documented bh cookies) on the Part 132 subpart browse page on 2026-10-06; not retried."),
+    "https://www.tax.ny.gov/pit/child-earned-payments.htm": ("ABSENT", "", "", "",
+        "404 on 2026-10-06; the department's site index (tax.ny.gov/help/siteindex.htm) lists no replacement page "
+        "(one-time 2022 child and earned income credit payments)."),
+    "https://www.tax.ny.gov/pit/inflation-refund-checks.htm": ("ABSENT", "", "", "",
+        "404 on 2026-10-06; the department's site index lists no replacement page (one-time 2025 inflation refund checks)."),
+    "us-oh/form/individual_income_tax_forms/dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet": _held(
+        "us-oh/form/2026-09-15-income-tax-forms-ty2025", "us-oh/form/odt/ty2025/it-1040-sd-100-instructions",
+        "Same file taken by wave 5 (open PR #716; local scope).",
+        "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf"),
+    "https://law.justia.com/codes/ohio/2022/title-57/chapter-5747/section-5747-37/": ("ABSENT", "", "", "https://codes.ohio.gov/ohio-revised-code/section-5747.37",
+        "Justia mirror (2022 edition) of R.C. 5747.37. The official Revised Code (codes.ohio.gov) answers 'No Ohio Revised "
+        "Code section number corresponds to 5747.37' (2026-10-06), and the held Title 57 scope has no such section; the "
+        "section is no longer in the Code and no official historical text was found."),
+    "https://cms7files1.revize.com/starkcountyoh/Document_center/Offices/Auditor/Services/Homestead%20Exemption/Ohio_Adj_Gross_Income.pdf": ("SKIPPED", "", "", "",
+        "Stark County Auditor homestead-exemption handout on the county's CMS host (404 on 2026-10-06); the county "
+        "auditor's site was not searched for a current copy in the time box."),
+}
+
+
+# --------------------------------------------------------------------------------------------
 FAMILY = {"form": "forms", "guidance": "guidance", "statute": "statute"}
 
 
 # Scopes re-run under a new version after review of the first run (the first-run versions stay on disk,
 # are superseded and must not be selected): us-ny/statute (S3009 bill text in <pre> blocks was not read)
 # and us-nj/guidance (njit35.shtml carried the site's generic <title>; slug corrected).
-REVISION = {("us-ny", "statute"): "r2", ("us-nj", "guidance"): "r2"}
+# us-oh/form: the first run recorded a truncated bundle-row id in metadata.bundle_rows (2023 instructions).
+REVISION = {("us-ny", "statute"): "r2", ("us-nj", "guidance"): "r2", ("us-oh", "form"): "r2"}
 
 
 def version_for(jur: str, cls: str) -> str:
@@ -771,10 +1011,178 @@ def build() -> dict[Path, dict]:
     return out
 
 
+THIRD_PARTY_HOSTS = ("taxsim.nber.org", "taxformfinder.org", "zillionforms.com", "legiscan.com")
+
+# Row-specific explanations for decisions (kept out of the manifests so the extracted metadata is unchanged).
+ROW_NOTES = {
+    "https://www.revenue.nh.gov/forms/2022/documents/dp-10-2021-print.pdf":
+        "The old /forms/2022/ address now redirects to dp-10-2021.pdf, a dynamic XFA form whose PDF layer holds only "
+        "the 'Please wait...' placeholder (679 characters); the department's print edition of the same 2021 DP-10 "
+        "(dp-10-2021-print.pdf, 5 pages, text layer) was taken instead",
+    "https://www.revenue.nh.gov/forms/2023/documents/dp-10-instructions-2022.pdf":
+        "The old /forms/2023/ address now redirects to dp-10-2022.pdf (the 2022 return as a dynamic XFA form with no "
+        "text layer); the 2022 DP-10 general instructions the address named are taken from "
+        "dp-10-instructions-2022.pdf on the department's current file path",
+    "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2024.pdf":
+        "This address's file id (90560f4e) serves the 2023 packet (same bytes as PITbook2023.pdf; printed '2023 "
+        "Personal Income Tax Form Packet'); joined to the 2024 packet (file id 97f27f33, the TRD RealFile 2024 "
+        "folder's PITbook2024.pdf)",
+    "https://leg.mt.gov/bills/2021/billpdf/SB0399.pdf":
+        "Legacy bill-PDF path answers 404; the Legislature's docs.legmt.gov download ticket of the enrolled SB 399 "
+        "(also a bundle address) was taken",
+    "https://pub.njleg.state.nj.us/Bills/2022/PL23/75_.HTM":
+        "HTML rendering of the same chapter law; the PDF rendering (also a bundle address) was taken",
+    "https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children":
+        "Address redirects to the North Carolina Child Deduction filing-topic page (taken)",
+}
+
+
+def _present_note(doc: dict, row_id: str) -> str:
+    parts = [f"Taken: {doc['title']}"]
+    if doc["tax_year"]:
+        parts.append(f"printed tax year {doc['tax_year']}")
+    if row_id != doc["source_url"]:
+        if row_id.startswith("http") and any(h in row_id for h in THIRD_PARTY_HOSTS):
+            parts.append("bundle address is a third-party repost; the official publisher's copy of the same document "
+                         "and edition was taken")
+        elif not row_id.startswith("http"):
+            parts.append("manifest-on-main entry re-slugged to the citation-path grammar (underscores and host segments "
+                         "are not allowed) and taken under a wave-6 version")
+        else:
+            parts.append("bundle address serves the same document (redirect, alias path or dead path of the same edition); "
+                         "joined to the official address in official_url")
+    if row_id in ROW_NOTES:
+        parts.append(ROW_NOTES[row_id])
+    if doc["note"]:
+        parts.append(doc["note"])
+    return "; ".join(parts) + "."
+
+
+def write_decisions(work_order: Path, out: Path) -> dict[str, int]:
+    import csv
+
+    rows = list(csv.DictReader(work_order.open()))
+    by_row = {}
+    for doc in DOCS:
+        for row_id in doc["rows"]:
+            by_row[row_id] = doc
+    counts: dict[str, int] = defaultdict(int)
+    with out.open("w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["id", "jurisdiction", "programs", "action", "new_status", "scope_version", "citation_path",
+                         "official_url", "note"])
+        for row in rows:
+            row_id = row["id"]
+            if row_id in by_row:
+                doc = by_row[row_id]
+                scope = f"{doc['jurisdiction']}/{doc['document_class']}/{version_for(doc['jurisdiction'], doc['document_class'])}"
+                decision = ("PRESENT", scope, doc["citation_path"], doc["source_url"], _present_note(doc, row_id))
+            elif row_id in DECISIONS:
+                decision = DECISIONS[row_id]
+            elif row["action"] == "VENDOR" and "advance.lexis.com" in row_id:
+                if row["jurisdiction"] == "us-ms":
+                    decision = ("OUTREACH", "", "", row_id, "LexisNexis document page. " + LEXIS_MS)
+                else:
+                    decision = ("OUTREACH", "", "", row_id,
+                                "LexisNexis document page (New Jersey Administrative Code, published online only through "
+                                "LexisNexis per the OAL public-access page; nj.gov posts no N.J.A.C. text). Vendor-only.")
+            else:
+                raise SystemExit(f"no decision for work-order row {row_id}")
+            status, scope, path, url, note = decision
+            counts[status] += 1
+            writer.writerow([row_id, row["jurisdiction"], row["programs"], row["action"], status, scope, path, url, note])
+    if len(rows) != sum(counts.values()):
+        raise SystemExit("decision count mismatch")
+    return dict(counts)
+
+
+STATE_NAME = {
+    "us-mn": "Minnesota", "us-mo": "Missouri", "us-ms": "Mississippi", "us-mt": "Montana", "us-nc": "North Carolina",
+    "us-nd": "North Dakota", "us-ne": "Nebraska", "us-nh": "New Hampshire", "us-nj": "New Jersey", "us-nm": "New Mexico",
+    "us-ny": "New York", "us-oh": "Ohio",
+}
+EXTRA_SCOPES = {"us-nj": [("statute", "2026-10-06-w6-income-tax-statute-nj-us-nj-title-54",
+                           "manifests/state-income-tax-w6-tax-mn-oh-statutes.yaml")]}
+
+
+def queue_rows(decisions_csv: Path) -> dict[str, str]:
+    """One done row per state for manifests/tax-agent-queue.yaml (text, inserted after the state's last row)."""
+    import csv
+
+    status: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    for row in csv.DictReader(decisions_csv.open()):
+        status[row["jurisdiction"]][row["new_status"]] += 1
+    grouped: dict[str, list[tuple[str, str, str, int]]] = defaultdict(list)
+    for jur, cls in sorted({(d["jurisdiction"], d["document_class"]) for d in DOCS}):
+        n = sum(1 for d in DOCS if d["jurisdiction"] == jur and d["document_class"] == cls)
+        grouped[jur].append((cls, version_for(jur, cls), str(manifest_path(jur, cls).relative_to(REPO)), n))
+    for jur, extra in EXTRA_SCOPES.items():
+        for cls, version, manifest in extra:
+            grouped[jur].append((cls, version, manifest, 0))
+    out = {}
+    for jur in sorted(grouped):
+        scopes = grouped[jur]
+        counts = ", ".join(f"{k} {v}" for k, v in sorted(status[jur].items()))
+        lines = [
+            f"- jurisdiction: {jur}",
+            f"  name: {STATE_NAME[jur]} income tax program-bundle gaps (wave 6)",
+            "  queue_status: done",
+            "  source_kind: official_documents",
+            "  primary_source_url: null",
+            f"  target_manifest: {scopes[0][2]}",
+            "  target_manifests:",
+            *[f"  - {m}" for _, _, m, _ in scopes],
+            "  target_scopes:",
+        ]
+        for cls, version, _, _n in scopes:
+            lines += [f"  - jurisdiction: {jur}", f"    document_class: {cls}", f"    version: {version}"]
+        taken = sum(n for *_, n in scopes)
+        lines += [
+            "  lead_counts: {}",
+            f"  taken_count: {taken}",
+            "  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap "
+            f"documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions {counts} "
+            "(docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'",
+        ]
+        out[jur] = "\n".join(lines) + "\n"
+    return out
+
+
+def write_queue(decisions_csv: Path) -> None:
+    path = REPO / "manifests" / "tax-agent-queue.yaml"
+    lines = path.read_text().splitlines(keepends=True)
+    if any("program-bundle gaps (wave 6)" in line and "Minnesota" in line for line in lines):
+        raise SystemExit("queue rows already present")
+    rows = queue_rows(decisions_csv)
+    starts = [i for i, line in enumerate(lines) if line.startswith("- jurisdiction: ")]
+    inserts: dict[int, str] = {}
+    for jur, block in rows.items():
+        mine = [i for i in starts if lines[i].strip() == f"- jurisdiction: {jur}"]
+        last = mine[-1]
+        following = [i for i in starts if i > last]
+        inserts[following[0] if following else len(lines)] = block
+    for index in sorted(inserts, reverse=True):
+        lines.insert(index, inserts[index])
+    text = "".join(lines)
+    done_line = next(line for line in text.splitlines() if line.startswith("  done: "))
+    text = text.replace(done_line, f"  done: {int(done_line.split(':')[1]) + len(rows)}", 1)
+    path.write_text(text)
+    print(f"{path.relative_to(REPO)}: {len(rows)} rows inserted")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--queue", action="store_true", help="insert the wave-6 rows into manifests/tax-agent-queue.yaml")
     parser.add_argument("--list", action="store_true", help="print documents as JSON lines")
+    parser.add_argument("--decisions", type=Path, help="work-order CSV; write the decisions CSV next to the run note")
     args = parser.parse_args()
+    if args.queue:
+        write_queue(REPO / "docs" / "ingest-runs" / "2026-10-06-w6-tax-mn-oh-decisions.csv")
+        return
+    if args.decisions:
+        out = REPO / "docs" / "ingest-runs" / "2026-10-06-w6-tax-mn-oh-decisions.csv"
+        print(json.dumps(write_decisions(args.decisions, out), sort_keys=True))
+        return
     if args.list:
         for doc in DOCS:
             print(json.dumps({k: doc[k] for k in ("citation_path", "source_url", "rows")}))

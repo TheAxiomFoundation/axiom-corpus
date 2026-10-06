@@ -31,7 +31,7 @@ lead_list:
 status_counts:
   agent_ready: 24
   blocked_primary_source: 3
-  done: 72
+  done: 84
   needs_review: 3
 states:
 - jurisdiction: us
@@ -17468,6 +17468,21 @@ states:
     AU-*, ED-*, MS-*, CU-*, GPA-01
   - TY2025 substitute forms letter of intent and general instructions
   - 'interest and dividends tax: none for TY2025 (only a Search Prior Year Forms link; DP-10 2024 was the final return)'
+- jurisdiction: us-nh
+  name: New Hampshire income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nh-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nh-income-tax-w6-forms.yaml
+  target_scopes:
+  - jurisdiction: us-nh
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nh
+  lead_counts: {}
+  taken_count: 8
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 1, PRESENT 10 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nj
   name: New Jersey
   queue_status: agent_ready
@@ -25522,6 +25537,29 @@ states:
     income determination, accounting methods, returns, overpayments, withholding, estimated tax) from the Revisor of Statutes'' full-chapter
     HTML (43 Revenue chapters listed; corporate, property, sales and fully repealed chapters not taken). 20 part rows. Rows: 27 (7 document,
     20 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 18,656 chars.'
+- jurisdiction: us-mn
+  name: Minnesota income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-mn-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-mn-income-tax-w6-forms.yaml
+  - manifests/us-mn-income-tax-w6-guidance.yaml
+  - manifests/us-mn-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-mn
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-mn
+  - jurisdiction: us-mn
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-mn
+  - jurisdiction: us-mn
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-mn
+  lead_counts: {}
+  taken_count: 62
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 2, PRESENT 62 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-mo
   name: Missouri income tax regulations
   queue_status: done
@@ -25540,6 +25578,29 @@ states:
     Income Tax (Director of Revenue) chapter PDF from the Secretary of State (current 3/31/26; the 12 CSR index page timed out on both
     probes while the PDF served): 61 rule rows. Rows: 62 (1 document, 61 section); coverage complete, 0 missing, 0 extra, 0 duplicate
     citation paths; largest body 74,549 chars.'
+- jurisdiction: us-mo
+  name: Missouri income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-mo-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-mo-income-tax-w6-forms.yaml
+  - manifests/us-mo-income-tax-w6-guidance.yaml
+  - manifests/us-mo-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-mo
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-mo
+  - jurisdiction: us-mo
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-mo
+  - jurisdiction: us-mo
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-mo
+  lead_counts: {}
+  taken_count: 38
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 15, PRESENT 40 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ms
   name: Mississippi income tax regulations
   queue_status: done
@@ -25559,6 +25620,25 @@ states:
     the Department of Revenue laws page): 95 chapter rows (35.III.<subpart>.<chapter>); the individual income chapter 35.III.12.01 is
     one 327 kB row (the publisher prints section numbers inside chapters that repeat across chapters). Rows: 96 (1 document, 95 section);
     coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 327,617 chars.'
+- jurisdiction: us-ms
+  name: Mississippi income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-ms-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-ms-income-tax-w6-forms.yaml
+  - manifests/us-ms-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-ms
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-ms
+  - jurisdiction: us-ms
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-ms
+  lead_counts: {}
+  taken_count: 9
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 3, OUTREACH 10, PRESENT 10 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-mt
   name: Montana income tax regulations
   queue_status: done
@@ -25578,6 +25658,29 @@ states:
     policy-library API served the plain client): 50 rule rows, 9 subchapters. Root container us-mt/regulation is not carried by any
     released us-mt scope. Rows: 62 (1 collection, 1 title, 1 chapter, 9 subchapter, 50 rule); coverage complete, 0 missing, 0 extra,
     0 duplicate citation paths; largest body 4,826 chars.'
+- jurisdiction: us-mt
+  name: Montana income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-mt-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-mt-income-tax-w6-forms.yaml
+  - manifests/us-mt-income-tax-w6-guidance.yaml
+  - manifests/us-mt-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-mt
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-mt
+  - jurisdiction: us-mt
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-mt
+  - jurisdiction: us-mt
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-mt
+  lead_counts: {}
+  taken_count: 22
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 10, ALREADY-HELD 12, OUTREACH 1, PRESENT 32 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nc
   name: North Carolina income tax regulations
   queue_status: done
@@ -25596,6 +25699,29 @@ states:
     06 Individual Income Tax from the Office of Administrative Hearings rules index: one PDF per rule (218 rule files, page rows). The
     consolidated chapter and subchapter PDFs repeat every rule heading in a table of contents and are not the carrier. Rows: 437 (218
     document, 219 page); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 4,943 chars.'
+- jurisdiction: us-nc
+  name: North Carolina income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nc-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nc-income-tax-w6-forms.yaml
+  - manifests/us-nc-income-tax-w6-guidance.yaml
+  - manifests/us-nc-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-nc
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nc
+  - jurisdiction: us-nc
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-nc
+  - jurisdiction: us-nc
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nc
+  lead_counts: {}
+  taken_count: 19
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 1, PRESENT 21 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nd
   name: North Dakota income tax regulations
   queue_status: done
@@ -25615,6 +25741,21 @@ states:
     tax, contributions) from the Legislative Council chapter PDFs (25 article 81-03 chapters listed; corporate chapters not taken):
     43 section rows. Rows: 50 (7 document, 43 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body
     6,471 chars.'
+- jurisdiction: us-nd
+  name: North Dakota income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nd-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nd-income-tax-w6-forms.yaml
+  target_scopes:
+  - jurisdiction: us-nd
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nd
+  lead_counts: {}
+  taken_count: 12
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 3, OUTREACH 1, PRESENT 12 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ne
   name: Nebraska income tax regulations
   queue_status: done
@@ -25634,6 +25775,29 @@ states:
     regulation rows. The Secretary of State''s rules.nebraska.gov answers with an incomplete TLS chain (SSLCertVerificationError) as
     recorded in the September SNAP run; the department copy is the carrier. Rows: 16 (1 document, 15 section); coverage complete, 0
     missing, 0 extra, 0 duplicate citation paths; largest body 21,899 chars.'
+- jurisdiction: us-ne
+  name: Nebraska income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-ne-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-ne-income-tax-w6-forms.yaml
+  - manifests/us-ne-income-tax-w6-guidance.yaml
+  - manifests/us-ne-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-ne
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-ne
+  - jurisdiction: us-ne
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-ne
+  - jurisdiction: us-ne
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-ne
+  lead_counts: {}
+  taken_count: 14
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 8, PRESENT 16 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nj
   name: New Jersey income tax regulations
   queue_status: blocked_primary_source
@@ -25652,6 +25816,33 @@ states:
     Gross Income Tax. The Office of Administrative Law''s public-access page states that free online access to the New Jersey Administrative
     Code is provided by LexisNexis; nj.gov posts no N.J.A.C. text (Division of Taxation lawsregs page, HTTP 200, links only to the OAL
     search). A vendor site is not an official publisher under the source policy: no extraction.'
+- jurisdiction: us-nj
+  name: New Jersey income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nj-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nj-income-tax-w6-forms.yaml
+  - manifests/us-nj-income-tax-w6-guidance.yaml
+  - manifests/us-nj-income-tax-w6-statute.yaml
+  - manifests/state-income-tax-w6-tax-mn-oh-statutes.yaml
+  target_scopes:
+  - jurisdiction: us-nj
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nj
+  - jurisdiction: us-nj
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-nj-r2
+  - jurisdiction: us-nj
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nj
+  - jurisdiction: us-nj
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nj-us-nj-title-54
+  lead_counts: {}
+  taken_count: 17
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 1, ALREADY-HELD 2, OUT-OF-SCOPE 1, OUTREACH 3, PRESENT 20 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nm
   name: New Mexico income tax regulations
   queue_status: done
@@ -25670,6 +25861,29 @@ states:
     Income Taxes parts from the State Records Center and Archives (parts 1-37 probed; 21 published parts, the expired part 31 not taken):
     269 section rows. Rows: 289 (20 document, 269 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
     body 21,487 chars.'
+- jurisdiction: us-nm
+  name: New Mexico income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nm-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nm-income-tax-w6-forms.yaml
+  - manifests/us-nm-income-tax-w6-guidance.yaml
+  - manifests/us-nm-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-nm
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nm
+  - jurisdiction: us-nm
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-nm
+  - jurisdiction: us-nm
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nm
+  lead_counts: {}
+  taken_count: 15
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 6, OUTREACH 3, PRESENT 17 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ny
   name: New York income tax regulations
   queue_status: done
@@ -25691,6 +25905,29 @@ states:
     and a second nested paragraph with the same alpha/roman label is not emitted twice. Rows: 2015 (44 part, 46 document, 228 section,
     498 subdivision, 536 paragraph, 324 subparagraph, 220 clause, 114 subclause, 5 item); coverage complete, 0 missing, 0 extra, 0 duplicate
     citation paths; largest body 108,526 chars.'
+- jurisdiction: us-ny
+  name: New York income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-ny-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-ny-income-tax-w6-forms.yaml
+  - manifests/us-ny-income-tax-w6-guidance.yaml
+  - manifests/us-ny-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-ny
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-ny
+  - jurisdiction: us-ny
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-ny
+  - jurisdiction: us-ny
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-ny-r2
+  lead_counts: {}
+  taken_count: 33
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 2, ALREADY-HELD 3, OUTREACH 1, PRESENT 33 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-oh
   name: Ohio income tax regulations
   queue_status: done
@@ -25710,6 +25947,29 @@ states:
     14 rule rows. Extracted in this run''s first session (agent 1). Root row us-oh/regulation collides with the released consolidated
     5101-4 scope by adapter design: needs consolidation by the controller. Rows: 17 (1 collection, 1 agency, 1 chapter, 14 rule); coverage
     complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 5,999 chars.'
+- jurisdiction: us-oh
+  name: Ohio income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-oh-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-oh-income-tax-w6-forms.yaml
+  - manifests/us-oh-income-tax-w6-guidance.yaml
+  - manifests/us-oh-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-oh
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-oh-r2
+  - jurisdiction: us-oh
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-oh
+  - jurisdiction: us-oh
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-oh
+  lead_counts: {}
+  taken_count: 13
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 1, ALREADY-HELD 1, PRESENT 14, SKIPPED 1 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ok
   name: Oklahoma income tax regulations
   queue_status: done
