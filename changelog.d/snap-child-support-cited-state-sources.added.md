@@ -1,0 +1,1 @@
+Add official SNAP child support election sources for Colorado, Louisiana, Missouri, New Jersey, North Carolina, Rhode Island, Washington, Maryland, Arkansas, and Hawaii, plus Vermont's live repeal bulletin; preserve historical vintages and verify Pennsylvania's existing handbook evidence.

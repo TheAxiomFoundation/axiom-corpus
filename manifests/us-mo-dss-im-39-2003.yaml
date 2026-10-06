@@ -1,0 +1,25 @@
+documents:
+- source_id: mo-dss-im-39-2003
+  jurisdiction: us-mo
+  document_class: guidance
+  citation_path: us-mo/guidance/dss/im-2003-39
+  title: Missouri Income Maintenance Memorandum IM-39 (March 4, 2003), Court Ordered Child Support Expense Policy
+  source_url: https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/memos_03/im39_03.html
+  source_format: html
+  source_as_of: '2003-03-04'
+  expression_date: '2003-03-04'
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: Missouri Department of Social Services, Division of Family Services
+    official_publisher: Missouri DSS Manuals
+    document_subtype: income_maintenance_memorandum
+    document_number: IM-39 (2003)
+    issue_date: '2003-03-04'
+    effective_date: '2003-03-10'
+    expression_date_note: Memorandum date printed in its heading, 03/04/03; effective for budgets completed March 10, 2003 and after.
+    authority_role: Changes child support expense treatment for the gross eligibility test; separately prints net-income budgeting order, including the 20% earned-income deduction before child support.

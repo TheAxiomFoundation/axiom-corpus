@@ -1,0 +1,42 @@
+version: 2026-09-27-hi-har-17-676-2014-compilation
+documents:
+  - source_id: hi-dhs-har-17-676-2014-compilation
+    jurisdiction: us-hi
+    document_class: regulation
+    citation_path: us-hi/regulation/har/17/676/vintage/2014-01-27
+    title: Hawaii Administrative Rules Chapter 17-676, Income, January 2014 compilation
+    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2014/01/17-676.pdf
+    source_format: pdf
+    source_as_of: '2014-01-27'
+    expression_date: '2014-01-27'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Hawaii Department of Human Services
+      official_publisher: Hawaii Department of Human Services
+      document_subtype: historical_administrative_rules_compilation
+      program: SNAP
+      legal_identifier: HAR Chapter 17-676
+      historical_vintage: true
+      date_basis: file_creation_date
+      pdf_creation_date: '2014-01-27'
+      expression_date_note: >-
+        File creation date D:20140127140551-10'00' identifies this January 2014 posting,
+        not a legal effective date. No document-wide printed compilation date was found;
+        individual sections retain their printed amendment and history notes.
+      child_support_deduction_section_latest_amendment: '2008-11-22'
+      child_support_deduction_section_latest_amendment_note: >-
+        Printed history of section 17-676-72 on PDF page 48, am 11/22/08;
+        this does not assert the initial adoption date of paragraph (6).
+      retrieved_date: '2026-09-27'
+      extraction_granularity: pdf_page
+      topic: legally_obligated_child_support_deduction
+      authority_role: >-
+        Section 17-676-56(f) subtracts legally obligated child support in the food stamp
+        net-income calculation; section 17-676-72(6) permits a deduction for payments to
+        nonhousehold members, including arrearages, and excludes alimony.
+      citation_path_note: >-
+        The current har/17/676 family gains vintage/<file-creation-date> for the historical
+        compilation, so it does not collide with current chapter page rows.
+      discovered_via: policyengine-us SNAP child support references; live DHS January 2014 posting

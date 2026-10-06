@@ -1,0 +1,48 @@
+documents:
+  - source_id: la-osr-lac-67-iii
+    jurisdiction: us-la
+    document_class: regulation
+    citation_path: us-la/regulation/lac/67/iii
+    title: Louisiana Administrative Code Title 67, Part III, Economic Stability and Family Support
+    source_url: https://www.doa.la.gov/media/oq1j3hys/67.docx
+    source_format: docx
+    source_as_of: '2026-09-27'
+    expression_date: '2026-08-01'
+    extraction:
+      segmentation: labeled_sections
+      # Unlike the TOC entry, the body heading has no trailing page number.
+      start_after_pattern: '^Chapter 1\.\s*Confidentiality$'
+      stop_text_pattern: '^Part V\.'
+      section_heading_pattern: '^§(?P<label>\d+)\.\s*(?P<heading>.+)$'
+      # These are structural headings, not the end of the preceding section.
+      drop_line_patterns:
+        - '^Title 67$'
+        - '^SOCIAL SERVICES$'
+        - '^Part III\.'
+        - '^Subpart \d+\.'
+        - '^Chapter \d+\.'
+        - '^Subchapter [A-Z]\.'
+    metadata:
+      primary_source: true
+      source_authority: Louisiana Department of Children and Family Services
+      official_publisher: Louisiana Division of Administration, Office of the State Register
+      document_subtype: administrative_code_part
+      compilation_date: '2026-08'
+      compilation_date_precision: month
+      expression_date_note: >-
+        The compilation footer prints August 2026. The expression date uses the first
+        day of that month to encode month precision; it does not claim an August 1
+        effective date. Individual section authority and historical notes are retained.
+      source_as_of_note: official publisher retrieval date
+      program: SNAP
+      scope_note: >-
+        All 311 sections of Part III, from 101 through 7131, including programs beyond
+        SNAP. Parts I, V, and VII and the table of contents are outside this scope.
+        The entire Title 67 DOCX remains retained as the source snapshot.
+      topic: legally_obligated_child_support_payment_exclusion_and_deduction
+      authority_role: >-
+        Section 1980.A.3 excludes legally obligated child support to nonhousehold members
+        when determining eligibility based on gross income standards; section 1981.A
+        also prescribes a deduction when determining a SNAP eligibility budget.
+      discovered_via: policyengine-us SNAP child support references and PR 9622; official source checked 2026-09-27
+      index_url: https://www.doa.la.gov/doa/osr/louisiana-administrative-code/

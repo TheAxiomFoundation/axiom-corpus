@@ -1,0 +1,27 @@
+documents:
+- source_id: mo-dss-im-34-2013
+  jurisdiction: us-mo
+  document_class: guidance
+  citation_path: us-mo/guidance/dss/im-2013-34
+  title: Missouri Income Maintenance Memorandum IM-34 (March 15, 2013), Disqualified or Ineligible Members Earned Income and Expense Budgeting for the Food Stamp Program
+  source_url: https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/memos_13/im34_13.html
+  source_format: html
+  source_as_of: '2013-03-15'
+  expression_date: '2013-03-15'
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - .topnav
+    - .bottomnav
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: Missouri Department of Social Services, Family Support Division
+    official_publisher: Missouri DSS Manuals
+    document_subtype: income_maintenance_memorandum
+    document_number: IM-34 (2013)
+    issue_date: '2013-03-15'
+    expression_date_note: Memorandum date printed in its heading, 03/15/13; this is not the original adoption date of the child support exclusion.
+    authority_role: Changes budgeting for disqualified or ineligible members; describes an existing child support exclusion and its application to gross household income.

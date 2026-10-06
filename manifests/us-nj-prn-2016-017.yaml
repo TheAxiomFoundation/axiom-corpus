@@ -1,0 +1,30 @@
+documents:
+- source_id: nj-prn-2016-017
+  jurisdiction: us-nj
+  document_class: rulemaking
+  citation_path: us-nj/rulemaking/new-jersey-register/2016-05-02/prn-2016-017
+  title: New Jersey Register 48 NJR 5(1), PRN 2016-017, NJ SNAP proposed amendments
+  source_url: https://www.nj.gov/humanservices/notices/documents/rule-proposals/(F)%20PRN%202016-017%20(DHS-DFD%2010_87-1.11).pdf
+  source_format: pdf
+  source_as_of: '2016-05-02'
+  expression_date: '2016-05-02'
+  extraction:
+    amendment_markup:
+      start_page: 9
+      end_page: 20
+      inserted_style: bold
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: New Jersey Department of Human Services, Division of Family Development
+    official_publisher: New Jersey Department of Human Services
+    document_subtype: register_rule_proposal
+    proposal_number: PRN 2016-017
+    register_citation: 48 NJR 5(1)
+    publication_date: '2016-05-02'
+    filing_date: '2016-04-07'
+    expression_date_note: 'Publication date on page 1: May 2, 2016; filing date April 7, 2016 is separate. This is a proposal, not an adopted regulation.'
+    amendment_convention: Page 8 specifies additions in boldface and deletions in literal brackets. Pages 9-20 mark bold insertions as {+text+}; the original deletion brackets are retained literally, including deletions spanning pages.
+    authority_role: Proposes N.J.A.C. 10:87-5.9(a)20 and removal of child support deductions to implement P.L. 2013, c.45; proposal date alone does not date the statutory election.

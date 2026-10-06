@@ -1,0 +1,38 @@
+version: 2026-09-27-co-10-ccr-2506-1-2009-07-01
+documents:
+  - source_id: co-10-ccr-2506-1-2009-07-01
+    jurisdiction: us-co
+    document_class: regulation
+    citation_path: us-co/regulation/10-ccr-2506-1/vintage/2009-07-01
+    title: Code of Colorado Regulations 10 CCR 2506-1, Rule Manual Volume 4B Food Stamps, effective July 1, 2009
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=3031&fileName=10%20CCR%202506-1
+    source_format: pdf
+    source_as_of: '2009-07-01'
+    expression_date: '2009-07-01'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Colorado Department of Human Services
+      official_publisher: Colorado Secretary of State
+      document_subtype: historical_administrative_code_compilation
+      program: SNAP
+      legal_identifier: 10 CCR 2506-1
+      rule_version_id: '3031'
+      historical_vintage: true
+      effective_date: '2009-07-01'
+      expression_date_note: >-
+        Effective date printed in the final editor's history, PDF page 236:
+        Rule Sections SB&P, 4010.11, 4230 eff. 07/01/2009.
+      pdf_creation_date: '2014-03-06'
+      pdf_creation_date_note: PDF metadata timestamp, not the rule effective date.
+      retrieved_date: '2026-09-27'
+      extraction_granularity: pdf_page
+      topic: legally_obligated_child_support_paid
+      authority_role: >-
+        B-4223.6 on PDF page 127 calls the payment a deduction but requires it before
+        any gross income eligibility test; the source preserves this terminology.
+      citation_path_note: >-
+        A vintage/<effective-date> suffix distinguishes this historical compilation's
+        page rows from the current 10-ccr-2506-1 scope in a combined release.
+      discovered_via: policyengine-us SNAP child support references; official CCR historical version 3031

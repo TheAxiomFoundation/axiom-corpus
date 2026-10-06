@@ -1135,6 +1135,7 @@ class _PdfAmendmentMarkupConfig:
     start_page: int
     end_page: int
     typographic_underlines: tuple[str, ...] = ()
+    inserted_style: str = "underline"
 
     def covers(self, page_number: int) -> bool:
         return self.start_page <= page_number <= self.end_page
@@ -1149,7 +1150,9 @@ def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMar
     may list ``typographic_underlines``: exact phrases whose underline is
     citation typography, such as an underlined case name, and not an insertion.
     Those phrases are written without insertion delimiters, and every listed
-    phrase must occur in the marked pages.
+    phrase must occur in the marked pages. ``inserted_style: bold`` instead
+    reads insertion status from font flags; literal deletion brackets remain
+    in the text for publishers using that convention.
     """
     config = extraction.get("amendment_markup")
     if not config:
@@ -1158,7 +1161,9 @@ def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMar
         return _PdfAmendmentMarkupConfig(start_page=1, end_page=sys.maxsize)
     if not isinstance(config, dict):
         raise ValueError("amendment_markup must be true or a mapping")
-    unknown = set(config) - {"start_page", "end_page", "typographic_underlines"}
+    unknown = set(config) - {
+        "start_page", "end_page", "typographic_underlines", "inserted_style"
+    }
     if unknown:
         raise ValueError(f"unknown amendment_markup keys: {sorted(unknown)}")
     start_page = _positive_int(config.get("start_page"), default=1)
@@ -1166,6 +1171,9 @@ def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMar
     end_page = sys.maxsize if end_value is None else _positive_int(end_value, default=1)
     if end_page < start_page:
         raise ValueError("amendment_markup end_page must not precede start_page")
+    inserted_style = config.get("inserted_style", "underline")
+    if inserted_style not in {"underline", "bold"}:
+        raise ValueError("amendment_markup inserted_style must be underline or bold")
     phrases = config.get("typographic_underlines") or ()
     if not isinstance(phrases, list | tuple) or not all(
         isinstance(phrase, str) and phrase.strip() == phrase and phrase for phrase in phrases
@@ -1178,6 +1186,7 @@ def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMar
         start_page=start_page,
         end_page=end_page,
         typographic_underlines=tuple(phrases),
+        inserted_style=inserted_style,
     )
 
 
@@ -1237,6 +1246,16 @@ def _pdf_page_layered_text(
                             rules=rules,
                             page_number=page_number,
                         )
+                    if markup is not None and markup.inserted_style == "bold":
+                        if state == _AMENDMENT_INSERTED:
+                            state = None
+                        if int(span.get("flags", 0)) & fitz.TEXT_FONT_BOLD:
+                            if state == _AMENDMENT_DELETED:
+                                raise ValueError(
+                                    f"PDF page {page_number} character {character!r} is "
+                                    "both struck through and bold"
+                                )
+                            state = _AMENDMENT_INSERTED
                     chars.append(character)
                     states.append(state)
             chars.append("\n")
@@ -1260,6 +1279,7 @@ def _pdf_page_layered_text(
         )
     metadata: dict[str, Any] = {
         **_AMENDMENT_MARKUP_NOTATION,
+        "inserted_source_markup": markup.inserted_style,
         "deleted_runs": rendered.deleted_runs,
         "inserted_runs": rendered.inserted_runs,
     }
@@ -2822,7 +2842,16 @@ def _extract_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
-    soup = _html_soup(content)
+    # Older register HTML spans several unclosed paragraphs with one <u> tag.
+    # lxml closes that tag at the first <p>, losing the source's amendment range.
+    encoding = (extraction or {}).get("html_encoding")
+    soup = (
+        BeautifulSoup(content, "html.parser", from_encoding=str(encoding))
+        if encoding
+        else _html_soup(content)
+    )
+    if not encoding and (extraction or {}).get("html_amendment_markup") is not None:
+        soup = BeautifulSoup(content, "html.parser", from_encoding=soup.original_encoding)
     drop_selectors = [
         "script",
         "style",
@@ -2845,6 +2874,9 @@ def _extract_html_blocks(
         for node in soup.select(selector):
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
+    amendment_nodes = _html_amendment_nodes(root, extraction=extraction)
+    if amendment_nodes is not None and (extraction or {}).get("segmentation") is not None:
+        raise ValueError("html_amendment_markup supports only default HTML blocks")
     title = _document_title(soup) or fallback_title
     if (extraction or {}).get("segmentation") == "anchor_range":
         return _extract_anchor_range_html_blocks(
@@ -2855,6 +2887,8 @@ def _extract_html_blocks(
         )
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
+        if amendment_nodes is not None:
+            raise ValueError("html_amendment_markup does not support WebWorks HTML")
         return webworks_blocks
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_html_section_blocks(
@@ -2877,13 +2911,16 @@ def _extract_html_blocks(
                     ordinal=len(blocks) + 1,
                     heading=heading,
                     body=body,
-                    metadata={"source_url": source_url},
+                    metadata={
+                        "source_url": source_url,
+                        **_html_amendment_metadata(body, extraction=extraction),
+                    },
                 )
             )
         parts = []
 
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
+        text = _html_amendment_text(node, amendment_nodes)
         if not text:
             continue
         if node.name in _HEADING_TAGS:
@@ -2894,7 +2931,7 @@ def _extract_html_blocks(
     flush()
     if blocks:
         return tuple(blocks)
-    fallback = _normalize_text(root.get_text(" ", strip=True))
+    fallback = _html_amendment_text(root, amendment_nodes)
     if not fallback:
         return ()
     return (
@@ -2903,9 +2940,82 @@ def _extract_html_blocks(
             ordinal=1,
             heading=title,
             body=fallback,
-            metadata={"source_url": source_url},
+            metadata={
+                "source_url": source_url,
+                **_html_amendment_metadata(fallback, extraction=extraction),
+            },
         ),
     )
+
+
+def _html_amendment_nodes(
+    root: Tag, *, extraction: dict[str, Any] | None
+) -> dict[int, str] | None:
+    """Select amendment tags explicitly, leaving emphasis outside the selectors alone."""
+    config = (extraction or {}).get("html_amendment_markup")
+    if config is None:
+        return None
+    allowed = {"deleted_selector", "inserted_selector"}
+    if not isinstance(config, dict) or not config or set(config) - allowed:
+        raise ValueError("html_amendment_markup requires deleted_selector or inserted_selector")
+    if any(token in root.get_text() for token in _AMENDMENT_MARKUP_TOKENS):
+        raise ValueError("HTML already contains amendment markup delimiters")
+    selected: dict[int, str] = {}
+    for key, selector in config.items():
+        if not isinstance(selector, str) or not selector.strip():
+            raise ValueError("HTML amendment selectors must be non-empty strings")
+        nodes = root.select(selector)
+        if not nodes:
+            raise ValueError(f"HTML amendment selector did not match: {selector!r}")
+        state = _AMENDMENT_DELETED if key == "deleted_selector" else _AMENDMENT_INSERTED
+        for node in nodes:
+            if id(node) in selected and selected[id(node)] != state:
+                raise ValueError("HTML amendment node is both inserted and deleted")
+            selected[id(node)] = state
+    return selected
+
+
+def _html_amendment_text(node: Tag, selected: dict[int, str] | None) -> str:
+    if selected is None:
+        return _normalize_text(node.get_text(" ", strip=True))
+    parts: list[str] = []
+    states: list[str | None] = []
+    for string in node.strings:
+        text = string.strip()
+        if not text:
+            continue
+        inherited = {selected[id(parent)] for parent in string.parents if id(parent) in selected}
+        if len(inherited) > 1:
+            raise ValueError("HTML amendment text is both inserted and deleted")
+        state = next(iter(inherited), None)
+        if parts:
+            parts.append(" ")
+            states.append(None)
+        parts.append(text)
+        states.extend([state] * len(text))
+    raw = "".join(parts)
+    rendered = _render_amendment_markup(raw, states)
+    if _strip_amendment_markup(rendered.text) != _normalize_text(node.get_text(" ", strip=True)):
+        raise RuntimeError("HTML amendment markup changed the source text")
+    return rendered.text
+
+
+def _html_amendment_metadata(
+    body: str, *, extraction: dict[str, Any] | None
+) -> dict[str, Any]:
+    config = (extraction or {}).get("html_amendment_markup")
+    if config is None:
+        return {}
+    return {
+        "amendment_markup": {
+            "notation": "wdiff",
+            "deleted": "[-text-]",
+            "inserted": "{+text+}",
+            **config,
+            "deleted_runs": body.count("[-"),
+            "inserted_runs": body.count("{+"),
+        }
+    }
 
 
 def _extract_json_html_blocks(

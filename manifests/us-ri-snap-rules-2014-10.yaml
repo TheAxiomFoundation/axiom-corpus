@@ -1,0 +1,43 @@
+version: 2026-09-27-ri-snap-rules-2014-10
+documents:
+  - source_id: ri-dhs-snap-rules-2014-10
+    jurisdiction: us-ri
+    document_class: regulation
+    citation_path: us-ri/regulation/dhs/snap-rules/vintage/2014-10-01
+    title: Rhode Island DHS Supplemental Nutrition Assistance Program Sections 1000-1083 Rules and Regulations, October 2014
+    source_url: https://risos-apa-production-public.s3.amazonaws.com/DHS/7907.pdf
+    source_format: pdf
+    source_as_of: '2014-10-01'
+    expression_date: '2014-10-01'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Rhode Island Department of Human Services
+      official_publisher: Rhode Island Department of State
+      document_subtype: historical_administrative_regulation_compilation
+      program: SNAP
+      historical_vintage: true
+      historical_legal_identifier: 218-XXX-XX-820
+      filing_id: '7907'
+      filing_type: emergency_amendment
+      effective_date: '2014-10-01'
+      effective_end_date: '2015-01-29'
+      printed_compilation_month: '2014-10'
+      expression_date_note: >-
+        The PDF cover prints October 2014. The official filing overview prints
+        Effective 10/01/2014 to 01/29/2015 and links this exact 7907.pdf.
+      filing_overview_url: https://rules.sos.ri.gov/Regulations/part/218-XXX-XX-820?reg_id=7907
+      pdf_creation_date: '2014-09-23'
+      retrieved_date: '2026-09-27'
+      extraction_granularity: pdf_page
+      child_support_section_revision_month: '2005-05'
+      topic: legally_obligated_child_support_income_exclusion
+      authority_role: >-
+        Sections 1008.20.22 and 1010.20, both REV:05/2005, explicitly exclude legally
+        obligated child support; older section 1038.19 REV:09/2000 still calls it a
+        deduction. Preserve that inconsistency for downstream interpretation.
+      citation_path_note: >-
+        The old numbered rules predate 218-RICR-20-00-1. A dhs/snap-rules/vintage/
+        effective-date family keeps this filing distinct from current RICR page rows.
+      discovered_via: policyengine-us SNAP child support references; official Secretary of State filing 7907

@@ -1,0 +1,26 @@
+documents:
+- source_id: nj-pl-2013-c45
+  jurisdiction: us-nj
+  document_class: statute
+  citation_path: us-nj/statute/session-laws/2013/c45
+  title: New Jersey P.L. 2013, c.45 (S2366 2R), New Jersey SNAP Employment and Training Provider Demonstration Project Act
+  source_url: https://pub.njleg.gov/bills/2012/PL13/45_.HTM
+  source_format: html
+  source_as_of: '2013-04-15'
+  expression_date: '2013-04-15'
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: New Jersey Legislature
+    official_publisher: New Jersey Legislature
+    document_subtype: session_law
+    session_year: 2013
+    chapter: 45
+    approval_date: '2013-04-15'
+    effective_date_rule: 'Section 11: first day of the seventh month next following the date of enactment.'
+    expression_date_note: 'Approval date printed at the end: Approved April 15, 2013. The document expresses effectiveness as the section 11 formula, not a calendar date.'
+    authority_role: Section 10, codified as N.J.S.A. 44:10-104, requires exclusion of child support paid for both gross and net SNAP income eligibility standards.

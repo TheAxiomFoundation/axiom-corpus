@@ -1,0 +1,34 @@
+documents:
+- source_id: wa-wsr-09-15-085
+  jurisdiction: us-wa
+  document_class: rulemaking
+  citation_path: us-wa/rulemaking/washington-state-register/2009-07-14/wsr-09-15-085
+  title: Washington State Register WSR 09-15-085, permanent rule amending WAC 388-450-0015
+  source_url: https://lawfilesext.leg.wa.gov/law/wsr/2009/15/09-15-085.htm
+  source_format: html
+  source_as_of: '2009-07-14'
+  expression_date: '2009-07-14'
+  extraction:
+    html_encoding: windows-1252
+    html_content_selector: html
+    html_text_selector: body
+    html_drop_selectors:
+    - h5
+    html_amendment_markup:
+      deleted_selector: strike
+      inserted_selector: u:not(:-soup-contains("AMENDATORY SECTION"))
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: Washington Department of Social and Health Services, Economic Services Administration
+    official_publisher: Washington State Code Reviser's Office
+    document_subtype: register_permanent_rule
+    register_citation: WSR 09-15-085
+    filing_date: '2009-07-14'
+    adoption_date: '2009-07-10'
+    original_effective_date: '2009-08-14'
+    effective_date_note: The printed August 14, 2009 effective date is moved to November 15, 2009 by WSR 09-16-095, separately retained.
+    expression_date_note: Filing date printed in the register document header; path date is this filing date, not an inferred issue publication date.
+    authority_role: Adopts child support income exclusion before the gross income test; read with WSR 09-16-095 for the postponed effective date.

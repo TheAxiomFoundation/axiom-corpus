@@ -409,6 +409,11 @@ unchanged):
   typography (an underlined case name, say) rather than an insertion. Extraction
   fails if a page's own text already contains one of the delimiters, or if a
   character is both struck through and underlined.
+  For publishers using bold additions, set `inserted_style: bold` in the
+  mapping and restrict the page range to the proposal text. Bold font flags
+  then determine insertions instead of drawn underlines. Literal deletion
+  brackets remain unchanged; document that convention in source metadata
+  (see `manifests/us-nj-prn-2016-017.yaml`).
 - `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
   drawn last in the content stream is read where it is printed.
 - `ignore_actual_text: true` extracts the visible glyphs even where the PDF's tag
@@ -416,6 +421,18 @@ unchanged):
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.
+
+For HTML, `html_amendment_markup` accepts explicit `deleted_selector` and
+`inserted_selector` CSS selectors. It preserves the same wdiff notation and
+records the selectors and run counts on each block. Select amendment tags
+precisely to avoid treating emphasis as amendment text; the Washington
+manifest `manifests/us-wa-wsr-09-15-085.yaml` excludes the underlined
+"AMENDATORY SECTION" label. This option supports default HTML blocks only;
+it fails on unmatched selectors, conflicting statuses, or existing wdiff
+delimiters. Neither HTML nor PDF defaults change.
+Legacy HTML without a charset declaration can also set `html_encoding`, such
+as `windows-1252` for these Washington register documents, to preserve section
+signs instead of relying on heuristic encoding detection.
 
 ## Coverage
 

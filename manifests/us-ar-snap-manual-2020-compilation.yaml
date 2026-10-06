@@ -1,0 +1,44 @@
+version: 2026-09-27-ar-snap-manual-2020-compilation
+documents:
+  - source_id: ar-dhs-snap-manual-2020-compilation
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-policy-manual/vintage/2020-02-28
+    title: Arkansas SNAP Certification Manual, Complete SNAP Manual 2020 compilation
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Complete_SNAP_Manual.pdf
+    source_format: pdf
+    source_as_of: '2020-02-28'
+    expression_date: '2020-02-28'
+    request:
+      browser_impersonation: safari17_0
+      browser_impersonation_direct: true
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services, Division of County Operations
+      official_publisher: Arkansas Department of Human Services
+      document_subtype: historical_policy_manual_compilation
+      program: SNAP
+      historical_vintage: true
+      date_basis: file_creation_date
+      pdf_creation_date: '2020-02-28'
+      pdf_modification_date: '2020-03-02'
+      expression_date_note: >-
+        File creation date D:20200228141245-06'00' identifies the historical compilation,
+        not a legal effective date. No document-wide printed compilation date was found;
+        the PDF contains differently dated transmittals and section revision stamps,
+        including 02/01/20. Its modification timestamp is D:20200302151736-06'00'.
+      retrieved_date: '2026-09-27'
+      extraction_granularity: pdf_page
+      printed_section_revision_dates:
+        '6550': '1998-06-01'
+        '7524': '1998-07-01'
+        '7610': '2005-06-01'
+      topic: legally_obligated_child_support_deduction
+      authority_role: >-
+        Section 6550 allows a child support deduction; 7524 prohibits deductions from
+        the gross income pretest except farm losses; 7610 places child support in the
+        adjusted-income calculation after the gross income pretest.
+      citation_path_note: >-
+        The current manual's dhs/snap-policy-manual path gains vintage/<file-creation-date>
+        for this historical compilation, so the current and historical page rows coexist.
+      discovered_via: policyengine-us SNAP child support references; live DHS historical compilation
