@@ -42,6 +42,28 @@ documents:
       publisher page read 2026-10-06
     program_bundle_ids:
     - https://www.twc.texas.gov/sites/default/files/wf/docs/workforce-board-directory-twc.pdf
+- source_id: us-tx-w6-twc-child-care-and-early-learning-program
+  jurisdiction: us-tx
+  document_class: guidance
+  title: 'TWC: Child Care & Early Learning Program'
+  source_url: https://www.twc.texas.gov/programs/child-care
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-tx/guidance/twc/child-care-and-early-learning-program
+  metadata:
+    primary_source: true
+    source_authority: Texas Workforce Commission / Texas Health and Human Services Commission
+    document_subtype: agency_web_page
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-tx/guidance/w6-tanf-ccdf
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (docs/coverage/program-bundle-gaps-2026-10-06, group tanf-ccdf-nh-wy);
+      publisher page read 2026-10-06
+    program_bundle_ids:
+    - https://www.twc.texas.gov/programs/child-care-services
+    source_note: current address of the program page (linked as 'Child Care & Early Learning' from twc.texas.gov);
+      the bundle's /programs/child-care-services answers HTTP 404
 - source_id: us-tx-w6-workforce-solutions-panhandle-child-care-for-parents
   jurisdiction: us-tx
   document_class: guidance

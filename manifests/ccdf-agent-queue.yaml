@@ -1344,6 +1344,24 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nv-tanf-ccdf-w6-manual.yaml
+    - manifests/us-nv-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-nv
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-nv
+    - jurisdiction: us-nv
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-nv
+    taken_count: 2
+    bundle_rows:
+      PRESENT: 2
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 2 CCDF bundle documents; 2 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -1376,6 +1394,28 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nh-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-nh-tanf-ccdf-w6-policy.yaml
+    - manifests/us-nh-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-nh
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-nh
+    - jurisdiction: us-nh
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-nh
+    - jurisdiction: us-nh
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-nh
+    taken_count: 9
+    bundle_rows:
+      PRESENT: 9
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 9 CCDF bundle documents; 9 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nj
   name: New Jersey
   queue_status: agent_ready
@@ -1416,6 +1456,28 @@ states:
     notes: 'Reviewed 2026-09-13: childcarenj.gov home lists CCAP application pages only; the 2017-18 and 2021-22 MRS reports
       the run note recorded were not on the page read 2026-09-13; no schedule. Market rate survey and cost analysis reports
       are the basis for rates, not the operative schedule, and were not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nj-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-nj-tanf-ccdf-w6-policy.yaml
+    - manifests/us-nj-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-nj
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-nj
+    - jurisdiction: us-nj
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-nj
+    - jurisdiction: us-nj
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-nj
+    taken_count: 9
+    bundle_rows:
+      PRESENT: 9
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 9 CCDF bundle documents; 9 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nm
   name: New Mexico
   queue_status: agent_ready
@@ -1447,6 +1509,32 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nm-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-nm-tanf-ccdf-w6-policy.yaml
+    - manifests/us-nm-tanf-ccdf-w6-regulation.yaml
+    - manifests/us-nm-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-nm
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-nm
+    - jurisdiction: us-nm
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-nm
+    - jurisdiction: us-nm
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-nm
+    - jurisdiction: us-nm
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-nm
+    taken_count: 9
+    bundle_rows:
+      PRESENT: 9
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 9 CCDF bundle documents; 9 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-ny
   name: New York
   queue_status: blocked_primary_source
@@ -1482,6 +1570,25 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-ny-tanf-ccdf-w6-rulemaking.yaml
+    - manifests/us-ny-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-ny
+      document_class: rulemaking
+      version: 2026-10-06-w6-tanf-ccdf-rulemaking-ny
+    - jurisdiction: us-ny
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-ny
+    taken_count: 3
+    bundle_rows:
+      OUTREACH: 7
+      PRESENT: 3
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 10 CCDF bundle documents; 7 OUTREACH, 3 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nc
   name: North Carolina
   queue_status: agent_ready
@@ -1659,6 +1766,25 @@ states:
       version: 2026-09-13-ccdf-state-plan-amendments
     taken_count: 2
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-oh-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-oh-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-oh
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-oh
+    - jurisdiction: us-oh
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-oh
+    taken_count: 7
+    bundle_rows:
+      ALREADY-HELD: 3
+      PRESENT: 7
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 10 CCDF bundle documents; 3 ALREADY-HELD, 7 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
@@ -1691,6 +1817,21 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-ok-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-ok
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-ok
+    taken_count: 2
+    bundle_rows:
+      ALREADY-HELD: 12
+      PRESENT: 2
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 14 CCDF bundle documents; 12 ALREADY-HELD, 2 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-or
   name: Oregon
   queue_status: agent_ready
@@ -1744,6 +1885,25 @@ states:
     notes: 'Reviewed 2026-09-13: 2022 alternate rate-setting structure legislative report on the DELC State Plans page; no
       schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
       not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-or-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-or-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-or
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-or
+    - jurisdiction: us-or
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-or
+    taken_count: 4
+    bundle_rows:
+      ALREADY-HELD: 9
+      PRESENT: 4
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 13 CCDF bundle documents; 9 ALREADY-HELD, 4 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: agent_ready
@@ -1785,6 +1945,29 @@ states:
     notes: 'Reviewed 2026-09-13: the DHS Early Learning and Child Care resources page lists the plan; the 2025 MRS report
       the run note recorded is a survey, not a schedule. Market rate survey and cost analysis reports are the basis for rates,
       not the operative schedule, and were not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-pa-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-pa-tanf-ccdf-w6-policy.yaml
+    - manifests/us-pa-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-pa
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-pa
+    - jurisdiction: us-pa
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-pa
+    - jurisdiction: us-pa
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-pa
+    taken_count: 3
+    bundle_rows:
+      ABSENT: 1
+      PRESENT: 3
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 4 CCDF bundle documents; 1 ABSENT, 3 PRESENT. Row-level decisions in
+      docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-pr
   name: Puerto Rico
   queue_status: needs_review
@@ -1847,6 +2030,25 @@ states:
     taken_count: 0
     notes: 'Reviewed 2026-09-13: the DHS State Plans page lists CCDF plans and amendments only; no schedule. Market rate survey
       and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-ri-tanf-ccdf-w6-policy.yaml
+    - manifests/us-ri-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-ri
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-ri
+    - jurisdiction: us-ri
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-ri
+    taken_count: 6
+    bundle_rows:
+      ALREADY-HELD: 1
+      PRESENT: 6
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 7 CCDF bundle documents; 1 ALREADY-HELD, 6 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: agent_ready
@@ -1897,6 +2099,21 @@ states:
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): SC Child
       Care Scholarship Program Fee Scale, October 1, 2025 - September 30, 2026; SC Child Care Scholarship Maximum Payments
       Allowed, October 1, 2025 - September 30, 2026; Child Care Income Standards, 2025-2026.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-sc-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-sc
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-sc
+    taken_count: 1
+    bundle_rows:
+      ALREADY-HELD: 1
+      PRESENT: 1
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 2 CCDF bundle documents; 1 ALREADY-HELD, 1 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-sd
   name: South Dakota
   queue_status: agent_ready
@@ -1944,6 +2161,24 @@ states:
     taken_count: 3
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2; Amendment
       3.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-sd-tanf-ccdf-w6-manual.yaml
+    - manifests/us-sd-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-sd
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-sd
+    - jurisdiction: us-sd
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-sd
+    taken_count: 5
+    bundle_rows:
+      PRESENT: 5
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 5 CCDF bundle documents; 5 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: agent_ready
@@ -1993,6 +2228,25 @@ states:
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Child Care
       Certificate Program Income Eligibility Limits and Parent Co-Pay Fees, effective October 1, 2025; Child Care Certificate
       Program Provider Weekly Reimbursement Rates including QRIS Scorecard Bonus Payments, effective January 1, 2026.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-tn-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-tn-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-tn
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-tn
+    - jurisdiction: us-tn
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-tn
+    taken_count: 2
+    bundle_rows:
+      ALREADY-HELD: 1
+      PRESENT: 2
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 3 CCDF bundle documents; 1 ALREADY-HELD, 2 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-tx
   name: Texas
   queue_status: agent_ready
@@ -2029,6 +2283,26 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-tx-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-tx-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-tx
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-tx
+    - jurisdiction: us-tx
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-tx
+    taken_count: 7
+    bundle_rows:
+      ABSENT: 1
+      OUTREACH: 9
+      PRESENT: 7
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 17 CCDF bundle documents; 1 ABSENT, 9 OUTREACH, 7 PRESENT. Row-level
+      decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-ut
   name: Utah
   queue_status: agent_ready
@@ -2068,6 +2342,25 @@ states:
     taken_count: 0
     notes: 'Reviewed 2026-09-13: 2021 and 2024 Child Care Market Rate Studies on the OCC Plans and Reports page; no schedule.
       Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-ut-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-ut-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-ut
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-ut
+    - jurisdiction: us-ut
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-ut
+    taken_count: 7
+    bundle_rows:
+      ALREADY-HELD: 2
+      PRESENT: 7
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 9 CCDF bundle documents; 2 ALREADY-HELD, 7 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready
@@ -2121,6 +2414,28 @@ states:
     taken_count: 0
     notes: 'Reviewed 2026-09-13: Child Care Market Rate Survey 2024 on the CDD CCDF page; no schedule. Market rate survey
       and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-vt-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-vt-tanf-ccdf-w6-policy.yaml
+    - manifests/us-vt-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-vt
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-vt
+    - jurisdiction: us-vt
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-vt
+    - jurisdiction: us-vt
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-vt
+    taken_count: 10
+    bundle_rows:
+      PRESENT: 10
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 10 CCDF bundle documents; 10 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-vi
   name: Virgin Islands
   queue_status: needs_review
@@ -2185,6 +2500,32 @@ states:
     notes: 'Reviewed 2026-09-13: the Virginia child care plan page lists the plan only (AkamaiGHost 403 to plain clients);
       no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
       not taken.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-va-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-va-tanf-ccdf-w6-manual.yaml
+    - manifests/us-va-tanf-ccdf-w6-policy.yaml
+    - manifests/us-va-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-va
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-va
+    - jurisdiction: us-va
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-va
+    - jurisdiction: us-va
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-va
+    - jurisdiction: us-va
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-va
+    taken_count: 6
+    bundle_rows:
+      PRESENT: 6
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 CCDF bundle documents; 6 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wa
   name: Washington
   queue_status: agent_ready
@@ -2229,6 +2570,32 @@ states:
       version: 2026-09-13-ccdf-state-plan-amendments
     taken_count: 1
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - extract-washington-wac
+    - manifests/us-wa-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-wa-tanf-ccdf-w6-policy.yaml
+    - manifests/us-wa-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-wa
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-wa
+    - jurisdiction: us-wa
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-wa
+    - jurisdiction: us-wa
+      document_class: regulation
+      version: 2026-10-06-w6-ccdf-rules-wa-110-15
+    - jurisdiction: us-wa
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-wa
+    taken_count: 24
+    bundle_rows:
+      PRESENT: 24
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 24 CCDF bundle documents; 24 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: agent_ready
@@ -2261,6 +2628,24 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-wv-tanf-ccdf-w6-manual.yaml
+    - manifests/us-wv-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-wv
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-wv
+    - jurisdiction: us-wv
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-wv
+    taken_count: 3
+    bundle_rows:
+      PRESENT: 3
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 3 CCDF bundle documents; 3 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: agent_ready
@@ -2293,6 +2678,35 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/state-statutes-tanf-ccdf-w6-nh-wy.yaml
+    - manifests/us-wi-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-wi-tanf-ccdf-w6-manual.yaml
+    - manifests/us-wi-tanf-ccdf-w6-rulemaking.yaml
+    target_scopes:
+    - jurisdiction: us-wi
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-wi
+    - jurisdiction: us-wi
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-wi
+    - jurisdiction: us-wi
+      document_class: rulemaking
+      version: 2026-10-06-w6-tanf-ccdf-rulemaking-wi
+    - jurisdiction: us-wi
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-wi-chapter-49
+    - jurisdiction: us-wi
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990
+    taken_count: 14
+    bundle_rows:
+      PRESENT: 14
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 14 CCDF bundle documents; 14 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wy
   name: Wyoming
   queue_status: agent_ready
@@ -2325,6 +2739,32 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-wy-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-wy-tanf-ccdf-w6-policy.yaml
+    - manifests/us-wy-tanf-ccdf-w6-regulation.yaml
+    - manifests/us-wy-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-wy
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-wy
+    - jurisdiction: us-wy
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-wy
+    - jurisdiction: us-wy
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-wy
+    - jurisdiction: us-wy
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-wy
+    taken_count: 6
+    bundle_rows:
+      PRESENT: 6
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 CCDF bundle documents; 6 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-in
   name: Indiana (CCDF Policy Manual, FSSA Office of Early Childhood and Out-of-School Learning)
   queue_status: needs_review

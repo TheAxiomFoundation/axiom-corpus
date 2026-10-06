@@ -18,6 +18,11 @@ Statute chapters (WI 49 and 990, WV 9-9, RI 40-5.2) run through ``extract-state-
 Usage::
 
     uv run python scripts/build_w6_tanf_ccdf_nh_wy_manifests.py [--only us-nj,us-vt]
+    uv run python scripts/build_w6_tanf_ccdf_nh_wy_manifests.py --queue   # after the decisions file exists
+
+``--queue`` records one ``program_bundle_gaps_w6`` family on each of the 21 states' rows of
+``manifests/ccdf-agent-queue.yaml`` and ``manifests/tanf-agent-queue.yaml`` from the decisions file
+(scopes, manifests and row counts by new status for that program); it changes no other row.
 """
 
 from __future__ import annotations
@@ -313,15 +318,9 @@ DOCS: list[dict[str, Any]] = [
       "DWSS Eligibility and Payments Manual Chapter A-1000 Introduction of TANF Cash Programs (12-15-15)",
       "https://dss.nv.gov/uploadedFiles/dwssnvgov/content/Home/Features/Chapter%20A_1000%2012-15-15.pdf", P,
       "2015-12-15", "TANF", "agency_manual_chapter"),
-    d(["https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/eligibility/chapter-c_140.pdf",
-       "https://drive.google.com/file/d/1v1jiPfl1pzrKPcJGg0gRjNOLErIjbHA3/view?usp=sharing",
-       "https://drive.google.com/file/d/1xX0U05I3wfeiGY0wfjIB6rxcauE_kFLX/view?usp=sharing"],
-      "us-nv", "manual", "us-nv/manual/dwss/eligibility-payments/c-140",
-      "Eligibility and Payments Manual Chapter C-140 TANF Need Standards",
-      "https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/eligibility/chapter-c_140.pdf", P,
-      "2026-02-23", "TANF", "agency_manual_chapter",
-      note="the publisher's current chapter (HTTP Last-Modified 2026-02-23); the bundle's two Google "
-      "Drive copies (EP_Man_C-0140.pdf, 'Chapter C_140 2018.pdf') are third-party reposts"),
+    # EP Manual C-140 (TANF need standards) is not taken: the newer edition (MTL 03/26) is held as
+    # us-nv/manual/dwss/eligibility-payments/c-140 (us-nv/manual/2026-09-11-nv-snap-manual-supersede); the
+    # bundle's dss.nv.gov file is the MTL 06/25 edition and would collide with that path.
     d(["https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/care/Child_Care_Manual_July_2024.pdf"],
       "us-nv", "manual", "us-nv/manual/dwss/child-care-policy-manual-2024-07",
       "DWSS Child Care Policy Manual (July 2024)",
@@ -449,9 +448,9 @@ DOCS: list[dict[str, Any]] = [
       "https://www.pa.gov/agencies/dhs/resources/early-learning-child-care/elrc/", H, SOURCE_AS_OF, "CCDF",
       "agency_web_page"),
     d(["PLACEHOLDER_PA_MCCA"],
-      "us-pa", "policy", "us-pa/policy/ccdf/rate-schedules/mcca-rates-by-region",
-      "Pennsylvania Maximum Child Care Allowance (MCCA) rates by region", "PLACEHOLDER_PA_MCCA", P,
-      "2024-01-24", "CCDF", "rate_or_copay_schedule"),
+      "us-pa", "policy", "us-pa/policy/ccdf/rate-schedules/mcca-rates-by-region-2023-03-01",
+      "DHS Maximum Daily Child Care Allowances (MCCA) by region (effective March 1, 2023)",
+      "PLACEHOLDER_PA_MCCA", P, "2023-03-01", "CCDF", "rate_or_copay_schedule"),
     d(["https://www.pacodeandbulletin.gov/secure/pacode/data/055/chapter3042/055_3042.pdf"],
       "us-pa", "regulation", "us-pa/regulation/title-55/chapter-3042-pdf",
       "55 Pa. Code Chapter 3042 Subsidized Child Care Eligibility",
@@ -575,6 +574,12 @@ DOCS: list[dict[str, Any]] = [
       "TWC Workforce Development Board Directory (as of July 16, 2026)",
       "https://www.twc.texas.gov/sites/default/files/wf/docs/workforce-board-directory-twc.pdf", P,
       "2026-07-16", "CCDF", "directory"),
+    d(["https://www.twc.texas.gov/programs/child-care-services"],
+      "us-tx", "guidance", "us-tx/guidance/twc/child-care-and-early-learning-program",
+      "TWC: Child Care & Early Learning Program", "https://www.twc.texas.gov/programs/child-care", H,
+      SOURCE_AS_OF, "CCDF", "agency_web_page",
+      note="current address of the program page (linked as 'Child Care & Early Learning' from twc.texas.gov); "
+      "the bundle's /programs/child-care-services answers HTTP 404"),
     d(["https://wspanhandle.com/child-care/for-parents/"],
       "us-tx", "guidance", "us-tx/guidance/workforce-solutions-panhandle/child-care-for-parents",
       "Workforce Solutions Panhandle: Child Care Assistance Information for Parents",
@@ -929,6 +934,73 @@ def manifest_entry(doc: dict[str, Any], main_manifest_entries: dict[str, dict[st
     return entry
 
 
+DECISIONS = ROOT / "docs" / "ingest-runs" / "2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv"
+QUEUES = {"ccdf": ROOT / "manifests" / "ccdf-agent-queue.yaml", "tanf": ROOT / "manifests" / "tanf-agent-queue.yaml"}
+FAMILY = "program_bundle_gaps_w6"
+
+
+def write_queue_families() -> None:
+    import csv
+
+    with DECISIONS.open() as handle:
+        decisions = list(csv.DictReader(handle))
+    manifests_by_scope: dict[str, str] = {}
+    for path in sorted((ROOT / "manifests").glob("us-*-tanf-ccdf-w6-*.yaml")):
+        doc = yaml.safe_load(path.read_text())
+        first = doc["documents"][0]
+        manifests_by_scope[f"{first['jurisdiction']}/{first['document_class']}/{doc['version']}"] = (
+            f"manifests/{path.name}"
+        )
+    statute_manifest = "manifests/state-statutes-tanf-ccdf-w6-nh-wy.yaml"
+    for program, queue_path in QUEUES.items():
+        queue = yaml.safe_load(queue_path.read_text())
+        for jur in sorted({row["jurisdiction"] for row in decisions}):
+            rows = [row for row in decisions if row["jurisdiction"] == jur and row["programs"] == program]
+            if not rows:
+                continue
+            counts: dict[str, int] = defaultdict(int)
+            for row in rows:
+                counts[row["new_status"]] += 1
+            present_scopes = sorted({row["scope_version"] for row in rows if row["new_status"] == "PRESENT"})
+            manifests = sorted(
+                {manifests_by_scope.get(scope, statute_manifest if "/statute/" in scope else "extract-washington-wac")
+                 for scope in present_scopes}
+            )
+            if counts.get("PRESENT"):
+                status = "agent_ready"
+            elif counts.get("OUTREACH"):
+                status = "blocked_primary_source"
+            else:
+                status = "done"
+            entry = {
+                "family": FAMILY,
+                "queue_status": status,
+                "index_url": "docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv",
+                "target_manifests": manifests,
+                "target_scopes": [
+                    dict(zip(("jurisdiction", "document_class", "version"), scope.split("/", 2), strict=True))
+                    for scope in present_scopes
+                ],
+                "taken_count": counts.get("PRESENT", 0),
+                "bundle_rows": dict(sorted(counts.items())),
+                "notes": (
+                    f"Wave 6 program-bundle gaps (2026-10-06): {len(rows)} {program.upper()} bundle documents; "
+                    + ", ".join(f"{n} {status_name}" for status_name, n in sorted(counts.items()))
+                    + ". Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; "
+                    "run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md."
+                ),
+            }
+            state_rows = [state for state in queue["states"] if state["jurisdiction"] == jur]
+            if len(state_rows) != 1:
+                raise SystemExit(f"{queue_path.name}: {jur} has {len(state_rows)} rows")
+            row = state_rows[0]
+            families = [f for f in row.get("additional_families", []) if f.get("family") != FAMILY]
+            families.append(entry)
+            row["additional_families"] = families
+        queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+        print(f"{queue_path.relative_to(ROOT)}: {FAMILY} written")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--only", default="", help="comma-separated jurisdictions, e.g. us-nj,us-vt")
@@ -940,7 +1012,11 @@ def main() -> None:
             "program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv"
         ),
     )
+    parser.add_argument("--queue", action="store_true", help="write the queue families from the decisions file")
     args = parser.parse_args()
+    if args.queue:
+        write_queue_families()
+        return
     only = {item.strip() for item in args.only.split(",") if item.strip()}
     placeholders = {
         "PLACEHOLDER_OH_PL21": "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Partners/Rules%20and%20Resources/2025",

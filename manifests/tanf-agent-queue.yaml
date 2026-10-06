@@ -3896,6 +3896,20 @@ states:
       draft URL answers HTTP 404 (2026-09-13). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing
       was worked around.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nj-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-nj
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-nj
+    taken_count: 6
+    bundle_rows:
+      PRESENT: 6
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 TANF bundle documents; 6 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nm
   name: New Mexico
   queue_status: agent_ready
@@ -3934,6 +3948,24 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): FFY 2024-2026 Final TANF State Plan (July 2024; period July
       1, 2024 through June 30, 2026). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library
       carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nm-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-nm-tanf-ccdf-w6-rulemaking.yaml
+    target_scopes:
+    - jurisdiction: us-nm
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-nm
+    - jurisdiction: us-nm
+      document_class: rulemaking
+      version: 2026-10-06-w6-tanf-ccdf-rulemaking-nm
+    taken_count: 5
+    bundle_rows:
+      PRESENT: 5
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 5 TANF bundle documents; 5 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nv
   name: Nevada
   queue_status: done
@@ -4078,6 +4110,29 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): FFY24 Nevada TANF State Plan, effective December 31, 2023
       (final). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
       checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-nv-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-nv-tanf-ccdf-w6-manual.yaml
+    - manifests/us-nv-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-nv
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-nv
+    - jurisdiction: us-nv
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-nv
+    - jurisdiction: us-nv
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-nv
+    taken_count: 7
+    bundle_rows:
+      ALREADY-HELD: 3
+      PRESENT: 7
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 10 TANF bundle documents; 3 ALREADY-HELD, 7 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-ny
   name: New York
   queue_status: blocked_primary_source
@@ -4228,6 +4283,17 @@ states:
   index_url: https://otda.ny.gov/programs/temporary-assistance/
   index_document_count: 1
   taken_count: 0
+  additional_families:
+  - family: program_bundle_gaps_w6
+    queue_status: blocked_primary_source
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests: []
+    target_scopes: []
+    taken_count: 0
+    bundle_rows:
+      OUTREACH: 10
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 10 TANF bundle documents; 10 OUTREACH. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-oh
   name: Ohio
   queue_status: agent_ready
@@ -4270,6 +4336,26 @@ states:
       links no plan, located with a web search; expression_date is the FFY 2025 start and should be reviewed. ACF OFA posts
       no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and
       2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-oh-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-oh-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-oh
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-oh
+    - jurisdiction: us-oh
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-oh
+    taken_count: 3
+    bundle_rows:
+      ALREADY-HELD: 2
+      OUTREACH: 2
+      PRESENT: 3
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 7 TANF bundle documents; 2 ALREADY-HELD, 2 OUTREACH, 3 PRESENT. Row-level
+      decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
@@ -4399,6 +4485,21 @@ states:
       with the August 1, 2024 transmittal letter to ACF OFA). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-ok-tanf-ccdf-w6-policy.yaml
+    target_scopes:
+    - jurisdiction: us-ok
+      document_class: policy
+      version: 2026-10-06-w6-tanf-ccdf-policy-ok
+    taken_count: 1
+    bundle_rows:
+      ALREADY-HELD: 8
+      PRESENT: 1
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 9 TANF bundle documents; 8 ALREADY-HELD, 1 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-or
   name: Oregon
   queue_status: agent_ready
@@ -4586,6 +4687,16 @@ states:
       answers HTTP 404 (2026-09-13); the ODHS data page (odhs/data/pages/ssp.aspx) answers 404; no current plan is posted.
       ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
       and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
+  - family: program_bundle_gaps_w6
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests: []
+    target_scopes: []
+    taken_count: 0
+    bundle_rows:
+      ALREADY-HELD: 15
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 15 TANF bundle documents; 15 ALREADY-HELD. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: agent_ready
@@ -4759,6 +4870,25 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): 2024 Pennsylvania TANF State Plan, effective October 1, 2024
       (submitted to HHS December 2024). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library
       carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-pa-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-pa-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-pa
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-pa
+    - jurisdiction: us-pa
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-pa
+    taken_count: 2
+    bundle_rows:
+      ALREADY-HELD: 1
+      PRESENT: 2
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 3 TANF bundle documents; 1 ALREADY-HELD, 2 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-pr
   name: Puerto Rico
   queue_status: agent_ready
@@ -4820,6 +4950,25 @@ states:
       RI Works page links no plan; no TANF state plan is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication. Nothing was worked around.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/state-statutes-tanf-ccdf-w6-nh-wy.yaml
+    - manifests/us-ri-tanf-ccdf-w6-guidance.yaml
+    target_scopes:
+    - jurisdiction: us-ri
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-ri
+    - jurisdiction: us-ri
+      document_class: statute
+      version: 2026-10-06-w6-tanf-statute-ri-us-ri-chapter-40-5.2
+    taken_count: 5
+    bundle_rows:
+      ALREADY-HELD: 1
+      PRESENT: 5
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 TANF bundle documents; 1 ALREADY-HELD, 5 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: agent_ready
@@ -4892,6 +5041,21 @@ states:
       2025), hosted on dss.sc.gov; the TANF program and TANF data pages do not list it (located with a web search). ACF OFA
       posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
       and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-sc-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-sc
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-sc
+    taken_count: 2
+    bundle_rows:
+      ALREADY-HELD: 1
+      PRESENT: 2
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 3 TANF bundle documents; 1 ALREADY-HELD, 2 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-sd
   name: South Dakota
   queue_status: agent_ready
@@ -5062,6 +5226,21 @@ states:
       through September 30, 2026 (scanned image-only PDF, 21 pages; Tesseract page OCR). ACF OFA posts no state plan index
       (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan
       is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-sd-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-sd
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-sd
+    taken_count: 4
+    bundle_rows:
+      ALREADY-HELD: 2
+      PRESENT: 4
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 TANF bundle documents; 2 ALREADY-HELD, 4 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: agent_ready
@@ -5469,6 +5648,22 @@ states:
       October 2019 plan; no certified renewal is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and
       the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.
       Nothing was worked around.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-tx-tanf-ccdf-w6-guidance.yaml
+    target_scopes:
+    - jurisdiction: us-tx
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-tx
+    taken_count: 1
+    bundle_rows:
+      ABSENT: 1
+      OUTREACH: 18
+      PRESENT: 1
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 20 TANF bundle documents; 1 ABSENT, 18 OUTREACH, 1 PRESENT. Row-level
+      decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-ut
   name: Utah
   queue_status: done
@@ -5499,6 +5694,21 @@ states:
       answers the state plans directory with HTTP 403 and the FEP pages with HTTP 500 to this client, so the listing page
       could not be read (located with a web search). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the
       resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-ut-tanf-ccdf-w6-manual.yaml
+    target_scopes:
+    - jurisdiction: us-ut
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-ut
+    taken_count: 2
+    bundle_rows:
+      ALREADY-HELD: 3
+      PRESENT: 2
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 5 TANF bundle documents; 3 ALREADY-HELD, 2 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-va
   name: Virginia
   queue_status: agent_ready
@@ -5646,6 +5856,25 @@ states:
       filed within the WIOA combined plan on the federal portal). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication. Nothing was worked around.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-va-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-va-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-va
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-va
+    - jurisdiction: us-va
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-va
+    taken_count: 7
+    bundle_rows:
+      ALREADY-HELD: 2
+      PRESENT: 7
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 9 TANF bundle documents; 2 ALREADY-HELD, 7 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-vi
   name: Virgin Islands
   queue_status: blocked_primary_source
@@ -5708,6 +5937,29 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Vermont TANF State Plan Renewal October 1, 2024 through December
       31, 2027. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
       checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-vt-tanf-ccdf-w6-guidance.yaml
+    - manifests/us-vt-tanf-ccdf-w6-manual.yaml
+    - manifests/us-vt-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-vt
+      document_class: guidance
+      version: 2026-10-06-w6-tanf-ccdf-guidance-vt
+    - jurisdiction: us-vt
+      document_class: manual
+      version: 2026-10-06-w6-tanf-ccdf-manual-vt
+    - jurisdiction: us-vt
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-vt
+    taken_count: 8
+    bundle_rows:
+      ALREADY-HELD: 2
+      PRESENT: 8
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 10 TANF bundle documents; 2 ALREADY-HELD, 8 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wa
   name: Washington
   queue_status: done
@@ -5946,6 +6198,25 @@ states:
       (Talent and Prosperity for All WIOA combined plan, TANF-only portion) with the signed 2026 certifications. ACF OFA posts
       no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and
       2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/us-wa-tanf-ccdf-w6-rulemaking.yaml
+    - manifests/us-wa-tanf-ccdf-w6-statute.yaml
+    target_scopes:
+    - jurisdiction: us-wa
+      document_class: rulemaking
+      version: 2026-10-06-w6-tanf-ccdf-rulemaking-wa
+    - jurisdiction: us-wa
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-wa
+    taken_count: 9
+    bundle_rows:
+      ALREADY-HELD: 11
+      PRESENT: 9
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 20 TANF bundle documents; 11 ALREADY-HELD, 9 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: agent_ready
@@ -5984,6 +6255,24 @@ states:
       to the Current TANF State Plan'' (the stand-alone FFY 2021-2023 plan is the newest non-WIOA print). ACF OFA posts no
       state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13);
       the plan is the state agency''s own publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/state-statutes-tanf-ccdf-w6-nh-wy.yaml
+    - manifests/us-wi-tanf-ccdf-w6-regulation.yaml
+    target_scopes:
+    - jurisdiction: us-wi
+      document_class: regulation
+      version: 2026-10-06-w6-tanf-ccdf-regulation-wi
+    - jurisdiction: us-wi
+      document_class: statute
+      version: 2026-10-06-w6-tanf-ccdf-statute-wi-chapter-49
+    taken_count: 8
+    bundle_rows:
+      PRESENT: 8
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 8 TANF bundle documents; 8 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: done
@@ -6015,6 +6304,21 @@ states:
       (October 1, 2024 - September 30, 2026, effective October 1, 2024). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_gaps_w6
+    queue_status: agent_ready
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
+    target_manifests:
+    - manifests/state-statutes-tanf-ccdf-w6-nh-wy.yaml
+    target_scopes:
+    - jurisdiction: us-wv
+      document_class: statute
+      version: 2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9
+    taken_count: 1
+    bundle_rows:
+      ALREADY-HELD: 2
+      PRESENT: 1
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 3 TANF bundle documents; 2 ALREADY-HELD, 1 PRESENT. Row-level decisions
+      in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-wy
   name: Wyoming
   queue_status: done
