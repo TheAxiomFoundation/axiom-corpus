@@ -1,0 +1,25 @@
+{
+  "documents": [
+    {
+      "source_id": "ca-ita-122-5-consolidated-section",
+      "jurisdiction": "ca",
+      "document_class": "statute",
+      "citation_path": "ca/statute/I-3.3/122.5",
+      "title": "Income Tax Act section 122.5",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/acts/I-3.3/section-122.5.html",
+      "source_format": "html",
+      "source_as_of": "2026-10-06",
+      "expression_date": "2026-09-21",
+      "language": "en",
+      "extraction": {
+        "html_content_selector": "section:has(> ul.Section a[id=\"s-122.5\"])"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Department of Justice Canada",
+        "source_scope": "Complete consolidated section122.5 including definitions, formulas, conditions and historical notes; not the whole Act",
+        "last_amended_date": "2026-06-18"
+      }
+    }
+  ]
+}

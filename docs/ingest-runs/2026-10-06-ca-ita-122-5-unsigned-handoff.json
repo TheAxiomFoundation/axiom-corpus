@@ -1,0 +1,113 @@
+{
+  "status": "UNSIGNED REVIEWED CAPTURE HANDOFF; no production signature, lock, upload or release",
+  "source_url": "https://laws-lois.justice.gc.ca/eng/acts/I-3.3/section-122.5.html",
+  "capture_generator_commit": "d767122b738560d217272cd34e782a1782bb1ca2",
+  "scope": {
+    "jurisdiction": "ca",
+    "document_class": "statute",
+    "version": "issue233-ita122-5-2026-10-06"
+  },
+  "expression_date": "2026-09-21",
+  "acquired_date": "2026-10-06",
+  "manifest_sha256": "b06822bab09bbbee5426c0e4f5b1227275f1cda34523e05ba3dc041064a2b785",
+  "artifacts": [
+    {
+      "repository_path": "data/corpus/coverage/ca/statute/issue233-ita122-5-2026-10-06.json",
+      "sha256": "6eaf157c265e819ee6720fc801f2c5d57fcbd0a190c7a9239b8cd88a23f51498",
+      "size_bytes": 324
+    },
+    {
+      "repository_path": "data/corpus/provisions/ca/statute/issue233-ita122-5-2026-10-06.jsonl",
+      "sha256": "0ca770504e7fd0c00cd923d1d375aa3d62f91106b9e4da43c22745e9e5daa00f",
+      "size_bytes": 28928
+    },
+    {
+      "repository_path": "data/corpus/sources/ca/statute/issue233-ita122-5-2026-10-06/official-documents/ca-ita-122-5-consolidated-section.html",
+      "sha256": "2a362badf04cd1bf5c539a709fa85cff215da1a5ddf6db06797d6b375800c13f",
+      "size_bytes": 100931
+    },
+    {
+      "repository_path": "data/corpus/inventory/ca/statute/issue233-ita122-5-2026-10-06.json",
+      "sha256": "e4a8236f47e14a615a23c0cd2b73938b112e10f058b07cc229a3369db2042b52",
+      "size_bytes": 1990
+    }
+  ],
+  "coverage": "Complete selected official section122.5: bodyless canonical document plus one full-text block; not whole Income Tax Act. Only navigation Previous Version omitted by supported extraction.",
+  "verification": {
+    "independent_review_sha256": "ef3fee3295ef4fc3ea721aeba32d5a39150a8b328e33b2043e117cc2fabe6fd8",
+    "test_resolver_report_sha256": "42452ad09205b1a87b3c4ca699151bfb63a2fbaf00c0035f0695785fe145301b",
+    "test_only": "Ephemeral key/mocked publication; no production trust claim."
+  },
+  "limits": [
+    "Acquisition date is not a historical reconstruction selector.",
+    "XML application-provision warning is not in official HTML; commencement remains a separate source obligation.",
+    "External consumed dependencies and guide-to-statute ownership/import contract remain unresolved before native retry.",
+    "Established ingest signer and R2 capability required; test/release keys cannot substitute.",
+    "Signing checkout provenance must be truthful and clean; preserve original capture identity in this record.",
+    "Preserve all prior Canada/HTS scopes in any future additive release."
+  ],
+  "review_artifacts": {
+    "final_review": {
+      "statutory_content_equal_modulo_whitespace": true,
+      "comparison_only_exclusions": "Publisher marginal headings, six duplicated HTML definition dt headings, and HistoricalNote. ALL formula dt A/B/C labels retained. Capture/extracted source unmodified. Earlier broad-dt comparison intentionally retained in evidence, corrected here.",
+      "duplicate_definition_headings": [
+        "adjusted income",
+        "cohabiting spouse or common-law partner",
+        "eligible individual",
+        "qualified dependant",
+        "qualified relation",
+        "return of income"
+      ],
+      "history": "Actual extracted body includes complete HTML historical-note list through2026 c1 s3. XML additionally carries application-provisions-not-in-consolidation warning; HTML page does not reproduce that warning. Retain originalXML evidence and separate applicability obligation, not append invented text to HTML.",
+      "release_tests": "run4/result.json; ephemeral key/mocked repository test publication evidence only. Duplicate rejected by builder before signing, not claimed as resolver rejection. Valid root and block pass exact2093; signed crossscope and byte mutation reject.",
+      "limits": "No actual ingest signing/lock/upload/release publication. New HTML expression September21 distinct from June21 XML. Content equivalence does not establish commencement or all external dependency closure."
+    },
+    "test_only_result": {
+      "test_only": true,
+      "mocked_publication_evidence": true,
+      "capture_hashes": {
+        "coverage/ca/statute/issue233-ita122-5-2026-10-06.json": "6eaf157c265e819ee6720fc801f2c5d57fcbd0a190c7a9239b8cd88a23f51498",
+        "provisions/ca/statute/issue233-ita122-5-2026-10-06.jsonl": "0ca770504e7fd0c00cd923d1d375aa3d62f91106b9e4da43c22745e9e5daa00f",
+        "sources/ca/statute/issue233-ita122-5-2026-10-06/official-documents/ca-ita-122-5-consolidated-section.html": "2a362badf04cd1bf5c539a709fa85cff215da1a5ddf6db06797d6b375800c13f",
+        "inventory/ca/statute/issue233-ita122-5-2026-10-06.json": "e4a8236f47e14a615a23c0cd2b73938b112e10f058b07cc229a3369db2042b52"
+      },
+      "selector_count": 1,
+      "normative_and_history_exact_modulo_whitespace": true,
+      "expression_date": "2026-09-21",
+      "acquisition_date": "2026-10-06",
+      "xml_raw_sha": "77aeb72fe5a25070ee9a17cb812be7c0ea6b7950d00519a50965f4e9c17c0e8d",
+      "xml_section_sha": "3006c5b543da35bec87c5f0b2692b31a06454c0748016e1bb6b48ce3e7d6fb74",
+      "html_normative_equals_xml_ignoring_whitespace": false,
+      "cases": {
+        "valid/root": {
+          "ok": true,
+          "sha": "9cc66d5121ae143bea99c4606b2c1725710a65fa52f39313ac420f1e9c56e19f"
+        },
+        "valid/block": {
+          "ok": true,
+          "sha": "a0e16402ff2cdcc846e3dda6604f8b027cdec2872ed05757c7566bb02609ac93"
+        },
+        "duplicate/builder": {
+          "ok": false,
+          "type": "ReleaseManifestError",
+          "error": "release navigation projection must contain one row per provision: ca/statute/issue233-ita122-5-2026-10-06"
+        },
+        "crossscope/root": {
+          "ok": false,
+          "type": "CorpusDescendantStructureError",
+          "error": "Corpus descendants for 'ca/statute/I-3.3/122.5' cross active release scopes"
+        },
+        "tamper/root": {
+          "ok": false,
+          "type": "CorpusResolutionError",
+          "error": "Corpus provision bytes do not match the verified release: data/corpus/provisions/ca/statute/issue233-ita122-5-2026-10-06.jsonl"
+        }
+      },
+      "originals_unchanged": true
+    }
+  },
+  "reproduction_manifest": "manifests/ca-ita-122-5-official-section-2026-10-06.json",
+  "reproduction_command": "axiom-corpus-ingest extract-official-documents --base <isolated-output> --manifest manifests/ca-ita-122-5-official-section-2026-10-06.json --version issue233-ita122-5-2026-10-06 --source-as-of 2026-10-06 --expression-date 2026-09-21",
+  "capture_command": "axiom-corpus-ingest extract-official-documents --base <isolated-output> --manifest <external-reviewed-manifest>/ca-ita-122-5-official-section-intake.json --version issue233-ita122-5-2026-10-06 --source-as-of 2026-10-06 --expression-date 2026-09-21",
+  "evidence_note": "The retained test-run raw HTML/XML comparison is false because it does not normalize publisher marginal headings and duplicated definition labels. The separate final-review comparison accounts for those presentation differences only. Neither comparison modifies captured source bytes."
+}
