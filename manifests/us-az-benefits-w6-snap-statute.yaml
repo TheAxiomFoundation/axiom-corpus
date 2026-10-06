@@ -1,0 +1,28 @@
+version: "2026-10-06-w6-benefits-snap-statute"
+# Wave 6, group benefits (docs/ingest-runs/2026-10-06-w6-benefits.md): Arizona Revised Statutes
+# Title 46 (Welfare), which the SNAP bundle names as a whole (us-az/statute/46, from
+# https://www.azleg.gov/arsDetail/?title=46). Official text from the Arizona Legislature's ARS
+# HTML through the existing `arizona-revised-statutes` adapter, one worker, paced.
+sources:
+  - source_id: us-az-ars-title-46
+    jurisdiction: us-az
+    document_class: statute
+    adapter: arizona-revised-statutes
+    source_url: https://www.azleg.gov/arsDetail/?title=46
+    version: "2026-10-06-w6-benefits-snap-statute"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-06"
+      only_title: "46"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-az-ars/2026-10-06-w6-benefits-snap-statute
+      request_delay_seconds: 0.3
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 1
+    metadata:
+      source_authority: Arizona State Legislature
+      program: SNAP
+      run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+      source_scope_note: >-
+        Arizona Revised Statutes Title 46 (Welfare) from the official Legislature ARS HTML,
+        the whole title as the bundle names it.

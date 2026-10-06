@@ -189,13 +189,7 @@ doc([70], "us-dc", "guidance", "us-dc/guidance/doee/liheap",
     program="LIHEAP", authority="District of Columbia Department of Energy and Environment", subtype="agency_web_page")
 
 # us-de
-doc([71], "us-de", "rulemaking", "us-de/rulemaking/register/2010-06/13-de-reg-1550",
-    "13 DE Reg. 1550 (06/01/10), Final: DSSM 9059 Income Exclusions (Food Supplement Program)",
-    "https://archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.htm",
-    "html", program="SNAP", authority="Delaware Register of Regulations (Registrar of Regulations)",
-    subtype="register_final_order", expression_date="2010-06-01",
-    hosting_note="archive.regulations.delaware.gov is the Registrar's own host for back issues, not a third-party archive")
-doc([72], "us-de", "rulemaking", "us-de/rulemaking/register/2005-08/9-de-reg-168",
+doc([72], "us-de", "rulemaking", "us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168",
     "9 DE Reg. 168 (08/01/05), Proposed: Self-Employment Income (Division of Social Services)",
     "https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm",
     "html", program="SNAP", authority="Delaware Register of Regulations (Registrar of Regulations)",
@@ -645,12 +639,9 @@ doc([264], "us-wi", "guidance", "us-wi/guidance/dhs/dms/ops-memo/2026-30",
 # EXTRACT-MANIFEST rows: copy the entry from the manifest on main into a wave-6 manifest.
 COPIED: list[tuple[str, str, list[int], dict[int, str]]] = [
     ("manifests/us-ca-cdss-acl-guidance.yaml", "ca-cdss-acl-2024-24-59", [53], {}),
-    ("manifests/us-ca-cdss-acl-06-31.yaml", "*", [54], {59: "the same 31-page file (412,441 bytes, byte-identical) under the publisher's older path"}),
-    ("manifests/us-il-dhs-mr-23-22.yaml", "il-dhs-csmm-149614", [83], {}),
-    ("manifests/us-ma-dta-policy-online-snap-child-support.yaml", "ma-dta-policy-online-snap-child-support-expenses-deduction",
-     [114], {116: "the same page; the bundle spells the !SSL! path segment unescaped"}),
-    ("manifests/us-va-22vac40-601-snap-regulation.yaml", "*", [238, 239, 240, 241, 242, 243, 244], {}),
 ]
+# The other EXTRACT-MANIFEST rows (CA ACL 06-31, DE 13 DE Reg 1550, IL MR 23.22, MA DTA child support,
+# VA 22VAC40-601) are held by locked 2026-09-23 scopes (.axiom/corpus-locks); see LOCKED below.
 
 
 def copied_documents() -> list[dict[str, Any]]:
@@ -959,15 +950,44 @@ decide(60, "OUTREACH", "", "",
        "Justia mirror of Cal. Welf. & Inst. Code Div. 9, Part 3, Ch. 3, Art. 4; the official leginfo.legislature.ca.gov "
        "article page answered HTTP 403 with a Cloudflare 'Just a moment...' challenge to the plain and browser-UA corpus "
        "client on 2026-10-06, and the `extract-california-code-sections` adapter's own request for WIC 12201 got HTTP 403 too (WIC 12200 of the article is held, row 61); not worked around")
-decide(41, "SKIPPED", "", "", "https://www.azleg.gov/arsDetail/?title=46",
-       "azleg.gov answers 200 (the Title 46 table of sections); the `arizona-revised-statutes` adapter can take the whole "
-       "title, but a parallel wave-6 agent (tanf-ccdf) holds ARS 46-207 and 46-207.01 in "
-       "us-az/statute/2026-10-06-w6-tanf-ccdf-statutes-az, so a whole-title scope would collide; left to the controller")
+decide(41, "PRESENT", "us-az/statute/2026-10-06-w6-benefits-snap-statute-us-az-title-46", "us-az/statute/title-46",
+       "https://www.azleg.gov/arsDetail/?title=46",
+       "ARS Title 46 (Welfare) taken whole through the `arizona-revised-statutes` adapter (manifests/"
+       "us-az-benefits-w6-snap-statute.yaml; 136 sections). Controller: ARS 46-207, 46-207.01 and 46-292 are also rows "
+       "of the parallel wave-6 scope us-az/statute/2026-10-06-w6-tanf-ccdf-statutes-az; select one carrier")
 for r, memo in ((158, "IM-143 (2022-12-05)"), (159, "IM-57 (2023-06-08)")):
     decide(r, "ABSENT", "", "", "https://dssmanuals.mo.gov/memorandums/",
            f"the dated post of memo {memo} answers 404; the site search for the memo number lists only manual sections "
            "that cite it, the Memorandums index lists only CD and OEC memo years and practice points (no FSD IM memo "
            "archive), and the WordPress API answers 403; no current official copy found")
+
+# Rows held by scopes that are committed as corpus locks (.axiom/corpus-locks, 2026-09-23 child-support
+# state-options run) but whose bytes are not in the local data/corpus checkout; inventories read from git.
+LOCKED_NOTE = ("held by the locked scope {scope} (.axiom/corpus-locks; extracted 2026-09-23 by the SNAP child-support "
+               "state-options run, docs/ingest-runs/2026-09-23-snap-child-support-state-options.md; bytes not in the "
+               "local data/corpus); not re-extracted")
+for r, scope, path, url in (
+    (54, "us-ca/guidance/2026-09-23-ca-cdss-acl-06-31", "us-ca/guidance/cdss/acl-2006-06-31",
+     "https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl06/pdf/06-31.pdf"),
+    (59, "us-ca/guidance/2026-09-23-ca-cdss-acl-06-31", "us-ca/guidance/cdss/acl-2006-06-31",
+     "https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf"),
+    (71, "us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550",
+     "us-de/rulemaking/delaware-register/2010-06-01/13-de-reg-1550",
+     "https://archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.htm"),
+    (83, "us-il/manual/2026-09-23-il-dhs-mr-23-22", "us-il/manual/dhs/csmm/149614",
+     "https://www.dhs.state.il.us/page.aspx?item=149614"),
+    (114, "us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support",
+     "us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction",
+     "https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/%21SSL%21/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm"),
+    (116, "us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support",
+     "us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction",
+     "https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm"),
+):
+    decide(r, HELD, scope, path, url, LOCKED_NOTE.format(scope=scope))
+for r, sec in ((238, "70"), (239, "10"), (240, "20"), (241, "30"), (242, "40"), (243, "50"), (244, "60")):
+    decide(r, HELD, "us-va/regulation/2026-09-23-va-22vac40-601-snap", f"us-va/regulation/22vac40-601/{sec}",
+           f"https://law.lis.virginia.gov/admincode/title22/agency40/chapter601/section{sec}/",
+           LOCKED_NOTE.format(scope="us-va/regulation/2026-09-23-va-22vac40-601-snap"))
 
 # extract-maryland-comar --only-title 07 --only-subtitle 03 --only-chapter 17 (DSD official XML)
 MD_SCOPE = ("us-md/regulation/2026-10-06-w6-benefits-snap-comar-md-publication-2026-10-05-title-07-subtitle-03-"
