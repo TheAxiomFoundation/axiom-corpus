@@ -1,0 +1,75 @@
+version: 2026-10-06-w6-income-tax-forms-dc
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: District of Columbia
+documents:
+- source_id: us-dc-w6-otr-ty2020-schedule-elc
+  jurisdiction: us-dc
+  document_class: form
+  title: 2020 DC Schedule ELC, Early Learning Tax Credit (Revised 04/20)
+  source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2020_Schedule_ELC.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-dc/form/otr/ty2020/schedule-elc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2020 Government of the District of Columbia Revised 04/20 (Schedule ELC)
+    tax_year: '2020'
+    wave6_work_order_rows:
+    - 312
+- source_id: us-dc-w6-otr-ty2024-d-40-booklet
+  jurisdiction: us-dc
+  document_class: form
+  title: 2024 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 09/2024)
+  source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2024_D40_Booklet_011525.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-dc/form/otr/ty2024/d-40-booklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: District of Columbia (DC) Individual Income Tax Forms and Instructions All Individual Income Tax
+      Filers 2024 Revised 09/2024
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 313
+- source_id: us-dc-w6-otr-ty2021-d-40-booklet
+  jurisdiction: us-dc
+  document_class: form
+  title: 2021 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 07/2021)
+  source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/52926_D-40_12.21.21_Final_Rev011122.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-dc/form/otr/ty2021/d-40-booklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: District of Columbia (DC) Individual Income Tax Forms and Instructions D-40 All Individual Income
+      Tax Filers 2021 Revised 07/2021
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 314
