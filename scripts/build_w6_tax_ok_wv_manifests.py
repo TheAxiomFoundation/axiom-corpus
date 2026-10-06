@@ -114,6 +114,7 @@ def doc(
     authority: str | None = None,
     note: str | None = None,
     text_selector: str | None = None,
+    download: str | None = None,
 ) -> None:
     jur, cls = path.split("/")[:2]
     fmt = fmt or ("pdf" if pages is not None else "html")
@@ -129,6 +130,7 @@ def doc(
             "fmt": fmt,
             "selector": selector,
             "text_selector": text_selector,
+            "download": download,
             "jur": jur,
             "cls": cls,
             "authority": authority or AUTHORITY.get(jur),
@@ -268,6 +270,63 @@ for _sess, _bill, _t, _p, _html in (
 ):
     _u = f"https://le.utah.gov/Session/{_sess}/bills/enrolled/{_bill}.pdf"
     doc(_u, f"us-ut/statute/bills/{_sess}/{_bill.lower()}-enrolled", f"{_t}, Enrolled Copy ({_sess} General Session, State of Utah)", _sess, "enrolled_bill", _p, closes=[_u, _html], authority="Utah State Legislature")
+
+# Prior versions of Utah Code sections that PolicyEngine cites by version. The xcode page
+# (?v=<id>) and historical.html wrappers render the version through JavaScript; the
+# publisher serves each version as a static file C59-10-S<sec>_<id>.html, fetched here as
+# download_url (it prints "Effective ... Superseded ..."). The current text of every
+# section is held in us-ut/statute/2026-09-14-income-tax-chapter-title-59.
+_UTX = "https://le.utah.gov/xcode/Title59/Chapter10"
+_UT_VERSIONS: dict[tuple[str, str], list[str]] = {}
+for _wrapper in (
+    f"{_UTX}/59-10-S1018.html?v=C59-10-S1018_2023050320230503",
+    f"{_UTX}/59-10-S1019.html?v=C59-10-S1019_2022032320220323",
+    f"{_UTX}/59-10-S104.1.html?v=C59-10-S104.1_1800010118000101",
+    f"{_UTX}/59-10-S104.html?v=C59-10-S104_2022050420220504",
+    f"{_UTX}/59-10-S104.html?v=C59-10-S104_2024010120240501",
+    f"{_UTX}/59-10-S1042.html?v=C59-10-S1042_2023050320230503",
+    f"{_UTX}/59-10-S1044.html?v=C59-10-S1044_2022050420220504",
+    f"{_UTX}/59-10-S1047.html?v=C59-10-S1047_2023050320240101",
+    f"{_UTX}/59-10-S1047.html?v=C59-10-S1047_2025010120240501",
+    f"{_UTX}/59-10-S114.html?v=C59-10-S114_2022032320220323",
+    "https://le.utah.gov/xcode/historical.html?date=1/1/2014&oc=/xcode/Title59/Chapter10/C59-10-S104_1800010118000101.html",
+    "https://le.utah.gov/xcode/historical.html?date=2/7/2025&oc=/xcode/Title59/Chapter10/C59-10-S1018_2018051620180721.html",
+    "https://le.utah.gov/xcode/historical.html?date=2/7/2025&oc=/xcode/Title59/Chapter10/C59-10-S1018_2021050520210505.html",
+    "https://le.utah.gov/xcode/historical.html?date=5/8/2018&oc=/xcode/Title59/Chapter10/C59-10-S104_2018050820180508.html",
+    "https://le.utah.gov/xcode/historical.html?date=8/17/2022&oc=/xcode/Title59/Chapter10/C59-10-S104_2022050420220504.html",
+):
+    _m = re.search(r"C59-10-S([0-9.]+)_(\d{16})", _wrapper)
+    _UT_VERSIONS.setdefault((_m.group(1), _m.group(2)), []).append(_wrapper)
+# Effective / superseded dates printed on each version file (read 2026-10-06).
+_UT_VERSION_DATES = {
+    ("1018", "2018051620180721"): "effective 7/21/2018, superseded 5/5/2021",
+    ("1018", "2021050520210505"): "effective 5/5/2021, superseded 5/3/2023",
+    ("1018", "2023050320230503"): "effective 5/3/2023, superseded 5/6/2026",
+    ("1019", "2022032320220323"): "effective 3/23/2022",
+    ("104.1", "1800010118000101"): "superseded 1/1/2026",
+    ("104", "1800010118000101"): "superseded 5/8/2018",
+    ("104", "2018050820180508"): "effective 5/8/2018, superseded 5/4/2022",
+    ("104", "2022050420220504"): "effective 5/4/2022, superseded 5/3/2023",
+    ("104", "2024010120240501"): "effective 1/1/2024, superseded 5/7/2025",
+    ("1042", "2023050320230503"): "effective 5/3/2023, superseded 5/7/2025",
+    ("1044", "2022050420220504"): "effective 5/4/2022, superseded 5/3/2023",
+    ("1047", "2023050320240101"): "effective 1/1/2024, superseded 1/1/2025",
+    ("1047", "2025010120240501"): "effective 1/1/2025, superseded 5/7/2025",
+    ("114", "2022032320220323"): "effective 3/23/2022, superseded 5/3/2023",
+}
+for (_sec, _vid), _wrappers in _UT_VERSIONS.items():
+    doc(
+        _wrappers[0],
+        f"us-ut/statute/59-10-{_sec}--version-{_vid}",
+        f"Utah Code 59-10-{_sec}, prior version ({_UT_VERSION_DATES[(_sec, _vid)]}; le.utah.gov version file C59-10-S{_sec}_{_vid})",
+        None,
+        "statute_section_version",
+        closes=_wrappers,
+        authority="Utah Office of Legislative Research and General Counsel",
+        selector="#secdiv",
+        download=f"{_UTX}/C59-10-S{_sec}_{_vid}.html",
+        note="prior version of the section; the current text is in us-ut/statute/2026-09-14-income-tax-chapter-title-59",
+    )
 
 # --- Virginia ---------------------------------------------------------------
 VA = "https://www.tax.virginia.gov/sites/default/files/taxforms/individual-income-tax"
@@ -576,6 +635,7 @@ def manifest_entry(d: dict[str, Any]) -> dict[str, Any]:
         "document_class": d["cls"],
         "title": d["title"],
         "source_url": d["url"],
+        **({"download_url": d["download"]} if d.get("download") else {}),
         "source_format": d["fmt"],
         "source_as_of": SOURCE_AS_OF,
         "citation_path": d["path"],
@@ -740,6 +800,8 @@ for _u in (
     _m = _ut_sec.search(_u)
     _sec = _m.group(1) or _m.group(2)
     _versioned = "?v=" in _u or "historical" in _u
+    if _versioned:
+        continue
     decide(
         _u,
         H,
@@ -805,15 +867,29 @@ for _u, _p in (
 decide("https://code.wvlegislature.gov/11-21/", H, "us-wv/statute/2026-07-16-pit-west-us-wv-chapter-11-article-21", "us-wv/statute/chapter-11/article-21", "https://code.wvlegislature.gov/11-21/", "W. Va. Code chapter 11 article 21 held whole")
 
 
+# Row notes for work-order addresses that are not the publisher's own address of the document.
+ROW_NOTES = {
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsecure.dor.state.or.us%2FServices%2Fdraftforms%2Fapi%2Fdocument%2F6793%2Fdownload&psig=AOvVaw01yzy9QiRloWlbInbZcNG4&ust=1742309265624000&source=images&cd=vfe&opi=89978449&ved=0CAYQrpoMahcKEwjI16b4rZGMAxUAAAAAHQAAAAAQBA": "Google redirect to an Oregon DOR draft-forms API document (secure.dor.state.or.us/Services/draftforms/api/document/6793/download answers HTTP 500 on 2026-10-06); PolicyEngine cites it as the 2024 Schedule OR-WFHDC instructions, taken here as the final 2024 edition from the DOR forms library",
+    "https://taxsim.nber.org/historical_state_tax_forms/OR/2021/schedule-or-wfhdc_101-195_2021.pdf": "third-party repost (NBER TAXSIM); the official 2021 Schedule OR-WFHDC is taken from the DOR forms library",
+    "https://taxsim.nber.org/historical_state_tax_forms/VT/2021/IN-112-2021.pdf": "third-party repost (NBER TAXSIM); the official 2021 Schedule IN-112 is taken from the Department of Taxes",
+    "https://www.taxformfinder.org/rhodeisland/form-1040h": "third-party form site; its RI-1040H page shows the current edition, taken here as the official 2025 Form RI-1040H",
+    "https://www.taxformfinder.org/forms/2021/2021-utah-tc-40-full-packet.pdf": "third-party repost of the 2021 TC-40 forms and instructions packet; the official 2021 TC-40 Forms and Instructions is taken",
+    "https://www.efile.com/wisconsin-tax-brackets-rates-and-forms/": "third-party summary of Wisconsin brackets; the Department of Revenue's Tax Rates page is taken",
+}
+
+
 def present_rows() -> dict[str, tuple[str, str, str, str, str]]:
     out: dict[str, tuple[str, str, str, str, str]] = {}
     for d in D:
         scope = f"{d['jur']}/{d['cls']}/{version_for(d['jur'], d['cls'])}"
+        fetched = d.get("download") or d["url"]
         for row_id in d["closes"]:
             note = d["title"]
-            if row_id != d["url"]:
-                note += f" (official copy of the work-order address; fetched {d['url']})"
-            out[row_id] = ("PRESENT", scope, d["path"], d["url"], note)
+            if row_id in ROW_NOTES:
+                note += f" ({ROW_NOTES[row_id]})"
+            elif row_id != fetched:
+                note += f" (same document as the work-order address; fetched {fetched})"
+            out[row_id] = ("PRESENT", scope, d["path"], fetched, note)
     for s in ADAPTER_SCOPES:
         for row_id, path in s["closes"].items():
             note = s["note"]
@@ -858,11 +934,70 @@ def write_decisions(work_order: Path, out: Path, scope_suffix: dict[str, str] | 
     print(json.dumps(counts, sort_keys=True))
 
 
+STATE_NAMES = {
+    "us-ok": "Oklahoma", "us-or": "Oregon", "us-pa": "Pennsylvania", "us-ri": "Rhode Island",
+    "us-sc": "South Carolina", "us-tx": "Texas", "us-ut": "Utah", "us-va": "Virginia",
+    "us-vt": "Vermont", "us-wa": "Washington", "us-wi": "Wisconsin", "us-wv": "West Virginia",
+}
+
+
+def update_queue(base: Path, decisions: Path) -> None:
+    """Add a ``w6_bundle_gap_scopes`` block to each state's main row of the tax queue.
+
+    The block is inserted textually after the row's ``queue_status`` line (no re-dump of the
+    queue file, so rows owned by other wave-6 groups are untouched); an existing block of
+    this group is replaced.
+    """
+    queue = REPO / "manifests" / "tax-agent-queue.yaml"
+    text = queue.read_text()
+    status_counts: dict[str, dict[str, int]] = {}
+    with decisions.open() as handle:
+        for r in csv.DictReader(handle):
+            status_counts.setdefault(r["jurisdiction"], {}).setdefault(r["new_status"], 0)
+            status_counts[r["jurisdiction"]][r["new_status"]] += 1
+    scopes: dict[str, list[dict[str, Any]]] = {}
+    for prov in sorted(base.glob(f"provisions/us-*/*/{VERSION_PREFIX}-*.jsonl")):
+        jur, cls = prov.parts[-3], prov.parts[-2]
+        version = prov.stem
+        if jur not in STATE_NAMES or not re.search(rf"-{jur.split('-')[1]}(-|$)", version.replace(VERSION_PREFIX, "")):
+            continue
+        rows = prov.read_text().count("\n")
+        family = next((f for c, f in FAMILY.items() if c == cls), cls)
+        manifest = manifest_path_for(jur, cls) if not version.endswith(("-chapter-315", "-chapter-2")) else REPO / "manifests" / "state-income-tax-chapters-w6-tax-ok-wv.yaml"
+        scopes.setdefault(jur, []).append(
+            {"jurisdiction": jur, "document_class": cls, "version": version, "family": family,
+             "target_manifest": str(manifest.relative_to(REPO)), "rows": rows}
+        )
+    for jur, name in STATE_NAMES.items():
+        block = {
+            "w6_bundle_gap_scopes": {
+                "run_note": "docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md",
+                "decisions": "docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv",
+                "row_status_counts": dict(sorted(status_counts.get(jur, {}).items())),
+                "scopes": scopes.get(jur, []),
+            }
+        }
+        rendered = "".join("  " + line + "\n" for line in yaml.safe_dump(block, sort_keys=False, width=120).splitlines())
+        header = f"- jurisdiction: {jur}\n  name: {name}\n"
+        start = text.find(header)
+        if start < 0:
+            raise SystemExit(f"queue row not found: {jur}")
+        status_line_end = text.index("\n", text.index("  queue_status:", start)) + 1
+        existing = re.compile(r"  w6_bundle_gap_scopes:\n(?:    .*\n|  - .*\n)*")
+        m = existing.match(text, status_line_end)
+        if m:
+            text = text[:status_line_end] + rendered + text[m.end():]
+        else:
+            text = text[:status_line_end] + rendered + text[status_line_end:]
+    queue.write_text(text)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work-order", type=Path, help="wave6/tax-ok-wv.csv (restricts EXTRACT-MANIFEST rows)")
     parser.add_argument("--decisions", action="store_true", help="also write the decisions CSV (needs --work-order)")
     parser.add_argument("--adapter-suffix", action="append", default=[], help="jur=suffix of an adapter scope version")
+    parser.add_argument("--queue", type=Path, help="corpus base: add w6_bundle_gap_scopes rows to manifests/tax-agent-queue.yaml")
     args = parser.parse_args(argv)
     sys.path.insert(0, str(REPO / "src"))
     em_documents(args.work_order)
@@ -874,6 +1009,8 @@ def main(argv: list[str] | None = None) -> int:
             parser.error("--decisions needs --work-order")
         suffix = dict(item.split("=", 1) for item in args.adapter_suffix)
         write_decisions(args.work_order, REPO / "docs" / "ingest-runs" / "2026-10-06-w6-tax-ok-wv-decisions.csv", suffix)
+    if args.queue:
+        update_queue(args.queue, REPO / "docs" / "ingest-runs" / "2026-10-06-w6-tax-ok-wv-decisions.csv")
     return 0
 
 

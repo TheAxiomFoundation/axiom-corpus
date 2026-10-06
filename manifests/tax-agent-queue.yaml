@@ -19364,6 +19364,32 @@ states:
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 2
+      OUTREACH: 2
+      PRESENT: 17
+    scopes:
+    - jurisdiction: us-ok
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-ok
+      family: forms
+      target_manifest: manifests/us-ok-income-tax-w6-forms.yaml
+      rows: 28
+    - jurisdiction: us-ok
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-ok
+      family: guidance
+      target_manifest: manifests/us-ok-income-tax-w6-guidance.yaml
+      rows: 26
+    - jurisdiction: us-ok
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-ok
+      family: statute
+      target_manifest: manifests/us-ok-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_pdf_forms_instructions
   primary_source_url: https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf
   target_manifest: manifests/us-ok-individual-income-tax-forms-ty2025.yaml
@@ -19698,6 +19724,37 @@ states:
 - jurisdiction: us-or
   name: Oregon
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 5
+      PRESENT: 30
+    scopes:
+    - jurisdiction: us-or
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-or
+      family: forms
+      target_manifest: manifests/us-or-income-tax-w6-forms.yaml
+      rows: 44
+    - jurisdiction: us-or
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-or
+      family: guidance
+      target_manifest: manifests/us-or-income-tax-w6-guidance.yaml
+      rows: 20
+    - jurisdiction: us-or
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-or-us-or-chapter-315
+      family: statute
+      target_manifest: manifests/state-income-tax-chapters-w6-tax-ok-wv.yaml
+      rows: 214
+    - jurisdiction: us-or
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-or
+      family: statute
+      target_manifest: manifests/us-or-income-tax-w6-statute.yaml
+      rows: 45
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-or-2026-or-estimate.yaml
@@ -20190,6 +20247,33 @@ states:
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 1
+      OUT-OF-SCOPE: 1
+      OUTREACH: 3
+      PRESENT: 16
+    scopes:
+    - jurisdiction: us-pa
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-pa
+      family: forms
+      target_manifest: manifests/us-pa-income-tax-w6-forms.yaml
+      rows: 18
+    - jurisdiction: us-pa
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-pa
+      family: guidance
+      target_manifest: manifests/us-pa-income-tax-w6-guidance.yaml
+      rows: 113
+    - jurisdiction: us-pa
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-pa
+      family: statute
+      target_manifest: manifests/us-pa-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-pa-personal-income-tax-rates.yaml
@@ -20543,6 +20627,31 @@ states:
 - jurisdiction: us-ri
   name: Rhode Island
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 6
+      PRESENT: 46
+    scopes:
+    - jurisdiction: us-ri
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-ri
+      family: forms
+      target_manifest: manifests/us-ri-income-tax-w6-forms.yaml
+      rows: 64
+    - jurisdiction: us-ri
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-ri
+      family: guidance
+      target_manifest: manifests/us-ri-income-tax-w6-guidance.yaml
+      rows: 14
+    - jurisdiction: us-ri
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-ri
+      family: statute
+      target_manifest: manifests/us-ri-income-tax-w6-statute.yaml
+      rows: 174
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-ri-pit-adv-2025-22-official-documents.yaml
@@ -21183,6 +21292,38 @@ states:
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ABSENT: 2
+      ALREADY-HELD: 3
+      PRESENT: 22
+    scopes:
+    - jurisdiction: us-sc
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-sc
+      family: forms
+      target_manifest: manifests/us-sc-income-tax-w6-forms.yaml
+      rows: 34
+    - jurisdiction: us-sc
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-sc
+      family: guidance
+      target_manifest: manifests/us-sc-income-tax-w6-guidance.yaml
+      rows: 4
+    - jurisdiction: us-sc
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2
+      family: statute
+      target_manifest: manifests/state-income-tax-chapters-w6-tax-ok-wv.yaml
+      rows: 19
+    - jurisdiction: us-sc
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-sc
+      family: statute
+      target_manifest: manifests/us-sc-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-sc-individual-income-tax-forms.yaml
@@ -21684,6 +21825,12 @@ states:
 - jurisdiction: us-tx
   name: Texas
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      OUT-OF-SCOPE: 1
+    scopes: []
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-tx-2026-individual-income-tax-prohibition.yaml
@@ -21761,6 +21908,31 @@ states:
 - jurisdiction: us-ut
   name: Utah
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 12
+      PRESENT: 39
+    scopes:
+    - jurisdiction: us-ut
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-ut
+      family: forms
+      target_manifest: manifests/us-ut-income-tax-w6-forms.yaml
+      rows: 10
+    - jurisdiction: us-ut
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-ut
+      family: guidance
+      target_manifest: manifests/us-ut-income-tax-w6-guidance.yaml
+      rows: 58
+    - jurisdiction: us-ut
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-ut
+      family: statute
+      target_manifest: manifests/us-ut-income-tax-w6-statute.yaml
+      rows: 36
   source_kind: official_pdf_forms_instructions
   primary_source_url: https://tax.utah.gov/forms-pubs/
   target_manifest: manifests/us-ut-individual-income-tax-forms-ty2025.yaml
@@ -22424,6 +22596,32 @@ states:
 - jurisdiction: us-va
   name: Virginia
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 4
+      PRESENT: 22
+      SKIPPED: 1
+    scopes:
+    - jurisdiction: us-va
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-va
+      family: forms
+      target_manifest: manifests/us-va-income-tax-w6-forms.yaml
+      rows: 30
+    - jurisdiction: us-va
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-va
+      family: guidance
+      target_manifest: manifests/us-va-income-tax-w6-guidance.yaml
+      rows: 15
+    - jurisdiction: us-va
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-va
+      family: statute
+      target_manifest: manifests/us-va-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-va-tax-forms.yaml
@@ -22938,6 +23136,33 @@ states:
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 12
+      OUT-OF-SCOPE: 7
+      OUTREACH: 1
+      PRESENT: 45
+    scopes:
+    - jurisdiction: us-vt
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-vt
+      family: forms
+      target_manifest: manifests/us-vt-income-tax-w6-forms.yaml
+      rows: 66
+    - jurisdiction: us-vt
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-vt
+      family: guidance
+      target_manifest: manifests/us-vt-income-tax-w6-guidance.yaml
+      rows: 37
+    - jurisdiction: us-vt
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-vt
+      family: statute
+      target_manifest: manifests/us-vt-income-tax-w6-statute.yaml
+      rows: 17
   source_kind: official_pdf_forms_instructions
   primary_source_url: https://tax.vermont.gov/sites/tax/files/documents/IN-111-2025.pdf
   target_manifest: manifests/us-vt-individual-income-tax-forms-ty2025.yaml
@@ -23732,6 +23957,43 @@ states:
 - jurisdiction: us-wa
   name: Washington
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 4
+      PRESENT: 15
+    scopes:
+    - jurisdiction: us-wa
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-wa
+      family: forms
+      target_manifest: manifests/us-wa-income-tax-w6-forms.yaml
+      rows: 4
+    - jurisdiction: us-wa
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-wa
+      family: guidance
+      target_manifest: manifests/us-wa-income-tax-w6-guidance.yaml
+      rows: 70
+    - jurisdiction: us-wa
+      document_class: regulation
+      version: 2026-10-06-w6-income-tax-regulation-wa
+      family: regulation
+      target_manifest: manifests/us-wa-income-tax-w6-regulation.yaml
+      rows: 2
+    - jurisdiction: us-wa
+      document_class: rulemaking
+      version: 2026-10-06-w6-income-tax-rulemaking-wa
+      family: rulemaking
+      target_manifest: manifests/us-wa-income-tax-w6-rulemaking.yaml
+      rows: 2
+    - jurisdiction: us-wa
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-wa
+      family: statute
+      target_manifest: manifests/us-wa-income-tax-w6-statute.yaml
+      rows: 8
   source_kind: official_guidance_no_ty2025_resident_return
   primary_source_url: https://dor.wa.gov/taxes-rates/income-tax
   target_manifest: manifests/us-wa-individual-income-tax-guidance-ty2025.yaml
@@ -24071,6 +24333,31 @@ states:
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 12
+      PRESENT: 53
+    scopes:
+    - jurisdiction: us-wi
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-wi
+      family: forms
+      target_manifest: manifests/us-wi-income-tax-w6-forms.yaml
+      rows: 84
+    - jurisdiction: us-wi
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-wi
+      family: guidance
+      target_manifest: manifests/us-wi-income-tax-w6-guidance.yaml
+      rows: 38
+    - jurisdiction: us-wi
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-wi
+      family: statute
+      target_manifest: manifests/us-wi-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-wi-2026-form1-es-instructions.yaml
@@ -24750,6 +25037,31 @@ states:
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 2
+      PRESENT: 8
+    scopes:
+    - jurisdiction: us-wv
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-wv
+      family: forms
+      target_manifest: manifests/us-wv-income-tax-w6-forms.yaml
+      rows: 12
+    - jurisdiction: us-wv
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-wv
+      family: guidance
+      target_manifest: manifests/us-wv-income-tax-w6-guidance.yaml
+      rows: 2
+    - jurisdiction: us-wv
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-wv
+      family: statute
+      target_manifest: manifests/us-wv-income-tax-w6-statute.yaml
+      rows: 2
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-wv-individual-income-tax-forms.yaml
