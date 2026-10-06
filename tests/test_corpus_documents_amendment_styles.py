@@ -5,15 +5,10 @@ the Washington State Register prints ``((<strike>...</strike>))`` deletions and
 ``<u>`` insertions in legacy windows-1252 HTML; the Louisiana Administrative Code
 DOCX stores its definition dashes as Word ``<w:sym>`` glyphs. Every option here
 is opt-in: without it, extraction is unchanged.
-
-The property tests use a seeded generator rather than Hypothesis, which is not a
-dependency of this repository; each property runs over a few thousand
-deterministic cases.
 """
 
 from __future__ import annotations
 
-import random
 import re
 import zipfile
 from io import BytesIO
@@ -21,6 +16,8 @@ from xml.sax.saxutils import escape
 
 import fitz
 import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus import documents
 
@@ -463,99 +460,275 @@ def test_docx_symbol_map_fails_closed(extraction: dict, error: str) -> None:
         documents._extract_docx_blocks(content, extraction=extraction)
 
 
-# Properties (seeded) --------------------------------------------------------------
+# Properties (Hypothesis) ----------------------------------------------------------
 
-_CASES = 3000
-
-
-def _random_text(rng: random.Random, alphabet: str, length: int) -> str:
-    return "".join(rng.choice(alphabet) for _ in range(length))
-
-
-def test_property_rendered_markup_strips_back_to_the_normalized_text() -> None:
-    rng = random.Random(20260928)
-    for _ in range(_CASES):
-        raw = _random_text(rng, "ab c.\n\t", rng.randint(0, 40))
-        states = [rng.choice((None, None, _DELETED, _INSERTED)) for _ in raw]
-        rendered = documents._render_amendment_markup(raw, states)
-        assert documents._strip_amendment_markup(rendered.text) == documents._normalize_text(raw)
-        assert rendered.text.count("[-") == rendered.text.count("-]") == rendered.deleted_runs
-        assert rendered.text.count("{+") == rendered.text.count("+}") == rendered.inserted_runs
+# Every character str.isspace() or str.splitlines() treats as whitespace or a line
+# break, plus the zero-width characters that _normalize_text drops.
+_WHITESPACE = " \t\n\r\x0b\x0c\x1c\x1d\x1e\x1f\x85\xa0  　​﻿"
+_ZERO_WIDTH = "​﻿"
+_STATE = st.sampled_from((None, _DELETED, _INSERTED))
+_OPENING = {"[-": _DELETED, "{+": _INSERTED}
+_CLOSING = {_DELETED: "-]", _INSERTED: "+}"}
 
 
-def _balanced(rng: random.Random) -> str:
-    parts: list[str] = []
-    for _ in range(rng.randint(0, 6)):
-        parts.append(_random_text(rng, "ab c", rng.randint(0, 5)))
-        if rng.random() < 0.5:
-            parts.append("[" + _random_text(rng, "ab c\n", rng.randint(0, 6)) + "]")
-    return "".join(parts)
+def _rendered_states(text: str) -> list[tuple[str, str | None]]:
+    """Each non-space character of delimiter-free marked text, with the run it sits in."""
+    states: list[tuple[str, str | None]] = []
+    state: str | None = None
+    position = 0
+    while position < len(text):
+        token = text[position : position + 2]
+        if token in _OPENING:
+            assert state is None, text
+            state = _OPENING[token]
+            position += 2
+        elif state is not None and token == _CLOSING[state]:
+            state = None
+            position += 2
+        else:
+            if not text[position].isspace():
+                states.append((text[position], state))
+            position += 1
+    assert state is None, text
+    return states
 
 
-def test_property_bracket_deletions_remove_brackets_and_split_anywhere() -> None:
-    rng = random.Random(4006)
-    for _ in range(_CASES):
-        text = _balanced(rng)
-        states: list[str | None] = [None] * len(text)
-        chars, new_states, still_open = documents._pdf_bracket_deletions(
-            list(text), states, [False] * len(text), open_deletion=False, page_number=1
-        )
-        assert "".join(chars) == text.replace("[", "").replace("]", "")
-        assert still_open is False
-        inside = False
-        expected: list[str | None] = []
-        for character in text:
-            if character in "[]":
-                inside = character == "["
-                continue
-            expected.append(_DELETED if inside and not character.isspace() else None)
-        assert new_states == expected
-        # Processing the text as two pages, with the open state carried across the
-        # break, gives the same characters and states as one page.
-        cut = rng.randint(0, len(text))
-        first = documents._pdf_bracket_deletions(
-            list(text[:cut]), states[:cut], [False] * cut, open_deletion=False, page_number=1
-        )
-        second = documents._pdf_bracket_deletions(
-            list(text[cut:]),
-            states[cut:],
-            [False] * (len(text) - cut),
-            open_deletion=first[2],
-            page_number=2,
-        )
-        assert first[0] + second[0] == chars
-        assert first[1] + second[1] == new_states
-        assert second[2] is False
+# A space at a run's edge, or two runs of one state that meet across a space.
+_SPLIT_RUN = re.compile(r"(\[-|\{\+) | (-\]|\+\})|-\] \[-|\+\} \{\+")
 
 
-def _html_paragraphs(rng: random.Random) -> tuple[str, list[list[str]]]:
-    """Random paragraphs of words, returned with the words each paragraph must read.
+def _assert_runs_are_maximal(text: str) -> None:
+    """Whitespace inside a paragraph is neutral: a struck clause reads ``[-a b-]``."""
+    for paragraph in text.split("\n\n"):
+        assert not _SPLIT_RUN.search(paragraph), paragraph
 
-    Words are separated by random source whitespace; a word may be wrapped in an
-    inline tag, or split by one mid-word. Paragraphs are <p>, <div>, <li> or bare
-    text between blocks. The oracle is the generator's own word list.
+
+@st.composite
+def _marked_text(draw: st.DrawFn, alphabet: str) -> tuple[str, list[str | None]]:
+    """Text with a state per character.
+
+    Amendment extraction refuses text that already holds a whole delimiter token,
+    so none is generated. A ``[`` is never deleted and a ``{`` never inserted: a run
+    ending in its own opening bracket renders ``[-...[-]`` or ``{+...{+}``, which
+    no reader can strip back (see the test after these two).
     """
+    raw = draw(
+        st.text(st.sampled_from(alphabet), max_size=60).filter(
+            lambda text: not any(token in text for token in documents._AMENDMENT_MARKUP_TOKENS)
+        )
+    )
+    states = draw(st.lists(_STATE, min_size=len(raw), max_size=len(raw)))
+    return raw, [
+        None if (character, state) in {("[", _DELETED), ("{", _INSERTED)} else state
+        for character, state in zip(raw, states, strict=True)
+    ]
+
+
+@settings(max_examples=1000, deadline=None)
+@given(_marked_text("ab." + _WHITESPACE))
+def test_property_rendered_markup_strips_back_to_the_normalized_text(
+    case: tuple[str, list[str | None]],
+) -> None:
+    raw, states = case
+    rendered = documents._render_amendment_markup(raw, states)
+    assert documents._strip_amendment_markup(rendered.text) == documents._normalize_text(raw)
+    assert rendered.text.count("[-") == rendered.text.count("-]") == rendered.deleted_runs
+    assert rendered.text.count("{+") == rendered.text.count("+}") == rendered.inserted_runs
+    # Every character lands in a run of its own state, and only there.
+    assert _rendered_states(rendered.text) == [
+        (character, state)
+        for character, state in zip(raw, states, strict=True)
+        if not character.isspace() and character not in _ZERO_WIDTH
+    ]
+    _assert_runs_are_maximal(rendered.text)
+
+
+@settings(max_examples=1000, deadline=None)
+@given(_marked_text("ab []{}-+\n"))
+def test_property_rendered_markup_strips_back_around_delimiter_characters(
+    case: tuple[str, list[str | None]],
+) -> None:
+    # Delimiter characters in the text break the run counts ("{+}+}" holds two
+    # "+}"), not the round trip.
+    raw, states = case
+    rendered = documents._render_amendment_markup(raw, states)
+    assert documents._strip_amendment_markup(rendered.text) == documents._normalize_text(raw)
+
+
+def test_a_run_ending_in_its_own_opening_bracket_fails_closed() -> None:
+    rendered = documents._render_amendment_markup("see [", [_DELETED] * 5)
+    assert rendered.text == "[-see [-]"
+    assert documents._strip_amendment_markup(rendered.text) == "see ]"
+    # The extractors check the round trip and refuse rather than publish it.
+    content = b"<html><body><p>keep <strike>see [</strike></p><p><u>new {</u></p></body></html>"
+    for selector in ({"deleted_selector": "strike"}, {"inserted_selector": "u"}):
+        with pytest.raises(RuntimeError, match="changed the source text"):
+            _html(content, {"html_text_selector": "body", "html_amendment_markup": selector})
+
+
+@st.composite
+def _bracket_page(
+    draw: st.DrawFn, *, balanced: bool
+) -> tuple[list[str], list[str | None], list[bool], bool]:
+    """Characters, states and unmarked flags for one page in bracket mode.
+
+    In bracket mode a character is inserted (bold) or unmarked before brackets are
+    read; characters on ``unmarked_line_patterns`` lines are exempt and keep any
+    bracket. Balanced pages alternate plain and ``[bracketed]`` text, with exempt
+    running lines (a page number or a stray bracket) between parts and inside
+    deletions. Unbalanced pages put brackets anywhere and may start inside a
+    deletion carried over from the previous page.
+    """
+    chars: list[str] = []
+    states: list[str | None] = []
+    exempt: list[bool] = []
+
+    def add(text: str, *, inserted: bool = False, unmarked: bool = False) -> None:
+        bold = draw(st.lists(st.booleans(), min_size=len(text), max_size=len(text)))
+        chars.extend(text)
+        exempt.extend([unmarked] * len(text))
+        states.extend(_INSERTED if inserted and flag else None for flag in bold)
+
+    running = st.sampled_from(("- 2 -", "[3]", "]", "["))
+    if balanced:
+        for _ in range(draw(st.integers(0, 6))):
+            add(draw(st.text(st.sampled_from("ab c\n"), max_size=5)), inserted=True)
+            if draw(st.booleans()):
+                add("[")
+                add(draw(st.text(st.sampled_from("ab c\n"), max_size=6)))
+                if draw(st.booleans()):
+                    add(draw(running), unmarked=True)
+                    add(draw(st.text(st.sampled_from("ab c\n"), max_size=3)))
+                add("]")
+            if draw(st.booleans()):
+                add(draw(running), unmarked=True)
+        return chars, states, exempt, False
+    add(draw(st.text(st.sampled_from("ab [ ]\n"), max_size=12)), inserted=True)
+    for position in draw(st.lists(st.integers(0, max(len(chars) - 1, 0)), max_size=3)):
+        if position < len(exempt):
+            exempt[position] = True
+            states[position] = None
+    return chars, states, exempt, draw(st.booleans())
+
+
+def _bracket_model(
+    chars: list[str], states: list[str | None], exempt: list[bool], open_deletion: bool
+) -> tuple[list[str], list[str | None], bool] | str:
+    """What the brackets mean, one character at a time; a str names the refusal."""
+    kept: list[str] = []
+    kept_states: list[str | None] = []
+    inside = open_deletion
+    for character, state, unmarked in zip(chars, states, exempt, strict=True):
+        if not unmarked and character == "[":
+            if inside:
+                return "nested deletion bracket"
+            inside = True
+        elif not unmarked and character == "]":
+            if not inside:
+                return "never opened"
+            inside = False
+        else:
+            deleted = inside and not unmarked and not character.isspace()
+            if deleted and state == _INSERTED:
+                return "inserted inside a bracketed deletion"
+            kept.append(character)
+            kept_states.append(_DELETED if deleted else state)
+    return kept, kept_states, inside
+
+
+@settings(max_examples=1000, deadline=None)
+@given(_bracket_page(balanced=True), st.data())
+def test_property_bracket_deletions_remove_brackets_and_split_anywhere(
+    page: tuple[list[str], list[str | None], list[bool], bool], data: st.DataObject
+) -> None:
+    chars, states, exempt, _ = page
+    result = documents._pdf_bracket_deletions(
+        chars, states, exempt, open_deletion=False, page_number=1
+    )
+    assert result[0] == [
+        c for c, unmarked in zip(chars, exempt, strict=True) if unmarked or c not in "[]"
+    ]
+    assert result == _bracket_model(chars, states, exempt, False)
+    assert result[2] is False
+    # Processing the text as two pages, with the open state carried across the
+    # break, gives the same characters and states as one page.
+    cut = data.draw(st.integers(0, len(chars)), label="cut")
+    first = documents._pdf_bracket_deletions(
+        chars[:cut], states[:cut], exempt[:cut], open_deletion=False, page_number=1
+    )
+    second = documents._pdf_bracket_deletions(
+        chars[cut:], states[cut:], exempt[cut:], open_deletion=first[2], page_number=2
+    )
+    assert first[0] + second[0] == result[0]
+    assert first[1] + second[1] == result[1]
+    assert second[2] is False
+
+
+@settings(max_examples=1000, deadline=None)
+@given(_bracket_page(balanced=False))
+def test_property_bracket_deletions_follow_the_brackets_or_fail_closed(
+    page: tuple[list[str], list[str | None], list[bool], bool],
+) -> None:
+    chars, states, exempt, open_deletion = page
+    expected = _bracket_model(chars, states, exempt, open_deletion)
+    if isinstance(expected, str):
+        with pytest.raises(ValueError, match=expected):
+            documents._pdf_bracket_deletions(
+                chars, states, exempt, open_deletion=open_deletion, page_number=1
+            )
+        return
+    assert (
+        documents._pdf_bracket_deletions(
+            chars, states, exempt, open_deletion=open_deletion, page_number=1
+        )
+        == expected
+    )
+
+
+_AMENDMENT_TAGS = {"u": _INSERTED, "strike": _DELETED}
+# Source whitespace and line breaks between words; none of them ends a paragraph.
+_HTML_SEPARATORS = (" ", "\n", "  ", " \t ", "<br>", "<br><br>", " <br>\n<br> ")
+
+
+@st.composite
+def _html_paragraphs(
+    draw: st.DrawFn,
+) -> tuple[str, list[list[str]], list[tuple[str, str | None]]]:
+    """Paragraphs of words, with the words each paragraph must read and each letter's state.
+
+    Words are separated by source whitespace or one or two ``<br>``. A word's suffix
+    (or all of it) may sit in an inline tag and the whole word in another; ``<u>``
+    marks an insertion and ``<strike>`` a deletion, and the two never nest.
+    Paragraphs are <p>, <div>, <li> or bare text between blocks. The oracle is the
+    generator's own words and tags.
+    """
+    tags = st.sampled_from((None, "u", "strike", "b", "span", "i"))
+    word = st.text(st.sampled_from("ab"), min_size=1, max_size=3)
+    separator = st.sampled_from(_HTML_SEPARATORS)
     html: list[str] = []
     expected: list[list[str]] = []
+    marks: list[tuple[str, str | None]] = []
     previous_bare = False
-    for _ in range(rng.randint(1, 4)):
-        words: list[str] = []
+    for _ in range(draw(st.integers(1, 4))):
+        words = draw(st.lists(word, min_size=1, max_size=4))
         pieces: list[str] = []
-        for _ in range(rng.randint(1, 4)):
-            word = _random_text(rng, "ab", rng.randint(1, 3))
-            tag = rng.choice(("u", "strike", "b", "span", "i", None))
-            cut = rng.randint(1, len(word))
-            if tag and cut < len(word) and rng.random() < 0.5:
-                rendered = f"{word[:cut]}<{tag}>{word[cut:]}</{tag}>"
-            elif tag:
-                rendered = f"<{tag}>{word}</{tag}>"
-            else:
-                rendered = word
+        for text in words:
+            inner, outer = draw(tags), draw(tags)
+            if inner in _AMENDMENT_TAGS and outer in _AMENDMENT_TAGS:
+                outer = None
+            cut = draw(st.integers(0, len(text) - 1))  # the inner tag holds text[cut:]
+            rendered = text[:cut] + (f"<{inner}>{text[cut:]}</{inner}>" if inner else text[cut:])
+            if outer:
+                rendered = f"<{outer}>{rendered}</{outer}>"
+            outer_state = _AMENDMENT_TAGS.get(outer or "")
+            marks.extend((character, outer_state) for character in text[:cut])
+            inner_state = _AMENDMENT_TAGS.get(inner or "") or outer_state
+            marks.extend((character, inner_state) for character in text[cut:])
             if pieces:
-                pieces.append(rng.choice((" ", "\n", "  ", " \t ", "<br>", "<br><br>", " <br>\n<br> ")))
+                pieces.append(draw(separator))
             pieces.append(rendered)
-            words.append(word)
-        container = rng.choice(("p", "div", "li", None if not previous_bare else "p"))
+        containers = ("p", "div", "li") if previous_bare else ("p", "div", "li", None)
+        container = draw(st.sampled_from(containers))
         body = "".join(pieces)
         html.append(f"<{container}>{body}</{container}>" if container else body)
         previous_bare = container is None
@@ -563,18 +736,28 @@ def _html_paragraphs(rng: random.Random) -> tuple[str, list[list[str]]]:
     # Both selectors must match something.
     html.append("<p><u>z</u> <strike>y</strike></p>")
     expected.append(["z", "y"])
-    return f"<html><body>{''.join(html)}</body></html>", expected
+    marks.extend([("z", _INSERTED), ("y", _DELETED)])
+    return f"<html><body>{''.join(html)}</body></html>", expected, marks
 
 
-def test_property_html_markup_reads_the_generated_words_and_paragraphs() -> None:
-    rng = random.Random(9622)
-    for _ in range(_CASES // 3):
-        content, expected = _html_paragraphs(rng)
-        (block,) = _html(content.encode(), _MARKED)
-        paragraphs = [
-            documents._strip_amendment_markup(paragraph).split()
-            for paragraph in block.body.split("\n\n")
-        ]
-        assert paragraphs == expected, content
-        assert block.body.count("[-") == block.body.count("-]")
-        assert block.body.count("{+") == block.body.count("+}")
+@settings(max_examples=300, deadline=None)
+@given(_html_paragraphs())
+def test_property_html_markup_reads_the_generated_words_and_paragraphs(
+    case: tuple[str, list[list[str]], list[tuple[str, str | None]]],
+) -> None:
+    content, expected, marks = case
+    (block,) = _html(content.encode(), _MARKED)
+    paragraphs = [
+        documents._strip_amendment_markup(paragraph).split()
+        for paragraph in block.body.split("\n\n")
+    ]
+    assert paragraphs == expected
+    assert block.body.count("[-") == block.body.count("-]")
+    assert block.body.count("{+") == block.body.count("+}")
+    # Each letter sits in a run of its tag's state, and only there.
+    assert _rendered_states(block.body) == marks
+    _assert_runs_are_maximal(block.body)
+    # Without the markup option, extraction reads the same non-space characters.
+    default = "".join(b.body for b in _html(content.encode(), {"html_text_selector": "body"}))
+    stripped = documents._strip_amendment_markup(block.body)
+    assert re.sub(r"\s", "", stripped) == re.sub(r"\s", "", default)
