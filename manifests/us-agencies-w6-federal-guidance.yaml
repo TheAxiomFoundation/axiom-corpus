@@ -1,0 +1,206 @@
+version: 2026-10-06-w6-federal-agency-guidance
+documents:
+- source_id: hhs-aspe-prior-poverty-guidelines-federal-register-references
+  jurisdiction: us
+  document_class: guidance
+  title: Prior HHS Poverty Guidelines and Federal Register References
+  source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+  metadata:
+    primary_source: true
+    source_authority: HHS Office of the Assistant Secretary for Planning and Evaluation
+    document_subtype: reference_table
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: dol-whd-overtime-salary-levels
+  jurisdiction: us
+  document_class: guidance
+  title: Earnings thresholds for the Executive, Administrative, and Professional exemption from minimum wage and overtime
+    protections under the FLSA
+  source_url: https://www.dol.gov/agencies/whd/overtime/salary-levels
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/dol/whd/overtime-salary-levels
+  extraction:
+    html_parser: html.parser
+    html_content_selector: article
+  metadata:
+    primary_source: true
+    source_authority: U.S. Department of Labor Wage and Hour Division
+    document_subtype: guidance_page
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: dol-eta-futa-credit-reductions
+  jurisdiction: us
+  document_class: guidance
+  title: FUTA Credit Reductions (Employment & Training Administration)
+  source_url: https://oui.doleta.gov/unemploy/futa_credit.asp
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/dol/eta/futa-credit-reductions
+  extraction:
+    html_content_selector: div#content
+  metadata:
+    primary_source: true
+    source_authority: U.S. Department of Labor Employment and Training Administration
+    document_subtype: guidance_page
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: dol-eta-futa-credit-reduction-states-2010-2025
+  jurisdiction: us
+  document_class: guidance
+  title: FUTA credit reduction states and rates, 2010-2025 (workbook)
+  source_url: https://oui.doleta.gov/unemploy/docs/reduced_credit_states_2010-2025.xlsx
+  source_format: xlsx
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/dol/eta/futa-credit-reduction-states-2010-2025
+  metadata:
+    primary_source: true
+    source_authority: U.S. Department of Labor Employment and Training Administration
+    document_subtype: rate_table
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: usda-fns-snap-elderly-disabled-special-rules
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Special Rules for the Elderly or Disabled
+  source_url: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: program_page
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: usda-fns-snap-provisions-fiscal-responsibility-act-2023
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Provisions in the Fiscal Responsibility Act of 2023
+  source_url: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-Provisions-in-FRA.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+  extraction:
+    page_citation_prefix: page
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    source_note: the FNA page carries no text of its own; it embeds this PDF from the USDA guidance portal
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+    access_note: 'fetched with the chrome120 browser_impersonation request option, which a run note already documents for
+      this publisher (www.ssa.gov: docs/ingest-runs/2026-07-05-ssa-cola-2026.md; www.usda.gov guidance portal: docs/ingest-runs/2026-09-13-federal-guidance-layer.md);
+      TLS verified; no challenge solved'
+- source_id: usda-fns-snap-time-limit-waivers-fy2025-2029
+  jurisdiction: us
+  document_class: guidance
+  title: Time Limit Waivers FY 2025-2029
+  source_url: https://www.fns.usda.gov/snap/waivers/timelimit/2025-2029
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: program_page
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: usda-fns-snap-work-requirements
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Work Requirements
+  source_url: https://www.fns.usda.gov/snap/work-requirements
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/usda/fns/snap-work-requirements
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: program_page
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: usda-fns-snap-obbb-time-limit-waivers-reinstatement-memo
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP - Waiver of the Time Limit: Reinstatement (memorandum, February 26, 2026)'
+  source_url: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-02-26'
+  citation_path: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+  extraction:
+    page_citation_prefix: page
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    source_note: the FNA page 'SNAP Waiver of the Time Limit - Status Update' (work-requirements/policies/waiver-reinstatement)
+      carries no text of its own and embeds this PDF
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+    bundle_addresses:
+    - https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
+    access_note: 'fetched with the chrome120 browser_impersonation request option, which a run note already documents for
+      this publisher (www.ssa.gov: docs/ingest-runs/2026-07-05-ssa-cola-2026.md; www.usda.gov guidance portal: docs/ingest-runs/2026-09-13-federal-guidance-layer.md);
+      TLS verified; no challenge solved'
+- source_id: usda-fns-snap-farm-bill-2018-section-4004-memo
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Provisions of the Agriculture Improvement Act of 2018 - Section 4004 - Information Memorandum (questions and
+    answers, March 12, 2019)
+  source_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2019-03-12'
+  citation_path: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+  extraction:
+    page_citation_prefix: page
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+    access_note: 'fetched with the chrome120 browser_impersonation request option, which a run note already documents for
+      this publisher (www.ssa.gov: docs/ingest-runs/2026-07-05-ssa-cola-2026.md; www.usda.gov guidance portal: docs/ingest-runs/2026-09-13-federal-guidance-layer.md);
+      TLS verified; no challenge solved'
+- source_id: fns-wic-food-packages
+  jurisdiction: us
+  document_class: guidance
+  title: WIC Food Packages
+  source_url: https://www.fns.usda.gov/wic/food-packages
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/fns/wic/food-packages
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: program_page
+    source_family: w6-federal-agency-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
