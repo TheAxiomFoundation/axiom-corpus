@@ -82,14 +82,13 @@ documents:
 - source_id: us-ri-guidance-general-assembly-press-release-376675
   jurisdiction: us-ri
   document_class: guidance
-  title: Sen. Vargas cheers inclusion of a $330 refundable child tax credit in the state budget bill (General Assembly press
-    release 376675, 2026)
+  title: Sen. Vargas lauds child tax credit in state budget bill (General Assembly press release 376675, June 10, 2026)
   source_url: https://www.rilegislature.gov/pressrelease/_layouts/15/ril.pressrelease.inputform/DisplayForm.aspx?List=c8baae31-3c10-431c-8dcd-9dbbe21ce3e9&ID=376675
   source_format: html
   source_as_of: '2026-10-06'
   citation_path: us-ri/guidance/general-assembly/press-release-376675
   extraction:
-    html_content_selector: body
+    html_content_selector: '#Displaycontent'
   metadata:
     primary_source: true
     source_authority: Rhode Island General Assembly
