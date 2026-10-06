@@ -323,6 +323,25 @@ documents:
     source_family: w6-tax-ia-mi-income-tax-forms
     discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
     tax_year: '2021'
+- source_id: us-ky-form-dor-ty2021-form-740-instructions
+  jurisdiction: us-ky
+  document_class: form
+  title: 2021 Kentucky Individual Income Tax Forms and Instructions (Form 740 packet)
+  source_url: https://revenue.ky.gov/Forms/Form%20740%20Packet%20Instructions-2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ky/form/dor/ty2021/form-740-instructions
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
 - source_id: us-ky-form-dor-ty2025-schedule-itc
   jurisdiction: us-ky
   document_class: form

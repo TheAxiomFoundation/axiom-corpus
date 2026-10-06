@@ -145,6 +145,7 @@ ID_FORM_ROWS = [
     ("EFO00089", "09-23-2021", 2021, "form-40", "Form 40 Individual Income Tax Return (EFO00089, 09-23-2021)"),
     ("EFO00089", "12-30-2022", 2022, "form-40", "Form 40 Individual Income Tax Return (EFO00089, 12-30-2022)"),
     ("EFO00089", "08-23-2023", 2023, "form-40", "Form 40 Individual Income Tax Return (EFO00089, 08-23-2023)"),
+    ("EFO00089", "09-04-2024", 2024, "form-40", "Form 40 Individual Income Tax Return (EFO00089, 09-04-2024)"),
     ("EFO00093", "09-15-2021", 2021, "form-cg", "Form CG Capital Gains Deduction (EFO00093, 09-15-2021)"),
     ("EFO00093", "05-19-2022", 2022, "form-cg", "Form CG Capital Gains Deduction (EFO00093, 05-19-2022)"),
     ("EFO00093", "08-23-2023", 2023, "form-cg", "Form CG Capital Gains Deduction (EFO00093, 08-23-2023)"),
@@ -157,9 +158,14 @@ ID_FORM_ROWS = [
 for code, rev, year, slug, title in ID_FORM_ROWS:
     old = f"us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/{code.lower()}/{code.lower()}_{rev}"
     mm, dd, yyyy = rev.split("-")
+    ids = [old]
+    if (code, rev) == ("EFO00089", "09-04-2024"):
+        # Not in the May manifest; found through the Commission's own search
+        # (https://tax.idaho.gov/?s=EFO00089 -> /document-mngr/forms_efo00089/efo00089_09-04-2024/).
+        ids = ["https://www.cassia.gov/media/Assessor/Forms/Forms_Property/PTR_Tax%20Form-40.pdf"]
     doc("us-id", "form", f"{ID_FORMS}/{code}/{code}_{rev}.pdf",
         f"us-id/form/istc/ty{year}/{slug}-{code.lower()}-{yyyy}-{mm}-{dd}", f"{year} {title}", year,
-        "instructions" if code == "EIN00046" else "form", ids=[old])
+        "instructions" if code == "EIN00046" else "form", ids=ids)
 ID_LEG = "https://legislature.idaho.gov"
 for path, url, title in [
     ("2022/h0001-legislation-page", f"{ID_LEG}/sessioninfo/2022extra1/legislation/H0001/",
@@ -295,6 +301,7 @@ for name, year, slug, title, sub in [
     ("Form%20740%205-9-23.pdf", 2022, "form-740-rev-2023-05-09", "2022 Form 740 Kentucky Individual Income Tax Return (revised 5-9-23)", "return_form"),
     ("Form%20740%20Schedule%20A%202022.pdf", 2022, "schedule-a", "2022 Form 740 Schedule A Kentucky Itemized Deductions", "schedule"),
     ("Form%20740-2021.pdf", 2021, "form-740", "2021 Form 740 Kentucky Individual Income Tax Return", "return_form"),
+    ("Form%20740%20Packet%20Instructions-2021.pdf", 2021, "form-740-instructions", "2021 Kentucky Individual Income Tax Forms and Instructions (Form 740 packet)", "instructions"),
     ("Schedule%20ITC%20(2025).pdf", 2025, "schedule-itc", "2025 Schedule ITC Kentucky Individual Tax Credit Schedule", "schedule"),
     ("Schedule%20ITC%202022.pdf", 2022, "schedule-itc", "2022 Schedule ITC Kentucky Individual Tax Credit Schedule", "schedule"),
     ("Schedule%20ITC%202023.pdf", 2023, "schedule-itc", "2023 Schedule ITC Kentucky Individual Tax Credit Schedule", "schedule"),
@@ -310,6 +317,8 @@ for name, year, slug, title, sub in [
     extra = {}
     if name == "Form%20740-2021.pdf":
         extra["ids"] = ["https://www.taxformfinder.org/forms/2021/2021-kentucky-form-740.pdf"]
+    if name == "Form%20740%20Packet%20Instructions-2021.pdf":
+        extra["ids"] = ["https://taxsim.nber.org/historical_state_tax_forms/KY/2021/Form%20740%20Packet%20Instructions-2021.pdf"]
     doc("us-ky", "form", f"{KY}/{name}", f"us-ky/form/dor/ty{year}/{slug}", title, year, sub, **extra)
 doc("us-ky", "guidance", "https://revenue.ky.gov/News/Pages/DOR-Announces-Updates-to-Individual-Income-Tax-for-2023-Tax-Year.aspx",
     "us-ky/guidance/dor/news/2022-09-21-individual-income-tax-updates-2023",
@@ -694,9 +703,6 @@ for sec in ["63-3004", "63-3022", "63-3029L", "63-3022A", "63-3022D", "63-3022E"
 held("https://www.idsaves.org/tax-benefits/", "id-ch30", "us-id/statute/63-3022",
      "idsaves.org is the IDeal plan's program site; the deduction is Idaho Code 63-3022 (held); the State Tax "
      "Commission's IDeal page is PRESENT")
-other("https://www.cassia.gov/media/Assessor/Forms/Forms_Property/PTR_Tax%20Form-40.pdf", "ABSENT", "", "",
-      "a county assessor's copy of the 2024 Idaho Form 40 (not the publisher); the State Tax Commission's 2024 Form 40 "
-      "file was not found (tax.idaho.gov forms paths read 2026-10-06); 2021-2023 and 2025 Form 40 are held or PRESENT")
 # Illinois
 held("us-il/regulation/title-86/part-100", "il-reg", "us-il/regulation/title-086/chapter-i/part-100",
      "86 Ill. Adm. Code Part 100 held (wave-4 JCAR scope)", "https://www.ilga.gov/ftp/JCAR/AdminCode/086/086001000sections.html")
@@ -759,9 +765,6 @@ for sec, urls in {
 # Kentucky
 held("https://codes.findlaw.com/ky/title-xi-revenue-and-taxation/ky-rev-st-sect-141-066.html", "ky-141", "us-ky/statute/krs/141.066",
      "mirror; KRS 141.066 held (LRC chapter 141 scope)")
-other("https://taxsim.nber.org/historical_state_tax_forms/KY/2021/Form%20740%20Packet%20Instructions-2021.pdf", "OUTREACH", "", "",
-      "third-party repost (NBER TAXSIM); the Department's Find a Form library is client-rendered and no 2021 Form 740 "
-      "packet instructions URL is confirmable on revenue.ky.gov (known block)")
 for url in ["https://revenue.ky.gov/Forms/1999_42a740p.pdf", "https://revenue.ky.gov/Forms/2000_42a740p.pdf"]:
     other(url, "ABSENT", "", "", "HTTP 404 'File Not Found' (also with the upper-case 42A740P spelling the 2001-2005 files use, "
           "2026-10-06); the Forms library serves Schedule P from 2001")
@@ -790,12 +793,14 @@ for sec in ["2", "3", "6"]:
          f"Trial Court Law Libraries' reproduction of M.G.L. c. 62, s. {sec}; the General Court's text is held")
 for year in range(2011, 2023):
     other(f"https://www.mass.gov/doc/{year}-form-1-instructions/download", "ABSENT", "", "",
-          "HTTP 404 (plain and chrome120, 2026-10-06); mass.gov now lists personal income tax forms for 2023-2025 only "
-          "(/info-details/personal-income-tax-forms-and-instructions)")
+          "HTTP 404 (plain and chrome120, 2026-10-06); mass.gov's personal income tax forms page "
+          "(/info-details/personal-income-tax-forms-and-instructions) lists 2022 (forms only, no Form 1 instructions) "
+          "and 2023-2025; no earlier year is published")
 for slug in ["2021-form-1-massachusetts-resident-income-tax-return", "2021-schedule-b-interest-dividends-and-certain-capital-gains-and-losses",
              "2021-schedule-nts-l-nrpy-no-tax-status-and-limited-income-credit"]:
     other(f"https://www.mass.gov/doc/{slug}/download", "ABSENT", "", "",
-          "HTTP 404 (plain and chrome120, 2026-10-06); mass.gov lists personal income tax forms for 2023-2025 only")
+          "HTTP 404 (plain and chrome120, 2026-10-06); mass.gov's forms page lists 2022-2025 only (the 2021 list "
+          "redirects to the general forms page)")
 # Maryland
 for url in ["https://marylandtaxes.gov/forms/22_forms/502CR.pdf", "https://www.marylandtaxes.gov/forms/20_forms/502CR.pdf",
             "https://www.marylandtaxes.gov/forms/21_forms/502CR.pdf"]:
@@ -964,15 +969,93 @@ def write_decisions(work_order: Path, out: Path) -> dict[str, int]:
     return counts
 
 
+EXTRA_SCOPES = {
+    # Adapter-driven scope (not an official-documents manifest).
+    "us-in": [("us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4",
+               "manifests/us-in-w6-indiana-code-title-4.yaml")],
+}
+QUEUE = ROOT / "manifests" / "tax-agent-queue.yaml"
+QUEUE_KEY = "w6_bundle_gap_scopes"
+
+
+def _scope_stats(base: Path, scope: str) -> dict[str, Any]:
+    jur, cls, ver = scope.split("/")
+    coverage = json_load(base / "coverage" / jur / cls / f"{ver}.json")
+    return {
+        "complete": bool(coverage.get("complete")),
+        "provision_count": coverage.get("provision_count"),
+        "source_count": coverage.get("source_count"),
+        "missing": len(coverage.get("missing_from_provisions") or []),
+    }
+
+
+def json_load(path: Path) -> dict[str, Any]:
+    import json
+
+    return json.loads(path.read_text())
+
+
+def update_queue(base: Path, decisions: Path) -> None:
+    """Insert (or replace) one ``w6_bundle_gap_scopes`` block in each state's first queue row.
+
+    Text insertion after the row's ``target_scope`` mapping, so the rest of the 25,000-line
+    queue (which other wave-6 agents edit too) is left byte-identical.
+    """
+    status_by_jur: dict[str, dict[str, int]] = {}
+    for row in csv.DictReader(decisions.open()):
+        counts = status_by_jur.setdefault(row["jurisdiction"], {})
+        counts[row["new_status"]] = counts.get(row["new_status"], 0) + 1
+    scopes: dict[str, list[tuple[str, str, int]]] = {}
+    for (jur, cls), docs in sorted(manifest_entries().items()):
+        scopes.setdefault(jur, []).append(
+            (f"{jur}/{cls}/{version(jur, cls)}", f"manifests/{jur}-w6-income-tax-{MANIFEST_SUFFIX[cls]}.yaml", len(docs))
+        )
+    for jur, extra in EXTRA_SCOPES.items():
+        scopes.setdefault(jur, []).extend((scope, manifest, 1) for scope, manifest in extra)
+    lines = QUEUE.read_text().splitlines(keepends=True)
+    for jur in sorted(status_by_jur):
+        start = next(i for i, line in enumerate(lines) if line.rstrip("\n") == f"- jurisdiction: {jur}")
+        end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("- ")), len(lines))
+        # drop an earlier block of ours
+        block_at = next((i for i in range(start, end) if lines[i].startswith(f"  {QUEUE_KEY}:")), None)
+        if block_at is not None:
+            stop = next(i for i in range(block_at + 1, end + 1) if i == end or not lines[i].startswith("    "))
+            del lines[block_at:stop]
+            end -= stop - block_at
+        ts = next(i for i in range(start, end) if lines[i].startswith("  target_scope:"))
+        insert_at = next(i for i in range(ts + 1, end) if not lines[i].startswith("    "))
+        block = {
+            QUEUE_KEY: {
+                "run_note": "docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md",
+                "decisions": "docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv",
+                "work_order_rows": sum(status_by_jur[jur].values()),
+                "statuses": dict(sorted(status_by_jur[jur].items())),
+                "scopes": [
+                    {"scope": scope, "manifest": manifest, "documents": n, **_scope_stats(base, scope)}
+                    for scope, manifest, n in scopes.get(jur, [])
+                ],
+            }
+        }
+        text = yaml.safe_dump(block, sort_keys=False, width=120)
+        lines[insert_at:insert_at] = ["  " + line + "\n" if line else "\n" for line in text.splitlines()]
+    QUEUE.write_text("".join(lines))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--work-order", type=Path)
     parser.add_argument("--decisions", type=Path)
+    parser.add_argument("--queue", action="store_true", help="update manifests/tax-agent-queue.yaml (needs --base)")
+    parser.add_argument("--base", type=Path, help="corpus root holding the extracted scopes")
     args = parser.parse_args()
     for path in write_manifests():
         print(path.relative_to(ROOT))
     if args.work_order and args.decisions:
         print(write_decisions(args.work_order, args.decisions))
+    if args.queue:
+        if not args.base or not args.decisions:
+            raise SystemExit("--queue needs --base and --decisions")
+        update_queue(args.base, args.decisions)
 
 
 if __name__ == "__main__":
