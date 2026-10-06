@@ -1,0 +1,156 @@
+version: 2026-10-06-w6-income-tax-guidance-ma
+documents:
+- source_id: us-ma-guidance-department-of-revenue-tir-02-21
+  jurisdiction: us-ma
+  document_class: guidance
+  title: 'TIR 02-21: Capital Gains and Losses: Massachusetts Tax Law Changes'
+  source_url: https://www.mass.gov/technical-information-release/tir-02-21-capital-gains-and-losses-massachusetts-tax-law-changes
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/tir-02-21
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: technical_information_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-department-of-revenue-tir-22-5
+  jurisdiction: us-ma
+  document_class: guidance
+  title: 'TIR 22-5: Tax Provisions in Recent Massachusetts Legislation'
+  source_url: https://www.mass.gov/technical-information-release/tir-22-5-tax-provisions-in-recent-massachusetts-legislation
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/tir-22-5
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: technical_information_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-executive-office-for-administration-and-finance-covid-19-essentia-24592f58
+  jurisdiction: us-ma
+  document_class: guidance
+  title: COVID-19 Essential Employee Premium Pay Program (Executive Office for Administration and Finance)
+  source_url: https://www.mass.gov/info-details/covid-19-essential-employee-premium-pay-program
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/executive-office-for-administration-and-finance/covid-19-essential-employee-premium-pay-program
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-department-of-revenue-filing-status-on-personal-income-tax
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Filing Status on Personal Income Tax (Massachusetts Department of Revenue)
+  source_url: https://www.mass.gov/info-details/filing-status-on-massachusetts-personal-income-tax
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/filing-status-on-personal-income-tax
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-department-of-revenue-child-and-family-tax-credit
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Massachusetts Child and Family Tax Credit (Department of Revenue)
+  source_url: https://www.mass.gov/info-details/massachusetts-child-and-family-tax-credit
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/child-and-family-tax-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-department-of-revenue-senior-circuit-breaker-tax-credit
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Senior Circuit Breaker Tax Credit (Department of Revenue)
+  source_url: https://www.mass.gov/info-details/massachusetts-senior-circuit-breaker-tax-credit
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/senior-circuit-breaker-tax-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-department-of-revenue-personal-income-tax-exemptions
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Personal Income Tax Exemptions (Department of Revenue)
+  source_url: https://www.mass.gov/info-details/personal-income-tax-exemptions
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/personal-income-tax-exemptions
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-department-of-revenue-tax-rates
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Tax Rates (Department of Revenue)
+  source_url: https://www.mass.gov/service-details/massachusetts-tax-rates
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/department-of-revenue/tax-rates
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ma-guidance-state-auditor-determination-net-state-tax-revenues-exceeded-allow-5aa9fe55
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Determination of Whether Net State Tax Revenues Exceeded Allowable State Tax Revenues (Office of the State Auditor,
+    chapter 62F)
+  source_url: https://www.mass.gov/audit/audit-of-the-determination-of-whether-net-state-tax-revenues-exceeded-allowable-state-tax-revenues-0
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/guidance/state-auditor/determination-net-state-tax-revenues-exceeded-allowable-fy2022
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
