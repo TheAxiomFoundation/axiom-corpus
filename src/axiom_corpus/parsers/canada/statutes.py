@@ -252,8 +252,9 @@ class CanadaStatuteParser:
                 if marginal_note_elem is not None:
                     marginal_note = self._get_text_content(marginal_note_elem)
 
-                # Get direct text content
-                text = self._get_direct_text(sub_elem)
+                # Each emitted provision must retain its complete source text,
+                # including formula groups, definitions and nested conditions.
+                text = self._get_text_content(sub_elem)
 
                 # Recursively parse children
                 children = self._parse_subsections(sub_elem)
