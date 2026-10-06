@@ -6,10 +6,13 @@ official pages for Idaho Code §§63-3022E and 63-3025D print two versions of
 each section, "[effective until January 1, 2027]" and "[effective January 1,
 2027]". Both Idaho carriers hold only the first:
 
-- `us-id/statute/2026-07-31-id-title-63-chapter-30-successor`, which the obbb,
-  snap-fy2027 and canada-338 lines select;
+- `us-id/statute/2026-07-31-id-title-63-chapter-30-successor`, carried by ten
+  selectors: `us-rulespec-2026-07-31-idaho-statutes-current` through
+  `us-rulespec-2026-09-13-cms-state-plans-union`, and
+  `us-rulespec-2026-09-24-snap-fy2027-cola`;
 - `us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30`,
-  which the wave4 line selects.
+  carried by `us-rulespec-2026-09-14-wave4-union` and
+  `us-rulespec-2026-09-14-wave4-r2-union`.
 
 | scope | rows | coverage |
 |---|---:|---|
@@ -303,21 +306,29 @@ version.
 ## Release selection (not done here)
 
 This PR adds no selector. The cut, queued for Max, would put this scope in place
-of the us-id statute scope in each line that carries Idaho:
+of the us-id statute scope in a successor of each line head.
 
-- **wave4 line** (`us-rulespec-2026-09-14-wave4-r2-union`): replace
-  `2026-09-14-income-tax-chapter-us-id-title-63-chapter-30`. The effect is the
-  two variant rows; every other row is the same.
-- **snap-fy2027 line** (`us-rulespec-2026-09-24-snap-fy2027-cola`, the head of
-  the line that also runs through the obbb and canada-338 cuts): replace
-  `2026-07-31-id-title-63-chapter-30-successor`.
-  - All seven of its paths keep their text; this includes every Idaho path
+Selectors descend from `us-rulespec-2026-08-08-obbb-alien-snap` in two
+branches, each named in the successor's `description`. Two selectors are heads
+today: no other selector names them as its predecessor.
+
+- **wave4 branch.** The chain is obbb → `…-08-09-cutover-surface-union` →
+  `…-08-23-canada-338-suspension-union` → `…-09-11-program-ingestion-union` →
+  `…-09-13-followup-union` → `…-09-13-federal-and-plans-union` →
+  `…-09-13-cms-state-plans-union` → `…-09-14-wave4-union` →
+  `us-rulespec-2026-09-14-wave4-r2-union`.
+  - The head carries `2026-09-14-income-tax-chapter-us-id-title-63-chapter-30`;
+    replace it.
+  - The effect is the two variant rows. Every other row is the same.
+- **snap-fy2027 branch.** The chain is obbb → `us-rulespec-2026-09-24-snap-fy2027-cola`.
+  - The head carries `2026-07-31-id-title-63-chapter-30-successor`; replace it.
+  - All seven of its paths keep their text. This includes every Idaho path
     rulespec-us cites (§§63-3022D, 63-3022E, 63-3024, 63-3024A, 63-3025D).
-  - It adds the other 157 chapter 30 sections and the two variants.
+  - The swap adds the other 157 chapter 30 sections and the two variants.
   - Rows move from `expression_date` 2026-07-13 to 2026-09-14.
 
-Each line holds one us-id statute scope, so the swap is one scope per line. The
-release test validates both swaps.
+Each head holds one us-id statute scope, so the swap is one scope per head. The
+release test validates both swaps. This PR edits no existing selector.
 
 ## Review
 

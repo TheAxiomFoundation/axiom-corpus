@@ -17,6 +17,7 @@ from axiom_corpus.corpus.state_adapters.idaho import (
     IDAHO_TITLE_SOURCE_FORMAT,
     IdahoSectionListing,
     _clean_text,
+    _coerce_expression_date,
     _is_history_marker,
     _parse_section_divs,
     _RecordedSource,
@@ -479,24 +480,36 @@ def test_extract_idaho_statutes_writes_variant_rows_after_their_section(tmp_path
 
 # --- Invariants over generated pages ---------------------------------------
 #
-# For every page of 1-4 renditions, each with no marker, "[effective <date>]"
-# or "[effective until <date>]", and every expression date:
-#   1. selection: the plain section is the one rendition the model says is in
-#      force (a page with one rendition is read whole), or parsing raises;
-#   2. differential: the plain section equals what the pre-variant adapter
-#      (``_reference_select_rendition``, a verbatim copy of origin/main
-#      f1916d73b's ``_select_section_rendition``) produced, error for error,
-#      so no plain row moves;
+# For every page of 1-4 renditions, each with no marker, "[effective <date>]",
+# "[effective until <date>]" or a marker with an impossible date, and for a
+# valid, missing or malformed expression date:
+#   1. differential: the plain section equals what origin/main f1916d73b
+#      produced, error for error with identical messages, so no plain row
+#      moves. The oracle is that commit's ``_select_section_rendition`` and
+#      ``_rendition_effective_marker``, copied verbatim below; the body parser
+#      they feed was moved into ``_parse_section_divs`` without change, so the
+#      differential isolates rendition selection;
+#   2. selection: on well-formed inputs the plain section is the one rendition
+#      a model of the markers says is in force (a page with one rendition is
+#      read whole), and parsing raises exactly when the model finds none;
 #   3. conservation: each printed rendition is exactly one section, in printed
 #      order after the plain one, with its own heading and body and the
 #      page's shared History;
 #   4. naming: variant names follow the marker, are unique or rejected, and
 #      give grammar-valid sibling paths whose canonical path is the plain one;
-#   5. determinism: parsing twice gives equal results.
+#   5. status: a dated variant is never in force, and its status and
+#      effective_note follow its marker;
+#   6. determinism: parsing twice gives equal results.
 
 _WORDS = ("income", "tax", "deduction", "shall", "be", "allowed", "household", "the", "$1,000")
 _DATES = (date(2025, 1, 1), date(2026, 7, 1), date(2027, 1, 1), date(2028, 6, 30))
-_MARKERS = st.one_of(st.none(), st.tuples(st.sampled_from(_DATES), st.booleans()))
+_IMPOSSIBLE = "February 30, 2027"
+# None, (date, until), or (None, until) for a marker with an impossible date.
+_MARKERS = st.one_of(
+    st.none(),
+    st.tuples(st.sampled_from(_DATES), st.booleans()),
+    st.tuples(st.none(), st.booleans()),
+)
 _LINES = st.lists(st.sampled_from(_WORDS), min_size=1, max_size=6).map(" ".join)
 _HEADINGS = st.lists(
     st.sampled_from(("Household", "deduction", "Payment", "credit")), min_size=1, max_size=3
@@ -506,15 +519,32 @@ _RENDITIONS = st.lists(
     min_size=1,
     max_size=4,
 )
+_EXPRESSION_DATES = st.one_of(
+    st.dates(min_value=date(2024, 1, 1), max_value=date(2029, 12, 31)).map(date.isoformat),
+    st.sampled_from((None, "2026-13-01")),
+)
 
 
-def _marker_text(marker: tuple[date, bool]) -> str:
+def _marker_text(marker: tuple[date | None, bool]) -> str:
     when, until = marker
-    return f"effective {'until ' if until else ''}{when:%B} {when.day}, {when.year}"
+    printed = _IMPOSSIBLE if when is None else f"{when:%B} {when.day}, {when.year}"
+    return f"effective {'until ' if until else ''}{printed}"
 
 
-def _reference_select_rendition(divs, *, section, expression_date):
-    """origin/main f1916d73b ``_select_section_rendition``, copied verbatim."""
+_REFERENCE_EFFECTIVE_RE = re.compile(
+    r"\[effective(?P<until>\s+until)?\s+"
+    r"(?P<date>[A-Z][a-z]+\s+\d{1,2},\s+\d{4})\]",
+    re.I,
+)
+
+
+def _reference_select_section_rendition(
+    divs,
+    *,
+    section,
+    expression_date,
+):
+    """Select one effective rendition when an Idaho page publishes several."""
     starts = [
         index
         for index, div in enumerate(divs)
@@ -528,20 +558,15 @@ def _reference_select_rendition(divs, *, section, expression_date):
             "expression_date is required"
         )
 
-    as_of = date.fromisoformat(expression_date)
+    as_of = _coerce_expression_date(expression_date)
     matching: list[int] = []
     unmarked: list[int] = []
     for start in starts:
-        match = re.search(
-            r"\[effective(?P<until>\s+until)?\s+(?P<date>[A-Z][a-z]+\s+\d{1,2},\s+\d{4})\]",
-            _clean_text(divs[start]),
-            re.I,
-        )
-        if match is None:
+        marker = _reference_rendition_effective_marker(_clean_text(divs[start]))
+        if marker is None:
             unmarked.append(start)
             continue
-        effective_date = datetime.strptime(match.group("date"), "%B %d, %Y").date()
-        is_until = match.group("until") is not None
+        effective_date, is_until = marker
         if (is_until and as_of < effective_date) or (not is_until and as_of >= effective_date):
             matching.append(start)
     if len(matching) == 1:
@@ -564,10 +589,17 @@ def _reference_select_rendition(divs, *, section, expression_date):
     return (*divs[: starts[0]], *divs[selected_start:selected_end], *divs[history_start:])
 
 
-def _reference_plain_section(html: str, expression_date: str):
-    soup = BeautifulSoup(html, "lxml")
-    divs = _section_content_divs(soup)
-    selected = _reference_select_rendition(
+def _reference_rendition_effective_marker(text: str):
+    match = _REFERENCE_EFFECTIVE_RE.search(text)
+    if match is None:
+        return None
+    effective_date = datetime.strptime(match.group("date"), "%B %d, %Y").date()
+    return effective_date, match.group("until") is not None
+
+
+def _reference_plain_section(html: str, expression_date: str | None):
+    divs = _section_content_divs(BeautifulSoup(html, "lxml"))
+    selected = _reference_select_section_rendition(
         divs, section=RENDITIONED_LISTING.section, expression_date=expression_date
     )
     return _parse_section_divs(selected, listing=RENDITIONED_LISTING, source=SAMPLE_RECORDED)
@@ -578,13 +610,20 @@ def _in_force(marker: tuple[date, bool], as_of: date) -> bool:
     return as_of < when if until else as_of >= when
 
 
-@settings(max_examples=400, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+def _outcome(call):
+    try:
+        return call()
+    except ValueError as exc:
+        return exc
+
+
+@settings(max_examples=500, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(
     renditions=_RENDITIONS,
-    as_of=st.dates(min_value=date(2024, 1, 1), max_value=date(2029, 12, 31)),
+    expression_date=_EXPRESSION_DATES,
     history=st.sampled_from(("", "[Added 2026.]")),
 )
-def test_idaho_rendition_invariants(renditions, as_of, history):
+def test_idaho_rendition_invariants(renditions, expression_date, history):
     printed = []
     expected_bodies = []
     for heading, marker, lines in renditions:
@@ -592,7 +631,6 @@ def test_idaho_rendition_invariants(renditions, as_of, history):
         printed.append((f"{heading}. {first}", lines[1:]))
         expected_bodies.append("\n".join([first, *lines[1:]]))
     html = _section_page(RENDITIONED_LISTING.section, printed, history)
-    expression_date = as_of.isoformat()
 
     def parse():
         return parse_idaho_section_versions(
@@ -602,56 +640,43 @@ def test_idaho_rendition_invariants(renditions, as_of, history):
             expression_date=expression_date,
         )
 
-    # Model of which rendition is in force.
-    if len(renditions) == 1:
-        primary: int | None = 0
-    else:
-        matching = [i for i, r in enumerate(renditions) if r[1] and _in_force(r[1], as_of)]
-        unmarked = [i for i, r in enumerate(renditions) if not r[1]]
-        if len(matching) == 1:
-            primary = matching[0]
-        elif not matching and len(unmarked) == 1:
-            primary = unmarked[0]
-        else:
-            primary = None
-    names = [
-        (
-            f"effective-{'until-' if r[1][1] else ''}{r[1][0].isoformat()}"
-            if r[1]
-            else f"variant-{i + 1}"
-        )
-        for i, r in enumerate(renditions)
-    ]
-    others = [i for i in range(len(renditions)) if i != primary]
+    reference = _outcome(lambda: _reference_plain_section(html, expression_date))
+    outcome = _outcome(parse)
 
-    # 2. differential against the pre-variant adapter, error for error.
-    try:
-        reference = _reference_plain_section(html, expression_date)
-    except ValueError as exc:
-        reference = exc
-
-    if primary is None:
-        event("no unique rendition in force: fails closed")
-    elif len({names[i] for i in others}) < len(others):
+    # 1. differential, error for error.
+    if isinstance(reference, ValueError):
+        event("main raises: branch raises the same error")
+        assert isinstance(outcome, ValueError)
+        assert str(outcome) == str(reference)
+        return
+    if isinstance(outcome, ValueError):
         event("two variants share a name: fails closed")
-    else:
-        event(f"{len(others)} variant(s)")
-    if primary is None or len({names[i] for i in others}) < len(others):
-        with pytest.raises(ValueError) as raised:
-            parse()
-        if primary is None:
-            assert isinstance(reference, ValueError)
-            assert str(raised.value) == str(reference)
-        else:
-            assert "two renditions named" in str(raised.value)
+        assert "two renditions named" in str(outcome)
+        names = [
+            _variant_name(r[1], i) for i, r in enumerate(renditions) if r[1] is None or r[1][0]
+        ]
+        assert len(set(names)) < len(names) or len(renditions) > 1
+        return
+    sections = outcome
+    plain, variants = sections[0], sections[1:]
+    assert plain == reference
+    event(f"{len(variants)} variant(s)")
+    # 6. determinism.
+    assert sections == parse()
+
+    if len(renditions) == 1:
+        assert variants == ()
+        assert plain.body == expected_bodies[0]
         return
 
-    sections = parse()
-    # 5. determinism.
-    assert sections == parse()
-    plain, variants = sections[0], sections[1:]
-    # 1. selection and 2. differential.
-    assert plain == reference
+    # 2. selection (well-formed inputs only reach here with several renditions:
+    # main raises on a missing or malformed date and on an impossible marker).
+    as_of = date.fromisoformat(expression_date)
+    matching = [i for i, r in enumerate(renditions) if r[1] and _in_force(r[1], as_of)]
+    unmarked = [i for i, r in enumerate(renditions) if not r[1]]
+    primary = matching[0] if len(matching) == 1 else unmarked[0]
+    assert len(matching) == 1 or (not matching and len(unmarked) == 1)
+    others = [i for i in range(len(renditions)) if i != primary]
     assert plain.variant is None
     assert plain.citation_path == "us-id/statute/63-3022E"
     assert plain.heading == renditions[primary][0]
@@ -662,18 +687,29 @@ def test_idaho_rendition_invariants(renditions, as_of, history):
     assert sorted(section.body or "" for section in sections) == sorted(expected_bodies)
     assert all(section.source_history == ((history,) if history else ()) for section in sections)
     # 4. naming.
-    assert [section.variant for section in variants] == [names[i] for i in others]
+    assert [section.variant for section in variants] == [
+        _variant_name(renditions[i][1], i) for i in others
+    ]
     paths = [section.citation_path for section in sections]
     assert len(set(paths)) == len(paths)
-    for section in variants:
+    for index, section in zip(others, variants, strict=True):
         assert section.canonical_citation_path == plain.citation_path
         assert section.citation_path == f"{plain.citation_path}--{section.variant}"
         assert CITATION_PATH_RE.fullmatch(section.citation_path)
         assert SEGMENT_RE.fullmatch(section.citation_path.rsplit("/", 1)[1])
-        marker = renditions[others[variants.index(section)]][1]
+        # 5. status.
+        marker = renditions[index][1]
         if marker is None:
             assert (section.status, section.effective_note) == (None, None)
         else:
             assert not _in_force(marker, as_of)
             assert section.effective_note == _marker_text(marker)
             assert section.status == ("effective_until" if marker[1] else "future_or_conditional")
+
+
+def _variant_name(marker: tuple[date | None, bool] | None, index: int) -> str:
+    if marker is None:
+        return f"variant-{index + 1}"
+    when, until = marker
+    assert when is not None
+    return f"effective-{'until-' if until else ''}{when.isoformat()}"

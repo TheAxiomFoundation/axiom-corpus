@@ -19,8 +19,8 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.state_adapters.idaho import (
+    _rendition_starts,
     _section_content_divs,
-    _section_renditions,
     extract_idaho_statutes,
 )
 
@@ -194,8 +194,8 @@ def test_only_these_two_retained_chapter_30_pages_print_more_than_one_rendition(
     counts: dict[str, int] = {}
     for page in sorted((CHAPTER_SOURCES / SECTION_PAGES).glob("*.html")):
         divs = _section_content_divs(BeautifulSoup(page.read_bytes().decode("utf-8"), "lxml"))
-        renditions, _ = _section_renditions(divs, section=page.stem)
-        counts[page.stem] = len(renditions)
+        starts, _ = _rendition_starts(divs, section=page.stem)
+        counts[page.stem] = len(starts)
     assert len(counts) == 162
     assert {section: n for section, n in counts.items() if n != 1} == {
         "63-3022E": 2,

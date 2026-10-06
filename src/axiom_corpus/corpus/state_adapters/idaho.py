@@ -725,16 +725,18 @@ def parse_idaho_section_versions(
     content_divs = _section_content_divs(soup)
     if not content_divs:
         raise ValueError("Idaho section page has no statute content divs")
-    renditions, history_start = _section_renditions(content_divs, section=listing.section)
-    if len(renditions) <= 1:
+    starts, history_start = _rendition_starts(content_divs, section=listing.section)
+    if len(starts) <= 1:
         return (_parse_section_divs(content_divs, listing=listing, source=source),)
     if expression_date is None:
         raise ValueError(
-            f"Idaho section {listing.section} publishes {len(renditions)} renditions; "
+            f"Idaho section {listing.section} publishes {len(starts)} renditions; "
             "expression_date is required"
         )
 
     as_of = _coerce_expression_date(expression_date)
+    # Markers are read only now, after the date checks, as they always were.
+    renditions = _section_renditions(content_divs, starts, history_start=history_start)
     primary = _primary_rendition(renditions, section=listing.section, as_of=as_of)
     sections = [
         _parse_section_divs(
@@ -1205,23 +1207,18 @@ def _section_content_divs(soup: BeautifulSoup) -> tuple[Tag, ...]:
     return tuple(divs)
 
 
-def _section_renditions(
-    divs: tuple[Tag, ...],
-    *,
-    section: str,
-) -> tuple[tuple[_IdahoRendition, ...], int]:
-    """Split a page's content divs into the renditions of ``section`` it prints.
+def _rendition_starts(divs: tuple[Tag, ...], *, section: str) -> tuple[tuple[int, ...], int]:
+    """Where each rendition of ``section`` starts, and where its History starts.
 
     A rendition starts at each div that opens with the section number and a
-    heading, and runs to the next such div or to the History marker after the
-    last one, whichever comes first. Returns the renditions in printed order
-    and the index of that History marker (``len(divs)`` when there is none).
+    heading. The History marker is the first one after the last start
+    (``len(divs)`` when there is none).
     """
-    starts = [
+    starts = tuple(
         index
         for index, div in enumerate(divs)
         if _strip_section_heading(_clean_text(div), section)[1] is not None
-    ]
+    )
     if not starts:
         return (), len(divs)
     history_start = next(
@@ -1232,11 +1229,24 @@ def _section_renditions(
         ),
         len(divs),
     )
+    return starts, history_start
+
+
+def _section_renditions(
+    divs: tuple[Tag, ...],
+    starts: tuple[int, ...],
+    *,
+    history_start: int,
+) -> tuple[_IdahoRendition, ...]:
+    """The renditions a page prints, in printed order, with their markers.
+
+    Each runs from its start to the next start or to the History marker,
+    whichever comes first. An impossible marker date raises.
+    """
     renditions: list[_IdahoRendition] = []
     for position, start in enumerate(starts, 1):
         next_start = starts[position] if position < len(starts) else history_start
-        # A page with one rendition is read whole; its markers are never parsed.
-        marker = _rendition_effective_marker(_clean_text(divs[start])) if len(starts) > 1 else None
+        marker = _rendition_effective_marker(_clean_text(divs[start]))
         renditions.append(
             _IdahoRendition(
                 position=position,
@@ -1247,7 +1257,7 @@ def _section_renditions(
                 note=marker[2] if marker is not None else None,
             )
         )
-    return tuple(renditions), history_start
+    return tuple(renditions)
 
 
 def _primary_rendition(
