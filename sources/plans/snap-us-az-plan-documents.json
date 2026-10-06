@@ -1,0 +1,1827 @@
+{
+ "source": "TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json",
+ "as_of": "2026-09-29",
+ "status": "DIAGNOSTIC",
+ "program": "snap",
+ "jurisdictions": [
+  "US",
+  "US-AZ"
+ ],
+ "note": "The plan's SNAP documents for the federal layer and Arizona, copied from the plan's document sizing so the bundle rebuilds without the planning repo.",
+ "documents": [
+  {
+   "id": "CFR 26 1.61-14",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/26/1.61-14"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CFR 7 271.2",
+   "jurisdiction": "US",
+   "title": "7 CFR 271.2 (definition of elderly or disabled member)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/271.2"
+   ],
+   "citation_paths": [
+    "us/regulation/7/271/2"
+   ]
+  },
+  {
+   "id": "CFR 7 273.1",
+   "jurisdiction": "US",
+   "title": "7 CFR \u00a7 273.1 - Household concept (b)(iii)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.1"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/1"
+   ]
+  },
+  {
+   "id": "CFR 7 273.10",
+   "jurisdiction": "US",
+   "title": "7 CFR \u00a7 273.10 - Determining household eligibility and benefit levels.",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-7/section-273.10",
+    "https://www.law.cornell.edu/cfr/text/7/273.10"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/10"
+   ]
+  },
+  {
+   "id": "CFR 7 273.11",
+   "jurisdiction": "US",
+   "title": "7 CFR 273.11(c)(3)(i) | 7 CFR \u00a7 273.11(b)(3) - Self-employment income, cost of doing business",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.11"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/11"
+   ]
+  },
+  {
+   "id": "CFR 7 273.2",
+   "jurisdiction": "US",
+   "title": "7 CFR 273.2(j)(2) Categorical eligibility for certain recipients",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.2"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/2"
+   ]
+  },
+  {
+   "id": "CFR 7 273.24",
+   "jurisdiction": "US",
+   "title": "7 C.F.R. \u00a7 273.24 Time limit for able-bodied adults (c)(1) | 7 CFR \u00a7 273.24 - Time limit for able-bodied adults (c)(9)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.24"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/24"
+   ]
+  },
+  {
+   "id": "CFR 7 273.5",
+   "jurisdiction": "US",
+   "title": "7 CFR 273.5(b)(8) - Students, care of a dependent household member under the age of 6",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.5"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/5"
+   ]
+  },
+  {
+   "id": "CFR 7 273.7",
+   "jurisdiction": "US",
+   "title": "7 C.F.R. \u00a7 273.7 Work provisions (b)(1)(iv) | 7 C.F.R. \u00a7 273.7 Work provisions (b)(1)(i)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.7"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/7"
+   ]
+  },
+  {
+   "id": "CFR 7 273.8",
+   "jurisdiction": "US",
+   "title": "7 CFR 273.8(c)(1) - Liquid resources",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.8"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/8"
+   ]
+  },
+  {
+   "id": "CFR 7 273.9",
+   "jurisdiction": "US",
+   "title": "7 CFR \u00a7 273.9 - Income and deductions. | 7 CFR 273.9(b)(2)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-7/section-273.9",
+    "https://www.law.cornell.edu/cfr/text/7/273.9"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/9"
+   ]
+  },
+  {
+   "id": "IRS Form 1040 (current)",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "irs_form",
+   "urls": [
+    "https://www.irs.gov/pub/irs-pdf/f1040.pdf"
+   ],
+   "citation_paths": [
+    "us/form/irs/ty2025/f1040",
+    "us/form/irs/ty2025/f1040/document-1"
+   ]
+  },
+  {
+   "id": "PL 113-79",
+   "jurisdiction": "US",
+   "title": "Agricultural Act of 2014 (Pub. L. 113-79) \u00a7 4006(b) - Minimum LIHEAP benefit for SUA eligibility",
+   "document_class": "public_law",
+   "urls": [
+    "https://www.congress.gov/113/plaws/publ79/PLAW-113publ79.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "PL 119-21",
+   "jurisdiction": "US",
+   "title": "Public Law 119-21, Section 10102(a) - Modifications to SNAP ABAWD Requirements | One Big Beautiful Bill Act, Pub. L. No. 119-21, \u00a7 70404 (2025)",
+   "document_class": "public_law",
+   "urls": [
+    "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf",
+    "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm",
+    "https://www.govinfo.gov/content/pkg/PLAW-119publ21/pdf/PLAW-119publ21.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01140.200",
+   "jurisdiction": "US",
+   "title": "SSA POMS SI 01140.200 - Checking and Savings Accounts",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140200"
+   ],
+   "citation_paths": [
+    "us/manual/ssa/poms/si/01140.200",
+    "us/manual/ssa/poms/si/01140.200/block-1",
+    "us/manual/ssa/poms/si/01140.200/block-10",
+    "us/manual/ssa/poms/si/01140.200/block-11",
+    "us/manual/ssa/poms/si/01140.200/block-12",
+    "us/manual/ssa/poms/si/01140.200/block-13",
+    "us/manual/ssa/poms/si/01140.200/block-14",
+    "us/manual/ssa/poms/si/01140.200/block-15",
+    "us/manual/ssa/poms/si/01140.200/block-16",
+    "us/manual/ssa/poms/si/01140.200/block-17",
+    "us/manual/ssa/poms/si/01140.200/block-18",
+    "us/manual/ssa/poms/si/01140.200/block-19",
+    "us/manual/ssa/poms/si/01140.200/block-2",
+    "us/manual/ssa/poms/si/01140.200/block-20",
+    "us/manual/ssa/poms/si/01140.200/block-21",
+    "us/manual/ssa/poms/si/01140.200/block-22",
+    "us/manual/ssa/poms/si/01140.200/block-23",
+    "us/manual/ssa/poms/si/01140.200/block-24",
+    "us/manual/ssa/poms/si/01140.200/block-25",
+    "us/manual/ssa/poms/si/01140.200/block-26",
+    "us/manual/ssa/poms/si/01140.200/block-27",
+    "us/manual/ssa/poms/si/01140.200/block-28",
+    "us/manual/ssa/poms/si/01140.200/block-29",
+    "us/manual/ssa/poms/si/01140.200/block-3",
+    "us/manual/ssa/poms/si/01140.200/block-30",
+    "us/manual/ssa/poms/si/01140.200/block-31",
+    "us/manual/ssa/poms/si/01140.200/block-32",
+    "us/manual/ssa/poms/si/01140.200/block-33",
+    "us/manual/ssa/poms/si/01140.200/block-34",
+    "us/manual/ssa/poms/si/01140.200/block-35",
+    "us/manual/ssa/poms/si/01140.200/block-36",
+    "us/manual/ssa/poms/si/01140.200/block-37",
+    "us/manual/ssa/poms/si/01140.200/block-38",
+    "us/manual/ssa/poms/si/01140.200/block-39",
+    "us/manual/ssa/poms/si/01140.200/block-4",
+    "us/manual/ssa/poms/si/01140.200/block-40",
+    "us/manual/ssa/poms/si/01140.200/block-41",
+    "us/manual/ssa/poms/si/01140.200/block-42",
+    "us/manual/ssa/poms/si/01140.200/block-43",
+    "us/manual/ssa/poms/si/01140.200/block-44",
+    "us/manual/ssa/poms/si/01140.200/block-5",
+    "us/manual/ssa/poms/si/01140.200/block-6",
+    "us/manual/ssa/poms/si/01140.200/block-7",
+    "us/manual/ssa/poms/si/01140.200/block-8",
+    "us/manual/ssa/poms/si/01140.200/block-9"
+   ]
+  },
+  {
+   "id": "SSA POMS SI 01140.220",
+   "jurisdiction": "US",
+   "title": "SSA POMS SI 01140.220 - Stocks",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140220"
+   ],
+   "citation_paths": [
+    "us/manual/ssa/poms/si/01140.220",
+    "us/manual/ssa/poms/si/01140.220/block-1",
+    "us/manual/ssa/poms/si/01140.220/block-10",
+    "us/manual/ssa/poms/si/01140.220/block-11",
+    "us/manual/ssa/poms/si/01140.220/block-2",
+    "us/manual/ssa/poms/si/01140.220/block-3",
+    "us/manual/ssa/poms/si/01140.220/block-4",
+    "us/manual/ssa/poms/si/01140.220/block-5",
+    "us/manual/ssa/poms/si/01140.220/block-6",
+    "us/manual/ssa/poms/si/01140.220/block-7",
+    "us/manual/ssa/poms/si/01140.220/block-8",
+    "us/manual/ssa/poms/si/01140.220/block-9"
+   ]
+  },
+  {
+   "id": "SSA POMS SI 01140.240",
+   "jurisdiction": "US",
+   "title": "SSA POMS SI 01140.240 - U.S. Savings Bonds",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140240"
+   ],
+   "citation_paths": [
+    "us/manual/ssa/poms/si/01140.240",
+    "us/manual/ssa/poms/si/01140.240/block-1",
+    "us/manual/ssa/poms/si/01140.240/block-10",
+    "us/manual/ssa/poms/si/01140.240/block-11",
+    "us/manual/ssa/poms/si/01140.240/block-12",
+    "us/manual/ssa/poms/si/01140.240/block-13",
+    "us/manual/ssa/poms/si/01140.240/block-14",
+    "us/manual/ssa/poms/si/01140.240/block-15",
+    "us/manual/ssa/poms/si/01140.240/block-16",
+    "us/manual/ssa/poms/si/01140.240/block-17",
+    "us/manual/ssa/poms/si/01140.240/block-18",
+    "us/manual/ssa/poms/si/01140.240/block-19",
+    "us/manual/ssa/poms/si/01140.240/block-2",
+    "us/manual/ssa/poms/si/01140.240/block-20",
+    "us/manual/ssa/poms/si/01140.240/block-21",
+    "us/manual/ssa/poms/si/01140.240/block-22",
+    "us/manual/ssa/poms/si/01140.240/block-23",
+    "us/manual/ssa/poms/si/01140.240/block-24",
+    "us/manual/ssa/poms/si/01140.240/block-25",
+    "us/manual/ssa/poms/si/01140.240/block-26",
+    "us/manual/ssa/poms/si/01140.240/block-27",
+    "us/manual/ssa/poms/si/01140.240/block-28",
+    "us/manual/ssa/poms/si/01140.240/block-29",
+    "us/manual/ssa/poms/si/01140.240/block-3",
+    "us/manual/ssa/poms/si/01140.240/block-30",
+    "us/manual/ssa/poms/si/01140.240/block-31",
+    "us/manual/ssa/poms/si/01140.240/block-32",
+    "us/manual/ssa/poms/si/01140.240/block-33",
+    "us/manual/ssa/poms/si/01140.240/block-4",
+    "us/manual/ssa/poms/si/01140.240/block-5",
+    "us/manual/ssa/poms/si/01140.240/block-6",
+    "us/manual/ssa/poms/si/01140.240/block-7",
+    "us/manual/ssa/poms/si/01140.240/block-8",
+    "us/manual/ssa/poms/si/01140.240/block-9"
+   ]
+  },
+  {
+   "id": "SSA POMS SI 01140.250",
+   "jurisdiction": "US",
+   "title": "SSA POMS SI 01140.250 - Municipal, Corporate and Government Bonds",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140250"
+   ],
+   "citation_paths": [
+    "us/manual/ssa/poms/si/01140.250",
+    "us/manual/ssa/poms/si/01140.250/block-1",
+    "us/manual/ssa/poms/si/01140.250/block-2",
+    "us/manual/ssa/poms/si/01140.250/block-3",
+    "us/manual/ssa/poms/si/01140.250/block-4",
+    "us/manual/ssa/poms/si/01140.250/block-5",
+    "us/manual/ssa/poms/si/01140.250/block-6"
+   ]
+  },
+  {
+   "id": "SSA POMS SI 01401.001",
+   "jurisdiction": "US",
+   "title": "SI CHI01401.001 - (IN) Indiana State Supplementary Payments | POMS SI 01401.001 General Information about State Supplementation",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501401001",
+    "https://secure.ssa.gov/poms.nsf/lnx/0501401001CHI"
+   ],
+   "citation_paths": [
+    "us/manual/ssa/poms/si/01401.001",
+    "us/manual/ssa/poms/si/01401.001/block-1",
+    "us/manual/ssa/poms/si/01401.001/block-10",
+    "us/manual/ssa/poms/si/01401.001/block-11",
+    "us/manual/ssa/poms/si/01401.001/block-12",
+    "us/manual/ssa/poms/si/01401.001/block-13",
+    "us/manual/ssa/poms/si/01401.001/block-14",
+    "us/manual/ssa/poms/si/01401.001/block-15",
+    "us/manual/ssa/poms/si/01401.001/block-16",
+    "us/manual/ssa/poms/si/01401.001/block-17",
+    "us/manual/ssa/poms/si/01401.001/block-18",
+    "us/manual/ssa/poms/si/01401.001/block-19",
+    "us/manual/ssa/poms/si/01401.001/block-2",
+    "us/manual/ssa/poms/si/01401.001/block-20",
+    "us/manual/ssa/poms/si/01401.001/block-21",
+    "us/manual/ssa/poms/si/01401.001/block-22",
+    "us/manual/ssa/poms/si/01401.001/block-23",
+    "us/manual/ssa/poms/si/01401.001/block-24",
+    "us/manual/ssa/poms/si/01401.001/block-3",
+    "us/manual/ssa/poms/si/01401.001/block-4",
+    "us/manual/ssa/poms/si/01401.001/block-5",
+    "us/manual/ssa/poms/si/01401.001/block-6",
+    "us/manual/ssa/poms/si/01401.001/block-7",
+    "us/manual/ssa/poms/si/01401.001/block-8",
+    "us/manual/ssa/poms/si/01401.001/block-9"
+   ]
+  },
+  {
+   "id": "USC 25 1603",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/25/1603"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 25 1679",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/25/1679"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 26 1402",
+   "jurisdiction": "US",
+   "title": "26 U.S. Code \u00a7 1402 - Definitions",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/1402"
+   ],
+   "citation_paths": [
+    "us/statute/26/1402",
+    "us/statute/26/1402/a",
+    "us/statute/26/1402/a/1",
+    "us/statute/26/1402/a/10",
+    "us/statute/26/1402/a/11",
+    "us/statute/26/1402/a/12",
+    "us/statute/26/1402/a/13",
+    "us/statute/26/1402/a/14",
+    "us/statute/26/1402/a/15",
+    "us/statute/26/1402/a/16",
+    "us/statute/26/1402/a/17",
+    "us/statute/26/1402/a/2",
+    "us/statute/26/1402/a/3",
+    "us/statute/26/1402/a/4",
+    "us/statute/26/1402/a/5",
+    "us/statute/26/1402/a/6",
+    "us/statute/26/1402/a/7",
+    "us/statute/26/1402/a/8",
+    "us/statute/26/1402/a/9",
+    "us/statute/26/1402/b",
+    "us/statute/26/1402/b/1",
+    "us/statute/26/1402/b/2",
+    "us/statute/26/1402/c",
+    "us/statute/26/1402/c/1",
+    "us/statute/26/1402/c/2",
+    "us/statute/26/1402/c/3",
+    "us/statute/26/1402/c/4",
+    "us/statute/26/1402/c/5",
+    "us/statute/26/1402/c/6",
+    "us/statute/26/1402/d",
+    "us/statute/26/1402/e",
+    "us/statute/26/1402/e/1",
+    "us/statute/26/1402/e/2",
+    "us/statute/26/1402/e/3",
+    "us/statute/26/1402/e/4",
+    "us/statute/26/1402/f",
+    "us/statute/26/1402/f/1",
+    "us/statute/26/1402/f/2",
+    "us/statute/26/1402/g",
+    "us/statute/26/1402/g/1",
+    "us/statute/26/1402/g/2",
+    "us/statute/26/1402/g/3",
+    "us/statute/26/1402/h",
+    "us/statute/26/1402/i",
+    "us/statute/26/1402/i/1",
+    "us/statute/26/1402/i/2",
+    "us/statute/26/1402/j",
+    "us/statute/26/1402/j/1",
+    "us/statute/26/1402/j/2",
+    "us/statute/26/1402/j/3",
+    "us/statute/26/1402/j/4",
+    "us/statute/26/1402/k",
+    "us/statute/26/1402/k/1",
+    "us/statute/26/1402/k/2",
+    "us/statute/26/1402/k/3",
+    "us/statute/26/1402/k/4",
+    "us/statute/26/1402/l",
+    "us/statute/26/1402/l/1",
+    "us/statute/26/1402/l/2"
+   ]
+  },
+  {
+   "id": "USC 26 199A",
+   "jurisdiction": "US",
+   "title": "26 U.S. Code \u00a7 199A(b)(2)(B)(ii) - Qualified business income | 26 U.S. Code \u00a7 199A(c)(1) - Qualified business income",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/199A"
+   ],
+   "citation_paths": [
+    "us/statute/26/199A",
+    "us/statute/26/199A/a",
+    "us/statute/26/199A/a/1",
+    "us/statute/26/199A/a/2",
+    "us/statute/26/199A/b",
+    "us/statute/26/199A/b/1",
+    "us/statute/26/199A/b/2",
+    "us/statute/26/199A/b/3",
+    "us/statute/26/199A/b/4",
+    "us/statute/26/199A/b/5",
+    "us/statute/26/199A/b/6",
+    "us/statute/26/199A/b/7",
+    "us/statute/26/199A/c",
+    "us/statute/26/199A/c/1",
+    "us/statute/26/199A/c/2",
+    "us/statute/26/199A/c/3",
+    "us/statute/26/199A/c/4",
+    "us/statute/26/199A/d",
+    "us/statute/26/199A/d/1",
+    "us/statute/26/199A/d/2",
+    "us/statute/26/199A/d/3",
+    "us/statute/26/199A/e",
+    "us/statute/26/199A/e/1",
+    "us/statute/26/199A/e/2",
+    "us/statute/26/199A/e/3",
+    "us/statute/26/199A/e/4",
+    "us/statute/26/199A/f",
+    "us/statute/26/199A/f/1",
+    "us/statute/26/199A/f/2",
+    "us/statute/26/199A/f/3",
+    "us/statute/26/199A/f/4",
+    "us/statute/26/199A/g",
+    "us/statute/26/199A/g/1",
+    "us/statute/26/199A/g/2",
+    "us/statute/26/199A/g/3",
+    "us/statute/26/199A/g/4",
+    "us/statute/26/199A/g/5",
+    "us/statute/26/199A/g/6",
+    "us/statute/26/199A/h",
+    "us/statute/26/199A/h/1",
+    "us/statute/26/199A/h/2",
+    "us/statute/26/199A/i",
+    "us/statute/26/199A/i/1",
+    "us/statute/26/199A/i/2",
+    "us/statute/26/199A/i/3"
+   ]
+  },
+  {
+   "id": "USC 26 21",
+   "jurisdiction": "US",
+   "title": "26 U.S. Code \u00a7 21(a)(2) | 26 U.S. Code \u00a7 21(c)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/21"
+   ],
+   "citation_paths": [
+    "us/statute/26/21",
+    "us/statute/26/21/a",
+    "us/statute/26/21/a/1",
+    "us/statute/26/21/a/2",
+    "us/statute/26/21/b",
+    "us/statute/26/21/b/1",
+    "us/statute/26/21/b/2",
+    "us/statute/26/21/c",
+    "us/statute/26/21/c/1",
+    "us/statute/26/21/c/2",
+    "us/statute/26/21/d",
+    "us/statute/26/21/d/1",
+    "us/statute/26/21/d/2",
+    "us/statute/26/21/e",
+    "us/statute/26/21/e/1",
+    "us/statute/26/21/e/10",
+    "us/statute/26/21/e/2",
+    "us/statute/26/21/e/3",
+    "us/statute/26/21/e/4",
+    "us/statute/26/21/e/5",
+    "us/statute/26/21/e/6",
+    "us/statute/26/21/e/7",
+    "us/statute/26/21/e/8",
+    "us/statute/26/21/e/9",
+    "us/statute/26/21/f",
+    "us/statute/26/21/g",
+    "us/statute/26/21/g/1",
+    "us/statute/26/21/g/2",
+    "us/statute/26/21/g/3",
+    "us/statute/26/21/g/4",
+    "us/statute/26/21/h",
+    "us/statute/26/21/h/1",
+    "us/statute/26/21/h/2",
+    "us/statute/26/21/h/3",
+    "us/statute/26/21/h/4",
+    "us/statute/26/21/h/5"
+   ]
+  },
+  {
+   "id": "USC 26 3401",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/3401"
+   ],
+   "citation_paths": [
+    "us/statute/26/3401",
+    "us/statute/26/3401/a",
+    "us/statute/26/3401/a/1",
+    "us/statute/26/3401/a/10",
+    "us/statute/26/3401/a/11",
+    "us/statute/26/3401/a/12",
+    "us/statute/26/3401/a/13",
+    "us/statute/26/3401/a/14",
+    "us/statute/26/3401/a/15",
+    "us/statute/26/3401/a/16",
+    "us/statute/26/3401/a/17",
+    "us/statute/26/3401/a/18",
+    "us/statute/26/3401/a/19",
+    "us/statute/26/3401/a/2",
+    "us/statute/26/3401/a/20",
+    "us/statute/26/3401/a/21",
+    "us/statute/26/3401/a/22",
+    "us/statute/26/3401/a/23",
+    "us/statute/26/3401/a/3",
+    "us/statute/26/3401/a/4",
+    "us/statute/26/3401/a/5",
+    "us/statute/26/3401/a/6",
+    "us/statute/26/3401/a/7",
+    "us/statute/26/3401/a/8",
+    "us/statute/26/3401/a/9",
+    "us/statute/26/3401/b",
+    "us/statute/26/3401/c",
+    "us/statute/26/3401/d",
+    "us/statute/26/3401/d/1",
+    "us/statute/26/3401/d/2",
+    "us/statute/26/3401/e",
+    "us/statute/26/3401/f",
+    "us/statute/26/3401/g",
+    "us/statute/26/3401/h",
+    "us/statute/26/3401/h/1",
+    "us/statute/26/3401/h/2",
+    "us/statute/26/3401/i",
+    "us/statute/26/3401/i/1",
+    "us/statute/26/3401/i/2"
+   ]
+  },
+  {
+   "id": "USC 26 7703",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/7703"
+   ],
+   "citation_paths": [
+    "us/statute/26/7703",
+    "us/statute/26/7703/a",
+    "us/statute/26/7703/a/1",
+    "us/statute/26/7703/a/2",
+    "us/statute/26/7703/b",
+    "us/statute/26/7703/b/1",
+    "us/statute/26/7703/b/2",
+    "us/statute/26/7703/b/3"
+   ]
+  },
+  {
+   "id": "USC 26 subtitle-A",
+   "jurisdiction": "US",
+   "title": "26 U.S. Code Subpart A - Nonrefundable Personal Credits | 26 U.S. Code Subpart C - Refundable Credits",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-A",
+    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-C",
+    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-B/part-III"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 38 101",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/38/101"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 42 chapter-7",
+   "jurisdiction": "US",
+   "title": "42 U.S. Code Part A\u2014Block Grants to States for Temporary Assistance for Needy Families",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A",
+    "https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 7 2012",
+   "jurisdiction": "US",
+   "title": "7 U.S. Code \u00a7 2012(u)(4)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/7/2012"
+   ],
+   "citation_paths": [
+    "us/statute/7/2012",
+    "us/statute/7/2012/a",
+    "us/statute/7/2012/b",
+    "us/statute/7/2012/c",
+    "us/statute/7/2012/d",
+    "us/statute/7/2012/d/1",
+    "us/statute/7/2012/d/2",
+    "us/statute/7/2012/e",
+    "us/statute/7/2012/f",
+    "us/statute/7/2012/g",
+    "us/statute/7/2012/h",
+    "us/statute/7/2012/i",
+    "us/statute/7/2012/j",
+    "us/statute/7/2012/j/1",
+    "us/statute/7/2012/j/2",
+    "us/statute/7/2012/j/3",
+    "us/statute/7/2012/j/4",
+    "us/statute/7/2012/j/5",
+    "us/statute/7/2012/j/6",
+    "us/statute/7/2012/j/7",
+    "us/statute/7/2012/k",
+    "us/statute/7/2012/l",
+    "us/statute/7/2012/l/1",
+    "us/statute/7/2012/l/2",
+    "us/statute/7/2012/m",
+    "us/statute/7/2012/m/1",
+    "us/statute/7/2012/m/2",
+    "us/statute/7/2012/m/3",
+    "us/statute/7/2012/m/4",
+    "us/statute/7/2012/m/5",
+    "us/statute/7/2012/n",
+    "us/statute/7/2012/o",
+    "us/statute/7/2012/o/1",
+    "us/statute/7/2012/o/2",
+    "us/statute/7/2012/o/3",
+    "us/statute/7/2012/o/4",
+    "us/statute/7/2012/o/5",
+    "us/statute/7/2012/p",
+    "us/statute/7/2012/q",
+    "us/statute/7/2012/q/1",
+    "us/statute/7/2012/q/2",
+    "us/statute/7/2012/r",
+    "us/statute/7/2012/s",
+    "us/statute/7/2012/t",
+    "us/statute/7/2012/u",
+    "us/statute/7/2012/u/1",
+    "us/statute/7/2012/u/2",
+    "us/statute/7/2012/u/3",
+    "us/statute/7/2012/u/4",
+    "us/statute/7/2012/v"
+   ]
+  },
+  {
+   "id": "USC 7 2014",
+   "jurisdiction": "US",
+   "title": "7 U.S. Code \u00a7 2014(e)(6)(B) | 7 U.S. Code \u00a7 2014(g)(1)(A)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/7/2014"
+   ],
+   "citation_paths": [
+    "us/statute/7/2014",
+    "us/statute/7/2014/a",
+    "us/statute/7/2014/b",
+    "us/statute/7/2014/c",
+    "us/statute/7/2014/c/1",
+    "us/statute/7/2014/c/2",
+    "us/statute/7/2014/d",
+    "us/statute/7/2014/d/1",
+    "us/statute/7/2014/d/10",
+    "us/statute/7/2014/d/11",
+    "us/statute/7/2014/d/12",
+    "us/statute/7/2014/d/13",
+    "us/statute/7/2014/d/14",
+    "us/statute/7/2014/d/15",
+    "us/statute/7/2014/d/16",
+    "us/statute/7/2014/d/17",
+    "us/statute/7/2014/d/18",
+    "us/statute/7/2014/d/19",
+    "us/statute/7/2014/d/2",
+    "us/statute/7/2014/d/3",
+    "us/statute/7/2014/d/4",
+    "us/statute/7/2014/d/5",
+    "us/statute/7/2014/d/6",
+    "us/statute/7/2014/d/7",
+    "us/statute/7/2014/d/8",
+    "us/statute/7/2014/d/9",
+    "us/statute/7/2014/e",
+    "us/statute/7/2014/e/1",
+    "us/statute/7/2014/e/2",
+    "us/statute/7/2014/e/3",
+    "us/statute/7/2014/e/4",
+    "us/statute/7/2014/e/5",
+    "us/statute/7/2014/e/6",
+    "us/statute/7/2014/f",
+    "us/statute/7/2014/f/1",
+    "us/statute/7/2014/f/2",
+    "us/statute/7/2014/f/3",
+    "us/statute/7/2014/f/4",
+    "us/statute/7/2014/g",
+    "us/statute/7/2014/g/1",
+    "us/statute/7/2014/g/2",
+    "us/statute/7/2014/g/3",
+    "us/statute/7/2014/g/4",
+    "us/statute/7/2014/g/5",
+    "us/statute/7/2014/g/6",
+    "us/statute/7/2014/g/7",
+    "us/statute/7/2014/g/8",
+    "us/statute/7/2014/h",
+    "us/statute/7/2014/h/1",
+    "us/statute/7/2014/h/2",
+    "us/statute/7/2014/h/3",
+    "us/statute/7/2014/i",
+    "us/statute/7/2014/i/1",
+    "us/statute/7/2014/i/2",
+    "us/statute/7/2014/j",
+    "us/statute/7/2014/k",
+    "us/statute/7/2014/k/1",
+    "us/statute/7/2014/k/2",
+    "us/statute/7/2014/k/3",
+    "us/statute/7/2014/k/4",
+    "us/statute/7/2014/l",
+    "us/statute/7/2014/m",
+    "us/statute/7/2014/m/1",
+    "us/statute/7/2014/m/2",
+    "us/statute/7/2014/m/3",
+    "us/statute/7/2014/n"
+   ]
+  },
+  {
+   "id": "USC 7 2015",
+   "jurisdiction": "US",
+   "title": "7 U.S.C. 2015(o)(7) - Good faith exemptions for Alaska and Hawaii | 7 U.S.C. 2015(o)(3) - ABAWD Time Limit Exceptions",
+   "document_class": "us_code",
+   "urls": [
+    "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title7-section2015&num=0&edition=prelim",
+    "https://www.law.cornell.edu/uscode/text/7/2015"
+   ],
+   "citation_paths": [
+    "us/statute/7/2015",
+    "us/statute/7/2015/a",
+    "us/statute/7/2015/b",
+    "us/statute/7/2015/b/1",
+    "us/statute/7/2015/b/2",
+    "us/statute/7/2015/b/3",
+    "us/statute/7/2015/b/4",
+    "us/statute/7/2015/c",
+    "us/statute/7/2015/c/1",
+    "us/statute/7/2015/c/2",
+    "us/statute/7/2015/c/3",
+    "us/statute/7/2015/c/4",
+    "us/statute/7/2015/c/5",
+    "us/statute/7/2015/d",
+    "us/statute/7/2015/d/1",
+    "us/statute/7/2015/d/2",
+    "us/statute/7/2015/d/3",
+    "us/statute/7/2015/d/4",
+    "us/statute/7/2015/e",
+    "us/statute/7/2015/e/1",
+    "us/statute/7/2015/e/2",
+    "us/statute/7/2015/e/3",
+    "us/statute/7/2015/e/4",
+    "us/statute/7/2015/e/5",
+    "us/statute/7/2015/e/6",
+    "us/statute/7/2015/e/7",
+    "us/statute/7/2015/e/8",
+    "us/statute/7/2015/f",
+    "us/statute/7/2015/f/1",
+    "us/statute/7/2015/f/2",
+    "us/statute/7/2015/g",
+    "us/statute/7/2015/h",
+    "us/statute/7/2015/i",
+    "us/statute/7/2015/i/1",
+    "us/statute/7/2015/i/2",
+    "us/statute/7/2015/i/3",
+    "us/statute/7/2015/j",
+    "us/statute/7/2015/k",
+    "us/statute/7/2015/k/1",
+    "us/statute/7/2015/k/2",
+    "us/statute/7/2015/l",
+    "us/statute/7/2015/l/1",
+    "us/statute/7/2015/l/2",
+    "us/statute/7/2015/l/3",
+    "us/statute/7/2015/m",
+    "us/statute/7/2015/m/1",
+    "us/statute/7/2015/m/2",
+    "us/statute/7/2015/m/3",
+    "us/statute/7/2015/m/4",
+    "us/statute/7/2015/n",
+    "us/statute/7/2015/n/1",
+    "us/statute/7/2015/n/2",
+    "us/statute/7/2015/o",
+    "us/statute/7/2015/o/1",
+    "us/statute/7/2015/o/2",
+    "us/statute/7/2015/o/3",
+    "us/statute/7/2015/o/4",
+    "us/statute/7/2015/o/5",
+    "us/statute/7/2015/o/6",
+    "us/statute/7/2015/o/7",
+    "us/statute/7/2015/o/8",
+    "us/statute/7/2015/p",
+    "us/statute/7/2015/q",
+    "us/statute/7/2015/r",
+    "us/statute/7/2015/r/1",
+    "us/statute/7/2015/r/2",
+    "us/statute/7/2015/r/3",
+    "us/statute/7/2015/s",
+    "us/statute/7/2015/s/1",
+    "us/statute/7/2015/s/2",
+    "us/statute/7/2015/s/3"
+   ]
+  },
+  {
+   "id": "USC 7 2017",
+   "jurisdiction": "US",
+   "title": "7 U.S. Code \u00a7 2017 - Value of allotment",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/7/2017"
+   ],
+   "citation_paths": [
+    "us/statute/7/2017",
+    "us/statute/7/2017/a",
+    "us/statute/7/2017/b",
+    "us/statute/7/2017/c",
+    "us/statute/7/2017/c/1",
+    "us/statute/7/2017/c/2",
+    "us/statute/7/2017/c/3",
+    "us/statute/7/2017/d",
+    "us/statute/7/2017/d/1",
+    "us/statute/7/2017/d/2",
+    "us/statute/7/2017/e",
+    "us/statute/7/2017/e/1",
+    "us/statute/7/2017/e/2",
+    "us/statute/7/2017/f",
+    "us/statute/7/2017/f/1",
+    "us/statute/7/2017/f/2",
+    "us/statute/7/2017/f/3"
+   ]
+  },
+  {
+   "id": "USC 8 1612",
+   "jurisdiction": "US",
+   "title": "8 USC 1612 - Limited eligibility of qualified aliens for certain Federal programs",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/8/1612"
+   ],
+   "citation_paths": [
+    "us/statute/8/1612",
+    "us/statute/8/1612/a",
+    "us/statute/8/1612/a/1",
+    "us/statute/8/1612/a/2",
+    "us/statute/8/1612/a/3",
+    "us/statute/8/1612/b",
+    "us/statute/8/1612/b/1",
+    "us/statute/8/1612/b/2",
+    "us/statute/8/1612/b/2/G",
+    "us/statute/8/1612/b/3"
+   ]
+  },
+  {
+   "id": "web:aspe.hhs.gov/2015-poverty-guidelines",
+   "jurisdiction": "US",
+   "title": "2015 Poverty Guidelines",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/2015-poverty-guidelines"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:aspe.hhs.gov/2016-poverty-guidelines",
+   "jurisdiction": "US",
+   "title": "2016 Poverty Guidelines",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/2016-poverty-guidelines"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+   "jurisdiction": "US",
+   "title": "2026 Poverty Guidelines | Poverty Guidelines",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines"
+   ],
+   "citation_paths": [
+    "us/guidance/hhs/aspe/poverty-guidelines/2026",
+    "us/guidance/hhs/aspe/poverty-guidelines/2026/block-1",
+    "us/guidance/hhs/aspe/poverty-guidelines/2026/block-2",
+    "us/guidance/hhs/aspe/poverty-guidelines/2026/block-3"
+   ]
+  },
+  {
+   "id": "web:aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references",
+   "jurisdiction": "US",
+   "title": "Prior HHS Poverty Guidelines and Federal Register References",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cbo.gov/publication/59710",
+   "jurisdiction": "US",
+   "title": "CBO Economic Projections, February 2024.",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.cbo.gov/publication/59710"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf",
+   "jurisdiction": "US",
+   "title": "H.R.1 - One Big Beautiful Bill Act, SEC. 70103 | Public Law 119-21, Section 10102(c) - Exemption for noncontiguous States",
+   "document_class": "federal_legislative_other",
+   "urls": [
+    "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:data.bls.gov/timeseries/CUUR0000SA0",
+   "jurisdiction": "US",
+   "title": "BLS | CPI-U annual averages (CUUR0000SA0; calendar-year average encoded at each year's January instant) | BLS Consumer Price Index for All Urban Consumers (CPI-U), all items, U.S. city average, not seasonally adjusted (CUUR0000SA0)",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://data.bls.gov/timeseries/CUUR0000SA0"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:data.census.gov/table/ACSDT1Y2023.B25040",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://data.census.gov/table/ACSDT1Y2023.B25040"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dbmefaapolicy.azdes.gov",
+   "jurisdiction": "US-AZ",
+   "title": "AZ DES CNAP manual FAA6.J Standards, Fees, and Amounts, 09 Utility Allowance Current Amount (archived 10/01/2022 page under Previous Years; \"LUA is effective the benefit month of 01/2023\") | AZ DES FAA6.J Standards, Fees, and Amounts, 09 Utility Allowance Current Amount (FY2026 and FY2027 amounts; archived pages under Previous Years cover FY2023-FY2025)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dbmefaapolicy.azdes.gov/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dbmefaapolicy.azdes.gov/index.html",
+   "jurisdiction": "US-AZ",
+   "title": "Arizona Department of Economic Security | CNAP Manual, NA Medical Expenses and Deduction",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dbmefaapolicy.azdes.gov/index.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310",
+   "jurisdiction": "US",
+   "title": "USDA utility allowances by state spreadsheet. Extracted by build_utility_allowances (FY2024) | USDA SNAP utility allowances by state spreadsheet (FY2024)",
+   "document_class": "federal_agency_data_opaque_host",
+   "urls": [
+    "https://docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?ouid=116242521439357911562&rtpof=true&sd=true",
+   "jurisdiction": "US",
+   "title": "USDA utility allowances by state spreadsheet (FY2019)",
+   "document_class": "federal_agency_data_opaque_host",
+   "urls": [
+    "https://docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?usp=sharing&ouid=116242521439357911562&rtpof=true&sd=true"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx",
+   "jurisdiction": "US",
+   "title": "USDA utility allowances by state spreadsheet (FY2026, revised May 2026; FNS labels it updated August 2026)",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2019 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2020 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY21-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2021 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY21-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY22-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2022 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY22-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY24-Maximum-Allotments-and-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2024 Maximum Allotments and Deductions | Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2024 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY24-Maximum-Allotments-and-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/FY23-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2023 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/FY23-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Minnesota FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS North Dakota FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Pennsylvania FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP State Options Report, 16th Edition | USDA FNS SNAP State Options Report, 16th Edition (June 2024) - Treatment of Self-Employment Income",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2023 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS SNAP State Options Report, 13th Edition (Oct 2016) - Simplified Self-Employment Determination",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/FY16-Maximun-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2016 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/FY16-Maximun-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/FY17-Maximun-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2017 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/FY17-Maximun-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP FY2018 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/media/file/FY21-COVID ARPA-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions [ARPA]",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID%20ARPA-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/media/file/FY21-COVID-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "title": "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions [CAA]",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx",
+   "jurisdiction": "US",
+   "title": "USDA utility allowances by state spreadsheet. Extracted by build_utility_allowances (FY2025) | USDA SNAP utility allowances by state spreadsheet (FY2025)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS FY 2025 Quarter 2 ABAWD Waiver Status Report (waivers as of 2025-01-01; NY then statewide under its FY2024 waiver)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS FY 2025 Quarter 4 ABAWD Waiver Status Report (waivers as of 2025-07-01; NY classified as a partial waiver)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Alaska FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Arizona FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS California Statewide ABAWD Waiver Response, January 15, 2025 (effective 2025-02-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS California Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Colorado FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, January 13, 2025 (effective 2025-01-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, FY 2025 (effective 2024-12-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Hawaii FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Illinois Statewide ABAWD Waiver Response, March 14, 2025 (effective 2025-02-01 through 2026-01-31)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Illinois Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Kentucky FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Massachusetts FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Maryland FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Michigan FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Minnesota FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS North Dakota FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS New Jersey FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Nevada Statewide ABAWD Waiver Response (effective 2025-02-01 through 2026-01-31)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS New York Statewide ABAWD Waiver Response, FY 2024 (statewide, effective 2024-03-01 through 2025-02-28)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS New York ABAWD Waiver Response, October 2, 2024 (61 counties, effective 2025-03-01 through 2026-02-28)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Oregon FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS South Dakota FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Virginia FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Washington FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS Wisconsin FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/10-State_Options.pdf",
+   "jurisdiction": "US",
+   "title": "USDA FNS SNAP State Options Report (10th Edition, August 2012), p. 16",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/10-State_Options.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/12-State_Options.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP State Options Report, 12th Report (April 2016)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/12-State_Options.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP State Options Report, 13th Report (August 2017)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/14-State-Options.pdf",
+   "jurisdiction": "US",
+   "title": "SNAP State Options Report, 14th Report (May 2018)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/14-State-Options.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/allotment/COLA",
+   "jurisdiction": "US",
+   "title": "USDA Cost of Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/allotment/COLA"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/allotment/cola/fy26",
+   "jurisdiction": "US",
+   "title": "SNAP FY2026 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/allotment/cola/fy26"
+   ],
+   "citation_paths": [
+    "us/guidance/recovery/release-scope-us-guidance-2026-05-01-snap-fy2026-cola",
+    "us/guidance/recovery/release-scope-us-guidance-2026-05-01-snap-fy2026-cola/block-1",
+    "us/guidance/recovery/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards",
+    "us/guidance/recovery/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards/block-1",
+    "us/guidance/usda/fns/snap-fy2026-cola",
+    "us/guidance/usda/fns/snap-fy2026-cola/page-1",
+    "us/guidance/usda/fns/snap-fy2026-cola/page-2",
+    "us/guidance/usda/fns/snap-fy2026-income-eligibility-standards",
+    "us/guidance/usda/fns/snap-fy2026-income-eligibility-standards/page-1",
+    "us/guidance/usda/fns/snap-fy2026-income-eligibility-standards/page-2"
+   ]
+  },
+  {
+   "id": "web:fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments",
+   "jurisdiction": "US",
+   "title": "SNAP FY2018 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances",
+   "jurisdiction": "US",
+   "title": "USDA | Food and Nutrition Service | SNAP | Standard Utility Allowances",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/eligibility/elderly-disabled-special-rules",
+   "jurisdiction": "US",
+   "title": "SNAP Special Rules for the Elderly or Disabled",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2015-snap-resource-limit-memo",
+   "jurisdiction": "US",
+   "title": "SNAP FY2015 Resource Limit Memo",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2015-snap-resource-limit-memo"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2023-cola",
+   "jurisdiction": "US",
+   "title": "SNAP FY2023 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2023-cola"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2024-cola",
+   "jurisdiction": "US",
+   "title": "SNAP FY2024 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2024-cola"
+   ],
+   "citation_paths": [
+    "us/guidance/recovery/release-scope-us-guidance-2026-07-08-snap-fy2024-cola",
+    "us/guidance/recovery/release-scope-us-guidance-2026-07-08-snap-fy2024-cola/block-1",
+    "us/guidance/usda/fns/snap-fy2024-cola",
+    "us/guidance/usda/fns/snap-fy2024-cola/page-1",
+    "us/guidance/usda/fns/snap-fy2024-cola/page-2",
+    "us/guidance/usda/fns/snap-fy2024-cola/page-3",
+    "us/guidance/usda/fns/snap-fy2024-cola/page-4",
+    "us/guidance/usda/fns/snap-fy2024-cola/page-5"
+   ]
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2025-cola",
+   "jurisdiction": "US",
+   "title": "SNAP FY2025 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2025-cola"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo",
+   "jurisdiction": "US",
+   "title": "USDA FNS SNAP Provisions of the One Big Beautiful Bill Act of 2025, ABAWD Waivers Implementation Memorandum (October 3, 2025)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/obbb-abawd-exemptions-implementation",
+   "jurisdiction": "US",
+   "title": "USDA FNS, SNAP - OBBB ABAWD Exceptions Implementation | FNS ABAWD Exceptions Implementation Memorandum (October 3, 2025)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/obbb-abawd-exemptions-implementation"
+   ],
+   "citation_paths": [
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo",
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-1",
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-2",
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-3",
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-4",
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-5",
+    "us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-6"
+   ]
+  },
+  {
+   "id": "web:fns.usda.gov/snap/obbb-alien-eligibility",
+   "jurisdiction": "US",
+   "title": "USDA FNS - SNAP Implementation of OBBB - Alien SNAP Eligibility",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/obbb-alien-eligibility"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023",
+   "jurisdiction": "US",
+   "title": "Fiscal Responsibility Act of 2023, Section 311 - ABAWD Age Phase-In | Fiscal Responsibility Act of 2023, Section 311 - SNAP provisions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers",
+   "jurisdiction": "US",
+   "title": "SNAP \u2013 Questions and Answers Related to Food and Nutrition Services Policy Memos Regarding Title IV Provisions of the Agriculture Improvement Act of 2018",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/work-requirements",
+   "jurisdiction": "US",
+   "title": "SNAP Work Requirements",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/work-requirements"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement",
+   "jurisdiction": "US",
+   "title": "USDA Food and Nutrition Administration, SNAP Waiver of the Time Limit - Status Update (landing page for the February 26, 2026 memorandum)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf",
+   "jurisdiction": "US",
+   "title": "LIHEAP Clearinghouse - A New Framework for Heat and Eat (2014)",
+   "document_class": "federal_agency_guidance:hhs_acf",
+   "urls": [
+    "https://liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm",
+   "jurisdiction": "US",
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_acf",
+   "urls": [
+    "https://liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf",
+   "jurisdiction": "US",
+   "title": "FY 2018 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2020-12/FY 2019 SNAP QC Technical Documentation.pdf",
+   "jurisdiction": "US",
+   "title": "FY 2019 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2020-12/FY%202019%20SNAP%20QC%20Technical%20Documentation.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2022-12/FY 2020 SNAP QC Technical Documentation.pdf",
+   "jurisdiction": "US",
+   "title": "FY 2020 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2022-12/FY%202020%20SNAP%20QC%20Technical%20Documentation.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2024-05/FY 2021 Tech Doc.pdf",
+   "jurisdiction": "US",
+   "title": "FY 2021 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2024-05/FY%202021%20Tech%20Doc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2025-03/FY 2023 Tech Doc.pdf",
+   "jurisdiction": "US",
+   "title": "FY 2023 SNAP QC Technical Documentation, Table F.7 (first published Arkansas BUA)",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf",
+   "jurisdiction": "US",
+   "title": "USDA SNAP Waiver of the Time Limit - Status Update Memorandum, February 26, 2026 (Appendix A, time limit waiver expiration dates)",
+   "document_class": "federal_agency_guidance:usda",
+   "urls": [
+    "https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf"
+   ],
+   "citation_paths": []
+  }
+ ]
+}

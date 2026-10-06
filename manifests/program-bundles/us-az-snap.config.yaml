@@ -1,0 +1,136 @@
+# How manifests/program-bundles/us-az-snap.yaml is built. Every choice the
+# bundle rests on is here, as data a reviewer can change: the inputs and their
+# versions, what each tier draws its documents from, every exclusion and its
+# reason, and the part of the program each document feeds.
+#
+# Rebuild:  python scripts/build_program_bundle.py manifests/program-bundles/us-az-snap.config.yaml
+
+id: us-az/snap
+title: Arizona SNAP
+program: snap
+jurisdiction: us-az
+current_fiscal_year: 2026
+
+# The parts of the program, in reading order. Every document and every cited
+# provision lands in one of them; /ops/bundles shows them as its rows.
+parts:
+  - Household and eligibility
+  - Income
+  - Deductions
+  - Assets
+  - Work requirements
+  - Benefit amount
+  - Issuance and EBT
+  - Definitions from other programs
+  - Whole program
+  - Other
+
+screener:
+  title: Screener-level parity
+  definition: >-
+    Every document that PolicyEngine-US cites for this program in this state is encoded, or excluded with a
+    recorded reason. A conformance report against a pinned PolicyEngine version closes the tier.
+  # The PolicyEngine-US references for SNAP that apply to Arizona, each with
+  # the citation path the parity model derived for it.
+  references: sources/policyengine-us/snap-us-az-references.json
+  # The plan's SNAP documents for the federal layer and Arizona.
+  plan: sources/plans/snap-us-az-plan-documents.json
+  # Plan documents whose URL names no page, mapped to their page by title.
+  crosswalk:
+    "web:dbmefaapolicy.azdes.gov": us-az/manual/des/faa6/utility-allowance-current-amount
+    "web:dbmefaapolicy.azdes.gov/index.html": us-az/manual/des/faa5/na-medical-expenses-and-deduction
+  # A reference's part is the part of the PolicyEngine folder that cites it
+  # (gov/usda/snap/<folder>/...; income/<folder> for income).
+  folder_parts:
+    eligibility: Household and eligibility
+    categorical_eligibility: Household and eligibility
+    student: Household and eligibility
+    snap_unit_size: Household and eligibility
+    has_snap_elderly_disabled_member: Household and eligibility
+    income/ineligible_members: Household and eligibility
+    income: Income
+    income/deductions: Deductions
+    asset_test: Assets
+    work_requirements: Work requirements
+    min_allotment: Benefit amount
+    max_allotment: Benefit amount
+    uprating: Benefit amount
+    emergency_allotment: Benefit amount
+  # A plan document no SNAP file cites takes the part of the first pattern
+  # its citation path, URL or title matches.
+  plan_parts:
+    - pattern: "^us/(statute/(26|38|25)|regulation/26|form/irs|manual/ssa)/"
+      part: Definitions from other programs
+    - pattern: "(?i)poverty"
+      part: Income
+    - pattern: "(?i)cola|allotment"
+      part: Benefit amount
+    - pattern: "(?i)abawd|work-requirement|time-limit"
+      part: Work requirements
+    - pattern: "(?i)utility|sua-|deduction"
+      part: Deductions
+    - pattern: "(?i)alien|elderly|disabled|eligib"
+      part: Household and eligibility
+  # References that are not current law, or not law at all. A document is
+  # also excluded when its publisher is another state.
+  exclusions:
+    back_year: "Back-year table: not current law"
+    secondary: "Secondary source: not law"
+    data_series: "Data series: not law"
+    other_state: "Another state's source"
+  secondary_hosts: "(?i)snapscreener|docs\\.google\\.com|benefitswiki|website-files\\.com|policyengine\\.org|github\\.com|state[-_ ]?options"
+  data_series_hosts: "(?i)snapqcdata\\.net|data\\.census\\.gov|data\\.bls\\.gov|fred\\.stlouisfed"
+  state_hosts:
+    azdes.gov: az
+    az.gov: az
+
+full:
+  title: Full document bundle
+  definition: >-
+    Every primary source of the state's own rules for this program: its policy manual, regulations, state plans,
+    waivers and change notices. The federal layer it builds on is the screener tier's federal documents.
+  manifests:
+    - manifests/us-az-des-faa5-manual.yaml
+    - manifests/us-az-des-faa6-utility-amounts.yaml
+    - manifests/us-az-snap-primary-policy.yaml
+    - manifests/us-az-snap-et-state-plan.yaml
+  # Pages of a manifest, by toc_sequence, that belong to another program.
+  exclude:
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [3, 44]
+      reason: "Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP"
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [54, 59]
+      reason: "Cash Assistance benefit determination: not SNAP"
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [78, 78]
+      reason: "Cash Assistance EBT use: not SNAP"
+  # The part each section feeds: by toc range within a manifest, then by
+  # citation path or source URL for single documents. The first match wins.
+  parts:
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [1, 2]
+      part: Work requirements
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [45, 49]
+      part: Benefit amount
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [50, 52]
+      part: Household and eligibility
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [53, 53]
+      part: Benefit amount
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [60, 65]
+      part: Deductions
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc: [66, 79]
+      part: Issuance and EBT
+    - manifest: manifests/us-az-des-faa6-utility-amounts.yaml
+      part: Deductions
+    - manifest: manifests/us-az-snap-et-state-plan.yaml
+      part: Work requirements
+    - key: us-az/regulation/aac/6/14
+      part: Whole program
+    - key: https://www.fna.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+      part: Work requirements

@@ -3,8 +3,20 @@ id: us-az/snap
 program: snap
 jurisdiction: us-az
 title: Arizona SNAP
-as_of: '2026-10-05'
+as_of: '2026-10-06'
+config: manifests/program-bundles/us-az-snap.config.yaml
 generator: scripts/build_program_bundle.py
+parts:
+- Household and eligibility
+- Income
+- Deductions
+- Assets
+- Work requirements
+- Benefit amount
+- Issuance and EBT
+- Definitions from other programs
+- Whole program
+- Other
 tiers:
 - id: screener
   title: Screener-level parity
@@ -13,15 +25,14 @@ tiers:
   membership:
     rule: The plan's documents for the program (federal and state), and the PolicyEngine-US references in the program's
       own files that apply to the state, grouped into documents
+    references: sources/policyengine-us/snap-us-az-references.json
     policyengine_us_commit: 84253b6afafbb1875c65f12e654c6535744728b7
-    references: 179
     references_derived_by: axiom-encode-economics parity (all-snap)
-    plan: axiom-roadmap-dashboard@c93d4a62:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
+    reference_count: 179
+    plan: sources/plans/snap-us-az-plan-documents.json
+    plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
     plan_as_of: '2026-09-29'
     plan_documents: 121
-    crosswalk:
-      web:dbmefaapolicy.azdes.gov: us-az/manual/des/faa6/utility-allowance-current-amount
-      web:dbmefaapolicy.azdes.gov/index.html: us-az/manual/des/faa5/na-medical-expenses-and-deduction
   documents:
   - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
     name: Prior HHS Poverty Guidelines and Federal Register References
@@ -84,7 +95,7 @@ tiers:
     - plan
     references: 1
     scope: in
-    part: Other
+    part: Benefit amount
   - key: https://www.congress.gov/113/plaws/publ79/PLAW-113publ79.pdf
     name: congress.gov/113/plaws/publ79/PLAW-113publ79.pdf
     layer: federal
@@ -828,11 +839,11 @@ tiers:
     - plan
     references: 1
     scope: in
-    part: Other
+    part: Household and eligibility
     cited:
     - path: us/statute/7/2017/a
       references: 1
-      part: Other
+      part: Household and eligibility
   - key: us/statute/8/1612
     name: 8 USC 1612
     layer: federal
@@ -906,7 +917,7 @@ tiers:
     references: 1
     scope: excluded
     reason: 'Data series: not law'
-    part: Other
+    part: Benefit amount
   - key: https://data.census.gov/table/ACSDT1Y2023.B25040
     name: web:data.census.gov/table/ACSDT1Y2023.B25040
     layer: federal
@@ -1662,7 +1673,7 @@ tiers:
     references: 1
     scope: excluded
     reason: 'Secondary source: not law'
-    part: Other
+    part: Deductions
   - key: https://www.snapscreener.com/blog/emergency-allotments
     name: snapscreener.com/blog/emergency-allotments
     layer: federal
@@ -1843,28 +1854,12 @@ tiers:
   definition: 'Every primary source of the state''s own rules for this program: its policy manual, regulations,
     state plans, waivers and change notices. The federal layer it builds on is the screener tier''s federal documents.'
   membership:
-    rule: Documents of the named source manifests, less the ranges excluded below
+    rule: Documents of the named source manifests, less the excluded pages
     manifests:
     - manifests/us-az-des-faa5-manual.yaml
     - manifests/us-az-des-faa6-utility-amounts.yaml
-    - manifests/us-az-snap-et-state-plan.yaml
     - manifests/us-az-snap-primary-policy.yaml
-    excluded_ranges:
-    - manifest: manifests/us-az-des-faa5-manual.yaml
-      toc:
-      - 3
-      - 44
-      reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
-    - manifest: manifests/us-az-des-faa5-manual.yaml
-      toc:
-      - 54
-      - 59
-      reason: 'Cash Assistance benefit determination: not SNAP'
-    - manifest: manifests/us-az-des-faa5-manual.yaml
-      toc:
-      - 78
-      - 78
-      reason: 'Cash Assistance EBT use: not SNAP'
+    - manifests/us-az-snap-et-state-plan.yaml
   documents:
   - key: us-az/manual/des/faa5
     name: Arizona DES FAA5 manual table of contents
@@ -1880,14 +1875,14 @@ tiers:
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Work registration
+    part: Work requirements
   - key: us-az/manual/des/faa5/worw-purpose
     name: 'Arizona DES FAA5: 01 WORW - Purpose'
     citation_path: us-az/manual/des/faa5/worw-purpose
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/WORW_-_Purpose.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Work registration
+    part: Work requirements
   - key: us-az/manual/des/faa5/ca-work-programs
     name: 'Arizona DES FAA5: 02 CA Work Programs'
     citation_path: us-az/manual/des/faa5/ca-work-programs
@@ -2231,63 +2226,63 @@ tiers:
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Benefit_Calculation_Amounts.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit amounts
+    part: Benefit amount
   - key: us-az/manual/des/faa5/ffy-2026-na-cola-changes
     name: 'Arizona DES FAA5: 01 FFY 2026 NA COLA Changes'
     citation_path: us-az/manual/des/faa5/ffy-2026-na-cola-changes
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/FFY_2026_NA_COLA_Changes.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit amounts
+    part: Benefit amount
   - key: us-az/manual/des/faa5/determining-benefits
     name: 'Arizona DES FAA5: FAA5.I Determining Benefits'
     citation_path: us-az/manual/des/faa5/determining-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Determining_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Benefit amount
   - key: us-az/manual/des/faa5/determining-na-benefits
     name: 'Arizona DES FAA5: 01 Determining NA Benefits'
     citation_path: us-az/manual/des/faa5/determining-na-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Determining_NA_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Benefit amount
   - key: us-az/manual/des/faa5/na-eligibility-and-benefit-determination
     name: 'Arizona DES FAA5: A NA Eligibility and Benefit Determination'
     citation_path: us-az/manual/des/faa5/na-eligibility-and-benefit-determination
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Eligibility_and_Benefit_Determination.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Benefit amount
   - key: us-az/manual/des/faa5/na-categorical-eligibility
     name: 'Arizona DES FAA5: B NA Categorical Eligibility'
     citation_path: us-az/manual/des/faa5/na-categorical-eligibility
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Categorical_Eligibility.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Household and eligibility
   - key: us-az/manual/des/faa5/disqualified-na-participant-s-effect-on-the-na
     name: 'Arizona DES FAA5: C Disqualified NA Participant''s Effect on the NA Benefit Amount'
     citation_path: us-az/manual/des/faa5/disqualified-na-participant-s-effect-on-the-na
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Disqualified_NA_Participant's_Effect_on_the_NA.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Household and eligibility
   - key: us-az/manual/des/faa5/na-approval-periods
     name: 'Arizona DES FAA5: D NA Approval Periods'
     citation_path: us-az/manual/des/faa5/na-approval-periods
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Approval_Periods.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Household and eligibility
   - key: us-az/manual/des/faa5/na-transitional-benefit-assistance-tba
     name: 'Arizona DES FAA5: E NA Transitional Benefit Assistance (TBA)'
     citation_path: us-az/manual/des/faa5/na-transitional-benefit-assistance-tba
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Transitional_Benefit_Assistance_(TBA).html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Benefit determination
+    part: Benefit amount
   - key: us-az/manual/des/faa5/determining-ca-benefits
     name: 'Arizona DES FAA5: 02 Determining CA Benefits'
     citation_path: us-az/manual/des/faa5/determining-ca-benefits
@@ -2295,7 +2290,7 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance benefit determination: not SNAP'
-    part: Benefit determination
+    part: Other
   - key: us-az/manual/des/faa5/ca-benefit-determination
     name: 'Arizona DES FAA5: A CA Benefit Determination'
     citation_path: us-az/manual/des/faa5/ca-benefit-determination
@@ -2303,7 +2298,7 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance benefit determination: not SNAP'
-    part: Benefit determination
+    part: Other
   - key: us-az/manual/des/faa5/ca-payment-standard-a1-2fa2
     name: 'Arizona DES FAA5: B CA Payment Standard (A1/A2)'
     citation_path: us-az/manual/des/faa5/ca-payment-standard-a1-2fa2
@@ -2311,7 +2306,7 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance benefit determination: not SNAP'
-    part: Benefit determination
+    part: Other
   - key: us-az/manual/des/faa5/whose-income-effects-the-ca-benefit-amount
     name: 'Arizona DES FAA5: C Whose Income Effects the CA Benefit Amount'
     citation_path: us-az/manual/des/faa5/whose-income-effects-the-ca-benefit-amount
@@ -2319,7 +2314,7 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance benefit determination: not SNAP'
-    part: Benefit determination
+    part: Other
   - key: us-az/manual/des/faa5/transitional-child-care-tcc
     name: 'Arizona DES FAA5: D Transitional Child Care (TCC)'
     citation_path: us-az/manual/des/faa5/transitional-child-care-tcc
@@ -2327,7 +2322,7 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance benefit determination: not SNAP'
-    part: Benefit determination
+    part: Other
   - key: us-az/manual/des/faa5/tribal-tanf-eligibility-determination
     name: 'Arizona DES FAA5: E Tribal TANF Eligibility Determination'
     citation_path: us-az/manual/des/faa5/tribal-tanf-eligibility-determination
@@ -2335,133 +2330,133 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance benefit determination: not SNAP'
-    part: Benefit determination
+    part: Other
   - key: us-az/manual/des/faa5/expenses
     name: 'Arizona DES FAA5: 03 Expenses'
     citation_path: us-az/manual/des/faa5/expenses
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Expenses.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Expenses and deductions
+    part: Deductions
   - key: us-az/manual/des/faa5/shelter-expenses-and-deduction
     name: 'Arizona DES FAA5: A Shelter Expenses and Deduction'
     citation_path: us-az/manual/des/faa5/shelter-expenses-and-deduction
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Shelter_Expenses_and_Deduction.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Expenses and deductions
+    part: Deductions
   - key: us-az/manual/des/faa5/dependent-care-expense
     name: 'Arizona DES FAA5: B Dependent Care Expense'
     citation_path: us-az/manual/des/faa5/dependent-care-expense
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Dependent_Care_Expense.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Expenses and deductions
+    part: Deductions
   - key: us-az/manual/des/faa5/na-child-support-expense
     name: 'Arizona DES FAA5: C NA Child Support Expense'
     citation_path: us-az/manual/des/faa5/na-child-support-expense
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Child_Support_Expense.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Expenses and deductions
+    part: Deductions
   - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
     name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
     citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Utility_Expenses_and_Allowances.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Expenses and deductions
+    part: Deductions
   - key: us-az/manual/des/faa5/na-medical-expenses-and-deduction
     name: 'Arizona DES FAA5: E NA Medical Expenses and Deduction'
     citation_path: us-az/manual/des/faa5/na-medical-expenses-and-deduction
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Medical_Expenses_and_Deduction.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: Expenses and deductions
+    part: Deductions
   - key: us-az/manual/des/faa5/benefit-replacement-and-ebt-cards
     name: 'Arizona DES FAA5: FAA5.J Benefit Replacement and EBT Cards'
     citation_path: us-az/manual/des/faa5/benefit-replacement-and-ebt-cards
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Benefit_Replacement_and_EBT_Cards.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/supplemental-payments-and-restored-benefits
     name: 'Arizona DES FAA5: 01 Supplemental Payments and Restored Benefits'
     citation_path: us-az/manual/des/faa5/supplemental-payments-and-restored-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Supplemental_Payments_and_Restored_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/replacement-of-benefits
     name: 'Arizona DES FAA5: 02 Replacement of Benefits'
     citation_path: us-az/manual/des/faa5/replacement-of-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Replacement_of_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/replacement-issuance-of-stolen-benefits
     name: 'Arizona DES FAA5: A Replacement Issuance of Stolen Benefits'
     citation_path: us-az/manual/des/faa5/replacement-issuance-of-stolen-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Replacement_Issuance_of_Stolen_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/replacement-issuance-of-used-na-benefits
     name: 'Arizona DES FAA5: B Replacement Issuance of Used NA Benefits'
     citation_path: us-az/manual/des/faa5/replacement-issuance-of-used-na-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Replacement_Issuance_of_Used_NA_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/electronic-benefit-transfer-ebt-quest-card
     name: 'Arizona DES FAA5: 03 Electronic Benefit Transfer (EBT) QUEST Card'
     citation_path: us-az/manual/des/faa5/electronic-benefit-transfer-ebt-quest-card
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Electronic_Benefit_Transfer_(EBT)_QUEST_Card.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/special-participant-ebt-usage
     name: 'Arizona DES FAA5: 04 Special Participant EBT Usage'
     citation_path: us-az/manual/des/faa5/special-participant-ebt-usage
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Special_Participant_EBT_Usage.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/ebt-benefit-issuance-and-availability
     name: 'Arizona DES FAA5: 05 EBT Benefit Issuance and Availability'
     citation_path: us-az/manual/des/faa5/ebt-benefit-issuance-and-availability
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/EBT_Benefit_Issuance_and_Availability.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/using-benefits
     name: 'Arizona DES FAA5: FAA5.K Using Benefits'
     citation_path: us-az/manual/des/faa5/using-benefits
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Using_Benefits.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/general-ebt-usage-for-na
     name: 'Arizona DES FAA5: 01 General EBT Usage for NA'
     citation_path: us-az/manual/des/faa5/general-ebt-usage-for-na
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/General_EBT_Usage_for_NA.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/na-farmer-s-market-project
     name: 'Arizona DES FAA5: 02 NA Farmer''s Market Project'
     citation_path: us-az/manual/des/faa5/na-farmer-s-market-project
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Farmer's_Market_Project.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/na-restaurant-meals-program
     name: 'Arizona DES FAA5: 03 NA Restaurant Meals Program'
     citation_path: us-az/manual/des/faa5/na-restaurant-meals-program
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Restaurant_Meals_Program.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/general-ebt-usage-for-ca
     name: 'Arizona DES FAA5: 04 General EBT Usage for CA'
     citation_path: us-az/manual/des/faa5/general-ebt-usage-for-ca
@@ -2469,28 +2464,28 @@ tiers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: excluded
     reason: 'Cash Assistance EBT use: not SNAP'
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa5/online-ebt-purchasing
     name: 'Arizona DES FAA5: 05 Online EBT Purchasing'
     citation_path: us-az/manual/des/faa5/online-ebt-purchasing
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/Online_EBT_Purchasing.html
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
-    part: EBT and replacement
+    part: Issuance and EBT
   - key: us-az/manual/des/faa6/utility-allowance-current-amount
     name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
     citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
     source_url: https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
     manifest: manifests/us-az-des-faa6-utility-amounts.yaml
     scope: in
-    part: Benefit amounts
+    part: Deductions
   - key: us-az/regulation/aac/6/14
     name: AAC Title 6 Chapter 14 - Nutrition Assistance Program
     citation_path: us-az/regulation/aac/6/14
     source_url: https://apps.azsos.gov/public_services/Title_06/6-14.pdf
     manifest: manifests/us-az-snap-primary-policy.yaml
     scope: in
-    part: Regulations, plans and waivers
+    part: Whole program
   - key: https://dbmefaapolicy.azdes.gov/
     name: AZ DES FAA Policy Manual
     citation_path: null
@@ -2498,7 +2493,7 @@ tiers:
     manifest: manifests/us-az-snap-primary-policy.yaml
     scope: excluded
     reason: 'Index or overview page: no rules of its own'
-    part: Regulations, plans and waivers
+    part: Other
   - key: https://des.az.gov/services/basic-needs/food-assistance/nutrition-assistance
     name: AZ DES Nutrition Assistance Program
     citation_path: null
@@ -2506,18 +2501,18 @@ tiers:
     manifest: manifests/us-az-snap-primary-policy.yaml
     scope: excluded
     reason: 'Index or overview page: no rules of its own'
-    part: Regulations, plans and waivers
+    part: Other
   - key: https://www.fna.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
     name: Arizona FY 2025 ABAWD Waiver - FNA Response
     citation_path: null
     source_url: https://www.fna.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
     manifest: manifests/us-az-snap-primary-policy.yaml
     scope: in
-    part: Regulations, plans and waivers
+    part: Work requirements
   - key: us-az/policy/snap-et-state-plan/ffy2026
     name: Arizona SNAP E&T State Plan FFY 2026
     citation_path: us-az/policy/snap-et-state-plan/ffy2026
     source_url: https://www.fna.usda.gov/snap-et/stateplan/arizona
     manifest: manifests/us-az-snap-et-state-plan.yaml
     scope: in
-    part: Regulations, plans and waivers
+    part: Work requirements
