@@ -9,7 +9,9 @@ id: us-az/snap
 title: Arizona SNAP
 program: snap
 jurisdiction: us-az
-current_fiscal_year: 2026
+# The day the bundle describes. Its federal fiscal year (October to
+# September) decides which yearly tables are current: 2026-10-06 is FY2027.
+as_of: 2026-10-06
 
 # The parts of the program, in reading order. Every document and every cited
 # provision lands in one of them; /ops/bundles shows them as its rows.
@@ -30,8 +32,21 @@ screener:
   definition: >-
     Every document that PolicyEngine-US cites for this program in this state is encoded, or excluded with a
     recorded reason. A conformance report against a pinned PolicyEngine version closes the tier.
-  # The PolicyEngine-US references for SNAP that apply to Arizona, each with
-  # the citation path the parity model derived for it.
+  # The PolicyEngine-US release the tier is measured against, and the folders
+  # whose parameters and variables cite its law: SNAP's own, and the ones SNAP
+  # reads (the TANF non-cash limits for broad-based categorical eligibility,
+  # the poverty guidelines, the uprating indices). Every file that cites a URL
+  # counts, not only the first.
+  policyengine_us:
+    version: 2.29.11
+    commit: 4c900b6d3d808c4a9cf56d11afcedad9898f732f
+    folders:
+      - gov/usda/snap
+      - gov/hhs/tanf/non_cash
+      - gov/hhs/fpg
+      - gov/hhs/uprating.yaml
+      - gov/ssa/uprating.yaml
+  # The references export (scripts/export_policyengine_references.py).
   references: sources/policyengine-us/snap-us-az-references.json
   # The plan's SNAP documents for the federal layer and Arizona.
   plan: sources/plans/snap-us-az-plan-documents.json
@@ -39,8 +54,14 @@ screener:
   crosswalk:
     "web:dbmefaapolicy.azdes.gov": us-az/manual/des/faa6/utility-allowance-current-amount
     "web:dbmefaapolicy.azdes.gov/index.html": us-az/manual/des/faa5/na-medical-expenses-and-deduction
-  # A reference's part is the part of the PolicyEngine folder that cites it
-  # (gov/usda/snap/<folder>/...; income/<folder> for income).
+    "web:fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo": us/guidance/usda/fns/snap-obbb-abawd-waivers-implementation-memo
+  # URLs of one document: the enrolled bill is the public law.
+  same_document:
+    "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"
+    # FNS's COLA page shows the current year's: FY2027 from 1 October 2026.
+    "https://www.fns.usda.gov/snap/allotment/COLA": "https://www.fna.usda.gov/snap/allotment/cola/fy27"
+  # A reference's part is the part of the PolicyEngine folders that cite it
+  # most (gov/usda/snap/<folder>/...; income/<folder> for income).
   folder_parts:
     eligibility: Household and eligibility
     categorical_eligibility: Household and eligibility
@@ -56,6 +77,11 @@ screener:
     max_allotment: Benefit amount
     uprating: Benefit amount
     emergency_allotment: Benefit amount
+    # Folders SNAP reads, by their full path.
+    gov/hhs/tanf/non_cash: Household and eligibility
+    gov/hhs/fpg: Income
+    gov/hhs/uprating.yaml: Benefit amount
+    gov/ssa/uprating.yaml: Benefit amount
   # A plan document no SNAP file cites takes the part of the first pattern
   # its citation path, URL or title matches.
   plan_parts:
@@ -78,17 +104,130 @@ screener:
     secondary: "Secondary source: not law"
     data_series: "Data series: not law"
     other_state: "Another state's source"
-  secondary_hosts: "(?i)snapscreener|docs\\.google\\.com|benefitswiki|website-files\\.com|policyengine\\.org|github\\.com|state[-_ ]?options"
-  data_series_hosts: "(?i)snapqcdata\\.net|data\\.census\\.gov|data\\.bls\\.gov|fred\\.stlouisfed"
+    enacting: "Enacting text: the citing file also cites the codified section, which is the document"
+  # Rules that ended: a reference whose URL, or a file citing it, matches the
+  # pattern is out of scope with the reason.
+  expired:
+    - pattern: "(?i)emergency[-_ ]?allotment"
+      reason: "Emergency allotments ended with the February 2023 issuance (Consolidated Appropriations Act, 2023)"
+  secondary_hosts: "(?i)snapscreener|docs\\.google\\.com|benefitswiki|website-files\\.com|policyengine\\.org|github\\.com|state[-_ ]?options|ballotpedia|frac\\.org|liheapch\\.acf\\.gov|cbo\\.gov/publication"
+  data_series_hosts: "(?i)snapqcdata\\.net|data\\.census\\.gov|data\\.bls\\.gov|fred\\.stlouisfed|cbo\\.gov/data|ers\\.usda\\.gov/data-products|ssa\\.gov/oact/cola"
+  # Hosts of the state's own publishers, which a generic .gov test misses.
   state_hosts:
     azdes.gov: az
     az.gov: az
+    azleg.gov: az
+    azsos.gov: az
+    azahcccs.gov: az
+    # Other states' hosts that name no state code or full name.
+    mass.gov: ma
+  # Federal documents about one state: the state is the named group.
+  state_url_patterns:
+    - "/(?P<state>[a-z]{2})-abawd-response"
+  # Hosts that serve the same documents: the corpus registers some FNS pages
+  # at fna.usda.gov, and FNS files are also served from its CDN.
+  host_aliases:
+    fna.usda.gov: fns.usda.gov
+    fns-prod.azureedge.us: fns.usda.gov
+    fns-prod.azureedge.net: fns.usda.gov
 
 full:
   title: Full document bundle
   definition: >-
-    Every primary source of the state's own rules for this program: its policy manual, regulations, state plans,
-    waivers and change notices. The federal layer it builds on is the screener tier's federal documents.
+    Every relevant document for the program in the state: every document of the screener tier, the federal law of
+    the program (statute, regulations and current FNS guidance), and every primary source of the state's own rules:
+    its policy manual, regulations, state plans, waivers and change notices. A document the corpus does not hold
+    yet stays in the tier and counts as not in the corpus.
+  # The federal law of the program: each section the SNAP needs-closure
+  # schema names a corpus path in.
+  federal:
+    schema: docs/coverage/needs-closure-2026-09-14/snap-schema.yaml
+    # PROPOSED, for review: parts of the federal law that hold no rule a
+    # household's case rests on.
+    exclude:
+      - pattern: "^us/regulation/7/(27[5-9]|28[0-5])(/|$)"
+        reason: "Program administration (quality control, retailers, territories, disasters): no household rule. Proposed; needs review"
+    # The part each federal section feeds; the first match wins.
+    parts:
+      - pattern: "^us/regulation/7/274(/|$)|^us/statute/7/2016(/|$)"
+        part: Issuance and EBT
+      - pattern: "^us/regulation/7/273/(7|24)(/|$)|^us/statute/7/(2015|2029)(/|$)"
+        part: Work requirements
+      - pattern: "^us/regulation/7/273/8(/|$)"
+        part: Assets
+      - pattern: "^us/regulation/7/273/(9|11)(/|$)"
+        part: Income
+      - pattern: "^us/regulation/7/273/10(/|$)|^us/statute/7/2017(/|$)"
+        part: Benefit amount
+      - pattern: "^us/regulation/7/273/[1-6](/|$)|^us/statute/7/(2012|2014)(/|$)"
+        part: Household and eligibility
+      - pattern: "^us/guidance/"
+        part: Benefit amount
+      - pattern: "^us/regulation/7/27[12](/|$)|^us/statute/7/(2011|2013|2020)(/|$)"
+        part: Whole program
+  # Arizona sources the corpus does not hold yet: drafted manifests not in a
+  # corpus PR, and the state statute. Each lands through a corpus PR.
+  known_sources:
+    - citation_path: us-az/manual/des/faa3/arizona-residency
+      title: Arizona DES FAA3 Arizona Residency
+      source_url: https://dbmefaapolicy.azdes.gov/FAA3/Arizona_Residency.html
+      part: Household and eligibility
+      note: Draft manifest us-az-des-faa3-residency.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa3/residents-of-institutions-for-na
+      title: Arizona DES FAA3 Residents of Institutions for Nutrition Assistance
+      source_url: https://dbmefaapolicy.azdes.gov/FAA3/Residents_of_Institutions_for_NA.html
+      part: Household and eligibility
+      note: Draft manifest us-az-des-faa3-snap-membership.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa3/na-qualified-noncitizens
+      title: Arizona DES FAA3 Nutrition Assistance Qualified Noncitizens
+      source_url: https://dbmefaapolicy.azdes.gov/FAA3/NA_Qualified_Noncitizens.html
+      part: Household and eligibility
+      note: Draft manifest us-az-des-faa3-snap-membership.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa4/na-resources
+      title: Arizona DES FAA4 Nutrition Assistance Resources
+      source_url: https://dbmefaapolicy.azdes.gov/FAA4/NA_Resources.html
+      part: Assets
+      note: Draft manifest us-az-des-snap-financial-authority.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa4/income-eligibility-requirements
+      title: Arizona DES FAA4 Income Eligibility Requirements
+      source_url: https://dbmefaapolicy.azdes.gov/FAA4/Income_Eligibility_Requirements.html
+      part: Income
+      note: Draft manifest us-az-des-snap-financial-authority.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa6/maximum-na-resource-limit
+      title: Arizona DES FAA6 Maximum Nutrition Assistance Resource Limit
+      source_url: https://dbmefaapolicy.azdes.gov/FAA6/Maximum_NA_Resource_Limit.html
+      part: Assets
+      note: Draft manifest us-az-des-snap-financial-authority.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa6/na-gross-monthly-income-standard
+      title: Arizona DES FAA6 NA Gross Monthly Income Eligibility Standard
+      source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Gross_Monthly_Income_Eligibility_Standard.html
+      part: Income
+      note: Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa6/na-net-monthly-income-standard
+      title: Arizona DES FAA6 NA Net Monthly Income Eligibility Standard
+      source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Net_Monthly_Income_Eligibility_Standard_(.html
+      part: Income
+      note: Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa6/na-elderly-disability-standard
+      title: Arizona DES FAA6 NA Elderly or Disability Eligibility Standard
+      source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Elderly_or_Disability_Eligibility_Standar.html
+      part: Income
+      note: Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR
+    - citation_path: us-az/manual/des/faa6/na-200-percent-fpl-standard
+      title: Arizona DES FAA6 NA 200 Percent of Federal Poverty Level
+      source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_200__of_the_Federal_Poverty_Level.html
+      part: Household and eligibility
+      note: Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR
+    - citation_path: us-az/policy/des/faa2/2026-abawd-geographic-waiver-bulletin
+      title: Arizona DES urgent bulletin, 2026 ABAWD geographic waiver
+      source_url: https://dbmefaapolicy.azdes.gov/FAA2/
+      part: Work requirements
+      note: Draft manifest us-az-snap-abawd-waiver-fy2026.yaml, not in a corpus PR
+    - citation_path: us-az/statute/46
+      title: Arizona Revised Statutes Title 46, Welfare
+      source_url: https://www.azleg.gov/arsDetail/?title=46
+      part: Whole program
+      note: No manifest yet
   manifests:
     - manifests/us-az-des-faa5-manual.yaml
     - manifests/us-az-des-faa6-utility-amounts.yaml

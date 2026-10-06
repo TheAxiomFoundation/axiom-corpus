@@ -13,12 +13,15 @@ Two tiers, as the 2026-09-30 document-releases plan defines them:
   the program in the state is encoded, or excluded with a recorded reason.
   Membership is the union of the plan's document list (federal and state,
   which includes the income rules the program leans on) and the PolicyEngine-US
-  references in the program's own files that apply to the state, each with
-  the citation path the parity model derived for it. Both group into
-  documents: a US Code or CFR section, a state manual page, or the registered
-  document that holds the citation.
-- ``full``: the full document bundle. Every primary source of the state's own
-  rules for the program, from the source manifests the config names.
+  references of one pinned release (scripts/export_policyengine_references.py:
+  every file that cites a URL, in the program's folders and the ones it
+  reads). Both group into documents: a US Code or CFR section, a state manual
+  page, or the registered document that holds the citation.
+- ``full``: the full document bundle. Every relevant document: the screener
+  tier's documents, the federal law of the program section by section (from
+  its needs-closure schema), the state's own sources from the source
+  manifests the config names, and the state's known sources the corpus does
+  not hold yet. The screener tier is part of it by construction.
 
 The bundle records membership, exclusions and parts only. Progress (in the
 corpus, encoded, in progress) is telemetry the axiom.org collector reads from
@@ -148,22 +151,102 @@ STATE_CODES = [
     "wv",
     "wi",
     "wy",
-] + ["dc"]
-BACK_YEAR = re.compile(
-    r"(?i)\bfy[-_ %]?(?:20)?(\d{2})\b|/(20\d{2})[-/]|\b(20\d{2})-poverty-guidelines"
+] + ["dc", "pr", "vi", "gu", "as", "mp"]
+# Names a reference title can use for a state or territory.
+STATE_NAMES = {
+    **dict(
+        zip(
+            [
+                "Alabama",
+                "Alaska",
+                "Arizona",
+                "Arkansas",
+                "California",
+                "Colorado",
+                "Connecticut",
+                "Delaware",
+                "Florida",
+                "Georgia",
+                "Hawaii",
+                "Idaho",
+                "Illinois",
+                "Indiana",
+                "Iowa",
+                "Kansas",
+                "Kentucky",
+                "Louisiana",
+                "Maine",
+                "Maryland",
+                "Massachusetts",
+                "Michigan",
+                "Minnesota",
+                "Mississippi",
+                "Missouri",
+                "Montana",
+                "Nebraska",
+                "Nevada",
+                "New Hampshire",
+                "New Jersey",
+                "New Mexico",
+                "New York",
+                "North Carolina",
+                "North Dakota",
+                "Ohio",
+                "Oklahoma",
+                "Oregon",
+                "Pennsylvania",
+                "Rhode Island",
+                "South Carolina",
+                "South Dakota",
+                "Tennessee",
+                "Texas",
+                "Utah",
+                "Vermont",
+                "Virginia",
+                "Washington",
+                "West Virginia",
+                "Wisconsin",
+                "Wyoming",
+            ],
+            STATE_CODES,
+            strict=False,
+        )
+    ),
+    "District of Columbia": "dc",
+    "Puerto Rico": "pr",
+    "Virgin Islands": "vi",
+    "Guam": "gu",
+}
+# A federal fiscal year a URL or title names ("fy-2024-cola", "FY25-Quarter-2",
+# "cola/fy26", "COLAMemoFY23", "abawd-response-fy2025"). A year in a URL's
+# folder is a publication date, not the year a rule applies to, so it says
+# nothing; poverty guidelines are by calendar year.
+FISCAL_YEAR = re.compile(r"(?i)fy[-_ %]?(?:20)?(\d{2})(?!\d)|cola(20\d{2})(?!\d)")
+ARCHIVED = re.compile(r"^https?://web\.archive\.org/web/[^/]+/(.+)$")
+# Enacting texts: public laws and bills on congress.gov or govinfo, and
+# Federal Register notices.
+ENACTING = re.compile(
+    r"(?i)congress\.gov/(?:\d+/(?:plaws|bills)/|bill/)|govinfo\.gov/.*(?:PLAW-|/FR-\d{4}|pkg/FR-)"
 )
 # Plan ids that name a US Code or CFR section: "USC 7 2014", "CFR 7 273.1".
 PLAN_USC = re.compile(r"^USC (\d+) (\S+)$")
 PLAN_CFR = re.compile(r"^CFR (\d+) (\d+)\.(\S+)$")
 
 
-def url_state(url: str, state_hosts: dict[str, str]) -> str | None:
-    """The two-letter state a URL's publisher belongs to, by its host or a Cornell state path."""
+def url_state(
+    url: str, state_hosts: dict[str, str], state_patterns: list[str] | None = None
+) -> str | None:
+    """The two-letter state a URL belongs to: by its host, a Cornell state
+    path, or a pattern for federal documents about one state."""
+    url = unarchive(url)
     parts = urlsplit(url)
-    host = parts.netloc.lower().removeprefix("www.")
+    host = (parts.hostname or "").removeprefix("www.")
     for suffix, code in state_hosts.items():
         if host == suffix or host.endswith("." + suffix):
             return code
+    for pattern in state_patterns or []:
+        if (m := re.search(pattern, url, re.I)) and m.group("state").lower() in STATE_CODES:
+            return m.group("state").lower()
     m = re.search(r"(?:^|\.)([a-z]{2})\.gov$|\.state\.([a-z]{2})\.us$", host)
     if m and (m.group(1) or m.group(2)) in STATE_CODES:
         return m.group(1) or m.group(2)
@@ -174,22 +257,56 @@ def url_state(url: str, state_hosts: dict[str, str]) -> str | None:
     return None
 
 
+def unarchive(url: str) -> str:
+    """The page a Wayback Machine link archives."""
+    m = ARCHIVED.match(url.strip())
+    if not m:
+        return url
+    inner = m.group(1)
+    return inner if re.match(r"https?://", inner) else "http://" + inner
+
+
 def normalize_url(url: str) -> str:
-    """A WebWorks manual link (index.html#page/<chapter>/<page>.html) names its page in the fragment."""
+    """The page a link names: an archived page, and a WebWorks manual link
+    (index.html#page/<chapter>/<page>.html) names its page in the fragment."""
+    url = unarchive(url)
     m = re.match(r"(https?://[^/]+)/index\.html#page/(.+)$", url)
     return f"{m.group(1)}/{m.group(2)}" if m else url.split("#")[0]
 
 
-def url_key(url: str) -> tuple[str, str]:
+def title_state(titles: list[str]) -> str | None:
+    """The one state or territory reference titles name, if exactly one."""
+    named = {
+        code
+        for title in titles
+        for name, code in STATE_NAMES.items()
+        if re.search(rf"\b{name}\b", title)
+    }
+    return named.pop() if len(named) == 1 else None
+
+
+def url_key(url: str, aliases: dict[str, str] | None = None) -> tuple[str, str]:
+    """A URL's host and path, with alias hosts read as the host they serve for."""
     parts = urlsplit(url.strip())
-    return parts.netloc.lower().removeprefix("www."), parts.path.rstrip("/").lower()
+    host = parts.netloc.lower().removeprefix("www.")
+    return (aliases or {}).get(host, host), parts.path.rstrip("/").lower()
 
 
-def back_year(url: str, current_fy: int) -> bool:
-    for m in BACK_YEAR.finditer(url):
-        y = m.group(1) or m.group(2) or m.group(3)
-        if (int(y) if len(y) == 4 else 2000 + int(y)) < current_fy:
+def fiscal_year(day: dt.date) -> int:
+    """The federal fiscal year of a day: FY2027 runs from 1 October 2026."""
+    return day.year + (1 if day.month >= 10 else 0)
+
+
+def back_year(text: str, day: dt.date) -> bool:
+    """A URL or title names a fiscal year before the day's, or poverty
+    guidelines of an earlier calendar year."""
+    for m in FISCAL_YEAR.finditer(text):
+        y = m.group(1) or m.group(2)
+        if (int(y) if len(y) == 4 else 2000 + int(y)) < fiscal_year(day):
             return True
+    if re.search(r"(?i)poverty[-_ ]guidelines", text):
+        years = [int(y) for y in re.findall(r"(?<!\d)(20\d{2})(?!\d)", text)]
+        return bool(years) and max(years) < day.year
     return False
 
 
@@ -222,8 +339,11 @@ def document_name(key: str, titles: dict[str, str]) -> str:
     return key
 
 
-def manifest_index() -> tuple[list[str], dict[tuple[str, str], str], dict[str, str]]:
-    """Every registered citation path, the citation path of each source URL, and titles."""
+def manifest_index(
+    aliases: dict[str, str] | None = None,
+) -> tuple[list[str], dict[tuple[str, str], str], dict[str, str]]:
+    """Every registered citation path, the citation path of each source and
+    download URL, and titles."""
     paths, by_url, titles = set(), {}, {}
     for f in sorted((REPO / "manifests").glob("*.yaml")):
         try:
@@ -238,17 +358,26 @@ def manifest_index() -> tuple[list[str], dict[tuple[str, str], str], dict[str, s
             paths.add(cp)
             if doc.get("title"):
                 titles.setdefault(cp, doc["title"])
-            if doc.get("source_url"):
-                by_url.setdefault(url_key(normalize_url(doc["source_url"])), cp)
+            for field in ("source_url", "download_url"):
+                if doc.get(field):
+                    # A recovery scope re-registers a document under its own
+                    # path: the document's own path wins.
+                    k = url_key(normalize_url(doc[field]), aliases)
+                    if k not in by_url or ("/recovery/" in by_url[k] and "/recovery/" not in cp):
+                        by_url[k] = cp
     return sorted(paths), by_url, titles
 
 
 def folder_part(file: str, folder_parts: dict[str, str]) -> str | None:
-    """The part of the PolicyEngine folder a file sits in: gov/usda/snap/<a>/<b>/..., <a>/<b> before <a>."""
+    """The part of the PolicyEngine folder a file sits in: gov/usda/snap/<a>/<b>/...
+    by <a>/<b> before <a>; a file outside SNAP's folder by its longest gov/... key."""
     f = file.removeprefix("parameters/").removeprefix("variables/")
     m = re.match(r"gov/usda/snap/([a-z_]+)(?:/([a-z_]+))?", f)
     if not m:
-        return None
+        held = [
+            k for k in folder_parts if k.startswith("gov/") and (f == k or f.startswith(k + "/"))
+        ]
+        return folder_parts[max(held, key=len)] if held else None
     a, b = m.groups()
     return folder_parts.get(f"{a}/{b}") or folder_parts.get(a)
 
@@ -269,18 +398,28 @@ def part_of(votes: Counter) -> str:
 
 def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
     tier_cfg = cfg["screener"]
-    registered, by_url, titles = manifest_index()
+    aliases = tier_cfg.get("host_aliases") or {}
+    registered, by_url, titles = manifest_index(aliases)
     state = cfg["jurisdiction"].removeprefix("us-")
     own = cfg["jurisdiction"]
-    fy = cfg["current_fiscal_year"]
+    day = as_of(cfg)
     reasons = tier_cfg["exclusions"]
     secondary = re.compile(tier_cfg["secondary_hosts"])
     data_series = re.compile(tier_cfg["data_series_hosts"])
     state_hosts = tier_cfg.get("state_hosts", {})
-    bucket_reasons = {
-        "back-year": reasons["back_year"],
-        "secondary": reasons["secondary"],
-        "data-series": reasons["data_series"],
+    state_patterns = tier_cfg.get("state_url_patterns") or []
+    expired = [(re.compile(e["pattern"]), e["reason"]) for e in tier_cfg.get("expired") or []]
+    same = {
+        url_key(normalize_url(a), aliases): b
+        for a, b in (tier_cfg.get("same_document") or {}).items()
+    }
+    # Files that cite a US Code or CFR section: an enacting text they also
+    # cite is codified there.
+    codifying = {
+        f
+        for ref in references["references"]
+        if (ref.get("citation") or "").startswith(("us/statute/", "us/regulation/"))
+        for f in ref.get("files") or []
     }
     docs: dict[str, dict] = {}
     cited: dict[str, dict[str, int]] = defaultdict(dict)
@@ -294,15 +433,22 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
         reason: str | None,
         name: str | None = None,
         part: str | None = None,
+        ref_titles: list[str] | None = None,
     ):
+        if url and url_key(normalize_url(url), aliases) in same:
+            url = same[url_key(normalize_url(url), aliases)]
         if not citation and url:
-            citation = by_url.get(url_key(normalize_url(url)))
+            citation = by_url.get(url_key(normalize_url(url), aliases))
+        code = url_state(url, state_hosts, state_patterns) if url else None
+        # A title names the state only of a document that is not federal law.
+        if not code and not (citation or "").startswith("us/"):
+            code = title_state(ref_titles or [])
+        text = " ".join([url or "", *(ref_titles or [])])
         other = None
         if citation:
             head = citation.split("/")[0]
             other = head if head not in ("us", own) else None
-        elif url:
-            code = url_state(url, state_hosts)
+        if not other and url and not (citation or "").startswith("us/"):
             other = code if code and code != state else None
         if other:
             reason = reasons["other_state"]
@@ -310,12 +456,13 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
             reason = reasons["secondary"]
         elif url and reason is None and data_series.search(url):
             reason = reasons["data_series"]
-        elif url and reason is None and back_year(url, fy):
+        elif url and reason is None and back_year(text, day):
             reason = reasons["back_year"]
         key = document_key(citation, registered) if citation else normalize_url(url or "")
         layer = "federal" if key.startswith("us/") else "state" if key.startswith(own) else None
-        if layer is None and url:
-            code = url_state(url, state_hosts)
+        if other:
+            layer = "other state"
+        elif layer is None and url:
             layer = "state" if code == state else "federal" if code is None else "other state"
         doc = docs.setdefault(
             key,
@@ -337,14 +484,17 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
             doc["references"] += 1
         part = part or plan_part(tier_cfg["plan_parts"], citation, url, name) or "Other"
         parts[key][part] += 1
-        if citation and citation != key:
+        # PolicyEngine's citations are the tier's units, a whole section
+        # included; the plan names sections, which add a unit only below one.
+        unit = citation and (citation != key or source == "policyengine-references")
+        if unit:
             cited_parts[key][citation][part] += 1
         if reason is None:
             # A URL is one document with one classification: a source that
             # finds a reason to exclude it outweighs one that does not look.
             if doc["citation_path"] or not doc["reason"]:
                 doc["scope"], doc["reason"] = "in", None
-            if citation and citation != key:
+            if unit:
                 cited[key][citation] = cited[key].get(citation, 0) + 1
         elif not doc["citation_path"]:
             doc["scope"], doc["reason"] = "excluded", doc["reason"] or reason
@@ -352,15 +502,20 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
             doc["reason"] = reason
 
     for ref in references["references"]:
-        votes = Counter(
-            p for f in ref.get("files") or [] if (p := folder_part(f, tier_cfg["folder_parts"]))
+        files = ref.get("files") or []
+        votes = Counter(p for f in files if (p := folder_part(f, tier_cfg["folder_parts"])))
+        reason = next(
+            (why for rx, why in expired if any(rx.search(t) for t in [ref["url"], *files])), None
         )
+        if reason is None and ENACTING.search(ref["url"]) and any(f in codifying for f in files):
+            reason = reasons["enacting"]
         add(
             "policyengine-references",
             ref["url"],
             ref.get("citation"),
-            bucket_reasons.get(ref["bucket"]),
+            reason,
             part=votes.most_common(1)[0][0] if votes else None,
+            ref_titles=ref.get("titles"),
         )
     crosswalk = tier_cfg.get("crosswalk") or {}
     for doc in (plan or {}).get("documents", []):
@@ -372,6 +527,12 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
             or (f"us/regulation/{cfr.group(1)}/{cfr.group(2)}/{cfr.group(3)}" if cfr else None)
         )
         urls = doc.get("urls") or []
+        # A plan row that names a recovery scope's path: the document's own
+        # path, when its URL is registered under one.
+        if citation and "/recovery/" in citation and urls:
+            own_path = by_url.get(url_key(normalize_url(urls[0]), aliases))
+            if own_path and "/recovery/" not in own_path:
+                citation = own_path
         add(
             "plan",
             urls[0] if urls else None,
@@ -399,11 +560,14 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
         out.append(doc)
     membership = {
         "rule": "The plan's documents for the program (federal and state), and the PolicyEngine-US "
-        "references in the program's own files that apply to the state, grouped into documents",
+        "references of one pinned release that apply to the state, grouped into documents",
         "references": tier_cfg["references"],
+        "policyengine_us_version": references.get("policyengine_us_version"),
         "policyengine_us_commit": references.get("policyengine_us_commit"),
+        "policyengine_us_folders": references.get("folders"),
         "references_derived_by": references.get("derived_by"),
         "reference_count": len(references["references"]),
+        "fiscal_year": fiscal_year(day),
     }
     if plan:
         membership.update(
@@ -437,10 +601,101 @@ def _part_matches(rule: dict, manifest: str, toc: int | None, entry: dict) -> bo
     return _in_range(rule, manifest, toc)
 
 
-def full_tier(cfg: dict) -> dict:
+def as_of(cfg: dict) -> dt.date:
+    value = cfg["as_of"]
+    return value if isinstance(value, dt.date) else dt.date.fromisoformat(str(value))
+
+
+def _first_part(patterns: list[dict], path: str) -> str:
+    return next((r["part"] for r in patterns if re.search(r["pattern"], path)), "Other")
+
+
+def full_tier(cfg: dict, screener: dict) -> dict:
+    """Every relevant document, in four layers, each document once:
+
+    1. every in-scope document of the screener tier, so the screener tier is
+       part of this one;
+    2. the federal law of the program: each section the program's
+       needs-closure schema names a corpus path in, less the parts the config
+       excludes;
+    3. the state's own sources, from the named source manifests;
+    4. the state's sources the corpus does not hold yet, as the config lists
+       them. They stay in the tier and count as not in the corpus.
+    """
     tier_cfg = cfg["full"]
+    aliases = cfg["screener"].get("host_aliases") or {}
+    own = cfg["jurisdiction"]
+    day = as_of(cfg)
     out: list[dict] = []
+    by_key: dict[str, dict] = {}
     seen: dict[tuple[str, str], dict] = {}
+
+    def layer_of(path: str | None, fallback: str = "state") -> str:
+        if path and path.startswith("us/"):
+            return "federal"
+        return "state" if path and path.startswith(own) else fallback
+
+    def place(entry: dict) -> None:
+        """Add an entry, or record its source on the entry that holds its key."""
+        held = by_key.get(entry["key"])
+        if held is not None:
+            for source in entry["sources"]:
+                if source not in held["sources"]:
+                    held["sources"].append(source)
+            return
+        by_key[entry["key"]] = entry
+        out.append(entry)
+
+    # 1. The screener tier, as it scopes it.
+    for doc in screener["documents"]:
+        if doc["scope"] != "in":
+            continue
+        place(
+            {
+                "key": doc["key"],
+                "name": doc["name"],
+                "layer": doc["layer"],
+                "citation_path": doc["citation_path"],
+                "source_url": doc["source_url"],
+                "sources": ["screener"],
+                "scope": "in",
+                "part": doc["part"],
+            }
+        )
+
+    # 2. The federal law of the program.
+    federal = tier_cfg.get("federal") or {}
+    if federal:
+        schema = yaml.safe_load((REPO / federal["schema"]).read_text())
+        excludes = [(re.compile(e["pattern"]), e["reason"]) for e in federal.get("exclude") or []]
+        reasons = cfg["screener"]["exclusions"]
+        for element in schema["elements"]:
+            path = element.get("citation_path")
+            if not path or not path.startswith("us/"):
+                continue
+            key = document_key(path, [])
+            reason = next((why for rx, why in excludes if rx.search(key)), None)
+            if reason is None and back_year(f"{key} {element.get('label', '')}", day):
+                reason = reasons["back_year"]
+            entry = {
+                "key": key,
+                "name": document_name(key, {}),
+                "layer": "federal",
+                "citation_path": key,
+                "source_url": None,
+                "sources": [f"schema:{element['id']}"],
+                "scope": "excluded" if reason else "in",
+                "part": _first_part(federal.get("parts") or [], key),
+            }
+            if reason:
+                entry["reason"] = reason
+            held = by_key.get(key)
+            if held is not None and held["scope"] == "excluded" and not reason:
+                held["scope"] = "in"
+                held.pop("reason", None)
+            place(entry)
+
+    # 3. The state's own sources.
     for manifest in tier_cfg["manifests"]:
         data = yaml.safe_load((REPO / manifest).read_text()) or {}
         for doc in data.get("documents", []):
@@ -449,8 +704,10 @@ def full_tier(cfg: dict) -> dict:
             entry = {
                 "key": doc.get("citation_path") or doc.get("source_url"),
                 "name": doc.get("title"),
+                "layer": layer_of(doc.get("citation_path")),
                 "citation_path": doc.get("citation_path"),
                 "source_url": doc.get("source_url"),
+                "sources": [manifest],
                 "manifest": manifest,
                 "scope": "in",
             }
@@ -477,20 +734,45 @@ def full_tier(cfg: dict) -> dict:
             # manifest) is one document: keep the entry that has a citation path.
             url = entry["source_url"]
             if url:
-                dup = seen.get(url_key(normalize_url(url)))
+                dup = seen.get(url_key(normalize_url(url), aliases))
                 if dup is not None:
                     if dup["citation_path"] or not entry["citation_path"]:
                         continue
                     out.remove(dup)
-                seen[url_key(normalize_url(url))] = entry
-            out.append(entry)
+                    by_key.pop(dup["key"], None)
+                seen[url_key(normalize_url(url), aliases)] = entry
+            place(entry)
+
+    # 4. The state's sources the corpus does not hold yet.
+    for doc in tier_cfg.get("known_sources") or []:
+        place(
+            {
+                "key": doc["citation_path"],
+                "name": doc["title"],
+                "layer": layer_of(doc["citation_path"]),
+                "citation_path": doc["citation_path"],
+                "source_url": doc.get("source_url"),
+                "sources": ["known-source"],
+                "note": doc.get("note"),
+                "scope": "in",
+                "part": doc.get("part", "Other"),
+            }
+        )
+
+    in_scope = Counter(d["layer"] for d in out if d["scope"] == "in")
     return {
         "id": "full",
         "title": tier_cfg["title"],
         "definition": tier_cfg["definition"],
         "membership": {
-            "rule": "Documents of the named source manifests, less the excluded pages",
+            "rule": "Every in-scope document of the screener tier; the federal law of the program, "
+            "section by section, from its needs-closure schema; the state's own sources from the "
+            "named manifests; and the state's known sources the corpus does not hold yet",
+            "screener_documents": sum(d["scope"] == "in" for d in screener["documents"]),
+            "federal_schema": federal.get("schema"),
             "manifests": tier_cfg["manifests"],
+            "known_sources": len(tier_cfg.get("known_sources") or []),
+            "in_scope_by_layer": dict(sorted(in_scope.items())),
         },
         "documents": out,
     }
@@ -501,7 +783,8 @@ def build(config_path: Path) -> dict:
     references = json.loads((REPO / cfg["screener"]["references"]).read_text())
     plan_file = cfg["screener"].get("plan")
     plan = json.loads((REPO / plan_file).read_text()) if plan_file else None
-    tiers = [screener_tier(cfg, references, plan), full_tier(cfg)]
+    screener = screener_tier(cfg, references, plan)
+    tiers = [screener, full_tier(cfg, screener)]
     known = set(cfg["parts"])
     for tier in tiers:
         for doc in tier["documents"]:
@@ -517,7 +800,7 @@ def build(config_path: Path) -> dict:
         "program": cfg["program"],
         "jurisdiction": cfg["jurisdiction"],
         "title": cfg["title"],
-        "as_of": dt.date.today().isoformat(),
+        "as_of": as_of(cfg).isoformat(),
         "config": str(config.relative_to(REPO))
         if config.is_relative_to(REPO)
         else str(config_path),
