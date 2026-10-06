@@ -103,6 +103,62 @@ def _store(tmp_path: Path) -> CorpusArtifactStore:
     return CorpusArtifactStore(tmp_path / "corpus")
 
 
+def test_extract_preserves_formula_definitions_and_nested_conditions(tmp_path: Path) -> None:
+    xml = (
+        b'<Statute current-date="2026-06-21"><Identification>'
+        b'<ConsolidatedNumber>I-3.3</ConsolidatedNumber><ShortTitle>Income Tax Act</ShortTitle>'
+        b'</Identification><Body><Section><Label>122.5</Label>'
+        b'<Subsection><Label>(1)</Label><Text>Definitions: </Text>'
+        b'<Definition><DefinedTermEn>income</DefinedTermEn><Text> means income except </Text>'
+        b'<Paragraph><Label>(a)</Label><Text>excluded gains.</Text></Paragraph></Definition>'
+        b'</Subsection><Subsection><Label>(3.005)</Label><Text>Amount: </Text>'
+        b'<FormulaGroup><Formula><FormulaText>A - B</FormulaText></Formula>'
+        b'<FormulaConnector> where </FormulaConnector><FormulaDefinition>'
+        b'<FormulaTerm>A</FormulaTerm><Text> is </Text><FormulaParagraph>'
+        b'<Label>(a)</Label><Text>$445.</Text></FormulaParagraph></FormulaDefinition>'
+        b'</FormulaGroup><ContinuedSectionSubsection><Text> Applies quarterly.</Text>'
+        b'</ContinuedSectionSubsection><Paragraph><Label>(b)</Label><Text>Subject to </Text>'
+        b'<Subparagraph><Label>(i)</Label><Text>the condition </Text><Clause><Label>(A)</Label>'
+        b'<FormulaGroup><Formula><FormulaText>C + D</FormulaText></Formula></FormulaGroup>'
+        b'</Clause><ContinuedSubparagraph><Text> only.</Text></ContinuedSubparagraph>'
+        b'</Subparagraph><ContinuedParagraph><Text> Otherwise excluded.</Text>'
+        b'</ContinuedParagraph></Paragraph></Subsection></Section></Body></Statute>'
+    )
+    report = extract_canada_acts(
+        _store(tmp_path),
+        version="formula-fidelity",
+        fetcher=_FakeFetcher({"I-3.3": xml}),
+        only_acts=["I-3.3"],
+        source_as_of="2026-10-06",
+        expression_date="2026-06-21",
+    )
+    rows = {
+        row["citation_path"]: row
+        for row in map(json.loads, report.provisions_path.read_text().splitlines())
+    }
+    prefix = "canada/statute/I-3.3/122.5"
+    definition = "(1)Definitions: income means income except (a)excluded gains."
+    clause = "(A)C + D"
+    subparagraph = "(i)the condition " + clause + " only."
+    paragraph = "(b)Subject to " + subparagraph + " Otherwise excluded."
+    formula = "(3.005)Amount: A - B where A is (a)$445. Applies quarterly." + paragraph
+    assert rows[prefix]["body"] == "122.5" + definition + formula
+    for suffix, expected in {
+        "/1": definition,
+        "/3005": formula,
+        "/3005/b": paragraph,
+        "/3005/b/i": subparagraph,
+        "/3005/b/i/A": clause,
+    }.items():
+        row = rows[prefix + suffix]
+        assert row["body"] == expected
+        assert row["parent_citation_path"] == (prefix + suffix).rsplit("/", 1)[0]
+        assert row["expression_date"] == "2026-06-21"
+        assert row["source_as_of"] == "2026-10-06"
+    assert report.source_paths[0].read_bytes() == xml
+    assert report.errors == ()
+
+
 def test_extract_canada_acts_emits_act_section_and_subsection_rows(tmp_path: Path) -> None:
     fetcher = _FakeFetcher({"I-3.3": SAMPLE_CANADA_XML.encode()})
     store = _store(tmp_path)
