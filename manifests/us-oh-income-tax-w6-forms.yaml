@@ -1,0 +1,198 @@
+version: 2026-10-06-w6-income-tax-forms-oh
+documents:
+- source_id: us-oh-form-odt-ty2022-it-1040-sd-100-instructions
+  jurisdiction: us-oh
+  document_class: form
+  title: 2022 Ohio IT 1040 / SD 100 Instructions
+  source_url: https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2022/it1040-sd100-instruction-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-oh/form/odt/ty2022/it-1040-sd-100-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2022/it1040-sd100-instruction-booklet
+    - us-oh/form/individual_income_tax_forms/tax.ohio.gov/static/forms/ohio_individual/individual/2022/it1040-sd100-instruction-booklet
+    tax_year: '2022'
+- source_id: us-oh-form-odt-ty2023-form-it-1040
+  jurisdiction: us-oh
+  document_class: form
+  title: 2023 Ohio IT 1040, Individual Income Tax Return
+  source_url: https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/1040-bundle-original.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-oh/form/odt/ty2023/form-it-1040
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/1040-bundle-original
+    tax_year: '2023'
+- source_id: us-oh-form-odt-ty2023-it-1040-sd-100-instructions
+  jurisdiction: us-oh
+  document_class: form
+  title: Tax Year 2023 Ohio IT 1040 / SD 100 Instructions
+  source_url: https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/it1040-sd100-instructionbooklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-oh/form/odt/ty2023/it-1040-sd-100-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/it1040-sd100-instructionboo
+    tax_year: '2023'
+- source_id: us-oh-form-odt-ty2024-it-1040-sd-100-instructions
+  jurisdiction: us-oh
+  document_class: form
+  title: Tax Year 2024 Ohio IT 1040 / SD 100 Instructions
+  source_url: https://dam.assets.ohio.gov/image/upload/v1735920104/tax.ohio.gov/forms/ohio_individual/individual/2024/it1040-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-oh/form/odt/ty2024/it-1040-sd-100-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/dam.assets.ohio.gov/image/upload/v1735920104/tax.ohio.gov/forms/ohio_individual/individual/2024/it1040-booklet
+    tax_year: '2024'
+- source_id: us-oh-form-odt-ty2021-it-1040-sd-100-instructions
+  jurisdiction: us-oh
+  document_class: form
+  title: 2021 Ohio IT 1040 / SD 100 Instructions
+  source_url: https://tax.ohio.gov/static/forms/ohio_individual/individual/2021/pit-it1040-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-oh/form/odt/ty2021/it-1040-sd-100-instructions
+  extraction:
+    segmentation: single_block
+  request: &id001
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/tax.ohio.gov/static/forms/ohio_individual/individual/2021/pit-it1040-booklet
+    tax_year: '2021'
+- source_id: us-oh-form-odt-ty2021-schedule-of-credits
+  jurisdiction: us-oh
+  document_class: form
+  title: 2021 Ohio Schedule of Credits
+  source_url: https://tax.ohio.gov/static/forms/ohio_individual/individual/2021/sch-cre.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-oh/form/odt/ty2021/schedule-of-credits
+  extraction:
+    segmentation: single_block
+  request: *id001
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/tax.ohio.gov/static/forms/ohio_individual/individual/2021/sch-cre
+    tax_year: '2021'
+- source_id: us-oh-form-odt-ty2022-form-it-1040
+  jurisdiction: us-oh
+  document_class: form
+  title: 2022 Ohio IT 1040, Individual Income Tax Return
+  source_url: https://tax.ohio.gov/static/forms/ohio_individual/individual/2022/it1040-bundle.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-oh/form/odt/ty2022/form-it-1040
+  extraction:
+    segmentation: single_block
+  request: *id001
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/tax.ohio.gov/static/forms/ohio_individual/individual/2022/it1040-bundle
+    tax_year: '2022'
+- source_id: us-oh-form-odt-ty2022-schedule-of-credits
+  jurisdiction: us-oh
+  document_class: form
+  title: 2022 Ohio Schedule of Credits
+  source_url: https://tax.ohio.gov/static/forms/ohio_individual/individual/2022/itschedule-credits.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-oh/form/odt/ty2022/schedule-of-credits
+  extraction:
+    segmentation: single_block
+  request: *id001
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/tax.ohio.gov/static/forms/ohio_individual/individual/2022/itschedule-credits
+    tax_year: '2022'
+- source_id: us-oh-form-odt-ty2024-form-it-1040
+  jurisdiction: us-oh
+  document_class: form
+  title: 2024 Ohio IT 1040, Individual Income Tax Return (fillable bundle)
+  source_url: https://tax.ohio.gov/static/forms/ohio_individual/individual/2024/1040-bundle-original-fi.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-oh/form/odt/ty2024/form-it-1040
+  extraction:
+    segmentation: single_block
+  request: *id001
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - us-oh/form/individual_income_tax_forms/tax.ohio.gov/static/webview/view1/uiextension/1/pdf-view/41fe23480d
+    tax_year: '2024'
