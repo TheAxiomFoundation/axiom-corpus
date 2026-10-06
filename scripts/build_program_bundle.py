@@ -513,6 +513,15 @@ def build_program(
     same = {
         url_key(normalize_url(a), aliases): b for a, b in (cfg.get("same_document") or {}).items()
     }
+    # Addresses a corpus scope holds without a manifest naming them (a section of
+    # a whole code taken from its legislature), and addresses that are not a
+    # source of rules (a dataset, a calculator, an API), by the wave decisions.
+    held = {
+        url_key(normalize_url(a), aliases): b for a, b in (cfg.get("document_paths") or {}).items()
+    }
+    not_sources = {
+        url_key(normalize_url(a), aliases): b for a, b in (cfg.get("not_sources") or {}).items()
+    }
     rules = _rules(prog.get("part_rules"))
     overrides = prog.get("states") or {}
     layers = {j: Layer(j) for j in ["us", *jurisdictions]}
@@ -595,8 +604,9 @@ def build_program(
         url = ref["url"]
         if url_key(normalize_url(url), aliases) in same:
             url = same[url_key(normalize_url(url), aliases)]
-        citation = ref.get("citation") or by_url.get(url_key(normalize_url(url), aliases))
-        reason = next(
+        k = url_key(normalize_url(url), aliases)
+        citation = ref.get("citation") or by_url.get(k) or held.get(k)
+        reason = not_sources.get(k) or next(
             (why for rx, why in expired if any(rx.search(t) for t in [url, *files])), None
         )
         if reason is None and ENACTING.search(url) and any(f in codifying for f in files):
@@ -644,7 +654,12 @@ def build_program(
         url = urls[0] if urls else None
         if url and url_key(normalize_url(url), aliases) in same:
             url = same[url_key(normalize_url(url), aliases)]
-        joined = by_url.get(url_key(normalize_url(url), aliases)) if url else None
+        joined = (
+            by_url.get(url_key(normalize_url(url), aliases))
+            or held.get(url_key(normalize_url(url), aliases))
+            if url
+            else None
+        )
         structured = citation_from_url(url) if url else None
         # A plan row that names a recovery scope's path: the document's own path.
         if citation and "/recovery/" in citation and joined and "/recovery/" not in joined:
@@ -926,6 +941,12 @@ def build_program(
 
 def build(config_path: Path) -> dict[str, dict]:
     cfg = yaml.safe_load(config_path.read_text())
+    # The joins file: what the ingestion waves decided for documents the
+    # bundles name by an address (generated from their decisions files).
+    if cfg.get("joins"):
+        joins = yaml.safe_load((REPO / cfg["joins"]).read_text()) or {}
+        for field in ("same_document", "document_paths", "not_sources"):
+            cfg[field] = {**(cfg.get(field) or {}), **(joins.get(field) or {})}
     aliases = cfg.get("host_aliases") or {}
     manifests = load_manifests()
     index = index_manifests(manifests, aliases)

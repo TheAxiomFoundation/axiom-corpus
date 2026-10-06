@@ -386,3 +386,62 @@ def test_build_program_places_a_state_plan_document_in_its_state_and_never_repea
         assert "us-az/policy/cms/state-plan/spa-1" not in federal
         letter = "https://www.fns.usda.gov/files/az-abawd-response-fy2027.pdf"
         assert letter in arizona and letter not in federal
+
+
+def test_build_program_joins_an_address_to_the_path_that_holds_it_and_excludes_non_sources(
+    tmp_path, monkeypatch
+):
+    cfg = config(tmp_path, monkeypatch)
+    statute = "https://law.example-mirror.com/az/46-292"
+    calculator = "https://www.fns.usda.gov/snap/eligibility-calculator"
+    cfg["document_paths"] = {statute: "us-az/statute/46/292"}
+    cfg["not_sources"] = {calculator: "Calculator: not a source of rules"}
+    references = {
+        "references": [
+            {
+                "url": statute,
+                "citation": None,
+                "states": ["az"],
+                "files": ["parameters/gov/states/az/x.yaml"],
+            },
+            {"url": calculator, "citation": None, "files": ["parameters/gov/usda/snap/x.yaml"]},
+        ]
+    }
+    out = bundle.build_program(cfg, "snap", references, None, {}, bundle.index_manifests({}, {}))
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    arizona = {d["key"]: d for d in layers["us-az"]["screener"]}
+    assert arizona["us-az/statute/46/292"]["scope"] == "in"
+    federal = {d["key"]: d for d in layers["us"]["screener"]}
+    assert federal[calculator]["scope"] == "excluded"
+    assert federal[calculator]["reason"] == "Calculator: not a source of rules"
+
+
+def test_apply_wave_decisions_joins_held_addresses_and_excludes_non_sources():
+    import scripts.apply_wave_decisions as apply
+
+    orders = {
+        "https://law.justia.com/az/46-292": {"bundle_url": "https://law.justia.com/az/46-292"},
+        "https://example.gov/calculator": {"bundle_url": "https://example.gov/calculator"},
+        "https://blocked.gov/x": {"bundle_url": "https://blocked.gov/x"},
+        "us/statute/7/2015": {"bundle_url": ""},
+    }
+    decisions = [
+        {
+            "id": "https://law.justia.com/az/46-292",
+            "new_status": "ALREADY-HELD",
+            "citation_path": "us-az/statute/46-292",
+        },
+        {
+            "id": "https://example.gov/calculator",
+            "new_status": "OUT-OF-SCOPE",
+            "note": "an eligibility calculator",
+        },
+        {"id": "https://blocked.gov/x", "new_status": "OUTREACH"},
+        {"id": "us/statute/7/2015", "new_status": "PRESENT", "citation_path": "us/statute/7/2015"},
+    ]
+    out, statuses = apply.joins(orders, decisions, {})
+    assert out["document_paths"] == {"https://law.justia.com/az/46-292": "us-az/statute/46-292"}
+    assert out["not_sources"] == {
+        "https://example.gov/calculator": "Not a source of rules: an eligibility calculator"
+    }
+    assert statuses == {"ALREADY-HELD": 1, "OUT-OF-SCOPE": 1, "OUTREACH": 1, "PRESENT": 1}
