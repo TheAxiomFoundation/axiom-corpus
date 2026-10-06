@@ -179,6 +179,10 @@ for path, url, title in [
     ("2025/h0231", f"{ID_LEG}/wp-content/uploads/sessioninfo/2025/legislation/H0231.pdf", "House Bill 231 (2025)"),
 ]:
     doc("us-id", "statute", url, f"us-id/statute/session-laws/{path}", title, None, "bill_text")
+doc("us-id", "statute", "https://legislature.idaho.gov/statutesrules/idstat/Title57/T57CH11/SECT57-1110/",
+    "us-id/statute/57-1110",
+    "Idaho Code 57-1110. Additional tax on filing income tax credited to permanent building fund", None, "section",
+    sel="div.pgbrk", ids=["https://law.justia.com/codes/idaho/2022/title-57/chapter-11/section-57-1110/"])
 doc("us-id", "guidance", "https://tax.idaho.gov/governance/statutes/irc/", "us-id/guidance/istc/irc-conformity",
     "Conformity to Federal Internal Revenue Code (IRC) (Idaho State Tax Commission)", None, "guidance", sel="main")
 doc("us-id", "guidance",
@@ -334,6 +338,16 @@ for name, year, slug, title, sub in [
 ]:
     path = f"us-la/form/ldr/{slug}" if year is None else f"us-la/form/ldr/ty{year}/{slug}"
     doc("us-la", "form", f"{LA}/{name}", path, title, year, sub)
+LA_NAV_NOTE = ("revenue.louisiana.gov leaves a <nav> element open around the whole page; the manifest keeps nav "
+               "(html_keep_default_drop_selectors) and reads only the page's <main> element.")
+doc("us-la", "guidance", "https://revenue.louisiana.gov/individuals/general-resources/school-readiness-credit/",
+    "us-la/guidance/ldr/school-readiness-credit", "School Readiness Credit (Louisiana Department of Revenue)", None,
+    "guidance", sel="main", keep=["nav"], note=LA_NAV_NOTE)
+doc("us-la", "guidance",
+    "https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/",
+    "us-la/guidance/ldr/faqs/income-tax-reform/individual-income-tax-rates-and-brackets",
+    "What are the individual income tax rates and brackets? (Income tax reform FAQ, Louisiana Department of Revenue)",
+    None, "faq", sel="main", keep=["nav"], note=LA_NAV_NOTE)
 doc("us-la", "guidance", "https://www.startsaving.la.gov/startfaqs.aspx", "us-la/guidance/losfa/start-faqs",
     "START Frequently Asked Questions (Louisiana Student Tuition Assistance and Revenue Trust, LOSFA)", None, "faq",
     sel="#content")
@@ -683,9 +697,6 @@ held("https://www.idsaves.org/tax-benefits/", "id-ch30", "us-id/statute/63-3022"
 other("https://www.cassia.gov/media/Assessor/Forms/Forms_Property/PTR_Tax%20Form-40.pdf", "ABSENT", "", "",
       "a county assessor's copy of the 2024 Idaho Form 40 (not the publisher); the State Tax Commission's 2024 Form 40 "
       "file was not found (tax.idaho.gov forms paths read 2026-10-06); 2021-2023 and 2025 Form 40 are held or PRESENT")
-other("https://law.justia.com/codes/idaho/2022/title-57/chapter-11/section-57-1110/", "SKIPPED", "", "",
-      "mirror; the official page https://legislature.idaho.gov/statutesrules/idstat/Title57/T57CH11/SECT57-1110/ "
-      "answers HTTP 200 but was not taken in the time box", "https://legislature.idaho.gov/statutesrules/idstat/Title57/T57CH11/SECT57-1110/")
 # Illinois
 held("us-il/regulation/title-86/part-100", "il-reg", "us-il/regulation/title-086/chapter-i/part-100",
      "86 Ill. Adm. Code Part 100 held (wave-4 JCAR scope)", "https://www.ilga.gov/ftp/JCAR/AdminCode/086/086001000sections.html")
@@ -717,12 +728,17 @@ held("https://law.justia.com/codes/indiana/title-6/article-3/chapter-1/section-6
 other("https://iga.in.gov/legislative/2025/bills/senate/243", "OUTREACH", "", "",
       "the IGA bill page is a JavaScript application (691-byte shell to the corpus client); no enrolled-act link in the "
       "served HTML for the 2025 SB 243")
-for url in ["https://law.justia.com/codes/indiana/2022/title-4/article-10/chapter-22/",
-            "https://law.justia.com/codes/indiana/2022/title-4/article-10/chapter-22/section-4-10-22-2/",
-            "https://law.justia.com/codes/indiana/2022/title-4/article-10/chapter-22/section-4-10-22-4/"]:
-    other(url, "SKIPPED", "", "",
-          "mirror; official text is IC 4-10-22 (automatic taxpayer refund) at iga.in.gov, whose IC title pages are the IGA "
-          "JavaScript application to the corpus client; Title 4 not taken in the time box")
+IN_T4 = "us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4"
+IN_ZIP = "https://iga.in.gov/ic/2026/2026-Indiana-Code-html.zip"
+for url, path in [("https://law.justia.com/codes/indiana/2022/title-4/article-10/chapter-22/", "us-in/statute/4-10-22"),
+                  ("https://law.justia.com/codes/indiana/2022/title-4/article-10/chapter-22/section-4-10-22-2/",
+                   "us-in/statute/4-10-22-2"),
+                  ("https://law.justia.com/codes/indiana/2022/title-4/article-10/chapter-22/section-4-10-22-4/",
+                   "us-in/statute/4-10-22-4")]:
+    other(url, "PRESENT", IN_T4, path,
+          "mirror; IC 4-10-22 (use of excess reserves; automatic taxpayer refund) extracted from the General Assembly's "
+          "2026 Indiana Code HTML release with the indiana-code adapter (Title 4, manifests/us-in-w6-indiana-code-title-4.yaml)",
+          IN_ZIP)
 # Kansas
 for sec, urls in {
     "79-32-205": ["https://kslegislature.gov/b2023_24/laws/079_000_0000_chapter/079_032_0000_article/079_032_0205_section/079_032_0205_k/"],
@@ -761,11 +777,6 @@ held("https://law.justia.com/codes/louisiana/revised-statutes/title-47/rs-47-293
      "mirror; La. R.S. 47:293 held")
 other("https://www.bls.gov/news.release/archives/cpi_01132026.htm", "OUT-OF-SCOPE", "", "",
       "BLS Consumer Price Index news release (December 2025 data): a federal statistical release, not a Louisiana rule")
-for url, what in [("https://revenue.louisiana.gov/individuals/general-resources/school-readiness-credit/", "School Readiness Credit"),
-                  ("https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/",
-                   "individual income tax rates and brackets FAQ")]:
-    other(url, "SKIPPED", "", "", f"HTTP 200 ({what}); the page's markup wraps the whole body in an unclosed <nav>, which the "
-          "official-documents extractor drops, so the text cannot be taken without an extractor option (time box)")
 # Massachusetts
 for sec in ["2", "3", "4", "5", "6", "9"]:
     held(f"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section{sec}", "ma-c62", f"us-ma/statute/62/{sec}",
@@ -876,6 +887,8 @@ def manifest_entries() -> dict[tuple[str, str], list[dict[str, Any]]]:
         extraction: dict[str, Any] = {"segmentation": "single_block"} if fmt == "pdf" else {}
         if opts.get("sel"):
             extraction["html_content_selector"] = opts["sel"]
+        if opts.get("keep"):
+            extraction["html_keep_default_drop_selectors"] = list(opts["keep"])
         meta: dict[str, Any] = {
             "primary_source": True,
             "source_authority": AUTHORITY[jur] if cls != "statute" else "state legislature",

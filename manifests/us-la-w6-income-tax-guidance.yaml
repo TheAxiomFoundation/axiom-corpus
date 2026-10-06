@@ -17,6 +17,48 @@ documents:
     program: individual_income_tax
     source_family: w6-tax-ia-mi-income-tax-guidance
     discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-la-guidance-ldr-school-readiness-credit
+  jurisdiction: us-la
+  document_class: guidance
+  title: School Readiness Credit (Louisiana Department of Revenue)
+  source_url: https://revenue.louisiana.gov/individuals/general-resources/school-readiness-credit/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-la/guidance/ldr/school-readiness-credit
+  extraction:
+    html_content_selector: main
+    html_keep_default_drop_selectors:
+    - nav
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: revenue.louisiana.gov leaves a <nav> element open around the whole page; the manifest keeps nav (html_keep_default_drop_selectors)
+      and reads only the page's <main> element.
+- source_id: us-la-guidance-ldr-faqs-income-tax-reform-individual-income-tax-rates-and-brackets
+  jurisdiction: us-la
+  document_class: guidance
+  title: What are the individual income tax rates and brackets? (Income tax reform FAQ, Louisiana Department of Revenue)
+  source_url: https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-la/guidance/ldr/faqs/income-tax-reform/individual-income-tax-rates-and-brackets
+  extraction:
+    html_content_selector: main
+    html_keep_default_drop_selectors:
+    - nav
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Revenue
+    document_subtype: faq
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: revenue.louisiana.gov leaves a <nav> element open around the whole page; the manifest keeps nav (html_keep_default_drop_selectors)
+      and reads only the page's <main> element.
 - source_id: us-la-guidance-losfa-start-faqs
   jurisdiction: us-la
   document_class: guidance

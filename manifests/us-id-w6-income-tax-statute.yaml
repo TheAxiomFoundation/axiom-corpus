@@ -119,3 +119,20 @@ documents:
     program: individual_income_tax
     source_family: w6-tax-ia-mi-income-tax-statute
     discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-id-statute-57-1110
+  jurisdiction: us-id
+  document_class: statute
+  title: Idaho Code 57-1110. Additional tax on filing income tax credited to permanent building fund
+  source_url: https://legislature.idaho.gov/statutesrules/idstat/Title57/T57CH11/SECT57-1110/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-id/statute/57-1110
+  extraction:
+    html_content_selector: div.pgbrk
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: section
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
