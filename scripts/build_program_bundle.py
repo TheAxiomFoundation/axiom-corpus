@@ -13,7 +13,7 @@ Two tiers, as the 2026-09-30 document-releases plan defines them:
   the program in the state is encoded, or excluded with a recorded reason.
   Membership is the union of the plan's document list (federal and state,
   which includes the income rules the program leans on) and the PolicyEngine-US
-  references of one pinned release (scripts/export_policyengine_references.py:
+  references of one release, the newest by default (scripts/export_policyengine_references.py:
   every file that cites a URL, in the program's folders and the ones it
   reads). Both group into documents: a US Code or CFR section, a state manual
   page, or the registered document that holds the citation.
@@ -560,8 +560,10 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
         out.append(doc)
     membership = {
         "rule": "The plan's documents for the program (federal and state), and the PolicyEngine-US "
-        "references of one pinned release that apply to the state, grouped into documents",
+        "references of the release it was built from (the newest, by default) that apply to the "
+        "state, grouped into documents",
         "references": tier_cfg["references"],
+        "policyengine_us_release": references.get("policyengine_us_release"),
         "policyengine_us_version": references.get("policyengine_us_version"),
         "policyengine_us_commit": references.get("policyengine_us_commit"),
         "policyengine_us_folders": references.get("folders"),
@@ -569,6 +571,8 @@ def screener_tier(cfg: dict, references: dict, plan: dict | None) -> dict:
         "reference_count": len(references["references"]),
         "fiscal_year": fiscal_year(day),
     }
+    if tier_cfg.get("comparison"):
+        membership["comparison"] = tier_cfg["comparison"]
     if plan:
         membership.update(
             {

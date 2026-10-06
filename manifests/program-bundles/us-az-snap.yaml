@@ -20,14 +20,16 @@ parts:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every document that PolicyEngine-US cites for this program in this state is encoded, or excluded with
-    a recorded reason. A conformance report against a pinned PolicyEngine version closes the tier.
+  definition: 'Axiom computes the same eligibility and benefit as PolicyEngine-US for the state''s households: the
+    comparison against the newest PolicyEngine release has no unfixed Axiom errors. Every document PolicyEngine-US
+    cites for the program in the state is encoded, or excluded with a recorded reason.'
   membership:
-    rule: The plan's documents for the program (federal and state), and the PolicyEngine-US references of one pinned
-      release that apply to the state, grouped into documents
+    rule: The plan's documents for the program (federal and state), and the PolicyEngine-US references of the release
+      it was built from (the newest, by default) that apply to the state, grouped into documents
     references: sources/policyengine-us/snap-us-az-references.json
-    policyengine_us_version: 2.29.11
-    policyengine_us_commit: 4c900b6d3d808c4a9cf56d11afcedad9898f732f
+    policyengine_us_release: latest
+    policyengine_us_version: 2.29.10
+    policyengine_us_commit: f47ba5686190ef2911b5b058e32ea85f4353ecd8
     policyengine_us_folders:
     - gov/usda/snap
     - gov/hhs/tanf/non_cash
@@ -37,6 +39,10 @@ tiers:
     references_derived_by: scripts/export_policyengine_references.py
     reference_count: 448
     fiscal_year: 2027
+    comparison:
+      repo: TheAxiomFoundation/axiom-oracles
+      suite: az-snap-ecps
+      report: dashboard/public/data/axiom-policyengine-az-snap-ecps.json
     plan: sources/plans/snap-us-az-plan-documents.json
     plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
     plan_as_of: '2026-09-29'

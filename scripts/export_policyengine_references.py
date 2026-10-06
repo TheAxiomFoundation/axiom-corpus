@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 """Export the PolicyEngine-US references a program bundle's screener tier
-draws on, from one pinned release.
+draws on, from one release: the newest one by default.
 
-Reads every parameter and variable file under the folders the bundle config
-names (``screener.policyengine_us.folders``) at the pinned commit of a local
-policyengine-us checkout, and records each reference URL once with every file
-that cites it. A citation path is derived only where the URL's own structure
+``screener.policyengine_us.release`` in the bundle config is ``latest`` (the
+newest version published on PyPI) or a version number. The script finds the
+release commit on policyengine-us main (the commit that set that version),
+reads every parameter and variable file under the config's folders at that
+commit, and records each reference URL once with every file that cites it. A citation path is derived only where the URL's own structure
 carries it (Cornell, eCFR, uscode.house.gov); the bundle builder joins the rest
 to corpus manifests by URL and grades exclusions itself.
 
 Usage::
 
-    git -C ~/policyengine-us fetch origin main
     python scripts/export_policyengine_references.py \\
         manifests/program-bundles/us-az-snap.config.yaml --checkout ~/policyengine-us
 
-The export is written to the config's ``screener.references`` path. It is
-dated by the pinned commit, so the same pin always gives the same file.
+The export is written to the config's ``screener.references`` path and
+records the version and commit it read, so a rebuild from the same export is
+exact; re-running it moves the bundle to the newest release.
 """
 
 from __future__ import annotations
@@ -25,12 +26,14 @@ import argparse
 import json
 import re
 import subprocess
+import urllib.request
 from pathlib import Path
 
 import yaml
 
 REPO = Path(__file__).resolve().parent.parent
 ROOT = "policyengine_us"
+PYPI = "https://pypi.org/pypi/policyengine-us/json"
 QUOTED_URL = re.compile(r"""["'](https?://[^"'\s]+)["']""")
 PY_REFERENCE = re.compile(r"^(\s+)reference\s*=", re.M)
 
@@ -39,6 +42,48 @@ def git(checkout: Path, *args: str) -> str:
     return subprocess.run(
         ["git", "-C", str(checkout), *args], check=True, capture_output=True, text=True
     ).stdout
+
+
+def newest_published() -> str | None:
+    """The newest policyengine-us version on PyPI, or None when PyPI is unreachable."""
+    try:
+        with urllib.request.urlopen(PYPI, timeout=20) as res:
+            return json.load(res)["info"]["version"]
+    except (OSError, ValueError, KeyError):
+        return None
+
+
+def release_commit(checkout: Path, version: str) -> str | None:
+    """The commit on main that set the package version: the release commit."""
+    found = git(
+        checkout,
+        "log",
+        "origin/main",
+        "--reverse",
+        "--format=%H",
+        f'-Sversion = "{version}"',
+        "--",
+        "pyproject.toml",
+    ).split()
+    return found[0] if found else None
+
+
+def resolve_release(checkout: Path, release: str) -> tuple[str, str]:
+    """(version, commit) of the configured release: ``latest`` or a version number.
+
+    ``latest`` is the newest version published on PyPI; main can be a version
+    ahead while its release publishes. Without PyPI, main's own version."""
+    git(checkout, "fetch", "--quiet", "origin", "main")
+    version = newest_published() if release == "latest" else release
+    if version is None:
+        m = re.search(
+            r'^version = "([^"]+)"', git(checkout, "show", "origin/main:pyproject.toml"), re.M
+        )
+        version = m.group(1) if m else None
+    commit = release_commit(checkout, version) if version else None
+    if not version or not commit:
+        raise SystemExit(f"policyengine-us release {release!r}: no release commit on main")
+    return version, commit
 
 
 def yaml_references(node) -> list[tuple[str, str | None]]:
@@ -125,7 +170,7 @@ def citation_from_url(url: str) -> tuple[str, str] | None:
 def export(config_path: Path, checkout: Path) -> dict:
     cfg = yaml.safe_load(config_path.read_text())
     pin = cfg["screener"]["policyengine_us"]
-    commit = pin["commit"]
+    version, commit = resolve_release(checkout, str(pin.get("release", "latest")))
     files = git(
         checkout,
         "ls-tree",
@@ -172,7 +217,8 @@ def export(config_path: Path, checkout: Path) -> dict:
             }
         )
     return {
-        "policyengine_us_version": pin["version"],
+        "policyengine_us_release": str(pin.get("release", "latest")),
+        "policyengine_us_version": version,
         "policyengine_us_commit": commit,
         "policyengine_us_commit_date": git(checkout, "show", "-s", "--format=%cs", commit).strip(),
         "program": cfg["program"],

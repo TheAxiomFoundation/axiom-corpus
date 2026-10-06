@@ -30,16 +30,18 @@ parts:
 screener:
   title: Screener-level parity
   definition: >-
-    Every document that PolicyEngine-US cites for this program in this state is encoded, or excluded with a
-    recorded reason. A conformance report against a pinned PolicyEngine version closes the tier.
-  # The PolicyEngine-US release the tier is measured against, and the folders
-  # whose parameters and variables cite its law: SNAP's own, and the ones SNAP
-  # reads (the TANF non-cash limits for broad-based categorical eligibility,
-  # the poverty guidelines, the uprating indices). Every file that cites a URL
-  # counts, not only the first.
+    Axiom computes the same eligibility and benefit as PolicyEngine-US for the state's households: the comparison
+    against the newest PolicyEngine release has no unfixed Axiom errors. Every document PolicyEngine-US cites for
+    the program in the state is encoded, or excluded with a recorded reason.
+  # The PolicyEngine-US release the tier is measured against: the newest one
+  # published (re-run the export to move to it), or a version number to hold
+  # one. The export records the version and commit it read. The folders are
+  # the ones whose parameters and variables cite the program's law: SNAP's
+  # own, and the ones SNAP reads (the TANF non-cash limits for broad-based
+  # categorical eligibility, the poverty guidelines, the uprating indices).
+  # Every file that cites a URL counts, not only the first.
   policyengine_us:
-    version: 2.29.11
-    commit: 4c900b6d3d808c4a9cf56d11afcedad9898f732f
+    release: latest
     folders:
       - gov/usda/snap
       - gov/hhs/tanf/non_cash
@@ -48,6 +50,12 @@ screener:
       - gov/ssa/uprating.yaml
   # The references export (scripts/export_policyengine_references.py).
   references: sources/policyengine-us/snap-us-az-references.json
+  # The comparison that measures the tier's headline, screener-level parity:
+  # Axiom against PolicyEngine on Arizona households (axiom-oracles).
+  comparison:
+    repo: TheAxiomFoundation/axiom-oracles
+    suite: az-snap-ecps
+    report: dashboard/public/data/axiom-policyengine-az-snap-ecps.json
   # The plan's SNAP documents for the federal layer and Arizona.
   plan: sources/plans/snap-us-az-plan-documents.json
   # Plan documents whose URL names no page, mapped to their page by title.

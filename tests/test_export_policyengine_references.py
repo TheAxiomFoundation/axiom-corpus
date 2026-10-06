@@ -68,3 +68,29 @@ def test_citation_from_url_reads_structured_urls():
         "us/manual/ssa/poms/si/01401.001",
     )
     assert export.citation_from_url("https://www.fns.usda.gov/snap/work-requirements") is None
+
+
+def test_resolve_release_takes_the_newest_published_version_and_its_release_commit(
+    monkeypatch, tmp_path
+):
+    calls = []
+
+    def fake_git(checkout, *args):
+        calls.append(args)
+        if args[0] == "log":
+            # The release commit is the oldest commit that set the version.
+            return {"2.29.10": "f47ba56\n4c900b6\n", "2.29.11": "4c900b6\n"}[args[4].split('"')[1]]
+        if args[0] == "show":
+            return 'name = "policyengine-us"\nversion = "2.29.11"\n'
+        return ""
+
+    monkeypatch.setattr(export, "git", fake_git)
+    # PyPI's newest can trail main by a release that is still publishing.
+    monkeypatch.setattr(export, "newest_published", lambda: "2.29.10")
+    assert export.resolve_release(tmp_path, "latest") == ("2.29.10", "f47ba56")
+    assert calls[0] == ("fetch", "--quiet", "origin", "main")
+    # A version number holds that release.
+    assert export.resolve_release(tmp_path, "2.29.11") == ("2.29.11", "4c900b6")
+    # Without PyPI, main's own version.
+    monkeypatch.setattr(export, "newest_published", lambda: None)
+    assert export.resolve_release(tmp_path, "latest") == ("2.29.11", "4c900b6")
