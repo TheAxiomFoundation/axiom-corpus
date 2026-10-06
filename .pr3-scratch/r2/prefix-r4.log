@@ -1,0 +1,16 @@
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3376: AssertionError: assert {'corpus.curr...lease_scopes'} == set()
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3376: AssertionError: assert {'corpus.curr...lease_scopes'} == set()
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_layering_is_matched_by_pair_not_by_its_values
+FAILED tests/test_layered_serving_postgres.py::test_a_pointer_move_clears_derived_rows_left_by_tampering
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.provisions]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.active_scope_pointer]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.release_objects]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.release_scopes]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[re-application-corpus.provisions]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[re-application-corpus.active_scope_pointer]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[re-application-corpus.release_objects]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[re-application-corpus.release_scopes]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[re-application-corpus.layered_shadowed_rows]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[re-application-corpus.layered_navigation_overrides]
+12 failed, 2 passed, 2 skipped, 135 deselected in 11.53s

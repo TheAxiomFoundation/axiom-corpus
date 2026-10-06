@@ -1,0 +1,46 @@
+..........................................................s............. [ 48%]
+.......................................................F.FFFss.......... [ 96%]
+......                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.provisions] _
+tests/test_layered_serving_postgres.py:3376: in test_a_write_in_progress_delays_the_file_before_it_blocks_reads
+    assert _held(observer, applying, "AccessExclusiveLock") == set()
+E   AssertionError: assert {'2637659', '2637660'} == set()
+E     
+E     Extra items in the left set:
+E     '2637659'
+E     '2637660'
+E     Use -v to get more diff
+_ test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.active_scope_pointer] _
+tests/test_layered_serving_postgres.py:3376: in test_a_write_in_progress_delays_the_file_before_it_blocks_reads
+    assert _held(observer, applying, "AccessExclusiveLock") == set()
+E   AssertionError: assert {'2638145', '2638146'} == set()
+E     
+E     Extra items in the left set:
+E     '2638146'
+E     '2638145'
+E     Use -v to get more diff
+_ test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.release_objects] _
+tests/test_layered_serving_postgres.py:3376: in test_a_write_in_progress_delays_the_file_before_it_blocks_reads
+    assert _held(observer, applying, "AccessExclusiveLock") == set()
+E   AssertionError: assert {'2638388', '2638389'} == set()
+E     
+E     Extra items in the left set:
+E     '2638389'
+E     '2638388'
+E     Use -v to get more diff
+_ test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.release_scopes] _
+tests/test_layered_serving_postgres.py:3376: in test_a_write_in_progress_delays_the_file_before_it_blocks_reads
+    assert _held(observer, applying, "AccessExclusiveLock") == set()
+E   AssertionError: assert {'2638631', '2638632'} == set()
+E     
+E     Extra items in the left set:
+E     '2638632'
+E     '2638631'
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.provisions]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.active_scope_pointer]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.release_objects]
+FAILED tests/test_layered_serving_postgres.py::test_a_write_in_progress_delays_the_file_before_it_blocks_reads[first application-corpus.release_scopes]
+4 failed, 143 passed, 3 skipped, 1 deselected in 1508.69s (0:25:08)

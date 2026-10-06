@@ -1,0 +1,21 @@
+......................F...F....F                                         [100%]
+=================================== FAILURES ===================================
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_query_supabase.py:517: AssertionError: assert {'document_cl...'select': '*'} == {'document_cl...et': '0', ...}
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_query_supabase.py:630: AssertionError: 1000
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_query_supabase.py:793: AssertionError: assert [] == ['fx/statute/1/0']
+=========================== short test summary info ============================
+FAILED tests/test_query_supabase.py::test_unlayered_children_are_the_parent_id_children_origin_main_returns
+FAILED tests/test_query_supabase.py::test_the_base_scope_is_found_wherever_membership_lists_it
+FAILED tests/test_query_supabase.py::test_layered_children_are_the_served_navigation_children
+3 failed, 29 passed in 1.09s
+    assert len(children) == 1001, base_position
+E   AssertionError: 1000
+E   assert 1 == 1001
+E    +  where 1 = len([Rule(id='b08971c0-d95e-5c72-bd8f-f6deb78d309b', jurisdiction='fx', doc_type='statute', parent_id='37b7c9ad-b6a4-5eb1-...ces/fx/statute/2026-04-29-base/source.xml', rulespec_path=None, has_rulespec=False, citation_path='fx/statute/1/0000')])
+    assert [child.citation_path for child in _children(query, path)] == _layered_children(
+E   AssertionError: assert [] == ['fx/statute/1/0']
+E       pair=((('fx/statute/1', None, None),
+E       path='fx/statute/1',
+E       max_rows=1,
+E       base_position=1,
+E       base_version='2026-04-29-base',

@@ -1,0 +1,3043 @@
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 4 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  * Install corpus artifact guard
+  * Guard generated corpus artifacts
+  * Audit every corpus lock entry's attestation
+  * Install dependencies
+  * Check R2 serves every new corpus lock entry
+  * Fetch the corpus the tests read
+  * Check changelog fragments
+  * Lint with ruff
+  * Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 5 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  * Audit every corpus lock entry's attestation
+  * Install dependencies
+  * Check R2 serves every new corpus lock entry
+  * Fetch the corpus the tests read
+  * Check changelog fragments
+  * Lint with ruff
+  * Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 5 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  * Check R2 serves every new corpus lock entry
+  * Fetch the corpus the tests read
+  * Check changelog fragments
+  * Lint with ruff
+  * Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 6 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  * Fetch the corpus the tests read
+  * Check changelog fragments
+  * Lint with ruff
+  * Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 6 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  * Fetch the corpus the tests read
+  * Check changelog fragments
+  * Lint with ruff
+  * Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 7 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  * Fetch the corpus the tests read
+  * Check changelog fragments
+  * Lint with ruff
+  * Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 7 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 8 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 8 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 9 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 9 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 10 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 10 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 11 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 11 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 12 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 13 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 13 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 14 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 14 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 15 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 15 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 16 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 16 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* test (3.14) (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  * Run tests with coverage
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 17 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+* postgres (ID 111705248058)
+  ✓ Set up job
+  * Initialize containers
+  * Run actions/checkout@v6.0.2
+  * Set up Python 3.14
+  * Install dependencies
+  * Test PostgreSQL connection
+  * Test atomic named-release migration in PostgreSQL
+  * Test work queue claims in PostgreSQL
+  * Stop containers
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 17 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+* postgres (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  * Install dependencies
+  * Test PostgreSQL connection
+  * Test atomic named-release migration in PostgreSQL
+  * Test work queue claims in PostgreSQL
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+  * Stop containers
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 18 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+* postgres (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  * Test atomic named-release migration in PostgreSQL
+  * Test work queue claims in PostgreSQL
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+  * Stop containers
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 18 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+* postgres (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  * Test atomic named-release migration in PostgreSQL
+  * Test work queue claims in PostgreSQL
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+  * Stop containers
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 19 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+* postgres (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  * Test atomic named-release migration in PostgreSQL
+  * Test work queue claims in PostgreSQL
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+  * Stop containers
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 19 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+* postgres (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  * Test atomic named-release migration in PostgreSQL
+  * Test work queue claims in PostgreSQL
+  * Post Set up Python 3.14
+  * Post Run actions/checkout@v6.0.2
+  * Stop containers
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 20 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 20 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 21 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 22 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 22 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 23 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 23 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 24 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 24 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 25 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 25 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 26 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 26 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 27 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 27 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 28 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+* Validate named release selectors (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  * Deep-validate every named release selector
+  * Post Run actions/setup-python@v6.2.0
+  * Post Run actions/checkout@v6.0.2
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+
+✓ feat/layered-serving-base-precedence CI TheAxiomFoundation/axiom-corpus#779 · 37290401942
+Triggered via pull_request about 28 minutes ago
+
+JOBS
+✓ Citation-path grammar (A6) in 1m7s (ID 111699204107)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Fetch every locked provisions file
+  ✓ Validate citation paths against the grammar
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate GitHub workflows in 14s (ID 111699204122)
+  ✓ Set up job
+  ✓ Pull rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actionlint
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ test (3.14) in 16m57s (ID 111699204368)
+  ✓ Set up job
+  - Diagnose a missing ingest trust variable
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install corpus artifact guard
+  ✓ Guard generated corpus artifacts
+  ✓ Audit every corpus lock entry's attestation
+  ✓ Install dependencies
+  ✓ Check R2 serves every new corpus lock entry
+  ✓ Fetch the corpus the tests read
+  ✓ Check changelog fragments
+  ✓ Lint with ruff
+  ✓ Type check with mypy
+  ✓ Run tests with coverage
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+✓ Validate named release selectors in 28m38s (ID 111699204377)
+  ✓ Set up job
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Run actions/setup-python@v6.2.0
+  ✓ Install package
+  ✓ Fetch the corpus the selectors name
+  ✓ Deep-validate every named release selector
+  ✓ Post Run actions/setup-python@v6.2.0
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Complete job
+- Verify release coverage in 0s (ID 111699205490)
+✓ postgres in 3m5s (ID 111705248058)
+  ✓ Set up job
+  ✓ Initialize containers
+  ✓ Run actions/checkout@v6.0.2
+  ✓ Set up Python 3.14
+  ✓ Install dependencies
+  ✓ Test PostgreSQL connection
+  ✓ Test atomic named-release migration in PostgreSQL
+  ✓ Test work queue claims in PostgreSQL
+  ✓ Post Set up Python 3.14
+  ✓ Post Run actions/checkout@v6.0.2
+  ✓ Stop containers
+  ✓ Complete job
+
+ANNOTATIONS
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Citation-path grammar (A6): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Validate GitHub workflows: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+postgres: .github#1
+

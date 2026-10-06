@@ -1,0 +1,12 @@
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3230: AssertionError: [InsufficientPrivilege('permission denied for view legacy_provisions
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3290: AssertionError: assert [(0,)] != [(0,)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3286: Failed: DID NOT RAISE <class 'psycopg2.errors.RaiseException'>
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3303: assert RaiseException('corpus.provisions is truncated only under READ COMMITTED isolation, not read uncommitted\nCONTEXT:  PL...ate_reads_committed_state(TG_TABLE_NAME)"\nPL/pgSQL function guard_released_scope_rows_truncate() line 5 at PERFORM\n') is None
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_two_applications_at_once_wait_for_each_other[first application]
+FAILED tests/test_layered_serving_postgres.py::test_two_applications_at_once_wait_for_each_other[re-application]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_looping_serving_reads_deadlocks_nothing[first application]
+FAILED tests/test_layered_serving_postgres.py::test_layering_is_read_from_signed_scopes_as_the_guards_read_them[READ COMMITTED]
+FAILED tests/test_layered_serving_postgres.py::test_layering_is_read_from_signed_scopes_as_the_guards_read_them[REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_read_uncommitted_counts_as_read_committed
+6 failed, 1 passed, 128 deselected in 7.43s

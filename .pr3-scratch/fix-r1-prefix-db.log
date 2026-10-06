@@ -1,0 +1,1129 @@
+FF....FFFFFFFFFFFF.FFF.F.FFFF.F.............F                            [100%]
+=================================== FAILURES ===================================
+______ test_migration_is_rerunnable_and_rederivation_reproduces_the_state ______
+
+db = <connection object at 0x49fb7c54b00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_migration_is_rerunnable_and_rederivation_reproduces_the_state(db: Any) -> None:
+        _publish_layered(db)
+        before = _snapshot(db)
+        with db.cursor() as cursor:
+            cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        db.commit()
+        assert _snapshot(db) == before
+>       _rows(db, "SELECT corpus.rederive_layered_serving()")
+
+tests/test_layered_serving_postgres.py:1067: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c54b00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+query = 'SELECT corpus.rederive_layered_serving()', params = ()
+
+    def _rows(connection: Any, query: str, params: Sequence[Any] = ()) -> list[tuple[Any, ...]]:
+        with connection.cursor() as cursor:
+>           cursor.execute(query, params)
+E           psycopg2.errors.UndefinedFunction: function corpus.rederive_layered_serving() does not exist
+E           LINE 1: SELECT corpus.rederive_layered_serving()
+E                          ^
+E           HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+tests/test_layered_serving_postgres.py:702: UndefinedFunction
+__________________ test_historical_memberships_become_primary __________________
+
+db = <connection object at 0x49fb7c55580; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_historical_memberships_become_primary(db: Any) -> None:
+        _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE)
+        assert _rows(db, "SELECT DISTINCT layer FROM corpus.release_scopes") == [("primary",)]
+        # The membership guard rejects the write first; with triggers off (as an
+        # owner could), the check constraint still holds the layer to its values.
+>       assert isinstance(
+            _attempt(db, "UPDATE corpus.release_scopes SET layer = 'secondary'"),
+            errors.RaiseException,
+        )
+E       assert False
+E        +  where False = isinstance(CheckViolation('new row for relation "release_scopes" violates check constraint "release_scopes_layer_check"\nDETAIL: ...g row contains (fx-rulespec-2026-09-01, fx, statute, 2026-09-20-title-1, 2026-10-05 03:29:49.612997-04, secondary).\n'), <class 'psycopg2.errors.RaiseException'>)
+E        +    where CheckViolation('new row for relation "release_scopes" violates check constraint "release_scopes_layer_check"\nDETAIL: ...g row contains (fx-rulespec-2026-09-01, fx, statute, 2026-09-20-title-1, 2026-10-05 03:29:49.612997-04, secondary).\n') = _attempt(<connection object at 0x49fb7c55580; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>, "UPDATE corpus.release_scopes SET layer = 'secondary'")
+E        +    and   <class 'psycopg2.errors.RaiseException'> = errors.RaiseException
+
+tests/test_layered_serving_postgres.py:1076: AssertionError
+________ test_activation_compares_the_stored_layer_with_the_signed_one _________
+
+db = <connection object at 0x49fb7c54f80; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_activation_compares_the_stored_layer_with_the_signed_one(db: Any) -> None:
+        release_object = _publish_layered(db)
+        before = _snapshot(db)
+        demote_base = (
+            "UPDATE corpus.release_scopes SET layer = 'primary' "
+            "WHERE release_name = %s AND layer = 'base'"
+        )
+        error = _attempt(db, demote_base, (LAYERED_RELEASE,))
+        # Checked right after the write: nothing it would have changed is served.
+>       assert isinstance(error, errors.RaiseException), error
+E       AssertionError: None
+E       assert False
+E        +  where False = isinstance(None, <class 'psycopg2.errors.RaiseException'>)
+E        +    where <class 'psycopg2.errors.RaiseException'> = errors.RaiseException
+
+tests/test_layered_serving_postgres.py:1789: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[demote the base scope] _
+
+db = <connection object at 0x49fb7c56480; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'demote the base scope'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c56480; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...shadowed': []}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': []}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]} != {'shadowed': []}
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[move a primary scope to another version] _
+
+db = <connection object at 0x49fb7c56300; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'move a primary scope to another version'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c56300; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('429a9e45-c.../2', 'b', ...), ('c92d930a-4ef1-5ec7-a2bc-d12877ed8589', 'fx', 'statute', 'fx/statute/3/1', 'fx/statute/3', '1', ...)]}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[delete a primary scope] _
+
+db = <connection object at 0x49fb7c57380; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'delete a primary scope'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c57380; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('429a9e45-c...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[delete the base scope] _
+
+db = <connection object at 0x49fb7c57200; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'delete the base scope'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c57200; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...shadowed': []}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': []}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]} != {'shadowed': []}
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[add an unsigned primary scope] _
+
+db = <connection object at 0x49fb7c58280; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'add an unsigned primary scope'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c58280; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5.../2', 'b', ...), ('c92d930a-4ef1-5ec7-a2bc-d12877ed8589', 'fx', 'statute', 'fx/statute/3/1', 'fx/statute/3', '1', ...)]}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[truncate membership] _
+
+db = <connection object at 0x49fb7c58100; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'truncate membership'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c58100; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...shadowed': []}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': []}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]} != {'shadowed': []}
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[truncate release objects] _
+
+db = <connection object at 0x49fb7c59180; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'truncate release objects'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+        _assert_serving_is_consistent(db)
+>       assert isinstance(error, errors.RaiseException), error
+E       AssertionError: None
+E       assert False
+E        +  where False = isinstance(None, <class 'psycopg2.errors.RaiseException'>)
+E        +    where <class 'psycopg2.errors.RaiseException'> = errors.RaiseException
+
+tests/test_layered_serving_postgres.py:1908: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[truncate navigation] _
+
+db = <connection object at 0x49fb7c59000; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'truncate navigation'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c59000; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': []}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]} != {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rul...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[truncate provisions] _
+
+db = <connection object at 0x49fb7c5a080; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'truncate provisions'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c5a080; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]} != {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]}
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_writes_under_a_served_layered_release_are_rejected[truncate both staged tables] _
+
+db = <connection object at 0x49fb7c59f00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+write = 'truncate both staged tables'
+
+    @pytest.mark.parametrize("write", list(_SERVED_INPUT_WRITES))
+    def test_writes_under_a_served_layered_release_are_rejected(db: Any, write: str) -> None:
+        _stage(db, STRAY)
+        _publish_layered(db)
+        before = _snapshot(db)
+        stored = _stored(db)
+        error = _attempt(
+            db,
+            _SERVED_INPUT_WRITES[write],
+            {
+                "release": LAYERED_RELEASE,
+                "stray": STRAY.version,
+                "primary": PRIMARY_TITLE.version,
+                "base": BASE.version,
+            },
+        )
+        # Checked right after the write: serving is still exactly what a
+        # derivation from scratch serves, and nothing changed.
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1907: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c59f00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...shadowed': []}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': []}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/1', 'fx-rulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96ce...ulespec-2026-09-22-base', 'd7464e2fffd723f971b46a2eaf5e6b668b96cedb583cfaa1e1319a1db4419044', '2026-04-29-base', ...)]} != {'shadowed': []}
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_____ test_released_rows_and_membership_refuse_truncate_for_every_release ______
+
+db = <connection object at 0x49fb7c5a500; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_released_rows_and_membership_refuse_truncate_for_every_release(db: Any) -> None:
+        """The statement-level twin of the released-row guard, layered or not."""
+        _publish(db, "fx-rulespec-2026-09-01", OTHER_PAIR)
+        for statement in (
+            "TRUNCATE corpus.navigation_nodes",
+            "TRUNCATE corpus.provisions CASCADE",
+            "TRUNCATE corpus.release_scopes",
+        ):
+            error = _attempt(db, statement)
+>           assert isinstance(error, errors.RaiseException), statement
+E           AssertionError: TRUNCATE corpus.navigation_nodes
+E           assert False
+E            +  where False = isinstance(None, <class 'psycopg2.errors.RaiseException'>)
+E            +    where <class 'psycopg2.errors.RaiseException'> = errors.RaiseException
+
+tests/test_layered_serving_postgres.py:1923: AssertionError
+___________________ test_only_signed_scopes_join_membership ____________________
+
+db = <connection object at 0x49fb7c5a800; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_only_signed_scopes_join_membership(db: Any) -> None:
+        """Membership rows of a signed release cannot be deleted, so no stray one gets in."""
+        _stage(db, STRAY, PRIMARY_TITLE)
+        release_object = _release_object(db, "fx-rulespec-2026-09-01", (PRIMARY_TITLE,))
+        _stage_object(db, release_object)
+        insert = (
+            "INSERT INTO corpus.release_scopes "
+            "(release_name, jurisdiction, document_class, version, layer) "
+            "VALUES ('fx-rulespec-2026-09-01', 'fx', 'statute', %s, %s)"
+        )
+        for version, layer in ((STRAY.version, "primary"), (PRIMARY_TITLE.version, "base")):
+            error = _attempt(db, insert, (version, layer))
+>           assert isinstance(error, errors.RaiseException), (version, layer)
+E           AssertionError: ('2026-09-25-stray', 'primary')
+E           assert False
+E            +  where False = isinstance(None, <class 'psycopg2.errors.RaiseException'>)
+E            +    where <class 'psycopg2.errors.RaiseException'> = errors.RaiseException
+
+tests/test_layered_serving_postgres.py:1946: AssertionError
+_ test_restoring_membership_lost_before_the_guard_rederives_the_pair[reactivation] _
+
+db = <connection object at 0x49fb7c5b400; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+restore = 'reactivation'
+
+    @pytest.mark.parametrize("restore", ["reactivation", "insert"])
+    def test_restoring_membership_lost_before_the_guard_rederives_the_pair(
+        db: Any, restore: str
+    ) -> None:
+        """Membership altered before the guard existed (simulated with triggers off)
+        is restored by re-activating the release, or by inserting the signed scope
+        back. Its pointer does not move, so the restored row re-derives the pair."""
+        release_object = _publish_layered(db)
+        expected = _snapshot(db)
+        with db.cursor() as cursor:
+            cursor.execute("SET session_replication_role = replica")
+            cursor.execute(
+                "DELETE FROM corpus.release_scopes WHERE release_name = %s AND version = %s",
+                (LAYERED_RELEASE, PRIMARY_TITLE.version),
+            )
+            cursor.execute("RESET session_replication_role")
+            # The owner brings the derived state in line with what is now served.
+            cursor.execute("SELECT corpus.refresh_layered_serving('fx', 'statute')")
+        db.commit()
+        _assert_serving_is_consistent(db)
+        assert _snapshot(db)["overrides"] != expected["overrides"]
+        if restore == "reactivation":
+            assert _activate(db, release_object)["scopes"]["activated"] == []
+        else:
+            restored = _attempt(
+                db,
+                "INSERT INTO corpus.release_scopes "
+                "(release_name, jurisdiction, document_class, version) "
+                "VALUES (%s, 'fx', 'statute', %s)",
+                (LAYERED_RELEASE, PRIMARY_TITLE.version),
+            )
+            assert restored is None
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1987: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c5b400; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('429a9e45-c...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/2/2', 'fx-rulespec-2026-09-22-ba...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+__ test_restoring_membership_lost_before_the_guard_rederives_the_pair[insert] __
+
+db = <connection object at 0x49fb7c5bd00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+restore = 'insert'
+
+    @pytest.mark.parametrize("restore", ["reactivation", "insert"])
+    def test_restoring_membership_lost_before_the_guard_rederives_the_pair(
+        db: Any, restore: str
+    ) -> None:
+        """Membership altered before the guard existed (simulated with triggers off)
+        is restored by re-activating the release, or by inserting the signed scope
+        back. Its pointer does not move, so the restored row re-derives the pair."""
+        release_object = _publish_layered(db)
+        expected = _snapshot(db)
+        with db.cursor() as cursor:
+            cursor.execute("SET session_replication_role = replica")
+            cursor.execute(
+                "DELETE FROM corpus.release_scopes WHERE release_name = %s AND version = %s",
+                (LAYERED_RELEASE, PRIMARY_TITLE.version),
+            )
+            cursor.execute("RESET session_replication_role")
+            # The owner brings the derived state in line with what is now served.
+            cursor.execute("SELECT corpus.refresh_layered_serving('fx', 'statute')")
+        db.commit()
+        _assert_serving_is_consistent(db)
+        assert _snapshot(db)["overrides"] != expected["overrides"]
+        if restore == "reactivation":
+            assert _activate(db, release_object)["scopes"]["activated"] == []
+        else:
+            restored = _attempt(
+                db,
+                "INSERT INTO corpus.release_scopes "
+                "(release_name, jurisdiction, document_class, version) "
+                "VALUES (%s, 'fx', 'statute', %s)",
+                (LAYERED_RELEASE, PRIMARY_TITLE.version),
+            )
+            assert restored is None
+>       _assert_serving_is_consistent(db)
+
+tests/test_layered_serving_postgres.py:1987: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+connection = <connection object at 0x49fb7c5bd00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def _assert_serving_is_consistent(connection: Any) -> None:
+        """What is served is what a derivation from scratch would serve.
+    
+        The derived tables equal a fresh derivation of every served pair (made in a
+        transaction that is rolled back), each pair serves a citation path at most
+        once in each view, and navigation serves exactly the served provisions.
+        """
+        with connection.cursor() as cursor:
+            stored = _derived_rows(cursor)
+            cursor.execute("DELETE FROM corpus.layered_shadowed_rows")
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+            cursor.execute(
+                "SELECT corpus.refresh_layered_serving(jurisdiction, document_class) "
+                "FROM corpus.active_scope_pointer ORDER BY jurisdiction, document_class"
+            )
+            fresh = _derived_rows(cursor)
+        connection.rollback()
+>       assert stored == fresh
+E       AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+E         
+E         Differing items:
+E         {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('429a9e45-c...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]} != {'overrides': [('154b1f04-920e-5fcb-94b2-81bc240898bd', 'fx', 'statute', 'fx/statute/2', None, '2', ...), ('3a15ea10-5...5/x', ...), ('baddc762-4dc2-5309-9069-f56bd709b21e', 'fx', 'statute', 'fx/statute/2/2/b', 'fx/statute/2/2', 'b', ...)]}
+E         {'shadowed': [('fx', 'statute', 'fx/statute/2/2', 'fx-rulespec-2026-09-22-ba...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_layered_serving_postgres.py:818: AssertionError
+_ test_applying_the_file_with_a_base_scope_served_leaves_the_derivation_to_its_own_step _
+
+db = <connection object at 0x49fb7c5cf00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_applying_the_file_with_a_base_scope_served_leaves_the_derivation_to_its_own_step(
+        db: Any,
+    ) -> None:
+        _publish_layered(db)
+        served = _snapshot(db)
+        with db.cursor() as cursor:
+            # Removed by hand, so only a derivation brings them back.
+            cursor.execute("DELETE FROM corpus.layered_navigation_overrides")
+        db.commit()
+        del db.notices[:]
+        with db.cursor() as cursor:
+            cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        db.commit()
+>       assert _rows(db, "SELECT COUNT(*) FROM corpus.layered_navigation_overrides") == [(0,)]
+E       assert [(5,)] == [(0,)]
+E         
+E         At index 0 diff: (5,) != (0,)
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:2029: AssertionError
+_______ test_rederivation_takes_only_activation_locks_and_blocks_no_read _______
+
+layered_dsn = 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432'
+db = <connection object at 0x49fb7c5ca80; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_rederivation_takes_only_activation_locks_and_blocks_no_read(
+        layered_dsn: str, db: Any
+    ) -> None:
+        _publish_layered(db)
+        served = set(_navigation(db))
+        with (
+            closing(psycopg2.connect(layered_dsn)) as deriving,
+            closing(psycopg2.connect(layered_dsn)) as other,
+        ):
+            with deriving.cursor() as cursor:
+>               cursor.execute("SELECT corpus.rederive_layered_serving()")
+E               psycopg2.errors.UndefinedFunction: function corpus.rederive_layered_serving() does not exist
+E               LINE 1: SELECT corpus.rederive_layered_serving()
+E                              ^
+E               HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+tests/test_layered_serving_postgres.py:2060: UndefinedFunction
+_________________ test_derivation_analyzes_the_layered_tables __________________
+
+db = <connection object at 0x49fb7c5ba00; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_derivation_analyzes_the_layered_tables(db: Any) -> None:
+        """Planner statistics follow the derived rows; an unlayered activation leaves them alone."""
+        tables = ("layered_shadowed_rows", "layered_navigation_overrides")
+        with db.cursor() as cursor:
+            for table in tables:
+                # Keep autovacuum from analyzing between the checks below.
+                cursor.execute(f"ALTER TABLE corpus.{table} SET (autovacuum_enabled = false)")
+        db.commit()
+    
+        def estimated() -> dict[str, float]:
+            return {
+                relation: float(rows)
+                for relation, rows in _rows(
+                    db,
+                    "SELECT relname, reltuples FROM pg_class WHERE oid IN "
+                    "('corpus.layered_shadowed_rows'::regclass, "
+                    "'corpus.layered_navigation_overrides'::regclass)",
+                )
+            }
+    
+        def actual() -> dict[str, float]:
+            return {
+                table: float(_rows(db, f"SELECT COUNT(*) FROM corpus.{table}")[0][0])
+                for table in tables
+            }
+    
+        # Emptied by TRUNCATE in the reset: never analyzed since.
+        assert set(estimated().values()) == {-1.0}
+        _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
+        assert set(estimated().values()) == {-1.0}
+        _publish_layered(db)
+        assert min(actual().values()) > 0
+>       assert estimated() == actual()
+E       AssertionError: assert {'layered_nav...d_rows': -1.0} == {'layered_nav...ed_rows': 3.0}
+E         
+E         Differing items:
+E         {'layered_shadowed_rows': -1.0} != {'layered_shadowed_rows': 3.0}
+E         {'layered_navigation_overrides': -1.0} != {'layered_navigation_overrides': 5.0}
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:2133: AssertionError
+________ test_a_blank_heading_follows_its_segment_as_navigation_py_does ________
+
+db = <connection object at 0x49fb7c5d380; dsn: 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432', closed: 0>
+
+    def test_a_blank_heading_follows_its_segment_as_navigation_py_does(db: Any) -> None:
+        """A heading of only non-ASCII spaces is no heading to str.strip()."""
+        sections = replace(
+            PRIMARY_SECTIONS,
+            nodes=(Node("fx/statute/2/5/x", None, " 　", None, encoded=True),),
+        )
+        _publish(db, "fx-rulespec-2026-09-22-blank", BASE, sections)
+        node = _navigation(db)[
+            next(
+                row["id"]
+                for row in _staged_navigation(sections)
+                if row["path"] == "fx/statute/2/5/x"
+            )
+        ]
+>       assert (node["parent_path"], node["segment"], node["label"]) == (
+            "fx/statute/2",
+            "5/x",
+            "5/x",
+        )
+E       AssertionError: assert ('fx/statute/2', '5/x', 'x') == ('fx/statute/2', '5/x', '5/x')
+E         
+E         At index 2 diff: 'x' != '5/x'
+E         Use -v to get more diff
+
+tests/test_layered_serving_postgres.py:2162: AssertionError
+________________ test_sql_heading_blankness_equals_python_strip ________________
+
+layered_dsn = 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432'
+
+    @settings(
+>       max_examples=300,
+                   ^^^^^^^
+        deadline=None,
+        suppress_health_check=[HealthCheck.function_scoped_fixture],
+    )
+
+tests/test_layered_serving_postgres.py:2205: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+layered_dsn = 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432'
+heading = None
+
+    @settings(
+        max_examples=300,
+        deadline=None,
+        suppress_health_check=[HealthCheck.function_scoped_fixture],
+    )
+    @given(heading=st.one_of(st.none(), _HEADING_TEXT))
+    def test_sql_heading_blankness_equals_python_strip(layered_dsn: str, heading: str | None) -> None:
+        """navigation._label_text falls back to the segment exactly when this is true."""
+        with closing(psycopg2.connect(layered_dsn)) as connection, connection.cursor() as cursor:
+>           cursor.execute("SELECT corpus.navigation_heading_is_blank(%s)", (heading,))
+E           psycopg2.errors.UndefinedFunction: function corpus.navigation_heading_is_blank(unknown) does not exist
+E           LINE 1: SELECT corpus.navigation_heading_is_blank(NULL)
+E                          ^
+E           HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+E           
+E           Failing test case: test_sql_heading_blankness_equals_python_strip(
+E               layered_dsn='user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432',
+E               heading=None,
+E           )
+
+tests/test_layered_serving_postgres.py:2213: UndefinedFunction
+______________ test_merge_follows_its_rules_on_arbitrary_parents _______________
+
+layered_dsn = 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432'
+
+    @settings(
+>       max_examples=40,
+                   ^^^^^^
+        deadline=None,
+        suppress_health_check=[HealthCheck.function_scoped_fixture, HealthCheck.too_slow],
+    )
+
+tests/test_layered_serving_postgres.py:2471: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_layered_serving_postgres.py:2479: in test_merge_follows_its_rules_on_arbitrary_parents
+    _check_layered_pair(layered_dsn, scopes)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+dsn = 'user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432'
+scopes = (Scope(jurisdiction='fx', document_class='statute', version='2026-04-29-base', nodes=(Node(path='fx/statute/1', parent.../a', parent=None, heading='\xa0\u3000', ordinal=None, encoded=False),), layer='primary', expression_date='2026-09-01'))
+
+    def _check_layered_pair(dsn: str, scopes: tuple[Scope, ...]) -> dict[str, dict[str, Any]]:
+        _reset(dsn)
+        with closing(psycopg2.connect(dsn)) as connection:
+            release_object = _publish(connection, "fx-rulespec-generated", *scopes)
+            layered = any(scope.layer == LAYER_BASE for scope in scopes) and any(
+                scope.layer == LAYER_PRIMARY for scope in scopes
+            )
+            assert release_object["schema_version"] == (
+                RELEASE_OBJECT_SCHEMA_V4
+                if any(scope.layer == LAYER_BASE for scope in scopes)
+                else RELEASE_OBJECT_SCHEMA_V3
+            )
+            current = _ids(connection, "corpus.current_provisions")
+            legacy = _ids(connection, "corpus.legacy_provisions")
+            assert current == _reference_served_provisions(scopes)
+            assert current.isdisjoint(legacy)
+            assert current | legacy == _ids(connection, "corpus.provisions")
+            paths = [
+                row[0]
+                for row in _rows(connection, "SELECT citation_path FROM corpus.current_provisions")
+            ]
+            assert len(paths) == len(set(paths))
+            assert _rows(
+                connection,
+                "SELECT COUNT(*), COUNT(DISTINCT id), COUNT(DISTINCT path) "
+                "FROM corpus.current_navigation_nodes",
+            ) == [(len(current),) * 3]
+            served = _navigation(connection)
+>           assert _tree(served) == _tree(_reference_merged_tree(scopes))
+E           AssertionError: assert {'fx/statute/... 1, ...), ...} == {'fx/statute/... 1, ...), ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'fx/statute/2/1/a': ('94466e07-957f-5e41-8d6e-3868c86c5a8b', 'fx/statute/2', '1/a', 'a', 'zzzzzzzz|000000000001/a', 1, ...)} != {'fx/statute/2/1/a': ('94466e07-957f-5e41-8d6e-3868c86c5a8b', 'fx/statute/2', '1/a', '1/a', 'zzzzzzzz|000000000001/a', 1, ...)}
+E             Use -v to get more diff
+E           Failing test case: test_merge_follows_its_rules_on_arbitrary_parents(
+E               layered_dsn='user=test dbname=axiom_layered_serving_1021fcb65507478a9d4a06f89e6985fe host=localhost port=55432',
+E               scopes=(Scope(jurisdiction='fx',
+E                 document_class='statute',
+E                 version='2026-04-29-base',
+E                 nodes=(Node(path='fx/statute/1',
+E                   parent=None,
+E                   heading=None,
+E                   ordinal=None,
+E                   encoded=False),
+E                  Node(path='fx/statute/1/1',
+E                   parent=None,
+E                   heading=None,
+E                   ordinal=None,
+E                   encoded=False),
+E                  Node(path='fx/statute/1/1/a',
+E                   parent=None,
+E                   heading=None,
+E                   ordinal=None,
+E                   encoded=False),
+E                  Node(path='fx/statute/1/2',
+E                   parent=None,
+E                   heading=None,
+E                   ordinal=None,
+E                   encoded=False)),
+E                 layer='base',
+E                 expression_date='2026-09-01'),
+E                Scope(jurisdiction='fx',
+E                 document_class='statute',
+E                 version='2026-09-20-primary',
+E                 nodes=(Node(path='fx/statute/2',
+E                   parent=None,
+E                   heading=None,
+E                   ordinal=None,
+E                   encoded=False),
+E                  Node(path='fx/statute/1',
+E                   parent=None,
+E                   heading=None,
+E                   ordinal=None,
+E                   encoded=False)),
+E                 layer='primary',
+E                 expression_date='2026-09-01'),
+E                Scope(jurisdiction='fx',
+E                 document_class='statute',
+E                 version='2026-09-21-primary',
+E                 nodes=(Node(path='fx/statute/2/1/a',
+E                   parent=None,
+E                   heading='\xa0\u3000',
+E                   ordinal=None,
+E                   encoded=False),),
+E                 layer='primary',
+E                 expression_date='2026-09-01')),
+E           )
+
+tests/test_layered_serving_postgres.py:2437: AssertionError
+________ test_idempotent_retry_rejects_extra_stored_membership[layered] ________
+
+clean_postgres = 'user=test dbname=axiom_atomic_release_1070a3c1c5184c03b25bd37ad8565486 host=localhost port=55432'
+
+    def test_idempotent_retry_rejects_extra_stored_membership(clean_postgres: str) -> None:
+        identity = _scope_identity("membership")
+        extra_identity = _scope_identity("unsigned-extra")
+        with closing(psycopg2.connect(clean_postgres)) as connection:
+            _seed_scope(connection, identity)
+            release_object = _release_object(
+                "membership-release",
+                _scope_evidence(connection, identity),
+            )
+            _activate(connection, release_object)
+            connection.commit()
+            pointer = _active_pointer(connection)
+    
+            extra_membership = (
+                """
+                INSERT INTO corpus.release_scopes (
+                  release_name, jurisdiction, document_class, version
+                ) VALUES (%s, %s, %s, %s)
+                """,
+                (
+                    "membership-release",
+                    extra_identity["jurisdiction"],
+                    extra_identity["document_class"],
+                    extra_identity["version"],
+                ),
+            )
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT to_regclass('corpus.layered_shadowed_rows') IS NOT NULL")
+                layered = cursor.fetchone()[0]
+                if layered:
+                    # The layered migration admits only a release's signed scopes
+                    # to its membership, which can no longer be deleted; the extra
+                    # row stands for membership altered before that guard.
+>                   with pytest.raises(errors.RaiseException, match="not one of its signed scopes"):
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   Failed: DID NOT RAISE <class 'psycopg2.errors.RaiseException'>
+
+tests/test_atomic_release_postgres.py:1239: Failed
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_migration_is_rerunnable_and_rederivation_reproduces_the_state
+FAILED tests/test_layered_serving_postgres.py::test_historical_memberships_become_primary
+FAILED tests/test_layered_serving_postgres.py::test_activation_compares_the_stored_layer_with_the_signed_one
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[demote the base scope]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[move a primary scope to another version]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[delete a primary scope]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[delete the base scope]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[add an unsigned primary scope]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[truncate membership]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[truncate release objects]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[truncate navigation]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[truncate provisions]
+FAILED tests/test_layered_serving_postgres.py::test_writes_under_a_served_layered_release_are_rejected[truncate both staged tables]
+FAILED tests/test_layered_serving_postgres.py::test_released_rows_and_membership_refuse_truncate_for_every_release
+FAILED tests/test_layered_serving_postgres.py::test_only_signed_scopes_join_membership
+FAILED tests/test_layered_serving_postgres.py::test_restoring_membership_lost_before_the_guard_rederives_the_pair[reactivation]
+FAILED tests/test_layered_serving_postgres.py::test_restoring_membership_lost_before_the_guard_rederives_the_pair[insert]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_with_a_base_scope_served_leaves_the_derivation_to_its_own_step
+FAILED tests/test_layered_serving_postgres.py::test_rederivation_takes_only_activation_locks_and_blocks_no_read
+FAILED tests/test_layered_serving_postgres.py::test_derivation_analyzes_the_layered_tables
+FAILED tests/test_layered_serving_postgres.py::test_a_blank_heading_follows_its_segment_as_navigation_py_does
+FAILED tests/test_layered_serving_postgres.py::test_sql_heading_blankness_equals_python_strip
+FAILED tests/test_layered_serving_postgres.py::test_merge_follows_its_rules_on_arbitrary_parents
+FAILED tests/test_atomic_release_postgres.py::test_idempotent_retry_rejects_extra_stored_membership[layered]
+24 failed, 21 passed, 114 deselected in 9.61s

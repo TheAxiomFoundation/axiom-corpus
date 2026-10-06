@@ -1,0 +1,195 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "axiom-corpus"
+version = "0.1.0"
+description = "Axiom Corpus source services for statutes, regulations, guidance, and related government source files"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "The Axiom Foundation", email = "hello@axiom-foundation.org"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Legal Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Text Processing :: Markup :: XML",
+]
+requires-python = "==3.14.*"
+dependencies = [
+    "lxml>=5.0",
+    "pydantic>=2.0",
+    "fastapi>=0.109",
+    "uvicorn>=0.27",
+    "httpx>=0.26",
+    "click>=8.0",
+    "rich>=13.0",
+    "sqlite-utils>=3.35",
+    "anthropic>=0.75.0",
+    "requests>=2.32.5",
+    "curl-cffi>=0.13.0",
+    "pyyaml>=6.0.3",
+    "modal>=0.50",
+    "beautifulsoup4>=4.12",
+    "boto3>=1.35",
+    "cryptography>=46.0",
+    "playwright>=1.57.0",
+    "pymupdf>=1.25.0",  # PDF text extraction for IRS guidance
+    "openpyxl>=3.1.5",
+    "xlrd>=2.0.2",
+    "supabase>=2.27.0",
+    "psycopg2-binary>=2.9.11",
+    "striprtf>=0.0.32",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "hypothesis>=6.100",
+    "ruff>=0.2",
+    "mypy>=1.8",
+    "types-PyYAML>=6.0",
+    "types-requests>=2.32",
+    "pre-commit>=3.6",
+    "towncrier>=24.8.0",
+    "xlwt>=1.3.0",
+]
+postgres = [
+    "sqlalchemy>=2.0",
+    "psycopg2-binary>=2.9",
+]
+verify = [
+    "dpath>=2.0",
+    "policyengine-core>=3.20",
+    "policyengine-us>=1.45",
+]
+
+[project.scripts]
+axiom-corpus = "axiom_corpus.corpus.cli:main"
+axiom-corpus-build = "axiom_corpus.scripts.build_archive:main"
+axiom-corpus-ingest = "axiom_corpus.corpus.cli:main"
+axiom-corpus-release = "axiom_corpus.release.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/TheAxiomFoundation/axiom-corpus"
+Documentation = "https://github.com/TheAxiomFoundation/axiom-corpus"
+Repository = "https://github.com/TheAxiomFoundation/axiom-corpus"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+# Ship the checked-in concept registry as package data so the loader resolves
+# it from an installed wheel, not just an editable checkout.
+"axiom_corpus.concepts" = ["data/*.yaml"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501", "B008"]  # B008: FastAPI Query() in defaults is idiomatic
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["N802", "N806", "SIM117", "B017", "F811"]
+# Closure-check builders: analysis scripts kept for reproducibility, not library code.
+"docs/coverage/*" = ["B007", "C408", "B023", "B905", "C405", "C416", "E701", "E702", "E741", "F841", "N802", "N806", "SIM102", "SIM115", "UP031"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = [
+    "axiom_corpus.corpus.ny_rulemaking",
+    "axiom_corpus.corpus.nycrr",
+    "axiom_corpus.corpus.state_adapters.*",
+]
+ignore_errors = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-m 'not integration'"
+markers = [
+    "integration: marks tests as requiring external API access (deselect with '-m \"not integration\"')",
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.towncrier]
+package = "axiom_corpus"
+package_dir = "src"
+directory = "changelog.d"
+filename = "CHANGELOG.md"
+title_format = "## [{version}] - {project_date}"
+issue_format = ""
+underlines = ["", "", ""]
+
+[[tool.towncrier.type]]
+directory = "breaking"
+name = "Breaking changes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "added"
+name = "Added"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "changed"
+name = "Changed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "fixed"
+name = "Fixed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removed"
+name = "Removed"
+showcontent = true
+
+[tool.coverage.run]
+source = ["axiom_corpus"]
+omit = [
+    "src/axiom_corpus/crawl.py",
+    "src/axiom_corpus/crawl_playwright.py",
+    "src/axiom_corpus/scripts/*",
+    "src/axiom_corpus/ingest/*",
+    "src/axiom_corpus/cli.py",
+    "src/axiom_corpus/storage/postgres.py",
+    "src/axiom_corpus/storage/supabase.py",
+    "src/axiom_corpus/query/supabase.py",
+    "src/axiom_corpus/fetchers/legislation_uk.py",
+    "src/axiom_corpus/fetchers/legislation_canada.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@abstractmethod",
+    "pass$",
+    "self\\._client = httpx\\.Client",
+    "httpx\\.Client\\(",
+    "time\\.sleep\\(",
+    "response\\.raise_for_status\\(\\)",
+]
+exclude_also = [
+    "def _rate_limit\\(self\\)",
+    "def _get\\(self, url",
+    "@property\\s+def client",
+]
+fail_under = 90

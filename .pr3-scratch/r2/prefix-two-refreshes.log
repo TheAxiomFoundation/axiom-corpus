@@ -1,0 +1,6 @@
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_two_direct_refreshes_of_one_pair_are_ordered
+1 failed, 127 deselected in 0.93s
+E   AssertionError: UniqueViolation('duplicate key value violates unique constraint "layered_shadowed_rows_pkey"
+E     DETAIL:  Key (jurisdicti...  OR base_navigation.id IS NOT NULL"
+E     PL/pgSQL function refresh_layered_serving(text,text) line 59 at SQL statement

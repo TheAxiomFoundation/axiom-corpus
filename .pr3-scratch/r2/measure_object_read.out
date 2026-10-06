@@ -1,0 +1,14 @@
+psql:.pr3-scratch/r2/measure_object_read.sql:2: NOTICE:  table "scratch_objects" does not exist, skipping
+psql:.pr3-scratch/r2/measure_object_read.sql:18: NOTICE:  schema reads: 9000
+Time: 29.726 ms
+psql:.pr3-scratch/r2/measure_object_read.sql:20: NOTICE:  containment: 0
+Time: 24.557 ms
+psql:.pr3-scratch/r2/measure_object_read.sql:21: NOTICE:  schema reads: 9000
+Time: 21.764 ms
+psql:.pr3-scratch/r2/measure_object_read.sql:22: NOTICE:  containment: 0
+Time: 24.421 ms
+psql:.pr3-scratch/r2/measure_object_read.sql:23: NOTICE:  schema reads: 9000
+Time: 21.474 ms
+psql:.pr3-scratch/r2/measure_object_read.sql:24: NOTICE:  containment: 0
+Time: 24.642 ms
+Time: 43.662 ms

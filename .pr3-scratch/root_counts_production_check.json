@@ -1,0 +1,3348 @@
+{
+  "summary": {
+    "pairs": 469,
+    "rpc_equals_served": 469,
+    "rpc_total": 35252,
+    "served_total": 35252,
+    "pairs_with_unserved_released_versions": 41,
+    "unserved_released_versions_total": 167,
+    "activated_releases": 31,
+    "us": [
+      {
+        "jurisdiction": "us",
+        "doc_type": "form",
+        "rpc": 21,
+        "served": 21,
+        "unserved_released_versions": 0
+      },
+      {
+        "jurisdiction": "us",
+        "doc_type": "guidance",
+        "rpc": 73,
+        "served": 73,
+        "unserved_released_versions": 0
+      },
+      {
+        "jurisdiction": "us",
+        "doc_type": "manual",
+        "rpc": 2714,
+        "served": 2714,
+        "unserved_released_versions": 0
+      },
+      {
+        "jurisdiction": "us",
+        "doc_type": "policy",
+        "rpc": 76,
+        "served": 76,
+        "unserved_released_versions": 0
+      },
+      {
+        "jurisdiction": "us",
+        "doc_type": "regulation",
+        "rpc": 110,
+        "served": 110,
+        "unserved_released_versions": 2
+      },
+      {
+        "jurisdiction": "us",
+        "doc_type": "rulemaking",
+        "rpc": 2,
+        "served": 2,
+        "unserved_released_versions": 0
+      },
+      {
+        "jurisdiction": "us",
+        "doc_type": "statute",
+        "rpc": 373,
+        "served": 373,
+        "unserved_released_versions": 9
+      }
+    ],
+    "mismatches": []
+  },
+  "pairs": [
+    {
+      "jurisdiction": "be",
+      "doc_type": "guidance",
+      "rpc": 10,
+      "served": 10,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be",
+      "doc_type": "regulation",
+      "rpc": 18,
+      "served": 18,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be",
+      "doc_type": "statute",
+      "rpc": 21,
+      "served": 21,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-bru",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-bru",
+      "doc_type": "regulation",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-bru",
+      "doc_type": "statute",
+      "rpc": 9,
+      "served": 9,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-dg",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-vlg",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-vlg",
+      "doc_type": "regulation",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-vlg",
+      "doc_type": "statute",
+      "rpc": 17,
+      "served": 17,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-wal",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-wal",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "be-wal",
+      "doc_type": "statute",
+      "rpc": 10,
+      "served": 10,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "ca",
+      "doc_type": "policy",
+      "rpc": 104,
+      "served": 104,
+      "unserved_released_versions": 105
+    },
+    {
+      "jurisdiction": "dk",
+      "doc_type": "statute",
+      "rpc": 64,
+      "served": 64,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "il",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "nz",
+      "doc_type": "district-plan",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "nz",
+      "doc_type": "guidance",
+      "rpc": 19,
+      "served": 19,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "nz",
+      "doc_type": "regulation",
+      "rpc": 11,
+      "served": 11,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "nz",
+      "doc_type": "statute",
+      "rpc": 25,
+      "served": 25,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk",
+      "doc_type": "guidance",
+      "rpc": 15,
+      "served": 15,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk",
+      "doc_type": "regulation",
+      "rpc": 216,
+      "served": 216,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk",
+      "doc_type": "statute",
+      "rpc": 132,
+      "served": 132,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-adur",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-amber-valley",
+      "doc_type": "manual",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-arun",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-ashford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-babergh",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-barking-and-dagenham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-barnsley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bassetlaw",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bath-and-north-east-somerset",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bedford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-blackpool",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bournemouth-christchurch-and-poole",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bracknell-forest",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-braintree",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-breckland",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-brentwood",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bristol-city-of",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-broadland",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bromsgrove",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-broxbourne",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-broxtowe",
+      "doc_type": "manual",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-burnley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-bury",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cambridge",
+      "doc_type": "manual",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cannock-chase",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-canterbury",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-castle-point",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-charnwood",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-chelmsford",
+      "doc_type": "manual",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cherwell",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cheshire-east",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cheshire-west-and-chester",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-chorley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cotswold",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-county-durham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-coventry",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-crawley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-cumberland",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-darlington",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-dartford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-derby",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-dover",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-dudley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-ealing",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-east-cambridgeshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-east-hampshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-east-hertfordshire",
+      "doc_type": "manual",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-east-riding-of-yorkshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-east-suffolk",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-eastleigh",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-elmbridge",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-epsom-and-ewell",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-fareham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-fenland",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-folkestone-and-hythe",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-forest-of-dean",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-fylde",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-gloucester",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-gravesham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-guildford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-haringey",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-harlow",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-harrow",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-hart",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-hartlepool",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-hastings",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-havant",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-herefordshire",
+      "doc_type": "manual",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-hertsmere",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-hillingdon",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-ipswich",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-isle-of-wight",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-isles-of-scilly",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-kensington-and-chelsea",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-kingston-upon-thames",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-knowsley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-lancaster",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-leeds",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-lichfield",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-maldon",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-malvern-hills",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-mansfield",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-medway",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-merton",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-mid-suffolk",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-middlesbrough",
+      "doc_type": "manual",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-milton-keynes",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-newark-and-sherwood",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-newcastle-upon-tyne",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-newham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-east-lincolnshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-hertfordshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-kesteven",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-lincolnshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-norfolk",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-somerset",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-warwickshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-west-leicestershire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-north-yorkshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-northumberland",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-nottingham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-nuneaton-and-bedworth",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-oldham",
+      "doc_type": "manual",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-peterborough",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-plymouth",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-portsmouth",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-reading",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-redbridge",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-redcar-and-cleveland",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-redditch",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-ribble-valley",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rochford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rossendale",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rother",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rotherham",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rugby",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-runnymede",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rushcliffe",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-rushmoor",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-salford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-sandwell",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-sefton",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-shropshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-slough",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-solihull",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-south-derbyshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-south-kesteven",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-south-norfolk",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-south-oxfordshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-southampton",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-southend-on-sea",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-spelthorne",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-st-helens",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-stafford",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-stevenage",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-stratford-on-avon",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-tameside",
+      "doc_type": "manual",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-tamworth",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-telford-and-wrekin",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-thanet",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-torbay",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-vale-of-white-horse",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-wakefield",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-warrington",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-warwick",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-wealden",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-west-lindsey",
+      "doc_type": "manual",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-west-northamptonshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-west-oxfordshire",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-west-suffolk",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-westminster",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-westmorland-and-furness",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-wigan",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-winchester",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-wirral",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-wolverhampton",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-worcester",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-worthing",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "uk-wyre",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "form",
+      "rpc": 21,
+      "served": 21,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "guidance",
+      "rpc": 73,
+      "served": 73,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "manual",
+      "rpc": 2714,
+      "served": 2714,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "policy",
+      "rpc": 76,
+      "served": 76,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "regulation",
+      "rpc": 110,
+      "served": 110,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "rulemaking",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us",
+      "doc_type": "statute",
+      "rpc": 373,
+      "served": 373,
+      "unserved_released_versions": 9
+    },
+    {
+      "jurisdiction": "us-ak",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ak",
+      "doc_type": "manual",
+      "rpc": 826,
+      "served": 826,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ak",
+      "doc_type": "policy",
+      "rpc": 50,
+      "served": 50,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ak",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ak",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-al",
+      "doc_type": "form",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-al",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-al",
+      "doc_type": "manual",
+      "rpc": 21,
+      "served": 21,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-al",
+      "doc_type": "policy",
+      "rpc": 70,
+      "served": 70,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-al",
+      "doc_type": "regulation",
+      "rpc": 312,
+      "served": 312,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-al",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ar",
+      "doc_type": "form",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ar",
+      "doc_type": "manual",
+      "rpc": 10,
+      "served": 10,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-ar",
+      "doc_type": "policy",
+      "rpc": 64,
+      "served": 64,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ar",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-as",
+      "doc_type": "policy",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-az",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-az",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-az",
+      "doc_type": "manual",
+      "rpc": 768,
+      "served": 768,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-az",
+      "doc_type": "policy",
+      "rpc": 67,
+      "served": 67,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-az",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-az",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-ca",
+      "doc_type": "form",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ca",
+      "doc_type": "guidance",
+      "rpc": 12,
+      "served": 12,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ca",
+      "doc_type": "manual",
+      "rpc": 138,
+      "served": 138,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ca",
+      "doc_type": "policy",
+      "rpc": 108,
+      "served": 108,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ca",
+      "doc_type": "regulation",
+      "rpc": 98,
+      "served": 98,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ca",
+      "doc_type": "statute",
+      "rpc": 1037,
+      "served": 1037,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-co",
+      "doc_type": "form",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-co",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-co",
+      "doc_type": "manual",
+      "rpc": 111,
+      "served": 111,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-co",
+      "doc_type": "policy",
+      "rpc": 86,
+      "served": 86,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-co",
+      "doc_type": "regulation",
+      "rpc": 8,
+      "served": 8,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-co",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 3
+    },
+    {
+      "jurisdiction": "us-ct",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ct",
+      "doc_type": "manual",
+      "rpc": 2031,
+      "served": 2031,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ct",
+      "doc_type": "policy",
+      "rpc": 1655,
+      "served": 1655,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-ct",
+      "doc_type": "statute",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-dc",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-dc",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-dc",
+      "doc_type": "manual",
+      "rpc": 117,
+      "served": 117,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-dc",
+      "doc_type": "policy",
+      "rpc": 40,
+      "served": 40,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-dc",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-de",
+      "doc_type": "form",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-de",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-de",
+      "doc_type": "manual",
+      "rpc": 8,
+      "served": 8,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-de",
+      "doc_type": "policy",
+      "rpc": 78,
+      "served": 78,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-de",
+      "doc_type": "regulation",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-de",
+      "doc_type": "statute",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-fl",
+      "doc_type": "manual",
+      "rpc": 50,
+      "served": 50,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-fl",
+      "doc_type": "policy",
+      "rpc": 51,
+      "served": 51,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-fl",
+      "doc_type": "regulation",
+      "rpc": 77,
+      "served": 77,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-fl",
+      "doc_type": "statute",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ga",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ga",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ga",
+      "doc_type": "manual",
+      "rpc": 588,
+      "served": 588,
+      "unserved_released_versions": 3
+    },
+    {
+      "jurisdiction": "us-ga",
+      "doc_type": "policy",
+      "rpc": 62,
+      "served": 62,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ga",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ga",
+      "doc_type": "statute",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-gu",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-gu",
+      "doc_type": "policy",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-hi",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-hi",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-hi",
+      "doc_type": "manual",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-hi",
+      "doc_type": "policy",
+      "rpc": 47,
+      "served": 47,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-hi",
+      "doc_type": "regulation",
+      "rpc": 70,
+      "served": 70,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-hi",
+      "doc_type": "statute",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ia",
+      "doc_type": "form",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ia",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ia",
+      "doc_type": "manual",
+      "rpc": 197,
+      "served": 197,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ia",
+      "doc_type": "policy",
+      "rpc": 88,
+      "served": 88,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ia",
+      "doc_type": "regulation",
+      "rpc": 15,
+      "served": 15,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ia",
+      "doc_type": "statute",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-id",
+      "doc_type": "form",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-id",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-id",
+      "doc_type": "policy",
+      "rpc": 67,
+      "served": 67,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-id",
+      "doc_type": "regulation",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-id",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-il",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-il",
+      "doc_type": "manual",
+      "rpc": 4752,
+      "served": 4752,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-il",
+      "doc_type": "policy",
+      "rpc": 57,
+      "served": 57,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-il",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-il",
+      "doc_type": "statute",
+      "rpc": 29,
+      "served": 29,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-in",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-in",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-in",
+      "doc_type": "manual",
+      "rpc": 28,
+      "served": 28,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-in",
+      "doc_type": "policy",
+      "rpc": 70,
+      "served": 70,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-in",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-in",
+      "doc_type": "statute",
+      "rpc": 11,
+      "served": 11,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ks",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ks",
+      "doc_type": "manual",
+      "rpc": 374,
+      "served": 374,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ks",
+      "doc_type": "policy",
+      "rpc": 62,
+      "served": 62,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ks",
+      "doc_type": "regulation",
+      "rpc": 71,
+      "served": 71,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ks",
+      "doc_type": "statute",
+      "rpc": 16,
+      "served": 16,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ky",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ky",
+      "doc_type": "manual",
+      "rpc": 17,
+      "served": 17,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-ky",
+      "doc_type": "policy",
+      "rpc": 54,
+      "served": 54,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ky",
+      "doc_type": "regulation",
+      "rpc": 27,
+      "served": 27,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ky",
+      "doc_type": "statute",
+      "rpc": 200,
+      "served": 200,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-la",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-la",
+      "doc_type": "manual",
+      "rpc": 739,
+      "served": 739,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-la",
+      "doc_type": "policy",
+      "rpc": 78,
+      "served": 78,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-la",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-la",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-ma",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ma",
+      "doc_type": "guidance",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ma",
+      "doc_type": "manual",
+      "rpc": 14,
+      "served": 14,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ma",
+      "doc_type": "policy",
+      "rpc": 71,
+      "served": 71,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ma",
+      "doc_type": "regulation",
+      "rpc": 36,
+      "served": 36,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-ma",
+      "doc_type": "statute",
+      "rpc": 12,
+      "served": 12,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-md",
+      "doc_type": "guidance",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-md",
+      "doc_type": "manual",
+      "rpc": 79,
+      "served": 79,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-md",
+      "doc_type": "policy",
+      "rpc": 90,
+      "served": 90,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-md",
+      "doc_type": "regulation",
+      "rpc": 18,
+      "served": 18,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-md",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-me",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-me",
+      "doc_type": "manual",
+      "rpc": 111,
+      "served": 111,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-me",
+      "doc_type": "policy",
+      "rpc": 87,
+      "served": 87,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-me",
+      "doc_type": "regulation",
+      "rpc": 30,
+      "served": 30,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-me",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-mi",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mi",
+      "doc_type": "manual",
+      "rpc": 314,
+      "served": 314,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-mi",
+      "doc_type": "policy",
+      "rpc": 74,
+      "served": 74,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mi",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mi",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-mn",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-mn",
+      "doc_type": "manual",
+      "rpc": 434,
+      "served": 434,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mn",
+      "doc_type": "policy",
+      "rpc": 84,
+      "served": 84,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mn",
+      "doc_type": "regulation",
+      "rpc": 7,
+      "served": 7,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mn",
+      "doc_type": "statute",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-mo",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mo",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mo",
+      "doc_type": "manual",
+      "rpc": 510,
+      "served": 510,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mo",
+      "doc_type": "policy",
+      "rpc": 61,
+      "served": 61,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mo",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mo",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mp",
+      "doc_type": "form",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mp",
+      "doc_type": "policy",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ms",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ms",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ms",
+      "doc_type": "manual",
+      "rpc": 34,
+      "served": 34,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ms",
+      "doc_type": "policy",
+      "rpc": 55,
+      "served": 55,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ms",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ms",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mt",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mt",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mt",
+      "doc_type": "manual",
+      "rpc": 302,
+      "served": 302,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mt",
+      "doc_type": "policy",
+      "rpc": 209,
+      "served": 209,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mt",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-mt",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nc",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nc",
+      "doc_type": "manual",
+      "rpc": 257,
+      "served": 257,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-nc",
+      "doc_type": "policy",
+      "rpc": 70,
+      "served": 70,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nc",
+      "doc_type": "regulation",
+      "rpc": 241,
+      "served": 241,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nc",
+      "doc_type": "statute",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-nd",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nd",
+      "doc_type": "manual",
+      "rpc": 705,
+      "served": 705,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nd",
+      "doc_type": "policy",
+      "rpc": 54,
+      "served": 54,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nd",
+      "doc_type": "regulation",
+      "rpc": 7,
+      "served": 7,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nd",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ne",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ne",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ne",
+      "doc_type": "manual",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ne",
+      "doc_type": "policy",
+      "rpc": 131,
+      "served": 131,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ne",
+      "doc_type": "regulation",
+      "rpc": 84,
+      "served": 84,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-ne",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nh",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nh",
+      "doc_type": "manual",
+      "rpc": 2336,
+      "served": 2336,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nh",
+      "doc_type": "policy",
+      "rpc": 63,
+      "served": 63,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nh",
+      "doc_type": "regulation",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nh",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nj",
+      "doc_type": "form",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nj",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nj",
+      "doc_type": "manual",
+      "rpc": 16,
+      "served": 16,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nj",
+      "doc_type": "policy",
+      "rpc": 75,
+      "served": 75,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nj",
+      "doc_type": "regulation",
+      "rpc": 8,
+      "served": 8,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nj",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nm",
+      "doc_type": "form",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nm",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nm",
+      "doc_type": "manual",
+      "rpc": 90,
+      "served": 90,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nm",
+      "doc_type": "policy",
+      "rpc": 40,
+      "served": 40,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nm",
+      "doc_type": "regulation",
+      "rpc": 86,
+      "served": 86,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nm",
+      "doc_type": "statute",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nv",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nv",
+      "doc_type": "manual",
+      "rpc": 88,
+      "served": 88,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-nv",
+      "doc_type": "policy",
+      "rpc": 72,
+      "served": 72,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-nv",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ny",
+      "doc_type": "form",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ny",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ny",
+      "doc_type": "manual",
+      "rpc": 26,
+      "served": 26,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ny",
+      "doc_type": "policy",
+      "rpc": 95,
+      "served": 95,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ny",
+      "doc_type": "regulation",
+      "rpc": 46,
+      "served": 46,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ny",
+      "doc_type": "statute",
+      "rpc": 96,
+      "served": 96,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-oh",
+      "doc_type": "guidance",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-oh",
+      "doc_type": "manual",
+      "rpc": 96,
+      "served": 96,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-oh",
+      "doc_type": "policy",
+      "rpc": 138,
+      "served": 138,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-oh",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 2
+    },
+    {
+      "jurisdiction": "us-oh",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-ok",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ok",
+      "doc_type": "manual",
+      "rpc": 352,
+      "served": 352,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ok",
+      "doc_type": "policy",
+      "rpc": 67,
+      "served": 67,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ok",
+      "doc_type": "regulation",
+      "rpc": 5,
+      "served": 5,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ok",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-or",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-or",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-or",
+      "doc_type": "manual",
+      "rpc": 90,
+      "served": 90,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-or",
+      "doc_type": "policy",
+      "rpc": 60,
+      "served": 60,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-or",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-or",
+      "doc_type": "statute",
+      "rpc": 7,
+      "served": 7,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pa",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pa",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pa",
+      "doc_type": "manual",
+      "rpc": 1162,
+      "served": 1162,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pa",
+      "doc_type": "policy",
+      "rpc": 73,
+      "served": 73,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pa",
+      "doc_type": "regulation",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pa",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pr",
+      "doc_type": "form",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pr",
+      "doc_type": "policy",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-pr",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ri",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ri",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ri",
+      "doc_type": "manual",
+      "rpc": 36,
+      "served": 36,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ri",
+      "doc_type": "policy",
+      "rpc": 61,
+      "served": 61,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ri",
+      "doc_type": "regulation",
+      "rpc": 17,
+      "served": 17,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ri",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sc",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sc",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sc",
+      "doc_type": "manual",
+      "rpc": 22,
+      "served": 22,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sc",
+      "doc_type": "policy",
+      "rpc": 50,
+      "served": 50,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sc",
+      "doc_type": "regulation",
+      "rpc": 21,
+      "served": 21,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sc",
+      "doc_type": "statute",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-sd",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sd",
+      "doc_type": "manual",
+      "rpc": 16,
+      "served": 16,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sd",
+      "doc_type": "policy",
+      "rpc": 56,
+      "served": 56,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sd",
+      "doc_type": "regulation",
+      "rpc": 156,
+      "served": 156,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-sd",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tn",
+      "doc_type": "guidance",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tn",
+      "doc_type": "manual",
+      "rpc": 136,
+      "served": 136,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-tn",
+      "doc_type": "policy",
+      "rpc": 51,
+      "served": 51,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tn",
+      "doc_type": "regulation",
+      "rpc": 119,
+      "served": 119,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tn",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tx",
+      "doc_type": "manual",
+      "rpc": 1155,
+      "served": 1155,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tx",
+      "doc_type": "policy",
+      "rpc": 59,
+      "served": 59,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-tx",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ut",
+      "doc_type": "form",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ut",
+      "doc_type": "guidance",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ut",
+      "doc_type": "manual",
+      "rpc": 1610,
+      "served": 1610,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ut",
+      "doc_type": "policy",
+      "rpc": 221,
+      "served": 221,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ut",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-ut",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-va",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-va",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-va",
+      "doc_type": "manual",
+      "rpc": 192,
+      "served": 192,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-va",
+      "doc_type": "policy",
+      "rpc": 61,
+      "served": 61,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-va",
+      "doc_type": "regulation",
+      "rpc": 13,
+      "served": 13,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-va",
+      "doc_type": "statute",
+      "rpc": 307,
+      "served": 307,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-vt",
+      "doc_type": "form",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-vt",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-vt",
+      "doc_type": "manual",
+      "rpc": 46,
+      "served": 46,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-vt",
+      "doc_type": "policy",
+      "rpc": 60,
+      "served": 60,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-vt",
+      "doc_type": "regulation",
+      "rpc": 12,
+      "served": 12,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-vt",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wa",
+      "doc_type": "guidance",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wa",
+      "doc_type": "manual",
+      "rpc": 436,
+      "served": 436,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wa",
+      "doc_type": "policy",
+      "rpc": 76,
+      "served": 76,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wa",
+      "doc_type": "regulation",
+      "rpc": 3,
+      "served": 3,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wa",
+      "doc_type": "statute",
+      "rpc": 4,
+      "served": 4,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wi",
+      "doc_type": "form",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wi",
+      "doc_type": "manual",
+      "rpc": 308,
+      "served": 308,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wi",
+      "doc_type": "policy",
+      "rpc": 91,
+      "served": 91,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wi",
+      "doc_type": "regulation",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wi",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wv",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wv",
+      "doc_type": "manual",
+      "rpc": 142,
+      "served": 142,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wv",
+      "doc_type": "policy",
+      "rpc": 123,
+      "served": 123,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wv",
+      "doc_type": "regulation",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wv",
+      "doc_type": "statute",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wy",
+      "doc_type": "guidance",
+      "rpc": 2,
+      "served": 2,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wy",
+      "doc_type": "manual",
+      "rpc": 6,
+      "served": 6,
+      "unserved_released_versions": 1
+    },
+    {
+      "jurisdiction": "us-wy",
+      "doc_type": "policy",
+      "rpc": 38,
+      "served": 38,
+      "unserved_released_versions": 0
+    },
+    {
+      "jurisdiction": "us-wy",
+      "doc_type": "statute",
+      "rpc": 1,
+      "served": 1,
+      "unserved_released_versions": 0
+    }
+  ]
+}

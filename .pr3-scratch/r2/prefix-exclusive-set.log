@@ -1,0 +1,6 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3055: AssertionError: assert {'corpus.curr...visions', ...} == {'corpus.curr...lease_scopes'}
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_access_exclusive_only_where_it_orders_it[re-application]
+1 failed, 1 passed, 125 deselected in 0.44s

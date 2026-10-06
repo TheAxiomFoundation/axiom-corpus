@@ -1,0 +1,277 @@
+......................FFFFFF..F                                          [100%]
+=================================== FAILURES ===================================
+____ test_unlayered_children_are_the_parent_id_children_origin_main_returns ____
+
+    def test_unlayered_children_are_the_parent_id_children_origin_main_returns() -> None:
+        for layer_column in (True, False):
+            postgrest = _unlayered_postgrest(
+                {"2026-09-01": _UNDECLARED_CHILD}, layer_column=layer_column
+            )
+            query = _query(postgrest)
+            expected = _origin_main_children(query, "fx/statute/1")
+            assert [child.citation_path for child in expected] == ["fx/statute/1/1"]
+>           assert _children(query, "fx/statute/1") == expected
+E           AssertionError: assert [Rule(id='08c...statute/1/2')] == [Rule(id='08c...statute/1/1')]
+E             
+E             Left contains one more item: Rule(id='cc5ae223-c738-592e-b135-3bb8fa185d63', jurisdiction='fx', doc_type='statute', parent_id=None, level=None, ord...ath='sources/fx/statute/2026-09-01/source.xml', rulespec_path=None, has_rulespec=False, citation_path='fx/statute/1/2')
+E             Use -v to get more diff
+
+tests/test_query_supabase.py:501: AssertionError
+_____ test_unlayered_children_with_a_path_in_two_scopes_match_origin_main ______
+
+    def test_unlayered_children_with_a_path_in_two_scopes_match_origin_main() -> None:
+        """A release cut before citation paths were unique can serve a title twice."""
+        tree = (("fx/statute/1", None, 1),) + tuple(
+            (f"fx/statute/1/{index:04d}", "fx/statute/1", index) for index in range(1000)
+        )
+        query = _query(_unlayered_postgrest({"2026-09-01": tree, "2026-09-02": tree}))
+        expected = _origin_main_children(query, "fx/statute/1")
+        assert len(expected) == 1000
+>       assert _children(query, "fx/statute/1") == expected
+E       AssertionError: assert [Rule(id='7e8...1/0005'), ...] == [Rule(id='7e8...1/0005'), ...]
+E         
+E         Right contains 500 more items, first extra item: Rule(id='2b6a0844-c531-562a-86fb-739124afdea5', jurisdiction='fx', doc_type='statute', parent_id='940772d2-281d-57fb-b...='sources/fx/statute/2026-09-01/source.xml', rulespec_path=None, has_rulespec=False, citation_path='fx/statute/1/0500')
+E         Use -v to get more diff
+
+tests/test_query_supabase.py:521: AssertionError
+_________ test_unlayered_children_equal_origin_main_on_any_served_rows _________
+
+    @settings(max_examples=150, deadline=None)
+>   @given(
+            
+        scopes=st.dictionaries(
+            st.sampled_from(["2026-09-01", "2026-09-02", "2026-09-03"]),
+            st.lists(
+                st.tuples(
+                    st.sampled_from(
+                        [
+                            "fx/statute/1",
+                            "fx/statute/1/a",
+                            "fx/statute/1/b",
+                            "fx/statute/1/c",
+                            "fx/statute/1/a/i",
+                            "fx/statute/2",
+                        ]
+                    ),
+                    st.sampled_from([None, "fx/statute/1", "fx/statute/1/a", "fx/statute/2"]),
+                    st.sampled_from([None, 1, 2, 3]),
+                ),
+                min_size=1,
+                max_size=6,
+                unique_by=lambda row: row[0],
+            ),
+            min_size=1,
+        ),
+        path=st.sampled_from(["fx/statute/1", "fx/statute/1/a", "fx/statute/2"]),
+        max_rows=st.integers(1, 4),
+        layer_column=st.booleans(),
+    )
+
+tests/test_query_supabase.py:525: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scopes = {'2026-09-01': [('fx/statute/1', 'fx/statute/1', None)]}
+path = 'fx/statute/1', max_rows = 1, layer_column = False
+
+    @settings(max_examples=150, deadline=None)
+    @given(
+        scopes=st.dictionaries(
+            st.sampled_from(["2026-09-01", "2026-09-02", "2026-09-03"]),
+            st.lists(
+                st.tuples(
+                    st.sampled_from(
+                        [
+                            "fx/statute/1",
+                            "fx/statute/1/a",
+                            "fx/statute/1/b",
+                            "fx/statute/1/c",
+                            "fx/statute/1/a/i",
+                            "fx/statute/2",
+                        ]
+                    ),
+                    st.sampled_from([None, "fx/statute/1", "fx/statute/1/a", "fx/statute/2"]),
+                    st.sampled_from([None, 1, 2, 3]),
+                ),
+                min_size=1,
+                max_size=6,
+                unique_by=lambda row: row[0],
+            ),
+            min_size=1,
+        ),
+        path=st.sampled_from(["fx/statute/1", "fx/statute/1/a", "fx/statute/2"]),
+        max_rows=st.integers(1, 4),
+        layer_column=st.booleans(),
+    )
+    def test_unlayered_children_equal_origin_main_on_any_served_rows(
+        scopes: dict[str, list[tuple[str, str | None, int | None]]],
+        path: str,
+        max_rows: int,
+        layer_column: bool,
+    ) -> None:
+        query = _query(_unlayered_postgrest(scopes, layer_column=layer_column, max_rows=max_rows))
+        if query.get_section(path, "fx") is None:
+            assert query.get_section_with_children(path, jurisdiction="fx") is None
+            return
+>       assert _children(query, path) == _origin_main_children(query, path)
+E       AssertionError: assert [] == [Rule(id='940...x/statute/1')]
+E         
+E         Right contains one more item: Rule(id='940772d2-281d-57fb-bfeb-c7397abb5453', jurisdiction='fx', doc_type='statute', parent_id='940772d2-281d-57fb-b..._path='sources/fx/statute/2026-09-01/source.xml', rulespec_path=None, has_rulespec=False, citation_path='fx/statute/1')
+E         Use -v to get more diff
+E       Failing test case: test_unlayered_children_equal_origin_main_on_any_served_rows(
+E           scopes={'2026-09-01': [('fx/statute/1', 'fx/statute/1', None)]},
+E           path='fx/statute/1',
+E           max_rows=1,
+E           layer_column=False,
+E       )
+
+tests/test_query_supabase.py:563: AssertionError
+________________ test_layered_children_page_through_the_row_cap ________________
+
+    def test_layered_children_page_through_the_row_cap() -> None:
+        for max_rows in (1000, 250):
+            postgrest = _layered_postgrest(
+                _BASE_TITLE, {"2026-09-20-sections": _NEW_SECTIONS}, max_rows=max_rows
+            )
+            children = _children(_query(postgrest), "fx/statute/1")
+>           assert len(children) == 1300
+E           AssertionError: assert 1000 == 1300
+E            +  where 1000 = len([Rule(id='b08971c0-d95e-5c72-bd8f-f6deb78d309b', jurisdiction='fx', doc_type='statute', parent_id='37b7c9ad-b6a4-5eb1-...x/statute/2026-04-29-base/source.xml', rulespec_path=None, has_rulespec=False, citation_path='fx/statute/1/0005'), ...])
+
+tests/test_query_supabase.py:597: AssertionError
+____________ test_layered_children_page_before_keeping_one_per_path ____________
+
+    def test_layered_children_page_before_keeping_one_per_path() -> None:
+        """Navigation that serves a child twice (two scopes of one layer carrying it,
+        which validation and activation reject) still yields every child once."""
+        titled = (("fx/statute/1", None, 1),) + tuple(
+            (f"fx/statute/1/{index:04d}", "fx/statute/1", index) for index in range(1000)
+        )
+        twin = tuple((path, None, ordinal) for path, _parent, ordinal in titled[1:])
+        twin_rows = [
+            node.to_supabase_row() for node in build_navigation_nodes(_records("2026-09-21-twin", twin))
+        ]
+        for row in twin_rows:
+            row["parent_path"] = "fx/statute/1"
+        postgrest = _layered_postgrest(
+            (("fx/statute/1", None, 1),),
+            {"2026-09-20-title": titled},
+            extra_navigation=twin_rows,
+        )
+        postgrest.tables["current_provisions"].extend(
+            iter_supabase_rows(_records("2026-09-21-twin", twin))
+        )
+        children = _children(_query(postgrest), "fx/statute/1")
+>       assert len(children) == 1000
+E       AssertionError: assert 500 == 1000
+E        +  where 500 = len([Rule(id='0a4d0b1d-277e-508e-b527-4e047a3f4d1e', jurisdiction='fx', doc_type='statute', parent_id='7fb36821-ec67-5be9-.../statute/2026-09-20-title/source.xml', rulespec_path=None, has_rulespec=False, citation_path='fx/statute/1/0005'), ...])
+
+tests/test_query_supabase.py:624: AssertionError
+___________ test_layered_children_follow_the_served_navigation_tree ____________
+
+    def test_layered_children_follow_the_served_navigation_tree() -> None:
+        """A primary title's children may be base rows, and a base title's primary rows."""
+        postgrest = _layered_postgrest(
+            (
+                ("fx/statute/1", None, 1),
+                ("fx/statute/1/1", "fx/statute/1", 1),
+                ("fx/statute/1/2", "fx/statute/1", 2),
+                ("fx/statute/2", None, 2),
+                ("fx/statute/2/1", "fx/statute/2", 1),
+            ),
+            {
+                "2026-09-20-title-1": (
+                    ("fx/statute/1", None, 1),
+                    ("fx/statute/1/3", "fx/statute/1", 3),
+                ),
+                "2026-09-21-title-2": (("fx/statute/2/2", None, 2),),
+            },
+        )
+        query = _query(postgrest)
+        assert [(c.citation_path, c.id) for c in _children(query, "fx/statute/1")] == [
+            (row["citation_path"], row["id"])
+            for path in ("fx/statute/1/1", "fx/statute/1/2", "fx/statute/1/3")
+            for row in postgrest.tables["current_provisions"]
+            if row["citation_path"] == path
+        ]
+        assert [c.citation_path for c in _children(query, "fx/statute/2")] == [
+            "fx/statute/2/1",
+            "fx/statute/2/2",
+        ]
+        navigation = [
+            dict(params) for table, params in postgrest.requests if table == "current_navigation_nodes"
+        ]
+>       assert navigation[0] == {
+            "select": "provision_id",
+            "jurisdiction": "eq.fx",
+            "parent_path": "eq.fx/statute/1",
+            "doc_type": "eq.statute",
+            "order": "sort_key,path,id",
+            "limit": "1000",
+            "offset": "0",
+        }
+E       AssertionError: assert {'jurisdictio...provision_id'} == {'doc_type': ...et': '0', ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'order': 'sort_key,path'} != {'order': 'sort_key,path,id'}
+E         Right contains 3 more items:
+E         {'doc_type': 'eq.statute', 'limit': '1000', 'offset': '0'}
+E         Use -v to get more diff
+
+tests/test_query_supabase.py:662: AssertionError
+___________ test_layered_children_are_the_served_navigation_children ___________
+
+    @settings(max_examples=150, deadline=None)
+>   @given(
+            
+        pair=_layered_pair(),
+        path=st.sampled_from(["fx/statute/1", "fx/statute/1/0", "fx/statute/1/1"]),
+        max_rows=st.integers(1, 3),
+    )
+
+tests/test_query_supabase.py:734: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pair = ((('fx/statute/1', None, None), ('fx/statute/1/0', 'fx/statute/1', None), ('fx/statute/1/1', 'fx/statute/1', None)), {})
+path = 'fx/statute/1', max_rows = 1
+
+    @settings(max_examples=150, deadline=None)
+    @given(
+        pair=_layered_pair(),
+        path=st.sampled_from(["fx/statute/1", "fx/statute/1/0", "fx/statute/1/1"]),
+        max_rows=st.integers(1, 3),
+    )
+    def test_layered_children_are_the_served_navigation_children(
+        pair: tuple[Tree, dict[str, Tree]], path: str, max_rows: int
+    ) -> None:
+        base, primaries = pair
+        postgrest = _layered_postgrest(base, primaries, max_rows=max_rows)
+        query = _query(postgrest)
+        if query.get_section(path, "fx") is None:
+            return
+>       assert [child.citation_path for child in _children(query, path)] == _layered_children(
+            postgrest, path
+        )
+E       AssertionError: assert ['fx/statute/1/0'] == ['fx/statute/.../statute/1/1']
+E         
+E         Right contains one more item: 'fx/statute/1/1'
+E         Use -v to get more diff
+E       Failing test case: test_layered_children_are_the_served_navigation_children(
+E           pair=((('fx/statute/1', None, None),
+E             ('fx/statute/1/0', 'fx/statute/1', None),
+E             ('fx/statute/1/1', 'fx/statute/1', None)),
+E            {}),
+E           path='fx/statute/1',
+E           max_rows=1,
+E       )
+
+tests/test_query_supabase.py:747: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_query_supabase.py::test_unlayered_children_are_the_parent_id_children_origin_main_returns
+FAILED tests/test_query_supabase.py::test_unlayered_children_with_a_path_in_two_scopes_match_origin_main
+FAILED tests/test_query_supabase.py::test_unlayered_children_equal_origin_main_on_any_served_rows
+FAILED tests/test_query_supabase.py::test_layered_children_page_through_the_row_cap
+FAILED tests/test_query_supabase.py::test_layered_children_page_before_keeping_one_per_path
+FAILED tests/test_query_supabase.py::test_layered_children_follow_the_served_navigation_tree
+FAILED tests/test_query_supabase.py::test_layered_children_are_the_served_navigation_children
+7 failed, 24 passed in 0.47s

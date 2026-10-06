@@ -1,0 +1,82 @@
+F.FF.                                                                    [100%]
+=================================== FAILURES ===================================
+__________ test_a_primary_root_under_no_served_ancestor_is_a_warning ___________
+
+tmp_path = PosixPath('/private/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/pytest-of-maxghenis/pytest-9779/test_a_primary_root_under_no_s0')
+
+    def test_a_primary_root_under_no_served_ancestor_is_a_warning(tmp_path: Path) -> None:
+        """A mistyped path (l for 1) would otherwise become a top-level document silently."""
+        report = _validate_layered(tmp_path, _BASE_TITLE_1, (("fx/statute/l/5", None),))
+    
+>       assert _layered_warnings(report) == [
+            (
+                "layered_primary_root_unattached",
+                "fx/statute/l/5 is a root of its primary scope, and fx/statute serves neither "
+                "it nor any ancestor path, so serving lists it as a new top-level document; "
+                "check its citation path",
+                "v-primary-0",
+            )
+        ]
+E       AssertionError: assert [] == [('layered_pr...v-primary-0')]
+E         
+E         Right contains one more item: ('layered_primary_root_unattached', 'fx/statute/l/5 is a root of its primary scope, and fx/statute serves neither it nor any ancestor path, so serving lists it as a new top-level document; check its citation path', 'v-primary-0')
+E         Use -v to get more diff
+
+tests/test_release_layers.py:1034: AssertionError
+__________ test_a_new_title_warns_once_and_its_sections_attach_to_it ___________
+
+tmp_path = PosixPath('/private/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/pytest-of-maxghenis/pytest-9779/test_a_new_title_warns_once_an0')
+
+    def test_a_new_title_warns_once_and_its_sections_attach_to_it(tmp_path: Path) -> None:
+        report = _validate_layered(
+            tmp_path,
+            _BASE_TITLE_1,
+            (("fx/statute/9", None), ("fx/statute/9/1", "fx/statute/9")),
+            (("fx/statute/9/2", None),),
+        )
+    
+>       assert [(code, version) for code, _message, version in _layered_warnings(report)] == [
+            ("layered_primary_root_unattached", "v-primary-0")
+        ]
+E       AssertionError: assert [] == [('layered_pr...v-primary-0')]
+E         
+E         Right contains one more item: ('layered_primary_root_unattached', 'v-primary-0')
+E         Use -v to get more diff
+
+tests/test_release_layers.py:1066: AssertionError
+_____________ test_a_parent_cycle_between_the_layers_is_a_warning ______________
+
+tmp_path = PosixPath('/private/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/pytest-of-maxghenis/pytest-9779/test_a_parent_cycle_between_th0')
+
+    def test_a_parent_cycle_between_the_layers_is_a_warning(tmp_path: Path) -> None:
+        """The base puts b under a; the primary scope puts a under b."""
+        report = _validate_layered(
+            tmp_path,
+            (
+                ("fx/statute/1", None),
+                ("fx/statute/1/a", "fx/statute/1"),
+                ("fx/statute/1/b", "fx/statute/1/a"),
+            ),
+            (("fx/statute/1/a", "fx/statute/1/b"), ("fx/statute/1/b", None)),
+        )
+    
+>       assert _layered_warnings(report) == [
+            (
+                "layered_parent_cycle_broken",
+                "the base and primary scopes of fx/statute disagree about parents, forming the "
+                "cycle fx/statute/1/a -> fx/statute/1/b -> fx/statute/1/a; serving makes "
+                "fx/statute/1/a a top-level document",
+                "v-primary-0",
+            )
+        ]
+E       AssertionError: assert [] == [('layered_pa...v-primary-0')]
+E         
+E         Right contains one more item: ('layered_parent_cycle_broken', 'the base and primary scopes of fx/statute disagree about parents, forming the cycle fx/statute/1/a -> fx/statute/1/b -> fx/statute/1/a; serving makes fx/statute/1/a a top-level document', 'v-primary-0')
+E         Use -v to get more diff
+
+tests/test_release_layers.py:1083: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_release_layers.py::test_a_primary_root_under_no_served_ancestor_is_a_warning
+FAILED tests/test_release_layers.py::test_a_new_title_warns_once_and_its_sections_attach_to_it
+FAILED tests/test_release_layers.py::test_a_parent_cycle_between_the_layers_is_a_warning
+3 failed, 2 passed, 43 deselected in 0.23s

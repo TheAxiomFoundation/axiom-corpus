@@ -1,0 +1,12 @@
+## head (a32437da2 file): 40 applications in 81.5 s with 12 anon readers
+  applications: {'40P01 DeadlockDetected': 40}
+  reads: {'ok': 121827, '40P01 DeadlockDetected': 436}
+## fixed (this round): 40 applications in 8.4 s with 12 anon readers
+  applications: {'committed': 40}
+  reads: {'ok': 109425}
+## head, first application: 40 applications in 85.5 s with 12 anon readers
+  applications: {'40P01 DeadlockDetected': 39, 'applied (rolled back)': 1}
+  reads: {'ok': 330005, '40P01 DeadlockDetected': 484}
+## fixed, first application: 40 applications in 7.5 s with 12 anon readers
+  applications: {'applied (rolled back)': 40}
+  reads: {'ok': 257325}

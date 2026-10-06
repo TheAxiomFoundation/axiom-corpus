@@ -1,0 +1,68 @@
+FFFFFFFF....FFFFFFF...F..FFFFF.FFFFF.FFFFFF                              [100%]
+=================================== FAILURES ===================================
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2722: AssertionError: None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:833: AssertionError: assert {'overrides':...-base', ...)]} == {'overrides':...-base', ...)]}
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2817: AssertionError: UniqueViolation('duplicate key value violates unique constraint "layered_shadowed_rows_pkey"
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2817: AssertionError: UniqueViolation('duplicate key value violates unique constraint "layered_shadowed_rows_pkey"
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2842: psycopg2.errors.RaiseException: release membership is inserted only under READ COMMITTED isolation, not repeatable read
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2842: psycopg2.errors.RaiseException: release membership is inserted only under READ COMMITTED isolation, not serializable
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2900: psycopg2.errors.RaiseException: layered serving is derived only under READ COMMITTED isolation, not repeatable read
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:2900: psycopg2.errors.RaiseException: layered serving is derived only under READ COMMITTED isolation, not serializable
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3008: AssertionError: ('rpc/get_root_document_counts', 'corpus.navigation_nodes')
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.cur...provisions',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.leg...provisions',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.cur...tion_nodes',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3062: AssertionError: corpus.navigation_nodes
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.cur...ase_scopes',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.cur...provisions',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.leg...provisions',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.cur...tion_nodes',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3062: AssertionError: corpus.navigation_nodes
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3061: AssertionError: assert [('corpus.release_scopes',)] == [('corpus.cur...ase_scopes',)]
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3092: AssertionError: DeadlockDetected('deadlock detected
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3092: AssertionError: DeadlockDetected('deadlock detected
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3092: AssertionError: DeadlockDetected('deadlock detected
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3092: AssertionError: DeadlockDetected('deadlock detected
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3092: AssertionError: DeadlockDetected('deadlock detected
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3092: AssertionError: DeadlockDetected('deadlock detected
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[navigation-REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[navigation-SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[provisions-REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[provisions-SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[membership-REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[membership-SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[pointers-REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_truncate_under_a_snapshot_older_than_an_activation_is_refused[pointers-SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_a_direct_refresh_is_ordered_against_an_owner_pointer_write[refresh-first-disjoint-shadows]
+FAILED tests/test_layered_serving_postgres.py::test_a_direct_refresh_is_ordered_against_an_owner_pointer_write[refresh-first-same-shadows]
+FAILED tests/test_layered_serving_postgres.py::test_a_direct_refresh_is_ordered_against_an_owner_pointer_write[pointer-first]
+FAILED tests/test_layered_serving_postgres.py::test_unlayered_releases_activate_and_move_under_any_isolation[REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_unlayered_releases_activate_and_move_under_any_isolation[SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_layered_serving_still_moves_only_under_read_committed[REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_layered_serving_still_moves_only_under_read_committed[SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_serving_reads_take_their_locks_in_the_order_the_file_takes_its_own[corpus.navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[first application-corpus.current_provisions]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[first application-corpus.legacy_provisions]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[first application-corpus.current_navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[first application-corpus.navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[first application-corpus.current_release_scopes]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[re-application-corpus.current_provisions]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[re-application-corpus.legacy_provisions]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[re-application-corpus.current_navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[re-application-corpus.navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_the_file_takes_its_exclusive_locks_first_in_the_order_reads_take_theirs[re-application-corpus.current_release_scopes]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_serving_reads_does_not_deadlock[first application-current_provisions]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_serving_reads_does_not_deadlock[first application-current_navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_serving_reads_does_not_deadlock[first application-navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_serving_reads_does_not_deadlock[re-application-current_provisions]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_serving_reads_does_not_deadlock[re-application-current_navigation_nodes]
+FAILED tests/test_layered_serving_postgres.py::test_applying_the_file_under_serving_reads_does_not_deadlock[re-application-navigation_nodes]
+32 failed, 11 passed, 82 deselected in 22.84s

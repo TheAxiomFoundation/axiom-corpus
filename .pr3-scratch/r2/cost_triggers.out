@@ -1,0 +1,5 @@
+object stored size: 7350 kB
+READ COMMITTED   sync triggers on : 1042-row membership insert    38.1 ms, 288 pointer inserts    10.0 ms
+READ COMMITTED   sync triggers off: 1042-row membership insert    22.6 ms, 288 pointer inserts     8.9 ms
+REPEATABLE READ  sync triggers on : 1042-row membership insert    36.2 ms, 288 pointer inserts    22.3 ms
+REPEATABLE READ  sync triggers off: 1042-row membership insert    22.6 ms, 288 pointer inserts     8.2 ms

@@ -1,0 +1,14 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3428: assert RaiseException('layered serving is derived only under READ COMMITTED isolation, not repeatable read\nCONTEXT:  PL/pgSQ...  activated_at = EXCLUDED.activated_at"\nPL/pgSQL function activate_corpus_release(jsonb) line 363 at SQL statement\n') is None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3428: assert RaiseException('layered serving is derived only under READ COMMITTED isolation, not serializable\nCONTEXT:  PL/pgSQL f...  activated_at = EXCLUDED.activated_at"\nPL/pgSQL function activate_corpus_release(jsonb) line 363 at SQL statement\n') is None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3428: assert RaiseException('layered serving is derived only under READ COMMITTED isolation, not repeatable read\nCONTEXT:  PL/pgSQ...layered_serving(NEW.jurisdiction, NEW.document_class)"\nPL/pgSQL function sync_layered_serving() line 42 at PERFORM\n') is None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3428: assert RaiseException('layered serving is derived only under READ COMMITTED isolation, not serializable\nCONTEXT:  PL/pgSQL f...layered_serving(NEW.jurisdiction, NEW.document_class)"\nPL/pgSQL function sync_layered_serving() line 42 at PERFORM\n') is None
+/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-pr3-layered-serving/tests/test_layered_serving_postgres.py:3470: AssertionError: DeadlockDetected('deadlock detected
+=========================== short test summary info ============================
+FAILED tests/test_layered_serving_postgres.py::test_an_unlayered_move_after_a_concurrent_removal_works_under_any_isolation[activation-REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_an_unlayered_move_after_a_concurrent_removal_works_under_any_isolation[activation-SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_an_unlayered_move_after_a_concurrent_removal_works_under_any_isolation[pointer insert-REPEATABLE READ]
+FAILED tests/test_layered_serving_postgres.py::test_an_unlayered_move_after_a_concurrent_removal_works_under_any_isolation[pointer insert-SERIALIZABLE]
+FAILED tests/test_layered_serving_postgres.py::test_restoring_a_base_row_while_the_file_is_applied_does_not_deadlock
+5 failed, 151 deselected in 14.65s

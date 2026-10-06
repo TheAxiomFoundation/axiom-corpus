@@ -1,0 +1,19 @@
+[F1] REPEATABLE READ snapshot, then activation, then TRUNCATE corpus.navigation_nodes
+  after activation: stored navigation=18, membership=4, pointers=2, served provisions=15, served navigation=15, of which overrides=5, shadowed=3
+  TRUNCATE -> committed
+  after TRUNCATE: stored navigation=0, membership=4, pointers=2, served provisions=15, served navigation=5, of which overrides=5, shadowed=3
+[F1] REPEATABLE READ snapshot, then activation, then TRUNCATE corpus.release_scopes
+  after activation: stored navigation=18, membership=4, pointers=2, served provisions=15, served navigation=15, of which overrides=5, shadowed=3
+  TRUNCATE -> committed
+  after TRUNCATE: stored navigation=18, membership=0, pointers=2, served provisions=0, served navigation=5, of which overrides=5, shadowed=3
+[F1] REPEATABLE READ snapshot, then activation, then TRUNCATE corpus.active_scope_pointer, corpus.scope_activation_history
+  after activation: stored navigation=18, membership=4, pointers=2, served provisions=15, served navigation=15, of which overrides=5, shadowed=3
+  TRUNCATE -> committed
+  after TRUNCATE: stored navigation=18, membership=4, pointers=0, served provisions=0, served navigation=5, of which overrides=5, shadowed=3
+[F2] direct refresh (uncommitted), then owner repoint to release two, then commit both
+  repoint error: None
+  pointer: [('fx-rulespec-2026-09-24-two',)]
+  shadowed rows by release: [('fx-rulespec-2026-09-23-one', 'fx/statute/1/2'), ('fx-rulespec-2026-09-24-two', 'fx/statute/2/1')]
+  fx/statute/1/2 served by current_provisions: []
+  overrides by release: [('fx-rulespec-2026-09-24-two', 'fx/statute/1', None), ('fx-rulespec-2026-09-24-two', 'fx/statute/2/1', 'fx/statute/2')]
+  fx/statute/1/2 served by current_navigation_nodes: []

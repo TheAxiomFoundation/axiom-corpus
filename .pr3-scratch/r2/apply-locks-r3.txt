@@ -1,0 +1,42 @@
+## first application, no base scope: file applied in 11 ms (rolled back)
+  AccessExclusiveLock      v current_navigation_nodes
+  AccessExclusiveLock      v current_provisions
+  AccessExclusiveLock      v current_release_scopes
+  AccessExclusiveLock      r layered_navigation_overrides
+  AccessExclusiveLock      r layered_shadowed_rows
+  AccessExclusiveLock      v legacy_provisions
+  AccessExclusiveLock      r navigation_nodes
+  AccessExclusiveLock      r release_scopes
+  ShareLock                r layered_navigation_overrides
+  ShareLock                r layered_shadowed_rows
+  ShareLock                r navigation_nodes
+  ShareLock                r release_scopes
+  ShareRowExclusiveLock    r active_scope_pointer
+  ShareRowExclusiveLock    r layered_navigation_overrides
+  ShareRowExclusiveLock    r layered_shadowed_rows
+  ShareRowExclusiveLock    r navigation_nodes
+  ShareRowExclusiveLock    r provisions
+  ShareRowExclusiveLock    r release_objects
+  ShareRowExclusiveLock    r release_scopes
+provision rows: 401299
+## re-application, base scopes served: file applied in 8 ms (rolled back)
+  AccessExclusiveLock      v current_navigation_nodes
+  AccessExclusiveLock      v current_provisions
+  AccessExclusiveLock      v current_release_scopes
+  AccessExclusiveLock      v legacy_provisions
+  AccessExclusiveLock      r navigation_nodes
+  AccessExclusiveLock      r release_scopes
+  ShareLock                r layered_navigation_overrides
+  ShareLock                r layered_shadowed_rows
+  ShareLock                r navigation_nodes
+  ShareLock                r release_scopes
+  ShareRowExclusiveLock    r active_scope_pointer
+  ShareRowExclusiveLock    r layered_navigation_overrides
+  ShareRowExclusiveLock    r layered_shadowed_rows
+  ShareRowExclusiveLock    r navigation_nodes
+  ShareRowExclusiveLock    r provisions
+  ShareRowExclusiveLock    r release_objects
+  ShareRowExclusiveLock    r release_scopes
+## rederive_layered_serving(): 2.8 s, 456 shadowed paths
+  ExclusiveLock            r active_scope_pointer
+load: (5.90625, 8.25048828125, 7.71533203125)
