@@ -57,6 +57,7 @@ AUTH = {
     "il-hfs": "Illinois Department of Healthcare and Family Services (HFS)",
     "in-fssa": "Indiana Family and Social Services Administration (FSSA)",
     "klrd": "Kansas Legislative Research Department (KLRD)",
+    "la-osr": "Louisiana Department of Health rules, published by the Louisiana Division of Administration, Office of the State Register",
     "me-leg": "Maine Legislature, Office of the Revisor of Statutes",
     "mi-mdhhs": "Michigan Department of Health and Human Services (MDHHS)",
     "mo-dss": "Missouri Department of Social Services (DSS)",
@@ -98,6 +99,31 @@ DOCS: list[dict] = [
          path="us-ca/guidance/dhcs/magi-household-size-flowchart",
          title="DHCS Guide for Calculating MAGI Medi-Cal Individual Household Size (household size flow chart, 42 CFR 435.603(f))",
          fmt="pdf", subtype="eligibility_job_aid_pdf"),
+    dict(row=4, jur="us-ca", cls="form", auth="dhcs", program="MEDICAID",
+         url="https://www.dhcs.ca.gov/wp-content/uploads/2025/10/MC250A_Eng.pdf",
+         path="us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng",
+         title="MC 250A: Application for Medi-Cal for Former Foster Care Youth (English)",
+         fmt="pdf", subtype="eligibility_application_form_pdf",
+         bundle_url="https://dhcs.ca.gov/formsandpubs/forms/Forms/MCED/MC_Forms/MC250A_Eng.pdf",
+         note=("EXTRACT-MANIFEST row: manifests/us-ca-official-forms.yaml names the old address, which now redirects to "
+               "/file/mc250a_eng-pdf/ behind an Incapsula challenge; the same form is served from DHCS's wp-content "
+               "uploads (address found by web search, fetched from dhcs.ca.gov); citation_path kept from that manifest")),
+    dict(row=6, jur="us-ca", cls="guidance", auth="dhcs", program="CHIP",
+         url="https://www.dhcs.ca.gov/wp-content/uploads/2025/10/HACCP-FPL-Chart.pdf",
+         path="us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025",
+         title="DHCS Income Eligibility Comparison Chart: Medi-Cal, HACCP and CCS eligibility by household size (2025 FPL)",
+         fmt="pdf", subtype="income_standards_chart_pdf",
+         bundle_url="https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf",
+         note=("The bundle's /services/HACCP/Documents/ address answers an Incapsula challenge; this is DHCS's wp-content "
+               "copy of the 2025-FPL HACCP comparison chart (138% FPL single = $20,783), address found by web search")),
+    dict(row=11, jur="us-ca", cls="guidance", auth="dhcs", program="CHIP",
+         url="https://www.dhcs.ca.gov/wp-content/uploads/2025/10/25-01.pdf",
+         path="us-ca/guidance/dhcs/acwdl/25-01",
+         title="DHCS All County Welfare Directors Letter 25-01: 2025 Federal Poverty Levels (January 21, 2025)",
+         fmt="pdf", expr="2025-01-21", subtype="all_county_welfare_directors_letter_pdf",
+         bundle_url="https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf",
+         note=("The bundle's /letters/Documents/ address redirects to /file/25-01-pdf/ behind an Incapsula challenge; "
+               "the same letter is served from DHCS's wp-content uploads (address found by web search)")),
     dict(row=15, jur="us-ca", cls="guidance", auth="dhcs", program="MEDICAID",
          url="https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf",
          path="us-ca/guidance/dhcs/acwdl/20-10",
@@ -271,6 +297,26 @@ DOCS: list[dict] = [
          title="KLRD Briefing Book 2026: Children's Eligibility for CHIP, MCHIP, Medicaid, and HCBS, including information on premium requirements for CHIP",
          fmt="html", expr="2026-03-02", extraction={"html_content_selector": "article"},
          subtype="legislative_research_briefing"),
+    # --- Louisiana ---
+    dict(row=77, jur="us-la", cls="regulation", auth="la-osr", program="MEDICAID",
+         url="https://www.doa.la.gov/media/ogee2gb4/50.docx",
+         path="us-la/regulation/lac/50/iii",
+         title="Louisiana Administrative Code Title 50 (Public Health - Medical Assistance), Part III: Eligibility",
+         fmt="docx", subtype="administrative_code_part",
+         bundle_url="https://www.law.cornell.edu/regulations/louisiana/La-Admin-Code-tit-50-SS-III-2305",
+         extraction={
+             "segmentation": "labeled_sections",
+             # The title DOCX opens with a table of contents whose Part lines repeat the body
+             # headings verbatim, so the start is the unique historical note that closes Part II.
+             "start_after_pattern": r"LR 42:63 \(January 2016\), amended by the Department of Health, Bureau of Health Services Financing, LR 43:529 \(March 2017\), LR 47:476 \(April 2021\), LR 51:1613 \(October 2025\)\.$",
+             "stop_text_pattern": r"^Part V\.\s+Hospital Services\s*$",
+             "section_heading_pattern": r"^§(?P<label>\d{3,5})\.\s*(?P<heading>\S.*)$",
+             "drop_line_patterns": [r"^Title\s+50$", r"^PUBLIC HEALTH.{0,3}MEDICAL ASSISTANCE$",
+                                    r"^Subpart \d+\.\s", r"^Chapter \d+\.\s*[A-Z]"],
+         },
+         note=("Official Office of the State Register title DOCX (Title 50 file last modified 2026-09-25) in place of the "
+               "Cornell LII mirror of LAC 50:III.2305 the bundle names; Part III only (45 sections, 2305 = Provisional "
+               "Medicaid Program)")),
     # --- Maine ---
     dict(row=81, jur="us-me", cls="statute", auth="me-leg", program="MEDICARE_SAVINGS_PROGRAMS",
          url="https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html",
