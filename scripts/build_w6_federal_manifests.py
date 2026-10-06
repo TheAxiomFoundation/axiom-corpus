@@ -1391,11 +1391,13 @@ AGENCY_GUIDANCE = [
         "SNAP Provisions in the Fiscal Responsibility Act of 2023",
         "https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023",
         "pdf",
+        "2023-06-01",
         authority=FNS,
         subtype="policy_memorandum",
         request=IMPERSONATE,
         download_url="https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-Provisions-in-FRA.pdf",
-        note="the FNA page carries no text of its own; it embeds this PDF from the USDA guidance portal",
+        note="the FNA page carries no text of its own; it embeds this PDF from the USDA guidance portal; the "
+        "memorandum prints 'June __, 2023' (the day is not in the text layer), so expression_date is 2023-06-01",
     ),
     agency(
         "usda/fns/snap-time-limit-waivers-fy2025-2029",

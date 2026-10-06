@@ -89,6 +89,7 @@ documents:
   download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-Provisions-in-FRA.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
+  expression_date: '2023-06-01'
   citation_path: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
   extraction:
     page_citation_prefix: page
@@ -99,7 +100,8 @@ documents:
     primary_source: true
     source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
     document_subtype: policy_memorandum
-    source_note: the FNA page carries no text of its own; it embeds this PDF from the USDA guidance portal
+    source_note: the FNA page carries no text of its own; it embeds this PDF from the USDA guidance portal; the memorandum
+      prints 'June __, 2023' (the day is not in the text layer), so expression_date is 2023-06-01
     source_family: w6-federal-agency-guidance
     discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
     run_note: docs/ingest-runs/2026-10-06-w6-federal.md
