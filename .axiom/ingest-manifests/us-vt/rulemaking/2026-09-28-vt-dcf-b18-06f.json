@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/rulemaking/2026-09-28-vt-dcf-b18-06f.json",
+      "sha256": "bfa6a18d3a5653473bd1481d3ae956c3e6cdb6ee887b84b25ae749befa978063"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/rulemaking/2026-09-28-vt-dcf-b18-06f.json",
+      "sha256": "8303420706ed040030dc32016a6fd41df9922a74eace1fdabbd163266cf4f8c7"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/rulemaking/2026-09-28-vt-dcf-b18-06f.jsonl",
+      "sha256": "bbcec9bb1659d8bb9339794ee17cc50d298b87d5ba33fef2c4f9bb533ddd96a7"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/rulemaking/2026-09-28-vt-dcf-b18-06f/official-documents/vt-dcf-b18-06f.pdf",
+      "sha256": "5c7d74027d356c28b93b6bbaa46ef43875c0e721f8444e26058bc33d0d8b3812"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "332875a595c4fb230119f5e2c7c80ecd8f5dad57",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-vt-dcf-b18-06f --manifest manifests/us-vt-dcf-b18-06f.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-03T13:19:48.803662+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "66b950b9fff9f86b23853ea4f816ab17843bbedf9f0a93114d44b773e52452cb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Pf4PZUDvUANDnRZN42VhVMZ9mivUSvaNmcOwcqVugNXL+fUgcSSgF3KhQ+iZ3DJ0IXa5TzQZkN5W1hwLogEsDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-vt-dcf-b18-06f"
+}

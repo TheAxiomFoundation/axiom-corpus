@@ -388,27 +388,45 @@ axiom-corpus-ingest extract-official-documents \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
 
-### Amended rule text in PDFs
+### Amended rule text in PDFs and HTML
 
 Register orders and agency letters often print amended rule text with deleted
 words struck through and inserted words underlined. The strike and underline
 are drawn rules, not text, so default PDF text extraction reads both as ordinary
-text. Three opt-in `extraction` keys in an official-document manifest handle
-such PDFs (default per-page segmentation only; without them extraction is
-unchanged):
+text. Opt-in `extraction` keys in an official-document manifest handle such
+sources (default per-page PDF segmentation and default HTML blocks only);
+without them extraction is unchanged.
 
 - `amendment_markup: true`, or a mapping with `start_page`/`end_page` (inclusive)
   and optional `typographic_underlines`, writes the text with GNU wdiff
   delimiters: `[-deleted text-]` for struck-through text and `{+inserted text+}`
   for underlined text. Each marked page row carries
-  `metadata.amendment_markup` (the notation and its counts of deleted and
-  inserted runs). Removing the four delimiters gives back exactly the page text
-  extracted without the option. Limit the page range to the amended text so
-  that ordinary emphasis underlines elsewhere are not marked, and list in
-  `typographic_underlines` any exact phrase whose underline is citation
-  typography (an underlined case name, say) rather than an insertion. Extraction
-  fails if a page's own text already contains one of the delimiters, or if a
-  character is both struck through and underlined.
+  `metadata.amendment_markup` (the notation, the source markup for each, and its
+  counts of deleted and inserted runs). Removing the four delimiters gives back
+  exactly the page text extracted without the option. Limit the page range to
+  the amended text so that ordinary emphasis underlines elsewhere are not
+  marked, and list in `typographic_underlines` any exact phrase whose underline
+  is citation typography (an underlined case name, say) rather than an
+  insertion. Extraction fails if a page's own text already contains one of the
+  delimiters, or if a character is both struck through and underlined.
+- Publishers with other conventions set them in the same mapping:
+  - `inserted_style: bold` reads insertions from bold font flags instead of
+    drawn underlines, which are then ignored (a struck, underlined character is
+    simply deleted). Every bold span in the page range
+    is an insertion, headings included, so restrict the range to the rule text
+    (`typographic_underlines` phrases are exempt here too).
+  - `deleted_style: brackets` reads deletions from literal square brackets
+    instead of drawn strikes. The brackets are replaced by the `[-`/`-]`
+    delimiters, so removing the delimiters gives the page text without the
+    brackets. A deletion may run across a page break; the rows then carry
+    `deletion_continues_to_next_page` / `deletion_continues_from_previous_page`.
+    Extraction fails on a drawn strike, a nested or unbalanced bracket, an
+    insertion inside a deletion, or a deletion still open outside the range.
+  - `unmarked_line_patterns` lists regular expressions for page furniture: a
+    line that fully matches one (a running page number such as `- 12 -`) is
+    exempt before any classification, so it gets no amendment status, raises no
+    classification error, and its brackets are not deletions.
+  See `manifests/us-nj-prn-2016-017.yaml` (bold additions, bracketed deletions).
 - `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
   drawn last in the content stream is read where it is printed.
 - `ignore_actual_text: true` extracts the visible glyphs even where the PDF's tag
@@ -416,6 +434,67 @@ unchanged):
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.
+
+For HTML, `html_amendment_markup` takes explicit `deleted_selector` and
+`inserted_selector` CSS selectors and writes the same wdiff notation, recording
+the selectors and run counts on each block. Select amendment tags precisely so
+that emphasis is not read as amendment text; `manifests/us-wa-wsr-09-15-085.yaml`
+excludes the underlined "AMENDATORY SECTION" label. The marked text keeps the source's own spacing (an amendment tag inside a word, or the
+Washington `((<strike>...</strike>))` deletion wrapper, gains no spaces). A block
+tag (`p`, `div`, `li`, `tr`, a heading, ...) starts and ends a paragraph, a table
+cell or `<br>` separates words, and other tags add nothing; comments and CDATA
+are not text. The text and its paragraphs come from the default lxml parse;
+the amendment tags are selected in an html.parser parse of the same source,
+because lxml closes an inline `<u>` at the next `<p>` and would lose an amendment
+that spans paragraphs. Amendment tags are selected over the whole html.parser
+document, and the two whole documents are aligned before any drop selector or
+content root applies: they must carry the same non-space characters in
+the same order, and each character takes its amendment status from its
+html.parser counterpart; a disagreement fails extraction instead of changing the
+text. Drops then apply to the lxml parse alone. The literal-delimiter check reads
+the visible text that is extracted. Removing the delimiters gives the text. It also fails on a selector that matches
+nothing, a node or string both inserted and deleted, text that already contains a
+delimiter, `segmentation`, or WebWorks HTML. `html_amendment_markup: false` is the
+default.
+
+`html_encoding` decodes a page with a declared charset instead of heuristic
+detection, for legacy HTML that declares none (`windows-1252` for the Washington
+register orders keeps their section signs). The name must be a known codec and
+the bytes must decode strictly, or extraction fails; the parser is unchanged. It
+applies to HTML sources, not JSON.
+
+For DOCX, `docx_symbol_map` (with `segmentation: labeled_sections`) maps Word
+`<w:sym>` glyphs, which default extraction skips, to text:
+`{"Symbol:F0BE": "\u2015"}` writes each Symbol-font `F0BE` glyph as a horizontal
+bar. An unmapped symbol fails extraction. See
+`manifests/us-la-lac-title-67-part-iii.yaml`.
+
+### Historical vintages of state documents
+
+A historical vintage of a state rule, manual or compilation whose current text
+the corpus also holds gets its own version and its own citation paths: the
+current document's path family plus `/vintage/<date>`
+(`us-co/regulation/10-ccr-2506-1/vintage/2009-07-01`), with page or section rows
+beneath it. Same-path vintages would fail `duplicate_release_citation` in a
+profiled union release. The vintage root has no parent row. `source_as_of` and
+`expression_date` are both the vintage date, as for USC release points above,
+and `metadata.vintage_date_basis` says which printed date it is, in this order of
+preference:
+
+1. `printed_effective_date`: the version's effective date printed in the
+   document, or `official_filing_record_effective_date` when only the
+   publisher's filing record prints it (retain that record in the scope);
+2. `latest_printed_revision_stamp` or `latest_printed_amendment`: the latest
+   revision or amendment date the document prints, when it prints no
+   compilation-wide date; the text is current through that date.
+
+A file's creation or modification timestamp and the retrieval date are recorded
+in metadata but never used as the vintage date. Documents that are dated by
+nature (a letter, a register issue, a session law) are not vintages: they keep
+the retrieval date as `source_as_of` and their printed date as
+`expression_date`. See `manifests/us-co-10-ccr-2506-1-2009-07-01.yaml`,
+`us-ri-218-820-snap-rules-2014-10-01.yaml`, `us-ar-snap-manual-2020-02-01.yaml`
+and `us-hi-har-17-676-2012-01-06.yaml`.
 
 ## Coverage
 

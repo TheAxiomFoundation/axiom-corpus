@@ -1,0 +1,40 @@
+documents:
+- source_id: wa-wsr-09-16-095
+  jurisdiction: us-wa
+  document_class: rulemaking
+  citation_path: us-wa/rulemaking/washington-state-register/2009-08-04/wsr-09-16-095
+  title: Washington State Register WSR 09-16-095, postponement of WSR 09-15-085 effective date
+  source_url: https://lawfilesext.leg.wa.gov/law/wsr/2009/16/09-16-095.htm
+  source_format: html
+  source_as_of: '2026-09-28'
+  expression_date: '2009-08-04'
+  extraction:
+    html_encoding: windows-1252
+    html_content_selector: html
+    html_text_selector: body
+    html_drop_selectors:
+    - h5
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_treatment
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: Washington Department of Social and Health Services, Economic Services Administration
+    official_publisher: Washington State Code Reviser's Office
+    document_subtype: register_permanent_rule_effective_date_change
+    register_citation: WSR 09-16-095
+    filing_date: '2009-08-04'
+    adoption_date: '2009-08-03'
+    effective_date: '2009-11-15'
+    changes_effective_date_of: WSR 09-15-085
+    expression_date_note: Filing date printed in the register document header; path date is this filing date, not an inferred issue publication date.
+    source_as_of_note: official publisher retrieval date
+    citation_path_note: >-
+      The WSR HTML prints no register issue date, so the path's date segment is the
+      printed filing date, unlike the publication-date segment of the Delaware and
+      Louisiana register paths.
+    source_bytes_note: The publisher serves a rendering last modified 2012-09-05 (HTTP Last-Modified), not a 2009 capture.
+    authority_role: >-
+      Moves the effective date of WSR 09-15-085 from August 14, 2009 to November 15,
+      2009, so that a separate CR-102 amending WAC 388-450-0185 could take effect
+      concurrently; that WAC 388-450-0185 order is not retained here.

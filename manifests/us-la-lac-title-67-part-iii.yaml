@@ -1,0 +1,74 @@
+documents:
+  - source_id: la-osr-lac-67-iii
+    jurisdiction: us-la
+    document_class: regulation
+    citation_path: us-la/regulation/lac/67/iii
+    title: Louisiana Administrative Code Title 67, Part III. Economic Stability
+    source_url: https://www.doa.la.gov/media/oq1j3hys/67.docx
+    source_format: docx
+    source_as_of: '2026-09-28'
+    expression_date: '2026-08-01'
+    extraction:
+      segmentation: labeled_sections
+      # Unlike the TOC entry, the body heading has no trailing page number.
+      start_after_pattern: '^Chapter 1\.\s*Confidentiality$'
+      stop_text_pattern: '^Part V\.'
+      section_heading_pattern: '^§(?P<label>\d+)\.\s*(?P<heading>.+)$'
+      # These are structural headings, not the end of the preceding section.
+      drop_line_patterns:
+        - '^Title 67$'
+        - '^SOCIAL SERVICES$'
+        - '^Part III\.'
+        - '^Subpart \d+\.'
+        - '^Chapter \d+\.'
+        - '^Subchapter [A-Z]\.'
+      # Word stores the definition dash as a Symbol-font glyph; the same compilation
+      # types U+2015 for the same construction elsewhere, so map it to that.
+      docx_symbol_map:
+        'Symbol:F0BE': "\u2015"
+    metadata:
+      primary_source: true
+      source_authority: Louisiana Department of Children and Family Services
+      official_publisher: Louisiana Division of Administration, Office of the State Register
+      document_subtype: administrative_code_part
+      expression_date_precision: month
+      expression_date_normalization: first_day_of_month
+      expression_date_basis: publisher_compilation_footer
+      expression_date_note: >-
+        The DOCX footer prints "Louisiana Administrative Code August 2026", and the
+        Office of the State Register index lists "Title 67, Social Services August
+        2026". The expression date is the first day of that month, encoding month
+        precision; it does not claim an August 1 effective date. Each section keeps
+        its own AUTHORITY NOTE and HISTORICAL NOTE. (The released Title 61 LAC scope,
+        us-la/regulation/2026-09-14-income-tax-regulations, used its retrieval date
+        instead.)
+      part_heading_variants:
+        - Economic Stability
+        - Family Support
+      part_heading_note: >-
+        The Part heading and contents print "Part III. Economic Stability"; page
+        headers restated before some older subparts still print "Part III. Family
+        Support".
+      source_as_of_note: official publisher retrieval date
+      program: SNAP
+      scope_note: >-
+        All 311 sections of Part III, from 101 through 7131, including programs beyond
+        SNAP. Parts I, V, and VII and the table of contents are outside this scope.
+        The entire Title 67 DOCX remains retained as the source snapshot. Section rows
+        sit directly under the Part (lac/67/iii/<section>), matching the legal citation
+        form "LAC 67:III.<section>"; section numbers are unique within the Part.
+      extraction_note: >-
+        Two editor's notes printed under a Subpart or Chapter heading, before its first
+        section, end the preceding section's row after its HISTORICAL NOTE: the
+        Subpart 3 note on the 2010 renaming of the Food Stamp Program to SNAP ends
+        section 1507, and the Chapter 25 note ends section 2305. Word list numbering in
+        the section 5119 tables is not extracted. Section 1506 prints a private-use
+        glyph (U+F042) where a hyphen belongs ("P.L. 104193"), and a struck-through
+        "s" in section 5113 reads as ordinary text.
+      topic: legally_obligated_child_support_payment_exclusion_and_deduction
+      authority_role: >-
+        Section 1980.A.3 excludes legally obligated child support to nonhousehold members
+        when determining eligibility based on gross income standards; section 1981.A
+        also prescribes a deduction when determining a SNAP eligibility budget.
+      discovered_via: policyengine-us SNAP child support references and PR 9622; official source checked 2026-09-27
+      index_url: https://www.doa.la.gov/doa/osr/louisiana-administrative-code/
