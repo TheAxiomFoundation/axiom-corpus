@@ -1,0 +1,65 @@
+version: 2026-10-06-w6-health-guidance-in
+documents:
+- source_id: us-in-w6-health-fssa-residential-care-assistance-program
+  jurisdiction: us-in
+  document_class: guidance
+  title: 'Indiana FSSA DDRS/BBA: Residential Care Assistance Program'
+  source_url: https://www.in.gov/fssa/ddars/bba/provider-resources/residential-care-assistance-program/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-in/guidance/fssa/residential-care-assistance-program
+  extraction:
+    html_content_selector: article
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration (FSSA)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-in/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 71
+    bundle_url: https://www.in.gov/fssa/ddars/bba/provider-resources/residential-care-assistance-program/
+- source_id: us-in-w6-health-fssa-hip-power-accounts
+  jurisdiction: us-in
+  document_class: guidance
+  title: 'Healthy Indiana Plan (HIP): POWER accounts'
+  source_url: https://www.in.gov/fssa/hip/about-hip/power-accounts/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-in/guidance/fssa/hip/power-accounts
+  extraction:
+    html_content_selector: article
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration (FSSA)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-in/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 72
+    bundle_url: https://www.in.gov/fssa/hip/about-hip/power-accounts/
+- source_id: us-in-w6-health-fssa-hhw-package-c-medworks-premium
+  jurisdiction: us-in
+  document_class: guidance
+  title: 'Indiana Medicaid for Members: HHW Package C / MEDWorks Premium'
+  source_url: https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-in/guidance/fssa/hhw-package-c-medworks-premium
+  extraction:
+    html_content_selector: article
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration (FSSA)
+    program: CHIP
+    document_subtype: agency_program_page
+    source_discovery_group: us-in/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 73
+    bundle_url: https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/

@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-health-statute-or
+documents:
+- source_id: us-or-w6-health-session-laws-2021-hb3352
+  jurisdiction: us-or
+  document_class: statute
+  title: Oregon Enrolled House Bill 3352 (2021 Regular Session)
+  source_url: https://olis.oregonlegislature.gov/liz/2021R1/Downloads/MeasureDocument/HB3352/Enrolled
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-07-01'
+  citation_path: us-or/statute/session-laws/2021/hb3352
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Oregon Legislative Assembly (OLIS)
+    program: MEDICAID
+    document_subtype: enrolled_bill_pdf
+    source_discovery_group: us-or/statute/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 106
+    bundle_url: https://olis.oregonlegislature.gov/liz/2021R1/Downloads/MeasureDocument/HB3352/Enrolled

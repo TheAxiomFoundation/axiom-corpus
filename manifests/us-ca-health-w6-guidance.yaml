@@ -1,0 +1,44 @@
+version: 2026-10-06-w6-health-guidance-ca
+documents:
+- source_id: us-ca-w6-health-dhcs-magi-household-size-flowchart
+  jurisdiction: us-ca
+  document_class: guidance
+  title: DHCS Guide for Calculating MAGI Medi-Cal Individual Household Size (household size flow chart, 42 CFR 435.603(f))
+  source_url: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ca/guidance/dhcs/magi-household-size-flowchart
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: California Department of Health Care Services (DHCS)
+    program: MEDICAID
+    document_subtype: eligibility_job_aid_pdf
+    source_discovery_group: us-ca/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 5
+    bundle_url: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
+- source_id: us-ca-w6-health-dhcs-acwdl-20-10
+  jurisdiction: us-ca
+  document_class: guidance
+  title: 'DHCS All County Welfare Directors Letter 20-10: Guidance on MAGI Medi-Cal Household Compositions (April 30, 2020)'
+  source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-04-30'
+  citation_path: us-ca/guidance/dhcs/acwdl/20-10
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: California Department of Health Care Services (DHCS)
+    program: MEDICAID
+    document_subtype: all_county_welfare_directors_letter_pdf
+    source_discovery_group: us-ca/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 15
+    bundle_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf

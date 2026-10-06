@@ -1,0 +1,108 @@
+version: 2026-10-06-w6-health-guidance-ms
+documents:
+- source_id: us-ms-w6-health-dom-income-limits-for-medicaid-and-chip-programs
+  jurisdiction: us-ms
+  document_class: guidance
+  title: 'Mississippi Division of Medicaid: Income Limits for Medicaid and CHIP Programs (effective March 1, 2026)'
+  source_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-03-01'
+  citation_path: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+  extraction:
+    html_content_selector: .page-content
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: income_standards_page
+    source_discovery_group: us-ms/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 91
+    bundle_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/
+- source_id: us-ms-w6-health-dom-working-disabled
+  jurisdiction: us-ms
+  document_class: guidance
+  title: 'Mississippi Division of Medicaid: Working Disabled'
+  source_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ms/guidance/dom/working-disabled
+  extraction:
+    html_content_selector: .page-content
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-ms/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 92
+    bundle_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/
+- source_id: us-ms-w6-health-dom-healthier-mississippi-waiver-public-notice-2022-07-19
+  jurisdiction: us-ms
+  document_class: guidance
+  title: 'Healthier Mississippi Waiver Demonstration Extension Request: Full Public Notice and Comment Period (posted July
+    19, 2022)'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-07-19'
+  citation_path: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: waiver_public_notice_pdf
+    source_discovery_group: us-ms/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 94
+    bundle_url: https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf
+- source_id: us-ms-w6-health-dom-member-coverage-descriptions-job-aid
+  jurisdiction: us-ms
+  document_class: guidance
+  title: 'Mississippi Division of Medicaid Job Aid: Member Coverage Descriptions (PRP-101, v0.1, 2024-04-03)'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-04-03'
+  citation_path: us-ms/guidance/dom/member-coverage-descriptions-job-aid
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: job_aid_pdf
+    source_discovery_group: us-ms/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 95
+    bundle_url: https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf
+- source_id: us-ms-w6-health-dom-healthier-mississippi-waiver-fact-sheet-2026
+  jurisdiction: us-ms
+  document_class: guidance
+  title: Healthier Mississippi Waiver Medicaid Fact Sheet (2026)
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: program_fact_sheet_pdf
+    source_discovery_group: us-ms/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 97
+    bundle_url: https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf
