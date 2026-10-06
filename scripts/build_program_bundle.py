@@ -437,8 +437,21 @@ class Layer:
         self.full: dict[str, dict] = {}
 
 
+def document_path(doc: dict) -> str | None:
+    """A manifest document's corpus path. A section cut from a page that holds
+    its title or chapter names that container as its citation path and the
+    section as its label (26 U.S.C. 85: us/statute/26, label 85); the corpus
+    serves it under the label."""
+    cp = doc.get("citation_path")
+    extraction = doc.get("extraction") if isinstance(doc.get("extraction"), dict) else {}
+    label = str(extraction.get("section_label") or "")
+    if cp and re.fullmatch(r"\d[\w.-]*", label) and cp.rsplit("/", 1)[-1].lower() != label.lower():
+        return f"{cp}/{label}"
+    return cp
+
+
 def load_manifests() -> dict[str, list[dict]]:
-    """Every manifest's documents, by manifest path."""
+    """Every manifest's documents, by manifest path, each at its corpus path."""
     out: dict[str, list[dict]] = {}
     for f in sorted((REPO / "manifests").glob("*.yaml")):
         try:
@@ -447,7 +460,11 @@ def load_manifests() -> dict[str, list[dict]]:
             continue
         docs = data.get("documents") if isinstance(data, dict) else None
         if isinstance(docs, list):
-            out[f"manifests/{f.name}"] = [d for d in docs if isinstance(d, dict)]
+            out[f"manifests/{f.name}"] = [
+                {**d, "citation_path": document_path(d)} if d.get("citation_path") else d
+                for d in docs
+                if isinstance(d, dict)
+            ]
     return out
 
 
@@ -633,6 +650,12 @@ def build_program(
         if citation and "/recovery/" in citation and joined and "/recovery/" not in joined:
             citation = joined
         citation = citation or joined or (structured[1] if structured else None)
+        # A federal plan row that names one state's document (a state plan
+        # amendment, a federal letter to one state): that state's layer.
+        if jur == "us":
+            own = jurisdiction_of(citation, url, [], [doc.get("title") or ""])
+            if own in layers:
+                jur = own
         part = rule_part(rules, citation, url, doc.get("title")) or "Other"
         add(
             layers[jur],
@@ -826,6 +849,14 @@ def build_program(
                 }
             )
         full[jur] = out
+
+    # A state's page adds the federal layer to its own, so a state layer never
+    # repeats a federal document: the federal row holds it once.
+    for tier in (screener, full):
+        federal_keys = {d["key"] for d in tier.get("us", [])}
+        for jur in tier:
+            if jur != "us":
+                tier[jur] = [d for d in tier[jur] if d["key"] not in federal_keys]
 
     tiers_cfg = cfg["tiers"]
     in_scope = lambda tier: Counter(  # noqa: E731

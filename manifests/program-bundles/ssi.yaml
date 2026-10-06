@@ -61,7 +61,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 1757
-      state: 1178
+      state: 1177
 layers:
 - jurisdiction: us
   screener:
@@ -22709,16 +22709,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/guidance/ssa/poms/si-01415-058/2026
-    name: 'POMS SI 01415.058: Federally Administered Optional Supplementary Payment Programs for January 2026'
-    layer: state
-    citation_path: us/guidance/ssa/poms/si-01415-058/2026
-    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058
-    sources:
-    - manifests/us-dc-ossp-ssa-poms.yaml
-    manifest: manifests/us-dc-ossp-ssa-poms.yaml
-    scope: in
-    part: Benefit amount
   - key: us/guidance/ssa/poms/si-phi01415-009
     name: 'POMS SI PHI01415.009: Administration of State Supplementary Programs - District of Columbia'
     layer: state

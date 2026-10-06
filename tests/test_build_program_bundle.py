@@ -100,6 +100,27 @@ def test_document_key_takes_the_section_that_holds_a_cited_provision():
     )
 
 
+def test_document_path_puts_a_section_cut_from_a_title_under_its_label():
+    section = {
+        "citation_path": "us/statute/26",
+        "extraction": {"section_label": "85"},
+    }
+    assert bundle.document_path(section) == "us/statute/26/85"
+    rule = {
+        "citation_path": "us-ut/regulation/admin-rules/r986/200",
+        "extraction": {"section_label": "239"},
+    }
+    assert bundle.document_path(rule) == "us-ut/regulation/admin-rules/r986/200/239"
+    # A label that already ends the path, or one that names no section, changes nothing.
+    assert bundle.document_path(
+        {"citation_path": "us/statute/7/2014", "extraction": {"section_label": "2014"}}
+    ) == ("us/statute/7/2014")
+    assert bundle.document_path(
+        {"citation_path": "us-sd/statute/10/43", "extraction": {"section_label": "chapter-index"}}
+    ) == ("us-sd/statute/10/43")
+    assert bundle.document_path({"citation_path": "us/statute/7/2015"}) == "us/statute/7/2015"
+
+
 def test_rule_part_takes_the_first_matching_rule_and_flattens_shared_lists():
     shared = [{"pattern": "(?i)income", "part": "Income"}]
     rules = bundle._rules([{"pattern": "deductions", "part": "Deductions"}, shared])
@@ -317,3 +338,51 @@ def test_build_program_puts_each_reference_in_the_layer_of_the_law_it_names(tmp_
         screener = {d["key"] for d in layer["screener"] if d["scope"] == "in"}
         assert screener <= {d["key"] for d in layer["full"] if d["scope"] == "in"}
     assert out["tiers"][0]["membership"]["fiscal_year"] == 2027
+
+
+def test_build_program_places_a_state_plan_document_in_its_state_and_never_repeats_a_federal_one(
+    tmp_path, monkeypatch
+):
+    cfg = config(tmp_path, monkeypatch)
+    exhibit = "https://www.macpac.gov/exhibit-36.pdf"
+    references = {
+        "references": [
+            # The same page cited from the federal folder and from a state's folder.
+            {"url": exhibit, "citation": None, "files": ["parameters/gov/usda/snap/x.yaml"]},
+            {
+                "url": exhibit,
+                "citation": None,
+                "states": ["az"],
+                "files": ["parameters/gov/states/az/des/snap/x.yaml"],
+            },
+        ]
+    }
+    plan = {
+        "documents": [
+            {
+                "id": "AZ-SPA-1",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "citation_paths": ["us-az/policy/cms/state-plan/spa-1"],
+                "title": "Arizona state plan amendment",
+            },
+            {
+                "id": "AZ-ABAWD-2025",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "urls": ["https://www.fns.usda.gov/files/az-abawd-response-fy2027.pdf"],
+                "title": "USDA FNS Arizona ABAWD waiver response",
+            },
+        ]
+    }
+    cfg["state_url_patterns"] = ["/(?P<state>[a-z]{2})-abawd-response"]
+    out = bundle.build_program(cfg, "snap", references, plan, {}, bundle.index_manifests({}, {}))
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    for tier in ("screener", "full"):
+        federal = [d["key"] for d in layers["us"][tier]]
+        arizona = [d["key"] for d in layers["us-az"][tier]]
+        assert exhibit in federal and exhibit not in arizona
+        assert "us-az/policy/cms/state-plan/spa-1" in arizona
+        assert "us-az/policy/cms/state-plan/spa-1" not in federal
+        letter = "https://www.fns.usda.gov/files/az-abawd-response-fy2027.pdf"
+        assert letter in arizona and letter not in federal

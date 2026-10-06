@@ -55,7 +55,7 @@ tiers:
     state_manifests: income-tax|tax-regulations|tax-forms|-tax-|-dor-|revenue|140|1040|-it-|-es$|-es-|ftb|-rtc-
     known_sources: 0
     in_scope_by_layer:
-      federal: 325
+      federal: 324
       state: 2983
 layers:
 - jurisdiction: us
@@ -5475,6 +5475,7 @@ layers:
     sources:
     - screener
     - schema:F054
+    - manifests/us-usc-26-85.yaml
     scope: in
   - key: us/statute/26/852
     name: 26 USC 852
@@ -6367,16 +6368,6 @@ layers:
     manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
     scope: in
     part: Income
-  - key: us/statute/26
-    name: 26 U.S.C. § 85 - Unemployment compensation
-    layer: federal
-    citation_path: us/statute/26
-    source_url: https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapB-partII-sec85.htm
-    sources:
-    - manifests/us-usc-26-85.yaml
-    manifest: manifests/us-usc-26-85.yaml
-    scope: in
-    part: Other
 - jurisdiction: us-al
   screener:
   - key: https://alison.legislature.state.al.us/code-of-alabama

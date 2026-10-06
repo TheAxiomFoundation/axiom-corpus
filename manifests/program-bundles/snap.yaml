@@ -1197,36 +1197,6 @@ layers:
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Deductions
-  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
-    name: USDA FNS Minnesota FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf
-    name: USDA FNS North Dakota FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
-    name: USDA FNS Pennsylvania FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
   - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-15th-state-options-report-october23.pdf
     name: fns-prod.azureedge.us/sites/default/files/resource-files/snap-15th-state-options-report-oc
     layer: federal
@@ -1510,16 +1480,6 @@ layers:
     scope: excluded
     reason: 'Data series: not law'
     part: Deductions
-  - key: https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
-    name: FY 2023 SNAP QC Technical Documentation, Table F.7 (first published Arkansas BUA)
-    layer: federal
-    citation_path: null
-    source_url: https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Data series: not law'
-    part: Other
   - key: https://www.appropriations.senate.gov/imo/media/doc/JRQ121922.PDF
     name: appropriations.senate.gov/imo/media/doc/JRQ121922.PDF
     layer: federal
@@ -1712,256 +1672,6 @@ layers:
     - policyengine-references
     - plan
     references: 1
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
-    name: USDA FNS Alaska FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
-    name: USDA FNS Arizona FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
-    name: USDA FNS California Statewide ABAWD Waiver Response, January 15, 2025 (effective 2025-02-01)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf
-    name: USDA FNS California Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
-    name: USDA FNS Colorado FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf
-    name: USDA FNS District of Columbia Districtwide ABAWD Waiver Response, January 13, 2025 (effective 2025-01-01)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf
-    name: USDA FNS District of Columbia Districtwide ABAWD Waiver Response, FY 2025 (effective 2024-12-01)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
-    name: USDA FNS Hawaii FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf
-    name: USDA FNS Illinois Statewide ABAWD Waiver Response, March 14, 2025 (effective 2025-02-01 through 2026-01-31)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf
-    name: USDA FNS Illinois Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf
-    name: USDA FNS Kentucky FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
-    name: USDA FNS Massachusetts FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
-    name: USDA FNS Maryland FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf
-    name: USDA FNS Michigan FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf
-    name: USDA FNS Minnesota FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf
-    name: USDA FNS North Dakota FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf
-    name: USDA FNS New Jersey FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf
-    name: USDA FNS Nevada Statewide ABAWD Waiver Response (effective 2025-02-01 through 2026-01-31)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf
-    name: USDA FNS New York Statewide ABAWD Waiver Response, FY 2024 (statewide, effective 2024-03-01 through 2025-02-28)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf
-    name: USDA FNS New York ABAWD Waiver Response, October 2, 2024 (61 counties, effective 2025-03-01 through 2026-02-28)
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf
-    name: USDA FNS Oregon FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf
-    name: USDA FNS South Dakota FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf
-    name: USDA FNS Virginia FY 2024 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf
-    name: USDA FNS Washington FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf
-    sources:
-    - plan
-    scope: excluded
-    reason: 'Back-year table: not current law'
-    part: Work requirements
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf
-    name: USDA FNS Wisconsin FY 2025 ABAWD Waiver Response
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf
-    sources:
-    - plan
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Work requirements
@@ -5626,6 +5336,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -8116,6 +7827,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -9229,6 +8941,7 @@ layers:
     source_url: https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Data series: not law'
@@ -9452,6 +9165,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -9474,6 +9188,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -9820,6 +9535,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -12957,6 +12673,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -12979,6 +12696,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -14820,6 +14538,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -15142,6 +14861,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -15153,6 +14873,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -15629,6 +15350,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 5
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -19397,6 +19119,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -20144,6 +19867,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -20838,6 +20562,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 4
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -20994,6 +20719,16 @@ layers:
     part: Other
 - jurisdiction: us-mn
   screener:
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
+    name: USDA FNS Minnesota FY 2024 ABAWD Waiver Response
+    layer: state
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Work requirements
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
     layer: state
@@ -21012,6 +20747,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -27303,6 +27039,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -32490,6 +32227,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 2
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -32934,6 +32672,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -32945,6 +32684,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -34241,6 +33981,7 @@ layers:
     source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -34252,6 +33993,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -35156,6 +34898,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -35308,6 +35051,7 @@ layers:
     source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -38650,6 +38394,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -44395,6 +44140,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -44542,6 +44288,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: excluded
     reason: 'Back-year table: not current law'
@@ -44731,6 +44478,7 @@ layers:
     source_url: https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: excluded
     reason: 'Back-year table: not current law'

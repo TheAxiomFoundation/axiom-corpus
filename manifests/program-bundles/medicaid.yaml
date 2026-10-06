@@ -43,7 +43,7 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 115
+      federal: 108
       state: 148
 - id: full
   title: Full document bundle
@@ -59,7 +59,7 @@ tiers:
     state_manifests: medicaid|ahcccs|medi-cal|masshealth|medical-assistance|msp-income
     known_sources: 0
     in_scope_by_layer:
-      federal: 416
+      federal: 409
       state: 10185
 layers:
 - jurisdiction: us
@@ -253,26 +253,6 @@ layers:
     - plan
     scope: in
     part: Other
-  - key: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2024) - Georgia
-      parents/caretakers 28% + 5% MAGI disregard
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    sources:
-    - plan
-    scope: in
-    part: Deductions
-  - key: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2025, data as of
-      January 2025) - Georgia parents/caretakers 26% + 5% MAGI disregard
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    sources:
-    - plan
-    scope: in
-    part: Deductions
   - key: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
     name: medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-
     layer: federal
@@ -578,56 +558,6 @@ layers:
     references: 1
     scope: in
     part: Household and eligibility
-  - key: us-al/policy/cms/medicaid-state-plan/spa/al-13-0021-mm1/approval-document
-    name: 'Alabama Medicaid SPA AL-13-0021-MM1: Approval Document (approved January 4, 2014, effective January 1,
-      2014)'
-    layer: federal
-    citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0021-mm1/approval-document
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
-    name: 'Mississippi Medicaid SPA MS-13-0019-MM1: Approval Document (approved December 31, 2013, effective January
-      1, 2014)'
-    layer: federal
-    citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0014-mm1/approval-document
-    name: 'South Carolina Medicaid SPA SC-13-0014-MM1: Approval Document (approved January 10, 2014, effective January
-      1, 2014)'
-    layer: federal
-    citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0014-mm1/approval-document
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
-    name: 'Wisconsin Medicaid SPA WI-13-021-MM1: Approval Document (approved October 30, 2013, effective January
-      1, 2014)'
-    layer: federal
-    citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
-    name: 'Wyoming Medicaid SPA WY-13-0008-MM1: Approval Document (approved June 12, 2014, effective January 1,
-      2014)'
-    layer: federal
-    citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Assets
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -1944,26 +1874,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2024) - Georgia
-      parents/caretakers 28% + 5% MAGI disregard
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2025, data as of
-      January 2025) - Georgia parents/caretakers 26% + 5% MAGI disregard
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
     name: medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-
     layer: federal
@@ -2234,56 +2144,6 @@ layers:
     citation_path: null
     source_url: https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm
     part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: us-al/policy/cms/medicaid-state-plan/spa/al-13-0021-mm1/approval-document
-    name: 'Alabama Medicaid SPA AL-13-0021-MM1: Approval Document (approved January 4, 2014, effective January 1,
-      2014)'
-    layer: federal
-    citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0021-mm1/approval-document
-    source_url: null
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
-    name: 'Mississippi Medicaid SPA MS-13-0019-MM1: Approval Document (approved December 31, 2013, effective January
-      1, 2014)'
-    layer: federal
-    citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
-    source_url: null
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0014-mm1/approval-document
-    name: 'South Carolina Medicaid SPA SC-13-0014-MM1: Approval Document (approved January 10, 2014, effective January
-      1, 2014)'
-    layer: federal
-    citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0014-mm1/approval-document
-    source_url: null
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
-    name: 'Wisconsin Medicaid SPA WI-13-021-MM1: Approval Document (approved October 30, 2013, effective January
-      1, 2014)'
-    layer: federal
-    citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
-    source_url: null
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
-    name: 'Wyoming Medicaid SPA WY-13-0008-MM1: Approval Document (approved June 12, 2014, effective January 1,
-      2014)'
-    layer: federal
-    citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
-    source_url: null
-    part: Assets
     sources:
     - screener
     scope: in
@@ -5758,6 +5618,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -37611,6 +37472,7 @@ layers:
     source_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Income
@@ -37621,6 +37483,7 @@ layers:
     source_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Income
@@ -54189,6 +54052,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -90550,6 +90414,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -111266,6 +111131,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -111995,6 +111861,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
