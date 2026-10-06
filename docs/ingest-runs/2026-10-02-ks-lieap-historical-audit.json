@@ -1,0 +1,473 @@
+{
+  "status": "unsigned_local_extraction_not_admitted",
+  "captured_on": "2026-10-02 America/New_York",
+  "generator_commit": "f09dc1099fae731401db11fd39e85bc10d6baf4c",
+  "generator_tracked_tree_clean": true,
+  "scopes": [
+    {
+      "scope": "us-ks/manual/2026-10-02-ks-lieap-historical",
+      "manifest": "manifests/us-ks-keesm-lieap-historical.yaml",
+      "documents": 17,
+      "provisions": 34,
+      "coverage": {
+        "complete": true,
+        "document_class": "manual",
+        "duplicate_provision_citations": [],
+        "duplicate_source_citations": [],
+        "extra_provisions": [],
+        "jurisdiction": "us-ks",
+        "matched_count": 34,
+        "missing_from_provisions": [],
+        "provision_count": 34,
+        "source_count": 34,
+        "version": "2026-10-02-ks-lieap-historical"
+      }
+    },
+    {
+      "scope": "us-ks/policy/2026-10-02-ks-liheap-plan-fy2025",
+      "manifest": "manifests/us-ks-liheap-state-plan-fy2025.yaml",
+      "documents": 1,
+      "provisions": 21,
+      "coverage": {
+        "complete": true,
+        "document_class": "policy",
+        "duplicate_provision_citations": [],
+        "duplicate_source_citations": [],
+        "extra_provisions": [],
+        "jurisdiction": "us-ks",
+        "matched_count": 21,
+        "missing_from_provisions": [],
+        "provision_count": 21,
+        "source_count": 21,
+        "version": "2026-10-02-ks-liheap-plan-fy2025"
+      }
+    },
+    {
+      "scope": "us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025",
+      "manifest": "manifests/us-ks-liheap-benefit-matrix-fy2025.yaml",
+      "documents": 1,
+      "provisions": 4,
+      "coverage": {
+        "complete": true,
+        "document_class": "policy",
+        "duplicate_provision_citations": [],
+        "duplicate_source_citations": [],
+        "extra_provisions": [],
+        "jurisdiction": "us-ks",
+        "matched_count": 4,
+        "missing_from_provisions": [],
+        "provision_count": 4,
+        "source_count": 4,
+        "version": "2026-10-02-ks-liheap-matrix-fy2025"
+      }
+    },
+    {
+      "scope": "us/guidance/2026-10-02-hhs-poverty-2024-2025",
+      "manifest": "manifests/us-hhs-poverty-guidelines-2024-2025.yaml",
+      "documents": 2,
+      "provisions": 4,
+      "coverage": {
+        "complete": true,
+        "document_class": "guidance",
+        "duplicate_provision_citations": [],
+        "duplicate_source_citations": [],
+        "extra_provisions": [],
+        "jurisdiction": "us",
+        "matched_count": 4,
+        "missing_from_provisions": [],
+        "provision_count": 4,
+        "source_count": 4,
+        "version": "2026-10-02-hhs-poverty-2024-2025"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "us-ks-keesm-2024-10-01-13000",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "5f638a362a35da5d4b43a0f1085b91f040852393bfe77dfa5ba86881e1675e6f",
+      "bytes": 13315,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13000.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm13000"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-13200",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "d1c50a2d8656cc926522c6da1783062979e2e06ca2527b4928f62f8eed44e0f7",
+      "bytes": 22036,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13200.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm13200"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-13300",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "78c0611275e4c2281323211ab17dc06abae92dcf2d3ef8771363b3ce855bad4c",
+      "bytes": 19253,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13300.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm13300"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-13360",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "33d23bac221f80b44d189d598b4a3844b96b3bed68869cd89bfe13732575f476",
+      "bytes": 28906,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13360.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm13360"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-13400",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "ec89cea9b22664bb9ef361f63a4f0fc23df616af91b6859fd855785004a0674e",
+      "bytes": 19927,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13400.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm13400"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-6300",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6300.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "393e8540cbb614b449e419f4998416c81721f3ec521830999d75f57d949f0236",
+      "bytes": 11442,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-6300.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm6300"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-6313",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "cc5297b6a19ce40dfc707b87ab4a5d1d52a1092df958d768559dad51253d52fe",
+      "bytes": 12581,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-6313.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm6313"
+    },
+    {
+      "source_id": "us-ks-keesm-2024-10-01-7122",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "61311162d25587c99bee5083788401112797a0c73cdb6aa3c759a9a4be55bdb7",
+      "bytes": 27408,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-7122.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2024-10-01/keesm7122"
+    },
+    {
+      "source_id": "us-ks-keesm-2025-07-01-13360",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2025-07-01",
+      "sha256": "13e86e1c944d16d7bdf518368454a273a4b11d9ae6666638b6e64f0f32a4f99c",
+      "bytes": 52543,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2025-07-01-13360.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2025-07-01/keesm13360"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-13000",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "c57860c544bba506f042d4883e5264affdfdffabb4606b56b56565a26431c2b8",
+      "bytes": 13360,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13000.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm13000"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-13200",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "f593efee784e0fbf4801b16c6b095e75de491a19976abf3952f6f6bffdc3bb73",
+      "bytes": 22036,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13200.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm13200"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-13300",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "91db7699f6373a25baa9dc7f852f0d449c93be2f75376b1d90d3b9d87fdb474c",
+      "bytes": 21612,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13300.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm13300"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-13360",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "d1bacf018a89cfe734a45d9849acc87c877e8c12d3777d770143f4d0b7a59e30",
+      "bytes": 53711,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13360.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm13360"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-13400",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "20864090bf60731bb506003f04903496bf69d90957ad73abfc79dcbe823c4d10",
+      "bytes": 19516,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13400.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm13400"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-6300",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6300.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "0dfb539825ae3944d4f1b9134b5999fb8fafc9ce49940b09b0959e5195360449",
+      "bytes": 11442,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-6300.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm6300"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-6313",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "2d0edd23427e4106d90d370dfb1aa179aa8543be44dfea1daa07a5eb5c513c6c",
+      "bytes": 11875,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-6313.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm6313"
+    },
+    {
+      "source_id": "us-ks-keesm-2026-01-01-7122",
+      "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2026-01-01",
+      "sha256": "c5b7c9fa660e4b70144dc2e52141139d196291397b55c2c385eea6edc10a3c59",
+      "bytes": 27408,
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-7122.html",
+      "citation_path": "us-ks/manual/dcf/keesm/2026-01-01/keesm7122"
+    },
+    {
+      "source_id": "us-ks-acf-liheap-plan-fy2025",
+      "url": "https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "2508c180fcb78448929f26c284f08a0bb1282e434682cba399de8dbfc99575b5",
+      "bytes": 442196,
+      "path": "data/corpus/sources/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025/official-documents/us-ks-acf-liheap-plan-fy2025.pdf",
+      "citation_path": "us-ks/policy/acf/liheap-plan/fy2025"
+    },
+    {
+      "source_id": "us-ks-acf-liheap-plan-fy2025-benefit-matrix",
+      "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-10-01",
+      "sha256": "63c18cb63cfca387b2c41c08f1ed58dcc1cee7b638e29701a4b9f70db1cdedd4",
+      "bytes": 137620,
+      "path": "data/corpus/sources/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025/official-documents/us-ks-acf-liheap-plan-fy2025-benefit-matrix.pdf",
+      "citation_path": "us-ks/policy/acf/liheap-plan/fy2025-benefit-matrix"
+    },
+    {
+      "source_id": "us-hhs-2024-poverty-guidelines-notice",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2024-01-17/html/2024-00796.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2024-01-17",
+      "sha256": "af9dfaac9873176c0105e9e371b690426aa624ba2d8aecf7829ac7600ce254bb",
+      "bytes": 11389,
+      "path": "data/corpus/sources/us/guidance/2026-10-02-hhs-poverty-2024-2025/official-documents/us-hhs-2024-poverty-guidelines-notice.html",
+      "citation_path": "us/guidance/hhs/aspe/poverty-guidelines/2024/federal-register"
+    },
+    {
+      "source_id": "us-hhs-2025-poverty-guidelines-notice",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-17/html/2025-01377.htm",
+      "source_as_of": "2026-10-02",
+      "expression_date": "2025-01-17",
+      "sha256": "4d1115993f60a3b3885f4dd23c06d2b724a7cb40d78a812017b94e094d9799ef",
+      "bytes": 11517,
+      "path": "data/corpus/sources/us/guidance/2026-10-02-hhs-poverty-2024-2025/official-documents/us-hhs-2025-poverty-guidelines-notice.html",
+      "citation_path": "us/guidance/hhs/aspe/poverty-guidelines/2025/federal-register"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13000.html",
+      "sha256": "5f638a362a35da5d4b43a0f1085b91f040852393bfe77dfa5ba86881e1675e6f",
+      "bytes": 13315
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13200.html",
+      "sha256": "d1c50a2d8656cc926522c6da1783062979e2e06ca2527b4928f62f8eed44e0f7",
+      "bytes": 22036
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13300.html",
+      "sha256": "78c0611275e4c2281323211ab17dc06abae92dcf2d3ef8771363b3ce855bad4c",
+      "bytes": 19253
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13360.html",
+      "sha256": "33d23bac221f80b44d189d598b4a3844b96b3bed68869cd89bfe13732575f476",
+      "bytes": 28906
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-13400.html",
+      "sha256": "ec89cea9b22664bb9ef361f63a4f0fc23df616af91b6859fd855785004a0674e",
+      "bytes": 19927
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-6300.html",
+      "sha256": "393e8540cbb614b449e419f4998416c81721f3ec521830999d75f57d949f0236",
+      "bytes": 11442
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-6313.html",
+      "sha256": "cc5297b6a19ce40dfc707b87ab4a5d1d52a1092df958d768559dad51253d52fe",
+      "bytes": 12581
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2024-10-01-7122.html",
+      "sha256": "61311162d25587c99bee5083788401112797a0c73cdb6aa3c759a9a4be55bdb7",
+      "bytes": 27408
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2025-07-01-13360.html",
+      "sha256": "13e86e1c944d16d7bdf518368454a273a4b11d9ae6666638b6e64f0f32a4f99c",
+      "bytes": 52543
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13000.html",
+      "sha256": "c57860c544bba506f042d4883e5264affdfdffabb4606b56b56565a26431c2b8",
+      "bytes": 13360
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13200.html",
+      "sha256": "f593efee784e0fbf4801b16c6b095e75de491a19976abf3952f6f6bffdc3bb73",
+      "bytes": 22036
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13300.html",
+      "sha256": "91db7699f6373a25baa9dc7f852f0d449c93be2f75376b1d90d3b9d87fdb474c",
+      "bytes": 21612
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13360.html",
+      "sha256": "d1bacf018a89cfe734a45d9849acc87c877e8c12d3777d770143f4d0b7a59e30",
+      "bytes": 53711
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-13400.html",
+      "sha256": "20864090bf60731bb506003f04903496bf69d90957ad73abfc79dcbe823c4d10",
+      "bytes": 19516
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-6300.html",
+      "sha256": "0dfb539825ae3944d4f1b9134b5999fb8fafc9ce49940b09b0959e5195360449",
+      "bytes": 11442
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-6313.html",
+      "sha256": "2d0edd23427e4106d90d370dfb1aa179aa8543be44dfea1daa07a5eb5c513c6c",
+      "bytes": 11875
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-02-ks-lieap-historical/official-documents/us-ks-keesm-2026-01-01-7122.html",
+      "sha256": "c5b7c9fa660e4b70144dc2e52141139d196291397b55c2c385eea6edc10a3c59",
+      "bytes": 27408
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/manual/2026-10-02-ks-lieap-historical.json",
+      "sha256": "243d8af837c4d9948fdabe498301c4ea50df9d0d015291a7c9d05bbeda326ce2",
+      "bytes": 45536
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/manual/2026-10-02-ks-lieap-historical.jsonl",
+      "sha256": "20d401de66c45fb76d2b763202fe446be8f903f646ac12d394c99cc0bfbc3114",
+      "bytes": 206610
+    },
+    {
+      "path": "data/corpus/coverage/us-ks/manual/2026-10-02-ks-lieap-historical.json",
+      "sha256": "86f1d69506f736f2fa410a6d245c4cd13e536f1b3f966711f3732a50b0ec92e4",
+      "bytes": 331
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025/official-documents/us-ks-acf-liheap-plan-fy2025.pdf",
+      "sha256": "2508c180fcb78448929f26c284f08a0bb1282e434682cba399de8dbfc99575b5",
+      "bytes": 442196
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025.json",
+      "sha256": "429e27d8d6882918bc9a301cb8ded068cbfe1bc72eb524282d2fd55ddcbcf704",
+      "bytes": 39143
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025.jsonl",
+      "sha256": "7af141687c5f5166304132dd1298afb263391cb697e92d077d352c1d07e26705",
+      "bytes": 134703
+    },
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025.json",
+      "sha256": "5553d9664b7b1e665fc36ff5c2c155116fcc680f80feada6c9ce1674fa9f6a00",
+      "bytes": 333
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025/official-documents/us-ks-acf-liheap-plan-fy2025-benefit-matrix.pdf",
+      "sha256": "63c18cb63cfca387b2c41c08f1ed58dcc1cee7b638e29701a4b9f70db1cdedd4",
+      "bytes": 137620
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025.json",
+      "sha256": "e59ad7816bd18571e8f7219ed645793f810205ac019f8d4c9080ff0df0656119",
+      "bytes": 8383
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025.jsonl",
+      "sha256": "21d9dcc717ee238728bb66b4bd7f0622f9130ef95bfc1a41a1cfd51822745409",
+      "bytes": 14831
+    },
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025.json",
+      "sha256": "925ef5851a41cedac4f7c025d98838aa69a0b8590d8d3cd7031b42b9c8201fea",
+      "bytes": 332
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-10-02-hhs-poverty-2024-2025/official-documents/us-hhs-2024-poverty-guidelines-notice.html",
+      "sha256": "af9dfaac9873176c0105e9e371b690426aa624ba2d8aecf7829ac7600ce254bb",
+      "bytes": 11389
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-10-02-hhs-poverty-2024-2025/official-documents/us-hhs-2025-poverty-guidelines-notice.html",
+      "sha256": "4d1115993f60a3b3885f4dd23c06d2b724a7cb40d78a812017b94e094d9799ef",
+      "bytes": 11517
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-10-02-hhs-poverty-2024-2025.json",
+      "sha256": "3a6a0c8d1b465472078d21d5d2523c26f7fdb276b2b8c8310bc5b89b29af2f33",
+      "bytes": 6584
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-10-02-hhs-poverty-2024-2025.jsonl",
+      "sha256": "e7671952221626b8681d6e07ba937e090548367f5d136637286a604c188b0262",
+      "bytes": 28533
+    },
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-10-02-hhs-poverty-2024-2025.json",
+      "sha256": "dd80a217ab88ed734dd3ce1d11adc768b663fb28f2aa9808bda15e83b07d2bcf",
+      "bytes": 329
+    }
+  ],
+  "checks": {
+    "official_source_hashes_match_independent_downloads": true,
+    "unique_citation_paths": true,
+    "manual_income_table_sentinels_present": true
+  },
+  "limitations": [
+    "Extractor coverage is structural, not a claim of complete Kansas policy coverage.",
+    "PDF text omits checkbox state and flattens table layout; retain and inspect the source PDFs.",
+    "No signed ingest manifest, committed corpus lock, R2 upload, release publication, or RuleSpec pin change has occurred."
+  ]
+}

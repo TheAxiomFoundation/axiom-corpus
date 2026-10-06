@@ -1,0 +1,1 @@
+Add source manifests, a reproducible extraction audit, signed ingest manifests, and corpus locks for historical Kansas LIEAP manual editions, the FY2025 plan and benefit matrix, and the 2024/2025 HHS poverty notices, with a measured citation-path allowance for their 19 block and three page records. Object upload and release admission remain pending.
