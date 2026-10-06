@@ -6687,7 +6687,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--section",
         action="append",
         required=True,
-        help="California section spec such as WIC:11450.12 or a LegInfo section URL.",
+        help=(
+            "California section spec such as WIC:11450.12 or a LegInfo section URL. Append "
+            "@all to capture every concurrent LegInfo version of a multi-version section, or "
+            "@<variant slug> (e.g. WIC:11450@operative-2024-07-01) for one; each version is "
+            "written at its <section>--<slug> variant path."
+        ),
     )
     extract_california_sections_cmd.add_argument("--download-dir", type=Path)
     extract_california_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
