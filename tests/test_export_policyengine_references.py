@@ -94,3 +94,31 @@ def test_resolve_release_takes_the_newest_published_version_and_its_release_comm
     # Without PyPI, main's own version.
     monkeypatch.setattr(export, "newest_published", lambda: None)
     assert export.resolve_release(tmp_path, "latest") == ("2.29.11", "4c900b6")
+
+
+def test_programs_of_reads_federal_folders_and_each_state_s_program_folder():
+    programs = {
+        "snap": {"policyengine_folders": ["gov/usda/snap", "gov/hhs/fpg"], "state_folders": "snap"},
+        "ccdf": {"policyengine_folders": ["gov/hhs/ccdf"], "state_folders": "ccap|ccdf"},
+        "income_tax": {"policyengine_folders": ["gov/irs"], "state_folders": "^tax/income"},
+    }
+    assert export.programs_of("policyengine_us/parameters/gov/usda/snap/x.yaml", programs) == [
+        ("snap", None)
+    ]
+    assert export.programs_of("policyengine_us/parameters/gov/hhs/fpg/x.yaml", programs) == [
+        ("snap", None)
+    ]
+    # An agency, then the program; or the program directly.
+    assert export.programs_of(
+        "policyengine_us/parameters/gov/states/az/des/ccap/x.yaml", programs
+    ) == [("ccdf", "az")]
+    assert export.programs_of("policyengine_us/variables/gov/states/nj/snap/x.py", programs) == [
+        ("snap", "nj")
+    ]
+    assert export.programs_of(
+        "policyengine_us/parameters/gov/states/ca/tax/income/x.yaml", programs
+    ) == [("income_tax", "ca")]
+    assert (
+        export.programs_of("policyengine_us/parameters/gov/states/ca/cdss/tanf/x.yaml", programs)
+        == []
+    )

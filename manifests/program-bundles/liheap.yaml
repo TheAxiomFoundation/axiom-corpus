@@ -1,0 +1,4191 @@
+schema: axiom-program-bundle/v2
+id: liheap
+program: liheap
+title: LIHEAP
+as_of: '2026-10-06'
+generator: scripts/build_program_bundle.py
+parts:
+- Household and eligibility
+- Income
+- Deductions
+- Assets
+- Work requirements
+- Benefit amount
+- Issuance and EBT
+- Definitions from other programs
+- Whole program
+- Other
+comparison:
+  repo: TheAxiomFoundation/axiom-oracles
+  suite: '{st}-liheap-ecps'
+tiers:
+- id: screener
+  title: Screener-level parity
+  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
+    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
+    errors. Federal law PolicyEngine cites is shared by every state.
+  membership:
+    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+      documents, each in the layer of the law it names, grouped into documents
+    references: sources/policyengine-us/liheap-references.json
+    policyengine_us_release: latest
+    policyengine_us_version: 2.29.11
+    policyengine_us_commit: 4c900b6d3d808c4a9cf56d11afcedad9898f732f
+    policyengine_us_folders:
+    - gov/hhs/liheap
+    - gov/hhs/smi
+    - gov/hhs/fpg
+    policyengine_us_state_folders: liheap|lieap|heap|eap
+    references_derived_by: scripts/export_policyengine_references.py
+    reference_count: 139
+    plan: sources/plans/m1-plan-documents.json
+    plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
+    plan_documents: 0
+    fiscal_year: 2027
+    outside_the_states: {}
+    in_scope_by_layer:
+      federal: 3
+      state: 36
+- id: full
+  title: Full document bundle
+  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
+    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
+    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  membership:
+    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
+      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
+      for the program; and the sources the config knows the corpus does not hold yet
+    federal_schema: docs/coverage/needs-closure-2026-09-14/liheap-schema.yaml
+    federal_manifests: ^us-(liheap|hhs-poverty)
+    state_manifests: liheap|energy-assistance|heap
+    known_sources: 0
+    in_scope_by_layer:
+      federal: 5
+      state: 214
+layers:
+- jurisdiction: us
+  screener:
+  - key: https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    name: acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+    name: 'LIHEAP IM 2026-01 Attachment 4: State Median Income (SMI) by Household Size for Mandatory Use in FY 2027
+      (optional use in FY 2026)'
+    layer: federal
+    citation_path: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+      references: 1
+      part: Income
+  - key: us/regulation/45/96/85
+    name: 45 CFR 96.85
+    layer: federal
+    citation_path: us/regulation/45/96/85
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us/regulation/45/96/85/b
+      references: 1
+      part: Income
+  - key: https://acf.gov/ocs/policy-guidance/liheap-im-2018-3-state-median-income-estimates-optional-use-fy-2018-and
+    name: acf.gov/ocs/policy-guidance/liheap-im-2018-3-state-median-income-estimates-optional-use-fy
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/ocs/policy-guidance/liheap-im-2018-3-state-median-income-estimates-optional-use-fy-2018-and
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM%202024-02_Att4SMITable.pdf
+    name: acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM%202024-02_Att4SMITable.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM%202024-02_Att4SMITable.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM2025-02_SMIStateTable_Att4.pdf
+    name: acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM2025-02_SMIStateTable_Att4.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM2025-02_SMIStateTable_Att4.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://acf.gov/sites/default/files/documents/ocs/comm_liheap_im2002smiattachment_fy2021.pdf
+    name: acf.gov/sites/default/files/documents/ocs/comm_liheap_im2002smiattachment_fy2021.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/sites/default/files/documents/ocs/comm_liheap_im2002smiattachment_fy2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://acf.gov/sites/default/files/documents/ocs/comm_liheap_smiimattachment_1_fy2019.pdf
+    name: acf.gov/sites/default/files/documents/ocs/comm_liheap_smiimattachment_1_fy2019.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/sites/default/files/documents/ocs/comm_liheap_smiimattachment_1_fy2019.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://acf.gov/sites/default/files/documents/ocs/im_17_03_liheap_smi_fy18.pdf
+    name: acf.gov/sites/default/files/documents/ocs/im_17_03_liheap_smi_fy18.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/sites/default/files/documents/ocs/im_17_03_liheap_smi_fy18.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
+    name: aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guideli
+    layer: federal
+    citation_path: null
+    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att1SMITable_FY2023.pdf
+    name: acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att1SMITable_FY2023.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att1SMITable_FY2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM03%20Attachment1%20SMITable_FY2022.pdf
+    name: acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM03%20Attachment1%20SMITable_FY
+    layer: federal
+    citation_path: null
+    source_url: https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM03%20Attachment1%20SMITable_FY2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHWAP_Att1SMITable_FY2023.pdf
+    name: acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHWAP_Att1SMITable_FY2023.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHWAP_Att1SMITable_FY2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.govinfo.gov/content/pkg/FR-1988-03-03/pdf/FR-1988-03-03.pdf
+    name: govinfo.gov/content/pkg/FR-1988-03-03/pdf/FR-1988-03-03.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/FR-1988-03-03/pdf/FR-1988-03-03.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Enacting text: the citing file also cites the codified section, which is the document'
+    part: Income
+  - key: https://www.govinfo.gov/content/pkg/FR-2013-05-15/pdf/2013-11575.pdf
+    name: govinfo.gov/content/pkg/FR-2013-05-15/pdf/2013-11575.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/FR-2013-05-15/pdf/2013-11575.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.govinfo.gov/content/pkg/FR-2014-07-21/pdf/2014-17063.pdf
+    name: govinfo.gov/content/pkg/FR-2014-07-21/pdf/2014-17063.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/FR-2014-07-21/pdf/2014-17063.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.govinfo.gov/content/pkg/FR-2015-06-10/pdf/2015-14187.pdf
+    name: govinfo.gov/content/pkg/FR-2015-06-10/pdf/2015-14187.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/FR-2015-06-10/pdf/2015-14187.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.govinfo.gov/content/pkg/FR-2016-08-23/pdf/2016-19922.pdf
+    name: govinfo.gov/content/pkg/FR-2016-08-23/pdf/2016-19922.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/FR-2016-08-23/pdf/2016-19922.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://www.govinfo.gov/content/pkg/FR-2025-01-17/pdf/2025-01377.pdf
+    name: govinfo.gov/content/pkg/FR-2025-01-17/pdf/2025-01377.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/FR-2025-01-17/pdf/2025-01377.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  full:
+  - key: https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    name: acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    layer: federal
+    citation_path: null
+    source_url: https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+    name: 'LIHEAP IM 2026-01 Attachment 4: State Median Income (SMI) by Household Size for Mandatory Use in FY 2027
+      (optional use in FY 2026)'
+    layer: federal
+    citation_path: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us/regulation/45/96/85
+    name: 45 CFR 96.85
+    layer: federal
+    citation_path: us/regulation/45/96/85
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/hhs/aspe/poverty-guidelines
+    name: HHS Poverty Guidelines
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines
+    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
+    sources:
+    - manifests/us-hhs-poverty-guidelines.yaml
+    manifest: manifests/us-hhs-poverty-guidelines.yaml
+    scope: in
+    part: Income
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026/federal-register
+    name: Annual Update of the HHS Poverty Guidelines (91 FR 1797, January 15, 2026)
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026/federal-register
+    source_url: https://www.govinfo.gov/content/pkg/FR-2026-01-15/html/2026-00755.htm
+    sources:
+    - manifests/us-liheap-annual-figures-2026.yaml
+    manifest: manifests/us-liheap-annual-figures-2026.yaml
+    scope: in
+    part: Income
+  - key: us/guidance/acf/ocs/liheap-im/2026-01
+    name: 'LIHEAP IM 2026-01: Federal Poverty Guidelines (FPG) and State Median Income (SMI) Estimates for LIHEAP
+      Income Eligibility, Optional Use in FY 2026 and Mandatory Use in FY 2027 (page)'
+    layer: federal
+    citation_path: us/guidance/acf/ocs/liheap-im/2026-01
+    source_url: https://acf.gov/ocs/policy-guidance/liheap-im2026-01-federal-poverty-guidelines-fpg-and-state-median-income-smi
+    sources:
+    - manifests/us-liheap-annual-figures-2026.yaml
+    manifest: manifests/us-liheap-annual-figures-2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+- jurisdiction: us-al
+  screener: []
+  full:
+  - key: us-al/manual/adeca/liheap-policy-manual
+    name: Alabama LIHEAP Policy Manual (ADECA), effective October 1, 2024
+    layer: state
+    citation_path: us-al/manual/adeca/liheap-policy-manual
+    source_url: https://adeca.alabama.gov/wp-content/uploads/LIHEAP-Manual.pdf
+    sources:
+    - manifests/us-al-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-al-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-al/policy/acf/liheap-plan/fy2026
+    name: Alabama LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-al/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/AL_Plan_2026.pdf
+    sources:
+    - manifests/us-al-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-al-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ak
+  screener: []
+  full:
+  - key: us-ak/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Alaska LIHEAP FY 2026 plan attachment: Heating Assistance Benefit Computation'
+    layer: state
+    citation_path: us-ak/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/AK_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3000-2-definitions
+    name: 'Alaska LIHEAP manual: 3000-2 Definitions'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3000-2-definitions
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3000/3000-2_definitions.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3000-1-responsibilities-in-administration
+    name: 'Alaska LIHEAP manual: A. Worker Responsibilities'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3000-1-responsibilities-in-administration
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3000/3000-1_responsibilities_in_administration.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3001-1-application-form-availability
+    name: 'Alaska LIHEAP manual: 3001-1 Application Form Availability'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3001-1-application-form-availability
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3001/3001-1_application_form_availability.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3001-3-the-interview
+    name: 'Alaska LIHEAP manual: 3001-3 The Interview'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3001-3-the-interview
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3001/3001-3_the_interview.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3001-2-the-application-form
+    name: 'Alaska LIHEAP manual: A. What is an Acceptable Application Form?'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3001-2-the-application-form
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3001/3001-2_the_application_form.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3001-4-verification
+    name: 'Alaska LIHEAP manual: A. Verification Requirements for Initial Applications'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3001-4-verification
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3001/3001-4_verification.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3001-5-actions-taken-on-the-application
+    name: 'Alaska LIHEAP manual: A. Entering Applications'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3001-5-actions-taken-on-the-application
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3001/3001-5_actions_taken_on_the_application.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3002-2-resources
+    name: 'Alaska LIHEAP manual: 3002-2 Resources'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3002-2-resources
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3002/3002-2_resources.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-ak/manual/dpa/hap/3002-1-households
+    name: 'Alaska LIHEAP manual: B. Residency'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3002-1-households
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3002/3002-1_households.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ak/manual/dpa/hap/3003-3-seasonal-employment
+    name: 'Alaska LIHEAP manual: 3003-3 Seasonal Employment'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-3-seasonal-employment
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-3_seasonal_employment.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3003-6-guidelines-for-computing-income
+    name: 'Alaska LIHEAP manual: 3003-6 Guidelines for Computing Income'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-6-guidelines-for-computing-income
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-6_guidelines_for_computing_income.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3003-7-income-grid
+    name: 'Alaska LIHEAP manual: 3003-7 Income Grid'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-7-income-grid
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-7_income_grid.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3003-1-countable-income
+    name: 'Alaska LIHEAP manual: A. Earned Income'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-1-countable-income
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-1_countable_income.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/3003-2-noncountable-exempt-income
+    name: 'Alaska LIHEAP manual: 3003-2 A. Non-Countable (Exempt) Income'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-2-noncountable-exempt-income
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-2_noncountable_(exempt)_income.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/3003-4-income-from-self-employment
+    name: 'Alaska LIHEAP manual: A. Definitions Relating to Self-Employment'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-4-income-from-self-employment
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-4_income_from_self-employment.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3003-5-military-pay
+    name: 'Alaska LIHEAP manual: A. Resources'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3003-5-military-pay
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3003/3003-5_military_pay.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-ak/manual/dpa/hap/3004-2-assistance-categories
+    name: 'Alaska LIHEAP manual: 3004-2 Assistance Categories'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3004-2-assistance-categories
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3004/3004-2_assistance_categories.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3004-3-dwelling-type-and-factor
+    name: 'Alaska LIHEAP manual: 3004-3 Dwelling Type & Factor'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3004-3-dwelling-type-and-factor
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3004/3004-3_dwelling_type_and_factor.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3004-4-fuel-type
+    name: 'Alaska LIHEAP manual: 3004-4 Fuel Type'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3004-4-fuel-type
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3004/3004-4_fuel_type.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3004-5-grant-computation
+    name: 'Alaska LIHEAP manual: 3004-5 Grant Computation'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3004-5-grant-computation
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3004/3004-5_grant_computation.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3004-1-eligibility-determination-timeframes
+    name: 'Alaska LIHEAP manual: A. One Award Per Season'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3004-1-eligibility-determination-timeframes
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3004/3004-1_eligibility_determination_timeframes.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3005-1-expedited-applications
+    name: 'Alaska LIHEAP manual: 3005-1 Criteria for Expedited Processing'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3005-1-expedited-applications
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3005/3005-1_expedited_applications.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3005-2-expedited-time-frames
+    name: 'Alaska LIHEAP manual: 3005-2 Expedited Time Frames'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3005-2-expedited-time-frames
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3005/3005-2_expedited_time_frames.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3005-2-expedited-processing-for-households-with-elderly-or-disabled-members
+    name: 'Alaska LIHEAP manual: 3005-3 Expedited Processing for Households with Elderly or Disabled Members'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3005-2-expedited-processing-for-households-with-elderly-or-disabled-members
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3005/3005-2_expedited_processing_for_households_with_elderly_or_disabled_members.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ak/manual/dpa/hap/3006-srhud-subsidized-rental-housing-utility-deposit
+    name: 'Alaska LIHEAP manual: 3006 SRHUD (Subsidized Rental Housing Utility Deposit)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3006-srhud-subsidized-rental-housing-utility-deposit
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3006/3006_srhud_(subsidized_rental_housing_utility_deposit).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3007-specialized-procedures
+    name: 'Alaska LIHEAP manual: 3007 Specialized Procedures'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3007-specialized-procedures
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3007/3007_specialized_procedures.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3007-1-subsidized-heat-and-application-processing
+    name: 'Alaska LIHEAP manual: 3007-1 Subsidized Heat and Application Processing'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3007-1-subsidized-heat-and-application-processing
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3007/3007-1_subsidized_heat_and_application_processing.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3007-2-hud-and-other-housing-authorities-mutual-help-or-home-purchase-programs
+    name: 'Alaska LIHEAP manual: 3007-2 HUD and Other Housing Authorities, Mutual Help, or Home Purchase Programs'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3007-2-hud-and-other-housing-authorities-mutual-help-or-home-purchase-programs
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3007/3007-2_hud_and_other_housing_authorities,_mutual_help,_or_home_purchase_programs.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3008-issuing-benefits-payments
+    name: 'Alaska LIHEAP manual: 3008 Issuing Benefits & Payments'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-issuing-benefits-payments
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008_issuing_benefits_&_payments.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3008-1-time-frames-for-assistance-payments
+    name: 'Alaska LIHEAP manual: 3008-1 Time Frames for Assistance Payments'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-1-time-frames-for-assistance-payments
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008-1_time_frames_for_assistance_payments.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3008-5-bad-debt
+    name: 'Alaska LIHEAP manual: 3008-5 Bad Debt'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-5-bad-debt
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008-5_bad_debt.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Issuance and EBT
+  - key: us-ak/manual/dpa/hap/3008-2-use-of-hap-payments
+    name: 'Alaska LIHEAP manual: A. Heating Assistance Payments Can Only Be Used for the Purchase of'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-2-use-of-hap-payments
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008-2_use_of_hap_payments.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3008-3-distribution-of-grant-between-heating-and-electricity
+    name: 'Alaska LIHEAP manual: A. The 50/50 Split Option'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-3-distribution-of-grant-between-heating-and-electricity
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008-3_distribution_of_grant_between_heating_and_electricity.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3008-4-methods-of-payment
+    name: 'Alaska LIHEAP manual: A. Vendor Payment'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-4-methods-of-payment
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008-4_methods_of_payment.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3008-6-grant-transfers
+    name: 'Alaska LIHEAP manual: A. The Grant Transfer and Refund Process'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3008-6-grant-transfers
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3008/3008-6_grant_transfers.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/3009-fair-hearings
+    name: 'Alaska LIHEAP manual: 3009 Fair Hearings'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3009-fair-hearings
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3009/3009_fair_hearings.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3010-reserved
+    name: 'Alaska LIHEAP manual: 3010 Performance Measures'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3010-reserved
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3010/3010_reserved.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3011-fraud
+    name: 'Alaska LIHEAP manual: 3011 Fraud'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3011-fraud
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3011/3011_fraud.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/3012-program-administration-and-costs
+    name: 'Alaska LIHEAP manual: 3012 Program Administration and Costs'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/3012-program-administration-and-costs
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/3012/3012_program_administration_and_costs.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ak/manual/dpa/hap/addendum-a
+    name: 'Alaska LIHEAP manual: Addendum A Community Listing'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-a
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_a.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ak/manual/dpa/hap/addendum-b
+    name: 'Alaska LIHEAP manual: Addendum B HAP Tribal Providers'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-b
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_b.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/addendum-c
+    name: 'Alaska LIHEAP manual: Addendum C Income Excluded by Federal Law'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-c
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_c.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/addendum-d
+    name: 'Alaska LIHEAP manual: Addendum D The Leave Earnings Statement'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-d
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_d.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/addendum-e
+    name: 'Alaska LIHEAP manual: Addendum E AK Federal Poverty Income Guidelines'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-e
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_e.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/addendum-f
+    name: 'Alaska LIHEAP manual: Addendum F Housing Authority Contact Information'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-f
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_f.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ak/manual/dpa/hap/addendum-g
+    name: 'Alaska LIHEAP manual: Addendum G Countable and Excluded Income for HAP'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/addendum-g
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/addendum/addendum_g.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2026-02-09-26
+    name: 'Alaska LIHEAP manual: Transmittal 2026-02 (09/26)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2026-02-09-26
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/transmittal_2026-02_(09_26).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2020-01-09-20
+    name: 'Alaska LIHEAP manual: Transmittal 2020-01 (09/20)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2020-01-09-20
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2020-01_(09_20).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2020-02-10-20
+    name: 'Alaska LIHEAP manual: Transmittal 2020-02 (10/20)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2020-02-10-20
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2020-02_(10_20).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2020-03-12-20
+    name: 'Alaska LIHEAP manual: Transmittal 2020-03 (12/20)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2020-03-12-20
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2020-03_(12_20).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-numer-2021-01-04-21
+    name: 'Alaska LIHEAP manual: Transmittal 2021-01 (04/21)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-numer-2021-01-04-21
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_numer_2021-01_(04_21).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2021-02-09-21
+    name: 'Alaska LIHEAP manual: Transmittal 2021-02 (09/21)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2021-02-09-21
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2021-02_(09_21).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2021-03-12-21
+    name: 'Alaska LIHEAP manual: Transmittal 2021-03 (12/21)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2021-03-12-21
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2021-03_(12_21).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/new-topic
+    name: 'Alaska LIHEAP manual: Transmittal 2022-01 (04/22)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/new-topic
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/new_topic.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2022-02-09-22
+    name: 'Alaska LIHEAP manual: Transmittal 2022-02 (09/22)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2022-02-09-22
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2022-02_(09_22).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2022-03-12-22
+    name: 'Alaska LIHEAP manual: Transmittal 2022-03 (12/22)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2022-03-12-22
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2022-03_(12_22).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2023-01-04-23
+    name: 'Alaska LIHEAP manual: Transmittal 2023-01 (04/23)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2023-01-04-23
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2023-01_(04_23).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2023-02-09-23
+    name: 'Alaska LIHEAP manual: Transmittal 2023-02 (09/23)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2023-02-09-23
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2023-02_(09_23).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2023-03-12-23
+    name: 'Alaska LIHEAP manual: Transmittal 2023-03 (12/23)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2023-03-12-23
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2023-03_(12_23).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2023-03-12-23-copy
+    name: 'Alaska LIHEAP manual: Transmittal 2024-01 (04/24)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2023-03-12-23-copy
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2023-03_(12_23)-copy.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2024-02-09-24
+    name: 'Alaska LIHEAP manual: Transmittal 2024-02 (09/24)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2024-02-09-24
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2024-02_(09_24).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/mc-79-09-24
+    name: 'Alaska LIHEAP manual: Transmittal 2024-03 (12/24)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/mc-79-09-24
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/mc_79_(09_24).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2025-01-04-25
+    name: 'Alaska LIHEAP manual: Transmittal 2025-01 (04/25)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2025-01-04-25
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2025-01_(04_25).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2025-02
+    name: 'Alaska LIHEAP manual: Transmittal 2025-02 (09/25)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2025-02
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2025-02.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2025-03
+    name: 'Alaska LIHEAP manual: Transmittal 2025-03 (12/25)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2025-03
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2025-03.htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/manual/dpa/hap/transmittal-2026-01-04-26
+    name: 'Alaska LIHEAP manual: Transmittal 2026-01 (04/26)'
+    layer: state
+    citation_path: us-ak/manual/dpa/hap/transmittal-2026-01-04-26
+    source_url: http://dpaweb.hss.state.ak.us/manuals/HAP/transmittals/previous_transmittals/transmittal_2026-01_(04_26).htm
+    sources:
+    - manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-ak/policy/acf/liheap-plan/fy2026
+    name: Alaska LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ak/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/AK_Plan_2026.pdf
+    sources:
+    - manifests/us-ak-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ak-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-az
+  screener: []
+  full:
+  - key: us-az/manual/des/liheap-policy
+    name: Arizona DES LIHEAP Policy (CCSD), Rev. 16A, effective July 1, 2026
+    layer: state
+    citation_path: us-az/manual/des/liheap-policy
+    source_url: https://des.az.gov/sites/default/files/dl/CCSD-LIHEAP-Policy.pdf
+    sources:
+    - manifests/us-az-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-az-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-az/policy/acf/liheap-plan/fy2026
+    name: Arizona LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-az/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/AZ_Plan_2026.pdf
+    sources:
+    - manifests/us-az-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-az-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ar
+  screener: []
+  full:
+  - key: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/electric
+    name: 'Arkansas LIHEAP FFY 2026 Benefits Matrix: Electric'
+    layer: state
+    citation_path: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/electric
+    source_url: https://adeq.state.ar.us/energy/assistance/pdfs/LIHEAP_Benefit-Matix_2026_Electric.pdf
+    sources:
+    - manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/natural-gas
+    name: 'Arkansas LIHEAP FFY 2026 Benefits Matrix: Natural Gas'
+    layer: state
+    citation_path: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/natural-gas
+    source_url: https://adeq.state.ar.us/energy/assistance/pdfs/LIHEAP_Benefit-Matix_2026_Natural-Gas.pdf
+    sources:
+    - manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/propane
+    name: 'Arkansas LIHEAP FFY 2026 Benefits Matrix: Propane'
+    layer: state
+    citation_path: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/propane
+    source_url: https://adeq.state.ar.us/energy/assistance/pdfs/LIHEAP_Benefit-Matix_2026_Propane.pdf
+    sources:
+    - manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/fuel-oil
+    name: 'Arkansas LIHEAP FFY 2026 Benefits Matrix: Fuel Oil'
+    layer: state
+    citation_path: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/fuel-oil
+    source_url: https://adeq.state.ar.us/energy/assistance/pdfs/LIHEAP_Benefit-Matix_2026_Fuel-Oil.pdf
+    sources:
+    - manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/other-wood-pellets
+    name: 'Arkansas LIHEAP FFY 2026 Benefits Matrix: Other and Wood Pellets'
+    layer: state
+    citation_path: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/other-wood-pellets
+    source_url: https://adeq.state.ar.us/energy/assistance/pdfs/LIHEAP_Benefit-Matix_2026_Other-Wood-Pellets.pdf
+    sources:
+    - manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/eligibility-chart
+    name: Arkansas LIHEAP FFY 2026 Eligibility Chart
+    layer: state
+    citation_path: us-ar/policy/aeo/liheap-benefit-matrix/ffy2026/eligibility-chart
+    source_url: https://adeq.state.ar.us/energy/assistance/pdfs/LIHEAP_Eligibility-Chart_2026.pdf
+    sources:
+    - manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ar/policy/acf/liheap-plan/fy2026
+    name: Arkansas LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ar/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/AR_Plan_2026.pdf
+    sources:
+    - manifests/us-ar-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ar-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ca
+  screener: []
+  full:
+  - key: us-ca/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'California LIHEAP 2026 plan attachment: County Base Benefit Amounts and payment tables'
+    layer: state
+    citation_path: us-ca/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/CA_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-ca-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ca-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ca/policy/acf/liheap-plan/fy2026
+    name: California LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ca/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/CA_Plan_2026.pdf
+    sources:
+    - manifests/us-ca-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ca-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-co
+  screener: []
+  full:
+  - key: us-co/regulation/9-ccr-2503-7
+    name: 9 CCR 2503-7 Colorado Department of Human Services, Income Maintenance (Volume 3), Other Assistance Programs
+      (LEAP rules 3.750)
+    layer: state
+    citation_path: us-co/regulation/9-ccr-2503-7
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=7308&fileName=9%20CCR%202503-7
+    sources:
+    - manifests/us-co-liheap-benefit-matrix-rule.yaml
+    manifest: manifests/us-co-liheap-benefit-matrix-rule.yaml
+    scope: in
+    part: Other
+  - key: us-co/policy/acf/liheap-plan/fy2026
+    name: Colorado LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-co/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/CO_Plan_2026.pdf
+    sources:
+    - manifests/us-co-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-co-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ct
+  screener: []
+  full:
+  - key: us-ct/policy/dss/liheap-allocation-plan/ffy2026
+    name: Connecticut LIHEAP Block Grant Allocation Plan, FFY 2026 (as approved August 7, 2025)
+    layer: state
+    citation_path: us-ct/policy/dss/liheap-allocation-plan/ffy2026
+    source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/state-plans-and-federal-reports/liheap-allocation-plans/ffy-2026-liheap-allocation-plan-approved.pdf
+    sources:
+    - manifests/us-ct-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ct-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ct/policy/acf/liheap-plan/fy2026
+    name: Connecticut LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ct/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/CT_Plan_2026.pdf
+    sources:
+    - manifests/us-ct-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ct-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-de
+  screener: []
+  full:
+  - key: us-de/manual/dhss/deap-policies-and-procedures-manual
+    name: Delaware Energy Assistance Program (LIHEAP) Policies and Procedures Manual
+    layer: state
+    citation_path: us-de/manual/dhss/deap-policies-and-procedures-manual
+    source_url: https://bidcondocs.delaware.gov/HSS/HSS_15027Liheap_MAN.pdf
+    sources:
+    - manifests/us-de-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-de-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-de/policy/acf/liheap-plan/fy2026
+    name: Delaware LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-de/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/DE_Plan_2026.pdf
+    sources:
+    - manifests/us-de-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-de-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-dc
+  screener:
+  - key: https://doee.dc.gov/liheap
+    name: doee.dc.gov/liheap
+    layer: state
+    citation_path: null
+    source_url: https://doee.dc.gov/liheap
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DOEE%20FY24%20LIHEAP_REGULAR_Benefits_Table-Matrix.pdf
+    name: doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DOEE%20FY24%20LI
+    layer: state
+    citation_path: null
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DOEE%20FY24%20LIHEAP_REGULAR_Benefits_Table-Matrix.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-dc/policy/doee/liheap-benefit-matrix/fy2026
+    name: District of Columbia DOEE FY 2026 LIHEAP Benefit Matrix (Regular Benefits Table)
+    layer: state
+    citation_path: us-dc/policy/doee/liheap-benefit-matrix/fy2026
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  full:
+  - key: https://doee.dc.gov/liheap
+    name: doee.dc.gov/liheap
+    layer: state
+    citation_path: null
+    source_url: https://doee.dc.gov/liheap
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-dc/policy/doee/liheap-benefit-matrix/fy2026
+    name: District of Columbia DOEE FY 2026 LIHEAP Benefit Matrix (Regular Benefits Table)
+    layer: state
+    citation_path: us-dc/policy/doee/liheap-benefit-matrix/fy2026
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DC%20DOEE%20-%20FY26%20LIHEAP%20Benefit%20Matrix.docx
+    sources:
+    - manifests/us-dc-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-dc-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-dc/policy/acf/liheap-plan/fy2026
+    name: District of Columbia LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-dc/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/DC_Plan_2026.pdf
+    sources:
+    - manifests/us-dc-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-dc-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-fl
+  screener: []
+  full:
+  - key: us-fl/manual/commerce/liheap-policy-manual
+    name: Florida LIHEAP Policy Manual, effective May 27, 2022
+    layer: state
+    citation_path: us-fl/manual/commerce/liheap-policy-manual
+    source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2023/manuals/FL_PolicyManual_2023.pdf
+    sources:
+    - manifests/us-fl-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-fl-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-fl/policy/acf/liheap-plan/fy2026
+    name: Florida LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-fl/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/FL_Plan_2026.pdf
+    sources:
+    - manifests/us-fl-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-fl-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ga
+  screener: []
+  full:
+  - key: us-ga/manual/dfcs/liheap-policy-manual
+    name: Georgia DFCS Low Income Home Energy Assistance Program Policy Manual, revised January 2022
+    layer: state
+    citation_path: us-ga/manual/dfcs/liheap-policy-manual
+    source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2023/manuals/GA_PolicyManual_2023.pdf
+    sources:
+    - manifests/us-ga-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ga-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ga/policy/acf/liheap-plan/fy2026
+    name: Georgia LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ga/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/GA_Plan_2026.pdf
+    sources:
+    - manifests/us-ga-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ga-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-hi
+  screener: []
+  full:
+  - key: us-hi/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Hawaii LIHEAP FY 2026 plan attachment: 2026 categorical income tables'
+    layer: state
+    citation_path: us-hi/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/HI_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-hi-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-hi-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-hi/manual/dhs/liheap-policies-and-procedures
+    name: Hawaii DHS LIHEAP Policies and Procedures, FFY 2020
+    layer: state
+    citation_path: us-hi/manual/dhs/liheap-policies-and-procedures
+    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2019/07/Policies-and-Procedures-2020.pdf
+    sources:
+    - manifests/us-hi-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-hi-liheap-benefit-matrix-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-hi/policy/acf/liheap-plan/fy2026
+    name: Hawaii LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-hi/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/HI_Plan_2026.pdf
+    sources:
+    - manifests/us-hi-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-hi-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-id
+  screener: []
+  full:
+  - key: us-id/policy/acf/liheap-plan/fy2026
+    name: Idaho LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-id/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/ID_Plan_2026.pdf
+    sources:
+    - manifests/us-id-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-id-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-il
+  screener:
+  - key: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+    name: dceo.illinois.gov/communityservices/utilitybillassistance.html
+    layer: state
+    citation_path: null
+    source_url: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    name: dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    layer: state
+    citation_path: null
+    source_url: https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://dceo.illinois.gov/content/dam/soi/en/web/dceo/communityservices/utilitybillassistance/documents/py25-liheap-state-plan--submitted-detailed-model-plan-liheap-10.01.24.pdf
+    name: dceo.illinois.gov/content/dam/soi/en/web/dceo/communityservices/utilitybillassistance/docu
+    layer: state
+    citation_path: null
+    source_url: https://dceo.illinois.gov/content/dam/soi/en/web/dceo/communityservices/utilitybillassistance/documents/py25-liheap-state-plan--submitted-detailed-model-plan-liheap-10.01.24.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2024/benefits-matricies/IL_BenefitMatrix_2024.pdf
+    name: liheapch.acf.gov/docs/2024/benefits-matricies/IL_BenefitMatrix_2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2024/benefits-matricies/IL_BenefitMatrix_2024.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2024/state-plans/IL_Plan_2024_rev1.pdf
+    name: liheapch.acf.gov/docs/2024/state-plans/IL_Plan_2024_rev1.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2024/state-plans/IL_Plan_2024_rev1.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2025/benefits-matricies/IL_BenefitMatrix_2025.pdf
+    name: liheapch.acf.gov/docs/2025/benefits-matricies/IL_BenefitMatrix_2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/benefits-matricies/IL_BenefitMatrix_2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2026/benefits-matricies/IL_BenefitMatrix_Heat-Cool_2026.pdf
+    name: liheapch.acf.gov/docs/2026/benefits-matricies/IL_BenefitMatrix_Heat-Cool_2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/IL_BenefitMatrix_Heat-Cool_2026.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  full:
+  - key: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+    name: dceo.illinois.gov/communityservices/utilitybillassistance.html
+    layer: state
+    citation_path: null
+    source_url: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    name: dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    layer: state
+    citation_path: null
+    source_url: https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/policy/acf/liheap-plan/fy2026
+    name: Illinois LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-il/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/IL_Plan_2026.pdf
+    sources:
+    - manifests/us-il-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-il-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-in
+  screener:
+  - key: https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+    name: in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+    sources:
+    - policyengine-references
+    references: 10
+    scope: in
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2025/benefits-matricies/IN_BenefitMatrix_2025.pdf
+    name: liheapch.acf.gov/docs/2025/benefits-matricies/IN_BenefitMatrix_2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/benefits-matricies/IN_BenefitMatrix_2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2026/benefits-matricies/IN_BenefitMatrix_Heat-Crisis_2026.pdf
+    name: liheapch.acf.gov/docs/2026/benefits-matricies/IN_BenefitMatrix_Heat-Crisis_2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/IN_BenefitMatrix_Heat-Crisis_2026.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  full:
+  - key: https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+    name: in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-in/manual/ihcda/liheap-intake-and-operations-manual
+    name: Indiana LIHEAP Intake and Operations Program Manual, Program Year 2024 (version 1.0)
+    layer: state
+    citation_path: us-in/manual/ihcda/liheap-intake-and-operations-manual
+    source_url: https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2024-version-1.0.pdf
+    sources:
+    - manifests/us-in-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-in-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-in/policy/acf/liheap-plan/fy2026
+    name: Indiana LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-in/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/IN_Plan_2026.pdf
+    sources:
+    - manifests/us-in-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-in-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ia
+  screener: []
+  full:
+  - key: us-ia/manual/hhs/liheap-policy-and-procedures-manual
+    name: Iowa LIHEAP FY24 Policy and Procedures Manual
+    layer: state
+    citation_path: us-ia/manual/hhs/liheap-policy-and-procedures-manual
+    source_url: https://hhs.iowa.gov/media/2702/download?inline=
+    sources:
+    - manifests/us-ia-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ia-liheap-benefit-matrix-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-ia/policy/acf/liheap-plan/fy2026
+    name: Iowa LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ia/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/IA_Plan_2026.pdf
+    sources:
+    - manifests/us-ia-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ia-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ks
+  screener:
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Household and eligibility
+  - key: https://liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf
+    name: liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf
+    sources:
+    - policyengine-references
+    references: 3
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf
+    name: liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf
+    sources:
+    - policyengine-references
+    references: 4
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Income
+  - key: https://liheapch.acf.gov/profiles/Kansas.htm
+    name: liheapch.acf.gov/profiles/Kansas.htm
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/profiles/Kansas.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: us-ks/policy/acf/liheap-plan/fy2026
+    name: Kansas LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ks/policy/acf/liheap-plan/fy2026
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 5
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: us-ks/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Kansas LIEAP FY 2026 plan attachment: LIEAP Benefits Matrix'
+    layer: state
+    citation_path: us-ks/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 4
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  full:
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+    layer: state
+    citation_path: null
+    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ks/manual/dcf/keesm/keesm13000
+    name: 'Kansas KEESM: 13000 Low Income Energy Assistance Program (LIEAP)'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm13000
+    source_url: https://content.dcf.ks.gov/EES/KEESM/Current/keesm13000.htm
+    sources:
+    - manifests/us-ks-keesm.yaml
+    manifest: manifests/us-ks-keesm.yaml
+    scope: in
+    part: Other
+  - key: us-ks/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Kansas LIEAP FY 2026 plan attachment: LIEAP Benefits Matrix'
+    layer: state
+    citation_path: us-ks/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/KS_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-ks-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ks-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ks/policy/acf/liheap-plan/fy2026
+    name: Kansas LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ks/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf
+    sources:
+    - manifests/us-ks-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ks-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ky
+  screener:
+  - key: https://apps.legislature.ky.gov/law/kar/titles/921/004/116/
+    name: apps.legislature.ky.gov/law/kar/titles/921/004/116/
+    layer: state
+    citation_path: null
+    source_url: https://apps.legislature.ky.gov/law/kar/titles/921/004/116/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: us-ky/policy/acf/liheap-plan/fy2026
+    name: Kentucky LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ky/policy/acf/liheap-plan/fy2026
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 5
+    scope: in
+    part: Income
+    cited:
+    - path: us-ky/policy/acf/liheap-plan/fy2026
+      references: 1
+      part: Income
+  - key: https://liheapch.acf.gov/docs/2025/benefits-matricies/KY_BenefitMatrix_2025.xlsx
+    name: liheapch.acf.gov/docs/2025/benefits-matricies/KY_BenefitMatrix_2025.xlsx
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/benefits-matricies/KY_BenefitMatrix_2025.xlsx
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2025/state-plans/KY_Plan_2025.pdf
+    name: liheapch.acf.gov/docs/2025/state-plans/KY_Plan_2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/state-plans/KY_Plan_2025.pdf
+    sources:
+    - policyengine-references
+    references: 3
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Income
+  - key: https://liheapch.acf.gov/docs/2026/benefits-matricies/KY_BenefitMatrix_Heat-Cool_2026.xlsx
+    name: liheapch.acf.gov/docs/2026/benefits-matricies/KY_BenefitMatrix_Heat-Cool_2026.xlsx
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/KY_BenefitMatrix_Heat-Cool_2026.xlsx
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://www.capky.org/wp-content/uploads/2026/01/2025-2026-LIHEAP-Fact-Sheet-V2.pdf
+    name: capky.org/wp-content/uploads/2026/01/2025-2026-LIHEAP-Fact-Sheet-V2.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.capky.org/wp-content/uploads/2026/01/2025-2026-LIHEAP-Fact-Sheet-V2.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  full:
+  - key: https://apps.legislature.ky.gov/law/kar/titles/921/004/116/
+    name: apps.legislature.ky.gov/law/kar/titles/921/004/116/
+    layer: state
+    citation_path: null
+    source_url: https://apps.legislature.ky.gov/law/kar/titles/921/004/116/
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ky/policy/acf/liheap-plan/fy2026
+    name: Kentucky LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ky/policy/acf/liheap-plan/fy2026
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-ky-liheap-state-plan-fy2026.yaml
+    scope: in
+- jurisdiction: us-la
+  screener: []
+  full:
+  - key: us-la/policy/lhc/liheap/model-plan-ffy2026
+    name: Louisiana LIHEAP FFY 2026 Model Plan with the Heating and Cooling Benefit Matrix attachment
+    layer: state
+    citation_path: us-la/policy/lhc/liheap/model-plan-ffy2026
+    source_url: https://www.lhc.la.gov/hubfs/Document%20Libraries/Energy%20Assistance/FFY%202026%20LIHEAP%20Model%20Plan.pdf
+    sources:
+    - manifests/us-la-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-la-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-la/manual/lhc/liheap/service-delivery-guide
+    name: Louisiana LIHEAP Service Delivery Guide, effective April 1, 2026
+    layer: state
+    citation_path: us-la/manual/lhc/liheap/service-delivery-guide
+    source_url: https://www.lhc.la.gov/hubfs/Document%20Libraries/Energy%20Assistance/Louisiana%20LIHEAP%20Service%20Delivery%20Guide%20-%20FINAL%20-%20Effective%20April%201%2c%202026.pdf
+    sources:
+    - manifests/us-la-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-la-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-la/policy/acf/liheap-plan/fy2026
+    name: Louisiana LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-la/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/LA_Plan_2026.pdf
+    sources:
+    - manifests/us-la-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-la-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-me
+  screener: []
+  full:
+  - key: us-me/regulation/mainehousing-rules/chapter-24
+    name: 'MaineHousing Rules Chapter 24: Home Energy Assistance Program (HEAP), effective June 29, 2026'
+    layer: state
+    citation_path: us-me/regulation/mainehousing-rules/chapter-24
+    source_url: https://www.mainehousing.org/docs/default-source/msha-rules/ch24-home-energy-assistance-program-rule.pdf
+    sources:
+    - manifests/us-me-liheap-benefit-matrix-rule.yaml
+    manifest: manifests/us-me-liheap-benefit-matrix-rule.yaml
+    scope: in
+    part: Other
+  - key: us-me/policy/acf/liheap-plan/fy2026
+    name: Maine LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-me/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/ME_Plan_2026.pdf
+    sources:
+    - manifests/us-me-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-me-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-md
+  screener: []
+  full:
+  - key: us-md/policy/dhs/ohep/fy27-meap-benefit-matrices
+    name: Maryland OHEP FY27 MEAP Benefit Matrices
+    layer: state
+    citation_path: us-md/policy/dhs/ohep/fy27-meap-benefit-matrices
+    source_url: https://dhs.maryland.gov/documents/OHEP/FY27-MEAP-Benefit-Matrices.pdf
+    sources:
+    - manifests/us-md-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-md-liheap-benefit-matrix-attachments.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-md/policy/dhs/ohep/fy27-eusp-benefit-matrix
+    name: Maryland OHEP FY27 EUSP Benefit Matrix
+    layer: state
+    citation_path: us-md/policy/dhs/ohep/fy27-eusp-benefit-matrix
+    source_url: https://dhs.maryland.gov/documents/OHEP/FY27-EUSP-Benefit-Matrix-1.pdf
+    sources:
+    - manifests/us-md-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-md-liheap-benefit-matrix-attachments.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-md/manual/dhs/ohep/operations-manual
+    name: Maryland OHEP Operations Manual (updated May 2025)
+    layer: state
+    citation_path: us-md/manual/dhs/ohep/operations-manual
+    source_url: https://dhs.maryland.gov/documents/OHEP/OHEP-Operations-Manual.pdf
+    sources:
+    - manifests/us-md-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-md-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-md/policy/acf/liheap-plan/fy2026
+    name: Maryland LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-md/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/MD_Plan_2026.pdf
+    sources:
+    - manifests/us-md-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-md-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ma
+  screener:
+  - key: https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap
+    name: mass.gov/info-details/learn-about-home-energy-assistance-heap
+    layer: state
+    citation_path: null
+    source_url: https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://liheapch.acf.gov/docs/2025/state-plans/MA_Plan_2025.pdf
+    name: liheapch.acf.gov/docs/2025/state-plans/MA_Plan_2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2025/state-plans/MA_Plan_2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Household and eligibility
+  - key: https://liheapch.acf.gov/tables/subsidize.htm
+    name: liheapch.acf.gov/tables/subsidize.htm
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/tables/subsidize.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Household and eligibility
+  - key: https://www.commteam.org/wp-content/uploads/2024/03/FY-2024-LIHEAP-Income-Eligibility-and-Benefit-Chart_Incomes-March-2024-Increase.pdf
+    name: commteam.org/wp-content/uploads/2024/03/FY-2024-LIHEAP-Income-Eligibility-and-Benefit-Char
+    layer: state
+    citation_path: null
+    source_url: https://www.commteam.org/wp-content/uploads/2024/03/FY-2024-LIHEAP-Income-Eligibility-and-Benefit-Chart_Incomes-March-2024-Increase.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: https://www.mass.gov/doc/fy-2023-liheap-income-eligibility-and-benefit-level-chart-october-2022/download
+    name: mass.gov/doc/fy-2023-liheap-income-eligibility-and-benefit-level-chart-october-2022/downlo
+    layer: state
+    citation_path: null
+    source_url: https://www.mass.gov/doc/fy-2023-liheap-income-eligibility-and-benefit-level-chart-october-2022/download
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: https://www.mass.gov/doc/fy-2025-heap-income-eligibility-benefit-chart-may-8-2025/download
+    name: mass.gov/doc/fy-2025-heap-income-eligibility-benefit-chart-may-8-2025/download
+    layer: state
+    citation_path: null
+    source_url: https://www.mass.gov/doc/fy-2025-heap-income-eligibility-benefit-chart-may-8-2025/download
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: https://www.masslegalservices.org/system/files/blog/FY_2022_LIHEAP_Income_Eligibility_and_Benefit_Chart_APRIL_2022_UTILITY_Increase.pdf
+    name: masslegalservices.org/system/files/blog/FY_2022_LIHEAP_Income_Eligibility_and_Benefit_Char
+    layer: state
+    citation_path: null
+    source_url: https://www.masslegalservices.org/system/files/blog/FY_2022_LIHEAP_Income_Eligibility_and_Benefit_Chart_APRIL_2022_UTILITY_Increase.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  full:
+  - key: https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap
+    name: mass.gov/info-details/learn-about-home-energy-assistance-heap
+    layer: state
+    citation_path: null
+    source_url: https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Massachusetts HEAP FY 2026 plan attachment: Income Eligibility and Benefit Levels'
+    layer: state
+    citation_path: us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/MA_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-ma-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-ma-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-ma/policy/acf/liheap-plan/fy2026
+    name: Massachusetts LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ma/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/MA_Plan_2026.pdf
+    sources:
+    - manifests/us-ma-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ma-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-mi
+  screener: []
+  full:
+  - key: us-mi/manual/mpsc/meap-policy-manual
+    name: Michigan Energy Assistance Program (MEAP) Policy and Procedure Manual, FY 2024 (v1.0)
+    layer: state
+    citation_path: us-mi/manual/mpsc/meap-policy-manual
+    source_url: https://www.michigan.gov/mpsc/-/media/Project/Websites/mpsc/consumer/meap/2024/2024_MEAP_Policy_Manual.pdf
+    sources:
+    - manifests/us-mi-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-mi-liheap-benefit-matrix-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-mi/manual/mdhhs/erm/301
+    name: 'Michigan MDHHS Emergency Relief Manual ERM 301: Energy Services (ERB 2026-002, April 1, 2026)'
+    layer: state
+    citation_path: us-mi/manual/mdhhs/erm/301
+    source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/ER/Public/ERM/301.pdf
+    sources:
+    - manifests/us-mi-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-mi-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-mi/policy/acf/liheap-plan/fy2026
+    name: Michigan LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-mi/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/MI_Plan_2026.pdf
+    sources:
+    - manifests/us-mi-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-mi-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-mn
+  screener: []
+  full:
+  - key: us-mn/manual/commerce/eap-policy-manual
+    name: Minnesota Energy Assistance Program (EAP) Policy Manual, FFY 2024
+    layer: state
+    citation_path: us-mn/manual/commerce/eap-policy-manual
+    source_url: https://mn.gov/commerce-stat/pdfs/eap/providers/2024/FINAL-FFY24-EAP-Policy-Manual.pdf
+    sources:
+    - manifests/us-mn-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-mn-liheap-benefit-matrix-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-mn/policy/acf/liheap-plan/fy2026
+    name: Minnesota LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-mn/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/MN_Plan_2026.pdf
+    sources:
+    - manifests/us-mn-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-mn-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+- jurisdiction: us-ms
+  screener:
+  - key: us-ms/policy/acf/liheap-plan/fy2026
+    name: Mississippi LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ms/policy/acf/liheap-plan/fy2026
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Income
+    cited:
+    - path: us-ms/policy/acf/liheap-plan/fy2026
+      references: 1
+      part: Income
+  - key: us-ms/regulation/title-18/part-24
+    name: 'Mississippi Administrative Code Title 18 Part 24: Low-Income Home Energy Assistance Program (LIHEAP)
+      Policy Manual, revised January 2026'
+    layer: state
+    citation_path: us-ms/regulation/title-18/part-24
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 5
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-ms/regulation/title-18/part-24
+      references: 5
+      part: Benefit amount
+  - key: https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf
+    name: liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf
+    sources:
+    - policyengine-references
+    references: 6
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Income
+  full:
+  - key: us-ms/policy/acf/liheap-plan/fy2026
+    name: Mississippi LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ms/policy/acf/liheap-plan/fy2026
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-ms-liheap-state-plan-fy2026.yaml
+    scope: in
+  - key: us-ms/regulation/title-18/part-24
+    name: 'Mississippi Administrative Code Title 18 Part 24: Low-Income Home Energy Assistance Program (LIHEAP)
+      Policy Manual, revised January 2026'
+    layer: state
+    citation_path: us-ms/regulation/title-18/part-24
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-ms-liheap-benefit-matrix-rule.yaml
+    scope: in
+- jurisdiction: us-mo
+  screener: []
+  full:
+  - key: us-mo/manual/dss/liheap-policy-procedure-manual
+    name: Missouri LIHEAP Policy and Procedure Manual (2025 edition)
+    layer: state
+    citation_path: us-mo/manual/dss/liheap-policy-procedure-manual
+    source_url: https://dss.mo.gov/media/pdf/liheap-policy-procedure-manual
+    sources:
+    - manifests/us-mo-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-mo-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-mo/policy/acf/liheap-plan/fy2026
+    name: Missouri LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-mo/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/MO_Plan_2026.pdf
+    sources:
+    - manifests/us-mo-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-mo-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-mt
+  screener: []
+  full:
+  - key: us-mt/manual/dphhs/liheap-policy-manual
+    name: Montana LIHEAP Policy Manual, 2025-2026
+    layer: state
+    citation_path: us-mt/manual/dphhs/liheap-policy-manual
+    source_url: https://dphhs.mt.gov/assets/hcsd/liheap/LIHEAPmanual.pdf
+    sources:
+    - manifests/us-mt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-mt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-mt/policy/acf/liheap-plan/fy2026
+    name: Montana LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-mt/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/MT_Plan_2026.pdf
+    sources:
+    - manifests/us-mt-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-mt-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ne
+  screener:
+  - key: https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf
+    name: dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%2
+    layer: state
+    citation_path: null
+    source_url: https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Income
+  - key: https://dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+    name: dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+    layer: state
+    citation_path: null
+    source_url: https://dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Household and eligibility
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022).pdf/1747
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022).pdf/1747
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020).pdf/1748
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020).pdf/1748
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: us-ne/policy/acf/liheap-plan/fy2026
+    name: Nebraska LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ne/policy/acf/liheap-plan/fy2026
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Income
+    cited:
+    - path: us-ne/policy/acf/liheap-plan/fy2026
+      references: 1
+      part: Income
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/historical-chapter-pdfs/475%20NAC%203%20(09-17-2024)-202607280000.pdf
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/historical-chapter-pdfs/475%20NAC%203%20
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/historical-chapter-pdfs/475%20NAC%203%20(09-17-2024)-202607280000.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  full:
+  - key: https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf
+    name: dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%2
+    layer: state
+    citation_path: null
+    source_url: https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+    name: dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+    layer: state
+    citation_path: null
+    source_url: https://dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022).pdf/1747
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022).pdf/1747
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020).pdf/1748
+    name: rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020
+    layer: state
+    citation_path: null
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020).pdf/1748
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/policy/acf/liheap-plan/fy2026
+    name: Nebraska LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ne/policy/acf/liheap-plan/fy2026
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-ne-liheap-state-plan-fy2026.yaml
+    scope: in
+  - key: us-ne/guidance/dhhs/liheap-guidance-document
+    name: Nebraska DHHS Low Income Home Energy Assistance Program (LIHEAP) Guidance Document (July 18, 2026)
+    layer: state
+    citation_path: us-ne/guidance/dhhs/liheap-guidance-document
+    source_url: https://dhhs.ne.gov/Guidance%20Docs/Low%20Income%20Home%20Energy%20Assistance%20Program%20(LIHEAP)%20Guidance%20Document.pdf
+    sources:
+    - manifests/us-ne-liheap-benefit-matrix-guidance.yaml
+    manifest: manifests/us-ne-liheap-benefit-matrix-guidance.yaml
+    scope: in
+    part: Other
+- jurisdiction: us-nv
+  screener: []
+  full:
+  - key: us-nv/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Nevada Energy Assistance Program FY 2026 plan attachment: Appendix A income guidelines, energy burden
+      and benefit cap'
+    layer: state
+    citation_path: us-nv/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/NV_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-nv-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-nv-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-nv/manual/dwss/eap-manual
+    name: Nevada Energy Assistance Program (EAP) Manual, FY 2024 (MTL 01/24)
+    layer: state
+    citation_path: us-nv/manual/dwss/eap-manual
+    source_url: https://dwss.nv.gov/uploadedFiles/dwssnvgov/content/Energy/FY%202024%20EAP%20Manual.pdf
+    sources:
+    - manifests/us-nv-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-nv-liheap-benefit-matrix-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-nv/policy/acf/liheap-plan/fy2026
+    name: Nevada LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nv/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/NV_Plan_2026.pdf
+    sources:
+    - manifests/us-nv-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-nv-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-nh
+  screener: []
+  full:
+  - key: us-nh/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'New Hampshire Fuel Assistance PY26 plan attachment: Program Benefits tables'
+    layer: state
+    citation_path: us-nh/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/NH_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-nh-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-nh-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-nh/manual/energy/fuel-assistance-program-procedures-manual
+    name: New Hampshire Fuel Assistance Program Policy and Procedures Manual, Program Year 2026-2027
+    layer: state
+    citation_path: us-nh/manual/energy/fuel-assistance-program-procedures-manual
+    source_url: https://www.energy.nh.gov/sites/g/files/ehbemt551/files/inline-documents/sonh/fuel-assistance-program-procedures-manual.pdf
+    sources:
+    - manifests/us-nh-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-nh-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-nh/policy/acf/liheap-plan/fy2026
+    name: New Hampshire LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nh/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/NH_Plan_2026.pdf
+    sources:
+    - manifests/us-nh-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-nh-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-nj
+  screener: []
+  full:
+  - key: us-nj/policy/dca/liheap/fy2026
+    name: New Jersey DCA FY 2026 LIHEAP Benefit Matrix (benefit grids for deliverables, electric, gas and renters)
+    layer: state
+    citation_path: us-nj/policy/dca/liheap/fy2026
+    source_url: https://www.nj.gov/dca/dhcr/offices/docs/FY2026%20Benefit%20Matrix.pdf
+    sources:
+    - manifests/us-nj-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-nj-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-nj/manual/dca/liheap/fy2026/handbook
+    name: New Jersey DCA LIHEAP Handbook, FY 2026
+    layer: state
+    citation_path: us-nj/manual/dca/liheap/fy2026/handbook
+    source_url: https://www.nj.gov/dca/dhcr/offices/docs/FY2026%20LIHEAP%20Handbook%20.pdf
+    sources:
+    - manifests/us-nj-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-nj-liheap-benefit-matrix-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-nj/policy/acf/liheap-plan/fy2026
+    name: New Jersey LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nj/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/NJ_Plan_2026.pdf
+    sources:
+    - manifests/us-nj-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-nj-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-nm
+  screener: []
+  full:
+  - key: us-nm/policy/hca/liheap-point-and-income-guide/ffy2026
+    name: New Mexico LIHEAP FFY 2026 Heating and Cooling Point and Income Guide
+    layer: state
+    citation_path: us-nm/policy/hca/liheap-point-and-income-guide/ffy2026
+    source_url: https://www.hca.nm.gov/wp-content/uploads/Heating-and-Cooling-Point-and-Income-Guide-2026.pdf
+    sources:
+    - manifests/us-nm-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-nm-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-nm/policy/acf/liheap-plan/fy2026
+    name: New Mexico LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nm/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/NM_Plan_2026.pdf
+    sources:
+    - manifests/us-nm-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-nm-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ny
+  screener: []
+  full:
+  - key: us-ny/policy/acf/liheap-plan/fy2026
+    name: New York LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ny/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/NY_Plan_2026.pdf
+    sources:
+    - manifests/us-ny-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ny-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-nc
+  screener:
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/manual/dhhs/fns/fns-300-sources-of-income
+    name: 'North Carolina FNS Manual: FNS 300 Sources of Income'
+    layer: state
+    citation_path: us-nc/manual/dhhs/fns/fns-300-sources-of-income
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Income
+    cited:
+    - path: us-nc/manual/dhhs/fns/fns-300-sources-of-income
+      references: 3
+      part: Income
+  - key: us-nc/manual/dhhs/fns/fns-315-special-budgeting-income
+    name: 'North Carolina FNS Manual: FNS 315 Special Budgeting Income'
+    layer: state
+    citation_path: us-nc/manual/dhhs/fns/fns-315-special-budgeting-income
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-nc/manual/dhhs/fns/fns-315-special-budgeting-income
+      references: 1
+      part: Income
+  - key: us-nc/manual/dhhs/fns/fns-350-whose-income-is-counted
+    name: 'North Carolina FNS Manual: FNS 350 Whose Income is Counted'
+    layer: state
+    citation_path: us-nc/manual/dhhs/fns/fns-350-whose-income-is-counted
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-nc/manual/dhhs/fns/fns-350-whose-income-is-counted
+      references: 1
+      part: Income
+  - key: us-nc/manual/dss/energy-programs/ep-300
+    name: 'North Carolina DSS Energy Programs Manual EP-300: Low Income Energy Assistance Program (Change #2-2026,
+      May 1, 2026)'
+    layer: state
+    citation_path: us-nc/manual/dss/energy-programs/ep-300
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 10
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-nc/manual/dss/energy-programs/ep-300
+      references: 9
+      part: Household and eligibility
+  - key: https://liheapch.acf.gov/docs/2026/benefits-matricies/NC_BenefitMatrix_Heat-Cool_2026.pdf
+    name: liheapch.acf.gov/docs/2026/benefits-matricies/NC_BenefitMatrix_Heat-Cool_2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/NC_BenefitMatrix_Heat-Cool_2026.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+    part: Benefit amount
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-05-2025.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/EP-CN-05-2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-05-2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: us-nc/policy/acf/liheap-plan/fy2026
+    name: North Carolina LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nc/policy/acf/liheap-plan/fy2026
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  full:
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+    name: policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+    layer: state
+    citation_path: null
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-nc/manual/dhhs/fns/fns-300-sources-of-income
+    name: 'North Carolina FNS Manual: FNS 300 Sources of Income'
+    layer: state
+    citation_path: us-nc/manual/dhhs/fns/fns-300-sources-of-income
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-nc/manual/dhhs/fns/fns-315-special-budgeting-income
+    name: 'North Carolina FNS Manual: FNS 315 Special Budgeting Income'
+    layer: state
+    citation_path: us-nc/manual/dhhs/fns/fns-315-special-budgeting-income
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-nc/manual/dhhs/fns/fns-350-whose-income-is-counted
+    name: 'North Carolina FNS Manual: FNS 350 Whose Income is Counted'
+    layer: state
+    citation_path: us-nc/manual/dhhs/fns/fns-350-whose-income-is-counted
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-nc/manual/dss/energy-programs/ep-300
+    name: 'North Carolina DSS Energy Programs Manual EP-300: Low Income Energy Assistance Program (Change #2-2026,
+      May 1, 2026)'
+    layer: state
+    citation_path: us-nc/manual/dss/energy-programs/ep-300
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-nc-liheap-benefit-matrix-manual.yaml
+    scope: in
+  - key: us-nc/policy/acf/liheap-plan/fy2026
+    name: North Carolina LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nc/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/NC_Plan_2026.pdf
+    sources:
+    - manifests/us-nc-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-nc-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-nd
+  screener: []
+  full:
+  - key: us-nd/manual/hhs/liheap-service-chapter-415
+    name: North Dakota LIHEAP Service Chapter 415 (Manual Letter 3750, October 1, 2023)
+    layer: state
+    citation_path: us-nd/manual/hhs/liheap-service-chapter-415
+    source_url: https://www.nd.gov/dhs/policymanuals/415/MLs/ML%203750%2010.1.2023.%20Full.pdf
+    sources:
+    - manifests/us-nd-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-nd-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-nd/policy/acf/liheap-plan/fy2026
+    name: North Dakota LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-nd/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/ND_Plan_2026.pdf
+    sources:
+    - manifests/us-nd-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-nd-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-oh
+  screener: []
+  full:
+  - key: us-oh/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Ohio LIHEAP FY 2026 plan attachment: 2025 LIHEAP Benefit Matrix (HWAP transfer up to 25 percent)'
+    layer: state
+    citation_path: us-oh/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/OH_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-oh-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-oh-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-oh/policy/acf/liheap-plan/fy2026
+    name: Ohio LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-oh/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/OH_Plan_2026.pdf
+    sources:
+    - manifests/us-oh-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-oh-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ok
+  screener: []
+  full:
+  - key: us-ok/manual/okdhs/oac-340-appendix/c-7-a
+    name: 'Oklahoma Human Services Appendix C-7-A: Estimated LIHEAP Benefit Level for all Households'
+    layer: state
+    citation_path: us-ok/manual/okdhs/oac-340-appendix/c-7-a
+    source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-7-a.pdf
+    sources:
+    - manifests/us-ok-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ok-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ok/policy/acf/liheap-plan/fy2026
+    name: Oklahoma LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ok/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/OK_Plan_2026.pdf
+    sources:
+    - manifests/us-ok-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ok-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-or
+  screener: []
+  full:
+  - key: us-or/manual/ohcs/energy-assistance-intake-operations-policy-manual
+    name: Oregon LIHEAP and OEAP Intake Operations and Policy Manual, Program Year 2026
+    layer: state
+    citation_path: us-or/manual/ohcs/energy-assistance-intake-operations-policy-manual
+    source_url: https://www.oregon.gov/ohcs/energy-weatherization/Documents/2026%20Final%20Energy%20Assistance%20Intake%20Operations%20&%20Policy%20Manual.pdf
+    sources:
+    - manifests/us-or-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-or-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-or/policy/acf/liheap-plan/fy2026
+    name: Oregon LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-or/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/OR_Plan_2026.pdf
+    sources:
+    - manifests/us-or-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-or-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-pa
+  screener: []
+  full:
+  - key: us-pa/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Pennsylvania LIHEAP FY 2026 plan attachment: LIHEAP Benefit Charts by county, energy year 2025-2026'
+    layer: state
+    citation_path: us-pa/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/PA_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/600-policy-clarifications
+    name: 'Pennsylvania LIHEAP manual: Policy Clarifications'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/600-policy-clarifications
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/600_FormsPubs_OpsMemos_PolicyClarifications/600_Policy_Clarifications.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/600-forms-and-publications
+    name: 'Pennsylvania LIHEAP manual: Forms and Publications'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/600-forms-and-publications
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/600_FormsPubs_OpsMemos_PolicyClarifications/600_Forms_and_Publications.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/600-operations-memoranda
+    name: 'Pennsylvania LIHEAP manual: Operations Memoranda'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/600-operations-memoranda
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/600_FormsPubs_OpsMemos_PolicyClarifications/600_Operations_Memoranda.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/603-2-program-schedule
+    name: 'Pennsylvania LIHEAP manual: 603.2 Program Schedule'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/603-2-program-schedule
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/603_General_Information/603.2_Program_Schedule.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/603-4-nondiscrimination
+    name: 'Pennsylvania LIHEAP manual: 603.4 Nondiscrimination'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/603-4-nondiscrimination
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/603_General_Information/603.4_Nondiscrimination.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/603-5-privacy
+    name: 'Pennsylvania LIHEAP manual: 603.5 Privacy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/603-5-privacy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/603_General_Information/603.5_Privacy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/appendix-a-season-timeline
+    name: 'Pennsylvania LIHEAP manual: Appendix A: Season Timeline'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/appendix-a-season-timeline
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/603_General_Information/Appendix_A__Season_Timeline.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/603-1-purpose-of-liheap
+    name: 'Pennsylvania LIHEAP manual: 603.11 Program Components'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/603-1-purpose-of-liheap
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/603_General_Information/603.1_Purpose_of_LIHEAP.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/603-3-rights-and-responsibilities
+    name: 'Pennsylvania LIHEAP manual: 603.31 Client Rights'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/603-3-rights-and-responsibilities
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/603_General_Information/603.3_Rights_and_Responsibilities.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/604-2-application-process
+    name: 'Pennsylvania LIHEAP manual: 604.2 Application Process'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/604-2-application-process
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/604_Application/604.2_Application_Process.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/604-4-reserved
+    name: 'Pennsylvania LIHEAP manual: 604.4 Reserved'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/604-4-reserved
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/604_Application/604.4_Reserved.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/604-5-application-retention
+    name: 'Pennsylvania LIHEAP manual: 604.5 Application Retention'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/604-5-application-retention
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/604_Application/604.5_Application_Retention.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/604-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 604.11 Where to Apply'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/604-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/604_Application/604.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/604-3-crisis-application-process
+    name: 'Pennsylvania LIHEAP manual: 604.31 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/604-3-crisis-application-process
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/604_Application/604.3_Crisis_Application_Process.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/605-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 605.11 Income Limit'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/605-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/605_LIHEAP_Eligibility_Criteria/605.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/609-1
+    name: 'Pennsylvania LIHEAP manual: 609.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/609-1
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/609_LIHEAP_Crisis/609.1.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/609-4
+    name: 'Pennsylvania LIHEAP manual: 609.4 Timeframes for Issuing Benefits'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/609-4
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/609_LIHEAP_Crisis/609.4.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/609-2
+    name: 'Pennsylvania LIHEAP manual: 609.21 Termination Program'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/609-2
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/609_LIHEAP_Crisis/609.2.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/609-3
+    name: 'Pennsylvania LIHEAP manual: 609.31 Weather-Related Emergencies'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/609-3
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/609_LIHEAP_Crisis/609.3.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/610-2-household-members
+    name: 'Pennsylvania LIHEAP manual: 610.2 Household Members'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/610-2-household-members
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/610_Households/610.2_Household_Members.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/610-3-individuals-not-counted-as-household-members
+    name: 'Pennsylvania LIHEAP manual: 610.3 Individuals Not Counted as Household Members'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/610-3-individuals-not-counted-as-household-members
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/610_Households/610.3_Individuals_Not_Counted_as_Household_Members.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/610-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 610.11 Household Size'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/610-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/610_Households/610.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/614-1-eligible-students
+    name: 'Pennsylvania LIHEAP manual: 614.1 Eligible Students'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/614-1-eligible-students
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/614_Students/614.1_Eligible_Students.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/614-2-ineligible-students
+    name: 'Pennsylvania LIHEAP manual: 614.2 Ineligible Students'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/614-2-ineligible-students
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/614_Students/614.2_Ineligible_Students.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/619-1
+    name: 'Pennsylvania LIHEAP manual: 619.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-1
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.1.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-2
+    name: 'Pennsylvania LIHEAP manual: 619.2 Shared Tank, Furnace, or Meter'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-2
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.2.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-3
+    name: 'Pennsylvania LIHEAP manual: 619.3 Free Primary Heating Source'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-3
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.3.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-4
+    name: 'Pennsylvania LIHEAP manual: 619.4 Heating Bill in Another Person''s Name'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-4
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.4.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-5
+    name: 'Pennsylvania LIHEAP manual: 619.5  Non-participating Vendors'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-5
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.5.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-6-automatic-delivery
+    name: 'Pennsylvania LIHEAP manual: 619.6 Automatic Delivery'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-6-automatic-delivery
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.6_Automatic_Delivery.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-8-bill-paid-by-someone-else
+    name: 'Pennsylvania LIHEAP manual: 619.8 Bill Paid by Someone Else'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-8-bill-paid-by-someone-else
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.8_Bill_Paid_by_Someone_Else.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/619-7-discountinued-service
+    name: 'Pennsylvania LIHEAP manual: ​619.71 Balance From a Previous Address'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/619-7-discountinued-service
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/619_Heating_Responsibility/619.7_Discountinued_Service.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/622-appendix-a
+    name: 'Pennsylvania LIHEAP manual: Appendix A: Proof of Eligible Noncitizen Status'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/622-appendix-a
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/622_Citizen_Noncitizen/622_Appendix_A.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/622-1-citizen-noncitizen
+    name: 'Pennsylvania LIHEAP manual: 622.11 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/622-1-citizen-noncitizen
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/622_Citizen_Noncitizen/622.1_Citizen_Noncitizen.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/622-2-noncitizen-eligibility
+    name: 'Pennsylvania LIHEAP manual: 622.21 Who Is Eligible'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/622-2-noncitizen-eligibility
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/622_Citizen_Noncitizen/622.2_Noncitizen_Eligibility.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/623-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 623.11 Proof of Residence'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/623-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/623_Residence/623.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/638-1-liheap-program-benefits
+    name: 'Pennsylvania LIHEAP manual: 638.1 LIHEAP Program Benefits'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/638-1-liheap-program-benefits
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/638_LIHEAP_Program_Benefits/638.1_LIHEAP_Program_Benefits.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/638-2-allowable-uses-for-liheap-grants
+    name: 'Pennsylvania LIHEAP manual: 638.2 Allowable uses for LIHEAP Grants'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/638-2-allowable-uses-for-liheap-grants
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/638_LIHEAP_Program_Benefits/638.2_Allowable_uses_for_LIHEAP_Grants.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/638-3-benefit-calculation
+    name: 'Pennsylvania LIHEAP manual: 638.3 Benefit Calculation'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/638-3-benefit-calculation
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/638_LIHEAP_Program_Benefits/638.3_Benefit_Calculation.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/appendix-a-liheap-benefit-table
+    name: 'Pennsylvania LIHEAP manual: Appendix A: LIHEAP Benefit Table'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/appendix-a-liheap-benefit-table
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/638_LIHEAP_Program_Benefits/Appendix_A__LIHEAP_Benefit_Table.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/appendix-b-minimum-and-maximum-benefit-levels
+    name: 'Pennsylvania LIHEAP manual: Appendix B: Minimum and Maximum Benefit Levels'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/appendix-b-minimum-and-maximum-benefit-levels
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/638_LIHEAP_Program_Benefits/Appendix_B__Minimum_and_Maximum_Benefit_Levels.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/640-1-resources
+    name: 'Pennsylvania LIHEAP manual: 640.1 Resources'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/640-1-resources
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/640_Resources/640.1_Resources.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-pa/manual/dhs/liheap-handbook/650-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 650.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/650-3-countable-unearned-income
+    name: 'Pennsylvania LIHEAP manual: 650.3 Countable Unearned Income'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-3-countable-unearned-income
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.3_Countable_Unearned_Income.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-pa/manual/dhs/liheap-handbook/650-4-lump-sum-income
+    name: 'Pennsylvania LIHEAP manual: 650.4 Lump Sum Income'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-4-lump-sum-income
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.4_Lump_Sum_Income.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/650-5-income-deductions
+    name: 'Pennsylvania LIHEAP manual: 650.5 Income Deductions'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-5-income-deductions
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.5_Income_Deductions.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Deductions
+  - key: us-pa/manual/dhs/liheap-handbook/650-6-income-exclusions
+    name: 'Pennsylvania LIHEAP manual: 650.6 Income Exclusions'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-6-income-exclusions
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.6_Income_Exclusions.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/650-8-zero-income
+    name: 'Pennsylvania LIHEAP manual: 650.8 Zero Income'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-8-zero-income
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.8_Zero_Income.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/650-appendix-a
+    name: 'Pennsylvania LIHEAP manual: Appendix A: Income Limits'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-appendix-a
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650_Appendix_A.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/650-2-countable-earned-income
+    name: 'Pennsylvania LIHEAP manual: 650.21 Profit from Self-Employment'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-2-countable-earned-income
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.2_Countable_Earned_Income.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-pa/manual/dhs/liheap-handbook/650-7-income-computation
+    name: 'Pennsylvania LIHEAP manual: 650.71 Period of Eligibility'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/650-7-income-computation
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/650_Income/650.7_Income_Computation.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/668-1-general-policy-new
+    name: 'Pennsylvania LIHEAP manual: 668.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-1-general-policy-new
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.1_General_Policy_new.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/668-3-batch-process
+    name: 'Pennsylvania LIHEAP manual: 668.3 Batch Process'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-3-batch-process
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.3_Batch_Process.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/668-5-accounts-receivable
+    name: 'Pennsylvania LIHEAP manual: 668.5 Accounts Receivable'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-5-accounts-receivable
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.5_Accounts_Receivable.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/668-6-dunning-letters
+    name: 'Pennsylvania LIHEAP manual: 668.6 Dunning Letters'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-6-dunning-letters
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.6_Dunning_Letters.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/668-7-disputed-payments
+    name: 'Pennsylvania LIHEAP manual: 668.7 Disputed Payments'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-7-disputed-payments
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.7_Disputed_Payments.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/668-2-prepayment-process
+    name: 'Pennsylvania LIHEAP manual: 668.21 Crisis Payment Process'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-2-prepayment-process
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.2_Prepayment_Process.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/668-4-types-of-payments
+    name: 'Pennsylvania LIHEAP manual: 668.41 Regular Payment'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-4-types-of-payments
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.4_Types_of_Payments.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/668-8-overpayment-process
+    name: 'Pennsylvania LIHEAP manual: 668.81 Definitions'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-8-overpayment-process
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.8_Overpayment_Process.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/668-9-other-payment-issues
+    name: 'Pennsylvania LIHEAP manual: 668.91 Client Address Change'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/668-9-other-payment-issues
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/668_Payment_Process/668.9_Other_Payment_Issues.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/manual/dhs/liheap-handbook/677-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 677.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/677-2-eligible-notice
+    name: 'Pennsylvania LIHEAP manual: 677.2 Eligible Notice'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-2-eligible-notice
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677.2_Eligible_Notice.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/677-3-ineligible-notice
+    name: 'Pennsylvania LIHEAP manual: 677.3 Ineligible Notice'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-3-ineligible-notice
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677.3_Ineligible_Notice.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/677-4-incomplete-notice
+    name: 'Pennsylvania LIHEAP manual: 677.4 Incomplete Notice'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-4-incomplete-notice
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677.4_Incomplete_Notice.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/677-5-withdrawn-applications
+    name: 'Pennsylvania LIHEAP manual: 677.5 Withdrawn Applications'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-5-withdrawn-applications
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677.5_withdrawn_Applications.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/677-6-mycompassaccount-notices
+    name: 'Pennsylvania LIHEAP manual: 677.6 My COMPASS Account Notices'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-6-mycompassaccount-notices
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677.6_MyCOMPASSAccount_Notices.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/677-appendix-a
+    name: 'Pennsylvania LIHEAP manual: Appendix A: Rejection Notice Codes'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/677-appendix-a
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/677_Notices/677_Appendix_A.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/678-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 678.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/678-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/678_Verification/678.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/678-2-information-that-must-be-verified
+    name: 'Pennsylvania LIHEAP manual: 678.2 Information that Must Be Verified'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/678-2-information-that-must-be-verified
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/678_Verification/678.2_Information_that_Must_Be_Verified.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/678-3-acceptable-forms-of-verification
+    name: 'Pennsylvania LIHEAP manual: 678.3 Acceptable Forms of Verification'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/678-3-acceptable-forms-of-verification
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/678_Verification/678.3_Acceptable_Forms_of_Verification.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/679-1-general-policy
+    name: 'Pennsylvania LIHEAP manual: 679.1 General Policy'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/679-1-general-policy
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/679_Appeals_and_Fair_Hearings/679.1_General_Policy.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/679
+    name: 'Pennsylvania LIHEAP manual: 679.21 Processing the Reconsideration'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/679
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/679_Appeals_and_Fair_Hearings/679.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/698-1-introduction
+    name: 'Pennsylvania LIHEAP manual: 698.1 Introduction'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/698-1-introduction
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/698_Weatherization/698.1_Introduction.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-pa/manual/dhs/liheap-handbook/698-2-types-of-weatherization-work-performed
+    name: 'Pennsylvania LIHEAP manual: 698.21 Eligibility Criteria'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/698-2-types-of-weatherization-work-performed
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/698_Weatherization/698.2_Types_of_Weatherization_Work_Performed.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/manual/dhs/liheap-handbook/698-3-emergency-services-program
+    name: 'Pennsylvania LIHEAP manual: ​698.31 Eligibility Determination'
+    layer: state
+    citation_path: us-pa/manual/dhs/liheap-handbook/698-3-emergency-services-program
+    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/698_Weatherization/698.3_Emergency_Services_Program.htm
+    sources:
+    - manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-pa/policy/acf/liheap-plan/fy2026
+    name: Pennsylvania LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-pa/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/PA_Plan_2026.pdf
+    sources:
+    - manifests/us-pa-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-pa-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ri
+  screener: []
+  full:
+  - key: us-ri/policy/acf/liheap-plan/fy2026
+    name: Rhode Island LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ri/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/RI_Plan_2026.pdf
+    sources:
+    - manifests/us-ri-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ri-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-sc
+  screener: []
+  full:
+  - key: us-sc/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'South Carolina LIHEAP FY 2026 plan attachment: 2026 Benefit Matrix'
+    layer: state
+    citation_path: us-sc/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/SC_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-sc-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-sc-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-sc/policy/acf/liheap-plan/fy2026
+    name: South Carolina LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-sc/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/SC_Plan_2026.pdf
+    sources:
+    - manifests/us-sc-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-sc-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-sd
+  screener: []
+  full:
+  - key: us-sd/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'South Dakota LIHEAP FY 2026 plan attachment: benefit matrix by region, fuel and income tier'
+    layer: state
+    citation_path: us-sd/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/SD_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-sd-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-sd-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-sd/manual/dss/oea-policies-and-procedures-manual
+    name: South Dakota Office of Energy Assistance Policies and Procedures Manual (2018)
+    layer: state
+    citation_path: us-sd/manual/dss/oea-policies-and-procedures-manual
+    source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/SD_Policy-and-Procedures-Manual2018.pdf
+    sources:
+    - manifests/us-sd-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-sd-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-sd/policy/acf/liheap-plan/fy2026
+    name: South Dakota LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-sd/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/SD_Plan_2026.pdf
+    sources:
+    - manifests/us-sd-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-sd-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-tn
+  screener: []
+  full:
+  - key: us-tn/policy/thda/liheap/benefit-matrix-2026
+    name: Tennessee LIHEAP 2026 Benefit Matrix (form LI-11)
+    layer: state
+    citation_path: us-tn/policy/thda/liheap/benefit-matrix-2026
+    source_url: https://dogvxws799i6n.cloudfront.net/wp-content/uploads/2026-LIHEAP-Eligible-Income-Household-Size-Benefits.pdf
+    sources:
+    - manifests/us-tn-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-tn-liheap-benefit-matrix-attachments.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-tn/policy/thda/liheap/benefit-matrix-2027
+    name: Tennessee LIHEAP Fiscal Year 2027 Benefit Matrix (form LI-12)
+    layer: state
+    citation_path: us-tn/policy/thda/liheap/benefit-matrix-2027
+    source_url: https://dogvxws799i6n.cloudfront.net/wp-content/uploads/2027-LIHEAP-LI-12-Eligible-Income-Benefit-Matrix.pdf
+    sources:
+    - manifests/us-tn-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-tn-liheap-benefit-matrix-attachments.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-tn/manual/thda/liheap/policy-manual-2026
+    name: Tennessee LIHEAP 2026 Policy Manual for Regular and Crisis Assistance (revised August 29, 2025)
+    layer: state
+    citation_path: us-tn/manual/thda/liheap/policy-manual-2026
+    source_url: https://dogvxws799i6n.cloudfront.net/wp-content/uploads/LIHEAP-2026-Policy-Manual-for-Tennessee.pdf
+    sources:
+    - manifests/us-tn-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-tn-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-tn/policy/acf/liheap-plan/fy2026
+    name: Tennessee LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-tn/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/TN_Plan_2026.pdf
+    sources:
+    - manifests/us-tn-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-tn-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-tx
+  screener: []
+  full:
+  - key: us-tx/policy/acf/liheap-plan/fy2026
+    name: Texas LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-tx/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/TX_Plan_2026.pdf
+    sources:
+    - manifests/us-tx-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-tx-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-ut
+  screener: []
+  full:
+  - key: us-ut/manual/dws/heat-policy-manual
+    name: Utah HEAT Program Policy Manual, revised March 1, 2023
+    layer: state
+    citation_path: us-ut/manual/dws/heat-policy-manual
+    source_url: https://jobs.utah.gov/housing/scso/seal/documents/heatpolicymanual.pdf
+    sources:
+    - manifests/us-ut-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-ut-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ut/policy/acf/liheap-plan/fy2026
+    name: Utah LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-ut/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/UT_Plan_2026.pdf
+    sources:
+    - manifests/us-ut-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-ut-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+  - key: us-ut/manual/dws/eligibility-manual/400-income-standards-427-25-energy-assistance-htm
+    name: 427-25 Energy Assistance
+    layer: state
+    citation_path: us-ut/manual/dws/eligibility-manual/400-income-standards-427-25-energy-assistance-htm
+    source_url: https://jobs.utah.gov/infosource/eligibilitymanual/400_Income_Standards/427-25_Energy_Assistance.htm
+    sources:
+    - manifests/us-ut-manuals.yaml
+    manifest: manifests/us-ut-manuals.yaml
+    scope: in
+    part: Benefit amount
+- jurisdiction: us-vt
+  screener: []
+  full:
+  - key: us-vt/manual/dcf/esd-procedures/p2914a
+    name: 'Vermont ESD Procedure P-2914A: Calculation of Benefits, Percentage of Poverty (2025-2026)'
+    layer: state
+    citation_path: us-vt/manual/dcf/esd-procedures/p2914a
+    source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914A.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Income
+  - key: us-vt/manual/dcf/esd-procedures/p2914b
+    name: 'Vermont ESD Procedure P-2914B: Calculation of Benefits, Payment Rate'
+    layer: state
+    citation_path: us-vt/manual/dcf/esd-procedures/p2914b
+    source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914B.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-vt/manual/dcf/esd-procedures/p2914c
+    name: 'Vermont ESD Procedure P-2914C: Calculation of Benefits, Types of Benefits'
+    layer: state
+    citation_path: us-vt/manual/dcf/esd-procedures/p2914c
+    source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914C.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-vt/manual/dcf/esd-procedures/p2914d
+    name: 'Vermont ESD Procedure P-2914D: Calculation of Benefits, Manual Budget'
+    layer: state
+    citation_path: us-vt/manual/dcf/esd-procedures/p2914d
+    source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914D.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-vt/manual/dcf/esd-procedures/p2915
+    name: 'Vermont ESD Procedure P-2915: Heat Cost Percentage Table (7/1/25)'
+    layer: state
+    citation_path: us-vt/manual/dcf/esd-procedures/p2915
+    source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2915.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-vt/manual/dcf/esd-procedures/p2916
+    name: 'Vermont ESD Procedure P-2916: Standard Heating Cost Tables, 2025-26 heating season'
+    layer: state
+    citation_path: us-vt/manual/dcf/esd-procedures/p2916
+    source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2916.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-vt/regulation/dcf/esd-rules/2900
+    name: 'Vermont DCF Economic Services Division Rule 2900: Seasonal Fuel Assistance (adopted June 22, 2024)'
+    layer: state
+    citation_path: us-vt/regulation/dcf/esd-rules/2900
+    source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/ESD/Rules/2900-Seasonal-Fuel-Assistance.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-rule.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-rule.yaml
+    scope: in
+    part: Other
+  - key: us-vt/regulation/dcf/esd-rules/3100
+    name: 'Vermont DCF Economic Services Division Rule 3100: Crisis Fuel Assistance (adopted June 22, 2024)'
+    layer: state
+    citation_path: us-vt/regulation/dcf/esd-rules/3100
+    source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/ESD/Rules/3100-Crisis-Fuel.pdf
+    sources:
+    - manifests/us-vt-liheap-benefit-matrix-rule.yaml
+    manifest: manifests/us-vt-liheap-benefit-matrix-rule.yaml
+    scope: in
+    part: Other
+  - key: us-vt/policy/acf/liheap-plan/fy2026
+    name: Vermont LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-vt/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/VT_Plan_2026.pdf
+    sources:
+    - manifests/us-vt-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-vt-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-va
+  screener: []
+  full:
+  - key: us-va/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Virginia LIHEAP FY 2026 plan attachment: Energy Assistance Manual excerpts with FFY 2026 income limits'
+    layer: state
+    citation_path: us-va/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/VA_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-va-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-va-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-va/manual/vdss/energy-assistance-manual
+    name: Virginia Department of Social Services Energy Assistance Manual (Volumes IX and X)
+    layer: state
+    citation_path: us-va/manual/vdss/energy-assistance-manual
+    source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/eap/Complete_Manual.pdf
+    sources:
+    - manifests/us-va-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-va-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-va/policy/acf/liheap-plan/fy2026
+    name: Virginia LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-va/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/VA_Plan_2026.pdf
+    sources:
+    - manifests/us-va-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-va-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-wa
+  screener: []
+  full:
+  - key: us-wa/policy/acf/liheap-plan/fy2026-benefit-matrix
+    name: 'Washington LIHEAP FY 2026 plan attachment: Benefit Calculation Worksheet (actual and surrogate heat cost)'
+    layer: state
+    citation_path: us-wa/policy/acf/liheap-plan/fy2026-benefit-matrix
+    source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/WA_BenefitMatrix_2026.pdf
+    sources:
+    - manifests/us-wa-liheap-benefit-matrix-attachments.yaml
+    manifest: manifests/us-wa-liheap-benefit-matrix-attachments.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount
+  - key: us-wa/policy/acf/liheap-plan/fy2026
+    name: Washington LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-wa/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/WA_Plan_2026.pdf
+    sources:
+    - manifests/us-wa-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-wa-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-wv
+  screener: []
+  full:
+  - key: us-wv/policy/acf/liheap-plan/fy2026
+    name: West Virginia LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-wv/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/WV_Plan_2026.pdf
+    sources:
+    - manifests/us-wv-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-wv-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-wi
+  screener: []
+  full:
+  - key: us-wi/manual/dehcr/wheap-manual/py2026
+    name: Wisconsin Home Energy Assistance Program (WHEAP) Manual, Program Year 2026
+    layer: state
+    citation_path: us-wi/manual/dehcr/wheap-manual/py2026
+    source_url: https://energyandhousing.wi.gov/Documents/WHEAP/WheapManual_PY26.pdf
+    sources:
+    - manifests/us-wi-liheap-benefit-matrix-manual.yaml
+    manifest: manifests/us-wi-liheap-benefit-matrix-manual.yaml
+    scope: in
+    part: Other
+  - key: us-wi/policy/acf/liheap-plan/fy2026
+    name: Wisconsin LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-wi/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/WI_Plan_2026.pdf
+    sources:
+    - manifests/us-wi-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-wi-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
+- jurisdiction: us-wy
+  screener: []
+  full:
+  - key: us-wy/policy/acf/liheap-plan/fy2026
+    name: Wyoming LIHEAP Detailed Model Plan, FY 2026
+    layer: state
+    citation_path: us-wy/policy/acf/liheap-plan/fy2026
+    source_url: https://liheapch.acf.gov/docs/2026/state-plans/WY_Plan_2026.pdf
+    sources:
+    - manifests/us-wy-liheap-state-plan-fy2026.yaml
+    manifest: manifests/us-wy-liheap-state-plan-fy2026.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Benefit amount

@@ -1,0 +1,548 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "medicare",
+ "folders": [
+  "gov/hhs/medicare"
+ ],
+ "state_folders": "msp|medicare",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 59,
+ "references": [
+  {
+   "url": "https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SMDL #10-003: 2010 Medicare Savings Program resource standards"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maine Revised Statutes Title 22, Section 3174-LLL, Medicare savings program"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501715010",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01715.010 - Resource Eligibility"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml",
+    "variables/gov/hhs/medicare/savings_programs/income/msp_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250311062044/https://dss.mo.gov/fsd/iman/medasst/0865-010-15.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Historical QMB Resource Limits"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/about-cms/what-we-do/medicare",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/costs/medicare_cost.py",
+    "variables/gov/hhs/medicare/costs/medicare_enrolled.py",
+    "variables/gov/hhs/medicare/costs/medicare_gross_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Medicare Parts A & B Premiums and Deductibles"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_a/full_premium.yaml",
+    "parameters/gov/hhs/medicare/part_a/reduced_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/base_premium.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Medicare Parts A & B Premiums and Deductibles"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_a/full_premium.yaml",
+    "parameters/gov/hhs/medicare/part_a/reduced_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/base_premium.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Medicare Parts A & B Premiums and Deductibles"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_a/deductible.yaml",
+    "parameters/gov/hhs/medicare/part_a/full_premium.yaml",
+    "parameters/gov/hhs/medicare/part_a/reduced_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/base_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/surviving_spouse.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Medicare Parts A & B Premiums and Deductibles"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_a/deductible.yaml",
+    "parameters/gov/hhs/medicare/part_a/full_premium.yaml",
+    "parameters/gov/hhs/medicare/part_a/reduced_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/base_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/surviving_spouse.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/surviving_spouse.yaml",
+    "variables/gov/hhs/medicare/eligibility/part_a/base_part_a_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 Medicare Parts A & B Premiums and Deductibles",
+    "Medicare.gov - Part A costs"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_a/full_premium.yaml",
+    "parameters/gov/hhs/medicare/part_a/premium_free_quarters_threshold.yaml",
+    "parameters/gov/hhs/medicare/part_a/reduced_premium.yaml",
+    "parameters/gov/hhs/medicare/part_a/reduced_premium_quarters_threshold.yaml",
+    "parameters/gov/hhs/medicare/part_b/base_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_b/irmaa/surviving_spouse.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/surviving_spouse.yaml",
+    "variables/gov/hhs/medicare/eligibility/part_a/is_premium_free_part_a.py"
+   ]
+  },
+  {
+   "url": "https://www.cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Medicare Parts A & B Premiums and Deductibles"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_a/full_premium.yaml",
+    "parameters/gov/hhs/medicare/part_b/base_premium.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1163",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1163",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/income/msp_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/423.286",
+   "kind": "regulation",
+   "citation": "us/regulation/42/423/286",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/eligibility/part_d/income_adjusted_part_d_premium_surcharge.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/423.286#d_4",
+   "kind": "regulation",
+   "citation": "us/regulation/42/423/286/d/4",
+   "titles": [
+    "42 CFR § 423.286(d)(4) - Part D IRMAA paid in addition to the Part D premium."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.123",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/123",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/category/is_qmb_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.124",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/124",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/category/is_slmb_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.125",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/125",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/category/is_qi_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382b",
+   "kind": "statute",
+   "citation": "us/statute/42/1382b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_asset_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1395r",
+   "kind": "statute",
+   "citation": "us/statute/42/1395r",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/eligibility/medicare_irmaa_magi_two_years_prior.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1395r#i",
+   "kind": "statute",
+   "citation": "us/statute/42/1395r/i",
+   "titles": [
+    "42 U.S.C. § 1395r(i) - Threshold and MAGI framework used by Part D IRMAA."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1395w-113#a_7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "42 U.S.C. § 1395w-113(a)(7) - Part D income-related premium adjustment."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/single.yaml",
+    "parameters/gov/hhs/medicare/part_d/irmaa/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#a_10_E",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/a/10/E",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/msp_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#a_10_E_i",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/a/10/E/i",
+   "titles": [
+    "42 U.S.C. 1396a(a)(10)(E)(i) - Qualified Medicare beneficiaries"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/qmb/fpl_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#a_10_E_iii",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/a/10/E/iii",
+   "titles": [
+    "42 U.S.C. 1396a(a)(10)(E)(iii) - 120% FPL income limit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/slmb/fpl_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#a_10_E_iv",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/a/10/E/iv",
+   "titles": [
+    "42 U.S.C. 1396a(a)(10)(E)(iv) - 120-135% FPL income limit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/qi/fpl_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/msp_federal_cost.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_state_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396d#b",
+   "kind": "statute",
+   "citation": "us/statute/42/1396d/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/msp_federal_cost.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_state_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396d#p",
+   "kind": "statute",
+   "citation": "us/statute/42/1396d/p",
+   "titles": [
+    "42 U.S.C. 1396d(p)(1)-(2) - QMB definition and 100% FPL income limit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/qmb/fpl_limit.yaml",
+    "variables/gov/hhs/medicare/savings_programs/category/msp_category.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_asset_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_income_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/income/msp_countable_income.py",
+    "variables/gov/hhs/medicare/savings_programs/income/msp_fpg.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396d#p_3",
+   "kind": "statute",
+   "citation": "us/statute/42/1396d/p/3",
+   "titles": [
+    "42 U.S.C. 1396d(p)(3) - Medicare cost-sharing definition"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/qmb/cost_sharing_rate.yaml",
+    "variables/gov/hhs/medicare/savings_programs/msp_cost.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_part_a_premium_coverage.py",
+    "variables/gov/hhs/medicare/savings_programs/qmb_cost_sharing.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396u-3#d",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "42 U.S.C. 1396u-3(d) - Qualifying Individual applicable FMAP"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/qi/federal_share.yaml",
+    "variables/gov/hhs/medicare/savings_programs/msp_federal_cost.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_state_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/426",
+   "kind": "statute",
+   "citation": "us/statute/42/426",
+   "titles": [
+    "42 U.S. Code § 426(a)(1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/eligibility/min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/426#b",
+   "kind": "statute",
+   "citation": "us/statute/42/426/b",
+   "titles": [
+    "42 U.S. Code § 426(b)(2)(A)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/eligibility/min_months_receiving_social_security_disability.yaml"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/doc/eom-24-03-medicare-savings-programs-formerly-known-as-masshealth-senior-buy-in-and-masshealth-buy-in-programs-0/download",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MassHealth EOM 24-03, Medicare Savings Programs"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicare.gov/basics/costs/help/medicare-savings-programs",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicare Savings Programs | Medicare.gov"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/qi/fpl_limit.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/qmb/fpl_limit.yaml",
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/income/slmb/fpl_limit.yaml",
+    "variables/gov/hhs/medicare/savings_programs/category/is_qi_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/category/is_qmb_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/category/is_slmb_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/category/msp_category.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_asset_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_income_eligible.py",
+    "variables/gov/hhs/medicare/savings_programs/income/msp_countable_income.py",
+    "variables/gov/hhs/medicare/savings_programs/income/msp_fpg.py",
+    "variables/gov/hhs/medicare/savings_programs/msp.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_benefit_value.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_cost.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_part_a_premium_coverage.py",
+    "variables/gov/hhs/medicare/savings_programs/msp_part_b_premium_coverage.py",
+    "variables/gov/hhs/medicare/savings_programs/qmb_cost_sharing.py"
+   ]
+  },
+  {
+   "url": "https://www.medicare.gov/basics/costs/medicare-costs",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicare.gov - Medicare Part B costs"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/qmb/cost_sharing_rate.yaml",
+    "variables/gov/hhs/medicare/eligibility/part_a/medicare_part_a_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.medicare.gov/basics/costs/medicare-costs#partB",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/eligibility/part_b/gross_medicare_part_b_premium.py",
+    "variables/gov/hhs/medicare/eligibility/part_b/gross_medicare_part_b_premium_if_enrolled.py",
+    "variables/gov/hhs/medicare/eligibility/part_b/medicare_part_b_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.medicareinteractive.org/understanding-medicare/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicare/savings_programs/eligibility/msp_asset_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-programs-qmb-slmb-qi/medicare-savings-program-income-and-asset-limits",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicare Interactive - Medicare Savings Program Income and Asset Limits"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml"
+   ]
+  }
+ ]
+}

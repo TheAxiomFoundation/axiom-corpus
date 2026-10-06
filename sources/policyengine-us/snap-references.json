@@ -4,7 +4,6 @@
  "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
  "policyengine_us_commit_date": "2026-10-06",
  "program": "snap",
- "state": "us-az",
  "folders": [
   "gov/usda/snap",
   "gov/hhs/tanf/non_cash",
@@ -12,8 +11,9 @@
   "gov/hhs/uprating.yaml",
   "gov/ssa/uprating.yaml"
  ],
+ "state_folders": "snap",
  "derived_by": "scripts/export_policyengine_references.py",
- "files_read": 230,
+ "files_read": 245,
  "references": [
   {
    "url": "http://services.dpw.state.pa.us/oimpolicymanuals/snap/560_Income_Deductions/560_6_Child_Support_Deduction.htm",
@@ -22,6 +22,7 @@
    "titles": [
     "Pennsylvania SNAP Handbook 560.6 Child support deduction (reissued March 1, 2012)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -33,6 +34,7 @@
    "titles": [
     "Pennsylvania SNAP Handbook 560 Appendix A - Deduction tables, including those effective October 1, 2016 and 2017"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -44,6 +46,7 @@
    "titles": [
     "106 CMR 363.230(O), Rev. 7/2009 (Trans. by S.L. 1353) - Child support paid excluded for the gross income test"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -55,6 +58,7 @@
    "titles": [
     "Iowa DHS Employees' Manual 7-F, General Letter 7-F-81 (January 16, 2009, effective February 1, 2009) - Child support paid excluded for the gross income limit"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -66,6 +70,7 @@
    "titles": [
     "WAC 388-414-0001(2)(a)(ii) (Washington April re-basing)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/fpg_year_start_month.yaml"
    ]
@@ -77,6 +82,7 @@
    "titles": [
     "13 DE Reg. 1550 (June 1, 2010) - Final order adopting the child support income exclusion, effective June 10, 2010"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -88,6 +94,7 @@
    "titles": [
     "Benefits Data Trust Streamlining SNAP for the Gig Economy"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
    ]
@@ -99,6 +106,7 @@
    "titles": [
     "88(R) HB 1287 - Enrolled version"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/tx_additional_vehicle_exemption.yaml",
     "parameters/gov/hhs/tanf/non_cash/tx_vehicle_exemption.yaml"
@@ -111,6 +119,7 @@
    "titles": [
     "California Department of Social Services, Executive Summary, All County Letter No. 24-59, Project Changes"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
    ]
@@ -122,6 +131,7 @@
    "titles": [
     "Oregon Administrative Rules 461-140-0266 - Court ordered child support exclusion; SNAP"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -133,8 +143,25 @@
    "titles": [
     "OAR 461-155-0180(6) (Oregon March re-basing)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/fpg_year_start_month.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/4-261.04",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "§ 4-261.04. Locally funded supplemental benefits",
+    "§ 4–261.04. Locally funded supplemental benefits."
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhs/snap/min_allotment/amount.yaml",
+    "parameters/gov/states/dc/dhs/snap/min_allotment/in_effect.yaml"
    ]
   },
   {
@@ -145,6 +172,7 @@
     "BLS | CPI-U annual averages (CUUR0000SA0; calendar-year average encoded at each year's January instant)",
     "BLS Consumer Price Index for All Urban Consumers (CPI-U), all items, U.S. city average, not seasonally adjusted (CUUR0000SA0)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/uprating.yaml",
     "parameters/gov/usda/snap/uprating.yaml"
@@ -157,6 +185,7 @@
    "titles": [
     "AZ DES CNAP manual FAA5.I.03.D, NA Utility Expenses and Allowances (telephone counts as one of the two LUA utilities)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/includes_phone.yaml"
    ]
@@ -171,6 +200,7 @@
     "AZ DES CNAP manual FAA6.J Standards, Fees, and Amounts, 09 Utility Allowance Current Amount (archived 10/01/2020 page under Previous Years; no LUA, $41 Telephone Utility Allowance)",
     "AZ DES CNAP manual FAA6.J Standards, Fees, and Amounts, 09 Utility Allowance Current Amount (archived 10/01/2020 page under Previous Years; $41 Telephone Utility Allowance)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
@@ -185,6 +215,7 @@
    "titles": [
     "Arizona Department of Economic Security | CNAP Manual, NA Medical Expenses and Deduction"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
    ]
@@ -196,8 +227,24 @@
    "titles": [
     "Michigan Department of Health & Human Services | FAP ALLOWABLE EXPENSES AND EXPENSE BUDGETING | MEDICAL EXPENSES | Standard Medical Deduction (SMD)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
+   ]
+  },
+  {
+   "url": "https://dhs.dc.gov/page/give-snap-raise-heres-what-expect",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Supplemental Nutrition Assistance Program (SNAP) raise in District of Columbia in 2024."
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhs/snap/min_allotment/amount.yaml",
+    "parameters/gov/states/dc/dhs/snap/min_allotment/in_effect.yaml"
    ]
   },
   {
@@ -207,6 +254,7 @@
    "titles": [
     "Maryland DHS Action Transmittal AT 26-08 - H.R. 1 (2025) Treatment of Energy Assistance Payments (supersedes IM 25-15 Heat and Eat, effective April 1, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -220,6 +268,7 @@
     "USDA utility allowances by state spreadsheet. Extracted by build_utility_allowances (FY2024)",
     "USDA SNAP utility allowances by state spreadsheet (FY2024)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
@@ -243,6 +292,7 @@
    "titles": [
     "USDA utility allowances by state spreadsheet (FY2019)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
@@ -262,6 +312,7 @@
    "titles": [
     "Missouri Food Stamp Program Manual 1115.035.20 - Child support exclusion"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -273,6 +324,7 @@
    "titles": [
     "MO DSS Food Stamps manual 1115.035.25.15, Mandatory Utility Standards (Non-Heating/Cooling Standard and Telephone Standard)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/includes_phone.yaml"
    ]
@@ -284,6 +336,7 @@
    "titles": [
     "Missouri DSS SNAP Manual § 1135.025.00 - Students"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/student/child_care_claim_cap/per_household.yaml",
     "variables/gov/usda/snap/eligibility/student/meets_snap_parent_exception.py"
@@ -296,6 +349,7 @@
    "titles": [
     "Missouri Income Maintenance Memorandum IM-39 (March 4, 2003) - Court ordered child support expense policy"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -307,6 +361,7 @@
    "titles": [
     "Missouri Income Maintenance Memorandum IM-34 (2013) - Disqualified or ineligible members earned income and expense budgeting (child support exclusion from gross income)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -318,6 +373,7 @@
    "titles": [
     "Massachusetts Department of Transitional Assistance SNAP policy - Child support expenses deduction (excluding child support from the gross income test)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -329,6 +385,7 @@
    "titles": [
     "Massachusetts DTA Helpful Charts and Figures (February re-basing)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/fpg_year_start_month.yaml"
    ]
@@ -340,6 +397,7 @@
    "titles": [
     "Massachusetts DTA Online Guide Transmittal 2025-31 - ABAWD geographic waiver expired June 30, 2025"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -351,6 +409,7 @@
    "titles": [
     "Texas Works Handbook 24-3, A-1210 General Policy"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/tx_additional_vehicle_exemption.yaml",
     "parameters/gov/hhs/tanf/non_cash/tx_vehicle_exemption.yaml"
@@ -363,6 +422,7 @@
    "titles": [
     "SNAP FY2019 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -374,6 +434,7 @@
    "titles": [
     "SNAP FY2019 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
    ]
@@ -385,6 +446,7 @@
    "titles": [
     "SNAP FY2020 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -396,6 +458,7 @@
    "titles": [
     "SNAP FY2020 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
    ]
@@ -407,6 +470,7 @@
    "titles": [
     "SNAP FY2021 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -418,6 +482,7 @@
    "titles": [
     "SNAP FY2021 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml",
@@ -431,6 +496,7 @@
    "titles": [
     "SNAP FY2022 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -442,6 +508,7 @@
    "titles": [
     "SNAP FY2022 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
@@ -456,6 +523,7 @@
    "titles": [
     "SNAP FY2024 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -468,6 +536,7 @@
     "SNAP FY2024 Maximum Allotments and Deductions",
     "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2024 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
     "parameters/gov/usda/snap/income/deductions/standard.yaml"
@@ -480,6 +549,7 @@
    "titles": [
     "SNAP FY2023 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -491,6 +561,7 @@
    "titles": [
     "USDA FNS North Dakota FY 2024 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nd.yaml"
    ]
@@ -502,6 +573,7 @@
    "titles": [
     "USDA FNS Pennsylvania FY 2024 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/pa.yaml"
    ]
@@ -513,6 +585,7 @@
    "titles": [
     "SNAP State Options Report, 15th Edition, Treatment of Child Support Payments (page 15)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -524,6 +597,7 @@
    "titles": [
     "USDA FNS SNAP State Options Report, 16th Edition (June 2024) - Treatment of Self-Employment Income"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/expense_based_deduction_applies.yaml"
    ]
@@ -535,6 +609,7 @@
    "titles": [
     "SNAP State Options Report, 16th Edition"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/ineligible_members/count_all_income_states.yaml",
     "parameters/gov/usda/snap/income/ineligible_members/gross_test_full_count_states.yaml",
@@ -548,6 +623,7 @@
    "titles": [
     "SNAP State Options Report, 16th Edition, Treatment of Child Support Payments (page 15)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -559,6 +635,7 @@
    "titles": [
     "SNAP State Options Report, 17th Edition, Treatment of Child Support Payments (page 21)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -570,6 +647,7 @@
    "titles": [
     "SNAP State Options Report, 10th Edition (as of August 2012), Child Support Expense Exclusion (page 12)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -581,6 +659,7 @@
    "titles": [
     "SNAP State Options Report, 11th Edition (as of September 2013), Child Support Expense Income Exclusion (page 8)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -592,6 +671,7 @@
    "titles": [
     "SNAP State Options Report, 12th Edition (as of October 1, 2015), Child Support Expense Income Exclusion (page 12)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -603,6 +683,7 @@
    "titles": [
     "USDA FNS SNAP State Options Report, 13th Edition (Oct 2016) - Simplified Self-Employment Determination"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/expense_based_deduction_applies.yaml"
    ]
@@ -614,6 +695,7 @@
    "titles": [
     "SNAP State Options Report, 13th Edition (as of October 1, 2016), Treatment of Child Support Payments (page 13)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -625,6 +707,7 @@
    "titles": [
     "SNAP State Options Report, 14th Edition, Treatment of Child Support Payments (page 18)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -636,6 +719,7 @@
    "titles": [
     "Food Stamp Program State Options Report, 6th Edition (October 2006), Child Support Expense Income Exclusion (page 12)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -647,6 +731,7 @@
    "titles": [
     "Food Stamp Program State Options Report, 7th Edition (as of November 2007), Child Support Expense Income Exclusion (page 13)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -658,6 +743,7 @@
    "titles": [
     "SNAP State Options Report, 8th Edition (as of June 2009), Child Support Expense Income Exclusion"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -669,6 +755,7 @@
    "titles": [
     "SNAP State Options Report, 9th Edition (as of November 2010), Child Support Expense Exclusion (page 12)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -680,6 +767,7 @@
    "titles": [
     "SNAP FY2016 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml",
     "parameters/gov/usda/snap/max_allotment.yaml"
@@ -692,6 +780,7 @@
    "titles": [
     "SNAP FY2017 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml",
     "parameters/gov/usda/snap/max_allotment.yaml"
@@ -704,6 +793,7 @@
    "titles": [
     "SNAP FY2018 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -715,6 +805,7 @@
    "titles": [
     "SNAP FY2018 Maximum Allotments and Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
    ]
@@ -726,6 +817,7 @@
    "titles": [
     "Food Research & Action Center, The SNAP Standard Medical Deduction for Older Adults and People With Disabilities"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
    ]
@@ -735,10 +827,17 @@
    "kind": null,
    "citation": null,
    "titles": [
+    "Alaska Division of Public Assistance, SNAP - Frequently Asked Questions (Good Faith Exemption waiver, November 1, 2025 through October 31, 2026, and the groups it retains)",
+    "Alaska Division of Public Assistance, SNAP - Frequently Asked Questions (ABAWD work requirements; Good Faith Exemption waiver, November 1, 2025 through October 31, 2026)",
     "Alaska Division of Public Assistance, SNAP - Frequently Asked Questions (groups retained under the Good Faith Exemption waiver, including individuals aged 56 to 64)",
     "Alaska Division of Public Assistance, SNAP - Frequently Asked Questions (Good Faith Exemption waiver, November 1, 2025 through October 31, 2026, all census areas and boroughs except the Municipality of Anchorage)"
    ],
+   "states": [
+    "ak"
+   ],
    "files": [
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/good_faith_exemption/in_effect.yaml",
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/hr1_in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/good_faith_exemption/retained_age_minimum.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_in_good_faith_exemption_window.py"
@@ -751,6 +850,7 @@
    "titles": [
     "Iowa HHS Employees' Manual Title 7 Chapter I - SNAP Specific Households"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
    ]
@@ -762,6 +862,7 @@
    "titles": [
     "Arkansas DHS SNAP Certification Manual (2020 compilation) - 6550 Child support deductions (stamped 06/01/98) and 7524 Determining eligibility (stamped 07/01/98)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -774,9 +875,38 @@
     "AR SNAP Certification Manual 6622, Basic Utility Allowance (rev. 01/01/2021)",
     "AR SNAP Certification Manual 6622, Basic Utility Allowance (telephone costs included in the BUA)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/includes_phone.yaml"
+   ]
+  },
+  {
+   "url": "https://humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Department of Human Services, Changes to Able-Bodied Adult Work Requirements for SNAP - FAQs"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/snap/work_requirements/abawd/hr1_in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Department of Human Services news release, Federal SNAP Work Requirement Changes to Begin (October 17, 2025)"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/snap/work_requirements/abawd/hr1_in_effect.yaml"
    ]
   },
   {
@@ -786,6 +916,7 @@
    "titles": [
     "Hawaii Administrative Rules chapter 17-676, Income (DHS copy posted January 2014) - 17-676-56(f) and 17-676-72(6), am 11/22/08"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -797,6 +928,7 @@
    "titles": [
     "22 Virginia Administrative Code 40-601-70 - Income exclusion for legally obligated child support payments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -808,6 +940,7 @@
    "titles": [
     "Washington State Register 09-15-085 - Amending WAC 388-450-0015 to exclude child support paid before the gross income test"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -819,6 +952,7 @@
    "titles": [
     "Washington State Register 09-16-095 - Effective date of WSR 09-15-085 moved to November 15, 2009"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -830,6 +964,7 @@
    "titles": [
     "California Welfare and Institutions Code 12200"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/sources/unearned_spm_unit.yaml"
    ]
@@ -841,6 +976,7 @@
    "titles": [
     "LIHEAP Clearinghouse - A New Framework for Heat and Eat (2014)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -852,6 +988,7 @@
    "titles": [
     "Michigan DHHS Bridges Eligibility Manual BEM 554 - FAP Allowable Expenses and Expense Budgeting"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -863,6 +1000,7 @@
    "titles": [
     "Michigan DHHS Bridges Policy Bulletin BPB 2017-016 - FAP LIHEAP Payments (effective August 1, 2017)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -874,8 +1012,56 @@
    "titles": [
     "Michigan Bridges Eligibility Manual 556 - Computing the Food Assistance budget (child support expenses, line 20)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 445 (2016 Legislation)"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/usda/snap/min_allotment/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 456 (2022 Legislation)"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/usda/snap/min_allotment/age_threshold.yaml",
+    "parameters/gov/states/md/usda/snap/min_allotment/amount.yaml",
+    "parameters/gov/states/md/usda/snap/min_allotment/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&section=5-501&enactments=false",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Md. Code, Hum. Servs. § 5-501 (d)",
+    "Md. Code, Hum. Servs. § 5-501"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/usda/snap/min_allotment/age_threshold.yaml",
+    "parameters/gov/states/md/usda/snap/min_allotment/amount.yaml",
+    "parameters/gov/states/md/usda/snap/min_allotment/in_effect.yaml"
    ]
   },
   {
@@ -885,6 +1071,7 @@
    "titles": [
     "Ballotpedia, USDA guidance in response to litigation reinstates SNAP benefits for some ABAWDs (secondary reporting of the February 26, 2026 memorandum) — where dates differ, the primary USDA memorandum governs"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -896,6 +1083,7 @@
    "titles": [
     "Oregon Administrative Rules | OAR 461-160-0430 Income Deductions; SNAP (1)(d)(B)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
    ]
@@ -907,6 +1095,7 @@
    "titles": [
     "NY OTDA 16-ADM-06, Expansion of Categorical Eligibility for SNAP Households with Earned Income"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/ny/dependent_care.yaml"
    ]
@@ -918,6 +1107,7 @@
    "titles": [
     "NCDHHS FNS 340 Deductions, 340.19(A) Child support deduction (August 4, 2026)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -929,6 +1119,7 @@
    "titles": [
     "North Carolina DSS Administrative Letter Economic Services No. 6-2005 - Treatment of legally obligated child support exclusion"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -940,6 +1131,7 @@
    "titles": [
     "New Jersey P.L. 2013, c.45, sec. 10 (N.J.S.A. 44:10-104) - Child support paid excluded for the SNAP gross and net income standards, effective 2013-11-01"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -951,6 +1143,7 @@
    "titles": [
     "Delaware DEPARTMENT OF health and social services,  Division of Social Services"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
    ]
@@ -962,6 +1155,7 @@
    "titles": [
     "Rhode Island DHS SNAP Rules and Regulations (October 2014) - 1008.20.22 Child support income exclusion and 1010.20 (REV 05/2005)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -973,6 +1167,7 @@
    "titles": [
     "Rhode Island 218-RICR-20-00-1, 1.5.3 Excluded income (item 7, child support income exclusion)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -984,6 +1179,7 @@
    "titles": [
     "POMS SI 01401.001 General Information about State Supplementation"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/sources/unearned.yaml"
    ]
@@ -995,6 +1191,7 @@
    "titles": [
     "FY 2018 SNAP QC Technical Documentation, Table F.7"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
@@ -1021,6 +1218,7 @@
    "titles": [
     "FY 2019 SNAP QC Technical Documentation, Table F.7"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
@@ -1046,6 +1244,7 @@
    "titles": [
     "FY 2020 SNAP QC Technical Documentation, Table F.7"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
@@ -1071,6 +1270,7 @@
    "titles": [
     "FY 2021 SNAP QC Technical Documentation, Table F.7"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
@@ -1096,6 +1296,7 @@
    "titles": [
     "FY 2023 SNAP QC Technical Documentation, Table F.7 (first published Arkansas BUA)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml"
    ]
@@ -1107,7 +1308,12 @@
    "titles": [
     "7 U.S.C. 2015(o)(7) - Good faith exemptions for Alaska and Hawaii"
    ],
+   "states": [
+    "ak"
+   ],
    "files": [
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/good_faith_exemption/in_effect.yaml",
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/hr1_in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/good_faith_exemption/retained_age_minimum.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_in_good_faith_exemption_window.py",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_noncompliant.py"
@@ -1120,6 +1326,7 @@
    "titles": [
     "Pennsylvania Food Stamp Handbook 560.6 Child support deduction (reissued September 2, 2005; captured 2009-03-17)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1131,6 +1338,7 @@
    "titles": [
     "Vermont Food Stamp Rules 273.9(d)(7) and 273.10(e)(1)(i)(F) - Child support deduction (captured 2009-09-07)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1142,6 +1350,7 @@
    "titles": [
     "Arkansas DHS Food Stamps Certification Manual 7524 - No deductions but farm loss in total gross income (captured 2010-10-24)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1153,6 +1362,7 @@
    "titles": [
     "Arkansas DHS Food Stamps Certification Manual 6550 - Child support deductions (captured 2010-10-24)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1164,6 +1374,7 @@
    "titles": [
     "Hawaii Administrative Rules 17-676-56(b) and (f) and 17-676-72(6) (chapter 17-676 as captured 2010-12-09) - Child support paid subtracted after total gross income is computed"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1175,6 +1386,7 @@
    "titles": [
     "Pennsylvania SNAP Handbook 560 Appendix A - Deduction table effective October 1, 2009, child support under 7 CFR 273.9(d)(5) (captured 2011-02-14)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1186,6 +1398,7 @@
    "titles": [
     "Maryland DHR Food Supplement Program Manual 409 Income Eligibility (Revised 2/09) - Gross income before any deductions (409.2B) and child support subtracted for net income (409.3G) (captured 2011-04-19)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1197,6 +1410,7 @@
    "titles": [
     "COMAR 07.03.17.35 - Child support deduction (captured 2011-10-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1208,6 +1422,7 @@
    "titles": [
     "COMAR 07.03.17.43 - Calculation of household net monthly income, child support subtracted at G (captured 2011-10-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1219,6 +1434,7 @@
    "titles": [
     "Pennsylvania SNAP Handbook 560.6 Child support deduction (reissued April 21, 2009; captured 2011-10-10)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1230,6 +1446,7 @@
    "titles": [
     "Maryland DHR Food Supplement Program Manual 212 Deductions (Revised 1/09), 212.11 Child support deduction (captured 2014-01-03)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1241,6 +1458,7 @@
    "titles": [
     "Vermont ESD Food Stamps Procedures P-2510 E5 (gross income test) and E12 (child support payments) (captured 2015-10-13)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1252,6 +1470,7 @@
    "titles": [
     "Pennsylvania SNAP Handbook 560 Appendix A - Deduction tables effective October 1, 2012 to 2015, child support under 7 CFR 273.9(d)(5) (captured 2016-03-07)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1263,6 +1482,7 @@
    "titles": [
     "Vermont 3SquaresVT Rules 273.9(d)(7), 273.10(e)(1)(i)(F) and 273.10(e)(2)(i)(B) - Child support deducted for net income; gross income test on (e)(1)(i)(A) income (June 2017 compilation, captured 2017-11-20)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1274,6 +1494,7 @@
    "titles": [
     "USDA: Supplemental Nutrition Assistance Program (SNAP) - Emergency Allotments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/emergency_allotment/minimum.yaml"
    ]
@@ -1285,6 +1506,7 @@
    "titles": [
     "SNAP COVID-19 Emergency Allotments Guidance"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/emergency_allotment/in_effect.yaml"
    ]
@@ -1296,6 +1518,7 @@
    "titles": [
     "3SquaresVT Program Manual 1700 - Deductions (1700.2.1 Child support deduction)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1307,6 +1530,7 @@
    "titles": [
     "3SquaresVT Program Manual 1800 - Determining income and deductions (1800.7.2 Gross income limit)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1318,6 +1542,7 @@
    "titles": [
     "Consolidated Appropriations Act of 2023"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/emergency_allotment/allowed.yaml"
    ]
@@ -1329,6 +1554,7 @@
    "titles": [
     "CBO Budget and Economic Outlook | 2024 to 2034"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/uprating.yaml"
    ]
@@ -1340,6 +1566,7 @@
    "titles": [
     "CBO Economic Projections, February 2024."
    ],
+   "states": [],
    "files": [
     "parameters/gov/ssa/uprating.yaml",
     "parameters/gov/usda/snap/uprating.yaml"
@@ -1352,6 +1579,7 @@
    "titles": [
     "CDSS All County Letter No. 25-79"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml"
    ]
@@ -1361,8 +1589,24 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ]
+  },
+  {
+   "url": "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California CDSS All County Letter No. 25-92 - CalFresh Implementation of H.R. 1 Noncitizen Eligibility Changes"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/cdss/snap/eligibility/eligible_immigration_statuses.yaml",
+    "variables/gov/states/ca/cdss/snap/eligibility/ca_snap_immigration_status_eligible.py"
    ]
   },
   {
@@ -1370,6 +1614,7 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_hr1_in_effect.py"
    ]
@@ -1379,9 +1624,14 @@
    "kind": null,
    "citation": null,
    "titles": [
+    "California All County Letter No. 25-93",
     "CDSS All County Letter No. 25-93 - CalFresh Statewide ABAWD Time Limit Implementation (June 1, 2026)"
    ],
+   "states": [
+    "ca"
+   ],
    "files": [
+    "parameters/gov/states/ca/cdss/snap/work_requirements/abawd/hr1_in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
   },
@@ -1392,6 +1642,7 @@
    "titles": [
     "CDSS All County Letter No. 26-15"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
@@ -1404,6 +1655,7 @@
    "titles": [
     "California Department of Social Services All County Letter 06-31 (legally obligated child support payment exclusion)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1415,6 +1667,7 @@
    "titles": [
     "Balanced Budget Act of 1997 (P.L. 105-33), Section 1001"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml"
    ]
@@ -1426,6 +1679,7 @@
    "titles": [
     "Agricultural Act of 2014 (Pub. L. 113-79) § 4006(b) - Minimum LIHEAP benefit for SUA eligibility"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -1437,6 +1691,7 @@
    "titles": [
     "Agriculture Improvement Act of 2018 (P.L. 115-334), Section 4005"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml"
    ]
@@ -1448,8 +1703,23 @@
    "titles": [
     "Fiscal Responsibility Act of 2023 (P.L. 118-5), Section 312"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Public Law 119-21, Section 10102(c) - Exemption for noncontiguous States"
+   ],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/hr1_in_effect.yaml"
    ]
   },
   {
@@ -1459,7 +1729,13 @@
    "titles": [
     "Public Law 119-21, Section 10102(a) - Modifications to SNAP ABAWD Requirements"
    ],
+   "states": [
+    "ca",
+    "hi"
+   ],
    "files": [
+    "parameters/gov/states/ca/cdss/snap/work_requirements/abawd/hr1_in_effect.yaml",
+    "parameters/gov/states/hi/dhs/snap/work_requirements/abawd/hr1_in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/in_effect.yaml",
@@ -1477,6 +1753,7 @@
     "Public Law 119-21, Section 10102(b) - Standardizing enforcement (7 U.S.C. 2015(o)(4) waiver criteria)",
     "Public Law 119-21, Section 10102(c) - Exemption for noncontiguous States (7 U.S.C. 2015(o)(7)(A) and (B))"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/hr1_waiver_criteria/in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml",
@@ -1491,6 +1768,7 @@
    "titles": [
     "Public Law 119-21, Section 10102(c) - expiration and early termination of noncontiguous State exemptions (7 U.S.C. 2015(o)(7)(D))"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -1502,6 +1780,7 @@
    "titles": [
     "Public Law 119-21 - Approved July 4, 2025"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/hr1_waiver_criteria/in_effect.yaml"
    ]
@@ -1513,6 +1792,7 @@
    "titles": [
     "H.R.6201 - Families First Coronavirus Response Act §2302"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/emergency_allotment/allowed.yaml"
    ]
@@ -1524,6 +1804,7 @@
    "titles": [
     "Department of Children & Family Services | As Extra SNAP Benefits End, Recipients Encouraged to Update Info, Assess Options"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
    ]
@@ -1535,6 +1816,7 @@
    "titles": [
     "Illinois Department of Human Services Manual Release 23.22 - SNAP policy clarification on child support income exclusion"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1546,6 +1828,7 @@
    "titles": [
     "Wisconsin DHS Operations Memo 25-13 (FFY 2026 standard utility allowances effective October 1, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
@@ -1564,6 +1847,7 @@
    "titles": [
     "Wisconsin DHS Operations Memo 26-30 (revised SUAs effective May 1, 2026)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
@@ -1582,6 +1866,7 @@
    "titles": [
     "Louisiana Administrative Code 67:III.1980(A)(3) and 67:III.1981 (Title 67, Social Services, August 2026 compilation) - Child support excluded for the gross income test"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1593,6 +1878,7 @@
    "titles": [
     "Louisiana Register Vol. 29, No. 4 (April 20, 2003), p. 607 - Rule adding the child support exclusion to LAC 67:III.1980"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -1604,6 +1890,7 @@
    "titles": [
     "Virginia DSS SNAP Manual (effective 2025-10-01), ABAWD waived areas - July 2025, no exempt areas"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1613,6 +1900,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/10/e/1/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_net_income.py"
    ]
@@ -1624,6 +1912,7 @@
    "titles": [
     "7 CFR 273.24(a)(1)(i)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/monthly_hours_threshold.yaml"
    ]
@@ -1633,6 +1922,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/d/6/iii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/shelter/snap_individual_utility_allowance.py"
    ]
@@ -1644,6 +1934,7 @@
    "titles": [
     "7 CFR 273.9(d)(6)(iii)(A)(3)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/includes_phone.yaml",
     "variables/gov/usda/snap/income/deductions/shelter/snap_limited_utility_allowance.py",
@@ -1657,6 +1948,7 @@
    "titles": [
     "7 CFR § 273.9(d)(6)(iii)(E) - Standard utility allowances"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -1666,6 +1958,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/f",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_noncompliant.py"
    ]
@@ -1680,6 +1973,7 @@
     "USDA ERS SNAP Policy Database (bbce_elddisinclmt column, Jan 1996 - Dec 2020)",
     "USDA ERS SNAP Policy Database (bbce_multiple column, Jan 1996 - Dec 2020)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/asset_limit.yaml",
     "parameters/gov/hhs/tanf/non_cash/income_limit/gross.yaml",
@@ -1697,6 +1991,7 @@
    "titles": [
     "2024 Annual Update of the HHS Poverty Guidelines"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/uprating.yaml"
    ]
@@ -1708,6 +2003,7 @@
    "titles": [
     "USDA utility allowances by state spreadsheet (FY2026, revised May 2026; FNS labels it updated August 2026)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
@@ -1732,6 +2028,7 @@
    "titles": [
     "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions [ARPA]"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -1743,6 +2040,7 @@
    "titles": [
     "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions [CAA]"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -1755,6 +2053,7 @@
     "USDA utility allowances by state spreadsheet. Extracted by build_utility_allowances (FY2025)",
     "USDA SNAP utility allowances by state spreadsheet (FY2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
@@ -1778,6 +2077,7 @@
    "titles": [
     "USDA FNS FY 2025 Quarter 1 ABAWD Waiver Status Report (waivers as of 2024-10-01; NM and NY then statewide under their FY2024 waivers)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1789,6 +2089,7 @@
    "titles": [
     "USDA FNS FY 2025 Quarter 2 ABAWD Waiver Status Report (waivers as of 2025-01-01; NY then statewide under its FY2024 waiver; NM and DE partial)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1800,6 +2101,7 @@
    "titles": [
     "USDA FNS FY 2025 Quarter 4 ABAWD Waiver Status Report (waivers as of 2025-07-01; NY classified as a partial waiver)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1811,6 +2113,7 @@
    "titles": [
     "USDA FNS FY 2026 Quarter 1 ABAWD Waiver Status Report (waivers as of 2025-10-01; no waiver for HI, MA, or VA)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1822,6 +2125,7 @@
    "titles": [
     "USDA FNS Alaska ABAWD Waiver Response, September 20, 2024 - requested area (29 boroughs and census areas) and area list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -1833,6 +2137,7 @@
    "titles": [
     "USDA FNS Alaska ABAWD Waiver Response, September 20, 2024 - area list (continued)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -1844,6 +2149,7 @@
    "titles": [
     "USDA FNS Alaska ABAWD Waiver Response, September 20, 2024 - Eklutna ANVSA, implementation date (2024-11-01), and expiration date (2025-10-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
@@ -1856,6 +2162,7 @@
    "titles": [
     "USDA FNS Alaska ABAWD Waiver Response, October 23, 2025 - requested area (20 boroughs and census areas, 1.5 times the national rate)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -1867,6 +2174,7 @@
    "titles": [
     "USDA FNS Alaska ABAWD Waiver Response, October 23, 2025 - area list (continued), implementation date (2025-11-01), and expiration date (2026-10-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -1878,6 +2186,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, August 25, 2023 - county list (FY2024 waiver, not modeled)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1889,6 +2198,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, August 25, 2023 - implementation date (2023-10-01) and expiration date (2024-09-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1900,6 +2210,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, September 12, 2024 - requested area (14 counties and 16 reservation areas)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1911,6 +2222,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, September 12, 2024 - county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1922,6 +2234,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, September 12, 2024 - implementation date (2024-10-01) and expiration date (printed as September 31, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1933,6 +2246,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, March 12, 2026 - requested area and Yuma County (13.0 percent)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1944,6 +2258,7 @@
    "titles": [
     "USDA FNS Arizona ABAWD Waiver Response, March 12, 2026 - implementation date (2026-03-01) and expiration date (2027-02-28)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
    ]
@@ -1955,6 +2270,7 @@
    "titles": [
     "USDA FNS California Statewide ABAWD Waiver Response, January 15, 2025 (effective 2025-02-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1966,6 +2282,7 @@
    "titles": [
     "USDA FNS California Statewide ABAWD Waiver Response, Rescission and Reissue, May 21, 2025 (one-year waiver, effective 2025-02-01 through 2026-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1977,6 +2294,7 @@
    "titles": [
     "USDA FNS California Statewide ABAWD Waiver Response, Rescission and Reissue - signature date (May 21, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1988,6 +2306,7 @@
    "titles": [
     "USDA FNS California Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -1999,6 +2318,7 @@
    "titles": [
     "USDA FNS California ABAWD Waiver Response, October 23, 2025 - requested area and county list (Colusa, Imperial, and Tulare counties)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml"
    ]
@@ -2010,6 +2330,7 @@
    "titles": [
     "USDA FNS California ABAWD Waiver Response, October 23, 2025 - implementation date (2025-11-01) and expiration date (2026-10-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml"
    ]
@@ -2021,6 +2342,7 @@
    "titles": [
     "USDA FNS California ABAWD Waiver Response, February 10, 2026 (modification) - requested area (seven counties) and Table 1"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml"
    ]
@@ -2032,6 +2354,7 @@
    "titles": [
     "USDA FNS California ABAWD Waiver Response, February 10, 2026 (modification) - Tables 2 and 3 (Monterey, Plumas, Alpine, and Merced counties), implementation date (2025-11-01), and expiration date (2026-10-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml"
    ]
@@ -2043,6 +2366,7 @@
    "titles": [
     "USDA FNS Colorado FY 2025 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/co.yaml"
    ]
@@ -2054,6 +2378,7 @@
    "titles": [
     "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, August 25, 2023 - requested area (throughout the District) and approval"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2065,6 +2390,7 @@
    "titles": [
     "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, August 25, 2023 - implementation date (2023-12-01) and expiration date (2024-11-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2076,6 +2402,7 @@
    "titles": [
     "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, January 13, 2025 (effective 2025-01-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2087,6 +2414,7 @@
    "titles": [
     "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, Rescission and Reissue, May 21, 2025 (one-year waiver, effective 2025-01-01 through 2025-12-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2098,6 +2426,7 @@
    "titles": [
     "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, Rescission and Reissue - signature date (May 21, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2109,6 +2438,7 @@
    "titles": [
     "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, FY 2025 (effective 2024-12-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2120,6 +2450,7 @@
    "titles": [
     "USDA FNS Delaware Statewide ABAWD Waiver Response, September 28, 2023 - requested area (throughout the State, 2023-10-01 through 2024-09-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/de.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
@@ -2132,6 +2463,7 @@
    "titles": [
     "USDA FNS Delaware Statewide ABAWD Waiver Response, September 28, 2023 - implementation date (2023-10-01) and expiration date (2024-09-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/de.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
@@ -2144,6 +2476,7 @@
    "titles": [
     "USDA FNS Delaware ABAWD Waiver Response, September 19, 2024 - requested area (one city and two counties)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/de.yaml"
    ]
@@ -2155,6 +2488,7 @@
    "titles": [
     "USDA FNS Delaware ABAWD Waiver Response, September 19, 2024 - Kent and Sussex counties, implementation date (2024-10-01), and expiration date (2025-09-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/de.yaml"
    ]
@@ -2166,6 +2500,7 @@
    "titles": [
     "USDA FNS Delaware ABAWD Waiver Response, October 6, 2025 - FY2026 request denied"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/de.yaml"
    ]
@@ -2177,6 +2512,7 @@
    "titles": [
     "USDA FNS Hawaii FY 2024 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/hi.yaml"
    ]
@@ -2188,6 +2524,7 @@
    "titles": [
     "USDA FNS Illinois Statewide ABAWD Waiver Response, March 14, 2025 (effective 2025-02-01 through 2026-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2199,6 +2536,7 @@
    "titles": [
     "USDA FNS Illinois Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2210,6 +2548,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, December 21, 2023 - requested area (98 counties) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2221,6 +2560,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, December 21, 2023 - county list (continued)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2232,6 +2572,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, December 21, 2023 - county list (Lincoln through Wolfe)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2243,6 +2584,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, December 21, 2023 - implementation date (2023-12-01) and expiration date (2024-11-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2254,6 +2596,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, November 27, 2024 - requested area (117 counties) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2265,6 +2608,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, November 27, 2024 - county list (Ballard through Hancock)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2276,6 +2620,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, November 27, 2024 - county list (Hardin through Morgan)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2287,6 +2632,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, November 27, 2024 - county list (Muhlenberg through Woodford) and implementation date (2024-12-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2298,6 +2644,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, November 27, 2024 - expiration date (2025-11-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2309,6 +2656,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, February 9, 2026 - requested area and county list (five counties)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2320,6 +2668,7 @@
    "titles": [
     "USDA FNS Kentucky ABAWD Waiver Response, February 9, 2026 - implementation date (2025-12-01) and expiration date (2026-11-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
    ]
@@ -2331,6 +2680,7 @@
    "titles": [
     "USDA FNS Massachusetts FY 2024 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ma.yaml"
    ]
@@ -2342,6 +2692,7 @@
    "titles": [
     "USDA FNS Maryland FY 2024 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/md.yaml"
    ]
@@ -2353,6 +2704,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, October 19, 2023 - requested area (82 counties and one city) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2364,6 +2716,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, October 19, 2023 - county list (continued)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2375,6 +2728,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, October 19, 2023 - county list (continued) and Oak Park city"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2386,6 +2740,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, October 19, 2023 - implementation date (2024-03-01) and expiration date (2025-02-28)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2397,6 +2752,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, December 16, 2024 - requested area (80 counties, three cities, and 10 reservation areas) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2408,6 +2764,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, December 16, 2024 - county list (Alger through Lake)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2419,6 +2776,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, December 16, 2024 - county list (Lapeer through Wexford)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2430,6 +2788,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, December 16, 2024 - implementation date (2025-03-01) and expiration date (2026-02-28)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2441,6 +2800,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, November 20, 2025 - requested area and Table 1 (Mackinac, Oscoda, and Presque Isle counties)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2452,6 +2812,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, November 20, 2025 - reservation areas and Table 3 (Alcona, Alger, Cheboygan, and Ogemaw counties)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2463,6 +2824,7 @@
    "titles": [
     "USDA FNS Michigan ABAWD Waiver Response, November 20, 2025 - Tables 4 and 5 (eight counties), implementation date (2025-11-01), and expiration date (2026-10-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
    ]
@@ -2474,6 +2836,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, May 31, 2024 - requested area (15 counties and 10 reservation areas)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2485,6 +2848,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, May 31, 2024 - Tables 1 and 2 county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2496,6 +2860,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, May 31, 2024 - implementation date (2024-07-01) and expiration date (2025-06-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2507,6 +2872,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, June 3, 2025 - requested area (17 counties and nine reservation areas) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2518,6 +2884,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, June 3, 2025 - county list (continued)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2529,6 +2896,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, June 3, 2025 - implementation date (2025-07-01) and expiration date (2026-06-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2540,6 +2908,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, November 20, 2025 - requested area and Table 1 (Clearwater County)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2551,6 +2920,7 @@
    "titles": [
     "USDA FNS Minnesota ABAWD Waiver Response, November 20, 2025 - reservation areas, implementation date (2025-12-01), and expiration date (2026-11-30)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
    ]
@@ -2562,6 +2932,7 @@
    "titles": [
     "USDA FNS North Dakota FY 2025 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nd.yaml"
    ]
@@ -2573,6 +2944,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, December 18, 2023 - requested area (combined area of 17 counties and one city) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2584,6 +2956,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, December 18, 2023 - county list (continued), Trenton city, implementation date (2024-02-01), and expiration date (2025-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2595,6 +2968,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, December 16, 2024 - requested area (20 counties) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2606,6 +2980,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, December 16, 2024 - county list (continued), implementation date (2025-02-01), and expiration date (2026-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2617,6 +2992,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, February 10, 2026 - approved areas (Cape May County and Camden city)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2628,6 +3004,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, February 10, 2026 - requested area and Table 1 (Cape May County)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2639,6 +3016,7 @@
    "titles": [
     "USDA FNS New Jersey ABAWD Waiver Response, February 10, 2026 - Camden city, implementation date (2026-02-01), and expiration date (2027-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
    ]
@@ -2650,6 +3028,7 @@
    "titles": [
     "USDA FNS New Mexico Statewide ABAWD Waiver Response, September 27, 2023 - requested area (throughout the State)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2661,6 +3040,7 @@
    "titles": [
     "USDA FNS New Mexico Statewide ABAWD Waiver Response, September 27, 2023 - implementation date (2024-01-01) and expiration date (2024-12-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2672,6 +3052,7 @@
    "titles": [
     "USDA FNS New Mexico ABAWD Waiver Response, September 18, 2024 - requested area (29 counties and reservations)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nm.yaml"
    ]
@@ -2683,6 +3064,7 @@
    "titles": [
     "USDA FNS New Mexico ABAWD Waiver Response, September 18, 2024 - Table 1 county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nm.yaml"
    ]
@@ -2695,6 +3077,7 @@
     "USDA FNS New Mexico ABAWD Waiver Response, September 18, 2024 - implementation date (2025-01-01) and expiration date (2025-12-31)",
     "USDA FNS New Mexico ABAWD Waiver Response, September 18, 2024 (29 counties, effective 2025-01-01 through 2025-12-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nm.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
@@ -2707,6 +3090,7 @@
    "titles": [
     "USDA FNS New Mexico ABAWD Waiver Response, October 23, 2025 - requested area and Luna County (12.5 percent)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nm.yaml"
    ]
@@ -2718,6 +3102,7 @@
    "titles": [
     "USDA FNS New Mexico ABAWD Waiver Response, October 23, 2025 - reservation areas, implementation date (2026-01-01), and expiration date (2026-12-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nm.yaml"
    ]
@@ -2729,6 +3114,7 @@
    "titles": [
     "USDA FNS Nevada Statewide ABAWD Waiver Response (effective 2025-02-01 through 2026-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2740,6 +3126,7 @@
    "titles": [
     "USDA FNS Nevada ABAWD Waiver Response, February 10, 2026 - requested area and Mineral County"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nv.yaml"
    ]
@@ -2751,6 +3138,7 @@
    "titles": [
     "USDA FNS Nevada ABAWD Waiver Response, February 10, 2026 - reservation areas and colonies, implementation date (2026-02-01), and expiration date (2027-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nv.yaml"
    ]
@@ -2762,6 +3150,7 @@
    "titles": [
     "USDA FNS New York Statewide ABAWD Waiver Response, FY 2024 (statewide, effective 2024-03-01 through 2025-02-28)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -2773,6 +3162,7 @@
    "titles": [
     "USDA FNS New York ABAWD Waiver Response, October 2, 2024 - requested area (61 counties) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ny.yaml"
    ]
@@ -2784,6 +3174,7 @@
    "titles": [
     "USDA FNS New York ABAWD Waiver Response, October 2, 2024 - county list (continued)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ny.yaml"
    ]
@@ -2796,6 +3187,7 @@
     "USDA FNS New York ABAWD Waiver Response, October 2, 2024 - county list (Schenectady through Yates), approval, implementation date (2025-03-01), and expiration date (2026-02-28)",
     "USDA FNS New York ABAWD Waiver Response, October 2, 2024 (61 counties, effective 2025-03-01 through 2026-02-28)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ny.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
@@ -2808,6 +3200,7 @@
    "titles": [
     "USDA FNS New York ABAWD Waiver Response, February 9, 2026 - partial approval (two reservation areas) and denial of six community districts"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ny.yaml"
    ]
@@ -2819,6 +3212,7 @@
    "titles": [
     "USDA FNS New York ABAWD Waiver Response, February 9, 2026 - Table 2 reservation areas, implementation date (2026-03-01), and expiration date (2027-02-28)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ny.yaml"
    ]
@@ -2830,6 +3224,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, November 8, 2023 - requested area (31 counties and eight reservation areas) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2841,6 +3236,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, November 8, 2023 - county list (continued) and reservation areas"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2852,6 +3248,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, November 8, 2023 - reservation areas (continued), implementation date (2024-01-01), and expiration date (2024-12-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2863,6 +3260,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, October 22, 2024 - requested area (30 counties and seven reservation areas)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2874,6 +3272,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, October 22, 2024 - county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2885,6 +3284,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, October 22, 2024 - implementation date (2025-01-01) and expiration date (2025-12-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2896,6 +3296,7 @@
    "titles": [
     "USDA FNS Oregon ABAWD Waiver Response, March 30, 2026 - modification of the reservation-area-only FY2026 waiver to 2026-01-01 through 2026-12-31"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
    ]
@@ -2907,6 +3308,7 @@
    "titles": [
     "USDA FNS South Dakota FY 2025 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/sd.yaml"
    ]
@@ -2918,6 +3320,7 @@
    "titles": [
     "USDA FNS Virginia FY 2024 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/va.yaml"
    ]
@@ -2929,6 +3332,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, January 24, 2024 - requested area (38 counties)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -2940,6 +3344,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, January 24, 2024 - county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -2951,6 +3356,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, January 24, 2024 - county list (continued)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -2962,6 +3368,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, January 24, 2024 - county list (end), implementation date (2024-02-01), and expiration date (2025-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -2973,6 +3380,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, December 16, 2024 - requested area (38 counties and one reservation area) and county list"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -2984,6 +3392,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, December 16, 2024 - county list (Chelan through Yakima)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -2995,6 +3404,7 @@
    "titles": [
     "USDA FNS Washington ABAWD Waiver Response, December 16, 2024 - implementation date (2025-02-01) and expiration date (2026-01-31)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
    ]
@@ -3006,6 +3416,7 @@
    "titles": [
     "USDA FNS Wisconsin FY 2025 ABAWD Waiver Response"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wi.yaml"
    ]
@@ -3017,6 +3428,7 @@
    "titles": [
     "USDA FNS SNAP State Options Report (10th Edition, August 2012), p. 16"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
    ]
@@ -3028,6 +3440,7 @@
    "titles": [
     "SNAP State Options Report, 12th Report (April 2016)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
    ]
@@ -3039,6 +3452,7 @@
    "titles": [
     "SNAP State Options Report, 13th Report (August 2017)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
    ]
@@ -3050,6 +3464,7 @@
    "titles": [
     "SNAP State Options Report, 14th Report (May 2018)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
    ]
@@ -3061,6 +3476,7 @@
    "titles": [
     "USDA Cost of Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
     "parameters/gov/usda/snap/income/deductions/standard.yaml",
@@ -3074,6 +3490,7 @@
    "titles": [
     "SNAP FY2026 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml",
@@ -3088,6 +3505,7 @@
    "titles": [
     "SNAP FY2027 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
@@ -3104,6 +3522,7 @@
    "titles": [
     "SNAP FY2018 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml"
    ]
@@ -3116,6 +3535,7 @@
     "USDA Broad-based Categorical Eligibility",
     "USDA Broad-Based Categorical Eligibility (BBCE)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/asset_limit.yaml",
     "parameters/gov/hhs/tanf/non_cash/income_limit/gross.yaml",
@@ -3129,6 +3549,7 @@
    "titles": [
     "USDA | Food and Nutrition Service | SNAP | Standard Utility Allowances"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
@@ -3142,6 +3563,7 @@
    "titles": [
     "SNAP FY2015 Resource Limit Memo"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml"
    ]
@@ -3153,6 +3575,7 @@
    "titles": [
     "SNAP FY2023 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml"
    ]
@@ -3164,6 +3587,7 @@
    "titles": [
     "SNAP FY2024 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
    ]
@@ -3175,6 +3599,7 @@
    "titles": [
     "SNAP FY2025 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
@@ -3184,13 +3609,34 @@
    ]
   },
   {
+   "url": "https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "USDA FNS SNAP Provisions of the One Big Beautiful Bill Act of 2025, ABAWD Waivers Implementation Memorandum (October 3, 2025)"
+   ],
+   "states": [
+    "ak",
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/hr1_in_effect.yaml",
+    "parameters/gov/states/hi/dhs/snap/work_requirements/abawd/hr1_in_effect.yaml"
+   ]
+  },
+  {
    "url": "https://www.fns.usda.gov/snap/obbb-abawd-exemptions-implementation",
    "kind": null,
    "citation": null,
    "titles": [
+    "USDA FNS, SNAP - OBBB ABAWD Exceptions Implementation",
     "FNS ABAWD Exceptions Implementation Memorandum (October 3, 2025)"
    ],
+   "states": [
+    "ak"
+   ],
    "files": [
+    "parameters/gov/states/ak/dpa/snap/work_requirements/abawd/good_faith_exemption/in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/former_foster_care.yaml"
    ]
   },
@@ -3201,6 +3647,7 @@
    "titles": [
     "USDA FNS - SNAP Implementation of OBBB - Alien SNAP Eligibility"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/eligible_immigration_statuses.yaml",
     "variables/gov/usda/snap/eligibility/is_snap_immigration_status_eligible.py"
@@ -3214,6 +3661,7 @@
     "Fiscal Responsibility Act of 2023, Section 311 - ABAWD Age Phase-In",
     "Fiscal Responsibility Act of 2023, Section 311 - SNAP provisions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/former_foster_care.yaml"
@@ -3226,6 +3674,7 @@
    "titles": [
     "USDA FNS SNAP ABAWD Time Limit Waivers, 2025-2029 (letter index; dates of the CA and DC rescission-and-reissue letters)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -3237,6 +3686,7 @@
    "titles": [
     "SNAP Work Requirements"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
@@ -3252,6 +3702,7 @@
    "titles": [
     "USDA Food and Nutrition Administration, SNAP Waiver of the Time Limit - Status Update (landing page for the February 26, 2026 memorandum)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
    ]
@@ -3263,6 +3714,7 @@
    "titles": [
     "2025 Annual Update of the HHS Poverty Guidelines"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/uprating.yaml"
    ]
@@ -3274,6 +3726,7 @@
    "titles": [
     "65 FR 70134 (November 21, 2000) - Final rule effective January 20, 2001"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/military/child_age_threshold.yaml",
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/military/student_age_threshold.yaml"
@@ -3286,6 +3739,7 @@
    "titles": [
     "65 FR 70134 (November 21, 2000) - Amendatory text of 7 CFR 273.4(a)(5)(ii)(G)(3)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/military/child_age_threshold.yaml",
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/military/student_age_threshold.yaml"
@@ -3298,6 +3752,7 @@
    "titles": [
     "66 FR 4438 (2001), preamble to 7 CFR 273.24(a)(1)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/monthly_hours_threshold.yaml"
    ]
@@ -3309,6 +3764,7 @@
    "titles": [
     "66 FR 4438 (2001), 7 CFR 273.24(a)(1)(i) as adopted"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/monthly_hours_threshold.yaml"
    ]
@@ -3318,6 +3774,7 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py"
    ]
@@ -3329,6 +3786,7 @@
    "titles": [
     "P.L. 107-171 sec. 4401(b) - Restoration of benefits to all qualified alien children, effective October 1, 2003"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/child_age_threshold.yaml"
    ]
@@ -3338,6 +3796,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/meets_snap_categorical_eligibility.py"
    ]
@@ -3349,6 +3808,7 @@
    "titles": [
     "7 U.S.C. 2015(o)(4)(A)(ii) (2023 edition, before P.L. 119-21) - Waiver where an area does not have a sufficient number of jobs"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/hr1_waiver_criteria/in_effect.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
@@ -3359,6 +3819,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/271/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py",
     "variables/gov/usda/snap/has_snap_elderly_disabled_member.py"
@@ -3369,6 +3830,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/has_snap_elderly_disabled_member.py"
    ]
@@ -3380,6 +3842,7 @@
    "titles": [
     "7 CFR § 273.1 - Household concept (b)(iii)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml"
    ]
@@ -3389,6 +3852,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/10/e/2/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/snap_expected_contribution.py"
    ]
@@ -3400,6 +3864,7 @@
    "titles": [
     "7 CFR § 273.10 - Determining household eligibility and benefit levels."
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/min_allotment/maximum_household_size.yaml",
     "parameters/gov/usda/snap/min_allotment/rate.yaml",
@@ -3411,6 +3876,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/a/2/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_farm_rent_income.py",
     "variables/gov/usda/snap/income/snap_gross_self_employment_income_person.py",
@@ -3422,6 +3888,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/b",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/self_employment/snap_self_employment_expense_deduction.py"
    ]
@@ -3433,6 +3900,7 @@
    "titles": [
     "7 CFR § 273.11(b)(3) - Self-employment income, cost of doing business"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/expense_based_deduction_applies.yaml"
    ]
@@ -3442,6 +3910,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/c",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/meets_snap_asset_test.py",
     "variables/gov/usda/snap/income/snap_earned_income.py",
@@ -3454,6 +3923,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/c/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py"
    ]
@@ -3463,6 +3933,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/c/2/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py",
     "variables/gov/usda/snap/income/ineligible_members/snap_income_counted_share.py",
@@ -3474,6 +3945,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/c/2/iii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_countable_child_support_expense.py",
     "variables/gov/usda/snap/income/deductions/snap_dependent_care_deduction.py",
@@ -3485,6 +3957,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/c/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py",
     "variables/gov/usda/snap/income/ineligible_members/is_snap_state_discretion_ineligible_alien.py"
@@ -3497,6 +3970,7 @@
    "titles": [
     "7 CFR 273.11(c)(3)(i)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/ineligible_members/count_all_income_states.yaml",
     "parameters/gov/usda/snap/income/ineligible_members/gross_test_full_count_states.yaml",
@@ -3510,6 +3984,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/d",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/ineligible_members/snap_income_counted_share.py",
     "variables/gov/usda/snap/is_snap_excluded_member.py"
@@ -3520,6 +3995,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/11/d/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/ineligible_members/snap_expense_counted_share.py"
    ]
@@ -3531,6 +4007,7 @@
    "titles": [
     "7 CFR 273.2(j)(2) Categorical eligibility for certain recipients"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/categorical_eligibility.yaml",
     "variables/gov/hhs/tanf/non_cash/meets_tanf_non_cash_net_income_test.py"
@@ -3541,6 +4018,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_exempt.py",
     "variables/gov/usda/snap/eligibility/work_requirements/is_subject_to_snap_abawd.py",
@@ -3552,6 +4030,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24/a/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/weekly_snap_work_program_hours.py"
    ]
@@ -3561,6 +4040,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24/a/1/i",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/snap_work_requirement_weekly_hours.py"
    ]
@@ -3570,6 +4050,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24/a/1/iv",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_workfare_participant.py"
    ]
@@ -3579,6 +4060,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24/b",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements.py",
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements_person.py"
@@ -3591,6 +4073,7 @@
    "titles": [
     "7 C.F.R. § 273.24 Time limit for able-bodied adults (c)(1)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml"
    ]
@@ -3600,6 +4083,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24/c/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/meets_snap_non_parent_student_exception.py",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_non_age.py",
@@ -3611,6 +4095,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/24/c/4",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/has_snap_abawd_household_child.py",
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements_person.py"
@@ -3623,6 +4108,7 @@
    "titles": [
     "7 CFR § 273.24 - Time limit for able-bodied adults (c)(9)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/former_foster_care.yaml"
    ]
@@ -3634,6 +4120,7 @@
    "titles": [
     "7 CFR 273.24(f) - Waivers"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
@@ -3646,6 +4133,7 @@
    "titles": [
     "7 C.F.R. § 273.24(g) - Discretionary exemptions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_discretionary_exempt.py"
@@ -3656,6 +4144,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/4/a/6",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/is_snap_immigration_status_eligible.py"
    ]
@@ -3665,6 +4154,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/4/a/6/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py",
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_lpr_in_waiting_period_exempt_category.py"
@@ -3677,6 +4167,7 @@
    "titles": [
     "7 CFR 273.4(a)(6)(ii)(A) - Lawful permanent residents with 40 qualifying quarters"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/qualifying_quarters.yaml",
     "variables/gov/usda/snap/eligibility/waiting_period/snap_alien_qualifying_quarters.py"
@@ -3687,6 +4178,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/4/a/6/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_military_connected.py"
    ]
@@ -3698,6 +4190,7 @@
    "titles": [
     "7 CFR 273.4(a)(6)(ii)(G)(3) - Spouse and unmarried dependent children of a veteran or active duty member"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/military/child_age_threshold.yaml",
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/military/student_age_threshold.yaml"
@@ -3710,6 +4203,7 @@
    "titles": [
     "7 CFR 273.4(a)(6)(ii)(J) - Individual under 18 years of age"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/child_age_threshold.yaml"
    ]
@@ -3722,6 +4216,7 @@
     "7 CFR 273.4(a)(6)(iii)(A), (B) and (D) - Qualified aliens who must be in a qualified status for 5 years",
     "7 CFR 273.4(a)(6)(iii) - Qualified aliens who must be in a qualified status for 5 years"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/subject_immigration_statuses.yaml",
     "parameters/gov/usda/snap/eligibility/waiting_period/years.yaml",
@@ -3733,6 +4228,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/4/a/6/iv",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py",
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_lpr_in_waiting_period_exempt_category.py"
@@ -3745,6 +4241,7 @@
    "titles": [
     "7 CFR 273.5(b)(8) - Students, care of a dependent household member under the age of 6"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/student/child_care_claim_cap/per_household.yaml",
     "variables/gov/usda/snap/eligibility/student/meets_snap_parent_exception.py"
@@ -3755,6 +4252,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/5/b",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_or_work_incentive_student.py",
     "variables/gov/usda/snap/eligibility/student/meets_snap_non_parent_student_exception.py"
@@ -3765,6 +4263,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/5/b/11",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_student.py"
    ]
@@ -3774,6 +4273,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/5/b/4",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/is_snap_work_incentive_student.py"
    ]
@@ -3783,6 +4283,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/a/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_program_participant.py",
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py"
@@ -3793,6 +4294,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/b/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_non_age.py",
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py"
@@ -3805,6 +4307,7 @@
    "titles": [
     "7 C.F.R. § 273.7 Work provisions (b)(1)(i)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/general/age_threshold/exempted.yaml"
    ]
@@ -3814,6 +4317,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/b/1/iii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_complying_with_tanf_work_requirements.py"
    ]
@@ -3825,6 +4329,7 @@
    "titles": [
     "7 C.F.R. § 273.7 Work provisions (b)(1)(iv)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/general/age_threshold/caring_dependent_child.yaml"
    ]
@@ -3834,6 +4339,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/b/1/v",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/has_applied_for_unemployment_compensation.py",
     "variables/gov/usda/snap/eligibility/work_requirements/is_receiving_unemployment_compensation.py",
@@ -3845,6 +4351,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/b/1/vi",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_in_substance_use_treatment_program.py"
    ]
@@ -3856,6 +4363,7 @@
    "titles": [
     "7 C.F.R. § 273.7 Work provisions (b)(1)(vii)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/general/weekly_hours_threshold.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_employed.py",
@@ -3868,6 +4376,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/b/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_receiving_unemployment_compensation.py"
    ]
@@ -3877,6 +4386,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/f/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py",
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements.py",
@@ -3888,6 +4398,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/7/j",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py"
    ]
@@ -3897,6 +4408,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/8",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/snap_assets.py"
    ]
@@ -3908,6 +4420,7 @@
    "titles": [
     "7 CFR 273.8(c)(1) - Liquid resources"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/sources.yaml"
    ]
@@ -3919,6 +4432,7 @@
    "titles": [
     "7 CFR § 273.9 - Income and deductions."
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/limit/gross.yaml"
    ]
@@ -3930,6 +4444,7 @@
    "titles": [
     "7 CFR § 273.9 - Income and deductions."
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/limit/net.yaml"
    ]
@@ -3939,6 +4454,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/a/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_fpg.py"
    ]
@@ -3950,6 +4466,7 @@
    "titles": [
     "7 CFR 273.9(a)(3)(i)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/limit/increment_household_size_threshold.yaml",
     "variables/gov/usda/snap/eligibility/meets_snap_gross_income_test.py"
@@ -3962,6 +4479,7 @@
    "titles": [
     "7 CFR 273.9(a)(3)(ii)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/limit/increment_household_size_threshold.yaml",
     "variables/gov/hhs/tanf/non_cash/meets_tanf_non_cash_net_income_test.py",
@@ -3975,6 +4493,7 @@
    "titles": [
     "7 CFR 273.9(b)(1)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/sources/earned.yaml",
     "variables/gov/usda/snap/income/snap_earned_income.py",
@@ -3987,6 +4506,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/b/1/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_farm_rent_income.py",
     "variables/gov/usda/snap/income/snap_rental_income.py"
@@ -3999,6 +4519,7 @@
    "titles": [
     "7 CFR 273.9(b)(2)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/sources/unearned.yaml",
     "parameters/gov/usda/snap/income/sources/unearned_spm_unit.yaml",
@@ -4011,6 +4532,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/b/2/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_farm_rent_income.py",
     "variables/gov/usda/snap/income/snap_rental_income.py"
@@ -4023,6 +4545,7 @@
    "titles": [
     "7 CFR 273.9(c)(1)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/sources/unearned.yaml"
    ]
@@ -4034,6 +4557,7 @@
    "titles": [
     "7 CFR 273.9(c)(17) - Child support exclusion option"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml",
     "variables/gov/usda/snap/income/gross/snap_child_support_gross_income_deduction.py"
@@ -4044,6 +4568,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/c/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_countable_earner.py"
    ]
@@ -4053,6 +4578,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/c/9",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/self_employment/snap_self_employment_expense_deduction.py"
    ]
@@ -4062,6 +4588,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/d/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_allowable_medical_expenses.py",
     "variables/gov/usda/snap/income/deductions/snap_excess_medical_expense_deduction.py"
@@ -4072,6 +4599,7 @@
    "kind": "regulation",
    "citation": "us/regulation/7/273/9/d/4",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_dependent_care_deduction.py"
    ]
@@ -4083,6 +4611,7 @@
    "titles": [
     "7 CFR 273.9(d)(5) - Child support deduction"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml",
     "variables/gov/usda/snap/income/deductions/snap_child_support_deduction.py"
@@ -4095,6 +4624,7 @@
    "titles": [
     "Delaware Social Services Manual 9059(26) - Income exclusions, child support payments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -4106,6 +4636,7 @@
    "titles": [
     "Maine 10-144 C.M.R. Ch. 301 § 555-5 - Food Supplement Program Deductions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
    ]
@@ -4117,6 +4648,7 @@
    "titles": [
     "106 CMR 363.230(O) - Legally obligated child support payments excluded for the gross income test"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -4126,6 +4658,7 @@
    "kind": "statute",
    "citation": "us/statute/25/1603",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_indian_exempt.py"
    ]
@@ -4135,6 +4668,7 @@
    "kind": "statute",
    "citation": "us/statute/25/1679",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_indian_exempt.py"
    ]
@@ -4144,6 +4678,7 @@
    "kind": "statute",
    "citation": "us/statute/29/206/a/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_employed.py"
    ]
@@ -4155,6 +4690,7 @@
    "titles": [
     "42 U.S. Code Part A—Block Grants to States for Temporary Assistance for Needy Families"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/categorical_eligibility.yaml"
    ]
@@ -4164,6 +4700,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2012/j",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py"
    ]
@@ -4173,6 +4710,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2012/u/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/snap_max_allotment.py"
    ]
@@ -4184,6 +4722,7 @@
    "titles": [
     "7 U.S. Code § 2012(u)(4)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/uprating.yaml"
    ]
@@ -4193,6 +4732,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_countable_earner.py",
     "variables/gov/usda/snap/income/snap_net_income.py"
@@ -4205,6 +4745,7 @@
    "titles": [
     "United States Code, Title 7, Subsection 2014(a)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/categorical_eligibility.yaml"
    ]
@@ -4214,6 +4755,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/b",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/snap_unit_size.py"
    ]
@@ -4223,6 +4765,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/c",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/is_snap_eligible.py",
     "variables/gov/usda/snap/eligibility/meets_snap_gross_income_test.py",
@@ -4236,6 +4779,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/d",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/gross/snap_gross_income.py"
    ]
@@ -4247,6 +4791,7 @@
    "titles": [
     "7 U.S. Code § 2014 - Eligible households (d)(7)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/child_income_exclusion_age.yaml",
     "variables/gov/usda/snap/income/snap_excluded_child_earner.py"
@@ -4257,6 +4802,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/d/9",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/snap_farm_rent_income.py",
     "variables/gov/usda/snap/income/snap_rental_income.py"
@@ -4269,6 +4815,7 @@
    "titles": [
     "United States Code, Title 7, Subsection 2014(e)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/allowed.yaml",
     "variables/gov/usda/snap/income/deductions/snap_deductions.py"
@@ -4279,6 +4826,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/e/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_standard_deduction.py"
    ]
@@ -4288,6 +4836,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/e/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_earned_income_deduction.py"
    ]
@@ -4299,6 +4848,7 @@
    "titles": [
     "7 U.S. Code § 2014(e)(2)(B)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/earned_income.yaml"
    ]
@@ -4308,6 +4858,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/e/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_dependent_care_deduction.py"
    ]
@@ -4317,6 +4868,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/e/4",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/income/deductions/snap_child_support_deduction.py",
     "variables/gov/usda/snap/income/deductions/snap_countable_child_support_expense.py",
@@ -4330,6 +4882,7 @@
    "titles": [
     "United States Code, Title 7, Subsection 2014(e) - Eligible households"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/disregard.yaml",
     "variables/gov/usda/snap/income/deductions/snap_allowable_medical_expenses.py",
@@ -4343,6 +4896,7 @@
    "titles": [
     "7 U.S. Code § 2014(e)(6)(A)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/income_share_disregard.yaml",
     "variables/gov/usda/snap/income/deductions/shelter/snap_net_income_pre_shelter.py"
@@ -4355,6 +4909,7 @@
    "titles": [
     "7 U.S. Code § 2014(e)(6)(B)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/elderly_or_disabled_exempt.yaml"
@@ -4367,6 +4922,7 @@
    "titles": [
     "7 U.S. Code § 2014(e)(6)(D)(i)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
    ]
@@ -4376,6 +4932,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2014/g",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/meets_snap_asset_test.py",
     "variables/gov/usda/snap/eligibility/snap_assets.py"
@@ -4388,6 +4945,7 @@
    "titles": [
     "7 U.S. Code § 2014(g)(1)(A)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml"
    ]
@@ -4400,6 +4958,7 @@
     "7 U.S. Code § 2015 - Eligibility disqualifications (e)(1)",
     "7 U.S. Code § 2015 - Eligibility disqualifications (e)(4)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/student/age_threshold.yaml",
     "parameters/gov/usda/snap/student/working_hours_threshold.yaml"
@@ -4412,6 +4971,7 @@
    "titles": [
     "7 U.S.C. 2015(d)(2)(E)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/general/weekly_hours_threshold.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_employed.py",
@@ -4427,6 +4987,7 @@
     "7 U.S. Code § 2015 - Eligibility disqualifications (e)(8)",
     "7 U.S. Code § 2015 - Eligibility disqualifications (e)(5)(A)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/student/child_age_limit/single_parent.yaml",
     "parameters/gov/usda/snap/student/child_age_limit/two_parent.yaml",
@@ -4441,6 +5002,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/e/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_student.py"
    ]
@@ -4450,6 +5012,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/e/4",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/meets_snap_work_exception.py"
    ]
@@ -4459,6 +5022,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/e/5",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/meets_snap_parent_exception.py"
    ]
@@ -4468,6 +5032,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/e/7",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/is_snap_work_incentive_student.py"
    ]
@@ -4477,6 +5042,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/e/8",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/student/meets_snap_parent_exception.py"
    ]
@@ -4489,9 +5055,14 @@
     "7 USC 2015(f) - Eligibility disqualifications",
     "7 USC 2015(f) - Aliens"
    ],
+   "states": [
+    "ca"
+   ],
    "files": [
+    "parameters/gov/states/ca/cdss/snap/eligibility/eligible_immigration_statuses.yaml",
     "parameters/gov/usda/snap/eligibility/eligible_immigration_statuses.yaml",
     "parameters/gov/usda/snap/income/ineligible_members/pre_prwora_statuses.yaml",
+    "variables/gov/states/ca/cdss/snap/eligibility/ca_snap_immigration_status_eligible.py",
     "variables/gov/usda/snap/eligibility/is_snap_eligible.py",
     "variables/gov/usda/snap/eligibility/is_snap_immigration_status_eligible.py",
     "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py",
@@ -4504,6 +5075,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/o",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_exempt.py",
     "variables/gov/usda/snap/eligibility/work_requirements/is_subject_to_snap_abawd.py"
@@ -4516,6 +5088,7 @@
    "titles": [
     "7 U.S.C. 2015(o)(2)(A)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/monthly_hours_threshold.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/snap_work_requirement_weekly_hours.py",
@@ -4527,6 +5100,7 @@
    "kind": "statute",
    "citation": "us/statute/7/2015/o/2/C",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_workfare_participant.py"
    ]
@@ -4538,6 +5112,7 @@
    "titles": [
     "7 U.S.C. 2015(o)(3) - ABAWD Time Limit Exceptions"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
@@ -4554,6 +5129,7 @@
     "7 U.S.C. 2015(o)(4) - Waiver",
     "7 U.S.C. 2015(o)(4) - ABAWD Time Limit Waivers"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/hr1_waiver_criteria/in_effect.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml",
@@ -4567,6 +5143,7 @@
    "titles": [
     "7 U.S.C. 2015(o)(6) - Exemptions from the ABAWD time limit"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml",
     "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_discretionary_exempt.py"
@@ -4580,6 +5157,7 @@
     "7 U.S. Code § 2017 - Value of allotment",
     "7 U.S. Code § 2017(a)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/expected_contribution.yaml",
     "parameters/gov/usda/snap/min_allotment/published_adjustment.yaml",
@@ -4601,6 +5179,7 @@
    "titles": [
     "8 USC 1612 - Limited eligibility of qualified aliens for certain Federal programs"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/eligible_immigration_statuses.yaml",
     "variables/gov/usda/snap/eligibility/is_snap_immigration_status_eligible.py"
@@ -4611,6 +5190,7 @@
    "kind": "statute",
    "citation": "us/statute/8/1612/a/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py"
    ]
@@ -4622,6 +5202,7 @@
    "titles": [
     "8 USC 1612(a)(2)(B) - Certain permanent resident aliens"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/qualifying_quarters.yaml",
     "variables/gov/usda/snap/eligibility/waiting_period/snap_alien_qualifying_quarters.py"
@@ -4632,6 +5213,7 @@
    "kind": "statute",
    "citation": "us/statute/8/1612/a/2/C",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_military_connected.py"
    ]
@@ -4641,6 +5223,7 @@
    "kind": "statute",
    "citation": "us/statute/8/1612/a/2/F/ii",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py"
    ]
@@ -4652,6 +5235,7 @@
    "titles": [
     "8 USC 1612(a)(2)(J) - Food stamp exception for certain children"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/child_age_threshold.yaml"
    ]
@@ -4663,6 +5247,7 @@
    "titles": [
     "8 USC 1612(a)(2)(L) - Food stamp exception for certain qualified aliens"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/years.yaml",
     "variables/gov/usda/snap/eligibility/waiting_period/meets_snap_qualified_alien_waiting_period.py"
@@ -4673,6 +5258,7 @@
    "kind": "statute",
    "citation": "us/statute/8/1612/a/3",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/snap_alien_qualifying_quarters.py"
    ]
@@ -4682,6 +5268,7 @@
    "kind": "statute",
    "citation": "us/statute/8/1613/b/1",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_lpr_in_waiting_period_exempt_category.py"
    ]
@@ -4691,6 +5278,7 @@
    "kind": "statute",
    "citation": "us/statute/8/1613/b/2",
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_military_connected.py"
    ]
@@ -4702,6 +5290,7 @@
    "titles": [
     "8 USC 1613(c)(2)(L) - Food stamp assistance for individuals under the age of 18"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/child_age_threshold.yaml"
    ]
@@ -4713,6 +5302,7 @@
    "titles": [
     "8 USC 1645(1)-(2) - Qualifying quarters"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/qualifying_quarters.yaml",
     "variables/gov/usda/snap/eligibility/waiting_period/snap_alien_qualifying_quarters.py"
@@ -4725,6 +5315,7 @@
    "titles": [
     "Maine 10-144 CMR Ch. 301 Sec. 999-3 Chart 4 (January re-basing)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/fpg_year_start_month.yaml"
    ]
@@ -4736,8 +5327,37 @@
    "titles": [
     "Maine SNAP Rule"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/humanservices/njsnap/apply/eligibility/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Jersey Department of Human Services - SNAP"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/snap/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/humanservices/njsnap/emergency/covid19/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Jersey Department of Human Services - SNAP"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/snap/in_effect.yaml"
    ]
   },
   {
@@ -4747,6 +5367,7 @@
    "titles": [
     "New Jersey PRN 2016-017 - Proposal codifying the child support income exclusion required by P.L. 2013, c.45"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -4758,6 +5379,7 @@
    "titles": [
     "N.J.A.C. 10:87-5.9(a)20 - Income exclusions, legally obligated child support paid (added by R.2017 d.022, effective 2017-02-06)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -4769,6 +5391,7 @@
    "titles": [
     "New York OTDA GIS 25DC059 Attachment 1 (FFY 2026 SUAs effective October 1, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml"
    ]
@@ -4782,6 +5405,7 @@
     "SNAP Screener Eligibility Parameters",
     "SNAP Screener | SNAP Eligibility Parameters"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/gross_hheod.yaml",
     "parameters/gov/hhs/tanf/non_cash/income_limit/net_applies/hheod.yaml",
@@ -4801,6 +5425,7 @@
    "titles": [
     "SNAP Screener: SNAP Emergency Allotments & Maximum Benefit Amounts"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/emergency_allotment/in_effect.yaml"
    ]
@@ -4812,6 +5437,7 @@
    "titles": [
     "SNAP Screener SNAP Self-Employment Simplified Deductions by State"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
    ]
@@ -4823,6 +5449,7 @@
    "titles": [
     "SNAP Screener Compiled State SNAP Data"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
     "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
@@ -4837,6 +5464,7 @@
    "titles": [
     "SNAP Screener Arizona guide (200% gross income limit)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/gross.yaml"
    ]
@@ -4853,6 +5481,7 @@
     "Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.31(D)(2) (page 110)",
     "Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.31(A)(4) (page 109)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml",
@@ -4873,6 +5502,7 @@
    "titles": [
     "Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.31(A)(4) (page 109)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
    ]
@@ -4884,6 +5514,7 @@
    "titles": [
     "Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.5(A) (version effective 2025-12-30, page 113)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -4895,6 +5526,7 @@
    "titles": [
     "Code of Colorado Regulations | Rule Manual Volume 4B, Food Stamps | B-4223.6 (version effective 2009-07-01)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/child_support.yaml"
    ]
@@ -4906,6 +5538,7 @@
    "titles": [
     "Historical values"
    ],
+   "states": [],
    "files": [
     "parameters/gov/ssa/uprating.yaml"
    ]
@@ -4917,6 +5550,7 @@
    "titles": [
     "USDA SNAP Waiver of the Time Limit - Status Update Memorandum, February 26, 2026 (terminated waivers remain in effect through their original expiration dates)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/hr1_waiver_criteria/in_effect.yaml"
    ]
@@ -4936,6 +5570,7 @@
     "USDA SNAP Waiver of the Time Limit - Status Update Memorandum, February 26, 2026 (Appendix A, Washington through 2026-01-31)",
     "USDA SNAP Waiver of the Time Limit - Status Update Memorandum, February 26, 2026 (Appendix A, time limit waiver expiration dates)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml",
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml",
@@ -4956,6 +5591,7 @@
    "titles": [
     "SNAP FY2027 Cost-of-Living Adjustments memo (48 States and D.C., Guam, Virgin Islands)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml"
    ]
@@ -4968,6 +5604,7 @@
     "SNAP FY2027 Cost-of-Living Adjustments memo (Alaska, Hawaii)",
     "SNAP FY2027 Cost-of-Living Adjustments memo"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/max_allotment.yaml",
     "parameters/gov/usda/snap/min_allotment/published_adjustment.yaml"
@@ -4980,6 +5617,7 @@
    "titles": [
     "SNAP FY2027 Cost-of-Living Adjustments memo"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/cap.yaml",
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml",
@@ -4993,6 +5631,7 @@
    "titles": [
     "SNAP FY2027 Cost-of-Living Adjustments memo"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/asset_test/limit.yaml"
    ]
@@ -5004,6 +5643,7 @@
    "titles": [
     "SNAP FY2023 Cost-of-Living Adjustments"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
    ]
@@ -5015,6 +5655,7 @@
    "titles": [
     "SNAP – Questions and Answers Related to Food and Nutrition Services Policy Memos Regarding Title IV Provisions of the Agriculture Improvement Act of 2018"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
    ]
@@ -5026,6 +5667,7 @@
    "titles": [
     "SNAP FY 2026 Cost-of-Living Adjustments (federal October schedule)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/fpg_year_start_month.yaml"
    ]
@@ -5037,6 +5679,7 @@
    "titles": [
     "USDA FNS, SNAP Provisions of the One Big Beautiful Bill Act of 2025 - ABAWD Waivers - Implementation Memorandum (October 3, 2025)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/hr1_waiver_criteria/in_effect.yaml"
    ]
@@ -5048,6 +5691,7 @@
    "titles": [
     "USDA FNS, SNAP Provisions of the One Big Beautiful Bill Act of 2025 - ABAWD Waivers - Implementation Memorandum (October 3, 2025) - ABAWD good faith exemptions for Alaska and Hawaii"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -5059,6 +5703,7 @@
    "titles": [
     "USDA FNS, SNAP Provisions of the One Big Beautiful Bill Act of 2025 - ABAWD Waivers - Implementation Memorandum (October 3, 2025) - termination of ABAWD good faith exemption approvals"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml"
    ]
@@ -5070,6 +5715,7 @@
    "titles": [
     "USDA FNS, Alien SNAP Eligibility - Question and Answer"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/years.yaml",
     "variables/gov/usda/snap/eligibility/waiting_period/meets_snap_qualified_alien_waiting_period.py"
@@ -5082,6 +5728,7 @@
    "titles": [
     "USDA FNS, Alien SNAP Eligibility - Question and Answer"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/years.yaml",
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py",
@@ -5096,6 +5743,7 @@
    "titles": [
     "USDA FNS, Alien SNAP Eligibility - Question and Answer"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/child_age_threshold.yaml",
     "parameters/gov/usda/snap/eligibility/waiting_period/exceptions/qualifying_quarters.yaml",
@@ -5109,6 +5757,7 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_military_connected.py",
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_waiting_period_exempt.py"
@@ -5119,6 +5768,7 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_military_connected.py"
    ]
@@ -5128,6 +5778,7 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_alien_military_connected.py"
    ]
@@ -5137,6 +5788,7 @@
    "kind": null,
    "citation": null,
    "titles": [],
+   "states": [],
    "files": [
     "variables/gov/usda/snap/eligibility/waiting_period/is_snap_lpr_in_waiting_period_exempt_category.py"
    ]
@@ -5148,6 +5800,7 @@
    "titles": [
     "USDA FNS, SNAP Implementation of the One Big Beautiful Bill Act of 2025 - Alien SNAP Eligibility (October 31, 2025), Attachment 1 (parolees)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/usda/snap/eligibility/waiting_period/subject_immigration_statuses.yaml"
    ]
@@ -5159,6 +5812,7 @@
    "titles": [
     "VI Department of Human Services announcement (130% to 175%, effective October 1, 2024)"
    ],
+   "states": [],
    "files": [
     "parameters/gov/hhs/tanf/non_cash/income_limit/gross.yaml"
    ]

@@ -1,0 +1,2722 @@
+schema: axiom-program-bundle/v2
+id: ctc
+program: ctc
+title: CTC
+as_of: '2026-10-06'
+generator: scripts/build_program_bundle.py
+parts:
+- Filing and household
+- Income
+- Deductions
+- Credits
+- Rates
+- Whole program
+- Other
+comparison:
+  repo: TheAxiomFoundation/axiom-oracles
+  suite: '{st}-ctc-ecps'
+tiers:
+- id: screener
+  title: Screener-level parity
+  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
+    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
+    errors. Federal law PolicyEngine cites is shared by every state.
+  membership:
+    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+      documents, each in the layer of the law it names, grouped into documents
+    references: sources/policyengine-us/ctc-references.json
+    policyengine_us_release: latest
+    policyengine_us_version: 2.29.11
+    policyengine_us_commit: 4c900b6d3d808c4a9cf56d11afcedad9898f732f
+    policyengine_us_folders:
+    - gov/irs/credits/ctc
+    - gov/irs/credits/ctc_tax_liability_limit
+    policyengine_us_state_folders: ^tax/income/credits/(ctc|child_tax_credit|young_child)
+    references_derived_by: scripts/export_policyengine_references.py
+    reference_count: 162
+    plan: sources/plans/m1-plan-documents.json
+    plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
+    plan_documents: 0
+    fiscal_year: 2027
+    outside_the_states: {}
+    in_scope_by_layer:
+      federal: 20
+      state: 89
+- id: full
+  title: Full document bundle
+  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
+    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
+    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  membership:
+    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
+      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
+      for the program; and the sources the config knows the corpus does not hold yet
+    federal_schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
+    federal_manifests: ^us-irs-(guidance|individual)
+    state_manifests: (^|-)ctc(-|$)|child-tax-credit
+    known_sources: 0
+    in_scope_by_layer:
+      federal: 42
+      state: 89
+layers:
+- jurisdiction: us
+  screener:
+  - key: https://www.irs.gov/pub/irs-drop/rp-18-57.pdf
+    name: irs.gov/pub/irs-drop/rp-18-57.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-18-57.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-drop/rp-19-44.pdf
+    name: irs.gov/pub/irs-drop/rp-19-44.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-19-44.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-drop/rp-20-45.pdf
+    name: irs.gov/pub/irs-drop/rp-20-45.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-20-45.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
+    name: irs.gov/pub/irs-drop/rp-21-45.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
+    name: irs.gov/pub/irs-drop/rp-22-38.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-drop/rp-23-34.pdf
+    name: irs.gov/pub/irs-drop/rp-23-34.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-23-34.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
+    name: irs.gov/pub/irs-drop/rp-24-40.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-pdf/i1040s8.pdf
+    name: irs.gov/pub/irs-pdf/i1040s8.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-pdf/i1040s8.pdf
+    sources:
+    - policyengine-references
+    references: 4
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-prior/f1040--2021.pdf
+    name: irs.gov/pub/irs-prior/f1040--2021.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/f1040--2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-prior/f1040s8--2021.pdf
+    name: irs.gov/pub/irs-prior/f1040s8--2021.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/f1040s8--2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-prior/i1040s8--2022.pdf
+    name: irs.gov/pub/irs-prior/i1040s8--2022.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/i1040s8--2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-prior/i1040s8--2025.pdf
+    name: irs.gov/pub/irs-prior/i1040s8--2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/i1040s8--2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-prior/p972--2013.pdf
+    name: irs.gov/pub/irs-prior/p972--2013.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/p972--2013.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.irs.gov/pub/irs-prior/p972--2020.pdf
+    name: irs.gov/pub/irs-prior/p972--2020.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/p972--2020.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+  - key: https://www.law.cornell.edu/uscode/text/26/25D
+    name: law.cornell.edu/uscode/text/26/25D
+    layer: federal
+    citation_path: null
+    source_url: https://www.law.cornell.edu/uscode/text/26/25D
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us/guidance/irs/rev-proc-2025-32
+    name: Rev. Proc. 2025-32
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2025-32
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2025-32
+      references: 1
+      part: Credits
+  - key: us/statute/26/164
+    name: 26 USC 164
+    layer: federal
+    citation_path: us/statute/26/164
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/statute/26/164/f
+      references: 1
+      part: Credits
+  - key: us/statute/26/24
+    name: 26 USC 24
+    layer: federal
+    citation_path: us/statute/26/24
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 29
+    scope: in
+    part: Credits
+    cited:
+    - path: us/statute/26/24/a
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/b/1
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/b/2
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/c
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/c/1
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/1
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/1/B
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/1/B/i
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/1/B/ii
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/2
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/2/A
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/2/B
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/d/3
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h/2
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h/3
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h/4/A
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h/5/A
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h/6
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/h/7
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/1
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/2
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/3
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/4
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/4/A
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/4/B
+      references: 1
+      part: Credits
+    - path: us/statute/26/24/i/4/C/i
+      references: 1
+      part: Credits
+  - key: us/statute/26/26
+    name: 26 USC 26
+    layer: federal
+    citation_path: us/statute/26/26
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/statute/26/26/a
+      references: 1
+      part: Credits
+  - key: us/statute/26/32
+    name: 26 USC 32
+    layer: federal
+    citation_path: us/statute/26/32
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/statute/26/32/c/2
+      references: 1
+      part: Credits
+  - key: https://www.congress.gov/bill/119th-congress/house-bill/1/text
+    name: congress.gov/bill/119th-congress/house-bill/1/text
+    layer: federal
+    citation_path: null
+    source_url: https://www.congress.gov/bill/119th-congress/house-bill/1/text
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Enacting text: the citing file also cites the codified section, which is the document'
+    part: Credits
+  - key: https://www.govinfo.gov/content/pkg/PLAW-114publ27/pdf/PLAW-114publ27.pdf
+    name: govinfo.gov/content/pkg/PLAW-114publ27/pdf/PLAW-114publ27.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.govinfo.gov/content/pkg/PLAW-114publ27/pdf/PLAW-114publ27.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Enacting text: the citing file also cites the codified section, which is the document'
+    part: Credits
+  full:
+  - key: https://www.irs.gov/pub/irs-drop/rp-18-57.pdf
+    name: irs.gov/pub/irs-drop/rp-18-57.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-18-57.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-drop/rp-19-44.pdf
+    name: irs.gov/pub/irs-drop/rp-19-44.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-19-44.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-drop/rp-20-45.pdf
+    name: irs.gov/pub/irs-drop/rp-20-45.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-20-45.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
+    name: irs.gov/pub/irs-drop/rp-21-45.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
+    name: irs.gov/pub/irs-drop/rp-22-38.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-drop/rp-23-34.pdf
+    name: irs.gov/pub/irs-drop/rp-23-34.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-23-34.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
+    name: irs.gov/pub/irs-drop/rp-24-40.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-pdf/i1040s8.pdf
+    name: irs.gov/pub/irs-pdf/i1040s8.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-pdf/i1040s8.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-prior/f1040--2021.pdf
+    name: irs.gov/pub/irs-prior/f1040--2021.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/f1040--2021.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-prior/f1040s8--2021.pdf
+    name: irs.gov/pub/irs-prior/f1040s8--2021.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/f1040s8--2021.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-prior/i1040s8--2022.pdf
+    name: irs.gov/pub/irs-prior/i1040s8--2022.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/i1040s8--2022.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-prior/i1040s8--2025.pdf
+    name: irs.gov/pub/irs-prior/i1040s8--2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/i1040s8--2025.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-prior/p972--2013.pdf
+    name: irs.gov/pub/irs-prior/p972--2013.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/p972--2013.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.irs.gov/pub/irs-prior/p972--2020.pdf
+    name: irs.gov/pub/irs-prior/p972--2020.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.irs.gov/pub/irs-prior/p972--2020.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.law.cornell.edu/uscode/text/26/25D
+    name: law.cornell.edu/uscode/text/26/25D
+    layer: federal
+    citation_path: null
+    source_url: https://www.law.cornell.edu/uscode/text/26/25D
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2025-32
+    name: Rev. Proc. 2025-32
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2025-32
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    - manifests/us-irs-guidance.yaml
+    scope: in
+  - key: us/statute/26/164
+    name: 26 USC 164
+    layer: federal
+    citation_path: us/statute/26/164
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/24
+    name: 26 USC 24
+    layer: federal
+    citation_path: us/statute/26/24
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    - schema:F013
+    - schema:F014
+    - schema:F015
+    scope: in
+  - key: us/statute/26/26
+    name: 26 USC 26
+    layer: federal
+    citation_path: us/statute/26/26
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/32
+    name: 26 USC 32
+    layer: federal
+    citation_path: us/statute/26/32
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/notice-2026-10
+    name: Notice 2026-10, 2026 Standard Mileage Rates
+    layer: federal
+    citation_path: us/guidance/irs/notice-2026-10
+    source_url: https://www.irs.gov/irb/2026-04_IRB
+    sources:
+    - manifests/us-irs-guidance-2026-inflation-adjustments.yaml
+    manifest: manifests/us-irs-guidance-2026-inflation-adjustments.yaml
+    scope: in
+    part: Rates
+  - key: us/guidance/irs/rev-proc-2026-24
+    name: Rev. Proc. 2026-24, 2027 inflation adjusted amounts for Health Savings Accounts
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2026-24
+    source_url: https://www.irs.gov/irb/2026-25_IRB
+    sources:
+    - manifests/us-irs-guidance-2026-inflation-adjustments.yaml
+    manifest: manifests/us-irs-guidance-2026-inflation-adjustments.yaml
+    scope: in
+    part: Other
+  - key: us/guidance/irs/rev-proc-2026-26
+    name: Rev. Proc. 2026-26, Section 36B applicable percentage table and required contribution percentage for 2027
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2026-26
+    source_url: https://www.irs.gov/irb/2026-31_IRB
+    sources:
+    - manifests/us-irs-guidance-2026-inflation-adjustments.yaml
+    manifest: manifests/us-irs-guidance-2026-inflation-adjustments.yaml
+    scope: in
+    part: Other
+  - key: us/guidance/irs/rev-proc-2025-25
+    name: Rev. Proc. 2025-25
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2025-25
+    source_url: https://www.irs.gov/irb/2025-32_IRB
+    sources:
+    - manifests/us-irs-guidance.yaml
+    manifest: manifests/us-irs-guidance.yaml
+    scope: in
+    part: Other
+  - key: us/guidance/irs/notice-2025-67
+    name: Notice 2025-67
+    layer: federal
+    citation_path: us/guidance/irs/notice-2025-67
+    source_url: https://www.irs.gov/irb/2025-49_IRB
+    sources:
+    - manifests/us-irs-guidance.yaml
+    manifest: manifests/us-irs-guidance.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/f1040
+    name: Form 1040, U.S. Individual Income Tax Return (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040
+    source_url: https://www.irs.gov/forms-pubs/about-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Income
+  - key: us/form/irs/ty2025/i1040gi
+    name: Instructions for Form 1040 and Form 1040-SR (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040gi
+    source_url: https://www.irs.gov/instructions/i1040gi
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/f1040s1
+    name: Schedule 1 (Form 1040), Additional Income and Adjustments to Income (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040s1
+    source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f1040sa
+    name: Schedule A (Form 1040), Itemized Deductions (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sa
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-a-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/i1040sca
+    name: Instructions for Schedule A (Form 1040), Itemized Deductions (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040sca
+    source_url: https://www.irs.gov/instructions/i1040sca
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f1040sb
+    name: Schedule B (Form 1040), Interest and Ordinary Dividends (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sb
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-b-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/i1040sb
+    name: Instructions for Schedule B (Form 1040), Interest and Ordinary Dividends (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040sb
+    source_url: https://www.irs.gov/instructions/i1040sb
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f1040sd
+    name: Schedule D (Form 1040), Capital Gains and Losses (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sd
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-d-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/i1040sd
+    name: Instructions for Schedule D (Form 1040), Capital Gains and Losses (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040sd
+    source_url: https://www.irs.gov/instructions/i1040sd
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f1040sei
+    name: Schedule EIC (Form 1040), Earned Income Credit (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sei
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-eic-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/f1040s8
+    name: Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040s8
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-8812-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/i1040s8
+    name: Instructions for Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040s8
+    source_url: https://www.irs.gov/instructions/i1040s8
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/f8962
+    name: Form 8962, Premium Tax Credit (PTC) (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8962
+    source_url: https://www.irs.gov/forms-pubs/about-form-8962
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/i8962
+    name: Instructions for Form 8962, Premium Tax Credit (PTC) (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i8962
+    source_url: https://www.irs.gov/instructions/i8962
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/f1040sse
+    name: Schedule SE (Form 1040), Self-Employment Tax (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sse
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-se-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/i1040sse
+    name: Instructions for Schedule SE (Form 1040), Self-Employment Tax (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040sse
+    source_url: https://www.irs.gov/instructions/i1040sse
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/p17
+    name: Publication 17 (2025), Your Federal Income Tax (For Individuals)
+    layer: federal
+    citation_path: us/form/irs/ty2025/p17
+    source_url: https://www.irs.gov/publications/p17
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+    scope: in
+    part: Income
+- jurisdiction: us-al
+  screener: []
+  full: []
+- jurisdiction: us-ak
+  screener: []
+  full: []
+- jurisdiction: us-az
+  screener: []
+  full: []
+- jurisdiction: us-ar
+  screener: []
+  full: []
+- jurisdiction: us-ca
+  screener:
+  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052.1
+    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
+    layer: state
+    citation_path: null
+    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052.1
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514
+    name: 2021-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514-instructions
+    name: 2021-3514-instructions
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514-instructions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514-instructions
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514
+    name: 2022-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514-instructions
+    name: 2022-3514-instructions
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514-instructions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514-instructions
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514
+    name: 2023-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514-instructions
+    name: 2023-3514-instructions
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514-instructions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514-instructions
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514
+    name: 2024-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514
+      references: 1
+      part: Credits
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3514-booklet
+    name: 2025-3514-booklet
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3514-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3514-booklet
+      references: 1
+      part: Credits
+  full:
+  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052.1
+    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
+    layer: state
+    citation_path: null
+    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052.1
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514
+    name: 2021-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514-instructions
+    name: 2021-3514-instructions
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514-instructions
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514
+    name: 2022-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514-instructions
+    name: 2022-3514-instructions
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514-instructions
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514
+    name: 2023-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514-instructions
+    name: 2023-3514-instructions
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514-instructions
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514
+    name: 2024-3514
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3514-booklet
+    name: 2025-3514-booklet
+    layer: state
+    citation_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3514-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-co
+  screener:
+  - key: https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=4f86a852-765a-489a-b554-66f6e7d5b065&nodeid=ABPAACAACAABAACABN&nodepath=%2fROOT%2fABP%2fABPAAC%2fABPAACAAC%2fABPAACAACAAB%2fABPAACAACAABAAC%2fABPAACAACAABAACABN&level=6&haschildren=&populated=false&title=39-22-129.+Child+tax+credit+-+legislative+declaration+-+definitions.&config=014FJAAyNGJkY2Y4Zi1mNjgyLTRkN2YtYmE4OS03NTYzNzYzOTg0OGEKAFBvZENhdGFsb2d592qv2Kywlf8caKqYROP5&pddocfullpath=%2fshared%2fdocument%2fstatutes-legislation%2furn%3acontentItem%3a633G-B1C3-GXJ9-30GW-00008-00&ecomp=7gf59kk&prid=2fe6fa8e-8df8-4d74-a340-c4fa9bc603d5
+    name: advance.lexis.com/documentpage/
+    layer: state
+    citation_path: null
+    source_url: https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=4f86a852-765a-489a-b554-66f6e7d5b065&nodeid=ABPAACAACAABAACABN&nodepath=%2fROOT%2fABP%2fABPAAC%2fABPAACAAC%2fABPAACAACAAB%2fABPAACAACAABAAC%2fABPAACAACAABAACABN&level=6&haschildren=&populated=false&title=39-22-129.+Child+tax+credit+-+legislative+declaration+-+definitions.&config=014FJAAyNGJkY2Y4Zi1mNjgyLTRkN2YtYmE4OS03NTYzNzYzOTg0OGEKAFBvZENhdGFsb2d592qv2Kywlf8caKqYROP5&pddocfullpath=%2fshared%2fdocument%2fstatutes-legislation%2furn%3acontentItem%3a633G-B1C3-GXJ9-30GW-00008-00&ecomp=7gf59kk&prid=2fe6fa8e-8df8-4d74-a340-c4fa9bc603d5
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
+    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+    name: leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+    layer: state
+    citation_path: null
+    source_url: https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+    sources:
+    - policyengine-references
+    references: 4
+    scope: in
+    part: Credits
+  - key: https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Credits
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us-co/form/cdor/ty2025/dr-0104-book
+    name: DR 0104 Book, Colorado Individual Income Tax Filing Guide (2025)
+    layer: state
+    citation_path: us-co/form/cdor/ty2025/dr-0104-book
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/form/cdor/ty2025/dr-0104-book
+      references: 1
+      part: Credits
+  full:
+  - key: https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=4f86a852-765a-489a-b554-66f6e7d5b065&nodeid=ABPAACAACAABAACABN&nodepath=%2fROOT%2fABP%2fABPAAC%2fABPAACAAC%2fABPAACAACAAB%2fABPAACAACAABAAC%2fABPAACAACAABAACABN&level=6&haschildren=&populated=false&title=39-22-129.+Child+tax+credit+-+legislative+declaration+-+definitions.&config=014FJAAyNGJkY2Y4Zi1mNjgyLTRkN2YtYmE4OS03NTYzNzYzOTg0OGEKAFBvZENhdGFsb2d592qv2Kywlf8caKqYROP5&pddocfullpath=%2fshared%2fdocument%2fstatutes-legislation%2furn%3acontentItem%3a633G-B1C3-GXJ9-30GW-00008-00&ecomp=7gf59kk&prid=2fe6fa8e-8df8-4d74-a340-c4fa9bc603d5
+    name: advance.lexis.com/documentpage/
+    layer: state
+    citation_path: null
+    source_url: https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=4f86a852-765a-489a-b554-66f6e7d5b065&nodeid=ABPAACAACAABAACABN&nodepath=%2fROOT%2fABP%2fABPAAC%2fABPAACAAC%2fABPAACAACAAB%2fABPAACAACAABAAC%2fABPAACAACAABAACABN&level=6&haschildren=&populated=false&title=39-22-129.+Child+tax+credit+-+legislative+declaration+-+definitions.&config=014FJAAyNGJkY2Y4Zi1mNjgyLTRkN2YtYmE4OS03NTYzNzYzOTg0OGEKAFBvZENhdGFsb2d592qv2Kywlf8caKqYROP5&pddocfullpath=%2fshared%2fdocument%2fstatutes-legislation%2furn%3acontentItem%3a633G-B1C3-GXJ9-30GW-00008-00&ecomp=7gf59kk&prid=2fe6fa8e-8df8-4d74-a340-c4fa9bc603d5
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
+    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+    name: leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+    layer: state
+    citation_path: null
+    source_url: https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+    name: tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-co/form/cdor/ty2025/dr-0104-book
+    name: DR 0104 Book, Colorado Individual Income Tax Filing Guide (2025)
+    layer: state
+    citation_path: us-co/form/cdor/ty2025/dr-0104-book
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-ct
+  screener: []
+  full: []
+- jurisdiction: us-de
+  screener: []
+  full: []
+- jurisdiction: us-dc
+  screener:
+  - key: https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+    name: code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+    layer: state
+    citation_path: null
+    source_url: https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+    sources:
+    - policyengine-references
+    references: 5
+    scope: in
+    part: Credits
+  full:
+  - key: https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+    name: code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+    layer: state
+    citation_path: null
+    source_url: https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-fl
+  screener: []
+  full: []
+- jurisdiction: us-ga
+  screener:
+  - key: https://legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf
+    name: legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf
+    layer: state
+    citation_path: null
+    source_url: https://legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf
+    name: legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf
+    layer: state
+    citation_path: null
+    source_url: https://legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-hi
+  screener: []
+  full: []
+- jurisdiction: us-id
+  screener:
+  - key: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/
+    name: legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/
+    layer: state
+    citation_path: null
+    source_url: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us-id/form/istc/ty2025/individual-income-tax-instructions
+    name: Idaho Individual Income Tax Instructions, Forms 40, 43, 39R, 39NR (2025, EIN00046 rev. 2026-03-02)
+    layer: state
+    citation_path: us-id/form/istc/ty2025/individual-income-tax-instructions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-id/form/istc/ty2025/individual-income-tax-instructions
+      references: 1
+      part: Credits
+  - key: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_08-23-2023
+    name: EFO00089_08-23-2023
+    layer: state
+    citation_path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_08-23-2023
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_08-23-2023
+      references: 1
+      part: Credits
+  - key: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_12-30-2022
+    name: EFO00089_12-30-2022
+    layer: state
+    citation_path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_12-30-2022
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_12-30-2022
+      references: 1
+      part: Credits
+  - key: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/ein00046/ein00046_10-23-2024
+    name: EIN00046_10-23-2024
+    layer: state
+    citation_path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/ein00046/ein00046_10-23-2024
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/ein00046/ein00046_10-23-2024
+      references: 1
+      part: Credits
+  full:
+  - key: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/
+    name: legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/
+    layer: state
+    citation_path: null
+    source_url: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-id/form/istc/ty2025/individual-income-tax-instructions
+    name: Idaho Individual Income Tax Instructions, Forms 40, 43, 39R, 39NR (2025, EIN00046 rev. 2026-03-02)
+    layer: state
+    citation_path: us-id/form/istc/ty2025/individual-income-tax-instructions
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_08-23-2023
+    name: EFO00089_08-23-2023
+    layer: state
+    citation_path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_08-23-2023
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_12-30-2022
+    name: EFO00089_12-30-2022
+    layer: state
+    citation_path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/efo00089/efo00089_12-30-2022
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/ein00046/ein00046_10-23-2024
+    name: EIN00046_10-23-2024
+    layer: state
+    citation_path: us-id/form/tax_forms/tax.idaho.gov/wp-content/uploads/forms/ein00046/ein00046_10-23-2024
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-il
+  screener:
+  - key: https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf
+    name: tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individu
+    layer: state
+    citation_path: null
+    source_url: https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual/il-1040-schedule-il-e-eic.pdf
+    name: taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual
+    layer: state
+    citation_path: null
+    source_url: https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual/il-1040-schedule-il-e-eic.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm
+    name: ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf
+    name: tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individu
+    layer: state
+    citation_path: null
+    source_url: https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual/il-1040-schedule-il-e-eic.pdf
+    name: taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual
+    layer: state
+    citation_path: null
+    source_url: https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual/il-1040-schedule-il-e-eic.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm
+    name: ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-in
+  screener: []
+  full: []
+- jurisdiction: us-ia
+  screener: []
+  full: []
+- jurisdiction: us-ks
+  screener: []
+  full: []
+- jurisdiction: us-ky
+  screener: []
+  full: []
+- jurisdiction: us-la
+  screener: []
+  full: []
+- jurisdiction: us-me
+  screener: []
+  full: []
+- jurisdiction: us-md
+  screener:
+  - key: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2022.pdf
+    name: interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet
+    layer: state
+    citation_path: null
+    source_url: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+    name: mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+    layer: state
+    citation_path: null
+    source_url: https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+  - key: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+    name: marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+    name: marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+  - key: us-md/form/tax_forms/marylandtaxes.gov/content/dam/mdcomp/tax/instructions/2024/resident-booklet
+    name: Resident-Booklet
+    layer: state
+    citation_path: us-md/form/tax_forms/marylandtaxes.gov/content/dam/mdcomp/tax/instructions/2024/resident-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/form/tax_forms/marylandtaxes.gov/content/dam/mdcomp/tax/instructions/2024/resident-booklet
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-105
+    name: Maryland Code, Tax-General § 10-105 — State income tax rates
+    layer: state
+    citation_path: us-md/statute/gtg/10-105
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-105
+      references: 1
+      part: Credits
+  full:
+  - key: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2022.pdf
+    name: interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet
+    layer: state
+    citation_path: null
+    source_url: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2022.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+    name: mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+    layer: state
+    citation_path: null
+    source_url: https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+    name: marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+    name: marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/form/tax_forms/marylandtaxes.gov/content/dam/mdcomp/tax/instructions/2024/resident-booklet
+    name: Resident-Booklet
+    layer: state
+    citation_path: us-md/form/tax_forms/marylandtaxes.gov/content/dam/mdcomp/tax/instructions/2024/resident-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-105
+    name: Maryland Code, Tax-General § 10-105 — State income tax rates
+    layer: state
+    citation_path: us-md/statute/gtg/10-105
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-ma
+  screener: []
+  full: []
+- jurisdiction: us-mi
+  screener: []
+  full: []
+- jurisdiction: us-mn
+  screener: []
+  full: []
+- jurisdiction: us-ms
+  screener: []
+  full: []
+- jurisdiction: us-mo
+  screener: []
+  full: []
+- jurisdiction: us-mt
+  screener: []
+  full: []
+- jurisdiction: us-ne
+  screener:
+  - key: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202
+    name: nebraskalegislature.gov/laws/statutes.php
+    layer: state
+    citation_path: null
+    source_url: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203
+    name: nebraskalegislature.gov/laws/statutes.php
+    layer: state
+    citation_path: null
+    source_url: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://revenue.nebraska.gov/businesses/child-care-tax-credit-act
+    name: revenue.nebraska.gov/businesses/child-care-tax-credit-act
+    layer: state
+    citation_path: null
+    source_url: https://revenue.nebraska.gov/businesses/child-care-tax-credit-act
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf
+    name: revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Bookle
+    layer: state
+    citation_path: null
+    source_url: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
+    name: revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Bookle
+    layer: state
+    citation_path: null
+    source_url: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202
+    name: nebraskalegislature.gov/laws/statutes.php
+    layer: state
+    citation_path: null
+    source_url: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203
+    name: nebraskalegislature.gov/laws/statutes.php
+    layer: state
+    citation_path: null
+    source_url: https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://revenue.nebraska.gov/businesses/child-care-tax-credit-act
+    name: revenue.nebraska.gov/businesses/child-care-tax-credit-act
+    layer: state
+    citation_path: null
+    source_url: https://revenue.nebraska.gov/businesses/child-care-tax-credit-act
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf
+    name: revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Bookle
+    layer: state
+    citation_path: null
+    source_url: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
+    name: revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Bookle
+    layer: state
+    citation_path: null
+    source_url: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-nv
+  screener: []
+  full: []
+- jurisdiction: us-nh
+  screener: []
+  full: []
+- jurisdiction: us-nj
+  screener:
+  - key: https://law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/
+    name: law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM
+    name: pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM
+    layer: state
+    citation_path: null
+    source_url: https://pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+    name: nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+    name: nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf
+    name: state.nj.us/treasury/taxation/pdf/current/1040i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us-nj/form/taxation/ty2025/nj-1040-instructions
+    name: Form NJ-1040, New Jersey Resident Return Instructions (2025)
+    layer: state
+    citation_path: us-nj/form/taxation/ty2025/nj-1040-instructions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-nj/form/taxation/ty2025/nj-1040-instructions
+      references: 1
+      part: Credits
+  full:
+  - key: https://law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/
+    name: law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM
+    name: pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM
+    layer: state
+    citation_path: null
+    source_url: https://pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+    name: nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+    name: nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf
+    name: state.nj.us/treasury/taxation/pdf/current/1040i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-nj/form/taxation/ty2025/nj-1040-instructions
+    name: Form NJ-1040, New Jersey Resident Return Instructions (2025)
+    layer: state
+    citation_path: us-nj/form/taxation/ty2025/nj-1040-instructions
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-nm
+  screener:
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://nmonesource.com/nmos/nmsa/en/item/4340/index.do
+    name: nmonesource.com/nmos/nmsa/en/item/4340/index.do
+    layer: state
+    citation_path: null
+    source_url: https://nmonesource.com/nmos/nmsa/en/item/4340/index.do
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://nmonesource.com/nmos/nmsl/en/item/18775/index.do
+    name: nmonesource.com/nmos/nmsl/en/item/18775/index.do
+    layer: state
+    citation_path: null
+    source_url: https://nmonesource.com/nmos/nmsl/en/item/18775/index.do
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf
+    name: klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f
+    layer: state
+    citation_path: null
+    source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://nmonesource.com/nmos/nmsa/en/item/4340/index.do
+    name: nmonesource.com/nmos/nmsa/en/item/4340/index.do
+    layer: state
+    citation_path: null
+    source_url: https://nmonesource.com/nmos/nmsa/en/item/4340/index.do
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://nmonesource.com/nmos/nmsl/en/item/18775/index.do
+    name: nmonesource.com/nmos/nmsl/en/item/18775/index.do
+    layer: state
+    citation_path: null
+    source_url: https://nmonesource.com/nmos/nmsl/en/item/18775/index.do
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-ny
+  screener:
+  - key: https://assembly.state.ny.us/leg/?Text=Y&bn=S3009&default_fld=&leg_video=&term=2025
+    name: assembly.state.ny.us/leg/
+    layer: state
+    citation_path: null
+    source_url: https://assembly.state.ny.us/leg/?Text=Y&bn=S3009&default_fld=&leg_video=&term=2025
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    name: tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    name: tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    name: tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    name: tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/pit/child-earned-payments.htm
+    name: tax.ny.gov/pit/child-earned-payments.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pit/child-earned-payments.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm
+    name: tax.ny.gov/pit/credits/empire_state_child_credit.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.tax.ny.gov/pit/empire-child-credit-payments.htm
+    name: tax.ny.gov/pit/empire-child-credit-payments.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pit/empire-child-credit-payments.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us-ny/form/tax/it-201-instructions
+    name: New York State IT-201 Instructions
+    layer: state
+    citation_path: us-ny/form/tax/it-201-instructions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ny/form/tax/it-201-instructions
+      references: 1
+      part: Credits
+  - key: us-ny/statute/TAX/606
+    name: N.Y. Tax Law § 606. Credits against tax
+    layer: state
+    citation_path: us-ny/statute/TAX/606
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ny/statute/TAX/606
+      references: 1
+      part: Credits
+  full:
+  - key: https://assembly.state.ny.us/leg/?Text=Y&bn=S3009&default_fld=&leg_video=&term=2025
+    name: assembly.state.ny.us/leg/
+    layer: state
+    citation_path: null
+    source_url: https://assembly.state.ny.us/leg/?Text=Y&bn=S3009&default_fld=&leg_video=&term=2025
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    name: tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    name: tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    name: tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    name: tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/pit/child-earned-payments.htm
+    name: tax.ny.gov/pit/child-earned-payments.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pit/child-earned-payments.htm
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm
+    name: tax.ny.gov/pit/credits/empire_state_child_credit.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/pit/empire-child-credit-payments.htm
+    name: tax.ny.gov/pit/empire-child-credit-payments.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/pit/empire-child-credit-payments.htm
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ny/form/tax/it-201-instructions
+    name: New York State IT-201 Instructions
+    layer: state
+    citation_path: us-ny/form/tax/it-201-instructions
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ny/statute/TAX/606
+    name: N.Y. Tax Law § 606. Credits against tax
+    layer: state
+    citation_path: us-ny/statute/TAX/606
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-nc
+  screener:
+  - key: https://www.ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open
+    name: ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open
+    layer: state
+    citation_path: null
+    source_url: https://www.ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children
+    name: ncdor.gov/taxes-forms/individual-income-tax/credit-children
+    layer: state
+    citation_path: null
+    source_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+    name: ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+    layer: state
+    citation_path: null
+    source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://www.ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open
+    name: ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open
+    layer: state
+    citation_path: null
+    source_url: https://www.ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children
+    name: ncdor.gov/taxes-forms/individual-income-tax/credit-children
+    layer: state
+    citation_path: null
+    source_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+    name: ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+    layer: state
+    citation_path: null
+    source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-nd
+  screener: []
+  full: []
+- jurisdiction: us-oh
+  screener: []
+  full: []
+- jurisdiction: us-ok
+  screener: []
+  full: []
+- jurisdiction: us-or
+  screener:
+  - key: https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled
+    name: olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled
+    layer: state
+    citation_path: null
+    source_url: https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Credits
+  - key: https://oregon.public.law/statutes/ors_315.273
+    name: oregon.public.law/statutes/ors_315.273
+    layer: state
+    citation_path: null
+    source_url: https://oregon.public.law/statutes/ors_315.273
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://www.oregonlegislature.gov/bills_laws/ors/ors315.html
+    name: oregonlegislature.gov/bills_laws/ors/ors315.html
+    layer: state
+    citation_path: null
+    source_url: https://www.oregonlegislature.gov/bills_laws/ors/ors315.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2023
+    name: form-or-40-inst_101-040-1_2023
+    layer: state
+    citation_path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2023
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2023
+      references: 1
+      part: Credits
+  - key: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2024
+    name: form-or-40-inst_101-040-1_2024
+    layer: state
+    citation_path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2024
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2024
+      references: 1
+      part: Credits
+  - key: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2025
+    name: form-or-40-inst_101-040-1_2025
+    layer: state
+    citation_path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2025
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2025
+      references: 1
+      part: Credits
+  full:
+  - key: https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled
+    name: olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled
+    layer: state
+    citation_path: null
+    source_url: https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://oregon.public.law/statutes/ors_315.273
+    name: oregon.public.law/statutes/ors_315.273
+    layer: state
+    citation_path: null
+    source_url: https://oregon.public.law/statutes/ors_315.273
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oregonlegislature.gov/bills_laws/ors/ors315.html
+    name: oregonlegislature.gov/bills_laws/ors/ors315.html
+    layer: state
+    citation_path: null
+    source_url: https://www.oregonlegislature.gov/bills_laws/ors/ors315.html
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2023
+    name: form-or-40-inst_101-040-1_2023
+    layer: state
+    citation_path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2023
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2024
+    name: form-or-40-inst_101-040-1_2024
+    layer: state
+    citation_path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2024
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2025
+    name: form-or-40-inst_101-040-1_2025
+    layer: state
+    citation_path: us-or/form/tax_forms/oregon.gov/dor/forms/formspubs/form-or-40-inst_101-040-1_2025
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-pa
+  screener: []
+  full: []
+- jurisdiction: us-ri
+  screener:
+  - key: https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html
+    name: webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html
+    layer: state
+    citation_path: null
+    source_url: https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html
+    sources:
+    - policyengine-references
+    references: 6
+    scope: in
+    part: Credits
+  full:
+  - key: https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html
+    name: webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html
+    layer: state
+    citation_path: null
+    source_url: https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-sc
+  screener: []
+  full: []
+- jurisdiction: us-sd
+  screener: []
+  full: []
+- jurisdiction: us-tn
+  screener: []
+  full: []
+- jurisdiction: us-tx
+  screener: []
+  full: []
+- jurisdiction: us-ut
+  screener:
+  - key: https://files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf
+    name: files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf
+    layer: state
+    citation_path: null
+    source_url: https://files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf
+    name: files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf
+    layer: state
+    citation_path: null
+    source_url: https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf
+    name: le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf
+    name: le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    name: le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2023050320240101
+    name: le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2023050320240101
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2025010120240501
+    name: le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2025010120240501
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/~2025/bills/static/HB0106.html
+    name: le.utah.gov/~2025/bills/static/HB0106.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/~2025/bills/static/HB0106.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://le.utah.gov/~2026/bills/static/HB0290.html
+    name: le.utah.gov/~2026/bills/static/HB0290.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/~2026/bills/static/HB0290.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf
+    name: files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf
+    layer: state
+    citation_path: null
+    source_url: https://files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf
+    name: files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf
+    layer: state
+    citation_path: null
+    source_url: https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf
+    name: le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf
+    name: le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    name: le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2023050320240101
+    name: le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2023050320240101
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2025010120240501
+    name: le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2025010120240501
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/~2025/bills/static/HB0106.html
+    name: le.utah.gov/~2025/bills/static/HB0106.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/~2025/bills/static/HB0106.html
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/~2026/bills/static/HB0290.html
+    name: le.utah.gov/~2026/bills/static/HB0290.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/~2026/bills/static/HB0290.html
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-vt
+  screener:
+  - key: https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%20House%20and%20Senate%20Official.pdf
+    name: legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%
+    layer: state
+    citation_path: null
+    source_url: https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%20House%20and%20Senate%20Official.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://legislature.vermont.gov/statutes/section/32/151/05830f
+    name: legislature.vermont.gov/statutes/section/32/151/05830f
+    layer: state
+    citation_path: null
+    source_url: https://legislature.vermont.gov/statutes/section/32/151/05830f
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  full:
+  - key: https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%20House%20and%20Senate%20Official.pdf
+    name: legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%
+    layer: state
+    citation_path: null
+    source_url: https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%20House%20and%20Senate%20Official.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://legislature.vermont.gov/statutes/section/32/151/05830f
+    name: legislature.vermont.gov/statutes/section/32/151/05830f
+    layer: state
+    citation_path: null
+    source_url: https://legislature.vermont.gov/statutes/section/32/151/05830f
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf
+    name: tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf
+    part: Credits
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-va
+  screener: []
+  full: []
+- jurisdiction: us-wa
+  screener: []
+  full: []
+- jurisdiction: us-wv
+  screener: []
+  full: []
+- jurisdiction: us-wi
+  screener: []
+  full: []
+- jurisdiction: us-wy
+  screener: []
+  full: []

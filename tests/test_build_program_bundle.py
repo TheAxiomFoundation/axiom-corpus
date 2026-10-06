@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import datetime as dt
-import json
 
 import yaml
 
@@ -101,274 +100,220 @@ def test_document_key_takes_the_section_that_holds_a_cited_provision():
     )
 
 
-def test_folder_and_plan_parts_come_from_the_config():
-    folders = {
-        "income": "Income",
-        "income/deductions": "Deductions",
-        "work_requirements": "Work requirements",
+def test_rule_part_takes_the_first_matching_rule_and_flattens_shared_lists():
+    shared = [{"pattern": "(?i)income", "part": "Income"}]
+    rules = bundle._rules([{"pattern": "deductions", "part": "Deductions"}, shared])
+    assert bundle.rule_part(rules, "gov/usda/snap/income/deductions/x.yaml") == "Deductions"
+    assert bundle.rule_part(rules, None, "https://x/income") == "Income"
+    assert bundle.rule_part(rules, "gov/usda/snap/asset_test") is None
+
+
+def test_schema_sections_read_every_schema_shape():
+    snap = {
+        "elements": [
+            {"id": "a", "level": "federal_statute", "citation_path": "us/statute/7/2014/a"}
+        ]
     }
-    assert (
-        bundle.folder_part("parameters/gov/usda/snap/income/deductions/standard.yaml", folders)
-        == "Deductions"
-    )
-    assert (
-        bundle.folder_part("variables/gov/usda/snap/income/snap_gross_income.py", folders)
-        == "Income"
-    )
-    assert (
-        bundle.folder_part("parameters/gov/usda/snap/work_requirements/abawd/age.yaml", folders)
-        == "Work requirements"
-    )
-    assert bundle.folder_part("parameters/gov/irs/income/x.yaml", folders) is None
-    patterns = [
-        {"pattern": "^us/manual/ssa/", "part": "Definitions from other programs"},
-        {"pattern": "(?i)poverty", "part": "Income"},
+    tanf = {
+        "federal_statute_elements": [{"id": "t1", "citation": "42 U.S.C. 601", "name": "Purpose"}],
+        "federal_regulation_elements": [{"id": "t2", "citation": "45 CFR 260.20"}],
+    }
+    medicaid = {
+        "elements": [
+            {"id": "m1", "level": "federal_only", "federal_citation": "42 U.S.C. 1396a(a)(10)"},
+            {"id": "m2", "level": "federal_only", "federal_citation": "42 CFR 431 subpart E"},
+            {"id": "m3", "level": "state", "federal_citation": "42 U.S.C. 1396a(a)(3)"},
+        ]
+    }
+    tax = {"elements": [{"id": "F1", "level": "federal", "sections": ["1", "32"]}]}
+    assert [p for p, _, _ in bundle.schema_sections(snap)] == ["us/statute/7/2014/a"]
+    assert [p for p, _, _ in bundle.schema_sections(tanf)] == [
+        "us/statute/42/601",
+        "us/regulation/45/260/20",
     ]
-    assert (
-        bundle.plan_part(patterns, "us/manual/ssa/poms/si/01140.200")
-        == "Definitions from other programs"
-    )
-    assert bundle.plan_part(patterns, None, "https://aspe.hhs.gov/poverty-guidelines") == "Income"
-    assert bundle.plan_part(patterns, "us/statute/7/2014") is None
+    assert [p for p, _, _ in bundle.schema_sections(medicaid)] == [
+        "us/statute/42/1396a",
+        "us/regulation/42/431",
+    ]
+    assert [p for p, _, _ in bundle.schema_sections(tax)] == ["us/statute/26/1", "us/statute/26/32"]
 
 
-def config(tmp_path, monkeypatch, manifests: dict[str, str], references: list[dict]) -> dict:
-    """A minimal bundle config over manifests and references written under tmp_path."""
+def config(tmp_path, monkeypatch) -> dict:
+    """A minimal programs config, with one program and two states, under tmp_path."""
     monkeypatch.setattr(bundle, "REPO", tmp_path)
-    (tmp_path / "manifests").mkdir()
-    for name, text in manifests.items():
-        (tmp_path / "manifests" / name).write_text(text)
-    (tmp_path / "refs.json").write_text(json.dumps({"program": "snap", "references": references}))
+    (tmp_path / "schema.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "elements": [
+                    {
+                        "id": "s1",
+                        "level": "federal_statute",
+                        "citation_path": "us/statute/7/2014/a",
+                    },
+                    {
+                        "id": "s2",
+                        "level": "federal_regulation",
+                        "citation_path": "us/regulation/7/275/1",
+                    },
+                ]
+            }
+        )
+    )
     return {
-        "id": "us-az/snap",
-        "title": "Arizona SNAP",
-        "program": "snap",
-        "jurisdiction": "us-az",
         "as_of": "2026-10-06",
-        "parts": ["Income", "Deductions", "Benefit amount", "Other"],
-        "screener": {
-            "title": "Screener-level parity",
-            "definition": "d",
-            "references": "refs.json",
-            "folder_parts": {"income": "Income", "income/deductions": "Deductions"},
-            "plan_parts": [],
-            "exclusions": {
-                "back_year": "Back-year",
-                "secondary": "Secondary",
-                "data_series": "Data series",
-                "other_state": "Another state",
-                "enacting": "Enacting text",
-            },
-            "secondary_hosts": "(?i)snapscreener",
-            "data_series_hosts": "(?i)snapqcdata",
-            "state_hosts": STATE_HOSTS,
+        "jurisdictions": ["az", "ca"],
+        "policyengine_us": {"references": "refs-{program}.json"},
+        "tiers": {
+            "screener": {"title": "Screener-level parity", "definition": "d"},
+            "full": {"title": "Full document bundle", "definition": "d"},
         },
-        "full": {
-            "title": "Full document bundle",
-            "definition": "d",
-            "manifests": [],
-            "exclude": [],
-            "parts": [],
+        "exclusions": {
+            "back_year": "Back-year",
+            "secondary": "Secondary",
+            "data_series": "Data series",
+            "enacting": "Enacting text",
+        },
+        "secondary_hosts": "(?i)snapscreener",
+        "data_series_hosts": "(?i)snapqcdata",
+        "federal_hosts": "(?i)(^|\\.)(usda|fns|fna)\\.gov$|law\\.cornell\\.edu$",
+        "state_hosts": STATE_HOSTS,
+        "host_aliases": {"fna.usda.gov": "fns.usda.gov"},
+        "programs": {
+            "snap": {
+                "title": "SNAP",
+                "plan_programs": ["snap"],
+                "schema": "schema.yaml",
+                "federal_exclude": [
+                    {"pattern": "^us/regulation/7/275", "reason": "Administration"}
+                ],
+                "federal_manifests": "^us-snap",
+                "state_manifests": "snap",
+                "state_documents": "(?i)nutrition assistance",
+                "parts": ["Income", "Deductions", "Benefit amount", "Other"],
+                "part_rules": [
+                    {"pattern": "deductions", "part": "Deductions"},
+                    [{"pattern": "(?i)income", "part": "Income"}],
+                ],
+                "states": {
+                    "az": {
+                        "known_sources": [
+                            {
+                                "citation_path": "us-az/statute/46",
+                                "title": "ARS 46",
+                                "part": "Other",
+                            }
+                        ]
+                    }
+                },
+            }
         },
     }
 
 
-def test_screener_tier_groups_references_into_documents_with_parts_and_exclusions(
-    tmp_path, monkeypatch
-):
+def test_build_program_puts_each_reference_in_the_layer_of_the_law_it_names(tmp_path, monkeypatch):
+    cfg = config(tmp_path, monkeypatch)
     deductions = "parameters/gov/usda/snap/income/deductions/x.yaml"
-    cfg = config(
-        tmp_path,
-        monkeypatch,
-        {
-            "fns.yaml": "documents:\n- citation_path: us/guidance/usda/fns/snap-fy2027-cola\n"
-            "  source_url: https://www.fna.usda.gov/snap/allotment/cola/fy27\n"
-        },
-        [
+    references = {
+        "references": [
+            # Federal law: the federal layer, a whole section a unit too.
             {
                 "url": "https://law.cornell.edu/uscode/text/7/2014#e_6_A",
                 "citation": "us/statute/7/2014/e/6/A",
                 "files": [deductions],
             },
             {
-                "url": "https://law.cornell.edu/uscode/text/7/2014#g",
-                "citation": "us/statute/7/2014/g",
-                "files": ["parameters/gov/usda/snap/income/sources/y.yaml"],
-            },
-            # A whole section PolicyEngine cites is a unit too.
-            {
                 "url": "https://law.cornell.edu/uscode/text/7/2015",
                 "citation": "us/statute/7/2015",
                 "files": [deductions],
             },
-            {"url": "https://www.snapscreener.com/blog/x", "citation": None, "files": []},
-            {"url": "https://hhs.iowa.gov/media/4001/download", "citation": None, "files": []},
-            # Another state's rule in a file that lists every state's.
+            # A state's own source, from its state folder: that state's layer.
             {
-                "url": "https://risos-apa.s3.amazonaws.com/DHS/7907.pdf",
-                "titles": ["Rhode Island DHS SNAP rule 7907"],
+                "url": "https://dbmefaapolicy.azdes.gov/FAA5/x.html",
                 "citation": None,
+                "states": ["az"],
+                "files": ["parameters/gov/states/az/des/snap/x.yaml"],
+            },
+            # Another state's rule in a file that lists every state's: that state's layer.
+            {
+                "url": "https://www.cdss.ca.gov/acl-25-79.pdf",
+                "citation": None,
+                "titles": ["California ACL 25-79"],
                 "files": [deductions],
             },
-            # The public law, where the same file cites the codified section.
+            # A federal page cited from a state folder stays federal.
+            {
+                "url": "https://www.fns.usda.gov/snap/work-requirements",
+                "citation": None,
+                "states": ["az"],
+                "files": ["parameters/gov/states/az/des/snap/y.yaml"],
+            },
+            {"url": "https://www.snapscreener.com/blog/x", "citation": None, "files": [deductions]},
             {
                 "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf",
                 "citation": None,
                 "files": [deductions],
             },
-            # The corpus registers FNS pages at fna.usda.gov.
-            {
-                "url": "https://www.fns.usda.gov/snap/allotment/cola/fy27",
-                "citation": None,
-                "files": [deductions],
-            },
-        ],
-    )
-    cfg["screener"]["host_aliases"] = {"fna.usda.gov": "fns.usda.gov"}
-    tier = bundle.screener_tier(cfg, json.loads((tmp_path / "refs.json").read_text()), None)
-    docs = {d["key"]: d for d in tier["documents"]}
-    assert docs["us/statute/7/2014"]["scope"] == "in"
-    assert [(c["path"], c["part"]) for c in docs["us/statute/7/2014"]["cited"]] == [
-        ("us/statute/7/2014/e/6/A", "Deductions"),
-        ("us/statute/7/2014/g", "Income"),
-    ]
-    assert [c["path"] for c in docs["us/statute/7/2015"]["cited"]] == ["us/statute/7/2015"]
-    assert docs["https://www.snapscreener.com/blog/x"]["reason"] == "Secondary"
-    assert docs["https://hhs.iowa.gov/media/4001/download"]["reason"] == "Another state"
-    assert docs["https://risos-apa.s3.amazonaws.com/DHS/7907.pdf"]["reason"] == "Another state"
-    assert (
-        docs["https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"]["reason"]
-        == "Enacting text"
-    )
-    assert docs["us/guidance/usda/fns/snap-fy2027-cola"]["scope"] == "in"
-    assert tier["membership"]["fiscal_year"] == 2027
-
-
-def test_full_tier_applies_exclusions_parts_and_one_entry_per_source(tmp_path, monkeypatch):
-    pages = "documents:\n" + "".join(
-        f"- citation_path: us-az/manual/des/faa5/p{i}\n  title: Page {i}\n  source_url: https://x/{i}\n  metadata: {{toc_sequence: {i}}}\n"
-        for i in range(4)
-    )
-    cfg = config(
-        tmp_path,
-        monkeypatch,
-        {
-            "faa5.yaml": pages,
-            "plan.yaml": "documents:\n- title: E&T plan\n  source_url: https://fna.usda.gov/snap-et/az\n",
-            "own.yaml": "documents:\n- title: E&T plan FFY 2026\n  citation_path: us-az/policy/et/ffy2026\n  source_url: https://fna.usda.gov/snap-et/az\n",
-        },
-        [],
-    )
-    cfg["full"].update(
-        {
-            "manifests": ["manifests/faa5.yaml", "manifests/plan.yaml", "manifests/own.yaml"],
-            "exclude": [
-                {
-                    "manifest": "manifests/faa5.yaml",
-                    "toc": [2, 3],
-                    "reason": "Cash Assistance: not SNAP",
-                }
-            ],
-            "parts": [
-                {"manifest": "manifests/faa5.yaml", "toc": [1, 1], "part": "Benefit amount"},
-                {"key": "us-az/policy/et/ffy2026", "part": "Income"},
-            ],
-        }
-    )
-    tier = bundle.full_tier(cfg, {"documents": []})
-    assert [
-        (d["key"].rsplit("/", 1)[1], d["scope"], d.get("reason"), d["part"])
-        for d in tier["documents"]
-    ] == [
-        ("p0", "excluded", "Index or overview page: no rules of its own", "Other"),
-        ("p1", "in", None, "Benefit amount"),
-        ("p2", "excluded", "Cash Assistance: not SNAP", "Other"),
-        ("p3", "excluded", "Cash Assistance: not SNAP", "Other"),
-        ("ffy2026", "in", None, "Income"),
-    ]
-
-
-def test_build_refuses_a_part_the_config_does_not_list(tmp_path, monkeypatch):
-    cfg = config(
-        tmp_path, monkeypatch, {"faa5.yaml": "documents:\n- citation_path: a/b\n  title: A\n"}, []
-    )
-    cfg["full"].update(
-        {
-            "manifests": ["manifests/faa5.yaml"],
-            "parts": [{"manifest": "manifests/faa5.yaml", "part": "Assets"}],
-        }
-    )
-    path = tmp_path / "manifests" / "x.config.yaml"
-    path.write_text(yaml.safe_dump(cfg))
-    try:
-        bundle.build(path)
-    except SystemExit as error:
-        assert "Assets" in str(error)
-    else:
-        raise AssertionError("build accepted a part the config does not list")
-
-
-def test_full_tier_holds_the_screener_tier_the_federal_law_and_known_state_sources(
-    tmp_path, monkeypatch
-):
-    cfg = config(tmp_path, monkeypatch, {}, [])
-    (tmp_path / "schema.yaml").write_text(
-        yaml.safe_dump(
-            {
-                "elements": [
-                    {"id": "a", "label": "7 USC 2014(a)", "citation_path": "us/statute/7/2014/a"},
-                    {"id": "b", "label": "7 USC 2014(d)", "citation_path": "us/statute/7/2014/d"},
-                    {"id": "c", "label": "7 CFR 275.1", "citation_path": "us/regulation/7/275/1"},
-                    {
-                        "id": "d",
-                        "label": "FY 2026 COLA",
-                        "citation_path": "us/guidance/fy2026-cola",
-                    },
-                    {"id": "e", "label": "State fact", "citation_path": None},
-                ]
-            }
-        )
-    )
-    cfg["full"].update(
-        {
-            "federal": {
-                "schema": "schema.yaml",
-                "exclude": [{"pattern": "^us/regulation/7/275", "reason": "Administration"}],
-                "parts": [{"pattern": "^us/statute/7/2014", "part": "Income"}],
-            },
-            "known_sources": [
-                {
-                    "citation_path": "us-az/statute/46",
-                    "title": "ARS Title 46",
-                    "part": "Deductions",
-                    "note": "No manifest yet",
-                }
-            ],
-        }
-    )
-    screener = {
-        "documents": [
-            {
-                "key": "us/statute/7/2015",
-                "name": "7 USC 2015",
-                "layer": "federal",
-                "citation_path": "us/statute/7/2015",
-                "source_url": None,
-                "scope": "in",
-                "part": "Deductions",
-            },
-            {"key": "https://x/old", "scope": "excluded", "reason": "Back-year"},
         ]
     }
-    tier = bundle.full_tier(cfg, screener)
-    docs = {d["key"]: d for d in tier["documents"]}
-    # The screener tier's in-scope documents are all here, and only those.
-    assert docs["us/statute/7/2015"]["sources"] == ["screener"]
-    assert "https://x/old" not in docs
-    # Schema elements group into sections, each once.
-    assert docs["us/statute/7/2014"]["sources"] == ["schema:a", "schema:b"]
-    assert docs["us/statute/7/2014"]["part"] == "Income"
-    assert docs["us/regulation/7/275/1"]["reason"] == "Administration"
-    assert docs["us/guidance/fy2026-cola"]["reason"] == "Back-year"
-    assert docs["us-az/statute/46"]["scope"] == "in"
-    assert tier["membership"]["in_scope_by_layer"] == {"federal": 2, "state": 1}
+    manifests = {
+        "manifests/us-snap-guidance.yaml": [
+            {
+                "citation_path": "us/guidance/usda/fns/snap-fy2027-cola",
+                "title": "FY 2027 COLA",
+                "source_url": "https://www.fna.usda.gov/snap/allotment/cola/fy27",
+            }
+        ],
+        "manifests/us-az-snap-primary-policy.yaml": [
+            {
+                "citation_path": "us-az/regulation/aac/6/14",
+                "title": "AAC 6-14",
+                "source_url": "https://apps.azsos.gov/6-14.pdf",
+            }
+        ],
+        # A manual shared by programs: only the documents that name this one.
+        "manifests/us-ca-manuals.yaml": [
+            {
+                "citation_path": "us-ca/manual/x/nutrition",
+                "title": "Nutrition assistance budgeting",
+            },
+            {"citation_path": "us-ca/manual/x/child-care", "title": "Child care eligibility"},
+        ],
+    }
+    index = bundle.index_manifests(manifests, cfg["host_aliases"])
+    out = bundle.build_program(cfg, "snap", references, None, manifests, index)
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    assert list(layers) == ["us", "us-az", "us-ca"]
+    federal = {d["key"]: d for d in layers["us"]["screener"]}
+    assert [c["path"] for c in federal["us/statute/7/2014"]["cited"]] == ["us/statute/7/2014/e/6/A"]
+    assert federal["us/statute/7/2014"]["part"] == "Deductions"
+    assert [c["path"] for c in federal["us/statute/7/2015"]["cited"]] == ["us/statute/7/2015"]
+    assert federal["https://www.fns.usda.gov/snap/work-requirements"]["scope"] == "in"
+    assert federal["https://www.snapscreener.com/blog/x"]["reason"] == "Secondary"
+    assert (
+        federal["https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"]["reason"]
+        == "Enacting text"
+    )
+    assert [d["key"] for d in layers["us-az"]["screener"]] == [
+        "https://dbmefaapolicy.azdes.gov/FAA5/x.html"
+    ]
+    assert [d["key"] for d in layers["us-ca"]["screener"]] == [
+        "https://www.cdss.ca.gov/acl-25-79.pdf"
+    ]
+    # The full tier: the screener documents, then the federal law and guidance, then the state's sources.
+    federal_full = {d["key"]: d for d in layers["us"]["full"]}
+    assert federal_full["us/statute/7/2014"]["sources"] == ["screener", "schema:s1"]
+    assert federal_full["us/regulation/7/275/1"]["reason"] == "Administration"
+    assert federal_full["us/guidance/usda/fns/snap-fy2027-cola"]["scope"] == "in"
+    az_full = [d["key"] for d in layers["us-az"]["full"] if d["scope"] == "in"]
+    assert az_full == [
+        "https://dbmefaapolicy.azdes.gov/FAA5/x.html",
+        "us-az/regulation/aac/6/14",
+        "us-az/statute/46",
+    ]
+    ca_full = [d["key"] for d in layers["us-ca"]["full"]]
+    assert "us-ca/manual/x/nutrition" in ca_full and "us-ca/manual/x/child-care" not in ca_full
+    # Every layer's full tier holds its screener tier.
+    for layer in out["layers"]:
+        screener = {d["key"] for d in layer["screener"] if d["scope"] == "in"}
+        assert screener <= {d["key"] for d in layer["full"] if d["scope"] == "in"}
+    assert out["tiers"][0]["membership"]["fiscal_year"] == 2027

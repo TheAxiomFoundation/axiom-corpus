@@ -1,23 +1,30 @@
 #!/usr/bin/env python3
-"""Export the PolicyEngine-US references a program bundle's screener tier
+"""Export the PolicyEngine-US references every program bundle's screener tier
 draws on, from one release: the newest one by default.
 
-``screener.policyengine_us.release`` in the bundle config is ``latest`` (the
-newest version published on PyPI) or a version number. The script finds the
-release commit on policyengine-us main (the commit that set that version),
-reads every parameter and variable file under the config's folders at that
-commit, and records each reference URL once with every file that cites it. A citation path is derived only where the URL's own structure
-carries it (Cornell, eCFR, uscode.house.gov); the bundle builder joins the rest
-to corpus manifests by URL and grades exclusions itself.
+``policyengine_us.release`` in the programs config is ``latest`` (the newest
+version published on PyPI) or a version number. The script finds the release
+commit on policyengine-us main (the commit that set that version), reads every
+parameter and variable file at that commit once, and gives each program the
+references of its files:
+
+- its federal folders (``policyengine_folders``), which apply to every state;
+- each state's folders for the program (``state_folders``: a segment after
+  ``gov/states/<st>/`` that names the program, or a pattern on the path
+  there). A reference from a state folder records that state.
+
+A citation path is derived only where the URL's own structure carries it
+(Cornell, eCFR, uscode.house.gov, govinfo, SSA POMS); the bundle builder joins
+the rest to corpus manifests by URL and grades exclusions itself.
 
 Usage::
 
     python scripts/export_policyengine_references.py \\
-        manifests/program-bundles/us-az-snap.config.yaml --checkout ~/policyengine-us
+        manifests/program-bundles/programs.config.yaml --checkout ~/policyengine-us
 
-The export is written to the config's ``screener.references`` path and
-records the version and commit it read, so a rebuild from the same export is
-exact; re-running it moves the bundle to the newest release.
+One export per program, at the config's ``policyengine_us.references`` path.
+Each records the version and commit it read, so a rebuild from the same
+export is exact; re-running it moves the bundles to the newest release.
 """
 
 from __future__ import annotations
@@ -27,6 +34,7 @@ import json
 import re
 import subprocess
 import urllib.request
+from collections import defaultdict
 from pathlib import Path
 
 import yaml
@@ -36,12 +44,34 @@ ROOT = "policyengine_us"
 PYPI = "https://pypi.org/pypi/policyengine-us/json"
 QUOTED_URL = re.compile(r"""["'](https?://[^"'\s]+)["']""")
 PY_REFERENCE = re.compile(r"^(\s+)reference\s*=", re.M)
+STATE_FILE = re.compile(r"^(?:parameters|variables)/gov/states/([a-z]{2})/(.+)$")
 
 
 def git(checkout: Path, *args: str) -> str:
     return subprocess.run(
         ["git", "-C", str(checkout), *args], check=True, capture_output=True, text=True
     ).stdout
+
+
+def read_files(checkout: Path, commit: str, paths: list[str]) -> dict[str, str]:
+    """Every file's text at a commit, through one ``git cat-file --batch``."""
+    proc = subprocess.run(
+        ["git", "-C", str(checkout), "cat-file", "--batch"],
+        input="".join(f"{commit}:{p}\n" for p in paths).encode(),
+        check=True,
+        capture_output=True,
+    )
+    out, data, pos = {}, proc.stdout, 0
+    for path in paths:
+        end = data.index(b"\n", pos)
+        header = data[pos:end].decode().split()
+        pos = end + 1
+        if len(header) < 3 or header[1] != "blob":
+            continue
+        size = int(header[2])
+        out[path] = data[pos : pos + size].decode("utf-8", errors="replace")
+        pos += size + 1
+    return out
 
 
 def newest_published() -> str | None:
@@ -122,6 +152,16 @@ def python_references(text: str) -> list[tuple[str, str | None]]:
     return out
 
 
+def file_references(path: str, text: str) -> list[tuple[str, str | None]]:
+    if path.endswith(".yaml"):
+        # Every scalar as text: PolicyEngine dates some values 0000-01-01.
+        try:
+            return yaml_references(yaml.load(text, Loader=yaml.BaseLoader))
+        except yaml.YAMLError:
+            return []
+    return python_references(text)
+
+
 def _frag_parts(frag: str) -> list[str]:
     return [x for x in re.split(r"[_\-/]", frag.replace("substep", "").replace("subst", "")) if x]
 
@@ -167,84 +207,118 @@ def citation_from_url(url: str) -> tuple[str, str] | None:
     return None
 
 
-def export(config_path: Path, checkout: Path) -> dict:
-    cfg = yaml.safe_load(config_path.read_text())
-    pin = cfg["screener"]["policyengine_us"]
-    version, commit = resolve_release(checkout, str(pin.get("release", "latest")))
-    files = git(
-        checkout,
-        "ls-tree",
-        "-r",
-        "--name-only",
-        commit,
-        "--",
-        *[
-            f"{ROOT}/{kind}/{folder}"
-            for folder in pin["folders"]
-            for kind in ("parameters", "variables")
-        ],
-    ).split()
-    cited: dict[str, list[str]] = {}
-    titles: dict[str, list[str]] = {}
-    for path in sorted(files):
-        if not path.endswith((".yaml", ".py")):
+def state_program_match(pattern: str, rel: str) -> bool:
+    """Whether a path under gov/states/<st>/ is the program's: a pattern that
+    starts with ^ matches the path; otherwise one of the first two segments
+    (an agency, then a program, or the program alone) must be the program."""
+    if pattern.startswith("^"):
+        return re.search(pattern, rel) is not None
+    return any(re.fullmatch(pattern, seg) for seg in rel.split("/")[:2])
+
+
+def programs_of(path: str, programs: dict) -> list[tuple[str, str | None]]:
+    """(program, state) pairs a PolicyEngine file belongs to; state None for a federal folder."""
+    short = path.removeprefix(f"{ROOT}/")
+    rel = short.split("/", 1)[1] if "/" in short else short
+    out: list[tuple[str, str | None]] = []
+    m = STATE_FILE.match(short)
+    for pid, prog in programs.items():
+        if (
+            m
+            and prog.get("state_folders")
+            and state_program_match(prog["state_folders"], m.group(2))
+        ):
+            out.append((pid, m.group(1)))
             continue
-        text = git(checkout, "show", f"{commit}:{path}")
-        if path.endswith(".yaml"):
-            # Every scalar as text: PolicyEngine dates some values 0000-01-01.
-            try:
-                urls = yaml_references(yaml.load(text, Loader=yaml.BaseLoader))
-            except yaml.YAMLError:
-                urls = []
-        else:
-            urls = python_references(text)
+        for folder in prog.get("policyengine_folders") or []:
+            if rel == folder or rel.startswith(folder + "/"):
+                out.append((pid, None))
+                break
+    return out
+
+
+def export(config_path: Path, checkout: Path) -> dict[str, dict]:
+    cfg = yaml.safe_load(config_path.read_text())
+    pin = cfg["policyengine_us"]
+    version, commit = resolve_release(checkout, str(pin.get("release", "latest")))
+    programs = cfg["programs"]
+    files = [
+        p
+        for p in git(
+            checkout,
+            "ls-tree",
+            "-r",
+            "--name-only",
+            commit,
+            "--",
+            f"{ROOT}/parameters/gov",
+            f"{ROOT}/variables/gov",
+        ).split()
+        if p.endswith((".yaml", ".py"))
+    ]
+    owners = {p: programs_of(p, programs) for p in files}
+    texts = read_files(checkout, commit, [p for p, o in owners.items() if o])
+    cited: dict[str, dict[str, dict]] = defaultdict(dict)
+    files_read: dict[str, int] = defaultdict(int)
+    for path, text in texts.items():
         short = path.removeprefix(f"{ROOT}/")
-        for url, title in urls:
-            if short not in cited.setdefault(url, []):
-                cited[url].append(short)
-            if title and title not in titles.setdefault(url, []):
-                titles[url].append(title)
-    references = []
-    for url, citing in sorted(cited.items()):
-        found = citation_from_url(url)
-        references.append(
-            {
-                "url": url,
-                "kind": found[0] if found else None,
-                "citation": found[1] if found else None,
-                "titles": titles.get(url, []),
-                "files": citing,
-            }
-        )
-    return {
-        "policyengine_us_release": str(pin.get("release", "latest")),
-        "policyengine_us_version": version,
-        "policyengine_us_commit": commit,
-        "policyengine_us_commit_date": git(checkout, "show", "-s", "--format=%cs", commit).strip(),
-        "program": cfg["program"],
-        "state": cfg["jurisdiction"],
-        "folders": pin["folders"],
-        "derived_by": "scripts/export_policyengine_references.py",
-        "files_read": sum(p.endswith((".yaml", ".py")) for p in files),
-        "references": references,
-    }
+        for pid, state in owners[path]:
+            files_read[pid] += 1
+            for url, title in file_references(path, text):
+                ref = cited[pid].setdefault(url, {"files": [], "titles": [], "states": []})
+                if short not in ref["files"]:
+                    ref["files"].append(short)
+                if title and title not in ref["titles"]:
+                    ref["titles"].append(title)
+                if state and state not in ref["states"]:
+                    ref["states"].append(state)
+    date = git(checkout, "show", "-s", "--format=%cs", commit).strip()
+    out = {}
+    for pid, prog in programs.items():
+        references = []
+        for url, ref in sorted(cited[pid].items()):
+            found = citation_from_url(url)
+            references.append(
+                {
+                    "url": url,
+                    "kind": found[0] if found else None,
+                    "citation": found[1] if found else None,
+                    "titles": ref["titles"],
+                    "states": sorted(ref["states"]),
+                    "files": ref["files"],
+                }
+            )
+        out[pid] = {
+            "policyengine_us_release": str(pin.get("release", "latest")),
+            "policyengine_us_version": version,
+            "policyengine_us_commit": commit,
+            "policyengine_us_commit_date": date,
+            "program": pid,
+            "folders": prog.get("policyengine_folders") or [],
+            "state_folders": prog.get("state_folders"),
+            "derived_by": "scripts/export_policyengine_references.py",
+            "files_read": files_read[pid],
+            "references": references,
+        }
+    return out
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    ap.add_argument("config", type=Path, help="manifests/program-bundles/<id>.config.yaml")
+    ap.add_argument("config", type=Path, help="manifests/program-bundles/programs.config.yaml")
     ap.add_argument("--checkout", type=Path, required=True, help="a policyengine-us git checkout")
     args = ap.parse_args()
-    out = export(args.config, args.checkout.expanduser())
     cfg = yaml.safe_load(args.config.read_text())
-    target = REPO / cfg["screener"]["references"]
-    target.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
-    print(
-        f"{len(out['references'])} references from {out['files_read']} files "
-        f"at policyengine-us {out['policyengine_us_version']} ({out['policyengine_us_commit'][:10]})"
-    )
+    for pid, data in export(args.config, args.checkout.expanduser()).items():
+        target = REPO / cfg["policyengine_us"]["references"].format(program=pid)
+        target.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
+        states = len({s for r in data["references"] for s in r["states"]})
+        print(
+            f"{pid}: {len(data['references'])} references from {data['files_read']} files "
+            f"({states} states) at policyengine-us {data['policyengine_us_version']}"
+        )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1408 @@
+schema: axiom-program-bundle/v2
+id: ui
+program: ui
+title: Unemployment insurance
+as_of: '2026-10-06'
+generator: scripts/build_program_bundle.py
+parts:
+- Household and eligibility
+- Income
+- Deductions
+- Assets
+- Work requirements
+- Benefit amount
+- Issuance and EBT
+- Definitions from other programs
+- Whole program
+- Other
+comparison:
+  repo: TheAxiomFoundation/axiom-oracles
+  suite: '{st}-ui-ecps'
+tiers:
+- id: screener
+  title: Screener-level parity
+  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
+    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
+    errors. Federal law PolicyEngine cites is shared by every state.
+  membership:
+    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+      documents, each in the layer of the law it names, grouped into documents
+    references: sources/policyengine-us/ui-references.json
+    policyengine_us_release: latest
+    policyengine_us_version: 2.29.11
+    policyengine_us_commit: 4c900b6d3d808c4a9cf56d11afcedad9898f732f
+    policyengine_us_folders:
+    - gov/dol
+    policyengine_us_state_folders: unemployment_insurance|unemployment_compensation|unemployment
+    references_derived_by: scripts/export_policyengine_references.py
+    reference_count: 93
+    plan: sources/plans/m1-plan-documents.json
+    plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
+    plan_documents: 0
+    fiscal_year: 2027
+    outside_the_states: {}
+    in_scope_by_layer:
+      federal: 1
+      state: 59
+- id: full
+  title: Full document bundle
+  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
+    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
+    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  membership:
+    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
+      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
+      for the program; and the sources the config knows the corpus does not hold yet
+    federal_schema: null
+    federal_manifests: ^us-(dol|unemployment)
+    state_manifests: unemployment|(^|-)ui(-|$)|uc-|employment-security
+    known_sources: 0
+    in_scope_by_layer:
+      federal: 1
+      state: 62
+layers:
+- jurisdiction: us
+  screener:
+  - key: us/statute/29/206
+    name: 29 USC 206
+    layer: federal
+    citation_path: us/statute/29/206
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us/statute/29/206/a/1
+      references: 1
+      part: Benefit amount
+  full:
+  - key: us/statute/29/206
+    name: 29 USC 206
+    layer: federal
+    citation_path: us/statute/29/206
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-al
+  screener:
+  - key: https://admincode.legislature.state.al.us/administrative-code/480-4-3
+    name: admincode.legislature.state.al.us/administrative-code/480-4-3
+    layer: state
+    citation_path: null
+    source_url: https://admincode.legislature.state.al.us/administrative-code/480-4-3
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/
+    name: alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/
+    layer: state
+    citation_path: null
+    source_url: https://alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://labor.alabama.gov/docs/guides/uc_brr.pdf
+    name: labor.alabama.gov/docs/guides/uc_brr.pdf
+    layer: state
+    citation_path: null
+    source_url: https://labor.alabama.gov/docs/guides/uc_brr.pdf
+    sources:
+    - policyengine-references
+    references: 4
+    scope: in
+    part: Benefit amount
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf
+    name: oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf
+    sources:
+    - policyengine-references
+    references: 5
+    scope: in
+    part: Household and eligibility
+  - key: https://www.bls.gov/lau/
+    name: bls.gov/lau/
+    layer: state
+    citation_path: null
+    source_url: https://www.bls.gov/lau/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://fred.stlouisfed.org/series/ALUR
+    name: fred.stlouisfed.org/series/ALUR
+    layer: state
+    citation_path: null
+    source_url: https://fred.stlouisfed.org/series/ALUR
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Data series: not law'
+    part: Benefit amount
+  full:
+  - key: https://admincode.legislature.state.al.us/administrative-code/480-4-3
+    name: admincode.legislature.state.al.us/administrative-code/480-4-3
+    layer: state
+    citation_path: null
+    source_url: https://admincode.legislature.state.al.us/administrative-code/480-4-3
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/
+    name: alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/
+    layer: state
+    citation_path: null
+    source_url: https://alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://labor.alabama.gov/docs/guides/uc_brr.pdf
+    name: labor.alabama.gov/docs/guides/uc_brr.pdf
+    layer: state
+    citation_path: null
+    source_url: https://labor.alabama.gov/docs/guides/uc_brr.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/
+    name: law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/
+    layer: state
+    citation_path: null
+    source_url: https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf
+    name: oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.bls.gov/lau/
+    name: bls.gov/lau/
+    layer: state
+    citation_path: null
+    source_url: https://www.bls.gov/lau/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-ak
+  screener: []
+  full: []
+- jurisdiction: us-az
+  screener: []
+  full: []
+- jurisdiction: us-ar
+  screener: []
+  full: []
+- jurisdiction: us-ca
+  screener: []
+  full: []
+- jurisdiction: us-co
+  screener: []
+  full: []
+- jurisdiction: us-ct
+  screener: []
+  full: []
+- jurisdiction: us-de
+  screener: []
+  full: []
+- jurisdiction: us-dc
+  screener: []
+  full: []
+- jurisdiction: us-fl
+  screener: []
+  full: []
+- jurisdiction: us-ga
+  screener: []
+  full: []
+- jurisdiction: us-hi
+  screener: []
+  full: []
+- jurisdiction: us-id
+  screener: []
+  full: []
+- jurisdiction: us-il
+  screener: []
+  full: []
+- jurisdiction: us-in
+  screener: []
+  full: []
+- jurisdiction: us-ia
+  screener: []
+  full: []
+- jurisdiction: us-ks
+  screener: []
+  full: []
+- jurisdiction: us-ky
+  screener: []
+  full: []
+- jurisdiction: us-la
+  screener: []
+  full: []
+- jurisdiction: us-me
+  screener: []
+  full: []
+- jurisdiction: us-md
+  screener: []
+  full: []
+- jurisdiction: us-ma
+  screener: []
+  full: []
+- jurisdiction: us-mi
+  screener: []
+  full: []
+- jurisdiction: us-mn
+  screener: []
+  full: []
+- jurisdiction: us-ms
+  screener: []
+  full: []
+- jurisdiction: us-mo
+  screener: []
+  full: []
+- jurisdiction: us-mt
+  screener: []
+  full: []
+- jurisdiction: us-ne
+  screener: []
+  full: []
+- jurisdiction: us-nv
+  screener: []
+  full:
+  - key: us-nv/manual/dwss/eligibility-payments/c-190
+    name: 'Nevada Eligibility & Payments Manual: C 190 - Tribal Lands with a 50% Unemployment Rate'
+    layer: state
+    citation_path: us-nv/manual/dwss/eligibility-payments/c-190
+    source_url: https://dwss.nv.gov/siteassets/dwss.nv.gov/content/eligibility/chapter-c-190-ada.pdf
+    sources:
+    - manifests/us-nv-eligibility-payments-manual.yaml
+    manifest: manifests/us-nv-eligibility-payments-manual.yaml
+    scope: in
+    part: Benefit amount
+- jurisdiction: us-nh
+  screener: []
+  full: []
+- jurisdiction: us-nj
+  screener:
+  - key: https://www.nj.gov/labor/ea/help/employer_handbook/ui.shtml
+    name: nj.gov/labor/ea/help/employer_handbook/ui.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/ea/help/employer_handbook/ui.shtml
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+    name: nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+    name: nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+    name: nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+    name: nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+    sources:
+    - policyengine-references
+    references: 5
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/myunemployment/before/about/calculator/
+    name: nj.gov/labor/myunemployment/before/about/calculator/
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/calculator/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+    name: nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/myunemployment/before/about/who/
+    name: nj.gov/labor/myunemployment/before/about/who/
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/who/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+    name: nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://www.nj.gov/labor/ea/help/employer_handbook/ui.shtml
+    name: nj.gov/labor/ea/help/employer_handbook/ui.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/ea/help/employer_handbook/ui.shtml
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+    name: nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+    name: nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+    name: nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+    name: nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/before/about/calculator/
+    name: nj.gov/labor/myunemployment/before/about/calculator/
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/calculator/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+    name: nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/before/about/who/
+    name: nj.gov/labor/myunemployment/before/about/who/
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/who/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+    name: nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-nm
+  screener: []
+  full: []
+- jurisdiction: us-ny
+  screener:
+  - key: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y
+    name: assembly.state.ny.us/leg/
+    layer: state
+    citation_path: null
+    source_url: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+  - key: https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf
+    name: dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+    name: dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf
+    name: dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers
+    name: governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-inc
+    layer: state
+    citation_path: null
+    source_url: https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nysenate.gov/legislation/bills/2021/S7148
+    name: nysenate.gov/legislation/bills/2021/S7148
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/bills/2021/S7148
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nysenate.gov/legislation/bills/2025/S3006
+    name: nysenate.gov/legislation/bills/2025/S3006
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/bills/2025/S3006
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.nysenate.gov/legislation/laws/LAB/527
+    name: nysenate.gov/legislation/laws/LAB/527
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/527
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://www.nysenate.gov/legislation/laws/LAB/590
+    name: nysenate.gov/legislation/laws/LAB/590
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/590
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+    name: tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.tax.ny.gov/forms/publications/wt/nys50.htm
+    name: tax.ny.gov/forms/publications/wt/nys50.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/publications/wt/nys50.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y
+    name: assembly.state.ny.us/leg/
+    layer: state
+    citation_path: null
+    source_url: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf
+    name: dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+    name: dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf
+    name: dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf
+    name: oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers
+    name: governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-inc
+    layer: state
+    citation_path: null
+    source_url: https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/bills/2021/S7148
+    name: nysenate.gov/legislation/bills/2021/S7148
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/bills/2021/S7148
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/bills/2025/S3006
+    name: nysenate.gov/legislation/bills/2025/S3006
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/bills/2025/S3006
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/527
+    name: nysenate.gov/legislation/laws/LAB/527
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/527
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/590
+    name: nysenate.gov/legislation/laws/LAB/590
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/590
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+    name: tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.tax.ny.gov/forms/publications/wt/nys50.htm
+    name: tax.ny.gov/forms/publications/wt/nys50.htm
+    layer: state
+    citation_path: null
+    source_url: https://www.tax.ny.gov/forms/publications/wt/nys50.htm
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-nc
+  screener: []
+  full: []
+- jurisdiction: us-nd
+  screener: []
+  full: []
+- jurisdiction: us-oh
+  screener: []
+  full: []
+- jurisdiction: us-ok
+  screener:
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/oklahoma-ui-tax-rates-industry-size-county-2021.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/ok
+    layer: state
+    citation_path: null
+    source_url: https://www.oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/oklahoma-ui-tax-rates-industry-size-county-2021.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+    name: oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+    sources:
+    - policyengine-references
+    references: 11
+    scope: in
+    part: Household and eligibility
+  - key: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    name: oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    layer: state
+    citation_path: null
+    source_url: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=492632
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=492632
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77177
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77177
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/oklahoma-ui-tax-rates-industry-size-county-2021.pdf
+    name: oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/ok
+    layer: state
+    citation_path: null
+    source_url: https://www.oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/oklahoma-ui-tax-rates-industry-size-county-2021.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+    name: oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    name: oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    layer: state
+    citation_path: null
+    source_url: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=492632
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=492632
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77177
+    name: oscn.net/applications/oscn/DeliverDocument.asp
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77177
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-or
+  screener: []
+  full: []
+- jurisdiction: us-pa
+  screener:
+  - key: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+    name: pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+    sources:
+    - policyengine-references
+    references: 9
+    scope: in
+    part: Household and eligibility
+  - key: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+    name: pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol54/54-52/1863.html
+    name: pacodeandbulletin.gov/Display/pabull
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol54/54-52/1863.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: us-pa/regulation/title-61
+    name: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
+    layer: state
+    citation_path: us-pa/regulation/title-61
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-pa/regulation/title-61
+      references: 1
+      part: Household and eligibility
+  full:
+  - key: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+    name: pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+    name: pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+    layer: state
+    citation_path: null
+    source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol54/54-52/1863.html
+    name: pacodeandbulletin.gov/Display/pabull
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol54/54-52/1863.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-pa/regulation/title-61
+    name: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
+    layer: state
+    citation_path: us-pa/regulation/title-61
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+- jurisdiction: us-ri
+  screener: []
+  full: []
+- jurisdiction: us-sc
+  screener: []
+  full: []
+- jurisdiction: us-sd
+  screener: []
+  full: []
+- jurisdiction: us-tn
+  screener: []
+  full: []
+- jurisdiction: us-tx
+  screener: []
+  full: []
+- jurisdiction: us-ut
+  screener:
+  - key: https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+    name: jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+    layer: state
+    citation_path: null
+    source_url: https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Benefit amount
+  - key: https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+    name: jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+    layer: state
+    citation_path: null
+    source_url: https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Benefit amount
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201
+    name: law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201
+    layer: state
+    citation_path: null
+    source_url: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+  - key: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301
+    name: law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301
+    layer: state
+    citation_path: null
+    source_url: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+  full:
+  - key: https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+    name: jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+    layer: state
+    citation_path: null
+    source_url: https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+    name: jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+    layer: state
+    citation_path: null
+    source_url: https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html
+    name: le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201
+    name: law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201
+    layer: state
+    citation_path: null
+    source_url: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301
+    name: law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301
+    layer: state
+    citation_path: null
+    source_url: https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-ut/manual/dws/eligibility-manual/400-income-standards-425-43-unemployment-insurance-htm
+    name: 425-43 Unemployment Insurance
+    layer: state
+    citation_path: us-ut/manual/dws/eligibility-manual/400-income-standards-425-43-unemployment-insurance-htm
+    source_url: https://jobs.utah.gov/infosource/eligibilitymanual/400_Income_Standards/425-43_Unemployment_Insurance.htm
+    sources:
+    - manifests/us-ut-manuals.yaml
+    manifest: manifests/us-ut-manuals.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-ut/manual/dws/eligibility-manual/800-overpayments-and-underpayments-830-1m-unemployment-compensation-offset-htm
+    name: 830-1M Unemployment Compensation Offset
+    layer: state
+    citation_path: us-ut/manual/dws/eligibility-manual/800-overpayments-and-underpayments-830-1m-unemployment-compensation-offset-htm
+    source_url: https://jobs.utah.gov/infosource/eligibilitymanual/800_Overpayments_and_Underpayments/830-1M_Unemployment_Compensation_Offset.htm
+    sources:
+    - manifests/us-ut-manuals.yaml
+    manifest: manifests/us-ut-manuals.yaml
+    scope: in
+    part: Benefit amount
+- jurisdiction: us-vt
+  screener: []
+  full: []
+- jurisdiction: us-va
+  screener: []
+  full: []
+- jurisdiction: us-wa
+  screener: []
+  full: []
+- jurisdiction: us-wv
+  screener: []
+  full: []
+- jurisdiction: us-wi
+  screener: []
+  full: []
+- jurisdiction: us-wy
+  screener: []
+  full: []
