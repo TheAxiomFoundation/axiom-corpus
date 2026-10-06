@@ -90,7 +90,9 @@ def test_toc_exclusions_take_manifest_pages_out_of_the_full_tier(tmp_path, monke
         )
     )
     tier = bundle.full_tier(
-        [manifest], bundle.parse_toc_exclusions(["manifests/x.yaml:2-3=Cash Assistance: not SNAP"])
+        [manifest],
+        bundle.parse_toc_exclusions(["manifests/x.yaml:2-3=Cash Assistance: not SNAP"]),
+        [],
     )
     scopes = [(d["key"].rsplit("/", 1)[1], d["scope"], d.get("reason")) for d in tier["documents"]]
     assert scopes == [
@@ -98,4 +100,46 @@ def test_toc_exclusions_take_manifest_pages_out_of_the_full_tier(tmp_path, monke
         ("p1", "in", None),
         ("p2", "excluded", "Cash Assistance: not SNAP"),
         ("p3", "excluded", "Cash Assistance: not SNAP"),
+    ]
+
+
+def test_calculation_part_reads_the_policyengine_file_path():
+    assert (
+        bundle.calculation_part("parameters/gov/usda/snap/income/deductions/standard.yaml")
+        == "Deductions"
+    )
+    assert (
+        bundle.calculation_part("variables/gov/usda/snap/income/snap_gross_income.py") == "Income"
+    )
+    assert (
+        bundle.calculation_part("parameters/gov/usda/snap/work_requirements/abawd/age.yaml")
+        == "Work requirements"
+    )
+    assert bundle.calculation_part("parameters/gov/usda/snap/asset_test/limit.yaml") == "Assets"
+    assert bundle.calculation_part("parameters/gov/irs/income/x.yaml") == "Other"
+    assert bundle.plan_part("us/manual/ssa/poms/si/01140.200") == "Definitions from other programs"
+    assert bundle.plan_part(None, "https://aspe.hhs.gov/poverty-guidelines") == "Income"
+
+
+def test_full_tier_keeps_one_entry_per_source_and_gives_each_its_part(tmp_path, monkeypatch):
+    monkeypatch.setattr(bundle, "REPO", tmp_path)
+    (tmp_path / "manifests").mkdir()
+    plan = tmp_path / "manifests" / "plan.yaml"
+    plan.write_text(
+        "documents:\n"
+        "- title: E&T plan\n  source_url: https://fna.usda.gov/snap-et/stateplan/arizona\n"
+    )
+    own = tmp_path / "manifests" / "own.yaml"
+    own.write_text(
+        "documents:\n"
+        "- title: E&T plan FFY 2026\n  citation_path: us-az/policy/snap-et-state-plan/ffy2026\n"
+        "  source_url: https://fna.usda.gov/snap-et/stateplan/arizona\n"
+    )
+    tier = bundle.full_tier(
+        [plan, own],
+        [],
+        bundle.parse_toc_parts(["manifests/own.yaml:all=Regulations, plans and waivers"]),
+    )
+    assert [(d["key"], d["part"]) for d in tier["documents"]] == [
+        ("us-az/policy/snap-et-state-plan/ffy2026", "Regulations, plans and waivers")
     ]

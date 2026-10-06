@@ -38,7 +38,7 @@ import ast
 import datetime as dt
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -185,6 +185,67 @@ SECONDARY = re.compile(
 PLAN_USC = re.compile(r"^USC (\d+) (\S+)$")
 PLAN_CFR = re.compile(r"^CFR (\d+) (\d+)\.(\S+)$")
 
+# The parts of the SNAP calculation, in its order. A PolicyEngine reference
+# takes the part its PolicyEngine file sits in (gov/usda/snap/<part>/...).
+CALCULATION_PARTS = [
+    "Household and eligibility",
+    "Income",
+    "Deductions",
+    "Assets",
+    "Work requirements",
+    "Benefit amount",
+    "Definitions from other programs",
+    "Other",
+]
+SNAP_FILE_PARTS = {
+    "eligibility": "Household and eligibility",
+    "categorical_eligibility": "Household and eligibility",
+    "student": "Household and eligibility",
+    "snap_unit_size": "Household and eligibility",
+    "has_snap_elderly_disabled_member": "Household and eligibility",
+    "asset_test": "Assets",
+    "work_requirements": "Work requirements",
+    "min_allotment": "Benefit amount",
+    "max_allotment": "Benefit amount",
+    "uprating": "Benefit amount",
+    "emergency_allotment": "Benefit amount",
+}
+# A plan document no SNAP file cites: the part its subject feeds.
+PLAN_PARTS = [
+    (
+        re.compile(r"^us/(statute/(26|38|25)|regulation/26|form/irs|manual/ssa)/"),
+        "Definitions from other programs",
+    ),
+    (re.compile(r"(?i)poverty"), "Income"),
+    (re.compile(r"(?i)cola|allotment"), "Benefit amount"),
+    (re.compile(r"(?i)abawd|work-requirement|time-limit"), "Work requirements"),
+    (re.compile(r"(?i)utility|sua-|deduction"), "Deductions"),
+    (re.compile(r"(?i)alien|elderly|disabled|eligib"), "Household and eligibility"),
+]
+
+
+def calculation_part(file: str) -> str:
+    """The part of the SNAP calculation a PolicyEngine file belongs to."""
+    f = file.removeprefix("parameters/").removeprefix("variables/")
+    m = re.match(r"gov/usda/snap/([a-z_]+)(?:/([a-z_]+))?", f)
+    if not m:
+        return "Other"
+    head, sub = m.groups()
+    if head == "income":
+        if sub == "deductions":
+            return "Deductions"
+        if sub == "ineligible_members":
+            return "Household and eligibility"
+        return "Income"
+    return SNAP_FILE_PARTS.get(head, "Other")
+
+
+def plan_part(*texts: str | None) -> str:
+    for pattern, part in PLAN_PARTS:
+        if any(t and pattern.search(t) for t in texts):
+            return part
+    return "Other"
+
 
 def url_state(url: str) -> str | None:
     """The two-letter state a URL's publisher belongs to, by its host or a Cornell state path."""
@@ -286,12 +347,16 @@ def screener_tier(
     docs: dict[str, dict] = {}
     cited: dict[str, dict[str, int]] = defaultdict(dict)
 
+    parts: dict[str, Counter] = defaultdict(Counter)
+    cited_parts: dict[str, dict[str, Counter]] = defaultdict(lambda: defaultdict(Counter))
+
     def add(
         source: str,
         url: str | None,
         citation: str | None,
         reason: str | None,
         name: str | None = None,
+        part: str | None = None,
     ):
         if not citation and url:
             citation = by_url.get(url_key(normalize_url(url)))
@@ -333,6 +398,10 @@ def screener_tier(
             doc["sources"].append(source)
         if source == "policyengine-references":
             doc["references"] += 1
+        part = part or plan_part(citation, url, name)
+        parts[key][part] += 1
+        if citation and citation != key:
+            cited_parts[key][citation][part] += 1
         if reason is None:
             # A URL is one document with one classification: a source that
             # finds a reason to exclude it outweighs one that does not look.
@@ -351,6 +420,9 @@ def screener_tier(
             ref["url"],
             ref.get("citation"),
             EXCLUDED_BUCKETS.get(ref["bucket"]),
+            part=Counter(calculation_part(f) for f in ref.get("files") or []).most_common(1)[0][0]
+            if ref.get("files")
+            else None,
         )
     plan_count = 0
     if plan:
@@ -384,8 +456,14 @@ def screener_tier(
     for key, doc in sorted(
         docs.items(), key=lambda kv: (kv[1]["scope"] != "in", kv[1]["layer"], kv[0])
     ):
+        # The part most of its references feed; a document no SNAP file cites
+        # takes its plan subject's part.
+        doc["part"] = part_of(parts[key])
         if cited.get(key):
-            doc["cited"] = [{"path": p, "references": n} for p, n in sorted(cited[key].items())]
+            doc["cited"] = [
+                {"path": p, "references": n, "part": part_of(cited_parts[key][p])}
+                for p, n in sorted(cited[key].items())
+            ]
         if not doc["references"]:
             doc.pop("references")
         if doc["scope"] == "in":
@@ -413,6 +491,12 @@ def screener_tier(
     }
 
 
+def part_of(votes: Counter) -> str:
+    """The most voted part, other than "Other" when anything else has a vote."""
+    named = [(n, p) for p, n in votes.items() if p != "Other"]
+    return max(named)[1] if named else "Other"
+
+
 def parse_toc_exclusions(specs: list[str]) -> list[dict]:
     """``<manifest>:<first>-<last>=<reason>``: pages of a manifest, by toc_sequence, outside the program."""
     out = []
@@ -426,8 +510,25 @@ def parse_toc_exclusions(specs: list[str]) -> list[dict]:
     return out
 
 
-def full_tier(manifests: list[Path], toc_exclusions: list[dict]) -> dict:
+def parse_toc_parts(specs: list[str]) -> list[dict]:
+    """``<manifest>:<first>-<last>=<part>``, or ``<manifest>:all=<part>`` for every page of a manifest."""
     out = []
+    for spec in specs:
+        where, part = spec.split("=", 1)
+        manifest, span = where.rsplit(":", 1)
+        if span == "all":
+            out.append({"manifest": manifest, "toc": None, "part": part})
+        else:
+            first, _, last = span.partition("-")
+            out.append(
+                {"manifest": manifest, "toc": [int(first), int(last or first)], "part": part}
+            )
+    return out
+
+
+def full_tier(manifests: list[Path], toc_exclusions: list[dict], toc_parts: list[dict]) -> dict:
+    out = []
+    seen: dict[tuple[str, str], dict] = {}
     for path in manifests:
         rel = path.resolve().relative_to(REPO) if path.resolve().is_relative_to(REPO) else path
         data = yaml.safe_load(path.read_text()) or {}
@@ -455,6 +556,24 @@ def full_tier(manifests: list[Path], toc_exclusions: list[dict]) -> dict:
                     and rule["toc"][0] <= toc <= rule["toc"][1]
                 ):
                     entry["scope"], entry["reason"] = "excluded", rule["reason"]
+            # The manual part: a toc range, else the whole manifest's part.
+            for rule in toc_parts:
+                in_range = rule["toc"] is None or (
+                    toc is not None and rule["toc"][0] <= toc <= rule["toc"][1]
+                )
+                if rule["manifest"] == str(rel) and in_range:
+                    entry["part"] = rule["part"]
+            entry.setdefault("part", "Other")
+            # One source registered twice (a primary-policy row and its own
+            # manifest) is one document: keep the entry that has a citation path.
+            url = entry["source_url"]
+            if url:
+                dup = seen.get(url_key(normalize_url(url)))
+                if dup is not None:
+                    if dup["citation_path"] or not entry["citation_path"]:
+                        continue
+                    out.remove(dup)
+                seen[url_key(normalize_url(url))] = entry
             out.append(entry)
     return {
         "id": "full",
@@ -496,6 +615,13 @@ def main() -> None:
         help="a source manifest of the full bundle",
     )
     ap.add_argument(
+        "--part-toc",
+        action="append",
+        default=[],
+        metavar="MANIFEST:FIRST-LAST=PART",
+        help="the manual part of manifest pages, by toc_sequence; MANIFEST:all=PART for a whole manifest",
+    )
+    ap.add_argument(
         "--exclude-toc",
         action="append",
         default=[],
@@ -525,7 +651,11 @@ def main() -> None:
                 crosswalk,
                 args.current_fy,
             ),
-            full_tier(args.full, parse_toc_exclusions(args.exclude_toc)),
+            full_tier(
+                args.full,
+                parse_toc_exclusions(args.exclude_toc),
+                parse_toc_parts(args.part_toc),
+            ),
         ],
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
