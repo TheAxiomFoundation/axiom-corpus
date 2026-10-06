@@ -2173,6 +2173,17 @@ states:
     jurisdiction: us-al
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 22
+    status_counts:
+      ALREADY-HELD: 6
+      PRESENT: 16
+    new_scopes:
+    - us-al/form/2026-10-06-w6-income-tax-forms-al
+    - us-al/statute/2026-10-06-w6-income-tax-statute-al-us-al-title-16
   lead_counts:
     ready_for_manifest: 10
     needs_review: 12
@@ -2599,6 +2610,19 @@ states:
     jurisdiction: us-ar
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 90
+    status_counts:
+      ABSENT: 1
+      OUTREACH: 14
+      PRESENT: 75
+    new_scopes:
+    - us-ar/form/2026-10-06-w6-income-tax-forms-ar
+    - us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar
+    - us-ar/statute/2026-10-06-w6-income-tax-legislation-ar
   lead_counts:
     ready_for_manifest: 6
     needs_review: 38
@@ -3305,6 +3329,18 @@ states:
     jurisdiction: us-az
     document_class: form
     version: 2026-07-21-az-140es-2026
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 52
+    status_counts:
+      ALREADY-HELD: 12
+      PRESENT: 40
+    new_scopes:
+    - us-az/form/2026-10-06-w6-income-tax-forms-az
+    - us-az/guidance/2026-10-06-w6-income-tax-guidance-az
+    - us-az/statute/2026-10-06-w6-income-tax-legislation-az
   lead_counts:
     ready_for_manifest: 30
     needs_review: 22
@@ -3910,6 +3946,19 @@ states:
     jurisdiction: us-ca
     document_class: form
     version: 2026-07-23-ca-2026-form-540-es
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 71
+    status_counts:
+      ALREADY-HELD: 16
+      OUT-OF-SCOPE: 1
+      OUTREACH: 3
+      PRESENT: 51
+    new_scopes:
+    - us-ca/form/2026-10-06-w6-income-tax-forms-ca
+    - us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca
   lead_counts:
     ready_for_manifest: 49
     needs_review: 24
@@ -4769,6 +4818,18 @@ states:
     jurisdiction: us-co
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 46
+    status_counts:
+      ALREADY-HELD: 10
+      PRESENT: 36
+    new_scopes:
+    - us-co/form/2026-10-06-w6-income-tax-forms-co
+    - us-co/guidance/2026-10-06-w6-income-tax-guidance-co
+    - us-co/statute/2026-10-06-w6-income-tax-legislation-co
   lead_counts:
     ready_for_manifest: 1
     needs_review: 44
@@ -5552,6 +5613,18 @@ states:
     jurisdiction: us-ct
     document_class: statute
     version: 2026-07-24-ct-income-tax-supplement
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 24
+    status_counts:
+      ALREADY-HELD: 4
+      PRESENT: 20
+    new_scopes:
+    - us-ct/form/2026-10-06-w6-income-tax-forms-ct
+    - us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct
+    - us-ct/statute/2026-10-06-w6-income-tax-legislation-ct
   lead_counts:
     ready_for_manifest: 14
     needs_review: 15
@@ -5921,6 +5994,18 @@ states:
     jurisdiction: us-dc
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 10
+    status_counts:
+      ALREADY-HELD: 3
+      PRESENT: 7
+    new_scopes:
+    - us-dc/form/2026-10-06-w6-income-tax-forms-dc
+    - us-dc/guidance/2026-10-06-w6-income-tax-guidance-dc
+    - us-dc/statute/2026-10-06-w6-income-tax-legislation-dc
   lead_counts:
     ready_for_manifest: 12
     needs_review: 17
@@ -6260,6 +6345,17 @@ states:
     jurisdiction: us-de
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 13
+    status_counts:
+      ALREADY-HELD: 2
+      PRESENT: 11
+    new_scopes:
+    - us-de/form/2026-10-06-w6-income-tax-forms-de
+    - us-de/guidance/2026-10-06-w6-income-tax-guidance-de
   lead_counts:
     ready_for_manifest: 10
     needs_review: 10
@@ -6582,6 +6678,19 @@ states:
     jurisdiction: us-ga
     document_class: form
     version: 2026-07-21-ga-it-511-2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 29
+    status_counts:
+      ALREADY-HELD: 12
+      OUTREACH: 1
+      PRESENT: 16
+    new_scopes:
+    - us-ga/form/2026-10-06-w6-income-tax-forms-ga
+    - us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga
+    - us-ga/statute/2026-10-06-w6-income-tax-legislation-ga
   lead_counts:
     ready_for_manifest: 2
     needs_review: 19
@@ -7093,6 +7202,19 @@ states:
     jurisdiction: us-hi
     document_class: form
     version: 2026-07-22-hi-2025-n11-capital-gain-worksheet
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 42
+    status_counts:
+      ABSENT: 1
+      ALREADY-HELD: 7
+      PRESENT: 34
+    new_scopes:
+    - us-hi/form/2026-10-06-w6-income-tax-forms-hi
+    - us-hi/guidance/2026-10-06-w6-income-tax-guidance-hi
+    - us-hi/statute/2026-10-06-w6-income-tax-legislation-hi
   lead_counts:
     ready_for_manifest: 27
     needs_review: 18

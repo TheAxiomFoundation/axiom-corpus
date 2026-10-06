@@ -16,6 +16,7 @@ documents:
   citation_path: us-dc/form/otr/ty2020/schedule-elc
   extraction:
     segmentation: single_block
+    force_ocr: true
   metadata:
     primary_source: true
     source_authority: District of Columbia Office of Tax and Revenue
@@ -25,6 +26,7 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2020 Government of the District of Columbia Revised 04/20 (Schedule ELC)
     tax_year: '2020'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
     wave6_work_order_rows:
     - 312
 - source_id: us-dc-w6-otr-ty2024-d-40-booklet

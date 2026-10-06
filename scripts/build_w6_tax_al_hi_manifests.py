@@ -89,6 +89,14 @@ def _slug(value: str) -> str:
     return re.sub(r"[^a-z0-9.]+", "-", value.lower()).strip("-")
 
 
+# Work-order rows whose PDF text layer is set in fonts without a ToUnicode map (shifted glyph
+# codes: "<RX\x03FDQQRW" for "You cannot"); measured on the first run as more than 7 percent
+# control characters in the body. These are short forms (1 to 3 pages) and are OCRed with the
+# local Tesseract CLI at 200 dpi (the PR #753 precedent for the D-40 2023 booklet).
+FORCE_OCR_ROWS = {38, 43, 44, 46, 47, 48, 50, 54, 55, 57, 58, 61, 63, 65, 68, 69, 312}
+OCR_NOTE = ("text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR "
+            "(tesseract, 200 dpi, force_ocr)")
+
 DOCS: list[dict[str, Any]] = []
 
 
@@ -116,6 +124,9 @@ def doc(
     path = citation_path or f"us-{st}/{cls}/{tail}"
     if extraction is None:
         extraction = dict(SINGLE_BLOCK) if fmt == "pdf" else {}
+    if FORCE_OCR_ROWS.intersection(rows):
+        extraction = dict(extraction, force_ocr=True)
+        note = OCR_NOTE if not note else f"{note}; {OCR_NOTE}"
     if expression_date is None:
         expression_date = f"{ty}-01-01" if ty and family == "income-tax-forms" else SOURCE_AS_OF
     entry: dict[str, Any] = {
@@ -877,12 +888,71 @@ def write_decisions(work_order: Path) -> dict[str, int]:
     return counts
 
 
+QUEUE = MANIFESTS / "tax-agent-queue.yaml"
+QUEUE_KEY = "w6_bundle_gap_closure"
+
+
+def update_queue(work_order: Path) -> list[str]:
+    """Insert (or replace) a ``w6_bundle_gap_closure`` block after ``target_scope`` in the
+    first ``states`` row of each jurisdiction of this group. Text edit, so the rows of the
+    other wave-6 tax groups and every other key stay byte-identical."""
+    decisions = list(csv.DictReader(DECISIONS.open()))
+    work_rows = list(csv.DictReader(work_order.open()))
+    lines = QUEUE.read_text().splitlines(keepends=True)
+    touched = []
+    for st in sorted(STATE_FAMILY_SOURCE):
+        jur = f"us-{st}"
+        mine = [d for d in decisions if d["jurisdiction"] == jur]
+        counts: dict[str, int] = {}
+        for d in mine:
+            counts[d["new_status"]] = counts.get(d["new_status"], 0) + 1
+        scopes = sorted({d["scope_version"] for d in mine if d["new_status"] == "PRESENT"})
+        block = [
+            f"  {QUEUE_KEY}:\n",
+            "    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv\n",
+            f"    run_note: {RUN_NOTE}\n",
+            "    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv\n",
+            f"    work_order_rows: {sum(1 for r in work_rows if r['jurisdiction'] == jur)}\n",
+            "    status_counts:\n",
+            *[f"      {k}: {v}\n" for k, v in sorted(counts.items())],
+            "    new_scopes:\n",
+            *[f"    - {scope}\n" for scope in scopes],
+        ]
+        start = next(i for i, line in enumerate(lines) if line.rstrip("\n") == f"- jurisdiction: {jur}")
+        end = next(i for i in range(start + 1, len(lines)) if lines[i].startswith("- "))
+        # drop an earlier block of this key
+        i = start
+        while i < end:
+            if lines[i].startswith(f"  {QUEUE_KEY}:"):
+                j = i + 1
+                while j < end and lines[j].startswith("    "):
+                    j += 1
+                del lines[i:j]
+                end -= j - i
+                continue
+            i += 1
+        ts = next(i for i in range(start, end) if lines[i].startswith("  target_scope:"))
+        k = ts + 1
+        while k < end and lines[k].startswith("    "):
+            k += 1
+        lines[k:k] = block
+        touched.append(jur)
+    QUEUE.write_text("".join(lines))
+    return touched
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--decisions", action="store_true")
+    parser.add_argument("--queue", action="store_true", help="update manifests/tax-agent-queue.yaml from the decisions")
     parser.add_argument("--work-order", type=Path)
     parser.add_argument("--only", action="append", default=[], help="state code (al, ar, ...) for manifest mode")
     args = parser.parse_args()
+    if args.queue:
+        if not args.work_order:
+            raise SystemExit("--queue needs --work-order")
+        print(update_queue(args.work_order))
+        return
     if args.decisions:
         if not args.work_order:
             raise SystemExit("--decisions needs --work-order")
