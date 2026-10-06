@@ -150,6 +150,15 @@ doc([10], "us-al", "guidance", "us-al/guidance/adol/uc-benefit-rights-and-respon
     program="Unemployment insurance", authority="Alabama Department of Workforce (formerly Department of Labor)",
     subtype="claimant_handbook")
 
+doc([8], "us-al", "regulation", "us-al/regulation/alabama-administrative-code/480/4/3",
+    "Alabama Administrative Code Chapter 480-4-3: Benefits (Department of Workforce)",
+    "https://admincode.legislature.state.al.us/administrative-code/480-4-3", "pdf",
+    download_url="https://admincode.legislature.state.al.us/api/chapter/480-4-3",
+    program="Unemployment insurance", authority="Alabama Legislative Services Agency (Alabama Administrative Code)",
+    subtype="administrative_code_chapter_pdf",
+    source_url_note="source_url is the chapter page the bundle cites (a JavaScript application); download_url is the "
+    "publisher's chapter PDF route, the same /api route as the held 660-2-4 chapter")
+
 # us-ca
 CDSS = "California Department of Social Services"
 for num, date in (("25-79", "2025-11-07"), ("25-92", "2025-12-31"), ("25-93", "2025-12-31"), ("26-15", "2026-02-26")):
@@ -311,6 +320,14 @@ doc([128], "us-md", "statute", "us-md/statute/bills/2022/hb0456",
     "https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf", "pdf",
     program="SNAP", authority="Maryland General Assembly", subtype="bill_third_reader", expression_date="2022-03-08",
     expression_note="publisher Last-Modified of the third-reader file (2022-03-08)")
+
+doc([129], "us-md", "statute", "us-md/statute/human-services/5-501",
+    "Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)",
+    "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&enactments=false&section=5-501", "html",
+    program="SNAP", authority="Maryland General Assembly", subtype="statute_section_html",
+    extraction={"html_content_selector": "#StatuteText"},
+    alias_note="the bundle cites a casetext copy; this is the General Assembly's statute text (the route of "
+    "us-md/statute/2026-07-03-md-tca-statutes)")
 
 # us-me
 doc([134], "us-me", "statute", "us-me/statute/title-22/3271",
@@ -528,6 +545,13 @@ for row, slug, title in (
         program="SSI state supplement (Optional State Supplementation)",
         authority="South Carolina Department of Health and Human Services", subtype="agency_communication")
 
+doc([223, 224], "us-sc", "regulation", "us-sc/regulation/chapter-126-pdf",
+    "S.C. Code of Regulations Chapter 126, Department of Health and Human Services (Legislature PDF)",
+    "https://www.scstatehouse.gov/coderegs/Chapter%20126.pdf", "pdf",
+    program="SSI state supplement (Optional State Supplementation)",
+    authority="South Carolina Legislature, Code of Regulations", subtype="administrative_code_chapter_pdf",
+    path_note="whole-chapter PDF at page granularity; R. 126-910 and 126-920 (OSS) are in Article 9 of the chapter")
+
 # us-tx
 doc([226], "us-tx", "statute", "us-tx/statute/session-laws/88r/hb1287",
     "Texas H.B. No. 1287 (88th Legislature, Regular Session), enrolled version",
@@ -555,6 +579,18 @@ for row, sec, ver in ((234, "201", "C35A-4-S201_1800010118000101"), (235, "207",
         program="Unemployment insurance", authority="Utah State Legislature, Office of Legislative Research and General Counsel",
         subtype="statute_section_html", utah_code_version=ver,
         source_url_note="source_url is the section page the bundle cites, which loads the current version file named by its versionDefault; download_url is that file")
+
+doc([232, 233], "us-ut", "regulation", "us-ut/regulation/admin-rules/r994/401",
+    "Utah Administrative Code R994-401: Payment of Benefits (Workforce Services, Unemployment Insurance)",
+    "https://adminrules.utah.gov/public/rule/R994-401/Current%20Rules", "html",
+    download_url="https://adminrules.utah.gov/api/public/getfile/uac-html/ffc52bcf-88e1-4d58-a0c3-a18af6a6e3b6.html/R994-401.html",
+    request={"browser_user_agent": True, "range_fetch": True, "range_backend": "curl", "range_chunk_size": 4194304},
+    extraction={"html_content_selector": "body"},
+    program="Unemployment insurance", authority="Utah Office of Administrative Rules", subtype="administrative_code_rule",
+    expression_date="2022-04-21", expression_note="the rule's effective date in the eRules record (4/21/2022)",
+    rule_id=2241, reference_number="R994-401",
+    source_url_note="source_url is the eRules rule route; download_url is the current rule HTML named by the public "
+    "API record (searchRuleDataTotal/R994-401), fetched with Accept */* as the FEP R986-200 manifest does")
 
 # us-wa
 doc([247], "us-wa", "regulation", "us-wa/regulation/388/388-414/388-414-0001",
@@ -889,6 +925,34 @@ for r, sec in ((15, "25-4-72"), (16, "25-4-73"), (17, "25-4-74"), (18, "25-4-77"
     decide(r, "PRESENT", AL_SCOPE, f"us-al/statute/{sec}",
            f"https://alison.legislature.state.al.us/code-of-alabama?section={sec}",
            f"Justia mirror; Ala. Code {sec} taken from the Legislature's ALISON code service")
+
+# extract-texas-tcas --only-title HR (Texas Legislative Council TCAS JSON, statutes.capitol.texas.gov)
+decide(227, "PRESENT", "us-tx/statute/2026-10-06-w6-benefits-ssi-statute-us-tx-title-HR",
+       "us-tx/statute/hr/title-2/subtitle-c/chapter-32", "https://statutes.capitol.texas.gov/Docs/HR/htm/HR.32.htm",
+       "the chapter page is now a JavaScript application shell; Human Resources Code chapter 32 (Medical Assistance "
+       "Program) taken through the `texas-tcas` adapter from the same publisher's statute JSON (whole HR code, 1,806 rows)")
+# extract-indiana-code --only-title 12 --source-year 2026 (Indiana General Assembly, iga.in.gov)
+decide(105, "PRESENT", "us-in/statute/2026-10-06-w6-benefits-ssi-statute-us-in-title-12", "us-in/statute/12-10-6-2.1",
+       "https://iga.in.gov/ic/2026/Title_12.html",
+       "Justia mirror; IC 12-10-6-2.1 (residential care assistance eligibility) taken from the General Assembly's 2026 "
+       "Indiana Code Title 12 (whole title, 4,070 rows)")
+decide(106, "SKIPPED", "", "", "https://iar.iga.in.gov/code/2026/455/1",
+       "Cornell LII mirror of 455 IAC 1-3-3; the official Indiana Register IAC host serves a 735-byte JavaScript "
+       "application shell and the corpus has no IAR adapter; not built in the time box")
+decide(60, "OUTREACH", "", "",
+       "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.&chapter=3.&article=4.",
+       "Justia mirror of Cal. Welf. & Inst. Code Div. 9, Part 3, Ch. 3, Art. 4; the official leginfo.legislature.ca.gov "
+       "article page answered HTTP 403 with a Cloudflare 'Just a moment...' challenge to the plain and browser-UA corpus "
+       "client on 2026-10-06 (WIC 12200 of the article is held, row 61); not worked around")
+decide(41, "SKIPPED", "", "", "https://www.azleg.gov/arsDetail/?title=46",
+       "azleg.gov answers 200 (the Title 46 table of sections); the `arizona-revised-statutes` adapter can take the whole "
+       "title, but a parallel wave-6 agent (tanf-ccdf) holds ARS 46-207 and 46-207.01 in "
+       "us-az/statute/2026-10-06-w6-tanf-ccdf-statutes-az, so a whole-title scope would collide; left to the controller")
+for r, memo in ((158, "IM-143 (2022-12-05)"), (159, "IM-57 (2023-06-08)")):
+    decide(r, "ABSENT", "", "", "https://dssmanuals.mo.gov/memorandums/",
+           f"the dated post of memo {memo} answers 404; the site search for the memo number lists only manual sections "
+           "that cite it, the Memorandums index lists only CD and OEC memo years and practice points (no FSD IM memo "
+           "archive), and the WordPress API answers 403; no current official copy found")
 
 # extract-maryland-comar --only-title 07 --only-subtitle 03 --only-chapter 17 (DSD official XML)
 MD_SCOPE = ("us-md/regulation/2026-10-06-w6-benefits-snap-comar-md-publication-2026-10-05-title-07-subtitle-03-"
