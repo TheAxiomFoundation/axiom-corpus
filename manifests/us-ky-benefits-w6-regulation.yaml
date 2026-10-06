@@ -9,6 +9,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-ky/regulation/kar/921/004/116
+  extraction:
+    html_content_selector: div.regulation-content
   metadata:
     primary_source: true
     source_authority: Kentucky Legislative Research Commission (Kentucky Administrative Regulations)

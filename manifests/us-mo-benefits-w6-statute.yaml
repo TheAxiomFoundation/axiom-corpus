@@ -9,6 +9,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-mo/statute/208.010
+  extraction:
+    html_content_selector: div.norm
   metadata:
     primary_source: true
     source_authority: Missouri Revisor of Statutes
@@ -28,6 +30,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-mo/statute/208.030
+  extraction:
+    html_content_selector: div.norm
   metadata:
     primary_source: true
     source_authority: Missouri Revisor of Statutes
@@ -47,6 +51,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-mo/statute/209.030
+  extraction:
+    html_content_selector: div.norm
   metadata:
     primary_source: true
     source_authority: Missouri Revisor of Statutes
@@ -66,6 +72,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-mo/statute/209.040
+  extraction:
+    html_content_selector: div.norm
   metadata:
     primary_source: true
     source_authority: Missouri Revisor of Statutes
@@ -85,6 +93,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-mo/statute/209.240
+  extraction:
+    html_content_selector: div.norm
   metadata:
     primary_source: true
     source_authority: Missouri Revisor of Statutes

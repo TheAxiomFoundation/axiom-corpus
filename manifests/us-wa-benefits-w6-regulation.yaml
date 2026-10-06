@@ -9,6 +9,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-wa/regulation/388/388-414/388-414-0001
+  extraction:
+    html_content_selector: '#contentWrapper'
   metadata:
     primary_source: true
     source_authority: Washington State Legislature, Office of the Code Reviser

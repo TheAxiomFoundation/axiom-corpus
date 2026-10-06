@@ -187,10 +187,13 @@ doc([71], "us-de", "rulemaking", "us-de/rulemaking/register/2010-06/13-de-reg-15
     subtype="register_final_order", expression_date="2010-06-01",
     hosting_note="archive.regulations.delaware.gov is the Registrar's own host for back issues, not a third-party archive")
 doc([72], "us-de", "rulemaking", "us-de/rulemaking/register/2005-08/9-de-reg-168",
-    "9 DE Reg. 168 (08/01/05), Proposed (Division of Social Services, Food Stamp Program)",
+    "9 DE Reg. 168 (08/01/05), Proposed: Self-Employment Income (Division of Social Services)",
     "https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm",
     "html", program="SNAP", authority="Delaware Register of Regulations (Registrar of Regulations)",
-    subtype="register_proposed_regulation", expression_date="2005-08-01")
+    subtype="register_proposed_regulation", expression_date="2005-08-01",
+    download_url="https://archive.regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm",
+    source_url_note="regulations.delaware.gov now serves an Angular application shell for register pages (no text in the "
+    "HTML); the Registrar serves the same back-issue page as static HTML on its archive host, taken as download_url")
 
 # us-fl
 doc([74], "us-fl", "statute", "us-fl/statute/session-laws/2024/hb5001",
@@ -241,7 +244,7 @@ doc([108], "us-ky", "regulation", "us-ky/regulation/kar/921/004/116",
     '921 KAR 4:116. Low Income Home Energy Assistance Program or "LIHEAP"',
     "https://apps.legislature.ky.gov/law/kar/titles/921/004/116/", "html",
     program="LIHEAP", authority="Kentucky Legislative Research Commission (Kentucky Administrative Regulations)",
-    subtype="administrative_regulation_html")
+    subtype="administrative_regulation_html", extraction={"html_content_selector": "div.regulation-content"})
 doc([109], "us-ky", "manual", "us-ky/manual/dcbs/dfs/volume-v-state-supplementation",
     "Division of Family Support Operation Manual Volume V, State Supplementation (OMTL 714, R. 10/1/26)",
     "https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLV.pdf", "pdf",
@@ -313,7 +316,8 @@ doc([128], "us-md", "statute", "us-md/statute/bills/2022/hb0456",
 doc([134], "us-me", "statute", "us-me/statute/title-22/3271",
     "22 M.R.S. §3271. Program (Title 22, Subtitle 3: Income Supplementation)",
     "https://legislature.maine.gov/statutes/22/title22sec3271.html", "html",
-    program="SSI state supplement", authority="Maine Legislature, Office of the Revisor of Statutes", subtype="statute_section_html")
+    program="SSI state supplement", authority="Maine Legislature, Office of the Revisor of Statutes", subtype="statute_section_html",
+    extraction={"html_content_selector": "div.MRSSection"})
 doc([135], "us-me", "rulemaking", "us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p",
     "10-144 C.M.R. Chapter 301 SNAP Rules, Rule #244P rule pages (track changes), amended December 14, 2025",
     "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%29.pdf",
@@ -347,7 +351,8 @@ doc([148], "us-mo", "form", "us-mo/form/dss/fsd/im-72",
 for row, sec in ((149, "208.010"), (150, "208.030"), (151, "209.030"), (152, "209.040"), (153, "209.240")):
     doc([row], "us-mo", "statute", f"us-mo/statute/{sec}", f"RSMo {sec}",
         f"https://revisor.mo.gov/main/OneSection.aspx?section={sec}", "html",
-        program="SSI state supplement", authority="Missouri Revisor of Statutes", subtype="statute_section_html")
+        program="SSI state supplement", authority="Missouri Revisor of Statutes", subtype="statute_section_html",
+        extraction={"html_content_selector": "div.norm"})
 doc([154], "us-mo", "regulation", "us-mo/regulation/csr/13/40-2",
     "13 CSR 40-2, Department of Social Services, Family Support Division, Income Maintenance",
     "https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-2.pdf", "pdf",
@@ -432,6 +437,7 @@ doc([179], "us-ny", "statute", "us-ny/statute/bills/2021/s7148",
     "https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y", "html",
     program="Unemployment insurance", authority="New York State Assembly (legislative information system)",
     subtype="bill_text", expression_date="2021-06-02", expression_note="introduced June 2, 2021",
+    extraction={"html_content_selector": "#legcontent", "html_text_selector": "pre"},
     alias_rows={191: "nysenate.gov answers a Cloudflare challenge to the corpus client; the Assembly's own "
                 "legislative information system serves the same bill text"})
 for row, slug, title, url, date in (
@@ -485,13 +491,8 @@ doc([202], "us-ok", "statute", "us-ok/statute/session-laws/2021/hb1933",
     "https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF", "pdf",
     program="Unemployment insurance", authority="Oklahoma Legislature", subtype="enrolled_bill",
     expression_date="2021-05-17", expression_note="publisher Last-Modified of the enrolled file (2021-05-17)")
-for row, cid, sec, title in ((203, 492632, "40-1-231", "40 O.S. § 1-231 Limitations on Duration of Benefits"),
-                             (204, 77164, "40-2-104", "40 O.S. § 2-104 Computation of Benefit Amount"),
-                             (205, 77165, "40-2-105", "40 O.S. § 2-105 Wages Subtracted From Benefit Amount")):
-    doc([row], "us-ok", "statute", f"us-ok/statute/{sec}", title,
-        f"https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID={cid}", "html",
-        program="Unemployment insurance", authority="Oklahoma State Courts Network (OSCN), Oklahoma Supreme Court",
-        subtype="statute_section_html", oscn_cite_id=str(cid))
+# OSCN rows 203-205 are taken as pages of the Title 40 PDF (the Legislature's own compilation):
+# oscn.net served a Turnstile challenge page to the extractor run (see DECISIONS).
 
 # us-pa
 PALI = "Pennsylvania Department of Labor & Industry"
@@ -560,7 +561,7 @@ doc([247], "us-wa", "regulation", "us-wa/regulation/388/388-414/388-414-0001",
     "WAC 388-414-0001 Broad-based categorical eligibility (BBCE)",
     "https://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001", "html",
     program="SNAP; TANF", authority="Washington State Legislature, Office of the Code Reviser",
-    subtype="administrative_code_section_html",
+    subtype="administrative_code_section_html", extraction={"html_content_selector": "#contentWrapper"},
     path_note="the citation path follows the washington-wac adapter (us-wa/regulation/388/<chapter>/<section>)")
 for row, issue, filing, fmt in (
     (251, "2006/16", "06-16-071", "html"), (252, "2007/22", "07-22-022", "html"), (253, "2008/16", "08-16-067", "html"),
@@ -844,6 +845,59 @@ for r, path in ((248, "us-wa/regulation/388/388-474/388-474-0012"), (249, "us-wa
     decide(r, HELD, "us-wa/regulation/" + ("2026-07-01-388-474-r2026-07-15-self-contained-r2026-07-17-dedup" if "474" in path
                                            else "2026-06-25-388-478-r2026-07-15-self-contained-r2026-07-17-dedup"),
            path, "", "held through the washington-wac adapter (inventory source_url matches)")
+
+
+# --------------------------------------------------------------------------------------------
+# Adapter scopes (existing extractors, not official-documents manifests). These override the
+# SKIPPED placeholders above once the scope is on disk; commands are in the run note.
+
+# extract-illinois-admin-code --only-title 89 --only-part 113 (JCAR, ftp.ilga.gov)
+IL_SCOPE = "us-il/regulation/2026-10-06-w6-benefits-ssi-aabd-il-title-089-part-00113"
+IL_PART = "us-il/regulation/title-089/chapter-iv/subchapter-b/part-113"
+for r, s, code in (
+    (87, "10", "B00100"), (88, "100", "C01000"), (89, "112", "C01120"), (90, "113", "C01130"),
+    (91, "120", "C01200"), (92, "125", "C01250"), (93, "140", "C01400"), (94, "141", "C01410"),
+    (95, "142", "C01420"), (96, "247", "D02470"), (97, "248", "D02480"), (98, "253", "D02530"),
+    (99, "259", "D02590"), (100, "70", "B00700"),
+):
+    decide(r, "PRESENT", IL_SCOPE, f"{IL_PART}/section-113-{s}",
+           f"https://ftp.ilga.gov/JCAR/AdminCode/089/089001130{code}R.html",
+           f"Cornell LII mirror; 89 Ill. Adm. Code 113.{s} taken from the JCAR Illinois Administrative Code "
+           "(Part 113 whole, 92 sections)")
+decide(101, "PRESENT", IL_SCOPE, IL_PART, "https://ftp.ilga.gov/JCAR/AdminCode/089/089001130A00010R.html",
+       "Cornell LII mirror of Part 113 Subpart B; JCAR publishes no separate subpart page, so the subpart's sections "
+       "are rows of the Part 113 scope")
+
+# OSCN rows: oscn.net challenged the extractor run with an 'OSCN Turnstile' page (the 2026-10-06 probe had
+# answered 200 for these three); the Oklahoma Legislature's compiled Title 40 PDF carries the same sections.
+OK_PDF = "us-ok/statute/2026-10-06-w6-benefits-statute-ok"
+for r, sec, page in ((203, "1-231", 48), (204, "2-104", 49), (205, "2-105", 50)):
+    decide(r, "PRESENT", OK_PDF, f"us-ok/statute/title-40-pdf/page-{page}",
+           "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+           f"oscn.net (official, Oklahoma Supreme Court) answered the extractor with a Cloudflare 'OSCN Turnstile' "
+           f"challenge page; 40 O.S. § {sec} is on page {page} of the Legislature's compiled Title 40 PDF (row 201)")
+
+# extract-state-statutes --manifest manifests/us-al-benefits-w6-ui-statute.yaml (alabama-code adapter, ALISON)
+AL_SCOPE = "us-al/statute/2026-10-06-w6-benefits-ui-statute-us-al-title-25"
+decide(13, "PRESENT", AL_SCOPE, "us-al/statute/25-4-72",
+       "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-72",
+       "alabamaretail.org is a trade association (third party); the law its article reports (weekly benefit amount and "
+       "weeks of benefits) is Ala. Code 25-4-72 and 25-4-73, taken from the Legislature's ALISON code service")
+decide(14, "PRESENT", AL_SCOPE, "us-al/statute/title-25/chapter-4", "https://alison.legislature.state.al.us/code-of-alabama",
+       "Justia mirror of Ala. Code Title 25 Chapter 4; the official chapter is taken whole within Title 25 from ALISON")
+for r, sec in ((15, "25-4-72"), (16, "25-4-73"), (17, "25-4-74"), (18, "25-4-77")):
+    decide(r, "PRESENT", AL_SCOPE, f"us-al/statute/{sec}",
+           f"https://alison.legislature.state.al.us/code-of-alabama?section={sec}",
+           f"Justia mirror; Ala. Code {sec} taken from the Legislature's ALISON code service")
+
+# extract-maryland-comar --only-title 07 --only-subtitle 03 --only-chapter 17 (DSD official XML)
+MD_SCOPE = ("us-md/regulation/2026-10-06-w6-benefits-snap-comar-md-publication-2026-10-05-title-07-subtitle-03-"
+            "chapter-17")
+for r, reg in ((132, "35"), (133, "43")):
+    decide(r, "PRESENT", MD_SCOPE, f"us-md/regulation/title-07/subtitle-03/chapter-17/regulation-{reg}",
+           "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-10-02.2026-10-05/us/md/exec/comar/07/03/17.xml",
+           f"dsd.state.md.us redirects to dsd.maryland.gov (404); COMAR 07.03.17.{reg} taken from the Division of State "
+           "Documents' official COMAR XML (chapter 17 whole)")
 
 
 # --------------------------------------------------------------------------------------------

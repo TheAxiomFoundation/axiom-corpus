@@ -23,12 +23,13 @@ documents:
 - source_id: us-de-rulemaking-register-2005-08-9-de-reg-168
   jurisdiction: us-de
   document_class: rulemaking
-  title: 9 DE Reg. 168 (08/01/05), Proposed (Division of Social Services, Food Stamp Program)
+  title: '9 DE Reg. 168 (08/01/05), Proposed: Self-Employment Income (Division of Social Services)'
   source_url: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2005-08-01'
   citation_path: us-de/rulemaking/register/2005-08/9-de-reg-168
+  download_url: https://archive.regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
   metadata:
     primary_source: true
     source_authority: Delaware Register of Regulations (Registrar of Regulations)
@@ -36,6 +37,8 @@ documents:
     program: SNAP
     expression_date_note: the date the document prints
     discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 72)
+    source_url_note: regulations.delaware.gov now serves an Angular application shell for register pages (no text in the HTML);
+      the Registrar serves the same back-issue page as static HTML on its archive host, taken as download_url
     wave6_rows:
     - 72
     run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

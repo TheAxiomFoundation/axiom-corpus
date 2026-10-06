@@ -9,6 +9,8 @@ documents:
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-me/statute/title-22/3271
+  extraction:
+    html_content_selector: div.MRSSection
   metadata:
     primary_source: true
     source_authority: Maine Legislature, Office of the Revisor of Statutes
