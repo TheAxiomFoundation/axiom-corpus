@@ -86,12 +86,169 @@ def _set_ingest_keys(monkeypatch):
     return private_key, public_key
 
 
+def _write_anchor_cli_provisions(tmp_path, *records):
+    from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    path = store.provisions_path("us", "regulation", "v")
+    store.write_provisions(path, records)
+    return path
+
+
+def _anchor_cli_record(citation_path, body):
+    return ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path=citation_path,
+        id="00000000-0000-0000-0000-000000000001",
+        version="v",
+        body=body,
+    )
+
+
 def test_validate_manifest_cli(capsys):
     exit_code = main(["validate-manifest", "manifests/corpus.example.yaml"])
     output = capsys.readouterr().out
 
     assert exit_code == 0
     assert '"ok": true' in output
+
+
+def test_generate_anchors_cli_rejects_exact_anchor_without_target(tmp_path, capsys):
+    parent = "us/regulation/26/1/469-5T"
+    provisions = _write_anchor_cli_provisions(
+        tmp_path,
+        _anchor_cli_record(parent, "(a) Tests."),
+    )
+
+    exit_code = main(
+        [
+            "generate-anchors",
+            "--provisions",
+            str(provisions),
+            "--exact-anchor",
+            f"{parent}/a",
+            "--output",
+            str(tmp_path / "anchors.jsonl"),
+        ]
+    )
+
+    assert exit_code == 2
+    assert "--exact-anchor requires at least one --target" in capsys.readouterr().err
+
+
+def test_generate_anchors_cli_rejects_duplicate_exact_anchor(tmp_path, capsys):
+    parent = "us/regulation/26/1/469-5T"
+    exact = f"{parent}/a"
+    provisions = _write_anchor_cli_provisions(
+        tmp_path,
+        _anchor_cli_record(parent, "(a) Tests."),
+    )
+
+    exit_code = main(
+        [
+            "generate-anchors",
+            "--provisions",
+            str(provisions),
+            "--target",
+            parent,
+            "--exact-anchor",
+            exact,
+            "--exact-anchor",
+            exact,
+            "--output",
+            str(tmp_path / "anchors.jsonl"),
+        ]
+    )
+
+    assert exit_code == 2
+    assert "--exact-anchor values must be unique" in capsys.readouterr().err
+
+
+def test_generate_anchors_cli_rejects_exact_anchor_outside_target(tmp_path, capsys):
+    parent = "us/regulation/26/1/469-5T"
+    provisions = _write_anchor_cli_provisions(
+        tmp_path,
+        _anchor_cli_record(parent, "(a) Tests."),
+    )
+
+    exit_code = main(
+        [
+            "generate-anchors",
+            "--provisions",
+            str(provisions),
+            "--target",
+            parent,
+            "--exact-anchor",
+            "us/regulation/26/1/469-4/a",
+            "--output",
+            str(tmp_path / "anchors.jsonl"),
+        ]
+    )
+
+    assert exit_code == 2
+    error = capsys.readouterr().err
+    assert "must be below exactly one --target" in error
+    assert "matched []" in error
+
+
+def test_generate_anchors_cli_rejects_exact_anchor_with_overlapping_targets(tmp_path, capsys):
+    parent = "us/regulation/26/1/example"
+    child = f"{parent}/a"
+    provisions = _write_anchor_cli_provisions(
+        tmp_path,
+        _anchor_cli_record(parent, "(a) Parent."),
+        _anchor_cli_record(child, "(1) Child."),
+    )
+
+    exit_code = main(
+        [
+            "generate-anchors",
+            "--provisions",
+            str(provisions),
+            "--target",
+            parent,
+            "--target",
+            child,
+            "--exact-anchor",
+            f"{child}/1",
+            "--output",
+            str(tmp_path / "anchors.jsonl"),
+        ]
+    )
+
+    assert exit_code == 2
+    error = capsys.readouterr().err
+    assert "must be below exactly one --target" in error
+    assert parent in error
+    assert child in error
+
+
+def test_generate_anchors_cli_rejects_missing_or_ambiguous_exact_path(tmp_path, capsys):
+    parent = "us/regulation/26/1/example"
+    provisions = _write_anchor_cli_provisions(
+        tmp_path,
+        _anchor_cli_record(parent, "(a) First.\n\n(a) Second."),
+    )
+
+    for suffix, occurrence_count in (("a", 2), ("b", 0)):
+        exit_code = main(
+            [
+                "generate-anchors",
+                "--provisions",
+                str(provisions),
+                "--target",
+                parent,
+                "--exact-anchor",
+                f"{parent}/{suffix}",
+                "--output",
+                str(tmp_path / "anchors.jsonl"),
+            ]
+        )
+        error = capsys.readouterr().err
+
+        assert exit_code == 2
+        assert f"has {occurrence_count} inferred occurrences" in error
 
 
 def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(tmp_path, capsys, monkeypatch):
@@ -658,7 +815,10 @@ def test_verify_scope_tracked_cli_rejects_untracked_inventory_source(tmp_path, c
     output = capsys.readouterr().out
 
     assert exit_code == 1
-    assert "data/corpus/sources/dk/statute/2026-07-12-example/official-documents/new source.pdf" in output
+    assert (
+        "data/corpus/sources/dk/statute/2026-07-12-example/official-documents/new source.pdf"
+        in output
+    )
     assert "git add -f" in output
 
 
@@ -680,9 +840,7 @@ def test_verify_scope_tracked_cli_accepts_staged_uncommitted_source(tmp_path, ca
     assert "Verified 1 referenced files across 1 inventory scopes." in output
 
 
-def test_verify_scope_tracked_cli_uses_staged_inventory_when_worktree_is_clean(
-    tmp_path, capsys
-):
+def test_verify_scope_tracked_cli_uses_staged_inventory_when_worktree_is_clean(tmp_path, capsys):
     repo = _init_git_repo(tmp_path / "repo")
     clean_path = "sources/dk/statute/v1/official-documents/tracked.pdf"
     missing_path = "sources/dk/statute/v1/official-documents/missing.pdf"
@@ -704,9 +862,7 @@ def test_verify_scope_tracked_cli_uses_staged_inventory_when_worktree_is_clean(
     assert f"data/corpus/{missing_path}" in output
 
 
-def test_verify_scope_tracked_cli_ignores_unstaged_inventory_when_index_is_clean(
-    tmp_path, capsys
-):
+def test_verify_scope_tracked_cli_ignores_unstaged_inventory_when_index_is_clean(tmp_path, capsys):
     repo = _init_git_repo(tmp_path / "repo")
     clean_path = "sources/dk/statute/v1/official-documents/tracked.pdf"
     missing_path = "sources/dk/statute/v1/official-documents/missing.pdf"
@@ -726,9 +882,7 @@ def test_verify_scope_tracked_cli_ignores_unstaged_inventory_when_index_is_clean
     assert "Verified 1 referenced files across 1 inventory scopes." in output
 
 
-def test_verify_scope_tracked_cli_rejects_untracked_signed_manifest_file(
-    tmp_path, capsys
-):
+def test_verify_scope_tracked_cli_rejects_untracked_signed_manifest_file(tmp_path, capsys):
     repo = _init_git_repo(tmp_path / "repo")
     missing = "data/corpus/provisions/dk/statute/v1.jsonl"
     manifest = repo / ".axiom/ingest-manifests/dk/statute/v1.json"
@@ -767,9 +921,7 @@ def _write_scope_manifest(repo, applied_files):
     return manifest
 
 
-def test_verify_scope_tracked_cli_uses_staged_manifest_when_worktree_is_clean(
-    tmp_path, capsys
-):
+def test_verify_scope_tracked_cli_uses_staged_manifest_when_worktree_is_clean(tmp_path, capsys):
     repo = _init_git_repo(tmp_path / "repo")
     tracked = "data/corpus/provisions/dk/statute/tracked.jsonl"
     missing = "data/corpus/provisions/dk/statute/missing.jsonl"
@@ -791,9 +943,7 @@ def test_verify_scope_tracked_cli_uses_staged_manifest_when_worktree_is_clean(
     assert missing in output
 
 
-def test_verify_scope_tracked_cli_ignores_unstaged_manifest_when_index_is_clean(
-    tmp_path, capsys
-):
+def test_verify_scope_tracked_cli_ignores_unstaged_manifest_when_index_is_clean(tmp_path, capsys):
     repo = _init_git_repo(tmp_path / "repo")
     tracked = "data/corpus/provisions/dk/statute/tracked.jsonl"
     missing = "data/corpus/provisions/dk/statute/missing.jsonl"
@@ -820,9 +970,7 @@ def test_verify_scope_tracked_cli_ignores_deleted_manifest_entries(tmp_path, cap
     artifact = repo / live
     artifact.parent.mkdir(parents=True)
     artifact.write_text("{}\n")
-    manifest = _write_scope_manifest(
-        repo, [{"path": live}, {"path": deleted, "deleted": True}]
-    )
+    manifest = _write_scope_manifest(repo, [{"path": live}, {"path": deleted, "deleted": True}])
     _git(repo, "add", "-f", artifact.relative_to(repo), manifest.relative_to(repo))
 
     assert main(["verify-scope-tracked", "--repo", str(repo)]) == 0
@@ -836,16 +984,10 @@ def test_verify_scope_tracked_cli_ignores_deleted_manifest_entries(tmp_path, cap
 
 
 def _add_filter_scope(repo, jurisdiction, document_class, version, *, tracked):
-    source_path = (
-        f"sources/{jurisdiction}/{document_class}/{version}/official-documents/source.pdf"
-    )
-    inventory = repo / (
-        f"data/corpus/inventory/{jurisdiction}/{document_class}/{version}.json"
-    )
+    source_path = f"sources/{jurisdiction}/{document_class}/{version}/official-documents/source.pdf"
+    inventory = repo / (f"data/corpus/inventory/{jurisdiction}/{document_class}/{version}.json")
     inventory.parent.mkdir(parents=True, exist_ok=True)
-    inventory.write_text(
-        json.dumps({"items": [{"source_path": source_path}]}) + "\n"
-    )
+    inventory.write_text(json.dumps({"items": [{"source_path": source_path}]}) + "\n")
     _git(repo, "add", "-f", inventory.relative_to(repo))
     if tracked:
         source = repo / "data/corpus" / source_path
@@ -962,9 +1104,7 @@ def test_extract_ecfr_cli(tmp_path, capsys, monkeypatch):
     assert '"provisions_written": 1' in output
 
 
-def test_extract_ecfr_cli_rejects_failed_transcription_rebuild(
-    tmp_path, capsys, monkeypatch
-):
+def test_extract_ecfr_cli_rejects_failed_transcription_rebuild(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
     base = tmp_path / "corpus"
@@ -980,9 +1120,7 @@ def test_extract_ecfr_cli_rejects_failed_transcription_rebuild(
     )
     manifest = tmp_path / "graphics.json"
     manifest.write_text(
-        '{"graphics":{"ER07OC94.022":{"sha256":"'
-        + "a" * 64
-        + '","text":"X = (a * b) / c"}}}'
+        '{"graphics":{"ER07OC94.022":{"sha256":"' + "a" * 64 + '","text":"X = (a * b) / c"}}}'
     )
 
     def fake_extract(*args, **kwargs):

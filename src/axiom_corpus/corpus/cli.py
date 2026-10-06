@@ -23,6 +23,7 @@ from axiom_corpus.corpus.analytics import (
 )
 from axiom_corpus.corpus.anchors import (
     AnchorResolver,
+    AnchorVerificationError,
     generate_anchors_for_provision,
     generate_asserted_descendant_anchors,
     generate_stored_leaf_anchors,
@@ -543,23 +544,49 @@ def _cmd_generate_anchors(args: argparse.Namespace) -> int:
     records = load_provisions(args.provisions)
     by_path = {record.citation_path: record for record in records}
     targets = list(args.target or [])
+    exact_anchors = list(args.exact_anchor or [])
     asserted_parents = list(args.asserted_parent or [])
     stored_leaves = list(args.stored_leaf or [])
+    if exact_anchors and not targets:
+        print("error: --exact-anchor requires at least one --target", file=sys.stderr)
+        return 2
+    if len(exact_anchors) != len(set(exact_anchors)):
+        print("error: --exact-anchor values must be unique", file=sys.stderr)
+        return 2
     if not targets and not asserted_parents and not stored_leaves:
         # Default: parse every provision in the file that has a body.
         targets = [r.citation_path for r in records if (r.body or "").strip()]
 
     anchors = []
+    exact_by_target: dict[str, list[str]] = {target: [] for target in targets}
+    for exact_path in exact_anchors:
+        matching_targets = [target for target in targets if exact_path.startswith(f"{target}/")]
+        if len(matching_targets) != 1:
+            print(
+                f"error: exact anchor {exact_path!r} must be below exactly one "
+                f"--target; matched {matching_targets}",
+                file=sys.stderr,
+            )
+            return 2
+        exact_by_target[matching_targets[0]].append(exact_path)
     for citation_path in targets:
         record = by_path.get(citation_path)
         if record is None:
             print(
-                f"error: target provision {citation_path!r} not found in "
-                f"{args.provisions}",
+                f"error: target provision {citation_path!r} not found in {args.provisions}",
                 file=sys.stderr,
             )
             return 2
-        anchors.extend(generate_anchors_for_provision(record))
+        selected = exact_by_target[citation_path]
+        try:
+            generated = generate_anchors_for_provision(
+                record,
+                exact_paths=selected or None,
+            )
+        except (AnchorVerificationError, ValueError) as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+        anchors.extend(generated)
     for citation_path in asserted_parents:
         record = by_path.get(citation_path)
         if record is None:
@@ -574,15 +601,12 @@ def _cmd_generate_anchors(args: argparse.Namespace) -> int:
             for candidate in records
             if candidate.citation_path.startswith(f"{citation_path}/")
         ]
-        anchors.extend(
-            generate_asserted_descendant_anchors(record, descendants)
-        )
+        anchors.extend(generate_asserted_descendant_anchors(record, descendants))
     for citation_path in stored_leaves:
         record = by_path.get(citation_path)
         if record is None:
             print(
-                f"error: stored-leaf provision {citation_path!r} not found in "
-                f"{args.provisions}",
+                f"error: stored-leaf provision {citation_path!r} not found in {args.provisions}",
                 file=sys.stderr,
             )
             return 2
@@ -594,9 +618,7 @@ def _cmd_generate_anchors(args: argparse.Namespace) -> int:
     written = write_anchors_jsonl(args.output, anchors)
     confidence_split: dict[str, int] = {}
     for anchor in anchors:
-        confidence_split[anchor.confidence] = (
-            confidence_split.get(anchor.confidence, 0) + 1
-        )
+        confidence_split[anchor.confidence] = confidence_split.get(anchor.confidence, 0) + 1
     print(
         json.dumps(
             {
@@ -3096,15 +3118,12 @@ def _extract_state_statute_source(
             bill_html_url=_optional_text(options.get("bill_html_url"))
             or source.source_url
             or MISSISSIPPI_HB1_HTML_URL,
-            bill_pdf_url=_optional_text(options.get("bill_pdf_url"))
-            or MISSISSIPPI_HB1_PDF_URL,
-            signing_url=_optional_text(options.get("signing_url"))
-            or MISSISSIPPI_HB1_SIGNING_URL,
+            bill_pdf_url=_optional_text(options.get("bill_pdf_url")) or MISSISSIPPI_HB1_PDF_URL,
+            signing_url=_optional_text(options.get("signing_url")) or MISSISSIPPI_HB1_SIGNING_URL,
             rate_guidance_url=_optional_text(options.get("rate_guidance_url"))
             or MISSISSIPPI_DOR_RATES_URL,
             tax_year=_optional_int(options.get("tax_year")) or 2026,
-            request_delay_seconds=_optional_float(options.get("request_delay_seconds"))
-            or 0.05,
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.05,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             legislature_verify_ssl=_optional_bool(
@@ -3132,9 +3151,7 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 30.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 2,
-            repeal_authority_2021_url=_optional_text(
-                options.get("repeal_authority_2021_url")
-            ),
+            repeal_authority_2021_url=_optional_text(options.get("repeal_authority_2021_url")),
             repeal_acceleration_2023_url=_optional_text(
                 options.get("repeal_acceleration_2023_url")
             ),
@@ -3432,10 +3449,7 @@ def _extract_state_statute_source(
             full_chapter_url=_optional_text(options.get("full_chapter_url"))
             or "https://legislature.vermont.gov/statutes/fullchapter/32/151",
             acts_registry_url=_optional_text(options.get("acts_registry_url"))
-            or (
-                "https://legislature.vermont.gov/"
-                "bill/loadBillActsAffectingStatutes/2026"
-            ),
+            or ("https://legislature.vermont.gov/bill/loadBillActsAffectingStatutes/2026"),
             act_152_url=_optional_text(options.get("act_152_url"))
             or (
                 "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT152/"
@@ -3446,8 +3460,7 @@ def _extract_state_statute_source(
                 "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT164/"
                 "ACT164%20As%20Enacted.pdf"
             ),
-            request_delay_seconds=_optional_float(options.get("request_delay_seconds"))
-            or 0.1,
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.1,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             verify_ssl=_optional_bool(options.get("verify_ssl"), default=True),
@@ -4520,8 +4533,7 @@ def _load_nycrr_adopted_amendments(
                 text_end=str(raw_amendment["text_end"]),
                 adoption_confirmation=str(raw_amendment["adoption_confirmation"]),
                 clause_headings={
-                    str(label): str(clause["heading"])
-                    for label, clause in raw_clauses.items()
+                    str(label): str(clause["heading"]) for label, clause in raw_clauses.items()
                 },
                 required_text={
                     str(label): tuple(str(value) for value in clause.get("required_text", ()))
@@ -5451,9 +5463,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ),
     (
         "Extract: manifest-driven official documents (any jurisdiction)",
-        (
-            "extract-official-documents",
-        ),
+        ("extract-official-documents",),
     ),
     (
         "Extract: US states and localities",
@@ -5564,9 +5574,7 @@ def _build_command_index(
             helps[name] = getattr(pseudo_action, "help", None) or ""
 
     # Aliases share their canonical command's parser object.
-    canonical_by_parser_id = {
-        id(sub.choices[name]): name for name in labels if name in sub.choices
-    }
+    canonical_by_parser_id = {id(sub.choices[name]): name for name in labels if name in sub.choices}
     canonical: list[str] = []
     aliases: dict[str, str] = {}
     for name, subparser in sub.choices.items():
@@ -6347,9 +6355,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_new_york_sections_cmd.add_argument("--source-dir", type=Path)
     extract_new_york_sections_cmd.add_argument("--download-dir", type=Path)
-    extract_new_york_sections_cmd.add_argument(
-        "--source-as-of", "--as-of", dest="source_as_of"
-    )
+    extract_new_york_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_new_york_sections_cmd.add_argument("--expression-date")
     extract_new_york_sections_cmd.add_argument(
         "--api-key-env",
@@ -6359,12 +6365,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--api-base-url",
         default="https://legislation.nysenate.gov",
     )
-    extract_new_york_sections_cmd.add_argument(
-        "--allow-incomplete", action="store_true"
-    )
-    extract_new_york_sections_cmd.set_defaults(
-        func=_cmd_extract_new_york_openleg_sections
-    )
+    extract_new_york_sections_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_new_york_sections_cmd.set_defaults(func=_cmd_extract_new_york_openleg_sections)
 
     extract_nyc_admin_code_cmd = sub.add_parser(
         "extract-nyc-admin-code",
@@ -6705,9 +6707,7 @@ def build_parser() -> argparse.ArgumentParser:
     extract_nycrr_parts_cmd.add_argument("--base", type=Path, required=True)
     extract_nycrr_parts_cmd.add_argument("--version", required=True)
     extract_nycrr_parts_cmd.add_argument("--manifest", type=Path, required=True)
-    extract_nycrr_parts_cmd.add_argument(
-        "--source-as-of", "--as-of", dest="source_as_of"
-    )
+    extract_nycrr_parts_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_nycrr_parts_cmd.add_argument("--expression-date")
     extract_nycrr_parts_cmd.add_argument("--delay-seconds", type=float, default=0.25)
     extract_nycrr_parts_cmd.add_argument("--retry-attempts", type=int, default=4)
@@ -6945,8 +6945,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--output",
         type=Path,
         required=True,
-        help="Anchors JSONL to write (mirror the provisions layout under "
-        "data/corpus/anchors/).",
+        help="Anchors JSONL to write (mirror the provisions layout under data/corpus/anchors/).",
     )
     generate_anchors.add_argument(
         "--target",
@@ -6956,6 +6955,17 @@ def build_parser() -> argparse.ArgumentParser:
             "Citation path of an asserted provision whose paragraph tree to "
             "parse into inferred leaves (repeatable). Omit --target and "
             "--stored-leaf to parse every provision in the file with a body."
+        ),
+    )
+    generate_anchors.add_argument(
+        "--exact-anchor",
+        action="append",
+        default=[],
+        help=(
+            "Exact inferred citation path to emit below one --target "
+            "(repeatable). The path must occur exactly once in that target's "
+            "inferred tree; missing or ambiguous paths fail closed. Targets "
+            "without an exact selection still emit their complete tree."
         ),
     )
     generate_anchors.add_argument(
@@ -7012,12 +7022,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     load_anchors_supabase.add_argument("--chunk-size", type=int, default=500)
     load_anchors_supabase.add_argument("--dry-run", action="store_true")
-    load_anchors_supabase.add_argument(
-        "--service-key-env", default=DEFAULT_SERVICE_KEY_ENV
-    )
-    load_anchors_supabase.add_argument(
-        "--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV
-    )
+    load_anchors_supabase.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
+    load_anchors_supabase.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
     load_anchors_supabase.set_defaults(func=_cmd_load_anchors_supabase)
 
     build_navigation = sub.add_parser(

@@ -24,6 +24,7 @@ from pathlib import Path
 import pytest
 
 from axiom_corpus.corpus.anchors import (
+    EXACT_SELECTION_EXTRACTOR_VERSION,
     EXTRACTOR_VERSION,
     AnchorResolver,
     AnchorVerificationError,
@@ -46,23 +47,14 @@ PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
 ANCHORS_DIR = REPO_ROOT / "data" / "corpus" / "anchors"
 
 # --- Target 1: 7 CFR 273.9 (federal, paragraph-tree parse) ---
-CFR_PROVISIONS = (
-    PROVISIONS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
-)
+CFR_PROVISIONS = PROVISIONS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
 CFR_ANCHORS = ANCHORS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
 CFR_SECTION = "us/regulation/7/273/9"
 CFR_LEAF = "us/regulation/7/273/9/d/6/iii"
 
 # --- Target 2: us-ma 106 CMR 365.180 (state, stored block leaf) ---
-MA_PROVISIONS = (
-    PROVISIONS_DIR
-    / "us-ma"
-    / "regulation"
-    / "2026-05-28-365-180-children.jsonl"
-)
-MA_ANCHORS = (
-    ANCHORS_DIR / "us-ma" / "regulation" / "2026-05-28-365-180-children.jsonl"
-)
+MA_PROVISIONS = PROVISIONS_DIR / "us-ma" / "regulation" / "2026-05-28-365-180-children.jsonl"
+MA_ANCHORS = ANCHORS_DIR / "us-ma" / "regulation" / "2026-05-28-365-180-children.jsonl"
 MA_LEAF = "us-ma/regulation/106-cmr/365/180/A"
 
 
@@ -461,10 +453,7 @@ def test_restarted_numbered_list_does_not_collide() -> None:
     # restarted list) must not produce colliding paths — the monotonic-sibling
     # rule re-attaches the second list correctly. Regression for the
     # 273.9(c)(1)(vii)... collision.
-    body = (
-        "(a) First. (1) one item, (2) two item.\n\n"
-        "(b) Second. (1) alpha again, (2) beta again."
-    )
+    body = "(a) First. (1) one item, (2) two item.\n\n(b) Second. (1) alpha again, (2) beta again."
     provision = ProvisionRecord(
         jurisdiction="us",
         document_class="regulation",
@@ -480,6 +469,89 @@ def test_restarted_numbered_list_does_not_collide() -> None:
     # The two (1)s live under different parents, so both are addressable.
     assert "us/regulation/1/1/1/a/1" in path_set
     assert "us/regulation/1/1/1/b/1" in path_set
+
+
+def test_exact_path_selection_ignores_only_unrelated_collisions() -> None:
+    body = (
+        "(a) Tests—(1) More than 500 hours.\n\n"
+        "(z) First ambiguous top-level label.\n\n"
+        "(z) Second ambiguous top-level label."
+    )
+    provision = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/26/1/469-5T",
+        id="00000000-0000-0000-0000-000000000011",
+        version="v",
+        body=body,
+    )
+    exact_path = "us/regulation/26/1/469-5T/a/1"
+
+    with pytest.raises(AnchorVerificationError, match="duplicate anchor"):
+        generate_anchors_for_provision(provision)
+
+    selected = generate_anchors_for_provision(
+        provision,
+        exact_paths=[exact_path],
+    )
+    assert [anchor.citation_path for anchor in selected] == [exact_path]
+    assert selected[0].text == "(1) More than 500 hours."
+    assert selected[0].extractor_version == EXACT_SELECTION_EXTRACTOR_VERSION
+    assert selected[0].metadata == {"selection_mode": "exact"}
+
+
+def test_exact_path_selection_handles_repeated_line_head_prefix_without_guessing() -> None:
+    body = (
+        "(f) Participation—(1) In general. Owner work counts.\n\n"
+        "(f)(2)-(h)(2) [Reserved]\n\n"
+        "(h)(3) Coordination with passthrough entities.\n\n"
+        "(i) [Reserved]"
+    )
+    provision = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/26/1/469-5",
+        id="00000000-0000-0000-0000-000000000010",
+        version="v",
+        body=body,
+    )
+    exact_path = "us/regulation/26/1/469-5/f/1"
+
+    with pytest.raises(AnchorVerificationError, match="duplicate anchor"):
+        generate_anchors_for_provision(provision)
+
+    selected = generate_anchors_for_provision(
+        provision,
+        exact_paths=[exact_path],
+    )
+    assert [anchor.citation_path for anchor in selected] == [exact_path]
+    assert selected[0].text == "(1) In general. Owner work counts."
+    assert "[Reserved]" not in selected[0].text
+    assert selected[0].extractor_version == EXACT_SELECTION_EXTRACTOR_VERSION
+    assert selected[0].metadata == {"selection_mode": "exact"}
+
+
+def test_exact_path_selection_fails_on_requested_missing_or_ambiguous_path() -> None:
+    body = "(a) First.\n\n(a) Second."
+    provision = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/26/1/example",
+        id="00000000-0000-0000-0000-000000000012",
+        version="v",
+        body=body,
+    )
+
+    with pytest.raises(AnchorVerificationError, match="2 inferred occurrences"):
+        generate_anchors_for_provision(
+            provision,
+            exact_paths=["us/regulation/26/1/example/a"],
+        )
+    with pytest.raises(AnchorVerificationError, match="0 inferred occurrences"):
+        generate_anchors_for_provision(
+            provision,
+            exact_paths=["us/regulation/26/1/example/b"],
+        )
 
 
 def test_corrupted_offset_fails_verification(
@@ -517,9 +589,7 @@ def test_drifted_parent_body_is_caught(
     ma_leaf_provision: ProvisionRecord, ma_anchors: list[ProvisionAnchor]
 ) -> None:
     # A parent whose body changed since generation must trigger a rebuild.
-    drifted = dataclasses.replace(
-        ma_leaf_provision, body=(ma_leaf_provision.body or "") + " EDIT"
-    )
+    drifted = dataclasses.replace(ma_leaf_provision, body=(ma_leaf_provision.body or "") + " EDIT")
     with pytest.raises(AnchorVerificationError, match="hash drifted"):
         verify_anchors_against_provisions(ma_anchors, [drifted])
 
@@ -579,9 +649,7 @@ def test_committed_cfr_anchors_match_generator(
     committed = load_anchors(CFR_ANCHORS)
     got = {a.citation_path: a.to_mapping() for a in cfr_anchors}
     have = {a.citation_path: a.to_mapping() for a in committed}
-    assert got == have, (
-        "committed data/corpus/anchors is stale; rerun generate-anchors"
-    )
+    assert got == have, "committed data/corpus/anchors is stale; rerun generate-anchors"
 
 
 def test_committed_ma_anchors_match_generator(
@@ -595,9 +663,7 @@ def test_committed_ma_anchors_match_generator(
     assert got == have
 
 
-def test_roundtrip_jsonl(
-    tmp_path: Path, cfr_anchors: list[ProvisionAnchor]
-) -> None:
+def test_roundtrip_jsonl(tmp_path: Path, cfr_anchors: list[ProvisionAnchor]) -> None:
     out = tmp_path / "anchors.jsonl"
     n = write_anchors_jsonl(out, cfr_anchors)
     assert n == len(cfr_anchors)
@@ -673,10 +739,7 @@ def test_migration_ddl_matches_expected_columns() -> None:
     # Guard the DDL itself: every expected column must appear in the migration
     # so the table the loader targets actually has them.
     migration = (
-        REPO_ROOT
-        / "supabase"
-        / "migrations"
-        / "20260704120000_corpus_provision_anchors.sql"
+        REPO_ROOT / "supabase" / "migrations" / "20260704120000_corpus_provision_anchors.sql"
     )
     if not migration.exists():
         pytest.skip("migration not present")

@@ -114,32 +114,27 @@ def consolidate_release_scopes(
     unknown_included_versions = sorted(set(included) - set(source_versions))
     if unknown_included_versions:
         raise ValueError(
-            "included citation versions must be source versions: "
-            f"{unknown_included_versions}"
+            f"included citation versions must be source versions: {unknown_included_versions}"
         )
     empty_included_versions = sorted(
         source_version for source_version, citations in included.items() if not citations
     )
     if empty_included_versions:
-        raise ValueError(
-            "included citation sets must not be empty: " f"{empty_included_versions}"
-        )
+        raise ValueError(f"included citation sets must not be empty: {empty_included_versions}")
     preference_versions = set(preferences.values())
     if preferred_duplicate_version is not None:
         preference_versions.add(preferred_duplicate_version)
     unknown_preference_versions = sorted(preference_versions - set(source_versions))
     if unknown_preference_versions:
         raise ValueError(
-            "preferred duplicate versions must be source versions: "
-            f"{unknown_preference_versions}"
+            f"preferred duplicate versions must be source versions: {unknown_preference_versions}"
         )
     unknown_shadow_versions = sorted(
         (set(shadowing) | set(shadowing.values())) - set(source_versions)
     )
     if unknown_shadow_versions:
         raise ValueError(
-            "shadowed block versions must be source versions: "
-            f"{unknown_shadow_versions}"
+            f"shadowed block versions must be source versions: {unknown_shadow_versions}"
         )
     if any(source == successor for source, successor in shadowing.items()):
         raise ValueError("shadowed block source and successor versions must differ")
@@ -192,7 +187,7 @@ def consolidate_release_scopes(
         for item in source_inventory:
             if selected_citations is not None and item.citation_path not in selected_citations:
                 continue
-            rewritten = replace(
+            rewritten_item = replace(
                 item,
                 metadata=_portable_metadata(item.metadata),
                 source_path=_rewritten_source_path(
@@ -204,13 +199,13 @@ def consolidate_release_scopes(
                 ),
             )
             inventory_candidates.setdefault(item.citation_path, []).append(
-                (source_version, rewritten)
+                (source_version, rewritten_item)
             )
 
         for record in source_provisions:
             if selected_citations is not None and record.citation_path not in selected_citations:
                 continue
-            rewritten = replace(
+            rewritten_record = replace(
                 record,
                 version=target_version,
                 id=deterministic_provision_id(record.citation_path, target_version),
@@ -229,7 +224,7 @@ def consolidate_release_scopes(
                 ),
             )
             provision_candidates.setdefault(record.citation_path, []).append(
-                (source_version, rewritten)
+                (source_version, rewritten_record)
             )
 
     citations_by_version = {
@@ -247,8 +242,7 @@ def consolidate_release_scopes(
             if not (
                 source_version in shadowing
                 and record.kind == "block"
-                and record.parent_citation_path
-                in citations_by_version[shadowing[source_version]]
+                and record.parent_citation_path in citations_by_version[shadowing[source_version]]
             )
         ]
         retained_versions = {source_version for source_version, _record in retained}
@@ -347,9 +341,7 @@ def consolidate_release_scopes(
         staged_provisions = staging_store.provisions_path(
             jurisdiction, document_class, target_version
         )
-        staged_coverage = staging_store.coverage_path(
-            jurisdiction, document_class, target_version
-        )
+        staged_coverage = staging_store.coverage_path(jurisdiction, document_class, target_version)
         staging_store.write_inventory(staged_inventory, inventory)
         staging_store.write_provisions(staged_provisions, provisions)
         staging_store.write_json(staged_coverage, coverage.to_mapping())
@@ -429,9 +421,7 @@ def main() -> int:
             parser.error("--include-citation-from must be SOURCE_VERSION=CITATION_PATH")
         citations = included_citations.setdefault(source_version, set())
         if citation_path in citations:
-            parser.error(
-                f"duplicate included citation for {source_version}: {citation_path}"
-            )
+            parser.error(f"duplicate included citation for {source_version}: {citation_path}")
         citations.add(citation_path)
     generated = consolidate_release_scopes(
         base=args.base,

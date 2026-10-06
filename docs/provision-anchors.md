@@ -51,8 +51,9 @@ structure lives here (re-derivable annotation).
 - `char_start` / `char_end` — half-open `[start, end)` offsets into the parent
   body.
 - `anchor_text` — the leaf text **materialized as a verified-derived column**
-  (byte-equal to `parent.body[char_start:char_end]`), so leaf queries, encoder
-  prompt slicing, and leaf FTS need no second source of truth.
+  (byte-equal to `parent.body[char_start:char_end]`), so leaf queries and leaf
+  FTS need no second source of truth. Encoder consumption is not implemented;
+  see the boundary below.
 - `label` — the printed label at the span head, without parens (`d`, `6`,
   `iii`, `A`).
 - `confidence` — `machine_asserted` vs `label_inferred` (see below).
@@ -88,12 +89,17 @@ required" rather than silently trusted.
 ## Rebuild discipline
 
 The table is **derived and rebuildable** from `(provisions × extractor
-version)`:
+version)` for a complete tree. A selective artifact also pins its declared
+exact paths in its reproducer:
 
 - A boundary correction is a **rebuild** (`generate-anchors` again) plus a
   parent-hash re-check — **never a migration**.
 - Bump `EXTRACTOR_VERSION` whenever the algorithm could move offsets; the
   `(parent provision, extractor_version)` pair is the rebuild cache key.
+- Optional exact-path selection stamps `EXACT_SELECTION_EXTRACTOR_VERSION` on
+  selected rows and records `metadata.selection_mode = "exact"`. Unselected
+  targets retain `EXTRACTOR_VERSION`, because their parser output and offsets
+  are unchanged.
 - The committed JSONL is checked in CI to equal the generator's output
   (`test_committed_*_anchors_match_generator`), so a stale artifact fails the
   suite.
@@ -115,16 +121,40 @@ fallback and return `(provision_id, parent_citation_path, span, match_kind)`:
 
 A path matching none of these returns `None` (Python) / zero rows (SQL).
 
+### Current consumption boundary
+
+Anchor JSONL is not currently an artifact class in a signed corpus release,
+and the pinned encoder reads only `provisions`. Its source resolver deliberately
+falls back from a child citation to the nearest asserted section provision.
+Consequently, generating an exact-selection anchor does **not** make that
+anchor available to encoding or proof validation and does not prevent an
+unselected sibling path from resolving through the section body.
+
+A proof-authority consumer must first bind anchors into the signed release,
+verify the parent identity/body hash and byte-equal span, and require
+`match_kind == "exact"`. It must not use the generic three-tier fallback above.
+Until that integration exists, anchors are corpus-local annotation artifacts,
+not encoder source attestations.
+
 ## CLI
 
 ```bash
 # Generate the derived anchors JSONL from an asserted provisions file.
 # --target parses the printed paragraph tree of a section provision;
-# --stored-leaf wraps a provision that is already a block leaf.
+# --stored-leaf wraps a provision that is already a block leaf. When unrelated
+# typography makes the complete tree ambiguous, repeat --exact-anchor to emit
+# only paths that occur exactly once below a named --target.
 axiom-corpus-ingest generate-anchors \
   --provisions data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273.jsonl \
   --target us/regulation/7/273/9 \
   --output data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273.jsonl
+
+axiom-corpus-ingest generate-anchors \
+  --provisions data/corpus/provisions/us/regulation/2026-08-30-qbi-niit-classification-regulations-title-26-part-1.jsonl \
+  --target us/regulation/26/1/469-5T \
+  --exact-anchor us/regulation/26/1/469-5T/a/1 \
+  --exact-anchor us/regulation/26/1/469-5T/f/4 \
+  --output data/corpus/anchors/us/regulation/2026-08-30-qbi-niit-classification-regulations-title-26-part-1.jsonl
 
 # Resolve a citation path to (provision_id, span) over an anchors artifact.
 axiom-corpus-ingest resolve-anchor \

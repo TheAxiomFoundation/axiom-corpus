@@ -21,9 +21,10 @@ re-derivation; a wrong identity is a migration across every consumer.
 
 Disciplines (enforced by this module and its tests)
 ---------------------------------------------------
-* **Derived and rebuildable** from ``(provisions x extractor version)``. A
-  boundary correction is a rebuild plus a parent-hash re-check, never a
-  migration.
+* **Derived and rebuildable** from ``(provisions x extractor version)`` for a
+  complete tree, or additionally the declared exact paths for a selective
+  artifact. A boundary correction is a rebuild plus a parent-hash re-check,
+  never a migration.
 * **Byte-equal gate**: ``anchor.text`` must equal
   ``parent.body[char_start:char_end]`` exactly. Corrupting an offset fails
   verification.
@@ -59,12 +60,15 @@ from axiom_corpus.corpus.models import ProvisionRecord
 #: cache key for a rebuild. Any change to :func:`generate_anchors` output for
 #: identical input MUST bump this.
 EXTRACTOR_VERSION = "provision-anchors/1.0.0"
+# Exact-path selection changes the emitted artifact only when requested. Stamp
+# those anchors separately so existing 1.0 artifacts whose output is unchanged
+# do not become falsely stale (some retained parents are no longer available to
+# rebuild locally).
+EXACT_SELECTION_EXTRACTOR_VERSION = "provision-anchors/1.1.0"
 
 CONFIDENCE_MACHINE_ASSERTED = "machine_asserted"
 CONFIDENCE_LABEL_INFERRED = "label_inferred"
-_CONFIDENCE_VALUES = frozenset(
-    {CONFIDENCE_MACHINE_ASSERTED, CONFIDENCE_LABEL_INFERRED}
-)
+_CONFIDENCE_VALUES = frozenset({CONFIDENCE_MACHINE_ASSERTED, CONFIDENCE_LABEL_INFERRED})
 
 _STATUS_ACTIVE = "active"
 
@@ -134,13 +138,11 @@ class ProvisionAnchor:
     def __post_init__(self) -> None:
         if self.confidence not in _CONFIDENCE_VALUES:
             raise ValueError(
-                f"confidence must be one of {sorted(_CONFIDENCE_VALUES)}; "
-                f"got {self.confidence!r}"
+                f"confidence must be one of {sorted(_CONFIDENCE_VALUES)}; got {self.confidence!r}"
             )
         if self.char_start < 0 or self.char_end < self.char_start:
             raise ValueError(
-                f"invalid span [{self.char_start}, {self.char_end}) for "
-                f"{self.citation_path!r}"
+                f"invalid span [{self.char_start}, {self.char_end}) for {self.citation_path!r}"
             )
 
     @property
@@ -167,9 +169,7 @@ class ProvisionAnchor:
             version=data.get("version"),
             ordinal=data.get("ordinal"),
             metadata=(
-                dict(data["metadata"])
-                if isinstance(data.get("metadata"), Mapping)
-                else None
+                dict(data["metadata"]) if isinstance(data.get("metadata"), Mapping) else None
             ),
         )
 
@@ -435,9 +435,7 @@ def _build_tree(body: str, heads: Sequence[_Head]) -> list[_Node]:
             continue
         # Empty stack: this is a new top-level node.
         want = _expected_child_form(None)
-        form = _resolve_form(head.token, forms, want) or (
-            next(iter(forms)) if forms else "other"
-        )
+        form = _resolve_form(head.token, forms, want) or (next(iter(forms)) if forms else "other")
         node = _Node(
             token=head.token,
             form=form,
@@ -523,6 +521,7 @@ def generate_anchors_for_provision(
     confidence: str = CONFIDENCE_LABEL_INFERRED,
     include_intermediate: bool = True,
     min_depth: int = 0,
+    exact_paths: Iterable[str] | None = None,
 ) -> list[ProvisionAnchor]:
     """Parse ``provision.body`` into a paragraph tree and emit anchors.
 
@@ -532,18 +531,25 @@ def generate_anchors_for_provision(
 
     ``include_intermediate`` also emits ancestor paragraphs (``(d)``, ``(d)(6)``)
     so intermediate citation paths resolve, not only the deepest leaves.
+
+    ``exact_paths`` is a fail-closed escape hatch for a section whose unrelated
+    typography makes the complete tree ambiguous. It emits only the requested
+    citation paths, and only when the inferred tree contains exactly one
+    occurrence of each. Missing or duplicate requested paths raise; collisions
+    elsewhere in the section cannot leak into the selected artifact.
     """
     body = provision.body or ""
     parent_id = provision.id
     if not parent_id:
-        raise ValueError(
-            f"provision {provision.citation_path!r} has no id; cannot anchor"
-        )
+        raise ValueError(f"provision {provision.citation_path!r} has no id; cannot anchor")
     parent_path = provision.citation_path
     parent_hash = body_sha256(body)
 
     heads = _scan_heads(body)
     roots = _build_tree(body, heads)
+    extractor_version = (
+        EXACT_SELECTION_EXTRACTOR_VERSION if exact_paths is not None else EXTRACTOR_VERSION
+    )
 
     anchors: list[ProvisionAnchor] = []
     ordinal = 0
@@ -564,11 +570,13 @@ def generate_anchors_for_provision(
                 label=node.token,
                 depth=node.depth,
                 confidence=confidence,
+                extractor_version=extractor_version,
                 parent_body_sha256=parent_hash,
                 jurisdiction=provision.jurisdiction,
                 document_class=provision.document_class,
                 version=provision.version,
                 ordinal=ordinal,
+                metadata=({"selection_mode": "exact"} if exact_paths is not None else None),
             )
             verify_anchor(anchor, body)
             anchors.append(anchor)
@@ -578,6 +586,37 @@ def generate_anchors_for_provision(
 
     for root in roots:
         _emit(root, [root.token])
+
+    if exact_paths is not None:
+        requested = tuple(exact_paths)
+        if not requested:
+            raise ValueError("exact_paths must contain at least one citation path")
+        if len(requested) != len(set(requested)):
+            raise ValueError("exact_paths must not contain duplicate citation paths")
+        prefix = f"{parent_path}/"
+        invalid = sorted(path for path in requested if not path.startswith(prefix))
+        if invalid:
+            raise ValueError(f"exact anchor paths must be below {parent_path}: {invalid[:5]}")
+        anchors_by_path: dict[str, list[ProvisionAnchor]] = {}
+        for anchor in anchors:
+            anchors_by_path.setdefault(anchor.citation_path, []).append(anchor)
+        selected: list[ProvisionAnchor] = []
+        for path in requested:
+            candidates = anchors_by_path.get(path, [])
+            if len(candidates) != 1:
+                raise AnchorVerificationError(
+                    f"{parent_path}: exact anchor {path!r} has "
+                    f"{len(candidates)} inferred occurrences; expected exactly 1"
+                )
+            selected.append(candidates[0])
+        return sorted(
+            selected,
+            key=lambda anchor: (
+                anchor.char_start,
+                -anchor.char_end,
+                anchor.citation_path,
+            ),
+        )
 
     # Hard invariant: the leaf path is the stable PRIMARY KEY, so no two anchors
     # may share a citation path. A collision means the paragraph parse is
@@ -608,13 +647,9 @@ def generate_asserted_descendant_anchors(
     parent_id = parent_provision.id
     parent_source_id = parent_provision.source_id
     if not parent_id:
-        raise ValueError(
-            f"parent provision {parent_provision.citation_path!r} has no id"
-        )
+        raise ValueError(f"parent provision {parent_provision.citation_path!r} has no id")
     if not parent_source_id:
-        raise ValueError(
-            f"parent provision {parent_provision.citation_path!r} has no source id"
-        )
+        raise ValueError(f"parent provision {parent_provision.citation_path!r} has no source id")
 
     path_prefix = f"{parent_provision.citation_path}/"
     source_prefix = f"{parent_source_id}/"
@@ -623,12 +658,9 @@ def generate_asserted_descendant_anchors(
     for descendant in descendants:
         if not descendant.citation_path.startswith(path_prefix):
             raise ValueError(
-                f"{descendant.citation_path!r} is not below "
-                f"{parent_provision.citation_path!r}"
+                f"{descendant.citation_path!r} is not below {parent_provision.citation_path!r}"
             )
-        if not descendant.source_id or not descendant.source_id.startswith(
-            source_prefix
-        ):
+        if not descendant.source_id or not descendant.source_id.startswith(source_prefix):
             raise ValueError(
                 f"{descendant.citation_path}: source id "
                 f"{descendant.source_id!r} is not below {parent_source_id!r}"
@@ -706,17 +738,14 @@ def anchor_for_stored_leaf(
     body = leaf_provision.body or ""
     parent_id = leaf_provision.id
     if not parent_id:
-        raise ValueError(
-            f"leaf provision {leaf_provision.citation_path!r} has no id"
-        )
+        raise ValueError(f"leaf provision {leaf_provision.citation_path!r} has no id")
     label = leaf_provision.citation_path.rsplit("/", 1)[-1]
     needle = f"({label})"
     if label_offset is None:
         label_offset = body.find(needle)
     if label_offset < 0:
         raise AnchorVerificationError(
-            f"{leaf_provision.citation_path}: printed label {needle} not found "
-            f"in stored body"
+            f"{leaf_provision.citation_path}: printed label {needle} not found in stored body"
         )
     text = body[label_offset:].rstrip()
     end = label_offset + len(text)
@@ -749,10 +778,7 @@ def _scan_inline_numbered_run(text: str, base_offset: int) -> list[tuple[int, st
     Conservative by design: a broken sequence yields ``[]`` so we never mint
     leaves from ambiguous typography.
     """
-    hits = [
-        (m.start(), m.group(1))
-        for m in re.finditer(r"\((\d{1,3})\)", text)
-    ]
+    hits = [(m.start(), m.group(1)) for m in re.finditer(r"\((\d{1,3})\)", text)]
     if not hits:
         return []
     run: list[tuple[int, str]] = []
@@ -836,9 +862,7 @@ def generate_anchors(
             continue
         if not (provision.body or "").strip():
             continue
-        out.extend(
-            generate_anchors_for_provision(provision, confidence=confidence)
-        )
+        out.extend(generate_anchors_for_provision(provision, confidence=confidence))
     return out
 
 
@@ -905,11 +929,7 @@ class AnchorResolver:
             )
 
         prefix = citation_path + "/"
-        descendants = [
-            anchor
-            for path, anchor in self._by_path.items()
-            if path.startswith(prefix)
-        ]
+        descendants = [anchor for path, anchor in self._by_path.items() if path.startswith(prefix)]
         if descendants:
             # Descendants exist, so the query is an ancestor of drafted leaves —
             # it is NOT a below-frontier drill, so the ancestor fallback does not
@@ -967,16 +987,13 @@ def load_anchors(path: str | Path) -> tuple[ProvisionAnchor, ...]:
     return tuple(anchors)
 
 
-def write_anchors_jsonl(
-    path: str | Path, anchors: Iterable[ProvisionAnchor]
-) -> int:
+def write_anchors_jsonl(path: str | Path, anchors: Iterable[ProvisionAnchor]) -> int:
     """Write anchors as JSONL, one row per line, keys sorted for stable diffs."""
     rows = list(anchors)
     output_path = Path(path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = "\n".join(
-        json.dumps(anchor.to_mapping(), sort_keys=True, ensure_ascii=False)
-        for anchor in rows
+        json.dumps(anchor.to_mapping(), sort_keys=True, ensure_ascii=False) for anchor in rows
     )
     output_path.write_text(payload + ("\n" if rows else ""))
     return len(rows)
@@ -994,9 +1011,7 @@ def verify_anchors_against_provisions(
     by_id = {p.id: p for p in provisions if p.id}
     by_path = {p.citation_path: p for p in provisions}
     for anchor in anchors:
-        parent = by_id.get(anchor.parent_provision_id) or by_path.get(
-            anchor.parent_citation_path
-        )
+        parent = by_id.get(anchor.parent_provision_id) or by_path.get(anchor.parent_citation_path)
         if parent is None:
             raise AnchorVerificationError(
                 f"{anchor.citation_path}: parent provision "
@@ -1004,9 +1019,7 @@ def verify_anchors_against_provisions(
             )
         body = parent.body or ""
         verify_anchor(anchor, body)
-        if anchor.parent_body_sha256 and anchor.parent_body_sha256 != body_sha256(
-            body
-        ):
+        if anchor.parent_body_sha256 and anchor.parent_body_sha256 != body_sha256(body):
             raise AnchorVerificationError(
                 f"{anchor.citation_path}: parent body hash drifted; rebuild "
                 f"anchors (stored {anchor.parent_body_sha256[:12]}, now "
