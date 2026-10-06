@@ -1,0 +1,56 @@
+# Israel pilot, second expression: the Income Tax Ordinance as it stood at the end
+# of calendar 2025.
+#
+# The pilot's main scope (2026-09-06-il-taxben-pilot) carries the CURRENT
+# consolidation, whose §121 already has the amounts the 2026 Economic Efficiency
+# Law (ITO amendments 286-288, ספר החוקים 3511) put in force on 1 January 2026:
+# 228,000 / 301,200.  A tax-year-2025 encoding needs the text as it stood before
+# that — 193,800 / 269,280, the schedule OECD TaxBEN describes for Israel 2025 —
+# and a proof excerpt has to be a substring of a provision that actually exists in
+# the corpus.  This scope is that expression, and nothing more.
+#
+# It is the SAME page, at an earlier revision.  The revision is pinned in the
+# manifest and checked against the render's own wgRevisionId, so a snapshot that
+# claims to be revision 2971879 and is not is refused rather than ingested as the
+# 2025 expression.  Source tier and the copyright position are identical to the
+# main scope; see manifests/il-taxben-pilot-openlaw.yaml.
+documents:
+  - source_id: income-tax-ordinance-2025
+    jurisdiction: il
+    document_class: statute
+    instrument_slug: income-tax-ordinance
+    israel_law_id: "2000944"
+    title: "פקודת מס הכנסה [נוסח חדש]"
+    title_en: "Income Tax Ordinance [New Version]"
+    source_url: "https://he.wikisource.org/wiki/%D7%A4%D7%A7%D7%95%D7%93%D7%AA_%D7%9E%D7%A1_%D7%94%D7%9B%D7%A0%D7%A1%D7%94"
+    source_file: ito-wikisource-2025-rev2971879.html
+    sha256: "33e8ef54f1f72af98991cd1b540466007a4dc81c42d79c09cb742c03468592f3"
+    source_revision_id: 2971879
+    source_as_of: "2025-12-31"
+    expression_date: "2025-12-31"
+    expression_date_basis: "he.wikisource.org page revision 2971879, timestamp 2025-12-31T17:00:31Z — the last revision of the ספר החוקים הפתוח consolidation in calendar 2025, i.e. the text as consolidated before the 2026 Economic Efficiency Law (ITO amendments 286-288, ספר החוקים 3511, in force 2026-01-01) changed §121. Not a Knesset registry date: KNS_IsraelLaw carries only the latest publication date."
+    # Same page, same Knesset "לחוק המלא" link, as the current expression.
+    source_tier: consolidation-knesset-linked
+    language: he
+    expected_section_count: 0
+    expected_schedule_item_count: 0
+    expected_schedule_count: 0
+    expected_part_count: 0
+    expected_chapter_count: 0
+    expected_sign_count: 0
+    # This revision's full-page render hits the same MediaWiki post-expand include
+    # ceiling (Post-expand include size: 2097152/2097152 bytes) and emits 192
+    # omitted-template markers, stopping inside §236ג. The adapter cuts the primary
+    # at the start of that section and takes the rest from the supplement.
+    render_truncated_after_section: "236ב1"
+    supplement_files:
+      - source_file: ito-wikisource-2025-tail-236c-247.html
+        sha256: "f1598d9dc71470f42fc843b57438a471563d883857bcd735f4e475cd350f1031"
+        note: >-
+          Sections 236ג-247 and the תוספות, rendered from revision 2971879's own
+          wikitext via the MediaWiki action=parse API. Reproduction recipe and
+          provenance:
+          ops/il-lane/sources/ito-wikisource-2025-tail-236c-247.html.provenance.json
+    excluded_headings:
+      - "תוכן עניינים"
+      - "מונחים המשמשים בפקודת מס הכנסה"

@@ -115,6 +115,8 @@ _DISCLAIMER_CLASS = "graytext"
 _SECTION_ANCHOR_OPEN = '<div class="law-number '
 _HEBREW_PUNCTUATION = "״׳\"'"
 _ORIGIN_MARKER_RE = re.compile(r"\[(?P<marker>\d+[א-ת]*)\]\s*$")
+# MediaWiki stamps the rendered revision into every page's JS config.
+_REVISION_ID_RE = re.compile(r'"wgRevisionId"\s*:\s*(?P<revision>\d+)')
 # OpenLaw styles a repealed/expired/deleted section's own status line as a note.
 # That line is how the consolidated text reads for that section, not commentary,
 # so it becomes the provision body with the status recorded in metadata.
@@ -270,6 +272,7 @@ class IsraelOpenLawSource:
     expected_chapter_count: int
     expected_sign_count: int
     expected_schedule_count: int = 0
+    source_revision_id: int | None = None
     alternate_version_sections: tuple[str, ...] = ()
     supplement_files: tuple[IsraelOpenLawSupplement, ...] = ()
     render_truncated_after_section: str | None = None
@@ -346,6 +349,14 @@ class IsraelOpenLawSource:
             raise ValueError(
                 f"Israel source {source_id} requires a non-negative expected_schedule_count"
             )
+        revision_id = data.get("source_revision_id")
+        if revision_id is not None and (
+            isinstance(revision_id, bool) or not isinstance(revision_id, int) or revision_id <= 0
+        ):
+            raise ValueError(
+                f"Israel source {source_id} source_revision_id must be a positive integer"
+            )
+
         schedule_items = data.get("expected_schedule_item_count", 0)
         if (
             isinstance(schedule_items, bool)
@@ -426,6 +437,7 @@ class IsraelOpenLawSource:
             expected_chapter_count=counts["expected_chapter_count"],
             expected_sign_count=counts["expected_sign_count"],
             expected_schedule_count=schedule_count,
+            source_revision_id=revision_id,
             alternate_version_sections=tuple(
                 unicodedata.normalize("NFC", item) for item in alternates
             ),
@@ -903,6 +915,7 @@ def _parse_fragment(
     parsed: list[IsraelOpenLawProvision] = []
 
     if primary:
+        _require_revision_id(html, source)
         publication_history = _require_source_identity(root, source)
         parsed.append(
             IsraelOpenLawProvision(
@@ -1305,6 +1318,30 @@ def _strip_hebrew_punctuation(value: str) -> str:
     return normalized.strip()
 
 
+def _require_revision_id(html: str, source: IsraelOpenLawSource) -> None:
+    """Check the render against the page revision the manifest pins it to.
+
+    A historical expression is identified by its revision, not only by the bytes
+    of one capture: MediaWiki writes ``wgRevisionId`` into every rendered page,
+    so a snapshot that claims to be one revision and is another is refused here
+    rather than ingested as that expression.
+    """
+    if source.source_revision_id is None:
+        return
+    match = _REVISION_ID_RE.search(html)
+    if match is None:
+        raise ValueError(
+            f"Israel source {source.source_id} pins revision {source.source_revision_id} "
+            "but its render carries no wgRevisionId"
+        )
+    rendered = int(match.group("revision"))
+    if rendered != source.source_revision_id:
+        raise ValueError(
+            f"Israel source {source.source_id} revision mismatch: manifest pins "
+            f"{source.source_revision_id}, render is {rendered}"
+        )
+
+
 def _require_source_identity(root: Tag, source: IsraelOpenLawSource) -> str | None:
     """Check the page's own title and Knesset law id, and return its header line."""
     title_node = root.select_one("h1.law-title")
@@ -1617,6 +1654,11 @@ def _source_metadata(source: IsraelOpenLawSource) -> dict[str, Any]:
         "expected_section_count": source.expected_section_count,
         "verified_source_sha256": source.sha256,
         "editorial_apparatus_removed": True,
+        **(
+            {"source_revision_id": source.source_revision_id}
+            if source.source_revision_id is not None
+            else {}
+        ),
     }
 
 
