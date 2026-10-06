@@ -1,0 +1,73 @@
+# DRAFT ONLY — unsigned; do not ingest or copy into manifests/ until the
+# official PDF has been downloaded and the TODO provenance fields have been
+# replaced from that exact byte stream.
+#
+# Intended review destination:
+#   /Users/maxghenis/TheAxiomFoundation/ops/de-lane/
+#     de-sgb4-20-supplement-manifest.draft.yaml
+#
+# The equations are on PDF page 26 of 105. Section 20 continues onto page 27,
+# where section 21 begins, so the capture includes both pages and stops at
+# section 21. The ordinary text layer omits both raster equations, so this
+# capture deliberately forces German OCR. The source snapshot remains the
+# evidentiary artifact; OCR output and the human-readable transcription in
+# source_note must be checked against the rendered page before signing.
+documents:
+  - source_id: de-sgb4-20-gii-pdf-supplement
+    jurisdiction: de
+    document_class: statute
+    citation_path: de/statute/sgb-4/20/formula-supplement
+    title: Sozialgesetzbuch Viertes Buch (SGB IV) § 20 Absatz 2a — Übergangsbereich equations (official consolidated PDF render)
+    source_url: 'https://www.gesetze-im-internet.de/sgb_4/SGB_4.pdf'
+    source_format: pdf
+    source_as_of: TODO_REPLACE_WITH_RETRIEVAL_DATE
+    expression_date: '2026-04-27'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: deu
+      ocr_psm: 3
+      segmentation: single_block
+      page_windows:
+        - start_page: 26
+          end_page: 27
+          start_at_pattern: '^§\s*20\s+Aufbringung der Mittel, Übergangsbereich\s*$'
+          stop_at_pattern: '^§\s*21\b'
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz und für Verbraucherschutz; Bundesamt für Justiz (Gesetze im Internet)
+      title_short: SGB IV § 20 formula supplement
+      title_alternative: >-
+        Das Vierte Buch Sozialgesetzbuch – Gemeinsame Vorschriften für die
+        Sozialversicherung – in der Fassung der Bekanntmachung vom
+        12. November 2009 (BGBl. I S. 3710, 3973; 2011 I S. 363), zuletzt
+        geändert durch Artikel 8 des Gesetzes vom 27. April 2026
+        (BGBl. 2026 I Nr. 119)
+      document_type: Konsolidierte Gesetzesfassung (consolidated act)
+      date_document: '1976-12-23'
+      date_consolidation: '2026-04-27'
+      in_force: true
+      source_family: social-insurance/transition-range
+      source_sha256: TODO_REPLACE_FROM_DOWNLOADED_PDF
+      source_retrieved_at: TODO_REPLACE_WITH_UTC_TIMESTAMP
+      source_note: >-
+        Official consolidated Gesetze im Internet PDF, page 26 of 105,
+        scoped to § 20. The two formulas in Absatz 2a are centered raster
+        images and disappear from the PDF text layer. Cross-checked draft
+        transcription (linearized here; each slash denotes the stacked
+        fraction printed in the PDF): "BE = F × G + (2 000 / (2 000 – G) –
+        G / (2 000 – G) × F) × (AE – G)" and
+        "BE = 2 000 / (2 000 – G) × (AE – G)". The PDF's surrounding
+        statutory text defines AE as Arbeitsentgelt, G as
+        Geringfügigkeitsgrenze, and F as 28 percent divided by the applicable
+        calendar-year Gesamtsozialversicherungsbeitragssatz. It prints the
+        upper transition-range bound as "2 000 Euro" and the historical
+        factor F = 0,7009 for 1 October through 31 December 2022. For 2025
+        application, separate official BMAS material gives the range
+        556,01 through 2 000 Euro and F = 0,6683; neither 2025 value is
+        printed inside these symbolic equations. BMAS context:
+        https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2024/das-aendert-sich-im-neuen-jahr.html
