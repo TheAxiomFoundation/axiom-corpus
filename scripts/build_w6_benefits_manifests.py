@@ -457,6 +457,21 @@ doc([179], "us-ny", "statute", "us-ny/statute/bills/2021/s7148",
     extraction={"html_content_selector": "#legcontent", "html_text_selector": "pre"},
     alias_rows={191: "nysenate.gov answers a Cloudflare challenge to the corpus client; the Assembly's own "
                 "legislative information system serves the same bill text"})
+doc([], "us-ny", "statute", "us-ny/statute/bills/2025/s3006",
+    "New York Senate Bill S3006 (2025-2026 Regular Sessions), bill text",
+    "https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S03006&term=2025&Text=Y", "html",
+    program="Unemployment insurance", authority="New York State Assembly (legislative information system)",
+    subtype="bill_text", extraction={"html_content_selector": "#legcontent", "html_text_selector": "pre"},
+    alias_rows={192: "nysenate.gov answers a Cloudflare challenge to the plain corpus client; the Assembly's own "
+                "legislative information system serves the same bill text"})
+for row, sec in ((193, "527"), (194, "590")):
+    doc([row], "us-ny", "statute", f"us-ny/statute/LAB/{sec}", f"N.Y. Labor Law § {sec}",
+        f"https://www.nysenate.gov/legislation/laws/LAB/{sec}", "html",
+        program="Unemployment insurance", authority="New York State Senate (OpenLegislation)",
+        subtype="codified_statute_section", request={"browser_impersonation": "chrome120"},
+        extraction={"html_content_selector": "div.nys-openleg-result-text"},
+        access_note="www.nysenate.gov answers HTTP 403 (Cloudflare) to the plain corpus client and serves a Chrome TLS "
+        "fingerprint; the documented fallback of docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md (TLS verified)")
 for row, slug, title, url, date in (
     (180, "p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es", "P832S (1/25, Spanish): How your weekly UI benefit payment is calculated",
      "https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf", "2025-01-01"),
@@ -724,7 +739,7 @@ for r, path in ((62, "us-co/policy/co-fns-food-restriction-waiver-modification-2
     decide(r, HELD, "us-co/policy/2026-07-21-co-snap-policy", path, "",
            "the manifest's document is in the held scope (inventory source_url matches; scope selected in "
            "us-rulespec-snap-2026-07-21)")
-decide(67, HELD, "us-ct/policy/2026-09-14-tanf-manual-whole", "us-ct/policy/dss/upm",
+decide(67, HELD, "us-ct/policy/2026-09-14-tanf-manual-whole", "us-ct/policy/dss/upm/0100",
        "https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/upms/upm0---table-of-contents/0100.doc",
        "ctdssmap.com is the CT Medical Assistance Program provider portal (DSS fiscal agent); its UPM page links no manual "
        "text. The DSS Uniform Policy Manual itself is held whole (3,129 rows) from DSS's own portal.ct.gov files")
@@ -790,7 +805,7 @@ decide([132, 133], "SKIPPED", "", "", "",
        "dsd.state.md.us redirects to dsd.maryland.gov (404); COMAR 07.03.17 is published as the Division of State "
        "Documents' official XML (`extract-maryland-comar --only-title 07 --only-subtitle 03 --only-chapter 17`), not "
        "reached in the time box")
-decide(137, HELD, "us-me/regulation/2026-09-10-ssi-state-supplement", "us-me/regulation/dhhs/ofi/chapter-332",
+decide(137, HELD, "us-me/regulation/2026-09-10-ssi-state-supplement", "us-me/regulation/dhhs/ofi/chapter-332/part-11",
        "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx",
        "the (AMD) docx is the amendment copy of filing 2025-101; the held scopes carry the same filing's NSC docx")
 decide(138, HELD, "us-me/regulation/2026-07-17-me-snap-rules", "us-me/regulation/dhhs/ofi/chapter-301",
@@ -817,7 +832,7 @@ decide(146, "OUTREACH", "", "", "https://dssmanuals.mo.gov/december-1973-eligibi
 decide([158, 159], "SKIPPED", "", "", "",
        "dssmanuals.mo.gov dated memo posts (IM-143 of 2022-12-05, IM-57 of 2023-06-08) answer 404; the current address "
        "of the two memoranda was not searched in the time box")
-decide(165, HELD, "us-ne/regulation/2026-09-10-ssi-state-supplement", "us-ne/regulation/title-469",
+decide(165, HELD, "us-ne/regulation/2026-09-10-ssi-state-supplement", "us-ne/regulation/title-469/chapter-1",
        "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/469%20NAC%201%20%2806-06-2022%29.pdf",
        "the bundle's Title-469-Complete.pdf is the DHHS compiled 2014 edition (AABD Manual Letter #62-2014); the current "
        "469 NAC chapters (06-06-2022) are held from the Secretary of State")
@@ -943,7 +958,7 @@ decide(60, "OUTREACH", "", "",
        "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.&chapter=3.&article=4.",
        "Justia mirror of Cal. Welf. & Inst. Code Div. 9, Part 3, Ch. 3, Art. 4; the official leginfo.legislature.ca.gov "
        "article page answered HTTP 403 with a Cloudflare 'Just a moment...' challenge to the plain and browser-UA corpus "
-       "client on 2026-10-06 (WIC 12200 of the article is held, row 61); not worked around")
+       "client on 2026-10-06, and the `extract-california-code-sections` adapter's own request for WIC 12201 got HTTP 403 too (WIC 12200 of the article is held, row 61); not worked around")
 decide(41, "SKIPPED", "", "", "https://www.azleg.gov/arsDetail/?title=46",
        "azleg.gov answers 200 (the Title 46 table of sections); the `arizona-revised-statutes` adapter can take the whole "
        "title, but a parallel wave-6 agent (tanf-ccdf) holds ARS 46-207 and 46-207.01 in "
