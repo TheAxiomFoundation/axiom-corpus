@@ -40,13 +40,14 @@ documents:
 - source_id: us-va-guidance-tax-rulings-of-the-tax-commissioner-13-5
   jurisdiction: us-va
   document_class: guidance
-  title: Ruling of the Tax Commissioner 13-5
+  title: Ruling of the Tax Commissioner 13-5 (Virginia age deduction and obligations of the United States)
   source_url: https://www.tax.virginia.gov/laws-rules-decisions/rulings-tax-commissioner/13-5
   source_format: html
   source_as_of: '2026-10-06'
   citation_path: us-va/guidance/tax/rulings-of-the-tax-commissioner/13-5
   extraction:
-    html_content_selector: main
+    html_content_selector: '#lrdContent article'
+    html_text_selector: article > div
   metadata:
     primary_source: true
     source_authority: Virginia Department of Taxation

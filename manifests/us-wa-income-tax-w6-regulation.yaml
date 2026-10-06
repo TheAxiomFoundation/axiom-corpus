@@ -5,13 +5,14 @@ documents:
 - source_id: us-wa-regulation-458-458-20-458-20-285
   jurisdiction: us-wa
   document_class: regulation
-  title: WAC 458-20-285
+  title: WAC 458-20-285, Working families tax credit
   source_url: https://apps.leg.wa.gov/wac/default.aspx?cite=458-20-285
   source_format: html
   source_as_of: '2026-10-06'
   citation_path: us-wa/regulation/458/458-20/458-20-285
   extraction:
     html_content_selector: '#contentWrapper'
+    html_text_selector: '#contentWrapper div'
   metadata:
     primary_source: true
     source_authority: Washington State Legislature (Code Reviser)

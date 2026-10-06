@@ -53,6 +53,8 @@ AUTHORITY = {
     "us-wv": "West Virginia Tax Division",
 }
 SINGLE_BLOCK = {"segmentation": "single_block"}
+# Leaf-block text nodes for pages that print their text in div/span containers (SharePoint).
+LEAF_MAIN = "main *:not(:has(div, p, li, table, h1, h2, h3, h4))"
 
 # Content roots of the HTML publishers (read from the 2026-10-06 pages).
 HTML_SELECTOR = {
@@ -111,6 +113,7 @@ def doc(
     selector: str | None = None,
     authority: str | None = None,
     note: str | None = None,
+    text_selector: str | None = None,
 ) -> None:
     jur, cls = path.split("/")[:2]
     fmt = fmt or ("pdf" if pages is not None else "html")
@@ -125,6 +128,7 @@ def doc(
             "closes": closes if closes is not None else [url],
             "fmt": fmt,
             "selector": selector,
+            "text_selector": text_selector,
             "jur": jur,
             "cls": cls,
             "authority": authority or AUTHORITY.get(jur),
@@ -159,7 +163,7 @@ doc("https://www.oregon.gov/dor/programs/individuals/Documents/Part-year%20and%2
 doc("https://www.oregon.gov/dor/forms/FormsPubs/schedule-or-wfhdc_101-195_2021.pdf", "us-or/form/dor/ty2021/schedule-or-wfhdc", "2021 Schedule OR-WFHDC, Oregon Working Family Household and Dependent Care Credit", "2021", "schedule", 5, closes=["https://taxsim.nber.org/historical_state_tax_forms/OR/2021/schedule-or-wfhdc_101-195_2021.pdf"])
 doc("https://www.oregon.gov/dor/forms/FormsPubs/schedule-or-wfhdc-inst_101-195-1_2024.pdf", "us-or/form/dor/ty2024/schedule-or-wfhdc-instructions", "Schedule OR-WFHDC Instructions 2024, Oregon Working Family Household and Dependent Care Credit", "2024", "instructions", 8, closes=["https://www.google.com/url?sa=i&url=https%3A%2F%2Fsecure.dor.state.or.us%2FServices%2Fdraftforms%2Fapi%2Fdocument%2F6793%2Fdownload&psig=AOvVaw01yzy9QiRloWlbInbZcNG4&ust=1742309265624000&source=images&cd=vfe&opi=89978449&ved=0CAYQrpoMahcKEwjI16b4rZGMAxUAAAAAHQAAAAAQBA"])
 doc("https://www.oregon.gov/dor/programs/individuals/pages/credits.aspx", "us-or/guidance/dor/tax-benefits-for-families", "Oregon Department of Revenue: Tax benefits for families", None, "web_page")
-doc("https://www.oregon.gov/dor/programs/individuals/pages/kicker.aspx", "us-or/guidance/dor/oregon-surplus-kicker", "Oregon Department of Revenue: Oregon Surplus (\"Kicker\")", None, "web_page")
+doc("https://www.oregon.gov/dor/programs/individuals/pages/kicker.aspx", "us-or/guidance/dor/oregon-surplus-kicker", "Oregon Department of Revenue: Oregon Surplus (\"Kicker\")", None, "web_page", text_selector=LEAF_MAIN)
 doc("https://www.oregonlegislature.gov/bills_laws/Pages/OrConst.aspx", "us-or/statute/constitution", "Oregon Constitution (Oregon State Legislature edition)", None, "constitution", authority="Oregon State Legislature")
 doc("https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled", "us-or/statute/bills/2023/hb3235-enrolled", "Enrolled House Bill 3235 (82nd Oregon Legislative Assembly, 2023 Regular Session)", "2023", "enrolled_bill", 9, authority="Oregon Legislative Assembly")
 
@@ -224,7 +228,7 @@ doc(f"{RI}/2023-02/RI-MA%20NATP%20Jan%205%202023-CA.pdf", "us-ri/guidance/tax/na
 doc(f"{RI}/notice/Pub_2021_02_pension_income_guide_04_06_21.pdf", "us-ri/guidance/tax/pub-2021-02-pension-income-guide", "Publication 2021-02, Rhode Island Personal Income Tax Guide: Modification for Income from Pensions, 401(k) Plans, Annuities and Similar Sources", None, "tax_guide", 26)
 doc("https://tax.ri.gov/media/18021/download?language=en", "us-ri/guidance/tax/adv-2021-53", "ADV 2021-53, Advisory for Taxpayers and Tax Professionals: inflation-adjusted amounts set for tax year 2022 (December 23, 2021)", "2022", "advisory", 5)
 doc(f"{RI}/2022-08/H7123Aaa_CTR_0.pdf", "us-ri/statute/bills/2022/h7123-sub-a-aa-child-tax-rebates", "2022 H 7123 Substitute A as amended: section adding R.I. Gen. Laws 44-30-103 (Child Tax Rebates), excerpt posted by the Division of Taxation", "2022", "bill_excerpt", 1, authority="Rhode Island General Assembly (excerpt posted by the Division of Taxation)")
-doc("https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html", "us-ri/statute/bills/2026/h7127-sub-a-aa", "2026 H 7127 Substitute A as amended (FY2027 appropriations act)", "2026", "bill_text", authority="Rhode Island General Assembly")
+doc("https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html", "us-ri/statute/bills/2026/h7127-sub-a-aa", "2026 H 7127 Substitute A as amended (FY2027 appropriations act)", "2026", "bill_text", authority="Rhode Island General Assembly", text_selector="h1, h2, p")
 doc("https://webserver.rilegislature.gov/Statutes/TITLE44/44-33/44-33-3.htm", "us-ri/statute/44-33-3", "R.I. Gen. Laws 44-33-3, Definitions (Property Tax Relief)", None, "statute_section", authority="Rhode Island General Assembly", closes=["https://webserver.rilegislature.gov/Statutes/TITLE44/44-33/44-33-3.htm", "http://webserver.rilin.state.ri.us/Statutes/TITLE44/44-33/44-33-3.htm", "https://law.justia.com/codes/rhode-island/2022/title-44/chapter-44-33/section-44-33-3/"])
 doc("https://webserver.rilegislature.gov/Statutes/TITLE44/44-33/44-33-9.htm", "us-ri/statute/44-33-9", "R.I. Gen. Laws 44-33-9, Computation of credit (Property Tax Relief)", None, "statute_section", authority="Rhode Island General Assembly", closes=["https://webserver.rilegislature.gov/Statutes/TITLE44/44-33/44-33-9.htm", "http://webserver.rilin.state.ri.us/Statutes/TITLE44/44-33/44-33-9.htm"])
 doc("https://www.rilegislature.gov/pressrelease/_layouts/15/ril.pressrelease.inputform/DisplayForm.aspx?List=c8baae31-3c10-431c-8dcd-9dbbe21ce3e9&ID=376675", "us-ri/guidance/general-assembly/press-release-376675", "Sen. Vargas cheers inclusion of a $330 refundable child tax credit in the state budget bill (General Assembly press release 376675, 2026)", "2026", "press_release", authority="Rhode Island General Assembly")
@@ -254,7 +258,7 @@ for _y, _p in (("2021", 32), ("2022", 32), ("2023", 33), ("2024", 34)):
 doc("https://incometax.utah.gov/tc-40a/", "us-ut/guidance/ustc/tc-40a-supplemental-schedule-instructions", "TC-40A Supplemental Schedule Instructions (Utah Income Tax, 2025)", "2025", "web_instructions", closes=["https://incometax.utah.gov/tc-40a/"] + [f"https://incometax.utah.gov/credits/{s}" for s in ("at-home-parent", "military-retirement", "my529", "retirement-credit", "ss-benefits")])
 doc("https://incometax.utah.gov/credits/taxpayer-tax-credit", "us-ut/guidance/ustc/tc-40-line-by-line-instructions", "TC-40 Line-by-Line Instructions (Utah Income Tax, 2025; the taxpayer tax credit address redirects to line 20)", "2025", "web_instructions")
 doc("https://incometax.utah.gov/credits", "us-ut/guidance/ustc/information-about-tax-credits", "Information About Tax Credits (Utah Income Tax, 2025)", "2025", "web_page")
-doc("https://tax.utah.gov/relief/homeowner-renter-relief/", "us-ut/guidance/ustc/homeowner-renter-relief", "Homeowner's or Renter's Relief (Utah State Tax Commission)", None, "web_page")
+doc("https://tax.utah.gov/relief/homeowner-renter-relief/", "us-ut/guidance/ustc/homeowner-renter-relief", "Homeowner's or Renter's Relief (Utah State Tax Commission)", None, "web_page", text_selector="article *:not(:has(div, p, li, table, h1, h2, h3, h4))")
 doc("https://my529.org/utah-state-tax-benefits-information/", "us-ut/guidance/my529/utah-state-tax-benefits-information", "Utah state tax benefits information (my529)", None, "program_faq", authority="my529 (Utah Educational Savings Plan)")
 for _sess, _bill, _t, _p, _html in (
     ("2025", "HB0106", "H.B. 106 Income Tax Revisions", 8, "https://le.utah.gov/~2025/bills/static/HB0106.html"),
@@ -275,7 +279,7 @@ for _y in ("2021", "2022", "2023"):
 doc(f"{VA}/2022/760-2022.pdf", "us-va/form/tax/ty2022/form-760", "2022 Virginia Form 760, Resident Income Tax Return", "2022", "return_form", 2)
 doc("https://www.tax.virginia.gov/filing-status", "us-va/guidance/tax/filing-status", "Filing Status (Virginia Tax)", None, "web_page")
 doc("https://www.tax.virginia.gov/rebate", "us-va/guidance/tax/rebate", "What You Need to Know About the 2025 Tax Rebate (Virginia Tax)", "2025", "web_page")
-doc("https://www.tax.virginia.gov/laws-rules-decisions/rulings-tax-commissioner/13-5", "us-va/guidance/tax/rulings-of-the-tax-commissioner/13-5", "Ruling of the Tax Commissioner 13-5", None, "ruling")
+doc("https://www.tax.virginia.gov/laws-rules-decisions/rulings-tax-commissioner/13-5", "us-va/guidance/tax/rulings-of-the-tax-commissioner/13-5", "Ruling of the Tax Commissioner 13-5 (Virginia age deduction and obligations of the United States)", None, "ruling", selector="#lrdContent article", text_selector="article > div")
 doc("https://www.tax.virginia.gov/sites/default/files/inline-files/2023-legislative-summary.pdf", "us-va/guidance/tax/legislative-summary-2023", "2023 Legislative Summary, Virginia Department of Taxation (updated September 15, 2023)", "2023", "legislative_summary", 31)
 doc("https://www.tax.virginia.gov/sites/default/files/inline-files/2026-legislative-summary.pdf", "us-va/guidance/tax/legislative-summary-2026", "2026 Legislative Summary, Virginia Department of Taxation (July 6, 2026)", "2026", "legislative_summary", 24)
 doc("https://budget.lis.virginia.gov/amendment/2026/2/HB30/Introduced/CR/4-14/1c", "us-va/statute/budget/2026/hb30/conference-report/4-14-1c", "HB30 (2026) Conference Report amendment 4-14#1c (Effective Date) Standard Deduction", "2026", "budget_amendment", authority="Virginia General Assembly (Legislative Information System)")
@@ -336,9 +340,9 @@ doc("https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20A
 # --- Washington -------------------------------------------------------------
 doc("https://app.leg.wa.gov/RCW/default.aspx?cite=82.08.0206", "us-wa/statute/82/82.08/82.08.0206", "RCW 82.08.0206, Credits—Working families—Eligible low-income persons", None, "statute_section", authority="Washington State Legislature")
 doc("https://lawfilesext.leg.wa.gov/biennium/2021-22/Pdf/Bills/Session%20Laws/Senate/5096-S.SL.pdf", "us-wa/statute/session-laws/2021/chapter-196", "Engrossed Substitute Senate Bill 5096, Chapter 196, Laws of 2021 (session law)", "2021", "session_law", 17, authority="Washington State Legislature")
-doc("https://lawfilesext.leg.wa.gov/biennium/2025-26/Htm/Bills/Session%20Laws/Senate/5813-S.SL.htm", "us-wa/statute/session-laws/2025/sb5813", "Substitute Senate Bill 5813, session law (2025)", "2025", "session_law", authority="Washington State Legislature")
+doc("https://lawfilesext.leg.wa.gov/biennium/2025-26/Htm/Bills/Session%20Laws/Senate/5813-S.SL.htm", "us-wa/statute/session-laws/2025/chapter-421", "Engrossed Substitute Senate Bill 5813, Chapter 421, Laws of 2025 (session law)", "2025", "session_law", authority="Washington State Legislature", text_selector="body > div")
 doc("https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf", "us-wa/statute/bills/2026/sb6346-passed-legislature", "Engrossed Substitute Senate Bill 6346 as passed by the Legislature (2026 Regular Session)", "2026", "bill_text", 109, authority="Washington State Legislature")
-doc("https://apps.leg.wa.gov/wac/default.aspx?cite=458-20-285", "us-wa/regulation/458/458-20/458-20-285", "WAC 458-20-285", None, "regulation_section", authority="Washington State Legislature (Code Reviser)")
+doc("https://apps.leg.wa.gov/wac/default.aspx?cite=458-20-285", "us-wa/regulation/458/458-20/458-20-285", "WAC 458-20-285, Working families tax credit", None, "regulation_section", authority="Washington State Legislature (Code Reviser)", text_selector="#contentWrapper div")
 doc("https://lawfilesext.leg.wa.gov/law/wsrpdf/2025/10/25-10-017.pdf", "us-wa/rulemaking/wsr/25-10-017", "Washington State Register WSR 25-10-017, permanent rules", "2025", "register_filing", 2, authority="Washington State Code Reviser")
 for _yr, _slug, _t in (
     ("2023", "applications-now-being-accepted-working-families-tax-credit", "Applications Now Being Accepted for the Working Families Tax Credit (2023 news release)"),
@@ -362,7 +366,7 @@ doc("https://www.revenue.wi.gov/TaxForms2023/2023-Form1-ES-Inst.pdf", "us-wi/for
 doc("https://www.revenue.wi.gov/TaxForms2025/2025-Form1-ES-Inst.pdf", "us-wi/form/dor/ty2025/form-1-es-instructions", "2025 Form 1-ES Instructions, Estimated Income Tax for Individuals, Estates, and Trusts", "2025", "instructions", 4)
 doc("https://docs.legis.wisconsin.gov/misc/lfb/informational_papers/january_2021/0013_homestead_tax_credit_informational_paper_13.pdf", "us-wi/guidance/lfb/informational-paper-13-homestead-tax-credit-2021", "Informational Paper 13, Homestead Tax Credit (Legislative Fiscal Bureau, January 2021)", "2021", "fiscal_analysis", 14, authority="Wisconsin Legislative Fiscal Bureau")
 doc("https://docs.legis.wisconsin.gov/misc/lfb/informational_papers/january_2023/0002_individual_income_tax_informational_paper_2.pdf", "us-wi/guidance/lfb/informational-paper-2-individual-income-tax-2023", "Informational Paper 2, Individual Income Tax (Legislative Fiscal Bureau, January 2023)", "2023", "fiscal_analysis", 48, authority="Wisconsin Legislative Fiscal Bureau")
-doc("https://dfi.wi.gov/Pages/EducationalServices/CollegeSavingsCareerPlanning/CollegeSavingsProgram.aspx", "us-wi/guidance/dfi/college-savings-program", "Wisconsin 529 College Savings Program (Department of Financial Institutions)", None, "web_page", authority="Wisconsin Department of Financial Institutions")
+doc("https://dfi.wi.gov/Pages/EducationalServices/CollegeSavingsCareerPlanning/CollegeSavingsProgram.aspx", "us-wi/guidance/dfi/college-savings-program", "Wisconsin 529 College Savings Program (Department of Financial Institutions)", None, "web_page", authority="Wisconsin Department of Financial Institutions", text_selector=LEAF_MAIN)
 doc("https://www.edvest.com/learn/tax-benefits/", "us-wi/guidance/edvest/tax-benefits", "Edvest 529: Wisconsin 529 Triple Tax Benefits", None, "program_faq", authority="Edvest 529 (State of Wisconsin College Savings Program, Department of Financial Institutions)")
 doc("https://docs.legis.wisconsin.gov/2023/statutes/statutes/71/i/05/22/dm", "us-wi/statute/2023-24-edition/71.05/22/dm", "Wis. Stat. 71.05(22)(dm) (2023-24 Wisconsin Statutes edition page)", None, "statute_subunit", authority="Wisconsin Legislative Reference Bureau", selector='div[data-path="/2023/statutes/statutes/71/i/05/22/dm"]')
 doc("https://docs.legis.wisconsin.gov/2023/statutes/statutes/71/i/07/9/b/5", "us-wi/statute/2023-24-edition/71.07/9/b/5", "Wis. Stat. 71.07(9)(b)5. (2023-24 Wisconsin Statutes edition page)", None, "statute_subunit", authority="Wisconsin Legislative Reference Bureau", selector='div[data-path="/2023/statutes/statutes/71/i/07/9/b/5"]')
@@ -550,6 +554,8 @@ def manifest_entry(d: dict[str, Any]) -> dict[str, Any]:
         extraction = dict(SINGLE_BLOCK)
     else:
         extraction = {"html_content_selector": d["selector"] or HTML_SELECTOR.get(_host(d["url"]), "body")}
+        if d.get("text_selector"):
+            extraction["html_text_selector"] = d["text_selector"]
     metadata: dict[str, Any] = {
         "primary_source": True,
         "source_authority": d["authority"],

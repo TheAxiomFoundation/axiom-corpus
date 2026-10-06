@@ -38,16 +38,17 @@ documents:
     discovered_via: program-bundle-gaps-2026-10-06 wave6/tax-ok-wv.csv (bundle_url read 2026-10-06)
     tax_year: '2021'
     page_count_at_research: 17
-- source_id: us-wa-statute-session-laws-2025-sb5813
+- source_id: us-wa-statute-session-laws-2025-chapter-421
   jurisdiction: us-wa
   document_class: statute
-  title: Substitute Senate Bill 5813, session law (2025)
+  title: Engrossed Substitute Senate Bill 5813, Chapter 421, Laws of 2025 (session law)
   source_url: https://lawfilesext.leg.wa.gov/biennium/2025-26/Htm/Bills/Session%20Laws/Senate/5813-S.SL.htm
   source_format: html
   source_as_of: '2026-10-06'
-  citation_path: us-wa/statute/session-laws/2025/sb5813
+  citation_path: us-wa/statute/session-laws/2025/chapter-421
   extraction:
     html_content_selector: body
+    html_text_selector: body > div
   metadata:
     primary_source: true
     source_authority: Washington State Legislature

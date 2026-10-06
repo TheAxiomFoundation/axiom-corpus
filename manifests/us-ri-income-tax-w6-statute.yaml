@@ -32,6 +32,7 @@ documents:
   citation_path: us-ri/statute/bills/2026/h7127-sub-a-aa
   extraction:
     html_content_selector: body
+    html_text_selector: h1, h2, p
   metadata:
     primary_source: true
     source_authority: Rhode Island General Assembly

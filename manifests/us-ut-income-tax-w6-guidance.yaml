@@ -66,6 +66,7 @@ documents:
   citation_path: us-ut/guidance/ustc/homeowner-renter-relief
   extraction:
     html_content_selector: article
+    html_text_selector: article *:not(:has(div, p, li, table, h1, h2, h3, h4))
   metadata:
     primary_source: true
     source_authority: Utah State Tax Commission
