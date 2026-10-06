@@ -1,0 +1,1 @@
+New `extract-canada-acts` intakes use the canonical `ca/statute` citation and artifact namespace, matching signed Canada releases and encoder routing. Use a new scope version; existing `canada/statute` artifacts and their identities are not migrated or rewritten.
