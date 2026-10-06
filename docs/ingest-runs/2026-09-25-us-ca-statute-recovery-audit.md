@@ -535,7 +535,8 @@ Run on `origin/main` b5b637167 with this branch's files:
   manifest, with the repository's public key: no issues.
 - **Ingest guard.** `axiom-corpus-ingest guard-ingested --base-ref origin/main
   --head-ref HEAD`, with `AXIOM_CORPUS_INGEST_PUBLIC_KEY` from the repository's
-  Actions variable: GUARD.
+  Actions variable: "No protected corpus artifact changes." `towncrier check
+  --compare-with origin/main` finds the fragment.
 
 ## Signing
 
