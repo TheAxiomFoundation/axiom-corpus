@@ -1,0 +1,1589 @@
+{
+  "error_count": 175,
+  "issue_count": 175,
+  "issues": [
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1/block-1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/8-ccr-1403-1/3.111 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-6 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-7 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-8 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-9 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-10 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-11 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-12 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-13 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-14 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-15 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-16 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-17 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-18 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-19 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-20 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-21 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-22 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-23 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-24 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-25 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-26 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-27 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-28 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-29 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-30 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-31 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-32 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-33 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-34 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-35 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-36 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-37 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-38 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-39 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-40 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-41 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-42 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-43 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-44 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-45 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-46 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-47 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-48 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-49 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-50 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-51 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-52 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-53 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-54 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-55 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-56 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-57 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-58 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-59 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-60 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-61 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-62 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-63 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-64 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-65 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-66 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-67 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-68 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-69 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-70 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-71 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-72 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-73 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-74 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-75 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-76 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-77 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-78 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-79 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-80 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-81 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-82 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-83 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-84 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-85 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-86 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-87 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-88 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-89 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-90 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-91 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-92 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-93 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-94 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-95 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-96 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-97 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-98 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-99 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-100 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-101 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-102 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-103 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-104 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-105 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-106 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-107 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-108 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-109 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/recovery/us-co-9-ccr-2503-6/page-110 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.6 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.31 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.32 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.600.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.601 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.602 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.602.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.602.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.603 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.603.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.604 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.604.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.604.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.604.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.604.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.604.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.605 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.605.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.605.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.605.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.605.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.605.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.7 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.606.8 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.607 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.607.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.607.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.607.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.607.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.607.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.608 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.608.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.608.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.608.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.608.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.608.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.1 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.2 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.3 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.4 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.5 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.6 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.7 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.71 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.72 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.73 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.74 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    },
+    {
+      "code": "duplicate_release_citation",
+      "document_class": "regulation",
+      "jurisdiction": "us-co",
+      "message": "citation_path us-co/regulation/9-ccr-2503-6/3.609.75 is also present in us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "severity": "error",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+    }
+  ],
+  "issues_returned": 175,
+  "issues_truncated": false,
+  "ok": false,
+  "release": "scratch-wave4-r2-us-co-both",
+  "release_path": ".scratch/selectors/scratch-wave4-r2-us-co-both.json",
+  "scope_count": 21,
+  "strict_warnings": true,
+  "warning_count": 0
+}

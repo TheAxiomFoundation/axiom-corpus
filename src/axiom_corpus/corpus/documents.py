@@ -1480,6 +1480,7 @@ _SINGLE_BLOCK_PDF_FILTER_KEYS = (
     "start_after_pattern",
     "drop_lines",
     "drop_line_patterns",
+    "page_header_patterns",
 )
 
 
@@ -1496,7 +1497,8 @@ def _extract_single_block_pdf(
     readers without emitting page suffixes.
 
     Page filters (``page_windows`` or the legacy ``start_page``/``end_page``/
-    ``start_after_pattern``/``drop_lines``/``drop_line_patterns``) are honored
+    ``start_after_pattern``/``drop_lines``/``drop_line_patterns``, and
+    ``page_header_patterns``) are honored
     when present, so one instrument can be sliced out of a larger scan (e.g.
     a single law inside a multi-law gazette issue) while remaining a single
     root provision.
@@ -2542,6 +2544,7 @@ def _filtered_pdf_styled_lines(
     start_after_re = (
         re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
     )
+    page_header_patterns = _page_header_patterns(extraction)
     started = start_after_re is None
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
@@ -2550,7 +2553,9 @@ def _filtered_pdf_styled_lines(
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
+            for line, style in _without_page_header(
+                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
+            ):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started:
@@ -2633,6 +2638,7 @@ def _windowed_pdf_styled_lines(
     drop_line_patterns = tuple(
         re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
     )
+    page_header_patterns = _page_header_patterns(extraction)
     window_by_page: dict[int, _PdfPageWindow] = {}
     for window in windows:
         for page_number in range(window.start_page, window.end_page + 1):
@@ -2648,7 +2654,9 @@ def _windowed_pdf_styled_lines(
             page_window = window_by_page.get(page_index)
             if page_window is None or stopped[id(page_window)]:
                 continue
-            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
+            for line, style in _without_page_header(
+                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
+            ):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started[id(page_window)]:
@@ -2770,6 +2778,38 @@ def _positive_int(value: Any, *, default: int) -> int:
     if parsed < 1:
         raise ValueError("page numbers must be positive")
     return parsed
+
+
+def _page_header_patterns(extraction: dict[str, Any]) -> tuple[re.Pattern[str], ...]:
+    raw = extraction.get("page_header_patterns")
+    if raw is None:
+        return ()
+    if not isinstance(raw, (list, tuple)) or not all(
+        isinstance(pattern, str) and pattern for pattern in raw
+    ):
+        raise ValueError("page_header_patterns must be a list of non-empty regex strings")
+    return tuple(re.compile(pattern) for pattern in raw)
+
+
+def _without_page_header(
+    page_lines: tuple[tuple[str, int], ...], patterns: tuple[re.Pattern[str], ...]
+) -> tuple[tuple[str, int], ...]:
+    """Drop one page's running header, by position rather than by content.
+
+    ``page_header_patterns`` lists the header's lines in order: the page's
+    k-th line is dropped when it fully matches the k-th pattern and every
+    line above it was dropped. The first mismatch ends the header, so a page
+    whose top does not look like the header loses nothing. Unlike
+    ``drop_line_patterns``, which drops a matching line anywhere, this can
+    remove a bare page number without removing the same number printed as a
+    table cell further down the page.
+    """
+    header_length = 0
+    for (line, _style), pattern in zip(page_lines, patterns, strict=False):
+        if pattern.fullmatch(line) is None:
+            break
+        header_length += 1
+    return page_lines[header_length:]
 
 
 def _drop_pdf_line(
