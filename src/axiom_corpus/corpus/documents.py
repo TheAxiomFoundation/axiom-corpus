@@ -1025,35 +1025,54 @@ def _extract_pdf_blocks(
 ) -> tuple[_DocumentBlock, ...]:
     extraction_config = extraction or {}
     segmentation = extraction_config.get("segmentation")
-    layered = _pdf_layered_page_text_requested(extraction_config)
+    for key in ("sort_blocks", "ignore_actual_text"):
+        value = extraction_config.get(key)
+        if value is not None and not isinstance(value, bool):
+            raise ValueError(f"{key} must be true or false, not {value!r}")
+    markup = _pdf_amendment_markup_config(extraction_config)
+    sort_blocks = extraction_config.get("sort_blocks") is True
+    layered = markup is not None or sort_blocks
     if layered and segmentation is not None:
         raise ValueError(
             "amendment_markup and sort_blocks support only the default per-page "
             f"PDF segmentation, not segmentation={segmentation!r}"
         )
+    if layered:
+        unsupported = [
+            key for key in _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS if extraction_config.get(key)
+        ]
+        if unsupported:
+            raise ValueError(
+                f"amendment_markup and sort_blocks do not support {', '.join(unsupported)}"
+            )
     if segmentation == "numbered_sections":
         return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "labeled_sections":
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
-    markup = _pdf_amendment_markup_config(extraction_config) if layered else None
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
     with fitz.open(stream=content, filetype="pdf") as document:
+        if markup is not None and markup.start_page > document.page_count:
+            raise ValueError(
+                f"amendment_markup start_page {markup.start_page} is past the last page "
+                f"of the PDF ({document.page_count})"
+            )
         for index, page in enumerate(document, start=1):
             markup_metadata: dict[str, Any] | None = None
-            if layered:
+            page_markup = markup if markup is not None and markup.covers(index) else None
+            if page_markup is not None or sort_blocks:
                 text, markup_metadata = _pdf_page_layered_text(
                     page,
                     extraction=extraction_config,
-                    markup=markup if markup is not None and markup.covers(index) else None,
+                    markup=page_markup,
                     page_number=index,
                 )
-                for phrase, count in (markup_metadata or {}).get(
-                    "typographic_underlines", {}
-                ).items():
+                for phrase, count in (
+                    (markup_metadata or {}).get("typographic_underlines", {}).items()
+                ):
                     typographic_matches[phrase] += count
             else:
                 text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
@@ -1076,7 +1095,8 @@ def _extract_pdf_blocks(
     unmatched = [phrase for phrase, count in typographic_matches.items() if not count]
     if unmatched:
         raise ValueError(
-            f"amendment_markup typographic_underlines not found in the marked pages: {unmatched}"
+            "amendment_markup typographic_underlines not found as an underlined stretch "
+            f"in the marked pages: {unmatched}"
         )
     return tuple(blocks)
 
