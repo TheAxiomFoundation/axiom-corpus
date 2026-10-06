@@ -1,0 +1,3707 @@
+{
+ "policyengine_us_commit": "84253b6afafbb1875c65f12e654c6535744728b7",
+ "program": "snap",
+ "state": "AZ",
+ "derived_by": "axiom-encode-economics parity (all-snap)",
+ "references": [
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#g_1_A",
+   "bucket": "covered-by-parent",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/g/1/A",
+   "files": [
+    "parameters/gov/usda/snap/asset_test/limit.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/fy-2015-snap-resource-limit-memo",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/asset_test/limit.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/asset_test/limit.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/fy-2023-cola",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/asset_test/limit.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.8#c_1",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/8/c/1",
+   "files": [
+    "parameters/gov/usda/snap/asset_test/sources.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#a",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/a",
+   "files": [
+    "parameters/gov/usda/snap/categorical_eligibility.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/categorical_eligibility.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.2#j_2",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/2/j/2",
+   "files": [
+    "parameters/gov/usda/snap/categorical_eligibility.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/8/1612",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/8/1612",
+   "files": [
+    "parameters/gov/usda/snap/eligibility/eligible_immigration_statuses.yaml",
+    "variables/gov/usda/snap/eligibility/is_snap_immigration_status_eligible.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/obbb-alien-eligibility",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/eligibility/eligible_immigration_statuses.yaml",
+    "variables/gov/usda/snap/eligibility/is_snap_immigration_status_eligible.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.congress.gov/bill/116th-congress/house-bill/6201/text",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/emergency_allotment/allowed.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.appropriations.senate.gov/imo/media/doc/JRQ121922.PDF#page=3975",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/emergency_allotment/allowed.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/covid-19-emergency-allotments-guidance",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/emergency_allotment/in_effect.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.snapscreener.com/blog/emergency-allotments",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/emergency_allotment/in_effect.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-covid-emergency-allotments-phase-3-guidance.pdf#page=3",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/emergency_allotment/minimum.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2017#a",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2017/a",
+   "files": [
+    "parameters/gov/usda/snap/expected_contribution.yaml",
+    "variables/gov/usda/snap/eligibility/is_snap_eligible.py",
+    "variables/gov/usda/snap/eligibility/meets_snap_gross_income_test.py",
+    "variables/gov/usda/snap/eligibility/meets_snap_net_income_test.py",
+    "variables/gov/usda/snap/snap.py",
+    "variables/gov/usda/snap/snap_emergency_allotment.py",
+    "variables/gov/usda/snap/snap_expected_contribution.py",
+    "variables/gov/usda/snap/snap_if_takes_up.py",
+    "variables/gov/usda/snap/snap_normal_allotment.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#d_7",
+   "bucket": "covered-by-parent",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/d/7",
+   "files": [
+    "parameters/gov/usda/snap/income/child_income_exclusion_age.yaml",
+    "variables/gov/usda/snap/income/snap_excluded_child_earner.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/allowed.yaml",
+    "variables/gov/usda/snap/income/deductions/snap_deductions.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us-co/regulation/10-ccr-2506-1",
+   "files": [
+    "parameters/gov/hhs/tanf/non_cash/asset_limit.yaml",
+    "parameters/gov/hhs/tanf/non_cash/income_limit/gross.yaml",
+    "parameters/gov/usda/snap/income/deductions/child_support.yaml",
+    "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml",
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.snapscreener.com/?p=table",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/hhs/tanf/non_cash/income_limit/gross_hheod.yaml",
+    "parameters/gov/hhs/tanf/non_cash/income_limit/net_applies/hheod.yaml",
+    "parameters/gov/hhs/tanf/non_cash/income_limit/net_applies/non_hheod.yaml",
+    "parameters/gov/hhs/tanf/non_cash/income_limit/ny/dependent_care.yaml",
+    "parameters/gov/hhs/tanf/non_cash/income_limit/ny/earned_income.yaml",
+    "parameters/gov/hhs/tanf/non_cash/requires_all_for_hheod.yaml",
+    "parameters/gov/usda/snap/income/deductions/child_support.yaml",
+    "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_2_B",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/2/B",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/earned_income.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_5",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/5",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_medical_expense/disregard.yaml",
+    "variables/gov/usda/snap/income/deductions/snap_allowable_medical_expenses.py",
+    "variables/gov/usda/snap/income/deductions/snap_excess_medical_expense_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://dbmefaapolicy.azdes.gov/index.html#page/FAA5/NA_Medical_Expenses_and_Deduction.html",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
+   ],
+   "states": [
+    "AZ"
+   ]
+  },
+  {
+   "url": "https://frac.org/wp-content/uploads/SNAP-SMD-National-Report-1.pdf#page=7",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_medical_expense/standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/snap/12-State_Options.pdf#page=11",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf#page=14",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/snap/14-State-Options.pdf#page=19",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/available.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_6_D_i",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/6/D/i",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf#page=2",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf#page=2",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf#page=2",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf#page=5",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/fy-2024-cola",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/homeless/deduction.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_6_A",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/6/A",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/excess_shelter_expense/income_share_disregard.yaml",
+    "variables/gov/usda/snap/income/deductions/shelter/snap_net_income_pre_shelter.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#b_3",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/b/3",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/expense_based_deduction_applies.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/expense_based_deduction_applies.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf#page=10",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/expense_based_deduction_applies.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.snapscreener.com/blog/self-employment",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://assets-global.website-files.com/63345e33f3c909d27d0e558b/634eb3c77156ee846ee68852_streamlining-snap-gig-economy.pdf",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/snap/10-State_Options.pdf#page=16",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://hhs.iowa.gov/media/4001/download",
+   "bucket": "registered-not-encoded",
+   "kind": "guidance",
+   "citation": "us-ia/manual/hhs/em/7-i",
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/self_employment/rate.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-7/subtitle-B/chapter-II/subchapter-C/part-273/subpart-D/section-273.9#p-273.9(d",
+   "bucket": "covered",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9",
+   "files": [
+    "parameters/gov/local/ca/smc/general_assistance/income/earned_income_deduction_rate.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/113/plaws/publ79/PLAW-113publ79.pdf#page=139",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/554.pdf#page=24",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5",
+   "bucket": "not-registered",
+   "kind": "regulation",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/always_standard.yaml"
+   ],
+   "states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?usp=sharing&ouid=116242521439357911562&rtpof=true&sd=true",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/active.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.snapscreener.com/data",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/states.yaml"
+   ],
+   "states": [
+    "AZ",
+    "NC",
+    "TN",
+    "VA"
+   ]
+  },
+  {
+   "url": "https://docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310#gid=1837348310",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf#page=177",
+   "bucket": "data-series",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://snapqcdata.net/sites/default/files/2020-12/FY%202019%20SNAP%20QC%20Technical%20Documentation.pdf#page=171",
+   "bucket": "data-series",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://snapqcdata.net/sites/default/files/2022-12/FY%202020%20SNAP%20QC%20Technical%20Documentation.pdf#page=175",
+   "bucket": "data-series",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://snapqcdata.net/sites/default/files/2024-05/FY%202021%20Tech%20Doc.pdf#page=138",
+   "bucket": "data-series",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/limited/main.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/by_household_size/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/electricity.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/gas_and_fuel.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/phone.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/sewage.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/trash.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/single/water.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/amount.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/by_household_size/states.yaml",
+    "parameters/gov/usda/snap/income/deductions/utility/standard/main.yaml"
+   ],
+   "states": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#c_3_i",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/c/3/i",
+   "files": [
+    "parameters/gov/usda/snap/income/ineligible_members/count_all_income_states.yaml",
+    "parameters/gov/usda/snap/income/ineligible_members/gross_test_full_count_states.yaml",
+    "parameters/gov/usda/snap/income/ineligible_members/pre_prwora_statuses.yaml",
+    "variables/gov/usda/snap/income/gross/snap_gross_test_income.py",
+    "variables/gov/usda/snap/income/ineligible_members/is_snap_gross_test_full_income_count_alien.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf#page=15",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/income/ineligible_members/count_all_income_states.yaml",
+    "parameters/gov/usda/snap/income/ineligible_members/gross_test_full_count_states.yaml",
+    "parameters/gov/usda/snap/income/ineligible_members/pre_prwora_statuses.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#a_1",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/a/1",
+   "files": [
+    "parameters/gov/usda/snap/income/limit/gross.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#a_2",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/a/2",
+   "files": [
+    "parameters/gov/usda/snap/income/limit/net.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#b_1",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/b/1",
+   "files": [
+    "parameters/gov/usda/snap/income/sources/earned.yaml",
+    "variables/gov/usda/snap/income/snap_earned_income.py",
+    "variables/gov/usda/snap/income/snap_earned_income_person.py",
+    "variables/gov/usda/snap/income/snap_gross_self_employment_income_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#b_2",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/b/2",
+   "files": [
+    "parameters/gov/usda/snap/income/sources/unearned.yaml",
+    "parameters/gov/usda/snap/income/sources/unearned_spm_unit.yaml",
+    "variables/gov/usda/snap/income/snap_unearned_income.py",
+    "variables/gov/usda/snap/income/snap_unearned_income_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.10#e_2_ii_C",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/10/e/2/ii",
+   "files": [
+    "parameters/gov/usda/snap/min_allotment/maximum_household_size.yaml",
+    "parameters/gov/usda/snap/min_allotment/rate.yaml",
+    "parameters/gov/usda/snap/min_allotment/relevant_max_allotment_household_size.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015",
+   "files": [
+    "parameters/gov/usda/snap/student/age_threshold.yaml",
+    "parameters/gov/usda/snap/student/working_hours_threshold.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#e",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/e",
+   "files": [
+    "parameters/gov/usda/snap/student/child_age_limit/single_parent.yaml",
+    "parameters/gov/usda/snap/student/child_age_limit/two_parent.yaml",
+    "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_or_work_incentive_student.py",
+    "variables/gov/usda/snap/eligibility/student/is_snap_higher_ed_student.py",
+    "variables/gov/usda/snap/eligibility/student/is_snap_ineligible_student.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2012#u_4",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2012/u/4",
+   "files": [
+    "parameters/gov/usda/snap/uprating.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://data.bls.gov/timeseries/CUUR0000SA0",
+   "bucket": "data-series",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/hhs/uprating.yaml",
+    "parameters/gov/usda/snap/uprating.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.cbo.gov/publication/59710",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/ssa/uprating.yaml",
+    "parameters/gov/usda/snap/uprating.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.1#b_iii",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/1/b/iii",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/work-requirements",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml",
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
+    "parameters/gov/usda/snap/work_requirements/general/age_threshold/exempted.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements.py",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#o_3",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/3",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/dependent.yaml",
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
+    "parameters/gov/usda/snap/work_requirements/abawd/in_effect.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_non_age.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#c_1",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/c/1",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/exempted.yaml",
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/former_foster_care.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#c_9",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/c/9",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/age_threshold/former_foster_care.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#o_6",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/6",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_discretionary_exempt.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#g",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/g",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_discretionary_exempt.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.congress.gov/118/plaws/publ5/PLAW-118publ5.pdf",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/6",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.congress.gov/115/plaws/publ334/PLAW-115publ334.pdf",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/6",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.congress.gov/105/plaws/publ33/PLAW-105publ33.pdf",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/6",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/discretionary_exemption_rate.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf#page=4",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ak.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/az.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf#page=5",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf#page=6",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ca.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/co.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/hi.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ky.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/ma.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/md.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mi.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/mn.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nd.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nd.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/nj.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/or.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/pa.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/sd.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/va.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wa.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_counties/wi.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#o_4",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/4",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#f",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/f",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf#page=3",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf#page=3",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf#page=3",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf#page=4",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf#page=4",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf#page=3",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf#page=4",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf#page=3",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf#page=3",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf#page=2",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://news.ballotpedia.org/2026/04/02/usda-guidance-in-response-to-litigation-reinstates-snap-benefits-for-some-abawds/",
+   "bucket": "secondary",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf#page=1",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf#page=1",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/waived_states.yaml",
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_hr1_in_effect.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#a_1_i",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/a/1/i",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/abawd/weekly_hours_threshold.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1_iv",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1/iv",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/general/age_threshold/caring_dependent_child.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1_i",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1/i",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/general/age_threshold/exempted.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1_vii",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1/vii",
+   "files": [
+    "parameters/gov/usda/snap/work_requirements/general/weekly_hours_threshold.yaml"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#c",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/c",
+   "files": [
+    "variables/gov/usda/snap/eligibility/is_snap_eligible.py",
+    "variables/gov/usda/snap/eligibility/meets_snap_gross_income_test.py",
+    "variables/gov/usda/snap/eligibility/meets_snap_net_income_test.py",
+    "variables/gov/usda/snap/income/gross/snap_gross_test_income.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#g",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/g",
+   "files": [
+    "variables/gov/usda/snap/eligibility/meets_snap_asset_test.py",
+    "variables/gov/usda/snap/eligibility/snap_assets.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#c",
+   "bucket": "covered",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/c",
+   "files": [
+    "variables/gov/usda/snap/eligibility/meets_snap_asset_test.py",
+    "variables/gov/usda/snap/income/snap_earned_income.py",
+    "variables/gov/usda/snap/income/snap_unearned_income.py",
+    "variables/gov/usda/snap/is_snap_excluded_member.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf#page=11",
+   "bucket": "not-registered",
+   "kind": "guidance",
+   "citation": null,
+   "files": [
+    "variables/gov/usda/snap/eligibility/meets_snap_categorical_eligibility.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.8",
+   "bucket": "covered",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/8",
+   "files": [
+    "variables/gov/usda/snap/eligibility/snap_assets.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.5#b",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/5/b",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_or_work_incentive_student.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.5#b_11",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/5/b/11",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_student.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#e_3",
+   "bucket": "covered-by-parent",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/e/3",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/is_snap_employment_training_student.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.5#b_4",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/5/b/4",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/is_snap_work_incentive_student.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#e_7",
+   "bucket": "parent-partial",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/e/7",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/is_snap_work_incentive_student.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#e_5",
+   "bucket": "covered-by-parent",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/e/5",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/meets_snap_parent_exception.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#e_8",
+   "bucket": "covered-by-parent",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/e/8",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/meets_snap_parent_exception.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#e_4",
+   "bucket": "covered-by-parent",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/e/4",
+   "files": [
+    "variables/gov/usda/snap/eligibility/student/meets_snap_work_exception.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1_v",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1/v",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/has_applied_for_unemployment_compensation.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1_iii",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1/iii",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_complying_with_tanf_work_requirements.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf#page=6",
+   "bucket": "back-year",
+   "kind": null,
+   "citation": null,
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_snap_abawd_waived_area.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1_vi",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1/vi",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_in_substance_use_treatment_program.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf#page=11",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": "us/statute/25/1603",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_indian_exempt.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf#page=12",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": "us/statute/25/1603",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_indian_exempt.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/25/1603",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": "us/statute/25/1603",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_indian_exempt.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/25/1679",
+   "bucket": "not-registered",
+   "kind": "statute",
+   "citation": "us/statute/25/1679",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_abawd_indian_exempt.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#a_1",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/a/1",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_program_participant.py",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#b_1",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/b/1",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_exempt_non_age.py",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-7/subtitle-B/chapter-II/subchapter-C/part-273/subpart-E/section-273.7#p-273.7(f",
+   "bucket": "covered",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_work_registration_noncompliant.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#o_2_C",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/2/C",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_workfare_participant.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#a_1_iv",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/a/1/iv",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/is_snap_workfare_participant.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24",
+   "bucket": "covered",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_abawd_work_requirements.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#f_1",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/f/1",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements.py",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.7#j",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/7/j",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_general_work_requirements.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#b",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/b",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements.py",
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#c_4",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/c/4",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/meets_snap_work_requirements_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2015#o_2",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2015/o/2",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/weekly_snap_work_program_hours.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.24#a_1",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/24/a/1",
+   "files": [
+    "variables/gov/usda/snap/eligibility/work_requirements/weekly_snap_work_program_hours.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/271.2",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/271/2",
+   "files": [
+    "variables/gov/usda/snap/has_snap_elderly_disabled_member.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.1",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/1",
+   "files": [
+    "variables/gov/usda/snap/has_snap_elderly_disabled_member.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#c_9",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/c/9",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/self_employment/snap_self_employment_expense_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#b",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/b",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/self_employment/snap_self_employment_expense_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/mississippi/18-Miss-Code-R-SS-14-20-4",
+   "bucket": "not-registered",
+   "kind": "regulation",
+   "citation": null,
+   "files": [
+    "variables/gov/usda/snap/income/deductions/self_employment/snap_self_employment_income_expense.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#d_3",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/d/3",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_allowable_medical_expenses.py",
+    "variables/gov/usda/snap/income/deductions/snap_excess_medical_expense_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_4",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/4",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_child_support_deduction.py",
+    "variables/gov/usda/snap/income/deductions/snap_countable_child_support_expense.py",
+    "variables/gov/usda/snap/income/gross/snap_child_support_gross_income_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#c_2_iii",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/c/2/iii",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_countable_child_support_expense.py",
+    "variables/gov/usda/snap/income/deductions/snap_dependent_care_deduction.py",
+    "variables/gov/usda/snap/income/ineligible_members/snap_expense_counted_share.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_3",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/3",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_dependent_care_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#d_4",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/d/4",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_dependent_care_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_2",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/2",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_earned_income_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#e_1",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/e/1",
+   "files": [
+    "variables/gov/usda/snap/income/deductions/snap_standard_deduction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#d",
+   "bucket": "covered",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/d",
+   "files": [
+    "variables/gov/usda/snap/income/gross/snap_gross_income.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#c_1",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/c/1",
+   "files": [
+    "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#c_2_ii",
+   "bucket": "covered-by-parent",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/c/2/ii",
+   "files": [
+    "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py",
+    "variables/gov/usda/snap/income/ineligible_members/snap_income_counted_share.py",
+    "variables/gov/usda/snap/income/ineligible_members/snap_prorated_income_fraction.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#c_3",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/c/3",
+   "files": [
+    "variables/gov/usda/snap/income/ineligible_members/is_snap_prorated_income_member.py",
+    "variables/gov/usda/snap/income/ineligible_members/is_snap_state_discretion_ineligible_alien.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#d_1",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/d/1",
+   "files": [
+    "variables/gov/usda/snap/income/ineligible_members/snap_expense_counted_share.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#d",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/d",
+   "files": [
+    "variables/gov/usda/snap/income/ineligible_members/snap_income_counted_share.py",
+    "variables/gov/usda/snap/is_snap_excluded_member.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014",
+   "files": [
+    "variables/gov/usda/snap/income/snap_countable_earner.py",
+    "variables/gov/usda/snap/income/snap_net_income.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.9#c_3",
+   "bucket": "parent-partial",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/9/c/3",
+   "files": [
+    "variables/gov/usda/snap/income/snap_countable_earner.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/273.11#a_2_ii",
+   "bucket": "registered-not-encoded",
+   "kind": "regulation",
+   "citation": "us/regulation/7/273/11/a/2/ii",
+   "files": [
+    "variables/gov/usda/snap/income/snap_gross_self_employment_income_person.py"
+   ],
+   "states": []
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/7/2014#b",
+   "bucket": "registered-not-encoded",
+   "kind": "statute",
+   "citation": "us/statute/7/2014/b",
+   "files": [
+    "variables/gov/usda/snap/snap_unit_size.py"
+   ],
+   "states": []
+  }
+ ]
+}

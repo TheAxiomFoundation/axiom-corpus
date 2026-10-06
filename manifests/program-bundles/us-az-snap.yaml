@@ -1,0 +1,2224 @@
+schema: axiom-program-bundle/v1
+id: us-az/snap
+program: snap
+jurisdiction: us-az
+title: Arizona SNAP
+as_of: '2026-10-05'
+generator: scripts/build_program_bundle.py
+tiers:
+- id: screener
+  title: Screener-level parity
+  definition: Every document that PolicyEngine-US cites for this program in this state is encoded, or excluded with
+    a recorded reason. A conformance report against a pinned PolicyEngine version closes the tier.
+  membership:
+    rule: The plan's documents for the program (federal and state), and the PolicyEngine-US references in the program's
+      own files that apply to the state, grouped into documents
+    policyengine_us_commit: 84253b6afafbb1875c65f12e654c6535744728b7
+    references: 179
+    references_derived_by: axiom-encode-economics parity (all-snap)
+    plan: axiom-roadmap-dashboard@c93d4a62:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
+    plan_as_of: '2026-09-29'
+    plan_documents: 121
+    crosswalk:
+      web:dbmefaapolicy.azdes.gov: us-az/manual/des/faa6/utility-allowance-current-amount
+      web:dbmefaapolicy.azdes.gov/index.html: us-az/manual/des/faa5/na-medical-expenses-and-deduction
+  documents:
+  - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
+    name: Prior HHS Poverty Guidelines and Federal Register References
+    layer: federal
+    citation_path: null
+    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
+    sources:
+    - plan
+    scope: in
+  - key: https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
+    name: fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-covid-emergency-allotments-phase-3-guidance.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/snap-covid-emergency-allotments-p
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-covid-emergency-allotments-phase-3-guidance.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+  - key: https://liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf
+    name: liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.appropriations.senate.gov/imo/media/doc/JRQ121922.PDF
+    name: appropriations.senate.gov/imo/media/doc/JRQ121922.PDF
+    layer: federal
+    citation_path: null
+    source_url: https://www.appropriations.senate.gov/imo/media/doc/JRQ121922.PDF
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+  - key: https://www.cbo.gov/publication/59710
+    name: cbo.gov/publication/59710
+    layer: federal
+    citation_path: null
+    source_url: https://www.cbo.gov/publication/59710
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.congress.gov/113/plaws/publ79/PLAW-113publ79.pdf
+    name: congress.gov/113/plaws/publ79/PLAW-113publ79.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.congress.gov/113/plaws/publ79/PLAW-113publ79.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf
+    name: H.R.1 - One Big Beautiful Bill Act, SEC. 70103 | Public Law 119-21, Section 10102(c) - Exemption for noncontiguous
+      States
+    layer: federal
+    citation_path: null
+    source_url: https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf
+    sources:
+    - plan
+    scope: in
+  - key: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
+    name: Public Law 119-21, Section 10102(a) - Modifications to SNAP ABAWD Requirements | One Big Beautiful Bill
+      Act, Pub. L. No. 119-21, § 70404 (2025)
+    layer: federal
+    citation_path: null
+    source_url: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
+    sources:
+    - plan
+    scope: in
+  - key: https://www.congress.gov/bill/116th-congress/house-bill/6201/text
+    name: congress.gov/bill/116th-congress/house-bill/6201/text
+    layer: federal
+    citation_path: null
+    source_url: https://www.congress.gov/bill/116th-congress/house-bill/6201/text
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+  - key: https://www.fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx
+    name: USDA utility allowances by state spreadsheet (FY2026, revised May 2026; FNS labels it updated August 2026)
+    layer: federal
+    citation_path: null
+    source_url: https://www.fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx
+    sources:
+    - plan
+    scope: in
+  - key: https://www.fns.usda.gov/snap/allotment/COLA
+    name: USDA Cost of Living Adjustments
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/allotment/COLA
+    sources:
+    - plan
+    scope: in
+  - key: https://www.fns.usda.gov/snap/covid-19-emergency-allotments-guidance
+    name: fns.usda.gov/snap/covid-19-emergency-allotments-guidance
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/covid-19-emergency-allotments-guidance
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+  - key: https://www.fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances
+    name: fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
+    name: SNAP Special Rules for the Elderly or Disabled
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
+    sources:
+    - plan
+    scope: in
+  - key: https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
+    name: USDA FNS SNAP Provisions of the One Big Beautiful Bill Act of 2025, ABAWD Waivers Implementation Memorandum
+      (October 3, 2025)
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
+    sources:
+    - plan
+    scope: in
+  - key: https://www.fns.usda.gov/snap/obbb-alien-eligibility
+    name: fns.usda.gov/snap/obbb-alien-eligibility
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/obbb-alien-eligibility
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
+    name: fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
+    name: fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.fns.usda.gov/snap/work-requirements
+    name: fns.usda.gov/snap/work-requirements
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/work-requirements
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
+    name: fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
+    name: law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
+    layer: federal
+    citation_path: null
+    source_url: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+  - key: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
+    name: usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.
+    layer: federal
+    citation_path: null
+    source_url: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: us/form/irs/ty2025/f1040
+    name: Form 1040, U.S. Individual Income Tax Return (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026
+    name: HHS Poverty Guidelines for 2026 (ASPE poverty guidelines page)
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/guidance/recovery/release-scope-us-guidance-2026-05-01-snap-fy2026-cola
+    name: us/guidance/recovery/release-scope-us-guidance-2026-05-01-snap-fy2026-cola
+    layer: federal
+    citation_path: us/guidance/recovery/release-scope-us-guidance-2026-05-01-snap-fy2026-cola
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo
+    name: 'SNAP Provisions of the One Big Beautiful Bill Act of 2025: ABAWD Exceptions - Implementation Memorandum'
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/manual/ssa/poms/si/01140.200
+    name: 'POMS SI 01140.200: Checking and Savings Accounts'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/01140.200
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/manual/ssa/poms/si/01140.220
+    name: 'POMS SI 01140.220: Stocks'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/01140.220
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/manual/ssa/poms/si/01140.240
+    name: 'POMS SI 01140.240: U.S. Savings Bonds'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/01140.240
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/manual/ssa/poms/si/01140.250
+    name: 'POMS SI 01140.250: Municipal, Corporate and Government Bonds'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/01140.250
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/manual/ssa/poms/si/01401.001
+    name: 'POMS SI 01401.001: General Information about State Supplementation'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/01401.001
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/regulation/26/1/61-14
+    name: 26 CFR 1.61-14
+    layer: federal
+    citation_path: us/regulation/26/1/61-14
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/regulation/7/271/2
+    name: 7 CFR 271.2
+    layer: federal
+    citation_path: us/regulation/7/271/2
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: us/regulation/7/273/1
+    name: 7 CFR 273.1
+    layer: federal
+    citation_path: us/regulation/7/273/1
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    cited:
+    - path: us/regulation/7/273/1/b/iii
+      references: 1
+  - key: us/regulation/7/273/10
+    name: 7 CFR 273.10
+    layer: federal
+    citation_path: us/regulation/7/273/10
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    cited:
+    - path: us/regulation/7/273/10/e/2/ii
+      references: 1
+  - key: us/regulation/7/273/11
+    name: 7 CFR 273.11
+    layer: federal
+    citation_path: us/regulation/7/273/11
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 11
+    scope: in
+    cited:
+    - path: us/regulation/7/273/11/a/2/ii
+      references: 1
+    - path: us/regulation/7/273/11/b
+      references: 1
+    - path: us/regulation/7/273/11/b/3
+      references: 1
+    - path: us/regulation/7/273/11/c
+      references: 1
+    - path: us/regulation/7/273/11/c/1
+      references: 1
+    - path: us/regulation/7/273/11/c/2/ii
+      references: 1
+    - path: us/regulation/7/273/11/c/2/iii
+      references: 1
+    - path: us/regulation/7/273/11/c/3
+      references: 1
+    - path: us/regulation/7/273/11/c/3/i
+      references: 1
+    - path: us/regulation/7/273/11/d
+      references: 1
+    - path: us/regulation/7/273/11/d/1
+      references: 1
+  - key: us/regulation/7/273/2
+    name: 7 CFR 273.2
+    layer: federal
+    citation_path: us/regulation/7/273/2
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    cited:
+    - path: us/regulation/7/273/2/j/2
+      references: 1
+  - key: us/regulation/7/273/24
+    name: 7 CFR 273.24
+    layer: federal
+    citation_path: us/regulation/7/273/24
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 10
+    scope: in
+    cited:
+    - path: us/regulation/7/273/24/a/1
+      references: 1
+    - path: us/regulation/7/273/24/a/1/i
+      references: 1
+    - path: us/regulation/7/273/24/a/1/iv
+      references: 1
+    - path: us/regulation/7/273/24/b
+      references: 1
+    - path: us/regulation/7/273/24/c/1
+      references: 1
+    - path: us/regulation/7/273/24/c/4
+      references: 1
+    - path: us/regulation/7/273/24/c/9
+      references: 1
+    - path: us/regulation/7/273/24/f
+      references: 1
+    - path: us/regulation/7/273/24/g
+      references: 1
+  - key: us/regulation/7/273/5
+    name: 7 CFR 273.5
+    layer: federal
+    citation_path: us/regulation/7/273/5
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 3
+    scope: in
+    cited:
+    - path: us/regulation/7/273/5/b
+      references: 1
+    - path: us/regulation/7/273/5/b/11
+      references: 1
+    - path: us/regulation/7/273/5/b/4
+      references: 1
+  - key: us/regulation/7/273/7
+    name: 7 CFR 273.7
+    layer: federal
+    citation_path: us/regulation/7/273/7
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 11
+    scope: in
+    cited:
+    - path: us/regulation/7/273/7/a/1
+      references: 1
+    - path: us/regulation/7/273/7/b/1
+      references: 1
+    - path: us/regulation/7/273/7/b/1/i
+      references: 1
+    - path: us/regulation/7/273/7/b/1/iii
+      references: 1
+    - path: us/regulation/7/273/7/b/1/iv
+      references: 1
+    - path: us/regulation/7/273/7/b/1/v
+      references: 1
+    - path: us/regulation/7/273/7/b/1/vi
+      references: 1
+    - path: us/regulation/7/273/7/b/1/vii
+      references: 1
+    - path: us/regulation/7/273/7/f/1
+      references: 1
+    - path: us/regulation/7/273/7/j
+      references: 1
+  - key: us/regulation/7/273/8
+    name: 7 CFR 273.8
+    layer: federal
+    citation_path: us/regulation/7/273/8
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    cited:
+    - path: us/regulation/7/273/8/c/1
+      references: 1
+  - key: us/regulation/7/273/9
+    name: 7 CFR 273.9
+    layer: federal
+    citation_path: us/regulation/7/273/9
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 9
+    scope: in
+    cited:
+    - path: us/regulation/7/273/9/a/1
+      references: 1
+    - path: us/regulation/7/273/9/a/2
+      references: 1
+    - path: us/regulation/7/273/9/b/1
+      references: 1
+    - path: us/regulation/7/273/9/b/2
+      references: 1
+    - path: us/regulation/7/273/9/c/3
+      references: 1
+    - path: us/regulation/7/273/9/c/9
+      references: 1
+    - path: us/regulation/7/273/9/d/3
+      references: 1
+    - path: us/regulation/7/273/9/d/4
+      references: 1
+  - key: us/statute/25/1603
+    name: 25 USC 1603
+    layer: federal
+    citation_path: us/statute/25/1603
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 3
+    scope: in
+  - key: us/statute/25/1679
+    name: 25 USC 1679
+    layer: federal
+    citation_path: us/statute/25/1679
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: us/statute/26/1402
+    name: 26 USC 1402
+    layer: federal
+    citation_path: us/statute/26/1402
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/26/199A
+    name: 26 USC 199A
+    layer: federal
+    citation_path: us/statute/26/199A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/26/21
+    name: 26 USC 21
+    layer: federal
+    citation_path: us/statute/26/21
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/26/3401
+    name: 26 USC 3401
+    layer: federal
+    citation_path: us/statute/26/3401
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/26/7703
+    name: 26 USC 7703
+    layer: federal
+    citation_path: us/statute/26/7703
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/26/subtitle-A
+    name: 26 USC subtitle-A
+    layer: federal
+    citation_path: us/statute/26/subtitle-A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/38/101
+    name: 38 USC 101
+    layer: federal
+    citation_path: us/statute/38/101
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/42/chapter-7
+    name: 42 USC chapter-7
+    layer: federal
+    citation_path: us/statute/42/chapter-7
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: us/statute/7/2012
+    name: 7 USC 2012
+    layer: federal
+    citation_path: us/statute/7/2012
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    cited:
+    - path: us/statute/7/2012/u/4
+      references: 1
+  - key: us/statute/7/2014
+    name: 7 USC 2014
+    layer: federal
+    citation_path: us/statute/7/2014
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 17
+    scope: in
+    cited:
+    - path: us/statute/7/2014/a
+      references: 1
+    - path: us/statute/7/2014/b
+      references: 1
+    - path: us/statute/7/2014/c
+      references: 1
+    - path: us/statute/7/2014/d
+      references: 1
+    - path: us/statute/7/2014/d/7
+      references: 1
+    - path: us/statute/7/2014/e
+      references: 1
+    - path: us/statute/7/2014/e/1
+      references: 1
+    - path: us/statute/7/2014/e/2
+      references: 1
+    - path: us/statute/7/2014/e/2/B
+      references: 1
+    - path: us/statute/7/2014/e/3
+      references: 1
+    - path: us/statute/7/2014/e/4
+      references: 1
+    - path: us/statute/7/2014/e/5
+      references: 1
+    - path: us/statute/7/2014/e/6/A
+      references: 1
+    - path: us/statute/7/2014/e/6/D/i
+      references: 1
+    - path: us/statute/7/2014/g
+      references: 1
+    - path: us/statute/7/2014/g/1/A
+      references: 1
+  - key: us/statute/7/2015
+    name: 7 USC 2015
+    layer: federal
+    citation_path: us/statute/7/2015
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 15
+    scope: in
+    cited:
+    - path: us/statute/7/2015/e
+      references: 1
+    - path: us/statute/7/2015/e/3
+      references: 1
+    - path: us/statute/7/2015/e/4
+      references: 1
+    - path: us/statute/7/2015/e/5
+      references: 1
+    - path: us/statute/7/2015/e/7
+      references: 1
+    - path: us/statute/7/2015/e/8
+      references: 1
+    - path: us/statute/7/2015/o/2
+      references: 1
+    - path: us/statute/7/2015/o/2/C
+      references: 1
+    - path: us/statute/7/2015/o/3
+      references: 1
+    - path: us/statute/7/2015/o/4
+      references: 1
+    - path: us/statute/7/2015/o/6
+      references: 4
+  - key: us/statute/7/2017
+    name: 7 USC 2017
+    layer: federal
+    citation_path: us/statute/7/2017
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    cited:
+    - path: us/statute/7/2017/a
+      references: 1
+  - key: us/statute/8/1612
+    name: 8 USC 1612
+    layer: federal
+    citation_path: us/statute/8/1612
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: us-az/manual/des/faa5/na-medical-expenses-and-deduction
+    name: 'Arizona DES FAA5: E NA Medical Expenses and Deduction'
+    layer: state
+    citation_path: us-az/manual/des/faa5/na-medical-expenses-and-deduction
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+  - key: us-az/manual/des/faa6/utility-allowance-current-amount
+    name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
+    layer: state
+    citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
+    source_url: null
+    sources:
+    - plan
+    scope: in
+  - key: https://aspe.hhs.gov/2015-poverty-guidelines
+    name: 2015 Poverty Guidelines
+    layer: federal
+    citation_path: null
+    source_url: https://aspe.hhs.gov/2015-poverty-guidelines
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://aspe.hhs.gov/2016-poverty-guidelines
+    name: 2016 Poverty Guidelines
+    layer: federal
+    citation_path: null
+    source_url: https://aspe.hhs.gov/2016-poverty-guidelines
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://assets-global.website-files.com/63345e33f3c909d27d0e558b/634eb3c77156ee846ee68852_streamlining-snap-gig-economy.pdf
+    name: assets-global.website-files.com/63345e33f3c909d27d0e558b/634eb3c77156ee846ee68852_streamli
+    layer: federal
+    citation_path: null
+    source_url: https://assets-global.website-files.com/63345e33f3c909d27d0e558b/634eb3c77156ee846ee68852_streamlining-snap-gig-economy.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://data.bls.gov/timeseries/CUUR0000SA0
+    name: data.bls.gov/timeseries/CUUR0000SA0
+    layer: federal
+    citation_path: null
+    source_url: https://data.bls.gov/timeseries/CUUR0000SA0
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://data.census.gov/table/ACSDT1Y2023.B25040
+    name: web:data.census.gov/table/ACSDT1Y2023.B25040
+    layer: federal
+    citation_path: null
+    source_url: https://data.census.gov/table/ACSDT1Y2023.B25040
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310
+    name: docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit
+    layer: federal
+    citation_path: null
+    source_url: https://docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?usp=sharing&ouid=116242521439357911562&rtpof=true&sd=true
+    name: docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit
+    layer: federal
+    citation_path: null
+    source_url: https://docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?usp=sharing&ouid=116242521439357911562&rtpof=true&sd=true
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf
+    name: fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pd
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf
+    name: fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pd
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/media/file/FY21-Maximum-Allotments-Deductions.pdf
+    name: SNAP FY2021 Maximum Allotments and Deductions
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/media/file/FY21-Maximum-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/media/file/FY22-Maximum-Allotments-Deductions.pdf
+    name: SNAP FY2022 Maximum Allotments and Deductions
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/media/file/FY22-Maximum-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/media/file/FY24-Maximum-Allotments-and-Deductions.pdf
+    name: SNAP FY2024 Maximum Allotments and Deductions | Supplemental Nutrition Assistance Program (SNAP) Fiscal
+      Year (FY) 2024 Maximum Allotments and Deductions
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/media/file/FY24-Maximum-Allotments-and-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/FY23-Maximum-Allotments-Deductions.pdf
+    name: SNAP FY2023 Maximum Allotments and Deductions
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/FY23-Maximum-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-ju
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf
+    name: fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/snap/FY16-Maximun-Allotments-Deductions.pdf
+    name: SNAP FY2016 Maximum Allotments and Deductions
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/snap/FY16-Maximun-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/snap/FY17-Maximun-Allotments-Deductions.pdf
+    name: SNAP FY2017 Maximum Allotments and Deductions
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/snap/FY17-Maximun-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf
+    name: fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://frac.org/wp-content/uploads/SNAP-SMD-National-Report-1.pdf
+    name: frac.org/wp-content/uploads/SNAP-SMD-National-Report-1.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://frac.org/wp-content/uploads/SNAP-SMD-National-Report-1.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm
+    name: web:liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm
+    layer: federal
+    citation_path: null
+    source_url: https://liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://news.ballotpedia.org/2026/04/02/usda-guidance-in-response-to-litigation-reinstates-snap-benefits-for-some-abawds/
+    name: news.ballotpedia.org/2026/04/02/usda-guidance-in-response-to-litigation-reinstates-snap-be
+    layer: federal
+    citation_path: null
+    source_url: https://news.ballotpedia.org/2026/04/02/usda-guidance-in-response-to-litigation-reinstates-snap-benefits-for-some-abawds/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf
+    name: snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://snapqcdata.net/sites/default/files/2020-12/FY%202019%20SNAP%20QC%20Technical%20Documentation.pdf
+    name: snapqcdata.net/sites/default/files/2020-12/FY%202019%20SNAP%20QC%20Technical%20Documentati
+    layer: federal
+    citation_path: null
+    source_url: https://snapqcdata.net/sites/default/files/2020-12/FY%202019%20SNAP%20QC%20Technical%20Documentation.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://snapqcdata.net/sites/default/files/2022-12/FY%202020%20SNAP%20QC%20Technical%20Documentation.pdf
+    name: snapqcdata.net/sites/default/files/2022-12/FY%202020%20SNAP%20QC%20Technical%20Documentati
+    layer: federal
+    citation_path: null
+    source_url: https://snapqcdata.net/sites/default/files/2022-12/FY%202020%20SNAP%20QC%20Technical%20Documentation.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://snapqcdata.net/sites/default/files/2024-05/FY%202021%20Tech%20Doc.pdf
+    name: snapqcdata.net/sites/default/files/2024-05/FY%202021%20Tech%20Doc.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://snapqcdata.net/sites/default/files/2024-05/FY%202021%20Tech%20Doc.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
+    name: FY 2023 SNAP QC Technical Documentation, Table F.7 (first published Arkansas BUA)
+    layer: federal
+    citation_path: null
+    source_url: https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Data series: not law'
+  - key: https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID%20ARPA-Maximum-Allotments-Deductions.pdf
+    name: Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions
+      [ARPA]
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID%20ARPA-Maximum-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID-Maximum-Allotments-Deductions.pdf
+    name: Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions
+      [CAA]
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID-Maximum-Allotments-Deductions.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx
+    name: fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/sites/default/files/snap/10-State_Options.pdf
+    name: fns.usda.gov/sites/default/files/snap/10-State_Options.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/snap/10-State_Options.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.fns.usda.gov/sites/default/files/snap/12-State_Options.pdf
+    name: fns.usda.gov/sites/default/files/snap/12-State_Options.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/snap/12-State_Options.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf
+    name: fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.fns.usda.gov/sites/default/files/snap/14-State-Options.pdf
+    name: fns.usda.gov/sites/default/files/snap/14-State-Options.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/snap/14-State-Options.pdf
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments
+    name: fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/snap/fy-2015-snap-resource-limit-memo
+    name: fns.usda.gov/snap/fy-2015-snap-resource-limit-memo
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/fy-2015-snap-resource-limit-memo
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/snap/fy-2023-cola
+    name: fns.usda.gov/snap/fy-2023-cola
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/fy-2023-cola
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.fns.usda.gov/snap/fy-2025-cola
+    name: SNAP FY2025 Cost-of-Living Adjustments
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/snap/fy-2025-cola
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://www.snapscreener.com/?p=table
+    name: snapscreener.com/
+    layer: federal
+    citation_path: null
+    source_url: https://www.snapscreener.com/?p=table
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.snapscreener.com/blog/emergency-allotments
+    name: snapscreener.com/blog/emergency-allotments
+    layer: federal
+    citation_path: null
+    source_url: https://www.snapscreener.com/blog/emergency-allotments
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.snapscreener.com/blog/self-employment
+    name: snapscreener.com/blog/self-employment
+    layer: federal
+    citation_path: null
+    source_url: https://www.snapscreener.com/blog/self-employment
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: https://www.snapscreener.com/data
+    name: snapscreener.com/data
+    layer: federal
+    citation_path: null
+    source_url: https://www.snapscreener.com/data
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Secondary source: not law'
+  - key: us/guidance/recovery/release-scope-us-guidance-2026-07-08-snap-fy2024-cola
+    name: us/guidance/recovery/release-scope-us-guidance-2026-07-08-snap-fy2024-cola
+    layer: federal
+    citation_path: us/guidance/recovery/release-scope-us-guidance-2026-07-08-snap-fy2024-cola
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: us/guidance/usda/fns/snap-fy2024-cola
+    name: SNAP FY 2024 Cost-of-Living Adjustments
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-fy2024-cola
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Back-year table: not current law'
+  - key: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
+    name: dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2
+    layer: other state
+    citation_path: null
+    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
+    name: mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
+    layer: other state
+    citation_path: null
+    source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+    name: regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+    layer: other state
+    citation_path: null
+    source_url: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
+    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
+    layer: other state
+    citation_path: null
+    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
+    sources:
+    - policyengine-references
+    references: 2
+    scope: excluded
+    reason: Another state's source
+  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
+    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
+    layer: other state
+    citation_path: null
+    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
+    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
+    layer: other state
+    citation_path: null
+    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+    name: law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+    layer: other state
+    citation_path: null
+    source_url: https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: https://www.law.cornell.edu/regulations/mississippi/18-Miss-Code-R-SS-14-20-4
+    name: law.cornell.edu/regulations/mississippi/18-Miss-Code-R-SS-14-20-4
+    layer: other state
+    citation_path: null
+    source_url: https://www.law.cornell.edu/regulations/mississippi/18-Miss-Code-R-SS-14-20-4
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: us-co/regulation/10-ccr-2506-1
+    name: Colorado Code of Regulations 10 CCR 2506-1 Supplemental Nutrition Assistance Program
+    layer: other state
+    citation_path: us-co/regulation/10-ccr-2506-1
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: us-ia/manual/hhs/em/7-i
+    name: 'Iowa HHS Employees Manual: Title 7 Chapter I: Specific Households and Participants'
+    layer: other state
+    citation_path: us-ia/manual/hhs/em/7-i
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+  - key: us-mi/manual/mdhhs/bridges/bem/554
+    name: 'Michigan Bridges Eligibility Manual: BEM 554 FAP ALLOWABLE EXPENSES AND EXPENSE BUDGETING'
+    layer: other state
+    citation_path: us-mi/manual/mdhhs/bridges/bem/554
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: Another state's source
+- id: full
+  title: Full document bundle
+  definition: 'Every primary source of the state''s own rules for this program: its policy manual, regulations,
+    state plans, waivers and change notices. The federal layer it builds on is the screener tier''s federal documents.'
+  membership:
+    rule: Documents of the named source manifests, less the ranges excluded below
+    manifests:
+    - manifests/us-az-des-faa5-manual.yaml
+    - manifests/us-az-des-faa6-utility-amounts.yaml
+    - manifests/us-az-snap-et-state-plan.yaml
+    - manifests/us-az-snap-primary-policy.yaml
+    excluded_ranges:
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc:
+      - 3
+      - 44
+      reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc:
+      - 54
+      - 59
+      reason: 'Cash Assistance benefit determination: not SNAP'
+    - manifest: manifests/us-az-des-faa5-manual.yaml
+      toc:
+      - 78
+      - 78
+      reason: 'Cash Assistance EBT use: not SNAP'
+  documents:
+  - key: us-az/manual/des/faa5
+    name: Arizona DES FAA5 manual table of contents
+    citation_path: us-az/manual/des/faa5
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Index or overview page: no rules of its own'
+  - key: us-az/manual/des/faa5/work-registration-worw
+    name: 'Arizona DES FAA5: FAA5.A Work Registration (WORW)'
+    citation_path: us-az/manual/des/faa5/work-registration-worw
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/worw-purpose
+    name: 'Arizona DES FAA5: 01 WORW - Purpose'
+    citation_path: us-az/manual/des/faa5/worw-purpose
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/WORW_-_Purpose.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/ca-work-programs
+    name: 'Arizona DES FAA5: 02 CA Work Programs'
+    citation_path: us-az/manual/des/faa5/ca-work-programs
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Work_Programs.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/jobs-basic
+    name: 'Arizona DES FAA5: 03 Jobs Basic'
+    citation_path: us-az/manual/des/faa5/jobs-basic
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Jobs_Basic.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-program-preliminary-orientation-jppo
+    name: 'Arizona DES FAA5: A CA Jobs Program Preliminary Orientation (JPPO)'
+    citation_path: us-az/manual/des/faa5/ca-jobs-program-preliminary-orientation-jppo
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Program_Preliminary_Orientation_(JPPO).html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/jppo-faa-procedures
+    name: 'Arizona DES FAA5: .01 JPPO FAA Procedures'
+    citation_path: us-az/manual/des/faa5/jppo-faa-procedures
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/JPPO_FAA_Procedures.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-work-program-requirements
+    name: 'Arizona DES FAA5: B CA Jobs Work Program Requirements'
+    citation_path: us-az/manual/des/faa5/ca-jobs-work-program-requirements
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Work_Program_Requirements.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exemptions
+    name: 'Arizona DES FAA5: C CA Jobs Exemptions'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exemptions
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exemptions.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exempt-age
+    name: 'Arizona DES FAA5: .01 CA Jobs Exempt - Age'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exempt-age
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exempt_–_Age.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exempt-tribal-new
+    name: 'Arizona DES FAA5: .02 CA Jobs Exempt - Tribal NEW'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exempt-tribal-new
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exempt_-_Tribal_NEW.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exempt-ca-gd
+    name: 'Arizona DES FAA5: .03 CA Jobs Exempt - CA GD'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exempt-ca-gd
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exempt_-_CA_GD.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exempt-age-18-not-referred
+    name: 'Arizona DES FAA5: .04 CA Jobs Exempt - Age 18 - Not Referred'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exempt-age-18-not-referred
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exempt_–_Age_18_-_Not_Referred.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exempt-working-in-unsubsidized-emp
+    name: 'Arizona DES FAA5: .05 CA Jobs Exempt - Working in Unsubsidized Employment'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exempt-working-in-unsubsidized-emp
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exempt_–_Working_in_Unsubsidized_Emp.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-exempt-cuban-or-haitian-entrants
+    name: 'Arizona DES FAA5: .06 CA Jobs Exempt - Cuban or Haitian Entrants'
+    citation_path: us-az/manual/des/faa5/ca-jobs-exempt-cuban-or-haitian-entrants
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Exempt_–_Cuban_or_Haitian_Entrants.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ca-jobs-mandatory-referrals
+    name: 'Arizona DES FAA5: D CA Jobs Mandatory Referrals'
+    citation_path: us-az/manual/des/faa5/ca-jobs-mandatory-referrals
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Mandatory_Referrals.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/refugee
+    name: 'Arizona DES FAA5: .01 Refugee'
+    citation_path: us-az/manual/des/faa5/refugee
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Refugee.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/referred-mandatory
+    name: 'Arizona DES FAA5: .02 Referred Mandatory'
+    citation_path: us-az/manual/des/faa5/referred-mandatory
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Referred_Mandatory.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/employed
+    name: 'Arizona DES FAA5: .03 Employed'
+    citation_path: us-az/manual/des/faa5/employed
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Employed.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/felony-drug-conviction
+    name: 'Arizona DES FAA5: .04 Felony Drug Conviction'
+    citation_path: us-az/manual/des/faa5/felony-drug-conviction
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Felony_Drug_Conviction.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/fleeing-felon
+    name: 'Arizona DES FAA5: .05 Fleeing Felon'
+    citation_path: us-az/manual/des/faa5/fleeing-felon
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Fleeing_Felon.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/victims-or-survivors-of-domestic-violence-s
+    name: 'Arizona DES FAA5: .06 Victims or Survivors of Domestic Violence, Sexual Harassment, Sexual Assault, or
+      Stalking'
+    citation_path: us-az/manual/des/faa5/victims-or-survivors-of-domestic-violence-s
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Victims_or_Survivors_of_Domestic_Violence__S.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/informing-mandatory-referrals
+    name: 'Arizona DES FAA5: E Informing Mandatory Referrals'
+    citation_path: us-az/manual/des/faa5/informing-mandatory-referrals
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Informing_Mandatory_Referrals.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/changes-in-jobs-participation-status
+    name: 'Arizona DES FAA5: F Changes in Jobs Participation Status'
+    citation_path: us-az/manual/des/faa5/changes-in-jobs-participation-status
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Changes_in_Jobs_Participation_Status.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/jobs-responsibilities
+    name: 'Arizona DES FAA5: G Jobs Responsibilities'
+    citation_path: us-az/manual/des/faa5/jobs-responsibilities
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Jobs_Responsibilities.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/jobs-selection
+    name: 'Arizona DES FAA5: .01 Jobs Selection'
+    citation_path: us-az/manual/des/faa5/jobs-selection
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Jobs_Selection.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/jobs-noncompliance
+    name: 'Arizona DES FAA5: .02 Jobs Noncompliance'
+    citation_path: us-az/manual/des/faa5/jobs-noncompliance
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Jobs_Noncompliance.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/ending-jobs-sanctions
+    name: 'Arizona DES FAA5: .03 Ending Jobs Sanctions'
+    citation_path: us-az/manual/des/faa5/ending-jobs-sanctions
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Ending_Jobs_Sanctions.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/two-parent-employment-program-tpep-jobs
+    name: 'Arizona DES FAA5: 04 Two Parent Employment Program (TPEP) Jobs'
+    citation_path: us-az/manual/des/faa5/two-parent-employment-program-tpep-jobs
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Two_Parent_Employment_Program_(TPEP)_Jobs.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/tribal-native-employment-works-new
+    name: 'Arizona DES FAA5: 05 Tribal Native Employment Works (NEW)'
+    citation_path: us-az/manual/des/faa5/tribal-native-employment-works-new
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Tribal_Native_Employment_Works_(NEW).html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/faa-new-responsibilities
+    name: 'Arizona DES FAA5: A FAA NEW Responsibilities'
+    citation_path: us-az/manual/des/faa5/faa-new-responsibilities
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/FAA_NEW_Responsibilities.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/providing-new-information
+    name: 'Arizona DES FAA5: .01 Providing NEW Information'
+    citation_path: us-az/manual/des/faa5/providing-new-information
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Providing_NEW_Information.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/new-referrals
+    name: 'Arizona DES FAA5: .02 NEW Referrals'
+    citation_path: us-az/manual/des/faa5/new-referrals
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NEW_Referrals.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/new-maintenance
+    name: 'Arizona DES FAA5: .03 NEW Maintenance'
+    citation_path: us-az/manual/des/faa5/new-maintenance
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NEW_Maintenance.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/communicating-with-new
+    name: 'Arizona DES FAA5: .04 Communicating With NEW'
+    citation_path: us-az/manual/des/faa5/communicating-with-new
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Communicating_With_NEW.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/tribal-responsibilities
+    name: 'Arizona DES FAA5: B Tribal Responsibilities'
+    citation_path: us-az/manual/des/faa5/tribal-responsibilities
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Tribal_Responsibilities.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/new-programs
+    name: 'Arizona DES FAA5: .01 NEW Programs'
+    citation_path: us-az/manual/des/faa5/new-programs
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NEW_Programs.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/participation-status
+    name: 'Arizona DES FAA5: .02 Participation Status'
+    citation_path: us-az/manual/des/faa5/participation-status
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Participation_Status.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/monitoring-compliance
+    name: 'Arizona DES FAA5: .03 Monitoring Compliance'
+    citation_path: us-az/manual/des/faa5/monitoring-compliance
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Monitoring_Compliance.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/reporting-new-changes
+    name: 'Arizona DES FAA5: .04 Reporting NEW Changes'
+    citation_path: us-az/manual/des/faa5/reporting-new-changes
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Reporting_NEW_Changes.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/special-new-procedures
+    name: 'Arizona DES FAA5: C Special NEW Procedures'
+    citation_path: us-az/manual/des/faa5/special-new-procedures
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Special_NEW_Procedures.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/a-move-related-to-new
+    name: 'Arizona DES FAA5: .01 A Move Related to NEW'
+    citation_path: us-az/manual/des/faa5/a-move-related-to-new
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/A_Move_Related_to_NEW.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/a-move-unrelated-to-new
+    name: 'Arizona DES FAA5: .02 A Move Unrelated to NEW'
+    citation_path: us-az/manual/des/faa5/a-move-unrelated-to-new
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/A_Move_Unrelated_to_NEW.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/a-move-from-a-non-new-area-to-a-new-service
+    name: 'Arizona DES FAA5: .03 A Move From a Non-NEW Area to a NEW Service Area'
+    citation_path: us-az/manual/des/faa5/a-move-from-a-non-new-area-to-a-new-service
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/A_Move_From_a_Non-NEW_Area_to_a_NEW_Service.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/noncompliance-with-new
+    name: 'Arizona DES FAA5: D Noncompliance with NEW'
+    citation_path: us-az/manual/des/faa5/noncompliance-with-new
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Noncompliance_with_NEW.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP'
+  - key: us-az/manual/des/faa5/benefit-calculation-amounts
+    name: 'Arizona DES FAA5: FAA5.B Benefit Calculation Amounts'
+    citation_path: us-az/manual/des/faa5/benefit-calculation-amounts
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Benefit_Calculation_Amounts.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/ffy-2026-na-cola-changes
+    name: 'Arizona DES FAA5: 01 FFY 2026 NA COLA Changes'
+    citation_path: us-az/manual/des/faa5/ffy-2026-na-cola-changes
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/FFY_2026_NA_COLA_Changes.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/determining-benefits
+    name: 'Arizona DES FAA5: FAA5.I Determining Benefits'
+    citation_path: us-az/manual/des/faa5/determining-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Determining_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/determining-na-benefits
+    name: 'Arizona DES FAA5: 01 Determining NA Benefits'
+    citation_path: us-az/manual/des/faa5/determining-na-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Determining_NA_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-eligibility-and-benefit-determination
+    name: 'Arizona DES FAA5: A NA Eligibility and Benefit Determination'
+    citation_path: us-az/manual/des/faa5/na-eligibility-and-benefit-determination
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Eligibility_and_Benefit_Determination.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-categorical-eligibility
+    name: 'Arizona DES FAA5: B NA Categorical Eligibility'
+    citation_path: us-az/manual/des/faa5/na-categorical-eligibility
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Categorical_Eligibility.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/disqualified-na-participant-s-effect-on-the-na
+    name: 'Arizona DES FAA5: C Disqualified NA Participant''s Effect on the NA Benefit Amount'
+    citation_path: us-az/manual/des/faa5/disqualified-na-participant-s-effect-on-the-na
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Disqualified_NA_Participant's_Effect_on_the_NA.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-approval-periods
+    name: 'Arizona DES FAA5: D NA Approval Periods'
+    citation_path: us-az/manual/des/faa5/na-approval-periods
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Approval_Periods.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-transitional-benefit-assistance-tba
+    name: 'Arizona DES FAA5: E NA Transitional Benefit Assistance (TBA)'
+    citation_path: us-az/manual/des/faa5/na-transitional-benefit-assistance-tba
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Transitional_Benefit_Assistance_(TBA).html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/determining-ca-benefits
+    name: 'Arizona DES FAA5: 02 Determining CA Benefits'
+    citation_path: us-az/manual/des/faa5/determining-ca-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Determining_CA_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance benefit determination: not SNAP'
+  - key: us-az/manual/des/faa5/ca-benefit-determination
+    name: 'Arizona DES FAA5: A CA Benefit Determination'
+    citation_path: us-az/manual/des/faa5/ca-benefit-determination
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Benefit_Determination.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance benefit determination: not SNAP'
+  - key: us-az/manual/des/faa5/ca-payment-standard-a1-2fa2
+    name: 'Arizona DES FAA5: B CA Payment Standard (A1/A2)'
+    citation_path: us-az/manual/des/faa5/ca-payment-standard-a1-2fa2
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Payment_Standard_(A1_2fA2).html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance benefit determination: not SNAP'
+  - key: us-az/manual/des/faa5/whose-income-effects-the-ca-benefit-amount
+    name: 'Arizona DES FAA5: C Whose Income Effects the CA Benefit Amount'
+    citation_path: us-az/manual/des/faa5/whose-income-effects-the-ca-benefit-amount
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Whose_Income_Effects_the_CA_Benefit_Amount.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance benefit determination: not SNAP'
+  - key: us-az/manual/des/faa5/transitional-child-care-tcc
+    name: 'Arizona DES FAA5: D Transitional Child Care (TCC)'
+    citation_path: us-az/manual/des/faa5/transitional-child-care-tcc
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Transitional_Child_Care_(TCC).html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance benefit determination: not SNAP'
+  - key: us-az/manual/des/faa5/tribal-tanf-eligibility-determination
+    name: 'Arizona DES FAA5: E Tribal TANF Eligibility Determination'
+    citation_path: us-az/manual/des/faa5/tribal-tanf-eligibility-determination
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Tribal_TANF_Eligibility_Determination.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance benefit determination: not SNAP'
+  - key: us-az/manual/des/faa5/expenses
+    name: 'Arizona DES FAA5: 03 Expenses'
+    citation_path: us-az/manual/des/faa5/expenses
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Expenses.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/shelter-expenses-and-deduction
+    name: 'Arizona DES FAA5: A Shelter Expenses and Deduction'
+    citation_path: us-az/manual/des/faa5/shelter-expenses-and-deduction
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Shelter_Expenses_and_Deduction.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/dependent-care-expense
+    name: 'Arizona DES FAA5: B Dependent Care Expense'
+    citation_path: us-az/manual/des/faa5/dependent-care-expense
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Dependent_Care_Expense.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-child-support-expense
+    name: 'Arizona DES FAA5: C NA Child Support Expense'
+    citation_path: us-az/manual/des/faa5/na-child-support-expense
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Child_Support_Expense.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
+    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Utility_Expenses_and_Allowances.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-medical-expenses-and-deduction
+    name: 'Arizona DES FAA5: E NA Medical Expenses and Deduction'
+    citation_path: us-az/manual/des/faa5/na-medical-expenses-and-deduction
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Medical_Expenses_and_Deduction.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/benefit-replacement-and-ebt-cards
+    name: 'Arizona DES FAA5: FAA5.J Benefit Replacement and EBT Cards'
+    citation_path: us-az/manual/des/faa5/benefit-replacement-and-ebt-cards
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Benefit_Replacement_and_EBT_Cards.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/supplemental-payments-and-restored-benefits
+    name: 'Arizona DES FAA5: 01 Supplemental Payments and Restored Benefits'
+    citation_path: us-az/manual/des/faa5/supplemental-payments-and-restored-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Supplemental_Payments_and_Restored_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/replacement-of-benefits
+    name: 'Arizona DES FAA5: 02 Replacement of Benefits'
+    citation_path: us-az/manual/des/faa5/replacement-of-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Replacement_of_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/replacement-issuance-of-stolen-benefits
+    name: 'Arizona DES FAA5: A Replacement Issuance of Stolen Benefits'
+    citation_path: us-az/manual/des/faa5/replacement-issuance-of-stolen-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Replacement_Issuance_of_Stolen_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/replacement-issuance-of-used-na-benefits
+    name: 'Arizona DES FAA5: B Replacement Issuance of Used NA Benefits'
+    citation_path: us-az/manual/des/faa5/replacement-issuance-of-used-na-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Replacement_Issuance_of_Used_NA_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/electronic-benefit-transfer-ebt-quest-card
+    name: 'Arizona DES FAA5: 03 Electronic Benefit Transfer (EBT) QUEST Card'
+    citation_path: us-az/manual/des/faa5/electronic-benefit-transfer-ebt-quest-card
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Electronic_Benefit_Transfer_(EBT)_QUEST_Card.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/special-participant-ebt-usage
+    name: 'Arizona DES FAA5: 04 Special Participant EBT Usage'
+    citation_path: us-az/manual/des/faa5/special-participant-ebt-usage
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Special_Participant_EBT_Usage.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/ebt-benefit-issuance-and-availability
+    name: 'Arizona DES FAA5: 05 EBT Benefit Issuance and Availability'
+    citation_path: us-az/manual/des/faa5/ebt-benefit-issuance-and-availability
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/EBT_Benefit_Issuance_and_Availability.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/using-benefits
+    name: 'Arizona DES FAA5: FAA5.K Using Benefits'
+    citation_path: us-az/manual/des/faa5/using-benefits
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Using_Benefits.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/general-ebt-usage-for-na
+    name: 'Arizona DES FAA5: 01 General EBT Usage for NA'
+    citation_path: us-az/manual/des/faa5/general-ebt-usage-for-na
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/General_EBT_Usage_for_NA.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-farmer-s-market-project
+    name: 'Arizona DES FAA5: 02 NA Farmer''s Market Project'
+    citation_path: us-az/manual/des/faa5/na-farmer-s-market-project
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Farmer's_Market_Project.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/na-restaurant-meals-program
+    name: 'Arizona DES FAA5: 03 NA Restaurant Meals Program'
+    citation_path: us-az/manual/des/faa5/na-restaurant-meals-program
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Restaurant_Meals_Program.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa5/general-ebt-usage-for-ca
+    name: 'Arizona DES FAA5: 04 General EBT Usage for CA'
+    citation_path: us-az/manual/des/faa5/general-ebt-usage-for-ca
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/General_EBT_Usage_for_CA.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: excluded
+    reason: 'Cash Assistance EBT use: not SNAP'
+  - key: us-az/manual/des/faa5/online-ebt-purchasing
+    name: 'Arizona DES FAA5: 05 Online EBT Purchasing'
+    citation_path: us-az/manual/des/faa5/online-ebt-purchasing
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/Online_EBT_Purchasing.html
+    manifest: manifests/us-az-des-faa5-manual.yaml
+    scope: in
+  - key: us-az/manual/des/faa6/utility-allowance-current-amount
+    name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
+    citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
+    source_url: https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
+    manifest: manifests/us-az-des-faa6-utility-amounts.yaml
+    scope: in
+  - key: us-az/regulation/aac/6/14
+    name: AAC Title 6 Chapter 14 - Nutrition Assistance Program
+    citation_path: us-az/regulation/aac/6/14
+    source_url: https://apps.azsos.gov/public_services/Title_06/6-14.pdf
+    manifest: manifests/us-az-snap-primary-policy.yaml
+    scope: in
+  - key: https://dbmefaapolicy.azdes.gov/
+    name: AZ DES FAA Policy Manual
+    citation_path: null
+    source_url: https://dbmefaapolicy.azdes.gov/
+    manifest: manifests/us-az-snap-primary-policy.yaml
+    scope: excluded
+    reason: 'Index or overview page: no rules of its own'
+  - key: https://des.az.gov/services/basic-needs/food-assistance/nutrition-assistance
+    name: AZ DES Nutrition Assistance Program
+    citation_path: null
+    source_url: https://des.az.gov/services/basic-needs/food-assistance/nutrition-assistance
+    manifest: manifests/us-az-snap-primary-policy.yaml
+    scope: excluded
+    reason: 'Index or overview page: no rules of its own'
+  - key: https://www.fna.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+    name: Arizona FY 2025 ABAWD Waiver - FNA Response
+    citation_path: null
+    source_url: https://www.fna.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+    manifest: manifests/us-az-snap-primary-policy.yaml
+    scope: in
+  - key: https://www.fna.usda.gov/snap-et/stateplan/arizona
+    name: Arizona SNAP E&T State Plan
+    citation_path: null
+    source_url: https://www.fna.usda.gov/snap-et/stateplan/arizona
+    manifest: manifests/us-az-snap-primary-policy.yaml
+    scope: in
+  - key: us-az/policy/snap-et-state-plan/ffy2026
+    name: Arizona SNAP E&T State Plan FFY 2026
+    citation_path: us-az/policy/snap-et-state-plan/ffy2026
+    source_url: https://www.fna.usda.gov/snap-et/stateplan/arizona
+    manifest: manifests/us-az-snap-et-state-plan.yaml
+    scope: in
