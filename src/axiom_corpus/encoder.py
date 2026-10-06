@@ -126,14 +126,24 @@ def encode_section(section: Section, model: str = DEFAULT_MODEL) -> Encoding:
     for sub in section.subsections[:10]:  # Limit subsections
         user_prompt += f"\n### ({sub.identifier}) {sub.heading or ''}\n{sub.text[:2000]}\n"
 
+    # Configure effort and thinking for the supported 5.5 models. Preserve
+    # older and custom overrides without adding model-specific request fields.
+    extra_body: dict[str, object] = {}
+    max_tokens = 8000
+    if model in {"claude-sonnet-5-5", "claude-opus-5-5"}:
+        extra_body["output_config"] = {"effort": "low"}
+        max_tokens = 16000
+    if model == "claude-sonnet-5-5":
+        extra_body["thinking"] = {"type": "adaptive"}
+
     # Call Claude
     response = client.messages.create(
         model=model,
-        max_tokens=16000,
+        max_tokens=max_tokens,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
         # Keep compatibility with anthropic 0.75, which lacks output_config kwargs.
-        extra_body={"output_config": {"effort": "low"}},
+        extra_body=extra_body,
     )
 
     if response.stop_reason == "refusal":

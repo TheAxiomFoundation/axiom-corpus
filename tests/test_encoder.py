@@ -225,7 +225,16 @@ class TestSystemPrompt:
         assert "RuleSpec" in SYSTEM_PROMPT or "rulespec" in SYSTEM_PROMPT.lower()
 
 
-def test_sonnet_request_and_thinking_response():
+@pytest.mark.parametrize(
+    ("model", "expected_extra_body", "max_tokens"),
+    [
+        (None, {"output_config": {"effort": "low"}, "thinking": {"type": "adaptive"}}, 16000),
+        ("claude-opus-5-5", {"output_config": {"effort": "low"}}, 16000),
+        ("claude-haiku-4-5", {}, 8000),
+        ("custom-model-id", {}, 8000),
+    ],
+)
+def test_sonnet_request_and_thinking_response(model, expected_extra_body, max_tokens):
     """Exercise SDK serialization and response parsing without a network request."""
     requests = []
 
@@ -237,7 +246,7 @@ def test_sonnet_request_and_thinking_response():
                 "id": "msg_test",
                 "type": "message",
                 "role": "assistant",
-                "model": "claude-sonnet-5-5",
+                "model": model or "claude-sonnet-5-5",
                 "content": [
                     {"type": "thinking", "thinking": "", "signature": "test-signature"},
                     {"type": "text", "text": "```rulespec\nvariable eitc {}\n```"},
@@ -256,14 +265,20 @@ def test_sonnet_request_and_thinking_response():
         ) as client,
         patch("axiom_corpus.encoder.Anthropic", return_value=client),
     ):
-        result = encode_section(_make_section())
+        result = (
+            encode_section(_make_section())
+            if model is None
+            else encode_section(_make_section(), model=model)
+        )
 
     assert len(requests) == 1
     request = requests[0]
-    assert request["model"] == result.model == "claude-sonnet-5-5"
-    assert request["max_tokens"] == 16000
-    assert request["output_config"] == {"effort": "low"}
-    assert not {"temperature", "top_p", "top_k", "thinking", "tool_choice"} & request.keys()
+    assert request["model"] == result.model == (model or "claude-sonnet-5-5")
+    assert request["max_tokens"] == max_tokens
+    assert {
+        name: request[name] for name in ("output_config", "thinking") if name in request
+    } == expected_extra_body
+    assert not {"temperature", "top_p", "top_k", "tool_choice"} & request.keys()
     assert [message["role"] for message in request["messages"]] == ["user"]
     assert result.dsl == "variable eitc {}"
     assert result.test_cases == [{"name": "basic_test"}]
