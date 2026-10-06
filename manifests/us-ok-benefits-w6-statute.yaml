@@ -1,0 +1,101 @@
+version: 2026-10-06-w6-benefits-statute-ok
+documents:
+- source_id: us-ok-statute-title-40-pdf
+  jurisdiction: us-ok
+  document_class: statute
+  title: Oklahoma Statutes Title 40. Labor (complete title PDF)
+  source_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-12-31'
+  citation_path: us-ok/statute/title-40-pdf
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Legislature
+    document_subtype: statute_title_pdf
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the compiled title (2025-12-31)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 201)
+    pages: 340
+    wave6_rows:
+    - 201
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ok-statute-session-laws-2021-hb1933
+  jurisdiction: us-ok
+  document_class: statute
+  title: Oklahoma Enrolled House Bill No. 1933 (2021), relating to labor (unemployment)
+  source_url: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-05-17'
+  citation_path: us-ok/statute/session-laws/2021/hb1933
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Legislature
+    document_subtype: enrolled_bill
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the enrolled file (2021-05-17)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 202)
+    wave6_rows:
+    - 202
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ok-statute-40-1-231
+  jurisdiction: us-ok
+  document_class: statute
+  title: 40 O.S. § 1-231 Limitations on Duration of Benefits
+  source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=492632
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ok/statute/40-1-231
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma State Courts Network (OSCN), Oklahoma Supreme Court
+    document_subtype: statute_section_html
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 203)
+    oscn_cite_id: '492632'
+    wave6_rows:
+    - 203
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ok-statute-40-2-104
+  jurisdiction: us-ok
+  document_class: statute
+  title: 40 O.S. § 2-104 Computation of Benefit Amount
+  source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ok/statute/40-2-104
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma State Courts Network (OSCN), Oklahoma Supreme Court
+    document_subtype: statute_section_html
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 204)
+    oscn_cite_id: '77164'
+    wave6_rows:
+    - 204
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ok-statute-40-2-105
+  jurisdiction: us-ok
+  document_class: statute
+  title: 40 O.S. § 2-105 Wages Subtracted From Benefit Amount
+  source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ok/statute/40-2-105
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma State Courts Network (OSCN), Oklahoma Supreme Court
+    document_subtype: statute_section_html
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 205)
+    oscn_cite_id: '77165'
+    wave6_rows:
+    - 205
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

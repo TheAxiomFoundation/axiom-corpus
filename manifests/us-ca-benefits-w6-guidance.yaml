@@ -1,0 +1,139 @@
+version: 2026-10-06-w6-benefits-guidance-ca
+documents:
+- source_id: us-ca-guidance-cdss-acl-2025-25-79
+  jurisdiction: us-ca
+  document_class: guidance
+  title: CDSS All County Letter No. 25-79
+  source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-11-07'
+  citation_path: us-ca/guidance/cdss/acl-2025-25-79
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: all_county_letter
+    program: SNAP (CalFresh)
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 55)
+    document_number: ACL 25-79
+    wave6_rows:
+    - 55
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ca-guidance-cdss-acl-2025-25-92
+  jurisdiction: us-ca
+  document_class: guidance
+  title: CDSS All County Letter No. 25-92
+  source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-12-31'
+  citation_path: us-ca/guidance/cdss/acl-2025-25-92
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: all_county_letter
+    program: SNAP (CalFresh)
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 56)
+    document_number: ACL 25-92
+    wave6_rows:
+    - 56
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ca-guidance-cdss-acl-2025-25-93
+  jurisdiction: us-ca
+  document_class: guidance
+  title: CDSS All County Letter No. 25-93
+  source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-12-31'
+  citation_path: us-ca/guidance/cdss/acl-2025-25-93
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: all_county_letter
+    program: SNAP (CalFresh)
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 57)
+    document_number: ACL 25-93
+    wave6_rows:
+    - 57
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ca-guidance-cdss-acl-2026-26-15
+  jurisdiction: us-ca
+  document_class: guidance
+  title: CDSS All County Letter No. 26-15
+  source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-02-26'
+  citation_path: us-ca/guidance/cdss/acl-2026-26-15
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: all_county_letter
+    program: SNAP (CalFresh)
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 58)
+    document_number: ACL 26-15
+    wave6_rows:
+    - 58
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: ca-cdss-acl-2024-24-59
+  jurisdiction: us-ca
+  document_class: guidance
+  citation_path: us-ca/guidance/cdss/acl-2024-24-59
+  title: CDSS All County Letter No. 24-59
+  source_url: https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-59.pdf?ver=2024-08-19-094023-573
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-08-16'
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: all_county_letter
+    document_number: ACL 24-59
+    program: CalFresh
+    topic: standard_medical_deduction
+    discovered_via: policyengine-us:federal_references
+    copied_from_manifest: manifests/us-ca-cdss-acl-guidance.yaml
+    wave6_rows:
+    - 53
+- source_id: ca-cdss-acl-2006-06-31
+  jurisdiction: us-ca
+  document_class: guidance
+  citation_path: us-ca/guidance/cdss/acl-2006-06-31
+  title: CDSS All County Letter No. 06-31, Implementation of Food Stamp Simplification Options Effective October 1, 2006
+  source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl06/pdf/06-31.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2006-08-16'
+  extraction:
+    ignore_actual_text: true
+    amendment_markup:
+      start_page: 7
+      end_page: 23
+      typographic_underlines:
+      - Jones v. Yeutter
+      - Hamilton v. Lyng;
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services
+    document_subtype: all_county_letter
+    document_number: ACL 06-31
+    letter_date: '2006-08-16'
+    effective_date: '2006-10-01'
+    program: CalFresh
+    topic: legally_obligated_child_support_payment_exclusion
+    authority_role: 'Implements the 7 CFR 273.9(c)(17) option: legally obligated child support paid to a nonhousehold member
+      becomes an income exclusion under MPP 63-502.2(p), taken before the gross income test, instead of a deduction; also
+      carries the regulation text amending MPP 63-501, 63-502, 63-503, 63-504, 63-505, 63-508 and 63-509.'
+    index_url: https://www.cdss.ca.gov/inforesources/letters-regulations/letters-and-notices/all-county-letters/2006-all-county-letters
+    alternate_source_url: https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
+    alternate_source_url_note: 'The legacy path cited by policyengine-us PR #9586 served the same 412,441 bytes (same SHA-256)
+      as the index-linked source_url on 2026-09-23.'
+    discovered_via: 'policyengine-us PR #9586 (gov.usda.snap.income.deductions.child_support references)'
+    copied_from_manifest: manifests/us-ca-cdss-acl-06-31.yaml
+    wave6_rows:
+    - 54

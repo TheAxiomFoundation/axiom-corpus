@@ -1,0 +1,41 @@
+version: 2026-10-06-w6-benefits-statute-md
+documents:
+- source_id: us-md-statute-session-laws-2016-hb0445
+  jurisdiction: us-md
+  document_class: statute
+  title: Maryland HB 445 (2016 Regular Session), enrolled bill
+  source_url: https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2016-04-12'
+  citation_path: us-md/statute/session-laws/2016/hb0445
+  metadata:
+    primary_source: true
+    source_authority: Maryland General Assembly
+    document_subtype: enrolled_bill
+    program: SNAP
+    expression_date_note: publisher Last-Modified of the enrolled file (2016-04-12); the bill prints its own effective-date
+      section
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 127)
+    wave6_rows:
+    - 127
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-md-statute-bills-2022-hb0456
+  jurisdiction: us-md
+  document_class: statute
+  title: Maryland HB 456 (2022 Regular Session), third reader
+  source_url: https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-03-08'
+  citation_path: us-md/statute/bills/2022/hb0456
+  metadata:
+    primary_source: true
+    source_authority: Maryland General Assembly
+    document_subtype: bill_third_reader
+    program: SNAP
+    expression_date_note: publisher Last-Modified of the third-reader file (2022-03-08)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 128)
+    wave6_rows:
+    - 128
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

@@ -1,0 +1,124 @@
+version: 2026-10-06-w6-benefits-guidance-ma
+documents:
+- source_id: us-ma-guidance-dta-policy-online-helpful-charts-and-figures
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Helpful Charts and Figures (DTA Policy Online, SNAP and cash standards)
+  source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: standards_chart
+    program: SNAP; TAFDC
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 117)
+    wave6_rows:
+    - 117
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-dta-online-guide-transmittal-2025-31
+  jurisdiction: us-ma
+  document_class: guidance
+  title: DTA Online Guide Transmittal 2025-31 (July 25, 2025)
+  source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-07-25'
+  citation_path: us-ma/guidance/dta/online-guide-transmittal/2025-31
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: online_guide_transmittal
+    program: SNAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 118)
+    wave6_rows:
+    - 118
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-dta-ssp-payment-levels-cy2022
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Federal and State Payment Levels for Calendar Year (CY) 2022
+  source_url: https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2022/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ma/guidance/dta/ssp-payment-levels/cy2022
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: payment_levels_chart
+    program: SSI state supplement (SSP)
+    expression_date_note: calendar year 2022 chart (Last-Modified 2021-10-27)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 123)
+    wave6_rows:
+    - 123
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-dta-ssp-payment-levels-cy2025
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Federal and State Payment Levels for Calendar Year (CY) 2025
+  source_url: https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2025/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ma/guidance/dta/ssp-payment-levels/cy2025
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: payment_levels_chart
+    program: SSI state supplement (SSP)
+    expression_date_note: calendar year 2025 chart (Last-Modified 2024-11-01)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 124)
+    wave6_rows:
+    - 124
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-eohlc-learn-about-home-energy-assistance-heap
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Learn about Home Energy Assistance - HEAP (Mass.gov, EOHLC)
+  source_url: https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Executive Office of Housing and Livable Communities
+    document_subtype: agency_web_page
+    program: LIHEAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 125)
+    wave6_rows:
+    - 125
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: ma-dta-policy-online-snap-child-support-expenses-deduction
+  jurisdiction: us-ma
+  document_class: guidance
+  citation_path: us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction
+  title: Massachusetts DTA Policy Online SNAP Child Support Expenses Deduction
+  source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/%21SSL%21/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-05'
+  extraction:
+    html_content_selector: '#rh-topic > div:has(> h1)'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    official_publisher: Massachusetts Department of Transitional Assistance Policy Online
+    document_subtype: agency_policy_online_guidance
+    program: SNAP
+    topic: legally_obligated_child_support_payment_exclusion
+    last_update: '2023-01-05'
+    expression_date_note: the page's own "Last Update" line (January 5, 2023)
+    authority_role: 'DTA operational policy on child support expenses: legally obligated child support paid for a nonhousehold
+      member is subtracted from gross income for the gross income test (the page cites 106 CMR 364.370 for that test) and
+      then allowed as a deduction in the SNAP benefit calculation. The same exclusion is codified at 106 CMR 363.230(O) (us-ma/regulation/106-cmr/363/230).'
+    discovered_via: 'policyengine-us PR #9586 (gov.usda.snap.income.deductions.child_support references)'
+    copied_from_manifest: manifests/us-ma-dta-policy-online-snap-child-support.yaml
+    wave6_rows:
+    - 114

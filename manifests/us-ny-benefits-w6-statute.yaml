@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-statute-ny
+documents:
+- source_id: us-ny-statute-bills-2021-s7148
+  jurisdiction: us-ny
+  document_class: statute
+  title: New York Senate Bill S7148 (2021-2022 Regular Sessions), bill text
+  source_url: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2021-06-02'
+  citation_path: us-ny/statute/bills/2021/s7148
+  metadata:
+    primary_source: true
+    source_authority: New York State Assembly (legislative information system)
+    document_subtype: bill_text
+    program: Unemployment insurance
+    expression_date_note: introduced June 2, 2021
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 179)
+    wave6_rows:
+    - 179
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
