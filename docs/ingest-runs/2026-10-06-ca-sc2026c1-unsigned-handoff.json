@@ -1,0 +1,137 @@
+{
+  "status": "UNSIGNED REVIEWED CAPTURE HANDOFF; no production signature, lock, upload or release",
+  "source_url": "https://laws-lois.justice.gc.ca/eng/AnnualStatutes/2026_1/FullText.html",
+  "capture_generator_commit": "92f027c0516dcb4e085ad913b9677637846f0ea3",
+  "scope": {
+    "jurisdiction": "ca",
+    "document_class": "statute",
+    "version": "issue233-sc2026c1-2026-10-06"
+  },
+  "expression_date": "2026-02-12",
+  "acquired_date": "2026-10-06",
+  "manifest_sha256": "7546f104cd974c7a093cdb7cd25ee2cee7a70a773234b92e409085f8251b1c95",
+  "artifacts": [
+    {
+      "repository_path": "data/corpus/coverage/ca/statute/issue233-sc2026c1-2026-10-06.json",
+      "sha256": "69daf1edb82b5be0fc7c31eab36f81a83753213dd1119434fd6aa0198ed44dea",
+      "size_bytes": 324
+    },
+    {
+      "repository_path": "data/corpus/provisions/ca/statute/issue233-sc2026c1-2026-10-06.jsonl",
+      "sha256": "034c89b8276c2ec9dc00fa2bb96d8e06f01ba8ced9886cb2f9037341e06eecf7",
+      "size_bytes": 24485
+    },
+    {
+      "repository_path": "data/corpus/sources/ca/statute/issue233-sc2026c1-2026-10-06/official-documents/canada-groceries-and-essentials-benefit-act-sc-2026-c1.html",
+      "sha256": "b7415d47048d1074c84d4f859ffa813c01b6fe31553a30a5b12d892f4d8e3dc1",
+      "size_bytes": 36535
+    },
+    {
+      "repository_path": "data/corpus/inventory/ca/statute/issue233-sc2026c1-2026-10-06.json",
+      "sha256": "e8ac976a50dad99e494725bbcd564cd586e86e89a63761af86dc88a321fa191d",
+      "size_bytes": 8666
+    }
+  ],
+  "coverage": "Complete official Act: six legal sections retained in a bodyless root and five heading-based blocks. Block ordinals are not section numbers.",
+  "verification_report_sha256": "98caa764e09164b0e39c868fb9fbd0ae8240d63f55c06f2d85d76bc66095aa8b",
+  "review_artifacts": {
+    "test_only": true,
+    "mocked_publication_evidence": true,
+    "capture_hashes": {
+      "coverage/ca/statute/issue233-sc2026c1-2026-10-06.json": "69daf1edb82b5be0fc7c31eab36f81a83753213dd1119434fd6aa0198ed44dea",
+      "provisions/ca/statute/issue233-sc2026c1-2026-10-06.jsonl": "034c89b8276c2ec9dc00fa2bb96d8e06f01ba8ced9886cb2f9037341e06eecf7",
+      "sources/ca/statute/issue233-sc2026c1-2026-10-06/official-documents/canada-groceries-and-essentials-benefit-act-sc-2026-c1.html": "b7415d47048d1074c84d4f859ffa813c01b6fe31553a30a5b12d892f4d8e3dc1",
+      "inventory/ca/statute/issue233-sc2026c1-2026-10-06.json": "e8ac976a50dad99e494725bbcd564cd586e86e89a63761af86dc88a321fa191d"
+    },
+    "html_bytes": 36535,
+    "html_sha256": "b7415d47048d1074c84d4f859ffa813c01b6fe31553a30a5b12d892f4d8e3dc1",
+    "whole_dom_order_and_text_equals_composed_body_modulo_whitespace": false,
+    "precise_dom_difference": [
+      {
+        "dom": "S.C.2026,c.1",
+        "assembled": ""
+      }
+    ],
+    "normative_and_other_heading_content_equal": true,
+    "citation_preserved_in": "official HTML and root heading, not descendant assembled body",
+    "bodyless_root_and_blocks": 6,
+    "root_body_sha256": "51773cf83331693652b8bb1f4e4e9efe51bb109773b65a3a0ad79a212715bc1f",
+    "expression_date": "2026-02-12",
+    "source_as_of": "2026-10-06",
+    "date_limit": "Royal assent as enacted expression, not blanket effective date for all amendments; web issued/modified September3 remains separate.",
+    "blocks": [
+      {
+        "path": "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-1",
+        "heading": "Canada Groceries and Essentials Benefit Act",
+        "body_chars": 312
+      },
+      {
+        "path": "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-2",
+        "heading": "SUMMARY",
+        "body_chars": 435
+      },
+      {
+        "path": "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-3",
+        "heading": "Short Title",
+        "body_chars": 104
+      },
+      {
+        "path": "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-4",
+        "heading": "R.S., c. 1 (5th Supp.) Income Tax Act",
+        "body_chars": 9337
+      },
+      {
+        "path": "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-5",
+        "heading": "Coordinating Amendments",
+        "body_chars": 3344
+      }
+    ],
+    "resolver_commit": "3bccac8d0983d6c61600e672c2f61b77540a3f32",
+    "resolver_results": {
+      "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1": {
+        "ok": true,
+        "body_sha256": "51773cf83331693652b8bb1f4e4e9efe51bb109773b65a3a0ad79a212715bc1f"
+      },
+      "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-1": {
+        "ok": true,
+        "body_sha256": "be49877f8c55fb2390dc27fd64bc85f57d326145bc5172e1cf9a11df28977cc2"
+      },
+      "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-2": {
+        "ok": true,
+        "body_sha256": "775df52b169a4033ee77103c3390a55a94b1a70d8885f2dbbb222ffa7e9f7577"
+      },
+      "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-3": {
+        "ok": true,
+        "body_sha256": "c1ac58c9bef621ee14fac4959ac9b1b05e4cf5d79629627ad338ec81d6df2604"
+      },
+      "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-4": {
+        "ok": true,
+        "body_sha256": "e87881cb984f19a4442bb0b631b7d732cc3b55fb292d7201a00d52db12039d30"
+      },
+      "ca/statute/canada-groceries-and-essentials-benefit-act-sc-2026-c1/block-5": {
+        "ok": true,
+        "body_sha256": "55861a272247d74d3ab0400c85d5a39b1bbc214863b74c5076b1564c808d53c4"
+      }
+    },
+    "originals_unchanged": true,
+    "limitations": [
+      "Ephemeral signed fixture only; repository unit-test publication evidence mocked, no production signer substituted.",
+      "All6sections includingconditionalBillC15 coordination retained; no claim condition has been fulfilled.",
+      "Authentic source-application authority added, but117.1 computation/118/122.6 dependencies remain according to actual consumed behavior.",
+      "Actual union collision and established ingest/release signing remain separate."
+    ]
+  },
+  "limits": [
+    "Ephemeral signed fixture only; repository unit-test publication evidence mocked, no production signer substituted.",
+    "All6sections includingconditionalBillC15 coordination retained; no claim condition has been fulfilled.",
+    "Authentic source-application authority added, but117.1 computation/118/122.6 dependencies remain according to actual consumed behavior.",
+    "Actual union collision and established ingest/release signing remain separate.",
+    "Assent date is not blanket commencement; conditional coordinating amendment applicability remains to be established.",
+    "Canonical default document identity is not an encoder ownership/import claim.",
+    "Established ingest signer and R2 capability required; preserve prior Canada/HTS scopes in any additive release.",
+    "Signing checkout provenance must remain truthful and clean; original capture identity is recorded separately."
+  ],
+  "reproduction_manifest": "manifests/ca-sc2026c1-official-act-2026-10-06.json",
+  "reproduction_command": "axiom-corpus-ingest extract-official-documents --base <isolated-output> --manifest manifests/ca-sc2026c1-official-act-2026-10-06.json --version issue233-sc2026c1-2026-10-06 --source-as-of 2026-10-06 --expression-date 2026-02-12",
+  "capture_command": "axiom-corpus-ingest extract-official-documents --base <isolated-output> --manifest <external-reviewed-manifest>/annual-act-2026-1-intake.json --version issue233-sc2026c1-2026-10-06 --source-as-of 2026-10-06 --expression-date 2026-02-12"
+}
