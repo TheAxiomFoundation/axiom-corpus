@@ -1,0 +1,128 @@
+{
+ "on_open_prs": {
+  "#714": 1,
+  "#716": 21,
+  "#717": 14,
+  "#763": 11,
+  "#754": 2,
+  "#753": 4,
+  "#778": 14
+ },
+ "groups": {
+  "federal": {
+   "documents": 333,
+   "by_action": {
+    "EXTRACT-MANIFEST": 8,
+    "FETCH": 185,
+    "CHECK-PUBLISHER": 3,
+    "OFFICIAL-SOURCE": 19,
+    "DEAD-LINK": 4,
+    "BLOCKED-CHECK": 63,
+    "PATH-ONLY": 51
+   },
+   "jurisdictions": 1
+  },
+  "benefits": {
+   "documents": 265,
+   "by_action": {
+    "FETCH": 133,
+    "CHECK-PUBLISHER": 9,
+    "OFFICIAL-SOURCE": 41,
+    "DEAD-LINK": 23,
+    "EXTRACT-MANIFEST": 37,
+    "BLOCKED-CHECK": 22
+   },
+   "jurisdictions": 37
+  },
+  "health": {
+   "documents": 128,
+   "by_action": {
+    "FETCH": 77,
+    "OFFICIAL-SOURCE": 15,
+    "EXTRACT-MANIFEST": 2,
+    "CHECK-PUBLISHER": 13,
+    "BLOCKED-CHECK": 16,
+    "DEAD-LINK": 5
+   },
+   "jurisdictions": 30
+  },
+  "tanf-ccdf-ak-ne": {
+   "documents": 372,
+   "by_action": {
+    "FETCH": 235,
+    "OFFICIAL-SOURCE": 62,
+    "BLOCKED-CHECK": 33,
+    "EXTRACT-MANIFEST": 3,
+    "CHECK-PUBLISHER": 22,
+    "DEAD-LINK": 15,
+    "PATH-ONLY": 2
+   },
+   "jurisdictions": 30
+  },
+  "tanf-ccdf-nh-wy": {
+   "documents": 341,
+   "by_action": {
+    "FETCH": 191,
+    "OFFICIAL-SOURCE": 72,
+    "BLOCKED-CHECK": 15,
+    "EXTRACT-MANIFEST": 1,
+    "CHECK-PUBLISHER": 31,
+    "DEAD-LINK": 25,
+    "VENDOR": 6
+   },
+   "jurisdictions": 21
+  },
+  "tax-al-hi": {
+   "documents": 399,
+   "by_action": {
+    "FETCH": 201,
+    "CHECK-PUBLISHER": 5,
+    "OFFICIAL-SOURCE": 25,
+    "DEAD-LINK": 6,
+    "VENDOR": 18,
+    "EXTRACT-MANIFEST": 89,
+    "BLOCKED-CHECK": 54,
+    "PATH-ONLY": 1
+   },
+   "jurisdictions": 10
+  },
+  "tax-ia-mi": {
+   "documents": 404,
+   "by_action": {
+    "EXTRACT-MANIFEST": 40,
+    "FETCH": 238,
+    "CHECK-PUBLISHER": 21,
+    "OFFICIAL-SOURCE": 13,
+    "BLOCKED-CHECK": 64,
+    "DEAD-LINK": 26,
+    "VENDOR": 2
+   },
+   "jurisdictions": 11
+  },
+  "tax-mn-oh": {
+   "documents": 379,
+   "by_action": {
+    "EXTRACT-MANIFEST": 39,
+    "FETCH": 259,
+    "CHECK-PUBLISHER": 24,
+    "OFFICIAL-SOURCE": 28,
+    "DEAD-LINK": 14,
+    "VENDOR": 5,
+    "BLOCKED-CHECK": 10
+   },
+   "jurisdictions": 12
+  },
+  "tax-ok-wv": {
+   "documents": 394,
+   "by_action": {
+    "FETCH": 237,
+    "CHECK-PUBLISHER": 15,
+    "OFFICIAL-SOURCE": 16,
+    "EXTRACT-MANIFEST": 83,
+    "DEAD-LINK": 36,
+    "BLOCKED-CHECK": 7
+   },
+   "jurisdictions": 12
+  }
+ }
+}
