@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-health-guidance-fl
+documents:
+- source_id: us-fl-w6-health-florida-healthy-kids-kidcare-income-guidelines-2025
+  jurisdiction: us-fl
+  document_class: guidance
+  title: Florida KidCare 2025 General Annual Income Guidelines
+  source_url: https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-04-01'
+  citation_path: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Florida Healthy Kids Corporation (Florida KidCare, s. 624.91 F.S.)
+    program: CHIP
+    document_subtype: income_standards_chart_pdf
+    source_discovery_group: us-fl/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 43
+    bundle_url: https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf

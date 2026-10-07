@@ -33,7 +33,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   done: 14
-  agent_ready: 84
+  agent_ready: 91
   blocked_primary_source: 10
 states:
 - jurisdiction: us
@@ -5022,3 +5022,117 @@ states:
     pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program chip.'
+# --- wave 6 health rows (scripts/append_w6_health_queue_rows.py) ---
+- jurisdiction: us-ca
+  name: California
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-ca-health-w6-manual.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: manual
+    version: 2026-10-06-w6-health-manual-ca
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-ca/manual/scc-ssa/medi-cal/cchip
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ca/manual/2026-10-06-w6-health-manual-ca (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-fl
+  name: Florida
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-fl-health-w6-guidance.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: guidance
+    version: 2026-10-06-w6-health-guidance-fl
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-fl/guidance/2026-10-06-w6-health-guidance-fl (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-ia
+  name: Iowa
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-ia-health-w6-guidance.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: guidance
+    version: 2026-10-06-w6-health-guidance-ia
+  taken_count: 2
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-ia/guidance/hhs/hawki-income-guidelines/2026
+  - us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-ia/guidance/2026-10-06-w6-health-guidance-ia (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-ks
+  name: Kansas
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-ks-health-w6-guidance.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: guidance
+    version: 2026-10-06-w6-health-guidance-ks
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ks/guidance/2026-10-06-w6-health-guidance-ks (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-mo
+  name: Missouri
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-mo-health-w6-statute.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: statute
+    version: 2026-10-06-w6-health-statute-mo
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-mo/statute/208.640
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-mo/statute/2026-10-06-w6-health-statute-mo (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-tx
+  name: Texas
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-tx-health-w6-manual.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: manual
+    version: 2026-10-06-w6-health-manual-tx
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-tx/manual/hhsc/umcm/6-3
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-tx/manual/2026-10-06-w6-health-manual-tx (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-wi
+  name: Wisconsin
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-wi-health-w6-manual.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: manual
+    version: 2026-10-06-w6-health-manual-wi
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-wi/manual/dhs/badgercare-plus/48-1
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-wi/manual/2026-10-06-w6-health-manual-wi (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
