@@ -3897,18 +3897,14 @@ states:
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing
       was worked around.'
   - family: program_bundle_gaps_w6
-    queue_status: agent_ready
+    queue_status: done
     index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv
-    target_manifests:
-    - manifests/us-nj-tanf-ccdf-w6-regulation.yaml
-    target_scopes:
-    - jurisdiction: us-nj
-      document_class: regulation
-      version: 2026-10-06-w6-tanf-ccdf-regulation-nj
-    taken_count: 6
+    target_manifests: []
+    target_scopes: []
+    taken_count: 0
     bundle_rows:
-      PRESENT: 6
-    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 TANF bundle documents; 6 PRESENT. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
+      ALREADY-HELD: 6
+    notes: 'Wave 6 program-bundle gaps (2026-10-06): 6 TANF bundle documents; 6 ALREADY-HELD. Row-level decisions in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.csv;
       run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md.'
 - jurisdiction: us-nm
   name: New Mexico

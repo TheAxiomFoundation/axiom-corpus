@@ -1,6 +1,6 @@
 # Wave 6, group tanf-ccdf-nh-wy: state TANF and CCDF bundle documents, New Hampshire to Wyoming
 
-Date: 2026-10-06 (US Eastern; agent run 19:02 to about 20:30 EDT).
+Date: 2026-10-06 (US Eastern; agent run 19:02 to 20:10 EDT).
 Work order: `docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv` (341 rows, 340 Tier 1, 21
 jurisdictions) with `wave6/00-common-preamble.md` and `wave6/tanf-ccdf-nh-wy-brief.md` (branch
 `analysis/program-bundle-gaps-2026-10-06`, worktree `~/axiom-corpus-worktrees/bundle-gaps`).
@@ -21,26 +21,26 @@ Outputs: this note, `docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy-decisions.cs
 
 ## Result
 
-67 new scopes (62 official-document scopes, 5 adapter scopes), 8,756 provision rows, 12.8 M characters, 85.6 MB of
+67 new scopes (62 official-document scopes, 5 adapter scopes), 8,511 provision rows, 11.9 M characters, 83.6 MB of
 retained sources. Every scope reports coverage `complete: true`, 0 missing, 0 extra, 0 duplicate citation paths; the
 citation-path grammar gate (`scripts/validate_citation_paths.py` on a tree holding only the 67 new files) is `RESULT: OK`
-(8,758 records, 8,758 unique paths).
+(8,511 records, 8,511 unique paths).
 
 | action | rows | PRESENT | ALREADY-HELD | OUTREACH | ABSENT | SKIPPED |
 |---|---:|---:|---:|---:|---:|---:|
-| EXTRACT-MANIFEST | 1 | 1 | 0 | 0 | 0 | 0 |
+| EXTRACT-MANIFEST | 1 | 0 | 1 | 0 | 0 | 0 |
 | FETCH | 191 | 154 | 37 | 0 | 0 | 0 |
 | CHECK-PUBLISHER | 31 | 14 | 13 | 3 | 1 | 0 |
-| OFFICIAL-SOURCE | 72 | 22 | 22 | 28 | 0 | 0 |
+| OFFICIAL-SOURCE | 72 | 17 | 27 | 28 | 0 | 0 |
 | DEAD-LINK | 25 | 4 | 4 | 15 | 2 | 0 |
 | BLOCKED-CHECK | 15 | 15 | 0 | 0 | 0 | 0 |
 | VENDOR | 6 | 0 | 6 | 0 | 0 | 0 |
-| all | 341 | 210 | 82 | 46 | 3 | 0 |
+| all | 341 | 204 | 88 | 46 | 3 | 0 |
 
 | jurisdiction | rows | PRESENT | ALREADY-HELD | OUTREACH | ABSENT |
 |---|---:|---:|---:|---:|---:|
 | us-nh | 9 | 9 | 0 | 0 | 0 |
-| us-nj | 15 | 15 | 0 | 0 | 0 |
+| us-nj | 15 | 9 | 6 | 0 | 0 |
 | us-nm | 14 | 14 | 0 | 0 | 0 |
 | us-nv | 12 | 9 | 3 | 0 | 0 |
 | us-ny | 20 | 3 | 0 | 17 | 0 |
@@ -67,7 +67,7 @@ Before any request, every row was searched in the local corpus root: the bundle 
 and URL-valued metadata field of the 21 jurisdictions' inventories (19,480 addresses), and the cited rule or section
 number against the citation paths and headings of every provisions file of the jurisdiction. 23 rows matched by
 address (OH OAC 5101:1-23-20/-40 and 5180:6-1-02/-10, OR OAR 461 rule versions, the PA Cash Assistance Handbook, the SC
-TANF manual, 11 WA WAC 388 sections, the NJ WFNJ PDF); the section search found the rest of the 82 ALREADY-HELD rows (OAC
+TANF manual, 11 WA WAC 388 sections, the NJ WFNJ PDF); the section search found the rest of the 88 ALREADY-HELD rows (OAC
 340:10 and 340:40, OAR 414-175 and 461, ARSD 67:10, R986-200, 218-RICR-20-00-2 and -4, the Vermont Reach Up rules, the
 newer editions named below). The unreleased wave-4/5 scopes count: 26 ALREADY-HELD rows point at wave-5 scopes of PR #717
 (`2026-09-15-ccdf-subsidy-rules*`).
@@ -136,7 +136,7 @@ Last-Modified, else the source date. Extraction defaults: PDFs page-level, HTML 
 content; selectors where the page needed them (`section.laws-body` codes.ohio.gov, `div.nys-openleg-result-text`
 nysenate.gov, `article` law.lis.virginia.gov, `#contentWrapper` app.leg.wa.gov RCW, `.WordSection1` gc.nh.gov), each
 checked against the probe's cached page before the run. Labeled sections where the publisher prints section labels:
-N.J.A.C. 10:90 (the main-branch manifest's pattern, copied) and 10:15 (same OAL export layout), He-C 6900 (the He-W 700
+N.J.A.C. 10:15 (the OAL export layout and pattern of the main-branch 10:90 manifest), He-C 6900 (the He-W 700
 SNAP-rules pattern of the same publisher, with the heading required to start with a capital so cross-references such as
 "He-C 6917.03(k) shall be" do not open a section; 111 sections, the rule-to-statute appendix not taken). The NM Human
 Services Register PDF is an image-only scan and runs with `ocr: true`.
@@ -150,7 +150,7 @@ stops at subsection (2) in the page HTML), so the chapter adapter, not the pages
 
 Decisions by document family (the CSV has the row-level notes):
 
-- **State rules (codified).** NJ N.J.A.C. 10:90 (EXTRACT-MANIFEST; the only manifest on main) and 10:15; NH He-C 6900;
+- **State rules (codified).** NJ N.J.A.C. 10:15; NH He-C 6900;
   UT R986-700 (DWS's posting, 6 Cornell rows); PA 55 Pa. Code chapters 3042 and 183 (the chapter PDFs linked from the
   Pennsylvania Code TOC; § 183.94 is inside chapter 183); SC Code of Regulations chapter 114 (R. 114-1140 inside; the
   Legislative Council PDF linked from `coderegs/statmast.php`); VA 22VAC40-295-50, 8VAC20-790-20/-40; WAC 110-15; WI DCF
@@ -199,7 +199,7 @@ Seconds are the wall time of one extraction call, download included; source KB i
 | `us-nh/regulation/2026-10-06-w6-tanf-ccdf-regulation-nh` | 1 | 112 | 369,916 | 4 | 2,250 |
 | `us-nj/guidance/2026-10-06-w6-tanf-ccdf-guidance-nj` | 1 | 10 | 20,605 | 4 | 141 |
 | `us-nj/policy/2026-10-06-w6-tanf-ccdf-policy-nj` | 4 | 19 | 40,927 | 4 | 3,323 |
-| `us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj` | 2 | 300 | 1,050,044 | 10 | 3,926 |
+| `us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj` | 1 | 55 | 154,282 | 3 | 1,962 |
 | `us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm` | 8 | 136 | 135,839 | 42 | 16,808 |
 | `us-nm/policy/2026-10-06-w6-tanf-ccdf-policy-nm` | 2 | 14 | 19,618 | 3 | 4,725 |
 | `us-nm/regulation/2026-10-06-w6-tanf-ccdf-regulation-nm` | 2 | 25 | 153,091 | 4 | 668 |
@@ -274,16 +274,38 @@ Seconds are the wall time of one extraction call, download included; source KB i
 | ABSENT | 1 | TX TWH bulletin 19-08 (2020) | 404; the TWH Policy Bulletins page on fhb.hhs.texas.gov lists no 2020 bulletin 19-08 |
 | ABSENT | 1 | TX WD Letter 19-24, Change 1 | 404; on neither TWC's current nor rescinded policy-letter list; its Attachment 1 (BCY2025 rates) is taken |
 
-No row is SKIPPED: the work order was finished in about 1.5 hours of the 4-hour box.
+No row is SKIPPED: the work order was finished in about 70 minutes of the 4-hour box.
+
+## Locked-scope recheck (controller correction, 2026-10-06)
+
+The controller ruled mid-run that scopes committed on main only as lock files
+(`.axiom/corpus-locks/<jur>/<class>/<version>.json`) count as held. For the 21 jurisdictions, 410 lock files exist; 8 of
+them name scopes whose bytes are not in the corpus root (NJ NJDOL contribution rates and two payroll statute titles, NY
+IT-214 and the Tax Law line-structure re-version, VA 22VAC40-601 SNAP, WI Schedule SB and the chapter-71 subunit
+re-version); none is a TANF or CCDF document of this work order (their source file names were read). Every other locked
+scope is on disk and was already in the held check. The sha256 of each of the 203 source files of the new scopes was then
+looked up in all 42,848 locked source entries: two matches.
+
+1. `WFNJ_Manual_12.17.24.pdf` (N.J.A.C. 10:90) is byte-identical to the source of the locked
+   `us-nj/regulation/2026-07-13-recovery` scope, which holds it page-level (`us-nj/regulation/recovery/us-nj-njac-10-90`)
+   with section alias rows for 10:90-3.2, 3.3, 3.8, 3.9, 3.19 and 3.20. The section-level 10:90 document was dropped from
+   `manifests/us-nj-tanf-ccdf-w6-regulation.yaml`, the NJ regulation scope was re-extracted with N.J.A.C. 10:15 alone, and
+   the EXTRACT-MANIFEST row and the five Cornell 10:90 rows are ALREADY-HELD with the recovery scope (the six-path
+   collision with it is gone too). The main-branch manifest `manifests/us-nj-wfnj-rules.yaml` and its path
+   `us-nj/regulation/njac-10-90` remain for a successor of the recovery scope.
+2. The Rhode Island adapter's retained Statutes root index page (`Statutes.html`) is the page the locked RI chapter
+   44-30 scope also keeps; it is an index page, not a document, and stays.
+
+Address and path checks of the 62 manifests' `source_url`s against every inventory in the corpus root found nothing
+else.
 
 ## Controller: collisions and swaps
 
 Every new scope's citation paths were intersected with every other provisions file of the same jurisdiction and class in
-the corpus root (released and unreleased). Four scopes share paths with existing scopes:
+the corpus root (released and unreleased). Two scopes share paths with existing scopes:
 
 | new scope | shares | with | route |
 |---|---|---|---|
-| `us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj` | 6 paths `us-nj/regulation/njac-10-90/10-90-3.2`, `-3.3`, `-3.8`, `-3.9`, `-3.19`, `-3.20` | `us-nj/regulation/2026-07-13-recovery` (page-text aliases, `recovery_target_alias: true`, bodies differ: the recovery rows carry one PDF page each) | consolidation with the new section rows preferred (`consolidate_release_scopes.py --prefer-duplicate-carrier`), or drop the six alias rows in a recovery successor |
 | `us-wi/statute/2026-10-06-w6-tanf-ccdf-statute-wi-chapter-49` | `us-wi/statute/49.77`, `us-wi/statute/49.471` | `us-wi/statute/2026-09-15-ssi-state-supplement-rules` (wave 5 SSI, PR #717) and `us-wi/statute/2026-10-06-w6-health-statute-wi` (wave 6 health agent) | both carry a body-less root plus one child; the whole-chapter scope carries the section text: swap the single-section scopes out, or consolidate (the 49.77 manifest's own note anticipates this) |
 | `us-wa/regulation/2026-10-06-w6-ccdf-rules-wa-110-15` | the container `us-wa/regulation` | every WAC adapter scope (388-400, -424, -450, -470, -474, -478, and the wave-6 health agent's 182-505/182-512) | the shared title container the WAC adapter emits in every scope; the existing consolidation handles it |
 
@@ -311,7 +333,7 @@ selector, Supabase.
 
 - Coverage re-read for all 67 scopes: `complete: true`, no duplicate path, no missing or extra inventory entry.
 - `uv run python scripts/validate_citation_paths.py --provisions <tree of the 67 new files>`: `RESULT: OK`. The new files
-  add 2,382 `page-N`, 312 `block-N`, 111 space and 117 uppercase segments (He-C section labels such as
+  add 2,381 `page-N`, 312 `block-N`, 111 space and 117 uppercase segments (He-C section labels such as
   `us-nh/regulation/he-c-6900/He-C 6910.06` follow the He-W 700 precedent; `us-ny/statute/SOS/410-U` the NY Tax Law
   precedent); the tree-wide ratchets are the controller's to move at the release cut.
 - `AXIOM_CORPUS_PARTIAL_TESTS=1 uv run --extra dev pytest -q -m "not integration and not slow" -k "manifest or
@@ -326,7 +348,7 @@ selector, Supabase.
 Probe pass about 5 minutes (218 addresses). Extraction: the 62 official-document manifests ran 7 jurisdictions at a time,
 manifests of one jurisdiction serially, in about 60 seconds of wall time (3-12 s each; NM guidance 42 s, its 15 MB
 parents' guide); the adapters 5-11 s each. Re-runs: NH regulation (section split), PA policy (MCCA edition and slug), TX
-guidance (TWC program page), NV manual (C-140 dropped); each into its own version after removing the scope's stale
+guidance (TWC program page), NV manual (C-140 dropped), NJ regulation (10:90 dropped, see the locked-scope recheck); each into its own version after removing the scope's stale
 source files.
 
 ## Note for the other agents

@@ -177,20 +177,10 @@ DOCS: list[dict[str, Any]] = [
       "https://www.dhhs.nh.gov/sr_htm/html/sr_24-08_dated_01_24.htm", H, "2024-01-01", "TANF",
       "supervisory_release", request=CHROME),
     # ---------------------------------------------------------------- New Jersey
-    d(["us-nj/regulation/njac-10-90",
-       "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-10-90-3-1",
-       "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-10-90-3-2",
-       "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-10-90-3-20",
-       "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-10-90-3-3",
-       "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-10-90-3-8"],
-      "us-nj", "regulation", "us-nj/regulation/njac-10-90",
-      "N.J.A.C. 10:90 Work First New Jersey Program",
-      "https://www.nj.gov/humanservices/notices/documents/rules-and-regulations/WFNJ_Manual_12.17.24.pdf",
-      P, "2024-12-16", "TANF", "administrative_code_chapter",
-      extraction="FROM_MAIN_MANIFEST",
-      authority="New Jersey Department of Human Services, Division of Family Development",
-      note="entry copied from manifests/us-nj-wfnj-rules.yaml (EXTRACT-MANIFEST); compiled through "
-      "N.J.R. Vol. 56 No. 24, December 16, 2024"),
+    # N.J.A.C. 10:90 (the EXTRACT-MANIFEST row, manifests/us-nj-wfnj-rules.yaml) is not taken: the same
+    # WFNJ_Manual_12.17.24.pdf bytes (sha256 match) are held by the locked us-nj/regulation/2026-07-13-recovery
+    # scope, page-level with section aliases for 10:90-3.2, 3.3, 3.8, 3.9, 3.19 and 3.20 (controller rule
+    # 2026-10-06: a document a locked scope holds is ALREADY-HELD, not a new extraction).
     d(["https://www.nj.gov/humanservices/notices/documents/rules-and-regulations/NJAC%2010_15%20CHILD%20CARE%20SERVICES.PDF",
        "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-10-15-5-2"],
       "us-nj", "regulation", "us-nj/regulation/njac-10-15", "N.J.A.C. 10:15 Child Care Services",
