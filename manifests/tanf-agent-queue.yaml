@@ -488,6 +488,16 @@ states:
       31, 2025 (Office of the Governor and Department of Health). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak
+    taken_count: 1
+    decision_counts:
+      PRESENT: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 1 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-al
   name: Alabama
   queue_status: done
@@ -558,6 +568,17 @@ states:
     and Public Assistance Payment Manual Appendix N Sec 2 (policy). Reviewer judgment: the DHR-published payment manual appendix
     plus the adopted rule is the state''s primary policy document set; no separate DHR TANF policy manual index exists. Done
     per the prior-ingest list.'
+  additional_families:
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al
+    taken_count: 2
+    decision_counts:
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 2 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ar
   name: Arkansas
   queue_status: done
@@ -592,6 +613,17 @@ states:
       a web search and its listing page could not be read. Both hosts omit the Sectigo Public Server Authentication CA OV
       R36 intermediate; REQUESTS_CA_BUNDLE = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem, no verification
       disabled.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ar/policy/2026-10-06-w6-tanf-ccdf-docs-ar
+    taken_count: 1
+    decision_counts:
+      OUTREACH: 2
+      PRESENT: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-as
   name: American Samoa
   queue_status: blocked_primary_source
@@ -724,6 +756,17 @@ states:
       cloudflare ''Just a moment'' challenges for plain and browser-impersonated clients (2026-09-13), the same wall the CCDF
       run recorded. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
       checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-az/statute/2026-10-06-w6-tanf-ccdf-statutes-az
+    taken_count: 3
+    decision_counts:
+      OUTREACH: 3
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 6 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ca
   name: California
   queue_status: agent_ready
@@ -1116,6 +1159,23 @@ states:
       (the newest plan the CDSS TANF State Plan page posts; the 2019 plan and addendum are also listed). ACF OFA posts no
       state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13);
       the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ca/form/2026-10-06-w6-tanf-ccdf-forms-ca
+    - us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca
+    - us-ca/policy/2026-10-06-w6-tanf-ccdf-docs-ca
+    - us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca
+    - us-ca/statute/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-WIC
+    taken_count: 37
+    decision_counts:
+      ABSENT: 1
+      ALREADY-HELD: 1
+      OUTREACH: 2
+      PRESENT: 37
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 41 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-co
   name: Colorado
   queue_status: agent_ready
@@ -1183,6 +1243,15 @@ states:
       TANF State Plan the Colorado Works page links (2018, 2015, 2012, 2009, all on Google Drive); later renewals are not
       posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
       2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes: []
+    taken_count: 0
+    decision_counts:
+      ALREADY-HELD: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 1 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ct
   name: Connecticut
   queue_status: agent_ready
@@ -1217,6 +1286,17 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): CT TANF State Plan FFY 2024-2026 (October 1, 2023 through
       September 30, 2026), 4/15/24 amendment print. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ct/policy/2026-10-06-w6-tanf-ccdf-docs-ct
+    taken_count: 2
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
   index_url: https://portal.ct.gov/dss/lists/uniform-policy-manual
   index_document_count: 1564
   taken_count: 1565
@@ -1441,6 +1521,17 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): 2023 District of Columbia State Plan for Administration of
       the TANF Block Grant, effective October 1, 2023. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the
       resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc
+    taken_count: 3
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -1567,6 +1658,17 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Delaware TANF State Plan 10-1-23 to 09-30-26 (listed as ''Delaware
       TANF State Plan 2023-2026 (PUBLIC NOTICE)''). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de
+    taken_count: 3
+    decision_counts:
+      ALREADY-HELD: 5
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 8 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
   index_url: https://regulations.delaware.gov/AdminCode/title16
   index_document_count: 2
   taken_count: 1
@@ -1693,6 +1795,18 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Florida TANF State Plan 2026-2028 (effective July 1, 2026).
       ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
       and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-fl/policy/2026-10-06-w6-tanf-ccdf-docs-fl
+    - us-fl/regulation/2026-10-06-w6-tanf-ccdf-rules-fl
+    - us-fl/statute/2026-10-06-w6-tanf-ccdf-statutes-fl
+    taken_count: 3
+    decision_counts:
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ga
   name: Georgia
   queue_status: agent_ready
@@ -1853,6 +1967,18 @@ states:
       2026 (the earlier ''draft'' renewal file is also posted, not taken). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ga/manual/2026-10-06-w6-tanf-ccdf-manual-ga
+    - us-ga/regulation/2026-10-06-w6-tanf-ccdf-rules-ga
+    taken_count: 5
+    decision_counts:
+      OUT-OF-SCOPE: 1
+      PRESENT: 5
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 6 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
   index_url: https://pamms.dhs.ga.gov/dfcs/tanf/
   index_document_count: 101
   taken_count: 101
@@ -1982,6 +2108,18 @@ states:
       certified); a plan ''Effective 2025Oct01, Certified 2025Dec23'' is in the search index but its URL answers HTTP 404
       and the TANF Strategic Plans page does not list it. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and
       the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-hi/policy/2026-10-06-w6-tanf-ccdf-docs-hi
+    taken_count: 2
+    decision_counts:
+      ABSENT: 1
+      ALREADY-HELD: 1
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ia
   name: Iowa
   queue_status: done
@@ -2012,6 +2150,17 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Iowa''s TANF State Plan, effective October 1, 2025 - September
       30, 2028, with its attachments volume. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia
+    taken_count: 1
+    decision_counts:
+      ALREADY-HELD: 2
+      PRESENT: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-id
   name: Idaho
   queue_status: agent_ready
@@ -2310,6 +2459,16 @@ states:
       as an HTML page (the newest approved plan; the 01/01/2026 renewal is posted only as a public-comment draft PDF, not
       taken). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
       2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-il/regulation/2026-10-06-w6-tanf-ccdf-rules-il-title-089-part-00050-00112
+    taken_count: 14
+    decision_counts:
+      PRESENT: 14
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 14 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-in
   name: Indiana
   queue_status: done
@@ -2442,6 +2601,20 @@ states:
       or approved current plan is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library
       carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was
       worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-in/manual/2026-10-06-w6-tanf-ccdf-manual-in
+    - us-in/policy/2026-10-06-w6-tanf-ccdf-docs-in
+    - us-in/regulation/2026-10-06-w6-tanf-ccdf-rules-in
+    taken_count: 6
+    decision_counts:
+      ALREADY-HELD: 1
+      OUT-OF-SCOPE: 1
+      PRESENT: 6
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 8 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ks
   name: Kansas
   queue_status: done
@@ -2671,6 +2844,18 @@ states:
       plan, so the file was located with a web search on the same host. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks
+    - us-ks/regulation/2026-10-06-w6-tanf-ccdf-rules-ks
+    - us-ks/statute/2026-10-06-w6-tanf-ccdf-statutes-ks
+    taken_count: 9
+    decision_counts:
+      PRESENT: 9
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 9 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ky
   name: Kentucky
   queue_status: agent_ready
@@ -2713,6 +2898,17 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Kentucky TANF State Plan 2023 (10/1/2023-09/30/2026, DocuSign
       copy). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
       2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky
+    - us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky
+    taken_count: 3
+    decision_counts:
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-la
   name: Louisiana
   queue_status: agent_ready
@@ -2756,6 +2952,18 @@ states:
       TANF portion (undated); no current plan is reachable. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and
       the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.
       Nothing was worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la
+    - us-la/regulation/2026-10-06-w6-tanf-ccdf-rules-la
+    taken_count: 3
+    decision_counts:
+      ABSENT: 1
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: done
@@ -2816,6 +3024,18 @@ states:
       plan is part of Maryland''s WIOA combined plan filed on the federal portal). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication. Nothing was worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md
+    taken_count: 2
+    decision_counts:
+      ALREADY-HELD: 5
+      OUT-OF-SCOPE: 1
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 8 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-me
   name: Maine
   queue_status: done
@@ -2941,6 +3161,18 @@ states:
       1, 2024 (Data and Reports page, ''Other Reports and Analysis''). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me
+    - us-me/statute/2026-10-06-w6-tanf-ccdf-statutes-me
+    taken_count: 3
+    decision_counts:
+      ALREADY-HELD: 5
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 8 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: done
@@ -2971,6 +3203,17 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan Effective January 1, 2026 (the 2023 plan
       and its 2024/2025 revisions are also listed). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi
+    - us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi
+    taken_count: 4
+    decision_counts:
+      PRESENT: 4
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mn
   name: Minnesota
   queue_status: done
@@ -3001,6 +3244,18 @@ states:
       404; Minnesota''s TANF plan is the MFIP section of the WIOA combined plan (federal portal), not a state-hosted document
       reachable here. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan
       links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn
+    - us-mn/policy/2026-10-06-w6-tanf-ccdf-docs-mn
+    - us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn
+    taken_count: 6
+    decision_counts:
+      PRESENT: 6
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 6 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mo
   name: Missouri
   queue_status: agent_ready
@@ -3208,6 +3463,18 @@ states:
       and the Temporary Assistance pages'' plan paths (2026-09-13); no plan is reachable on the publisher''s site. ACF OFA
       posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
       and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo
+    - us-mo/regulation/2026-10-06-w6-tanf-ccdf-rules-mo
+    - us-mo/statute/2026-10-06-w6-tanf-ccdf-statutes-mo
+    taken_count: 7
+    decision_counts:
+      PRESENT: 7
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 7 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   queue_status: blocked_primary_source
@@ -3341,6 +3608,19 @@ states:
       Administrative Code, Title 18 Part 19 (period beginning July 1, 2020); the MDHS State Plans page links the Secretary
       of State copy. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
       checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms
+    - us-ms/statute/2026-10-06-w6-tanf-ccdf-statutes-ms
+    taken_count: 5
+    decision_counts:
+      ALREADY-HELD: 1
+      OUTREACH: 1
+      PRESENT: 5
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 7 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mt
   name: Montana
   queue_status: agent_ready
@@ -3588,6 +3868,19 @@ states:
       to December 31, 2026), listed on the TANF Policy Manual page. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt
+    - us-mt/policy/2026-10-06-w6-tanf-ccdf-docs-mt
+    - us-mt/regulation/2026-10-06-w6-tanf-ccdf-rules-mt-title-37-section-37-78
+    taken_count: 11
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 11
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 12 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-nc
   name: North Carolina
   queue_status: done
@@ -3663,6 +3956,17 @@ states:
       October 1, 2025 - September 30, 2028), hosted at ncdhhs.gov/2026-2028-tanf-state-plan-162026; the publications page
       still lists only the 2022-2025 signed plan. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-nc/policy/2026-10-06-w6-tanf-ccdf-docs-nc
+    - us-nc/statute/2026-10-06-w6-tanf-ccdf-statutes-nc
+    taken_count: 4
+    decision_counts:
+      PRESENT: 4
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-nd
   name: North Dakota
   queue_status: agent_ready
@@ -3826,6 +4130,17 @@ states:
       EA/draft-tanf-state-plan-2025.pdf) are public-comment drafts and the 2025 one answers HTTP 404 (2026-09-13); no certified
       plan is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan
       links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd
+    - us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd
+    taken_count: 7
+    decision_counts:
+      PRESENT: 7
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 7 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ne
   name: Nebraska
   queue_status: agent_ready
@@ -3867,6 +4182,17 @@ states:
       Expenditure Plan but not this file; the ''2026 WIOA Nebraska State Plan Modification for TANF'' URL answers 404. ACF
       OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
       and 2026-09-13); the plan is the state agency''s own publication.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ne/policy/2026-10-06-w6-tanf-ccdf-docs-ne
+    - us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne
+    taken_count: 10
+    decision_counts:
+      PRESENT: 10
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 10 TANF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
