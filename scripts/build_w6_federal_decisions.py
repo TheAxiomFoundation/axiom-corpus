@@ -732,6 +732,32 @@ ECFR_ROWS: dict[str, tuple[str, str, str, str]] = {
 }
 
 
+CF = "; congress.gov answered a Cloudflare challenge (HTTP 403) to the corpus client; the bill was enacted as this law"
+BUNDLE_NOTES = {
+    "https://www.congress.gov/bill/119th-congress/house-bill/1": CF,
+    "https://www.congress.gov/bill/119th-congress/house-bill/1/text": CF,
+    "https://www.congress.gov/bill/113th-congress/senate-bill/1086/text": CF,
+    "https://www.congress.gov/bill/103rd-congress/house-bill/2264": CF
+    + " (107 Stat. 312 prints [H.R. 2264])",
+    "https://www.congress.gov/bill/98th-congress/house-bill/1900": CF,
+    "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf": "; the congress.gov copy answered and is byte-identical "
+    "(same sha256) to the govinfo PLAW PDF taken",
+    "https://www.democrats.senate.gov/imo/media/doc/inflation_reduction_act_of_2022.pdf": "; the bundle address is a "
+    "Senate caucus repost of the Senate substitute amendment, not the enacted text; the official enrolled law is taken",
+    "https://uscode.house.gov/view.xhtml?req=granuleid:USC-1994-title42-section606&num=0&edition=1994": "; "
+    "uscode.house.gov served only its maintenance page; the GPO govinfo 1994 edition of the same section is taken",
+    "https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf": "; same bytes as SHO-12-002.pdf",
+}
+for _u in (
+    "https://www.federalregister.gov/documents/2019/09/27/2019-20353/defining-and-delimiting-the-exemptions-for-executive-administrative-professional-outside-sales-and",
+    "https://www.federalregister.gov/documents/2024/03/27/2024-06464/omitting-food-from-in-kind-support-and-maintenance-calculations",
+    "https://www.federalregister.gov/documents/2024/04/26/2024-08038/defining-and-delimiting-the-exemptions-for-executive-administrative-professional-outside-sales-and",
+):
+    BUNDLE_NOTES[_u] = (
+        "; federalregister.gov redirects the corpus client to the unblock.federalregister.gov bot wall"
+    )
+
+
 class ScopeReader:
     """Reads a scope's citation paths from disk, or from the git blob its lock file names."""
 
@@ -821,6 +847,7 @@ def main() -> None:
             note = doc.title + (f"; printed: {printed}" if printed else "")
             if not direct:
                 note += "; the bundle address is joined to this document through this row"
+                note += BUNDLE_NOTES.get(url, "")
             if doc.download_url:
                 note += f"; text from the embedded file {doc.download_url}"
             if doc.request and doc.request.get("browser_impersonation"):
