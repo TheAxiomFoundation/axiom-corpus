@@ -282,7 +282,7 @@ locked scopes), and Indiana Code title 12, which the benefits group of this wave
 ## Timing and disk
 
 First command 19:02 EDT, probe 19:20, first extraction batch 19:24-19:33, adapters and official-source rows to 19:55,
-reruns for OCR, selectors and titles 20:05-20:20, outputs by 20:30 (about 1.5 hours of the 4-hour box). Disk: 3.2 TB
+reruns for OCR, selectors and titles 20:05-20:21, outputs and draft PR #794 at 20:24 (about 1 hour 20 minutes of the 4-hour box). Disk: 3.2 TB
 free at the start and at the end (`df -h /`); the 50 GB stop line was never approached.
 
 ## Controller
