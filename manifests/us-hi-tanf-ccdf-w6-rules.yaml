@@ -5,12 +5,14 @@ documents:
 - source_id: us-hi-w6-har-17-798-2
   jurisdiction: us-hi
   document_class: regulation
-  title: 'Hawaii Department of Human Services: har-17-798.2-child-care-services-rules'
+  title: 'Hawaii Administrative Rules Title 17 Chapter 798.2: Child Care Services'
   source_url: https://humanservices.hawaii.gov/bessd/files/2013/01/HAR-17-798.2-Child-Care-Services-Rules.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2013-01-05'
   citation_path: us-hi/regulation/har/17/798-2
+  extraction:
+    ocr: true
   metadata:
     primary_source: true
     source_authority: Hawaii Department of Human Services
@@ -25,16 +27,19 @@ documents:
     expression_date_basis: HTTP Last-Modified
     source_last_modified: '2013-01-05'
     page_count: 52
+    source_note: image-only PDF (no text layer); Tesseract page OCR (the SD TANF plan precedent)
     agency_segment: dhs
 - source_id: us-hi-w6-har-17-798-3
   jurisdiction: us-hi
   document_class: regulation
-  title: 'Hawaii Department of Human Services: chapter-17-798.3-child-care-payments'
+  title: 'Hawaii Administrative Rules Title 17 Chapter 798.3: Child Care Payments'
   source_url: https://humanservices.hawaii.gov/bessd/files/2021/09/CHAPTER-17-798.3-Child-Care-Payments.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-09-01'
   citation_path: us-hi/regulation/har/17/798-3
+  extraction:
+    ocr: true
   metadata:
     primary_source: true
     source_authority: Hawaii Department of Human Services
@@ -49,4 +54,5 @@ documents:
     expression_date_basis: HTTP Last-Modified
     source_last_modified: '2021-09-01'
     page_count: 73
+    source_note: image-only PDF (no text layer); Tesseract page OCR (the SD TANF plan precedent)
     agency_segment: dhs

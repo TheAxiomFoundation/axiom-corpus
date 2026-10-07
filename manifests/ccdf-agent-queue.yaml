@@ -235,6 +235,16 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al
+    taken_count: 2
+    decision_counts:
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 2 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ak
   name: Alaska
   queue_status: needs_review
@@ -269,6 +279,17 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ak/manual/2026-10-06-w6-tanf-ccdf-manual-ak
+    - us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak
+    taken_count: 4
+    decision_counts:
+      PRESENT: 4
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-as
   name: American Samoa
   queue_status: blocked_primary_source
@@ -330,6 +351,15 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes: []
+    taken_count: 0
+    decision_counts:
+      OUTREACH: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 1 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ar
   name: Arkansas
   queue_status: agent_ready
@@ -406,6 +436,18 @@ states:
       version: 2026-09-13-ccdf-state-plan-amendments
     taken_count: 1
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ca/statute/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-WIC
+    taken_count: 7
+    decision_counts:
+      ABSENT: 1
+      OUTREACH: 3
+      PRESENT: 7
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 11 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-co
   name: Colorado
   queue_status: agent_ready
@@ -489,6 +531,18 @@ states:
     notes: 'Reviewed 2026-09-13: 2024 Market Rate Survey and Methodology Report, 2022 MRS and analysis on the OEC CCDF page;
       no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
       not taken.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ct/policy/2026-10-06-w6-tanf-ccdf-docs-ct
+    - us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct
+    taken_count: 12
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 12
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 13 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -566,6 +620,17 @@ states:
     taken_count: 2
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1 approval letter; Amendment
       2 approval letter.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc
+    taken_count: 3
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-fl
   name: Florida
   queue_status: agent_ready
@@ -684,6 +749,17 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-hi/policy/2026-10-06-w6-tanf-ccdf-docs-hi
+    - us-hi/regulation/2026-10-06-w6-tanf-ccdf-rules-hi
+    taken_count: 3
+    decision_counts:
+      PRESENT: 3
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-id
   name: Idaho
   queue_status: agent_ready
@@ -732,6 +808,17 @@ states:
     taken_count: 2
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Idaho Child
       Care Copay Chart, effective October 1, 2025; Idaho Child Care Program Local Market Rates, effective July 1, 2025.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-id/policy/2026-10-06-w6-tanf-ccdf-docs-id
+    taken_count: 1
+    decision_counts:
+      ALREADY-HELD: 3
+      PRESENT: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-il
   name: Illinois
   queue_status: agent_ready
@@ -764,6 +851,17 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-il/policy/2026-10-06-w6-tanf-ccdf-docs-il
+    - us-il/regulation/2026-10-06-w6-tanf-ccdf-rules-il-title-023-part-02060
+    taken_count: 6
+    decision_counts:
+      PRESENT: 6
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 6 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-in
   name: Indiana
   queue_status: needs_review
@@ -799,6 +897,17 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-in/manual/2026-10-06-w6-tanf-ccdf-manual-in
+    - us-in/policy/2026-10-06-w6-tanf-ccdf-docs-in
+    taken_count: 8
+    decision_counts:
+      PRESENT: 8
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 8 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ia
   name: Iowa
   queue_status: agent_ready
@@ -831,6 +940,17 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia
+    - us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia
+    taken_count: 5
+    decision_counts:
+      PRESENT: 5
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 5 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ks
   name: Kansas
   queue_status: agent_ready
@@ -866,6 +986,16 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks
+    taken_count: 4
+    decision_counts:
+      PRESENT: 4
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ky
   name: Kentucky
   queue_status: agent_ready
@@ -905,6 +1035,17 @@ states:
     taken_count: 0
     notes: 'Reviewed 2026-09-13: market rate surveys (2017, 2020, 2023) on the DCC page; no rate or copay schedule. Market
       rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky
+    - us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky
+    taken_count: 7
+    decision_counts:
+      PRESENT: 7
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 7 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-la
   name: Louisiana
   queue_status: agent_ready
@@ -947,6 +1088,17 @@ states:
     notes: 'Reviewed 2026-09-13: 2017, 2020, 2023 Louisiana Child Care Market Rate Surveys on the LDOE policy guidance page;
       no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
       not taken.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la
+    - us-la/regulation/2026-10-06-w6-tanf-ccdf-rules-la
+    taken_count: 13
+    decision_counts:
+      PRESENT: 13
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 13 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-me
   name: Maine
   queue_status: agent_ready
@@ -1014,6 +1166,17 @@ states:
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Maine Child
       Care Market Rates (maximum rates by county and setting), May 19, 2025; CCAP Parent Fee Guide (FY26), effective April
       18, 2026; CCAP Current Income Guidelines (125% SMI), April 18, 2026.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me
+    taken_count: 2
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 3 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-md
   name: Maryland
   queue_status: blocked_primary_source
@@ -1051,6 +1214,20 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md
+    - us-md/regulation/2026-10-06-w6-tanf-ccdf-rules-md
+    - us-md/statute/2026-10-06-w6-tanf-ccdf-statutes-md
+    taken_count: 8
+    decision_counts:
+      ABSENT: 2
+      OUTREACH: 1
+      PRESENT: 8
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 11 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: agent_ready
@@ -1096,6 +1273,18 @@ states:
       version: 2026-09-13-ccdf-state-plan-amendments
     taken_count: 2
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma
+    - us-ma/regulation/2026-10-06-w6-tanf-ccdf-rules-ma
+    taken_count: 11
+    decision_counts:
+      ABSENT: 1
+      PRESENT: 11
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 12 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: agent_ready
@@ -1128,6 +1317,17 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi
+    taken_count: 1
+    decision_counts:
+      ALREADY-HELD: 1
+      PRESENT: 1
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 2 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mn
   name: Minnesota
   queue_status: agent_ready
@@ -1169,6 +1369,19 @@ states:
     taken_count: 0
     notes: 'Reviewed 2026-09-13: dcyf.mn.gov page (impersonated) lists the plan and the QPR only; no schedule. Market rate
       survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn
+    - us-mn/policy/2026-10-06-w6-tanf-ccdf-docs-mn
+    - us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn
+    - us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn
+    taken_count: 13
+    decision_counts:
+      PRESENT: 13
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 13 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ms
   name: Mississippi
   queue_status: agent_ready
@@ -1210,6 +1423,18 @@ states:
     notes: 'Reviewed 2026-09-13: 2021/2024 market rate surveys and the 2024 Narrow Cost Analysis on the ECCD Reports and Archives
       page; no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule,
       and were not taken.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ms/manual/2026-10-06-w6-tanf-ccdf-manual-ms
+    - us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms
+    taken_count: 2
+    decision_counts:
+      OUT-OF-SCOPE: 2
+      PRESENT: 2
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 4 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mo
   name: Missouri
   queue_status: blocked_primary_source
@@ -1248,6 +1473,18 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo
+    - us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo
+    - us-mo/regulation/2026-10-06-w6-tanf-ccdf-rules-mo
+    taken_count: 9
+    decision_counts:
+      PRESENT: 9
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 9 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mt
   name: Montana
   queue_status: agent_ready
@@ -1279,6 +1516,18 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt
+    - us-mt/policy/2026-10-06-w6-tanf-ccdf-docs-mt
+    - us-mt/regulation/2026-10-06-w6-tanf-ccdf-rules-mt-title-37-section-37-80
+    taken_count: 10
+    decision_counts:
+      PRESENT: 10
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 10 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-ne
   name: Nebraska
   queue_status: agent_ready
@@ -1312,6 +1561,18 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-ne/policy/2026-10-06-w6-tanf-ccdf-docs-ne
+    - us-ne/regulation/2026-10-06-w6-tanf-ccdf-rules-ne
+    - us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne
+    taken_count: 12
+    decision_counts:
+      PRESENT: 12
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 12 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-nv
   name: Nevada
   queue_status: agent_ready
@@ -1545,6 +1806,18 @@ states:
       for Family Child Care Homes, effective October 1, 2023 (current); Subsidized Child Care Market Rates for Child Care
       Centers, effective October 1, 2026 (revised August 18, 2026); Subsidized Child Care Market Rates for Family Child Care
       Homes, effective October 1, 2026 (revised August 18, 2026).'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc
+    - us-nc/policy/2026-10-06-w6-tanf-ccdf-docs-nc
+    - us-nc/regulation/2026-10-06-w6-tanf-ccdf-rules-nc
+    taken_count: 7
+    decision_counts:
+      PRESENT: 7
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 7 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-nd
   name: North Dakota
   queue_status: agent_ready
@@ -1590,6 +1863,20 @@ states:
       version: 2026-09-13-ccdf-state-plan-amendments
     taken_count: 2
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
+  - family: program_bundle_documents_2026_10_06
+    queue_status: done
+    index_url: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv
+    target_scopes:
+    - us-nd/manual/2026-10-06-w6-ccap-manual-nd
+    - us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd
+    - us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd
+    - us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd
+    taken_count: 7
+    decision_counts:
+      OUT-OF-SCOPE: 1
+      PRESENT: 7
+    notes: 'Wave 6 (tanf-ccdf-ak-ne, 2026-10-06): 8 CCDF bundle documents of the program-bundle gaps work order; decisions
+      per document in docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv; run note docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   queue_status: blocked_primary_source

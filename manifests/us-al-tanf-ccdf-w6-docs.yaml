@@ -5,7 +5,7 @@ documents:
 - source_id: us-al-w6-dhr-tanf-state-plan-2021
   jurisdiction: us-al
   document_class: policy
-  title: 'Alabama Department of Human Resources: TANF State Plan'
+  title: 'Alabama DHR: TANF section of the Combined State Plan (2021 file)'
   source_url: https://dhr.alabama.gov/wp-content/uploads/2021/09/2021-TANF-State-Plan.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -29,7 +29,7 @@ documents:
 - source_id: us-al-w6-dhr-ccdf-provider-rates-with-qris-tiers-2022-04-01
   jurisdiction: us-al
   document_class: policy
-  title: 'Alabama Department of Human Resources: Chile Care Subsidy Program'
+  title: 'Alabama DHR Child Care Subsidy Program: Provider Rates with QRIS Tiers, April 1, 2022'
   source_url: https://dhr.alabama.gov/wp-content/uploads/2023/04/Provider-Rates-with-QRIS-Tiers-April-1-2022-b.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -53,7 +53,7 @@ documents:
 - source_id: us-al-w6-dhr-tanf-dhr-fad-595-2023-10
   jurisdiction: us-al
   document_class: policy
-  title: 'Alabama Department of Human Resources: DEPARTMENT OF HUMAN RESOURCES'
+  title: 'Alabama DHR Family Assistance Program: Summarized Eligibility Requirements (DHR-FAD-595, October 2023)'
   source_url: https://dhr.alabama.gov/wp-content/uploads/2023/10/DHR-FAD-595-Oct.23.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -77,12 +77,14 @@ documents:
 - source_id: us-al-w6-dhr-ccdf-child-care-fact-sheet-2024
   jurisdiction: us-al
   document_class: policy
-  title: 'Alabama Department of Human Resources: child-care-fact-sheet-2024'
+  title: 'Alabama DHR: Child Care Fact Sheet 2024'
   source_url: https://dhr.alabama.gov/wp-content/uploads/2024/01/Child-Care-Fact-Sheet-2024.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2026-04-03'
   citation_path: us-al/policy/dhr/ccdf/child-care-fact-sheet-2024
+  extraction:
+    ocr: true
   metadata:
     primary_source: true
     source_authority: Alabama Department of Human Resources
@@ -97,4 +99,5 @@ documents:
     expression_date_basis: HTTP Last-Modified
     source_last_modified: '2026-04-03'
     page_count: 1
+    source_note: image-only PDF (no text layer); Tesseract page OCR (the SD TANF plan precedent)
     agency_segment: dhr

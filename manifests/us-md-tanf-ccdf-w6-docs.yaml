@@ -5,12 +5,14 @@ documents:
 - source_id: us-md-w6-dhs-fia-at-19-04-tca-benefit-increase
   jurisdiction: us-md
   document_class: policy
-  title: 'Maryland Department of Human Services, Family Investment Administration: 19-04-at-temporary-cash-assistance-benefit-increase-1'
+  title: 'Maryland DHS FIA Action Transmittal 19-04: Temporary Cash Assistance benefit increase'
   source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2019/19-04-AT-TEMPORARY-CASH-ASSISTANCE-BENEFIT-INCREASE-1.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2020-02-14'
   citation_path: us-md/policy/dhs/fia/at-19-04-tca-benefit-increase
+  extraction:
+    ocr: true
   metadata:
     primary_source: true
     source_authority: Maryland Department of Human Services, Family Investment Administration
@@ -25,16 +27,19 @@ documents:
     expression_date_basis: HTTP Last-Modified
     source_last_modified: '2020-02-14'
     page_count: 3
+    source_note: image-only PDF (no text layer); Tesseract page OCR (the SD TANF plan precedent)
     agency_segment: dhs
 - source_id: us-md-w6-dhs-fia-at-20-06-tca-benefit-increase
   jurisdiction: us-md
   document_class: policy
-  title: 'Maryland Department of Human Services, Family Investment Administration: 20-06-at-tca-benefit-increase'
+  title: 'Maryland DHS FIA Action Transmittal 20-06: TCA benefit increase'
   source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2020/20-06%20AT-TCA%20Benefit%20Increase.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2020-02-14'
   citation_path: us-md/policy/dhs/fia/at-20-06-tca-benefit-increase
+  extraction:
+    ocr: true
   metadata:
     primary_source: true
     source_authority: Maryland Department of Human Services, Family Investment Administration
@@ -49,6 +54,7 @@ documents:
     expression_date_basis: HTTP Last-Modified
     source_last_modified: '2020-02-14'
     page_count: 6
+    source_note: image-only PDF (no text layer); Tesseract page OCR (the SD TANF plan precedent)
     agency_segment: dhs
 - source_id: us-md-w6-mga-ccdf-ways-and-means-2026-child-care-scholarship-briefing
   jurisdiction: us-md

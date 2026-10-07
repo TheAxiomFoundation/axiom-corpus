@@ -5,12 +5,14 @@ documents:
 - source_id: us-hi-w6-dhs-ccdf-gross-income-eligibility-limits-and-sliding-fee-scale
   jurisdiction: us-hi
   document_class: policy
-  title: 'Hawaii Department of Human Services: child-care-gross-income-eligibility-limits-and-sliding-fee-scale'
+  title: 'Hawaii DHS: Child Care Gross Income Eligibility Limits and Sliding Fee Scale'
   source_url: https://childcaresubsidyapplication.dhs.hawaii.gov/Child-Care-Gross-Income-Eligibility-Limits-and-Sliding-Fee-Scale
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-07-25'
   citation_path: us-hi/policy/dhs/ccdf/gross-income-eligibility-limits-and-sliding-fee-scale
+  extraction:
+    ocr: true
   metadata:
     primary_source: true
     source_authority: Hawaii Department of Human Services
@@ -25,6 +27,7 @@ documents:
     expression_date_basis: HTTP Last-Modified
     source_last_modified: '2024-07-25'
     page_count: 1
+    source_note: image-only PDF (no text layer); Tesseract page OCR (the SD TANF plan precedent)
     agency_segment: dhs
 - source_id: us-hi-w6-dhs-tanf-hrs-346-54-public-assistance-expenditures-report-2016
   jurisdiction: us-hi
@@ -53,8 +56,7 @@ documents:
 - source_id: us-hi-w6-dhs-tanf-hrs-346-51-5-tanf-legislative-report-2025
   jurisdiction: us-hi
   document_class: policy
-  title: 'Hawaii Department of Human Services: AN EQUAL OPPORTUNITY AGENCY JOSH GREEN, M.D. GOVERNOR KE KIAʻĀINA
-    STATE OF HAWAII KA MOKUʻĀINA O'
+  title: 'Hawaii DHS BESSD: Report to the 2025 Legislature pursuant to HRS 346-51.5 (TANF)'
   source_url: https://humanservices.hawaii.gov/wp-content/uploads/2024/11/RYamane_2025-HRS-Sect-346-51.5-TANF-Legislative-Report-DHS-BESSD-signed.pdf
   source_format: pdf
   source_as_of: '2026-10-06'

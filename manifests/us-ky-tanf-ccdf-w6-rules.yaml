@@ -5,7 +5,7 @@ documents:
 - source_id: us-ky-w6-kar-922-002-160-document-10239
   jurisdiction: us-ky
   document_class: regulation
-  title: 'Kentucky Legislative Research Commission: 922 KAR 2:160.'
+  title: 922 KAR 2:160, Child Care Assistance Program (LRC document 10239)
   source_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/10239/document.engrossed.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -29,7 +29,7 @@ documents:
 - source_id: us-ky-w6-kar-922-002-160-document-13685
   jurisdiction: us-ky
   document_class: regulation
-  title: 'Kentucky Legislative Research Commission: 922 KAR 2:160.'
+  title: 922 KAR 2:160, Child Care Assistance Program, amended at ARRS Committee (LRC document 13685)
   source_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/13685/document.engrossed.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -53,7 +53,7 @@ documents:
 - source_id: us-ky-w6-kar-922-002-160-document-15544
   jurisdiction: us-ky
   document_class: regulation
-  title: 'Kentucky Legislative Research Commission: 922 KAR 2:160.'
+  title: 922 KAR 2:160, Child Care Assistance Program, amendment (LRC document 15544)
   source_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/15544/document.engrossed.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -77,8 +77,7 @@ documents:
 - source_id: us-ky-w6-register-49-02-august-2022
   jurisdiction: us-ky
   document_class: regulation
-  title: 'Kentucky Legislative Research Commission: MEETING NOTICES The Administrative Regulation Review Subcommittee
-    is tentatively scheduled to meet on August 9, 2022,'
+  title: Administrative Register of Kentucky, Volume 49, Number 2 (August 2022)
   source_url: https://apps.legislature.ky.gov/law/kar/registers/49Ky_R_2022-23/02_Aug.pdf
   source_format: pdf
   source_as_of: '2026-10-06'
@@ -102,8 +101,7 @@ documents:
 - source_id: us-ky-w6-kar-921-002-016
   jurisdiction: us-ky
   document_class: regulation
-  title: 'Kentucky Legislative Research Commission: Title 921 Chapter 2 Regulation 016 • Kentucky Administrative
-    Regulations • Legislative Research Commission'
+  title: 921 KAR 2:016, Standards for need and amount for the Kentucky Transitional Assistance Program (K-TAP)
   source_url: https://apps.legislature.ky.gov/law/kar/titles/921/002/016/
   source_format: html
   source_as_of: '2026-10-06'
@@ -125,13 +123,14 @@ documents:
 - source_id: us-ky-w6-kar-921-002-016-version-10142
   jurisdiction: us-ky
   document_class: regulation
-  title: 'Kentucky Legislative Research Commission: Title 921 Chapter 2 Regulation 016 • Kentucky Administrative
-    Regulations • Legislative Research Commission'
+  title: 921 KAR 2:016, Standards for need and amount for K-TAP (superseded LRC version 10142)
   source_url: https://apps.legislature.ky.gov/law/kar/titles/921/002/016/10142/
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
   citation_path: us-ky/regulation/kar/921/002/016/version-10142
+  extraction:
+    html_content_selector: '#regular-content'
   metadata:
     primary_source: true
     source_authority: Kentucky Legislative Research Commission
@@ -144,4 +143,5 @@ documents:
     bundle_tiers: full screener
     work_order_action: FETCH
     expression_date_basis: source date (no printed or HTTP date)
+    source_note: superseded version 10142 of 921 KAR 2:016 as the LRC page prints it (marked SUPERSEDED)
     agency_segment: kar
