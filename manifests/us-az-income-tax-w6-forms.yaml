@@ -1,0 +1,733 @@
+version: 2026-10-06-w6-income-tax-forms-az
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Arizona
+documents:
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2021-140
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140, Resident Personal Income Tax Return (2021)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2021-140
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10413 (21) AZ Form 140 (2021) Page 1 of 6
+    tax_year: '2021'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2021_140
+    wave6_work_order_rows:
+    - 117
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2021-140booklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Booklet (2021)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140BOOKLET.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2021-140booklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Pay your taxes by credit card! ... (2021 booklet, 64 pages)
+    tax_year: '2021'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2021_140booklet
+    wave6_work_order_rows:
+    - 118
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2021-140i
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Return Instructions (2021)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140i.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2021-140i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Form 2021 Resident Personal Income Tax Return 140
+    tax_year: '2021'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2021_140i
+    wave6_work_order_rows:
+    - 119
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2021-140i-2d
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Instructions, 2-D barcode edition (2021)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140i-2D.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2021-140i-2d
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Form 2021 Resident Personal Income Tax Return 140
+    tax_year: '2021'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2021_140i-2d
+    wave6_work_order_rows:
+    - 120
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2021-140ptc
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140PTC, Property Tax Refund (Credit) Claim (2021)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140PTC.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2021-140ptc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10567 (21)
+    tax_year: '2021'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2021_140ptc
+    wave6_work_order_rows:
+    - 121
+- source_id: us-az-w6-azdor-ty2021-form-140ptc-fillable
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140PTC, Property Tax Refund (Credit) Claim, fillable (2021)
+  source_url: https://azdor.gov/sites/default/files/2023-09/FORMS_INDIVIDUAL_2021_140PTC-f.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-az/form/azdor/ty2021/form-140ptc-fillable
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10567 (21)
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 142
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2022-140
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140, Resident Personal Income Tax Return (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2022-140
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10413 (22) AZ Form 140 (2022) Page 1 of 6
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2022_140
+    wave6_work_order_rows:
+    - 122
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-08-forms-individual-2022-140f
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140, Resident Personal Income Tax Return, fillable (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-08/FORMS_INDIVIDUAL_2022_140f.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-08/forms-individual-2022-140f
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Your First Name and Middle Initial ... (Form 140 2022 fillable)
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-08/forms_individual_2022_140f
+    wave6_work_order_rows:
+    - 127
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2022-140booklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Booklet (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140BOOKLET.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2022-140booklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Pay your taxes by credit card! ... (2022 booklet, 60 pages)
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2022_140booklet
+    wave6_work_order_rows:
+    - 123
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2022-140i
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Return Instructions (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140i.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2022-140i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Form 2022 Resident Personal Income Tax Return 140
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2022_140i
+    wave6_work_order_rows:
+    - 124
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2022-140i-2d
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Instructions, 2-D barcode edition (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140i-2D.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2022-140i-2d
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Form 2022 Resident Personal Income Tax Return 140
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2022_140i-2d
+    wave6_work_order_rows:
+    - 125
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2022-140ai
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140A Resident Personal Income Tax Return (Short Form) Instructions (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140Ai.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2022-140ai
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Form 2022 Resident Personal Income Tax Return (Short Form) 140A
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2022_140ai
+    wave6_work_order_rows:
+    - 135
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2022-140ptc
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140PTC, Property Tax Refund (Credit) Claim (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140PTC.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2022-140ptc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10567 (22)
+    tax_year: '2022'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2022_140ptc
+    wave6_work_order_rows:
+    - 126
+- source_id: us-az-w6-azdor-ty2022-form-201
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 201, Renter's Certificate of Property Taxes Paid (2022)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_201_f.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-az/form/azdor/ty2022/form-201
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10417 (22) Use Form 201 if you rented in 2022
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 140
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-10-forms-individual-140-svi
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Return Instructions (2023, FORMS_INDIVIDUAL_140-SVi)
+  source_url: https://azdor.gov/sites/default/files/2023-10/FORMS_INDIVIDUAL_140-SVi.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-10/forms-individual-140-svi
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Form 2023 Resident Personal Income Tax Return 140
+    tax_year: '2023'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-10/forms_individual_140-svi
+    wave6_work_order_rows:
+    - 128
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-12-forms-individual-2023-140booklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Booklet (2023)
+  source_url: https://azdor.gov/sites/default/files/2023-12/FORMS_INDIVIDUAL_2023_140Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-12/forms-individual-2023-140booklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Pay your taxes by credit card! ... (2023 booklet, 56 pages)
+    tax_year: '2023'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-12/forms_individual_2023_140booklet
+    wave6_work_order_rows:
+    - 129
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-12-forms-individual-2023-140nrbooklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140NR Nonresident Personal Income Tax Booklet (2023)
+  source_url: https://azdor.gov/sites/default/files/2023-12/FORMS_INDIVIDUAL_2023_140NRBooklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-12/forms-individual-2023-140nrbooklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Who must use Arizona Form 140NR? (2023 booklet)
+    tax_year: '2023'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-12/forms_individual_2023_140nrbooklet
+    wave6_work_order_rows:
+    - 130
+- source_id: us-az-w6-azdor-ty2023-form-140ptc-fillable
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140PTC, Property Tax Refund (Credit) Claim, fillable (2023)
+  source_url: https://azdor.gov/sites/default/files/2023-12/FORMS_INDIVIDUAL_2023_140PTC_f.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-az/form/azdor/ty2023/form-140ptc-fillable
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10567 (23)
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 143
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-document-forms-individual-2024-140booklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Booklet (2024)
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2024_140Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/document/forms-individual-2024-140booklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Pay your taxes by credit card! ... (2024 booklet, 56 pages)
+    tax_year: '2024'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/document/forms_individual_2024_140booklet
+    wave6_work_order_rows:
+    - 131
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-document-forms-individual-2024-140nrbooklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140NR Nonresident Personal Income Tax Booklet (2024)
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2024_140NRBooklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/document/forms-individual-2024-140nrbooklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Who must use Arizona Form 140NR? (2024 booklet)
+    tax_year: '2024'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/document/forms_individual_2024_140nrbooklet
+    wave6_work_order_rows:
+    - 132
+- source_id: us-az-w6-azdor-ty2024-form-140ptc-fillable
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140PTC, Property Tax Refund (Credit) Claim, fillable (2024)
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2024_140PTC_f.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-az/form/azdor/ty2024/form-140ptc-fillable
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10567 (24)
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 144
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-sites-default-files-2023-03-forms-individual-2020-140nrbooklet
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140NR Nonresident Personal Income Tax Booklet (2020)
+  source_url: https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2020_140NRBOOKLET.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/sites/default/files/2023-03/forms-individual-2020-140nrbooklet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Who must use Arizona Form 140NR? (2020 booklet, 48 pages)
+    tax_year: '2020'
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/sites/default/files/2023-03/forms_individual_2020_140nrbooklet
+    wave6_work_order_rows:
+    - 134
+- source_id: us-az-w6-azdor-ty2025-form-140ptc-fillable
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140PTC, Property Tax Refund (Credit) Claim, fillable (2025)
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140PTC_f.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-az/form/azdor/ty2025/form-140ptc-fillable
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ADOR 10567 (25)
+    tax_year: '2025'
+    wave6_work_order_rows:
+    - 145
+- source_id: us-az-w6-azdor-ty2025-mctcp-worksheet
+  jurisdiction: us-az
+  document_class: form
+  title: Middle Class Tax Cuts Package (MCTCP) Worksheet for Calendar Year 2025
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_MCTCP.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-az/form/azdor/ty2025/mctcp-worksheet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: MCTCP Middle Class Tax Cuts Package (MCTCP) WORKSHEET FOR CALENDAR YEAR 2025
+    tax_year: '2025'
+    wave6_work_order_rows:
+    - 146
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-forms-individual
+  jurisdiction: us-az
+  document_class: form
+  title: Individual Income Tax Forms (ADOR forms index page)
+  source_url: https://azdor.gov/forms/individual
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/forms/individual
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Individual Income Tax Forms (ADOR forms index page)
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/forms/individual
+    wave6_work_order_rows:
+    - 112
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-forms-individual-form-140-arizona-resident-personal-income-tax-booklet
+  jurisdiction: us-az
+  document_class: form
+  title: Form 140 - Arizona Resident Personal Income Tax Booklet (ADOR form page)
+  source_url: https://azdor.gov/forms/individual/form-140-arizona-resident-personal-income-tax-booklet
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/forms/individual/form-140-arizona-resident-personal-income-tax-booklet
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Form 140 - Arizona Resident Personal Income Tax Booklet (ADOR form page)
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/forms/individual/form-140-arizona-resident-personal-income-tax-booklet
+    wave6_work_order_rows:
+    - 113
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-forms-individual-form-140-resident-personal-income-tax-form-calculating
+  jurisdiction: us-az
+  document_class: form
+  title: Form 140 - Resident Personal Income Tax Form -- Fillable (ADOR form page)
+  source_url: https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-calculating
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-calculating
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Form 140 - Resident Personal Income Tax Form -- Fillable (ADOR form page)
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-calculating
+    wave6_work_order_rows:
+    - 114
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-forms-individual-form-140a-arizona-resident-personal-income-tax-booklet
+  jurisdiction: us-az
+  document_class: form
+  title: Form 140A - Arizona Resident Personal Income Tax Booklet (ADOR form page)
+  source_url: https://azdor.gov/forms/individual/form-140a-arizona-resident-personal-income-tax-booklet
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/forms/individual/form-140a-arizona-resident-personal-income-tax-booklet
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Form 140A - Arizona Resident Personal Income Tax Booklet (ADOR form page)
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/forms/individual/form-140a-arizona-resident-personal-income-tax-booklet
+    wave6_work_order_rows:
+    - 115
+- source_id: us-az-w6-individual-income-tax-forms-azdor.gov-forms-individual-itemized-deduction-adjustments-form
+  jurisdiction: us-az
+  document_class: form
+  title: Itemized Deduction Adjustments Form (ADOR form page)
+  source_url: https://azdor.gov/forms/individual/itemized-deduction-adjustments-form
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/individual-income-tax-forms/azdor.gov/forms/individual/itemized-deduction-adjustments-form
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Itemized Deduction Adjustments Form (ADOR form page)
+    may_2026_manifest: manifests/us-az-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-az/form/individual_income_tax_forms/azdor.gov/forms/individual/itemized-deduction-adjustments-form
+    wave6_work_order_rows:
+    - 116
+- source_id: us-az-w6-azdor-web-property-tax-refund-credit-claim-form-page
+  jurisdiction: us-az
+  document_class: form
+  title: Property Tax Refund (Credit) Claim Form -- Fillable (ADOR form page)
+  source_url: https://azdor.gov/forms/tax-credits-forms/property-tax-refund-credit-claim-form-fillable
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/azdor/web/property-tax-refund-credit-claim-form-page
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Property Tax Refund (Credit) Claim Form -- Fillable (ADOR form page)
+    wave6_work_order_rows:
+    - 138
+- source_id: us-az-w6-azdor-web-credit-contributions-qualifying-charitable-organizations-page
+  jurisdiction: us-az
+  document_class: form
+  title: Credit for Contributions to Qualifying Charitable Organizations (ADOR form page)
+  source_url: https://azdor.gov/forms/tax-credits-forms/credit-contributions-qualifying-charitable-organizations
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/azdor/web/credit-contributions-qualifying-charitable-organizations-page
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Credit for Contributions to Qualifying Charitable Organizations (ADOR form page)
+    wave6_work_order_rows:
+    - 136
+- source_id: us-az-w6-azdor-web-credit-contributions-qualifying-foster-care-charitable-organizations-page
+  jurisdiction: us-az
+  document_class: form
+  title: Credit for Contributions to Qualifying Foster Care Charitable Organizations (ADOR form page)
+  source_url: https://azdor.gov/forms/tax-credits-forms/credit-contributions-qualifying-foster-care-charitable-organizations
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/form/azdor/web/credit-contributions-qualifying-foster-care-charitable-organizations-page
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: form_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Credit for Contributions to Qualifying Foster Care Charitable Organizations (ADOR form page)
+    wave6_work_order_rows:
+    - 137
