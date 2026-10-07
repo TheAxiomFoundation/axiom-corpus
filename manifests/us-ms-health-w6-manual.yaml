@@ -1,0 +1,25 @@
+version: 2026-10-06-w6-health-manual-ms
+documents:
+- source_id: us-ms-w6-health-dom-medicaid-chapter-101-2017-10
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual, Chapter 101: Coverage Groups and Processing
+    Applications and Reviews (October 2017 file)'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ms/manual/dom/medicaid/chapter-101-2017-10
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: eligibility_manual_chapter_pdf
+    source_discovery_group: us-ms/manual/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 93
+    bundle_url: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
+    note: Superseded edition; the September 2025 revision is held at us-ms/manual/dom/medicaid/chapter-101 (us-ms/manual/2026-09-10-medicaid-state-eligibility-manual)

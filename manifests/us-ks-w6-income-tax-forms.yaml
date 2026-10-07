@@ -1,0 +1,116 @@
+version: 2026-10-06-w6-income-tax-forms-ks
+documents:
+- source_id: us-ks-form-kdor-ty2021-individual-income-tax-instruction-booklet
+  jurisdiction: us-ks
+  document_class: form
+  title: 2021 Kansas Individual Income Tax booklet (Form K-40 and instructions)
+  source_url: https://www.ksrevenue.gov/pdf/ip21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/form/kdor/ty2021/individual-income-tax-instruction-booklet
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-ks-form-kdor-ty2022-individual-income-tax-instruction-booklet
+  jurisdiction: us-ks
+  document_class: form
+  title: 2022 Kansas Individual Income Tax booklet (Form K-40 and instructions)
+  source_url: https://www.ksrevenue.gov/pdf/ip22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/form/kdor/ty2022/individual-income-tax-instruction-booklet
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-ks-form-kdor-ty2023-individual-income-tax-instruction-booklet
+  jurisdiction: us-ks
+  document_class: form
+  title: 2023 Kansas Individual Income Tax booklet (Form K-40 and instructions)
+  source_url: https://www.ksrevenue.gov/pdf/ip23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/form/kdor/ty2023/individual-income-tax-instruction-booklet
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ks-form-kdor-ty2024-individual-income-tax-instruction-booklet
+  jurisdiction: us-ks
+  document_class: form
+  title: 2024 Kansas Individual Income Tax booklet (Form K-40 and instructions)
+  source_url: https://www.ksrevenue.gov/pdf/ip24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/form/kdor/ty2024/individual-income-tax-instruction-booklet
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-ks-form-kdor-ty2023-form-k-40
+  jurisdiction: us-ks
+  document_class: form
+  title: 2023 Kansas Individual Income Tax Form K-40
+  source_url: https://www.ksrevenue.gov/pdf/k-4023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/form/kdor/ty2023/form-k-40
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ks-form-kdor-ty2024-form-k-40
+  jurisdiction: us-ks
+  document_class: form
+  title: 2024 Kansas Individual Income Tax Form K-40
+  source_url: https://www.ksrevenue.gov/pdf/k-4024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/form/kdor/ty2024/form-k-40
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'

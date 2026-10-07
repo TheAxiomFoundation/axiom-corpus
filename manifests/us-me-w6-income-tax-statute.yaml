@@ -1,0 +1,54 @@
+version: 2026-10-06-w6-income-tax-statute-me
+documents:
+- source_id: us-me-statute-session-laws-132-ld210-committee-amendment-120256
+  jurisdiction: us-me
+  document_class: statute
+  title: Committee Amendment to L.D. 210 (132nd Legislature), Appropriations and Financial Affairs
+  source_url: https://legislature.maine.gov/backend/App/services/getDocument.aspx?documentId=120256
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/statute/session-laws/132/ld210-committee-amendment-120256
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: amendment
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-me-statute-session-laws-132-ld2212
+  jurisdiction: us-me
+  document_class: statute
+  title: 'H.P. 1491 - L.D. 2212 (132nd Legislature, 2026): An Act Making Supplemental Appropriations and Allocations'
+  source_url: https://legislature.maine.gov/legis/bills/getPDF.asp?paper=HP1491&item=37&snum=132
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/statute/session-laws/132/ld2212
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-me-statute-session-laws-130-ld23
+  jurisdiction: us-me
+  document_class: statute
+  title: 'S.P. 31 - L.D. 23 (130th Legislature, 2022): An Act To Reinstate and Increase the Income Tax Deduction for Contributions
+    to Education Savings Plans'
+  source_url: https://legislature.maine.gov/legis/bills/getPDF.asp?paper=SP0031&item=5&snum=130
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/statute/session-laws/130/ld23
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

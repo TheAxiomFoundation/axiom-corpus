@@ -1,0 +1,105 @@
+version: 2026-10-06-w6-income-tax-guidance-mn
+documents:
+- source_id: us-mn-guidance-department-of-revenue-ty2021-inflation-adjusted-amounts
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Tax Year 2021 Inflation-Adjusted Amounts in Minnesota Statutes
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/Inflation%20Adjustments%20TY%202021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/guidance/department-of-revenue/ty2021/inflation-adjusted-amounts
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: inflation_adjustment_notice
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/Inflation%20Adjustments%20TY%202021.pdf
+    tax_year: '2021'
+- source_id: us-mn-guidance-department-of-revenue-ty2022-inflation-adjusted-amounts
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Tax Year 2022 Inflation-Adjusted Amounts in Minnesota Statutes
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/Inflation_Adjustments_TY_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/guidance/department-of-revenue/ty2022/inflation-adjusted-amounts
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: inflation_adjustment_notice
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/Inflation_Adjustments_TY_2022.pdf
+    tax_year: '2022'
+- source_id: us-mn-guidance-department-of-revenue-ty2024-inflation-adjusted-amounts
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Tax Year 2024 Inflation-Adjusted Amounts in Minnesota Statutes
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/inflation-adjusted-amounts-ty-2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/guidance/department-of-revenue/ty2024/inflation-adjusted-amounts
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: inflation_adjustment_notice
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/inflation-adjusted-amounts-ty-2024.pdf
+    tax_year: '2024'
+- source_id: us-mn-guidance-department-of-revenue-crp-instructions
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Certificate of Rent Paid (CRP) Instructions
+  source_url: https://www.revenue.state.mn.us/crp-instructions
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mn/guidance/department-of-revenue/crp-instructions
+  extraction:
+    html_content_selector: .uswds-main-content-wrapper
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/crp-instructions
+- source_id: us-mn-guidance-department-of-revenue-education-savings-account-contribution-subtraction
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Education Savings Account Contribution Subtraction
+  source_url: https://www.revenue.state.mn.us/education-savings-account-contribution-subtraction
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mn/guidance/department-of-revenue/education-savings-account-contribution-subtraction
+  extraction:
+    html_content_selector: .uswds-main-content-wrapper
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/education-savings-account-contribution-subtraction

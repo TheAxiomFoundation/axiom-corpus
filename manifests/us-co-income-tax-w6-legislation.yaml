@@ -1,0 +1,196 @@
+version: 2026-10-06-w6-income-tax-legislation-co
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Colorado
+documents:
+- source_id: us-co-w6-session-laws-2023-hb23-1112
+  jurisdiction: us-co
+  document_class: statute
+  title: House Bill 23-1112 (signed act), earned income and child tax credits
+  source_url: https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/session-laws/2023/hb23-1112
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HOUSE BILL 23-1112
+    wave6_work_order_rows:
+    - 241
+- source_id: us-co-w6-session-laws-2024-hb24-1052
+  jurisdiction: us-co
+  document_class: statute
+  title: House Bill 24-1052 (signed act), senior housing income tax credit
+  source_url: https://leg.colorado.gov/sites/default/files/2024a_1052_signed.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/session-laws/2024/hb24-1052
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HOUSE BILL 24-1052
+    wave6_work_order_rows:
+    - 242
+- source_id: us-co-w6-session-laws-2024-hb24-1142
+  jurisdiction: us-co
+  document_class: statute
+  title: House Bill 24-1142 (signed act), social security subtraction
+  source_url: https://leg.colorado.gov/sites/default/files/2024a_1142_signed.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/session-laws/2024/hb24-1142
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HOUSE BILL 24-1142
+    wave6_work_order_rows:
+    - 243
+- source_id: us-co-w6-session-laws-2025-hb25-1296
+  jurisdiction: us-co
+  document_class: statute
+  title: House Bill 25-1296 (signed act)
+  source_url: https://content.leg.colorado.gov/sites/default/files/2025a_1296_signed.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/session-laws/2025/hb25-1296
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HOUSE BILL 25-1296
+    wave6_work_order_rows:
+    - 236
+- source_id: us-co-w6-session-laws-2025-hb25b-1001
+  jurisdiction: us-co
+  document_class: statute
+  title: House Bill 25B-1001 (signed act, 2025 First Extraordinary Session)
+  source_url: https://leg.colorado.gov/sites/default/files/2025b_1001_signed.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/session-laws/2025/hb25b-1001
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HOUSE BILL 25B-1001
+    wave6_work_order_rows:
+    - 244
+- source_id: us-co-w6-bills-2022-sb22-233-introduced
+  jurisdiction: us-co
+  document_class: statute
+  title: Senate Bill 22-233 (introduced), TABOR refund for 2022
+  source_url: https://leg.colorado.gov/sites/default/files/documents/2022A/bills/2022a_233_01.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/bills/2022/sb22-233-introduced
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado General Assembly
+    document_subtype: bill
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Second Regular Session Seventy-third General Assembly ... SENATE BILL 22-233
+    wave6_work_order_rows:
+    - 245
+- source_id: us-co-w6-crs-2023-title-39
+  jurisdiction: us-co
+  document_class: statute
+  title: Colorado Revised Statutes 2023, Title 39 (Taxation), official OLLS compilation
+  source_url: https://leg.colorado.gov/sites/default/files/images/olls/crs2023-title-39.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/crs-2023/title-39
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Colorado Office of Legislative Legal Services
+    document_subtype: code_edition
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Revised Statutes 2023 TITLE 39 TAXATION (1,051 pages)
+    wave6_work_order_rows:
+    - 247
+- source_id: us-co-w6-crs-2024-title-39
+  jurisdiction: us-co
+  document_class: statute
+  title: Colorado Revised Statutes 2024, Title 39 (Taxation), official OLLS compilation
+  source_url: https://content.leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/crs-2024/title-39
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Colorado Office of Legislative Legal Services
+    document_subtype: code_edition
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Revised Statutes 2024 TITLE 39 Taxation (1,163 pages)
+    wave6_work_order_rows:
+    - 237
+- source_id: us-co-w6-crs-2025-constitution
+  jurisdiction: us-co
+  document_class: statute
+  title: Constitution of the State of Colorado (Colorado Revised Statutes 2025, official OLLS compilation)
+  source_url: https://olls.info/crs/crs2025-title-00.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/statute/crs-2025/constitution
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Colorado Office of Legislative Legal Services
+    document_subtype: constitution
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Revised Statutes 2025 CONSTITUTION OF THE STATE OF COLORADO Preamble (210 pages)
+    wave6_work_order_rows:
+    - 251

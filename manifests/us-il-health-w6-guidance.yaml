@@ -1,0 +1,191 @@
+version: 2026-10-06-w6-health-guidance-il
+documents:
+- source_id: us-il-w6-health-hfs-health-benefits-for-immigrants
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: Health Benefits for Immigrants'
+  source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/health-benefits-for-immigrants
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 52
+    bundle_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html
+- source_id: us-il-w6-health-hfs-health-benefits-for-immigrants-hbia-faq
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: Health Benefits for Immigrant Adults FAQ'
+  source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 53
+    bundle_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html
+- source_id: us-il-w6-health-hfs-health-benefits-for-immigrants-immigrant-adults
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: Health Benefits for Immigrant Adults'
+  source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 54
+    bundle_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html
+- source_id: us-il-w6-health-hfs-all-kids-about
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: About All Kids'
+  source_url: https://hfs.illinois.gov/medicalprograms/allkids/about.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/all-kids/about
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: CHIP
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 55
+    bundle_url: https://hfs.illinois.gov/medicalprograms/allkids/about.html
+- source_id: us-il-w6-health-hfs-all-kids-income
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: All Kids: How Much Does It Cost?'
+  source_url: https://hfs.illinois.gov/medicalprograms/allkids/income.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/all-kids/income
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: CHIP
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 56
+    bundle_url: https://hfs.illinois.gov/medicalprograms/allkids/income.html
+- source_id: us-il-w6-health-hfs-hbwd
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: Health Benefits for Workers with Disabilities (HBWD)'
+  source_url: https://hfs.illinois.gov/medicalprograms/hbwd.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/hbwd
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 57
+    bundle_url: https://hfs.illinois.gov/medicalprograms/hbwd.html
+- source_id: us-il-w6-health-hfs-hbwd-about
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: About HBWD'
+  source_url: https://hfs.illinois.gov/medicalprograms/hbwd/about.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/hbwd/about
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 58
+    bundle_url: https://hfs.illinois.gov/medicalprograms/hbwd/about.html
+- source_id: us-il-w6-health-hfs-hbwd-eligibility
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: HBWD Eligibility'
+  source_url: https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/hbwd/eligibility
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 59
+    bundle_url: https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html
+- source_id: us-il-w6-health-hfs-hbwd-premiums
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Illinois HFS: HBWD Premium Costs & Co-Pays'
+  source_url: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/hfs/hbwd/premiums
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Healthcare and Family Services (HFS)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-il/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 60
+    bundle_url: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html

@@ -29,9 +29,9 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 24
+  agent_ready: 25
   blocked_primary_source: 3
-  done: 72
+  done: 84
   needs_review: 3
 states:
 - jurisdiction: us
@@ -2035,6 +2035,206 @@ states:
   index_url: https://www.irs.gov/forms-instructions
   index_document_count: 35
   taken_count: 19
+  wave6_federal_scopes:
+  - scope: us/form/2026-10-06-w6-federal-irs-forms
+    work_order_documents: 70
+    scope_provision_rows: 1722
+    coverage_complete: true
+    citation_paths:
+    - us/form/irs/ty2009/i1040gi
+    - us/form/irs/ty2011/i706
+    - us/form/irs/ty2013/f5695
+    - us/form/irs/ty2013/f8880
+    - us/form/irs/ty2013/f940sa
+    - us/form/irs/ty2013/i1040sca
+    - us/form/irs/ty2013/i1040sr
+    - us/form/irs/ty2013/i2441
+    - us/form/irs/ty2013/i8863
+    - us/form/irs/ty2013/p972
+    - us/form/irs/ty2014/f940sa
+    - us/form/irs/ty2014/i1040sca
+    - us/form/irs/ty2014/p501
+    - us/form/irs/ty2015/f8863
+    - us/form/irs/ty2015/i1040sca
+    - us/form/irs/ty2016/i1040sca
+    - us/form/irs/ty2017/i1040sca
+    - us/form/irs/ty2017/i8936
+    - us/form/irs/ty2018/f8880
+    - us/form/irs/ty2018/i1040sca
+    - us/form/irs/ty2018/p535
+    - us/form/irs/ty2018/p590a
+    - us/form/irs/ty2019/i1040sca
+    - us/form/irs/ty2020/f8863
+    - us/form/irs/ty2020/f8917
+    - us/form/irs/ty2020/i1040sca
+    - us/form/irs/ty2020/p526
+    - us/form/irs/ty2020/p972
+    - us/form/irs/ty2021/f1040
+    - us/form/irs/ty2021/f1040s8
+    - us/form/irs/ty2021/f8880
+    - us/form/irs/ty2021/i1040sr
+    - us/form/irs/ty2021/i2441
+    - us/form/irs/ty2021/i706
+    - us/form/irs/ty2021/i8863
+    - us/form/irs/ty2021/p526
+    - us/form/irs/ty2021/p596
+    - us/form/irs/ty2021/p929
+    - us/form/irs/ty2021/p970
+    - us/form/irs/ty2022/i1040s8
+    - us/form/irs/ty2022/i5695
+    - us/form/irs/ty2022/i706
+    - us/form/irs/ty2022/i8936
+    - us/form/irs/ty2022/p501
+    - us/form/irs/ty2022/p915
+    - us/form/irs/ty2022/p970
+    - us/form/irs/ty2023/f940sa
+    - us/form/irs/ty2023/i706
+    - us/form/irs/ty2023/i8936
+    - us/form/irs/ty2024/f1040s1
+    - us/form/irs/ty2024/i1040se
+    - us/form/irs/ty2024/i706
+    - us/form/irs/ty2024/i8960
+    - us/form/irs/ty2025/f2555
+    - us/form/irs/ty2025/f461
+    - us/form/irs/ty2025/f4952
+    - us/form/irs/ty2025/f5695
+    - us/form/irs/ty2025/f8815
+    - us/form/irs/ty2025/i1040sr
+    - us/form/irs/ty2025/i461
+    - us/form/irs/ty2025/i5695
+    - us/form/irs/ty2025/i8814
+    - us/form/irs/ty2025/i8936
+    - us/form/irs/ty2025/i940
+    - us/form/irs/ty2025/p590a
+    - us/form/irs/ty2025/p590b
+    - us/form/irs/ty2025/p915
+    - us/form/irs/ty2026/p1101
+    - us/form/irs/ty2026/p15
+    - us/form/irs/ty2026/p6126
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-agency-guidance
+    work_order_documents: 3
+    scope_provision_rows: 43
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/dol/eta/futa-credit-reduction-states-2010-2025
+    - us/guidance/dol/eta/futa-credit-reductions
+    - us/guidance/dol/whd/overtime-salary-levels
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-irs-guidance
+    work_order_documents: 30
+    scope_provision_rows: 473
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/irs/about-schedule-f-form-1040
+    - us/guidance/irs/faq/government-entities-cafeteria-plans
+    - us/guidance/irs/faq/social-security-income
+    - us/guidance/irs/free-tax-return-preparation-for-qualifying-taxpayers
+    - us/guidance/irs/irb/2025-42
+    - us/guidance/irs/newsroom/2021-charitable-deductions-non-itemizers
+    - us/guidance/irs/newsroom/2025-401k-ira-limits
+    - us/guidance/irs/newsroom/2026-401k-ira-limits
+    - us/guidance/irs/newsroom/what-if-i-withdraw-money-from-my-ira
+    - us/guidance/irs/notice-2018-70
+    - us/guidance/irs/notice-2023-75
+    - us/guidance/irs/notice-2024-80
+    - us/guidance/irs/retirement-plan-cola-table
+    - us/guidance/irs/rev-proc-2013-15
+    - us/guidance/irs/rev-proc-2013-35
+    - us/guidance/irs/rev-proc-2014-61
+    - us/guidance/irs/rev-proc-2015-53
+    - us/guidance/irs/rev-proc-2016-55
+    - us/guidance/irs/rev-proc-2017-58
+    - us/guidance/irs/rev-proc-2018-22
+    - us/guidance/irs/rev-proc-2018-57
+    - us/guidance/irs/rev-proc-2019-44
+    - us/guidance/irs/rev-proc-2020-45
+    - us/guidance/irs/rev-proc-2023-34
+    - us/guidance/irs/savers-credit
+    - us/guidance/irs/tax-counseling-for-the-elderly
+    - us/guidance/irs/tax-topic/409
+    - us/guidance/irs/tax-topic/452
+    - us/guidance/irs/tax-topic/505
+    - us/guidance/irs/whats-new-estate-and-gift-tax
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-ssa-guidance
+    work_order_documents: 1
+    scope_provision_rows: 190
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/ssa/request-withhold-taxes
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-26-part-1
+    work_order_documents: 1
+    scope_provision_rows: 29
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/26/1/414-b-1
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541
+    work_order_documents: 2
+    scope_provision_rows: 57
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/29/541
+    - us/regulation/29/541/600
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/rulemaking/2026-10-06-w6-federal-federal-register
+    work_order_documents: 2
+    scope_provision_rows: 227
+    coverage_complete: true
+    citation_paths:
+    - us/rulemaking/federal-register/2019-09-27/2019-20353
+    - us/rulemaking/federal-register/2024-04-26/2024-08038
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-public-laws
+    work_order_documents: 3
+    scope_provision_rows: 1311
+    coverage_complete: true
+    citation_paths:
+    - us/statute/public-law/115-97
+    - us/statute/public-law/117-169
+    - us/statute/public-law/119-21
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-closure-title-26
+    work_order_documents: 18
+    scope_provision_rows: 1409
+    coverage_complete: true
+    citation_paths:
+    - us/statute/26/105
+    - us/statute/26/106
+    - us/statute/26/111
+    - us/statute/26/1221
+    - us/statute/26/1223
+    - us/statute/26/199
+    - us/statute/26/2001
+    - us/statute/26/2010
+    - us/statute/26/222
+    - us/statute/26/33
+    - us/statute/26/38
+    - us/statute/26/404
+    - us/statute/26/408A
+    - us/statute/26/414
+    - us/statute/26/6428
+    - us/statute/26/6428A
+    - us/statute/26/6428B
+    - us/statute/26/652
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-closure-title-42
+    work_order_documents: 2
+    scope_provision_rows: 619
+    coverage_complete: true
+    citation_paths:
+    - us/statute/42/405
+    - us/statute/42/430
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-historical-editions
+    work_order_documents: 1
+    scope_provision_rows: 764
+    coverage_complete: true
+    citation_paths:
+    - us/statute/edition-1976/26/uscode1976-007026001
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal statute (26 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready
@@ -2173,6 +2373,17 @@ states:
     jurisdiction: us-al
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 22
+    status_counts:
+      ALREADY-HELD: 6
+      PRESENT: 16
+    new_scopes:
+    - us-al/form/2026-10-06-w6-income-tax-forms-al
+    - us-al/statute/2026-10-06-w6-income-tax-statute-al-us-al-title-16
   lead_counts:
     ready_for_manifest: 10
     needs_review: 12
@@ -2600,6 +2811,19 @@ states:
     jurisdiction: us-ar
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 90
+    status_counts:
+      ABSENT: 1
+      OUTREACH: 14
+      PRESENT: 75
+    new_scopes:
+    - us-ar/form/2026-10-06-w6-income-tax-forms-ar
+    - us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar
+    - us-ar/statute/2026-10-06-w6-income-tax-legislation-ar
   lead_counts:
     ready_for_manifest: 6
     needs_review: 38
@@ -3306,6 +3530,18 @@ states:
     jurisdiction: us-az
     document_class: form
     version: 2026-07-21-az-140es-2026
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 52
+    status_counts:
+      ALREADY-HELD: 12
+      PRESENT: 40
+    new_scopes:
+    - us-az/form/2026-10-06-w6-income-tax-forms-az
+    - us-az/guidance/2026-10-06-w6-income-tax-guidance-az
+    - us-az/statute/2026-10-06-w6-income-tax-legislation-az
   lead_counts:
     ready_for_manifest: 30
     needs_review: 22
@@ -3911,6 +4147,19 @@ states:
     jurisdiction: us-ca
     document_class: form
     version: 2026-07-23-ca-2026-form-540-es
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 71
+    status_counts:
+      ALREADY-HELD: 17
+      OUT-OF-SCOPE: 1
+      OUTREACH: 3
+      PRESENT: 50
+    new_scopes:
+    - us-ca/form/2026-10-06-w6-income-tax-forms-ca
+    - us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca
   lead_counts:
     ready_for_manifest: 49
     needs_review: 24
@@ -4770,6 +5019,18 @@ states:
     jurisdiction: us-co
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 46
+    status_counts:
+      ALREADY-HELD: 10
+      PRESENT: 36
+    new_scopes:
+    - us-co/form/2026-10-06-w6-income-tax-forms-co
+    - us-co/guidance/2026-10-06-w6-income-tax-guidance-co
+    - us-co/statute/2026-10-06-w6-income-tax-legislation-co
   lead_counts:
     ready_for_manifest: 1
     needs_review: 44
@@ -5553,6 +5814,18 @@ states:
     jurisdiction: us-ct
     document_class: statute
     version: 2026-07-24-ct-income-tax-supplement
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 24
+    status_counts:
+      ALREADY-HELD: 4
+      PRESENT: 20
+    new_scopes:
+    - us-ct/form/2026-10-06-w6-income-tax-forms-ct
+    - us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct
+    - us-ct/statute/2026-10-06-w6-income-tax-legislation-ct
   lead_counts:
     ready_for_manifest: 14
     needs_review: 15
@@ -5922,6 +6195,18 @@ states:
     jurisdiction: us-dc
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 10
+    status_counts:
+      ALREADY-HELD: 3
+      PRESENT: 7
+    new_scopes:
+    - us-dc/form/2026-10-06-w6-income-tax-forms-dc
+    - us-dc/guidance/2026-10-06-w6-income-tax-guidance-dc
+    - us-dc/statute/2026-10-06-w6-income-tax-legislation-dc
   lead_counts:
     ready_for_manifest: 12
     needs_review: 17
@@ -6261,6 +6546,17 @@ states:
     jurisdiction: us-de
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 13
+    status_counts:
+      ALREADY-HELD: 2
+      PRESENT: 11
+    new_scopes:
+    - us-de/form/2026-10-06-w6-income-tax-forms-de
+    - us-de/guidance/2026-10-06-w6-income-tax-guidance-de
   lead_counts:
     ready_for_manifest: 10
     needs_review: 10
@@ -6584,6 +6880,19 @@ states:
     jurisdiction: us-ga
     document_class: form
     version: 2026-07-21-ga-it-511-2025
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 29
+    status_counts:
+      ALREADY-HELD: 12
+      OUTREACH: 1
+      PRESENT: 16
+    new_scopes:
+    - us-ga/form/2026-10-06-w6-income-tax-forms-ga
+    - us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga
+    - us-ga/statute/2026-10-06-w6-income-tax-legislation-ga
   lead_counts:
     ready_for_manifest: 2
     needs_review: 19
@@ -7095,6 +7404,19 @@ states:
     jurisdiction: us-hi
     document_class: form
     version: 2026-07-22-hi-2025-n11-capital-gain-worksheet
+  w6_bundle_gap_closure:
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-al-hi-decisions.csv
+    work_order_rows: 42
+    status_counts:
+      ABSENT: 1
+      ALREADY-HELD: 7
+      PRESENT: 34
+    new_scopes:
+    - us-hi/form/2026-10-06-w6-income-tax-forms-hi
+    - us-hi/guidance/2026-10-06-w6-income-tax-guidance-hi
+    - us-hi/statute/2026-10-06-w6-income-tax-legislation-hi
   lead_counts:
     ready_for_manifest: 27
     needs_review: 18
@@ -7673,6 +7995,37 @@ states:
     jurisdiction: us-ia
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 35
+    statuses:
+      ABSENT: 2
+      ALREADY-HELD: 6
+      OUT-OF-SCOPE: 2
+      PRESENT: 25
+    scopes:
+    - scope: us-ia/form/2026-10-06-w6-income-tax-forms-ia
+      manifest: manifests/us-ia-w6-income-tax-forms.yaml
+      documents: 12
+      complete: true
+      provision_count: 24
+      source_count: 24
+      missing: 0
+    - scope: us-ia/guidance/2026-10-06-w6-income-tax-guidance-ia
+      manifest: manifests/us-ia-w6-income-tax-guidance.yaml
+      documents: 10
+      complete: true
+      provision_count: 96
+      source_count: 96
+      missing: 0
+    - scope: us-ia/statute/2026-10-06-w6-income-tax-statute-ia
+      manifest: manifests/us-ia-w6-income-tax-statute.yaml
+      documents: 1
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
   lead_counts:
     ready_for_manifest: 12
     needs_review: 21
@@ -8096,6 +8449,35 @@ states:
     jurisdiction: us-id
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 41
+    statuses:
+      ALREADY-HELD: 11
+      PRESENT: 30
+    scopes:
+    - scope: us-id/form/2026-10-06-w6-income-tax-forms-id
+      manifest: manifests/us-id-w6-income-tax-forms.yaml
+      documents: 19
+      complete: true
+      provision_count: 38
+      source_count: 38
+      missing: 0
+    - scope: us-id/guidance/2026-10-06-w6-income-tax-guidance-id
+      manifest: manifests/us-id-w6-income-tax-guidance.yaml
+      documents: 3
+      complete: true
+      provision_count: 30
+      source_count: 30
+      missing: 0
+    - scope: us-id/statute/2026-10-06-w6-income-tax-statute-id
+      manifest: manifests/us-id-w6-income-tax-statute.yaml
+      documents: 8
+      complete: true
+      provision_count: 16
+      source_count: 16
+      missing: 0
   lead_counts:
     ready_for_manifest: 37
     needs_review: 12
@@ -8739,6 +9121,29 @@ states:
     jurisdiction: us-il
     document_class: statute
     version: 2026-07-24-il-individual-income-tax-resident-core
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 37
+    statuses:
+      ALREADY-HELD: 6
+      OUTREACH: 6
+      PRESENT: 25
+    scopes:
+    - scope: us-il/form/2026-10-06-w6-income-tax-forms-il
+      manifest: manifests/us-il-w6-income-tax-forms.yaml
+      documents: 19
+      complete: true
+      provision_count: 38
+      source_count: 38
+      missing: 0
+    - scope: us-il/guidance/2026-10-06-w6-income-tax-guidance-il
+      manifest: manifests/us-il-w6-income-tax-guidance.yaml
+      documents: 5
+      complete: true
+      provision_count: 21
+      source_count: 21
+      missing: 0
   lead_counts:
     ready_for_manifest: 21
     needs_review: 14
@@ -9134,6 +9539,36 @@ states:
     jurisdiction: us-in
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 15
+    statuses:
+      ALREADY-HELD: 6
+      OUTREACH: 1
+      PRESENT: 8
+    scopes:
+    - scope: us-in/guidance/2026-10-06-w6-income-tax-guidance-in
+      manifest: manifests/us-in-w6-income-tax-guidance.yaml
+      documents: 3
+      complete: true
+      provision_count: 12
+      source_count: 12
+      missing: 0
+    - scope: us-in/statute/2026-10-06-w6-income-tax-statute-in
+      manifest: manifests/us-in-w6-income-tax-statute.yaml
+      documents: 1
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
+    - scope: us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4
+      manifest: manifests/us-in-w6-indiana-code-title-4.yaml
+      documents: 1
+      complete: true
+      provision_count: 4118
+      source_count: 4118
+      missing: 0
   lead_counts:
     ready_for_manifest: 9
     needs_review: 12
@@ -9448,6 +9883,35 @@ states:
     jurisdiction: us-ks
     document_class: guidance
     version: 2026-07-21-ks-k40es-2026
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 21
+    statuses:
+      ALREADY-HELD: 9
+      PRESENT: 12
+    scopes:
+    - scope: us-ks/form/2026-10-06-w6-income-tax-forms-ks
+      manifest: manifests/us-ks-w6-income-tax-forms.yaml
+      documents: 6
+      complete: true
+      provision_count: 12
+      source_count: 12
+      missing: 0
+    - scope: us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks
+      manifest: manifests/us-ks-w6-income-tax-guidance.yaml
+      documents: 4
+      complete: true
+      provision_count: 25
+      source_count: 25
+      missing: 0
+    - scope: us-ks/statute/2026-10-06-w6-income-tax-statute-ks
+      manifest: manifests/us-ks-w6-income-tax-statute.yaml
+      documents: 2
+      complete: true
+      provision_count: 8
+      source_count: 8
+      missing: 0
   lead_counts:
     ready_for_manifest: 10
     needs_review: 14
@@ -9740,6 +10204,36 @@ states:
     jurisdiction: us-ky
     document_class: form
     version: 2026-740-es
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 37
+    statuses:
+      ABSENT: 2
+      ALREADY-HELD: 1
+      PRESENT: 34
+    scopes:
+    - scope: us-ky/form/2026-10-06-w6-income-tax-forms-ky
+      manifest: manifests/us-ky-w6-income-tax-forms.yaml
+      documents: 29
+      complete: true
+      provision_count: 58
+      source_count: 58
+      missing: 0
+    - scope: us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky
+      manifest: manifests/us-ky-w6-income-tax-guidance.yaml
+      documents: 2
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    - scope: us-ky/statute/2026-10-06-w6-income-tax-statute-ky
+      manifest: manifests/us-ky-w6-income-tax-statute.yaml
+      documents: 2
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
   lead_counts:
     ready_for_manifest: 38
     needs_review: 9
@@ -10281,6 +10775,29 @@ states:
     jurisdiction: us-la
     document_class: form
     version: 2026-07-23-la-2026-it-540es-instructions
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 28
+    statuses:
+      ALREADY-HELD: 11
+      OUT-OF-SCOPE: 1
+      PRESENT: 16
+    scopes:
+    - scope: us-la/form/2026-10-06-w6-income-tax-forms-la
+      manifest: manifests/us-la-w6-income-tax-forms.yaml
+      documents: 12
+      complete: true
+      provision_count: 24
+      source_count: 24
+      missing: 0
+    - scope: us-la/guidance/2026-10-06-w6-income-tax-guidance-la
+      manifest: manifests/us-la-w6-income-tax-guidance.yaml
+      documents: 4
+      complete: true
+      provision_count: 68
+      source_count: 68
+      missing: 0
   lead_counts:
     ready_for_manifest: 15
     needs_review: 18
@@ -10658,6 +11175,36 @@ states:
     jurisdiction: us-ma
     document_class: form
     version: 2026-07-22-ma-2026-form-1-es
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 45
+    statuses:
+      ABSENT: 15
+      ALREADY-HELD: 12
+      PRESENT: 18
+    scopes:
+    - scope: us-ma/form/2026-10-06-w6-income-tax-forms-ma
+      manifest: manifests/us-ma-w6-income-tax-forms.yaml
+      documents: 6
+      complete: true
+      provision_count: 12
+      source_count: 12
+      missing: 0
+    - scope: us-ma/guidance/2026-10-06-w6-income-tax-guidance-ma
+      manifest: manifests/us-ma-w6-income-tax-guidance.yaml
+      documents: 8
+      complete: true
+      provision_count: 112
+      source_count: 112
+      missing: 0
+    - scope: us-ma/statute/2026-10-06-w6-income-tax-statute-ma
+      manifest: manifests/us-ma-w6-income-tax-statute.yaml
+      documents: 3
+      complete: true
+      provision_count: 11
+      source_count: 11
+      missing: 0
   lead_counts:
     ready_for_manifest: 20
     needs_review: 31
@@ -11199,6 +11746,37 @@ states:
     jurisdiction: us-md
     document_class: null
     version: null
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 25
+    statuses:
+      ABSENT: 4
+      ALREADY-HELD: 1
+      OUTREACH: 4
+      PRESENT: 16
+    scopes:
+    - scope: us-md/form/2026-10-06-w6-income-tax-forms-md
+      manifest: manifests/us-md-w6-income-tax-forms.yaml
+      documents: 10
+      complete: true
+      provision_count: 20
+      source_count: 20
+      missing: 0
+    - scope: us-md/guidance/2026-10-06-w6-income-tax-guidance-md
+      manifest: manifests/us-md-w6-income-tax-guidance.yaml
+      documents: 1
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
+    - scope: us-md/statute/2026-10-06-w6-income-tax-statute-md
+      manifest: manifests/us-md-w6-income-tax-statute.yaml
+      documents: 3
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
   lead_counts:
     ready_for_manifest: 21
     needs_review: 9
@@ -11759,6 +12337,35 @@ states:
     jurisdiction: us-me
     document_class: guidance
     version: 2026-07-23-me-individual-income-tax-rates-2026
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 75
+    statuses:
+      ALREADY-HELD: 20
+      PRESENT: 55
+    scopes:
+    - scope: us-me/form/2026-10-06-w6-income-tax-forms-me
+      manifest: manifests/us-me-w6-income-tax-forms.yaml
+      documents: 50
+      complete: true
+      provision_count: 100
+      source_count: 100
+      missing: 0
+    - scope: us-me/guidance/2026-10-06-w6-income-tax-guidance-me
+      manifest: manifests/us-me-w6-income-tax-guidance.yaml
+      documents: 2
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    - scope: us-me/statute/2026-10-06-w6-income-tax-statute-me
+      manifest: manifests/us-me-w6-income-tax-statute.yaml
+      documents: 3
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
   lead_counts:
     ready_for_manifest: 25
     needs_review: 56
@@ -12631,6 +13238,37 @@ states:
     jurisdiction: us-mi
     document_class: guidance
     version: 2026-07-21-mi-2026-income-tax-rate-notice
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 45
+    statuses:
+      ABSENT: 14
+      ALREADY-HELD: 2
+      OUT-OF-SCOPE: 1
+      PRESENT: 28
+    scopes:
+    - scope: us-mi/form/2026-10-06-w6-income-tax-forms-mi
+      manifest: manifests/us-mi-w6-income-tax-forms.yaml
+      documents: 17
+      complete: true
+      provision_count: 34
+      source_count: 34
+      missing: 0
+    - scope: us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi
+      manifest: manifests/us-mi-w6-income-tax-guidance.yaml
+      documents: 9
+      complete: true
+      provision_count: 49
+      source_count: 49
+      missing: 0
+    - scope: us-mi/statute/2026-10-06-w6-income-tax-statute-mi
+      manifest: manifests/us-mi-w6-income-tax-statute.yaml
+      documents: 1
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
   lead_counts:
     ready_for_manifest: 27
     needs_review: 29
@@ -17471,6 +18109,21 @@ states:
     AU-*, ED-*, MS-*, CU-*, GPA-01
   - TY2025 substitute forms letter of intent and general instructions
   - 'interest and dividends tax: none for TY2025 (only a Search Prior Year Forms link; DP-10 2024 was the final return)'
+- jurisdiction: us-nh
+  name: New Hampshire income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nh-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nh-income-tax-w6-forms.yaml
+  target_scopes:
+  - jurisdiction: us-nh
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nh
+  lead_counts: {}
+  taken_count: 8
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 1, PRESENT 10 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nj
   name: New Jersey
   queue_status: agent_ready
@@ -19367,6 +20020,32 @@ states:
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 2
+      OUTREACH: 2
+      PRESENT: 17
+    scopes:
+    - jurisdiction: us-ok
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-ok
+      family: forms
+      target_manifest: manifests/us-ok-income-tax-w6-forms.yaml
+      rows: 28
+    - jurisdiction: us-ok
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-ok
+      family: guidance
+      target_manifest: manifests/us-ok-income-tax-w6-guidance.yaml
+      rows: 26
+    - jurisdiction: us-ok
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-ok
+      family: statute
+      target_manifest: manifests/us-ok-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_pdf_forms_instructions
   primary_source_url: https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf
   target_manifest: manifests/us-ok-individual-income-tax-forms-ty2025.yaml
@@ -19701,6 +20380,37 @@ states:
 - jurisdiction: us-or
   name: Oregon
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 5
+      PRESENT: 30
+    scopes:
+    - jurisdiction: us-or
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-or
+      family: forms
+      target_manifest: manifests/us-or-income-tax-w6-forms.yaml
+      rows: 44
+    - jurisdiction: us-or
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-or
+      family: guidance
+      target_manifest: manifests/us-or-income-tax-w6-guidance.yaml
+      rows: 20
+    - jurisdiction: us-or
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-or-us-or-chapter-315
+      family: statute
+      target_manifest: manifests/state-income-tax-chapters-w6-tax-ok-wv.yaml
+      rows: 214
+    - jurisdiction: us-or
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-or
+      family: statute
+      target_manifest: manifests/us-or-income-tax-w6-statute.yaml
+      rows: 45
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-or-2026-or-estimate.yaml
@@ -20193,6 +20903,33 @@ states:
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 1
+      OUT-OF-SCOPE: 1
+      OUTREACH: 3
+      PRESENT: 16
+    scopes:
+    - jurisdiction: us-pa
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-pa
+      family: forms
+      target_manifest: manifests/us-pa-income-tax-w6-forms.yaml
+      rows: 18
+    - jurisdiction: us-pa
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-pa
+      family: guidance
+      target_manifest: manifests/us-pa-income-tax-w6-guidance.yaml
+      rows: 113
+    - jurisdiction: us-pa
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-pa
+      family: statute
+      target_manifest: manifests/us-pa-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-pa-personal-income-tax-rates.yaml
@@ -20546,6 +21283,31 @@ states:
 - jurisdiction: us-ri
   name: Rhode Island
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 6
+      PRESENT: 46
+    scopes:
+    - jurisdiction: us-ri
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-ri
+      family: forms
+      target_manifest: manifests/us-ri-income-tax-w6-forms.yaml
+      rows: 64
+    - jurisdiction: us-ri
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-ri
+      family: guidance
+      target_manifest: manifests/us-ri-income-tax-w6-guidance.yaml
+      rows: 14
+    - jurisdiction: us-ri
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-ri
+      family: statute
+      target_manifest: manifests/us-ri-income-tax-w6-statute.yaml
+      rows: 174
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-ri-pit-adv-2025-22-official-documents.yaml
@@ -21186,6 +21948,38 @@ states:
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ABSENT: 2
+      ALREADY-HELD: 3
+      PRESENT: 22
+    scopes:
+    - jurisdiction: us-sc
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-sc
+      family: forms
+      target_manifest: manifests/us-sc-income-tax-w6-forms.yaml
+      rows: 34
+    - jurisdiction: us-sc
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-sc
+      family: guidance
+      target_manifest: manifests/us-sc-income-tax-w6-guidance.yaml
+      rows: 4
+    - jurisdiction: us-sc
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2
+      family: statute
+      target_manifest: manifests/state-income-tax-chapters-w6-tax-ok-wv.yaml
+      rows: 19
+    - jurisdiction: us-sc
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-sc
+      family: statute
+      target_manifest: manifests/us-sc-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-sc-individual-income-tax-forms.yaml
@@ -21687,6 +22481,12 @@ states:
 - jurisdiction: us-tx
   name: Texas
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      OUT-OF-SCOPE: 1
+    scopes: []
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-tx-2026-individual-income-tax-prohibition.yaml
@@ -21764,6 +22564,31 @@ states:
 - jurisdiction: us-ut
   name: Utah
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 12
+      PRESENT: 39
+    scopes:
+    - jurisdiction: us-ut
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-ut
+      family: forms
+      target_manifest: manifests/us-ut-income-tax-w6-forms.yaml
+      rows: 10
+    - jurisdiction: us-ut
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-ut
+      family: guidance
+      target_manifest: manifests/us-ut-income-tax-w6-guidance.yaml
+      rows: 58
+    - jurisdiction: us-ut
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-ut
+      family: statute
+      target_manifest: manifests/us-ut-income-tax-w6-statute.yaml
+      rows: 36
   source_kind: official_pdf_forms_instructions
   primary_source_url: https://tax.utah.gov/forms-pubs/
   target_manifest: manifests/us-ut-individual-income-tax-forms-ty2025.yaml
@@ -22427,6 +23252,32 @@ states:
 - jurisdiction: us-va
   name: Virginia
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 4
+      PRESENT: 22
+      SKIPPED: 1
+    scopes:
+    - jurisdiction: us-va
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-va
+      family: forms
+      target_manifest: manifests/us-va-income-tax-w6-forms.yaml
+      rows: 30
+    - jurisdiction: us-va
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-va
+      family: guidance
+      target_manifest: manifests/us-va-income-tax-w6-guidance.yaml
+      rows: 15
+    - jurisdiction: us-va
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-va
+      family: statute
+      target_manifest: manifests/us-va-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-va-tax-forms.yaml
@@ -22941,6 +23792,33 @@ states:
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 12
+      OUT-OF-SCOPE: 7
+      OUTREACH: 1
+      PRESENT: 45
+    scopes:
+    - jurisdiction: us-vt
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-vt
+      family: forms
+      target_manifest: manifests/us-vt-income-tax-w6-forms.yaml
+      rows: 66
+    - jurisdiction: us-vt
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-vt
+      family: guidance
+      target_manifest: manifests/us-vt-income-tax-w6-guidance.yaml
+      rows: 37
+    - jurisdiction: us-vt
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-vt
+      family: statute
+      target_manifest: manifests/us-vt-income-tax-w6-statute.yaml
+      rows: 17
   source_kind: official_pdf_forms_instructions
   primary_source_url: https://tax.vermont.gov/sites/tax/files/documents/IN-111-2025.pdf
   target_manifest: manifests/us-vt-individual-income-tax-forms-ty2025.yaml
@@ -23735,6 +24613,43 @@ states:
 - jurisdiction: us-wa
   name: Washington
   queue_status: agent_ready
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 4
+      PRESENT: 15
+    scopes:
+    - jurisdiction: us-wa
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-wa
+      family: forms
+      target_manifest: manifests/us-wa-income-tax-w6-forms.yaml
+      rows: 4
+    - jurisdiction: us-wa
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-wa
+      family: guidance
+      target_manifest: manifests/us-wa-income-tax-w6-guidance.yaml
+      rows: 70
+    - jurisdiction: us-wa
+      document_class: regulation
+      version: 2026-10-06-w6-income-tax-regulation-wa
+      family: regulation
+      target_manifest: manifests/us-wa-income-tax-w6-regulation.yaml
+      rows: 2
+    - jurisdiction: us-wa
+      document_class: rulemaking
+      version: 2026-10-06-w6-income-tax-rulemaking-wa
+      family: rulemaking
+      target_manifest: manifests/us-wa-income-tax-w6-rulemaking.yaml
+      rows: 2
+    - jurisdiction: us-wa
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-wa
+      family: statute
+      target_manifest: manifests/us-wa-income-tax-w6-statute.yaml
+      rows: 8
   source_kind: official_guidance_no_ty2025_resident_return
   primary_source_url: https://dor.wa.gov/taxes-rates/income-tax
   target_manifest: manifests/us-wa-individual-income-tax-guidance-ty2025.yaml
@@ -24074,6 +24989,31 @@ states:
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 12
+      PRESENT: 53
+    scopes:
+    - jurisdiction: us-wi
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-wi
+      family: forms
+      target_manifest: manifests/us-wi-income-tax-w6-forms.yaml
+      rows: 84
+    - jurisdiction: us-wi
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-wi
+      family: guidance
+      target_manifest: manifests/us-wi-income-tax-w6-guidance.yaml
+      rows: 38
+    - jurisdiction: us-wi
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-wi
+      family: statute
+      target_manifest: manifests/us-wi-income-tax-w6-statute.yaml
+      rows: 4
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-wi-2026-form1-es-instructions.yaml
@@ -24753,6 +25693,31 @@ states:
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: done
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ok-wv-decisions.csv
+    row_status_counts:
+      ALREADY-HELD: 2
+      PRESENT: 8
+    scopes:
+    - jurisdiction: us-wv
+      document_class: form
+      version: 2026-10-06-w6-income-tax-forms-wv
+      family: forms
+      target_manifest: manifests/us-wv-income-tax-w6-forms.yaml
+      rows: 12
+    - jurisdiction: us-wv
+      document_class: guidance
+      version: 2026-10-06-w6-income-tax-guidance-wv
+      family: guidance
+      target_manifest: manifests/us-wv-income-tax-w6-guidance.yaml
+      rows: 2
+    - jurisdiction: us-wv
+      document_class: statute
+      version: 2026-10-06-w6-income-tax-statute-wv
+      family: statute
+      target_manifest: manifests/us-wv-income-tax-w6-statute.yaml
+      rows: 2
   source_kind: official_documents_prior_ingest
   primary_source_url: null
   target_manifest: manifests/us-wv-individual-income-tax-forms.yaml
@@ -25901,6 +26866,29 @@ states:
     - us-mn/form/department-of-revenue/ty2025/form-m1
     - us-mn/form/department-of-revenue/ty2025/form-m1-instructions
     notes: Served the corpus client (the form search is server-rendered).
+- jurisdiction: us-mn
+  name: Minnesota income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-mn-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-mn-income-tax-w6-forms.yaml
+  - manifests/us-mn-income-tax-w6-guidance.yaml
+  - manifests/us-mn-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-mn
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-mn
+  - jurisdiction: us-mn
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-mn
+  - jurisdiction: us-mn
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-mn
+  lead_counts: {}
+  taken_count: 62
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 2, PRESENT 62 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-mo
   name: Missouri income tax regulations
   queue_status: done
@@ -25946,6 +26934,29 @@ states:
     - us-mo/form/dor/ty2025/form-mo-1040-instructions
     - us-mo/form/dor/ty2025/tax-chart
     notes: Served the corpus client.
+- jurisdiction: us-mo
+  name: Missouri income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-mo-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-mo-income-tax-w6-forms.yaml
+  - manifests/us-mo-income-tax-w6-guidance.yaml
+  - manifests/us-mo-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-mo
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-mo
+  - jurisdiction: us-mo
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-mo
+  - jurisdiction: us-mo
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-mo
+  lead_counts: {}
+  taken_count: 38
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 15, PRESENT 40 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ms
   name: Mississippi income tax regulations
   queue_status: done
@@ -25966,6 +26977,25 @@ states:
     income chapter 35.III.12.01 is one 327 kB row (the publisher prints section numbers inside chapters that repeat across
     chapters). Rows: 96 (1 document, 95 section); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest
     body 327,617 chars.'
+- jurisdiction: us-ms
+  name: Mississippi income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-ms-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-ms-income-tax-w6-forms.yaml
+  - manifests/us-ms-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-ms
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-ms
+  - jurisdiction: us-ms
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-ms
+  lead_counts: {}
+  taken_count: 9
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 3, OUTREACH 10, PRESENT 10 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-mt
   name: Montana income tax regulations
   queue_status: done
@@ -25985,6 +27015,29 @@ states:
     42.15 (rules.mt.gov policy-library API served the plain client): 50 rule rows, 9 subchapters. Root container us-mt/regulation
     is not carried by any released us-mt scope. Rows: 62 (1 collection, 1 title, 1 chapter, 9 subchapter, 50 rule); coverage
     complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 4,826 chars.'
+- jurisdiction: us-mt
+  name: Montana income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-mt-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-mt-income-tax-w6-forms.yaml
+  - manifests/us-mt-income-tax-w6-guidance.yaml
+  - manifests/us-mt-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-mt
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-mt
+  - jurisdiction: us-mt
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-mt
+  - jurisdiction: us-mt
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-mt-r2
+  lead_counts: {}
+  taken_count: 23
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 10, ALREADY-HELD 12, PRESENT 33 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nc
   name: North Carolina income tax regulations
   queue_status: done
@@ -26054,6 +27107,29 @@ states:
       for Individuals, 19 sections), one official per-section HTML page each via extract-official-documents; G.S. 105-163
       (repealed) has no per-section page and is skipped; 13 headings are repealed/recodified placeholders whose pages carry
       the repeal note.
+- jurisdiction: us-nc
+  name: North Carolina income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nc-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nc-income-tax-w6-forms.yaml
+  - manifests/us-nc-income-tax-w6-guidance.yaml
+  - manifests/us-nc-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-nc
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nc
+  - jurisdiction: us-nc
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-nc
+  - jurisdiction: us-nc
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nc
+  lead_counts: {}
+  taken_count: 19
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 1, PRESENT 21 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nd
   name: North Dakota income tax regulations
   queue_status: done
@@ -26097,6 +27173,21 @@ states:
     - us-nd/form/otc/ty2025/form-nd-1
     - us-nd/form/otc/ty2025/individual-income-tax-booklet
     notes: Served the corpus client; the tax tables are inside the booklet.
+- jurisdiction: us-nd
+  name: North Dakota income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nd-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nd-income-tax-w6-forms.yaml
+  target_scopes:
+  - jurisdiction: us-nd
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nd
+  lead_counts: {}
+  taken_count: 12
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 3, OUTREACH 1, PRESENT 12 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ne
   name: Nebraska income tax regulations
   queue_status: done
@@ -26143,6 +27234,29 @@ states:
     - us-ne/form/dor/ty2025/individual-income-tax-booklet
     - us-ne/form/dor/ty2025/tax-table
     notes: Served the corpus client.
+- jurisdiction: us-ne
+  name: Nebraska income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-ne-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-ne-income-tax-w6-forms.yaml
+  - manifests/us-ne-income-tax-w6-guidance.yaml
+  - manifests/us-ne-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-ne
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-ne
+  - jurisdiction: us-ne
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-ne
+  - jurisdiction: us-ne
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-ne
+  lead_counts: {}
+  taken_count: 14
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 8, PRESENT 16 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nj
   name: New Jersey income tax regulations
   queue_status: blocked_primary_source
@@ -26162,6 +27276,33 @@ states:
     to the New Jersey Administrative Code is provided by LexisNexis; nj.gov posts no N.J.A.C. text (Division of Taxation lawsregs
     page, HTTP 200, links only to the OAL search). A vendor site is not an official publisher under the source policy: no
     extraction.'
+- jurisdiction: us-nj
+  name: New Jersey income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nj-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nj-income-tax-w6-forms.yaml
+  - manifests/us-nj-income-tax-w6-guidance.yaml
+  - manifests/us-nj-income-tax-w6-statute.yaml
+  - manifests/state-income-tax-w6-tax-mn-oh-statutes.yaml
+  target_scopes:
+  - jurisdiction: us-nj
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nj
+  - jurisdiction: us-nj
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-nj-r2
+  - jurisdiction: us-nj
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nj
+  - jurisdiction: us-nj
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nj-us-nj-title-54
+  lead_counts: {}
+  taken_count: 17
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 1, ALREADY-HELD 2, OUT-OF-SCOPE 1, OUTREACH 3, PRESENT 20 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nm
   name: New Mexico income tax regulations
   queue_status: done
@@ -26180,6 +27321,29 @@ states:
     3.3 NMAC Personal Income Taxes parts from the State Records Center and Archives (parts 1-37 probed; 21 published parts,
     the expired part 31 not taken): 269 section rows. Rows: 289 (20 document, 269 section); coverage complete, 0 missing,
     0 extra, 0 duplicate citation paths; largest body 21,487 chars.'
+- jurisdiction: us-nm
+  name: New Mexico income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-nm-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-nm-income-tax-w6-forms.yaml
+  - manifests/us-nm-income-tax-w6-guidance.yaml
+  - manifests/us-nm-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-nm
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-nm
+  - jurisdiction: us-nm
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-nm
+  - jurisdiction: us-nm
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-nm-r2
+  lead_counts: {}
+  taken_count: 18
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 6, PRESENT 20 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ny
   name: New York income tax regulations
   queue_status: done
@@ -26222,6 +27386,29 @@ states:
     documents:
     - us-ny/form/tax/ty2025/it-201
     notes: Served the corpus client; the IT-201 link passes through an e-file interstitial page before the PDF.
+- jurisdiction: us-ny
+  name: New York income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-ny-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-ny-income-tax-w6-forms.yaml
+  - manifests/us-ny-income-tax-w6-guidance.yaml
+  - manifests/us-ny-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-ny
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-ny-r2
+  - jurisdiction: us-ny
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-ny
+  - jurisdiction: us-ny
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-ny-r2
+  lead_counts: {}
+  taken_count: 31
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 2, ALREADY-HELD 5, OUTREACH 1, PRESENT 31 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-oh
   name: Ohio income tax regulations
   queue_status: done
@@ -26267,6 +27454,29 @@ states:
     - us-oh/form/odt/ty2025/form-it-1040
     - us-oh/form/odt/ty2025/it-1040-sd-100-instructions
     notes: tax.ohio.gov needs the documented Chrome fallback; dam.assets.ohio.gov served the corpus client.
+- jurisdiction: us-oh
+  name: Ohio income tax program-bundle gaps (wave 6)
+  queue_status: done
+  source_kind: official_documents
+  primary_source_url: null
+  target_manifest: manifests/us-oh-income-tax-w6-forms.yaml
+  target_manifests:
+  - manifests/us-oh-income-tax-w6-forms.yaml
+  - manifests/us-oh-income-tax-w6-guidance.yaml
+  - manifests/us-oh-income-tax-w6-statute.yaml
+  target_scopes:
+  - jurisdiction: us-oh
+    document_class: form
+    version: 2026-10-06-w6-income-tax-forms-oh-r2
+  - jurisdiction: us-oh
+    document_class: guidance
+    version: 2026-10-06-w6-income-tax-guidance-oh
+  - jurisdiction: us-oh
+    document_class: statute
+    version: 2026-10-06-w6-income-tax-statute-oh
+  lead_counts: {}
+  taken_count: 13
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 2, ALREADY-HELD 1, PRESENT 14 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ok
   name: Oklahoma income tax regulations
   queue_status: done
