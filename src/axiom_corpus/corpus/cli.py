@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import os
 import re
@@ -17,6 +18,7 @@ from typing import Any, NamedTuple
 
 import yaml
 
+from axiom_corpus.corpus import corpus_cli
 from axiom_corpus.corpus.analytics import (
     build_analytics_report,
     load_provision_count_snapshot,
@@ -44,6 +46,8 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
+from axiom_corpus.corpus.corpus_locks import LockFormatError
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -130,6 +134,14 @@ from axiom_corpus.corpus.regulation_completion import (
 )
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
+from axiom_corpus.corpus.resolver import (
+    CorpusNotMaterializedError,
+    _is_corpus_base,
+    cli_repo,
+    materialize_cli_inputs,
+    require_materialized,
+    resolver_for,
+)
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
     discover_encoded_paths,
@@ -322,6 +334,21 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         applied_files = list(args.file)
     deleted_files: list[Path] = list(args.deleted_file or [])
     reasoning_logs: list[Path] = list(args.reasoning_log or [])
+    if args.lock:
+        # Check before signing, so a scope that cannot be locked (a hidden or
+        # leftover file, an unexplained absence) never gets a signed manifest.
+        try:
+            corpus_cli.check_lockable(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                deleted=[
+                    (path if path.is_absolute() else repo / path).resolve().relative_to(repo).as_posix()
+                    for path in deleted_files
+                ],
+            )
+        except (corpus_cli.LockRefusedError, OSError, ValueError) as exc:
+            print(f"corpus lock: {exc} (nothing was signed)", file=sys.stderr)
+            return 2
     manifest = build_ingest_manifest(
         repo=repo,
         base=args.base,
@@ -340,18 +367,42 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         output=args.output,
         key_id=args.key_id,
     )
-    print(
-        json.dumps(
-            {
-                "manifest": str(manifest_path),
-                "applied_files": len(manifest["applied_files"]),
-                "reasoning_logs": len(manifest["reasoning_logs"]),
-            },
-            indent=2,
-            sort_keys=True,
-        )
-    )
-    return 0
+    summary: dict[str, Any] = {
+        "manifest": str(manifest_path),
+        "applied_files": len(manifest["applied_files"]),
+        "reasoning_logs": len(manifest["reasoning_logs"]),
+    }
+    status = 0
+    if args.lock:
+        # Signing reads a clean tracked tree, so the lock is written after it.
+        try:
+            written, pushed = corpus_cli.lock_scopes(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                cache=ContentCache(),
+                push=args.push,
+                # Exactly the deletions the signed manifest records.
+                deleted=[
+                    str(entry["path"])
+                    for entry in manifest["applied_files"]
+                    if entry.get("deleted") is True
+                ],
+            )
+        except (
+            corpus_cli.LockRefusedError,
+            LockFormatError,
+            ContentStoreError,
+            OSError,
+            ValueError,
+        ) as exc:
+            print(f"corpus lock: {exc}", file=sys.stderr)
+            return 2
+        summary["locks"] = written
+        summary["push"] = pushed
+        if pushed and pushed["failed"]:
+            status = 1
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    return status
 
 
 def _cmd_guard_ingested(args: argparse.Namespace) -> int:
@@ -386,9 +437,16 @@ def _cmd_verify_scope_tracked(args: argparse.Namespace) -> int:
             f"{result.scopes_checked} inventory scopes."
         )
         return 0
+    for error in result.lock_errors:
+        print(f"invalid corpus lock: {error}")
+    if result.lock_errors:
+        return 1
     for path in result.missing_paths:
         print(path)
-    print(shlex.join(["git", "add", "-f", *result.missing_paths]))
+    if (args.repo / ".axiom" / "corpus-locks").is_dir():
+        print("Lock the scopes that write these files: axiom-corpus-ingest corpus lock <scope>")
+    else:
+        print(shlex.join(["git", "add", "-f", *result.missing_paths]))
     return 1
 
 
@@ -1291,6 +1349,9 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
 def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    if args.prior_release_point and not args.source_url:
+        print("--prior-release-point requires --source-url (the release point download URL)")
+        return 2
     try:
         if args.title:
             title = args.title
@@ -1318,6 +1379,7 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         source_download_url=args.source_url,
         limit=args.limit,
         allowed_citation_paths=allowed_citation_paths,
+        prior_release_point=args.prior_release_point,
     )
     print(
         json.dumps(
@@ -2587,6 +2649,7 @@ def _cmd_extract_california_code_sections(args: argparse.Namespace) -> int:
         request_delay_seconds=args.delay_seconds,
         timeout_seconds=args.timeout_seconds,
         request_attempts=args.request_attempts,
+        preserve_tables=args.preserve_tables,
     )
     print(
         json.dumps(
@@ -3086,6 +3149,12 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
     if adapter == "massachusetts-general-laws":
+        raw_ma_sections = options.get("only_sections", ())
+        ma_sections = (
+            (str(raw_ma_sections),)
+            if isinstance(raw_ma_sections, str | int | float)
+            else tuple(str(item) for item in raw_ma_sections or ())
+        )
         return extract_massachusetts_general_laws(
             store,
             version=version,
@@ -3095,6 +3164,7 @@ def _extract_state_statute_source(
             only_part=_optional_text(options.get("only_part")),
             only_title=only_title,
             only_chapter=_optional_text(options.get("only_chapter")),
+            only_sections=ma_sections,
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
@@ -3281,6 +3351,10 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             workers=_optional_int(options.get("workers")) or 8,
+            include_subunits=_optional_bool(options.get("include_subunits"), default=False),
+            include_publication_note=_optional_bool(
+                options.get("include_publication_note"), default=True
+            ),
         )
     if adapter == "montana-code":
         return extract_montana_code(
@@ -5482,6 +5556,10 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
         ),
     ),
     (
+        "Corpus storage (bytes outside git)",
+        ("corpus",),
+    ),
+    (
         "Source inventory and discovery",
         (
             "inventory-ecfr",
@@ -5722,6 +5800,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sign_ingest.add_argument("--output", type=Path)
     sign_ingest.add_argument("--key-id", default="axiom-corpus-ingest-v1")
+    sign_ingest.add_argument(
+        "--lock",
+        action="store_true",
+        help=(
+            "After signing, write the scope's corpus lock and cache its bytes "
+            "(corpus bytes live outside git; see docs/corpus-storage.md)."
+        ),
+    )
+    sign_ingest.add_argument(
+        "--push",
+        action="store_true",
+        help="With --lock, upload objects R2 lacks.",
+    )
     sign_ingest.set_defaults(func=_cmd_sign_ingest_manifest)
 
     guard_ingested = sub.add_parser(
@@ -5733,6 +5824,8 @@ def build_parser() -> argparse.ArgumentParser:
     guard_ingested.add_argument("--head-ref", default="HEAD")
     guard_ingested.add_argument("--json", action="store_true")
     guard_ingested.set_defaults(func=_cmd_guard_ingested)
+
+    corpus_cli.register(sub)
 
     verify_tracked = sub.add_parser(
         "verify-scope-tracked",
@@ -5875,6 +5968,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--include-title",
         action="store_true",
         help="Include the title-level provision when section filters are used.",
+    )
+    extract_usc_cmd.add_argument(
+        "--prior-release-point",
+        action="store_true",
+        help=(
+            "The source is a historical OLRC release point: set every row's source_url to "
+            "--source-url (the release point download) instead of the current prelim "
+            "reader page, which displays different text."
+        ),
     )
     extract_usc_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_cmd.set_defaults(func=_cmd_extract_usc)
@@ -6593,6 +6695,14 @@ def build_parser() -> argparse.ArgumentParser:
     extract_california_sections_cmd.add_argument("--delay-seconds", type=float, default=0.25)
     extract_california_sections_cmd.add_argument("--timeout-seconds", type=float, default=60.0)
     extract_california_sections_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_california_sections_cmd.add_argument(
+        "--preserve-tables",
+        action="store_true",
+        help=(
+            "Render each table row as one 'cell | cell' line and keep repeated cells and "
+            "row labels. Off by default so existing scopes rerun unchanged."
+        ),
+    )
     extract_california_sections_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_california_sections_cmd.set_defaults(func=_cmd_extract_california_code_sections)
 
@@ -7659,12 +7769,106 @@ def build_parser() -> argparse.ArgumentParser:
     # choices themselves (parsing, errors, per-command --help) are untouched.
     getattr(sub, "_choices_actions", []).clear()
 
+    # Mark every subcommand under a private attribute: a subcommand's own
+    # --command flag (sign-ingest-manifest) overwrites args.command.
+    for name, subparser in sub.choices.items():
+        if "_cli_command" not in subparser._defaults:
+            subparser.set_defaults(_cli_command=name)
     return parser
+
+
+# Commands that must see the worktree exactly as it is: signing and guarding
+# judge local files, and the corpus group manages fetching itself.
+_NO_AUTO_FETCH_COMMANDS = frozenset(
+    {
+        "corpus",
+        "guard-ingested",
+        "sign-ingest-manifest",
+        "sync-r2",
+        "validate-manifest",
+        "verify-scope-tracked",
+    }
+)
+# Read-only commands whose --jurisdiction/--document-class/--version name an
+# existing scope under --base data/corpus (for extractors they name the output).
+_SCOPE_INPUT_COMMANDS = frozenset(
+    {
+        "analytics",
+        "artifact-report",
+        "build-navigation-index",
+        "coverage",
+        "export-supabase",
+        "generate-anchors",
+        "section-provisions",
+        "snapshot-provision-counts",
+    }
+)
+
+
+# Reports that list whole artifact directories under --base. With corpus bytes
+# outside git they refuse to run on a partly fetched tree rather than report on
+# a subset.
+_CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
+    "analytics": ("inventory", "provisions"),
+    "artifact-report": ("sources", "inventory", "provisions", "coverage"),
+    "snapshot-provision-counts": ("provisions",),
+}
+
+
+def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
+    classes = _CORPUS_WIDE_COMMANDS.get(command)
+    base = getattr(args, "base", None)
+    repo = cli_repo(args)
+    if not classes or base is None or repo is None or not _is_corpus_base(repo, base):
+        return []
+    if getattr(args, "release", None) or getattr(args, "release_scope", None):
+        return []  # release scopes are fetched by materialize_cli_inputs
+    raw = getattr(args, "jurisdiction", None)
+    jurisdictions = [raw] if isinstance(raw, str) else list(raw or [])
+    if command == "analytics":
+        # Analytics reads one version (and its "<version>-*" parts) of the
+        # jurisdictions and classes it reports on; require exactly those files.
+        resolver = resolver_for(repo)
+        if resolver is None or not resolver.active:
+            return []
+        resolver.require_valid_locks()
+        version = str(args.version)
+        document_classes = set(getattr(args, "document_class", None) or [])
+        return [
+            repo / entry.path
+            for scope, lock in sorted(resolver.locks.locks.items())
+            # analytics globs "<version>.json" and "<version>-*.json"
+            if (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
+            and (not jurisdictions or scope[0] in jurisdictions)
+            and (not document_classes or scope[1] in document_classes)
+            for entry in lock.files
+            if entry.path.split("/")[2] in classes
+        ]
+    return [
+        repo / "data" / "corpus" / artifact_class / jurisdiction
+        for artifact_class in classes
+        for jurisdiction in (jurisdictions or [""])
+    ]
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    # Some subcommands define their own --command flag, which overwrites
+    # args.command; the parser marks each subcommand under a private name.
+    command = getattr(args, "_cli_command", args.command)
+    if command not in _NO_AUTO_FETCH_COMMANDS:
+        try:
+            materialize_cli_inputs(
+                args,
+                include_scope=command in _SCOPE_INPUT_COMMANDS,
+            )
+            prefixes = _corpus_wide_prefixes(args, command)
+            if prefixes:
+                require_materialized(prefixes)
+        except CorpusNotMaterializedError as exc:
+            print(f"corpus: {exc}", file=sys.stderr)
+            return 2
     return int(args.func(args))
 
 

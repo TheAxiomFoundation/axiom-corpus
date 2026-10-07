@@ -250,3 +250,37 @@ class TestDownloadAct:
 
         assert result == tmp_path / "I-3.3.xml"
         assert result.read_bytes() == b"<Statute>test</Statute>"
+
+
+@pytest.mark.parametrize("quote_first", [True, False])
+@pytest.mark.parametrize("quoted_label", ['“85', '85'])
+def test_embedded_read_as_section_keeps_owner_and_cannot_shadow_lookup(
+    tmp_path, quote_first, quoted_label
+):
+    genuine = '<Section><Label>85</Label><Text>Genuine section.</Text></Section>'
+    owner = (
+        '<Section><Label>142.7</Label><Subsection><Label>(3)</Label>'
+        '<Text>Read as follows:</Text><ReadAsText><Section>'
+        f'<Label>{quoted_label}</Label><Subsection><Label>(1)</Label>'
+        '<Text>Quoted replacement.</Text></Subsection></Section></ReadAsText>'
+        '</Subsection></Section>'
+    )
+    ordered = owner + genuine if quote_first else genuine + owner
+    xml_path = tmp_path / 'I-3.3.xml'
+    xml_path.write_text(
+        '<Statute><Identification><ConsolidatedNumber>I-3.3</ConsolidatedNumber>'
+        '</Identification><Body>' + ordered + '</Body><RelatedOrNotInForce>'
+        '<Section><Label>900</Label><Text>Related provision.</Text></Section>'
+        '</RelatedOrNotInForce></Statute>'
+    )
+    parser = CanadaStatuteParser(xml_path)
+    sections = list(parser.iter_sections())
+    assert [s.section_number for s in sections] == (
+        ['142.7', '85', '900'] if quote_first else ['85', '142.7', '900']
+    )
+    assert parser.get_section('85').text == '85Genuine section.'
+    assert parser.get_section('“85') is None
+    owned = parser.get_section('142.7')
+    assert owned.text == '142.7(3)Read as follows:' + quoted_label + '(1)Quoted replacement.'
+    assert owned.subsections[0].text == '(3)Read as follows:' + quoted_label + '(1)Quoted replacement.'
+    assert parser.get_section('900').text == '900Related provision.'

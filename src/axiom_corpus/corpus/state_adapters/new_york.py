@@ -18,7 +18,7 @@ from urllib.parse import unquote, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import Comment, NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -38,6 +38,12 @@ _LAW_HREF_RE = re.compile(r"^/legislation/laws/(?P<law>[A-Z0-9]+)$")
 _LAW_PATH_RE = re.compile(r"^/legislation/laws/(?P<law>[A-Z0-9]+)(?:/(?P<location>[^/?#]+))?$")
 _SECTION_HEADLINE_RE = re.compile(r"^SECTION\s+(?P<section>.+)$", re.I)
 _REVISION_RE = re.compile(r"Viewing\s+most\s+recent\s+revision\s+\(from\s+(?P<date>[^)]+)\)", re.I)
+# OpenLegislation law text is fixed-width: a paragraph the publisher starts on its
+# own line is indented by exactly two spaces (labels it runs in after a heading or a
+# parent label stay on that line), and a run of three or more spaces is read as a
+# table-cell gap (prose justification is read as using at most two).
+_OPENLEG_PARAGRAPH_INDENT = 2
+_OPENLEG_TABLE_GAP_RE = re.compile(r"\S {3,}\S")
 
 
 @dataclass(frozen=True)
@@ -1145,7 +1151,122 @@ def _api_document_text(doc: dict[str, Any]) -> str | None:
     text = doc.get("text")
     if text is None:
         return None
-    return re.sub(r"\n{3,}", "\n\n", str(text)).strip() or None
+    # The OpenLegislation API escapes the law text's line breaks: the decoded JSON
+    # string carries the two characters ``\n`` where the published text breaks.
+    return normalize_new_york_openleg_text(str(text).replace("\\n", "\n"))
+
+
+def normalize_new_york_openleg_text(text: str | None) -> str | None:
+    """Return OpenLegislation law text with the publisher's paragraph lines.
+
+    OpenLegislation publishes the Legislative Bill Drafting Commission's
+    fixed-width text: prose is hard-wrapped at about 72 columns, a paragraph
+    the publisher starts on its own line is indented by exactly two spaces,
+    and tables are laid out with deeper indentation or runs of three or more
+    spaces between cells. The publisher also runs some labels in after a
+    heading or a parent label on the same line (``(e) Real property tax
+    circuit breaker credit. (1) For purposes of this subsection:`` in Tax Law
+    § 606, or ``(3) Determination of credit. (A) ...``).
+
+    Normalization keeps that layout and the publisher's words:
+
+    * a two-space-indented line starts a new line (the indent is dropped), so
+      a label the publisher prints at the head of an indented line sits at
+      the start of a line; a label the publisher runs in stays inside its
+      parent's line, where only an in-line label search finds it;
+    * a hard-wrapped continuation line is joined to its paragraph with one
+      space, and the justification spaces inside prose collapse to one, so a
+      prose cross-reference such as ``(c) of section ...`` that happened to
+      wrap onto a new line is joined to its paragraph instead of starting a
+      line;
+    * a table line (indented by more than two spaces, or containing a run of
+      three or more spaces) is kept exactly as published, and the line after a
+      table line also starts its own line; a table row can begin with a
+      label-like token (the § 606(i) credit table prints wrapped
+      cross-references such as ``(aa)`` at the start of a column-1 line), and
+      it keeps its column gap, which a normalized prose line never has;
+    * a table's first header line, printed at the margin without a column gap
+      (``If the taxpayer's federal adjusted gross`` above ``income for the
+      taxable year is:      The credit amount is:``), starts its own line when
+      the prose before it ends with a colon; a line that begins with ``(`` is
+      never split off this way, so no cross-reference becomes a paragraph head;
+    * a line that begins with ``*`` (OpenLegislation's marker for a provision
+      printed in more than one version) starts its own line;
+    * an empty line is a boundary.
+
+    The sequence of whitespace-separated words is unchanged.
+    """
+    if text is None:
+        return None
+    raw = str(text).replace("\r\n", "\n").replace("\r", "\n")
+    raw = raw.replace("\xa0", " ").replace("\t", " ")
+    raw_lines = [raw_line.rstrip() for raw_line in raw.split("\n")]
+    table_lines = [_openleg_table_line(line) for line in raw_lines]
+    lines: list[str] = []
+    previous_table = False
+    boundary = True
+    for index, line in enumerate(raw_lines):
+        content = line.strip()
+        if not content:
+            boundary = True
+            continue
+        indent = len(line) - len(line.lstrip(" "))
+        is_table = table_lines[index]
+        prose = " ".join(content.split())
+        if is_table:
+            lines.append(line)
+        elif (
+            boundary
+            or previous_table
+            or indent == _OPENLEG_PARAGRAPH_INDENT
+            or content.startswith("*")
+            or (
+                index + 1 < len(raw_lines)
+                and table_lines[index + 1]
+                and lines[-1].endswith(":")
+                and not content.startswith("(")
+            )
+        ):
+            lines.append(prose)
+        else:
+            lines[-1] = f"{lines[-1]} {prose}"
+        previous_table = is_table
+        boundary = False
+    return "\n".join(lines).strip() or None
+
+
+def _openleg_table_line(line: str) -> bool:
+    """Return whether an OpenLegislation text line is laid out as a table row."""
+    content = line.strip()
+    if not content:
+        return False
+    indent = len(line) - len(line.lstrip(" "))
+    return indent > _OPENLEG_PARAGRAPH_INDENT or bool(_OPENLEG_TABLE_GAP_RE.search(content))
+
+
+def new_york_openleg_html_text(node: Tag) -> str:
+    """Return the OpenLegislation text layout of a Senate law page text node.
+
+    ``www.nysenate.gov`` prints the OpenLegislation text inside
+    ``div.nys-openleg-result-text`` with ``<br />`` for each line break, and
+    renders each line break followed by the two-space paragraph indent as an
+    empty line (``<br /><br />``) without the indent. This rebuilds the
+    OpenLegislation layout: ``<br />`` becomes a line break, and an empty line
+    becomes a line break plus the two-space paragraph indent. On the retained
+    2026-09-14 Article 22 pages this reproduces, byte for byte, the API text of
+    every section whose revision matches the retained 2026-07-06 API snapshot
+    (Tax Law sections 601, 614, 615 and 616). Newlines in the HTML source are
+    not line breaks and read as spaces.
+    """
+    parts: list[str] = []
+    for child in node.descendants:
+        if isinstance(child, Tag):
+            if child.name == "br":
+                parts.append("\n")
+            continue
+        if isinstance(child, NavigableString) and not isinstance(child, Comment):
+            parts.append(str(child).replace("\r", " ").replace("\n", " "))
+    return "".join(parts).replace("\n\n", "\n" + " " * _OPENLEG_PARAGRAPH_INDENT)
 
 
 def _api_legal_identifier(law_id: str, *, kind: str, display_number: str) -> str:
@@ -1208,6 +1329,8 @@ def _page_body(soup: BeautifulSoup) -> str | None:
     node = soup.select_one(".nys-openleg-result-text")
     if not isinstance(node, Tag):
         return None
+    if node.find("br") is not None:
+        return normalize_new_york_openleg_text(new_york_openleg_html_text(node))
     text = node.get_text("\n", strip=True)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() or None
