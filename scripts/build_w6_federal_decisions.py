@@ -671,6 +671,10 @@ USC_ROWS: dict[str, tuple[str, str, str]] = {
     "us/statute/29/207": (f"{USC_VERSION}-title-29", "us/statute/29/207", "29"),
     "us/statute/38/101": (f"{USC_VERSION}-title-38", "us/statute/38/101", "38"),
 }
+RETAINED_NOTE = (
+    "; release point 119-103 (2026-09-02): uscode.house.gov served only its maintenance page on 2026-10-06, so the "
+    "publisher's zip retained byte-for-byte by the 2026-09-13 scopes (sha256 as recorded there) is the source"
+)
 USC_NOTES = {
     "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-C": "Cornell mirror of subpart C (refundable credits, 26 U.S.C. 31-37): 33, 34, 36, 36A and 37 taken here; 31 "
     "and 35 are held in us/statute/2026-09-13-tax-statute-closure-31-title-26, 32 and 36B in the 2026-07-13 "
@@ -860,11 +864,14 @@ def main() -> None:
                 official = "https://uscode.house.gov/download/download.shtml"
                 note = (
                     "uscode.house.gov answered only its 'Under Maintenance' page during the run (2026-10-06, "
-                    "19:20-23:00 ET); the U.S. Code release point could not be read"
+                    "19:20-__OLRC_END__ ET) and no retained copy of this title's current release point exists in the corpus"
                 )
             else:
                 status, official = "PRESENT", OLRC.format(title=title)
-                note = USC_NOTES.get(key, "whole section from the OLRC release point (current law)")
+                note = (
+                    USC_NOTES.get(key, "whole section from the OLRC release point (current law)")
+                    + RETAINED_NOTE
+                )
         elif key in ECFR_ROWS:
             title, part, path, note = ECFR_ROWS[key]
             status, scope = "PRESENT", f"us/regulation/{ECFR}-title-{title}-part-{part}"

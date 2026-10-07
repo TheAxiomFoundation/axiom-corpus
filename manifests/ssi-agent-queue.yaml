@@ -660,6 +660,13 @@ states:
     - us/statute/public-law/103-66
     - us/statute/public-law/98-21
     run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-closure-title-42
+    work_order_documents: 1
+    scope_provision_rows: 619
+    coverage_complete: true
+    citation_paths:
+    - us/statute/42/401
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal (20 CFR part 416, eCFR)
   queue_status: agent_ready

@@ -2196,6 +2196,38 @@ states:
     - us/statute/public-law/117-169
     - us/statute/public-law/119-21
     run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-closure-title-26
+    work_order_documents: 18
+    scope_provision_rows: 1409
+    coverage_complete: true
+    citation_paths:
+    - us/statute/26/105
+    - us/statute/26/106
+    - us/statute/26/111
+    - us/statute/26/1221
+    - us/statute/26/1223
+    - us/statute/26/199
+    - us/statute/26/2001
+    - us/statute/26/2010
+    - us/statute/26/222
+    - us/statute/26/33
+    - us/statute/26/38
+    - us/statute/26/404
+    - us/statute/26/408A
+    - us/statute/26/414
+    - us/statute/26/6428
+    - us/statute/26/6428A
+    - us/statute/26/6428B
+    - us/statute/26/652
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-closure-title-42
+    work_order_documents: 2
+    scope_provision_rows: 619
+    coverage_complete: true
+    citation_paths:
+    - us/statute/42/405
+    - us/statute/42/430
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
   - scope: us/statute/2026-10-06-w6-federal-usc-historical-editions
     work_order_documents: 1
     scope_provision_rows: 764
