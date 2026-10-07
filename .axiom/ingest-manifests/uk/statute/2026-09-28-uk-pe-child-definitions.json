@@ -1,0 +1,90 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-09-28-uk-pe-child-definitions.json",
+      "sha256": "725c00c92e110f2c55a211cd3391e13e2a2228aa2cb0ea855f8e206978ecda4c"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-09-28-uk-pe-child-definitions.json",
+      "sha256": "cc2b649e54eb5ec1442dce3d984c1bd27a10c7b7851c3eec316e52084810e27a"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-09-28-uk-pe-child-definitions.jsonl",
+      "sha256": "03a70693e95d68c17e887fdf6290497ca3b96e2e1288657b29339030ca2cddfe"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/1992/4/section-137.xml",
+      "sha256": "e936d26a5d6ac8a795dfa0d9861422cdbf66323dbdca0b680c5947fc4446ab92"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/16/section-17.xml",
+      "sha256": "deeb5ce1b7d0c3468d48e496b823c95a26c3cef688dcd495206c8606d0bc1f05"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/16/section-4.xml",
+      "sha256": "f8c62583fb85109de548c8f43b5314426e6483f4713f3f8f7a984a3862760afc"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/16/section-5.xml",
+      "sha256": "8151cb310271ae270c3bda8616bab5b1156bbbd1f3f9adcb6fa2ec15301e2ba1"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/21/section-3.xml",
+      "sha256": "5fda774b51700f757bf7d021fae9a40de8b27b107957a32d9ef9691f151f5413"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/21/section-8.xml",
+      "sha256": "49a64a941e9ad4fa84ce426a3dbbab7004b1006228f967bdde4d7d93898c67f8"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2007/3/section-55C.xml",
+      "sha256": "5af723a29519ac24a8a2ef834dffc5aeab947c8b7df960c52c316cd715b5c078"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2014/28/section-3.xml",
+      "sha256": "f6ba8300ab6802aaafb1576ef30d489980494ade9bf913d7fc459eac1e37df88"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2014/28/section-6.xml",
+      "sha256": "f6a11446261d0417bbeb8ae8a4e79d35b78f986ac7896aaf6f6ff5127baa73ba"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2016/5/section-1.xml",
+      "sha256": "4a3001330efa1691557860913521396d3b2e3522321132055c8197f6a21d5564"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2237f1a1b94b800c8ab950816851031f46532c5a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-28-uk-pe-child-definitions --source clml --citation ukpga/1992/4/section/137 --citation ukpga/2002/16/section/4 --citation ukpga/2002/16/section/5 --citation ukpga/2002/16/section/17 --citation ukpga/2002/21/section/3 --citation ukpga/2002/21/section/8 --citation ukpga/2007/3/section/55C --citation ukpga/2014/28/section/3 --citation ukpga/2014/28/section/6 --citation ukpga/2016/5/section/1 --source-as-of 2026-09-28 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-28T18:54:27.160351+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-uk-pe-child-definitions.md",
+      "sha256": "20f373b0792e6e924b9735dea939b3d216ecaca375fc06713b4f2eb6cd1ffcda"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9cj+d5Z9eUsE8Wc0QyuSP036/NS6DnZfGiB2oUlABZ4BnEKS7u4c+jOdDEaxJi1v9S7fohsI75hjJk2ExSl+BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-uk-pe-child-definitions"
+}
