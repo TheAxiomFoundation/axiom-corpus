@@ -2035,6 +2035,174 @@ states:
   index_url: https://www.irs.gov/forms-instructions
   index_document_count: 35
   taken_count: 19
+  wave6_federal_scopes:
+  - scope: us/form/2026-10-06-w6-federal-irs-forms
+    work_order_documents: 70
+    scope_provision_rows: 1722
+    coverage_complete: true
+    citation_paths:
+    - us/form/irs/ty2009/i1040gi
+    - us/form/irs/ty2011/i706
+    - us/form/irs/ty2013/f5695
+    - us/form/irs/ty2013/f8880
+    - us/form/irs/ty2013/f940sa
+    - us/form/irs/ty2013/i1040sca
+    - us/form/irs/ty2013/i1040sr
+    - us/form/irs/ty2013/i2441
+    - us/form/irs/ty2013/i8863
+    - us/form/irs/ty2013/p972
+    - us/form/irs/ty2014/f940sa
+    - us/form/irs/ty2014/i1040sca
+    - us/form/irs/ty2014/p501
+    - us/form/irs/ty2015/f8863
+    - us/form/irs/ty2015/i1040sca
+    - us/form/irs/ty2016/i1040sca
+    - us/form/irs/ty2017/i1040sca
+    - us/form/irs/ty2017/i8936
+    - us/form/irs/ty2018/f8880
+    - us/form/irs/ty2018/i1040sca
+    - us/form/irs/ty2018/p535
+    - us/form/irs/ty2018/p590a
+    - us/form/irs/ty2019/i1040sca
+    - us/form/irs/ty2020/f8863
+    - us/form/irs/ty2020/f8917
+    - us/form/irs/ty2020/i1040sca
+    - us/form/irs/ty2020/p526
+    - us/form/irs/ty2020/p972
+    - us/form/irs/ty2021/f1040
+    - us/form/irs/ty2021/f1040s8
+    - us/form/irs/ty2021/f8880
+    - us/form/irs/ty2021/i1040sr
+    - us/form/irs/ty2021/i2441
+    - us/form/irs/ty2021/i706
+    - us/form/irs/ty2021/i8863
+    - us/form/irs/ty2021/p526
+    - us/form/irs/ty2021/p596
+    - us/form/irs/ty2021/p929
+    - us/form/irs/ty2021/p970
+    - us/form/irs/ty2022/i1040s8
+    - us/form/irs/ty2022/i5695
+    - us/form/irs/ty2022/i706
+    - us/form/irs/ty2022/i8936
+    - us/form/irs/ty2022/p501
+    - us/form/irs/ty2022/p915
+    - us/form/irs/ty2022/p970
+    - us/form/irs/ty2023/f940sa
+    - us/form/irs/ty2023/i706
+    - us/form/irs/ty2023/i8936
+    - us/form/irs/ty2024/f1040s1
+    - us/form/irs/ty2024/i1040se
+    - us/form/irs/ty2024/i706
+    - us/form/irs/ty2024/i8960
+    - us/form/irs/ty2025/f2555
+    - us/form/irs/ty2025/f461
+    - us/form/irs/ty2025/f4952
+    - us/form/irs/ty2025/f5695
+    - us/form/irs/ty2025/f8815
+    - us/form/irs/ty2025/i1040sr
+    - us/form/irs/ty2025/i461
+    - us/form/irs/ty2025/i5695
+    - us/form/irs/ty2025/i8814
+    - us/form/irs/ty2025/i8936
+    - us/form/irs/ty2025/i940
+    - us/form/irs/ty2025/p590a
+    - us/form/irs/ty2025/p590b
+    - us/form/irs/ty2025/p915
+    - us/form/irs/ty2026/p1101
+    - us/form/irs/ty2026/p15
+    - us/form/irs/ty2026/p6126
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-agency-guidance
+    work_order_documents: 3
+    scope_provision_rows: 43
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/dol/eta/futa-credit-reduction-states-2010-2025
+    - us/guidance/dol/eta/futa-credit-reductions
+    - us/guidance/dol/whd/overtime-salary-levels
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-irs-guidance
+    work_order_documents: 30
+    scope_provision_rows: 473
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/irs/about-schedule-f-form-1040
+    - us/guidance/irs/faq/government-entities-cafeteria-plans
+    - us/guidance/irs/faq/social-security-income
+    - us/guidance/irs/free-tax-return-preparation-for-qualifying-taxpayers
+    - us/guidance/irs/irb/2025-42
+    - us/guidance/irs/newsroom/2021-charitable-deductions-non-itemizers
+    - us/guidance/irs/newsroom/2025-401k-ira-limits
+    - us/guidance/irs/newsroom/2026-401k-ira-limits
+    - us/guidance/irs/newsroom/what-if-i-withdraw-money-from-my-ira
+    - us/guidance/irs/notice-2018-70
+    - us/guidance/irs/notice-2023-75
+    - us/guidance/irs/notice-2024-80
+    - us/guidance/irs/retirement-plan-cola-table
+    - us/guidance/irs/rev-proc-2013-15
+    - us/guidance/irs/rev-proc-2013-35
+    - us/guidance/irs/rev-proc-2014-61
+    - us/guidance/irs/rev-proc-2015-53
+    - us/guidance/irs/rev-proc-2016-55
+    - us/guidance/irs/rev-proc-2017-58
+    - us/guidance/irs/rev-proc-2018-22
+    - us/guidance/irs/rev-proc-2018-57
+    - us/guidance/irs/rev-proc-2019-44
+    - us/guidance/irs/rev-proc-2020-45
+    - us/guidance/irs/rev-proc-2023-34
+    - us/guidance/irs/savers-credit
+    - us/guidance/irs/tax-counseling-for-the-elderly
+    - us/guidance/irs/tax-topic/409
+    - us/guidance/irs/tax-topic/452
+    - us/guidance/irs/tax-topic/505
+    - us/guidance/irs/whats-new-estate-and-gift-tax
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-ssa-guidance
+    work_order_documents: 1
+    scope_provision_rows: 190
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/ssa/request-withhold-taxes
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-26-part-1
+    work_order_documents: 1
+    scope_provision_rows: 29
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/26/1/414-b-1
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541
+    work_order_documents: 2
+    scope_provision_rows: 57
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/29/541
+    - us/regulation/29/541/600
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/rulemaking/2026-10-06-w6-federal-federal-register
+    work_order_documents: 2
+    scope_provision_rows: 227
+    coverage_complete: true
+    citation_paths:
+    - us/rulemaking/federal-register/2019-09-27/2019-20353
+    - us/rulemaking/federal-register/2024-04-26/2024-08038
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-public-laws
+    work_order_documents: 3
+    scope_provision_rows: 1311
+    coverage_complete: true
+    citation_paths:
+    - us/statute/public-law/115-97
+    - us/statute/public-law/117-169
+    - us/statute/public-law/119-21
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-historical-editions
+    work_order_documents: 1
+    scope_provision_rows: 764
+    coverage_complete: true
+    citation_paths:
+    - us/statute/edition-1976/26/uscode1976-007026001
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal statute (26 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready

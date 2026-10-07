@@ -595,6 +595,71 @@ states:
   index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
   index_document_count: 1693
   taken_count: 915
+  wave6_federal_scopes:
+  - scope: us/guidance/2026-10-06-w6-federal-ssa-guidance
+    work_order_documents: 35
+    scope_provision_rows: 190
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/ssa/oact/ssi-annual-report/2011/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2012/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2013/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2014/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2015/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2016/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2017/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2018/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2019/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2020/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2021/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2022/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2023/income-and-resource-exclusions
+    - us/guidance/ssa/oact/ssi-annual-report/2024/incentives-for-work-and-rehabilitation
+    - us/guidance/ssa/pubs/en-05-11125
+    - us/guidance/ssa/pubs/en-05-11162
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2002/co
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2002/ma
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2005/ct
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2005/ma
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/ak
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/co
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/ct
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/dc
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/de
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/fl
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/hi
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/in
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/la
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/ma
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/me
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/mi
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/mo
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/ne
+    - us/guidance/ssa/state-assistance-programs-for-ssi-recipients/2011/nm
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/policy/2026-10-06-w6-federal-cms-state-plans
+    work_order_documents: 2
+    scope_provision_rows: 654
+    coverage_complete: true
+    citation_paths:
+    - us/policy/cms/medicaid-spa/ga/ga-18-0004
+    - us/policy/cms/medicaid-spa/ga/ga-19-0010
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/rulemaking/2026-10-06-w6-federal-federal-register
+    work_order_documents: 1
+    scope_provision_rows: 227
+    coverage_complete: true
+    citation_paths:
+    - us/rulemaking/federal-register/2024-03-27/2024-06464
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-public-laws
+    work_order_documents: 2
+    scope_provision_rows: 1311
+    coverage_complete: true
+    citation_paths:
+    - us/statute/public-law/103-66
+    - us/statute/public-law/98-21
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal (20 CFR part 416, eCFR)
   queue_status: agent_ready

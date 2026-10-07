@@ -1256,6 +1256,79 @@ states:
   index_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C
   index_document_count: null
   taken_count: 0
+  wave6_federal_scopes:
+  - scope: us/guidance/2026-10-06-w6-federal-agency-guidance
+    work_order_documents: 1
+    scope_provision_rows: 43
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/guidance/2026-10-06-w6-federal-cms-guidance
+    work_order_documents: 17
+    scope_provision_rows: 352
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/cms/cib/2025-05-28
+    - us/guidance/cms/cib/2025-11-18
+    - us/guidance/cms/cib/2025-12-08
+    - us/guidance/cms/cib/2025-12-09
+    - us/guidance/cms/cib/2026-04-27
+    - us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    - us/guidance/cms/healthcare-gov/glossary/federal-poverty-level
+    - us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    - us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    - us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    - us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    - us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    - us/guidance/cms/medicaid-gov/section-1115-demonstrations
+    - us/guidance/cms/sho/10-006
+    - us/guidance/cms/sho/12-002
+    - us/guidance/cms/sho/21-007
+    - us/guidance/cms/sho/26-001
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/policy/2026-10-06-w6-federal-cms-state-plans
+    work_order_documents: 8
+    scope_provision_rows: 654
+    coverage_complete: true
+    citation_paths:
+    - us/policy/cms/chip-spa/ca/ca-chipspa-20
+    - us/policy/cms/medicaid-spa/la/la-14-04
+    - us/policy/cms/medicaid-spa/mt/mt-24-0002
+    - us/policy/cms/medicaid-spa/ri/ri-22-0024
+    - us/policy/cms/section-1115/ar/arkansas-works
+    - us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    - us/policy/cms/section-1115/in/healthy-indiana-plan-approval-2023-03-21
+    - us/policy/cms/section-1115/mi/healthy-michigan-waiver-amendment-request-2013-11-08
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-42-part-440
+    work_order_documents: 1
+    scope_provision_rows: 3
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/42/440/255
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-146
+    work_order_documents: 1
+    scope_provision_rows: 3
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/45/146/113
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-155
+    work_order_documents: 1
+    scope_provision_rows: 3
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/45/155/20
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-public-laws
+    work_order_documents: 1
+    scope_provision_rows: 1311
+    coverage_complete: true
+    citation_paths:
+    - us/statute/public-law/119-21
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal (42 CFR part 436, eCFR)
   queue_status: agent_ready
