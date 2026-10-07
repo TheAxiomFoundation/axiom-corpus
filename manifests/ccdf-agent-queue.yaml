@@ -444,8 +444,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: 2021-22 Colorado Market Rate Survey Report (Google Drive) on the CDEC State Plans page; no
-      schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+    notes: 'Reviewed 2026-09-15: cdec.colorado.gov/resources/state-plans answers HTTP 403 (CloudFront ''request could not
+      be satisfied'') to the plain client, the block the 2026-09-10 retry note recorded; no impersonation is documented for
+      the host. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
       not taken.'
 - jurisdiction: us-ct
   name: Connecticut
@@ -486,9 +487,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: 2024 Market Rate Survey and Methodology Report, 2022 MRS and analysis on the OEC CCDF page;
-      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
-      not taken.'
+    notes: 'Reviewed 2026-09-15: the OEC CCDF page lists the 2024/2022/2018 market rate survey reports and the Care 4 Kids
+      overview page lists no rate or fee document; no schedule. Market rate survey and cost analysis reports are the basis
+      for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -732,6 +733,20 @@ states:
     taken_count: 2
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Idaho Child
       Care Copay Chart, effective October 1, 2025; Idaho Child Care Program Local Market Rates, effective July 1, 2025.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://adminrules.idaho.gov/current-rules/
+    index_document_count: 371
+    primary_source_url: https://adminrules.idaho.gov/rules/current/16/160612.pdf
+    target_manifest: manifests/us-id-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-id
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): OARC current-rules listing has 371 rule chapters;
+      taken IDAPA 16.06.12 Idaho Child Care Program (ICCP), 23 pages, HTTP Last-Modified 2026-07-30, rule-history marks {''3-17-22'':
+      284, ''4-6-23'': 23}. The listing link 301-redirects to https://files.dfm.idaho.gov/dfm-admin-website/rules/current/16/160612.pdf.'
 - jurisdiction: us-il
   name: Illinois
   queue_status: agent_ready
@@ -799,6 +814,19 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://www.in.gov/fssa/carefinder/information-and-resources2/
+    index_document_count: 1
+    primary_source_url: https://www.in.gov/fssa/carefinder/files/CCDF-Policy-Manual.pdf
+    target_manifest: manifests/us-in-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-in
+      document_class: manual
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): FSSA CCDF Policy Manual PDF (queue candidate
+      source, HTTP 200) taken page-level; the Provider Manual is not taken (no index page names it).'
 - jurisdiction: us-ia
   name: Iowa
   queue_status: agent_ready
@@ -903,8 +931,23 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: market rate surveys (2017, 2020, 2023) on the DCC page; no rate or copay schedule. Market
-      rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+    notes: 'Reviewed 2026-09-15: the DCC page lists the KICCS provider portal and market rate surveys; no rate or copay schedule
+      linked. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not
+      taken.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    index_document_count: 1
+    primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/omvolviii.pdf
+    target_manifest: manifests/us-ky-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-ky
+      document_class: manual
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): DFS manual volume index lists ''DFS Manual Volume
+      VIII - Child Care Assistance Program (CCAP) (PDF)''; taken page-level (expression date = HTTP Last-Modified, as for
+      volume III).'
 - jurisdiction: us-la
   name: Louisiana
   queue_status: agent_ready
@@ -944,9 +987,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: 2017, 2020, 2023 Louisiana Child Care Market Rate Surveys on the LDOE policy guidance page;
-      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
-      not taken.'
+    notes: 'Reviewed 2026-09-15: the LDOE policy guidance page lists the 2017/2020/2023 market rate surveys; the CCAP Providers
+      page links the 2018 CCAP Provider Guide only; no schedule. Market rate survey and cost analysis reports are the basis
+      for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-me
   name: Maine
   queue_status: agent_ready
@@ -1014,6 +1057,20 @@ states:
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Maine Child
       Care Market Rates (maximum rates by county and setting), May 19, 2025; CCAP Parent Fee Guide (FY26), effective April
       18, 2026; CCAP Current Income Guidelines (125% SMI), April 18, 2026.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    index_document_count: 1
+    primary_source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/CCAP%20Full%20Rule%208.18.2025_1.pdf
+    target_manifest: manifests/us-me-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): OCFS Child Care Affordability page links ''Link
+      to CCAP Rules (PDF)'' (https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/CCAP%20Full%20Rule%208.18.2025_1.pdf);
+      taken page-level.'
 - jurisdiction: us-md
   name: Maryland
   queue_status: blocked_primary_source
@@ -1167,8 +1224,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: dcyf.mn.gov page (impersonated) lists the plan and the QPR only; no schedule. Market rate
-      survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+    notes: 'Reviewed 2026-09-15: dcyf.mn.gov/child-care-and-development-fund answered the plain client (HTTP 200) but lists
+      the plan and QPR only; no rate or copay schedule linked. Market rate survey and cost analysis reports are the basis
+      for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-ms
   name: Mississippi
   queue_status: agent_ready
@@ -1204,12 +1262,18 @@ states:
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
   - family: ccdf_rate_and_copay_schedules
-    queue_status: needs_review
-    target_manifest: null
-    taken_count: 0
-    notes: 'Reviewed 2026-09-13: 2021/2024 market rate surveys and the 2024 Narrow Cost Analysis on the ECCD Reports and Archives
-      page; no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule,
-      and were not taken.'
+    queue_status: agent_ready
+    index_url: https://www.mdhs.ms.gov/eccd/parents/pay/
+    primary_source_urls:
+    - https://www.mdhs.ms.gov/wp-content/uploads/2021/11/Copay-Table-Update-11_01_21.pdf
+    target_manifest: manifests/us-ms-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-ms
+      document_class: policy
+      version: 2026-09-15-ccdf-rate-schedules
+    taken_count: 1
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-15 (closure ccdf-s30): Child Care
+      Payment Program Family Co-Pay Fee Scale (Table 1), effective November 1, 2021.'
 - jurisdiction: us-mo
   name: Missouri
   queue_status: blocked_primary_source
@@ -1312,6 +1376,21 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    index_document_count: 5
+    primary_source_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    target_manifest: manifests/us-ne-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-ne
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 5
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): DHHS (agency 37) has 45 titles on rules.nebraska.gov;
+      title 392 Child Care Subsidy Program has 5 chapters (1 BACKGROUND AND GENERAL INFORMATION (eff. 2020-09-15); 2 ELEMENTS
+      OF ELIGIBILITY (eff. 2020-09-15); 3 AUTHORIZATION AND NOTICE (eff. 2020-09-15); 4 PROVIDER ENROLLMENT (eff. 2020-09-15);
+      5 CHILD CARE GRANTS (eff. 2020-09-15)); taken all 5 as the publisher''s chapter PDF blobs.'
 - jurisdiction: us-nv
   name: Nevada
   queue_status: agent_ready
@@ -1413,9 +1492,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: childcarenj.gov home lists CCAP application pages only; the 2017-18 and 2021-22 MRS reports
-      the run note recorded were not on the page read 2026-09-13; no schedule. Market rate survey and cost analysis reports
-      are the basis for rates, not the operative schedule, and were not taken.'
+    notes: 'Reviewed 2026-09-15: childcarenj.gov answers HTTP 403 (Cloudflare ''Attention Required'') to the plain client,
+      the block the 2026-09-10 retry note recorded. Market rate survey and cost analysis reports are the basis for rates,
+      not the operative schedule, and were not taken.'
 - jurisdiction: us-nm
   name: New Mexico
   queue_status: agent_ready
@@ -1447,6 +1526,20 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://www.nmececd.org/child-care-assistance/
+    index_document_count: 1
+    primary_source_url: https://www.srca.nm.gov/parts/title08/08.009.0003.html
+    target_manifest: manifests/us-nm-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-nm
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): ECECD Child Care Assistance page links 1 SRCA
+      chapter 9 part file(s) (8.9.3 NMAC); taken all. The HCA ISD page''s 8.150 parts the recount named are the LIHEAP rule,
+      not child care.'
 - jurisdiction: us-ny
   name: New York
   queue_status: blocked_primary_source
@@ -1659,6 +1752,20 @@ states:
       version: 2026-09-13-ccdf-state-plan-amendments
     taken_count: 2
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://codes.ohio.gov/ohio-administrative-code/5180:6
+    index_document_count: 12
+    primary_source_url: https://codes.ohio.gov/ohio-administrative-code/chapter-5180:6-1
+    target_manifest: manifests/us-oh-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-oh
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules-agency-5180-6-chapter-5180-6-1
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): codes.ohio.gov agency 5180:6 Early Care and Education
+      Eligibility: 3 chapters (5180:6-1 Publicly Funded Child Care; 5180:6-2 Ohio Preschool Program; 5180:6-50 Revised Code
+      Chapter 119 Hearings); taken chapter 5180:6-1 (12 rule links) through the OAC adapter, run id 2026-09-15-ccdf-subsidy-rules-agency-5180-6-chapter-5180-6-1.'
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
@@ -1691,6 +1798,20 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://rules.ok.gov/home
+    index_document_count: 68
+    primary_source_url: https://rules.ok.gov/home
+    target_manifest: manifests/us-ok-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-ok
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): chapter API returns 68 segments ({''Chapter:Undefined'':
+      1, ''Subchapter:Undefined'': 9, ''Section:Undefined'': 32, ''Section:Revoked'': 22, ''Subchapter:Revoked'': 1, ''Part:Revoked'':
+      3}); taken the chapter as one document, 32 non-revoked sections become records'
 - jurisdiction: us-or
   name: Oregon
   queue_status: agent_ready
@@ -1741,9 +1862,23 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: 2022 alternate rate-setting structure legislative report on the DELC State Plans page; no
-      schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
-      not taken.'
+    notes: 'Reviewed 2026-09-15: the DELC State Plans page lists the 2022 alternate rate-setting report and the advisory-committee
+      application only; no ERDC rate or copay schedule linked. Market rate survey and cost analysis reports are the basis
+      for rates, not the operative schedule, and were not taken.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=115
+    index_document_count: 41
+    primary_source_url: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=115
+    target_manifest: manifests/us-or-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-or
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules-chapter-414-division-175
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): OARD chapter 414 (DELC) lists 32 divisions; division
+      175 Employment Related Day Care Program has 41 rules, taken through the OAR adapter (run id 2026-09-15-ccdf-subsidy-rules-chapter-414-division-175).
+      The licensing and other DELC divisions are not taken.'
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: agent_ready
@@ -1782,9 +1917,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: the DHS Early Learning and Child Care resources page lists the plan; the 2025 MRS report
-      the run note recorded is a survey, not a schedule. Market rate survey and cost analysis reports are the basis for rates,
-      not the operative schedule, and were not taken.'
+    notes: 'Reviewed 2026-09-15: the DHS Early Learning and Child Care page and its Child Care Works page link the 2025 MRS
+      reports, the application and the eligibility regulations; no maximum child care allowance or copay schedule linked.
+      Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-pr
   name: Puerto Rico
   queue_status: needs_review
@@ -1845,8 +1980,28 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: the DHS State Plans page lists CCDF plans and amendments only; no schedule. Market rate survey
-      and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+    notes: 'Reviewed 2026-09-15: the DHS State Plans page lists CCDF plans, amendments and the SSI/overpayment pages only;
+      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+      not taken.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://rules.sos.ri.gov/organizations/chapter/218-20
+    index_document_count: 9
+    primary_source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-4
+    target_manifest: manifests/us-ri-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-ri
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 2
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): RICR Title 218 Chapter 20, 9 parts via the chapter
+      page''s get_parts listing (Part 1 Supplemental Nutrition Assistance Program (218-RICR-20-00-1); Part 2 Rhode Island
+      Works Program Rules and Regulations (218-RICR-20-00-2); Part 3 General Public Assistance Program; Part 4 Child Care
+      Assistance Program Rules and Regulations (218-RICR-20-00-4); Part 5 Supplemental Security Income and State Supplemental
+      Payment Rules and Regulations (218-RICR-20-00-5); Part 6 REFUGEE ASSISTANCE PROGRAM; Part 7 Social Services (218-RICR-20-00-7);
+      Part 13 Child Care Assistance Program for Child Care Educators and Child Care Staff Rules and Regulations; Part 15 The
+      Rhode Island Organ Transplant Fund); taken Part 4 (Amendment, Active, effective 2026-06-11, 77 filings); Part 13 (Amendment,
+      Active, effective 2025-11-16, 4 filings). Parts 1 (SNAP) and 2 (RIW) are already in the corpus.'
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: agent_ready
@@ -1897,6 +2052,21 @@ states:
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): SC Child
       Care Scholarship Program Fee Scale, October 1, 2025 - September 30, 2026; SC Child Care Scholarship Maximum Payments
       Allowed, October 1, 2025 - September 30, 2026; Child Care Income Standards, 2025-2026.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://www.scchildcare.org/resources/
+    index_document_count: 1
+    primary_source_url: https://www.scchildcare.org/media/ib0bkc0n/2026manualrevisionfinal.pdf
+    target_manifest: manifests/us-sc-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-sc
+      document_class: manual
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): scchildcare.org resources page lists scholarship
+      policy manuals vol. 36-39 (taken vol. 39, ''SC Child Care Scholarship Program Policy Manual Vol. 39'', revised 2026-02-09);
+      the DSS manuals page''s ''SC Voucher Program Policy Manual'' is volume 028 (06/01/2018) under the program''s former
+      name, superseded, not taken.'
 - jurisdiction: us-sd
   name: South Dakota
   queue_status: agent_ready
@@ -1944,6 +2114,27 @@ states:
     taken_count: 3
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2; Amendment
       3.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://sdlegislature.gov/Rules/Administrative/67:47
+    index_document_count: 105
+    primary_source_url: https://sdlegislature.gov/Rules/Administrative/67:47
+    target_manifest: manifests/us-sd-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-sd
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 40
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): rules API chain from 67:47 returns 105 records
+      ({''B'': 1, ''C'': 4, ''D'': 100}: B article, C chapters, D sections); taken the 40 sections whose catchline is not
+      Repealed/Transferred; not taken: the article and chapter table-of-contents records and 60 repealed/transferred sections
+      (67:47:01:08.01, 67:47:01:09, 67:47:01:10, 67:47:01:10.03, 67:47:01:10.04, 67:47:01:17, 67:47:01:21, 67:47:01:23, 67:47:02:05,
+      67:47:02:06, 67:47:02:07, 67:47:02:08, 67:47:02:09, 67:47:02:09.02, 67:47:02:09.03, 67:47:02:09.04, 67:47:02:10, 67:47:02:11,
+      67:47:02:12, 67:47:02:13, 67:47:02:14, 67:47:02:15, 67:47:02:16, 67:47:02:17, 67:47:02:18, 67:47:02:19, 67:47:02:20,
+      67:47:03:01, 67:47:03:02, 67:47:03:03, 67:47:03:04, 67:47:03:05, 67:47:03:06, 67:47:03:07, 67:47:03:07.01, 67:47:03:08,
+      67:47:03:09, 67:47:03:10, 67:47:03:11, 67:47:03:12, 67:47:03:13, 67:47:03:14, 67:47:03:15, 67:47:03:16, 67:47:03:17,
+      67:47:03:18, 67:47:03:19, 67:47:03:20, 67:47:03:21, 67:47:03:22, 67:47:03:23, 67:47:03:24, 67:47:03:25, 67:47:03:26,
+      67:47:03:27, 67:47:03:28, 67:47:03:29, 67:47:03:30, 67:47:03:31, 67:47:03:32)'
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: agent_ready
@@ -1993,6 +2184,15 @@ states:
     notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Child Care
       Certificate Program Income Eligibility Limits and Parent Co-Pay Fees, effective October 1, 2025; Child Care Certificate
       Program Provider Weekly Reimbursement Rates including QRIS Scorecard Bonus Payments, effective January 1, 2026.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: needs_review
+    index_url: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-15 (closure ccdf-s29): the TDHS publications page (106 PDF links: APS 8.xx, SSBG 14.xx, Families
+      First 23.xx, SNAP 24.xx, handbooks) lists no Child Care Certificate Program policy; the only child-care item is 23.22
+      Families First Child Care, a TANF policy already in the 2026-09-10 TANF manual scope. The subsidy rules are codified
+      as Tenn. Comp. R. & Regs. 1240-04 on the Secretary of State''s site, which no queue row inventories.'
 - jurisdiction: us-tx
   name: Texas
   queue_status: agent_ready
@@ -2063,11 +2263,22 @@ states:
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
   - family: ccdf_rate_and_copay_schedules
-    queue_status: needs_review
-    target_manifest: null
-    taken_count: 0
-    notes: 'Reviewed 2026-09-13: 2021 and 2024 Child Care Market Rate Studies on the OCC Plans and Reports page; no schedule.
-      Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+    queue_status: agent_ready
+    index_url: https://jobs.utah.gov/occ/provider/subsidy.html
+    primary_source_urls:
+    - https://jobs.utah.gov/occ/provider/table1025.pdf
+    - https://jobs.utah.gov/occ/provider/table1026.pdf
+    - https://jobs.utah.gov/occ/provider/table30824.pdf
+    target_manifest: manifests/us-ut-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-ut
+      document_class: policy
+      version: 2026-09-15-ccdf-rate-schedules
+    taken_count: 3
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-15 (closure ccdf-s30): Child Care
+      Income Eligibility and Co-Payment Table (Table 4), effective October 1, 2025; Child Care Income Eligibility and Co-Payment
+      Table (Table 4), effective October 1, 2026; Maximum Monthly Child Care Payments Based on Monthly Local Market Rates
+      (Table 3), effective October 1, 2024.'
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready
@@ -2116,11 +2327,34 @@ states:
     taken_count: 1
     notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1 approval letter.'
   - family: ccdf_rate_and_copay_schedules
-    queue_status: needs_review
-    target_manifest: null
-    taken_count: 0
-    notes: 'Reviewed 2026-09-13: Child Care Market Rate Survey 2024 on the CDD CCDF page; no schedule. Market rate survey
-      and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
+    queue_status: agent_ready
+    index_url: https://dcf.vermont.gov/cdd/providers/care/ccfap
+    primary_source_urls:
+    - https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CDD-Guidance-CCFAP-Capped-Rates.pdf
+    - https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CCFAP-Income-Guidelines.pdf
+    target_manifest: manifests/us-vt-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: policy
+      version: 2026-09-15-ccdf-rate-schedules
+    taken_count: 2
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-15 (closure ccdf-s30): Child Care
+      Financial Assistance State Rates, effective July 13, 2025; Child Care Financial Assistance Income Guidelines (family
+      share by income and household size), effective March 23, 2025.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: agent_ready
+    index_url: https://dcf.vermont.gov/cdd/laws-rules
+    index_document_count: 1
+    primary_source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/CCFAP/CCFAP-Regulations.pdf
+    target_manifest: manifests/us-vt-ccdf-subsidy-rules.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: regulation
+      version: 2026-09-15-ccdf-subsidy-rules
+    taken_count: 1
+    notes: 'State CCDF subsidy rulebook taken 2026-09-15 (closure ccdf-s29): CDD Laws, Rules and Procedures page links ''Program
+      Regulations'' (https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/CCFAP/CCFAP-Regulations.pdf) under CCFAP,
+      and its CCFAP sub-page lists about 27 policy/procedure PDFs; taken the regulations page-level.'
 - jurisdiction: us-vi
   name: Virgin Islands
   queue_status: needs_review
@@ -2182,9 +2416,9 @@ states:
     queue_status: needs_review
     target_manifest: null
     taken_count: 0
-    notes: 'Reviewed 2026-09-13: the Virginia child care plan page lists the plan only (AkamaiGHost 403 to plain clients);
-      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
-      not taken.'
+    notes: 'Reviewed 2026-09-15: www.childcare.virginia.gov answered HTTP 503 to the plain client on 2026-09-15 (AkamaiGHost
+      403 on 2026-09-10); not re-probed with impersonation. Market rate survey and cost analysis reports are the basis for
+      rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-wa
   name: Washington
   queue_status: agent_ready
@@ -2293,6 +2527,30 @@ states:
     taken_count: 1
     notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
       index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: agent_ready
+    index_url: https://dcf.wisconsin.gov/wishares/maxrates
+    primary_source_urls:
+    - https://dcf.wisconsin.gov/files/wishares/pdf/max-rates-statewide.pdf
+    - https://dcf.wisconsin.gov/files/wishares/pdf/wishares-copay-schedule.pdf
+    target_manifest: manifests/us-wi-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-wi
+      document_class: policy
+      version: 2026-09-15-ccdf-rate-schedules
+    taken_count: 2
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-15 (closure ccdf-s30): 2025 Wisconsin
+      Shares Child Care Subsidy County and Tribal Maximum Rates, effective October 1, 2025; Wisconsin Shares Copayment Schedule,
+      effective February 1, 2026.'
+  - family: ccdf_subsidy_rulebook
+    queue_status: needs_review
+    index_url: https://dcf.wisconsin.gov/wishares
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-15 (closure ccdf-s29): the Wisconsin Shares pages (/wishares, /wishares/parents, /wishares/providers,
+      /wishares/maxrates) link the Maximum Rates chart, the Copayment chart, eligibility brochures (DCF-P-5186 etc.) and the
+      child-welfare ''Policies and Standards'' portal, but not the Wisconsin Shares Child Care Subsidy Policy Manual; dcf.wisconsin.gov/manuals/
+      answers HTTP 403 to the plain client, so the manual''s index was not located.'
 - jurisdiction: us-wy
   name: Wyoming
   queue_status: agent_ready

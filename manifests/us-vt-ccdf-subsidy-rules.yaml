@@ -1,0 +1,29 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-vt-dcf-cdd-ccfap-regulations
+  jurisdiction: us-vt
+  document_class: regulation
+  title: Vermont Child Care Financial Assistance Program (CCFAP) Regulations
+  source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/CCFAP/CCFAP-Regulations.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2009-02-09'
+  citation_path: us-vt/regulation/dcf/cdd/ccfap-regulations
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Child Development Division
+    document_subtype: program_regulations
+    program: CCDF
+    state_program: Child Care Financial Assistance Program (CCFAP)
+    federal_program: CCDF
+    manual_landing_page: https://dcf.vermont.gov/cdd/laws-rules
+    source_discovery_group: us-vt/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://dcf.vermont.gov/cdd/laws-rules
+    closure_elements:
+    - ccdf-s29
+    source_last_modified: '2022-07-15'
+    extraction_granularity: pdf_page
+    official_listing_title: Program Regulations
+    expression_date_note: 'page 1 prints ''Effective Date: February 9, 2009''; HTTP Last-Modified 2022-07-15'
+    extraction_note: page-level like the ESD rules scopes; the CDD 'Policies & Procedures' PDFs listed on the same page are
+      procedures, not taken
