@@ -315,6 +315,33 @@ STATIC: dict[str, tuple[str, str, str, str, str]] = {
             ),
         )
     },
+    # CMS state plan amendments held in the state-jurisdiction CMS state-plan scopes (signed, locked)
+    "https://www.medicaid.gov/sites/default/files/2023-03/NV-22-0026.pdf": held(
+        "us-nv/policy/2026-09-13-medicaid-state-plan",
+        "us-nv/policy/cms/medicaid-state-plan/spa/nv-22-0026/approval-document",
+        AUTO,
+        "byte-identical (same sha256) to the approval document held in the Nevada CMS state-plan scope",
+    ),
+    "https://www.medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf": held(
+        "us-ri/policy/2026-09-13-chip-state-plan",
+        "us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package",
+        AUTO,
+        "byte-identical (same sha256) to the approval package held in the Rhode Island CMS CHIP state-plan scope",
+    ),
+    "https://www.medicaid.gov/medicaid-spa/2023-11-22/156086": held(
+        "us-ga/policy/2026-09-13-medicaid-state-plan",
+        "us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document",
+        AUTO,
+        "the medicaid.gov SPA page (node 156086) prints a one-sentence summary; the SPA's approval document, "
+        "indexed from the same node, is held in the Georgia CMS state-plan scope",
+    ),
+    "https://www.medicaid.gov/medicaid-spa/2025-05-07/179381": held(
+        "us-nv/policy/2026-09-13-medicaid-state-plan",
+        "us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0006/approval-document",
+        AUTO,
+        "the medicaid.gov SPA page (node 179381) prints a one-sentence summary; the SPA's approval document, "
+        "indexed from the same node, is held in the Nevada CMS state-plan scope",
+    ),
     # CHECK-PUBLISHER
     "https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/": (
         OUT_OF_SCOPE,

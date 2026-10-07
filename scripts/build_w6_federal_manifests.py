@@ -1213,22 +1213,6 @@ CMS_STATE_PLANS = [
         subtype="medicaid_state_plan_amendment",
     ),
     plan(
-        "medicaid-spa/nv/nv-22-0026",
-        "Nevada Medicaid State Plan Amendment 22-0026 (approval package, March 21, 2023)",
-        MS + "2023-03/NV-22-0026.pdf",
-        "pdf",
-        "2023-03-21",
-        subtype="medicaid_state_plan_amendment",
-    ),
-    plan(
-        "chip-spa/ri/ri-22-0025",
-        "Rhode Island CHIP State Plan Amendment RI-22-0025 (approval package, April 19, 2023)",
-        MS + "2023-04/RI-22-0025.pdf",
-        "pdf",
-        "2023-04-19",
-        subtype="chip_state_plan_amendment",
-    ),
-    plan(
         "medicaid-spa/mt/mt-24-0002",
         "Montana Medicaid State Plan Amendment 24-0002 (approval package, May 3, 2024)",
         MS + "2024-05/MT-24-0002.pdf",
@@ -1257,20 +1241,6 @@ CMS_STATE_PLANS = [
         MS + "State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-19-0010.pdf",
         "pdf",
         subtype="medicaid_state_plan_amendment",
-    ),
-    plan(
-        "medicaid-spa/ga/ga-23-0002-vlp",
-        "GA-23-0002-VLP (Medicaid.gov SPA page)",
-        "https://www.medicaid.gov/medicaid-spa/2023-11-22/156086",
-        "html",
-        subtype="medicaid_spa_page",
-    ),
-    plan(
-        "medicaid-spa/nv/nv-25-0006",
-        "NV-25-0006 (Medicaid.gov SPA page)",
-        "https://www.medicaid.gov/medicaid-spa/2025-05-07/179381",
-        "html",
-        subtype="medicaid_spa_page",
     ),
     plan(
         "section-1115/ar/arkansas-works",
