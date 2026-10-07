@@ -25677,10 +25677,10 @@ states:
     version: 2026-10-06-w6-income-tax-guidance-mt
   - jurisdiction: us-mt
     document_class: statute
-    version: 2026-10-06-w6-income-tax-statute-mt
+    version: 2026-10-06-w6-income-tax-statute-mt-r2
   lead_counts: {}
-  taken_count: 22
-  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 10, ALREADY-HELD 12, OUTREACH 1, PRESENT 32 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
+  taken_count: 23
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 10, ALREADY-HELD 12, PRESENT 33 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-nc
   name: North Carolina income tax regulations
   queue_status: done
@@ -25880,10 +25880,10 @@ states:
     version: 2026-10-06-w6-income-tax-guidance-nm
   - jurisdiction: us-nm
     document_class: statute
-    version: 2026-10-06-w6-income-tax-statute-nm
+    version: 2026-10-06-w6-income-tax-statute-nm-r2
   lead_counts: {}
-  taken_count: 15
-  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 6, OUTREACH 3, PRESENT 17 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
+  taken_count: 18
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ALREADY-HELD 6, PRESENT 20 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ny
   name: New York income tax regulations
   queue_status: done
@@ -25918,7 +25918,7 @@ states:
   target_scopes:
   - jurisdiction: us-ny
     document_class: form
-    version: 2026-10-06-w6-income-tax-forms-ny
+    version: 2026-10-06-w6-income-tax-forms-ny-r2
   - jurisdiction: us-ny
     document_class: guidance
     version: 2026-10-06-w6-income-tax-guidance-ny
@@ -25926,8 +25926,8 @@ states:
     document_class: statute
     version: 2026-10-06-w6-income-tax-statute-ny-r2
   lead_counts: {}
-  taken_count: 33
-  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 2, ALREADY-HELD 3, OUTREACH 1, PRESENT 33 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
+  taken_count: 31
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 2, ALREADY-HELD 5, OUTREACH 1, PRESENT 31 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-oh
   name: Ohio income tax regulations
   queue_status: done
@@ -25969,7 +25969,7 @@ states:
     version: 2026-10-06-w6-income-tax-statute-oh
   lead_counts: {}
   taken_count: 13
-  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 1, ALREADY-HELD 1, PRESENT 14, SKIPPED 1 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
+  notes: '2026-10-06 wave 6 tax-mn-oh (docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md): program-bundle gap documents of docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv; decisions ABSENT 2, ALREADY-HELD 1, PRESENT 14 (docs/ingest-runs/2026-10-06-w6-tax-mn-oh-decisions.csv).'
 - jurisdiction: us-ok
   name: Oklahoma income tax regulations
   queue_status: done

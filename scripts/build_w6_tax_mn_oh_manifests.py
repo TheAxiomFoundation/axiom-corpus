@@ -356,6 +356,13 @@ statute("us-mt", "session-laws/2021/sb399", "Senate Bill 399 (2021): An act gene
 statute("us-mt", "bills/2021/sb399-version-3", "Senate Bill 399 (2021), version SB 399.3",
         "https://docs.legmt.gov/download-ticket?ticketId=2f0614a3-8bb9-4b4e-93de-21647c203b7c", authority=MTA,
         fmt="pdf", sub="bill_version")
+statute("us-mt", "session-laws/2023/hb192",
+        "House Bill 192 (2023): An act providing for the distribution of surplus revenue (income tax surplus rebates) (enrolled)",
+        "https://docs.legmt.gov/download-ticket?ticketId=fa2f83e8-3d40-4c8b-af39-8ba1f22e7aa5", authority=MTA,
+        fmt="pdf", sub="session_law", rows=["https://leg.mt.gov/bills/2023/billpdf/HB0192.pdf"],
+        index_url="https://bearbeta.legmt.gov/docs/v1/documents/getBillVersions?legislatureOrdinal=68&sessionOrdinal=20231&billType=HB&billNumber=192",
+        note="Enrolled version HB0192_X.pdf, located through the Legislature's own bill-version API (the endpoint the "
+             "bills.legmt.gov explorer calls); the legacy leg.mt.gov bill-PDF path answers 404.")
 statute("us-mt", "session-laws/2023/hb222",
         "House Bill 222 (2023): An act providing for a property tax rebate on a principal residence (enrolled)",
         "https://docs.legmt.gov/download-ticket?ticketId=ff6faf83-515f-4472-a079-c41a4a75e827", authority=MTA,
@@ -577,6 +584,16 @@ guidance("us-nm", "trd/income-tax-act-regulations-publication-2023",
 guidance("us-nm", "hed/new-mexico-529-college-savings-plan", "New Mexico's 529 Education Savings Plan",
          "https://hed.nm.gov/financial-aid/new-mexico-529-college-savings-plan", fmt="html", selector="main",
          authority="New Mexico Higher Education Department")
+for year, item, slug, title in [
+    (2022, "18453", "laws-2022-second-session", "Laws 2022 - Second Session, Fifty-Fifth Legislature (session laws volume)"),
+    (2022, "18454", "laws-2022-third-special-session", "Laws 2022 (3rd S.S.) - Third Special Session, Fifty-Fifth Legislature (session laws volume)"),
+    (2023, "18775", "laws-2023-first-session", "Laws 2023 - First Session, Fifty-Sixth Legislature (session laws volume)"),
+]:
+    statute("us-nm", f"session-laws/{year}/{slug}", title, f"https://nmonesource.com/nmos/nmsl/en/item/{item}/index.do",
+            download_url=f"https://nmonesource.com/nmos/nmsl/en/{item}/1/document.do", authority="New Mexico Compilation Commission",
+            fmt="pdf", sub="session_laws_volume",
+            note="The item page is an application shell; the volume PDF is the item's own document.do file (linked from "
+                 "the item page's iframe=true rendering).")
 statute("us-nm", "bills/2024/hb37", "House Bill 37 (2024 Regular Session)",
         "https://www.nmlegis.gov/Sessions/24%20Regular/bills/house/HB0037.HTML", authority="New Mexico Legislature",
         fmt="html", selector="body", sub="bill_version")
@@ -585,14 +602,8 @@ statute("us-nm", "bills/2024/hb37", "House Bill 37 (2024 Regular Session)",
 # New York (tax.ny.gov, nyassembly.gov)
 NYP = "https://www.tax.ny.gov/pdf/"
 NYC = NYP + "current_forms/it/"
-add("us-ny", "form", "tax/ty2025/it-214",
-    "Form IT-214, Claim for Real Property Tax Credit for Homeowners and Renters (2025)", NYC + "it214_fill_in.pdf",
-    ty="2025", sub="form", rows=["us-ny/form/tax/ty2025/it-214"],
-    note="Entry copied from manifests/us-ny-it-214-real-property-tax-credit-ty2025.yaml (manifest on main, never extracted).")
-add("us-ny", "form", "tax/ty2025/it-214-i",
-    "Instructions for Form IT-214, Claim for Real Property Tax Credit for Homeowners and Renters (2025) (IT-214-I)",
-    NYC + "it214i.pdf", ty="2025", sub="instructions", rows=["us-ny/form/tax/ty2025/it-214-i"],
-    note="Entry copied from manifests/us-ny-it-214-real-property-tax-credit-ty2025.yaml (manifest on main, never extracted).")
+# The two manifest-on-main rows (IT-214 and IT-214-I, TY2025) are held by the locked scope
+# us-ny/form/2026-09-23-ny-it-214-ty2025 (byte-identical sources); see DECISIONS. Not re-taken.
 for ty, ident, title, url in [
     (2021, "it-196-i", "2021 Instructions for Form IT-196, New York Itemized Deductions", NYP + "2021/inc/it196i_2021.pdf"),
     (2021, "it-201-i", "2021 Instructions for Form IT-201, Full-Year Resident Income Tax Return", NYP + "2021/inc/it201i_2021.pdf"),
@@ -803,11 +814,6 @@ DECISIONS: dict[str, tuple[str, str, str, str, str]] = {
         MTREG, "us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-2",
         "ARM subchapter 42.15.2 (Montana additions and subtractions), effective rules held; the gateway address now "
         "serves the rules.mt.gov app shell.", "https://rules.mt.gov/api/policy-library-public"),
-    "https://leg.mt.gov/bills/2023/billpdf/HB0192.pdf": ("OUTREACH", "", "", "https://bills.legmt.gov/",
-        "2023 HB 192: the legacy bill-PDF path answers 404 (also under archive.legmt.gov); the Legislature now serves "
-        "bill text only through the JavaScript bill explorer (bills.legmt.gov, API bearbeta.legmt.gov/docs/v1/documents/"
-        "getBillText, which needs the explorer's internal bill ids) and docs.legmt.gov download tickets; the ticket for "
-        "HB 192 could not be discovered without the browser application."),
     "https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2023/08/2022-Montana-Property-Tax-Rebate-Form-MPTR22.pdf": ("ABSENT", "", "", "",
         "mtrevenue.gov (retired WordPress host) answers 404; revenue.mt.gov site search for the 2022 property tax rebate "
         "form returned no file (2026-10-06); the rebate (HB 222, 2023) claim period has closed. The enacting HB 222 text "
@@ -883,13 +889,6 @@ DECISIONS: dict[str, tuple[str, str, str, str, str]] = {
         NMPIT, "us-nm/statute/chapter-7",
         "NMOneSource (the New Mexico Compilation Commission's official site) chapter 7 landing page; NMSA chapter 7 "
         "(Taxation) is held from the same publisher.", "https://nmonesource.com/nmos/nmsa/en/item/4340/index.do"),
-    **{u: ("OUTREACH", "", "", u,
-           f"NMOneSource session-laws volume page ({t}) of the official Compilation Commission site: the HTML is an "
-           "application shell (about 13 KB, no chapter list or text); chapters load only through the browser "
-           "application. Not worked around; the specific chapter the bundle needs is not identified by the volume address.")
-       for u, t in [("https://nmonesource.com/nmos/nmsl/en/item/18453/index.do", "Laws 2022, 2nd Session"),
-                    ("https://nmonesource.com/nmos/nmsl/en/item/18454/index.do", "Laws 2022, 3rd Special Session"),
-                    ("https://nmonesource.com/nmos/nmsl/en/item/18775/index.do", "Laws 2023, 1st Session")]},
     "https://law.justia.com/codes/new-mexico/2013/chapter-7/article-2/section-7-2-5.8": _held(
         "us-nm/statute/2026-07-13-recovery", "us-nm/statute/7-2-5.8",
         "Justia mirror (2013 edition) of NMSA 7-2-5.8; the current official section is held."),
@@ -911,7 +910,20 @@ DECISIONS: dict[str, tuple[str, str, str, str, str]] = {
     "https://www.law.cornell.edu/regulations/new-york/20-NYCRR-132.1": ("OUTREACH", "", "", "https://govt.westlaw.com/nycrr/Browse/Home/NewYork/UnofficialNewYorkCodesRulesandRegulations?guid=I6249be50bb0a11ddbc9eb83b015f151b",
         "20 NYCRR 132.1 (Cornell mirror). The held Part 132 has only its container and notes: the 2026-09-14 adapter run "
         "did not descend into Part 132's subparts. The official NYCRR host answered HTTP 403 to the corpus client "
-        "(also with the documented bh cookies) on the Part 132 subpart browse page on 2026-10-06; not retried."),
+        "on the Part 132 subpart browse page on 2026-10-06, also with the NYCRR adapter's own browser user agent and bh "
+        "cookies; not worked around."),
+    "us-ny/form/tax/ty2025/it-214": _held(
+        "us-ny/form/2026-09-23-ny-it-214-ty2025", "us-ny/form/tax/ty2025/it-214",
+        "Manifest-on-main entry (manifests/us-ny-it-214-real-property-tax-credit-ty2025.yaml) is held by the locked scope "
+        "of the same version on main (.axiom/corpus-locks/us-ny/form/2026-09-23-ny-it-214-ty2025.json; source sha256 "
+        "identical to the file fetched 2026-10-06); its bytes are not in the local corpus root, so the first local search "
+        "missed it. The wave-6 duplicate was dropped (us-ny/form -r2).",
+        "https://www.tax.ny.gov/pdf/current_forms/it/it214_fill_in.pdf"),
+    "us-ny/form/tax/ty2025/it-214-i": _held(
+        "us-ny/form/2026-09-23-ny-it-214-ty2025", "us-ny/form/tax/ty2025/it-214-i",
+        "Manifest-on-main entry held by the locked scope of the same version on main "
+        "(.axiom/corpus-locks/us-ny/form/2026-09-23-ny-it-214-ty2025.json; identical source sha256). The wave-6 duplicate "
+        "was dropped (us-ny/form -r2).", "https://www.tax.ny.gov/pdf/current_forms/it/it214i.pdf"),
     "https://www.tax.ny.gov/pit/child-earned-payments.htm": ("ABSENT", "", "", "",
         "404 on 2026-10-06; the department's site index (tax.ny.gov/help/siteindex.htm) lists no replacement page "
         "(one-time 2022 child and earned income credit payments)."),
@@ -925,9 +937,10 @@ DECISIONS: dict[str, tuple[str, str, str, str, str]] = {
         "Justia mirror (2022 edition) of R.C. 5747.37. The official Revised Code (codes.ohio.gov) answers 'No Ohio Revised "
         "Code section number corresponds to 5747.37' (2026-10-06), and the held Title 57 scope has no such section; the "
         "section is no longer in the Code and no official historical text was found."),
-    "https://cms7files1.revize.com/starkcountyoh/Document_center/Offices/Auditor/Services/Homestead%20Exemption/Ohio_Adj_Gross_Income.pdf": ("SKIPPED", "", "", "",
-        "Stark County Auditor homestead-exemption handout on the county's CMS host (404 on 2026-10-06); the county "
-        "auditor's site was not searched for a current copy in the time box."),
+    "https://cms7files1.revize.com/starkcountyoh/Document_center/Offices/Auditor/Services/Homestead%20Exemption/Ohio_Adj_Gross_Income.pdf": ("ABSENT", "", "", "https://www.starkcountyohio.gov/government/offices/auditor/relief_and_appeals/homestead_owner_occupancy.php",
+        "Stark County Auditor homestead-exemption handout ('Ohio Adjusted Gross Income') on the county's old CMS host "
+        "answers 404 (2026-10-06); the Auditor's current Homestead and Owner Occupancy page on starkcountyohio.gov links "
+        "no such handout (no PDF of that name)."),
 }
 
 
@@ -939,7 +952,11 @@ FAMILY = {"form": "forms", "guidance": "guidance", "statute": "statute"}
 # are superseded and must not be selected): us-ny/statute (S3009 bill text in <pre> blocks was not read)
 # and us-nj/guidance (njit35.shtml carried the site's generic <title>; slug corrected).
 # us-oh/form: the first run recorded a truncated bundle-row id in metadata.bundle_rows (2023 instructions).
-REVISION = {("us-ny", "statute"): "r2", ("us-nj", "guidance"): "r2", ("us-oh", "form"): "r2"}
+# us-ny/form: the two IT-214 TY2025 documents duplicated the locked scope us-ny/form/2026-09-23-ny-it-214-ty2025.
+# us-mt/statute: 2023 HB 192 added after the bill-version API was found.
+# us-nm/statute: the three NMOneSource session-laws volumes added after their document.do PDFs were found.
+REVISION = {("us-ny", "statute"): "r2", ("us-nj", "guidance"): "r2", ("us-oh", "form"): "r2",
+            ("us-ny", "form"): "r2", ("us-mt", "statute"): "r2", ("us-nm", "statute"): "r2"}
 
 
 def version_for(jur: str, cls: str) -> str:
