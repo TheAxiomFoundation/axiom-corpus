@@ -864,7 +864,7 @@ def main() -> None:
                 official = "https://uscode.house.gov/download/download.shtml"
                 note = (
                     "uscode.house.gov answered only its 'Under Maintenance' page during the run (2026-10-06, "
-                    "19:20-__OLRC_END__ ET) and no retained copy of this title's current release point exists in the corpus"
+                    "19:20-22:31 ET) and no retained copy of this title's current release point exists in the corpus"
                 )
             else:
                 status, official = "PRESENT", OLRC.format(title=title)
