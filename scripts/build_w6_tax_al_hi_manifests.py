@@ -398,8 +398,7 @@ for rows, ty, tail, title, file, fmt, first in [
     doc(rows, "ca", F, f"ftb/ty{ty}/{tail}", title, FTB + file, agency="ftb", fmt=fmt, ty=ty,
         subtype="instructions" if "instructions" in tail or "booklet" in tail or "publication" in tail else "form", first=first)
 # The three 2024 FTB instructions of manifests/us-ca-ftb-2024-tax-instructions.yaml keep their
-# (grammar-valid) citation paths; the fourth EXTRACT-MANIFEST manifest (2025 FTB 3514 booklet PDF)
-# keeps its path too.
+# (grammar-valid) citation paths.
 for rows, path, title, file in [
     ([164], "us-ca/form/ftb/2024/540-booklet", "2024 Personal Income Tax Booklet", "2024/2024-540-booklet.html"),
     ([165], "us-ca/form/ftb/2024/schedule-ca-540-instructions", "2024 Instructions for Schedule CA 540", "2024/2024-540-ca-instructions.html"),
@@ -407,10 +406,8 @@ for rows, path, title, file in [
 ]:
     doc(rows, "ca", F, "", title, FTB + file, agency="ftb", fmt="html", ty="2024", subtype="instructions",
         first=f"{title} | FTB.ca.gov", citation_path=path)
-doc([206], "ca", F, "", "2025 Instructions for Form FTB 3514, California Earned Income Tax Credit",
-    "https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf", agency="ftb", ty="2025", subtype="instructions",
-    first="2025 California Earned Income Tax Credit Booklet. 3514 California Forms & Instructions",
-    citation_path="us-ca/form/individual-income-tax/2025/3514-instructions")
+# Row 206 (manifests/us-ca-2025-ftb-3514-booklet.yaml) was extracted on 2026-09-23 into the
+# scope us-ca/form/2026-09-23-ca-2025-ftb-3514, locked on main (same PDF, same path): ALREADY-HELD.
 for rows, ty in [([228], "2021"), ([229], "2022"), ([230], "2023"), ([231], "2024")]:
     doc(rows, "ca", F, f"ftb/ty{ty}/540-tax-rate-schedules", f"{ty} California Tax Rate Schedules",
         f"https://www.ftb.ca.gov/forms/{ty}/{ty}-540-tax-rate-schedules.pdf", agency="ftb", ty=ty, subtype="tax_rate_schedule",
@@ -655,6 +652,50 @@ doc([398], "hi", L, "session-laws/2023/act-163", "Act 163, Session Laws of Hawai
 doc([395], "hi", L, "571-2", "Hawaii Revised Statutes Section 571-2, Definitions (Family Courts)",
     HILEG + "hrscurrent/Vol12_Ch0501-0588/HRS0571/HRS_0571-0002.htm", agency="hileg", fmt="html", subtype="statute_section", first="HRS 571-2 Definitions")
 
+# ---------------------------------------------------------------- EXTRACT-MANIFEST paths
+# The May 2026 source-discovery manifests carry citation paths with underscore segments
+# (us-az/form/individual_income_tax_forms/azdor.gov/...), which the citation-path grammar rejects.
+# A document answering an EXTRACT-MANIFEST row keeps that manifest's path with the slug rule applied
+# (citation_segment on every hierarchy segment), the convention of the wave-6 tax-ok-wv run; the
+# decisions file maps each bundle path to its new path.
+EXTRACT_MANIFEST_ROWS = set(range(112, 136)) | set(range(167, 206)) | set(range(281, 291)) | set(range(357, 367))
+MAY_MANIFESTS = {
+    "az": "manifests/us-az-individual-income-tax-forms.yaml",
+    "ca": "manifests/us-ca-official-forms.yaml",
+    "ct": "manifests/us-ct-individual-income-tax-forms.yaml",
+    "hi": "manifests/us-hi-individual-income-tax-forms.yaml",
+}
+
+
+def _slug_path(path: str) -> str:
+    from axiom_corpus.corpus.citation_segment import citation_segment
+
+    head, tail = path.split("/")[:2], path.split("/")[2:]
+    return "/".join(head + [citation_segment(segment) for segment in tail])
+
+
+def _apply_may_manifest_paths() -> None:
+    by_url: dict[str, dict[str, str]] = {}
+    for st, rel in MAY_MANIFESTS.items():
+        for d in yaml.safe_load((ROOT / rel).read_text())["documents"]:
+            by_url.setdefault(st, {})[d["source_url"]] = d["citation_path"]
+    for entry in DOCS:
+        if not EXTRACT_MANIFEST_ROWS.intersection(entry["rows"]):
+            continue
+        old = by_url.get(entry["st"], {}).get(entry["source_url"])
+        if not old:
+            continue
+        new = _slug_path(old)
+        if new == old:
+            continue
+        entry["citation_path"] = new
+        entry["source_id"] = f"{entry['jurisdiction']}-w6-{_slug(new.split('/', 2)[2])}"[:200]
+        entry["metadata"]["may_2026_manifest"] = MAY_MANIFESTS[entry["st"]]
+        entry["metadata"]["may_2026_manifest_path"] = old
+
+
+_apply_may_manifest_paths()
+
 # ---------------------------------------------------------------- rows not extracted here
 # row -> (status, scope "jur/class/version", citation path, official url, note).
 # ``None`` official url means the bundle address. Held scopes are verified against the
@@ -669,6 +710,9 @@ GASL = "us-ga/statute/2026-07-21-ga-pit-session-laws"
 HI235 = "us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235"
 DC47 = "us-dc/statute/2026-09-26-codified-title-47"
 OPEN_PR_SCOPES = {DC47: ("ingest/dc-title-47-current-2026-09-26", "#753")}
+# Scopes locked on main whose bytes are not on the local disk; their provisions are read from the
+# commit that ingested them (before the lock switch, b33d5bf08).
+GIT_SCOPES = {"us-ca/form/2026-09-23-ca-2025-ftb-3514": "c643c9ec6"}
 LEXIS_AR = ("OUTREACH", "", "", None, "The official Arkansas Code is published only through LexisNexis "
             "(advance.lexis.com, robot check; arkleg.state.ar.us links there); recorded blocked in "
             "docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md and not retried. The mirror is not used.")
@@ -695,6 +739,7 @@ HELD: dict[int, tuple[str, str, str, str | None, str]] = {
     163: ("ALREADY-HELD", AZ43, "us-az/statute/43-1073.01", "https://www.azleg.gov/ars/43/01073-01.htm", "azleg.gov viewdocument wrapper of ARS 43-1073.01"),
     200: ("ALREADY-HELD", "us-ca/form/2026-09-15-income-tax-forms-ty2025", "us-ca/form/ftb/ty2025/form-540", "https://www.ftb.ca.gov/forms/2025/2025-540.pdf", "same file taken by wave 5 (open PR #716, scope on disk)"),
     201: ("ALREADY-HELD", "us-ca/form/2026-09-15-income-tax-forms-ty2025", "us-ca/form/ftb/ty2025/form-540-booklet", "https://www.ftb.ca.gov/forms/2025/2025-540-booklet.pdf", "the 2025 Personal Income Tax Booklet is held in its PDF edition (wave 5, open PR #716); the HTML edition of the same booklet was not re-taken"),
+    206: ("ALREADY-HELD", "us-ca/form/2026-09-23-ca-2025-ftb-3514", "us-ca/form/individual-income-tax/2025/3514-instructions", "https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf", "manifests/us-ca-2025-ftb-3514-booklet.yaml was extracted on 2026-09-23 (commit c643c9ec6) into this scope, locked on main (.axiom/corpus-locks/us-ca/form/2026-09-23-ca-2025-ftb-3514.json); same PDF (sha256 9096ff0e...)"),
     207: ("OUTREACH", "", "", "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=24344", "Justia mirror of Cal. Rev. & Tax. Code 24344 (corporation tax, Part 11, outside the held Parts 10 and 10.2); leginfo.legislature.ca.gov answers HTTP 403 with a Cloudflare 'Just a moment...' challenge to the corpus client (2026-10-06)"),
     208: ("OUTREACH", "", "", None, "leginfo.legislature.ca.gov answers HTTP 403 with a Cloudflare 'Just a moment...' challenge (2026-10-06, probed once); AB 178 (2021, budget act chapter) bill PDF not fetchable; not worked around"),
     209: ("ALREADY-HELD", CARTC, "us-ca/statute/rtc/17043", None, "leginfo blocked today (Cloudflare challenge); the section is held from the 2026-09-14 leginfo run"),
@@ -839,12 +884,12 @@ def write_manifests() -> list[Path]:
 
 def _held_paths(scope: str) -> set[str]:
     jur, cls, version = scope.split("/", 2)
-    if scope in OPEN_PR_SCOPES:
+    if scope in OPEN_PR_SCOPES or scope in GIT_SCOPES:
         import subprocess
 
-        branch = OPEN_PR_SCOPES[scope][0]
+        ref = GIT_SCOPES.get(scope) or f"origin/{OPEN_PR_SCOPES[scope][0]}"
         text = subprocess.run(
-            ["git", "show", f"origin/{branch}:data/corpus/provisions/{jur}/{cls}/{version}.jsonl"],
+            ["git", "show", f"{ref}:data/corpus/provisions/{jur}/{cls}/{version}.jsonl"],
             cwd=ROOT, check=True, capture_output=True, text=True,
         ).stdout
         lines = text.splitlines()
@@ -876,8 +921,8 @@ def write_decisions(work_order: Path) -> dict[str, int]:
                 note = f"{note}; {host_note}" if note else host_note
             if r["action"] == "EXTRACT-MANIFEST" and r["bundle_path"] and r["bundle_path"] != path:
                 note = (note + "; " if note else "") + (
-                    f"manifest {r['manifest_on_main']} path {r['bundle_path']} is not grammar-valid "
-                    "(underscore segment); taken under the us-xx/form/<agency>/ty<year>/<id> convention")
+                    f"manifest {r['manifest_on_main']} path {r['bundle_path']} fails the citation-path grammar "
+                    f"(underscore segment); slug rule applied: {path}")
         elif i in HELD:
             status, scope, path, url, note = HELD[i]
             url = url or r["bundle_url"]

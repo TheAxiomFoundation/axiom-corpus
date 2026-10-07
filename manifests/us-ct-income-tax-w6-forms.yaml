@@ -5,7 +5,7 @@ metadata:
   generator: scripts/build_w6_tax_al_hi_manifests.py
   jurisdiction_name: Connecticut
 documents:
-- source_id: us-ct-w6-drs-ty2021-ct-1040-online-booklet
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2021-income-ct-1040-online-booklet-1221
   jurisdiction: us-ct
   document_class: form
   title: 2021 Form CT-1040 Connecticut Resident Income Tax Return Instructions (online booklet)
@@ -13,7 +13,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ct/form/drs/ty2021/ct-1040-online-booklet
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2021/income/ct-1040-online-booklet-1221
   extraction:
     segmentation: single_block
   metadata:
@@ -25,9 +25,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 FORM CT-1040 Connecticut Resident Income Tax Return Instructions
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2021/income/ct-1040-online-booklet_1221
     wave6_work_order_rows:
     - 281
-- source_id: us-ct-w6-drs-ty2022-ct-1040-instructions
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2022-income-2022-ct-1040-instructions-1222
   jurisdiction: us-ct
   document_class: form
   title: 2022 Form CT-1040 Connecticut Resident Income Tax Return Instructions (Rev. 12/22)
@@ -35,7 +37,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ct/form/drs/ty2022/ct-1040-instructions
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2022/income/2022-ct-1040-instructions-1222
   extraction:
     segmentation: single_block
   metadata:
@@ -47,9 +49,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Department of Revenue Services State of Connecticut (Rev. 12/22) 2022 Form CT-1040 ... Instructions
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2022/income/2022-ct-1040-instructions_1222
     wave6_work_order_rows:
     - 282
-- source_id: us-ct-w6-drs-ty2022-ct-1040
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2022-income-ct-1040-1222
   jurisdiction: us-ct
   document_class: form
   title: 2022 Form CT-1040 Connecticut Resident Income Tax Return
@@ -57,7 +61,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ct/form/drs/ty2022/ct-1040
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2022/income/ct-1040-1222
   extraction:
     segmentation: single_block
   metadata:
@@ -69,9 +73,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 'Due date: April 15, 2023 (Form CT-1040 2022)'
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2022/income/ct-1040_1222
     wave6_work_order_rows:
     - 283
-- source_id: us-ct-w6-drs-ty2022-ct-6251
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2022-income-ct-6251-1222
   jurisdiction: us-ct
   document_class: form
   title: 2022 Form CT-6251 Connecticut Alternative Minimum Tax Return - Individuals
@@ -79,7 +85,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ct/form/drs/ty2022/ct-6251
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2022/income/ct-6251-1222
   extraction:
     segmentation: single_block
   metadata:
@@ -91,9 +97,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Page 1 of 8 1. Federal alternative minimum taxable income
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2022/income/ct-6251_1222
     wave6_work_order_rows:
     - 284
-- source_id: us-ct-w6-drs-ty2022-schedule-ct-it-credit
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2022-income-schedule-ct-it-credit-1222
   jurisdiction: us-ct
   document_class: form
   title: 2022 Schedule CT-IT Credit, Income Tax Credit Summary
@@ -101,7 +109,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ct/form/drs/ty2022/schedule-ct-it-credit
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2022/income/schedule-ct-it-credit-1222
   extraction:
     segmentation: single_block
   metadata:
@@ -113,9 +121,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: '1. Income tax liability: Enter amount from Form CT-1040, Line 12'
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2022/income/schedule-ct-it-credit_1222
     wave6_work_order_rows:
     - 285
-- source_id: us-ct-w6-drs-ty2023-ct-1040-instructions
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2023-income-2023-ct-1040-instructions-1223
   jurisdiction: us-ct
   document_class: form
   title: 2023 Form CT-1040 Connecticut Resident Income Tax Return Instructions (Rev. 12/23)
@@ -123,7 +133,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ct/form/drs/ty2023/ct-1040-instructions
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2023/income/2023-ct-1040-instructions-1223
   extraction:
     segmentation: single_block
   metadata:
@@ -135,9 +145,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Department of Revenue Services State of Connecticut (Rev. 12/23) 2023 Form CT-1040 ... Instructions
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2023/income/2023-ct-1040-instructions_1223
     wave6_work_order_rows:
     - 286
-- source_id: us-ct-w6-drs-ty2024-ct-1040-instructions
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2024-income-2024-ct-1040-instructions-1224
   jurisdiction: us-ct
   document_class: form
   title: 2024 Form CT-1040 Connecticut Resident Income Tax Return Instructions (Rev. 01/25)
@@ -145,7 +157,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-ct/form/drs/ty2024/ct-1040-instructions
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2024/income/2024-ct-1040-instructions-1224
   extraction:
     segmentation: single_block
   metadata:
@@ -157,10 +169,12 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: Department of Revenue Services State of Connecticut (Rev. 01/25) 2024 Form CT-1040 ... Instructions
     tax_year: '2024'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2024/income/2024-ct-1040-instructions_1224
     wave6_work_order_rows:
     - 287
     - 290
-- source_id: us-ct-w6-drs-ty2024-ct-1040
+- source_id: us-ct-w6-individual-income-tax-forms-portal.ct.gov-source-media-drs-forms-2024-income-ct-1040-1224
   jurisdiction: us-ct
   document_class: form
   title: 2024 Form CT-1040 Connecticut Resident Income Tax Return
@@ -168,7 +182,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-ct/form/drs/ty2024/ct-1040
+  citation_path: us-ct/form/individual-income-tax-forms/portal.ct.gov/source/media/drs/forms/2024/income/ct-1040-1224
   extraction:
     segmentation: single_block
   metadata:
@@ -180,6 +194,8 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 'Due date: April 15, 2025 (Form CT-1040 2024)'
     tax_year: '2024'
+    may_2026_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-ct/form/individual_income_tax_forms/portal.ct.gov/source/media/drs/forms/2024/income/ct-1040_1224
     wave6_work_order_rows:
     - 288
 - source_id: us-ct-w6-drs-ty2020-schedule-ct-eitc

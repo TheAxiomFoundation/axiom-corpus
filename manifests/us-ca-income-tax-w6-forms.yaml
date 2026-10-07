@@ -5,7 +5,7 @@ metadata:
   generator: scripts/build_w6_tax_al_hi_manifests.py
   jurisdiction_name: California
 documents:
-- source_id: us-ca-w6-ftb-ty2020-3506-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2020-2020-3506-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2020 Instructions for Form FTB 3506 (Child and Dependent Care Expenses Credit)
@@ -13,7 +13,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2020-01-01'
-  citation_path: us-ca/form/ftb/ty2020/3506-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2020/2020-3506-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -23,9 +23,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2020 Instructions for Form FTB 3506 | FTB.ca.gov
     tax_year: '2020'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2020/2020-3506-instructions
     wave6_work_order_rows:
     - 167
-- source_id: us-ca-w6-ftb-ty2021-3506-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-3506-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2021 Instructions for Form FTB 3506
@@ -33,7 +35,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/3506-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3506-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -43,9 +45,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 Instructions for Form FTB 3506 | FTB.ca.gov
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3506-instructions
     wave6_work_order_rows:
     - 168
-- source_id: us-ca-w6-ftb-ty2021-3514
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-3514
   jurisdiction: us-ca
   document_class: form
   title: 2021 Form FTB 3514, California Earned Income Tax Credit
@@ -53,7 +57,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/3514
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514
   extraction:
     segmentation: single_block
   metadata:
@@ -65,9 +69,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FTB 3514 2021 Side 1 TAXABLE YEAR 2021 California Earned Income Tax Credit
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514
     wave6_work_order_rows:
     - 169
-- source_id: us-ca-w6-ftb-ty2021-3514-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-3514-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2021 Instructions for Form FTB 3514
@@ -75,7 +81,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/3514-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -85,9 +91,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 Instructions for Form FTB 3514 | FTB.ca.gov
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3514-instructions
     wave6_work_order_rows:
     - 170
-- source_id: us-ca-w6-ftb-ty2021-3526
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-3526
   jurisdiction: us-ca
   document_class: form
   title: 2021 Form FTB 3526, Investment Interest Expense Deduction
@@ -95,7 +103,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/3526
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3526
   extraction:
     segmentation: single_block
   metadata:
@@ -107,9 +115,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: TAXABLE YEAR 2021 Investment Interest Expense Deduction CALIFORNIA FORM 3526
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-3526
     wave6_work_order_rows:
     - 171
-- source_id: us-ca-w6-ftb-ty2021-540
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-540
   jurisdiction: us-ca
   document_class: form
   title: 2021 Form 540, California Resident Income Tax Return
@@ -117,7 +127,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/540
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-540
   extraction:
     segmentation: single_block
   metadata:
@@ -129,9 +139,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 3101213 Form 540 2021 Side 1
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-540
     wave6_work_order_rows:
     - 172
-- source_id: us-ca-w6-ftb-ty2021-540-booklet
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-540-booklet
   jurisdiction: us-ca
   document_class: form
   title: 2021 Personal Income Tax Booklet (California Forms and Instructions 540)
@@ -139,7 +151,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/540-booklet
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-540-booklet
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -149,9 +161,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 Personal Income Tax Booklet | California Forms & Instructions 540
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-540-booklet
     wave6_work_order_rows:
     - 173
-- source_id: us-ca-w6-ftb-ty2021-540-ca-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-540-ca-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2021 Instructions for Schedule CA (540)
@@ -159,7 +173,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/540-ca-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-540-ca-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -169,9 +183,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 Instructions for Schedule CA (540) | FTB.ca.gov
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-540-ca-instructions
     wave6_work_order_rows:
     - 174
-- source_id: us-ca-w6-ftb-ty2021-540-p
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-540-p
   jurisdiction: us-ca
   document_class: form
   title: 2021 Schedule P (540), Alternative Minimum Tax and Credit Limitations - Residents
@@ -179,7 +195,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/540-p
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-540-p
   extraction:
     segmentation: single_block
   metadata:
@@ -191,9 +207,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 7971213 Schedule P (540) 2021 Side 1
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-540-p
     wave6_work_order_rows:
     - 175
-- source_id: us-ca-w6-ftb-ty2021-540-p-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2021-2021-540-p-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2021 Instructions for Schedule P (540)
@@ -201,7 +219,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-ca/form/ftb/ty2021/540-p-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-540-p-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -211,9 +229,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 Instructions for Schedule P 540 | FTB.ca.gov
     tax_year: '2021'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2021/2021-540-p-instructions
     wave6_work_order_rows:
     - 176
-- source_id: us-ca-w6-ftb-ty2022-3506-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-3506-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2022 Instructions for Form FTB 3506
@@ -221,7 +241,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/3506-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3506-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -231,9 +251,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2022 Instructions for Form FTB 3506 | FTB.ca.gov
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3506-instructions
     wave6_work_order_rows:
     - 177
-- source_id: us-ca-w6-ftb-ty2022-3514
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-3514
   jurisdiction: us-ca
   document_class: form
   title: 2022 Form FTB 3514, California Earned Income Tax Credit
@@ -241,7 +263,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/3514
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514
   extraction:
     segmentation: single_block
   metadata:
@@ -253,9 +275,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FTB 3514 2022 Side 1 TAXABLE YEAR 2022 California Earned Income Tax Credit
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514
     wave6_work_order_rows:
     - 178
-- source_id: us-ca-w6-ftb-ty2022-3514-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-3514-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2022 Instructions for Form FTB 3514
@@ -263,7 +287,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/3514-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -273,9 +297,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2022 Instructions for Form FTB 3514 | FTB.ca.gov
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-3514-instructions
     wave6_work_order_rows:
     - 179
-- source_id: us-ca-w6-ftb-ty2022-540
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-540
   jurisdiction: us-ca
   document_class: form
   title: 2022 Form 540, California Resident Income Tax Return
@@ -283,7 +309,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/540
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-540
   extraction:
     segmentation: single_block
   metadata:
@@ -295,9 +321,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 3101223 Form 540 2022 Side 1
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-540
     wave6_work_order_rows:
     - 180
-- source_id: us-ca-w6-ftb-ty2022-540-booklet
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-540-booklet
   jurisdiction: us-ca
   document_class: form
   title: 2022 Personal Income Tax Booklet (California Forms and Instructions 540)
@@ -305,7 +333,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/540-booklet
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-540-booklet
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -315,9 +343,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2022 Personal Income Tax Booklet | California Forms & Instructions 540
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-540-booklet
     wave6_work_order_rows:
     - 181
-- source_id: us-ca-w6-ftb-ty2022-540-ca-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-540-ca-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2022 Instructions for Schedule CA (540)
@@ -325,7 +355,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/540-ca-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-540-ca-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -335,9 +365,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2022 Instructions for Schedule CA (540) | FTB.ca.gov
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-540-ca-instructions
     wave6_work_order_rows:
     - 182
-- source_id: us-ca-w6-ftb-ty2022-540-p
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-540-p
   jurisdiction: us-ca
   document_class: form
   title: 2022 Schedule P (540)
@@ -345,7 +377,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/540-p
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-540-p
   extraction:
     segmentation: single_block
   metadata:
@@ -357,9 +389,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 7971223 Schedule P (540) 2022 Side 1
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-540-p
     wave6_work_order_rows:
     - 183
-- source_id: us-ca-w6-ftb-ty2022-540-p-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2022-2022-540-p-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2022 Instructions for Schedule P (540)
@@ -367,7 +401,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-ca/form/ftb/ty2022/540-p-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-540-p-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -377,9 +411,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2022 Instructions for Schedule P 540 | FTB.ca.gov
     tax_year: '2022'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2022/2022-540-p-instructions
     wave6_work_order_rows:
     - 184
-- source_id: us-ca-w6-ftb-ty2023-3506-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-3506-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2023 Instructions for Form FTB 3506
@@ -387,7 +423,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/3506-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3506-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -397,9 +433,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2023 Instructions for Form FTB 3506 | FTB.ca.gov
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3506-instructions
     wave6_work_order_rows:
     - 185
-- source_id: us-ca-w6-ftb-ty2023-3514
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-3514
   jurisdiction: us-ca
   document_class: form
   title: 2023 Form FTB 3514, California Earned Income Tax Credit
@@ -407,7 +445,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/3514
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514
   extraction:
     segmentation: single_block
   metadata:
@@ -419,9 +457,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FTB 3514 2023 Side 1 TAXABLE YEAR 2023. California Earned Income Tax Credit
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514
     wave6_work_order_rows:
     - 186
-- source_id: us-ca-w6-ftb-ty2023-3514-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-3514-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2023 California Earned Income Tax Credit Booklet (Instructions for Form FTB 3514)
@@ -429,7 +469,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/3514-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -439,9 +479,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2023 California Earned Income Tax Credit Booklet | FTB.ca.gov
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-3514-instructions
     wave6_work_order_rows:
     - 187
-- source_id: us-ca-w6-ftb-ty2023-540
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-540
   jurisdiction: us-ca
   document_class: form
   title: 2023 Form 540, California Resident Income Tax Return
@@ -449,7 +491,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/540
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-540
   extraction:
     segmentation: single_block
   metadata:
@@ -461,9 +503,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 3101233 Form 540 2023 Side 1
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-540
     wave6_work_order_rows:
     - 188
-- source_id: us-ca-w6-ftb-ty2023-540-booklet
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-540-booklet
   jurisdiction: us-ca
   document_class: form
   title: 2023 Personal Income Tax Booklet (California Forms and Instructions 540)
@@ -471,7 +515,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/540-booklet
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-540-booklet
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -481,9 +525,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2023 Personal Income Tax Booklet | California Forms & Instructions 540
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-540-booklet
     wave6_work_order_rows:
     - 189
-- source_id: us-ca-w6-ftb-ty2023-540-ca-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-540-ca-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2023 Instructions for Schedule CA (540)
@@ -491,7 +537,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/540-ca-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-540-ca-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -501,9 +547,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2023 Instructions for Schedule CA (540) | FTB.ca.gov
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-540-ca-instructions
     wave6_work_order_rows:
     - 190
-- source_id: us-ca-w6-ftb-ty2023-540-p
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-540-p
   jurisdiction: us-ca
   document_class: form
   title: 2023 Schedule P (540)
@@ -511,7 +559,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/540-p
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-540-p
   extraction:
     segmentation: single_block
   metadata:
@@ -524,9 +572,11 @@ documents:
     first_page_first_line: TAXABLE YEAR 2023, Alternative Minimum Tax and Credit Limitations - Residents, CALIFORNIA SCHEDULE
       P (540)
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-540-p
     wave6_work_order_rows:
     - 191
-- source_id: us-ca-w6-ftb-ty2023-540-p-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2023-2023-540-p-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2023 Instructions for Schedule P (540)
@@ -534,7 +584,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-ca/form/ftb/ty2023/540-p-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-540-p-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -544,9 +594,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2023 Instructions for Schedule P 540 | FTB.ca.gov
     tax_year: '2023'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2023/2023-540-p-instructions
     wave6_work_order_rows:
     - 192
-- source_id: us-ca-w6-ftb-ty2024-3514
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2024-2024-3514
   jurisdiction: us-ca
   document_class: form
   title: 2024 Form FTB 3514, California Earned Income Tax Credit
@@ -554,7 +606,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-ca/form/ftb/ty2024/3514
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-3514
   extraction:
     segmentation: single_block
   metadata:
@@ -566,9 +618,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FTB 3514 2024 Side 1 TAXABLE YEAR 2024, California Earned Income Tax Credit
     tax_year: '2024'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514
     wave6_work_order_rows:
     - 193
-- source_id: us-ca-w6-ftb-ty2024-3514-booklet
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2024-2024-3514-booklet
   jurisdiction: us-ca
   document_class: form
   title: 2024 California Earned Income Tax Credit Booklet
@@ -576,7 +630,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-ca/form/ftb/ty2024/3514-booklet
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-3514-booklet
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -586,9 +640,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2024 California Earned Income Tax Credit Booklet | FTB.ca.gov
     tax_year: '2024'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-3514-booklet
     wave6_work_order_rows:
     - 194
-- source_id: us-ca-w6-ftb-ty2024-540
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2024-2024-540
   jurisdiction: us-ca
   document_class: form
   title: 2024 Form 540, California Resident Income Tax Return
@@ -596,7 +652,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-ca/form/ftb/ty2024/540
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-540
   extraction:
     segmentation: single_block
   metadata:
@@ -608,9 +664,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 3101243 Form 540 2024 Side 1
     tax_year: '2024'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-540
     wave6_work_order_rows:
     - 195
-- source_id: us-ca-w6-ftb-ty2024-540-p
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2024-2024-540-p
   jurisdiction: us-ca
   document_class: form
   title: 2024 Schedule P (540)
@@ -618,7 +676,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-ca/form/ftb/ty2024/540-p
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-540-p
   extraction:
     segmentation: single_block
   metadata:
@@ -630,9 +688,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 7971243 Schedule P (540) 2024 Side 1 Taxable Year 2024
     tax_year: '2024'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2024/2024-540-p
     wave6_work_order_rows:
     - 196
-- source_id: us-ca-w6-ftb-ty2025-1005-publication
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-1005-publication
   jurisdiction: us-ca
   document_class: form
   title: FTB Publication 1005, Pension and Annuity Guidelines (2025)
@@ -640,7 +700,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/1005-publication
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-1005-publication
   extraction:
     segmentation: single_block
   metadata:
@@ -652,9 +712,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FTB Publication 1005 2025 Pension and Annuity Guidelines
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-1005-publication
     wave6_work_order_rows:
     - 197
-- source_id: us-ca-w6-ftb-ty2025-3506-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-3506-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2025 Instructions for Form FTB 3506
@@ -662,7 +724,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/3506-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3506-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -672,9 +734,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2025 Instructions for Form FTB 3506 | FTB.ca.gov
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3506-instructions
     wave6_work_order_rows:
     - 198
-- source_id: us-ca-w6-ftb-ty2025-3514-booklet
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-3514-booklet
   jurisdiction: us-ca
   document_class: form
   title: 2025 California Earned Income Tax Credit Booklet (HTML)
@@ -682,7 +746,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/3514-booklet
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3514-booklet
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -692,9 +756,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2025 California Earned Income Tax Credit Booklet | FTB.ca.gov
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-3514-booklet
     wave6_work_order_rows:
     - 199
-- source_id: us-ca-w6-ftb-ty2025-540-ca-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-540-ca-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2025 Instructions for Schedule CA (540)
@@ -702,7 +768,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/540-ca-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-540-ca-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -712,9 +778,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2025 Instructions for Schedule CA (540) | FTB.ca.gov
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-540-ca-instructions
     wave6_work_order_rows:
     - 202
-- source_id: us-ca-w6-ftb-ty2025-540-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-540-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2025 Instructions for Form 540
@@ -722,7 +790,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/540-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-540-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -732,9 +800,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2025 Instructions for Form 540 | FTB.ca.gov
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-540-instructions
     wave6_work_order_rows:
     - 203
-- source_id: us-ca-w6-ftb-ty2025-540-p
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-540-p
   jurisdiction: us-ca
   document_class: form
   title: 2025 Schedule P (540)
@@ -742,7 +812,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/540-p
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-540-p
   extraction:
     segmentation: single_block
   metadata:
@@ -754,9 +824,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 7971253 Schedule P (540) 2025 Side 1 TAXABLE YEAR 2025
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-540-p
     wave6_work_order_rows:
     - 204
-- source_id: us-ca-w6-ftb-ty2025-540-p-instructions
+- source_id: us-ca-w6-official-forms-ftb.ca.gov-forms-2025-2025-540-p-instructions
   jurisdiction: us-ca
   document_class: form
   title: 2025 Instructions for Schedule P (540)
@@ -764,7 +836,7 @@ documents:
   source_format: html
   source_as_of: '2026-10-06'
   expression_date: '2025-01-01'
-  citation_path: us-ca/form/ftb/ty2025/540-p-instructions
+  citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-540-p-instructions
   metadata:
     primary_source: true
     source_authority: California Franchise Tax Board
@@ -774,6 +846,8 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2025 Instructions for Schedule P 540 | FTB.ca.gov
     tax_year: '2025'
+    may_2026_manifest: manifests/us-ca-official-forms.yaml
+    may_2026_manifest_path: us-ca/form/official_forms/ftb.ca.gov/forms/2025/2025-540-p-instructions
     wave6_work_order_rows:
     - 205
 - source_id: us-ca-w6-ftb-2024-540-booklet
@@ -836,28 +910,6 @@ documents:
     tax_year: '2024'
     wave6_work_order_rows:
     - 166
-- source_id: us-ca-w6-individual-income-tax-2025-3514-instructions
-  jurisdiction: us-ca
-  document_class: form
-  title: 2025 Instructions for Form FTB 3514, California Earned Income Tax Credit
-  source_url: https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf
-  source_format: pdf
-  source_as_of: '2026-10-06'
-  expression_date: '2025-01-01'
-  citation_path: us-ca/form/individual-income-tax/2025/3514-instructions
-  extraction:
-    segmentation: single_block
-  metadata:
-    primary_source: true
-    source_authority: California Franchise Tax Board
-    document_subtype: instructions
-    program: individual_income_tax
-    source_family: w6-tax-al-hi-income-tax-forms
-    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
-    first_page_first_line: 2025 California Earned Income Tax Credit Booklet. 3514 California Forms & Instructions
-    tax_year: '2025'
-    wave6_work_order_rows:
-    - 206
 - source_id: us-ca-w6-ftb-ty2021-540-tax-rate-schedules
   jurisdiction: us-ca
   document_class: form

@@ -5,7 +5,7 @@ metadata:
   generator: scripts/build_w6_tax_al_hi_manifests.py
   jurisdiction_name: Hawaii
 documents:
-- source_id: us-hi-w6-dotax-ty2018-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2018-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2018 Form N-11 Hawaii Resident Income Tax Forms and Instructions
@@ -13,7 +13,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2018-01-01'
-  citation_path: us-hi/form/dotax/ty2018/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2018/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -25,9 +25,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2018 N-11 Forms and Instructions ... Hawaii Resident Income Tax Forms and Instructions
     tax_year: '2018'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2018/n11ins
     wave6_work_order_rows:
     - 357
-- source_id: us-hi-w6-dotax-ty2019-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2019-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2019 Form N-11 Hawaii Resident Income Tax Instructions
@@ -35,7 +37,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2019-01-01'
-  citation_path: us-hi/form/dotax/ty2019/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2019/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -47,9 +49,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2019 N-11 ... Hawaii Resident Income Tax Instructions
     tax_year: '2019'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2019/n11ins
     wave6_work_order_rows:
     - 358
-- source_id: us-hi-w6-dotax-ty2020-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2020-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2020 Form N-11 Hawaii Resident Income Tax Instructions
@@ -57,7 +61,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2020-01-01'
-  citation_path: us-hi/form/dotax/ty2020/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2020/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -69,9 +73,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2020 N-11 ... Hawaii Resident Income Tax Instructions
     tax_year: '2020'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2020/n11ins
     wave6_work_order_rows:
     - 359
-- source_id: us-hi-w6-dotax-ty2021-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2021-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2021 Form N-11 Hawaii Resident Income Tax Instructions
@@ -79,7 +85,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-hi/form/dotax/ty2021/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2021/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -91,9 +97,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2021 N-11 ... Hawaii Resident Income Tax Instructions
     tax_year: '2021'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2021/n11ins
     wave6_work_order_rows:
     - 361
-- source_id: us-hi-w6-dotax-ty2021-n-11
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2021-n11-i
   jurisdiction: us-hi
   document_class: form
   title: Form N-11 Individual Income Tax Return, Resident (Rev. 2021)
@@ -101,7 +109,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2021-01-01'
-  citation_path: us-hi/form/dotax/ty2021/n-11
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2021/n11-i
   extraction:
     segmentation: single_block
   metadata:
@@ -113,9 +121,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FORM N-11 Individual Income Tax Return (Rev. 2021) RESIDENT Calendar Year 2021
     tax_year: '2021'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2021/n11_i
     wave6_work_order_rows:
     - 360
-- source_id: us-hi-w6-dotax-ty2022-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2022-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2022 Form N-11 Hawaii Resident Income Tax Instructions
@@ -123,7 +133,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-hi/form/dotax/ty2022/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2022/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -135,9 +145,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2022 N-11 ... Hawaii Resident Income Tax Instructions
     tax_year: '2022'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2022/n11ins
     wave6_work_order_rows:
     - 363
-- source_id: us-hi-w6-dotax-ty2022-n-11
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2022-n11-i
   jurisdiction: us-hi
   document_class: form
   title: Form N-11 Individual Income Tax Return, Resident (Rev. 2022)
@@ -145,7 +157,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2022-01-01'
-  citation_path: us-hi/form/dotax/ty2022/n-11
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2022/n11-i
   extraction:
     segmentation: single_block
   metadata:
@@ -157,9 +169,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FORM N-11 Individual Income Tax Return (Rev. 2022) RESIDENT Calendar Year 2022
     tax_year: '2022'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2022/n11_i
     wave6_work_order_rows:
     - 362
-- source_id: us-hi-w6-dotax-ty2023-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2023-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2023 Form N-11 Hawaii Resident Income Tax Instructions
@@ -167,7 +181,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2023-01-01'
-  citation_path: us-hi/form/dotax/ty2023/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2023/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -179,9 +193,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2023 N-11 ... Hawaii Resident Income Tax Instructions
     tax_year: '2023'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2023/n11ins
     wave6_work_order_rows:
     - 364
-- source_id: us-hi-w6-dotax-ty2024-n-11-instructions
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2024-n11ins
   jurisdiction: us-hi
   document_class: form
   title: 2024 Form N-11 Hawaii Resident Income Tax Instructions
@@ -189,7 +205,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-hi/form/dotax/ty2024/n-11-instructions
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2024/n11ins
   extraction:
     segmentation: single_block
   metadata:
@@ -201,9 +217,11 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: 2024 N-11 ... Hawaii Resident Income Tax Instructions
     tax_year: '2024'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2024/n11ins
     wave6_work_order_rows:
     - 366
-- source_id: us-hi-w6-dotax-ty2024-n-11
+- source_id: us-hi-w6-individual-income-tax-forms-files.hawaii.gov-tax-forms-2024-n11-i
   jurisdiction: us-hi
   document_class: form
   title: Form N-11 Individual Income Tax Return, Resident (Rev. 2024)
@@ -211,7 +229,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2024-01-01'
-  citation_path: us-hi/form/dotax/ty2024/n-11
+  citation_path: us-hi/form/individual-income-tax-forms/files.hawaii.gov/tax/forms/2024/n11-i
   extraction:
     segmentation: single_block
   metadata:
@@ -223,6 +241,8 @@ documents:
     discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
     first_page_first_line: FORM N-11 Individual Income Tax Return (Rev. 2024) RESIDENT Calendar Year 2024
     tax_year: '2024'
+    may_2026_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+    may_2026_manifest_path: us-hi/form/individual_income_tax_forms/files.hawaii.gov/tax/forms/2024/n11_i
     wave6_work_order_rows:
     - 365
 - source_id: us-hi-w6-dotax-ty2022-n-15-instructions
