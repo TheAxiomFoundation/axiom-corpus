@@ -14,6 +14,10 @@ records, for each such address:
 - `not_sources`: why it is no source of rules (OUT-OF-SCOPE), so the bundle
   excludes it with that reason.
 
+For a document the bundles name by a corpus path that the wave holds at
+another path (an older manifest's slug the citation grammar rejects), it
+records `path_moves`: the old path to the new one.
+
 OUTREACH, ABSENT and SKIPPED documents stay in the bundles as not in the corpus.
 
     python scripts/apply_wave_decisions.py \\
@@ -49,6 +53,7 @@ def joins(
 ) -> tuple[dict, Counter]:
     """The joins file with the decisions folded in, and the decisions by status."""
     paths = dict(existing.get("document_paths") or {})
+    moves = dict(existing.get("path_moves") or {})
     not_sources = dict(existing.get("not_sources") or {})
     statuses: Counter = Counter()
     for row in decisions:
@@ -58,13 +63,18 @@ def joins(
         if order is None:
             raise SystemExit(f"decision for {row['id']!r} matches no work-order row")
         url = order["bundle_url"]
+        named = order.get("bundle_path") or ""
+        path = (row.get("citation_path") or "").strip()
+        if status in HELD and not path:
+            raise SystemExit(f"{status} decision for {row['id']} names no citation path")
+        if status in HELD and named:
+            # A document the bundle names by its corpus path joins by that path, or by the one it moved to.
+            if path != named:
+                moves[named] = path
+            continue
         if not url:
-            # A document the bundle already names by its corpus path joins by that path.
             continue
         if status in HELD:
-            path = (row.get("citation_path") or "").strip()
-            if not path:
-                raise SystemExit(f"{status} decision for {url} names no citation path")
             paths[url] = path
         elif status == "OUT-OF-SCOPE":
             note = (row.get("note") or "").strip()
@@ -73,6 +83,7 @@ def joins(
         "same_document": existing.get("same_document") or {},
         "document_paths": dict(sorted(paths.items())),
         "not_sources": dict(sorted(not_sources.items())),
+        "path_moves": dict(sorted(moves.items())),
     }
     return out, statuses
 
@@ -101,7 +112,8 @@ def main() -> None:
     )
     print(
         f"{len(decisions)} decisions ({', '.join(f'{k} {v}' for k, v in statuses.most_common())}); "
-        f"{len(out['document_paths'])} addresses joined to a path, {len(out['not_sources'])} not sources"
+        f"{len(out['document_paths'])} addresses joined to a path, {len(out['path_moves'])} paths moved, "
+        f"{len(out['not_sources'])} not sources"
     )
 
 

@@ -424,6 +424,10 @@ def test_apply_wave_decisions_joins_held_addresses_and_excludes_non_sources():
         "https://example.gov/calculator": {"bundle_url": "https://example.gov/calculator"},
         "https://blocked.gov/x": {"bundle_url": "https://blocked.gov/x"},
         "us/statute/7/2015": {"bundle_url": ""},
+        "us-ca/form/official_forms/temp-2250": {
+            "bundle_url": "https://www.cdss.ca.gov/temp2250.pdf",
+            "bundle_path": "us-ca/form/official_forms/temp-2250",
+        },
     }
     decisions = [
         {
@@ -438,10 +442,35 @@ def test_apply_wave_decisions_joins_held_addresses_and_excludes_non_sources():
         },
         {"id": "https://blocked.gov/x", "new_status": "OUTREACH"},
         {"id": "us/statute/7/2015", "new_status": "PRESENT", "citation_path": "us/statute/7/2015"},
+        {
+            "id": "us-ca/form/official_forms/temp-2250",
+            "new_status": "PRESENT",
+            "citation_path": "us-ca/form/official-forms/temp-2250",
+        },
     ]
     out, statuses = apply.joins(orders, decisions, {})
     assert out["document_paths"] == {"https://law.justia.com/az/46-292": "us-az/statute/46-292"}
+    assert out["path_moves"] == {
+        "us-ca/form/official_forms/temp-2250": "us-ca/form/official-forms/temp-2250"
+    }
     assert out["not_sources"] == {
         "https://example.gov/calculator": "Not a source of rules: an eligibility calculator"
     }
-    assert statuses == {"ALREADY-HELD": 1, "OUT-OF-SCOPE": 1, "OUTREACH": 1, "PRESENT": 1}
+    assert statuses == {"ALREADY-HELD": 1, "OUT-OF-SCOPE": 1, "OUTREACH": 1, "PRESENT": 2}
+
+
+def test_build_program_follows_a_moved_path(tmp_path, monkeypatch):
+    cfg = config(tmp_path, monkeypatch)
+    cfg["path_moves"] = {"us/statute/7/2014": "us/statute/7/2014-moved"}
+    references = {
+        "references": [
+            {
+                "url": "https://law.cornell.edu/uscode/text/7/2014",
+                "citation": "us/statute/7/2014",
+                "files": ["x.yaml"],
+            }
+        ]
+    }
+    out = bundle.build_program(cfg, "snap", references, None, {}, bundle.index_manifests({}, {}))
+    federal = [d["key"] for d in out["layers"][0]["screener"]]
+    assert federal == ["us/statute/7/2014-moved"]

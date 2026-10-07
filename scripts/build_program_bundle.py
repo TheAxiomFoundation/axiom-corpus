@@ -522,6 +522,7 @@ def build_program(
     not_sources = {
         url_key(normalize_url(a), aliases): b for a, b in (cfg.get("not_sources") or {}).items()
     }
+    moves = cfg.get("path_moves") or {}
     rules = _rules(prog.get("part_rules"))
     overrides = prog.get("states") or {}
     layers = {j: Layer(j) for j in ["us", *jurisdictions]}
@@ -605,7 +606,9 @@ def build_program(
         if url_key(normalize_url(url), aliases) in same:
             url = same[url_key(normalize_url(url), aliases)]
         k = url_key(normalize_url(url), aliases)
-        citation = ref.get("citation") or by_url.get(k) or held.get(k)
+        citation = (
+            moves.get(ref.get("citation"), ref.get("citation")) or by_url.get(k) or held.get(k)
+        )
         reason = not_sources.get(k) or next(
             (why for rx, why in expired if any(rx.search(t) for t in [url, *files])), None
         )
@@ -650,6 +653,7 @@ def build_program(
             or (f"us/statute/{usc.group(1)}/{usc.group(2)}" if usc else None)
             or (f"us/regulation/{cfr.group(1)}/{cfr.group(2)}/{cfr.group(3)}" if cfr else None)
         )
+        citation = moves.get(citation, citation)
         urls = doc.get("urls") or []
         url = urls[0] if urls else None
         if url and url_key(normalize_url(url), aliases) in same:
@@ -945,10 +949,21 @@ def build(config_path: Path) -> dict[str, dict]:
     # bundles name by an address (generated from their decisions files).
     if cfg.get("joins"):
         joins = yaml.safe_load((REPO / cfg["joins"]).read_text()) or {}
-        for field in ("same_document", "document_paths", "not_sources"):
+        for field in ("same_document", "document_paths", "not_sources", "path_moves"):
             cfg[field] = {**(cfg.get(field) or {}), **(joins.get(field) or {})}
     aliases = cfg.get("host_aliases") or {}
-    manifests = load_manifests()
+    # A path an older manifest gives that a wave re-extracted at another path
+    # (a slug the citation grammar rejects): the manifest entry names the new one.
+    moves = cfg.get("path_moves") or {}
+    manifests = {
+        name: [
+            {**d, "citation_path": moves[d["citation_path"]]}
+            if d.get("citation_path") in moves
+            else d
+            for d in docs
+        ]
+        for name, docs in load_manifests().items()
+    }
     index = index_manifests(manifests, aliases)
     plan = json.loads((REPO / cfg["plan"]).read_text()) if cfg.get("plan") else None
     out = {}
