@@ -1,0 +1,37 @@
+# Wave 6 tax-ok-wv: whole statute chapters taken through the state adapters (the adapter appends its scope suffix).
+version: 2026-10-06-w6-income-tax-statute
+sources:
+- source_id: us-or-ors-chapter-315
+  jurisdiction: us-or
+  document_class: statute
+  adapter: oregon-ors
+  source_url: https://www.oregonlegislature.gov/bills_laws/ors/ors315.html
+  version: 2026-10-06-w6-income-tax-statute-or
+  options:
+    source_as_of: '2026-10-06'
+    expression_date: '2026-10-06'
+    download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-or-w6-tax-ok-wv/2026-10-06
+    source_year: 2025
+    only_chapter: '315'
+    workers: 1
+  metadata:
+    source_authority: Oregon State Legislature
+    source_scope_note: ORS chapter 315 (Personal and Corporation Income Tax Credits), 2025 Edition, from the official Legislature
+      HTML.
+- source_id: us-sc-code-title-59-chapter-2
+  jurisdiction: us-sc
+  document_class: statute
+  adapter: south-carolina-code
+  source_url: https://www.scstatehouse.gov/code/t59c002.php
+  version: 2026-10-06-w6-income-tax-statute-sc
+  options:
+    source_as_of: '2026-10-06'
+    expression_date: '2026-10-06'
+    download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-sc-w6-tax-ok-wv/2026-10-06
+    only_title: '59'
+    only_chapter: '2'
+    request_delay_seconds: 0.3
+  metadata:
+    source_authority: South Carolina Legislative Council
+    source_scope_note: S.C. Code Title 59 Chapter 2 (Tuition prepayment and college savings; 529 deduction) from the official
+      Code of Laws HTML.
