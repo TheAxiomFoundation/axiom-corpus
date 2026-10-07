@@ -43,8 +43,8 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 89
-      state: 147
+      federal: 77
+      state: 140
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -59,41 +59,11 @@ tiers:
     state_manifests: chip|child-health|kidscare
     known_sources: 0
     in_scope_by_layer:
-      federal: 268
-      state: 1535
+      federal: 254
+      state: 1524
 layers:
 - jurisdiction: us
   screener:
-  - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    name: Prior HHS Poverty Guidelines and Federal Register References
-    layer: federal
-    citation_path: null
-    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    sources:
-    - plan
-    scope: in
-    part: Income
-  - key: https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/
-    name: ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-inclu
-    layer: federal
-    citation_path: null
-    source_url: https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
-    name: data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
-    layer: federal
-    citation_path: null
-    source_url: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Income
   - key: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
     name: Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)
     layer: federal
@@ -101,65 +71,6 @@ layers:
     source_url: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
     sources:
     - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
-    name: downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    name: Public Law 119-21, Section 10102(a) - Modifications to SNAP ABAWD Requirements | One Big Beautiful Bill
-      Act, Pub. L. No. 119-21, § 70404 (2025)
-    layer: federal
-    citation_path: null
-    source_url: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    sources:
-    - plan
-    scope: in
-    part: Work requirements
-  - key: https://www.congress.gov/bill/119th-congress/house-bill/1
-    name: H.R.1 - One Big Beautiful Bill Act | H.R. 1, 119th Congress, Sec. 71108 - Revising home equity limit for
-      determining eligibility for long-term care services under the Medicaid program
-    layer: federal
-    citation_path: null
-    source_url: https://www.congress.gov/bill/119th-congress/house-bill/1
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf
-    name: FR doc 2026-11094
-    layer: federal
-    citation_path: null
-    source_url: https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi
-    name: Modified Adjusted Gross Income (MAGI)
-    layer: federal
-    citation_path: null
-    source_url: https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/
-    name: healthcare.gov/medicaid-chip/childrens-health-insurance-program/
-    layer: federal
-    citation_path: null
-    source_url: https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
     scope: in
     part: Household and eligibility
   - key: https://www.irs.gov/publications/p501
@@ -171,16 +82,6 @@ layers:
     - plan
     scope: in
     part: Other
-  - key: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI
-    name: law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
   - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
     name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
     layer: federal
@@ -190,28 +91,6 @@ layers:
     - plan
     scope: in
     part: Other
-  - key: https://www.macpac.gov/publication/chip-spending-by-state/
-    name: macpac.gov/publication/chip-spending-by-state/
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/chip-spending-by-state/
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    name: macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Income
   - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
     name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
     layer: federal
@@ -221,184 +100,6 @@ layers:
     - plan
     scope: in
     part: Other
-  - key: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
-    name: State Annual Report January-December 2018 | Arkansas Works Section 1115
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.medicaid.gov/chip/chip-eligibility-enrollment
-    name: medicaid.gov/chip/chip-eligibility-enrollment
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/chip/chip-eligibility-enrollment
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
-    name: medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
-    name: CMCS Informational Bulletin, Dec. 8, 2025
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
-    name: medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
-    name: medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/medicaid-spa/2023-11-22/156086
-    name: medicaid.gov/medicaid-spa/2023-11-22/156086
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid-spa/2023-11-22/156086
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.medicaid.gov/medicaid-spa/2025-05-07/179381
-    name: NV-25-0006, Medicaid State Plan Amendment
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid-spa/2025-05-07/179381
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals
-    name: medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-c
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes
-    name: medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/e
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html
-    name: Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021
-    name: Arkansas Works | Medicaid
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
-    name: web:medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: https://www.medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf
-    name: medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf
-    name: medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf
-    name: medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
-    name: web:medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: https://www.ssa.gov/OP_Home/ssact/title21/2110.htm
-    name: ssa.gov/OP_Home/ssact/title21/2110.htm
-    layer: federal
-    citation_path: null
-    source_url: https://www.ssa.gov/OP_Home/ssact/title21/2110.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -409,7 +110,7 @@ layers:
     - plan
     references: 1
     scope: in
-    part: Income
+    part: Household and eligibility
     cited:
     - path: us/form/cms/medicaid-chip-bhp-eligibility-levels
       references: 1
@@ -423,10 +124,143 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
-  - key: us/guidance/hhs/aspe/poverty-guidelines
+  - key: us/guidance/cms/cib/2025-12-08
+    name: us/guidance/cms/cib/2025-12-08
+    layer: federal
+    citation_path: us/guidance/cms/cib/2025-12-08
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    name: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    layer: federal
+    citation_path: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+      references: 1
+      part: Household and eligibility
+  - key: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    name: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    layer: federal
+    citation_path: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    name: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    layer: federal
+    citation_path: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    name: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    layer: federal
+    citation_path: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    name: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    layer: federal
+    citation_path: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+      references: 1
+      part: Household and eligibility
+  - key: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    name: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    layer: federal
+    citation_path: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+      references: 1
+      part: Benefit amount
+  - key: us/guidance/cms/sho/10-006
+    name: us/guidance/cms/sho/10-006
+    layer: federal
+    citation_path: us/guidance/cms/sho/10-006
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/sho/10-006
+      references: 1
+      part: Household and eligibility
+  - key: us/guidance/cms/sho/12-002
+    name: us/guidance/cms/sho/12-002
+    layer: federal
+    citation_path: us/guidance/cms/sho/12-002
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 3
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/sho/12-002
+      references: 3
+      part: Household and eligibility
+  - key: us/guidance/cms/sho/26-001
+    name: us/guidance/cms/sho/26-001
+    layer: federal
+    citation_path: us/guidance/cms/sho/26-001
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/sho/26-001
+      references: 2
+      part: Household and eligibility
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026
     name: HHS Poverty Guidelines
     layer: federal
-    citation_path: us/guidance/hhs/aspe/poverty-guidelines
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    name: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
     source_url: null
     sources:
     - plan
@@ -477,6 +311,21 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
+  - key: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
+    name: CMS CHIP SPA AL-23-0026-RIM2 PDF
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
+      references: 1
+      part: Other
   - key: us/policy/cms/chip-spa/al/al-24-0031-fcep-and-al-24-0031-absc/pdf
     name: CMS CHIP SPA AL-24-0031-FCEP and AL-24-0031-ABSC PDF
     layer: federal
@@ -492,6 +341,39 @@ layers:
     - path: us/policy/cms/chip-spa/al/al-24-0031-fcep-and-al-24-0031-absc/pdf
       references: 1
       part: Household and eligibility
+  - key: us/policy/cms/chip-spa/ca/ca-chipspa-20
+    name: us/policy/cms/chip-spa/ca/ca-chipspa-20
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ca/ca-chipspa-20
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us/policy/cms/chip-spa/ca/ca-chipspa-20
+      references: 1
+      part: Income
+  - key: us/policy/cms/section-1115/ar/arkansas-works
+    name: us/policy/cms/section-1115/ar/arkansas-works
+    layer: federal
+    citation_path: us/policy/cms/section-1115/ar/arkansas-works
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    name: us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    layer: federal
+    citation_path: us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
   - key: us/regulation/20/416/1163
     name: 20 CFR 416.1163
     layer: federal
@@ -698,6 +580,15 @@ layers:
     - path: us/regulation/45/155/20
       references: 1
       part: Household and eligibility
+  - key: us/rulemaking/federal-register/2026-06-03/2026-11094
+    name: us/rulemaking/federal-register/2026-06-03/2026-11094
+    layer: federal
+    citation_path: us/rulemaking/federal-register/2026-06-03/2026-11094
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
   - key: us/statute/26/1222
     name: 26 USC 1222
     layer: federal
@@ -869,15 +760,29 @@ layers:
     - plan
     scope: in
     part: Other
-  - key: us/statute/42/1396u-1
-    name: 42 USC 1396u-1
+  - key: us/statute/42/1396u–1
+    name: 42 USC 1396u–1
     layer: federal
-    citation_path: us/statute/42/1396u-1
+    citation_path: us/statute/42/1396u–1
     source_url: null
     sources:
     - plan
     scope: in
     part: Household and eligibility
+  - key: us/statute/42/1397aa
+    name: 42 USC 1397aa
+    layer: federal
+    citation_path: us/statute/42/1397aa
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us/statute/42/1397aa
+      references: 1
+      part: Other
   - key: us/statute/42/1397ee
     name: 42 USC 1397ee
     layer: federal
@@ -917,10 +822,13 @@ layers:
     sources:
     - policyengine-references
     - plan
-    references: 1
+    references: 2
     scope: in
-    part: Benefit amount
+    part: Household and eligibility
     cited:
+    - path: us/statute/42/1397jj
+      references: 1
+      part: Household and eligibility
     - path: us/statute/42/1397jj/c/1
       references: 1
       part: Benefit amount
@@ -978,6 +886,15 @@ layers:
     - path: us/statute/8/1641/b
       references: 1
       part: Household and eligibility
+  - key: us/statute/public-law/119-21
+    name: public-law USC 119-21
+    layer: federal
+    citation_path: us/statute/public-law/119-21
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Work requirements
   - key: https://aspe.hhs.gov/2015-poverty-guidelines
     name: 2015 Poverty Guidelines
     layer: federal
@@ -997,6 +914,31 @@ layers:
     - plan
     scope: excluded
     reason: 'Back-year table: not current law'
+    part: Income
+  - key: https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/
+    name: ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-inclu
+    layer: federal
+    citation_path: null
+    source_url: https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: Georgetown CCF blog post (third-party analysis); the rules behind it are the
+      state plan options (42 U.S.C. 1396b(v)(4), 1397gg(e)(1)(J)), not one official text'
+    part: Benefit amount
+  - key: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
+    name: data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
+    layer: federal
+    citation_path: null
+    source_url: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: data.medicaid.gov dataset landing page (a data catalog record rendered by JavaScript),
+      not a source of rules'
     part: Income
   - key: https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf
     name: files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Poli
@@ -1064,6 +1006,31 @@ layers:
     scope: excluded
     reason: 'Secondary source: not law'
     part: Income
+  - key: https://www.macpac.gov/publication/chip-spending-by-state/
+    name: macpac.gov/publication/chip-spending-by-state/
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/publication/chip-spending-by-state/
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: MACStats Exhibit 33 (spending statistics); data, not rules'
+    part: Other
+  - key: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
+    name: macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: MACStats Exhibit 35, a secondary compilation of state eligibility levels; the
+      rules are the state plans (CMS eligibility-levels page held at us/form/cms/medicaid-chip-bhp-eligibility-levels)'
+    part: Income
   - key: https://www.macpac.gov/wp-content/uploads/2023/12/EXHIBIT-16.-Medicaid-Spending-by-State-Category-and-Source-of-Funds-FY-2022.pdf
     name: Medicaid Spending by State, Category, and Source of Funds, FY 2022 (millions) | MACPAC
     layer: federal
@@ -1074,95 +1041,24 @@ layers:
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Other
+  - key: https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes
+    name: medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/e
+    layer: federal
+    citation_path: null
+    source_url: https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: index of MBES/CBES expenditure data reports (redirects to the expenditure-reports-mbes/cbes
+      page); data, not rules'
+    part: Household and eligibility
   full:
-  - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    name: Prior HHS Poverty Guidelines and Federal Register References
-    layer: federal
-    citation_path: null
-    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/
-    name: ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-inclu
-    layer: federal
-    citation_path: null
-    source_url: https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
-    name: data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
-    layer: federal
-    citation_path: null
-    source_url: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
     name: Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)
     layer: federal
     citation_path: null
     source_url: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
-    name: downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    name: Public Law 119-21, Section 10102(a) - Modifications to SNAP ABAWD Requirements | One Big Beautiful Bill
-      Act, Pub. L. No. 119-21, § 70404 (2025)
-    layer: federal
-    citation_path: null
-    source_url: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.congress.gov/bill/119th-congress/house-bill/1
-    name: H.R.1 - One Big Beautiful Bill Act | H.R. 1, 119th Congress, Sec. 71108 - Revising home equity limit for
-      determining eligibility for long-term care services under the Medicaid program
-    layer: federal
-    citation_path: null
-    source_url: https://www.congress.gov/bill/119th-congress/house-bill/1
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf
-    name: FR doc 2026-11094
-    layer: federal
-    citation_path: null
-    source_url: https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi
-    name: Modified Adjusted Gross Income (MAGI)
-    layer: federal
-    citation_path: null
-    source_url: https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/
-    name: healthcare.gov/medicaid-chip/childrens-health-insurance-program/
-    layer: federal
-    citation_path: null
-    source_url: https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/
     part: Household and eligibility
     sources:
     - screener
@@ -1176,39 +1072,12 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI
-    name: law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI
-    part: Other
-    sources:
-    - screener
-    scope: in
   - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
     name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
     layer: federal
     citation_path: null
     source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
     part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/publication/chip-spending-by-state/
-    name: macpac.gov/publication/chip-spending-by-state/
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/chip-spending-by-state/
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    name: macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    part: Income
     sources:
     - screener
     scope: in
@@ -1221,174 +1090,12 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
-    name: State Annual Report January-December 2018 | Arkansas Works Section 1115
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/chip/chip-eligibility-enrollment
-    name: medicaid.gov/chip/chip-eligibility-enrollment
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/chip/chip-eligibility-enrollment
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
-    name: medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
-    name: CMCS Informational Bulletin, Dec. 8, 2025
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
-    name: medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
-    name: medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/medicaid-spa/2023-11-22/156086
-    name: medicaid.gov/medicaid-spa/2023-11-22/156086
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid-spa/2023-11-22/156086
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/medicaid-spa/2025-05-07/179381
-    name: NV-25-0006, Medicaid State Plan Amendment
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid-spa/2025-05-07/179381
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals
-    name: medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-c
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes
-    name: medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/e
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html
-    name: Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021
-    name: Arkansas Works | Medicaid
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
-    name: web:medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf
-    name: medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf
-    name: medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf
-    name: medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
-    name: web:medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.ssa.gov/OP_Home/ssact/title21/2110.htm
-    name: ssa.gov/OP_Home/ssact/title21/2110.htm
-    layer: federal
-    citation_path: null
-    source_url: https://www.ssa.gov/OP_Home/ssact/title21/2110.htm
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
     citation_path: us/form/cms/medicaid-chip-bhp-eligibility-levels
     source_url: null
-    part: Income
+    part: Household and eligibility
     sources:
     - screener
     - manifests/us-medicaid-chip-eligibility-levels.yaml
@@ -1402,15 +1109,114 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/guidance/hhs/aspe/poverty-guidelines
+  - key: us/guidance/cms/cib/2025-12-08
+    name: us/guidance/cms/cib/2025-12-08
+    layer: federal
+    citation_path: us/guidance/cms/cib/2025-12-08
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    name: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    layer: federal
+    citation_path: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    name: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    layer: federal
+    citation_path: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    name: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    layer: federal
+    citation_path: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+    source_url: null
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    name: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    layer: federal
+    citation_path: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+    source_url: null
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    name: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    layer: federal
+    citation_path: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    name: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    layer: federal
+    citation_path: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/sho/10-006
+    name: us/guidance/cms/sho/10-006
+    layer: federal
+    citation_path: us/guidance/cms/sho/10-006
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/sho/12-002
+    name: us/guidance/cms/sho/12-002
+    layer: federal
+    citation_path: us/guidance/cms/sho/12-002
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/sho/26-001
+    name: us/guidance/cms/sho/26-001
+    layer: federal
+    citation_path: us/guidance/cms/sho/26-001
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026
     name: HHS Poverty Guidelines
     layer: federal
-    citation_path: us/guidance/hhs/aspe/poverty-guidelines
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
     source_url: null
     part: Income
     sources:
     - screener
     - manifests/us-hhs-poverty-guidelines.yaml
+    scope: in
+  - key: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    name: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    source_url: null
+    part: Income
+    sources:
+    - screener
     scope: in
   - key: us/manual/ssa/poms/si/01140.200
     name: 'POMS SI 01140.200: Checking and Savings Accounts'
@@ -1457,6 +1263,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
+    name: CMS CHIP SPA AL-23-0026-RIM2 PDF
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
   - key: us/policy/cms/chip-spa/al/al-24-0031-fcep-and-al-24-0031-absc/pdf
     name: CMS CHIP SPA AL-24-0031-FCEP and AL-24-0031-ABSC PDF
     layer: federal
@@ -1466,6 +1282,33 @@ layers:
     sources:
     - screener
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+  - key: us/policy/cms/chip-spa/ca/ca-chipspa-20
+    name: us/policy/cms/chip-spa/ca/ca-chipspa-20
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ca/ca-chipspa-20
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us/policy/cms/section-1115/ar/arkansas-works
+    name: us/policy/cms/section-1115/ar/arkansas-works
+    layer: federal
+    citation_path: us/policy/cms/section-1115/ar/arkansas-works
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    name: us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    layer: federal
+    citation_path: us/policy/cms/section-1115/ar/arkansas-works-annual-report-2018
+    source_url: null
+    part: Other
+    sources:
+    - screener
     scope: in
   - key: us/regulation/20/416/1163
     name: 20 CFR 416.1163
@@ -1639,6 +1482,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/rulemaking/federal-register/2026-06-03/2026-11094
+    name: us/rulemaking/federal-register/2026-06-03/2026-11094
+    layer: federal
+    citation_path: us/rulemaking/federal-register/2026-06-03/2026-11094
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
   - key: us/statute/26/1222
     name: 26 USC 1222
     layer: federal
@@ -1810,14 +1662,24 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/statute/42/1396u-1
-    name: 42 USC 1396u-1
+  - key: us/statute/42/1396u–1
+    name: 42 USC 1396u–1
     layer: federal
-    citation_path: us/statute/42/1396u-1
+    citation_path: us/statute/42/1396u–1
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    scope: in
+  - key: us/statute/42/1397aa
+    name: 42 USC 1397aa
+    layer: federal
+    citation_path: us/statute/42/1397aa
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    - schema:C-ST-1397aa
     scope: in
   - key: us/statute/42/1397ee
     name: 42 USC 1397ee
@@ -1844,7 +1706,7 @@ layers:
     layer: federal
     citation_path: us/statute/42/1397jj
     source_url: null
-    part: Benefit amount
+    part: Household and eligibility
     sources:
     - screener
     - schema:C-ST-1397jj-c
@@ -1885,15 +1747,15 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/statute/42/1397aa
-    name: 42 USC 1397aa
+  - key: us/statute/public-law/119-21
+    name: public-law USC 119-21
     layer: federal
-    citation_path: us/statute/42/1397aa
+    citation_path: us/statute/public-law/119-21
     source_url: null
+    part: Work requirements
     sources:
-    - schema:C-ST-1397aa
+    - screener
     scope: in
-    part: Other
   - key: us/statute/42/1397bb
     name: 42 USC 1397bb
     layer: federal
@@ -3207,16 +3069,6 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
-  - key: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
-    name: CMS CHIP SPA AL-23-0026-RIM2 PDF
-    layer: federal
-    citation_path: us/policy/cms/chip-spa/al/al-23-0026-rim2/pdf
-    source_url: https://www.medicaid.gov/CHIP/Downloads/AL-23-0026-RIM2.pdf
-    sources:
-    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
-    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
-    scope: in
-    part: Other
   - key: us/policy/cms/chip-spa/ca/ca-24-0046/pdf
     name: CMS CHIP SPA CA-24-0046 PDF
     layer: federal
@@ -3579,15 +3431,6 @@ layers:
     part: Other
 - jurisdiction: us-al
   screener:
-  - key: https://admincode.legislature.state.al.us/api/chapter/560-X-25
-    name: Ala. Admin. Code r. 560-X-25-.15(1)(c) - dependent child "under the age of 19"
-    layer: state
-    citation_path: null
-    source_url: https://admincode.legislature.state.al.us/api/chapter/560-X-25
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: https://www.alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf
     name: alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf
     layer: state
@@ -3599,17 +3442,21 @@ layers:
     references: 1
     scope: in
     part: Assets
-  - key: https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
-    name: alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
+  - key: us-al/guidance/adph/infant-mortality-reduction-plan-2018
+    name: us-al/guidance/adph/infant-mortality-reduction-plan-2018
     layer: state
-    citation_path: null
-    source_url: https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
+    citation_path: us-al/guidance/adph/infant-mortality-reduction-plan-2018
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Assets
+    cited:
+    - path: us-al/guidance/adph/infant-mortality-reduction-plan-2018
+      references: 1
+      part: Assets
   - key: us-al/manual/adph/chip/income-guidelines
     name: 'ADPH ALL Kids: Income Guidelines (effective 2/1/2026)'
     layer: state
@@ -3648,16 +3495,16 @@ layers:
     - plan
     scope: in
     part: Assets
-  full:
-  - key: https://admincode.legislature.state.al.us/api/chapter/560-X-25
-    name: Ala. Admin. Code r. 560-X-25-.15(1)(c) - dependent child "under the age of 19"
+  - key: us-al/regulation/alabama-administrative-code/560/x/25
+    name: us-al/regulation/alabama-administrative-code/560/x/25
     layer: state
-    citation_path: null
-    source_url: https://admincode.legislature.state.al.us/api/chapter/560-X-25
-    part: Benefit amount
+    citation_path: us-al/regulation/alabama-administrative-code/560/x/25
+    source_url: null
     sources:
-    - screener
+    - plan
     scope: in
+    part: Benefit amount
+  full:
   - key: https://www.alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf
     name: alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf
     layer: state
@@ -3667,11 +3514,11 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
-    name: alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
+  - key: us-al/guidance/adph/infant-mortality-reduction-plan-2018
+    name: us-al/guidance/adph/infant-mortality-reduction-plan-2018
     layer: state
-    citation_path: null
-    source_url: https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
+    citation_path: us-al/guidance/adph/infant-mortality-reduction-plan-2018
+    source_url: null
     part: Assets
     sources:
     - screener
@@ -3703,6 +3550,15 @@ layers:
     citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0021-mm1/approval-document
     source_url: null
     part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-al/regulation/alabama-administrative-code/560/x/25
+    name: us-al/regulation/alabama-administrative-code/560/x/25
+    layer: state
+    citation_path: us-al/regulation/alabama-administrative-code/560/x/25
+    source_url: null
+    part: Benefit amount
     sources:
     - screener
     scope: in
@@ -4913,21 +4769,21 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-ar
   screener:
-  - key: https://www.law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003
-    name: Arkansas Works Program Updates | Arkansas Code Rule 016.20.18 Ark. Code R. 003
+  - key: us-ar/manual/dco/medicaid/policy-manual
+    name: Arkansas Medical Services Policy Manual
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003
+    citation_path: us-ar/manual/dco/medicaid/policy-manual
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
   full:
-  - key: https://www.law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003
-    name: Arkansas Works Program Updates | Arkansas Code Rule 016.20.18 Ark. Code R. 003
+  - key: us-ar/manual/dco/medicaid/policy-manual
+    name: Arkansas Medical Services Policy Manual
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003
+    citation_path: us-ar/manual/dco/medicaid/policy-manual
+    source_url: null
     part: Other
     sources:
     - screener
@@ -5107,108 +4963,6 @@ layers:
     part: Other
 - jurisdiction: us-ca
   screener:
-  - key: https://california.public.law/codes/welfare_and_institutions_code_section_14007.8
-    name: California Welfare and Institutions Code Section 14007.8 | California Welfare and Institutions Code Section
-      14007.8(b)(1)
-    layer: state
-    citation_path: null
-    source_url: https://california.public.law/codes/welfare_and_institutions_code_section_14007.8
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15833.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15833.
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15834.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15834.
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.1.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.1.
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.5.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.5.
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Other
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=2.&article=
-    name: CA stat wic chapter-2-division-9-part-3-3
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=2.&article=
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=3.&article=
-    name: leginfo.legislature.ca.gov/faces/codes_displayText.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=3.&article=
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Income
-  - key: https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
-    name: stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
-    layer: state
-    citation_path: null
-    source_url: https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
-    name: web:dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
-    name: web:dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
   - key: https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3/
     name: dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-d
     layer: state
@@ -5251,17 +5005,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
-    name: dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Income
   - key: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-14.pdf
     name: California DHCS All County Welfare Directors Letter 25-14 (reinstatement of the non-MAGI Medi-Cal asset
       limit)
@@ -5281,26 +5024,6 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  - key: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf
-    name: dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Income
-  - key: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
-    name: web:dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
   - key: https://www.law.cornell.edu/regulations/california/10-CCR-2699.200
     name: law.cornell.edu/regulations/california/10-CCR-2699.200
     layer: state
@@ -5312,107 +5035,126 @@ layers:
     references: 1
     scope: in
     part: Household and eligibility
-  - key: us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng
+  - key: us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng
     name: MC250A_Eng
     layer: state
-    citation_path: us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng
+    citation_path: us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng
     source_url: null
     sources:
     - plan
     scope: in
     part: Other
+  - key: us-ca/guidance/dhcs/acwdl/20-10
+    name: us-ca/guidance/dhcs/acwdl/20-10
+    layer: state
+    citation_path: us-ca/guidance/dhcs/acwdl/20-10
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/guidance/dhcs/acwdl/25-01
+    name: us-ca/guidance/dhcs/acwdl/25-01
+    layer: state
+    citation_path: us-ca/guidance/dhcs/acwdl/25-01
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    part: Income
+    cited:
+    - path: us-ca/guidance/dhcs/acwdl/25-01
+      references: 2
+      part: Income
+  - key: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+    name: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+    layer: state
+    citation_path: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-ca/guidance/dhcs/magi-household-size-flowchart
+    name: us-ca/guidance/dhcs/magi-household-size-flowchart
+    layer: state
+    citation_path: us-ca/guidance/dhcs/magi-household-size-flowchart
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/manual/scc-ssa/medi-cal/cchip
+    name: us-ca/manual/scc-ssa/medi-cal/cchip
+    layer: state
+    citation_path: us-ca/manual/scc-ssa/medi-cal/cchip
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/manual/scc-ssa/medi-cal/cchip
+      references: 1
+      part: Household and eligibility
+  - key: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
+    name: 'California CHIP SPA CA-24-0012: Approval Package (approved April 17, 2025, effective January 1, 2025)'
+    layer: state
+    citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
+      references: 2
+      part: Income
+  - key: us-ca/statute/rtc/17054.1
+    name: us-ca/statute/rtc/17054.1
+    layer: state
+    citation_path: us-ca/statute/rtc/17054.1
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 4
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/statute/rtc/17054.1
+      references: 4
+      part: Household and eligibility
+  - key: us-ca/statute/wic/14007.8
+    name: us-ca/statute/wic/14007.8
+    layer: state
+    citation_path: us-ca/statute/wic/14007.8
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/wic/node-16.7.3
+    name: us-ca/statute/wic/node-16.7.3
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.3
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-ca/statute/wic/node-16.7.3
+      references: 1
+      part: Income
   full:
-  - key: https://california.public.law/codes/welfare_and_institutions_code_section_14007.8
-    name: California Welfare and Institutions Code Section 14007.8 | California Welfare and Institutions Code Section
-      14007.8(b)(1)
-    layer: state
-    citation_path: null
-    source_url: https://california.public.law/codes/welfare_and_institutions_code_section_14007.8
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15833.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15833.
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15834.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15834.
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.1.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.1.
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.5.
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.5.
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=2.&article=
-    name: CA stat wic chapter-2-division-9-part-3-3
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=2.&article=
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=3.&article=
-    name: leginfo.legislature.ca.gov/faces/codes_displayText.xhtml
-    layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=3.&article=
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
-    name: stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
-    layer: state
-    citation_path: null
-    source_url: https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
-    name: web:dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
-    name: web:dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3/
     name: dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-d
     layer: state
@@ -5451,15 +5193,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
-    name: dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-14.pdf
     name: California DHCS All County Welfare Directors Letter 25-14 (reinstatement of the non-MAGI Medi-Cal asset
       limit)
@@ -5479,24 +5212,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf
-    name: dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
-    name: web:dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
   - key: https://www.law.cornell.edu/regulations/california/10-CCR-2699.200
     name: law.cornell.edu/regulations/california/10-CCR-2699.200
     layer: state
@@ -5506,12 +5221,94 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng
+  - key: us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng
     name: MC250A_Eng
     layer: state
-    citation_path: us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng
+    citation_path: us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng
     source_url: null
     part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/dhcs/acwdl/20-10
+    name: us-ca/guidance/dhcs/acwdl/20-10
+    layer: state
+    citation_path: us-ca/guidance/dhcs/acwdl/20-10
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/dhcs/acwdl/25-01
+    name: us-ca/guidance/dhcs/acwdl/25-01
+    layer: state
+    citation_path: us-ca/guidance/dhcs/acwdl/25-01
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+    name: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+    layer: state
+    citation_path: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/dhcs/magi-household-size-flowchart
+    name: us-ca/guidance/dhcs/magi-household-size-flowchart
+    layer: state
+    citation_path: us-ca/guidance/dhcs/magi-household-size-flowchart
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/manual/scc-ssa/medi-cal/cchip
+    name: us-ca/manual/scc-ssa/medi-cal/cchip
+    layer: state
+    citation_path: us-ca/manual/scc-ssa/medi-cal/cchip
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
+    name: 'California CHIP SPA CA-24-0012: Approval Package (approved April 17, 2025, effective January 1, 2025)'
+    layer: state
+    citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-ca-chip-state-plan.yaml
+    scope: in
+  - key: us-ca/statute/rtc/17054.1
+    name: us-ca/statute/rtc/17054.1
+    layer: state
+    citation_path: us-ca/statute/rtc/17054.1
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/14007.8
+    name: us-ca/statute/wic/14007.8
+    layer: state
+    citation_path: us-ca/statute/wic/14007.8
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/node-16.7.3
+    name: us-ca/statute/wic/node-16.7.3
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.3
+    source_url: null
+    part: Income
     sources:
     - screener
     scope: in
@@ -5530,16 +5327,6 @@ layers:
     layer: state
     citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-25-0024-chip/approval-package
     source_url: https://www.medicaid.gov/CHIP/Downloads/CA-25-0024.pdf
-    sources:
-    - manifests/us-ca-chip-state-plan.yaml
-    manifest: manifests/us-ca-chip-state-plan.yaml
-    scope: in
-    part: Household and eligibility
-  - key: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
-    name: 'California CHIP SPA CA-24-0012: Approval Package (approved April 17, 2025, effective January 1, 2025)'
-    layer: state
-    citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
-    source_url: https://www.medicaid.gov/CHIP/Downloads/CA-24-0012.pdf
     sources:
     - manifests/us-ca-chip-state-plan.yaml
     manifest: manifests/us-ca-chip-state-plan.yaml
@@ -5718,64 +5505,65 @@ layers:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://connectforhealthco.com/get-started/omnisalud/
-    name: Connect for Health Colorado OmniSalud 2025 Updates | Connect for Health Colorado OmniSalud Overview
+  - key: us-co/guidance/connect-for-health-colorado/omnisalud
+    name: us-co/guidance/connect-for-health-colorado/omnisalud
     layer: state
-    citation_path: null
-    source_url: https://connectforhealthco.com/get-started/omnisalud/
+    citation_path: us-co/guidance/connect-for-health-colorado/omnisalud
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
-  - key: https://hcpf.colorado.gov/child-health-plan-plus
-    name: hcpf.colorado.gov/child-health-plan-plus
+  - key: us-co/guidance/hcpf/child-health-plan-plus
+    name: us-co/guidance/hcpf/child-health-plan-plus
     layer: state
-    citation_path: null
-    source_url: https://hcpf.colorado.gov/child-health-plan-plus
+    citation_path: us-co/guidance/hcpf/child-health-plan-plus
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Benefit amount
-  - key: https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
-    name: hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
+    cited:
+    - path: us-co/guidance/hcpf/child-health-plan-plus
+      references: 1
+      part: Benefit amount
+  - key: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
+    name: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
     layer: state
-    citation_path: null
-    source_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
+    citation_path: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Income
-  - key: https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
-    name: hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
+    cited:
+    - path: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
+      references: 1
+      part: Income
+  - key: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
+    name: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
     layer: state
-    citation_path: null
-    source_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
+    citation_path: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Income
-  - key: https://law.justia.com/codes/colorado/title-10/health-care-coverage/article-16/part-12/section-10-16-1203/
-    name: C.R.S. 10-16-1203(7) - Qualified individual (regardless of immigration status) | C.R.S. 10-16-1203(7)
-      - Qualified individual definition
+    cited:
+    - path: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
+      references: 1
+      part: Income
+  - key: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
+    name: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
     layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-10/health-care-coverage/article-16/part-12/section-10-16-1203/
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.healthfirstcolorado.com/health-coverage-for-immigrants/
-    name: Health First Colorado - Health Coverage for Immigrants | Health First Colorado - Health Coverage for Immigrants
-      (Cover All Coloradans, HB 22-1289)
-    layer: state
-    citation_path: null
-    source_url: https://www.healthfirstcolorado.com/health-coverage-for-immigrants/
+    citation_path: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
+    source_url: null
     sources:
     - plan
     scope: in
@@ -5795,6 +5583,15 @@ layers:
     - path: us-co/regulation/10-ccr-2505-3
       references: 2
       part: Income
+  - key: us-co/statute/10/10-16-1203
+    name: us-co/statute/10/10-16-1203
+    layer: state
+    citation_path: us-co/statute/10/10-16-1203
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   full:
   - key: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
     name: Colorado OmniSalud Guide 2024 | Colorado OmniSalud Guide 2024, p. 3
@@ -5805,58 +5602,47 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://connectforhealthco.com/get-started/omnisalud/
-    name: Connect for Health Colorado OmniSalud 2025 Updates | Connect for Health Colorado OmniSalud Overview
+  - key: us-co/guidance/connect-for-health-colorado/omnisalud
+    name: us-co/guidance/connect-for-health-colorado/omnisalud
     layer: state
-    citation_path: null
-    source_url: https://connectforhealthco.com/get-started/omnisalud/
+    citation_path: us-co/guidance/connect-for-health-colorado/omnisalud
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://hcpf.colorado.gov/child-health-plan-plus
-    name: hcpf.colorado.gov/child-health-plan-plus
+  - key: us-co/guidance/hcpf/child-health-plan-plus
+    name: us-co/guidance/hcpf/child-health-plan-plus
     layer: state
-    citation_path: null
-    source_url: https://hcpf.colorado.gov/child-health-plan-plus
+    citation_path: us-co/guidance/hcpf/child-health-plan-plus
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
-    name: hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
+  - key: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
+    name: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
     layer: state
-    citation_path: null
-    source_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
+    citation_path: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
+    source_url: null
     part: Income
     sources:
     - screener
     scope: in
-  - key: https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
-    name: hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
+  - key: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
+    name: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
     layer: state
-    citation_path: null
-    source_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
+    citation_path: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
+    source_url: null
     part: Income
     sources:
     - screener
     scope: in
-  - key: https://law.justia.com/codes/colorado/title-10/health-care-coverage/article-16/part-12/section-10-16-1203/
-    name: C.R.S. 10-16-1203(7) - Qualified individual (regardless of immigration status) | C.R.S. 10-16-1203(7)
-      - Qualified individual definition
+  - key: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
+    name: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
     layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-10/health-care-coverage/article-16/part-12/section-10-16-1203/
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.healthfirstcolorado.com/health-coverage-for-immigrants/
-    name: Health First Colorado - Health Coverage for Immigrants | Health First Colorado - Health Coverage for Immigrants
-      (Cover All Coloradans, HB 22-1289)
-    layer: state
-    citation_path: null
-    source_url: https://www.healthfirstcolorado.com/health-coverage-for-immigrants/
+    citation_path: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
+    source_url: null
     part: Benefit amount
     sources:
     - screener
@@ -5870,6 +5656,15 @@ layers:
     sources:
     - screener
     - manifests/us-co-chip-state-eligibility-manual.yaml
+    scope: in
+  - key: us-co/statute/10/10-16-1203
+    name: us-co/statute/10/10-16-1203
+    layer: state
+    citation_path: us-co/statute/10/10-16-1203
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
     scope: in
   - key: us-co/policy/cms/chip-state-plan/spa-index/p01
     name: 'Colorado CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
@@ -6105,52 +5900,56 @@ layers:
     part: Other
 - jurisdiction: us-ct
   screener:
-  - key: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
-    name: Connecticut DSS UPM 2540 coverage groups chart - HUSKY D (X02) criteria, no SSI test
+  - key: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
+    name: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
-    name: Connecticut Benefits Quick Guide (Revised May 6, 2024)
-    layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
+    citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
-    name: Connecticut Benefits Quick Guide (Revised February 15, 2023)
+  - key: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
+    name: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
+    citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
-    name: portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
+  - key: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
+    name: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
+    citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+    name: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+    layer: state
+    citation_path: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Other
-  - key: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7
-    name: Connecticut CHOICES Benefits Quick Guide (Rev 04.04.2025)
+    cited:
+    - path: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+      references: 1
+      part: Other
+  - key: us-ct/guidance/dss/medical-coverage-groups-upm-2540
+    name: us-ct/guidance/dss/medical-coverage-groups-upm-2540
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7
+    citation_path: us-ct/guidance/dss/medical-coverage-groups-upm-2540
+    source_url: null
     sources:
     - plan
     scope: in
-    part: Benefit amount
+    part: Household and eligibility
   - key: us-ct/manual/dss/chip/husky-b
     name: 'Connecticut DSS: What is HUSKY B? (Children''s Health Insurance Program)'
     layer: state
@@ -6166,48 +5965,48 @@ layers:
       references: 1
       part: Household and eligibility
   full:
-  - key: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
-    name: Connecticut DSS UPM 2540 coverage groups chart - HUSKY D (X02) criteria, no SSI test
+  - key: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
+    name: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
-    name: Connecticut Benefits Quick Guide (Revised May 6, 2024)
-    layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
+    citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
-    name: Connecticut Benefits Quick Guide (Revised February 15, 2023)
+  - key: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
+    name: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
+    citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
-    name: portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
+  - key: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
+    name: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
+    citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+    name: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+    layer: state
+    citation_path: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7
-    name: Connecticut CHOICES Benefits Quick Guide (Rev 04.04.2025)
+  - key: us-ct/guidance/dss/medical-coverage-groups-upm-2540
+    name: us-ct/guidance/dss/medical-coverage-groups-upm-2540
     layer: state
-    citation_path: null
-    source_url: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7
-    part: Benefit amount
+    citation_path: us-ct/guidance/dss/medical-coverage-groups-upm-2540
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -6418,7 +6217,9 @@ layers:
     sources:
     - policyengine-references
     references: 1
-    scope: in
+    scope: excluded
+    reason: 'Not a source of rules: Third-party fact sheet (National Academy for State Health Policy); the official
+      CHIP rule DSSM 18000 is held in us-de/regulation/2026-09-10-chip-state-eligibility-manual'
     part: Other
   full:
   - key: https://dhss.delaware.gov/dmma/dhcpflyer/
@@ -6426,15 +6227,6 @@ layers:
     layer: state
     citation_path: null
     source_url: https://dhss.delaware.gov/dmma/dhcpflyer/
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://nashp.org/delaware-chip-fact-sheet/
-    name: nashp.org/delaware-chip-fact-sheet/
-    layer: state
-    citation_path: null
-    source_url: https://nashp.org/delaware-chip-fact-sheet/
     part: Other
     sources:
     - screener
@@ -6695,21 +6487,21 @@ layers:
     part: Other
 - jurisdiction: us-dc
   screener:
-  - key: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf
-    name: Proposed Extension of Existing Loss of Medicaid SEP | DC Health Benefit Exchange Authority
+  - key: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
+    name: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
     layer: state
-    citation_path: null
-    source_url: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf
+    citation_path: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
   full:
-  - key: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf
-    name: Proposed Extension of Existing Loss of Medicaid SEP | DC Health Benefit Exchange Authority
+  - key: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
+    name: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
     layer: state
-    citation_path: null
-    source_url: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf
+    citation_path: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
+    source_url: null
     part: Benefit amount
     sources:
     - screener
@@ -6770,25 +6562,20 @@ layers:
     part: Other
 - jurisdiction: us-fl
   screener:
-  - key: https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf
-    name: Florida approved state plan S25 (FL-13-0015-MM1), student option unchecked
+  - key: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+    name: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
     layer: state
-    citation_path: null
-    source_url: https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
-    name: floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
-    layer: state
-    citation_path: null
-    source_url: https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
+    citation_path: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Other
+    cited:
+    - path: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+      references: 1
+      part: Other
   - key: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-7-family-related-medicaid-income-limit-chart
     name: 'Florida ESS Program Policy Manual: Appendix A-7 Family-Related Medicaid Income Limit Chart'
     layer: state
@@ -6798,6 +6585,16 @@ layers:
     - plan
     scope: in
     part: Deductions
+  - key: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
+    name: 'Florida Medicaid SPA FL-13-0015-MM1: Approval Document (approved November 18, 2013, effective January
+      1, 2014)'
+    layer: state
+    citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   - key: us-fl/regulation/fac/65a-2/022
     name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
     layer: state
@@ -6808,20 +6605,11 @@ layers:
     scope: in
     part: Benefit amount
   full:
-  - key: https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf
-    name: Florida approved state plan S25 (FL-13-0015-MM1), student option unchecked
+  - key: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+    name: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
     layer: state
-    citation_path: null
-    source_url: https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
-    name: floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
-    layer: state
-    citation_path: null
-    source_url: https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf
+    citation_path: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
+    source_url: null
     part: Other
     sources:
     - screener
@@ -6832,6 +6620,16 @@ layers:
     citation_path: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-7-family-related-medicaid-income-limit-chart
     source_url: null
     part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
+    name: 'Florida Medicaid SPA FL-13-0015-MM1: Approval Document (approved November 18, 2013, effective January
+      1, 2014)'
+    layer: state
+    citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -7028,56 +6826,52 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-ga
   screener:
-  - key: https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024
-    name: dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oc
+  - key: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+    name: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
     layer: state
-    citation_path: null
-    source_url: https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits/
-    name: Appendix A2, 2026 Family Limits | Georgia DFCS Medicaid manual - parents/caretakers $662/month for a family
-      of three, "plus 5%" column
-    layer: state
-    citation_path: null
-    source_url: https://pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits/
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2024) - Georgia
-      parents/caretakers 28% + 5% MAGI disregard
-    layer: state
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    sources:
-    - plan
-    scope: in
-    part: Deductions
-  - key: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2025, data as of
-      January 2025) - Georgia parents/caretakers 26% + 5% MAGI disregard
-    layer: state
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    sources:
-    - plan
-    scope: in
-    part: Deductions
-  - key: https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf
-    name: mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Me
-    layer: state
-    citation_path: null
-    source_url: https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf
+    citation_path: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
+    cited:
+    - path: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+      references: 1
+      part: Household and eligibility
+  - key: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+    name: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+    layer: state
+    citation_path: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+      references: 1
+      part: Benefit amount
+  - key: us-ga/guidance/macpac/exhibit-36/2024-07
+    name: us-ga/guidance/macpac/exhibit-36/2024-07
+    layer: state
+    citation_path: us-ga/guidance/macpac/exhibit-36/2024-07
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Deductions
+  - key: us-ga/guidance/macpac/exhibit-36/2025-07
+    name: us-ga/guidance/macpac/exhibit-36/2025-07
+    layer: state
+    citation_path: us-ga/guidance/macpac/exhibit-36/2025-07
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Deductions
   - key: us-ga/manual/dfcs/chip/2194
     name: 'Georgia Medicaid Policy Manual: 2194 PeachCare for Kids'
     layer: state
@@ -7110,52 +6904,64 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  full:
-  - key: https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024
-    name: dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oc
+  - key: us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
+    name: us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
     layer: state
-    citation_path: null
-    source_url: https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024
+    citation_path: us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document
+    name: 'Georgia Medicaid SPA GA-23-0002-VLP: Approval Document (approved November 22, 2023, effective January
+      1, 2024)'
+    layer: state
+    citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document
+      references: 1
+      part: Other
+  full:
+  - key: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+    name: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+    layer: state
+    citation_path: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+    name: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+    layer: state
+    citation_path: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits/
-    name: Appendix A2, 2026 Family Limits | Georgia DFCS Medicaid manual - parents/caretakers $662/month for a family
-      of three, "plus 5%" column
+  - key: us-ga/guidance/macpac/exhibit-36/2024-07
+    name: us-ga/guidance/macpac/exhibit-36/2024-07
     layer: state
-    citation_path: null
-    source_url: https://pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits/
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2024) - Georgia
-      parents/caretakers 28% + 5% MAGI disregard
-    layer: state
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
+    citation_path: us-ga/guidance/macpac/exhibit-36/2024-07
+    source_url: null
     part: Deductions
     sources:
     - screener
     scope: in
-  - key: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
-    name: MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2025, data as of
-      January 2025) - Georgia parents/caretakers 26% + 5% MAGI disregard
+  - key: us-ga/guidance/macpac/exhibit-36/2025-07
+    name: us-ga/guidance/macpac/exhibit-36/2025-07
     layer: state
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
+    citation_path: us-ga/guidance/macpac/exhibit-36/2025-07
+    source_url: null
     part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf
-    name: mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Me
-    layer: state
-    citation_path: null
-    source_url: https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf
-    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -7184,6 +6990,25 @@ layers:
     citation_path: us-ga/manual/dfcs/medicaid/2255
     source_url: null
     part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
+    name: us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
+    layer: state
+    citation_path: us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document
+    name: 'Georgia Medicaid SPA GA-23-0002-VLP: Approval Document (approved November 22, 2023, effective January
+      1, 2024)'
+    layer: state
+    citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document
+    source_url: null
+    part: Other
     sources:
     - screener
     scope: in
@@ -7852,183 +7677,88 @@ layers:
     part: Other
 - jurisdiction: us-il
   screener:
-  - key: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html
-    name: Illinois HFS - Health Benefits for Immigrants
+  - key: us-il/guidance/hfs/all-kids/about
+    name: us-il/guidance/hfs/all-kids/about
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html
-    name: Illinois HFS - HBIA FAQ
-    layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html
-    name: Illinois HFS - Health Benefits for Immigrant Adults
-    layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://hfs.illinois.gov/medicalprograms/allkids/about.html
-    name: Illinois HFS - About All Kids
-    layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/allkids/about.html
+    citation_path: us-il/guidance/hfs/all-kids/about
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
-  - key: https://hfs.illinois.gov/medicalprograms/allkids/income.html
-    name: hfs.illinois.gov/medicalprograms/allkids/income.html
+  - key: us-il/guidance/hfs/all-kids/income
+    name: us-il/guidance/hfs/all-kids/income
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/allkids/income.html
+    citation_path: us-il/guidance/hfs/all-kids/income
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Income
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd.html
-    name: web:hfs.illinois.gov/medicalprograms/hbwd.html
+    cited:
+    - path: us-il/guidance/hfs/all-kids/income
+      references: 1
+      part: Income
+  - key: us-il/guidance/hfs/hbwd
+    name: us-il/guidance/hfs/hbwd
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd.html
+    citation_path: us-il/guidance/hfs/hbwd
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd/about.html
-    name: web:hfs.illinois.gov/medicalprograms/hbwd/about.html
+  - key: us-il/guidance/hfs/hbwd/about
+    name: us-il/guidance/hfs/hbwd/about
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd/about.html
+    citation_path: us-il/guidance/hfs/hbwd/about
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html
-    name: Health Benefits for Workers with Disabilities Eligibility | HFS
+  - key: us-il/guidance/hfs/hbwd/eligibility
+    name: us-il/guidance/hfs/hbwd/eligibility
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html
+    citation_path: us-il/guidance/hfs/hbwd/eligibility
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html
-    name: web:hfs.illinois.gov/medicalprograms/hbwd/premiums.html
+  - key: us-il/guidance/hfs/hbwd/premiums
+    name: us-il/guidance/hfs/hbwd/premiums
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html
+    citation_path: us-il/guidance/hfs/hbwd/premiums
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
-  - key: https://www.ilga.gov/documents/legislation/ilcs/documents/030500050K5-2.htm
-    name: 305 ILCS 5/5-2 - Classes of Persons Eligible (11)(c) | 305 ILCS 5/5-2 - Classes of Persons Eligible (11)(a)
+  - key: us-il/guidance/hfs/health-benefits-for-immigrants
+    name: us-il/guidance/hfs/health-benefits-for-immigrants
     layer: state
-    citation_path: null
-    source_url: https://www.ilga.gov/documents/legislation/ilcs/documents/030500050K5-2.htm
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.ilga.gov/legislation/ilcs/documents/030500050K5-2.htm
-    name: 305 ILCS 5/5-2(12) - Medical Assistance Eligibility
-    layer: state
-    citation_path: null
-    source_url: https://www.ilga.gov/legislation/ilcs/documents/030500050K5-2.htm
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=030500050K5-2
-    name: 305 ILCS 5/5-2(5)(b)
-    layer: state
-    citation_path: null
-    source_url: https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=030500050K5-2
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.120
-    name: Ill. Admin. Code tit. 89, § 113.120 - Exempt Earned Income
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.120
-    sources:
-    - plan
-    scope: in
-    part: Income
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.330
-    name: 89 Ill. Admin. Code § 120.330 - Income - Unearned Income
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.330
-    sources:
-    - plan
-    scope: in
-    part: Income
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.360
-    name: 89 Ill. Admin. Code § 120.360 - Income - Earned Income
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.360
-    sources:
-    - plan
-    scope: in
-    part: Income
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.362
-    name: IL reg ill-admin-code-tit-89-ss-120-362
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.362
+    citation_path: us-il/guidance/hfs/health-benefits-for-immigrants
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.370
-    name: IL reg ill-admin-code-tit-89-ss-120-370
+  - key: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
+    name: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.370
+    citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.381
-    name: IL reg ill-admin-code-tit-89-ss-120-381
+  - key: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
+    name: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.381
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.510
-    name: 89 Ill. Admin. Code § 120.510 (n) | 89 Ill. Admin. Code § 120.510 (a)(7) - HBWD Eligibility
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.510
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.66
-    name: 89 Ill. Admin. Code § 120.66(c)(1)
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.66
+    citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
+    source_url: null
     sources:
     - plan
     scope: in
@@ -8042,183 +7772,169 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-360
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-360
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-360
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-362
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-362
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-362
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-370
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-370
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-370
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113/section-113-120
+    name: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113/section-113-120
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113/section-113-120
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-il/statute/305/5
+    name: us-il/statute/305/5
+    layer: state
+    citation_path: us-il/statute/305/5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-il/statute/305/5/5-2
+      references: 3
+      part: Household and eligibility
   full:
-  - key: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html
-    name: Illinois HFS - Health Benefits for Immigrants
+  - key: us-il/guidance/hfs/all-kids/about
+    name: us-il/guidance/hfs/all-kids/about
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html
-    name: Illinois HFS - HBIA FAQ
-    layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html
-    name: Illinois HFS - Health Benefits for Immigrant Adults
-    layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://hfs.illinois.gov/medicalprograms/allkids/about.html
-    name: Illinois HFS - About All Kids
-    layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/allkids/about.html
+    citation_path: us-il/guidance/hfs/all-kids/about
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://hfs.illinois.gov/medicalprograms/allkids/income.html
-    name: hfs.illinois.gov/medicalprograms/allkids/income.html
+  - key: us-il/guidance/hfs/all-kids/income
+    name: us-il/guidance/hfs/all-kids/income
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/allkids/income.html
+    citation_path: us-il/guidance/hfs/all-kids/income
+    source_url: null
     part: Income
     sources:
     - screener
     scope: in
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd.html
-    name: web:hfs.illinois.gov/medicalprograms/hbwd.html
+  - key: us-il/guidance/hfs/hbwd
+    name: us-il/guidance/hfs/hbwd
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd.html
+    citation_path: us-il/guidance/hfs/hbwd
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd/about.html
-    name: web:hfs.illinois.gov/medicalprograms/hbwd/about.html
+  - key: us-il/guidance/hfs/hbwd/about
+    name: us-il/guidance/hfs/hbwd/about
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd/about.html
+    citation_path: us-il/guidance/hfs/hbwd/about
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html
-    name: Health Benefits for Workers with Disabilities Eligibility | HFS
+  - key: us-il/guidance/hfs/hbwd/eligibility
+    name: us-il/guidance/hfs/hbwd/eligibility
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html
+    citation_path: us-il/guidance/hfs/hbwd/eligibility
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html
-    name: web:hfs.illinois.gov/medicalprograms/hbwd/premiums.html
+  - key: us-il/guidance/hfs/hbwd/premiums
+    name: us-il/guidance/hfs/hbwd/premiums
     layer: state
-    citation_path: null
-    source_url: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html
+    citation_path: us-il/guidance/hfs/hbwd/premiums
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://www.ilga.gov/documents/legislation/ilcs/documents/030500050K5-2.htm
-    name: 305 ILCS 5/5-2 - Classes of Persons Eligible (11)(c) | 305 ILCS 5/5-2 - Classes of Persons Eligible (11)(a)
+  - key: us-il/guidance/hfs/health-benefits-for-immigrants
+    name: us-il/guidance/hfs/health-benefits-for-immigrants
     layer: state
-    citation_path: null
-    source_url: https://www.ilga.gov/documents/legislation/ilcs/documents/030500050K5-2.htm
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.ilga.gov/legislation/ilcs/documents/030500050K5-2.htm
-    name: 305 ILCS 5/5-2(12) - Medical Assistance Eligibility
-    layer: state
-    citation_path: null
-    source_url: https://www.ilga.gov/legislation/ilcs/documents/030500050K5-2.htm
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=030500050K5-2
-    name: 305 ILCS 5/5-2(5)(b)
-    layer: state
-    citation_path: null
-    source_url: https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=030500050K5-2
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.120
-    name: Ill. Admin. Code tit. 89, § 113.120 - Exempt Earned Income
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.120
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.330
-    name: 89 Ill. Admin. Code § 120.330 - Income - Unearned Income
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.330
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.360
-    name: 89 Ill. Admin. Code § 120.360 - Income - Earned Income
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.360
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.362
-    name: IL reg ill-admin-code-tit-89-ss-120-362
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.362
+    citation_path: us-il/guidance/hfs/health-benefits-for-immigrants
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.370
-    name: IL reg ill-admin-code-tit-89-ss-120-370
+  - key: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
+    name: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.370
+    citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.381
-    name: IL reg ill-admin-code-tit-89-ss-120-381
+  - key: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
+    name: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.381
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.510
-    name: 89 Ill. Admin. Code § 120.510 (n) | 89 Ill. Admin. Code § 120.510 (a)(7) - HBWD Eligibility
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.510
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.66
-    name: 89 Ill. Admin. Code § 120.66(c)(1)
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.66
+    citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
+    source_url: null
     part: Benefit amount
     sources:
     - screener
@@ -8227,6 +7943,87 @@ layers:
     name: Illinois CCDF Plan, FFY 2025-2027
     layer: state
     citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-360
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-360
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-360
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-362
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-362
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-362
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-370
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-370
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-370
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
+    name: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113/section-113-120
+    name: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113/section-113-120
+    layer: state
+    citation_path: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113/section-113-120
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-il/statute/305/5
+    name: us-il/statute/305/5
+    layer: state
+    citation_path: us-il/statute/305/5
     source_url: null
     part: Household and eligibility
     sources:
@@ -8384,22 +8181,26 @@ layers:
     part: Other
 - jurisdiction: us-in
   screener:
-  - key: https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
-    name: in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
+  - key: us-in/guidance/fssa/hhw-package-c-medworks-premium
+    name: us-in/guidance/fssa/hhw-package-c-medworks-premium
     layer: state
-    citation_path: null
-    source_url: https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
+    citation_path: us-in/guidance/fssa/hhw-package-c-medworks-premium
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Benefit amount
+    cited:
+    - path: us-in/guidance/fssa/hhw-package-c-medworks-premium
+      references: 1
+      part: Benefit amount
   full:
-  - key: https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
-    name: in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
+  - key: us-in/guidance/fssa/hhw-package-c-medworks-premium
+    name: us-in/guidance/fssa/hhw-package-c-medworks-premium
     layer: state
-    citation_path: null
-    source_url: https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/
+    citation_path: us-in/guidance/fssa/hhw-package-c-medworks-premium
+    source_url: null
     part: Benefit amount
     sources:
     - screener
@@ -8648,40 +8449,44 @@ layers:
     part: Other
 - jurisdiction: us-ia
   screener:
-  - key: https://hhs.iowa.gov/media/10189/download?inline=
-    name: hhs.iowa.gov/media/10189/download
+  - key: us-ia/guidance/hhs/hawki-income-guidelines/2026
+    name: us-ia/guidance/hhs/hawki-income-guidelines/2026
     layer: state
-    citation_path: null
-    source_url: https://hhs.iowa.gov/media/10189/download?inline=
+    citation_path: us-ia/guidance/hhs/hawki-income-guidelines/2026
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Other
-  - key: https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf
-    name: Iowa SF 2251 Fiscal Note, Pregnancy and Postpartum Medicaid Coverage
+    cited:
+    - path: us-ia/guidance/hhs/hawki-income-guidelines/2026
+      references: 1
+      part: Other
+  - key: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
+    name: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
     layer: state
-    citation_path: null
-    source_url: https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf
+    citation_path: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
+    source_url: null
     sources:
     - plan
     scope: in
     part: Household and eligibility
   full:
-  - key: https://hhs.iowa.gov/media/10189/download?inline=
-    name: hhs.iowa.gov/media/10189/download
+  - key: us-ia/guidance/hhs/hawki-income-guidelines/2026
+    name: us-ia/guidance/hhs/hawki-income-guidelines/2026
     layer: state
-    citation_path: null
-    source_url: https://hhs.iowa.gov/media/10189/download?inline=
+    citation_path: us-ia/guidance/hhs/hawki-income-guidelines/2026
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf
-    name: Iowa SF 2251 Fiscal Note, Pregnancy and Postpartum Medicaid Coverage
+  - key: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
+    name: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
     layer: state
-    citation_path: null
-    source_url: https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf
+    citation_path: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -8968,40 +8773,44 @@ layers:
     part: Other
 - jurisdiction: us-ks
   screener:
-  - key: https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100
-    name: Kansas KFMAM § 02100 - Child in Family, "A child must be under 19 years of age"
+  - key: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+    name: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
     layer: state
-    citation_path: null
-    source_url: https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-hcbs-including-information-on-premium-requirements-for-chip/
-    name: klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-h
-    layer: state
-    citation_path: null
-    source_url: https://klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-hcbs-including-information-on-premium-requirements-for-chip/
+    citation_path: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
-  full:
-  - key: https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100
-    name: Kansas KFMAM § 02100 - Child in Family, "A child must be under 19 years of age"
+    cited:
+    - path: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+      references: 1
+      part: Household and eligibility
+  - key: us-ks/manual/kdhe/medicaid/kfmam-02000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 02000'
     layer: state
-    citation_path: null
-    source_url: https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-02000
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  full:
+  - key: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+    name: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+    layer: state
+    citation_path: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
     scope: in
-  - key: https://klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-hcbs-including-information-on-premium-requirements-for-chip/
-    name: klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-h
+  - key: us-ks/manual/kdhe/medicaid/kfmam-02000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 02000'
     layer: state
-    citation_path: null
-    source_url: https://klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-hcbs-including-information-on-premium-requirements-for-chip/
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-02000
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -10260,66 +10069,54 @@ layers:
     part: Other
 - jurisdiction: us-ma
   screener:
-  - key: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-505-002
-    name: 130 CMR 505.002(C) - MassHealth Standard for a parent or caretaker relative of "a child younger than 19
-      years old"
+  - key: us-ma/regulation/130-cmr/505
+    name: '130 CMR 505.000: MassHealth: Coverage Types'
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-505-002
+    citation_path: us-ma/regulation/130-cmr/505
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-506-011
-    name: law.cornell.edu/regulations/massachusetts/130-CMR-506-011
+    cited:
+    - path: us-ma/regulation/130-cmr/505/002
+      references: 1
+      part: Benefit amount
+  - key: us-ma/regulation/130-cmr/506
+    name: '130 CMR 506.000: MassHealth: Financial Requirements'
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-506-011
+    citation_path: us-ma/regulation/130-cmr/506
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Other
+    cited:
+    - path: us-ma/regulation/130-cmr/506/011
+      references: 1
+      part: Other
   full:
-  - key: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-505-002
-    name: 130 CMR 505.002(C) - MassHealth Standard for a parent or caretaker relative of "a child younger than 19
-      years old"
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-505-002
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-506-011
-    name: law.cornell.edu/regulations/massachusetts/130-CMR-506-011
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/massachusetts/130-CMR-506-011
-    part: Other
-    sources:
-    - screener
-    scope: in
   - key: us-ma/regulation/130-cmr/505
     name: '130 CMR 505.000: MassHealth: Coverage Types'
     layer: state
     citation_path: us-ma/regulation/130-cmr/505
-    source_url: https://www.mass.gov/doc/130-cmr-505000-masshealth-coverage-types-5/download
+    source_url: null
+    part: Benefit amount
     sources:
+    - screener
     - manifests/us-ma-chip-state-eligibility-manual.yaml
-    manifest: manifests/us-ma-chip-state-eligibility-manual.yaml
     scope: in
-    part: Household and eligibility
   - key: us-ma/regulation/130-cmr/506
     name: '130 CMR 506.000: MassHealth: Financial Requirements'
     layer: state
     citation_path: us-ma/regulation/130-cmr/506
-    source_url: https://www.mass.gov/doc/130-cmr-506000-masshealth-financial-requirements-4/download
-    sources:
-    - manifests/us-ma-chip-state-eligibility-manual.yaml
-    manifest: manifests/us-ma-chip-state-eligibility-manual.yaml
-    scope: in
+    source_url: null
     part: Other
+    sources:
+    - screener
+    - manifests/us-ma-chip-state-eligibility-manual.yaml
+    scope: in
   - key: us-ma/policy/cms/chip-state-plan/spa-index/p01
     name: 'Massachusetts CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
     layer: state
@@ -10532,22 +10329,26 @@ layers:
     part: Other
 - jurisdiction: us-mi
   screener:
-  - key: https://www.michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-program-general-information
-    name: michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-prog
+  - key: us-mi/guidance/mdhhs/michild/program-general-information
+    name: us-mi/guidance/mdhhs/michild/program-general-information
     layer: state
-    citation_path: null
-    source_url: https://www.michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-program-general-information
+    citation_path: us-mi/guidance/mdhhs/michild/program-general-information
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Other
+    cited:
+    - path: us-mi/guidance/mdhhs/michild/program-general-information
+      references: 1
+      part: Other
   full:
-  - key: https://www.michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-program-general-information
-    name: michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-prog
+  - key: us-mi/guidance/mdhhs/michild/program-general-information
+    name: us-mi/guidance/mdhhs/michild/program-general-information
     layer: state
-    citation_path: null
-    source_url: https://www.michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-program-general-information
+    citation_path: us-mi/guidance/mdhhs/michild/program-general-information
+    source_url: null
     part: Other
     sources:
     - screener
@@ -10935,84 +10736,65 @@ layers:
     part: Benefit amount
 - jurisdiction: us-ms
   screener:
-  - key: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/
-    name: Income Limits for Medicaid and CHIP Programs | Mississippi Division of Medicaid (effective March 1, 2026)
-      - parents/caretakers $498/month for a family of three
+  - key: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
+    name: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
     layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/
+    citation_path: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+    name: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+    layer: state
+    citation_path: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+    name: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+    layer: state
+    citation_path: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+    source_url: null
     sources:
     - plan
     scope: in
     part: Income
-  - key: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/
-    name: Mississippi Division of Medicaid, Working Disabled
+  - key: us-ms/guidance/dom/member-coverage-descriptions-job-aid
+    name: us-ms/guidance/dom/member-coverage-descriptions-job-aid
     layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/
+    citation_path: us-ms/guidance/dom/member-coverage-descriptions-job-aid
+    source_url: null
     sources:
     - plan
     scope: in
     part: Household and eligibility
-  - key: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
-    name: Mississippi Eligibility Manual Chapter 101 § 101.02.01 - dependent child under age 18
+  - key: us-ms/guidance/dom/working-disabled
+    name: us-ms/guidance/dom/working-disabled
     layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
+    citation_path: us-ms/guidance/dom/working-disabled
+    source_url: null
     sources:
     - plan
     scope: in
     part: Household and eligibility
-  - key: https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf
-    name: Mississippi Division of Medicaid, Healthier Mississippi Waiver Full Public Notice
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf
-    name: Mississippi Division of Medicaid, Member Coverage Descriptions Job Aid
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf
-    name: Centers for Medicare & Medicaid Services, Healthier Mississippi Extension
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf
-    name: Mississippi Division of Medicaid, Healthier Mississippi Waiver Fact Sheet
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf
-    name: Mississippi Division of Medicaid Administrative Code Part 104, Income
-    layer: state
-    citation_path: null
-    source_url: https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us-ms/manual/dom/chip/epm-chapter-400
     name: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual Chapter 400 ABD and MAGI Eligibility
       Criteria and Budgeting
     layer: state
     citation_path: us-ms/manual/dom/chip/epm-chapter-400
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-ms/manual/dom/medicaid/chapter-101-2017-10
+    name: us-ms/manual/dom/medicaid/chapter-101-2017-10
+    layer: state
+    citation_path: us-ms/manual/dom/medicaid/chapter-101-2017-10
     source_url: null
     sources:
     - plan
@@ -11028,77 +10810,67 @@ layers:
     - plan
     scope: in
     part: Assets
-  full:
-  - key: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/
-    name: Income Limits for Medicaid and CHIP Programs | Mississippi Division of Medicaid (effective March 1, 2026)
-      - parents/caretakers $498/month for a family of three
+  - key: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
+    name: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
     layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/
+    citation_path: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ms/regulation/title-23/part-104
+    name: us-ms/regulation/title-23/part-104
+    layer: state
+    citation_path: us-ms/regulation/title-23/part-104
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
+    name: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
+    layer: state
+    citation_path: us-ms/guidance/dom/healthier-mississippi-waiver/fact-sheet-2026
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+    name: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+    layer: state
+    citation_path: us-ms/guidance/dom/healthier-mississippi-waiver/public-notice-2022-07-19
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+    name: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+    layer: state
+    citation_path: us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
+    source_url: null
     part: Income
     sources:
     - screener
     scope: in
-  - key: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/
-    name: Mississippi Division of Medicaid, Working Disabled
+  - key: us-ms/guidance/dom/member-coverage-descriptions-job-aid
+    name: us-ms/guidance/dom/member-coverage-descriptions-job-aid
     layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/
+    citation_path: us-ms/guidance/dom/member-coverage-descriptions-job-aid
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
     scope: in
-  - key: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
-    name: Mississippi Eligibility Manual Chapter 101 § 101.02.01 - dependent child under age 18
+  - key: us-ms/guidance/dom/working-disabled
+    name: us-ms/guidance/dom/working-disabled
     layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
+    citation_path: us-ms/guidance/dom/working-disabled
+    source_url: null
     part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf
-    name: Mississippi Division of Medicaid, Healthier Mississippi Waiver Full Public Notice
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf
-    name: Mississippi Division of Medicaid, Member Coverage Descriptions Job Aid
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf
-    name: Centers for Medicare & Medicaid Services, Healthier Mississippi Extension
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf
-    name: Mississippi Division of Medicaid, Healthier Mississippi Waiver Fact Sheet
-    layer: state
-    citation_path: null
-    source_url: https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf
-    name: Mississippi Division of Medicaid Administrative Code Part 104, Income
-    layer: state
-    citation_path: null
-    source_url: https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf
-    part: Benefit amount
     sources:
     - screener
     scope: in
@@ -11113,6 +10885,15 @@ layers:
     - screener
     - manifests/us-ms-chip-state-eligibility-manual.yaml
     scope: in
+  - key: us-ms/manual/dom/medicaid/chapter-101-2017-10
+    name: us-ms/manual/dom/medicaid/chapter-101-2017-10
+    layer: state
+    citation_path: us-ms/manual/dom/medicaid/chapter-101-2017-10
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
     name: 'Mississippi Medicaid SPA MS-13-0019-MM1: Approval Document (approved December 31, 2013, effective January
       1, 2014)'
@@ -11120,6 +10901,24 @@ layers:
     citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
     source_url: null
     part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
+    name: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
+    layer: state
+    citation_path: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/regulation/title-23/part-104
+    name: us-ms/regulation/title-23/part-104
+    layer: state
+    citation_path: us-ms/regulation/title-23/part-104
+    source_url: null
+    part: Benefit amount
     sources:
     - screener
     scope: in
@@ -11345,35 +11144,29 @@ layers:
     part: Other
 - jurisdiction: us-mo
   screener:
-  - key: https://mydss.mo.gov/benefit-program-income-limits
-    name: Missouri DSS benefit program income limits (MO HealthNet for Kids ages 1-18 at 148% FPL)
+  - key: us-mo/guidance/dss/benefit-program-income-limits
+    name: us-mo/guidance/dss/benefit-program-income-limits
     layer: state
-    citation_path: null
-    source_url: https://mydss.mo.gov/benefit-program-income-limits
+    citation_path: us-mo/guidance/dss/benefit-program-income-limits
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
-    name: mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
+  - key: us-mo/guidance/dss/chip-premium-chart
+    name: us-mo/guidance/dss/chip-premium-chart
     layer: state
-    citation_path: null
-    source_url: https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
+    citation_path: us-mo/guidance/dss/chip-premium-chart
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Other
-  - key: https://revisor.mo.gov/main/OneSection.aspx?section=208.640
-    name: revisor.mo.gov/main/OneSection.aspx
-    layer: state
-    citation_path: null
-    source_url: https://revisor.mo.gov/main/OneSection.aspx?section=208.640
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
+    cited:
+    - path: us-mo/guidance/dss/chip-premium-chart
+      references: 1
+      part: Other
   - key: us-mo/manual/dss/chip/magi-appendix-e
     name: 'Missouri Family MO HealthNet (MAGI) Manual Appendix E: MO HealthNet for Kids CHIP Premium Chart'
     layer: state
@@ -11506,30 +11299,35 @@ layers:
     - plan
     scope: in
     part: Assets
-  full:
-  - key: https://mydss.mo.gov/benefit-program-income-limits
-    name: Missouri DSS benefit program income limits (MO HealthNet for Kids ages 1-18 at 148% FPL)
+  - key: us-mo/statute/143.161
+    name: us-mo/statute/143.161
     layer: state
-    citation_path: null
-    source_url: https://mydss.mo.gov/benefit-program-income-limits
+    citation_path: us-mo/statute/143.161
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us-mo/statute/143.161
+      references: 1
+      part: Other
+  full:
+  - key: us-mo/guidance/dss/benefit-program-income-limits
+    name: us-mo/guidance/dss/benefit-program-income-limits
+    layer: state
+    citation_path: us-mo/guidance/dss/benefit-program-income-limits
+    source_url: null
     part: Benefit amount
     sources:
     - screener
     scope: in
-  - key: https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
-    name: mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
+  - key: us-mo/guidance/dss/chip-premium-chart
+    name: us-mo/guidance/dss/chip-premium-chart
     layer: state
-    citation_path: null
-    source_url: https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://revisor.mo.gov/main/OneSection.aspx?section=208.640
-    name: revisor.mo.gov/main/OneSection.aspx
-    layer: state
-    citation_path: null
-    source_url: https://revisor.mo.gov/main/OneSection.aspx?section=208.640
+    citation_path: us-mo/guidance/dss/chip-premium-chart
+    source_url: null
     part: Other
     sources:
     - screener
@@ -11659,6 +11457,15 @@ layers:
     citation_path: us-mo/manual/dss/medicaid/mhabd/appendix-j
     source_url: null
     part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-mo/statute/143.161
+    name: us-mo/statute/143.161
+    layer: state
+    citation_path: us-mo/statute/143.161
+    source_url: null
+    part: Other
     sources:
     - screener
     scope: in
@@ -12288,22 +12095,40 @@ layers:
     part: Other
 - jurisdiction: us-nv
   screener:
-  - key: https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf
-    name: Nevada Medicaid Web Announcement 3748 (200% FPL pregnancy standard)
+  - key: us-nv/guidance/dhcfp/web-announcement-3748
+    name: us-nv/guidance/dhcfp/web-announcement-3748
     layer: state
-    citation_path: null
-    source_url: https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf
+    citation_path: us-nv/guidance/dhcfp/web-announcement-3748
+    source_url: null
     sources:
     - plan
     scope: in
     part: Benefit amount
-  full:
-  - key: https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf
-    name: Nevada Medicaid Web Announcement 3748 (200% FPL pregnancy standard)
+  - key: us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0006/approval-document
+    name: 'Nevada Medicaid SPA NV-25-0006: Approval Document (approved May 2, 2025, effective July 1, 2025)'
     layer: state
-    citation_path: null
-    source_url: https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf
+    citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0006/approval-document
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: us-nv/guidance/dhcfp/web-announcement-3748
+    name: us-nv/guidance/dhcfp/web-announcement-3748
+    layer: state
+    citation_path: us-nv/guidance/dhcfp/web-announcement-3748
+    source_url: null
     part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0006/approval-document
+    name: 'Nevada Medicaid SPA NV-25-0006: Approval Document (approved May 2, 2025, effective July 1, 2025)'
+    layer: state
+    citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0006/approval-document
+    source_url: null
+    part: Other
     sources:
     - screener
     scope: in
@@ -13014,26 +12839,6 @@ layers:
     references: 1
     scope: in
     part: Other
-  - key: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf
-    name: mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Pr
-    layer: state
-    citation_path: null
-    source_url: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf
-    name: mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Pr
-    layer: state
-    citation_path: null
-    source_url: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
   - key: us-ny/manual/doh/chip/child-health-plus-eligibility-and-cost
     name: 'New York State Department of Health: Child Health Plus Eligibility and Cost'
     layer: state
@@ -13062,6 +12867,30 @@ layers:
     - path: us-ny/policy/cms/chip-state-plan/spa/ny-22-0033-chip/approval-package
       references: 1
       part: Benefit amount
+  - key: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf
+    name: mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Pr
+    layer: state
+    citation_path: null
+    source_url: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: Third-party host (mmcor.phpcoalition.org) that redirects to a Microsoft sign-in
+      page; an actuarial CHPlus rate-setting presentation, not a source of eligibility rules'
+    part: Benefit amount
+  - key: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf
+    name: mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Pr
+    layer: state
+    citation_path: null
+    source_url: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: Third-party host (mmcor.phpcoalition.org) that redirects to a Microsoft sign-in
+      page; an actuarial CHPlus rate-setting presentation, not a source of eligibility rules'
+    part: Benefit amount
   full:
   - key: https://info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid,%20CHPlus%20&%20EP.pdf
     name: info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid,%20C
@@ -13069,24 +12898,6 @@ layers:
     citation_path: null
     source_url: https://info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid,%20CHPlus%20&%20EP.pdf
     part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf
-    name: mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Pr
-    layer: state
-    citation_path: null
-    source_url: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf
-    name: mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Pr
-    layer: state
-    citation_path: null
-    source_url: https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf
-    part: Benefit amount
     sources:
     - screener
     scope: in
@@ -15841,8 +15652,32 @@ layers:
     scope: in
     part: Other
 - jurisdiction: us-ri
-  screener: []
+  screener:
+  - key: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
+    name: 'Rhode Island CHIP SPA RI-22-0025: Approval Package (approved April 19, 2023, effective October 1, 2022)'
+    layer: state
+    citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
+      references: 1
+      part: Household and eligibility
   full:
+  - key: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
+    name: 'Rhode Island CHIP SPA RI-22-0025: Approval Package (approved April 19, 2023, effective October 1, 2022)'
+    layer: state
+    citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-ri-chip-state-plan.yaml
+    scope: in
   - key: us-ri/regulation/210-ricr/30/00/1
     name: 210-RICR-30-00-1 Medicaid Affordable Care Coverage Groups Overview and Eligibility Pathways
     layer: state
@@ -15908,16 +15743,6 @@ layers:
     layer: state
     citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0026/approval-package
     source_url: https://www.medicaid.gov/CHIP/Downloads/RI-22-0026.pdf
-    sources:
-    - manifests/us-ri-chip-state-plan.yaml
-    manifest: manifests/us-ri-chip-state-plan.yaml
-    scope: in
-    part: Household and eligibility
-  - key: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
-    name: 'Rhode Island CHIP SPA RI-22-0025: Approval Package (approved April 19, 2023, effective October 1, 2022)'
-    layer: state
-    citation_path: us-ri/policy/cms/chip-state-plan/spa/ri-22-0025/approval-package
-    source_url: https://www.medicaid.gov/CHIP/Downloads/RI-22-0025.pdf
     sources:
     - manifests/us-ri-chip-state-plan.yaml
     manifest: manifests/us-ri-chip-state-plan.yaml
@@ -16060,18 +15885,6 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-sc
   screener:
-  - key: https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf
-    name: Palmetto Pathways to Independence, section 1115 waiver application (June 23, 2025) | South Carolina DHHS
-      - CMS approved the predecessor Healthy Connections Community Engagement Initiative waivers in December 2019,
-      SCDHHS paused implementation for the COVID-19 public health emergency, and CMS withdrew the approval on August
-      10, 2021
-    layer: state
-    citation_path: null
-    source_url: https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
   - key: us-sc/guidance/scdhhs/medicaid-eligibility-programs/2026-03-01
     name: Medicaid Eligibility Programs Effective March 1, 2026
     layer: state
@@ -16091,19 +15904,16 @@ layers:
     - plan
     scope: in
     part: Assets
+  - key: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+    name: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+    layer: state
+    citation_path: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   full:
-  - key: https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf
-    name: Palmetto Pathways to Independence, section 1115 waiver application (June 23, 2025) | South Carolina DHHS
-      - CMS approved the predecessor Healthy Connections Community Engagement Initiative waivers in December 2019,
-      SCDHHS paused implementation for the COVID-19 public health emergency, and CMS withdrew the approval on August
-      10, 2021
-    layer: state
-    citation_path: null
-    source_url: https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us-sc/guidance/scdhhs/medicaid-eligibility-programs/2026-03-01
     name: Medicaid Eligibility Programs Effective March 1, 2026
     layer: state
@@ -16120,6 +15930,15 @@ layers:
     citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0014-mm1/approval-document
     source_url: null
     part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+    name: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+    layer: state
+    citation_path: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -16441,21 +16260,21 @@ layers:
     part: Other
 - jurisdiction: us-tn
   screener:
-  - key: https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf
-    name: Tennessee approved state plan S25 (TN-21-0010), student option checked
+  - key: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
+    name: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
     layer: state
-    citation_path: null
-    source_url: https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf
+    citation_path: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
+    source_url: null
     sources:
     - plan
     scope: in
     part: Household and eligibility
   full:
-  - key: https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf
-    name: Tennessee approved state plan S25 (TN-21-0010), student option checked
+  - key: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
+    name: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
     layer: state
-    citation_path: null
-    source_url: https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf
+    citation_path: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -16667,16 +16486,6 @@ layers:
     part: Other
 - jurisdiction: us-tx
   screener:
-  - key: https://www.hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
-    name: hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: us-tx/manual/hhs/texas-works-handbook/c-130-medical-programs
     name: 'Texas Works Handbook: C-130, Medical Programs'
     layer: state
@@ -16709,16 +16518,21 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  full:
-  - key: https://www.hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
-    name: hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
+  - key: us-tx/manual/hhsc/umcm/6-3
+    name: us-tx/manual/hhsc/umcm/6-3
     layer: state
-    citation_path: null
-    source_url: https://www.hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
-    part: Household and eligibility
+    citation_path: us-tx/manual/hhsc/umcm/6-3
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-tx/manual/hhsc/umcm/6-3
+      references: 1
+      part: Household and eligibility
+  full:
   - key: us-tx/manual/hhs/texas-works-handbook/c-130-medical-programs
     name: 'Texas Works Handbook: C-130, Medical Programs'
     layer: state
@@ -16741,6 +16555,15 @@ layers:
     name: 'Texas Works Handbook: A-520, Relationship'
     layer: state
     citation_path: us-tx/manual/hhsc/medicaid/twh-a-520
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/manual/hhsc/umcm/6-3
+    name: us-tx/manual/hhsc/umcm/6-3
+    layer: state
+    citation_path: us-tx/manual/hhsc/umcm/6-3
     source_url: null
     part: Household and eligibility
     sources:
@@ -19417,12 +19240,11 @@ layers:
     part: Other
 - jurisdiction: us-va
   screener:
-  - key: https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
-    name: Virginia DMAS Eligibility Manual M0330.250.B - MAGI Adults ("not be eligible in a Medicaid mandatory covered
-      group")
+  - key: us-va/manual/dmas/medicaid/m03-2024-07-01
+    name: us-va/manual/dmas/medicaid/m03-2024-07-01
     layer: state
-    citation_path: null
-    source_url: https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
+    citation_path: us-va/manual/dmas/medicaid/m03-2024-07-01
+    source_url: null
     sources:
     - plan
     scope: in
@@ -19437,12 +19259,11 @@ layers:
     scope: in
     part: Household and eligibility
   full:
-  - key: https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
-    name: Virginia DMAS Eligibility Manual M0330.250.B - MAGI Adults ("not be eligible in a Medicaid mandatory covered
-      group")
+  - key: us-va/manual/dmas/medicaid/m03-2024-07-01
+    name: us-va/manual/dmas/medicaid/m03-2024-07-01
     layer: state
-    citation_path: null
-    source_url: https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
+    citation_path: us-va/manual/dmas/medicaid/m03-2024-07-01
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -19692,39 +19513,11 @@ layers:
     part: Other
 - jurisdiction: us-wa
   screener:
-  - key: https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470
-    name: RCW 74.09.470 - Medical care for children
+  - key: us-wa/guidance/hca/children
+    name: us-wa/guidance/hca/children
     layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0100
-    name: WAC 182-505-0100 - Income standards (210% FPL statutory) | WAC 182-505-0100 - Income standards (312% FPL
-      statutory)
-    layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0100
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0210
-    name: WAC 182-505-0210 - Children's eligibility
-    layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0210
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children
-    name: HCA Apple Health for Children
-    layer: state
-    citation_path: null
-    source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children
+    citation_path: us-wa/guidance/hca/children
+    source_url: null
     sources:
     - plan
     scope: in
@@ -19738,40 +19531,34 @@ layers:
     - plan
     scope: in
     part: Deductions
+  - key: us-wa/regulation/388/388-478/388-478-0057
+    name: us-wa/regulation/388/388-478/388-478-0057
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0057
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-wa/statute/74/74.09
+    name: us-wa/statute/74/74.09
+    layer: state
+    citation_path: us-wa/statute/74/74.09
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+    cited:
+    - path: us-wa/statute/74/74.09/74.09.470
+      references: 1
+      part: Other
   full:
-  - key: https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470
-    name: RCW 74.09.470 - Medical care for children
+  - key: us-wa/guidance/hca/children
+    name: us-wa/guidance/hca/children
     layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0100
-    name: WAC 182-505-0100 - Income standards (210% FPL statutory) | WAC 182-505-0100 - Income standards (312% FPL
-      statutory)
-    layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0100
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0210
-    name: WAC 182-505-0210 - Children's eligibility
-    layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0210
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children
-    name: HCA Apple Health for Children
-    layer: state
-    citation_path: null
-    source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children
+    citation_path: us-wa/guidance/hca/children
+    source_url: null
     part: Other
     sources:
     - screener
@@ -19782,6 +19569,24 @@ layers:
     citation_path: us-wa/guidance/hca/income-and-resource-standards/2026-07-01
     source_url: null
     part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/388/388-478/388-478-0057
+    name: us-wa/regulation/388/388-478/388-478-0057
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0057
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/statute/74/74.09
+    name: us-wa/statute/74/74.09
+    layer: state
+    citation_path: us-wa/statute/74/74.09
+    source_url: null
+    part: Other
     sources:
     - screener
     scope: in
@@ -20203,26 +20008,20 @@ layers:
     part: Other
 - jurisdiction: us-wi
   screener:
-  - key: https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471
-    name: Wis. Stat. § 49.471(4)(a)4.a. - dependent child includes an 18-year-old full-time student expected to
-      complete school before 19
+  - key: us-wi/manual/dhs/badgercare-plus/48-1
+    name: us-wi/manual/dhs/badgercare-plus/48-1
     layer: state
-    citation_path: null
-    source_url: https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
-    name: emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
-    layer: state
-    citation_path: null
-    source_url: https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
+    citation_path: us-wi/manual/dhs/badgercare-plus/48-1
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
+    cited:
+    - path: us-wi/manual/dhs/badgercare-plus/48-1
+      references: 1
+      part: Household and eligibility
   - key: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
     name: 'Wisconsin Medicaid SPA WI-13-021-MM1: Approval Document (approved October 30, 2013, effective January
       1, 2014)'
@@ -20233,22 +20032,21 @@ layers:
     - plan
     scope: in
     part: Assets
-  full:
-  - key: https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471
-    name: Wis. Stat. § 49.471(4)(a)4.a. - dependent child includes an 18-year-old full-time student expected to
-      complete school before 19
+  - key: us-wi/statute/49.471
+    name: us-wi/statute/49.471
     layer: state
-    citation_path: null
-    source_url: https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471
-    part: Household and eligibility
+    citation_path: us-wi/statute/49.471
+    source_url: null
     sources:
-    - screener
+    - plan
     scope: in
-  - key: https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
-    name: emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
+    part: Household and eligibility
+  full:
+  - key: us-wi/manual/dhs/badgercare-plus/48-1
+    name: us-wi/manual/dhs/badgercare-plus/48-1
     layer: state
-    citation_path: null
-    source_url: https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
+    citation_path: us-wi/manual/dhs/badgercare-plus/48-1
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -20260,6 +20058,15 @@ layers:
     citation_path: us-wi/policy/cms/medicaid-state-plan/spa/wi-13-021-mm1/approval-document
     source_url: null
     part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-wi/statute/49.471
+    name: us-wi/statute/49.471
+    layer: state
+    citation_path: us-wi/statute/49.471
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -20448,11 +20255,11 @@ layers:
     - plan
     scope: in
     part: Benefit amount
-  - key: https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/
-    name: Medicaid Income Requirements | Wyoming Department of Health - Family MAGI $873/month for a family of three
+  - key: us-wy/guidance/wdh/medicaid-income-requirements
+    name: us-wy/guidance/wdh/medicaid-income-requirements
     layer: state
-    citation_path: null
-    source_url: https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/
+    citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+    source_url: null
     sources:
     - plan
     scope: in
@@ -20477,11 +20284,11 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/
-    name: Medicaid Income Requirements | Wyoming Department of Health - Family MAGI $873/month for a family of three
+  - key: us-wy/guidance/wdh/medicaid-income-requirements
+    name: us-wy/guidance/wdh/medicaid-income-requirements
     layer: state
-    citation_path: null
-    source_url: https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/
+    citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+    source_url: null
     part: Benefit amount
     sources:
     - screener

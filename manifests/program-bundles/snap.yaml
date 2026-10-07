@@ -47,8 +47,8 @@ tiers:
     outside_the_states:
       us-vi: 1
     in_scope_by_layer:
-      federal: 56
-      state: 87
+      federal: 55
+      state: 77
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -63,60 +63,11 @@ tiers:
     state_manifests: snap|nutrition|faa[0-9]|food-?stamp|calfresh|foodshare|3squares|fsp-manual|-nap-|fns-manual
     known_sources: 12
     in_scope_by_layer:
-      federal: 144
-      state: 3653
+      federal: 142
+      state: 3631
 layers:
 - jurisdiction: us
   screener:
-  - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    name: Prior HHS Poverty Guidelines and Federal Register References
-    layer: federal
-    citation_path: null
-    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    sources:
-    - plan
-    scope: in
-    part: Income
-  - key: https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
-    name: web:fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
-    sources:
-    - plan
-    scope: in
-    part: Assets
-  - key: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
-    name: SNAP Special Rules for the Elderly or Disabled
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
-    name: fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
-  - key: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
-    name: fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
   - key: https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
     name: SNAP – Questions and Answers Related to Food and Nutrition Services Policy Memos Regarding Title IV Provisions
       of the Agriculture Improvement Act of 2018
@@ -125,69 +76,6 @@ layers:
     source_url: https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
     sources:
     - plan
-    scope: in
-    part: Deductions
-  - key: https://www.fns.usda.gov/snap/waivers/timelimit/2025-2029
-    name: fns.usda.gov/snap/waivers/timelimit/2025-2029
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/waivers/timelimit/2025-2029
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Work requirements
-  - key: https://www.fns.usda.gov/snap/work-requirements
-    name: fns.usda.gov/snap/work-requirements
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/work-requirements
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
-  - key: https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
-    name: fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
-  - key: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
-    name: law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
-    name: usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.
-    layer: federal
-    citation_path: null
-    source_url: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Work requirements
-  - key: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
-    name: usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
-    sources:
-    - policyengine-references
-    references: 1
     scope: in
     part: Deductions
   - key: us/form/irs/ty2025/f1040
@@ -199,10 +87,19 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
-  - key: us/guidance/hhs/aspe/poverty-guidelines
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026
     name: HHS Poverty Guidelines
     layer: federal
-    citation_path: us/guidance/hhs/aspe/poverty-guidelines
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    name: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
     source_url: null
     sources:
     - plan
@@ -222,6 +119,29 @@ layers:
     - path: us/guidance/usda/fns/snap-bbce-state-chart-2026-06
       references: 1
       part: Household and eligibility
+  - key: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    name: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    name: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+      references: 1
+      part: Deductions
   - key: us/guidance/usda/fns/snap-fy2026-standard-utility-allowances
     name: SNAP FY 2026 Standard Utility Allowances (SUA) by State (table updated August 2026)
     layer: federal
@@ -274,12 +194,13 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 3
+    - plan
+    references: 4
     scope: in
     part: Work requirements
     cited:
     - path: us/guidance/usda/fns/snap-obbb-abawd-waivers-implementation-memo
-      references: 3
+      references: 4
       part: Work requirements
   - key: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
     name: Supplemental Nutrition Assistance Program (SNAP) Implementation of the One Big Beautiful Bill Act of 2025
@@ -312,6 +233,65 @@ layers:
     - path: us/guidance/usda/fns/snap-obbb-alien-eligibility-qas-1
       references: 4
       part: Household and eligibility
+  - key: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    name: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 3
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+      references: 3
+      part: Work requirements
+  - key: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    name: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+      references: 1
+      part: Work requirements
+  - key: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    name: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+      references: 1
+      part: Work requirements
+  - key: us/guidance/usda/fns/snap-work-requirements
+    name: us/guidance/usda/fns/snap-work-requirements
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-work-requirements
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us/guidance/usda/fns/snap-work-requirements
+      references: 1
+      part: Work requirements
   - key: us/manual/ssa/poms/si/01140.200
     name: 'POMS SI 01140.200: Checking and Savings Accounts'
     layer: federal
@@ -811,6 +791,20 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
+  - key: us/statute/42/601
+    name: 42 USC 601
+    layer: federal
+    citation_path: us/statute/42/601
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/statute/42/601
+      references: 1
+      part: Household and eligibility
   - key: us/statute/42/chapter-7
     name: 42 USC chapter-7
     layer: federal
@@ -820,6 +814,15 @@ layers:
     - plan
     scope: in
     part: Benefit amount
+  - key: us/statute/7/2011
+    name: 7 USC 2011
+    layer: federal
+    citation_path: us/statute/7/2011
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Whole program
   - key: us/statute/7/2012
     name: 7 USC 2012
     layer: federal
@@ -1048,6 +1051,21 @@ layers:
     - path: us/statute/8/1645
       references: 1
       part: Household and eligibility
+  - key: us/statute/public-law/119-21
+    name: public-law USC 119-21
+    layer: federal
+    citation_path: us/statute/public-law/119-21
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 5
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us/statute/public-law/119-21
+      references: 1
+      part: Work requirements
   - key: https://aspe.hhs.gov/2015-poverty-guidelines
     name: 2015 Poverty Guidelines
     layer: federal
@@ -1559,18 +1577,6 @@ layers:
     scope: excluded
     reason: 'Enacting text: the citing file also cites the codified section, which is the document'
     part: Work requirements
-  - key: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    name: congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 5
-    scope: excluded
-    reason: 'Enacting text: the citing file also cites the codified section, which is the document'
-    part: Work requirements
   - key: https://www.congress.gov/bill/116th-congress/house-bill/6201/text
     name: congress.gov/bill/116th-congress/house-bill/6201/text
     layer: federal
@@ -1939,111 +1945,12 @@ layers:
     reason: 'Back-year table: not current law'
     part: Household and eligibility
   full:
-  - key: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    name: Prior HHS Poverty Guidelines and Federal Register References
-    layer: federal
-    citation_path: null
-    source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
-    name: web:fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
-    name: SNAP Special Rules for the Elderly or Disabled
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
-    name: fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
-    name: fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
   - key: https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
     name: SNAP – Questions and Answers Related to Food and Nutrition Services Policy Memos Regarding Title IV Provisions
       of the Agriculture Improvement Act of 2018
     layer: federal
     citation_path: null
     source_url: https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/snap/waivers/timelimit/2025-2029
-    name: fns.usda.gov/snap/waivers/timelimit/2025-2029
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/waivers/timelimit/2025-2029
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/snap/work-requirements
-    name: fns.usda.gov/snap/work-requirements
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/work-requirements
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
-    name: fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
-    name: law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
-    name: usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.
-    layer: federal
-    citation_path: null
-    source_url: https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
-    name: usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-FarmBill2018Section4004.pdf
     part: Deductions
     sources:
     - screener
@@ -2057,15 +1964,24 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/guidance/hhs/aspe/poverty-guidelines
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026
     name: HHS Poverty Guidelines
     layer: federal
-    citation_path: us/guidance/hhs/aspe/poverty-guidelines
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
     source_url: null
     part: Income
     sources:
     - screener
     - manifests/us-hhs-poverty-guidelines.yaml
+    scope: in
+  - key: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    name: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    source_url: null
+    part: Income
+    sources:
+    - screener
     scope: in
   - key: us/guidance/usda/fns/snap-bbce-state-chart-2026-06
     name: SNAP Broad-Based Categorical Eligibility (BBCE) States Chart, June 2026
@@ -2076,6 +1992,24 @@ layers:
     sources:
     - screener
     - manifests/us-snap-fns-guidance-2026-09-13.yaml
+    scope: in
+  - key: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    name: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    name: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
     scope: in
   - key: us/guidance/usda/fns/snap-fy2026-standard-utility-allowances
     name: SNAP FY 2026 Standard Utility Allowances (SUA) by State (table updated August 2026)
@@ -2138,6 +2072,42 @@ layers:
     sources:
     - screener
     - manifests/us-snap-fns-guidance-2026-09-13.yaml
+    scope: in
+  - key: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    name: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    name: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    name: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/usda/fns/snap-work-requirements
+    name: us/guidance/usda/fns/snap-work-requirements
+    layer: federal
+    citation_path: us/guidance/usda/fns/snap-work-requirements
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
     scope: in
   - key: us/manual/ssa/poms/si/01140.200
     name: 'POMS SI 01140.200: Checking and Savings Accounts'
@@ -2439,6 +2409,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/statute/42/601
+    name: 42 USC 601
+    layer: federal
+    citation_path: us/statute/42/601
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us/statute/42/chapter-7
     name: 42 USC chapter-7
     layer: federal
@@ -2447,6 +2426,16 @@ layers:
     part: Benefit amount
     sources:
     - screener
+    scope: in
+  - key: us/statute/7/2011
+    name: 7 USC 2011
+    layer: federal
+    citation_path: us/statute/7/2011
+    source_url: null
+    part: Whole program
+    sources:
+    - screener
+    - schema:snap_usc_2011
     scope: in
   - key: us/statute/7/2012
     name: 7 USC 2012
@@ -2560,15 +2549,15 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/statute/7/2011
-    name: 7 USC 2011
+  - key: us/statute/public-law/119-21
+    name: public-law USC 119-21
     layer: federal
-    citation_path: us/statute/7/2011
+    citation_path: us/statute/public-law/119-21
     source_url: null
+    part: Work requirements
     sources:
-    - schema:snap_usc_2011
+    - screener
     scope: in
-    part: Whole program
   - key: us/statute/7/2012a
     name: 7 USC 2012a
     layer: federal
@@ -5310,25 +5299,29 @@ layers:
     part: Benefit amount
 - jurisdiction: us-ak
   screener:
-  - key: https://health.alaska.gov/en/education/hr-1-ak-impacts/
-    name: Alaska Department of Health, H.R. 1 - AK Impacts | Alaska Department of Health H.R. 1 impacts
+  - key: us-ak/guidance/doh/hr-1-ak-impacts
+    name: us-ak/guidance/doh/hr-1-ak-impacts
     layer: state
-    citation_path: null
-    source_url: https://health.alaska.gov/en/education/hr-1-ak-impacts/
+    citation_path: us-ak/guidance/doh/hr-1-ak-impacts
+    source_url: null
     sources:
     - plan
     scope: in
     part: Other
-  - key: https://health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-assistance/
-    name: health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-as
+  - key: us-ak/guidance/doh/snap-nutrition-assistance
+    name: us-ak/guidance/doh/snap-nutrition-assistance
     layer: state
-    citation_path: null
-    source_url: https://health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-assistance/
+    citation_path: us-ak/guidance/doh/snap-nutrition-assistance
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Work requirements
+    cited:
+    - path: us-ak/guidance/doh/snap-nutrition-assistance
+      references: 1
+      part: Work requirements
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
     name: fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf
     layer: state
@@ -5353,20 +5346,20 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://health.alaska.gov/en/education/hr-1-ak-impacts/
-    name: Alaska Department of Health, H.R. 1 - AK Impacts | Alaska Department of Health H.R. 1 impacts
+  - key: us-ak/guidance/doh/hr-1-ak-impacts
+    name: us-ak/guidance/doh/hr-1-ak-impacts
     layer: state
-    citation_path: null
-    source_url: https://health.alaska.gov/en/education/hr-1-ak-impacts/
+    citation_path: us-ak/guidance/doh/hr-1-ak-impacts
+    source_url: null
     part: Other
     sources:
     - screener
     scope: in
-  - key: https://health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-assistance/
-    name: health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-as
+  - key: us-ak/guidance/doh/snap-nutrition-assistance
+    name: us-ak/guidance/doh/snap-nutrition-assistance
     layer: state
-    citation_path: null
-    source_url: https://health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-assistance/
+    citation_path: us-ak/guidance/doh/snap-nutrition-assistance
+    source_url: null
     part: Work requirements
     sources:
     - screener
@@ -8893,26 +8886,6 @@ layers:
     part: Whole program
 - jurisdiction: us-ar
   screener:
-  - key: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC6100_new.htm
-    name: arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC6100_new.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC6100_new.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC7100_new.htm
-    name: arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC7100_new.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC7100_new.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
   - key: https://humanservices.arkansas.gov/wp-content/uploads/Complete_SNAP_Manual.pdf
     name: humanservices.arkansas.gov/wp-content/uploads/Complete_SNAP_Manual.pdf
     layer: state
@@ -8923,17 +8896,21 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf
-    name: humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf
+  - key: us-ar/manual/dhs/snap-policy-manual
+    name: Arkansas SNAP Certification Manual
     layer: state
-    citation_path: null
-    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf
+    citation_path: us-ar/manual/dhs/snap-policy-manual
+    source_url: null
     sources:
     - policyengine-references
     - plan
-    references: 1
+    references: 3
     scope: in
     part: Deductions
+    cited:
+    - path: us-ar/manual/dhs/snap-policy-manual
+      references: 3
+      part: Deductions
   - key: https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
     name: snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf
     layer: state
@@ -8947,24 +8924,6 @@ layers:
     reason: 'Data series: not law'
     part: Deductions
   full:
-  - key: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC6100_new.htm
-    name: arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC6100_new.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC6100_new.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC7100_new.htm
-    name: arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC7100_new.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.arkansas.gov/dhs/webpolicy/Food%20Stamp%20Certification/FSC7100_new.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: https://humanservices.arkansas.gov/wp-content/uploads/Complete_SNAP_Manual.pdf
     name: humanservices.arkansas.gov/wp-content/uploads/Complete_SNAP_Manual.pdf
     layer: state
@@ -8974,14 +8933,15 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf
-    name: humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf
+  - key: us-ar/manual/dhs/snap-policy-manual
+    name: Arkansas SNAP Certification Manual
     layer: state
-    citation_path: null
-    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf
+    citation_path: us-ar/manual/dhs/snap-policy-manual
+    source_url: null
     part: Deductions
     sources:
     - screener
+    - manifests/us-ar-snap-manual.yaml
     scope: in
   - key: us-ar/policy/snap-et-state-plan/ffy2026
     name: Arkansas SNAP E&T State Plan FFY 2026 (original submission)
@@ -8993,16 +8953,6 @@ layers:
     manifest: manifests/us-ar-snap-et-state-plan.yaml
     scope: excluded
     reason: 'Back-year table: not current law'
-    part: Other
-  - key: us-ar/manual/dhs/snap-policy-manual
-    name: Arkansas SNAP Certification Manual
-    layer: state
-    citation_path: us-ar/manual/dhs/snap-policy-manual
-    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-07.01.2026.pdf
-    sources:
-    - manifests/us-ar-snap-manual.yaml
-    manifest: manifests/us-ar-snap-manual.yaml
-    scope: in
     part: Other
   - key: us-ar/manual/dhs/snap-manual-appendices
     name: Arkansas SNAP Certification Manual Appendices
@@ -9078,71 +9028,21 @@ layers:
     part: Work requirements
 - jurisdiction: us-ca
   screener:
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=12200
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
+  - key: us-ca/guidance/cdss/acl-2006-06-31
+    name: CDSS All County Letter No. 06-31, Implementation of Food Stamp Simplification Options Effective October
+      1, 2006
     layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=12200
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Work requirements
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 2
-    scope: in
-    part: Work requirements
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
-  - key: https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
-    name: cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
+    citation_path: us-ca/guidance/cdss/acl-2006-06-31
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Deductions
+    cited:
+    - path: us-ca/guidance/cdss/acl-2006-06-31
+      references: 1
+      part: Deductions
   - key: us-ca/guidance/cdss/acl-2024-24-59
     name: CDSS All County Letter No. 24-59
     layer: state
@@ -9158,6 +9058,81 @@ layers:
     - path: us-ca/guidance/cdss/acl-2024-24-59
       references: 1
       part: Deductions
+  - key: us-ca/guidance/cdss/acl-2025-25-79
+    name: us-ca/guidance/cdss/acl-2025-25-79
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2025-25-79
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us-ca/guidance/cdss/acl-2025-25-79
+      references: 2
+      part: Work requirements
+  - key: us-ca/guidance/cdss/acl-2025-25-92
+    name: us-ca/guidance/cdss/acl-2025-25-92
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2025-25-92
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/guidance/cdss/acl-2025-25-92
+      references: 1
+      part: Household and eligibility
+  - key: us-ca/guidance/cdss/acl-2025-25-93
+    name: us-ca/guidance/cdss/acl-2025-25-93
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2025-25-93
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us-ca/guidance/cdss/acl-2025-25-93
+      references: 2
+      part: Work requirements
+  - key: us-ca/guidance/cdss/acl-2026-26-15
+    name: us-ca/guidance/cdss/acl-2026-26-15
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2026-26-15
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us-ca/guidance/cdss/acl-2026-26-15
+      references: 1
+      part: Work requirements
+  - key: us-ca/statute/rtc/17054.1
+    name: us-ca/statute/rtc/17054.1
+    layer: state
+    citation_path: us-ca/statute/rtc/17054.1
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-ca/statute/rtc/17054.1
+      references: 1
+      part: Income
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
     name: fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf
     layer: state
@@ -9216,59 +9191,16 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=12200
-    name: leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml
+  - key: us-ca/guidance/cdss/acl-2006-06-31
+    name: CDSS All County Letter No. 06-31, Implementation of Food Stamp Simplification Options Effective October
+      1, 2006
     layer: state
-    citation_path: null
-    source_url: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=12200
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
-    name: cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
+    citation_path: us-ca/guidance/cdss/acl-2006-06-31
+    source_url: null
     part: Deductions
     sources:
     - screener
+    - manifests/us-ca-cdss-acl-06-31.yaml
     scope: in
   - key: us-ca/guidance/cdss/acl-2024-24-59
     name: CDSS All County Letter No. 24-59
@@ -9279,17 +9211,51 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ca/guidance/cdss/acl-2006-06-31
-    name: CDSS All County Letter No. 06-31, Implementation of Food Stamp Simplification Options Effective October
-      1, 2006
+  - key: us-ca/guidance/cdss/acl-2025-25-79
+    name: us-ca/guidance/cdss/acl-2025-25-79
     layer: state
-    citation_path: us-ca/guidance/cdss/acl-2006-06-31
-    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl06/pdf/06-31.pdf
+    citation_path: us-ca/guidance/cdss/acl-2025-25-79
+    source_url: null
+    part: Work requirements
     sources:
-    - manifests/us-ca-cdss-acl-06-31.yaml
-    manifest: manifests/us-ca-cdss-acl-06-31.yaml
+    - screener
     scope: in
-    part: Other
+  - key: us-ca/guidance/cdss/acl-2025-25-92
+    name: us-ca/guidance/cdss/acl-2025-25-92
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2025-25-92
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/cdss/acl-2025-25-93
+    name: us-ca/guidance/cdss/acl-2025-25-93
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2025-25-93
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/cdss/acl-2026-26-15
+    name: us-ca/guidance/cdss/acl-2026-26-15
+    layer: state
+    citation_path: us-ca/guidance/cdss/acl-2026-26-15
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/rtc/17054.1
+    name: us-ca/statute/rtc/17054.1
+    layer: state
+    citation_path: us-ca/statute/rtc/17054.1
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
   - key: us-ca/guidance/cdss/acl-2014-14-56
     name: CDSS All County Letter No. 14-56, CalFresh Modified Categorical Eligibility
     layer: state
@@ -12506,37 +12472,50 @@ layers:
     part: Other
 - jurisdiction: us-de
   screener:
-  - key: https://archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.htm
-    name: archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.h
+  - key: us-de/regulation/title-16/9000-food-stamp-program
+    name: Delaware Administrative Code Title 16, 9000 Food Stamp Program
     layer: state
-    citation_path: null
-    source_url: https://archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.htm
+    citation_path: us-de/regulation/title-16/9000-food-stamp-program
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Deductions
-  - key: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
-    name: regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+    cited:
+    - path: us-de/regulation/title-16/9000-food-stamp-program
+      references: 1
+      part: Deductions
+  - key: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
+    name: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
     layer: state
-    citation_path: null
-    source_url: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+    citation_path: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Deductions
-  - key: https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-9000-9059
-    name: law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-9000-9059
+    cited:
+    - path: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
+      references: 1
+      part: Deductions
+  - key: us-de/rulemaking/delaware-register/2010-06-01/13-de-reg-1550
+    name: 13 DE Reg. 1550 (June 1, 2010), DHSS Division of Social Services final order amending DSSM 9059 Income
+      Exclusions
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-9000-9059
+    citation_path: us-de/rulemaking/delaware-register/2010-06-01/13-de-reg-1550
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Deductions
+    cited:
+    - path: us-de/rulemaking/delaware-register/2010-06-01/13-de-reg-1550
+      references: 1
+      part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/de-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/de-abawd-response-fy2024.pdf
     layer: state
@@ -12571,29 +12550,31 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.htm
-    name: archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.h
+  - key: us-de/regulation/title-16/9000-food-stamp-program
+    name: Delaware Administrative Code Title 16, 9000 Food Stamp Program
     layer: state
-    citation_path: null
-    source_url: https://archive.regulations.delaware.gov/register/june2010/final/13%20DE%20Reg%201550%2006-01-10.htm
+    citation_path: us-de/regulation/title-16/9000-food-stamp-program
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-de-snap-rules.yaml
+    scope: in
+  - key: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
+    name: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
+    layer: state
+    citation_path: us-de/rulemaking/delaware-register/2005-08-01/9-de-reg-168
+    source_url: null
     part: Deductions
     sources:
     - screener
     scope: in
-  - key: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
-    name: regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+  - key: us-de/rulemaking/delaware-register/2010-06-01/13-de-reg-1550
+    name: 13 DE Reg. 1550 (June 1, 2010), DHSS Division of Social Services final order amending DSSM 9059 Income
+      Exclusions
     layer: state
-    citation_path: null
-    source_url: https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-9000-9059
-    name: law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-9000-9059
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-9000-9059
+    citation_path: us-de/rulemaking/delaware-register/2010-06-01/13-de-reg-1550
+    source_url: null
     part: Deductions
     sources:
     - screener
@@ -12621,16 +12602,6 @@ layers:
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Benefit amount
-  - key: us-de/regulation/title-16/9000-food-stamp-program
-    name: Delaware Administrative Code Title 16, 9000 Food Stamp Program
-    layer: state
-    citation_path: us-de/regulation/title-16/9000-food-stamp-program
-    source_url: https://regulations.delaware.gov/AdminCode/title16/9000
-    sources:
-    - manifests/us-de-snap-rules.yaml
-    manifest: manifests/us-de-snap-rules.yaml
-    scope: in
-    part: Benefit amount
 - jurisdiction: us-dc
   screener:
   - key: https://code.dccouncil.gov/us/dc/council/code/sections/4-261.04
@@ -12644,17 +12615,21 @@ layers:
     references: 1
     scope: in
     part: Benefit amount
-  - key: https://dhs.dc.gov/page/give-snap-raise-heres-what-expect
-    name: dhs.dc.gov/page/give-snap-raise-heres-what-expect
+  - key: us-dc/guidance/dhs/give-snap-a-raise
+    name: us-dc/guidance/dhs/give-snap-a-raise
     layer: state
-    citation_path: null
-    source_url: https://dhs.dc.gov/page/give-snap-raise-heres-what-expect
+    citation_path: us-dc/guidance/dhs/give-snap-a-raise
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Household and eligibility
+    cited:
+    - path: us-dc/guidance/dhs/give-snap-a-raise
+      references: 1
+      part: Benefit amount
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2024.pdf
     layer: state
@@ -12711,11 +12686,11 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://dhs.dc.gov/page/give-snap-raise-heres-what-expect
-    name: dhs.dc.gov/page/give-snap-raise-heres-what-expect
+  - key: us-dc/guidance/dhs/give-snap-a-raise
+    name: us-dc/guidance/dhs/give-snap-a-raise
     layer: state
-    citation_path: null
-    source_url: https://dhs.dc.gov/page/give-snap-raise-heres-what-expect
+    citation_path: us-dc/guidance/dhs/give-snap-a-raise
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -14489,38 +14464,6 @@ layers:
     part: Other
 - jurisdiction: us-hi
   screener:
-  - key: http://hawaii.gov/dhs/main/har/har_current/676.pdf
-    name: hawaii.gov/dhs/main/har/har_current/676.pdf
-    layer: state
-    citation_path: null
-    source_url: http://hawaii.gov/dhs/main/har/har_current/676.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/
-    name: humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/
-    layer: state
-    citation_path: null
-    source_url: https://humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
-  - key: https://humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources/
-    name: humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-huma
-    layer: state
-    citation_path: null
-    source_url: https://humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources/
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Work requirements
   - key: https://humanservices.hawaii.gov/wp-content/uploads/2014/01/17-676.pdf
     name: humanservices.hawaii.gov/wp-content/uploads/2014/01/17-676.pdf
     layer: state
@@ -14531,6 +14474,50 @@ layers:
     references: 1
     scope: in
     part: Deductions
+  - key: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+    name: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+    layer: state
+    citation_path: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+      references: 1
+      part: Work requirements
+  - key: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+    name: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+    layer: state
+    citation_path: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Work requirements
+    cited:
+    - path: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+      references: 1
+      part: Work requirements
+  - key: us-hi/regulation/har/17/676
+    name: 'Hawaii Administrative Rules Chapter 17-676: Income'
+    layer: state
+    citation_path: us-hi/regulation/har/17/676
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-hi/regulation/har/17/676
+      references: 1
+      part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf
     layer: state
@@ -14544,33 +14531,6 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: http://hawaii.gov/dhs/main/har/har_current/676.pdf
-    name: hawaii.gov/dhs/main/har/har_current/676.pdf
-    layer: state
-    citation_path: null
-    source_url: http://hawaii.gov/dhs/main/har/har_current/676.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/
-    name: humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/
-    layer: state
-    citation_path: null
-    source_url: https://humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
-  - key: https://humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources/
-    name: humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-huma
-    layer: state
-    citation_path: null
-    source_url: https://humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources/
-    part: Work requirements
-    sources:
-    - screener
-    scope: in
   - key: https://humanservices.hawaii.gov/wp-content/uploads/2014/01/17-676.pdf
     name: humanservices.hawaii.gov/wp-content/uploads/2014/01/17-676.pdf
     layer: state
@@ -14579,6 +14539,34 @@ layers:
     part: Deductions
     sources:
     - screener
+    scope: in
+  - key: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+    name: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+    layer: state
+    citation_path: us-hi/guidance/dhs/changes-to-abawd-work-requirements-for-snap-faqs
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+    name: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+    layer: state
+    citation_path: us-hi/guidance/dhs/federal-snap-work-requirement-changes-to-begin
+    source_url: null
+    part: Work requirements
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/regulation/har/17/676
+    name: 'Hawaii Administrative Rules Chapter 17-676: Income'
+    layer: state
+    citation_path: us-hi/regulation/har/17/676
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-hi-snap-rules.yaml
     scope: in
   - key: us-hi/policy/snap-et-state-plan/ffy2026
     name: Hawaii SNAP E&T State Plan FFY 2026
@@ -14753,16 +14741,6 @@ layers:
     manifest: manifests/us-hi-snap-rules.yaml
     scope: in
     part: Assets
-  - key: us-hi/regulation/har/17/676
-    name: 'Hawaii Administrative Rules Chapter 17-676: Income'
-    layer: state
-    citation_path: us-hi/regulation/har/17/676
-    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2019/03/HAR-17-676-INCOME.pdf
-    sources:
-    - manifests/us-hi-snap-rules.yaml
-    manifest: manifests/us-hi-snap-rules.yaml
-    scope: in
-    part: Benefit amount
   - key: us-hi/regulation/har/17/680
     name: 'Hawaii Administrative Rules Chapter 17-680: Eligibility and Benefit Determination'
     layer: state
@@ -14935,16 +14913,20 @@ layers:
     part: Other
 - jurisdiction: us-ia
   screener:
-  - key: http://www.dhs.state.ia.us:80/policyanalysis/policymanualpages/Manual_Documents/Master/7-f.pdf
-    name: dhs.state.ia.us:80/policyanalysis/policymanualpages/Manual_Documents/Master/7-f.pdf
+  - key: us-ia/manual/hhs/em/7-f
+    name: 'Iowa HHS Employees Manual: Title 7 Chapter F: Budgeting'
     layer: state
-    citation_path: null
-    source_url: http://www.dhs.state.ia.us:80/policyanalysis/policymanualpages/Manual_Documents/Master/7-f.pdf
+    citation_path: us-ia/manual/hhs/em/7-f
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Deductions
+    cited:
+    - path: us-ia/manual/hhs/em/7-f
+      references: 1
+      part: Deductions
   - key: us-ia/manual/hhs/em/7-i
     name: 'Iowa HHS Employees Manual: Title 7 Chapter I: Specific Households and Participants'
     layer: state
@@ -14961,14 +14943,15 @@ layers:
       references: 1
       part: Deductions
   full:
-  - key: http://www.dhs.state.ia.us:80/policyanalysis/policymanualpages/Manual_Documents/Master/7-f.pdf
-    name: dhs.state.ia.us:80/policyanalysis/policymanualpages/Manual_Documents/Master/7-f.pdf
+  - key: us-ia/manual/hhs/em/7-f
+    name: 'Iowa HHS Employees Manual: Title 7 Chapter F: Budgeting'
     layer: state
-    citation_path: null
-    source_url: http://www.dhs.state.ia.us:80/policyanalysis/policymanualpages/Manual_Documents/Master/7-f.pdf
+    citation_path: us-ia/manual/hhs/em/7-f
+    source_url: null
     part: Deductions
     sources:
     - screener
+    - manifests/us-ia-snap-manual.yaml
     scope: in
   - key: us-ia/manual/hhs/em/7-i
     name: 'Iowa HHS Employees Manual: Title 7 Chapter I: Specific Households and Participants'
@@ -15058,16 +15041,6 @@ layers:
     layer: state
     citation_path: us-ia/manual/hhs/em/7-e
     source_url: https://hhs.iowa.gov/media/3997/download
-    sources:
-    - manifests/us-ia-snap-manual.yaml
-    manifest: manifests/us-ia-snap-manual.yaml
-    scope: in
-    part: Other
-  - key: us-ia/manual/hhs/em/7-f
-    name: 'Iowa HHS Employees Manual: Title 7 Chapter F: Budgeting'
-    layer: state
-    citation_path: us-ia/manual/hhs/em/7-f
-    source_url: https://hhs.iowa.gov/media/3998/download
     sources:
     - manifests/us-ia-snap-manual.yaml
     manifest: manifests/us-ia-snap-manual.yaml
@@ -15410,47 +15383,46 @@ layers:
     part: Work requirements
 - jurisdiction: us-la
   screener:
-  - key: https://www.dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-assess-options
-    name: dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-as
+  - key: https://www.doa.la.gov/media/oq1j3hys/67.docx
+    name: doa.la.gov/media/oq1j3hys/67.docx
     layer: state
     citation_path: null
-    source_url: https://www.dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-assess-options
+    source_url: https://www.doa.la.gov/media/oq1j3hys/67.docx
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+  - key: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
+    name: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
+    layer: state
+    citation_path: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Deductions
-  - key: https://www.doa.la.gov/media/oq1j3hys/67.docx
-    name: doa.la.gov/media/oq1j3hys/67.docx
+    cited:
+    - path: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
+      references: 1
+      part: Deductions
+  - key: us-la/rulemaking/register/2003-04
+    name: us-la/rulemaking/register/2003-04
     layer: state
-    citation_path: null
-    source_url: https://www.doa.la.gov/media/oq1j3hys/67.docx
+    citation_path: us-la/rulemaking/register/2003-04
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Deductions
-  - key: https://www.doa.louisiana.gov/media/m23b1mhf/0304.pdf
-    name: doa.louisiana.gov/media/m23b1mhf/0304.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.doa.louisiana.gov/media/m23b1mhf/0304.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
+    cited:
+    - path: us-la/rulemaking/register/2003-04
+      references: 1
+      part: Deductions
   full:
-  - key: https://www.dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-assess-options
-    name: dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-as
-    layer: state
-    citation_path: null
-    source_url: https://www.dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-assess-options
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: https://www.doa.la.gov/media/oq1j3hys/67.docx
     name: doa.la.gov/media/oq1j3hys/67.docx
     layer: state
@@ -15460,11 +15432,20 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.doa.louisiana.gov/media/m23b1mhf/0304.pdf
-    name: doa.louisiana.gov/media/m23b1mhf/0304.pdf
+  - key: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
+    name: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
     layer: state
-    citation_path: null
-    source_url: https://www.doa.louisiana.gov/media/m23b1mhf/0304.pdf
+    citation_path: us-la/guidance/dcfs/news/as-extra-snap-benefits-end
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-la/rulemaking/register/2003-04
+    name: us-la/rulemaking/register/2003-04
+    layer: state
+    citation_path: us-la/rulemaking/register/2003-04
+    source_url: null
     part: Deductions
     sources:
     - screener
@@ -18942,43 +18923,52 @@ layers:
     part: Other
 - jurisdiction: us-me
   screener:
-  - key: https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
-    name: law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+  - key: us-me/regulation/dhhs/ofi/chapter-301
+    name: Maine Chapter 301 Supplemental Nutrition Assistance Program (SNAP) Rules
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+    citation_path: us-me/regulation/dhhs/ofi/chapter-301
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Deductions
-  - key: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%29.pdf
-    name: maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%
+    cited:
+    - path: us-me/regulation/dhhs/ofi/chapter-301
+      references: 1
+      part: Deductions
+  - key: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
+    name: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
     layer: state
-    citation_path: null
-    source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%29.pdf
+    citation_path: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 2
     scope: in
     part: Household and eligibility
+    cited:
+    - path: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
+      references: 2
+      part: Household and eligibility
   full:
-  - key: https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
-    name: law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+  - key: us-me/regulation/dhhs/ofi/chapter-301
+    name: Maine Chapter 301 Supplemental Nutrition Assistance Program (SNAP) Rules
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5
+    citation_path: us-me/regulation/dhhs/ofi/chapter-301
+    source_url: null
     part: Deductions
     sources:
     - screener
+    - manifests/us-me-snap-rules.yaml
     scope: in
-  - key: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%29.pdf
-    name: maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%
+  - key: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
+    name: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
     layer: state
-    citation_path: null
-    source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%29.pdf
+    citation_path: us-me/rulemaking/dhhs/ofi/chapter-301/rule-2026-02-244p
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -18994,16 +18984,6 @@ layers:
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Other
-  - key: us-me/regulation/dhhs/ofi/chapter-301
-    name: Maine Chapter 301 Supplemental Nutrition Assistance Program (SNAP) Rules
-    layer: state
-    citation_path: us-me/regulation/dhhs/ofi/chapter-301
-    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c301-2026-133-NSC.docx
-    sources:
-    - manifests/us-me-snap-rules.yaml
-    manifest: manifests/us-me-snap-rules.yaml
-    scope: in
-    part: Other
   - key: us-me/regulation/dhhs/ofi/chapter-609
     name: Maine Chapter 609 Supplemental Nutrition Assistance Program Employment and Training Rules
     layer: state
@@ -19016,88 +18996,92 @@ layers:
     part: Other
 - jurisdiction: us-md
   screener:
-  - key: http://dhr.maryland.gov/documents/Manuals/FSP%20(Food%20Supplement%20Program)%20Manual/212%20Deductions/212%20Deductions.pdf
-    name: dhr.maryland.gov/documents/Manuals/FSP%20(Food%20Supplement%20Program)%20Manual/212%20Dedu
+  - key: us-md/guidance/dhs/fia/at-26-08
+    name: us-md/guidance/dhs/fia/at-26-08
     layer: state
-    citation_path: null
-    source_url: http://dhr.maryland.gov/documents/Manuals/FSP%20(Food%20Supplement%20Program)%20Manual/212%20Deductions/212%20Deductions.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://www.dhr.state.md.us/manuals/fstamp/409_inco.pdf
-    name: dhr.state.md.us/manuals/fstamp/409_inco.pdf
-    layer: state
-    citation_path: null
-    source_url: http://www.dhr.state.md.us/manuals/fstamp/409_inco.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.35.htm
-    name: dsd.state.md.us/comar/comarhtml/07/07.03.17.35.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.35.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.43.htm
-    name: dsd.state.md.us/comar/comarhtml/07/07.03.17.43.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.43.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://casetext.com/statute/code-of-maryland/article-human-services/title-5-public-assistance/subtitle-5-food-stamps/section-5-501-food-supplement-program
-    name: Md. Code, Hum. Servs. § 5-501 (d) | Md. Code, Hum. Servs. § 5-501
-    layer: state
-    citation_path: null
-    source_url: https://casetext.com/statute/code-of-maryland/article-human-services/title-5-public-assistance/subtitle-5-food-stamps/section-5-501-food-supplement-program
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
-    name: dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2
-    layer: state
-    citation_path: null
-    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
+    citation_path: us-md/guidance/dhs/fia/at-26-08
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Income
-  - key: https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
-    name: mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
+    cited:
+    - path: us-md/guidance/dhs/fia/at-26-08
+      references: 1
+      part: Deductions
+  - key: us-md/manual/dhs/snap/210-income
+    name: 'Maryland SNAP Manual: 210 Income'
     layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
+    citation_path: us-md/manual/dhs/snap/210-income
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-md/manual/dhs/snap/210-income
+      references: 1
+      part: Deductions
+  - key: us-md/manual/dhs/snap/212-deductions
+    name: 'Maryland SNAP Manual: 212 Deductions'
+    layer: state
+    citation_path: us-md/manual/dhs/snap/212-deductions
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-md/manual/dhs/snap/212-deductions
+      references: 1
+      part: Deductions
+  - key: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+    name: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+    layer: state
+    citation_path: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+      references: 1
+      part: Deductions
+  - key: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
+    name: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
+    layer: state
+    citation_path: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
+      references: 1
+      part: Deductions
+  - key: us-md/statute/bills/2022
+    name: us-md/statute/bills/2022
+    layer: state
+    citation_path: us-md/statute/bills/2022
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Benefit amount
-  - key: https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
-    name: mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Benefit amount
+    cited:
+    - path: us-md/statute/bills/2022/hb0456
+      references: 2
+      part: Benefit amount
   - key: us-md/statute/gtg/10-105
     name: Maryland Code, Tax-General § 10-105 — State income tax rates
     layer: state
@@ -19112,6 +19096,30 @@ layers:
     - path: us-md/statute/gtg/10-105
       references: 1
       part: Benefit amount
+  - key: us-md/statute/human-services/5-501
+    name: us-md/statute/human-services/5-501
+    layer: state
+    citation_path: us-md/statute/human-services/5-501
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-md/statute/session-laws/2016
+    name: us-md/statute/session-laws/2016
+    layer: state
+    citation_path: us-md/statute/session-laws/2016
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-md/statute/session-laws/2016/hb0445
+      references: 2
+      part: Benefit amount
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf
     layer: state
@@ -19125,74 +19133,58 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: http://dhr.maryland.gov/documents/Manuals/FSP%20(Food%20Supplement%20Program)%20Manual/212%20Deductions/212%20Deductions.pdf
-    name: dhr.maryland.gov/documents/Manuals/FSP%20(Food%20Supplement%20Program)%20Manual/212%20Dedu
+  - key: us-md/guidance/dhs/fia/at-26-08
+    name: us-md/guidance/dhs/fia/at-26-08
     layer: state
-    citation_path: null
-    source_url: http://dhr.maryland.gov/documents/Manuals/FSP%20(Food%20Supplement%20Program)%20Manual/212%20Deductions/212%20Deductions.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://www.dhr.state.md.us/manuals/fstamp/409_inco.pdf
-    name: dhr.state.md.us/manuals/fstamp/409_inco.pdf
-    layer: state
-    citation_path: null
-    source_url: http://www.dhr.state.md.us/manuals/fstamp/409_inco.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.35.htm
-    name: dsd.state.md.us/comar/comarhtml/07/07.03.17.35.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.35.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.43.htm
-    name: dsd.state.md.us/comar/comarhtml/07/07.03.17.43.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.dsd.state.md.us/comar/comarhtml/07/07.03.17.43.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://casetext.com/statute/code-of-maryland/article-human-services/title-5-public-assistance/subtitle-5-food-stamps/section-5-501-food-supplement-program
-    name: Md. Code, Hum. Servs. § 5-501 (d) | Md. Code, Hum. Servs. § 5-501
-    layer: state
-    citation_path: null
-    source_url: https://casetext.com/statute/code-of-maryland/article-human-services/title-5-public-assistance/subtitle-5-food-stamps/section-5-501-food-supplement-program
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
-    name: dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2
-    layer: state
-    citation_path: null
-    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
+    citation_path: us-md/guidance/dhs/fia/at-26-08
+    source_url: null
     part: Income
     sources:
     - screener
     scope: in
-  - key: https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
-    name: mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
+  - key: us-md/manual/dhs/snap/210-income
+    name: 'Maryland SNAP Manual: 210 Income'
     layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf
-    part: Benefit amount
+    citation_path: us-md/manual/dhs/snap/210-income
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-md-fsp-manual.yaml
+    scope: in
+  - key: us-md/manual/dhs/snap/212-deductions
+    name: 'Maryland SNAP Manual: 212 Deductions'
+    layer: state
+    citation_path: us-md/manual/dhs/snap/212-deductions
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-md-fsp-manual.yaml
+    scope: in
+  - key: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+    name: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+    layer: state
+    citation_path: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35
+    source_url: null
+    part: Deductions
     sources:
     - screener
     scope: in
-  - key: https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
-    name: mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
+  - key: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
+    name: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
     layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf
+    citation_path: us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/bills/2022
+    name: us-md/statute/bills/2022
+    layer: state
+    citation_path: us-md/statute/bills/2022
+    source_url: null
     part: Benefit amount
     sources:
     - screener
@@ -19201,6 +19193,24 @@ layers:
     name: Maryland Code, Tax-General § 10-105 — State income tax rates
     layer: state
     citation_path: us-md/statute/gtg/10-105
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/human-services/5-501
+    name: us-md/statute/human-services/5-501
+    layer: state
+    citation_path: us-md/statute/human-services/5-501
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/session-laws/2016
+    name: us-md/statute/session-laws/2016
+    layer: state
+    citation_path: us-md/statute/session-laws/2016
     source_url: null
     part: Benefit amount
     sources:
@@ -19456,17 +19466,6 @@ layers:
     manifest: manifests/us-md-fsp-manual.yaml
     scope: in
     part: Other
-  - key: us-md/manual/dhs/snap/210-income
-    name: 'Maryland SNAP Manual: 210 Income'
-    layer: state
-    citation_path: us-md/manual/dhs/snap/210-income
-    source_url: https://dhs.maryland.gov/documents/FIA/Manuals/Supplemental Nutrition Assistance Program (SNAP)/210
-      Income/210-Income-rev-JULY 2023.docx
-    sources:
-    - manifests/us-md-fsp-manual.yaml
-    manifest: manifests/us-md-fsp-manual.yaml
-    scope: in
-    part: Other
   - key: us-md/manual/dhs/snap/211-excluded-income
     name: 'Maryland SNAP Manual: 211 Excluded Income'
     layer: state
@@ -19478,17 +19477,6 @@ layers:
     manifest: manifests/us-md-fsp-manual.yaml
     scope: in
     part: Other
-  - key: us-md/manual/dhs/snap/212-deductions
-    name: 'Maryland SNAP Manual: 212 Deductions'
-    layer: state
-    citation_path: us-md/manual/dhs/snap/212-deductions
-    source_url: https://dhs.maryland.gov/documents/FIA/Manuals/Supplemental Nutrition Assistance Program (SNAP)/212
-      Deductions/212-Deductions-REV.JULY.2023.MW.docx
-    sources:
-    - manifests/us-md-fsp-manual.yaml
-    manifest: manifests/us-md-fsp-manual.yaml
-    scope: in
-    part: Deductions
   - key: us-md/manual/dhs/snap/213-determining-income-deductions
     name: 'Maryland SNAP Manual: 213 Determining Income Deductions'
     layer: state
@@ -19810,56 +19798,65 @@ layers:
     part: Other
 - jurisdiction: us-ma
   screener:
-  - key: http://www.mass.gov/Eeohhs2/docs/dta/g_reg_363.pdf
-    name: mass.gov/Eeohhs2/docs/dta/g_reg_363.pdf
+  - key: us-ma/guidance/dta/online-guide-transmittal/2025-31
+    name: us-ma/guidance/dta/online-guide-transmittal/2025-31
     layer: state
-    citation_path: null
-    source_url: http://www.mass.gov/Eeohhs2/docs/dta/g_reg_363.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
-    name: eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CS
-    layer: state
-    citation_path: null
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.pdf
-    name: eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.
-    layer: state
-    citation_path: null
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
-    name: eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
-    layer: state
-    citation_path: null
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
+    citation_path: us-ma/guidance/dta/online-guide-transmittal/2025-31
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Work requirements
-  - key: https://www.law.cornell.edu/regulations/massachusetts/106-CMR-363-230
-    name: law.cornell.edu/regulations/massachusetts/106-CMR-363-230
+    cited:
+    - path: us-ma/guidance/dta/online-guide-transmittal/2025-31
+      references: 1
+      part: Work requirements
+  - key: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+    name: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/massachusetts/106-CMR-363-230
+    citation_path: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+      references: 1
+      part: Household and eligibility
+  - key: us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction
+    name: Massachusetts DTA Policy Online SNAP Child Support Expenses Deduction
+    layer: state
+    citation_path: us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Deductions
+    cited:
+    - path: us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction
+      references: 1
+      part: Deductions
+  - key: us-ma/regulation/106-cmr/363
+    name: 'Massachusetts DTA Regulations: Chapter 363: Financial Eligibility Standards'
+    layer: state
+    citation_path: us-ma/regulation/106-cmr/363
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-ma/regulation/106-cmr/363
+      references: 1
+      part: Deductions
+    - path: us-ma/regulation/106-cmr/363/230
+      references: 1
+      part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf
     layer: state
@@ -19873,48 +19870,21 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: http://www.mass.gov/Eeohhs2/docs/dta/g_reg_363.pdf
-    name: mass.gov/Eeohhs2/docs/dta/g_reg_363.pdf
+  - key: us-ma/guidance/dta/online-guide-transmittal/2025-31
+    name: us-ma/guidance/dta/online-guide-transmittal/2025-31
     layer: state
-    citation_path: null
-    source_url: http://www.mass.gov/Eeohhs2/docs/dta/g_reg_363.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
-    name: eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CS
-    layer: state
-    citation_path: null
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/!SSL!/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.pdf
-    name: eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.
-    layer: state
-    citation_path: null
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
-    name: eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
-    layer: state
-    citation_path: null
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
+    citation_path: us-ma/guidance/dta/online-guide-transmittal/2025-31
+    source_url: null
     part: Work requirements
     sources:
     - screener
     scope: in
-  - key: https://www.law.cornell.edu/regulations/massachusetts/106-CMR-363-230
-    name: law.cornell.edu/regulations/massachusetts/106-CMR-363-230
+  - key: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+    name: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
     layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/massachusetts/106-CMR-363-230
-    part: Deductions
+    citation_path: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -19922,12 +19892,22 @@ layers:
     name: Massachusetts DTA Policy Online SNAP Child Support Expenses Deduction
     layer: state
     citation_path: us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction
-    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/%21SSL%21/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
-    sources:
-    - manifests/us-ma-dta-policy-online-snap-child-support.yaml
-    manifest: manifests/us-ma-dta-policy-online-snap-child-support.yaml
-    scope: in
+    source_url: null
     part: Deductions
+    sources:
+    - screener
+    - manifests/us-ma-dta-policy-online-snap-child-support.yaml
+    scope: in
+  - key: us-ma/regulation/106-cmr/363
+    name: 'Massachusetts DTA Regulations: Chapter 363: Financial Eligibility Standards'
+    layer: state
+    citation_path: us-ma/regulation/106-cmr/363
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-ma-dta-snap-regulations.yaml
+    scope: in
   - key: us-ma/guidance/dta/policy-online/snap-cola/2025-10-01
     name: Massachusetts DTA Policy Online SNAP Annual Cost-of-Living Adjustment 2025
     layer: state
@@ -19973,16 +19953,6 @@ layers:
     layer: state
     citation_path: us-ma/regulation/106-cmr/362
     source_url: https://www.mass.gov/doc/chapter-362-nonfinancial-eligibility-standards-0/download
-    sources:
-    - manifests/us-ma-dta-snap-regulations.yaml
-    manifest: manifests/us-ma-dta-snap-regulations.yaml
-    scope: in
-    part: Benefit amount
-  - key: us-ma/regulation/106-cmr/363
-    name: 'Massachusetts DTA Regulations: Chapter 363: Financial Eligibility Standards'
-    layer: state
-    citation_path: us-ma/regulation/106-cmr/363
-    source_url: https://www.mass.gov/doc/chapter-363-financial-eligibility-standards/download
     sources:
     - manifests/us-ma-dta-snap-regulations.yaml
     manifest: manifests/us-ma-dta-snap-regulations.yaml
@@ -20493,32 +20463,10 @@ layers:
     part: Other
 - jurisdiction: us-mi
   screener:
-  - key: https://dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf
-    name: dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf
+  - key: us-mi/guidance/mdhhs/bridges/bpb/2017-016
+    name: us-mi/guidance/mdhhs/bridges/bpb/2017-016
     layer: state
-    citation_path: null
-    source_url: https://dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
-    name: mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
-    layer: state
-    citation_path: null
-    source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Deductions
-  - key: us-mi/manual/mdhhs/bridges/bem/554
-    name: 'Michigan Bridges Eligibility Manual: BEM 554 FAP ALLOWABLE EXPENSES AND EXPENSE BUDGETING'
-    layer: state
-    citation_path: us-mi/manual/mdhhs/bridges/bem/554
+    citation_path: us-mi/guidance/mdhhs/bridges/bpb/2017-016
     source_url: null
     sources:
     - policyengine-references
@@ -20527,8 +20475,23 @@ layers:
     scope: in
     part: Deductions
     cited:
-    - path: us-mi/manual/mdhhs/bridges/bem/554
+    - path: us-mi/guidance/mdhhs/bridges/bpb/2017-016
       references: 1
+      part: Deductions
+  - key: us-mi/manual/mdhhs/bridges/bem/554
+    name: 'Michigan Bridges Eligibility Manual: BEM 554 FAP ALLOWABLE EXPENSES AND EXPENSE BUDGETING'
+    layer: state
+    citation_path: us-mi/manual/mdhhs/bridges/bem/554
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 2
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-mi/manual/mdhhs/bridges/bem/554
+      references: 2
       part: Deductions
   - key: us-mi/manual/mdhhs/bridges/bem/556
     name: 'Michigan Bridges Eligibility Manual: BEM 556 COMPUTING THE FOOD ASSISTANCE BUDGET'
@@ -20579,20 +20542,11 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf
-    name: dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf
+  - key: us-mi/guidance/mdhhs/bridges/bpb/2017-016
+    name: us-mi/guidance/mdhhs/bridges/bpb/2017-016
     layer: state
-    citation_path: null
-    source_url: https://dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
-    name: mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
-    layer: state
-    citation_path: null
-    source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
+    citation_path: us-mi/guidance/mdhhs/bridges/bpb/2017-016
+    source_url: null
     part: Deductions
     sources:
     - screener
@@ -32158,17 +32112,6 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://www.nj.gov/humanservices/njsnap/emergency/covid19/
-    name: nj.gov/humanservices/njsnap/emergency/covid19/
-    layer: state
-    citation_path: null
-    source_url: https://www.nj.gov/humanservices/njsnap/emergency/covid19/
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Other
   - key: https://www.nj.gov/humanservices/notices/documents/rule-proposals/(F)%20PRN%202016-017%20(DHS-DFD%2010_87-1.11).pdf
     name: nj.gov/humanservices/notices/documents/rule-proposals/(F)%20PRN%202016-017%20(DHS-DFD%2010
     layer: state
@@ -32195,6 +32138,21 @@ layers:
     - path: us-nj/guidance/dfd/njsnap-eligibility/fy2026
       references: 1
       part: Benefit amount
+  - key: us-nj/guidance/dhs/njsnap/covid19
+    name: us-nj/guidance/dhs/njsnap/covid19
+    layer: state
+    citation_path: us-nj/guidance/dhs/njsnap/covid19
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us-nj/guidance/dhs/njsnap/covid19
+      references: 1
+      part: Other
   - key: us-nj/regulation/njac-10-87
     name: N.J.A.C. 10:87 New Jersey Supplemental Nutrition Assistance Program (NJ SNAP) Manual
     layer: state
@@ -32253,15 +32211,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.nj.gov/humanservices/njsnap/emergency/covid19/
-    name: nj.gov/humanservices/njsnap/emergency/covid19/
-    layer: state
-    citation_path: null
-    source_url: https://www.nj.gov/humanservices/njsnap/emergency/covid19/
-    part: Other
-    sources:
-    - screener
-    scope: in
   - key: https://www.nj.gov/humanservices/notices/documents/rule-proposals/(F)%20PRN%202016-017%20(DHS-DFD%2010_87-1.11).pdf
     name: nj.gov/humanservices/notices/documents/rule-proposals/(F)%20PRN%202016-017%20(DHS-DFD%2010
     layer: state
@@ -32281,6 +32230,15 @@ layers:
     sources:
     - screener
     - manifests/us-nj-snap-fy2026-state-transmittal.yaml
+    scope: in
+  - key: us-nj/guidance/dhs/njsnap/covid19
+    name: us-nj/guidance/dhs/njsnap/covid19
+    layer: state
+    citation_path: us-nj/guidance/dhs/njsnap/covid19
+    source_url: null
+    part: Other
+    sources:
+    - screener
     scope: in
   - key: us-nj/regulation/njac-10-87
     name: N.J.A.C. 10:87 New Jersey Supplemental Nutrition Assistance Program (NJ SNAP) Manual
@@ -34849,37 +34807,27 @@ layers:
     part: Benefit amount
 - jurisdiction: us-or
   screener:
-  - key: https://ch461rules.odhs.oregon.gov/rules/461-140-0266.pdf
-    name: ch461rules.odhs.oregon.gov/rules/461-140-0266.pdf
+  - key: us-or/regulation/chapter-461
+    name: 'Oregon Administrative Rules Chapter 461: Department of Human Services, Self-Sufficiency Programs'
     layer: state
-    citation_path: null
-    source_url: https://ch461rules.odhs.oregon.gov/rules/461-140-0266.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://ch461rules.odhs.oregon.gov/rules/461-155-0180.pdf
-    name: ch461rules.odhs.oregon.gov/rules/461-155-0180.pdf
-    layer: state
-    citation_path: null
-    source_url: https://ch461rules.odhs.oregon.gov/rules/461-155-0180.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://oregon.public.law/rules/oar_461-160-0430
-    name: oregon.public.law/rules/oar_461-160-0430
-    layer: state
-    citation_path: null
-    source_url: https://oregon.public.law/rules/oar_461-160-0430
+    citation_path: us-or/regulation/chapter-461
+    source_url: null
     sources:
     - policyengine-references
     - plan
-    references: 1
+    references: 3
     scope: in
     part: Deductions
+    cited:
+    - path: us-or/regulation/chapter-461/division-140/rule-461-140-0266
+      references: 1
+      part: Deductions
+    - path: us-or/regulation/chapter-461/division-155/rule-461-155-0180
+      references: 1
+      part: Household and eligibility
+    - path: us-or/regulation/chapter-461/division-160/rule-461-160-0430
+      references: 2
+      part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2024.pdf
     layer: state
@@ -34915,29 +34863,11 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://ch461rules.odhs.oregon.gov/rules/461-140-0266.pdf
-    name: ch461rules.odhs.oregon.gov/rules/461-140-0266.pdf
+  - key: us-or/regulation/chapter-461
+    name: 'Oregon Administrative Rules Chapter 461: Department of Human Services, Self-Sufficiency Programs'
     layer: state
-    citation_path: null
-    source_url: https://ch461rules.odhs.oregon.gov/rules/461-140-0266.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://ch461rules.odhs.oregon.gov/rules/461-155-0180.pdf
-    name: ch461rules.odhs.oregon.gov/rules/461-155-0180.pdf
-    layer: state
-    citation_path: null
-    source_url: https://ch461rules.odhs.oregon.gov/rules/461-155-0180.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://oregon.public.law/rules/oar_461-160-0430
-    name: oregon.public.law/rules/oar_461-160-0430
-    layer: state
-    citation_path: null
-    source_url: https://oregon.public.law/rules/oar_461-160-0430
+    citation_path: us-or/regulation/chapter-461
+    source_url: null
     part: Deductions
     sources:
     - screener
@@ -34976,46 +34906,6 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-pa
   screener:
-  - key: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    name: services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    layer: state
-    citation_path: null
-    source_url: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560_A.htm
-    name: services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560_A.htm
-    layer: state
-    citation_path: null
-    source_url: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560_A.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://services.dpw.state.pa.us:80/oimpolicymanuals/snap/560_Income_Deductions/560_Appendix_A.htm
-    name: services.dpw.state.pa.us:80/oimpolicymanuals/snap/560_Income_Deductions/560_Appendix_A.htm
-    layer: state
-    citation_path: null
-    source_url: http://services.dpw.state.pa.us:80/oimpolicymanuals/snap/560_Income_Deductions/560_Appendix_A.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://www.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    name: dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
   - key: us-pa/manual/dhs/snap/560-income-deductions-560-6-child-support-deduction
     name: 'Pennsylvania SNAP Handbook: 560.6 Child Support Deduction'
     layer: state
@@ -35037,12 +34927,26 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 3
     scope: in
     part: Deductions
     cited:
     - path: us-pa/manual/dhs/snap/560-income-deductions-560-appendix-a
-      references: 1
+      references: 3
+      part: Deductions
+  - key: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
+    name: 'Pennsylvania SNAP Handbook: Chapter 560: Income Deductions'
+    layer: state
+    citation_path: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
+      references: 2
       part: Deductions
   - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
     name: fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf
@@ -35057,42 +34961,6 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    name: services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    layer: state
-    citation_path: null
-    source_url: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560_A.htm
-    name: services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560_A.htm
-    layer: state
-    citation_path: null
-    source_url: http://services.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560_A.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://services.dpw.state.pa.us:80/oimpolicymanuals/snap/560_Income_Deductions/560_Appendix_A.htm
-    name: services.dpw.state.pa.us:80/oimpolicymanuals/snap/560_Income_Deductions/560_Appendix_A.htm
-    layer: state
-    citation_path: null
-    source_url: http://services.dpw.state.pa.us:80/oimpolicymanuals/snap/560_Income_Deductions/560_Appendix_A.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://www.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    name: dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    layer: state
-    citation_path: null
-    source_url: http://www.dpw.state.pa.us:80/oimpolicymanuals/manuals/bop/fs/560/560-05.htm
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: us-pa/manual/dhs/snap/560-income-deductions-560-6-child-support-deduction
     name: 'Pennsylvania SNAP Handbook: 560.6 Child Support Deduction'
     layer: state
@@ -35107,6 +34975,16 @@ layers:
     name: 'Pennsylvania SNAP Handbook: Appendix A: Tables of Maximum Allowable Deductions'
     layer: state
     citation_path: us-pa/manual/dhs/snap/560-income-deductions-560-appendix-a
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-pa-snap-handbook.yaml
+    scope: in
+  - key: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
+    name: 'Pennsylvania SNAP Handbook: Chapter 560: Income Deductions'
+    layer: state
+    citation_path: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
     source_url: null
     part: Deductions
     sources:
@@ -36887,16 +36765,6 @@ layers:
     manifest: manifests/us-pa-snap-handbook.yaml
     scope: in
     part: Assets
-  - key: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
-    name: 'Pennsylvania SNAP Handbook: Chapter 560: Income Deductions'
-    layer: state
-    citation_path: us-pa/manual/dhs/snap/560-income-deductions-snap-560-title
-    source_url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/560_Income_Deductions/SNAP_560_Title.htm
-    sources:
-    - manifests/us-pa-snap-handbook.yaml
-    manifest: manifests/us-pa-snap-handbook.yaml
-    scope: in
-    part: Deductions
   - key: us-pa/manual/dhs/snap/560-income-deductions-560-1-general-policy
     name: 'Pennsylvania SNAP Handbook: 560.1 General Policy'
     layer: state
@@ -39889,16 +39757,6 @@ layers:
     part: Other
 - jurisdiction: us-tx
   screener:
-  - key: https://capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
-    name: capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
-    layer: state
-    citation_path: null
-    source_url: https://capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: us-tx/manual/hhsc/medicaid/twh-a-1210
     name: 'Texas Works Handbook: A-1210, General Policy'
     layer: state
@@ -39913,20 +39771,34 @@ layers:
     - path: us-tx/manual/hhsc/medicaid/twh-a-1210
       references: 1
       part: Household and eligibility
-  full:
-  - key: https://capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
-    name: capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
+  - key: us-tx/statute/session-laws/88r
+    name: us-tx/statute/session-laws/88r
     layer: state
-    citation_path: null
-    source_url: https://capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
-    part: Household and eligibility
+    citation_path: us-tx/statute/session-laws/88r
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-tx/statute/session-laws/88r/hb1287
+      references: 1
+      part: Household and eligibility
+  full:
   - key: us-tx/manual/hhsc/medicaid/twh-a-1210
     name: 'Texas Works Handbook: A-1210, General Policy'
     layer: state
     citation_path: us-tx/manual/hhsc/medicaid/twh-a-1210
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/session-laws/88r
+    name: us-tx/statute/session-laws/88r
+    layer: state
+    citation_path: us-tx/statute/session-laws/88r
     source_url: null
     part: Household and eligibility
     sources:
@@ -43704,26 +43576,6 @@ layers:
     part: Other
 - jurisdiction: us-vt
   screener:
-  - key: http://humanservices.vermont.gov/on-line-rules/esd/esd-procedures/P2500/P2510E.pdf/view
-    name: humanservices.vermont.gov/on-line-rules/esd/esd-procedures/P2500/P2510E.pdf/view
-    layer: state
-    citation_path: null
-    source_url: http://humanservices.vermont.gov/on-line-rules/esd/esd-procedures/P2500/P2510E.pdf/view
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: http://humanservices.vermont.gov/on-line-rules/esd/group-food-stamp-rules/view
-    name: humanservices.vermont.gov/on-line-rules/esd/group-food-stamp-rules/view
-    layer: state
-    citation_path: null
-    source_url: http://humanservices.vermont.gov/on-line-rules/esd/group-food-stamp-rules/view
-    sources:
-    - policyengine-references
-    references: 2
-    scope: in
-    part: Deductions
   - key: us-vt/manual/dcf/3squaresvt/1700-deductions
     name: 'Vermont 3SquaresVT Manual: 1700 Deductions'
     layer: state
@@ -43752,25 +43604,21 @@ layers:
     - path: us-vt/manual/dcf/3squaresvt/1800-determining-income-and-deductions
       references: 1
       part: Deductions
+  - key: us-vt/manual/dcf/3squaresvt/3100-tables
+    name: 'Vermont 3SquaresVT Manual: 3100 Tables'
+    layer: state
+    citation_path: us-vt/manual/dcf/3squaresvt/3100-tables
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-vt/manual/dcf/3squaresvt/3100-tables
+      references: 3
+      part: Deductions
   full:
-  - key: http://humanservices.vermont.gov/on-line-rules/esd/esd-procedures/P2500/P2510E.pdf/view
-    name: humanservices.vermont.gov/on-line-rules/esd/esd-procedures/P2500/P2510E.pdf/view
-    layer: state
-    citation_path: null
-    source_url: http://humanservices.vermont.gov/on-line-rules/esd/esd-procedures/P2500/P2510E.pdf/view
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: http://humanservices.vermont.gov/on-line-rules/esd/group-food-stamp-rules/view
-    name: humanservices.vermont.gov/on-line-rules/esd/group-food-stamp-rules/view
-    layer: state
-    citation_path: null
-    source_url: http://humanservices.vermont.gov/on-line-rules/esd/group-food-stamp-rules/view
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: us-vt/manual/dcf/3squaresvt/1700-deductions
     name: 'Vermont 3SquaresVT Manual: 1700 Deductions'
     layer: state
@@ -43785,6 +43633,16 @@ layers:
     name: 'Vermont 3SquaresVT Manual: 1800 Determining Income and Deductions'
     layer: state
     citation_path: us-vt/manual/dcf/3squaresvt/1800-determining-income-and-deductions
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-vt-3squaresvt-manual.yaml
+    scope: in
+  - key: us-vt/manual/dcf/3squaresvt/3100-tables
+    name: 'Vermont 3SquaresVT Manual: 3100 Tables'
+    layer: state
+    citation_path: us-vt/manual/dcf/3squaresvt/3100-tables
     source_url: null
     part: Deductions
     sources:
@@ -44081,16 +43939,6 @@ layers:
     manifest: manifests/us-vt-3squaresvt-manual.yaml
     scope: in
     part: Other
-  - key: us-vt/manual/dcf/3squaresvt/3100-tables
-    name: 'Vermont 3SquaresVT Manual: 3100 Tables'
-    layer: state
-    citation_path: us-vt/manual/dcf/3squaresvt/3100-tables
-    source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/3000_Tables.htm
-    sources:
-    - manifests/us-vt-3squaresvt-manual.yaml
-    manifest: manifests/us-vt-3squaresvt-manual.yaml
-    scope: in
-    part: Other
   - key: us-vt/policy/snap-et-state-plan/ffy2026
     name: Vermont SNAP E&T State Plan FFY 2026
     layer: state
@@ -44240,16 +44088,6 @@ layers:
     part: Other
 - jurisdiction: us-wa
   screener:
-  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001
-    name: app.leg.wa.gov/WAC/default.aspx
-    layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: https://lawfilesext.leg.wa.gov/law/wsr/2009/15/09-15-085.htm
     name: lawfilesext.leg.wa.gov/law/wsr/2009/15/09-15-085.htm
     layer: state
@@ -44270,6 +44108,20 @@ layers:
     references: 1
     scope: in
     part: Deductions
+  - key: us-wa/regulation/388/388-478/388-478-0057
+    name: us-wa/regulation/388/388-478/388-478-0057
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0057
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-wa/regulation/388/388-478/388-478-0057
+      references: 1
+      part: Household and eligibility
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2024.pdf
     layer: state
@@ -44294,15 +44146,6 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001
-    name: app.leg.wa.gov/WAC/default.aspx
-    layer: state
-    citation_path: null
-    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: https://lawfilesext.leg.wa.gov/law/wsr/2009/15/09-15-085.htm
     name: lawfilesext.leg.wa.gov/law/wsr/2009/15/09-15-085.htm
     layer: state
@@ -44318,6 +44161,15 @@ layers:
     citation_path: null
     source_url: https://lawfilesext.leg.wa.gov/law/wsr/2009/16/09-16-095.htm
     part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/388/388-478/388-478-0057
+    name: us-wa/regulation/388/388-478/388-478-0057
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0057
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -44448,17 +44300,21 @@ layers:
     part: Other
 - jurisdiction: us-wi
   screener:
-  - key: https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
-    name: dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
+  - key: us-wi/guidance/dhs/dms/ops-memo/2026-30
+    name: us-wi/guidance/dhs/dms/ops-memo/2026-30
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
+    citation_path: us-wi/guidance/dhs/dms/ops-memo/2026-30
+    source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
     part: Deductions
+    cited:
+    - path: us-wi/guidance/dhs/dms/ops-memo/2026-30
+      references: 1
+      part: Deductions
   - key: https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2025-13.pdf
     name: dhs.wisconsin.gov/dms/memos/ops/dms-ops-2025-13.pdf
     layer: state
@@ -44484,11 +44340,11 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
-    name: dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
+  - key: us-wi/guidance/dhs/dms/ops-memo/2026-30
+    name: us-wi/guidance/dhs/dms/ops-memo/2026-30
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
+    citation_path: us-wi/guidance/dhs/dms/ops-memo/2026-30
+    source_url: null
     part: Deductions
     sources:
     - screener

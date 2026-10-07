@@ -68,6 +68,10 @@ host_aliases:
   fns-prod.azureedge.us: fns.usda.gov
   fns-prod.azureedge.net: fns.usda.gov
 # URLs of one document.
+# What the ingestion waves decided for documents the bundles name by an
+# address or by a path they moved (scripts/apply_wave_decisions.py).
+joins: manifests/program-bundles/joins.yaml
+
 same_document:
   "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"
   "https://www.fns.usda.gov/snap/allotment/COLA": "https://www.fna.usda.gov/snap/allotment/cola/fy27"

@@ -43,7 +43,7 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 7
+      federal: 5
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -58,41 +58,25 @@ tiers:
     state_manifests: (^|-)wic(-|$)
     known_sources: 0
     in_scope_by_layer:
-      federal: 51
+      federal: 49
       state: 2089
 layers:
 - jurisdiction: us
   screener:
-  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
-    name: fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
+  - key: us/guidance/fns/wic/food-packages
+    name: us/guidance/fns/wic/food-packages
     layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Assets
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
-    name: fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Assets
-  - key: https://www.fns.usda.gov/wic/food-packages
-    name: fns.usda.gov/wic/food-packages
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/wic/food-packages
+    citation_path: us/guidance/fns/wic/food-packages
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
+    cited:
+    - path: us/guidance/fns/wic/food-packages
+      references: 1
+      part: Household and eligibility
   - key: us/guidance/fns/wic/policy-memo/2025-4
     name: 'WIC Policy Memorandum #2025-4: Publication of the 2025-2026 WIC Income Eligibility Guidelines'
     layer: federal
@@ -179,6 +163,31 @@ layers:
     - path: us/statute/42/1786/d/2/D
       references: 1
       part: Income
+  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
+    name: fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: WIC Participant and Program Characteristics 2018: Food Packages and Costs, Final
+      Report (November 2020), a contractor research study for FNS''s Office of Policy Support; third-party analysis,
+      not a source of rules'
+    part: Assets
+  - key: https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
+    name: fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
+    layer: federal
+    citation_path: null
+    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: summary of the WIC Participant and Program Characteristics 2018 food package
+      study (contractor research); answers today via the FNA CDN, but it is analysis, not rules'
+    part: Assets
   - key: https://www.fns.usda.gov/wic/2024-cash-value-voucher-benefit-amounts
     name: fns.usda.gov/wic/2024-cash-value-voucher-benefit-amounts
     layer: federal
@@ -202,29 +211,11 @@ layers:
     reason: 'Back-year table: not current law'
     part: Benefit amount
   full:
-  - key: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
-    name: fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
+  - key: us/guidance/fns/wic/food-packages
+    name: us/guidance/fns/wic/food-packages
     layer: federal
-    citation_path: null
-    source_url: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
-    name: fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.fns.usda.gov/wic/food-packages
-    name: fns.usda.gov/wic/food-packages
-    layer: federal
-    citation_path: null
-    source_url: https://www.fns.usda.gov/wic/food-packages
+    citation_path: us/guidance/fns/wic/food-packages
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
@@ -561,10 +552,10 @@ layers:
     - schema:wic_cfr_246_29
     scope: in
     part: Other
-  - key: us/guidance/hhs/aspe/poverty-guidelines
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2026
     name: HHS Poverty Guidelines
     layer: federal
-    citation_path: us/guidance/hhs/aspe/poverty-guidelines
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
     source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
     sources:
     - manifests/us-hhs-poverty-guidelines.yaml

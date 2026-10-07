@@ -42,7 +42,7 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 26
+      federal: 24
       state: 3
 - id: full
   title: Full document bundle
@@ -58,141 +58,123 @@ tiers:
     state_manifests: medicare|msp
     known_sources: 0
     in_scope_by_layer:
-      federal: 1056
+      federal: 1054
       state: 43
 layers:
 - jurisdiction: us
   screener:
-  - key: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
-    name: downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
+  - key: us/guidance/cms/medicare-gov/medicare-costs
+    name: us/guidance/cms/medicare-gov/medicare-costs
     layer: federal
-    citation_path: null
-    source_url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Assets
-  - key: https://www.cms.gov/about-cms/what-we-do/medicare
-    name: cms.gov/about-cms/what-we-do/medicare
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/about-cms/what-we-do/medicare
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment
-    name: cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly
-    name: cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
-    name: cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
-    name: cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
-    name: cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.law.cornell.edu/uscode/text/42/1395w-113
-    name: law.cornell.edu/uscode/text/42/1395w-113
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/1395w-113
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.law.cornell.edu/uscode/text/42/1396u-3
-    name: law.cornell.edu/uscode/text/42/1396u-3
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/1396u-3
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
-  - key: https://www.medicare.gov/basics/costs/help/medicare-savings-programs
-    name: medicare.gov/basics/costs/help/medicare-savings-programs
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicare.gov/basics/costs/help/medicare-savings-programs
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.medicare.gov/basics/costs/medicare-costs
-    name: medicare.gov/basics/costs/medicare-costs
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicare.gov/basics/costs/medicare-costs
+    citation_path: us/guidance/cms/medicare-gov/medicare-costs
+    source_url: null
     sources:
     - policyengine-references
     references: 2
     scope: in
     part: Household and eligibility
-  - key: https://www.medicareinteractive.org/understanding-medicare/
-    name: medicareinteractive.org/understanding-medicare/
+    cited:
+    - path: us/guidance/cms/medicare-gov/medicare-costs
+      references: 2
+      part: Household and eligibility
+  - key: us/guidance/cms/medicare-gov/medicare-savings-programs
+    name: us/guidance/cms/medicare-gov/medicare-savings-programs
     layer: federal
-    citation_path: null
-    source_url: https://www.medicareinteractive.org/understanding-medicare/
+    citation_path: us/guidance/cms/medicare-gov/medicare-savings-programs
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
-    part: Assets
-  - key: https://www.medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-programs-qmb-slmb-qi/medicare-savings-program-income-and-asset-limits
-    name: medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-progr
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/medicare-gov/medicare-savings-programs
+      references: 1
+      part: Household and eligibility
+  - key: us/guidance/cms/medicare-program-general-information
+    name: us/guidance/cms/medicare-program-general-information
     layer: federal
-    citation_path: null
-    source_url: https://www.medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-programs-qmb-slmb-qi/medicare-savings-program-income-and-asset-limits
+    citation_path: us/guidance/cms/medicare-program-general-information
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
-    part: Assets
+    part: Other
+    cited:
+    - path: us/guidance/cms/medicare-program-general-information
+      references: 1
+      part: Other
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+      references: 1
+      part: Other
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+      references: 1
+      part: Other
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+      references: 1
+      part: Other
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+      references: 1
+      part: Household and eligibility
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+      references: 1
+      part: Household and eligibility
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2026/fact-sheet
     name: 2026 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet, November 14, 2025)
     layer: federal
@@ -207,6 +189,20 @@ layers:
     - path: us/guidance/cms/parts-a-b-premiums-deductibles/2026/fact-sheet
       references: 1
       part: Household and eligibility
+  - key: us/guidance/cms/smd/10-003
+    name: us/guidance/cms/smd/10-003
+    layer: federal
+    citation_path: us/guidance/cms/smd/10-003
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Assets
+    cited:
+    - path: us/guidance/cms/smd/10-003
+      references: 1
+      part: Assets
   - key: us/manual/ssa/poms/si/01715.010
     name: 'POMS SI 01715.010: Medicaid and the Supplemental Security Income (SSI) Program'
     layer: federal
@@ -325,6 +321,20 @@ layers:
     - path: us/statute/42/1395r/i
       references: 1
       part: Household and eligibility
+  - key: us/statute/42/1395w–113
+    name: 42 USC 1395w–113
+    layer: federal
+    citation_path: us/statute/42/1395w–113
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/statute/42/1395w–113
+      references: 1
+      part: Household and eligibility
   - key: us/statute/42/1396a
     name: 42 USC 1396a
     layer: federal
@@ -382,6 +392,20 @@ layers:
     - path: us/statute/42/1396d/p/3
       references: 1
       part: Benefit amount
+  - key: us/statute/42/1396u–3
+    name: 42 USC 1396u–3
+    layer: federal
+    citation_path: us/statute/42/1396u–3
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us/statute/42/1396u–3
+      references: 1
+      part: Other
   - key: us/statute/42/426
     name: 42 USC 426
     layer: federal
@@ -399,121 +423,99 @@ layers:
     - path: us/statute/42/426/b
       references: 1
       part: Benefit amount
-  full:
-  - key: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
-    name: downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cms.gov/about-cms/what-we-do/medicare
-    name: cms.gov/about-cms/what-we-do/medicare
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/about-cms/what-we-do/medicare
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment
-    name: cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly
-    name: cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
-    name: cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
-    name: cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
-    name: cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
-    layer: federal
-    citation_path: null
-    source_url: https://www.cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/uscode/text/42/1395w-113
-    name: law.cornell.edu/uscode/text/42/1395w-113
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/1395w-113
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.law.cornell.edu/uscode/text/42/1396u-3
-    name: law.cornell.edu/uscode/text/42/1396u-3
-    layer: federal
-    citation_path: null
-    source_url: https://www.law.cornell.edu/uscode/text/42/1396u-3
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicare.gov/basics/costs/help/medicare-savings-programs
-    name: medicare.gov/basics/costs/help/medicare-savings-programs
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicare.gov/basics/costs/help/medicare-savings-programs
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.medicare.gov/basics/costs/medicare-costs
-    name: medicare.gov/basics/costs/medicare-costs
-    layer: federal
-    citation_path: null
-    source_url: https://www.medicare.gov/basics/costs/medicare-costs
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: https://www.medicareinteractive.org/understanding-medicare/
     name: medicareinteractive.org/understanding-medicare/
     layer: federal
     citation_path: null
     source_url: https://www.medicareinteractive.org/understanding-medicare/
-    part: Assets
     sources:
-    - screener
-    scope: in
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: Medicare Rights Center consumer site (third party); HTTP 403'
+    part: Assets
   - key: https://www.medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-programs-qmb-slmb-qi/medicare-savings-program-income-and-asset-limits
     name: medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-progr
     layer: federal
     citation_path: null
     source_url: https://www.medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-programs-qmb-slmb-qi/medicare-savings-program-income-and-asset-limits
+    sources:
+    - policyengine-references
+    references: 1
+    scope: excluded
+    reason: 'Not a source of rules: Medicare Rights Center (third party); the official MSP limits are taken from
+      Medicare.gov (us/guidance/cms/medicare-gov/medicare-savings-programs)'
     part: Assets
+  full:
+  - key: us/guidance/cms/medicare-gov/medicare-costs
+    name: us/guidance/cms/medicare-gov/medicare-costs
+    layer: federal
+    citation_path: us/guidance/cms/medicare-gov/medicare-costs
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/medicare-gov/medicare-savings-programs
+    name: us/guidance/cms/medicare-gov/medicare-savings-programs
+    layer: federal
+    citation_path: us/guidance/cms/medicare-gov/medicare-savings-programs
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/medicare-program-general-information
+    name: us/guidance/cms/medicare-program-general-information
+    layer: federal
+    citation_path: us/guidance/cms/medicare-program-general-information
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    name: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    layer: federal
+    citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -526,6 +528,15 @@ layers:
     sources:
     - screener
     - manifests/us-cms-annual-notices-2026.yaml
+    scope: in
+  - key: us/guidance/cms/smd/10-003
+    name: us/guidance/cms/smd/10-003
+    layer: federal
+    citation_path: us/guidance/cms/smd/10-003
+    source_url: null
+    part: Assets
+    sources:
+    - screener
     scope: in
   - key: us/manual/ssa/poms/si/01715.010
     name: 'POMS SI 01715.010: Medicaid and the Supplemental Security Income (SSI) Program'
@@ -599,6 +610,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/statute/42/1395w–113
+    name: 42 USC 1395w–113
+    layer: federal
+    citation_path: us/statute/42/1395w–113
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us/statute/42/1396a
     name: 42 USC 1396a
     layer: federal
@@ -623,6 +643,15 @@ layers:
     citation_path: us/statute/42/1396d
     source_url: null
     part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/1396u–3
+    name: 42 USC 1396u–3
+    layer: federal
+    citation_path: us/statute/42/1396u–3
+    source_url: null
+    part: Other
     sources:
     - screener
     scope: in
@@ -11272,22 +11301,26 @@ layers:
   full: []
 - jurisdiction: us-me
   screener:
-  - key: https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html
-    name: legislature.maine.gov/statutes/22/title22sec3174-LLL.html
+  - key: us-me/statute/22/3174-lll
+    name: us-me/statute/22/3174-lll
     layer: state
-    citation_path: null
-    source_url: https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html
+    citation_path: us-me/statute/22/3174-lll
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Assets
+    cited:
+    - path: us-me/statute/22/3174-lll
+      references: 1
+      part: Assets
   full:
-  - key: https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html
-    name: legislature.maine.gov/statutes/22/title22sec3174-LLL.html
+  - key: us-me/statute/22/3174-lll
+    name: us-me/statute/22/3174-lll
     layer: state
-    citation_path: null
-    source_url: https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html
+    citation_path: us-me/statute/22/3174-lll
+    source_url: null
     part: Assets
     sources:
     - screener
@@ -11406,22 +11439,26 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-mo
   screener:
-  - key: https://dss.mo.gov/fsd/iman/medasst/0865-010-15.html
-    name: dss.mo.gov/fsd/iman/medasst/0865-010-15.html
+  - key: us-mo/manual/dss/medicaid/mhabd/0865-000-00/0865-010-00/0865-010-15
+    name: 'Missouri MO HealthNet for the Aged, Blind, and Disabled (MHABD) Manual: 0865-010-15'
     layer: state
-    citation_path: null
-    source_url: https://dss.mo.gov/fsd/iman/medasst/0865-010-15.html
+    citation_path: us-mo/manual/dss/medicaid/mhabd/0865-000-00/0865-010-00/0865-010-15
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Assets
+    cited:
+    - path: us-mo/manual/dss/medicaid/mhabd/0865-000-00/0865-010-00/0865-010-15
+      references: 1
+      part: Assets
   full:
-  - key: https://dss.mo.gov/fsd/iman/medasst/0865-010-15.html
-    name: dss.mo.gov/fsd/iman/medasst/0865-010-15.html
+  - key: us-mo/manual/dss/medicaid/mhabd/0865-000-00/0865-010-00/0865-010-15
+    name: 'Missouri MO HealthNet for the Aged, Blind, and Disabled (MHABD) Manual: 0865-010-15'
     layer: state
-    citation_path: null
-    source_url: https://dss.mo.gov/fsd/iman/medasst/0865-010-15.html
+    citation_path: us-mo/manual/dss/medicaid/mhabd/0865-000-00/0865-010-00/0865-010-15
+    source_url: null
     part: Assets
     sources:
     - screener
