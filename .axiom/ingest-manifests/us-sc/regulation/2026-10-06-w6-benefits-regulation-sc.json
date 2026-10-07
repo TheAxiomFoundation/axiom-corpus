@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/regulation/2026-10-06-w6-benefits-regulation-sc.json",
+      "sha256": "86576fa95338639349ae496850d1d4f083c5ecca85c12e52e0b41b7869b72e51"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/regulation/2026-10-06-w6-benefits-regulation-sc.json",
+      "sha256": "8a9116ee65d8b9241b9d1f092be35f4a2d6f95dc4b538f94c3f61927f2854260"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/regulation/2026-10-06-w6-benefits-regulation-sc.jsonl",
+      "sha256": "eb20db7537f3073d0a5a769dd4ccd5872fd33c082777a44b9578770d9dddc21c"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/regulation/2026-10-06-w6-benefits-regulation-sc/official-documents/us-sc-regulation-chapter-126-pdf.pdf",
+      "sha256": "6dfff7e55f67cb3fcd5706be72c335c09d8a659e7c288c5b4055ac64e93f8738"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 31,
+    "missing_count": 0,
+    "provision_count": 31,
+    "source_count": 31
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:58:39.845553+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XdHQh43Du/GeMCqE+gZUJI5nkwl8Fs3qF+i+CLuED6yVauEh1kY3Oaw2qmPlXcHFzxp7bvE/0/2VE2rG6pbTDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-regulation-sc"
+}

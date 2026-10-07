@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/statute/2026-10-06-w6-income-tax-legislation-az.json",
+      "sha256": "c221d2217e0751310f53dbcb7a5410f760bb40984162f4393962bbcc27a0d389"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/statute/2026-10-06-w6-income-tax-legislation-az.json",
+      "sha256": "e06aa884c4031a6ecbe434b34a294c3cfd15d442551a0cbeaccd1f158d7bde91"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/statute/2026-10-06-w6-income-tax-legislation-az.jsonl",
+      "sha256": "7953bd703fe5d52aaeb5422057901e6dbfb30732888ff3fa8bf84855449eb9dc"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-10-06-w6-income-tax-legislation-az/official-documents/us-az-w6-bills-57leg-2r-hb4168-house-engrossed.pdf",
+      "sha256": "5813e61f2c1b1473b152154e4374c4808ff62cd29434c2f340d70c98ce99155f"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-10-06-w6-income-tax-legislation-az/official-documents/us-az-w6-session-laws-2023-chapter-147-pdf.pdf",
+      "sha256": "de33184ea670e01848ea473e8962496da4a7a50caf4bba748fcb1b86bb55f586"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-10-06-w6-income-tax-legislation-az/official-documents/us-az-w6-session-laws-2023-chapter-147.html",
+      "sha256": "f3476f79cfa80c3f96d40eb5752d30fa8831384d5526338f1383e72c54b82f9d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:48:56.072585+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7ePdaPXptl0ehejLupbn8hlXAiwMvQ+bRnjKqw9j6ECO3E0NBG7JMrepvbY6Wl7B2F+xCjT5XHtZe5y5EyQhAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-legislation-az"
+}

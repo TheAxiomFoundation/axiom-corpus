@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/statute/2026-10-06-w6-income-tax-statute-nj-us-nj-title-54.json",
+      "sha256": "7eacb04ffd5fd63bca815b0c8b29d5270d1a9ec20869173958858845a077d919"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/statute/2026-10-06-w6-income-tax-statute-nj-us-nj-title-54.json",
+      "sha256": "d1e23ce35b99e77abe768ca2bba1c20518be273b7308cf106857b047c830b7be"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/statute/2026-10-06-w6-income-tax-statute-nj-us-nj-title-54.jsonl",
+      "sha256": "faf105eea3c52527de5cb8e6c5d191651e3196050ba8c4c805d2c16ba6a32850"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-10-06-w6-income-tax-statute-nj-us-nj-title-54/new-jersey-statutes-text/STATUTES.TXT",
+      "sha256": "977ba7e2e9e50b3a115212b62d2a2c7fefa361fc7eb6be08bb1771485d45ab3b"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-10-06-w6-income-tax-statute-nj-us-nj-title-54/new-jersey-statutes-text-zip/STATUTES-TEXT.zip",
+      "sha256": "b8555ad548052e36ab0e9996405341385d6f12d7e9956bbd602b0a8e09905913"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2150,
+    "missing_count": 0,
+    "provision_count": 2150,
+    "source_count": 2150
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:56:11.975762+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "h7HbRS72mfzhN6ybW7ifnVp5BQU7OQqaxEPxcK4OMnNtvIV3rvWwvbtmHeOkwxFWmtHoBvS5/ejWX1kxOil5BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-nj-us-nj-title-54"
+}

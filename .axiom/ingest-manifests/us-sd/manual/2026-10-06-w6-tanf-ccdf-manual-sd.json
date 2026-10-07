@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/manual/2026-10-06-w6-tanf-ccdf-manual-sd.json",
+      "sha256": "5c904c8321a27fbe6b4e2df2b39abc6286cda58b6efa56187997e70bfc26bcb7"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/manual/2026-10-06-w6-tanf-ccdf-manual-sd.json",
+      "sha256": "11265c97a7b9912907653f0c7247157e4fb46eda317459f9c556496683db3eb9"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/manual/2026-10-06-w6-tanf-ccdf-manual-sd.jsonl",
+      "sha256": "b868a5ab19c1875a16abd8375a538a73520d7cc2c45cc9ca906fd1eaae5d1ddd"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-10-06-w6-tanf-ccdf-manual-sd/official-documents/us-sd-w6-dss-child-care-assistance-policy-manual-2026-08.pdf",
+      "sha256": "fcd369bb9f7a86d2793b8ab0108041c086ac5d89f2228155267284dcb8202400"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 56,
+    "missing_count": 0,
+    "provision_count": 56,
+    "source_count": 56
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:58:48.512136+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0BVXkBV4je36veXpEXyq0lp7LsJU09VNvwKGZ/+t/IZZ48g2Y9IkI+5J7AbWpE2Gskn6AxmE77RNcAjFcaS2DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-sd"
+}

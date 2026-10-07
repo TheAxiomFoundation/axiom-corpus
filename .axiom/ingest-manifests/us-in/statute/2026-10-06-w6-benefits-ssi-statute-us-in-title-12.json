@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/statute/2026-10-06-w6-benefits-ssi-statute-us-in-title-12.json",
+      "sha256": "fc875dbea9d748a315498b7bc5e6636efb04ecc96ad566e0eae18c54aef4be7b"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/statute/2026-10-06-w6-benefits-ssi-statute-us-in-title-12.json",
+      "sha256": "3132f19cc620234aa8a50ee5915c17ad17c2a8a5434edb27c3a9c77b775f3fe4"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/statute/2026-10-06-w6-benefits-ssi-statute-us-in-title-12.jsonl",
+      "sha256": "03b9606849aba7014af87b9d12b50cfc74eed888ad79fb3d1191ad38b89faf95"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-10-06-w6-benefits-ssi-statute-us-in-title-12/indiana-code-html/2026-Indiana-Code-html.zip",
+      "sha256": "bfbc5948f79e3b8c30cb8b49b8f96a5aca2c135682114af9904e92f8f34fb5c3"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-10-06-w6-benefits-ssi-statute-us-in-title-12/indiana-code-html/2026_Indiana_Code_HTML/12.html",
+      "sha256": "d957834c2ea6fa705d4f8505f34e8620cf3cc45e15b558723075507fb9b19351"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4070,
+    "missing_count": 0,
+    "provision_count": 4070,
+    "source_count": 4070
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:01.561767+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QJAa4K0678IVtdhE9XmjihiExZRydDGC2BZx8xeHZtcNXGzcKGhypYylTCxRK5vkBC+2nvxIP0tV5dx+P64zAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-ssi-statute-us-in-title-12"
+}

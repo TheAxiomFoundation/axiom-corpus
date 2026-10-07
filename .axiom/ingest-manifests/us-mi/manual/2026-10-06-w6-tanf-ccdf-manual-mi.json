@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi.json",
+      "sha256": "a71b224c4723579c6175d418393cffa3cfd6d0c1a460a7ea5e4209a9bcb0b170"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi.json",
+      "sha256": "bae80475de617d9775ccae519bb98233d977dd40767b6bb864692487df215987"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi.jsonl",
+      "sha256": "5c9791d07edb8d17fb51ef9bcfad79e185f6287c574fda844214e797dee64b68"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi/official-documents/us-mi-w6-mdhhs-bridges-rft-210.pdf",
+      "sha256": "8c8049b71e2a7f16338365afc654f5c2ea496b297f529230248b5a59d16bbe64"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-10-06-w6-tanf-ccdf-manual-mi/official-documents/us-mi-w6-mdhhs-bridges-rft-270.pdf",
+      "sha256": "6a2774bb143b9fe006378df61226cb5b781bab66501a70e8fe36a14ae67ee071"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:53:45.356791+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4syYLJQq5Bu2vo2ExhV9d3x302uTw9iDQiVHmlHJkxrwK4SDncUNsIY7DyinUfHUrJPkhFdAJWlPp9FZN/rtDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-mi"
+}

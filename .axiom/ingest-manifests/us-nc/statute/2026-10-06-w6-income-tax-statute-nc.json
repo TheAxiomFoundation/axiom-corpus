@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/statute/2026-10-06-w6-income-tax-statute-nc.json",
+      "sha256": "012ca2619b24d4bf9b59abba081c92f59d34808e439a2194e572fb49dab44fd3"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/statute/2026-10-06-w6-income-tax-statute-nc.json",
+      "sha256": "a51eb038a6a847c692eaa285c7ca0602105d8ef5758e42413c3f6b13babc8fe6"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/statute/2026-10-06-w6-income-tax-statute-nc.jsonl",
+      "sha256": "166ffc0fdc6abe40245cb412c9fb2b54afc025604e033d6cf682b98be0a80506"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-10-06-w6-income-tax-statute-nc/official-documents/us-nc-statute-105-105-153-10.html",
+      "sha256": "7718fcc62e736c77798d32b459610f7268a7c1e26945901cfb09e275bd4c5c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-10-06-w6-income-tax-statute-nc/official-documents/us-nc-statute-bills-2023-h259-bill-information.html",
+      "sha256": "9f5e0d97690a61f4d7eeb897f7c4955709bf400269879264924172d54b9e7aed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:55:15.254745+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NpMKpkQZryBisHXdMHXKMMux9CMmMODaQ+jszM/DIwXSUEpADVQV1OlqnPN5qbLbfoeKHyKD5stTin3VbHeOAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-nc"
+}

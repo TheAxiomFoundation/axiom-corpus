@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/form/2026-10-06-w6-income-tax-forms-mt.json",
+      "sha256": "dc4dd35b8ab6123921b004a30cae5f68f68591a1ccdc2a5ae5e140aa60398349"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/form/2026-10-06-w6-income-tax-forms-mt.json",
+      "sha256": "8075abe46d6b5a026ebcb1650f4e65c99ccdb15ec9f9c96340e762000115507f"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/form/2026-10-06-w6-income-tax-forms-mt.jsonl",
+      "sha256": "52d36f50108420fd10494b4507eaa0d5d68402ab4d7b4c95eeb0720d40762587"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2021-form-2-instructions.pdf",
+      "sha256": "464621ce2306850e0a8e41ab9a14be75df78eed4c8c03dacd21eff71e0c73f16"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2021-form-2.pdf",
+      "sha256": "e2e18a2808dc009e34f1cc7f89db334597566fe43a291aa931943328f36d3343"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2022-form-2-instructions.pdf",
+      "sha256": "5e79c2af4030d7aa53ff95a22e51dfa4bdb80004f475ec9f50f7fb0f5533bcf9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2022-form-2.pdf",
+      "sha256": "32a12d872702013fde7f0474a8f43e63fd414bc28135af9d1aaa8658bf6be396"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2022-form-2441-m.pdf",
+      "sha256": "4b7226e83127224ef6f3ced6d4d1f68da23b9c489dabc2e81508a58a7c7d4d9f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2023-form-2-instructions.pdf",
+      "sha256": "c8a173fae8e15909590b2ee8b8133411a24e84eeb25bf570bfceddba50d69cd1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2023-form-2.pdf",
+      "sha256": "13f2a0e05c0fa278305e316f1923cc1ac22ac9e6d59a542d6b12176e421d06da"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2024-form-2-instructions-rev-2024-12-03.pdf",
+      "sha256": "e226ab03a7d7b4db1b964a2d4641927e977cd8201e98b664853a92982e72e93d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2024-form-2-instructions.pdf",
+      "sha256": "a31a761150b7b092a688a00ebad3a1bb18a80a05143c097e8388d2f0d42440d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2024-form-2.pdf",
+      "sha256": "126be01d436a0b6e8c6fed36fdace36dbd5788df12431ae276d5cac01cfbdee6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-10-06-w6-income-tax-forms-mt/official-documents/us-mt-form-mtdor-ty2024-schedule-2ec.pdf",
+      "sha256": "584115c53f6bf3e9b508d34717265dd2d8a23dbbab0790966c469b051f9b0d91"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:54:50.871315+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "y/KBGXTIGpfu5veMPQpNuu5kwCsYzcpfM1A4V77/UzoIWpfEHW2J/Cs6nFw15x+0Pd/wXNYtMb+OYYlbLMURCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-mt"
+}

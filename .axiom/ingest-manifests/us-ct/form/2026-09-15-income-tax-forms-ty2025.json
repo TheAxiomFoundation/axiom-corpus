@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "9eaa59f9d44a588f692a60387e56aba9362db0c773825d0e97322f41d882b72f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "7caf312e9113a8a7b20aa6b62cccf02a3284fbb1d00c235790466987d9870e07"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "83af43f75edc45000e5001abcf89d54210f28c81cdf57e763a9399126d361bc3"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ct-drs-ct-1040-instructions-ty2025.pdf",
+      "sha256": "0e2cabf0fd48b9fa86d926adfb9e3c6dad3cbf17badfcf11321d8e4bceb24386"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ct-drs-ct-1040-tcs-ty2025.pdf",
+      "sha256": "d09ac1fdea41cfb0b2ac6fcac88046096d47c1632e2d09b5d7253d7d206503bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ct-drs-ct-1040-ty2025.pdf",
+      "sha256": "fadbe2acfd629a61c59266fd5d5f80cb0f717da556203b8cd73f6ae49d538b9b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:49:52.427069+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3CD33N9U8ovOdnWFfCJ8j+TfqjmHHjGv0G6Pv2CEl0IFnbHSoZw0jtoUEE0qz409eqLUWJx52kBVIJmph/DpDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

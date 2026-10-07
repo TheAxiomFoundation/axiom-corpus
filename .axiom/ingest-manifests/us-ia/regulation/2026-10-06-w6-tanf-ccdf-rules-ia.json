@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia.json",
+      "sha256": "5e6101b7e7e079c55250c3cbb0cdcd2fbacab21d96cbdbfb26f6a2eaad3cfec6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia.json",
+      "sha256": "1e825954f2db6be1e3cb7f145433d7870fd6812b7c4ccf62f2ee8f18da189a24"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia.jsonl",
+      "sha256": "1e47e890f2c46904cf193f19b03ee971d99330ee5762470ca7ad8bd5eb0c297f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia/official-documents/us-ia-w6-iac-441-170.pdf",
+      "sha256": "d00107199c16101f637664fda6b857dff35c65e3979b22f99165a94a51b8d8b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-10-06-w6-tanf-ccdf-rules-ia/official-documents/us-ia-w6-iac-441-41-edition-2026-01-07.pdf",
+      "sha256": "4d58f1a282f7de8cff3ad34adadca4f80bc32f37ceff1c9c03d65c743314199e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 65,
+    "missing_count": 0,
+    "provision_count": 65,
+    "source_count": 65
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:51:18.547286+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Yjd6NWLjCh3CM/2TM8Y08ym7pDXkt2/iQnTD9z2dC/MVu3CC6c3oyg8u3wnhh5bfWS2aHiQ8dK6yapSUA0TpBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-ia"
+}

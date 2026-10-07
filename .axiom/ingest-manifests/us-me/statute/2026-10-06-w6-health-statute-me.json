@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/statute/2026-10-06-w6-health-statute-me.json",
+      "sha256": "956b2eb5f86d54168c476a50bc87fffbc0102b71ea5cadcd44b3b7455be4f6ab"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/statute/2026-10-06-w6-health-statute-me.json",
+      "sha256": "f3a27c5ea8f9a8701d0e15f93b65373235005bd020c6ec4a1e3bc283c6c53d01"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/statute/2026-10-06-w6-health-statute-me.jsonl",
+      "sha256": "f24630c4ae92d668da78010c867dc9e086b15ce24b4089dc110c956ab33b3d36"
+    },
+    {
+      "path": "data/corpus/sources/us-me/statute/2026-10-06-w6-health-statute-me/official-documents/us-me-w6-health-22-3174-lll.html",
+      "sha256": "531b0ccd9b8d8ab0d09339091e42c3b3a7910531b2b7c7c0a303bbee4eb35b19"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:30.930415+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JjLk2K8O/1jHeyGl1IoA+xuicMV+qB6JXAXh4yHnMkZ2rcxWc49OIm/EXeRhxjDq40pF6AuyFA8N5BUN4XCLBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-statute-me"
+}

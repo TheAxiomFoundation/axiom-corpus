@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo.json",
+      "sha256": "678debabba8279b160af87e4abe3939e15a2be75f26bed8b7113b90c1a8f0a70"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo.json",
+      "sha256": "bd5f6440bf903baf524e119a092aa24cf62df0ab18e11351a2aad534c418aa5f"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo.jsonl",
+      "sha256": "6e1e485c6fa4167cf389b6150ccbf924812d2de3ffc8aff6ec674c354312513c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo/official-documents/us-mo-w6-dese-ccdf-2025-rates-held-harmless.xlsx",
+      "sha256": "3af55daccf099391fd20226511769c3a741d2e257e0145658fa3ff706452815b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo/official-documents/us-mo-w6-dese-ccdf-child-care-subsidy-payments.html",
+      "sha256": "20ef9a92f90926cd4590fbed4d3cbe004829c14d2643d0c40e8f1450c7c9c55c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/policy/2026-10-06-w6-tanf-ccdf-docs-mo/official-documents/us-mo-w6-dese-ccdf-income-eligibility-table-2025-10.pdf",
+      "sha256": "b30b27a1e5478ca5f12d9476fa69198acfc8471536fba2d295da29ecaa455fe3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:54:16.865283+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wSk52QDQVQJdNxkSdsssAG/a7ItSs5nvPl4mP4rdxi1kP8d3rXNkSSpk7m2WA6r0tQaZEgYmPcD3lmJxo0a9Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-mo"
+}

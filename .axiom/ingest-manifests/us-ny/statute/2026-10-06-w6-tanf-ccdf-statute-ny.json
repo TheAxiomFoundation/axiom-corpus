@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/statute/2026-10-06-w6-tanf-ccdf-statute-ny.json",
+      "sha256": "559ec6df12860203e94b6ce0445f5b3bd6a45ffcf57b16dc6ecf411acfdb4e39"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/statute/2026-10-06-w6-tanf-ccdf-statute-ny.json",
+      "sha256": "3c2f33a000cf87106ced6939e56f6b54f328e4b0c51acfc88e9bf9a88beee86c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/statute/2026-10-06-w6-tanf-ccdf-statute-ny.jsonl",
+      "sha256": "c5dfe817ae9d65b894d98a0d2a797140d4d29b3bcaa6349fd55c7e083084f3d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-tanf-ccdf-statute-ny/official-documents/us-ny-w6-sos-410-u.html",
+      "sha256": "9bdb9ec0324df4687b7626bfd837487f45676417448390be8aed350410fb4183"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-tanf-ccdf-statute-ny/official-documents/us-ny-w6-sos-410-w.html",
+      "sha256": "c050073be6cff8200eb5de199081c1dbed739e64632e40a0060a82f5155b38b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:56:52.057316+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QiW00kn3IaTzLIR+Wwm5Y8/T2fDYyB2UfDtH+xCDk4nCjv3/m0iM5bBKlJD0S/hVu1qm0uJqEmFbIGpI0C9iBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statute-ny"
+}

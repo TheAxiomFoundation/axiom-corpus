@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/guidance/2026-10-06-w6-benefits-guidance-al.json",
+      "sha256": "eab077eba5aae2b1165a2a2af3f61c280014235a6027756c5e193582ec42e59d"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/guidance/2026-10-06-w6-benefits-guidance-al.json",
+      "sha256": "f3efae5fc713453a03ac7ee87aafb7354dac6ee6140fe401a95e1020a52547be"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/guidance/2026-10-06-w6-benefits-guidance-al.jsonl",
+      "sha256": "1fa45780b5b7e427a9f76030835e8a98c6e24274de985c6a11dbac86ac1b28a6"
+    },
+    {
+      "path": "data/corpus/sources/us-al/guidance/2026-10-06-w6-benefits-guidance-al/official-documents/us-al-guidance-adol-uc-benefit-rights-and-responsibilities.pdf",
+      "sha256": "55be96ee25700b08fc56cb1dab5824ff9ca667f348552ec4c0fefc3adefc03d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:48:09.587099+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ptdwZvNz2jbKt1KWHoDF8izHeYSKyH0bFB+LvIypeSGPI0JUWIrz//siDBXvynv3BkK0WiQOH7x3e3PeZ+uBBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-al"
+}

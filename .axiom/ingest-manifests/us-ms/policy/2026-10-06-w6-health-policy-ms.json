@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/policy/2026-10-06-w6-health-policy-ms.json",
+      "sha256": "2eaa6806ce9aa1e2bd337a816935bb7592242b50076ee618732306234ed89321"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/policy/2026-10-06-w6-health-policy-ms.json",
+      "sha256": "368517e1a50d63c77c65434e2b47d868993c50b76816f0db8c0be6395123ac42"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/policy/2026-10-06-w6-health-policy-ms.jsonl",
+      "sha256": "f0a649fe66f31e2926c0e4fe476bcdd0605ea5a208e2bcd6500b6fd5e005f8b4"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/policy/2026-10-06-w6-health-policy-ms/official-documents/us-ms-w6-health-dom-healthier-mississippi-1115-extension-2024.pdf",
+      "sha256": "cb36c8e0a99738d6718d4a97be64f66a37f29a7bf6cb5d93d546d63b29c0ebc5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 44,
+    "missing_count": 0,
+    "provision_count": 44,
+    "source_count": 44
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:54:39.890045+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kV+DNAzeMp/CjFe884THL43BQ89vBSeWyc1qFPjKewQDLfC175E8HF2ktQx4e8oRKqgM/s657J4rWgauedPYBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-policy-ms"
+}

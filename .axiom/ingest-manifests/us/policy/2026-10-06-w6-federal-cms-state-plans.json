@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/policy/2026-10-06-w6-federal-cms-state-plans.json",
+      "sha256": "f2c770b0fd873e6c12a8b6db7ce2c55b3bad81de90d7fd0072ec8bd15f3cf76f"
+    },
+    {
+      "path": "data/corpus/inventory/us/policy/2026-10-06-w6-federal-cms-state-plans.json",
+      "sha256": "815e706a1a97bab2d8705d060bf93f6fbe5b0213b77c1c8f66167ac62d99c61b"
+    },
+    {
+      "path": "data/corpus/provisions/us/policy/2026-10-06-w6-federal-cms-state-plans.jsonl",
+      "sha256": "48cceba2a05984632a96e8521988091577bb0e2f0d10d171c334bfb081ae97de"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-chip-spa-ca-ca-chipspa-20.pdf",
+      "sha256": "d4dc7c7d342f0695983643679f0c7fa5c7fa22819ab5a710a37aaa20cbc03ab0"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-medicaid-spa-ga-ga-18-0004.pdf",
+      "sha256": "4d74ae7fd8f6f64d80a8ff0fdb9bd2317557742da7fb1b8a61353911d3912652"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-medicaid-spa-ga-ga-19-0010.pdf",
+      "sha256": "ccddeb37a8e01d0e629fa539c1fb67c3912d9f3a86f2511e009730bea487037b"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-medicaid-spa-la-la-14-04.pdf",
+      "sha256": "f4c65d351a5d5cb513bd6f73b50a0216497ef6d3861ca0a865d81bb7424fdab0"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-medicaid-spa-mt-mt-24-0002.pdf",
+      "sha256": "0278e0a15e94992bb31401b34daee7994373e9b6cfc4c9a2993276e7368fdb04"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-medicaid-spa-ri-ri-22-0024.pdf",
+      "sha256": "378a54e772ac213a16547fa346cbc13c8cbd3be7cd54c180db7701a8b583b752"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-section-1115-ar-arkansas-works-annual-report-2018.pdf",
+      "sha256": "4c4c8db591aba2995b22f29cf6e1b01bb9e8416fd6eff4f2dd0127aeaaed3036"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-section-1115-ar-arkansas-works.html",
+      "sha256": "f60255000433861b9324c0e9e867392ca001905d03495fe9ed64c28b19c1ab9f"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-section-1115-in-healthy-indiana-plan-approval-2023-03-21.pdf",
+      "sha256": "477786bc7de6b97f40dceff72ddb5f09c977281915c1404264988c3a56defff3"
+    },
+    {
+      "path": "data/corpus/sources/us/policy/2026-10-06-w6-federal-cms-state-plans/official-documents/cms-section-1115-mi-healthy-michigan-waiver-amendment-request-2013-11-08.pdf",
+      "sha256": "9159d4663b73f72f79c04e30937e44a647bb4c76a6dc767b254cb9ef137eb3c8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-federal.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 654,
+    "missing_count": 0,
+    "provision_count": 654,
+    "source_count": 654
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:47:13.321715+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "w1bVK/YV8iBOh8bZs64yS/zpCycu9TiZdL9zQ1MQ4e/xk8xydjx1pWLOSoADgo3m9tDRDPYkoAeg5GOFTFXJBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-federal-cms-state-plans"
+}

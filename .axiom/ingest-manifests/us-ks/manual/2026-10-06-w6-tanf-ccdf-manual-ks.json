@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks.json",
+      "sha256": "3829a0020d8f5c2f6199dff975a4ddcef829c05bbb14a17630674ef545d603bf"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks.json",
+      "sha256": "f6fc6b04a8a8dc495fb8470d8d37c312c0000500919e258f042eefd0540df23c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks.jsonl",
+      "sha256": "b87f6987793f97a139e131a89192b300e12c83b39599f826989fc53a5b2c36a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks/official-documents/us-ks-w6-dcf-keesm-appendix-c-18-provider-rate-chart.pdf",
+      "sha256": "419cf25d23f5e2783b0553c412c18295811d5b327d701f65594e34971ef712a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks/official-documents/us-ks-w6-dcf-keesm-appendix-f-1-monthly-family-income-and-family-share-deduction-schedule.pdf",
+      "sha256": "e36d3a0ebbc2f2abc91dbfb092261b5316bfbbba753a470054d0d3e4ee230ceb"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks/official-documents/us-ks-w6-dcf-keesm-appendix-f-4-taf-table-07-11.pdf",
+      "sha256": "b59faeeae2d610f55ae405661f1f1f131fcb8c539f9cd264d66c5b9e300acf51"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks/official-documents/us-ks-w6-dcf-keesm-implementation-memo-2008-03-26-taf-earned-income-disregard.html",
+      "sha256": "d2718beb4ea324d9e90c7a72b4d383e67c5845e86f1f185b3e5d63f26d3e3c96"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks/official-documents/us-ks-w6-dcf-keesm-implementation-memo-2021-07-01-increase-to-250-percent.html",
+      "sha256": "30144c82c2da1295faf323130488b6822bb10610fccab843b78a0969f184581b"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-10-06-w6-tanf-ccdf-manual-ks/official-documents/us-ks-w6-dcf-keesm-implementation-memo-2026-05-01-ccfpl-increase.html",
+      "sha256": "525023ca6d1bd733e0e4d436b271b7d708b559513ab969a243108944fab3ae4e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:52:12.911526+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OfHPhx8Qx4GU2iSWsjWcU86A5+Za6W24xUyawJqZJ2xuo/kcokNMB4FZIONrJbWBeuBlocv1vxFz6RCVD5xoAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-ks"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/statute/2026-10-06-w6-income-tax-statute-ky.json",
+      "sha256": "fa172010f31ecc6b111cbf2c32354652c7f8a99b95523b493e256605d8a978d4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/statute/2026-10-06-w6-income-tax-statute-ky.json",
+      "sha256": "3d6e6a281e9c421eeb4ae88ddd27bab1f504a134ccf21055e679e620d0f3269f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/statute/2026-10-06-w6-income-tax-statute-ky.jsonl",
+      "sha256": "b33ee59719fe2447366464a9dc29eda236faf719b03b2eb82819a9ded457123d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-10-06-w6-income-tax-statute-ky/official-documents/us-ky-statute-session-laws-2025-hb1-record.html",
+      "sha256": "c8169e24dd3506bbdfa1c8f98529585ff51be79e95fac3678d95605a7d8aabeb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-10-06-w6-income-tax-statute-ky/official-documents/us-ky-statute-session-laws-2025-hb1.pdf",
+      "sha256": "0c9b028e1603fbbeebd6d661a2ddb26d5797e6477573089115100190dcdf530b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:31.485041+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0ra7pOV5+b4GdCBlkvUtqvRjhQB7ZHsNe+LUk/xznx1t42CQyUdGlMrW8YBrocbZ9gNat4F1qHQxY9kdsxDPCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ky"
+}

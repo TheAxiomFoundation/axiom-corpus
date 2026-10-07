@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/guidance/2026-10-06-w6-benefits-guidance-hi.json",
+      "sha256": "1d6de05a1607e4f5c3b4f7f0152b91bf6ad49bab72d49ad9a767a2625c367335"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/guidance/2026-10-06-w6-benefits-guidance-hi.json",
+      "sha256": "ad2cdaf7c3a3916b32f50f7e2e8aa6b5871e9f8bf9ba2a496bd75a406cb86b70"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/guidance/2026-10-06-w6-benefits-guidance-hi.jsonl",
+      "sha256": "e95644e0f6f074d156d2b7190daef4bb74687f6a9fdd8ba9ea0b2aa07d8c4086"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/guidance/2026-10-06-w6-benefits-guidance-hi/official-documents/us-hi-guidance-dhs-changes-to-abawd-work-requirements-for-snap-faqs.html",
+      "sha256": "d05f49464405270a08461ff3cd15b42b1c336fc71b67490d6b6382bd9427b515"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/guidance/2026-10-06-w6-benefits-guidance-hi/official-documents/us-hi-guidance-dhs-federal-snap-work-requirement-changes-to-begin.html",
+      "sha256": "f68739685dbf8ebd0f8d93a7c2cfb22e35f2ad1ccf8cfdfa20e4776aee06b3ea"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:56.744420+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rwAlR2ltj97jRPuNvCZzMHhRJNLdifuXuLdI19MnSR38U13M825TZfDXzJo0dgtAJajs/an3sgwTk2MmaNHfCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-hi"
+}
