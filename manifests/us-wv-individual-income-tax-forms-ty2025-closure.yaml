@@ -1,0 +1,70 @@
+version: '2026-09-15'
+documents:
+- source_id: us-wv-tax-it-140-forms-and-instructions-ty2025
+  jurisdiction: us-wv
+  document_class: form
+  title: 2025 West Virginia Personal Income Tax Forms and Instructions (IT-140 booklet)
+  source_url: https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-wv/form/tax/ty2025/it-140-forms-and-instructions
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    document_subtype: booklet
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+      (read 2026-09-14)
+    page_count_at_research: 56
+    first_page_first_line: 2025 West Virginia Personal Income Tax Forms & Instructions
+    source_note: No standalone IT-140 form PDF is linked for 2025; the return form is inside this combined booklet.
+- source_id: us-wv-tax-it-140-tax-table-ty2025
+  jurisdiction: us-wv
+  document_class: form
+  title: 2025 West Virginia Tax Table
+  source_url: https://tax.wv.gov/Documents/PIT/2025/it140.TaxTable.2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-wv/form/tax/ty2025/it-140-tax-table
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+      (read 2026-09-14)
+    page_count_at_research: 5
+    first_page_first_line: 2025 WEST VIRGINIA TAX TABLE
+- source_id: us-wv-tax-it-140-tax-rate-schedules-ty2025
+  jurisdiction: us-wv
+  document_class: form
+  title: 2025 West Virginia Tax Rate Schedules
+  source_url: https://tax.wv.gov/Documents/PIT/2025/it140.TaxRateSchedules.2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-wv/form/tax/ty2025/it-140-tax-rate-schedules
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+      (read 2026-09-14)
+    page_count_at_research: 1
+    first_page_first_line: 2025 TAX RATE SCHEDULES RATE SCHEDULE I
