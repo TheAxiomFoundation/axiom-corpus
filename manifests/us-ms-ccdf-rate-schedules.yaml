@@ -1,0 +1,26 @@
+version: 2026-09-15-ccdf-rate-schedules
+documents:
+- source_id: us-ms-ccdf-rate-schedule-ccpp-copayment-fee-scale-2021-11-01
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi: Child Care Payment Program Family Co-Pay Fee Scale (Table 1), effective November 1, 2021'
+  source_url: https://www.mdhs.ms.gov/wp-content/uploads/2021/11/Copay-Table-Update-11_01_21.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2021-11-01'
+  citation_path: us-ms/policy/ccdf/rate-schedules/ccpp-copayment-fee-scale-2021-11-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Human Services, Division of Early Childhood Care and Development (Child Care
+      Payment Program)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://www.mdhs.ms.gov/eccd/parents/pay/
+    source_discovery_group: us-ms/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.mdhs.ms.gov/eccd/parents/pay/
+    closure_elements:
+    - ccdf-s30
+    source_note: linked as 'Co-payment Fee Scale' from the ECCD Child Care Co-Payments page (one hop from the Reports and
+      Archives index); the current schedule the page presents

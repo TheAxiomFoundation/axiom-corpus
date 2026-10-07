@@ -1,0 +1,28 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-me-ocfs-ccap-rules-10-148-cmr-chapter-6
+  jurisdiction: us-me
+  document_class: regulation
+  title: Maine Child Care Affordability Program (CCAP) Rules, 10-148 CMR Chapter 6
+  source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/CCAP%20Full%20Rule%208.18.2025_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-08-18'
+  citation_path: us-me/regulation/dhhs/ocfs/10-148-cmr-chapter-6
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office of Child and Family Services
+    document_subtype: administrative_rules
+    program: CCDF
+    state_program: Child Care Affordability Program (CCAP)
+    federal_program: CCDF
+    manual_landing_page: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    source_discovery_group: us-me/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    closure_elements:
+    - ccdf-s29
+    source_last_modified: '2025-08-18'
+    extraction_granularity: pdf_page
+    official_listing_title: Link to CCAP Rules (PDF)
+    rule_chapter: 10-148 C.M.R. Chapter 6
+    expression_date_note: the file name carries the 8.18.2025 adoption date and the HTTP Last-Modified is the same day
