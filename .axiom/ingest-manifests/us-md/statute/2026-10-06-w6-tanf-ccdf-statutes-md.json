@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-10-06-w6-tanf-ccdf-statutes-md.json",
+      "sha256": "79d9841fa560e3897c049def27f759105a72e2ead3252b749c36b4c10811baf8"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-10-06-w6-tanf-ccdf-statutes-md.json",
+      "sha256": "815e4a21e00879e61d742fff4906204e4681b0812f9909f0e60383b6975ee0f0"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-10-06-w6-tanf-ccdf-statutes-md.jsonl",
+      "sha256": "b83138240ee34330789bfe2d7afe7f52fd59240cdfdd1fac1defb3489ad1aa93"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-tanf-ccdf-statutes-md/official-documents/us-md-w6-session-laws-2022-chapter-525.pdf",
+      "sha256": "c9f1f8b0860a4e0c187f0febab067a6d134396d198e890bb21742d5f237b76cf"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-tanf-ccdf-statutes-md/official-documents/us-md-w6-session-laws-2024-chapter-717.pdf",
+      "sha256": "89869390a82d6b1bcba7c462595c4a5f0f5c2a58657a5e90d2602eaaea17f5a4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 111,
+    "missing_count": 0,
+    "provision_count": 111,
+    "source_count": 111
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:16.363629+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+2dVkT2GTE/EOQ+zIB9N6RzRBzc2Q4it6xuD7Xt5CtwbaSzZV72D463dEyc6VipvkDqqg4fK3tbw0Qc3yCTrBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-md"
+}

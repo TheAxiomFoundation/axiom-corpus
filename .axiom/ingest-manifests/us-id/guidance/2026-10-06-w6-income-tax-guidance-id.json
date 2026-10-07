@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/guidance/2026-10-06-w6-income-tax-guidance-id.json",
+      "sha256": "7163c6c772f26cd3931dd2f38695f8e717db7e2ee6cc126181ba9d56c3ea52f2"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/guidance/2026-10-06-w6-income-tax-guidance-id.json",
+      "sha256": "7cece94342e3d6ca90d5542f6a1e4394df714b04892dcecc3eb149a45421e3a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/guidance/2026-10-06-w6-income-tax-guidance-id.jsonl",
+      "sha256": "98f4522ac70c53c21483adea0b9f7354c4be30b968fea75044319f2df63af1c3"
+    },
+    {
+      "path": "data/corpus/sources/us-id/guidance/2026-10-06-w6-income-tax-guidance-id/official-documents/us-id-guidance-istc-ideal-college-savings-program.html",
+      "sha256": "28efd7746b767ca1120e21ae78af5cf49db59a96608acd0774fb07e28dbe70cb"
+    },
+    {
+      "path": "data/corpus/sources/us-id/guidance/2026-10-06-w6-income-tax-guidance-id/official-documents/us-id-guidance-istc-irc-conformity.html",
+      "sha256": "13fe07085f58437d8ac777632f4760bba438e90107350486259d509dd4c7a374"
+    },
+    {
+      "path": "data/corpus/sources/us-id/guidance/2026-10-06-w6-income-tax-guidance-id/official-documents/us-id-guidance-istc-press-releases-2026-02-17-filing-2025-income-taxes-conformity.html",
+      "sha256": "88b6f9ed5b60f6dfaeec49ec79cc4f4abd2778fdfaf68a5a36ce36b4f781d506"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 30,
+    "missing_count": 0,
+    "provision_count": 30,
+    "source_count": 30
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:51:24.192179+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "w5BVav1j9lQG19P3TCBRhH2Xj8Afby0nPs90ocJhFAY6Np+Dn7mQuqYyMz1crQ8WBfIB+duSlLSnIeWswxrJDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-id"
+}

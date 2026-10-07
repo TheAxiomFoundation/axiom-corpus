@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa.json",
+      "sha256": "bce81a35a1081573e73238100f08f30163d8f34bbfccbdf4163841a35cbef51f"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa.json",
+      "sha256": "d0f97542241ca266f7f83dba651014dda66fb766a628c182e349ab364b619f04"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa.jsonl",
+      "sha256": "32abe8ce0ca9cd02229d56336eae460086e07572456a972a9072eba404e7c8e6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa/official-documents/us-pa-guidance-department-of-revenue-child-and-dependent-care-credit.html",
+      "sha256": "2ae454e353a6a8df8c3d0b36077debcc85c3c6e02de30728ccec81804b68bddb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa/official-documents/us-pa-guidance-department-of-revenue-pit-guide-gross-compensation.pdf",
+      "sha256": "0cb9a3850bb8687277849997dbb77b11652f201476980cfc3d5da33c920736af"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa/official-documents/us-pa-guidance-department-of-revenue-pit-guide-tax-forgiveness.pdf",
+      "sha256": "7a60405ead87e2ddffed94c1b004d6c9e69387592be281b63f9de45e8189bfa1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa/official-documents/us-pa-guidance-department-of-revenue-pit-guide-web-gross-compensation.html",
+      "sha256": "efcefd2d316955ac1d7721ef20b449a444804783b4a660afd4adc0c399835b87"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-income-tax-guidance-pa/official-documents/us-pa-guidance-pa-treasury-pa-529-faqs.html",
+      "sha256": "6bb1288b54c525b14ea183bfa3a8934ea7071725d8b7b339161f96d97ffd087f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 113,
+    "missing_count": 0,
+    "provision_count": 113,
+    "source_count": 113
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:53.261800+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bMDNjz3Rx5iepSwhlFxBac6bgpQ71OmdVBot/JA8nzAxDbg6opzJfx/u/K+T0rZ3RSC/nrrTkCle/M8FPhPrAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-pa"
+}

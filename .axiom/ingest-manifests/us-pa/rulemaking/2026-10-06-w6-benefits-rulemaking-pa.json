@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/rulemaking/2026-10-06-w6-benefits-rulemaking-pa.json",
+      "sha256": "e0e43c6850405f00633d003dbcd3ca1c0093f40f0a97ab98ec1a8d5b992bd299"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/rulemaking/2026-10-06-w6-benefits-rulemaking-pa.json",
+      "sha256": "e30f61d221588f1c8e4a268e42d1d3823c511a49c637d3d5a56a5442e534bee8"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/rulemaking/2026-10-06-w6-benefits-rulemaking-pa.jsonl",
+      "sha256": "763f264910a193a49957818cb169c8238ea9ccdeca56f959a670248eebe40c12"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/rulemaking/2026-10-06-w6-benefits-rulemaking-pa/official-documents/us-pa-rulemaking-pa-bulletin-54-24-1863.html",
+      "sha256": "f7a667ada34940938940d08d13fab2311ec21faa64dd50ea16d0e2f282ff1255"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T17:58:01.774666+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ljkklp/1xU1UYNw0fCNIaWVAIDF6iPe2o2BDkLPLMlBi0jviLF4a0qmPS26gqYPs4euS2/nWBrDprbV5yJqoBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-rulemaking-pa"
+}

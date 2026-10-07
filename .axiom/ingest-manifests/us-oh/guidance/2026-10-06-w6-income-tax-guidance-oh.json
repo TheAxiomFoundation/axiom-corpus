@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/guidance/2026-10-06-w6-income-tax-guidance-oh.json",
+      "sha256": "71a94477416217dd03e10aec5b7f89e53b0fc2d9d1e33d1387289e0c2630bb6d"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/guidance/2026-10-06-w6-income-tax-guidance-oh.json",
+      "sha256": "9f0002a61961e2a378c2b509f5fe1bffd0c91b6bcc139fa63f22c363a9d6e9f2"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/guidance/2026-10-06-w6-income-tax-guidance-oh.jsonl",
+      "sha256": "ce63f7a7155d8d234ff6d1f8166504bab1617b69fd77d3888bb618fc9221ae8f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-10-06-w6-income-tax-guidance-oh/official-documents/us-oh-guidance-odt-faq-income-individual-credits.html",
+      "sha256": "f56e27de85c91944239632bafaff51dcc6b312ce3672c367f70b1c08c339764e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-10-06-w6-income-tax-guidance-oh/official-documents/us-oh-guidance-odt-individual-income-tax-ohio-publication.pdf",
+      "sha256": "b83aa8d1c8d97665071c574a1766f2f92de3e255bfb7677beca2dab82651aabf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:58.067955+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tTALlaNxQMH55FbxyZj+NdcCSelDXz3trG6R6RV9gT5SWmUO2TmSaDof6fxP1NrvRcQS0Y8x9QVVvZKnD5VMAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-oh"
+}

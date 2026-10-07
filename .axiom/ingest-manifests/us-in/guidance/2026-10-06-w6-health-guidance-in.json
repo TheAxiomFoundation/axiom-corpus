@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/guidance/2026-10-06-w6-health-guidance-in.json",
+      "sha256": "f96ea1c988ea30ef1afd3bc6e2fc5cc384acd2468ffaa0a1beef8c9cd6a94733"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/guidance/2026-10-06-w6-health-guidance-in.json",
+      "sha256": "31d5ab469b559f01868fae270add36f840b0eb075bcf2eda1ff9333cda52fff5"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/guidance/2026-10-06-w6-health-guidance-in.jsonl",
+      "sha256": "9b516bc560426cfdf1045a5f1a5606b6e39489e6c45e107ac2d0b896dc0b1470"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-health-guidance-in/official-documents/us-in-w6-health-fssa-hhw-package-c-medworks-premium.html",
+      "sha256": "38fcae7f4562144545bf76d3d5d85c4ed5bbd260a497e5176106dfe3c56aaf04"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-health-guidance-in/official-documents/us-in-w6-health-fssa-hip-power-accounts.html",
+      "sha256": "33d77f32ba66992b311a6de6e9b531e07d634ed0251267d7fc7e04d5499b0662"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-health-guidance-in/official-documents/us-in-w6-health-fssa-residential-care-assistance-program.html",
+      "sha256": "d1902ccb791b4ee4b74795f10e777801426d7e67420dd794ff40fbb1d4799d2a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:51:48.778432+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gxi7pborQKlsRJgcaxJ4sfYt24laSggHEduUzO3reaslQ1FQkgwsNpxGmlJlV0YirG6KFr0WqmT74z2YV6RWAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-in"
+}

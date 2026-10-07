@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa.json",
+      "sha256": "634000924c67aa7dd7f30410a6dde9d14934b2d81bfb91c04128f6853acc134b"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa.json",
+      "sha256": "1fd28b30bfc5f0c1e450412bdb587ded20a87a9d7056a6188f66fe3b12e32f4d"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa.jsonl",
+      "sha256": "926926c755eb8ea41eb1baa864b8107e380c6397f2ee20f82e528542c5307057"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-43-43-216-43-216-135.html",
+      "sha256": "ac543b74eb6d5b67e137627f6b4c6fafbf7a4b4749d1353464b9f466106f8d9e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-43-43-216-43-216-802.html",
+      "sha256": "3a83323d32ba0da7a693053948b8d6e99c7ea8a4200968f37b57b9e006e57fbe"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-43-43-216-43-216-814.html",
+      "sha256": "798515322d161794ab9c0323b2cd0796393807891f998a918587f136c7e749cd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-74-74-04-74-04-005.html",
+      "sha256": "ecb8121bc220a3c869ba709fa1a9b954cab02617d434e2b994f07397959d7e8d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-74-74-08a-74-08a-230.html",
+      "sha256": "f90033992a0be23cc44e7b678418a2c3e312eded955a46bfbd0b7e28392d21b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-session-laws-2018-chapter-40.pdf",
+      "sha256": "dd5b058140be7ab88db27b477d03a04db6599ed9c9bc8d3b157021db09be0321"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-tanf-ccdf-statute-wa/official-documents/us-wa-w6-session-laws-2023-chapter-418.pdf",
+      "sha256": "a4d18a6a9dab67bdd073f85947c0408978f2ed9aefdec12d57d7062b4f2fc8b0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 31,
+    "missing_count": 0,
+    "provision_count": 31,
+    "source_count": 31
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:00:39.260633+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "syFITojMwWmr6bzKGpBH5h6vKNE04z5R9hZyMJqSzUBNHAf44fo60Y58L829Z1hTuveN0OiifUibQrgGKxrKDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statute-wa"
+}

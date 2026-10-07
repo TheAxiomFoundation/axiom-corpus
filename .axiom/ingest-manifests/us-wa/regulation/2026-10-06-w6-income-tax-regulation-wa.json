@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/regulation/2026-10-06-w6-income-tax-regulation-wa.json",
+      "sha256": "3216ba09995347043982026d7275b2f84b68772dee11366e4f419b0b10e3c04f"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/regulation/2026-10-06-w6-income-tax-regulation-wa.json",
+      "sha256": "7ed37ef2c4e7f2cd83e2d58b01ffb52201c93e24dc12da07ab7f4f04202fa2a4"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/regulation/2026-10-06-w6-income-tax-regulation-wa.jsonl",
+      "sha256": "154c0aa70d484f2f5a368966f4fc4aa357fc5af39f1016283d67c1860b6669ac"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-10-06-w6-income-tax-regulation-wa/official-documents/us-wa-regulation-458-458-20-458-20-285.html",
+      "sha256": "b353ecd4600369e801cc3f6d5c92be7cd52c4b6cd82198f3c36369dcac82775b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T18:00:26.471149+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iH5ULGaBkwrewiu7Vu6a8KyIq6X0LItB3utelhP/Pit/I0wjKgC8NDERFoLxkiZA/bHgsYTI13WhP9Kt3xK5BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-regulation-wa"
+}

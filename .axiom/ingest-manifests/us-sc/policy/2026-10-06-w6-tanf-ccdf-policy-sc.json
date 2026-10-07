@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/policy/2026-10-06-w6-tanf-ccdf-policy-sc.json",
+      "sha256": "03da52d163fc24d186fad335c2390976d35f7146dffcb3c5ce5bd4a19022e9e2"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/policy/2026-10-06-w6-tanf-ccdf-policy-sc.json",
+      "sha256": "7a300102598358c38386bdeb039eb825ff4572fac35b9190a3ab633313d19010"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/policy/2026-10-06-w6-tanf-ccdf-policy-sc.jsonl",
+      "sha256": "137101b9b4599543fb52fe358d8eafaa99d4c09dea23d7bd9a645038a7bba26e"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-10-06-w6-tanf-ccdf-policy-sc/official-documents/us-sc-w6-ccdf-rate-schedules-scholarship-fee-scale-2023-2024.pdf",
+      "sha256": "bac699e7dc7a26001a453fd84c194330576f016b828621c3260c30bdd17ef5b6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:58:37.612888+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OlbI2PQkt3hg0D1pPp+JJGHNVQ0UohV4syD9JjT1blgzpjbyRkKvCFe3A8zeJNwAYUVkzmS5Re3RyB48ByHqAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-sc"
+}

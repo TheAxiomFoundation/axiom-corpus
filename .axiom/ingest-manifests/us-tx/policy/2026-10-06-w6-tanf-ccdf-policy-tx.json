@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx.json",
+      "sha256": "8632485ce5804e224b2a6e26a80c483d0a85b07561a9795d33a7459c8aab4480"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx.json",
+      "sha256": "908d110c4f779cad97ffb5ba5908140d5b35270065df90e2ea6643e99ebe4e32"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx.jsonl",
+      "sha256": "060f8c1e301de2dfce1f91dff274196900a23177bcfb6df0a258c467d1e35485"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx/official-documents/us-tx-w6-ccdf-rate-schedules-board-max-provider-payment-rates-bcy2025.pdf",
+      "sha256": "3336141111fde364f6be60e0207497ad5c6493fc53d8eb28dae603c780b6f1c4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx/official-documents/us-tx-w6-ccdf-rate-schedules-board-max-provider-payment-rates-bcy2026.pdf",
+      "sha256": "35e892a34ee0fe536181f6e1f1491051353c05ee4a7e559b1fabdee913c8edc8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx/official-documents/us-tx-w6-ccdf-rate-schedules-psoc-sliding-fee-scale-bcy2025.pdf",
+      "sha256": "1b842ff06fbe63150ce6a6e60c52f20ac28b6f311eac9a054e8ec8fa763d5ed9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/policy/2026-10-06-w6-tanf-ccdf-policy-tx/official-documents/us-tx-w6-ccdf-rate-schedules-psoc-sliding-fee-scale-bcy2026.pdf",
+      "sha256": "48aba41f89ac497e0a914c2cc21a913400576d786f9e02b2242af7ad395249fa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:59:06.068819+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BTPpj1GK+icFfgZmPCUDBnCwb+mMtO/QGVajN+gm+58XzqOIhaeVlE3mqY4bPJQ+bTULCjRQvU0fgwNrfQT8DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-tx"
+}

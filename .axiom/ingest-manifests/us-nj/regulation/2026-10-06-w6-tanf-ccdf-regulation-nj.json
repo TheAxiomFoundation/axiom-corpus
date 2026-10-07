@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj.json",
+      "sha256": "3f34174983d4026684cbb07d6067f94a9a3e708ac57866e9009a29182f819193"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj.json",
+      "sha256": "26a0b83a078a2153f724ed43d7161d8ca8442b20f3054c4fefc3e6af10e5d60e"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj.jsonl",
+      "sha256": "f74cc780c725dc8798e2fcade161590395c4702bddaebc92701dabff2e71a45f"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/regulation/2026-10-06-w6-tanf-ccdf-regulation-nj/official-documents/us-nj-w6-njac-10-15.pdf",
+      "sha256": "581c76c2ca8bac09a8fb08975fe26689804bd7159e95ea0a0c9c2e3b5c6117ae"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 55,
+    "missing_count": 0,
+    "provision_count": 55,
+    "source_count": 55
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:56:07.886990+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JwAE+ACVbwhbMLqYMDj/1fXY+3VaH+jHT/jYe0ssE9wyfoPQcs1nmrpFuh970ZrS8GF1wJ5ZNycpec2vKq0mDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-nj"
+}

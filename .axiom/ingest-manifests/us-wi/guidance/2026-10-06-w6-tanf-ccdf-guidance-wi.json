@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/guidance/2026-10-06-w6-tanf-ccdf-guidance-wi.json",
+      "sha256": "cf7b2ee3126e30f8bf1776c43f093d70577a260e26472418221a5425220a3895"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/guidance/2026-10-06-w6-tanf-ccdf-guidance-wi.json",
+      "sha256": "5c44d1aa2e93c4247e59ca6bca195b570718faecee6ffbfc1ca40cc4f3edd707"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/guidance/2026-10-06-w6-tanf-ccdf-guidance-wi.jsonl",
+      "sha256": "6441672acca148bc16beb7bf29df96fce0b1d3f756b9c731e5a304b1bcb1a4f9"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/guidance/2026-10-06-w6-tanf-ccdf-guidance-wi/official-documents/us-wi-w6-lfb-2025-27-budget-paper-211.pdf",
+      "sha256": "7675970f6b68cbc57ab010e79335e412aa45ea7e61943a4edf17f470b7aef6d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T18:00:49.940276+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wemgjmBY/xxc//hABY8JiLYH9XRTrDZGQTQ2a+vXvGZl+TonvMWxuSdR52QQtqrZ4Vht3Hl4rvqkYhBZNhp5Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-wi"
+}

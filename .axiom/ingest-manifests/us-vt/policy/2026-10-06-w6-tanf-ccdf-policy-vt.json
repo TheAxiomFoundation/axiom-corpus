@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/policy/2026-10-06-w6-tanf-ccdf-policy-vt.json",
+      "sha256": "5d2ac092aebecbc32b942cea5088bc96223ced1f23a10b4e668e267e130449ad"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/policy/2026-10-06-w6-tanf-ccdf-policy-vt.json",
+      "sha256": "10244fef3afabfbbfdbd0ffd40b23e5a40801163dc99b923594160d6b88fc674"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/policy/2026-10-06-w6-tanf-ccdf-policy-vt.jsonl",
+      "sha256": "4084f0ab31de8c09e65517d67119dbbd741efd340211f09b3ebaa2076e0da1e2"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/policy/2026-10-06-w6-tanf-ccdf-policy-vt/official-documents/us-vt-w6-ccdf-rate-schedules-ccfap-income-guidelines-2024-10-06.pdf",
+      "sha256": "d8c84da63200539722d7436e99c3d38fb0e58bba948c3844972bf683d333b1f7"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/policy/2026-10-06-w6-tanf-ccdf-policy-vt/official-documents/us-vt-w6-ccdf-rate-schedules-ccfap-rates-per-act-76.pdf",
+      "sha256": "6dd3bd5f9dab3ca60524b6490205f812c03d0c16fd88951749ccd50bf4020caf"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/policy/2026-10-06-w6-tanf-ccdf-policy-vt/official-documents/us-vt-w6-ccdf-rate-schedules-ccfap-state-rates-2024-06-30.pdf",
+      "sha256": "084cec6a607b504afbd7d5d7a2450106460fc23172863ab245cd34b919e2e045"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T18:00:01.709312+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IZr1U6Yxq1pmgFTsRb6uj6fw6b5BkF7ctjGAUuFnxYqqbZ0b0H5Bg0pB6+KxAMx8m8UpiGg4yC0rwteYhWZrDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-vt"
+}

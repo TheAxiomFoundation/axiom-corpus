@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/guidance/2026-10-06-w6-income-tax-guidance-de.json",
+      "sha256": "f2947c7ab5aa2fc65beeed73663cb59cb2b9ba3644899f95dc652b44c1fd8e14"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/guidance/2026-10-06-w6-income-tax-guidance-de.json",
+      "sha256": "91e887c1fdba88916c41249dc38544aabf76b283eb51f8931b02c115652aead4"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/guidance/2026-10-06-w6-income-tax-guidance-de.jsonl",
+      "sha256": "9237a02f058a9edea6d4265fa619e1c5f223d57a8f2b92d777971e1f690b1ec5"
+    },
+    {
+      "path": "data/corpus/sources/us-de/guidance/2026-10-06-w6-income-tax-guidance-de/official-documents/us-de-w6-dor-tax-rate-changes.html",
+      "sha256": "7f2511a011d17e67f797ae510f6343ba4d6d7a3a1fb6f959036ae1668f987c8f"
+    },
+    {
+      "path": "data/corpus/sources/us-de/guidance/2026-10-06-w6-income-tax-guidance-de/official-documents/us-de-w6-general-assembly-bill-detail-99311.html",
+      "sha256": "0207544ba9f30c91827f892d2d17a1b902150228f1f2447ab7b23a83afb7c6fe"
+    },
+    {
+      "path": "data/corpus/sources/us-de/guidance/2026-10-06-w6-income-tax-guidance-de/official-documents/us-de-w6-news-2022-06-30-hb145.html",
+      "sha256": "574ce8d1e0f481258a1433236e4d331750ff7f6e9a74dc68b49e668afb440376"
+    },
+    {
+      "path": "data/corpus/sources/us-de/guidance/2026-10-06-w6-income-tax-guidance-de/official-documents/us-de-w6-treasurer-education-savings-plan.html",
+      "sha256": "dfd58707782ff987f6120d50cc296aa08cec460885c0c7e3084bdcf330fda673"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:26.166836+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "44pPl3ky1uVETHGjQUBJ7AoRmNWClxRr4Rd4e9YoA67fmk7Z9YNjRwSyTOrpUu2GKpff9AD7FH+t3FIu4eU1Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-de"
+}

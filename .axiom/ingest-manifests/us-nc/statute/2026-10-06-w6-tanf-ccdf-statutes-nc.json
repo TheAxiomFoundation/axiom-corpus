@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/statute/2026-10-06-w6-tanf-ccdf-statutes-nc.json",
+      "sha256": "12ddb238b3b9f2a6925604a3fc279c14728739dba45b6d3d798512a3f4e9e9e4"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/statute/2026-10-06-w6-tanf-ccdf-statutes-nc.json",
+      "sha256": "89699a0be9074c6738f545e94c1a3bc60341761352076c26c834fe1fb3ba5666"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/statute/2026-10-06-w6-tanf-ccdf-statutes-nc.jsonl",
+      "sha256": "5161a8a46a317ee464de4ae931d952aa689a62951bfd5055ea5a9542e3169b18"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-10-06-w6-tanf-ccdf-statutes-nc/official-documents/us-nc-w6-chapter-108a-108a-27-01.html",
+      "sha256": "a79b6235504ac31056133fe24e824ce38a3b75b044836e7f9a5ddbdd03ae4cc0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:55:17.204003+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1asErsnTfHmqif8ABpsCmMkE0eUvl6lrvAa7afUWIo+9g/ipkVTcuAHQtFdEUQYjEEy20jy11L2+/GOAzkuCCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-nc"
+}

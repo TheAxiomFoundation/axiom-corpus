@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/guidance/2026-10-06-w6-benefits-guidance-ct.json",
+      "sha256": "a3e0d6e3c5b96f7ab6c5d9fa00df79867386fd91f2e2c64b987549d7ade75a2c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/guidance/2026-10-06-w6-benefits-guidance-ct.json",
+      "sha256": "3a37b0a49d6657d2d383e1a4ea00f9332812d41115c877d2dff69792f657c446"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/guidance/2026-10-06-w6-benefits-guidance-ct.jsonl",
+      "sha256": "d7236ae25aeabf5be57f3f87fbb654ba41ec3259e8740498159e875a8bfb0e6f"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-benefits-guidance-ct/official-documents/us-ct-guidance-dss-program-standards-chart.pdf",
+      "sha256": "12dbb1fe551dcbcd3b054e6c16f369543aa92d2bd3d6de5204e78916f2e9c570"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:49:58.661355+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ClNHHrsg9s7SzsUd3nfQ7SKT2v6sgrMOnSEji7jfbBR+BFdpYCgJULDxt0EHV/VtPcfu27uYn8ihb5E7XOPwCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-ct"
+}

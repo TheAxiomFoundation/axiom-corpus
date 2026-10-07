@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/statute/2026-10-06-w6-income-tax-statute-in.json",
+      "sha256": "167635c146947010ced7db4393d9ea21e1c8075ae543c712c9650eb679e73906"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/statute/2026-10-06-w6-income-tax-statute-in.json",
+      "sha256": "3723f0b14ac299d1251b706cc1fab1bc65f8f982d11543c8be66175555a15936"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/statute/2026-10-06-w6-income-tax-statute-in.jsonl",
+      "sha256": "f6fb3a556b77ee0592fb64e086098eab34fe0373cb691fc3f378c21ea24b7e76"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-10-06-w6-income-tax-statute-in/official-documents/us-in-statute-session-laws-2026-sb0243.pdf",
+      "sha256": "37d5897abbc7570c7b68b58fe5880152589f052bf29f5e0888dfd61393ec35dc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:03.468060+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "P1Rno+JKuUQHfaHtdFg8E1Gj3njPqW+YSOULLuC6QVwqFjHBHyl+avAmzx2Kq894FTYl9IgucrASnnLXKqNQDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-in"
+}

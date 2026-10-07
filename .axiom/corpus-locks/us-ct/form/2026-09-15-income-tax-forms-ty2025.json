@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-ct",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-ct/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "9eaa59f9d44a588f692a60387e56aba9362db0c773825d0e97322f41d882b72f", "size": 330},
+    {"path": "data/corpus/inventory/us-ct/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "7caf312e9113a8a7b20aa6b62cccf02a3284fbb1d00c235790466987d9870e07", "size": 10061},
+    {"path": "data/corpus/provisions/us-ct/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "83af43f75edc45000e5001abcf89d54210f28c81cdf57e763a9399126d361bc3", "size": 171387},
+    {"path": "data/corpus/sources/us-ct/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ct-drs-ct-1040-instructions-ty2025.pdf", "sha256": "0e2cabf0fd48b9fa86d926adfb9e3c6dad3cbf17badfcf11321d8e4bceb24386", "size": 998064},
+    {"path": "data/corpus/sources/us-ct/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ct-drs-ct-1040-tcs-ty2025.pdf", "sha256": "d09ac1fdea41cfb0b2ac6fcac88046096d47c1632e2d09b5d7253d7d206503bb", "size": 282954},
+    {"path": "data/corpus/sources/us-ct/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ct-drs-ct-1040-ty2025.pdf", "sha256": "fadbe2acfd629a61c59266fd5d5f80cb0f717da556203b8cd73f6ae49d538b9b", "size": 424566}
+  ]
+}

@@ -1,0 +1,593 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/manual/2026-10-06-w6-ccap-manual-nd.json",
+      "sha256": "01f9b8b08321546959ed901c999c73e6ee14ed2f820cfa286529792694137dea"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/manual/2026-10-06-w6-ccap-manual-nd.json",
+      "sha256": "a5ab3b7190928dfcc4272da65144b71e4e11af5d36176f89933a2fcfaa257d87"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/manual/2026-10-06-w6-ccap-manual-nd.jsonl",
+      "sha256": "e25f66008c0093a2168c880d4b3cb9233d471acd3b5b163750d821d61861a5ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-05.html",
+      "sha256": "6b1d899165d6486a39e64479f90c888945ca2d0bddbfa18b98642a9030e983d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-10-05.html",
+      "sha256": "57e5a04a2b253f1e13d8d89e259fb50d09c0b231224a997068a57d7a99334cc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-10-10.html",
+      "sha256": "51d3c6a75199802f3b59b82ef4ffa545edbb045fede3f8b948b54da9a562c2d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-100-05.html",
+      "sha256": "6ec3d691d29d87998b042d1e7900e96b83594cbc0b323e828a691b4f28e9fdaa"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-100-25.html",
+      "sha256": "8a06d0e9060d20e189a0e3035e98cc02036a4c8bff07b3e74f611d0625b6caac"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-100-30.html",
+      "sha256": "59369f4c439908d61362c9bb09c489b220d9ce562743e23ee6aa950fb954bd38"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-100-35.html",
+      "sha256": "95a0b0f261add22315006c4cde3fab0ff304ee531f38e73469baa5f3112c9b45"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-100-40.html",
+      "sha256": "ccc4c2f3e38f97c33fd4f4cc51c962d2c263895e25e68185de2b9f2a6a739383"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-100-45.html",
+      "sha256": "0116bc80db8978e3aa60da4f976ec179520b1f3d491b362e27575adae1828486"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-05.html",
+      "sha256": "62bf49ae134a772267e27bbdd12e3d0d4315ecddee129d6680a806266f49db95"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-15.html",
+      "sha256": "0a580fc73ad851580b2511b9b691e798dd4a923cbd123c57efa2579d4bf068d6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-20.html",
+      "sha256": "c4af28950a39b3e2a910a0c9569545eb749fca01bb6962ebe385215721577aa5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-25.html",
+      "sha256": "234654ff10f3bd6fce02417724c1ee2bd16253ce009131076c1b153ec7de982b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-40.html",
+      "sha256": "1c3383442af19a392a78f3ee453a3dee56ee01a348d41d8b84e533bf63337825"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-50.html",
+      "sha256": "4296cd1e29740f713cd9327155e80659216385225c22601ffc0e4b2d4b47e6a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-105-55.html",
+      "sha256": "e88af7e74591c2524c9d31756c6e8683cd485f946cd5793152f6f0a5c049ccb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-110.html",
+      "sha256": "8e8241ad0fe7d5d4190ae6f873a1f4bb3f220bd94f8734ca23c4ca8b9a22b44d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-115-05.html",
+      "sha256": "b3b9b99e09e36bfb5f44cdd0766c2146f4a357c471c13059717a254c7cd97fbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-115-10.html",
+      "sha256": "e65be15fa19187274e0f81d42b5b76bd3e58b5fa69d6bfea62768aa704a41507"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-120-10.html",
+      "sha256": "a50818f01dd8bac5f809905c349e1c9c3a01bce1690ae5c6aa6e03c53b698ef4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-125-05.html",
+      "sha256": "5754c0084e24a84dd41323d80eb6fa7b10fc36e8d93ec9c48aef32abd578bebc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-125-15.html",
+      "sha256": "0d24c9aa4fc7a023a53ed17fd4db9cbb3fdfec6ed560b470cd2d0bc24cc23c42"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-125-30.html",
+      "sha256": "c22532d320187a84ae59c151117fa2726b036bcc477b5d573f296096ee6bed37"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-127-05.html",
+      "sha256": "0e19d2d822609fe4ac1695d3ced51c59e8fa70d4e44ef8ff3cf6d07d3e45529c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-127-10.html",
+      "sha256": "205021f10428c173da7cf5a78b84f2285e4bbb3f879055ac91d7cc100c5d3068"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-127-15.html",
+      "sha256": "6819cebd0da6427fceb119231b59cc0429dab66b740af7af21d1881862b1618a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-130-05.html",
+      "sha256": "f513a6bccf63737ee3c730cd43238822c50c01dd551322839f17cafd59f5015a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-130-10.html",
+      "sha256": "220c7d1530bf981a1334336f9796075e714edfd5cb3967635de9a42304b33784"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-130-15-05.html",
+      "sha256": "df467f958a07656c1234629bf0506646fe392a4befc6fef02f6226a0ab3d3aa5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-130-15-10.html",
+      "sha256": "1715f973c24f6465f5c77387670645f2b6ed4936913b08f6fc3da8274e61d47f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-130-15-15.html",
+      "sha256": "37258ffceaa87d2d4a3dfcb0257eb93cd146fe8364f524e69207e5ff79a29790"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-140.html",
+      "sha256": "871105a49943cf1b58dbd8081bdeba10e9906bbe0e7f01a62d778a1f5604c3ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-145.html",
+      "sha256": "dcac34a411dcbfedd22b4a46c7e21a48fe1f779cecf81d5515c247279890fbeb"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-15-10.html",
+      "sha256": "099476c8d0510b3bdb4d5eab2468ad2fdbb5b811483eed8217b70ab801afb0d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-15-15.html",
+      "sha256": "38f5e1947d5235f187c3085e8a49c5c2822821608533e3cc1cfd11a47d93c48c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-10-05.html",
+      "sha256": "ad8bf1b8396448e8e3012aff6f6ccc48d0a075d26e5bbd0e3cd1febaf399f24d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-10.html",
+      "sha256": "744d3ecaec3b3e0d453b89b5670ac06e8b19697716a54edb9b16b43f5acf77ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-15-25.html",
+      "sha256": "e7e7c55d2449a3afcf40bbebf5232deb198fd55dbf1d5345e80b1aa3e400da51"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-15-30.html",
+      "sha256": "e3fdde54258ef676e175ea8a02997da846ed47f7fb06f6d352c797372e7abe01"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-15.html",
+      "sha256": "78f2f863180c6db75ffdc375dc3f1d13516b7dde43bd68c2e6e83ccd87708ee3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-20-05.html",
+      "sha256": "e73efa2fe9773e908c854e1f741a24b6f29a7b9723f62245b30984ce6f52165f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-150-20.html",
+      "sha256": "dc8a724014b96e6e1743a04eaf6a9814486269210fc655afa85dd22778319c95"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-155-05.html",
+      "sha256": "f04b7e005c25951854b38a6c205f5a6c8cb740ad146a4e7cf4331a4135bc6ac2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-155-10.html",
+      "sha256": "acf4e00d87788f7d761d1a851ba4532e1cf0bb323ed6ace105b86b0513bfa903"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-155-15.html",
+      "sha256": "03d3de7fec76208df99c7e9137809fb7ad6ffafe25acf55ec6948293a25fe9c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-155-20.html",
+      "sha256": "3ccfddbe623e7fa80737ac1e51a9ca8b1d71f2ab92ac2e6604d2f18b811a6a10"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-155-25.html",
+      "sha256": "e1560e182f315c77a35e8bb0ab1583532e1e2141354c6100e84946bae4dd249f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-05.html",
+      "sha256": "cc34ca7fe9a06d9c20f6293770bdb73b755e8752f31c7d4055d6b960ca25bb48"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-10.html",
+      "sha256": "4dea4896db156eea5daa3eb24bfc922d3db66e363dd1e6dad40c19923e9c7add"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-15.html",
+      "sha256": "f9cba50bcb01b64346f8a876d37699268867c935ed36de5fd9e5ae1d0e837b1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-20.html",
+      "sha256": "5c768b511d2e630a268c5844c67407c5d53f6ed2c551c3dfc9f3064262d044ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-25.html",
+      "sha256": "0344e7219564df3399982d34c701b843b755907a6628836bd3ad596c4fc80d7a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-30.html",
+      "sha256": "8a40275d9b27f6e97d3f88a9a7a5f19f0b8108dc9a4e7da97ad81132e2bea241"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-35.html",
+      "sha256": "999c9dd524dcec752bd6c08f2417a1b889d8a3234d6467962db61b9a469cf7b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-40.html",
+      "sha256": "019f0e8cadb17ea56661c30b96a4c693187199fb6a000b46f0d1301875f8069d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-45.html",
+      "sha256": "c6d08ae8f5fbb2f59afea6227865c43b166410b9277a0bd214f5bdf2a979b73e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-162-50.html",
+      "sha256": "850a04ce89888b2cd5fec0657f584896e7240c169524f7ceef5df83ad9253264"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-165.html",
+      "sha256": "48298dc03b5ef43bbfa3a53058543b65cfddf47e934731d53db9e7a50a2e4ca5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-20-10.html",
+      "sha256": "ab7ec2dfdf7cb9a43531435ad8e2b8692a7c7023898c2ca0d62e30065fc76373"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-20-15.html",
+      "sha256": "351001d31c28d083b316a49cb401b1299fb2a6d556a859c5ea019514cb26d3ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-20-25.html",
+      "sha256": "21e169a84d759ce7d6c2f62aaa72f25b3dd251489ad2a480f92996b8a074cd96"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-20-35.html",
+      "sha256": "ad4319094d7337ed9a5fedb58669875d2cd00a6a56cdcbe2ffb3742d7e78faa7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-20-40.html",
+      "sha256": "826e2549b7caafe8e2f1bd86c6d301b1baa3cc207f02164213b0cf1c45bd240f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-25-05.html",
+      "sha256": "6fb385011d9e6bb9a2d6585300fef6bf7404419b2f9d8798f524d1761643af45"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-25-10.html",
+      "sha256": "123e16dc377c2a8c4aa0590e9ccc517ba836a10f9783e5b8f45666d366cceb28"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-25-15.html",
+      "sha256": "93f5defc1ccb990a03846765f1b6208e2fd077cdf55bdd1466a47385ef4ca60b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-02.html",
+      "sha256": "d26ba386f322afd063056f9f7c7d8a1894284be0e2da65c1aab6ecdf329a7caa"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-05.html",
+      "sha256": "bf16a1cba87d393648b8d47e56011e97e95d2129156bdc68be83ce209deae550"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-10.html",
+      "sha256": "a792b3c4e65d0dc056e9c94f84c8660b9240f4d7ab805346bddf77403487bf54"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-15.html",
+      "sha256": "0d28912c5c87af56b5192a42410965a2129c000df841e944188b5733acc6433e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-20.html",
+      "sha256": "219ad08bc0ee339398533ee3f9fe19a7132ba0e9a546d9c7e0f245bc9bc50904"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-25.html",
+      "sha256": "bebc2f718aca8e39da144bcfd60dd6a00684e91775e6f798e3f66b3ec65e3f09"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-30.html",
+      "sha256": "7be5a5eece0bfbee08bf3e954bf3f093d8ae9f078e999e2e6669ab576ab4a841"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-35-35.html",
+      "sha256": "5d7af29d293f41a343b1fbf859288d3e4865987f3b16eed4d383051e7258c1df"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-38-05.html",
+      "sha256": "36e4cc2035edbfefb8c8aefcc602581f8aff107254afad5bf0e3ddb16dc04b5d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-38-10.html",
+      "sha256": "3e944d352ecbbf721744ff34f1630b7dccacf4da87bd093b4218e2ed8306556d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-38-15.html",
+      "sha256": "f260c741eb1902448f31daebfee070e80936a7503e468423cc857466698a5bae"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-40-05.html",
+      "sha256": "6e772a3fd26293daf3bf52b693f5fbb0b08891f1ef619e78ae0c42392227d3b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-40-10.html",
+      "sha256": "76078bf3d960ff4f293f85e279be38c781b6d5d1fef38c081f8627d1548cee47"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-45-05.html",
+      "sha256": "12631bc8b66d338ab3fa62c62e5b54bbada95f5ee604940ca14acaccf37090e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-02.html",
+      "sha256": "ca3aa6d989779c43ae2276805db410f765cd7f6f354ea5ee02d9d9d2ae1a8957"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-05.html",
+      "sha256": "3dfba3d38b0b8d1d037763261584ce0e3f360c3820e689195c088157f2828d6e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-10-05.html",
+      "sha256": "5664479b124a74e0ae42cc41aaa2883c48ef26f5e23875704d3f861c5d696fab"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-10.html",
+      "sha256": "58a04a193c618872d088f5b9c8fe8d72cdc721f63046ee29cd3e748ac292c8cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-15-05.html",
+      "sha256": "6a516d0cb62d5ef1a16eb0846d3b9859d89b20453b8f72ab0418629e0d56920c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-15.html",
+      "sha256": "7c74edd9a19c2c4231c17e4e07567e2d482cb5d7367fbdb4a7b01d0935e53151"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-20-05.html",
+      "sha256": "d17a8d092d3d6b1e73405b0b4bf5f2fea9e87ddbb48dd9b5ede82c2adc8d10a6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-20.html",
+      "sha256": "43de0032ae5ac12906f92049f46cfdeab744d752931dc16fbaa01e9efc873144"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-25-05.html",
+      "sha256": "764ca133bfde69d1f16d50dc8b9d22e19334e77ce6c0f770e238f5e34988b420"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-25.html",
+      "sha256": "6fa67eda173f127c240867baa3a78e4387b0a747e38c2df1a61836407ca4af67"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-30.html",
+      "sha256": "ecca3b27fcc9d13b17100e23b7dd19c56ba5e644adc6374e704cee6f5063f0b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-35-05.html",
+      "sha256": "90df6504638057700ea6f4a3a048af519153394e366c6a8cd05952f794bb102f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-50-35.html",
+      "sha256": "3d705c638f3d801cb89878e0fa45ac1f77bc7ef250c7acca32399bdb41b9c03b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-55-05.html",
+      "sha256": "ffa2af9e2d4030809dd4e5aa0921ed23c2e94ceef47320f197bf9cc7ce2756b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-55-10.html",
+      "sha256": "95b6cf442096568e8f23a00aba460cf953351a08b4a1741b7bdb7bc4633c9a5f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-55-15.html",
+      "sha256": "251fca6791af8b42f7df82f7bb9f2e4abf2ce9c54a92fdc4be33f0b6957ca38f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-55-20.html",
+      "sha256": "3ae8f97d8b58fbe14c5de0bd74131f25579bd99ac42feaaf8d77807c31233163"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-55-30.html",
+      "sha256": "452627e2063a0d9de22719390ae664ee56943ddac609d28bf7d273b9a0407510"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-05.html",
+      "sha256": "9c002577f8512d9ded63979b3299353afeca8e48d3f62bc999ffa9fdf12cb689"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-07.html",
+      "sha256": "9bcdc35fee1324fa09cb99fb8a828c4bdd8da50b12ddec43709ee3696949c93d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-09.html",
+      "sha256": "7d7bc0bd81720cb63270a9f11535bf4c6c8b6810fb1e988fba654c2cde89b679"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-05.html",
+      "sha256": "23f5f3802a960dd83927e42ccda6c9f5ade162ff5ea2f975faed98ee70cfe6b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-10.html",
+      "sha256": "54855f0a35b2dbb420bbdf8866c5bac90d3fea666d508ea1e349af94b76545aa"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-20.html",
+      "sha256": "e7ed42f06fbd2cce531fc322f647ec9356b06e1fc5a37b652e38bdd74dcde3b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-25.html",
+      "sha256": "e02dba6a91f0251c90a4caa7e275d9d117390eb1b82e1914f02c8e8a5faf98a3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-30.html",
+      "sha256": "41739e8ef670e163a20171b37ff787c0b97f2599d4541061bdf0a808f7ff82a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-35.html",
+      "sha256": "4154ef2777e87d1a3dd806080bfc5d59e85a5ff484e37d118310f8030e3ff02f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-40.html",
+      "sha256": "a08134a65709f37b288df561c8647e6e8ea54239f338b525ca82bd80f9087031"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-42.html",
+      "sha256": "8e8dee87fc16528e3094fe9d00e778840c06a2a74dce17ac26c9b148a889bff9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-47.html",
+      "sha256": "d79748bae4294190f0d98d85ab99bfb885f5be9c6a16b41d55787c78d0cfff07"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-50.html",
+      "sha256": "123c7112a65906171a7054d8b63f2a0ec35b8f2b3d03691b1eb3ac03db1eaddc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-10-55.html",
+      "sha256": "119dfd472f1472123f81d466b029cd7022f0a6e80768606e18ac89312ee50ef3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-15.html",
+      "sha256": "e80f5c041868d5f1aed43a69c5f23b177be13925b47a51e28aee6cfc05d2d504"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-20-05.html",
+      "sha256": "761dd0b85959d1553280810535160738dde62eb647c68b61377ece6ecefc8374"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-20-10.html",
+      "sha256": "d2bafa4d0cb77f0289a373966998ff39820e26789f8f2031e7567c7a78b27638"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-25.html",
+      "sha256": "e71d0daa4023845cc4e6b59a4dd0d0b5f142e0d778af1a85b52e1cba3d830b79"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-30-05.html",
+      "sha256": "b8222f4aaece370ebaa73933b50da2e48e9ad3c7a0e45746508609e1d94ec1a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-30-10-05.html",
+      "sha256": "fd26f31183f10bb897055ab5282c278d755ba1edbe8489c0417fab76d35de08f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-30-10.html",
+      "sha256": "6169ecaa8feba37e1d5421193b9808204c1c39e90a3667a0ea865b5f5bf9c795"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-65-30-15.html",
+      "sha256": "33e95d121239839b2438b0ed86ad2568969bfe06a808837ab3f5dab0f4ee5b64"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-70-05.html",
+      "sha256": "d3f7f671bb4008629aca5f3307da135b8ad877e6480f0037cb9d998fc91f959e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-70-10.html",
+      "sha256": "dbd402112518389680d34034a6589e126faba347ba7c656fa9df3f8fa71d2d9e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-75-10.html",
+      "sha256": "60dbf1091531e9d06a02787eb204e35f1830c504ba5473b9386a51bf8c1aa187"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-75-50.html",
+      "sha256": "a854820bb575d8425518f91f7b3451304da9db8b510f6804fef52e387dba4412"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-80-10-05.html",
+      "sha256": "51a27412c0617620013ba878e0e2452bafb051d6c972f11d1de1b8441ec5c464"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-80-10.html",
+      "sha256": "5426695954357fd1cee9c9a495e806e256bc95a924fcd2b7490fa1a9b09d395c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-80-50.html",
+      "sha256": "3b05b92f448606bc60c807474025eac3edc16b54088f6df81c94436b5de6b4e7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-90-05.html",
+      "sha256": "0aeab3e1bc2b73486b18ffb0feb938250a2a7658c69f283e5637b2f499f590ee"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-90-10.html",
+      "sha256": "724342f1a7964d365c6aa575233d759a88c348f90fac05939e6d20fc555ae6cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-90-15.html",
+      "sha256": "73428ab1f8ebdc360e09a2d3faa552043599e43d4d1a03323ce61f9c151b7051"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-400-28-90-20.html",
+      "sha256": "feb7580614db34815a4ba5c2d7d74babf4bfb2f2ac7446df28564db1e8126a82"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-archived-ims.html",
+      "sha256": "fc137b8ad223689544baa54325f492bfdb3f1516de9c3f0730c1f108eb9a9018"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-navigation-home.html",
+      "sha256": "3012ff9317c46f33a55bf48d4129271144e3518485b98f19eb179f6843917a0d"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-navigation-toc.js",
+      "sha256": "32f6870f972fe7ee85338f3a4d2357de608860f35b2458c70166c255a1365306"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-outstanding-ims.html",
+      "sha256": "a29a1d922b600a6f3f93620bf78d31ae0e513296754ea8592b2a38dc722d73b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-printed-documentation.html",
+      "sha256": "3d26be517eed291ecf926a62d6fbcce7fdb930a213e1401f653f0c03016e34cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-ccap-manual-nd/official-documents/us-nd-w6-hhs-ccap-release-log.html",
+      "sha256": "ffcaef347bcdc0b92c68c02e74e78fd93aed37f2251777db014be36e6d336a50"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 274,
+    "missing_count": 0,
+    "provision_count": 274,
+    "source_count": 274
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:55:25.296996+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sfo1wI4Fs2xbS85/AOJAg/g6eorjluRy8K00mxth7a/fPySGh8e3kmLp3scx9oquTLUzsXyY9j/UvFQA6EGmDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-ccap-manual-nd"
+}

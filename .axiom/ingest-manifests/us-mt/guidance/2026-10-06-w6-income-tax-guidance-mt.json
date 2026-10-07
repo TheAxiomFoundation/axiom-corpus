@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt.json",
+      "sha256": "03feaed5630d44f8476d16c3fe1bf50e1c1c6b41c1e90b7e6f5ae59f05d8175d"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt.json",
+      "sha256": "e85a888a791e58b670c16bb14b9b2d140fb7f24b8fca30437cff1fd233db107f"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt.jsonl",
+      "sha256": "d7a3df79615a45904ae8e1ea7b0eaf41660aaaecf6afbee8d65f4e92529b18af"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt/official-documents/us-mt-guidance-legislative-services-division-2021-montana-legislative-review.pdf",
+      "sha256": "18b1290d6896b9bb3a6218872881ccc3b3c171692c7833884c2f473209534f37"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt/official-documents/us-mt-guidance-mtdor-2024-income-and-property-tax-rebate-report.pdf",
+      "sha256": "05f225702af41ad4a6ef17ce9f99c7799ccc6171b8b4c688e4cc27dd7db64bf0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt/official-documents/us-mt-guidance-mtdor-2025-legislative-roundup-529-changes.html",
+      "sha256": "9d07116072d024b9019352e66000d79c903130e203ea3b44ce2a8bd493081642"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt/official-documents/us-mt-guidance-mtdor-montana-tax-simplification-resource-hub.html",
+      "sha256": "bba66ca3f17c5196efdd923c3321ca332426354e2abbfa2d2a4c6a1bdb6189b7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt/official-documents/us-mt-guidance-mtdor-ty2024-tax-tables-and-deductions.html",
+      "sha256": "a1ea54d1e9e518921a36727b914fd54408c1cf0d703bba57185e9e06e9e95291"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-10-06-w6-income-tax-guidance-mt/official-documents/us-mt-guidance-mtdor-ty2025-tax-tables-and-deductions.html",
+      "sha256": "06dd385f48e4172b8e4693c025b45371b2f0e27cc03a86807b78c0137ad033e7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 34,
+    "missing_count": 0,
+    "provision_count": 34,
+    "source_count": 34
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:54:52.813851+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iQ+bj2Tsl/vHutAcH9LOhcLTXkr5J0CrLGtoaOc7SyEBDMpA/7P4GDukYiLy+gf7AbQubmFLh2XnX5QV4zZrDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-mt"
+}

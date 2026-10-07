@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt.json",
+      "sha256": "f011147a0fa086a8e04814036cf5cbae0dd3b6c0e35d666c8b40cef39d21fcac"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt.json",
+      "sha256": "82b5ff88f79292df392951f86956c2091ba579110a488b119e016d19b3dfe8df"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt.jsonl",
+      "sha256": "9a7156197e1624b3f80e314755bea6963c0cb5cef1e5c801c4f0730a3d5f389a"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-dcf-cdd-act-76-faqs.pdf",
+      "sha256": "cee7b57bf098b00b68c24d3398a7dbf1c486e49c8114e100692bb8faff67a28d"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-dcf-cdd-blog-act-76-and-ccfap-updates-june-2024.html",
+      "sha256": "182462d267b1e925b32e6adc4d3deb1190cb25f06480d4bd60501a60810e6a8a"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-dcf-cdd-memo-act-76-ccfap-rule-revision-2024-06-28.pdf",
+      "sha256": "e87602510b2280c0b3e95b8baad5dfd02a613d26e97a73a4b61c3f356660335c"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-dcf-news-more-vermont-families-qualify-child-care-financial-assistance.html",
+      "sha256": "657137463f21da2095e80a2b38c2765576a5c479db4992abd82ea7694fc71809"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-legislative-reports-act-76-ccfap-rates-2024-01.pdf",
+      "sha256": "20ff26e71165ea21cc309d019e597cad427ae490c7c4e998a2dfdb00e6761169"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-legislative-reports-reach-up-annual-report-2018-01-31.pdf",
+      "sha256": "5f8a7e1557f5466064923c4405f9ec0f4128a06f0f7c78c5104f873bfda5fa1b"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-10-06-w6-tanf-ccdf-guidance-vt/official-documents/us-vt-w6-legislative-reports-reach-up-annual-report-2020-01-15.pdf",
+      "sha256": "e90db654d20218515a69b027ef3ca2bc0dabb0662fd569a90e420b3206665e18"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 111,
+    "missing_count": 0,
+    "provision_count": 111,
+    "source_count": 111
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:59:57.215850+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qgmQAjFmVwQNe7q9WD/2HCXH0tanf7PQgXCZy8BKOKFs93tIL0+r7UsKJpOePleiC4vqO0rgd5LIryNQR4skCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-vt"
+}

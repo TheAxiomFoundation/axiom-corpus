@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/guidance/2026-10-06-w6-health-guidance-wy.json",
+      "sha256": "4c67bbec7e8ab50e99febb6ca35e9b2739949611681f7e6a78f94b04b851212b"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/guidance/2026-10-06-w6-health-guidance-wy.json",
+      "sha256": "6d8d5880198e0a05c5124bb80d21b995df0412c5c6068f15f791087be74e4fd1"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/guidance/2026-10-06-w6-health-guidance-wy.jsonl",
+      "sha256": "8caec14e4587391464c462ade8e924a974d4980b0691f6a7220f8c5bf7cd5e54"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/guidance/2026-10-06-w6-health-guidance-wy/official-documents/us-wy-w6-health-wdh-medicaid-income-requirements.html",
+      "sha256": "db2546600f3b5e78b92978318f94aa285251e3e5e2504f53b4213c89575f024e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T18:01:20.413028+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HM+X47vJnDRtxKX/kNWJHblKxEqTE/TeaNzxTUJKjsfvzAzAZd2wJY1crj8GV89W4nvJw+b4s5Bgk5lxyNSCDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-wy"
+}

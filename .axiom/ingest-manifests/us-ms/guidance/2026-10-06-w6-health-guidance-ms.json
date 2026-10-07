@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/guidance/2026-10-06-w6-health-guidance-ms.json",
+      "sha256": "48956048fdb1cec3194d288d220fb50b38ac0752aa07eb74edf67f3f6acf43ba"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/guidance/2026-10-06-w6-health-guidance-ms.json",
+      "sha256": "90f160a2e0a871454a9c0df7b35fe0ea73641a3073dabd4e2ce687598a1e1680"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/guidance/2026-10-06-w6-health-guidance-ms.jsonl",
+      "sha256": "24f825e072bf79ac67fcbfb0af3845681d81313503f1b490244f8824a55caad4"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-10-06-w6-health-guidance-ms/official-documents/us-ms-w6-health-dom-healthier-mississippi-waiver-fact-sheet-2026.pdf",
+      "sha256": "750b06a981ab6019e2fd3f208e4820664e9efc03270fa43b13b10e47f54661c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-10-06-w6-health-guidance-ms/official-documents/us-ms-w6-health-dom-healthier-mississippi-waiver-public-notice-2022-07-19.pdf",
+      "sha256": "57b6071abaa4cfdd3a8851bc17d093b85deaa4b9e921a3f2669cb9eba61b5dea"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-10-06-w6-health-guidance-ms/official-documents/us-ms-w6-health-dom-income-limits-for-medicaid-and-chip-programs.html",
+      "sha256": "df938d523f94557ae3ed6c9394956049440a72613deab2549721a9ed50455aee"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-10-06-w6-health-guidance-ms/official-documents/us-ms-w6-health-dom-member-coverage-descriptions-job-aid.pdf",
+      "sha256": "716c73ba0593c8d99f8f2951cabfb5ddca95c7c648fb5677eb65a0a8fdebb02c"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-10-06-w6-health-guidance-ms/official-documents/us-ms-w6-health-dom-working-disabled.html",
+      "sha256": "6e375b2adc1115d7eb54a39ab4f4c9c984d021fdef31ce47be0add245e467379"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:54:32.910906+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XYMa4s2WVE3RtKTAT3o/fD7bk0rgeeZlCwZyRgUW5xA556fvQGEm5bBIrMCmUa6m5d34YmwLirfu2v3Q2Oq/Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-ms"
+}
