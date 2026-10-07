@@ -2822,7 +2822,7 @@ def _extract_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
-    soup = _html_soup(content)
+    soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
     drop_selectors = [
         "script",
         "style",
@@ -3144,8 +3144,18 @@ def _json_record_citation_suffix_slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def _html_soup(content: bytes) -> BeautifulSoup:
-    """Parse official HTML with a parser that preserves malformed void tags."""
+def _html_soup(content: bytes, *, parser: str | None = None) -> BeautifulSoup:
+    """Parse official HTML with a parser that preserves malformed void tags.
+
+    ``parser="html.parser"`` (extraction option ``html_parser``) opts out of lxml for pages
+    whose unclosed banner ``<header>``/``<nav>`` makes lxml nest the main content inside the
+    element the extractor drops.
+    """
+    if parser is not None:
+        if parser not in {"lxml", "html.parser"}:
+            raise ValueError(f"unsupported html_parser: {parser!r}")
+        if parser == "html.parser":
+            return BeautifulSoup(content, "html.parser")
     try:
         return BeautifulSoup(content, "lxml")
     except FeatureNotFound:

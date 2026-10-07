@@ -278,6 +278,42 @@ states:
   index_url: https://acf.gov/ofa/programs/temporary-assistance-needy-families-tanf
   index_document_count: null
   taken_count: 0
+  wave6_federal_scopes:
+  - scope: us/guidance/2026-10-06-w6-federal-cms-guidance
+    work_order_documents: 1
+    scope_provision_rows: 352
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/cms/cib/2025-12-08
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-233
+    work_order_documents: 1
+    scope_provision_rows: 2
+    coverage_complete: true
+    citation_paths:
+    - us/regulation/45/233/20
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-public-laws
+    work_order_documents: 1
+    scope_provision_rows: 1311
+    coverage_complete: true
+    citation_paths:
+    - us/statute/public-law/119-21
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-closure-title-42
+    work_order_documents: 1
+    scope_provision_rows: 619
+    coverage_complete: true
+    citation_paths:
+    - us/statute/42/9902
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  - scope: us/statute/2026-10-06-w6-federal-usc-historical-editions
+    work_order_documents: 1
+    scope_provision_rows: 764
+    coverage_complete: true
+    citation_paths:
+    - us/statute/edition-1994/42/606
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready
