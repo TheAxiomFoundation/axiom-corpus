@@ -101,13 +101,13 @@ DOCS: list[dict] = [
          fmt="pdf", subtype="eligibility_job_aid_pdf"),
     dict(row=4, jur="us-ca", cls="form", auth="dhcs", program="MEDICAID",
          url="https://www.dhcs.ca.gov/wp-content/uploads/2025/10/MC250A_Eng.pdf",
-         path="us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng",
+         path="us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng",
          title="MC 250A: Application for Medi-Cal for Former Foster Care Youth (English)",
          fmt="pdf", subtype="eligibility_application_form_pdf",
          bundle_url="https://dhcs.ca.gov/formsandpubs/forms/Forms/MCED/MC_Forms/MC250A_Eng.pdf",
          note=("EXTRACT-MANIFEST row: manifests/us-ca-official-forms.yaml names the old address, which now redirects to "
                "/file/mc250a_eng-pdf/ behind an Incapsula challenge; the same form is served from DHCS's wp-content "
-               "uploads (address found by web search, fetched from dhcs.ca.gov); citation_path kept from that manifest")),
+               "uploads (address found by web search, fetched from dhcs.ca.gov); the manifest's citation_path us-ca/form/official_forms/.../mc_forms/mc250a_eng fails the citation-path grammar (underscores), so its segments are folded to hyphens (citation_segment rule)")),
     dict(row=6, jur="us-ca", cls="guidance", auth="dhcs", program="CHIP",
          url="https://www.dhcs.ca.gov/wp-content/uploads/2025/10/HACCP-FPL-Chart.pdf",
          path="us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025",
@@ -468,10 +468,6 @@ DOCS: list[dict] = [
          path="us-wa/guidance/hca/children", title="Washington HCA: Apple Health for Children",
          fmt="html", extraction={"html_content_selector": "div.region-content"}, subtype="agency_program_page"),
     # --- Wisconsin, Wyoming ---
-    dict(row=125, jur="us-wi", cls="statute", auth="wi-leg", program="MEDICAID",
-         url="https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471",
-         path="us-wi/statute/49.471", title="Wis. Stat. 49.471: BadgerCare Plus",
-         fmt="html", extraction={"html_content_selector": "#document"}, subtype="statute_section_html"),
     dict(row=126, jur="us-wi", cls="manual", auth="wi-dhs", program="CHIP",
          url="https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm",
          path="us-wi/manual/dhs/badgercare-plus/48-1",

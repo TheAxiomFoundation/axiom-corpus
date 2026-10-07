@@ -29,7 +29,7 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 32
+  agent_ready: 34
   done: 12
   needs_review: 3
 states:
@@ -2411,3 +2411,40 @@ states:
     the titles, effective dates and column key. The official-documents extractor has no image adapter, and OCR of the 1280
     px rendering leaves the one- and two-person rows illegible, so no manifest is written. A browser-rendered or higher-resolution
     fetch is needed.'
+# --- wave 6 health rows (scripts/append_w6_health_queue_rows.py) ---
+- jurisdiction: us-ct
+  name: Connecticut
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-ct-health-w6-guidance.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: guidance
+    version: 2026-10-06-w6-health-guidance-ct
+  taken_count: 5
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
+  - us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
+  - us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
+  - us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+  - us-ct/guidance/dss/medical-coverage-groups-upm-2540
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 5 work-order row(s) extracted from the official publisher into us-ct/guidance/2026-10-06-w6-health-guidance-ct (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+- jurisdiction: us-me
+  name: Maine
+  family: w6_bundle_gap
+  queue_status: agent_ready
+  source_kind: official_documents_program_bundle_gap
+  target_manifest: manifests/us-me-health-w6-statute.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: statute
+    version: 2026-10-06-w6-health-statute-me
+  taken_count: 1
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+  run_note: docs/ingest-runs/2026-10-06-w6-health.md
+  citation_paths:
+  - us-me/statute/22/3174-lll
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-me/statute/2026-10-06-w6-health-statute-me (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'

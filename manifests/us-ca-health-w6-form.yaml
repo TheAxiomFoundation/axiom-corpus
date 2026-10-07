@@ -1,6 +1,6 @@
 version: 2026-10-06-w6-health-form-ca
 documents:
-- source_id: us-ca-w6-health-official_forms-dhcs-ca-gov-formsandpubs-forms-forms-mced-mc_forms-mc250a_eng
+- source_id: us-ca-w6-health-official-forms-dhcs-ca-gov-formsandpubs-forms-forms-mced-mc-forms-mc250a-eng
   jurisdiction: us-ca
   document_class: form
   title: 'MC 250A: Application for Medi-Cal for Former Foster Care Youth (English)'
@@ -8,7 +8,7 @@ documents:
   source_format: pdf
   source_as_of: '2026-10-06'
   expression_date: '2026-10-06'
-  citation_path: us-ca/form/official_forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc_forms/mc250a_eng
+  citation_path: us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng
   extraction:
     ocr: true
   metadata:
@@ -23,4 +23,5 @@ documents:
     bundle_url: https://dhcs.ca.gov/formsandpubs/forms/Forms/MCED/MC_Forms/MC250A_Eng.pdf
     note: 'EXTRACT-MANIFEST row: manifests/us-ca-official-forms.yaml names the old address, which now redirects to /file/mc250a_eng-pdf/
       behind an Incapsula challenge; the same form is served from DHCS''s wp-content uploads (address found by web search,
-      fetched from dhcs.ca.gov); citation_path kept from that manifest'
+      fetched from dhcs.ca.gov); the manifest''s citation_path us-ca/form/official_forms/.../mc_forms/mc250a_eng fails the
+      citation-path grammar (underscores), so its segments are folded to hyphens (citation_segment rule)'
