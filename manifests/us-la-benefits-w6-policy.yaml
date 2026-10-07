@@ -1,0 +1,42 @@
+version: 2026-10-06-w6-benefits-policy-la
+documents:
+- source_id: us-la-policy-cms-medicaid-state-plan-spa-la-25-0013-cms-approval
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana SPA 25-0013: CMS approval package (approval letter, CMS-179, approved pages)'
+  source_url: https://ldh.la.gov/assets/medicaid/StatePlan/Amend2025/25-0013/25-0013-CMS-Approval.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-25-0013/cms-approval
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: medicaid_state_plan_amendment
+    program: SSI state supplement (personal needs allowance)
+    expression_date_note: TN 25-0013 effective date July 1, 2025
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 112)
+    access_note: ldh.la.gov answers 403 to the plain corpus agent and 200 to the extractor's built-in browser user-agent retry
+    wave6_rows:
+    - 112
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-la-policy-cms-medicaid-state-plan-spa-la-25-0013-supplement-12-to-attachment-2-6-a-redlined
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana SPA 25-0013: Supplement 12 to Attachment 2.6-A, variations from the basic personal needs allowance (redlined)'
+  source_url: https://ldh.la.gov/assets/medicaid/StatePlan/Amend2025/25-0013/Supplement-12-to-Attachment-2.6-A-Redlined.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-25-0013/supplement-12-to-attachment-2-6-a-redlined
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health
+    document_subtype: medicaid_state_plan_amendment
+    program: SSI state supplement (personal needs allowance)
+    expression_date_note: TN 25-0013 effective date July 1, 2025
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 113)
+    access_note: ldh.la.gov answers 403 to the plain corpus agent and 200 to the extractor's built-in browser user-agent retry
+    wave6_rows:
+    - 113
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
