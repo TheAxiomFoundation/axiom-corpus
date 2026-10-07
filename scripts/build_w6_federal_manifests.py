@@ -770,7 +770,7 @@ IRS_GUIDANCE = [
     irs_drop(
         "rp",
         "2013-15",
-        "Rev. Proc. 2013-15 (2013 inflation-adjusted items after the American Taxpayer Relief Act)",
+        "Rev. Proc. 2013-15 (2013 adjusted items)",
         D + "rp-13-15.pdf",
         "2013-01-01",
     ),
@@ -812,7 +812,7 @@ IRS_GUIDANCE = [
     irs_drop(
         "rp",
         "2018-22",
-        "Rev. Proc. 2018-22 (modifies 2018 inflation-adjusted items of Rev. Proc. 2018-18)",
+        "Rev. Proc. 2018-22 (modifies and supersedes sections 3.08 and 3.10 of Rev. Proc. 2018-18)",
         D + "rp-18-22.pdf",
         "2018-01-01",
     ),
@@ -1608,7 +1608,8 @@ PUBLIC_LAWS = [
     ),
     law(
         "115-97",
-        "Public Law 115-97 (Tax Cuts and Jobs Act), December 22, 2017",
+        "Public Law 115-97 (An Act to provide for reconciliation pursuant to titles II and V of the concurrent resolution "
+        "on the budget for fiscal year 2018; commonly the Tax Cuts and Jobs Act), December 22, 2017",
         "https://www.congress.gov/115/plaws/publ97/PLAW-115publ97.pdf",
         "2017-12-22",
         stat="131 Stat. 2054",
