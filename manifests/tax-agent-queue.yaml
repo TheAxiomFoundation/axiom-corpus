@@ -7993,6 +7993,37 @@ states:
     jurisdiction: us-ia
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 35
+    statuses:
+      ABSENT: 2
+      ALREADY-HELD: 6
+      OUT-OF-SCOPE: 2
+      PRESENT: 25
+    scopes:
+    - scope: us-ia/form/2026-10-06-w6-income-tax-forms-ia
+      manifest: manifests/us-ia-w6-income-tax-forms.yaml
+      documents: 12
+      complete: true
+      provision_count: 24
+      source_count: 24
+      missing: 0
+    - scope: us-ia/guidance/2026-10-06-w6-income-tax-guidance-ia
+      manifest: manifests/us-ia-w6-income-tax-guidance.yaml
+      documents: 10
+      complete: true
+      provision_count: 96
+      source_count: 96
+      missing: 0
+    - scope: us-ia/statute/2026-10-06-w6-income-tax-statute-ia
+      manifest: manifests/us-ia-w6-income-tax-statute.yaml
+      documents: 1
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
   lead_counts:
     ready_for_manifest: 12
     needs_review: 21
@@ -8416,6 +8447,35 @@ states:
     jurisdiction: us-id
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 41
+    statuses:
+      ALREADY-HELD: 11
+      PRESENT: 30
+    scopes:
+    - scope: us-id/form/2026-10-06-w6-income-tax-forms-id
+      manifest: manifests/us-id-w6-income-tax-forms.yaml
+      documents: 19
+      complete: true
+      provision_count: 38
+      source_count: 38
+      missing: 0
+    - scope: us-id/guidance/2026-10-06-w6-income-tax-guidance-id
+      manifest: manifests/us-id-w6-income-tax-guidance.yaml
+      documents: 3
+      complete: true
+      provision_count: 30
+      source_count: 30
+      missing: 0
+    - scope: us-id/statute/2026-10-06-w6-income-tax-statute-id
+      manifest: manifests/us-id-w6-income-tax-statute.yaml
+      documents: 8
+      complete: true
+      provision_count: 16
+      source_count: 16
+      missing: 0
   lead_counts:
     ready_for_manifest: 37
     needs_review: 12
@@ -9059,6 +9119,29 @@ states:
     jurisdiction: us-il
     document_class: statute
     version: 2026-07-24-il-individual-income-tax-resident-core
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 37
+    statuses:
+      ALREADY-HELD: 6
+      OUTREACH: 6
+      PRESENT: 25
+    scopes:
+    - scope: us-il/form/2026-10-06-w6-income-tax-forms-il
+      manifest: manifests/us-il-w6-income-tax-forms.yaml
+      documents: 19
+      complete: true
+      provision_count: 38
+      source_count: 38
+      missing: 0
+    - scope: us-il/guidance/2026-10-06-w6-income-tax-guidance-il
+      manifest: manifests/us-il-w6-income-tax-guidance.yaml
+      documents: 5
+      complete: true
+      provision_count: 21
+      source_count: 21
+      missing: 0
   lead_counts:
     ready_for_manifest: 21
     needs_review: 14
@@ -9454,6 +9537,36 @@ states:
     jurisdiction: us-in
     document_class: form
     version: 2026-09-10-tax-state-forms-ty2025
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 15
+    statuses:
+      ALREADY-HELD: 6
+      OUTREACH: 1
+      PRESENT: 8
+    scopes:
+    - scope: us-in/guidance/2026-10-06-w6-income-tax-guidance-in
+      manifest: manifests/us-in-w6-income-tax-guidance.yaml
+      documents: 3
+      complete: true
+      provision_count: 12
+      source_count: 12
+      missing: 0
+    - scope: us-in/statute/2026-10-06-w6-income-tax-statute-in
+      manifest: manifests/us-in-w6-income-tax-statute.yaml
+      documents: 1
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
+    - scope: us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4
+      manifest: manifests/us-in-w6-indiana-code-title-4.yaml
+      documents: 1
+      complete: true
+      provision_count: 4118
+      source_count: 4118
+      missing: 0
   lead_counts:
     ready_for_manifest: 9
     needs_review: 12
@@ -9768,6 +9881,35 @@ states:
     jurisdiction: us-ks
     document_class: guidance
     version: 2026-07-21-ks-k40es-2026
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 21
+    statuses:
+      ALREADY-HELD: 9
+      PRESENT: 12
+    scopes:
+    - scope: us-ks/form/2026-10-06-w6-income-tax-forms-ks
+      manifest: manifests/us-ks-w6-income-tax-forms.yaml
+      documents: 6
+      complete: true
+      provision_count: 12
+      source_count: 12
+      missing: 0
+    - scope: us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks
+      manifest: manifests/us-ks-w6-income-tax-guidance.yaml
+      documents: 4
+      complete: true
+      provision_count: 25
+      source_count: 25
+      missing: 0
+    - scope: us-ks/statute/2026-10-06-w6-income-tax-statute-ks
+      manifest: manifests/us-ks-w6-income-tax-statute.yaml
+      documents: 2
+      complete: true
+      provision_count: 8
+      source_count: 8
+      missing: 0
   lead_counts:
     ready_for_manifest: 10
     needs_review: 14
@@ -10060,6 +10202,36 @@ states:
     jurisdiction: us-ky
     document_class: form
     version: 2026-740-es
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 37
+    statuses:
+      ABSENT: 2
+      ALREADY-HELD: 1
+      PRESENT: 34
+    scopes:
+    - scope: us-ky/form/2026-10-06-w6-income-tax-forms-ky
+      manifest: manifests/us-ky-w6-income-tax-forms.yaml
+      documents: 29
+      complete: true
+      provision_count: 58
+      source_count: 58
+      missing: 0
+    - scope: us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky
+      manifest: manifests/us-ky-w6-income-tax-guidance.yaml
+      documents: 2
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    - scope: us-ky/statute/2026-10-06-w6-income-tax-statute-ky
+      manifest: manifests/us-ky-w6-income-tax-statute.yaml
+      documents: 2
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
   lead_counts:
     ready_for_manifest: 38
     needs_review: 9
@@ -10601,6 +10773,29 @@ states:
     jurisdiction: us-la
     document_class: form
     version: 2026-07-23-la-2026-it-540es-instructions
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 28
+    statuses:
+      ALREADY-HELD: 11
+      OUT-OF-SCOPE: 1
+      PRESENT: 16
+    scopes:
+    - scope: us-la/form/2026-10-06-w6-income-tax-forms-la
+      manifest: manifests/us-la-w6-income-tax-forms.yaml
+      documents: 12
+      complete: true
+      provision_count: 24
+      source_count: 24
+      missing: 0
+    - scope: us-la/guidance/2026-10-06-w6-income-tax-guidance-la
+      manifest: manifests/us-la-w6-income-tax-guidance.yaml
+      documents: 4
+      complete: true
+      provision_count: 68
+      source_count: 68
+      missing: 0
   lead_counts:
     ready_for_manifest: 15
     needs_review: 18
@@ -10978,6 +11173,36 @@ states:
     jurisdiction: us-ma
     document_class: form
     version: 2026-07-22-ma-2026-form-1-es
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 45
+    statuses:
+      ABSENT: 15
+      ALREADY-HELD: 12
+      PRESENT: 18
+    scopes:
+    - scope: us-ma/form/2026-10-06-w6-income-tax-forms-ma
+      manifest: manifests/us-ma-w6-income-tax-forms.yaml
+      documents: 6
+      complete: true
+      provision_count: 12
+      source_count: 12
+      missing: 0
+    - scope: us-ma/guidance/2026-10-06-w6-income-tax-guidance-ma
+      manifest: manifests/us-ma-w6-income-tax-guidance.yaml
+      documents: 8
+      complete: true
+      provision_count: 112
+      source_count: 112
+      missing: 0
+    - scope: us-ma/statute/2026-10-06-w6-income-tax-statute-ma
+      manifest: manifests/us-ma-w6-income-tax-statute.yaml
+      documents: 3
+      complete: true
+      provision_count: 11
+      source_count: 11
+      missing: 0
   lead_counts:
     ready_for_manifest: 20
     needs_review: 31
@@ -11519,6 +11744,37 @@ states:
     jurisdiction: us-md
     document_class: null
     version: null
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 25
+    statuses:
+      ABSENT: 4
+      ALREADY-HELD: 1
+      OUTREACH: 4
+      PRESENT: 16
+    scopes:
+    - scope: us-md/form/2026-10-06-w6-income-tax-forms-md
+      manifest: manifests/us-md-w6-income-tax-forms.yaml
+      documents: 10
+      complete: true
+      provision_count: 20
+      source_count: 20
+      missing: 0
+    - scope: us-md/guidance/2026-10-06-w6-income-tax-guidance-md
+      manifest: manifests/us-md-w6-income-tax-guidance.yaml
+      documents: 1
+      complete: true
+      provision_count: 2
+      source_count: 2
+      missing: 0
+    - scope: us-md/statute/2026-10-06-w6-income-tax-statute-md
+      manifest: manifests/us-md-w6-income-tax-statute.yaml
+      documents: 3
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
   lead_counts:
     ready_for_manifest: 21
     needs_review: 9
@@ -12079,6 +12335,35 @@ states:
     jurisdiction: us-me
     document_class: guidance
     version: 2026-07-23-me-individual-income-tax-rates-2026
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 75
+    statuses:
+      ALREADY-HELD: 20
+      PRESENT: 55
+    scopes:
+    - scope: us-me/form/2026-10-06-w6-income-tax-forms-me
+      manifest: manifests/us-me-w6-income-tax-forms.yaml
+      documents: 50
+      complete: true
+      provision_count: 100
+      source_count: 100
+      missing: 0
+    - scope: us-me/guidance/2026-10-06-w6-income-tax-guidance-me
+      manifest: manifests/us-me-w6-income-tax-guidance.yaml
+      documents: 2
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
+    - scope: us-me/statute/2026-10-06-w6-income-tax-statute-me
+      manifest: manifests/us-me-w6-income-tax-statute.yaml
+      documents: 3
+      complete: true
+      provision_count: 6
+      source_count: 6
+      missing: 0
   lead_counts:
     ready_for_manifest: 25
     needs_review: 56
@@ -12951,6 +13236,37 @@ states:
     jurisdiction: us-mi
     document_class: guidance
     version: 2026-07-21-mi-2026-income-tax-rate-notice
+  w6_bundle_gap_scopes:
+    run_note: docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md
+    decisions: docs/ingest-runs/2026-10-06-w6-tax-ia-mi-decisions.csv
+    work_order_rows: 45
+    statuses:
+      ABSENT: 14
+      ALREADY-HELD: 2
+      OUT-OF-SCOPE: 1
+      PRESENT: 28
+    scopes:
+    - scope: us-mi/form/2026-10-06-w6-income-tax-forms-mi
+      manifest: manifests/us-mi-w6-income-tax-forms.yaml
+      documents: 17
+      complete: true
+      provision_count: 34
+      source_count: 34
+      missing: 0
+    - scope: us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi
+      manifest: manifests/us-mi-w6-income-tax-guidance.yaml
+      documents: 9
+      complete: true
+      provision_count: 49
+      source_count: 49
+      missing: 0
+    - scope: us-mi/statute/2026-10-06-w6-income-tax-statute-mi
+      manifest: manifests/us-mi-w6-income-tax-statute.yaml
+      documents: 1
+      complete: true
+      provision_count: 4
+      source_count: 4
+      missing: 0
   lead_counts:
     ready_for_manifest: 27
     needs_review: 29

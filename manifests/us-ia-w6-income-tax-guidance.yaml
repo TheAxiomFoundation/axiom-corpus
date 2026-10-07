@@ -1,0 +1,174 @@
+version: 2026-10-06-w6-income-tax-guidance-ia
+documents:
+- source_id: us-ia-guidance-revenue-individual-income-tax-iowa-taxable-income
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'IA 1040 Expanded Instructions, Line 04: Iowa Taxable Income (instruction year 2025)'
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-taxable-income
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/iowa-taxable-income
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-revenue-individual-income-tax-retirement-income
+  jurisdiction: us-ia
+  document_class: guidance
+  title: Retirement Income Tax Guidance (Iowa Department of Revenue, updated 2025-03-13)
+  source_url: https://revenue.iowa.gov/retirement-income-tax-guidance
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/retirement-income
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-revenue-individual-income-tax-child-dependent-care-credit
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'IA 1040 Expanded Instructions, Line 24: Child and Dependent Care Credit or Early Childhood Development Credit (instruction
+    year 2025)'
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/child-dependent-care-credit
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/child-dependent-care-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-revenue-individual-income-tax-exemption-credits
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'IA 1040 Expanded Instructions, Intro 6: Exemption Credits (instruction year 2025)'
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/exemption-credits
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/exemption-credits
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-revenue-individual-income-tax-ia-1040-schedule-1
+  jurisdiction: us-ia
+  document_class: guidance
+  title: IA 1040 Expanded Instructions, IA 1040 Schedule 1 (instruction year 2025)
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/ia-1040-schedule-1
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/ia-1040-schedule-1
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-revenue-individual-income-tax-iowa-earned-income-tax-credit
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'IA 1040 Expanded Instructions, Line 25: Iowa Earned Income Tax Credit (instruction year 2025)'
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-earned-income-tax-credit
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/iowa-earned-income-tax-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-revenue-individual-income-tax-iowa-tax
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'IA 1040 Expanded Instructions, Line 05: Iowa Tax (instruction year 2025)'
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-tax
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/revenue/individual-income-tax/iowa-tax
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-idr-press-releases-2024-10-16-2025-individual-income-tax-brackets
+  jurisdiction: us-ia
+  document_class: guidance
+  title: IDR Announces 2025 Individual Income Tax Brackets and Interest Rates (press release, 2024-10-16)
+  source_url: https://revenue.iowa.gov/press-release/2024-10-16/idr-announces-2025-individual-income-tax-brackets-and-interest-rates
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/idr/press-releases/2024-10-16-2025-individual-income-tax-brackets
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ia-guidance-idr-press-releases-2023-2024-individual-income-tax-brackets
+  jurisdiction: us-ia
+  document_class: guidance
+  title: IDR Announces 2024 Individual Income Tax Brackets and Interest Rates (Iowa Department of Revenue bulletin)
+  source_url: https://content.govdelivery.com/accounts/IACIO/bulletins/3779769
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/idr/press-releases/2023-2024-individual-income-tax-brackets
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: The Department of Revenue's own bulletin, issued through the State of Iowa GovDelivery account (IACIO).
+- source_id: us-ia-guidance-treasurer-news-2025-isave-529-state-tax-deduction-amount
+  jurisdiction: us-ia
+  document_class: guidance
+  title: Treasurer Smith Announces 2025 ISave 529 State Tax Deduction Amount (Treasurer of State)
+  source_url: https://www.iowatreasurer.gov/the-treasurers-office/news/treasurer-smith-announces-2025-isave-529-state-tax-deduction-amount
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/guidance/treasurer/news/2025-isave-529-state-tax-deduction-amount
+  extraction:
+    html_content_selector: div.main-content-section
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

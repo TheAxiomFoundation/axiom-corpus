@@ -2823,22 +2823,13 @@ def _extract_html_blocks(
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
     soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
+    kept_default_drops = set(_html_keep_default_drop_selectors(extraction))
     drop_selectors = [
-        "script",
-        "style",
-        "noscript",
-        "svg",
-        "button",
-        "input",
-        "nav",
-        "select",
-        "header",
-        "footer",
-        "textarea",
-        "aside",
-        ".breadcrumb",
-        ".breadcrumbs",
-        "[aria-label='breadcrumb']",
+        *(
+            selector
+            for selector in _HTML_DEFAULT_DROP_SELECTORS
+            if selector not in kept_default_drops
+        ),
         *_html_drop_selectors(extraction),
     ]
     for selector in drop_selectors:
@@ -3488,6 +3479,40 @@ def _html_content_root(soup: BeautifulSoup, *, extraction: dict[str, Any] | None
             return root
         raise ValueError(f"html content selector did not match: {selector!r}")
     return _main_content(soup)
+
+
+_HTML_DEFAULT_DROP_SELECTORS = (
+    "script",
+    "style",
+    "noscript",
+    "svg",
+    "button",
+    "input",
+    "nav",
+    "select",
+    "header",
+    "footer",
+    "textarea",
+    "aside",
+    ".breadcrumb",
+    ".breadcrumbs",
+    "[aria-label='breadcrumb']",
+)
+
+
+def _html_keep_default_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
+    """Default drop selectors a manifest keeps (for pages whose markup wraps the body in one).
+
+    Some publishers' pages (for example revenue.louisiana.gov) leave a ``<nav>`` element open
+    around the whole page, so dropping ``nav`` removes the content; such a manifest names
+    ``html_keep_default_drop_selectors: [nav]`` together with an ``html_content_selector``.
+    """
+    selectors = (extraction or {}).get("html_keep_default_drop_selectors")
+    if selectors is None:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
 
 
 def _html_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
