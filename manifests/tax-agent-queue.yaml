@@ -10857,8 +10857,8 @@ states:
     work_order_rows: 45
     statuses:
       ABSENT: 15
-      ALREADY-HELD: 11
-      PRESENT: 19
+      ALREADY-HELD: 12
+      PRESENT: 18
     scopes:
     - scope: us-ma/form/2026-10-06-w6-income-tax-forms-ma
       manifest: manifests/us-ma-w6-income-tax-forms.yaml
@@ -10869,10 +10869,10 @@ states:
       missing: 0
     - scope: us-ma/guidance/2026-10-06-w6-income-tax-guidance-ma
       manifest: manifests/us-ma-w6-income-tax-guidance.yaml
-      documents: 9
+      documents: 8
       complete: true
-      provision_count: 117
-      source_count: 117
+      provision_count: 112
+      source_count: 112
       missing: 0
     - scope: us-ma/statute/2026-10-06-w6-income-tax-statute-ma
       manifest: manifests/us-ma-w6-income-tax-statute.yaml

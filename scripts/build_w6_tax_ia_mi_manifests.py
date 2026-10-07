@@ -363,10 +363,6 @@ doc("us-la", "guidance", "https://www.startsaving.la.gov/startfaqs.aspx", "us-la
 
 # ---------------------------------------------------------------- Massachusetts
 MASS = "https://www.mass.gov"
-doc("us-ma", "guidance", f"{MASS}/technical-information-release/tir-02-21-capital-gains-and-losses-massachusetts-tax-law-changes",
-    "us-ma/guidance/department-of-revenue/tir-02-21",
-    "TIR 02-21: Capital Gains and Losses: Massachusetts Tax Law Changes", None, "technical_information_release",
-    sel="main", ids=["https://www.mass.gov/technical-information-release/tir-02-21-capital-gains-and-losses-massachusetts-tax-law-changes"])
 doc("us-ma", "guidance", f"{MASS}/technical-information-release/tir-22-5-tax-provisions-in-recent-massachusetts-legislation",
     "us-ma/guidance/department-of-revenue/tir-22-5", "TIR 22-5: Tax Provisions in Recent Massachusetts Legislation", None,
     "technical_information_release", sel="main")
@@ -646,6 +642,9 @@ HELD = {
     "md-gtg": "us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg",
     "mi-206": "us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206",
     "mi-w5": "us-mi/form/2026-09-15-income-tax-forms-ty2025",
+    # Locked on main (.axiom/corpus-locks), bytes not in the local corpus root.
+    "ma-tir-02-21": "us-ma/guidance/2026-09-23-ma-dor-tir-02-21",
+    "ma-62-2": "us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2",
 }
 OUTREACH_ILGA = (
     "ilga.gov answers HTTP 403 'Access Denied ... Automated Request Blocked' to the corpus client "
@@ -781,14 +780,23 @@ held("https://law.justia.com/codes/louisiana/revised-statutes/title-47/rs-47-293
 other("https://www.bls.gov/news.release/archives/cpi_01132026.htm", "OUT-OF-SCOPE", "", "",
       "BLS Consumer Price Index news release (December 2025 data): a federal statistical release, not a Louisiana rule")
 # Massachusetts
-for sec in ["2", "3", "4", "5", "6", "9"]:
+held("https://www.mass.gov/technical-information-release/tir-02-21-capital-gains-and-losses-massachusetts-tax-law-changes",
+     "ma-tir-02-21", "us-ma/guidance/department-of-revenue/tir-02-21",
+     "TIR 02-21 is held in the 2026-09-23 scope locked on main (manifests/us-ma-dor-tir-02-21.yaml; lock "
+     ".axiom/corpus-locks/us-ma/guidance/2026-09-23-ma-dor-tir-02-21.json); not re-taken")
+held("https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section2", "ma-62-2", "us-ma/statute/62/2",
+     "M.G.L. c. 62, s. 2 held in the 2026-09-23 section scope locked on main (also in the wave-5 chapter 62 scope)")
+held("https://www.mass.gov/info-details/mass-general-laws-c62-ss-2", "ma-62-2", "us-ma/statute/62/2",
+     "Trial Court Law Libraries' reproduction of M.G.L. c. 62, s. 2; the General Court's text is held in the "
+     "2026-09-23 section scope locked on main")
+for sec in ["3", "4", "5", "6", "9"]:
     held(f"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section{sec}", "ma-c62", f"us-ma/statute/62/{sec}",
          f"M.G.L. c. 62, s. {sec} held (chapter 62 scope)")
 held("https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/section4", "ma-c62", "us-ma/statute/62/4",
      "M.G.L. c. 62, s. 4 held (chapter 62 scope)")
 held("https://law.justia.com/codes/massachusetts/2022/part-i/title-ix/chapter-62/section-6/", "ma-c62", "us-ma/statute/62/6",
      "mirror; M.G.L. c. 62, s. 6 held")
-for sec in ["2", "3", "6"]:
+for sec in ["3", "6"]:
     held(f"https://www.mass.gov/info-details/mass-general-laws-c62-ss-{sec}", "ma-c62", f"us-ma/statute/62/{sec}",
          f"Trial Court Law Libraries' reproduction of M.G.L. c. 62, s. {sec}; the General Court's text is held")
 for year in range(2011, 2023):
@@ -956,6 +964,9 @@ def write_decisions(work_order: Path, out: Path) -> dict[str, int]:
                 note = "extracted 2026-10-06"
                 if official != (row["bundle_url"] or official):
                     note += f"; same document as the bundle address ({row['bundle_url'] or row['bundle_path']})"
+                if row["bundle_path"] and row["bundle_path"] != cpath:
+                    note += (f"; slug rule: the May 2026 manifest path {row['bundle_path']} (underscores fail the "
+                             f"citation-path grammar) is re-pathed to {cpath}")
             else:
                 other_hit = next((k for k in keys if k and k in OTHER), None)
                 if other_hit is None:
