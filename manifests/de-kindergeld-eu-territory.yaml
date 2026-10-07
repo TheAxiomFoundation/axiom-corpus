@@ -1,0 +1,94 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-eu-teu-2016-article-50",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "citation_path": "de/regulation/eu-teu-2016/article-50",
+      "title": "Vertrag über die Europäische Union, konsolidierte Fassung 07.06.2016, Artikel 50",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M050",
+      "source_format": "html",
+      "source_as_of": "2026-09-14",
+      "expression_date": "2016-06-07",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#document1 > div > div",
+        "segmentation": "anchor_range",
+        "html_start_selector": "p.ti-art",
+        "html_stop_selector": "hr.doc-end",
+        "section_label": "document-1"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Publications Office of the European Union / EUR-Lex",
+        "legal_instrument_type": "treaty",
+        "celex": "12016M050",
+        "snapshot_sha256": "013825824c196557e34782d08c723c1c0839a0a53d6157a4dd71060cfabf9cec",
+        "source_note": "Complete German article from the 2016 consolidated treaty expression. The date is the expression/publication date, not commencement. Article 52 includes the United Kingdom in its historical list; later withdrawal instruments must be reconciled before determining membership for 2025. Article 355 retains all six paragraphs and territorial qualifications; onward legal references remain dependencies. No current-membership or territorial-eligibility rule is inferred by this capture."
+      }
+    },
+    {
+      "source_id": "de-kindergeld-eu-teu-2016-article-52",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "citation_path": "de/regulation/eu-teu-2016/article-52",
+      "title": "Vertrag über die Europäische Union, konsolidierte Fassung 07.06.2016, Artikel 52",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M052",
+      "source_format": "html",
+      "source_as_of": "2026-09-14",
+      "expression_date": "2016-06-07",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#document1 > div > div",
+        "segmentation": "anchor_range",
+        "html_start_selector": "p.ti-art",
+        "html_stop_selector": "hr.doc-end",
+        "section_label": "document-1"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Publications Office of the European Union / EUR-Lex",
+        "legal_instrument_type": "treaty",
+        "celex": "12016M052",
+        "snapshot_sha256": "f65cd39d0db1fee8b0e9e1a2aaa3ac7038b46c4b0570f0a7ad08aa7cc66673fe",
+        "source_note": "Complete German article from the 2016 consolidated treaty expression. The date is the expression/publication date, not commencement. Article 52 includes the United Kingdom in its historical list; later withdrawal instruments must be reconciled before determining membership for 2025. Article 355 retains all six paragraphs and territorial qualifications; onward legal references remain dependencies. No current-membership or territorial-eligibility rule is inferred by this capture."
+      }
+    },
+    {
+      "source_id": "de-kindergeld-eu-tfeu-2016-article-355",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "citation_path": "de/regulation/eu-tfeu-2016/article-355",
+      "title": "Vertrag über die Arbeitsweise der Europäischen Union, konsolidierte Fassung 07.06.2016, Artikel 355",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016E355",
+      "source_format": "html",
+      "source_as_of": "2026-09-14",
+      "expression_date": "2016-06-07",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#document1 > div > div",
+        "segmentation": "anchor_range",
+        "html_start_selector": "p.ti-art",
+        "html_stop_selector": "hr.doc-end",
+        "section_label": "document-1"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Publications Office of the European Union / EUR-Lex",
+        "legal_instrument_type": "treaty",
+        "celex": "12016E355",
+        "snapshot_sha256": "acd14074a0140c984361085d913a6fdbe8849ab867400d0c798891bb5f7e3c15",
+        "source_note": "Complete German article from the 2016 consolidated treaty expression. The date is the expression/publication date, not commencement. Article 52 includes the United Kingdom in its historical list; later withdrawal instruments must be reconciled before determining membership for 2025. Article 355 retains all six paragraphs and territorial qualifications; onward legal references remain dependencies. No current-membership or territorial-eligibility rule is inferred by this capture."
+      }
+    }
+  ]
+}

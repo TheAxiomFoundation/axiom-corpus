@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/form/2026-09-23-ny-it-214-ty2025.json",
+      "sha256": "e60a564274014b2b11adcecd71320370012ef3ec86859aa9f530d059e0d881c1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/form/2026-09-23-ny-it-214-ty2025.json",
+      "sha256": "ebed74541ef9bbaded13d8fa93cb914c758fc66cd73e66e821cc89b72eed2054"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/form/2026-09-23-ny-it-214-ty2025.jsonl",
+      "sha256": "7c124ddde468bec53101fad4999e853cc0e262a7fd20f555c129a1d621042a55"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-09-23-ny-it-214-ty2025/official-documents/us-ny-tax-it-214-i-ty2025.pdf",
+      "sha256": "e8cc5a14cb3c464ac3fd82fdf62c2684bd11ae95177f7f6495b01b5bc62881f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-09-23-ny-it-214-ty2025/official-documents/us-ny-tax-it-214-ty2025.pdf",
+      "sha256": "38708017127e49e7dedf4196cd8f25cf263fbda591ea1fcc2f604779c6aba2be"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c0c44ea61526316d96a053c531c78ca28cb3168c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-ny-it-214-ty2025 --manifest manifests/us-ny-it-214-real-property-tax-credit-ty2025.yaml (run note: docs/ingest-runs/2026-09-23-ny-tax-606-line-structure-it214.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-23T18:31:29.985226+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gALecSH9kJt3QmVVhu149Eg2ESXrKyYnz9VG2/3zSNJyKt2PBv5UkIC7k5eS1onVWwioeYhJQLw/A/0WYgwGCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-ny-it-214-ty2025"
+}

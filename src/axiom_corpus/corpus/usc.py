@@ -1032,9 +1032,21 @@ def extract_usc(
     source_download_url: str | None = None,
     limit: int | None = None,
     allowed_citation_paths: set[str] | None = None,
+    prior_release_point: bool = False,
 ) -> UscExtractReport:
+    """Snapshot one USLM title and write its scoped inventory, provisions and coverage.
+
+    ``prior_release_point`` marks the source as a historical OLRC release point. Every
+    inventory item and provision row then takes ``source_download_url`` (the release
+    point's own download) as its ``source_url``, because the default per-section reader
+    URL always displays the current preliminary edition, not the text of this snapshot.
+    """
     if (source_xml is None) == (source_zip is None):
         raise ValueError("extract_usc takes exactly one of source_xml or source_zip")
+    if prior_release_point and not source_download_url:
+        raise ValueError(
+            "prior_release_point requires source_download_url (the release point download)"
+        )
     archive_member: str | None = None
     if source_zip is not None:
         # Retain the publisher's zip byte-for-byte as the inventoried source and parse
@@ -1105,6 +1117,12 @@ def extract_usc(
             replace(record, metadata=_with_archive_member_metadata(record.metadata, archive_member))
             for record in records
         )
+    if prior_release_point:
+        inventory = replace(
+            inventory,
+            items=tuple(replace(item, source_url=source_download_url) for item in inventory.items),
+        )
+        records = tuple(replace(record, source_url=source_download_url) for record in records)
     inventory_path = store.inventory_path("us", DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, inventory.items)
     provisions_path = store.provisions_path("us", DocumentClass.STATUTE, run_id)
