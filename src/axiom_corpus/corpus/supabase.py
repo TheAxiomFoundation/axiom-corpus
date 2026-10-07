@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import heapq
+import http.client
 import io
 import json
 import os
@@ -806,11 +807,133 @@ def fetch_staged_release_scope_evidence(
     return evidence
 
 
-# The RPC returns each signed object once with all matching scope memberships.
-# Large or transiently rejected requests are recursively split, and duplicate
-# objects from separate halves are required to be byte-for-byte consistent.
+# Prior signed objects reach the publisher in reads that each hold at most one
+# object. corpus.release_scopes gives the releases of the requested scopes (read
+# by version in batches, each checked against PostgREST's exact count), then
+# each release's signed object is read alone from corpus.release_objects. The
+# RPC corpus.get_released_scope_object_sets returned every matching object in
+# one reply, and union releases hold most scopes, so splitting the request did
+# not shrink it: once those objects reached tens of megabytes each, the reply
+# passed what the gateway delivers (publication run 37676075307: HTTP 520 for
+# 1,445 scopes, then a reply cut off at 59.6 MB for 722).
 _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
 _RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+_RELEASED_SCOPE_VERSION_BATCH = 100
+_RELEASED_SCOPE_PAGE_SIZE = 1_000
+_CONTENT_RANGE_TOTAL_RE = re.compile(r"/(\d+)$")
+
+
+def _released_scope_get(
+    path: str,
+    params: Mapping[str, str],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> tuple[list[object], int | None]:
+    """Read one corpus-schema PostgREST page and its exact row count, if asked.
+
+    Server errors, network errors, and a reply cut off before its end (an
+    incomplete body, or JSON that does not end) are retried with backoff.
+    """
+    headers = {
+        "apikey": service_key,
+        "Authorization": f"Bearer {service_key}",
+        "Accept": "application/json",
+        "Accept-Profile": "corpus",
+        "User-Agent": USER_AGENT,
+    }
+    if "limit" in params:
+        headers["Prefer"] = "count=exact"
+    req = urllib.request.Request(
+        f"{_rest_url(supabase_url)}/{path}?{urllib.parse.urlencode(params)}",
+        headers=headers,
+        method="GET",
+    )
+    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+                content_range = resp.headers.get("Content-Range") if resp.headers else None
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected released-scope response")
+            total = None
+            if "limit" in params:
+                match = _CONTENT_RANGE_TOTAL_RE.search(str(content_range or ""))
+                if match is None:
+                    raise RuntimeError("released-scope response has no exact row count")
+                total = int(match.group(1))
+            return rows, total
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500 and exc.code not in {408, 429}:
+                raise
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (
+            urllib.error.URLError,
+            ConnectionError,
+            TimeoutError,
+            http.client.IncompleteRead,
+            json.JSONDecodeError,
+        ):
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("released-scope retry loop exhausted unexpectedly")
+
+
+def _postgrest_in(values: Sequence[str]) -> str:
+    """A PostgREST ``in`` filter whose values are quoted, so any text is one value."""
+    quoted = ('"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"' for value in values)
+    return f"in.({','.join(quoted)})"
+
+
+def _fetch_release_scope_rows(
+    versions: Sequence[str],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> list[object]:
+    """Every corpus.release_scopes row of these versions, complete by exact count.
+
+    A batch whose rows do not fit one page is split until each half does; a
+    single version that still does not fit is read page by page, and its rows
+    must add up to the count the first page reported.
+    """
+    params = {
+        "select": "release_name,jurisdiction,document_class,version",
+        "version": _postgrest_in(versions),
+        "order": "release_name.asc,jurisdiction.asc,document_class.asc,version.asc",
+        "limit": str(_RELEASED_SCOPE_PAGE_SIZE),
+        "offset": "0",
+    }
+    rows, total = _released_scope_get(
+        "release_scopes", params, service_key=service_key, supabase_url=supabase_url
+    )
+    if total is not None and len(rows) == total:
+        return rows
+    if len(versions) > 1:
+        midpoint = len(versions) // 2
+        return _fetch_release_scope_rows(
+            versions[:midpoint], service_key=service_key, supabase_url=supabase_url
+        ) + _fetch_release_scope_rows(
+            versions[midpoint:], service_key=service_key, supabase_url=supabase_url
+        )
+    while rows and total is not None and len(rows) < total:
+        page, _page_total = _released_scope_get(
+            "release_scopes",
+            {**params, "offset": str(len(rows))},
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        if not page:
+            break
+        rows.extend(page)
+    if total is None or len(rows) != total:
+        raise RuntimeError(
+            f"released-scope rows for version {versions[0]!r} do not match their count"
+        )
+    return rows
 
 
 def _fetch_released_scope_object_sets(
@@ -819,91 +942,76 @@ def _fetch_released_scope_object_sets(
     service_key: str,
     supabase_url: str,
 ) -> list[object]:
-    requested_keys = {scope.key for scope in scopes}
-    payload = {
-        "p_scopes": [
-            {
-                "jurisdiction": scope.jurisdiction,
-                "document_class": scope.document_class,
-                "version": scope.version,
-            }
-            for scope in scopes
-        ]
-    }
-    req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/rpc/get_released_scope_object_sets",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "apikey": service_key,
-            "Authorization": f"Bearer {service_key}",
-            "Accept": "application/json",
-            "Accept-Profile": "corpus",
-            "Content-Type": "application/json",
-            "Content-Profile": "corpus",
-            "User-Agent": USER_AGENT,
-        },
-        method="POST",
-    )
-    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
-        try:
-            with urllib.request.urlopen(req, timeout=600) as resp:
-                rows = json.loads(resp.read())
-            if not isinstance(rows, list):
-                raise RuntimeError("unexpected released-scope response")
-            for row in rows:
-                if not isinstance(row, dict):
-                    raise RuntimeError("released-scope response contains a malformed row")
-                raw_scopes = row.get("scopes")
-                if not isinstance(raw_scopes, list):
-                    raise RuntimeError("released-scope response contains malformed memberships")
-                for raw_scope in raw_scopes:
-                    if not isinstance(raw_scope, dict):
-                        raise RuntimeError(
-                            "released-scope response contains a malformed membership"
-                        )
-                    key = (
-                        str(raw_scope.get("jurisdiction") or ""),
-                        str(raw_scope.get("document_class") or ""),
-                        str(raw_scope.get("version") or ""),
-                    )
-                    if key not in requested_keys:
-                        raise RuntimeError(
-                            f"released-scope response contains an unknown scope: {key!r}"
-                        )
-            return rows
-        except urllib.error.HTTPError as exc:
-            if 400 <= exc.code < 500 and exc.code not in {413, 414}:
-                raise
-            if len(scopes) > 1:
-                midpoint = len(scopes) // 2
-                return _fetch_released_scope_object_sets(
-                    scopes[:midpoint],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                ) + _fetch_released_scope_object_sets(
-                    scopes[midpoint:],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                )
-            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                raise
-        except (urllib.error.URLError, ConnectionError, TimeoutError):
-            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                if len(scopes) == 1:
-                    raise
-                midpoint = len(scopes) // 2
-                return _fetch_released_scope_object_sets(
-                    scopes[:midpoint],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                ) + _fetch_released_scope_object_sets(
-                    scopes[midpoint:],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                )
-        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+    """Each prior release of the requested scopes: its signed object and those scopes.
 
-    raise AssertionError("released-scope retry loop exhausted unexpectedly")
+    The rows have the shape the RPC returned, one per release in name order,
+    each with its matching scopes in key order.
+    """
+    requested_keys = {scope.key for scope in scopes}
+    versions = sorted({scope.version for scope in scopes})
+    memberships: dict[str, list[dict[str, str]]] = {}
+    for start in range(0, len(versions), _RELEASED_SCOPE_VERSION_BATCH):
+        batch = versions[start : start + _RELEASED_SCOPE_VERSION_BATCH]
+        for row in _fetch_release_scope_rows(
+            batch, service_key=service_key, supabase_url=supabase_url
+        ):
+            if not isinstance(row, dict):
+                raise RuntimeError("released-scope response contains a malformed row")
+            raw_name = row.get("release_name")
+            try:
+                release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
+            except ValueError as exc:
+                raise RuntimeError("released-scope response has an invalid release name") from exc
+            if not release_name:
+                raise RuntimeError("released-scope response has an invalid release name")
+            key = (
+                str(row.get("jurisdiction") or ""),
+                str(row.get("document_class") or ""),
+                str(row.get("version") or ""),
+            )
+            if key[2] not in batch:
+                raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
+            if key not in requested_keys:
+                # The same version of a scope this release does not request.
+                continue
+            memberships.setdefault(release_name, []).append(
+                {"jurisdiction": key[0], "document_class": key[1], "version": key[2]}
+            )
+
+    object_sets: list[object] = []
+    for release_name in sorted(memberships):
+        objects, _total = _released_scope_get(
+            "release_objects",
+            {
+                "select": "release_name,content_sha256,release_object",
+                "release_name": f"eq.{release_name}",
+            },
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        if len(objects) != 1 or not isinstance(objects[0], dict):
+            raise RuntimeError(
+                f"released-scope release {release_name!r} has no single signed object"
+            )
+        signed = objects[0]
+        if signed.get("release_name") != release_name:
+            raise RuntimeError("released-scope response has inconsistent object identity")
+        object_sets.append(
+            {
+                "release_name": release_name,
+                "content_sha256": signed.get("content_sha256"),
+                "release_object": signed.get("release_object"),
+                "scopes": sorted(
+                    memberships[release_name],
+                    key=lambda scope: (
+                        scope["jurisdiction"],
+                        scope["document_class"],
+                        scope["version"],
+                    ),
+                ),
+            }
+        )
+    return object_sets
 
 
 def fetch_released_scope_objects(
