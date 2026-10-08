@@ -596,6 +596,115 @@ def test_identical_version_sets_still_require_publication_recency(
     assert "identical version evidence" in result.evidence
 
 
+def _kept_grandfathered_row(current_versions, *, incoming_at, current_at):
+    return {
+        "jurisdiction": "us-ky",
+        "document_class": "form",
+        "changes": True,
+        "current_release_name": "us-active",
+        "current_versions": current_versions,
+        "current_published_at": current_at,
+        "incoming_published_at": incoming_at,
+    }
+
+
+def test_kept_grandfathered_version_with_an_added_version_passes(release_repo) -> None:
+    # The wave-6 union keeps us-ky form 2026-740-es and adds a dated forms
+    # scope: the kept key needs no ordering proof, so nothing moves back.
+    scopes = [
+        ReleaseScope("us-ky", "form", "2026-740-es"),
+        ReleaseScope("us-ky", "form", "2026-10-06-w6-income-tax-forms-ky"),
+    ]
+    active = [
+        _kept_grandfathered_row(
+            ["2026-740-es"],
+            incoming_at="2026-10-07T23:22:00Z",
+            current_at="2026-09-25T17:00:00Z",
+        )
+    ]
+    _, _, results = _results(release_repo, "us-added", scopes, active, allow_regression=False)
+    result = _by_name(results)["scope_monotonicity"]
+    assert result.passed, result.evidence
+
+
+def test_kept_grandfathered_version_still_requires_publication_recency(release_repo) -> None:
+    scopes = [
+        ReleaseScope("us-ky", "form", "2026-740-es"),
+        ReleaseScope("us-ky", "form", "2026-10-06-w6-income-tax-forms-ky"),
+    ]
+    active = [
+        _kept_grandfathered_row(
+            ["2026-740-es"],
+            incoming_at="2026-09-01T00:00:00Z",
+            current_at="2026-09-25T17:00:00Z",
+        )
+    ]
+    _, _, results = _results(release_repo, "us-replay-added", scopes, active)
+    result = _by_name(results)["scope_monotonicity"]
+    assert not result.passed
+    assert "keeps the active versions ['2026-740-es'] and adds others" in result.evidence
+
+
+def test_kept_grandfathered_version_orders_the_versions_that_differ(release_repo) -> None:
+    kept = ReleaseScope("us-ky", "form", "2026-740-es")
+    newer = ReleaseScope("us-ky", "form", "2026-10-06-w6-income-tax-forms-ky")
+    older = ReleaseScope("us-ky", "form", "2026-08-01-income-tax-forms-ky")
+    active = [
+        _kept_grandfathered_row(
+            ["2026-740-es", "2026-09-01-income-tax-forms-ky"],
+            incoming_at="2026-10-07T23:22:00Z",
+            current_at="2026-09-25T17:00:00Z",
+        )
+    ]
+    _, _, ahead = _results(release_repo, "us-ahead", [kept, newer], active)
+    assert _by_name(ahead)["scope_monotonicity"].passed
+    _, _, behind = _results(release_repo, "us-behind", [kept, older], active)
+    result = _by_name(behind)["scope_monotonicity"]
+    assert not result.passed
+    assert "incoming frontier '2026-08-01-income-tax-forms-ky' precedes" in result.evidence
+
+
+def test_kept_grandfathered_version_alone_cannot_drop_ordered_versions(release_repo) -> None:
+    active = [
+        _kept_grandfathered_row(
+            ["2026-740-es", "2026-09-01-income-tax-forms-ky"],
+            incoming_at="2026-10-07T23:22:00Z",
+            current_at="2026-09-25T17:00:00Z",
+        )
+    ]
+    _, _, results = _results(
+        release_repo,
+        "us-dropped",
+        [ReleaseScope("us-ky", "form", "2026-740-es")],
+        active,
+        allow_regression=True,
+    )
+    result = _by_name(results)["scope_monotonicity"]
+    assert not result.passed
+    assert not result.warning
+    assert "no ordering proof is possible" in result.evidence
+
+
+def test_new_malformed_version_beside_a_kept_one_fails(release_repo) -> None:
+    scopes = [
+        ReleaseScope("us-ky", "form", "2026-740-es"),
+        ReleaseScope("us-ky", "form", "2026-740-es-revised"),
+    ]
+    active = [
+        _kept_grandfathered_row(
+            ["2026-740-es"],
+            incoming_at="2026-10-07T23:22:00Z",
+            current_at="2026-09-25T17:00:00Z",
+        )
+    ]
+    _, _, results = _results(
+        release_repo, "us-new-malformed", scopes, active, allow_regression=True
+    )
+    result = _by_name(results)["scope_monotonicity"]
+    assert not result.passed
+    assert "malformed version key '2026-740-es-revised'" in result.evidence
+
+
 def test_allow_regression_malformed_version_still_fails(release_repo) -> None:
     scope = ReleaseScope("uk", "manual", "not-a-date")
     active = [
