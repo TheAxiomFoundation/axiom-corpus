@@ -307,7 +307,7 @@ def test_the_same_swap_validates_on_the_canada_338_line() -> None:
 
 # Tracked selectors cut before this audit that select the recovery scope (as of
 # main b5b637167). They are immutable, so they keep it. No later selector may add
-# it back.
+# it back, except the strict-superset pin successor listed separately below.
 SELECTORS_WITH_RECOVERY = frozenset(
     {
         "us-rulespec-2026-07-13",
@@ -342,6 +342,17 @@ SELECTORS_WITH_RECOVERY = frozenset(
         "us-rulespec-2026-09-24-snap-fy2027-cola",
         "us-rulespec-ny-snap-2026-07-17",
         "us-rulespec-snap-2026-07-21",
+    }
+) | frozenset(
+    {
+        # Cut after this audit as a deliberate exception. It is a strict superset
+        # of rulespec-us's pin (obbb-alien-snap, via fy2027-cola) that adds one
+        # us-az/manual scope, so the rulespec-us re-pin it serves resolves every
+        # existing citation exactly as before. The swap below would re-point ten
+        # R&TC modules and the CalWORKs module and re-fingerprint its waiver;
+        # that belongs in its own cut. See the run note
+        # docs/ingest-runs/2026-10-09-us-rulespec-az-des-ece-dated.md.
+        "us-rulespec-2026-10-09-az-des-ece-dated",
     }
 )
 
