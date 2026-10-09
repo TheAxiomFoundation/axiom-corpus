@@ -1,0 +1,59 @@
+# Dated Arizona DES authority for the March 2026 Nutrition Assistance (SNAP)
+# expanded categorical eligibility (ECE) gross-income change, 185% -> 200% FPL.
+#
+# The current FAA5 pages are already released in us-az/manual/2026-07-17-faa5-recovery
+# (expression_date 2026-07-17, the capture date). That scope states 200% but carries no
+# dated history, and one release cannot hold two rows at one citation path. This scope
+# adds the DES change notice at its own path, marked as amending the two FAA5 pages, so
+# axiom-encode attaches it as dated amendment context when it encodes their blocks.
+#
+# Version is set on the command line; this key is documentation only:
+version: 2026-10-09-az-des-snap-ece-dated-authority
+documents:
+- source_id: az-des-whats-changed-2026-03-23
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/archived-policy/2026-03-23-whats-changed
+  title: "Arizona DES Cash and Nutrition Assistance Policy Manual: What's Changed on 03/23/2026"
+  source_url: "https://dbmefaapolicy.azdes.gov/Archived_Policy/baggage/2026-03-23_What'sChanged.pdf"
+  download_url: "https://web.archive.org/web/20260417195741id_/https://dbmefaapolicy.azdes.gov/Archived_Policy/baggage/2026-03-23_What'sChanged.pdf"
+  source_format: pdf
+  source_as_of: '2026-04-17'
+  expression_date: '2026-03-23'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance
+      Policy Manual
+    program: nutrition_assistance
+    document_subtype: policy_change_notice
+    document_type: policy change notice (amendment)
+    amends:
+    - us-az/manual/des/faa5/na-categorical-eligibility
+    - us-az/manual/des/faa5/na-eligibility-and-benefit-determination
+    amendment_targets:
+    - us-az/manual/des/faa5/na-categorical-eligibility/block-4
+    - us-az/manual/des/faa5/na-categorical-eligibility/block-5
+    - us-az/manual/des/faa5/na-eligibility-and-benefit-determination/block-5
+    amendment_summary: The NA Expanded Categorical Eligibility gross income limit
+      changed from 185% of the Federal Poverty Level to 200% for the benefit month
+      of 03/2026 and ongoing (FAA5.I01B NA Categorical Eligibility and FAA5.I01A
+      NA Eligibility and Benefit Determination, updated as of 03/23/2026, effective
+      03/01/2026). The 185%-to-130% change announced on 02/23/2026 was recalled.
+    effective_start: '2026-03-01'
+    effective_basis: For the benefit month of 03/2026 and ongoing
+    expression_date_note: expression_date is the notice's own date (What's Changed
+      on 03/23/2026). The ECE change it announces applies from benefit month 03/2026,
+      recorded as effective_start. source_as_of is the Internet Archive capture
+      date.
+    archived_official_source: true
+    archive_url: "https://web.archive.org/web/20260417195741/https://dbmefaapolicy.azdes.gov/Archived_Policy/baggage/2026-03-23_What'sChanged.pdf"
+    archive_timestamp: '20260417195741'
+    archive_payload_sha1_base32: UJIAFW65IDNJ7HBLBST5WHPJZMCHICLJ
+    archive_payload_sha256: f8173335f1f7f73467020ed8a13d0e7ad2efd5a92d83f74f7c471b57d27232e3
+    source_access_note: Live official DES manual files return a Cloudflare challenge
+      to unattended HTTP clients; download_url is the Internet Archive capture of the
+      official file, whose payload digest matches the archive's CDX record.
+    discovered_via: rulespec-us#1460; axiom-encode#1760 coverage matrix
