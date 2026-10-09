@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me.json",
+      "sha256": "a52afd6555511127195dfcac087be8003931d13b290a3ac15372c062e4ff0770"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me.json",
+      "sha256": "621c83c1c889dc3e40b0146ff01f6a1725d4a3334323d5e66979fd4823078daa"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me.jsonl",
+      "sha256": "4d1c60c28fb733bbd3880d2b4dcc653bd12299e546f8eab2e65a5c923b1993e2"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me/official-documents/us-me-w6-dhhs-ocfs-ccdf-market-rates-2021-07-03.pdf",
+      "sha256": "081038b56b997fd7891c75e7f4da61158184029efd6a69477563ee8a6c61beac"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me/official-documents/us-me-w6-dhhs-ocfs-ccdf-market-rates-2024-07-06.pdf",
+      "sha256": "fb1a66cdfb8c1e782d3d99c80766d150752b9d4d6fb8209ac193360d77fa1740"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me/official-documents/us-me-w6-dhhs-ofi-tanf-rule-121a-rule-pages-2024-09.pdf",
+      "sha256": "86c78207400e6209785f1c8bea9990cde3c4d5244472d2cba39a39100825d01e"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-10-06-w6-tanf-ccdf-docs-me/official-documents/us-me-w6-dhhs-ofi-tanf.html",
+      "sha256": "af945d6f90e3264d466400791e9a0d73324eb592574a4fcf41967ea7bbad5812"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:53:21.961597+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FXVXMBRe2ZVDVGaAucdsaTcADBieDaKZFZj9srpdbtRAu6LgD2G0UrPdODwtEP7CuSS5lnRsJLXkjOO5gE2WAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-me"
+}

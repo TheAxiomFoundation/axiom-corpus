@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-benefits-statute-ak
+documents:
+- source_id: us-ak-statute-title-47-pdf
+  jurisdiction: us-ak
+  document_class: statute
+  title: Alaska Statutes Title 47. Welfare, Social Services, and Institutions (Legislature PDF)
+  source_url: https://www.akleg.gov/statutesPDF/Title-47.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ak/statute/title-47-pdf
+  metadata:
+    primary_source: true
+    source_authority: Alaska State Legislature
+    document_subtype: statute_title_pdf
+    program: SSI state supplement (APA); TANF; CCDF
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 6)
+    pages: 368
+    path_note: whole-title PDF at page granularity; a later section-level adapter scope would use us-ak/statute/47/...
+    wave6_rows:
+    - 6
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

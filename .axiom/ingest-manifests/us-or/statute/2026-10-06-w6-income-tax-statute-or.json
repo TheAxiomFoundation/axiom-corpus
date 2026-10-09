@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/statute/2026-10-06-w6-income-tax-statute-or.json",
+      "sha256": "633f1448f63b831f3a9cd0f42bb77ed54e6681b0fc4c3e03567a0920d4e3961e"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/statute/2026-10-06-w6-income-tax-statute-or.json",
+      "sha256": "729c3c4c93b6468306907bc953440d975c76d68ab6b301e751c10fa36c7fa994"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/statute/2026-10-06-w6-income-tax-statute-or.jsonl",
+      "sha256": "30ff8e1d13c9a18f4e4281aa96ec4089e38692b5214ec1d5c3b98bc517a1f2ab"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-10-06-w6-income-tax-statute-or/official-documents/us-or-statute-bills-2023-hb3235-enrolled.pdf",
+      "sha256": "aee531c6ec692aad9c0e8abef252bc88dd0a965954db2d8e260a151170544791"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-10-06-w6-income-tax-statute-or/official-documents/us-or-statute-constitution.html",
+      "sha256": "5387b7516d7e5b03b8ce061cf8de49cdd5b594d3aeb7343ce70e3fea53f3d4f3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 45,
+    "missing_count": 0,
+    "provision_count": 45,
+    "source_count": 45
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:57:46.951675+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rv1uO0cxPiCL6Ac2SaHcMkPmEWc9UE942TU9y9oUGc8ctIg5J3DL7TtLkfNeqXJmNHYCfjyyn/d8k7X9fTwQDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-or"
+}

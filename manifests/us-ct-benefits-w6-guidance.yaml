@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-guidance-ct
+documents:
+- source_id: us-ct-guidance-dss-program-standards-chart
+  jurisdiction: us-ct
+  document_class: guidance
+  title: 'DSS Program Standards Chart: Income Limits & Standards for DSS Benefit Programs (as of 10/1/2025)'
+  source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/fact-sheets-and-issue-briefs/fact-sheets/dss-program-standards-chart.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-10-01'
+  citation_path: us-ct/guidance/dss/program-standards-chart
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services
+    document_subtype: standards_chart
+    program: SSI state supplement (AABD); TANF
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 66)
+    wave6_rows:
+    - 66
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

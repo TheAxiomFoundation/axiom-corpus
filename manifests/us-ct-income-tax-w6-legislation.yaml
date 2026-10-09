@@ -1,0 +1,69 @@
+version: 2026-10-06-w6-income-tax-legislation-ct
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Connecticut
+documents:
+- source_id: us-ct-w6-public-acts-2022-pa-22-118
+  jurisdiction: us-ct
+  document_class: statute
+  title: Public Act No. 22-118 (House Bill No. 5506), An Act Adjusting the State Budget for the Biennium Ending June 30, 2023
+  source_url: https://www.cga.ct.gov/2022/ACT/PA/PDF/2022PA-00118-R00HB-05506-PA.PDF
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/statute/public-acts/2022/pa-22-118
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Connecticut General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: House Bill No. 5506 Public Act No. 22-118 AN ACT ADJUSTING THE STATE BUDGET (739 pages)
+    wave6_work_order_rows:
+    - 301
+    - 302
+- source_id: us-ct-w6-public-acts-2023-pa-23-31
+  jurisdiction: us-ct
+  document_class: statute
+  title: Public Act No. 23-31 (Substitute House Bill No. 6733)
+  source_url: https://www.cga.ct.gov/2023/ACT/PA/PDF/2023PA-00031-R00HB-06733-PA.PDF
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/statute/public-acts/2023/pa-23-31
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Connecticut General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Substitute House Bill No. 6733 Public Act No. 23-31 (74 pages)
+    wave6_work_order_rows:
+    - 303
+- source_id: us-ct-w6-supplements-2024-chapter-229
+  jurisdiction: us-ct
+  document_class: statute
+  title: Connecticut General Statutes, 2024 Supplement, Chapter 229 - Income Tax
+  source_url: https://www.cga.ct.gov/2024/sup/chap_229.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/statute/supplements/2024/chapter-229
+  metadata:
+    primary_source: true
+    source_authority: Connecticut General Assembly
+    document_subtype: code_supplement
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Chapter 229 - Income Tax (2024 Supplement)
+    wave6_work_order_rows:
+    - 304

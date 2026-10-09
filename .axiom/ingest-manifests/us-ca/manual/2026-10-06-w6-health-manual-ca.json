@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/manual/2026-10-06-w6-health-manual-ca.json",
+      "sha256": "f8a537449046672b972edd63028a1faef0f3810b6e368ded44d4e6fd1b1a61a3"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/manual/2026-10-06-w6-health-manual-ca.json",
+      "sha256": "5399664a97839d7bcbc9f33602a9483c4b76eb38464d318e849bb577755e2534"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/manual/2026-10-06-w6-health-manual-ca.jsonl",
+      "sha256": "3dac785b8168de572bbefcf3fa6147cebc515a3e89167a261be0d60d67829e7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-health-manual-ca/official-documents/us-ca-w6-health-scc-ssa-medi-cal-cchip.html",
+      "sha256": "ff43310d3ab9d2a3263ca041e6a225ae2c398c5a79a25afc7c9402b20687db6e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:49:19.879012+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "umXR+c7K/Xr8U95qMH+tBuvgk8Wom9utaoZ0lvWZZUQSIsj+QOS26gaztyCgL0SGLJSuUKfFtJkWdP/8OnIXAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-manual-ca"
+}

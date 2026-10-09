@@ -1,0 +1,59 @@
+version: 2026-10-06-w6-benefits-regulation-ne
+documents:
+- source_id: us-ne-regulation-title-476-chapter-1
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 476 NAC 1 (Low Income Home Energy Assistance Program), filing of 12-26-2020
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-12-26'
+  citation_path: us-ne/regulation/title-476/chapter-1
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Secretary of State, Rules and Regulations
+    document_subtype: administrative_code_chapter_pdf
+    program: LIHEAP
+    expression_date_note: the effective date in the chapter file name
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 166)
+    wave6_rows:
+    - 166
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ne-regulation-title-476-chapter-2
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 476 NAC 2 (Low Income Home Energy Assistance Program), filing of 06-26-2022
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022).pdf/1747
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-06-26'
+  citation_path: us-ne/regulation/title-476/chapter-2
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Secretary of State, Rules and Regulations
+    document_subtype: administrative_code_chapter_pdf
+    program: LIHEAP
+    expression_date_note: the effective date in the chapter file name
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 167)
+    wave6_rows:
+    - 167
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ne-regulation-title-476-chapter-3
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 476 NAC 3 (Low Income Home Energy Assistance Program), filing of 12-26-2020
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020).pdf/1748
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-12-26'
+  citation_path: us-ne/regulation/title-476/chapter-3
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Secretary of State, Rules and Regulations
+    document_subtype: administrative_code_chapter_pdf
+    program: LIHEAP
+    expression_date_note: the effective date in the chapter file name
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 168)
+    wave6_rows:
+    - 168
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

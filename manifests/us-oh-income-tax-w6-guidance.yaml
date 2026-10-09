@@ -1,0 +1,47 @@
+version: 2026-10-06-w6-income-tax-guidance-oh
+documents:
+- source_id: us-oh-guidance-odt-individual-income-tax-ohio-publication
+  jurisdiction: us-oh
+  document_class: guidance
+  title: Individual Income Tax - Ohio (department publication)
+  source_url: https://tax.ohio.gov/static/communications/publications/individual_income_tax_ohio.pdf
+  download_url: https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/communications/publications/individual_income_tax_ohio.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-oh/guidance/odt/individual-income-tax-ohio-publication
+  extraction:
+    segmentation: single_block
+  request: &id001
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: publication
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://tax.ohio.gov/static/communications/publications/individual_income_tax_ohio.pdf
+- source_id: us-oh-guidance-odt-faq-income-individual-credits
+  jurisdiction: us-oh
+  document_class: guidance
+  title: Income - Individual Credits (Education, Displaced Workers and Adoption) FAQs
+  source_url: https://tax.ohio.gov/wps/portal/gov/tax/help-center/faqs/income+-+individual+credits/income-individual-credits
+  download_url: https://tax.ohio.gov/help-center/faqs/income+-+individual+credits/income-individual-credits
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-oh/guidance/odt/faq-income-individual-credits
+  extraction:
+    html_content_selector: main#odx-main-content
+  request: *id001
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: faq
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://tax.ohio.gov/wps/portal/gov/tax/help-center/faqs/income+-+individual+credits/income-individual-credits

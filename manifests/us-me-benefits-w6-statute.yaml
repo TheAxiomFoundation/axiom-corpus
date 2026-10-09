@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-benefits-statute-me
+documents:
+- source_id: us-me-statute-title-22-3271
+  jurisdiction: us-me
+  document_class: statute
+  title: '22 M.R.S. §3271. Program (Title 22, Subtitle 3: Income Supplementation)'
+  source_url: https://legislature.maine.gov/statutes/22/title22sec3271.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-me/statute/title-22/3271
+  extraction:
+    html_content_selector: div.MRSSection
+  metadata:
+    primary_source: true
+    source_authority: Maine Legislature, Office of the Revisor of Statutes
+    document_subtype: statute_section_html
+    program: SSI state supplement
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 134)
+    wave6_rows:
+    - 134
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

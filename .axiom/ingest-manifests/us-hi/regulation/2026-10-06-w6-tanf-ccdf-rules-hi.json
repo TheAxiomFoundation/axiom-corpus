@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/regulation/2026-10-06-w6-tanf-ccdf-rules-hi.json",
+      "sha256": "a3215c39530d3eada409d5c225b02d880f49bcba173a7432f8d91508ee07b3a4"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/regulation/2026-10-06-w6-tanf-ccdf-rules-hi.json",
+      "sha256": "cfd4ea88d44aaca46b5f2df848877232c755c7b4f833947f6c76f7c0865e853a"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/regulation/2026-10-06-w6-tanf-ccdf-rules-hi.jsonl",
+      "sha256": "0eee57f1e060aa47948a46a24028b1ff0a9b5970d5976e831cb6c8fcdca384a7"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-10-06-w6-tanf-ccdf-rules-hi/official-documents/us-hi-w6-har-17-798-2.pdf",
+      "sha256": "44cf83dff777bd18ac5a6392607c8876caa15902dc30c2cde3484a30382930dd"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-10-06-w6-tanf-ccdf-rules-hi/official-documents/us-hi-w6-har-17-798-3.pdf",
+      "sha256": "17d1bde4ffd3e50d8d7c1a8c853e0741c8d7343d45b33cc041386a3869fd2c97"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 127,
+    "missing_count": 0,
+    "provision_count": 127,
+    "source_count": 127
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:51:02.765448+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "L9W9VWAtVzBf5EXMVshRuZ9heJjJo/kz4UxwqIT6PinbDyeIWfsnieAvIAaAFbM80Amr1WEfZPT8fnwpa02WBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-hi"
+}

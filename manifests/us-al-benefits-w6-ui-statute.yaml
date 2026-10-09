@@ -1,0 +1,30 @@
+version: "2026-10-06-w6-benefits-ui-statute"
+# Wave 6, group benefits (docs/ingest-runs/2026-10-06-w6-benefits.md): Code of Alabama 1975
+# Title 25 (Industrial Relations and Labor), which carries Chapter 4 Unemployment Compensation
+# (25-4-72 weekly benefit amount, 25-4-73, 25-4-74, 25-4-77). The bundle cites Justia copies of
+# the chapter and sections and an alabamaretail.org article on them; this is the official text
+# from the Legislature's ALISON code service through the existing `alabama-code` adapter, which
+# filters at title grain.
+sources:
+  - source_id: us-al-code-title-25
+    jurisdiction: us-al
+    document_class: statute
+    adapter: alabama-code
+    source_url: https://alison.legislature.state.al.us/code-of-alabama
+    version: "2026-10-06-w6-benefits-ui-statute"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-06"
+      only_title: "25"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-al-code/2026-10-06-w6-benefits-ui-statute
+      request_delay_seconds: 0.2
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      source_authority: Alabama Legislature (ALISON)
+      program: Unemployment insurance
+      run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+      source_scope_note: >-
+        Code of Alabama 1975 Title 25 from the official ALISON GraphQL code service; the
+        adapter filters at title grain, so the scope carries the whole labor title, which
+        contains Chapter 4 (Unemployment Compensation, sections 25-4-1 et seq.).

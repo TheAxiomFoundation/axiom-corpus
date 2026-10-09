@@ -1,0 +1,33 @@
+version: 2026-09-15-ccdf-subsidy-rules-agency-5180-6-chapter-5180-6-1
+documents:
+- source_id: us-oh-dcy-oac-5180-6-1-publicly-funded-child-care
+  jurisdiction: us-oh
+  document_class: regulation
+  title: Ohio Administrative Code Chapter 5180:6-1 Publicly Funded Child Care
+  source_url: https://codes.ohio.gov/ohio-administrative-code/chapter-5180:6-1
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-oh/regulation/agency-5180-6/chapter-5180-6-1
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Children and Youth
+    document_subtype: administrative_code_chapter
+    program: CCDF
+    state_program: Ohio Publicly Funded Child Care (PFCC)
+    federal_program: CCDF
+    manual_landing_page: https://codes.ohio.gov/ohio-administrative-code/5180:6
+    source_discovery_group: us-oh/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://codes.ohio.gov/ohio-administrative-code/5180:6
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Ohio Laws and Administrative Rules (Legislative Service Commission)
+    code_agency: '5180:6'
+    extraction_adapter: extract-ohio-administrative-code --only-chapter 5180:6-1
+    extraction_run_id: 2026-09-15-ccdf-subsidy-rules-agency-5180-6-chapter-5180-6-1
+    rule_count: 12
+    renumbering_note: the recount named OAC 5101:2-16; codes.ohio.gov answers 'Number Not Found' for 5101:2-16 and lists agency
+      5101:2 with chapters 5101:2-20 and 5101:2-25 only; the publicly funded child care rules now sit under the Department
+      of Children and Youth as 5180:6-1
+    extraction_note: 'descriptor manifest like manifests/us-oh-snap-rules.yaml (OAC 5101:4): chapter and rule rows come from
+      the OAC adapter'

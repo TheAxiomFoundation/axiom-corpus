@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/form/2026-10-06-w6-income-tax-forms-ms.json",
+      "sha256": "0e756606311283033d5fd45b4cadb2182d706a85b869c8e7ab62f9eceda14882"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/form/2026-10-06-w6-income-tax-forms-ms.json",
+      "sha256": "5900037627dceb8456f1788b8bea1fb130c539cb0eb015d8d866f3dd33b81765"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/form/2026-10-06-w6-income-tax-forms-ms.jsonl",
+      "sha256": "283a4bfbf1e23a73402766e6b2c665dffc620cdbc87e9c7b0fa4861d473f9b9d"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2021-form-80-100-instructions.pdf",
+      "sha256": "b42eb8cef0e4f43bb661edcaf60c5782cb90d842b5444ed64e0661f6912b3658"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2022-form-80-100-instructions.pdf",
+      "sha256": "530899067c150c845242f7713ce239f50931769da1c79239490c3b8657b27b3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2022-form-80-105.pdf",
+      "sha256": "0d88e2dc2ac84c11a36813e1b9421a099e88b8feed9e3ee0d1f8bd90504d1039"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2022-form-80-108.pdf",
+      "sha256": "e071125144c49e035fa094f2813add429e83b56c02ccc69f266f8325923139d2"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2023-form-80-100-instructions.pdf",
+      "sha256": "fcff36db37de10639f11d2f5188d1ecaf1f4a55edbed779042a9a1e13ffad2e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2024-form-80-100-instructions.pdf",
+      "sha256": "35d4d7f235cbe22ad05d02ec95845c07b75af714912d8bebf18cc60397972cb7"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/form/2026-10-06-w6-income-tax-forms-ms/official-documents/us-ms-form-dor-ty2024-form-80-105.pdf",
+      "sha256": "10a2f6bf680cc196168a85d8917db8fab4c070c9eec1a009eb77efa2837ab834"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:54:30.667135+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9gDaEuPdCTf2/XVBFApaWJ5bdDMTUiYqIn+eR18Iy6/K+FwJZoQ07W2GqZ+M+TncML2uALu0H+gucm+LuCeXDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-ms"
+}

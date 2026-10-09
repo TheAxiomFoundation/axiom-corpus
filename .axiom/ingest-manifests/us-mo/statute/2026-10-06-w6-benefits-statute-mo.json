@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/statute/2026-10-06-w6-benefits-statute-mo.json",
+      "sha256": "be7e400a6eeb826b83c4bd0dbf78eac26ca05bc949adca0faafae35b7f6bc416"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/statute/2026-10-06-w6-benefits-statute-mo.json",
+      "sha256": "77161d779b588c67ff99b1c94329111556c32bb28a093b34ffb68ff1958681c3"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/statute/2026-10-06-w6-benefits-statute-mo.jsonl",
+      "sha256": "61c5e02d83895d829b48ad9c1f10e190c2d6e45db3ff3ce4190963fa99e700ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-benefits-statute-mo/official-documents/us-mo-statute-208.010.html",
+      "sha256": "46a2a808e57f438fcf475522deb5e782180c0f1062253e0d114d372f41c18394"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-benefits-statute-mo/official-documents/us-mo-statute-208.030.html",
+      "sha256": "f9872c6d971eb7e86d6ffa344936bfca4abda1e5ad0bcd9227856ca1c6ea186b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-benefits-statute-mo/official-documents/us-mo-statute-209.030.html",
+      "sha256": "1a5654125ada59aaabad0c83ea26c2886862d2e61113618a6996bdff4f58ca3f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-benefits-statute-mo/official-documents/us-mo-statute-209.040.html",
+      "sha256": "960ee877565fb7829566ac4d4774231202c255b7a3de577a15ae4839cade25ef"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-benefits-statute-mo/official-documents/us-mo-statute-209.240.html",
+      "sha256": "c906e78ef3ec2c4a466714fb5a79a12e6ae824165bba87a0e070ec45dff569ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:20.814476+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IgdSd37WQ4GNEqqQCZnYFaiG2QOMBDToMWT+PjdjsQ95hXMMg7T4LmFwhyHv4k0tplDkZyTVvlD+g4/GfHG2Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-mo"
+}

@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn.json",
+      "sha256": "cf8a50bb4a57ec8a89a352d5008526f3693b27e6f556a57f1b4d2de49a88e74f"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn.json",
+      "sha256": "a7d0dfa5c3d7c88bb34fd23372e336f9bcde3bf0c10248b07bb26a76534549b1"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn.jsonl",
+      "sha256": "294ff5719db05369b7c78b0f119fe40deb39c1e88173a5f87f2642a280596c32"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn/official-documents/us-mn-guidance-department-of-revenue-crp-instructions.html",
+      "sha256": "939f35b07a76cfa34b5f976b8aa68c274a5b84f5958b8d6ad71d5f52b6eeee15"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn/official-documents/us-mn-guidance-department-of-revenue-education-savings-account-contribution-subtraction.html",
+      "sha256": "8a4ff24aa5cb0eb8a0d7fccf5095c3569169e44c85eb2c8bdfc32e6d55e806ee"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn/official-documents/us-mn-guidance-department-of-revenue-ty2021-inflation-adjusted-amounts.pdf",
+      "sha256": "601b100b29f98397d1bf7642969489c19812698353e3a117bc1b499d889e018d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn/official-documents/us-mn-guidance-department-of-revenue-ty2022-inflation-adjusted-amounts.pdf",
+      "sha256": "1f1eea9a794c8a106b74815abc2f51f859b57b36ed1cf74c3a37ca3f255c99f2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-10-06-w6-income-tax-guidance-mn/official-documents/us-mn-guidance-department-of-revenue-ty2024-inflation-adjusted-amounts.pdf",
+      "sha256": "82c08d9d1b9511682b2de9a133e443ec1716debc68e07ddb41b1036671bf7412"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 26,
+    "missing_count": 0,
+    "provision_count": 26,
+    "source_count": 26
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:52.944113+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "aYpYnLqq7Wxlrk06wnx4rVqcZkGbdkGnaIrng4REM+8ZDuOJwwnv9HqTzLCrefEtT5k8a7RuU7b72kRTiXnzAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-mn"
+}

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-10-06-w6-income-tax-statute-md.json",
+      "sha256": "fcdba82f46d8a21b087c0404a12a813ddb73b6c77d0522b5f9d220ab6168f65b"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-10-06-w6-income-tax-statute-md.json",
+      "sha256": "68df87f136c0e16fb92c00df4ed27d85697d4429c195649eadadb7643933ecaf"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-10-06-w6-income-tax-statute-md.jsonl",
+      "sha256": "274b3b2df6311de001763741ff9d9844073af43c9769cce4f8d92cd550283656"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-income-tax-statute-md/official-documents/us-md-statute-session-laws-2022-hb0186.html",
+      "sha256": "1546c46149a348a56ea1ac6f72362c36f0fcc846c5c4ec6d48bc7963b7f97afd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-income-tax-statute-md/official-documents/us-md-statute-session-laws-2023-chapter-613.pdf",
+      "sha256": "1c08b01b69042733a3ce5602d3bc67f6042a2b1c4c34422f70d9e349e810d560"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-income-tax-statute-md/official-documents/us-md-statute-session-laws-2025-chapter-604.pdf",
+      "sha256": "7b8ecc16640cc2fb635d309cd36ab23b41773c6b144b2af2db2b332c39e0b004"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:14.505288+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zqjWoVbz2jUHJyQ0r2SgTAomu7zI5MkukQBcTrOXYCuXz1iLQSKUGIGFOeeH+9GOzGjYxH98+z6bjMLAxxfACQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-md"
+}

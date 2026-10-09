@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks.json",
+      "sha256": "33d5ccfc0202520c4cfd9b47cd8005300105ee0a3edad0b52e95c2fec0473737"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks.json",
+      "sha256": "f171a42050bfeb15ebcf1599ccc18b8c5a5a8e51437d6cafe2104da37ada9fa1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks.jsonl",
+      "sha256": "b8125b1e56cc68044e2b6ee4d73865de852403af4e7f49bc79b535731bbb1750"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks/official-documents/us-ks-guidance-revenue-faqs-individual-income-tax.html",
+      "sha256": "a46d8b23c89e733d641192dfad53a255fc6c931c8ea5f8360116c56d73ab2bee"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks/official-documents/us-ks-guidance-revenue-notice-24-08.pdf",
+      "sha256": "e42c336957583957ba9d5fa5ea9e89bb874598c826598dc76c5834d325216a72"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks/official-documents/us-ks-guidance-revenue-notice-24-09.pdf",
+      "sha256": "d0034ce0be6f5c43fbb9a9af00acafddba818dcbb0055b1a97ee74f2dd3c88e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-10-06-w6-income-tax-guidance-ks/official-documents/us-ks-guidance-treasurer-quest529-savings-program.html",
+      "sha256": "d5ad11112eb9ea7644cda4e850c8b540e3d47f39dcfa29e72da2e3246254fee3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:52:11.048466+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6zbJ9pa3z0+nOrqXTkG+hL2CjxAOxNoXkJydeQJeSlLqZgAWCdeXEuQ8umg02lUFzgH0eEFxpLi6m4EQbiLhCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ks"
+}

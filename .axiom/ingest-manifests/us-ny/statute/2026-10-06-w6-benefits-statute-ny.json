@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/statute/2026-10-06-w6-benefits-statute-ny.json",
+      "sha256": "f31d8f78ef2d9f3d12a9a376154d4f32603b8cdb372b9824b29890d58b8b94a4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/statute/2026-10-06-w6-benefits-statute-ny.json",
+      "sha256": "dcfc903f446b52d0da07db97d139d24a1af34167a3f5699ea63f8734fce7d517"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/statute/2026-10-06-w6-benefits-statute-ny.jsonl",
+      "sha256": "f7cd566b6af17dc930c623e1d8e052d7f0cf4ff65ee13d1ce3c67d42505af513"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-benefits-statute-ny/official-documents/us-ny-statute-LAB-527.html",
+      "sha256": "d97ea4f150bbde8a9226511b34b46ab453864d46b2823b8a063a7ee3d48a8a39"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-benefits-statute-ny/official-documents/us-ny-statute-LAB-590.html",
+      "sha256": "c2e559ed272c9a2a65897b1526ffc451484bf43a13bc70e36f9c13fa1400fd25"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-benefits-statute-ny/official-documents/us-ny-statute-bills-2021-s7148.html",
+      "sha256": "09f03af08f074d3822996d551174930a3afff2fff258aa9174ef04ae6640fe07"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-benefits-statute-ny/official-documents/us-ny-statute-bills-2025-s3006.html",
+      "sha256": "812dc09842f92c959a770cfea60880f1eea9e3499bc195b417b970e91d6c13da"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:56:48.084267+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4hRo+n+eSun3ITw0VMVYl8SCnYvdTqFYlHHhVH+O0Z1f64kxLqlRHcNTpt79ZTSmv3q4IvHX5Xwgt+01+YS2BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-ny"
+}

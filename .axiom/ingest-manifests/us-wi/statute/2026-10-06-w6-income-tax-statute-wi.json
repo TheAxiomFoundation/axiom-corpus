@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/statute/2026-10-06-w6-income-tax-statute-wi.json",
+      "sha256": "1ed65621f6c66b4d649de41569cb623ce8e740d5557f191184d60def8bbf689d"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/statute/2026-10-06-w6-income-tax-statute-wi.json",
+      "sha256": "09d5082973e729d4f0055200be713517b820ceb31824bb0b497c4f1e3cd27971"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/statute/2026-10-06-w6-income-tax-statute-wi.jsonl",
+      "sha256": "17ab869bcc97a056b13b9d6fb5f6dd1a76e94fc67ad9a30f615879bd74d30e1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-10-06-w6-income-tax-statute-wi/official-documents/us-wi-statute-2023-24-edition-71-05-22-dm.html",
+      "sha256": "9171bcc72b3398c91a179eea91f72db3fd6ec4941daed1fc705e7edec8c5c9b4"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-10-06-w6-income-tax-statute-wi/official-documents/us-wi-statute-2023-24-edition-71-07-9-b-5.html",
+      "sha256": "40827b0ba22574d0fd2095cccd33f71679e16521f15ec28258d5c5c203051c80"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:01:00.301117+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GrKJ2TqqnLKN+Flw+yovl8zVhkDqxzZbkfKkW+LvwSothuPcaCuKwJfibJfQBhZFZj4xZFTYJN2EqJ0MuJXSAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-wi"
+}

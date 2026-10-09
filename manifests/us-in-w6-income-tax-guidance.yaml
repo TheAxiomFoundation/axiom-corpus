@@ -1,0 +1,53 @@
+version: 2026-10-06-w6-income-tax-guidance-in
+documents:
+- source_id: us-in-guidance-dor-income-tax-information-bulletin-117
+  jurisdiction: us-in
+  document_class: guidance
+  title: 'Income Tax Information Bulletin #117 (Indiana Department of Revenue)'
+  source_url: https://www.in.gov/dor/files/ib117.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-in/guidance/dor/income-tax-information-bulletin-117
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: bulletin
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-in-guidance-dor-income-tax-information-bulletin-98
+  jurisdiction: us-in
+  document_class: guidance
+  title: 'Income Tax Information Bulletin #98 (Indiana Department of Revenue)'
+  source_url: https://www.in.gov/dor/files/ib98.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-in/guidance/dor/income-tax-information-bulletin-98
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: bulletin
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-in-guidance-dor-2023-individual-tax-forms
+  jurisdiction: us-in
+  document_class: guidance
+  title: 2023 Individual Tax Forms (Indiana DOR forms index page)
+  source_url: https://www.in.gov/dor/tax-forms/individual/individual-prior-year/2023-individual-tax-forms/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-in/guidance/dor/2023-individual-tax-forms
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: forms_index
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-benefits-regulation-wa
+documents:
+- source_id: us-wa-regulation-388-388-414-388-414-0001
+  jurisdiction: us-wa
+  document_class: regulation
+  title: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-wa/regulation/388/388-414/388-414-0001
+  extraction:
+    html_content_selector: '#contentWrapper'
+  metadata:
+    primary_source: true
+    source_authority: Washington State Legislature, Office of the Code Reviser
+    document_subtype: administrative_code_section_html
+    program: SNAP; TANF
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 247)
+    path_note: the citation path follows the washington-wac adapter (us-wa/regulation/388/<chapter>/<section>)
+    wave6_rows:
+    - 247
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

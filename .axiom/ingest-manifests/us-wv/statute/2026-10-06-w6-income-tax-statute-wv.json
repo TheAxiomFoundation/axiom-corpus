@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/statute/2026-10-06-w6-income-tax-statute-wv.json",
+      "sha256": "36b297c965261b85374efb7adb8a5c009c396f31b979853a7ec61b28f7963233"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/statute/2026-10-06-w6-income-tax-statute-wv.json",
+      "sha256": "391f618c53d8552fd540ebcbd405fc8dea5450fd89a96f848f69923441a6476f"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/statute/2026-10-06-w6-income-tax-statute-wv.jsonl",
+      "sha256": "95773bd9e444d15f8fc49e63736b4ca42db5ba8cabd40dd9e2721d92aea709b5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-10-06-w6-income-tax-statute-wv/official-documents/us-wv-statute-bills-2026-sb392-enrolled.pdf",
+      "sha256": "19151f62e0d66371db5a86aae81cea04eaeaeb1c012d859876a5138847b11317"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:01:16.440373+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xjUHlxt/VgFQvbGJ0epE9bUhZmp5qSH/9BLYjTx2maUArVvGpCNinUDMKoCAPRyQh8J93zmf2d+mI1u78/SGAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-wv"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/policy/2026-10-06-w6-tanf-ccdf-policy-nh.json",
+      "sha256": "9acd4caa81c3803e54e414ece372e45bca64a595a6c6e47a3628897048e5a8de"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/policy/2026-10-06-w6-tanf-ccdf-policy-nh.json",
+      "sha256": "f574829e5ffbc59c5ec5b75b21f753b9336df227a64d35f5ef6c94716f7f108d"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/policy/2026-10-06-w6-tanf-ccdf-policy-nh.jsonl",
+      "sha256": "e5f54d9ea72ef7fec529920b03d72670602481a0bf4744c7cfb47633f25d08d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/policy/2026-10-06-w6-tanf-ccdf-policy-nh/official-documents/us-nh-w6-ccdf-rate-schedules-bcdhsc-form-2533-2024-08.pdf",
+      "sha256": "e94c322454f9dfa79aa6dc5ccafa12f773f03da74be20e59459dc48bde69eac0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:55:54.008774+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "efqG2bPcXHQisR7Iio3ZQy8+vfVzqqka/jtTJg1OwPxzDZgguAXZZdO/otKE8lXqUeBSlqPUDv9hBwiCqE4fDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-nh"
+}

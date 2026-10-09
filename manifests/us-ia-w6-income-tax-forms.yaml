@@ -1,0 +1,230 @@
+version: 2026-10-06-w6-income-tax-forms-ia
+documents:
+- source_id: us-ia-form-idr-ty2021-ia-1040-instructions-rev-2023-01-03
+  jurisdiction: us-ia
+  document_class: form
+  title: 2021 IA 1040 Instructions (revised 01/03/2023; 'New for 2021')
+  source_url: https://revenue.iowa.gov/media/2650/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2021/ia-1040-instructions-rev-2023-01-03
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-ia-form-idr-ty2022-ia-1040-instructions-rev-2023-02-20
+  jurisdiction: us-ia
+  document_class: form
+  title: 2022 IA 1040 Instructions (revised 02/20/2023; 'New for 2022')
+  source_url: https://revenue.iowa.gov/media/2721/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2022/ia-1040-instructions-rev-2023-02-20
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-ia-form-idr-ty2023-ia-1040
+  jurisdiction: us-ia
+  document_class: form
+  title: 2023 IA 1040 Iowa Individual Income Tax Return
+  source_url: https://revenue.iowa.gov/media/2746/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2023/ia-1040
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ia-form-idr-ty2023-41-026a-tax-calculation-worksheet-non-joint
+  jurisdiction: us-ia
+  document_class: form
+  title: 2023 Tax Calculation Worksheet, Non-Joint Filers (41-026a, 11/01/2023)
+  source_url: https://revenue.iowa.gov/media/2748/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2023/41-026a-tax-calculation-worksheet-non-joint
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ia-form-idr-ty2023-41-145-alternate-tax-worksheet
+  jurisdiction: us-ia
+  document_class: form
+  title: 2023 Iowa Alternate Tax Worksheet (41-145, 01/23/2024)
+  source_url: https://revenue.iowa.gov/media/2754/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2023/41-145-alternate-tax-worksheet
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ia-form-idr-ty2024-41-026a-tax-calculation-worksheet-non-joint
+  jurisdiction: us-ia
+  document_class: form
+  title: 2024 Tax Calculation Worksheet, Non-Joint Filers (41-026a, 05/06/2024)
+  source_url: https://revenue.iowa.gov/media/4093/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2024/41-026a-tax-calculation-worksheet-non-joint
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-ia-form-idr-ty2024-ia-1040-instructions
+  jurisdiction: us-ia
+  document_class: form
+  title: 2024 IA 1040 Instructions
+  source_url: https://revenue.iowa.gov/media/4152/download?inline
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2024/ia-1040-instructions
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-ia-form-idr-ty2021-ia-6251
+  jurisdiction: us-ia
+  document_class: form
+  title: 2021 IA 6251 Iowa Alternative Minimum Tax - Individuals (41-131a, 06/18/2021)
+  source_url: https://revenue.iowa.gov/sites/default/files/2021-12/IA6251%2841131%29.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2021/ia-6251
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-ia-form-idr-ty2021-ia-1040
+  jurisdiction: us-ia
+  document_class: form
+  title: 2021 IA 1040 Iowa Individual Income Tax Return (41-001, 10/08/2021)
+  source_url: https://revenue.iowa.gov/sites/default/files/2022-01/IA1040%2841-001%29.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2021/ia-1040
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-ia-form-idr-ty2022-ia-1040
+  jurisdiction: us-ia
+  document_class: form
+  title: 2022 IA 1040 Iowa Individual Income Tax Return (41-001, 06/29/2022)
+  source_url: https://revenue.iowa.gov/sites/default/files/2023-01/2022IA1040%2841001%29.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2022/ia-1040
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-ia-form-idr-ty2022-ia-6251
+  jurisdiction: us-ia
+  document_class: form
+  title: 2022 IA 6251 Iowa Alternative Minimum Tax - Individuals (41-131a, 05/19/2022)
+  source_url: https://revenue.iowa.gov/sites/default/files/2023-01/IA6251%2841131%29.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2022/ia-6251
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-ia-form-idr-ty2023-ia-1041-instructions
+  jurisdiction: us-ia
+  document_class: form
+  title: 2023 IA 1041 Iowa Fiduciary Return Instructions (63-002a, 11/09/2023)
+  source_url: https://revenue.iowa.gov/sites/default/files/2023-11/IA1041Inst%2863002%29.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ia/form/idr/ty2023/ia-1041-instructions
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'

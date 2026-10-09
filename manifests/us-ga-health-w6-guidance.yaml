@@ -1,0 +1,90 @@
+version: 2026-10-06-w6-health-guidance-ga
+documents:
+- source_id: us-ga-w6-health-dch-peachcare-copayments-premiums-resume-2024-10-01
+  jurisdiction: us-ga
+  document_class: guidance
+  title: 'DCH announcement: PeachCare for Kids Co-Payments and Premiums Resume Oct. 1, 2024 (2024-08-13)'
+  source_url: https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2024-08-13'
+  citation_path: us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
+  extraction:
+    html_content_selector: '#main-content'
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Community Health (DCH)
+    program: CHIP
+    document_subtype: agency_announcement_page
+    source_discovery_group: us-ga/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 44
+    bundle_url: https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024
+- source_id: us-ga-w6-health-macpac-exhibit-36-2024-07
+  jurisdiction: us-ga
+  document_class: guidance
+  title: 'MACStats Exhibit 36: Medicaid Income Eligibility Levels as a Percentage of the FPL for Non-Aged, Non-Disabled, Non-Pregnant
+    Adults by State, July 2024'
+  source_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-07-01'
+  citation_path: us-ga/guidance/macpac/exhibit-36/2024-07
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Medicaid and CHIP Payment and Access Commission (MACPAC), a federal legislative-branch agency
+    program: MEDICAID
+    document_subtype: federal_statistical_exhibit_pdf
+    source_discovery_group: us-ga/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 46
+    bundle_url: https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
+    note: Federal (MACPAC) multi-state exhibit; held under us-ga because the Georgia bundle layer names it
+- source_id: us-ga-w6-health-macpac-exhibit-36-2025-07
+  jurisdiction: us-ga
+  document_class: guidance
+  title: 'MACStats Exhibit 36: Medicaid Income Eligibility Levels as a Percentage of the FPL for Non-Aged, Non-Disabled, Non-Pregnant
+    Adults by State, July 2025'
+  source_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-07-01'
+  citation_path: us-ga/guidance/macpac/exhibit-36/2025-07
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Medicaid and CHIP Payment and Access Commission (MACPAC), a federal legislative-branch agency
+    program: MEDICAID
+    document_subtype: federal_statistical_exhibit_pdf
+    source_discovery_group: us-ga/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 47
+    bundle_url: https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
+    note: Federal (MACPAC) multi-state exhibit; held under us-ga because the Georgia bundle layer names it
+- source_id: us-ga-w6-health-dch-mmis-medicaid-fair-spring-2021-nemt
+  jurisdiction: us-ga
+  document_class: guidance
+  title: 'DCH Medicaid Fair, Spring 2021: Non-Emergency Medical Transportation (NEMT) COVID-19 Operations (GAMMIS notice)'
+  source_url: https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-03-25'
+  citation_path: us-ga/guidance/dch/mmis/medicaid-fair-spring-2021-nemt
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Community Health (DCH)
+    program: MEDICAID
+    document_subtype: provider_notice_presentation_pdf
+    source_discovery_group: us-ga/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 48
+    bundle_url: https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf

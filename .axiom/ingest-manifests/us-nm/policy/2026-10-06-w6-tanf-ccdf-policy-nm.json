@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/policy/2026-10-06-w6-tanf-ccdf-policy-nm.json",
+      "sha256": "0f6b1a80d06ec9ffddba4d54523b1aa987c72bb1565cfbdd34254c2d6fe2eade"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/policy/2026-10-06-w6-tanf-ccdf-policy-nm.json",
+      "sha256": "a8ad1cc7b23f3819cbd4464ece101a1ed8f348571bd8e1e2424069db2cb3abef"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/policy/2026-10-06-w6-tanf-ccdf-policy-nm.jsonl",
+      "sha256": "2837fcc64c978bc9dd03a3053f5f54eead2e28a43d8870ac1761ec338487ae91"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-10-06-w6-tanf-ccdf-policy-nm/official-documents/us-nm-w6-ccdf-rate-schedules-cca-copayments-waived.pdf",
+      "sha256": "f75edd72e7089d510f561ae9a092adb258ffacfad54e7a741738f0aef04e0756"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-10-06-w6-tanf-ccdf-policy-nm/official-documents/us-nm-w6-ccdf-rate-schedules-cost-model-reimbursement-rates-2024-05.pdf",
+      "sha256": "d9552ee2bc65e5415f88cbf1857171fc2c5a9e074da9da8b4baf90c25ba52efc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:56:21.067368+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vLUQya0bnZlP96LPr5WXaTAdGqSLFQ9Ia3cw4dUPQzREQ/KtO/b/O0SP8T882VKlMCCLTSb+zBX3C+OseZVQAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-nm"
+}

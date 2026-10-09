@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/statute/2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2.json",
+      "sha256": "79f37e7b59e8003ae85ba215e786e3660072d21d9f11984064a6d4097dc58539"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/statute/2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2.json",
+      "sha256": "d61f290d9437d74b7a9423e5a7189a7fc04075e6efc39e12886a5353854ff8c0"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/statute/2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2.jsonl",
+      "sha256": "2aec89422a71e62d01f429aae1bc69c1f8f4f3cd77ac254f96f4e3f131f8e6b4"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2/south-carolina-code-html/statmast.html",
+      "sha256": "292a2450e3e3544c7dede23e3eb36fb03083847cc6f94a1081c87a6ccaa064e5"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2/south-carolina-code-html/title-59/chapter-2.html",
+      "sha256": "9d3a14c60600f9fb4aa16ebc20d20faee87fcfd96735bfce04be0a67b0b7d958"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2/south-carolina-code-html/title-59.html",
+      "sha256": "7d7eef009b2b5831be9996b5abbfcba23a59bf13befc6580530fb344190ebab8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:58:46.191362+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JEPHCNhwMjoI6HU5L6OM/898GVwo+3z6YAdlZnTw/k9oNISlUOXDJeTSQJST7SAG+T+tifwlaF9UXCtnkUfLCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-sc-us-sc-title-59-chapter-2"
+}

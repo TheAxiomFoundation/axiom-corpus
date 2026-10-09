@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated.json",
+      "sha256": "6264e44c49156ed6dbed87f67ef439259efbf3a9aa21da062f493ff510c66e40"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated.json",
+      "sha256": "dbf86b5bcc0305afc39567ca45a8965868948b8c6db9db1b1e306c1c2d59fb02"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated.jsonl",
+      "sha256": "48ed6e6de53e4678548653b404bed180a0c26659e6912f21599b146ff53b9bda"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated/2026-07-19-rulespec-us-co-title-39-consolidated/2026-07-12-crs-2025-title-39-article-22/crs2025-title-39.htm",
+      "sha256": "5dab1d1ab7f4e79a222fdbd32d860ef36148bc9b1d417b66472f8da49074427d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated/2026-07-19-rulespec-us-co-title-39-consolidated/2026-07-13-crs-2025-title-39-remaining/crs2025-title-39.htm",
+      "sha256": "5dab1d1ab7f4e79a222fdbd32d860ef36148bc9b1d417b66472f8da49074427d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated/2026-07-19-rulespec-us-co-title-39-consolidated/2026-07-13-crs-2025-title-39-remaining/crs2025-title-39.htm.provenance.json",
+      "sha256": "580fc8dfae4c9c39a61c61a4d1584057d110154f8e19c9b01f622ae7370f24e4"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated/2026-10-06-w6-health-statute-co-crs2025/crs2025-title-10.htm",
+      "sha256": "42b096527cfb11705db78ca0c4befc522f602ed97474470341f798f271042930"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-07-w6-release-consolidation.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1449,
+    "missing_count": 0,
+    "provision_count": 1449,
+    "source_count": 1449
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:49:46.179406+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ve4JzxPy75lIa0fX+qlsQlw8IauA9kGJU0fWt4jlw7KPpKooufdlsUtwmJqIi3fV3fH4vNMDi34qNR47J1soAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-rulespec-us-co-title-39-consolidated-r2026-10-07-w6-title-10-consolidated"
+}

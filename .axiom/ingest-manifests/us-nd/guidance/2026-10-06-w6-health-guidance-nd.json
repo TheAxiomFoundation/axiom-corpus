@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/guidance/2026-10-06-w6-health-guidance-nd.json",
+      "sha256": "c32a01be5e574072eee1d7f5be98a9af64db0c9fe96e91f37361af9b7bafad6d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/guidance/2026-10-06-w6-health-guidance-nd.json",
+      "sha256": "5f7c486f6103d010fb76647d1693cb6df8945faca8f096f272e9a2d16c690dea"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/guidance/2026-10-06-w6-health-guidance-nd.jsonl",
+      "sha256": "c711bba4ddcba3f4b5fed7a7be7ee015b60341ba73812e62286c985d1634d92b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/guidance/2026-10-06-w6-health-guidance-nd/official-documents/us-nd-w6-health-legislature-testimony-hb-1067-2025-01-14-dhhs.pdf",
+      "sha256": "2cf771e725ef2061f38b447dea6ca536a2f0fe4bd1e73b3f83fb8f1d34119cd0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:55:23.277197+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "avNGxRwZe4emcaOe+h7Eb3Ur9O9k8GIfarzwSgQm63XG2LMrxfPqV/f7+I4W73tyy4VoAICfqfmpJ0dNMZpOAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-nd"
+}

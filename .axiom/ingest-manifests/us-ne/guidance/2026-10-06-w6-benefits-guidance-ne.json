@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/guidance/2026-10-06-w6-benefits-guidance-ne.json",
+      "sha256": "d8004c2c52d063af15a12d91f6ac781673b2aa9fc8d783d3df089918e18c1709"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/guidance/2026-10-06-w6-benefits-guidance-ne.json",
+      "sha256": "3d2d3bb49e2967986a3bd5e41ea80cc24ffb1a5692f1ab01adc02a56e984bd61"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/guidance/2026-10-06-w6-benefits-guidance-ne.jsonl",
+      "sha256": "5920e927d60031fa07ed3fc33a5a9e7b81e2241f9da810ec8378a6a2d703b506"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/guidance/2026-10-06-w6-benefits-guidance-ne/official-documents/us-ne-guidance-dhhs-liheap-guidance-document-2026.pdf",
+      "sha256": "949143f3b97dfd99a75bd62bbb7c040aecc38ac45154448cb1ec1645d19ddc76"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/guidance/2026-10-06-w6-benefits-guidance-ne/official-documents/us-ne-guidance-dhhs-obbb-snap-changes-faq.pdf",
+      "sha256": "00a75d305110f9fbdee3721f8d689438fa323c88a921baccc4bfafe05ed8d0c0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:55:35.833178+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vbcZ6LX/WRJSpQFwrFyAMq7OHMil0kCPmgGsWxriDdn4eB2B5DZoIiHy4S991xM1KfHrsczZOzEr2qOXpK/kAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-ne"
+}

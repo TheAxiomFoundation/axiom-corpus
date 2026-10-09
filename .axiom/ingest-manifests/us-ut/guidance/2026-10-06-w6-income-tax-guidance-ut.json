@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut.json",
+      "sha256": "7932ebca04d8cb27e9aa500bccbb41cc2dba8822a38c3c002c49b7c96b776516"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut.json",
+      "sha256": "75cd4a078caf99522ffbd76659e9382a7f5fe6460b71ae498c53cfb9b803557d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut.jsonl",
+      "sha256": "30f6f37af4cb0325bf5bc78c05dd4bf0a0b298b623e833b52a54075f7460b342"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut/official-documents/us-ut-guidance-my529-utah-state-tax-benefits-information.html",
+      "sha256": "8fe8646ebc1594c414c24da9b85b90f389acb0f2f6d3bc8f206140c24e627f6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut/official-documents/us-ut-guidance-ustc-homeowner-renter-relief.html",
+      "sha256": "b5a7488a41119e9f1cb791805e50941d4dd46e9ecbc31e25aed0163e9e39523a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut/official-documents/us-ut-guidance-ustc-information-about-tax-credits.html",
+      "sha256": "f51ae26e578d44ae5f734df090132dfa5041db0a2bb518c56ab2548c530a37d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut/official-documents/us-ut-guidance-ustc-tc-40-line-by-line-instructions.html",
+      "sha256": "4f8457d854e75a4a8b60c6bbdb939614271e6a997eaf11061c280ad4ffdb01de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-income-tax-guidance-ut/official-documents/us-ut-guidance-ustc-tc-40a-supplemental-schedule-instructions.html",
+      "sha256": "8fcdaa9c2b7082c5157b63e740ad8e5a3fe55d7a47cb37b119ba942fe01ff11f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 58,
+    "missing_count": 0,
+    "provision_count": 58,
+    "source_count": 58
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:59:17.276919+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BmRqUHVcnTXsXk8C6EEumlJjztTgd16Aon8dzFYVG1czIoKh4zv60afGDtso15Vrjv+jlJGklQp/bNwjTIleAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ut"
+}

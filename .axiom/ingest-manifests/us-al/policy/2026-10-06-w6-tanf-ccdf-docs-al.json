@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al.json",
+      "sha256": "b6ff75042aa64df2beccdd9489d690af4195fb65f0da3348010c689f1a96ce17"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al.json",
+      "sha256": "912ae98eb773ce467ee81210785ee5db364b298a9b047ed323ac0054a9c4547f"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al.jsonl",
+      "sha256": "7e2b9f6ecbf59261f29b4a57b8517ce7babb9df5775c805cf929865ec2332ca2"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al/official-documents/us-al-w6-dhr-ccdf-child-care-fact-sheet-2024.pdf",
+      "sha256": "06e83b68c2b48b8f01507a6966441efef53e465141ac922dac81031331f7665b"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al/official-documents/us-al-w6-dhr-ccdf-provider-rates-with-qris-tiers-2022-04-01.pdf",
+      "sha256": "31d76630356ab1d0cd280b36ff23db0be1a1cc78454a8b1efbd10ce563c6971c"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al/official-documents/us-al-w6-dhr-tanf-dhr-fad-595-2023-10.pdf",
+      "sha256": "a5db3e8faef7de8f74336a9c171986e63403cbc5ae378496f858cc3da9101f04"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-10-06-w6-tanf-ccdf-docs-al/official-documents/us-al-w6-dhr-tanf-state-plan-2021.pdf",
+      "sha256": "68cf4dce30b4177fcb457ead6b19d4d787db574ea39177543daaa98902536c02"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 38,
+    "missing_count": 0,
+    "provision_count": 38,
+    "source_count": 38
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:48:15.635873+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "e0/Iyv5TiNGDJs6FUogamcN1dIqcqB2J2rA1yyYzFcijDuNXTeCj/C4iIDmAZ/g81Ur/Ym4EKYlXk2dP435IDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-al"
+}

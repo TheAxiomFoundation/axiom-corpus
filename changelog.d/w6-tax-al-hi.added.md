@@ -1,0 +1,1 @@
+Add wave-6 manifests for state individual income tax, EITC and CTC documents from Alabama to Hawaii (forms, guidance and legislation the program bundles cite), with the tax-al-hi decisions for 399 bundle-gap rows.

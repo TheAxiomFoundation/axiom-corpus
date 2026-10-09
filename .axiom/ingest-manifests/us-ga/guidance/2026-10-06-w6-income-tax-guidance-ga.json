@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga.json",
+      "sha256": "997411ccd47693cfde124efdc1005b064a446bb4d1c70194eb92ce241fe975ed"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga.json",
+      "sha256": "ca8de8e0d79492bc246c7190be759f40e69a2d9581d9478aef24f2dbb6237d35"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga.jsonl",
+      "sha256": "6591411c93a61fc28d00eb3d52ede53a756939d9e1c87b2833ff62948f08c7e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga/official-documents/us-ga-w6-dor-it-511-individual-income-tax-booklet.html",
+      "sha256": "f3e098470a6e2b78d22098f2e2047f0ae50b09df95459b8f9a0feb6d21123f86"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga/official-documents/us-ga-w6-dor-tax-tables-georgia-tax-rate-schedule.html",
+      "sha256": "5664b468b49e380c6d159077b05577f0665b8a61b22761dcc91089ed9f03ec49"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-income-tax-guidance-ga/official-documents/us-ga-w6-governor-press-releases-2024-04-18-tax-cut-package.html",
+      "sha256": "9adf85b6764c6cb83fa82047554070093d5d14a4c86421d5224613c71038ccc8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:45.023818+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5kehx+8FB4kERUO0V5bo2S1H+OJyA/ZEMHMlJjh/AfDzCcI2a2b5DVI32LkdvsTWGCIsON5v0EzMK5a2tPLTAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ga"
+}

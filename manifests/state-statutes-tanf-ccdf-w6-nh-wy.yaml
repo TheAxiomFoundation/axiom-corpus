@@ -1,0 +1,82 @@
+# Wave 6, group tanf-ccdf-nh-wy (docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md): state statute
+# chapters that the TANF and CCDF program bundles cite section by section. Each source runs the
+# jurisdiction's statute adapter against the legislature's own publisher, one request at a time
+# (workers: 1). The adapters append their own scope suffix (chapter/article) to the version.
+version: "2026-10-06-w6-tanf-ccdf-statute"
+sources:
+  - source_id: us-wi-statutes-chapter-49
+    jurisdiction: us-wi
+    document_class: statute
+    adapter: wisconsin-statutes
+    source_url: https://docs.legis.wisconsin.gov/statutes/prefaces/toc
+    version: "2026-10-06-w6-tanf-ccdf-statute-wi"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-01"
+      base_url: https://docs.legis.wisconsin.gov
+      only_title: "49"
+      include_subunits: true
+      include_publication_note: true
+      workers: 1
+    metadata:
+      source_authority: Wisconsin Legislative Reference Bureau
+      source_scope_note: >-
+        Updated 2023-24 Wisconsin Statutes chapter 49 (Public Assistance and Children and Family
+        Services), published and certified under s. 35.18 on October 1, 2026, from the official
+        Legislature HTML, with subunit rows; carries W-2 (49.141-49.161) and Wisconsin Shares
+        (49.155). Shares the root path us-wi/statute/49.77 with the wave-5 SSI scope
+        us-wi/statute/2026-09-15-ssi-state-supplement-rules (consolidation or swap route).
+  - source_id: us-wi-statutes-chapter-990
+    jurisdiction: us-wi
+    document_class: statute
+    adapter: wisconsin-statutes
+    source_url: https://docs.legis.wisconsin.gov/statutes/prefaces/toc
+    version: "2026-10-06-w6-tanf-ccdf-statute-wi"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-01"
+      base_url: https://docs.legis.wisconsin.gov
+      only_title: "990"
+      include_subunits: true
+      include_publication_note: true
+      workers: 1
+    metadata:
+      source_authority: Wisconsin Legislative Reference Bureau
+      source_scope_note: >-
+        Wisconsin Statutes chapter 990 (Construction of Statutes), cited for 990.01(20) (the
+        definition of "parent") by the Wisconsin Shares bundle.
+  - source_id: us-wv-code-chapter-9-article-9
+    jurisdiction: us-wv
+    document_class: statute
+    adapter: west-virginia-code
+    source_url: https://code.wvlegislature.gov/9-9/
+    version: "2026-10-06-w6-tanf-statute-wv"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-06"
+      only_chapter: "9"
+      only_article: "9"
+      workers: 1
+    metadata:
+      source_authority: West Virginia Legislature
+      source_scope_note: >-
+        West Virginia Code chapter 9 article 9 (West Virginia Works Act, the state TANF program)
+        from the official Legislature code site.
+  - source_id: us-ri-general-laws-chapter-40-5-2
+    jurisdiction: us-ri
+    document_class: statute
+    adapter: rhode-island-general-laws
+    source_url: https://webserver.rilegislature.gov/Statutes/TITLE40/40-5.2/INDEX.htm
+    version: "2026-10-06-w6-tanf-statute-ri"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-06"
+      only_title: "40"
+      only_chapter: "40-5.2"
+      workers: 1
+    metadata:
+      source_authority: Rhode Island General Assembly
+      source_scope_note: >-
+        Rhode Island General Laws chapter 40-5.2 (The Rhode Island Works Program, the state TANF
+        program) from the official General Assembly HTML. The bundle's address on the retired
+        webserver.rilin.state.ri.us host now redirects to the Statutes root.
