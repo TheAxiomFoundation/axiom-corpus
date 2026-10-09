@@ -20,6 +20,56 @@
 # accepted per the Ghana Sage-hosted Assembly Press precedent with the
 # authenticity features on the face cross-checked (chapter number,
 # commencement, volume page numbers).
+#
+# Transcription corrections (version 2026-09-25-ug-nssf-contributions,
+# replacing 2026-07-08-ug-nssf-contributions). Tesseract at 300 dpi
+# reproduces the July capture byte for byte; the text_replacements below
+# are keyed to that exact output and are applied to each page's OCR text
+# before segmentation.
+#
+# 1. OCR misreads, corrected to what the print shows. The scan's "e" is
+#    worn to a "c" shape throughout, and some word spaces are closed up.
+#    Each correction was checked on the page image at 300 dpi and against
+#    independent Tesseract passes at 450 dpi (psm 6) and 600 dpi (psm 3):
+#      p. 8215  employce -> employee (s.10(1)); duc -> due (s.10(2));
+#               Ifancligible employce -> If an eligible employee (s.10(3));
+#               ofa -> of a (s.11(1))
+#      p. 8216  employcc's -> employee's (s.11(1));
+#               engagement, -> engagement; (s.11(4)(b); both other passes
+#               read the semicolon)
+#      p. 8217  employces -> employees (s.11(4)(d)); employce's ->
+#               employee's, docs -> does, and two straight apostrophes ->
+#               the print's curly apostrophe (s.11(5)); Forthe -> For the
+#               (s.11(7)); Onand -> On and (s.12(1)); anon-resident ->
+#               a non-resident (s.12(1)(a))
+#      p. 8218  fifly -> fifty (s.12(1)); retums -> returns (s.12(2))
+# 2. Margin restorations. On pp. 8215 and 8217 the scan itself is cut at
+#    the right margin: the high-resolution text layer of the PDF ends at
+#    the same edge, so the letters are absent from this print, not
+#    misread. Eleven line-final words are editorial restorations:
+#      p. 8215  "on ar" -> "on an", "his or he" -> "his or her",
+#               "the total wage" -> "the total wages", "information a" ->
+#               "information as" (s.10(6)); "monthly wa" -> "monthly
+#               wage", "contributi" -> "contribution", "to t" -> "to that",
+#               "any mor" -> "any month," (s.11(1))
+#      p. 8217  "tha" -> "that", "in respec" -> "in respect", "this
+#               section t" -> "this section by" (s.12(1))
+#    Eight follow from the visible letters and the grammar. Three are not
+#    observable in this print and are corroborated by the Laws of Uganda
+#    2000 revised edition (Cap. 222, where these sections are numbered one
+#    higher), as consolidated by Laws.Africa: the plural "wages" (Cap. 222
+#    s.11(6)), "that" in "to that employee" and the comma in "any month,"
+#    (Cap. 222 s.12(1)). Corroborating copy, orientation only:
+#    https://media.ulii.org/media/legislation/18538/source_file/e8d418f126b5c47a/1985-8.pdf
+#    retrieved 2026-09-25, sha256
+#    efeb3198e5fe7f4fb571a00facc8500190c1e49bb507f971eec3637cf1a42fa4,
+#    PDF page 9 (printed page 6). An uncropped print of the 2023 revised
+#    edition would settle these three.
+# 3. Running heads ("8215", "[Cap. 230." and the Act title) are dropped as
+#    page furniture, so they no longer interrupt s.10(1), s.11(1) and
+#    s.12(1).
+# 4. Section 12 now ends before "13. Voluntary contributions"; the July
+#    row ran on through all of section 13.
 documents:
   - source_id: ug-cap-230-nssf-act-contributions
     jurisdiction: ug
@@ -28,7 +78,7 @@ documents:
     title: National Social Security Fund Act (Cap. 230) — standard, employee-share and special contributions (ss. 10-12)
     source_url: https://www.nssfug.org/site/assets/files/1501/nssf_act_cap_230.pdf
     source_format: pdf
-    source_as_of: '2026-07-08'
+    source_as_of: '2026-09-25'
     expression_date: '1985-12-01'
     request:
       browser_user_agent: true
@@ -43,6 +93,38 @@ documents:
       page_windows:
         - start_page: 7
           end_page: 11
+          stop_at_pattern: '^\s*13\.\s+Voluntary contributions\s*$'
+      drop_line_patterns:
+        - '^\s*\d{4}\s+Cap\.\s*230\.\]?\s+National Social Security Fund Act\s*$'
+        - '^\s*National Social Security Fund Act\s+[\[(]Cap\.\s*230\.\s+\d{4}\s*$'
+      text_replacements:
+        # OCR misreads (section 1 of the header note)
+        'during that month to that employce.': 'during that month to that employee.'
+        'appreciable effect on the contribution duc.': 'appreciable effect on the contribution due.'
+        'Ifancligible employce is employed': 'If an eligible employee is employed'
+        'part of the employcc’s share of a standard contribution.': 'part of the employee’s share of a standard contribution.'
+        'engagement,': 'engagement;'
+        'class of employces or any employer': 'class of employees or any employer'
+        'in whole or in part the employce’s': 'in whole or in part the employee’s'
+        "docs not pay it to the Fund as part of the employee's share": 'does not pay it to the Fund as part of the employee’s share'
+        "contribution, the employee's account shall be credited": 'contribution, the employee’s account shall be credited'
+        'Forthe purpose of any enactment': 'For the purpose of any enactment'
+        'Onand after the appointed day': 'On and after the appointed day'
+        '(a) anon-resident employee': '(a) a non-resident employee'
+        'calculated from fifly cents': 'calculated from fifty cents'
+        'such retums showing the number': 'such returns showing the number'
+        # Margin restorations (section 2 of the header note)
+        'furnish to the Managing Director on ar': 'furnish to the Managing Director on an'
+        'regarding each eligible employee in his or he': 'regarding each eligible employee in his or her'
+        'the contribution due on such wages, the total wage': 'the contribution due on such wages, the total wages'
+        'and the total contributions and such other information a': 'and the total contributions and such other information as'
+        'may deduct from the monthly wa': 'may deduct from the monthly wage'
+        'the employee’s share ofa standard contributi': 'the employee’s share of a standard contribution'
+        'total wages paid during that month to t': 'total wages paid during that month to that'
+        'more than one wage payment is made during any mor': 'more than one wage payment is made during any month,'
+        'a member of the Fund or not, tha': 'a member of the Fund or not, that'
+        'the age of fifty-five years in respec': 'the age of fifty-five years in respect'
+        'has specifically applied this section t': 'has specifically applied this section by'
       section_label_replacements:
         'Payment of standard contribution by employers': section-10-payment-of-standard-contribution-by-employers
         "Employee’s share of standard contribution": section-11-employees-share-of-standard-contribution
@@ -66,3 +148,19 @@ documents:
         1985 text, unchanged by the NSSF (Amendment) Act 2021 (print
         held for diligence; it modernises definitions, membership and
         voluntary contributions only).
+      transcription_note: >-
+        OCR misreads are corrected to the printed text, checked on the
+        page images. The scan is cut at the right margin of volume pages
+        8215 and 8217, and eleven line-final words are editorial
+        restorations: s.10(6) "an", "her", "wages", "as"; s.11(1) "wage",
+        "contribution", "that", "month,"; s.12(1) "that", "respect", "by".
+        Eight follow from the visible letters and the grammar. Three are
+        not observable in this print and are corroborated by the Laws of
+        Uganda 2000 revised edition (Cap. 222) as consolidated by
+        Laws.Africa: the plural "wages" (Cap. 222 s.11(6)), "that" in "to
+        that employee" and the comma in "any month," (Cap. 222 s.12(1)),
+        at https://media.ulii.org/media/legislation/18538/source_file/e8d418f126b5c47a/1985-8.pdf
+        (retrieved 2026-09-25, sha256
+        efeb3198e5fe7f4fb571a00facc8500190c1e49bb507f971eec3637cf1a42fa4,
+        PDF page 9). Running heads are dropped, and section 12 ends before
+        section 13.
