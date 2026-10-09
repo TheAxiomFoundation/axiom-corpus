@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/manual/2026-10-09-az-des-snap-ece-dated-authority.json",
+      "sha256": "cfc1697b630a9cd4a83cf48f27d83c893a085aae42e41c76b146f4f7fc1bc033"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/manual/2026-10-09-az-des-snap-ece-dated-authority.json",
+      "sha256": "224e0b86e82dd1d0a780b2229e5578f088f4070e6244d9a277c9548fc015b0ad"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/manual/2026-10-09-az-des-snap-ece-dated-authority.jsonl",
+      "sha256": "02e17137c98cc12d425e137fb1656f76ecb16b188882f836766308748f56effa"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2026-10-09-az-des-snap-ece-dated-authority/official-documents/az-des-whats-changed-2026-03-23.pdf",
+      "sha256": "f8173335f1f7f73467020ed8a13d0e7ad2efd5a92d83f74f7c471b57d27232e3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a3c2ae82f0b7050a4678a5cb9477684889503a89",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-09-az-des-snap-ece-dated-authority --manifest manifests/us-az-des-snap-ece-dated-authority.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-09T11:09:51.451649+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-09-az-des-snap-ece-dated-authority.md",
+      "sha256": "4ed3b2874cf23823fb4f4d0caba7b589072bf1a682b439535c182c2bcf880d67"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mCitEZJ1EjEKnNz3LdViXxO6zhng+d+5PAD1+CQDHRX/QZ9OzqzFFUbRgfO9h6OAVeesP01WRHAFpTCRZ++5Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-09-az-des-snap-ece-dated-authority"
+}
