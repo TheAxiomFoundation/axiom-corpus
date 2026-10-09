@@ -64,7 +64,7 @@ layers:
 - jurisdiction: us
   screener:
   - key: us/guidance/fns/wic/food-packages
-    name: us/guidance/fns/wic/food-packages
+    name: WIC Food Packages
     layer: federal
     citation_path: us/guidance/fns/wic/food-packages
     source_url: null
@@ -212,7 +212,7 @@ layers:
     part: Benefit amount
   full:
   - key: us/guidance/fns/wic/food-packages
-    name: us/guidance/fns/wic/food-packages
+    name: WIC Food Packages
     layer: federal
     citation_path: us/guidance/fns/wic/food-packages
     source_url: null

@@ -61,7 +61,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 5
-      state: 213
+      state: 215
 layers:
 - jurisdiction: us
   screener:
@@ -274,7 +274,7 @@ layers:
     reason: 'Back-year table: not current law'
     part: Income
   - key: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
-    name: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    name: Prior HHS Poverty Guidelines and Federal Register References
     layer: federal
     citation_path: us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
     source_url: null
@@ -1260,7 +1260,7 @@ layers:
 - jurisdiction: us-dc
   screener:
   - key: us-dc/guidance/doee/liheap
-    name: us-dc/guidance/doee/liheap
+    name: Receive Assistance With Your Utility Bills (LIHEAP), DC DOEE
     layer: state
     citation_path: us-dc/guidance/doee/liheap
     source_url: null
@@ -1297,13 +1297,14 @@ layers:
     part: Benefit amount
   full:
   - key: us-dc/guidance/doee/liheap
-    name: us-dc/guidance/doee/liheap
+    name: Receive Assistance With Your Utility Bills (LIHEAP), DC DOEE
     layer: state
     citation_path: us-dc/guidance/doee/liheap
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-dc-benefits-w6-guidance.yaml
     scope: in
   - key: us-dc/policy/doee/liheap-benefit-matrix/fy2026
     name: District of Columbia DOEE FY 2026 LIHEAP Benefit Matrix (Regular Benefits Table)
@@ -1428,7 +1429,7 @@ layers:
 - jurisdiction: us-il
   screener:
   - key: us-il/guidance/dceo/utility-bill-assistance
-    name: us-il/guidance/dceo/utility-bill-assistance
+    name: Utility Bill Assistance (Illinois DCEO, LIHEAP)
     layer: state
     citation_path: us-il/guidance/dceo/utility-bill-assistance
     source_url: null
@@ -1442,7 +1443,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us-il/guidance/dceo/utility-bill-assistance-faqs
-    name: us-il/guidance/dceo/utility-bill-assistance-faqs
+    name: 'Utility Bill Assistance: Frequently Asked Questions (Illinois DCEO, LIHEAP)'
     layer: state
     citation_path: us-il/guidance/dceo/utility-bill-assistance-faqs
     source_url: null
@@ -1512,22 +1513,24 @@ layers:
     part: Benefit amount
   full:
   - key: us-il/guidance/dceo/utility-bill-assistance
-    name: us-il/guidance/dceo/utility-bill-assistance
+    name: Utility Bill Assistance (Illinois DCEO, LIHEAP)
     layer: state
     citation_path: us-il/guidance/dceo/utility-bill-assistance
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-il-benefits-w6-guidance.yaml
     scope: in
   - key: us-il/guidance/dceo/utility-bill-assistance-faqs
-    name: us-il/guidance/dceo/utility-bill-assistance-faqs
+    name: 'Utility Bill Assistance: Frequently Asked Questions (Illinois DCEO, LIHEAP)'
     layer: state
     citation_path: us-il/guidance/dceo/utility-bill-assistance-faqs
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-il-benefits-w6-guidance.yaml
     scope: in
   - key: us-il/policy/acf/liheap-plan/fy2026
     name: Illinois LIHEAP Detailed Model Plan, FY 2026
@@ -1543,7 +1546,7 @@ layers:
 - jurisdiction: us-in
   screener:
   - key: us-in/manual/ihcda/liheap-intake-and-operations-manual
-    name: Indiana LIHEAP Intake and Operations Program Manual, Program Year 2024 (version 1.0)
+    name: Indiana Energy Assistance Program Intake and Operations Program Manual 2025-2026 (PY2026)
     layer: state
     citation_path: us-in/manual/ihcda/liheap-intake-and-operations-manual
     source_url: null
@@ -1580,13 +1583,14 @@ layers:
     part: Benefit amount
   full:
   - key: us-in/manual/ihcda/liheap-intake-and-operations-manual
-    name: Indiana LIHEAP Intake and Operations Program Manual, Program Year 2024 (version 1.0)
+    name: Indiana Energy Assistance Program Intake and Operations Program Manual 2025-2026 (PY2026)
     layer: state
     citation_path: us-in/manual/ihcda/liheap-intake-and-operations-manual
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-in-benefits-w6-manual.yaml
     - manifests/us-in-liheap-benefit-matrix-manual.yaml
     scope: in
   - key: us-in/policy/acf/liheap-plan/fy2026
@@ -2009,7 +2013,7 @@ layers:
       references: 1
       part: Income
   - key: us-ky/regulation/kar/921/004/116
-    name: us-ky/regulation/kar/921/004/116
+    name: 921 KAR 4:116. Low Income Home Energy Assistance Program or "LIHEAP"
     layer: state
     citation_path: us-ky/regulation/kar/921/004/116
     source_url: null
@@ -2078,13 +2082,14 @@ layers:
     - manifests/us-ky-liheap-state-plan-fy2026.yaml
     scope: in
   - key: us-ky/regulation/kar/921/004/116
-    name: us-ky/regulation/kar/921/004/116
+    name: 921 KAR 4:116. Low Income Home Energy Assistance Program or "LIHEAP"
     layer: state
     citation_path: us-ky/regulation/kar/921/004/116
     source_url: null
     part: Income
     sources:
     - screener
+    - manifests/us-ky-benefits-w6-regulation.yaml
     scope: in
 - jurisdiction: us-la
   screener: []
@@ -2148,6 +2153,17 @@ layers:
 - jurisdiction: us-md
   screener: []
   full:
+  - key: us-md/guidance/dhs/fia/at-26-08
+    name: 'FIA Action Transmittal AT 26-08: H.R. 1 (2025) - Treatment of Energy Assistance Payments (October 16,
+      2025)'
+    layer: state
+    citation_path: us-md/guidance/dhs/fia/at-26-08
+    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf
+    sources:
+    - manifests/us-md-benefits-w6-guidance.yaml
+    manifest: manifests/us-md-benefits-w6-guidance.yaml
+    scope: in
+    part: Income
   - key: us-md/policy/dhs/ohep/fy27-meap-benefit-matrices
     name: Maryland OHEP FY27 MEAP Benefit Matrices
     layer: state
@@ -2192,7 +2208,7 @@ layers:
 - jurisdiction: us-ma
   screener:
   - key: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
-    name: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
+    name: Learn about Home Energy Assistance - HEAP (Mass.gov, EOHLC)
     layer: state
     citation_path: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
     source_url: null
@@ -2273,13 +2289,14 @@ layers:
     part: Benefit amount
   full:
   - key: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
-    name: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
+    name: Learn about Home Energy Assistance - HEAP (Mass.gov, EOHLC)
     layer: state
     citation_path: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-ma-benefits-w6-guidance.yaml
     scope: in
   - key: us-ma/policy/acf/liheap-plan/fy2026-benefit-matrix
     name: 'Massachusetts HEAP FY 2026 plan attachment: Income Eligibility and Benefit Levels'
@@ -2306,6 +2323,16 @@ layers:
 - jurisdiction: us-mi
   screener: []
   full:
+  - key: us-mi/guidance/mdhhs/bridges/bpb/2017-016
+    name: Bridges Policy Bulletin BPB 2017-016 (FAP LIHEAP payments; heat and utility standard), effective 8-1-2017
+    layer: state
+    citation_path: us-mi/guidance/mdhhs/bridges/bpb/2017-016
+    source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf
+    sources:
+    - manifests/us-mi-benefits-w6-guidance.yaml
+    manifest: manifests/us-mi-benefits-w6-guidance.yaml
+    scope: in
+    part: Benefit amount
   - key: us-mi/manual/mpsc/meap-policy-manual
     name: Michigan Energy Assistance Program (MEAP) Policy and Procedure Manual, FY 2024 (v1.0)
     layer: state
@@ -2478,7 +2505,7 @@ layers:
 - jurisdiction: us-ne
   screener:
   - key: us-ne/guidance/dhhs/liheap-guidance-document-2026
-    name: us-ne/guidance/dhhs/liheap-guidance-document-2026
+    name: Low Income Home Energy Assistance Program Guidance Document 10/1/2025 (DHHS Documents copy)
     layer: state
     citation_path: us-ne/guidance/dhhs/liheap-guidance-document-2026
     source_url: null
@@ -2492,7 +2519,7 @@ layers:
       references: 2
       part: Income
   - key: us-ne/guidance/dhhs/obbb-snap-changes-faq
-    name: us-ne/guidance/dhhs/obbb-snap-changes-faq
+    name: OBBBA SNAP Changes Frequently Asked Questions (updated August 17, 2026)
     layer: state
     citation_path: us-ne/guidance/dhhs/obbb-snap-changes-faq
     source_url: null
@@ -2520,7 +2547,7 @@ layers:
       references: 1
       part: Income
   - key: us-ne/regulation/title-476/chapter-1
-    name: us-ne/regulation/title-476/chapter-1
+    name: 476 NAC 1 (Low Income Home Energy Assistance Program), filing of 12-26-2020
     layer: state
     citation_path: us-ne/regulation/title-476/chapter-1
     source_url: null
@@ -2534,7 +2561,7 @@ layers:
       references: 2
       part: Household and eligibility
   - key: us-ne/regulation/title-476/chapter-2
-    name: us-ne/regulation/title-476/chapter-2
+    name: 476 NAC 2 (Low Income Home Energy Assistance Program), filing of 06-26-2022
     layer: state
     citation_path: us-ne/regulation/title-476/chapter-2
     source_url: null
@@ -2548,7 +2575,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us-ne/regulation/title-476/chapter-3
-    name: us-ne/regulation/title-476/chapter-3
+    name: 476 NAC 3 (Low Income Home Energy Assistance Program), filing of 12-26-2020
     layer: state
     citation_path: us-ne/regulation/title-476/chapter-3
     source_url: null
@@ -2574,16 +2601,17 @@ layers:
     part: Income
   full:
   - key: us-ne/guidance/dhhs/liheap-guidance-document-2026
-    name: us-ne/guidance/dhhs/liheap-guidance-document-2026
+    name: Low Income Home Energy Assistance Program Guidance Document 10/1/2025 (DHHS Documents copy)
     layer: state
     citation_path: us-ne/guidance/dhhs/liheap-guidance-document-2026
     source_url: null
     part: Income
     sources:
     - screener
+    - manifests/us-ne-benefits-w6-guidance.yaml
     scope: in
   - key: us-ne/guidance/dhhs/obbb-snap-changes-faq
-    name: us-ne/guidance/dhhs/obbb-snap-changes-faq
+    name: OBBBA SNAP Changes Frequently Asked Questions (updated August 17, 2026)
     layer: state
     citation_path: us-ne/guidance/dhhs/obbb-snap-changes-faq
     source_url: null
@@ -2602,31 +2630,34 @@ layers:
     - manifests/us-ne-liheap-state-plan-fy2026.yaml
     scope: in
   - key: us-ne/regulation/title-476/chapter-1
-    name: us-ne/regulation/title-476/chapter-1
+    name: 476 NAC 1 (Low Income Home Energy Assistance Program), filing of 12-26-2020
     layer: state
     citation_path: us-ne/regulation/title-476/chapter-1
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-ne-benefits-w6-regulation.yaml
     scope: in
   - key: us-ne/regulation/title-476/chapter-2
-    name: us-ne/regulation/title-476/chapter-2
+    name: 476 NAC 2 (Low Income Home Energy Assistance Program), filing of 06-26-2022
     layer: state
     citation_path: us-ne/regulation/title-476/chapter-2
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-ne-benefits-w6-regulation.yaml
     scope: in
   - key: us-ne/regulation/title-476/chapter-3
-    name: us-ne/regulation/title-476/chapter-3
+    name: 476 NAC 3 (Low Income Home Energy Assistance Program), filing of 12-26-2020
     layer: state
     citation_path: us-ne/regulation/title-476/chapter-3
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-ne-benefits-w6-regulation.yaml
     scope: in
   - key: us-ne/guidance/dhhs/liheap-guidance-document
     name: Nebraska DHHS Low Income Home Energy Assistance Program (LIHEAP) Guidance Document (July 18, 2026)
@@ -2830,7 +2861,7 @@ layers:
       references: 1
       part: Income
   - key: us-nc/manual/dss/energy-programs/ep-150
-    name: us-nc/manual/dss/energy-programs/ep-150
+    name: 'Energy Programs Manual EP-150 Household Composition (Change #2-2023)'
     layer: state
     citation_path: us-nc/manual/dss/energy-programs/ep-150
     source_url: null
@@ -2844,7 +2875,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us-nc/manual/dss/energy-programs/ep-175
-    name: us-nc/manual/dss/energy-programs/ep-175
+    name: 'Energy Programs Manual EP-175 United States Citizenship (Change #1-2011)'
     layer: state
     citation_path: us-nc/manual/dss/energy-programs/ep-175
     source_url: null
@@ -2873,7 +2904,7 @@ layers:
       references: 9
       part: Household and eligibility
   - key: us-nc/manual/dss/energy-programs/ep-cn-03-2026
-    name: us-nc/manual/dss/energy-programs/ep-cn-03-2026
+    name: Energy Programs Manual Change Notice 03-2026 (Policy Updates, effective October 1, 2026)
     layer: state
     citation_path: us-nc/manual/dss/energy-programs/ep-cn-03-2026
     source_url: null
@@ -2948,7 +2979,7 @@ layers:
     - screener
     scope: in
   - key: us-nc/manual/dss/energy-programs/ep-150
-    name: us-nc/manual/dss/energy-programs/ep-150
+    name: 'Energy Programs Manual EP-150 Household Composition (Change #2-2023)'
     layer: state
     citation_path: us-nc/manual/dss/energy-programs/ep-150
     source_url: null
@@ -2957,7 +2988,7 @@ layers:
     - screener
     scope: in
   - key: us-nc/manual/dss/energy-programs/ep-175
-    name: us-nc/manual/dss/energy-programs/ep-175
+    name: 'Energy Programs Manual EP-175 United States Citizenship (Change #1-2011)'
     layer: state
     citation_path: us-nc/manual/dss/energy-programs/ep-175
     source_url: null
@@ -2977,7 +3008,7 @@ layers:
     - manifests/us-nc-liheap-benefit-matrix-manual.yaml
     scope: in
   - key: us-nc/manual/dss/energy-programs/ep-cn-03-2026
-    name: us-nc/manual/dss/energy-programs/ep-cn-03-2026
+    name: Energy Programs Manual Change Notice 03-2026 (Policy Updates, effective October 1, 2026)
     layer: state
     citation_path: us-nc/manual/dss/energy-programs/ep-cn-03-2026
     source_url: null

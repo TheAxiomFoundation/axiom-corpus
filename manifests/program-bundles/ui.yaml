@@ -59,7 +59,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 1
-      state: 48
+      state: 49
 layers:
 - jurisdiction: us
   screener:
@@ -90,7 +90,7 @@ layers:
 - jurisdiction: us-al
   screener:
   - key: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
-    name: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
+    name: Alabama Unemployment Compensation Benefit Rights and Responsibilities (claimant handbook)
     layer: state
     citation_path: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
     source_url: null
@@ -104,7 +104,7 @@ layers:
       references: 4
       part: Benefit amount
   - key: us-al/regulation/alabama-administrative-code/480/4/3
-    name: us-al/regulation/alabama-administrative-code/480/4/3
+    name: 'Alabama Administrative Code Chapter 480-4-3: Benefits (Department of Workforce)'
     layer: state
     citation_path: us-al/regulation/alabama-administrative-code/480/4/3
     source_url: null
@@ -226,16 +226,17 @@ layers:
     part: Benefit amount
   full:
   - key: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
-    name: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
+    name: Alabama Unemployment Compensation Benefit Rights and Responsibilities (claimant handbook)
     layer: state
     citation_path: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-al-benefits-w6-guidance.yaml
     scope: in
   - key: us-al/regulation/alabama-administrative-code/480/4/3
-    name: us-al/regulation/alabama-administrative-code/480/4/3
+    name: 'Alabama Administrative Code Chapter 480-4-3: Benefits (Department of Workforce)'
     layer: state
     citation_path: us-al/regulation/alabama-administrative-code/480/4/3
     source_url: null
@@ -388,7 +389,7 @@ layers:
 - jurisdiction: us-nj
   screener:
   - key: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
-    name: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
+    name: 'Employer Handbook: Unemployment Insurance'
     layer: state
     citation_path: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
     source_url: null
@@ -402,7 +403,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/myunemployment/dependency-benefits
-    name: us-nj/guidance/lwd/myunemployment/dependency-benefits
+    name: How to claim dependency benefits, if you're eligible
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/dependency-benefits
     source_url: null
@@ -416,7 +417,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
-    name: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
+    name: 'FAQ: Factors that affect your weekly benefit rate'
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
     source_url: null
@@ -430,7 +431,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
-    name: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
+    name: How we calculate benefits (Division of Unemployment Insurance)
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
     source_url: null
@@ -444,7 +445,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/myunemployment/who-is-eligible
-    name: us-nj/guidance/lwd/myunemployment/who-is-eligible
+    name: Who is eligible for benefits? (Division of Unemployment Insurance)
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/who-is-eligible
     source_url: null
@@ -458,7 +459,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
-    name: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
+    name: New Jersey's Minimum Wage to Exceed Governor Murphy's $15/Hour Goal on January 1 (December 27, 2023)
     layer: state
     citation_path: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
     source_url: null
@@ -472,7 +473,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
-    name: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
+    name: NJ Department of Labor and Workforce Development Announces New Benefit Rates for 2025 (December 17, 2024)
     layer: state
     citation_path: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
     source_url: null
@@ -486,7 +487,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
-    name: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
+    name: NJ Department of Labor and Workforce Development Announces New Benefit Rates for 2026 (December 29, 2025)
     layer: state
     citation_path: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
     source_url: null
@@ -500,7 +501,8 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-nj/guidance/lwd/unemployment-compensation-law-compilation
-    name: us-nj/guidance/lwd/unemployment-compensation-law-compilation
+    name: New Jersey Unemployment Compensation Law, Extended Benefits Law, Workforce Development Partnership Act,
+      supplementary legislation (LWD compilation)
     layer: state
     citation_path: us-nj/guidance/lwd/unemployment-compensation-law-compilation
     source_url: null
@@ -515,52 +517,57 @@ layers:
       part: Benefit amount
   full:
   - key: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
-    name: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
+    name: 'Employer Handbook: Unemployment Insurance'
     layer: state
     citation_path: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
   - key: us-nj/guidance/lwd/myunemployment/dependency-benefits
-    name: us-nj/guidance/lwd/myunemployment/dependency-benefits
+    name: How to claim dependency benefits, if you're eligible
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/dependency-benefits
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
   - key: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
-    name: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
+    name: 'FAQ: Factors that affect your weekly benefit rate'
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
   - key: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
-    name: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
+    name: How we calculate benefits (Division of Unemployment Insurance)
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
   - key: us-nj/guidance/lwd/myunemployment/who-is-eligible
-    name: us-nj/guidance/lwd/myunemployment/who-is-eligible
+    name: Who is eligible for benefits? (Division of Unemployment Insurance)
     layer: state
     citation_path: us-nj/guidance/lwd/myunemployment/who-is-eligible
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
   - key: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
-    name: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
+    name: New Jersey's Minimum Wage to Exceed Governor Murphy's $15/Hour Goal on January 1 (December 27, 2023)
     layer: state
     citation_path: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
     source_url: null
@@ -569,7 +576,7 @@ layers:
     - screener
     scope: in
   - key: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
-    name: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
+    name: NJ Department of Labor and Workforce Development Announces New Benefit Rates for 2025 (December 17, 2024)
     layer: state
     citation_path: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
     source_url: null
@@ -578,7 +585,7 @@ layers:
     - screener
     scope: in
   - key: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
-    name: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
+    name: NJ Department of Labor and Workforce Development Announces New Benefit Rates for 2026 (December 29, 2025)
     layer: state
     citation_path: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
     source_url: null
@@ -587,13 +594,15 @@ layers:
     - screener
     scope: in
   - key: us-nj/guidance/lwd/unemployment-compensation-law-compilation
-    name: us-nj/guidance/lwd/unemployment-compensation-law-compilation
+    name: New Jersey Unemployment Compensation Law, Extended Benefits Law, Workforce Development Partnership Act,
+      supplementary legislation (LWD compilation)
     layer: state
     citation_path: us-nj/guidance/lwd/unemployment-compensation-law-compilation
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
 - jurisdiction: us-nm
   screener: []
@@ -601,7 +610,7 @@ layers:
 - jurisdiction: us-ny
   screener:
   - key: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
-    name: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
+    name: P803 Partial Unemployment FAQs (10/3/25)
     layer: state
     citation_path: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
     source_url: null
@@ -615,7 +624,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
-    name: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
+    name: 'P832 (2/26): How your weekly unemployment insurance benefit payment is calculated'
     layer: state
     citation_path: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
     source_url: null
@@ -629,7 +638,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
-    name: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
+    name: 'P832S (1/25, Spanish): How your weekly UI benefit payment is calculated'
     layer: state
     citation_path: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
     source_url: null
@@ -643,7 +652,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ny/guidance/dtf/nys-50/2024-12
-    name: us-ny/guidance/dtf/nys-50/2024-12
+    name: 2024 Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (12/24)
     layer: state
     citation_path: us-ny/guidance/dtf/nys-50/2024-12
     source_url: null
@@ -657,7 +666,8 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ny/guidance/dtf/nys-50/current
-    name: us-ny/guidance/dtf/nys-50/current
+    name: Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (current
+      edition)
     layer: state
     citation_path: us-ny/guidance/dtf/nys-50/current
     source_url: null
@@ -671,7 +681,8 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
-    name: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
+    name: Governor Hochul and Labor Leaders Announce Maximum Weekly Benefit Increase for Unemployed Workers (October
+      8, 2025)
     layer: state
     citation_path: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
     source_url: null
@@ -685,7 +696,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ny/statute/LAB/527
-    name: us-ny/statute/LAB/527
+    name: N.Y. Labor Law § 527
     layer: state
     citation_path: us-ny/statute/LAB/527
     source_url: null
@@ -699,7 +710,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us-ny/statute/LAB/590
-    name: us-ny/statute/LAB/590
+    name: N.Y. Labor Law § 590
     layer: state
     citation_path: us-ny/statute/LAB/590
     source_url: null
@@ -798,25 +809,27 @@ layers:
     part: Benefit amount
   full:
   - key: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
-    name: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
+    name: P803 Partial Unemployment FAQs (10/3/25)
     layer: state
     citation_path: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ny-benefits-w6-guidance.yaml
     scope: in
   - key: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
-    name: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
+    name: 'P832 (2/26): How your weekly unemployment insurance benefit payment is calculated'
     layer: state
     citation_path: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ny-benefits-w6-guidance.yaml
     scope: in
   - key: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
-    name: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
+    name: 'P832S (1/25, Spanish): How your weekly UI benefit payment is calculated'
     layer: state
     citation_path: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
     source_url: null
@@ -825,25 +838,29 @@ layers:
     - screener
     scope: in
   - key: us-ny/guidance/dtf/nys-50/2024-12
-    name: us-ny/guidance/dtf/nys-50/2024-12
+    name: 2024 Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (12/24)
     layer: state
     citation_path: us-ny/guidance/dtf/nys-50/2024-12
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ny-benefits-w6-guidance.yaml
     scope: in
   - key: us-ny/guidance/dtf/nys-50/current
-    name: us-ny/guidance/dtf/nys-50/current
+    name: Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (current
+      edition)
     layer: state
     citation_path: us-ny/guidance/dtf/nys-50/current
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ny-benefits-w6-guidance.yaml
     scope: in
   - key: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
-    name: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
+    name: Governor Hochul and Labor Leaders Announce Maximum Weekly Benefit Increase for Unemployed Workers (October
+      8, 2025)
     layer: state
     citation_path: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
     source_url: null
@@ -852,7 +869,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/statute/LAB/527
-    name: us-ny/statute/LAB/527
+    name: N.Y. Labor Law § 527
     layer: state
     citation_path: us-ny/statute/LAB/527
     source_url: null
@@ -861,7 +878,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/statute/LAB/590
-    name: us-ny/statute/LAB/590
+    name: N.Y. Labor Law § 590
     layer: state
     citation_path: us-ny/statute/LAB/590
     source_url: null
@@ -899,7 +916,7 @@ layers:
 - jurisdiction: us-ok
   screener:
   - key: us-ok/guidance/oesc/employer-important-numbers/2023
-    name: us-ok/guidance/oesc/employer-important-numbers/2023
+    name: OESC Important Numbers for 2023 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2023
     source_url: null
@@ -913,7 +930,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ok/guidance/oesc/employer-important-numbers/2024
-    name: us-ok/guidance/oesc/employer-important-numbers/2024
+    name: OESC Important Numbers for 2024 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2024
     source_url: null
@@ -927,7 +944,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ok/guidance/oesc/employer-important-numbers/2025
-    name: us-ok/guidance/oesc/employer-important-numbers/2025
+    name: OESC Important Numbers for 2025 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2025
     source_url: null
@@ -941,7 +958,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ok/guidance/oesc/employer-important-numbers/2026
-    name: us-ok/guidance/oesc/employer-important-numbers/2026
+    name: OESC Important Numbers for 2026 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2026
     source_url: null
@@ -955,7 +972,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ok/guidance/oesc/oes-339-claimant-handbook
-    name: us-ok/guidance/oesc/oes-339-claimant-handbook
+    name: 'OES-339 Claimant Handbook: A Guide to Unemployment Benefits (Rev. 06-3-2026)'
     layer: state
     citation_path: us-ok/guidance/oesc/oes-339-claimant-handbook
     source_url: null
@@ -983,7 +1000,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ok/statute/title-40-pdf
-    name: us-ok/statute/title-40-pdf
+    name: Oklahoma Statutes Title 40. Labor (complete title PDF)
     layer: state
     citation_path: us-ok/statute/title-40-pdf
     source_url: null
@@ -1024,7 +1041,7 @@ layers:
     part: Benefit amount
   full:
   - key: us-ok/guidance/oesc/employer-important-numbers/2023
-    name: us-ok/guidance/oesc/employer-important-numbers/2023
+    name: OESC Important Numbers for 2023 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2023
     source_url: null
@@ -1033,7 +1050,7 @@ layers:
     - screener
     scope: in
   - key: us-ok/guidance/oesc/employer-important-numbers/2024
-    name: us-ok/guidance/oesc/employer-important-numbers/2024
+    name: OESC Important Numbers for 2024 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2024
     source_url: null
@@ -1042,7 +1059,7 @@ layers:
     - screener
     scope: in
   - key: us-ok/guidance/oesc/employer-important-numbers/2025
-    name: us-ok/guidance/oesc/employer-important-numbers/2025
+    name: OESC Important Numbers for 2025 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2025
     source_url: null
@@ -1051,7 +1068,7 @@ layers:
     - screener
     scope: in
   - key: us-ok/guidance/oesc/employer-important-numbers/2026
-    name: us-ok/guidance/oesc/employer-important-numbers/2026
+    name: OESC Important Numbers for 2026 (rates, taxable wage base, maximum weekly benefit)
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2026
     source_url: null
@@ -1060,13 +1077,14 @@ layers:
     - screener
     scope: in
   - key: us-ok/guidance/oesc/oes-339-claimant-handbook
-    name: us-ok/guidance/oesc/oes-339-claimant-handbook
+    name: 'OES-339 Claimant Handbook: A Guide to Unemployment Benefits (Rev. 06-3-2026)'
     layer: state
     citation_path: us-ok/guidance/oesc/oes-339-claimant-handbook
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ok-benefits-w6-guidance.yaml
     scope: in
   - key: us-ok/statute/session-laws/2021
     name: us-ok/statute/session-laws/2021
@@ -1078,7 +1096,7 @@ layers:
     - screener
     scope: in
   - key: us-ok/statute/title-40-pdf
-    name: us-ok/statute/title-40-pdf
+    name: Oklahoma Statutes Title 40. Labor (complete title PDF)
     layer: state
     citation_path: us-ok/statute/title-40-pdf
     source_url: null
@@ -1095,13 +1113,23 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-ok/statute/session-laws/2021/hb1933
+    name: Oklahoma Enrolled House Bill No. 1933 (2021), relating to labor (unemployment)
+    layer: state
+    citation_path: us-ok/statute/session-laws/2021/hb1933
+    source_url: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF
+    sources:
+    - manifests/us-ok-benefits-w6-statute.yaml
+    manifest: manifests/us-ok-benefits-w6-statute.yaml
+    scope: in
+    part: Other
 - jurisdiction: us-or
   screener: []
   full: []
 - jurisdiction: us-pa
   screener:
   - key: us-pa/guidance/dli/uc-law
-    name: us-pa/guidance/dli/uc-law
+    name: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
     layer: state
     citation_path: us-pa/guidance/dli/uc-law
     source_url: null
@@ -1115,7 +1143,7 @@ layers:
       references: 9
       part: Household and eligibility
   - key: us-pa/guidance/dli/ucp-1-claimant-handbook
-    name: us-pa/guidance/dli/ucp-1-claimant-handbook
+    name: UCP-1 Unemployment Compensation Handbook (claimant handbook)
     layer: state
     citation_path: us-pa/guidance/dli/ucp-1-claimant-handbook
     source_url: null
@@ -1143,7 +1171,8 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us-pa/rulemaking/pa-bulletin/54/24-1863
-    name: us-pa/rulemaking/pa-bulletin/54/24-1863
+    name: 54 Pa.B. 8560 (Doc. No. 24-1863), Unemployment Compensation; Table Specified for Determination of Rate
+      and Amount of Benefits (December 28, 2024)
     layer: state
     citation_path: us-pa/rulemaking/pa-bulletin/54/24-1863
     source_url: null
@@ -1158,22 +1187,24 @@ layers:
       part: Benefit amount
   full:
   - key: us-pa/guidance/dli/uc-law
-    name: us-pa/guidance/dli/uc-law
+    name: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
     layer: state
     citation_path: us-pa/guidance/dli/uc-law
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-pa-benefits-w6-guidance.yaml
     scope: in
   - key: us-pa/guidance/dli/ucp-1-claimant-handbook
-    name: us-pa/guidance/dli/ucp-1-claimant-handbook
+    name: UCP-1 Unemployment Compensation Handbook (claimant handbook)
     layer: state
     citation_path: us-pa/guidance/dli/ucp-1-claimant-handbook
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-pa-benefits-w6-guidance.yaml
     scope: in
   - key: us-pa/regulation/title-61
     name: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
@@ -1185,13 +1216,15 @@ layers:
     - screener
     scope: in
   - key: us-pa/rulemaking/pa-bulletin/54/24-1863
-    name: us-pa/rulemaking/pa-bulletin/54/24-1863
+    name: 54 Pa.B. 8560 (Doc. No. 24-1863), Unemployment Compensation; Table Specified for Determination of Rate
+      and Amount of Benefits (December 28, 2024)
     layer: state
     citation_path: us-pa/rulemaking/pa-bulletin/54/24-1863
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-pa-benefits-w6-rulemaking.yaml
     scope: in
 - jurisdiction: us-ri
   screener: []
@@ -1211,7 +1244,7 @@ layers:
 - jurisdiction: us-ut
   screener:
   - key: us-ut/guidance/dws/ui/benefit-calculation
-    name: us-ut/guidance/dws/ui/benefit-calculation
+    name: Unemployment Insurance Benefit Calculation (Utah DWS)
     layer: state
     citation_path: us-ut/guidance/dws/ui/benefit-calculation
     source_url: null
@@ -1225,7 +1258,7 @@ layers:
       references: 3
       part: Benefit amount
   - key: us-ut/guidance/dws/ui/claimant-guide
-    name: us-ut/guidance/dws/ui/claimant-guide
+    name: Unemployment Insurance Claimant Guide (Utah DWS)
     layer: state
     citation_path: us-ut/guidance/dws/ui/claimant-guide
     source_url: null
@@ -1239,7 +1272,7 @@ layers:
       references: 2
       part: Benefit amount
   - key: us-ut/regulation/admin-rules/r994/401
-    name: us-ut/regulation/admin-rules/r994/401
+    name: 'Utah Administrative Code R994-401: Payment of Benefits (Workforce Services, Unemployment Insurance)'
     layer: state
     citation_path: us-ut/regulation/admin-rules/r994/401
     source_url: null
@@ -1253,7 +1286,7 @@ layers:
       references: 2
       part: Household and eligibility
   - key: us-ut/statute/35a-4-201
-    name: us-ut/statute/35a-4-201
+    name: Utah Code Section 35A-4-201
     layer: state
     citation_path: us-ut/statute/35a-4-201
     source_url: null
@@ -1267,7 +1300,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us-ut/statute/35a-4-207
-    name: us-ut/statute/35a-4-207
+    name: Utah Code Section 35A-4-207
     layer: state
     citation_path: us-ut/statute/35a-4-207
     source_url: null
@@ -1281,7 +1314,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ut/statute/35a-4-401
-    name: us-ut/statute/35a-4-401
+    name: Utah Code Section 35A-4-401
     layer: state
     citation_path: us-ut/statute/35a-4-401
     source_url: null
@@ -1295,7 +1328,7 @@ layers:
       references: 1
       part: Benefit amount
   - key: us-ut/statute/35a-4-403
-    name: us-ut/statute/35a-4-403
+    name: Utah Code Section 35A-4-403
     layer: state
     citation_path: us-ut/statute/35a-4-403
     source_url: null
@@ -1310,34 +1343,37 @@ layers:
       part: Household and eligibility
   full:
   - key: us-ut/guidance/dws/ui/benefit-calculation
-    name: us-ut/guidance/dws/ui/benefit-calculation
+    name: Unemployment Insurance Benefit Calculation (Utah DWS)
     layer: state
     citation_path: us-ut/guidance/dws/ui/benefit-calculation
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ut-benefits-w6-guidance.yaml
     scope: in
   - key: us-ut/guidance/dws/ui/claimant-guide
-    name: us-ut/guidance/dws/ui/claimant-guide
+    name: Unemployment Insurance Claimant Guide (Utah DWS)
     layer: state
     citation_path: us-ut/guidance/dws/ui/claimant-guide
     source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-ut-benefits-w6-guidance.yaml
     scope: in
   - key: us-ut/regulation/admin-rules/r994/401
-    name: us-ut/regulation/admin-rules/r994/401
+    name: 'Utah Administrative Code R994-401: Payment of Benefits (Workforce Services, Unemployment Insurance)'
     layer: state
     citation_path: us-ut/regulation/admin-rules/r994/401
     source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-ut-benefits-w6-regulation.yaml
     scope: in
   - key: us-ut/statute/35a-4-201
-    name: us-ut/statute/35a-4-201
+    name: Utah Code Section 35A-4-201
     layer: state
     citation_path: us-ut/statute/35a-4-201
     source_url: null
@@ -1346,7 +1382,7 @@ layers:
     - screener
     scope: in
   - key: us-ut/statute/35a-4-207
-    name: us-ut/statute/35a-4-207
+    name: Utah Code Section 35A-4-207
     layer: state
     citation_path: us-ut/statute/35a-4-207
     source_url: null
@@ -1355,7 +1391,7 @@ layers:
     - screener
     scope: in
   - key: us-ut/statute/35a-4-401
-    name: us-ut/statute/35a-4-401
+    name: Utah Code Section 35A-4-401
     layer: state
     citation_path: us-ut/statute/35a-4-401
     source_url: null
@@ -1364,7 +1400,7 @@ layers:
     - screener
     scope: in
   - key: us-ut/statute/35a-4-403
-    name: us-ut/statute/35a-4-403
+    name: Utah Code Section 35A-4-403
     layer: state
     citation_path: us-ut/statute/35a-4-403
     source_url: null

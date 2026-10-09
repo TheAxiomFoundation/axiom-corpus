@@ -56,7 +56,7 @@ tiers:
     state_manifests: (^|-)ctc(-|$)|child-tax-credit
     known_sources: 0
     in_scope_by_layer:
-      federal: 40
+      federal: 67
       state: 83
 layers:
 - jurisdiction: us
@@ -81,18 +81,8 @@ layers:
     references: 1
     scope: in
     part: Credits
-  - key: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
-    name: irs.gov/pub/irs-drop/rp-24-40.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us/form/irs/ty2013/p972
-    name: us/form/irs/ty2013/p972
+    name: Publication 972 (2013), Child Tax Credit
     layer: federal
     citation_path: us/form/irs/ty2013/p972
     source_url: null
@@ -106,7 +96,7 @@ layers:
       references: 1
       part: Credits
   - key: us/form/irs/ty2020/p972
-    name: us/form/irs/ty2020/p972
+    name: Publication 972 (2020), Child Tax Credit and Credit for Other Dependents
     layer: federal
     citation_path: us/form/irs/ty2020/p972
     source_url: null
@@ -120,7 +110,7 @@ layers:
       references: 2
       part: Credits
   - key: us/form/irs/ty2021/f1040
-    name: us/form/irs/ty2021/f1040
+    name: Form 1040, U.S. Individual Income Tax Return (2021)
     layer: federal
     citation_path: us/form/irs/ty2021/f1040
     source_url: null
@@ -134,7 +124,7 @@ layers:
       references: 1
       part: Credits
   - key: us/form/irs/ty2021/f1040s8
-    name: us/form/irs/ty2021/f1040s8
+    name: Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2021)
     layer: federal
     citation_path: us/form/irs/ty2021/f1040s8
     source_url: null
@@ -148,7 +138,7 @@ layers:
       references: 1
       part: Credits
   - key: us/form/irs/ty2022/i1040s8
-    name: us/form/irs/ty2022/i1040s8
+    name: Instructions for Schedule 8812, Credits for Qualifying Children and Other Dependents (2022)
     layer: federal
     citation_path: us/form/irs/ty2022/i1040s8
     source_url: null
@@ -176,7 +166,7 @@ layers:
       references: 5
       part: Credits
   - key: us/guidance/irs/rev-proc-2018-57
-    name: us/guidance/irs/rev-proc-2018-57
+    name: Rev. Proc. 2018-57 (2019 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2018-57
     source_url: null
@@ -190,7 +180,7 @@ layers:
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2019-44
-    name: us/guidance/irs/rev-proc-2019-44
+    name: Rev. Proc. 2019-44 (2020 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2019-44
     source_url: null
@@ -204,7 +194,7 @@ layers:
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2020-45
-    name: us/guidance/irs/rev-proc-2020-45
+    name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
     source_url: null
@@ -218,7 +208,7 @@ layers:
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2023-34
-    name: us/guidance/irs/rev-proc-2023-34
+    name: Rev. Proc. 2023-34 (2024 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2023-34
     source_url: null
@@ -229,6 +219,20 @@ layers:
     part: Credits
     cited:
     - path: us/guidance/irs/rev-proc-2023-34
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2024-40
+    name: Rev. Proc. 2024-40, tax year 2025 inflation adjustments
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2024-40
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2024-40
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2025-32
@@ -440,17 +444,8 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
-    name: irs.gov/pub/irs-drop/rp-24-40.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us/form/irs/ty2013/p972
-    name: us/form/irs/ty2013/p972
+    name: Publication 972 (2013), Child Tax Credit
     layer: federal
     citation_path: us/form/irs/ty2013/p972
     source_url: null
@@ -459,7 +454,7 @@ layers:
     - screener
     scope: in
   - key: us/form/irs/ty2020/p972
-    name: us/form/irs/ty2020/p972
+    name: Publication 972 (2020), Child Tax Credit and Credit for Other Dependents
     layer: federal
     citation_path: us/form/irs/ty2020/p972
     source_url: null
@@ -468,7 +463,7 @@ layers:
     - screener
     scope: in
   - key: us/form/irs/ty2021/f1040
-    name: us/form/irs/ty2021/f1040
+    name: Form 1040, U.S. Individual Income Tax Return (2021)
     layer: federal
     citation_path: us/form/irs/ty2021/f1040
     source_url: null
@@ -477,7 +472,7 @@ layers:
     - screener
     scope: in
   - key: us/form/irs/ty2021/f1040s8
-    name: us/form/irs/ty2021/f1040s8
+    name: Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2021)
     layer: federal
     citation_path: us/form/irs/ty2021/f1040s8
     source_url: null
@@ -486,7 +481,7 @@ layers:
     - screener
     scope: in
   - key: us/form/irs/ty2022/i1040s8
-    name: us/form/irs/ty2022/i1040s8
+    name: Instructions for Schedule 8812, Credits for Qualifying Children and Other Dependents (2022)
     layer: federal
     citation_path: us/form/irs/ty2022/i1040s8
     source_url: null
@@ -505,7 +500,7 @@ layers:
     - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
     scope: in
   - key: us/guidance/irs/rev-proc-2018-57
-    name: us/guidance/irs/rev-proc-2018-57
+    name: Rev. Proc. 2018-57 (2019 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2018-57
     source_url: null
@@ -514,7 +509,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/irs/rev-proc-2019-44
-    name: us/guidance/irs/rev-proc-2019-44
+    name: Rev. Proc. 2019-44 (2020 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2019-44
     source_url: null
@@ -523,7 +518,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/irs/rev-proc-2020-45
-    name: us/guidance/irs/rev-proc-2020-45
+    name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
     source_url: null
@@ -532,13 +527,23 @@ layers:
     - screener
     scope: in
   - key: us/guidance/irs/rev-proc-2023-34
-    name: us/guidance/irs/rev-proc-2023-34
+    name: Rev. Proc. 2023-34 (2024 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2023-34
     source_url: null
     part: Credits
     sources:
     - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2024-40
+    name: Rev. Proc. 2024-40, tax year 2025 inflation adjustments
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2024-40
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    - manifests/us-irs-guidance-rev-proc-2024-40-2025-19.yaml
     scope: in
   - key: us/guidance/irs/rev-proc-2025-32
     name: Rev. Proc. 2025-32
@@ -628,6 +633,16 @@ layers:
     manifest: manifests/us-irs-guidance-2026-inflation-adjustments.yaml
     scope: in
     part: Other
+  - key: us/guidance/irs/rev-proc-2025-19
+    name: Rev. Proc. 2025-19, 2026 inflation adjusted amounts for Health Savings Accounts
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2025-19
+    source_url: https://www.irs.gov/irb/2025-23_IRB
+    sources:
+    - manifests/us-irs-guidance-rev-proc-2024-40-2025-19.yaml
+    manifest: manifests/us-irs-guidance-rev-proc-2024-40-2025-19.yaml
+    scope: in
+    part: Other
   - key: us/guidance/irs/rev-proc-2025-25
     name: Rev. Proc. 2025-25
     layer: federal
@@ -648,6 +663,276 @@ layers:
     manifest: manifests/us-irs-guidance.yaml
     scope: in
     part: Other
+  - key: us/form/irs/ty2025/f1040s1a
+    name: Schedule 1-A (Form 1040), Additional Deductions (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040s1a
+    source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f1040sc
+    name: Schedule C (Form 1040), Profit or Loss From Business (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sc
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-c-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/i1040sc
+    name: Instructions for Schedule C (Form 1040), Profit or Loss From Business (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040sc
+    source_url: https://www.irs.gov/instructions/i1040sc
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f1040se
+    name: Schedule E (Form 1040), Supplemental Income and Loss (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040se
+    source_url: https://www.irs.gov/forms-pubs/about-schedule-e-form-1040
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/i1040se
+    name: Instructions for Schedule E (Form 1040), Supplemental Income and Loss (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i1040se
+    source_url: https://www.irs.gov/instructions/i1040se
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Rates
+  - key: us/form/irs/ty2025/f2441
+    name: Form 2441, Child and Dependent Care Expenses (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f2441
+    source_url: https://www.irs.gov/forms-pubs/about-form-2441
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Filing and household
+  - key: us/form/irs/ty2025/i2441
+    name: Instructions for Form 2441, Child and Dependent Care Expenses (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i2441
+    source_url: https://www.irs.gov/instructions/i2441
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Filing and household
+  - key: us/form/irs/ty2025/f8863
+    name: Form 8863, Education Credits (American Opportunity and Lifetime Learning Credits) (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8863
+    source_url: https://www.irs.gov/forms-pubs/about-form-8863
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/i8863
+    name: Instructions for Form 8863, Education Credits (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i8863
+    source_url: https://www.irs.gov/instructions/i8863
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/f6251
+    name: Form 6251, Alternative Minimum Tax - Individuals (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f6251
+    source_url: https://www.irs.gov/forms-pubs/about-form-6251
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/i6251
+    name: Instructions for Form 6251, Alternative Minimum Tax - Individuals (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i6251
+    source_url: https://www.irs.gov/instructions/i6251
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/f8959
+    name: Form 8959, Additional Medicare Tax (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8959
+    source_url: https://www.irs.gov/forms-pubs/about-form-8959
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/i8959
+    name: Instructions for Form 8959, Additional Medicare Tax (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i8959
+    source_url: https://www.irs.gov/instructions/i8959
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/f8960
+    name: Form 8960, Net Investment Income Tax - Individuals, Estates, and Trusts (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8960
+    source_url: https://www.irs.gov/forms-pubs/about-form-8960
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Income
+  - key: us/form/irs/ty2025/i8960
+    name: Instructions for Form 8960, Net Investment Income Tax (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i8960
+    source_url: https://www.irs.gov/instructions/i8960
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Income
+  - key: us/form/irs/ty2025/f8995
+    name: Form 8995, Qualified Business Income Deduction Simplified Computation (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8995
+    source_url: https://www.irs.gov/forms-pubs/about-form-8995
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Deductions
+  - key: us/form/irs/ty2025/i8995
+    name: Instructions for Form 8995, Qualified Business Income Deduction Simplified Computation (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/i8995
+    source_url: https://www.irs.gov/instructions/i8995
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Deductions
+  - key: us/form/irs/ty2025/f8995a
+    name: Form 8995-A, Qualified Business Income Deduction (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8995a
+    source_url: https://www.irs.gov/forms-pubs/about-form-8995-a
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Deductions
+  - key: us/form/irs/ty2025/f8880
+    name: Form 8880, Credit for Qualified Retirement Savings Contributions (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f8880
+    source_url: https://www.irs.gov/forms-pubs/about-form-8880
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2026/f1040es
+    name: Form 1040-ES, Estimated Tax for Individuals (2026)
+    layer: federal
+    citation_path: us/form/irs/ty2026/f1040es
+    source_url: https://www.irs.gov/forms-pubs/about-form-1040-es
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2026/fw4
+    name: Form W-4, Employee's Withholding Certificate (2026)
+    layer: federal
+    citation_path: us/form/irs/ty2026/fw4
+    source_url: https://www.irs.gov/forms-pubs/about-form-w-4
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/p501
+    name: Publication 501 (2025), Dependents, Standard Deduction, and Filing Information
+    layer: federal
+    citation_path: us/form/irs/ty2025/p501
+    source_url: https://www.irs.gov/publications/p501
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Deductions
+  - key: us/form/irs/ty2025/p596
+    name: Publication 596 (2025), Earned Income Credit (EIC)
+    layer: federal
+    citation_path: us/form/irs/ty2025/p596
+    source_url: https://www.irs.gov/publications/p596
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Credits
+  - key: us/form/irs/ty2025/p970
+    name: Publication 970 (2025), Tax Benefits for Education
+    layer: federal
+    citation_path: us/form/irs/ty2025/p970
+    source_url: https://www.irs.gov/publications/p970
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Other
+  - key: us/form/irs/ty2025/f1040sr
+    name: Form 1040-SR, U.S. Income Tax Return for Seniors (2025)
+    layer: federal
+    citation_path: us/form/irs/ty2025/f1040sr
+    source_url: https://www.irs.gov/forms-pubs/about-form-1040-sr
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Income
+  - key: us/form/irs/ty2026/p15t
+    name: Publication 15-T (2026), Federal Income Tax Withholding Methods
+    layer: federal
+    citation_path: us/form/irs/ty2026/p15t
+    source_url: https://www.irs.gov/publications/p15t
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Income
+  - key: us/form/irs/ty2025/p15t
+    name: Publication 15-T (2025), Federal Income Tax Withholding Methods
+    layer: federal
+    citation_path: us/form/irs/ty2025/p15t
+    source_url: https://www.irs.gov/forms-pubs/about-publication-15-t
+    sources:
+    - manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    manifest: manifests/us-irs-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+    part: Income
   - key: us/form/irs/ty2025/f1040
     name: Form 1040, U.S. Individual Income Tax Return (2025)
     layer: federal
@@ -668,16 +953,6 @@ layers:
     manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
     scope: in
     part: Other
-  - key: us/form/irs/ty2025/f1040s1
-    name: Schedule 1 (Form 1040), Additional Income and Adjustments to Income (2025)
-    layer: federal
-    citation_path: us/form/irs/ty2025/f1040s1
-    source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
-    sources:
-    - manifests/us-irs-individual-income-tax-forms-ty2025.yaml
-    manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
-    scope: in
-    part: Rates
   - key: us/form/irs/ty2025/f1040sa
     name: Schedule A (Form 1040), Itemized Deductions (2025)
     layer: federal
@@ -823,7 +1098,7 @@ layers:
 - jurisdiction: us-ca
   screener:
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514
-    name: 2021-3514
+    name: 2021 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514
     source_url: null
@@ -837,7 +1112,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514-instructions
-    name: 2021-3514-instructions
+    name: 2021 Instructions for Form FTB 3514
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514-instructions
     source_url: null
@@ -851,7 +1126,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514
-    name: 2022-3514
+    name: 2022 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514
     source_url: null
@@ -865,7 +1140,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514-instructions
-    name: 2022-3514-instructions
+    name: 2022 Instructions for Form FTB 3514
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514-instructions
     source_url: null
@@ -879,7 +1154,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514
-    name: 2023-3514
+    name: 2023 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514
     source_url: null
@@ -893,7 +1168,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514-instructions
-    name: 2023-3514-instructions
+    name: 2023 California Earned Income Tax Credit Booklet (Instructions for Form FTB 3514)
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514-instructions
     source_url: null
@@ -907,7 +1182,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-3514
-    name: 2024-3514
+    name: 2024 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-3514
     source_url: null
@@ -921,7 +1196,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3514-booklet
-    name: 2025-3514-booklet
+    name: 2025 California Earned Income Tax Credit Booklet (HTML)
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3514-booklet
     source_url: null
@@ -950,7 +1225,7 @@ layers:
       part: Credits
   full:
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514
-    name: 2021-3514
+    name: 2021 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514
     source_url: null
@@ -959,7 +1234,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514-instructions
-    name: 2021-3514-instructions
+    name: 2021 Instructions for Form FTB 3514
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2021/2021-3514-instructions
     source_url: null
@@ -968,7 +1243,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514
-    name: 2022-3514
+    name: 2022 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514
     source_url: null
@@ -977,7 +1252,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514-instructions
-    name: 2022-3514-instructions
+    name: 2022 Instructions for Form FTB 3514
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2022/2022-3514-instructions
     source_url: null
@@ -986,7 +1261,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514
-    name: 2023-3514
+    name: 2023 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514
     source_url: null
@@ -995,7 +1270,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514-instructions
-    name: 2023-3514-instructions
+    name: 2023 California Earned Income Tax Credit Booklet (Instructions for Form FTB 3514)
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2023/2023-3514-instructions
     source_url: null
@@ -1004,7 +1279,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-3514
-    name: 2024-3514
+    name: 2024 Form FTB 3514, California Earned Income Tax Credit
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2024/2024-3514
     source_url: null
@@ -1013,7 +1288,7 @@ layers:
     - screener
     scope: in
   - key: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3514-booklet
-    name: 2025-3514-booklet
+    name: 2025 California Earned Income Tax Credit Booklet (HTML)
     layer: state
     citation_path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3514-booklet
     source_url: null
@@ -1043,7 +1318,7 @@ layers:
     scope: in
     part: Credits
   - key: us-co/form/cdor/ty2021/dr-0104-book-v3
-    name: us-co/form/cdor/ty2021/dr-0104-book-v3
+    name: 2021 Colorado Individual Income Tax Filing Guide (104 Book), version 3
     layer: state
     citation_path: us-co/form/cdor/ty2021/dr-0104-book-v3
     source_url: null
@@ -1057,7 +1332,7 @@ layers:
       references: 1
       part: Credits
   - key: us-co/form/cdor/ty2022/dr-0104-book
-    name: us-co/form/cdor/ty2022/dr-0104-book
+    name: 2022 Colorado Individual Income Tax Filing Guide (104 Book)
     layer: state
     citation_path: us-co/form/cdor/ty2022/dr-0104-book
     source_url: null
@@ -1071,7 +1346,7 @@ layers:
       references: 1
       part: Credits
   - key: us-co/form/cdor/ty2022/dr-0104cn
-    name: us-co/form/cdor/ty2022/dr-0104cn
+    name: 2022 DR 0104CN Colorado Child Tax Credit
     layer: state
     citation_path: us-co/form/cdor/ty2022/dr-0104cn
     source_url: null
@@ -1085,7 +1360,7 @@ layers:
       references: 2
       part: Credits
   - key: us-co/form/cdor/ty2023/dr-0104-book
-    name: us-co/form/cdor/ty2023/dr-0104-book
+    name: 2023 Colorado Individual Income Tax Filing Guide (104 Book)
     layer: state
     citation_path: us-co/form/cdor/ty2023/dr-0104-book
     source_url: null
@@ -1099,7 +1374,7 @@ layers:
       references: 1
       part: Credits
   - key: us-co/form/cdor/ty2023/dr-0104cn
-    name: us-co/form/cdor/ty2023/dr-0104cn
+    name: 2023 DR 0104CN Colorado Child Tax Credit
     layer: state
     citation_path: us-co/form/cdor/ty2023/dr-0104cn
     source_url: null
@@ -1113,7 +1388,7 @@ layers:
       references: 3
       part: Credits
   - key: us-co/form/cdor/ty2024/dr-0104cn
-    name: us-co/form/cdor/ty2024/dr-0104cn
+    name: 2024 DR 0104CN Colorado Child Tax Credit Instructions
     layer: state
     citation_path: us-co/form/cdor/ty2024/dr-0104cn
     source_url: null
@@ -1165,7 +1440,7 @@ layers:
     - screener
     scope: in
   - key: us-co/form/cdor/ty2021/dr-0104-book-v3
-    name: us-co/form/cdor/ty2021/dr-0104-book-v3
+    name: 2021 Colorado Individual Income Tax Filing Guide (104 Book), version 3
     layer: state
     citation_path: us-co/form/cdor/ty2021/dr-0104-book-v3
     source_url: null
@@ -1174,7 +1449,7 @@ layers:
     - screener
     scope: in
   - key: us-co/form/cdor/ty2022/dr-0104-book
-    name: us-co/form/cdor/ty2022/dr-0104-book
+    name: 2022 Colorado Individual Income Tax Filing Guide (104 Book)
     layer: state
     citation_path: us-co/form/cdor/ty2022/dr-0104-book
     source_url: null
@@ -1183,7 +1458,7 @@ layers:
     - screener
     scope: in
   - key: us-co/form/cdor/ty2022/dr-0104cn
-    name: us-co/form/cdor/ty2022/dr-0104cn
+    name: 2022 DR 0104CN Colorado Child Tax Credit
     layer: state
     citation_path: us-co/form/cdor/ty2022/dr-0104cn
     source_url: null
@@ -1192,7 +1467,7 @@ layers:
     - screener
     scope: in
   - key: us-co/form/cdor/ty2023/dr-0104-book
-    name: us-co/form/cdor/ty2023/dr-0104-book
+    name: 2023 Colorado Individual Income Tax Filing Guide (104 Book)
     layer: state
     citation_path: us-co/form/cdor/ty2023/dr-0104-book
     source_url: null
@@ -1201,7 +1476,7 @@ layers:
     - screener
     scope: in
   - key: us-co/form/cdor/ty2023/dr-0104cn
-    name: us-co/form/cdor/ty2023/dr-0104cn
+    name: 2023 DR 0104CN Colorado Child Tax Credit
     layer: state
     citation_path: us-co/form/cdor/ty2023/dr-0104cn
     source_url: null
@@ -1210,7 +1485,7 @@ layers:
     - screener
     scope: in
   - key: us-co/form/cdor/ty2024/dr-0104cn
-    name: us-co/form/cdor/ty2024/dr-0104cn
+    name: 2024 DR 0104CN Colorado Child Tax Credit Instructions
     layer: state
     citation_path: us-co/form/cdor/ty2024/dr-0104cn
     source_url: null
@@ -1444,7 +1719,7 @@ layers:
 - jurisdiction: us-il
   screener:
   - key: us-il/form/idor/ty2024/schedule-il-e-eitc
-    name: us-il/form/idor/ty2024/schedule-il-e-eitc
+    name: 2024 Schedule IL-E/EITC Illinois Exemption and Earned Income Tax Credit
     layer: state
     citation_path: us-il/form/idor/ty2024/schedule-il-e-eitc
     source_url: null
@@ -1458,7 +1733,7 @@ layers:
       references: 1
       part: Credits
   - key: us-il/form/idor/ty2025/schedule-il-e-eitc
-    name: us-il/form/idor/ty2025/schedule-il-e-eitc
+    name: 2025 Schedule IL-E/EITC Illinois Exemption and Earned Income Tax Credit
     layer: state
     citation_path: us-il/form/idor/ty2025/schedule-il-e-eitc
     source_url: null
@@ -1487,7 +1762,7 @@ layers:
       part: Credits
   full:
   - key: us-il/form/idor/ty2024/schedule-il-e-eitc
-    name: us-il/form/idor/ty2024/schedule-il-e-eitc
+    name: 2024 Schedule IL-E/EITC Illinois Exemption and Earned Income Tax Credit
     layer: state
     citation_path: us-il/form/idor/ty2024/schedule-il-e-eitc
     source_url: null
@@ -1496,7 +1771,7 @@ layers:
     - screener
     scope: in
   - key: us-il/form/idor/ty2025/schedule-il-e-eitc
-    name: us-il/form/idor/ty2025/schedule-il-e-eitc
+    name: 2025 Schedule IL-E/EITC Illinois Exemption and Earned Income Tax Credit
     layer: state
     citation_path: us-il/form/idor/ty2025/schedule-il-e-eitc
     source_url: null
@@ -1534,7 +1809,7 @@ layers:
 - jurisdiction: us-md
   screener:
   - key: us-md/form/comptroller/ty2022/resident-booklet
-    name: us-md/form/comptroller/ty2022/resident-booklet
+    name: 2022 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
     layer: state
     citation_path: us-md/form/comptroller/ty2022/resident-booklet
     source_url: null
@@ -1576,7 +1851,7 @@ layers:
       references: 1
       part: Credits
   - key: us-md/form/comptroller/ty2025/resident-booklet
-    name: us-md/form/comptroller/ty2025/resident-booklet
+    name: 2025 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
     layer: state
     citation_path: us-md/form/comptroller/ty2025/resident-booklet
     source_url: null
@@ -1589,10 +1864,10 @@ layers:
     - path: us-md/form/comptroller/ty2025/resident-booklet
       references: 1
       part: Credits
-  - key: us-md/statute/gtg/10-105
-    name: Maryland Code, Tax-General § 10-105 — State income tax rates
+  - key: us-md/statute/human-services/5-501
+    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
     layer: state
-    citation_path: us-md/statute/gtg/10-105
+    citation_path: us-md/statute/human-services/5-501
     source_url: null
     sources:
     - policyengine-references
@@ -1600,7 +1875,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-md/statute/gtg/10-105
+    - path: us-md/statute/human-services/5-501
       references: 1
       part: Credits
   - key: us-md/statute/session-laws/2025
@@ -1619,7 +1894,7 @@ layers:
       part: Credits
   full:
   - key: us-md/form/comptroller/ty2022/resident-booklet
-    name: us-md/form/comptroller/ty2022/resident-booklet
+    name: 2022 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
     layer: state
     citation_path: us-md/form/comptroller/ty2022/resident-booklet
     source_url: null
@@ -1646,7 +1921,7 @@ layers:
     - screener
     scope: in
   - key: us-md/form/comptroller/ty2025/resident-booklet
-    name: us-md/form/comptroller/ty2025/resident-booklet
+    name: 2025 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
     layer: state
     citation_path: us-md/form/comptroller/ty2025/resident-booklet
     source_url: null
@@ -1654,10 +1929,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-md/statute/gtg/10-105
-    name: Maryland Code, Tax-General § 10-105 — State income tax rates
+  - key: us-md/statute/human-services/5-501
+    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
     layer: state
-    citation_path: us-md/statute/gtg/10-105
+    citation_path: us-md/statute/human-services/5-501
     source_url: null
     part: Credits
     sources:
@@ -1692,18 +1967,8 @@ layers:
   full: []
 - jurisdiction: us-ne
   screener:
-  - key: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
-    name: revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Bookle
-    layer: state
-    citation_path: null
-    source_url: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us-ne/form/dor/ty2024/individual-income-tax-booklet
-    name: us-ne/form/dor/ty2024/individual-income-tax-booklet
+    name: 2024 Nebraska Individual Income Tax Booklet
     layer: state
     citation_path: us-ne/form/dor/ty2024/individual-income-tax-booklet
     source_url: null
@@ -1716,8 +1981,22 @@ layers:
     - path: us-ne/form/dor/ty2024/individual-income-tax-booklet
       references: 1
       part: Credits
+  - key: us-ne/form/dor/ty2025/individual-income-tax-booklet
+    name: 2025 Nebraska Individual Income Tax and Amended Return Booklet
+    layer: state
+    citation_path: us-ne/form/dor/ty2025/individual-income-tax-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ne/form/dor/ty2025/individual-income-tax-booklet
+      references: 1
+      part: Credits
   - key: us-ne/guidance/dor/child-care-tax-credit-act
-    name: us-ne/guidance/dor/child-care-tax-credit-act
+    name: Child Care Tax Credit Act
     layer: state
     citation_path: us-ne/guidance/dor/child-care-tax-credit-act
     source_url: null
@@ -1730,10 +2009,10 @@ layers:
     - path: us-ne/guidance/dor/child-care-tax-credit-act
       references: 1
       part: Credits
-  - key: us-ne/statute/77/77-2716
-    name: us-ne/statute/77/77-2716
+  - key: us-ne/statute/43/43-512
+    name: Nebraska Revised Statutes section 43-512
     layer: state
-    citation_path: us-ne/statute/77/77-2716
+    citation_path: us-ne/statute/43/43-512
     source_url: null
     sources:
     - policyengine-references
@@ -1741,21 +2020,12 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-ne/statute/77/77-2716
+    - path: us-ne/statute/43/43-512
       references: 2
       part: Credits
   full:
-  - key: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
-    name: revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Bookle
-    layer: state
-    citation_path: null
-    source_url: https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-ne/form/dor/ty2024/individual-income-tax-booklet
-    name: us-ne/form/dor/ty2024/individual-income-tax-booklet
+    name: 2024 Nebraska Individual Income Tax Booklet
     layer: state
     citation_path: us-ne/form/dor/ty2024/individual-income-tax-booklet
     source_url: null
@@ -1763,8 +2033,17 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-ne/form/dor/ty2025/individual-income-tax-booklet
+    name: 2025 Nebraska Individual Income Tax and Amended Return Booklet
+    layer: state
+    citation_path: us-ne/form/dor/ty2025/individual-income-tax-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-ne/guidance/dor/child-care-tax-credit-act
-    name: us-ne/guidance/dor/child-care-tax-credit-act
+    name: Child Care Tax Credit Act
     layer: state
     citation_path: us-ne/guidance/dor/child-care-tax-credit-act
     source_url: null
@@ -1772,10 +2051,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ne/statute/77/77-2716
-    name: us-ne/statute/77/77-2716
+  - key: us-ne/statute/43/43-512
+    name: Nebraska Revised Statutes section 43-512
     layer: state
-    citation_path: us-ne/statute/77/77-2716
+    citation_path: us-ne/statute/43/43-512
     source_url: null
     part: Credits
     sources:
@@ -1800,7 +2079,7 @@ layers:
     scope: in
     part: Credits
   - key: us-nj/form/taxation/ty2021/nj-1040-instructions
-    name: us-nj/form/taxation/ty2021/nj-1040-instructions
+    name: 2021 NJ-1040 Resident Return Instructions booklet
     layer: state
     citation_path: us-nj/form/taxation/ty2021/nj-1040-instructions
     source_url: null
@@ -1814,7 +2093,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nj/form/taxation/ty2022/nj-1040-instructions
-    name: us-nj/form/taxation/ty2022/nj-1040-instructions
+    name: 2022 NJ-1040 Resident Return Instructions booklet
     layer: state
     citation_path: us-nj/form/taxation/ty2022/nj-1040-instructions
     source_url: null
@@ -1866,7 +2145,7 @@ layers:
     - screener
     scope: in
   - key: us-nj/form/taxation/ty2021/nj-1040-instructions
-    name: us-nj/form/taxation/ty2021/nj-1040-instructions
+    name: 2021 NJ-1040 Resident Return Instructions booklet
     layer: state
     citation_path: us-nj/form/taxation/ty2021/nj-1040-instructions
     source_url: null
@@ -1875,7 +2154,7 @@ layers:
     - screener
     scope: in
   - key: us-nj/form/taxation/ty2022/nj-1040-instructions
-    name: us-nj/form/taxation/ty2022/nj-1040-instructions
+    name: 2022 NJ-1040 Resident Return Instructions booklet
     layer: state
     citation_path: us-nj/form/taxation/ty2022/nj-1040-instructions
     source_url: null
@@ -1904,7 +2183,7 @@ layers:
 - jurisdiction: us-nm
   screener:
   - key: us-nm/form/trd/ty2021/pit-packet
-    name: us-nm/form/trd/ty2021/pit-packet
+    name: 2021 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2021/pit-packet
     source_url: null
@@ -1918,7 +2197,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nm/form/trd/ty2022/pit-packet
-    name: us-nm/form/trd/ty2022/pit-packet
+    name: 2022 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2022/pit-packet
     source_url: null
@@ -1932,7 +2211,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nm/form/trd/ty2023/pit-packet
-    name: us-nm/form/trd/ty2023/pit-packet
+    name: 2023 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2023/pit-packet
     source_url: null
@@ -1946,7 +2225,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nm/form/trd/ty2024/pit-packet
-    name: us-nm/form/trd/ty2024/pit-packet
+    name: 2024 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2024/pit-packet
     source_url: null
@@ -1960,7 +2239,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nm/form/trd/ty2025/pit-packet
-    name: us-nm/form/trd/ty2025/pit-packet
+    name: 2025 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2025/pit-packet
     source_url: null
@@ -2003,7 +2282,7 @@ layers:
       part: Credits
   full:
   - key: us-nm/form/trd/ty2021/pit-packet
-    name: us-nm/form/trd/ty2021/pit-packet
+    name: 2021 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2021/pit-packet
     source_url: null
@@ -2012,7 +2291,7 @@ layers:
     - screener
     scope: in
   - key: us-nm/form/trd/ty2022/pit-packet
-    name: us-nm/form/trd/ty2022/pit-packet
+    name: 2022 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2022/pit-packet
     source_url: null
@@ -2021,7 +2300,7 @@ layers:
     - screener
     scope: in
   - key: us-nm/form/trd/ty2023/pit-packet
-    name: us-nm/form/trd/ty2023/pit-packet
+    name: 2023 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2023/pit-packet
     source_url: null
@@ -2030,7 +2309,7 @@ layers:
     - screener
     scope: in
   - key: us-nm/form/trd/ty2024/pit-packet
-    name: us-nm/form/trd/ty2024/pit-packet
+    name: 2024 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2024/pit-packet
     source_url: null
@@ -2039,7 +2318,7 @@ layers:
     - screener
     scope: in
   - key: us-nm/form/trd/ty2025/pit-packet
-    name: us-nm/form/trd/ty2025/pit-packet
+    name: 2025 Personal Income Tax Form Packet
     layer: state
     citation_path: us-nm/form/trd/ty2025/pit-packet
     source_url: null
@@ -2092,7 +2371,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ny/form/tax/ty2023/it-201-i
-    name: us-ny/form/tax/ty2023/it-201-i
+    name: 2023 Instructions for Form IT-201, Full-Year Resident Income Tax Return (HTML edition)
     layer: state
     citation_path: us-ny/form/tax/ty2023/it-201-i
     source_url: null
@@ -2106,7 +2385,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ny/form/tax/ty2023/it-213-i
-    name: us-ny/form/tax/ty2023/it-213-i
+    name: 2023 Instructions for Form IT-213, Claim for Empire State Child Credit (HTML edition)
     layer: state
     citation_path: us-ny/form/tax/ty2023/it-213-i
     source_url: null
@@ -2120,7 +2399,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ny/form/tax/ty2025/it-213
-    name: us-ny/form/tax/ty2025/it-213
+    name: 2025 Form IT-213, Claim for Empire State Child Credit
     layer: state
     citation_path: us-ny/form/tax/ty2025/it-213
     source_url: null
@@ -2134,7 +2413,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ny/form/tax/ty2025/it-213-i
-    name: us-ny/form/tax/ty2025/it-213-i
+    name: 2025 Instructions for Form IT-213, Claim for Empire State Child Credit
     layer: state
     citation_path: us-ny/form/tax/ty2025/it-213-i
     source_url: null
@@ -2148,7 +2427,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ny/guidance/tax/additional-empire-state-child-credit-payments
-    name: us-ny/guidance/tax/additional-empire-state-child-credit-payments
+    name: Additional Empire State child credit payments
     layer: state
     citation_path: us-ny/guidance/tax/additional-empire-state-child-credit-payments
     source_url: null
@@ -2162,7 +2441,7 @@ layers:
       references: 1
       part: Credits
   - key: us-ny/guidance/tax/empire-state-child-credit
-    name: us-ny/guidance/tax/empire-state-child-credit
+    name: Empire State child credit
     layer: state
     citation_path: us-ny/guidance/tax/empire-state-child-credit
     source_url: null
@@ -2223,7 +2502,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/form/tax/ty2023/it-201-i
-    name: us-ny/form/tax/ty2023/it-201-i
+    name: 2023 Instructions for Form IT-201, Full-Year Resident Income Tax Return (HTML edition)
     layer: state
     citation_path: us-ny/form/tax/ty2023/it-201-i
     source_url: null
@@ -2232,7 +2511,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/form/tax/ty2023/it-213-i
-    name: us-ny/form/tax/ty2023/it-213-i
+    name: 2023 Instructions for Form IT-213, Claim for Empire State Child Credit (HTML edition)
     layer: state
     citation_path: us-ny/form/tax/ty2023/it-213-i
     source_url: null
@@ -2241,7 +2520,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/form/tax/ty2025/it-213
-    name: us-ny/form/tax/ty2025/it-213
+    name: 2025 Form IT-213, Claim for Empire State Child Credit
     layer: state
     citation_path: us-ny/form/tax/ty2025/it-213
     source_url: null
@@ -2250,7 +2529,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/form/tax/ty2025/it-213-i
-    name: us-ny/form/tax/ty2025/it-213-i
+    name: 2025 Instructions for Form IT-213, Claim for Empire State Child Credit
     layer: state
     citation_path: us-ny/form/tax/ty2025/it-213-i
     source_url: null
@@ -2259,7 +2538,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/guidance/tax/additional-empire-state-child-credit-payments
-    name: us-ny/guidance/tax/additional-empire-state-child-credit-payments
+    name: Additional Empire State child credit payments
     layer: state
     citation_path: us-ny/guidance/tax/additional-empire-state-child-credit-payments
     source_url: null
@@ -2268,7 +2547,7 @@ layers:
     - screener
     scope: in
   - key: us-ny/guidance/tax/empire-state-child-credit
-    name: us-ny/guidance/tax/empire-state-child-credit
+    name: Empire State child credit
     layer: state
     citation_path: us-ny/guidance/tax/empire-state-child-credit
     source_url: null
@@ -2297,7 +2576,7 @@ layers:
 - jurisdiction: us-nc
   screener:
   - key: us-nc/form/ncdor/ty2017/form-d-401-instructions
-    name: us-nc/form/ncdor/ty2017/form-d-401-instructions
+    name: 2017 Form D-401, North Carolina Individual Income Tax Instructions
     layer: state
     citation_path: us-nc/form/ncdor/ty2017/form-d-401-instructions
     source_url: null
@@ -2311,7 +2590,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nc/guidance/ncdor/north-carolina-child-deduction
-    name: us-nc/guidance/ncdor/north-carolina-child-deduction
+    name: North Carolina Child Deduction
     layer: state
     citation_path: us-nc/guidance/ncdor/north-carolina-child-deduction
     source_url: null
@@ -2325,7 +2604,7 @@ layers:
       references: 1
       part: Credits
   - key: us-nc/statute/105/105-153.10
-    name: us-nc/statute/105/105-153.10
+    name: G.S. 105-153.10 (repealed by Session Laws 2015-241, s. 32.13(c))
     layer: state
     citation_path: us-nc/statute/105/105-153.10
     source_url: null
@@ -2340,7 +2619,7 @@ layers:
       part: Credits
   full:
   - key: us-nc/form/ncdor/ty2017/form-d-401-instructions
-    name: us-nc/form/ncdor/ty2017/form-d-401-instructions
+    name: 2017 Form D-401, North Carolina Individual Income Tax Instructions
     layer: state
     citation_path: us-nc/form/ncdor/ty2017/form-d-401-instructions
     source_url: null
@@ -2349,7 +2628,7 @@ layers:
     - screener
     scope: in
   - key: us-nc/guidance/ncdor/north-carolina-child-deduction
-    name: us-nc/guidance/ncdor/north-carolina-child-deduction
+    name: North Carolina Child Deduction
     layer: state
     citation_path: us-nc/guidance/ncdor/north-carolina-child-deduction
     source_url: null
@@ -2358,7 +2637,7 @@ layers:
     - screener
     scope: in
   - key: us-nc/statute/105/105-153.10
-    name: us-nc/statute/105/105-153.10
+    name: G.S. 105-153.10 (repealed by Session Laws 2015-241, s. 32.13(c))
     layer: state
     citation_path: us-nc/statute/105/105-153.10
     source_url: null
@@ -2378,7 +2657,7 @@ layers:
 - jurisdiction: us-or
   screener:
   - key: us-or/form/dor/ty2025/form-or-40-instructions
-    name: form-or-40-inst_101-040-1_2025
+    name: 2025 Form OR-40 Instructions, Oregon Individual Income Tax Full-year Resident (updated January 29, 2026)
     layer: state
     citation_path: us-or/form/dor/ty2025/form-or-40-instructions
     source_url: null
@@ -2392,7 +2671,7 @@ layers:
       references: 1
       part: Credits
   - key: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2023
-    name: form-or-40-inst_101-040-1_2023
+    name: 2023 Oregon Income Tax Form OR-40 Instructions (full-year resident; updated March 14, 2024)
     layer: state
     citation_path: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2023
     source_url: null
@@ -2406,7 +2685,7 @@ layers:
       references: 1
       part: Credits
   - key: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2024
-    name: form-or-40-inst_101-040-1_2024
+    name: 2024 Oregon Income Tax Form OR-40 Instructions (full-year resident)
     layer: state
     citation_path: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2024
     source_url: null
@@ -2463,7 +2742,7 @@ layers:
       part: Credits
   full:
   - key: us-or/form/dor/ty2025/form-or-40-instructions
-    name: form-or-40-inst_101-040-1_2025
+    name: 2025 Form OR-40 Instructions, Oregon Individual Income Tax Full-year Resident (updated January 29, 2026)
     layer: state
     citation_path: us-or/form/dor/ty2025/form-or-40-instructions
     source_url: null
@@ -2472,7 +2751,7 @@ layers:
     - screener
     scope: in
   - key: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2023
-    name: form-or-40-inst_101-040-1_2023
+    name: 2023 Oregon Income Tax Form OR-40 Instructions (full-year resident; updated March 14, 2024)
     layer: state
     citation_path: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2023
     source_url: null
@@ -2481,7 +2760,7 @@ layers:
     - screener
     scope: in
   - key: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2024
-    name: form-or-40-inst_101-040-1_2024
+    name: 2024 Oregon Income Tax Form OR-40 Instructions (full-year resident)
     layer: state
     citation_path: us-or/form/tax-forms/oregon.gov/dor/forms/formspubs/form-or-40-inst-101-040-1-2024
     source_url: null
@@ -2560,7 +2839,7 @@ layers:
 - jurisdiction: us-ut
   screener:
   - key: us-ut/form/ustc/ty2024/tc-40-instructions
-    name: us-ut/form/ustc/ty2024/tc-40-instructions
+    name: 2024 TC-40 Utah Individual Income Tax Forms and Instructions
     layer: state
     citation_path: us-ut/form/ustc/ty2024/tc-40-instructions
     source_url: null
@@ -2587,10 +2866,11 @@ layers:
     - path: us-ut/form/ustc/ty2025/tc-40-instructions
       references: 1
       part: Credits
-  - key: us-ut/statute/59-10-1047--version-2025010120240501
-    name: us-ut/statute/59-10-1047--version-2025010120240501
+  - key: us-ut/statute/59-10-1047--version-2023050320240101
+    name: Utah Code 59-10-1047, prior version (effective 1/1/2024, superseded 1/1/2025; le.utah.gov version file
+      C59-10-S1047_2023050320240101)
     layer: state
-    citation_path: us-ut/statute/59-10-1047--version-2025010120240501
+    citation_path: us-ut/statute/59-10-1047--version-2023050320240101
     source_url: null
     sources:
     - policyengine-references
@@ -2598,7 +2878,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-ut/statute/59-10-1047--version-2025010120240501
+    - path: us-ut/statute/59-10-1047--version-2023050320240101
       references: 3
       part: Credits
   - key: us-ut/statute/bills/2025
@@ -2631,7 +2911,7 @@ layers:
       part: Credits
   full:
   - key: us-ut/form/ustc/ty2024/tc-40-instructions
-    name: us-ut/form/ustc/ty2024/tc-40-instructions
+    name: 2024 TC-40 Utah Individual Income Tax Forms and Instructions
     layer: state
     citation_path: us-ut/form/ustc/ty2024/tc-40-instructions
     source_url: null
@@ -2648,10 +2928,11 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ut/statute/59-10-1047--version-2025010120240501
-    name: us-ut/statute/59-10-1047--version-2025010120240501
+  - key: us-ut/statute/59-10-1047--version-2023050320240101
+    name: Utah Code 59-10-1047, prior version (effective 1/1/2024, superseded 1/1/2025; le.utah.gov version file
+      C59-10-S1047_2023050320240101)
     layer: state
-    citation_path: us-ut/statute/59-10-1047--version-2025010120240501
+    citation_path: us-ut/statute/59-10-1047--version-2023050320240101
     source_url: null
     part: Credits
     sources:
@@ -2678,7 +2959,7 @@ layers:
 - jurisdiction: us-vt
   screener:
   - key: us-vt/form/vdt/ty2021/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2021/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2021 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2021/income-tax-return-booklet
     source_url: null
@@ -2692,7 +2973,7 @@ layers:
       references: 1
       part: Credits
   - key: us-vt/form/vdt/ty2022/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2022/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2022 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2022/income-tax-return-booklet
     source_url: null
@@ -2706,7 +2987,7 @@ layers:
       references: 1
       part: Credits
   - key: us-vt/form/vdt/ty2023/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2023/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2023 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2023/income-tax-return-booklet
     source_url: null
@@ -2720,7 +3001,7 @@ layers:
       references: 1
       part: Credits
   - key: us-vt/form/vdt/ty2024/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2024/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2024 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2024/income-tax-return-booklet
     source_url: null
@@ -2734,7 +3015,7 @@ layers:
       references: 1
       part: Credits
   - key: us-vt/form/vdt/ty2025/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2025/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2025 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2025/income-tax-return-booklet
     source_url: null
@@ -2777,7 +3058,7 @@ layers:
       part: Credits
   full:
   - key: us-vt/form/vdt/ty2021/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2021/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2021 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2021/income-tax-return-booklet
     source_url: null
@@ -2786,7 +3067,7 @@ layers:
     - screener
     scope: in
   - key: us-vt/form/vdt/ty2022/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2022/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2022 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2022/income-tax-return-booklet
     source_url: null
@@ -2795,7 +3076,7 @@ layers:
     - screener
     scope: in
   - key: us-vt/form/vdt/ty2023/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2023/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2023 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2023/income-tax-return-booklet
     source_url: null
@@ -2804,7 +3085,7 @@ layers:
     - screener
     scope: in
   - key: us-vt/form/vdt/ty2024/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2024/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2024 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2024/income-tax-return-booklet
     source_url: null
@@ -2813,7 +3094,7 @@ layers:
     - screener
     scope: in
   - key: us-vt/form/vdt/ty2025/income-tax-return-booklet
-    name: us-vt/form/vdt/ty2025/income-tax-return-booklet
+    name: Vermont Income Tax Return Booklet, 2025 Forms and Instructions
     layer: state
     citation_path: us-vt/form/vdt/ty2025/income-tax-return-booklet
     source_url: null

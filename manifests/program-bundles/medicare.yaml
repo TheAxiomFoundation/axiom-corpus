@@ -64,7 +64,7 @@ layers:
 - jurisdiction: us
   screener:
   - key: us/guidance/cms/medicare-gov/medicare-costs
-    name: us/guidance/cms/medicare-gov/medicare-costs
+    name: Costs (Medicare.gov)
     layer: federal
     citation_path: us/guidance/cms/medicare-gov/medicare-costs
     source_url: null
@@ -78,7 +78,7 @@ layers:
       references: 2
       part: Household and eligibility
   - key: us/guidance/cms/medicare-gov/medicare-savings-programs
-    name: us/guidance/cms/medicare-gov/medicare-savings-programs
+    name: Medicare Savings Programs (Medicare.gov)
     layer: federal
     citation_path: us/guidance/cms/medicare-gov/medicare-savings-programs
     source_url: null
@@ -92,7 +92,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us/guidance/cms/medicare-program-general-information
-    name: us/guidance/cms/medicare-program-general-information
+    name: Medicare Program - General Information
     layer: federal
     citation_path: us/guidance/cms/medicare-program-general-information
     source_url: null
@@ -106,7 +106,7 @@ layers:
       references: 1
       part: Other
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    name: 2021 Medicare Part B Premiums Remain Steady (CMS press release)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
     source_url: null
@@ -120,7 +120,8 @@ layers:
       references: 1
       part: Other
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    name: 2022 Medicare Parts A & B Premiums and Deductibles / 2022 Medicare Part D Income-Related Monthly Adjustment
+      Amounts (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
     source_url: null
@@ -134,7 +135,8 @@ layers:
       references: 1
       part: Other
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    name: 2023 Medicare Parts A & B Premiums and Deductibles / 2023 Medicare Part D Income-Related Monthly Adjustment
+      Amounts (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
     source_url: null
@@ -148,7 +150,7 @@ layers:
       references: 1
       part: Other
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    name: 2024 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
     source_url: null
@@ -162,7 +164,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    name: 2025 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
     source_url: null
@@ -190,7 +192,7 @@ layers:
       references: 1
       part: Household and eligibility
   - key: us/guidance/cms/smd/10-003
-    name: us/guidance/cms/smd/10-003
+    name: 'SMDL #10-003 (State Medicaid Director letter, February 18, 2010)'
     layer: federal
     citation_path: us/guidance/cms/smd/10-003
     source_url: null
@@ -448,7 +450,7 @@ layers:
     part: Assets
   full:
   - key: us/guidance/cms/medicare-gov/medicare-costs
-    name: us/guidance/cms/medicare-gov/medicare-costs
+    name: Costs (Medicare.gov)
     layer: federal
     citation_path: us/guidance/cms/medicare-gov/medicare-costs
     source_url: null
@@ -457,7 +459,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/medicare-gov/medicare-savings-programs
-    name: us/guidance/cms/medicare-gov/medicare-savings-programs
+    name: Medicare Savings Programs (Medicare.gov)
     layer: federal
     citation_path: us/guidance/cms/medicare-gov/medicare-savings-programs
     source_url: null
@@ -466,7 +468,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/medicare-program-general-information
-    name: us/guidance/cms/medicare-program-general-information
+    name: Medicare Program - General Information
     layer: federal
     citation_path: us/guidance/cms/medicare-program-general-information
     source_url: null
@@ -475,7 +477,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+    name: 2021 Medicare Part B Premiums Remain Steady (CMS press release)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
     source_url: null
@@ -484,7 +486,8 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+    name: 2022 Medicare Parts A & B Premiums and Deductibles / 2022 Medicare Part D Income-Related Monthly Adjustment
+      Amounts (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
     source_url: null
@@ -493,7 +496,8 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+    name: 2023 Medicare Parts A & B Premiums and Deductibles / 2023 Medicare Part D Income-Related Monthly Adjustment
+      Amounts (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
     source_url: null
@@ -502,7 +506,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+    name: 2024 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
     source_url: null
@@ -511,7 +515,7 @@ layers:
     - screener
     scope: in
   - key: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
-    name: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+    name: 2025 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet)
     layer: federal
     citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
     source_url: null
@@ -530,7 +534,7 @@ layers:
     - manifests/us-cms-annual-notices-2026.yaml
     scope: in
   - key: us/guidance/cms/smd/10-003
-    name: us/guidance/cms/smd/10-003
+    name: 'SMDL #10-003 (State Medicaid Director letter, February 18, 2010)'
     layer: federal
     citation_path: us/guidance/cms/smd/10-003
     source_url: null
@@ -11302,7 +11306,7 @@ layers:
 - jurisdiction: us-me
   screener:
   - key: us-me/statute/22/3174-lll
-    name: us-me/statute/22/3174-lll
+    name: 'Maine Revised Statutes Title 22, section 3174-LLL: Medicare savings program'
     layer: state
     citation_path: us-me/statute/22/3174-lll
     source_url: null
@@ -11317,13 +11321,14 @@ layers:
       part: Assets
   full:
   - key: us-me/statute/22/3174-lll
-    name: us-me/statute/22/3174-lll
+    name: 'Maine Revised Statutes Title 22, section 3174-LLL: Medicare savings program'
     layer: state
     citation_path: us-me/statute/22/3174-lll
     source_url: null
     part: Assets
     sources:
     - screener
+    - manifests/us-me-health-w6-statute.yaml
     scope: in
   - key: us-me/guidance/ofi/mainecare-eligibility-guidelines/2026
     name: 2026 MaineCare Eligibility Guidelines (OFI chart, incl. Medicare Savings Programs / Buy-in)
