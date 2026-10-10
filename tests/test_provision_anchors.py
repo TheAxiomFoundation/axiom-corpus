@@ -21,6 +21,8 @@ than skipping it: it means a test points at a renamed or superseded scope.
 from __future__ import annotations
 
 import dataclasses
+import hashlib
+import json
 from pathlib import Path
 
 import pytest
@@ -56,6 +58,10 @@ CFR_PROVISIONS = PROVISIONS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
 CFR_ANCHORS = ANCHORS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
 CFR_SECTION = "us/regulation/7/273/9"
 CFR_LEAF = "us/regulation/7/273/9/d/6/iii"
+# The paragraph ids eCFR itself publishes for 7 CFR 273.9 on the scope's date.
+CFR_ECFR_IDS = (
+    REPO_ROOT / "tests" / "fixtures" / "provision_anchors" / "ecfr_paragraph_ids_7_cfr_273_9.json"
+)
 
 # --- Target 2: us-ma 106 CMR 365.180 (state, stored block leaf) ---
 MA_PROVISIONS = (
@@ -140,6 +146,25 @@ def test_cfr_top_level_is_a_through_d(cfr_anchors: list[ProvisionAnchor]) -> Non
     # 7 CFR 273.9 has exactly four top-level paragraphs: (a)-(d).
     tops = sorted(a.label for a in cfr_anchors if a.depth == 0)
     assert tops == ["a", "b", "c", "d"]
+
+
+def test_cfr_paths_equal_the_paragraph_ids_ecfr_publishes(
+    cfr_section: ProvisionRecord, cfr_anchors: list[ProvisionAnchor]
+) -> None:
+    # Differential check on production data. eCFR renders each paragraph as
+    # <div id="p-273.9(c)(2)(i)">: the publisher's own reading of the outline,
+    # from markup (italic fifth- and sixth-level labels) the stored body lacks.
+    published = json.loads(CFR_ECFR_IDS.read_text())
+    body = cfr_section.body or ""
+    assert hashlib.sha256(body.encode()).hexdigest() == published["body_sha256"]
+    prefix = CFR_SECTION + "/"
+    paths = sorted(a.citation_path.removeprefix(prefix) for a in cfr_anchors)
+    assert paths == sorted(published["ecfr_paragraph_ids"])
+    assert len(paths) == 194
+    # The 1.0.0 extractor filed (c)(2) through (c)(11) under (c)(1)(vii)(C):
+    # a numeral after a capital letter read as that letter's child.
+    assert "c/2" in paths and "c/11" in paths
+    assert not [path for path in paths if path.startswith("c/1/vii/C/")]
 
 
 def test_cfr_inline_first_child_is_captured(
