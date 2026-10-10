@@ -2634,6 +2634,108 @@ def test_pdf_page_windows_reject_invalid_configs(tmp_path: Path) -> None:
         documents_module._filtered_pdf_lines(pdf_content, extraction={"page_windows": []})
 
 
+def test_page_header_drop_removes_only_a_matching_prefix_of_each_page() -> None:
+    """Exhaustive over every page of up to six lines drawn from four line kinds."""
+    import itertools
+    import re
+
+    patterns = tuple(re.compile(p) for p in (r"^TITLE$", r"^SUBTITLE$", r"^\d{1,3}$"))
+    alphabet = ("TITLE", "SUBTITLE", "7", "Body text.")
+    checked = 0
+    for length in range(7):
+        for words in itertools.product(alphabet, repeat=length):
+            page = tuple((word, index) for index, word in enumerate(words))
+            kept = documents_module._without_page_header(page, patterns)
+            dropped = len(page) - len(kept)
+            # Only a prefix goes, styles travel with their lines, and nothing
+            # below the header's length can be touched.
+            assert kept == page[dropped:]
+            assert dropped <= len(patterns)
+            # Every dropped line matches the header line in its position...
+            assert all(patterns[i].fullmatch(page[i][0]) for i in range(dropped))
+            # ...and the header ends at the first line that does not.
+            if dropped < min(len(page), len(patterns)):
+                assert patterns[dropped].fullmatch(page[dropped][0]) is None
+            assert documents_module._without_page_header(page, ()) == page
+            checked += 1
+    assert checked == sum(len(alphabet) ** n for n in range(7))
+
+
+def test_labeled_pdf_sections_drop_page_headers_by_position(tmp_path: Path) -> None:
+    """A bare page number goes; the same number printed as a table cell stays."""
+    pdf_path = tmp_path / "rulebook.pdf"
+    document = fitz.open()
+    pages = [
+        ["RULEBOOK", "1", "1.100 FIRST RULE", "Family Size", "1", "$10", "2", "$20"],
+        ["RULEBOOK", "2", "3", "$30", "1.200 SECOND RULE", "Text of the second rule."],
+        ["2", "Body line that is not a header.", "RULEBOOK", "3", "More text."],
+    ]
+    for lines in pages:
+        document.new_page().insert_text((72, 72), "\n".join(lines))
+    document.save(pdf_path)
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>1\.\d00)\s+(?P<heading>[A-Z ]+)$",
+        "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+    }
+
+    blocks = documents_module._extract_pdf_blocks(pdf_path.read_bytes(), extraction=extraction)
+
+    assert [block.heading for block in blocks] == ["1.100 FIRST RULE", "1.200 SECOND RULE"]
+    assert blocks[0].body == "Family Size 1 $10 2 $20 3 $30"
+    # Page 3 does not open with the header, so nothing on it is dropped.
+    assert blocks[1].body == (
+        "Text of the second rule. 2 Body line that is not a header. RULEBOOK 3 More text."
+    )
+    # A content-blind numeric drop would have eaten the table's first column.
+    blind = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            **{k: v for k, v in extraction.items() if k != "page_header_patterns"},
+            "drop_lines": ["RULEBOOK"],
+            "drop_line_patterns": [r"^\d{1,3}$"],
+        },
+    )
+    assert blind[0].body == "Family Size $10 $20 $30"
+
+    windowed = documents_module._filtered_pdf_lines(
+        pdf_path.read_bytes(),
+        extraction={
+            "page_windows": [{"start_page": 2, "end_page": 2}],
+            "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+        },
+    )
+    assert [line for line, _page in windowed] == [
+        "3",
+        "$30",
+        "1.200 SECOND RULE",
+        "Text of the second rule.",
+    ]
+    single = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            "segmentation": "single_block",
+            "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+        },
+    )
+    assert "RULEBOOK\n1" not in single[0].body
+    assert single[0].body.startswith("1.100 FIRST RULE")
+
+
+@pytest.mark.parametrize("value", ["^RULEBOOK$", [""], [3], {"a": "b"}])
+def test_page_header_patterns_reject_invalid_configs(value: object) -> None:
+    pdf_bytes_document = fitz.open()
+    pdf_bytes_document.new_page().insert_text((72, 72), "RULEBOOK")
+    pdf_content = pdf_bytes_document.tobytes()
+    pdf_bytes_document.close()
+
+    with pytest.raises(ValueError, match="page_header_patterns must be a list"):
+        documents_module._filtered_pdf_lines(
+            pdf_content, extraction={"page_header_patterns": value}
+        )
+
+
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:
     html_path = tmp_path / "cms.html"
     public_token = "pk." + "abc_123" + "." + "DEF-456"
