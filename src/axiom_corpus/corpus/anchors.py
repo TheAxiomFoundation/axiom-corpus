@@ -35,10 +35,25 @@ Disciplines (enforced by this module and its tests)
 * **Confidence** distinguishes ``machine_asserted`` (a span pass-through from a
   deeper provision the publisher already asserts) from ``label_inferred`` (a
   span the extractor inferred from printed-label typography).
+
+How a printed label gets its depth
+----------------------------------
+The stored body keeps labels but not the italics that tell CFR's fifth and
+sixth levels (``(1)``, ``(i)``) from its second and third, so one label can fit
+at more than one depth. :func:`_build_tree` places each line-leading label by
+**sequence continuity**: it goes where it is the next label of an open sibling
+sequence (or the first label of a new one), and when that holds at more than
+one depth, where the following label also continues the outline. A label run
+in after a heading or chained onto another label (``(d)(1)``) is taken only as
+a first child. A label that continues no open sequence is left as text of the
+paragraph it sits in. Invariants the tests enforce: accepted labels tile the
+body in document order; a child's span lies inside its parent's; sibling
+labels of one form strictly increase below the top level.
 """
 
 from __future__ import annotations
 
+import enum
 import hashlib
 import json
 import re
@@ -58,7 +73,7 @@ from axiom_corpus.corpus.models import ProvisionRecord
 #: The table is rebuildable from (provisions x this version); the pair is the
 #: cache key for a rebuild. Any change to :func:`generate_anchors` output for
 #: identical input MUST bump this.
-EXTRACTOR_VERSION = "provision-anchors/1.0.0"
+EXTRACTOR_VERSION = "provision-anchors/2.0.0"
 
 CONFIDENCE_MACHINE_ASSERTED = "machine_asserted"
 CONFIDENCE_LABEL_INFERRED = "label_inferred"
@@ -84,15 +99,45 @@ _LABEL_TOKEN = re.compile(r"\(([A-Za-z0-9]{1,6})\)")
 # always treated as structure.
 _HEAD = re.compile(r"(?:\A|\n|[—–])\s*(\([A-Za-z0-9]{1,6}\))")
 
-# A *weak* (candidate) inline head: a single label after sentence-terminal
-# punctuation (". " / ": " / ".\n\n"), e.g. eCFR's inline first child
-# "(iii) Standard utility allowances. (A) A State agency may use…". This is
+# A *weak* (candidate) inline head: a label after sentence-terminal
+# punctuation (". " / ": " / "? "), e.g. eCFR's inline first child
+# "(iii) Standard utility allowances. (A) A State agency may use…" or, under a
+# question heading, "(d) How is income defined? (1) Income means…". This is
 # ambiguous with cross-references ("paragraph (d)(6)(ii)(C)") and parentheticals
-# ("(standards)"), so a weak head is only accepted during tree building when it
-# is exactly the expected next outline child of the currently open node — never
-# on its own. The trailing lookahead requires a following char that is not
-# another "(", which rejects multi-segment reference runs like "(d)(6)(ii)".
-_WEAK_HEAD = re.compile(r"[.:]\s+(\([A-Za-z0-9]{1,4}\))(?=[^(])")
+# ("(standards)", "phone: (410) 786-4132"), so a weak head is only accepted
+# during tree building when it opens the first child of the currently open node
+# — never on its own.
+_WEAK_HEAD = re.compile(r"[.:?]\s*(\([A-Za-z0-9]{1,4}\))")
+
+# A *chained* head: a label printed directly after another head's label, with at
+# most one space between them — "(d)(1) Text", "(2)(i) Text", "(8) (i) Text".
+# eCFR prints a paragraph that has no text of its own this way: the paragraph
+# opens straight into its first child. Like a weak head it is only a candidate;
+# :func:`_build_tree` accepts it only as the first child of the head it follows,
+# and only if that head was itself kept.
+_CHAINED_HEAD = re.compile(r"[ \t]?(\([A-Za-z0-9]{1,6}\))")
+
+# A head that stands for a run of paragraphs: "(d)-(h) [Reserved]". The node
+# keeps the first label; the last one is where its sibling sequence resumes,
+# so the "(i)" that follows is the next paragraph, not a gap.
+_RANGE_END = re.compile(r"[ \t]?(?:-|through)[ \t]?\(([A-Za-z0-9]{1,6})\)")
+
+# Text that, right after a run of labels, makes the run a citation of other
+# paragraphs rather than the start of one: "(d)(1)(i) of this section",
+# "(c)(1)(i)(A) through (C)", "(1) and (2) of this section". eCFR text never
+# opens a paragraph this way, but a reference can still land at a line start
+# or after a colon ("See: (1)(i) of this section").
+_REFERENCE_TAIL = re.compile(
+    r"[ \t]*(?:"
+    r"of\s+(?:(?:this|that)\s+(?:section|paragraph|part|subpart|subchapter|chapter|title)\b"
+    r"|(?:paragraphs?|sections?|parts?|subparts?)\b|§)"
+    r"|(?:through|thru)\b"
+    r"|(?:and|or|to|and/or)\s+\("
+    r"|in\s+(?:this|that)\s+(?:paragraph|section|part|subpart)\b"
+    r"|[,;]\s*(?:and\s+|or\s+)?\("
+    r"|\)"
+    r")"
+)
 
 
 # --------------------------------------------------------------------------- #
@@ -213,28 +258,59 @@ class _Head:
     offset: int  # index of the '(' character
     token: str  # label token without parens, e.g. "d", "6", "iii", "A"
     weak: bool = False  # inline candidate; accept only if outline-valid
+    chained: bool = False  # follows another head's label; first child or nothing
+    through: str | None = None  # last label of a range head: "(d)-(h)" → "h"
 
 
 def _scan_heads(body: str) -> list[_Head]:
     """Return every paragraph-head label occurrence, in document order.
 
-    Emits *strong* heads (line-leading or em/en-dash inline first children) and
-    *weak* inline candidates (a single label after ". "/": "). Weak candidates
-    at an offset already claimed by a strong head are dropped; the rest are only
-    accepted by :func:`_build_tree` when they are the expected next outline
-    child, which filters out cross-references and parentheticals.
+    Emits *strong* heads (line-leading or em/en-dash inline first children),
+    *weak* inline candidates (a label after ". ", ": " or "? "), and the *chained*
+    labels printed directly after either ("(d)(1)"). A run of labels followed
+    by a reference phrase ("(d)(1) of this section") is a citation and emits
+    nothing. A candidate at an offset already claimed is dropped; weak and
+    chained heads are only accepted by :func:`_build_tree` when they open the
+    first child of the node they follow, which filters out the remaining
+    cross-references and parentheticals.
     """
-    strong_offsets: set[int] = set()
+    claimed: set[int] = set()
     heads: list[_Head] = []
+
+    def add_run(offset: int, token: str, *, weak: bool) -> None:
+        end = offset + len(token) + 2
+        through = None if weak else _RANGE_END.match(body, end)
+        chain: list[re.Match[str]] = []
+        if through is not None:
+            end = through.end()
+        else:
+            while (chained := _CHAINED_HEAD.match(body, end)) is not None:
+                chain.append(chained)
+                end = chained.end(1)
+        claimed.add(offset)
+        if _REFERENCE_TAIL.match(body, end):
+            return
+        heads.append(
+            _Head(
+                offset=offset,
+                token=token,
+                weak=weak,
+                through=through.group(1) if through else None,
+            )
+        )
+        for chained in chain:
+            if chained.start(1) in claimed:
+                break
+            claimed.add(chained.start(1))
+            heads.append(
+                _Head(offset=chained.start(1), token=chained.group(1)[1:-1], chained=True)
+            )
+
     for match in _HEAD.finditer(body):
-        offset = match.start(1)
-        strong_offsets.add(offset)
-        heads.append(_Head(offset=offset, token=match.group(1)[1:-1]))
+        add_run(match.start(1), match.group(1)[1:-1], weak=False)
     for match in _WEAK_HEAD.finditer(body):
-        offset = match.start(1)
-        if offset in strong_offsets:
-            continue
-        heads.append(_Head(offset=offset, token=match.group(1)[1:-1], weak=True))
+        if match.start(1) not in claimed:
+            add_run(match.start(1), match.group(1)[1:-1], weak=True)
     heads.sort(key=lambda h: h.offset)
     return heads
 
@@ -245,22 +321,20 @@ def _token_forms(token: str) -> frozenset[str]:
     A token can be ambiguous: 'i' is both a lowercase-alpha and a lowercase
     roman numeral; 'A'/'B'/... uppercase alpha vs uppercase roman ('I','V','X').
     We return the candidate set; :func:`_build_tree` resolves by outline order.
+    A letter label is one letter, or one letter repeated ("(aa)" follows
+    "(z)"); any other run of letters is a roman numeral or not a label at all.
     """
-    forms: set[str] = set()
     if token.isdigit():
-        forms.add("digit")
-        return frozenset(forms)
-    if token.isalpha() and token.islower():
-        forms.add("alpha_lower")
-        if _ROMAN_LOWER.match(token):
-            forms.add("roman_lower")
-        return frozenset(forms)
-    if token.isalpha() and token.isupper():
-        forms.add("alpha_upper")
-        if _ROMAN_UPPER.match(token):
-            forms.add("roman_upper")
-        return frozenset(forms)
-    return frozenset({"other"})
+        return frozenset({"digit"})
+    if not token.isalpha() or not (token.islower() or token.isupper()):
+        return frozenset({"other"})
+    case = "lower" if token.islower() else "upper"
+    forms: set[str] = set()
+    if len(set(token)) == 1:
+        forms.add(f"alpha_{case}")
+    if (_ROMAN_LOWER if case == "lower" else _ROMAN_UPPER).match(token):
+        forms.add(f"roman_{case}")
+    return frozenset(forms or {"other"})
 
 
 # The CFR / common-law outline order. A child's form is the next form after its
@@ -281,7 +355,7 @@ _ROMAN_VALUES = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000
 
 
 def _label_ordinal(token: str, form: str) -> int | None:
-    """Position of a label within its sequence: a→1, iv→4, C→3, 5→5.
+    """Position of a label within its sequence: a→1, iv→4, C→3, 5→5, aa→27.
 
     Used to enforce that sibling labels increase monotonically within a parent —
     a new child whose ordinal is not greater than the previous sibling's means
@@ -293,8 +367,9 @@ def _label_ordinal(token: str, form: str) -> int | None:
             return int(token)
         except ValueError:
             return None
-    if form in ("alpha_lower", "alpha_upper") and len(token) == 1:
-        return ord(token.lower()) - ord("a") + 1
+    if form in ("alpha_lower", "alpha_upper") and len(set(token)) == 1:
+        # (a)…(z), then (aa)…(zz): a list longer than the alphabet doubles up.
+        return 26 * (len(token) - 1) + ord(token[0].lower()) - ord("a") + 1
     if form in ("roman_lower", "roman_upper"):
         total = 0
         prev = 0
@@ -318,6 +393,7 @@ class _Node:
     offset: int  # '(' index
     depth: int  # 0-based outline depth
     parent: _Node | None
+    through: str | None = None  # last label this node stands for, if a range
     children: list[_Node] = field(default_factory=list)
     end: int | None = None  # exclusive end of this node's span in body
 
@@ -351,28 +427,257 @@ def _resolve_form(token: str, candidate_forms: frozenset[str], want: str) -> str
     return None
 
 
-def _sibling_ordinal_ok(parent: _Node, token: str, form: str) -> bool:
-    """Whether ``token`` may be the next child of ``parent`` by ordinal order.
+class _Fit(enum.Enum):
+    """How a label extends the sibling sequence it would join."""
 
-    Sibling labels of the same form must increase monotonically (``(1),(2),(3)``;
-    ``(a),(b)``). If the parent's last child of this form has an ordinal ``>=``
-    the new token's, the outline restarted a list — the new node belongs at a
-    different depth, so reject placement here and let the caller pop. Undefined
-    ordinals (unexpected tokens) never block placement.
+    CONSECUTIVE = "consecutive"  # the sequence's first label, or last + 1
+    GAP = "gap"  # later than the last sibling, but not the next label
+    RESTART = "restart"  # not later than the last sibling: a different list
+
+
+def _sequence_fit(siblings: Sequence[_Node], token: str, form: str) -> _Fit:
+    """Classify ``token`` against the same-form labels already in ``siblings``.
+
+    Sibling labels of one form run in order (``(1),(2),(3)``; ``(a),(b)``). A
+    label that is the next in that order is ``CONSECUTIVE``; so is the first
+    label of a sequence (``1``, ``a``, ``i``, ``A``) where no sibling of that
+    form exists yet. A label that skips ahead is a ``GAP``: legal (reserved or
+    omitted paragraphs) but weaker evidence. A label not later than the last
+    sibling is a ``RESTART`` — the outline began a different list, so the node
+    belongs at another depth. Labels without a defined ordinal never restart a
+    sequence and never count as consecutive.
     """
-    new_ordinal = _label_ordinal(token, form)
-    if new_ordinal is None:
-        return True
-    last_same_form = next(
-        (child for child in reversed(parent.children) if child.form == form),
-        None,
-    )
-    if last_same_form is None:
-        return True
-    last_ordinal = _label_ordinal(last_same_form.token, last_same_form.form)
+    ordinal = _label_ordinal(token, form)
+    if ordinal is None:
+        return _Fit.GAP
+    last = next((node for node in reversed(siblings) if node.form == form), None)
+    if last is None:
+        return _Fit.CONSECUTIVE if ordinal == 1 else _Fit.GAP
+    last_ordinal = _label_ordinal(last.token, last.form)
     if last_ordinal is None:
-        return True
-    return new_ordinal > last_ordinal
+        return _Fit.GAP
+    if last.through is not None:
+        # "(d)-(h) [Reserved]" stands for (d) through (h).
+        last_ordinal = max(last_ordinal, _label_ordinal(last.through, last.form) or 0)
+    if ordinal == last_ordinal + 1:
+        return _Fit.CONSECUTIVE
+    return _Fit.GAP if ordinal > last_ordinal else _Fit.RESTART
+
+
+@dataclass(frozen=True)
+class _Placement:
+    """One outline position a head could take: under ``stack[index]``, or top level."""
+
+    index: int  # index into the open-node stack; -1 is the top level
+    form: str
+    continues: bool  # joins a sequence already begun there (False: would start one)
+
+
+def _attach(
+    head: _Head, placement: _Placement, stack: Sequence[_Node], roots: list[_Node]
+) -> _Node:
+    """Create the node for ``head`` at ``placement`` and add it to its siblings."""
+    parent = stack[placement.index] if placement.index >= 0 else None
+    node = _Node(
+        token=head.token,
+        form=placement.form,
+        offset=head.offset,
+        depth=parent.depth + 1 if parent is not None else 0,
+        parent=parent,
+        through=head.through,
+    )
+    (parent.children if parent is not None else roots).append(node)
+    return node
+
+
+def _open_child(
+    head: _Head, placement: _Placement, stack: list[_Node], roots: list[_Node]
+) -> _Node:
+    """Attach ``head`` at ``placement``, close the nodes below it, and open it."""
+    node = _attach(head, placement, stack, roots)
+    del stack[placement.index + 1 :]
+    stack.append(node)
+    return node
+
+
+def _first_child_form(token: str, forms: frozenset[str], parent: _Node) -> str | None:
+    """The form ``token`` takes as the first label under ``parent``, if it is one.
+
+    ``(1)`` under ``(a)``, ``(i)`` under ``(1)``, ``(A)`` under ``(i)``: the
+    label must take the form ``parent``'s children take and be the first of
+    that sequence.
+    """
+    want = _expected_child_form(parent.form)
+    if _resolve_form(token, forms, want) != want:
+        return None
+    return want if _label_ordinal(token, want) == 1 else None
+
+
+def _place_first_child(
+    head: _Head, stack: list[_Node], roots: list[_Node], previous: _Node | None
+) -> _Node | None:
+    """Accept a weak or chained candidate as the open node's first child, or drop it.
+
+    A candidate never closes an open node: if it does not fit here it is almost
+    certainly a cross-reference or parenthetical. It must carry the first label
+    of the open node's child sequence: "(d)(1)" and "(d) Heading. (1)" open
+    (d)'s first child, whereas the "(2)" of a line-leading "(d)(2) of this
+    section" is a reference. A chained candidate must also directly follow the
+    head that opened that node.
+    """
+    if not stack or (head.chained and previous is not stack[-1]):
+        return None
+    form = _first_child_form(head.token, _token_forms(head.token), stack[-1])
+    if form is None:
+        return None
+    return _open_child(
+        head, _Placement(len(stack) - 1, form, continues=False), stack, roots
+    )
+
+
+def _strong_placements(
+    token: str, forms: frozenset[str], stack: Sequence[_Node], roots: Sequence[_Node]
+) -> tuple[list[_Placement], _Placement | None]:
+    """Where a strong head's label could go: consecutive positions, and a fallback.
+
+    Every open node whose children take this label's form is a candidate
+    parent, and so is the top level. The first list holds the candidates where
+    the label is ``CONSECUTIVE``, deepest first. The fallback is used when that
+    list is empty: the deepest candidate where the label does not restart a
+    list (a ``GAP``), or else the top level. ``None`` means the label continues
+    no sequence the outline has open: it is not a paragraph head we can place.
+    """
+    consecutive: list[_Placement] = []
+    fallback: _Placement | None = None
+    for index in range(len(stack) - 1, -1, -1):
+        want = _expected_child_form(stack[index].form)
+        if _resolve_form(token, forms, want) != want:
+            continue
+        children = stack[index].children
+        fit = _sequence_fit(children, token, want)
+        continues = any(child.form == want for child in children)
+        if fit is _Fit.CONSECUTIVE:
+            consecutive.append(_Placement(index, want, continues))
+        elif fit is _Fit.GAP and fallback is None:
+            fallback = _Placement(index, want, continues)
+
+    # The top level holds the section's own paragraph sequence: the ladder's
+    # first form, or the form of the section's first paragraph where that
+    # differs ("(1) … (2) …" with no lettered level). A label of any other form
+    # that fits under no open node is an orphan — "(B)" with no "(i)" open, a
+    # mislabelled "(xxiv)" after "(xxviii)" — and stays text of the open
+    # paragraph rather than becoming a top-level node that would cut every open
+    # paragraph short.
+    ladder_form = _expected_child_form(None)
+    if roots and roots[0].form in forms:
+        top_form = roots[0].form
+    elif not roots:
+        # The section's first paragraph sets the top-level form: read an
+        # ambiguous label as the form in which it opens a list, so a section
+        # that is one "(i), (ii), (iii)" list is roman.
+        openers = [
+            form
+            for form in _OUTLINE_LADDER
+            if form in forms and _label_ordinal(token, form) == 1
+        ]
+        top_form = openers[0] if openers else (
+            _resolve_form(token, forms, ladder_form) or min(forms)
+        )
+    else:
+        top_form = _resolve_form(token, forms, ladder_form) or min(forms)
+    if not roots or top_form in (ladder_form, roots[0].form):
+        top = _Placement(-1, top_form, continues=bool(roots))
+        fit = _sequence_fit(roots, token, top_form)
+        if fit is _Fit.CONSECUTIVE:
+            consecutive.append(top)
+        elif fallback is None and (not roots or len(forms) == 1):
+            # A label that is also a roman numeral — "(i)", "(v)", "(ii)" —
+            # reads as a letter only where it continues the letters ("(h)" →
+            # "(i)", "(hh)" → "(ii)"), never across a gap: with no "(1)" open
+            # it is far more often a list item printed one level short.
+            fallback = top
+    return consecutive, fallback
+
+
+def _agreement_distance(
+    head: _Head,
+    placement: _Placement,
+    stack: Sequence[_Node],
+    roots: list[_Node],
+    later_heads: Iterable[_Head],
+) -> int | None:
+    """How soon the heads after ``head`` confirm it belongs at ``placement``.
+
+    Looks ahead as far as the next strong head and returns how many heads on
+    the first confirmation comes (``None``: no confirmation). A chained label
+    that directly follows ``head`` must open its first child; a weak candidate
+    that would open its first child confirms; otherwise the next strong head
+    confirms if it is ``CONSECUTIVE`` somewhere in the outline that results.
+    """
+    node = _attach(head, placement, stack, roots)
+    try:
+        trial = [*stack[: placement.index + 1], node]
+        adjacent = True
+        for distance, later in enumerate(later_heads):
+            forms = _token_forms(later.token)
+            if later.weak or later.chained:
+                if later.chained and not adjacent:
+                    continue
+                if _first_child_form(later.token, forms, node) is not None:
+                    return distance
+                if later.chained:
+                    return None
+                adjacent = False
+                continue
+            if _strong_placements(later.token, forms, trial, roots)[0]:
+                return distance
+            return None
+        return None
+    finally:
+        (node.parent.children if node.parent is not None else roots).pop()
+
+
+def _place_strong_head(
+    heads: Sequence[_Head], position: int, stack: list[_Node], roots: list[_Node]
+) -> _Node | None:
+    """Attach the strong head ``heads[position]`` where its label continues the outline.
+
+    The same printed label can belong at more than one depth: in CFR numbering
+    the level below ``(A)`` is a numeral again, so a ``(3)`` after ``(B)`` is
+    either (B)'s child or the next sibling of an enclosing ``(2)``; an ``(i)``
+    after ``(h)(2)`` is either (2)'s first child or paragraph (i). Sequence
+    continuity decides. The head goes where its label is ``CONSECUTIVE``. When
+    it is consecutive at more than one position, the one the following heads
+    confirm soonest wins (the deepest, if they confirm several equally soon);
+    if they confirm none, a position that continues a sequence beats one that
+    would start a list of a single item.
+    Only when no position is consecutive does the head fall back to the deepest
+    position where the label does not restart a list, and then the top level.
+    A label that fits nowhere is dropped (returns ``None``).
+    """
+    head = heads[position]
+    forms = _token_forms(head.token)
+    consecutive, fallback = _strong_placements(head.token, forms, stack, roots)
+    if not consecutive:
+        return _open_child(head, fallback, stack, roots) if fallback else None
+    if len(consecutive) > 1:
+        distances = [
+            _agreement_distance(
+                head,
+                placement,
+                stack,
+                roots,
+                (heads[later] for later in range(position + 1, len(heads))),
+            )
+            for placement in consecutive
+        ]
+        soonest = min((d for d in distances if d is not None), default=None)
+        consecutive = (
+            [p for p, d in zip(consecutive, distances, strict=True) if d == soonest]
+            if soonest is not None
+            else [p for p in consecutive if p.continues] or consecutive
+        )
+    return _open_child(head, consecutive[0], stack, roots)
 
 
 def _build_tree(body: str, heads: Sequence[_Head]) -> list[_Node]:
@@ -384,69 +689,14 @@ def _build_tree(body: str, heads: Sequence[_Head]) -> list[_Node]:
     roots: list[_Node] = []
     # stack holds the current ancestor chain of open nodes.
     stack: list[_Node] = []
+    # The node opened by the head just before this one, if that head was kept.
+    previous: _Node | None = None
 
-    for head in heads:
-        forms = _token_forms(head.token)
-
-        if head.weak:
-            # A weak (inline) candidate is accepted only if it is exactly the
-            # expected next outline child of the currently open node. It never
-            # pops the stack: if it does not fit here it is almost certainly a
-            # cross-reference or parenthetical, so discard it.
-            if not stack:
-                continue
-            want = _expected_child_form(stack[-1].form)
-            if _resolve_form(head.token, forms, want) != want:
-                continue
-            node = _Node(
-                token=head.token,
-                form=want,
-                offset=head.offset,
-                depth=stack[-1].depth + 1,
-                parent=stack[-1],
-            )
-            stack[-1].children.append(node)
-            stack.append(node)
-            continue
-
-        placed = False
-        # Try to place as a child of the deepest open node whose expected child
-        # form this token can take.
-        while stack:
-            want = _expected_child_form(stack[-1].form)
-            form = _resolve_form(head.token, forms, want)
-            if form == want and _sibling_ordinal_ok(stack[-1], head.token, form):
-                node = _Node(
-                    token=head.token,
-                    form=form,
-                    offset=head.offset,
-                    depth=stack[-1].depth + 1,
-                    parent=stack[-1],
-                )
-                stack[-1].children.append(node)
-                stack.append(node)
-                placed = True
-                break
-            # Not a child here — either the form does not fit, or the ordinal did
-            # not increase (a restarted list). This head is a sibling of, or
-            # shallower than, some ancestor. Pop and retry at the right depth.
-            stack.pop()
-        if placed:
-            continue
-        # Empty stack: this is a new top-level node.
-        want = _expected_child_form(None)
-        form = _resolve_form(head.token, forms, want) or (
-            next(iter(forms)) if forms else "other"
-        )
-        node = _Node(
-            token=head.token,
-            form=form,
-            offset=head.offset,
-            depth=0,
-            parent=None,
-        )
-        roots.append(node)
-        stack.append(node)
+    for position, head in enumerate(heads):
+        if head.weak or head.chained:
+            previous = _place_first_child(head, stack, roots, previous)
+        else:
+            previous = _place_strong_head(heads, position, stack, roots)
 
     _assign_ends(body, roots)
     return roots
