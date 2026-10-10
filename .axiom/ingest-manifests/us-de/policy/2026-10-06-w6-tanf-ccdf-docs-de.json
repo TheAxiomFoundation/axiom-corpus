@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de.json",
+      "sha256": "365324ece28ab44849c697017e3bf592b1330356781cbee676d48b90be04e01e"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de.json",
+      "sha256": "28877ac32d4623d407a25bd1ac52da0d1b8e362901206871487b1d01eb4dbcad"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de.jsonl",
+      "sha256": "6327a7faa3f09a3f60ef45822751c761432fd49ee28668cead06c78dead7cedc"
+    },
+    {
+      "path": "data/corpus/sources/us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de/official-documents/us-de-w6-dss-tanf-de-tanf-state-plan-2017.pdf",
+      "sha256": "84f4856177b76e207025b526b18dddaab086e746ce41e0402d342e836ab218d6"
+    },
+    {
+      "path": "data/corpus/sources/us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de/official-documents/us-de-w6-dss-tanf-oct-2022-cola.pdf",
+      "sha256": "74c816a0fe4483012a30ef3a83c900df1f1c4f616c71f1e1e9d01cce541eab14"
+    },
+    {
+      "path": "data/corpus/sources/us-de/policy/2026-10-06-w6-tanf-ccdf-docs-de/official-documents/us-de-w6-dss-tanf-temporary-assistance-for-needy-families.html",
+      "sha256": "91287736663b5dcc60c42b74536cb8fe8c3f6e23901ab4f13a5cc40663f84295"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 83,
+    "missing_count": 0,
+    "provision_count": 83,
+    "source_count": 83
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:50:28.016020+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2o0Vc05/cgrHGidXViAhjpmJFkbP2VZpSVGcBRcVJu7hdyQXBi3ZCYBIGuqUK4+A/2T/ewlPgLQOzBqBTa2+DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-de"
+}

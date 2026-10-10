@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "fc55360edbdb008069c8fb056fc9a3f1c59b09555c62ca262c7d4d22d3bf7260"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "cf9b1eda2c5ec33f5e922865e2ddb65dba4552752fbb15f1db6c6d1c1c60e7f0"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/regulation/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "e1032d81b0bc902ca0636f04476d93e12318fefe215f348d2749e7c9fca80ba6"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ri-dhs-ccap-218-20-00-4.pdf",
+      "sha256": "0cf12288d6cfbfb836c01de4afe603461f1c42f70500f8e077809f0a6dc473cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ri-dhs-ccap-educators-218-20-00-13.pdf",
+      "sha256": "cc231b12f35dcededd404c0d08826629a30bc16413cf2557aa72e26ba055f662"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 92,
+    "missing_count": 0,
+    "provision_count": 92,
+    "source_count": 92
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:58:14.562424+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DUNOKVXcrUjzvUuwqF86DDpJjn6ZwEhbKlWjGSO0eCOhWGjwOB0+fiM6ZJLas4ooDWWsewaLvpDkKw5LnhE2Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}

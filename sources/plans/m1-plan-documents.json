@@ -1,0 +1,4570 @@
+{
+ "source": "TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json",
+ "as_of": "2026-09-29",
+ "status": "DIAGNOSTIC",
+ "programs": [
+  "medicaid_chip",
+  "snap"
+ ],
+ "note": "The plan's M1 documents (SNAP and Medicaid/CHIP, federal and every state), copied from the plan's document sizing so the bundles rebuild without the planning repo.",
+ "documents": [
+  {
+   "id": "AR reg 016-20-18-ark-code-r-003",
+   "jurisdiction": "US-AR",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Arkansas Works Program Updates | Arkansas Code Rule 016.20.18 Ark. Code R. 003",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "Bill 119 HR 1",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "H.R.1 - One Big Beautiful Bill Act | H.R. 1, 119th Congress, Sec. 71108 - Revising home equity limit for determining eligibility for long-term care services under the Medicaid program",
+   "document_class": "federal_bill",
+   "urls": [
+    "https://www.congress.gov/bill/119th-congress/house-bill/1",
+    "https://www.congress.gov/bill/119th-congress/house-bill/1/text"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA reg 10-CCR-2699.200",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/california/10-CCR-2699.200"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic 12200",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "snap"
+   ],
+   "title": "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (e) | California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (a)",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=12200"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic 14007-8",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "California Welfare and Institutions Code Section 14007.8 | California Welfare and Institutions Code Section 14007.8(b)(1)",
+   "document_class": "state_statute",
+   "urls": [
+    "https://california.public.law/codes/welfare_and_institutions_code_section_14007.8",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=14007.8.&lawCode=WIC"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic 15833",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15833."
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic 15834",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15834."
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic 15850-1",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.1."
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic 15850-5",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Cal. Welf. & Inst. Code § 15850.5(c), CCHIP enrollment freeze, the department shall not approve any additional applicant other than those participating as of March 23, 2010 (does not name the counties)",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.5."
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic chapter-2-division-9-part-3-3",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=2.&article="
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CA stat wic chapter-3-division-9-part-3-3",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Cal. Welf. & Inst. Code § 15853(a)(1), CCHIP covers children with family income at or below 317 percent of the federal poverty level before MAGI conversion who do not qualify for the optional targeted low-income children group or no-cost Medi-Cal",
+   "document_class": "state_statute",
+   "urls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=3.&article="
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CFR 20 416.1163",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/20/416.1163"
+   ],
+   "citation_paths": [
+    "us/regulation/20/416/1163"
+   ]
+  },
+  {
+   "id": "CFR 20 416.1165",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/20/416.1165"
+   ],
+   "citation_paths": [
+    "us/regulation/20/416/1165"
+   ]
+  },
+  {
+   "id": "CFR 26 1.61-14",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/26/1.61-14"
+   ],
+   "citation_paths": [
+    "us/regulation/26/1/61-14"
+   ]
+  },
+  {
+   "id": "CFR 42 435.110",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 CFR 435.110 - parents and other caretaker relatives",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.110"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/110"
+   ]
+  },
+  {
+   "id": "CFR 42 435.116",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.116"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/116"
+   ]
+  },
+  {
+   "id": "CFR 42 435.118",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.118"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/118"
+   ]
+  },
+  {
+   "id": "CFR 42 435.119",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 CFR 435.119(b)(4) - adult group mandatory-coverage exclusion",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.119"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/119"
+   ]
+  },
+  {
+   "id": "CFR 42 435.121",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.govinfo.gov/link/cfr/42/435?link-type=pdf&sectionnum=121&year=mostrecent"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/121"
+   ]
+  },
+  {
+   "id": "CFR 42 435.222",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.222"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/222"
+   ]
+  },
+  {
+   "id": "CFR 42 435.4",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 CFR 435.4 - definition of dependent child | 42 CFR 435.4 - definition of dependent child, paragraph (1)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.4"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/4"
+   ]
+  },
+  {
+   "id": "CFR 42 435.554",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-42/part-435/section-435.554",
+    "https://www.ecfr.gov/current/title-42/section-435.554"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/554"
+   ]
+  },
+  {
+   "id": "CFR 42 435.603",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 CFR 435.603(f)(3)(iv)(B) | 42 CFR 435.603(f)(3)(iv)(A)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/435.603"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435/603"
+   ]
+  },
+  {
+   "id": "CFR 42 457.10",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/457.10"
+   ],
+   "citation_paths": [
+    "us/regulation/42/457/10"
+   ]
+  },
+  {
+   "id": "CFR 42 457.310",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 CFR § 457.310(b)(2) - Health benefits coverage",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-42/section-457.310"
+   ],
+   "citation_paths": [
+    "us/regulation/42/457/310"
+   ]
+  },
+  {
+   "id": "CFR 42 457.320",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 CFR § 457.320(b)(5) - Other eligibility standards",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-42/section-457.320"
+   ],
+   "citation_paths": [
+    "us/regulation/42/457/320"
+   ]
+  },
+  {
+   "id": "CFR 42 part 435",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/42/part-435/subpart-D"
+   ],
+   "citation_paths": [
+    "us/regulation/42/435"
+   ]
+  },
+  {
+   "id": "CFR 45 146.113",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "45 CFR § 146.113(a)(1) - Excepted benefits",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-45/section-146.113"
+   ],
+   "citation_paths": [
+    "us/regulation/45/146/113"
+   ]
+  },
+  {
+   "id": "CFR 45 155.20",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "45 CFR § 155.20 - Lawfully present definition",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/45/155.20"
+   ],
+   "citation_paths": [
+    "us/regulation/45/155/20"
+   ]
+  },
+  {
+   "id": "CFR 7 271.2",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR 271.2 (definition of elderly or disabled member)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/271.2"
+   ],
+   "citation_paths": [
+    "us/regulation/7/271/2"
+   ]
+  },
+  {
+   "id": "CFR 7 273.1",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR § 273.1 - Household concept (b)(iii)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.1"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/1"
+   ]
+  },
+  {
+   "id": "CFR 7 273.10",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR § 273.10 - Determining household eligibility and benefit levels.",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-7/section-273.10",
+    "https://www.law.cornell.edu/cfr/text/7/273.10"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/10"
+   ]
+  },
+  {
+   "id": "CFR 7 273.11",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR 273.11(c)(3)(i) | 7 CFR § 273.11(b)(3) - Self-employment income, cost of doing business",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.11"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/11"
+   ]
+  },
+  {
+   "id": "CFR 7 273.2",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR 273.2(j)(2) Categorical eligibility for certain recipients",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.2"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/2"
+   ]
+  },
+  {
+   "id": "CFR 7 273.24",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 C.F.R. § 273.24 Time limit for able-bodied adults (c)(1) | 7 CFR § 273.24 - Time limit for able-bodied adults (c)(9)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.24"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/24"
+   ]
+  },
+  {
+   "id": "CFR 7 273.5",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR 273.5(b)(8) - Students, care of a dependent household member under the age of 6",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.5"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/5"
+   ]
+  },
+  {
+   "id": "CFR 7 273.7",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 C.F.R. § 273.7 Work provisions (b)(1)(iv) | 7 C.F.R. § 273.7 Work provisions (b)(1)(i)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.7"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/7"
+   ]
+  },
+  {
+   "id": "CFR 7 273.8",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR 273.8(c)(1) - Liquid resources",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.law.cornell.edu/cfr/text/7/273.8"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/8"
+   ]
+  },
+  {
+   "id": "CFR 7 273.9",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 CFR § 273.9 - Income and deductions. | 7 CFR 273.9(b)(2)",
+   "document_class": "cfr",
+   "urls": [
+    "https://www.ecfr.gov/current/title-7/section-273.9",
+    "https://www.law.cornell.edu/cfr/text/7/273.9"
+   ],
+   "citation_paths": [
+    "us/regulation/7/273/9"
+   ]
+  },
+  {
+   "id": "CO reg doc-10492",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "snap"
+   ],
+   "title": "Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.31(C)(3) (page 110) | Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.5(A) (page 111)",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CO reg doc-10703",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "MEDICAL ASSISTANCE - SECTION 8.100 Eligibility, Provider Screening, NPI - 8.100.4.D.",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CO reg doc-10779",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CO reg doc-11645",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "snap"
+   ],
+   "title": "Code of Colorado Regulations | Rule Manual Volume 4, SNAP | 4.407.31(A)(4) (page 109)",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=11645&"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "CO stat 10-16-1203",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "C.R.S. 10-16-1203(7) - Qualified individual (regardless of immigration status) | C.R.S. 10-16-1203(7) - Qualified individual definition",
+   "document_class": "state_statute",
+   "urls": [
+    "https://law.justia.com/codes/colorado/title-10/health-care-coverage/article-16/part-12/section-10-16-1203/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "DC stat 4-261-04",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "snap"
+   ],
+   "title": "§ 4-261.04. Locally funded supplemental benefits | § 4–261.04. Locally funded supplemental benefits.",
+   "document_class": "state_statute",
+   "urls": [
+    "https://code.dccouncil.gov/us/dc/council/code/sections/4-261.04",
+    "https://code.dccouncil.gov/us/dc/council/laws/24-301"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "FR doc 2026-11094",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_register",
+   "urls": [
+    "https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "ID reg 16-160301",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "IDAPA 16.03.01.411, Income Limits for Parents and Caretaker Relatives, Table 411 | Idaho Department of Health and Welfare - $365/month for a household of three",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://adminrules.idaho.gov/rules/current/16/160301.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-113-120",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Ill. Admin. Code tit. 89, § 113.120 - Exempt Earned Income",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.120"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-330",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "89 Ill. Admin. Code § 120.330 - Income - Unearned Income",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.330"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-360",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "89 Ill. Admin. Code § 120.360 - Income - Earned Income",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.360"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-362",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.362"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-370",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.370"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-381",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.381"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-510",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "89 Ill. Admin. Code § 120.510 (n) | 89 Ill. Admin. Code § 120.510 (a)(7) - HBWD Eligibility",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.510"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL reg ill-admin-code-tit-89-ss-120-66",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "89 Ill. Admin. Code § 120.66(c)(1)",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-120.66"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IL stat doc-030500050k-5-2",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "305 ILCS 5/5-2(5)(b)",
+   "document_class": "state_statute",
+   "urls": [
+    "https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=030500050K5-2"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IRS Form 1040 (current)",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "irs_form",
+   "urls": [
+    "https://www.irs.gov/pub/irs-pdf/f1040.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "IRS Pub. 501 (current)",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "IRS Publication 501 (2024), Table 2. 2024 Filing Requirements for Dependents",
+   "document_class": "irs_publication",
+   "urls": [
+    "https://www.irs.gov/publications/p501"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "MA reg 130-cmr-505-002",
+   "jurisdiction": "US-MA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "130 CMR 505.002(C) - MassHealth Standard for a parent or caretaker relative of \"a child younger than 19 years old\"",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/massachusetts/130-CMR-505-002"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "MD stat section-5-501-food-supplement-program",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "snap"
+   ],
+   "title": "Md. Code, Hum. Servs. § 5-501 (d) | Md. Code, Hum. Servs. § 5-501",
+   "document_class": "state_statute",
+   "urls": [
+    "https://casetext.com/statute/code-of-maryland/article-human-services/title-5-public-assistance/subtitle-5-food-stamps/section-5-501-food-supplement-program"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "ME reg 10-144-c-m-r-ch-301-ss-555-5",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "snap"
+   ],
+   "title": "Maine 10-144 C.M.R. Ch. 301 § 555-5 - Food Supplement Program Deductions",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-301-SS-555-5"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "OR reg 461-160-0430",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "snap"
+   ],
+   "title": "Oregon Administrative Rules | OAR 461-160-0430 Income Deductions; SNAP (1)(d)(B)",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://oregon.public.law/rules/oar_461-160-0430"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "PL 113-79",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "Agricultural Act of 2014 (Pub. L. 113-79) § 4006(b) - Minimum LIHEAP benefit for SUA eligibility",
+   "document_class": "public_law",
+   "urls": [
+    "https://www.congress.gov/113/plaws/publ79/PLAW-113publ79.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "PL 119-21",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "Public Law 119-21, Section 10102(a) - Modifications to SNAP ABAWD Requirements | One Big Beautiful Bill Act, Pub. L. No. 119-21, § 70404 (2025)",
+   "document_class": "public_law",
+   "urls": [
+    "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf",
+    "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm",
+    "https://www.govinfo.gov/content/pkg/PLAW-119publ21/pdf/PLAW-119publ21.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01140.200",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "SSA POMS SI 01140.200 - Checking and Savings Accounts",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140200"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01140.220",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "SSA POMS SI 01140.220 - Stocks",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140220"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01140.240",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "SSA POMS SI 01140.240 - U.S. Savings Bonds",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140240"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01140.250",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "SSA POMS SI 01140.250 - Municipal, Corporate and Government Bonds",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501140250"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01401.001",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SI CHI01401.001 - (IN) Indiana State Supplementary Payments | POMS SI 01401.001 General Information about State Supplementation",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/poms.nsf/lnx/0501401001",
+    "https://secure.ssa.gov/poms.nsf/lnx/0501401001CHI"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSA POMS SI 01715.010",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "SSA POMS SI 01715.010 Medicaid and the Supplemental Security Income Program | SSA POMS SI 01715.010 - Resource Eligibility",
+   "document_class": "ssa_poms",
+   "urls": [
+    "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501715010"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "SSAct 2110",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.ssa.gov/OP_Home/ssact/title21/2110.htm"
+   ],
+   "citation_paths": [
+    "us/statute/42/1397jj"
+   ]
+  },
+  {
+   "id": "USC 25 1603",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/25/1603"
+   ],
+   "citation_paths": [
+    "us/statute/25/1603"
+   ]
+  },
+  {
+   "id": "USC 25 1679",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/25/1679"
+   ],
+   "citation_paths": [
+    "us/statute/25/1679"
+   ]
+  },
+  {
+   "id": "USC 26 1222",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 1222(11) | 26 U.S. Code § 1222(3)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/1222"
+   ],
+   "citation_paths": [
+    "us/statute/26/1222"
+   ]
+  },
+  {
+   "id": "USC 26 1402",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 1402 - Definitions",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/1402"
+   ],
+   "citation_paths": [
+    "us/statute/26/1402"
+   ]
+  },
+  {
+   "id": "USC 26 152",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 152 - Dependent defined | IRC § 152 - definition of \"qualifying dependents\" referenced in Tier (1)-(2)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/152"
+   ],
+   "citation_paths": [
+    "us/statute/26/152"
+   ]
+  },
+  {
+   "id": "USC 26 199A",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 199A(b)(2)(B)(ii) - Qualified business income | 26 U.S. Code § 199A(c)(1) - Qualified business income",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/199A"
+   ],
+   "citation_paths": [
+    "us/statute/26/199A"
+   ]
+  },
+  {
+   "id": "USC 26 2",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/2"
+   ],
+   "citation_paths": [
+    "us/statute/26/2"
+   ]
+  },
+  {
+   "id": "USC 26 21",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 21(a)(2) | 26 U.S. Code § 21(c)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/21"
+   ],
+   "citation_paths": [
+    "us/statute/26/21"
+   ]
+  },
+  {
+   "id": "USC 26 3401",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/3401"
+   ],
+   "citation_paths": [
+    "us/statute/26/3401"
+   ]
+  },
+  {
+   "id": "USC 26 36B",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 36B(b)(3)(A) - Refundable credit for coverage under a qualified health plan | 26 U.S. Code § 36B - Refundable credit for coverage under a qualified health plan",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/36B"
+   ],
+   "citation_paths": [
+    "us/statute/26/36B"
+   ]
+  },
+  {
+   "id": "USC 26 61",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 61 - Gross income defined",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/61"
+   ],
+   "citation_paths": [
+    "us/statute/26/61"
+   ]
+  },
+  {
+   "id": "USC 26 62",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code § 62 - Adjusted gross income defined",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/62"
+   ],
+   "citation_paths": [
+    "us/statute/26/62"
+   ]
+  },
+  {
+   "id": "USC 26 7703",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/7703"
+   ],
+   "citation_paths": [
+    "us/statute/26/7703"
+   ]
+  },
+  {
+   "id": "USC 26 subtitle-A",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "26 U.S. Code Subpart A - Nonrefundable Personal Credits | 26 U.S. Code Subpart C - Refundable Credits",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-A",
+    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-C",
+    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-B/part-III"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 29 206",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "29 U.S. Code § 206 - Minimum wage",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/29/206"
+   ],
+   "citation_paths": [
+    "us/statute/29/206"
+   ]
+  },
+  {
+   "id": "USC 38 101",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/38/101"
+   ],
+   "citation_paths": [
+    "us/statute/38/101"
+   ]
+  },
+  {
+   "id": "USC 42 1382c",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1382c"
+   ],
+   "citation_paths": [
+    "us/statute/42/1382c"
+   ]
+  },
+  {
+   "id": "USC 42 1396",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 U.S. Code § 1396(a)(10)(A)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1396"
+   ],
+   "citation_paths": [
+    "us/statute/42/1396"
+   ]
+  },
+  {
+   "id": "USC 42 1396a",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 U.S. Code § 1396a(e)(5) | 42 U.S. Code § 1396(f)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1396a"
+   ],
+   "citation_paths": [
+    "us/statute/42/1396a"
+   ]
+  },
+  {
+   "id": "USC 42 1396b",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 USC § 1396b(v) - Medicaid eligibility for aliens | 42 USC 1396b(v)(2) - Exception for Emergency Medical Services",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1396b"
+   ],
+   "citation_paths": [
+    "us/statute/42/1396b"
+   ]
+  },
+  {
+   "id": "USC 42 1396d",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 U.S.C. § 1396d(y) — FMAP for the adult group | 42 U.S.C. § 1396d(b) — FMAP formula (50%/83% bounds)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1396d"
+   ],
+   "citation_paths": [
+    "us/statute/42/1396d"
+   ]
+  },
+  {
+   "id": "USC 42 1396u-1",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Section 1931 Medicaid Eligibility",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1396u-1"
+   ],
+   "citation_paths": [
+    "us/statute/42/1396u-1"
+   ]
+  },
+  {
+   "id": "USC 42 1397jj",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "42 U.S.C. 1397jj(c)(1), definition of child",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/1397jj"
+   ],
+   "citation_paths": [
+    "us/statute/42/1397jj"
+   ]
+  },
+  {
+   "id": "USC 42 chapter-7",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "42 U.S. Code Part A—Block Grants to States for Temporary Assistance for Needy Families",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-IV/part-A",
+    "https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "USC 7 2012",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 U.S. Code § 2012(u)(4)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/7/2012"
+   ],
+   "citation_paths": [
+    "us/statute/7/2012"
+   ]
+  },
+  {
+   "id": "USC 7 2014",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 U.S. Code § 2014(e)(6)(B) | 7 U.S. Code § 2014(g)(1)(A)",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/7/2014"
+   ],
+   "citation_paths": [
+    "us/statute/7/2014"
+   ]
+  },
+  {
+   "id": "USC 7 2015",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 U.S.C. 2015(o)(7) - Good faith exemptions for Alaska and Hawaii | 7 U.S.C. 2015(o)(3) - ABAWD Time Limit Exceptions",
+   "document_class": "us_code",
+   "urls": [
+    "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title7-section2015&num=0&edition=prelim",
+    "https://www.law.cornell.edu/uscode/text/7/2015"
+   ],
+   "citation_paths": [
+    "us/statute/7/2015"
+   ]
+  },
+  {
+   "id": "USC 7 2017",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "7 U.S. Code § 2017 - Value of allotment",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/7/2017"
+   ],
+   "citation_paths": [
+    "us/statute/7/2017"
+   ]
+  },
+  {
+   "id": "USC 8 1611",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "8 USC 1611(b)(1)(A) - Exception for Emergency Medical Care",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/8/1611"
+   ],
+   "citation_paths": [
+    "us/statute/8/1611"
+   ]
+  },
+  {
+   "id": "USC 8 1612",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "8 USC 1612 - Limited eligibility of qualified aliens for certain Federal programs",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/8/1612"
+   ],
+   "citation_paths": [
+    "us/statute/8/1612"
+   ]
+  },
+  {
+   "id": "USC 8 1613",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "8 USC 1613(b)(1) - Exceptions to five-year limited eligibility | 8 USC 1613(a) - Five-year limited eligibility",
+   "document_class": "us_code",
+   "urls": [
+    "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title8-section1613&num=0&edition=prelim",
+    "https://www.law.cornell.edu/uscode/text/8/1613"
+   ],
+   "citation_paths": [
+    "us/statute/8/1613"
+   ]
+  },
+  {
+   "id": "USC 8 1641",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "8 U.S. Code § 1641 - Definitions | 8 USC 1641(b)(4) - \"Qualified alien\" includes aliens paroled into the United States under INA 212(d)(5) for at least one year",
+   "document_class": "us_code",
+   "urls": [
+    "https://www.law.cornell.edu/uscode/text/8/1641"
+   ],
+   "citation_paths": [
+    "us/statute/8/1641"
+   ]
+  },
+  {
+   "id": "WA reg 182-505-0100",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "WAC 182-505-0100 - Income standards (210% FPL statutory) | WAC 182-505-0100 - Income standards (312% FPL statutory)",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0100"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "WA reg 182-505-0210",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "WAC 182-505-0210 - Children's eligibility",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0210"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "WA stat 74-09-470",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "RCW 74.09.470 - Medical care for children",
+   "document_class": "state_statute",
+   "urls": [
+    "https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "WI stat 49-471",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Wis. Stat. § 49.471(4)(a)4.a. - dependent child includes an 18-year-old full-time student expected to complete school before 19",
+   "document_class": "state_statute",
+   "urls": [
+    "https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:admincode.legislature.state.al.us/api/chapter/560-X-25",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Ala. Admin. Code r. 560-X-25-.15(1)(c) - dependent child \"under the age of 19\"",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://admincode.legislature.state.al.us/api/chapter/560-X-25"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Florida approved state plan S25 (FL-13-0015-MM1), student option unchecked",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Alabama Department of Public Health, \"ALL Babies Eligible Counties, August 2023\" county map (enumerates the 36 eligible counties; archived February 27, 2024)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://web.archive.org/web/20240227134117if_/https://www.alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "State of Alabama Infant Mortality Reduction Plan (ALL Babies pilot in Macon, Montgomery, and Russell counties, effective October 1, 2018)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:aspe.hhs.gov/2015-poverty-guidelines",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "2015 Poverty Guidelines",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/2015-poverty-guidelines"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:aspe.hhs.gov/2016-poverty-guidelines",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "2016 Poverty Guidelines",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/2016-poverty-guidelines"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "2026 Poverty Guidelines | Poverty Guidelines",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references",
+   "jurisdiction": "US",
+   "programs": [
+    "snap",
+    "medicaid_chip"
+   ],
+   "title": "Prior HHS Poverty Guidelines and Federal Register References",
+   "document_class": "federal_agency_guidance:hhs_aspe",
+   "urls": [
+    "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:california.public.law/codes/welfare_and_institutions_code_section_14007.8",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://california.public.law/codes/welfare_and_institutions_code_section_14007.8"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cbo.gov/publication/59710",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "CBO Economic Projections, February 2024.",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.cbo.gov/publication/59710"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-59.pdf?ver=2024-08-19-094023-573",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "snap"
+   ],
+   "title": "California Department of Social Services, Executive Summary, All County Letter No. 24-59, Project Changes",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-59.pdf?ver=2024-08-19-094023-573"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "snap"
+   ],
+   "title": "CDSS All County Letter No. 25-79",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-79.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "snap"
+   ],
+   "title": "California CDSS All County Letter No. 25-92 - CalFresh Implementation of H.R. 1 Noncitizen Eligibility Changes",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-92.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "snap"
+   ],
+   "title": "California All County Letter No. 25-93 | CDSS All County Letter No. 25-93 - CalFresh Statewide ABAWD Time Limit Implementation (June 1, 2026)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "snap"
+   ],
+   "title": "CDSS All County Letter No. 26-15",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2026/26-15.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Colorado OmniSalud Guide 2024 | Colorado OmniSalud Guide 2024, p. 3",
+   "document_class": "secondary_source",
+   "urls": [
+    "https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "H.R.1 - One Big Beautiful Bill Act, SEC. 70103 | Public Law 119-21, Section 10102(c) - Exemption for noncontiguous States",
+   "document_class": "federal_legislative_other",
+   "urls": [
+    "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:connectforhealthco.com/get-started/omnisalud",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Connect for Health Colorado OmniSalud 2025 Updates | Connect for Health Colorado OmniSalud Overview",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://connectforhealthco.com/get-started/omnisalud/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:data.bls.gov/timeseries/CUUR0000SA0",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "BLS | CPI-U annual averages (CUUR0000SA0; calendar-year average encoded at each year's January instant) | BLS Consumer Price Index for All Urban Consumers (CPI-U), all items, U.S. city average, not seasonally adjusted (CUUR0000SA0)",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://data.bls.gov/timeseries/CUUR0000SA0"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:data.census.gov/table/ACSDT1Y2023.B25040",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://data.census.gov/table/ACSDT1Y2023.B25040"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov dataset page (April 1, 2018) | Medicaid and CHIP Eligibility Levels as of April, 2018",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dbmefaapolicy.azdes.gov",
+   "jurisdiction": "US-AZ",
+   "programs": [
+    "snap"
+   ],
+   "title": "AZ DES CNAP manual FAA6.J Standards, Fees, and Amounts, 09 Utility Allowance Current Amount (archived 10/01/2022 page under Previous Years; \"LUA is effective the benefit month of 01/2023\") | AZ DES FAA6.J Standards, Fees, and Amounts, 09 Utility Allowance Current Amount (FY2026 and FY2027 amounts; archived pages under Previous Years cover FY2023-FY2025)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dbmefaapolicy.azdes.gov/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dbmefaapolicy.azdes.gov/index.html",
+   "jurisdiction": "US-AZ",
+   "programs": [
+    "snap"
+   ],
+   "title": "Arizona Department of Economic Security | CNAP Manual, NA Medical Expenses and Deduction",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dbmefaapolicy.azdes.gov/index.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-assess-options",
+   "jurisdiction": "US-LA",
+   "programs": [
+    "snap"
+   ],
+   "title": "Department of Children & Family Services | As Extra SNAP Benefits End, Recipients Encouraged to Update Info, Assess Options",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dcfs.louisiana.gov/news/as-extra-snap-benefits-end-recipients-encouraged-to-update-info-assess-options"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/formsandpubs/forms/Forms/MCED/MC_Forms/MC250A_Eng.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "MC 250A - Application for Medi-Cal for Former Foster Care Youth",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/formsandpubs/forms/Forms/MCED/MC_Forms/MC250A_Eng.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "DHCS Medi-Cal Program Descriptions by Federal Poverty Level (CCHIP 266 to 322 percent FPL, Santa Clara, San Francisco, and San Mateo counties)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/medi-cal/eligibility/Pages/Asset-Limit-Changes-for-Non-MAGI-Medi-Cal.aspx",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Asset Limit Changes for Non-MAGI Medi-Cal | California DHCS (asset limit reinstated at $130,000 plus $65,000 per additional household member effective January 1, 2026) | Asset Limit Changes for Non-MAGI Medi-Cal | California DHCS (asset limit reinstated at $130,000 for an individual effective January 1, 2026)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/medi-cal/eligibility/Pages/Asset-Limit-Changes-for-Non-MAGI-Medi-Cal.aspx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/medi-cal/eligibility/Pages/FFY_Bene.aspx",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "California DHCS Former Foster Youth Program",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/medi-cal/eligibility/Pages/FFY_Bene.aspx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/23-03.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "DHCS ACWDL 23-03, 2023 Federal Poverty Levels, Enclosure 3, Program Descriptions by FPL, \"Above 266% to 322% FPL = County Children's Health Initiative Program (C-CHIP)\"",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/23-03.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "DHCS ACWDL 25-01, 2025 Federal Poverty Levels, \"C-CHIP is available in San Francisco, Santa Clara, and San Mateo counties only\" | DHCS ACWDL 25-01, 2025 Federal Poverty Levels, Enclosure 3, Program Descriptions by FPL, \"Above 266% to 322% FPL = County Children's Health Initiative Program (C-CHIP)\"",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-14.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "California DHCS All County Welfare Directors Letter 25-14 (reinstatement of the non-MAGI Medi-Cal asset limit)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-14.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/services/working-disabled-program",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Working Disabled Program | Department of Health Care Services",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/services/working-disabled-program/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "California Title XXI CHIP State Plan (SPA CA-24-0012), Section 2, Population 1/CCHIP, \"Only available in Santa Clara, San Francisco, and San Mateo counties\" | California Title XXI CHIP State Plan (SPA CA-24-0012), Section 1.1, Population 1 County Children's Health Initiative Programs (CCHIP), above 261 percent of the FPL up to and including 317 percent of the FPL",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf",
+   "jurisdiction": "US-CA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Michigan Department of Health & Human Services | FAP ALLOWABLE EXPENSES AND EXPENSE BUDGETING | MEDICAL EXPENSES | Standard Medical Deduction (SMD)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dhhs.michigan.gov/olmweb/ex/BP/Public/BEM/554.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhhs.nh.gov/mam_htm/html/230_01_granite_advantage_eligibility_criteria_mam.htm",
+   "jurisdiction": "US-NH",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "New Hampshire Medical Assistance Manual § 230.01 - Granite Advantage criteria (mandatory-group and Medicare exclusions only, no SSI-receipt test)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhhs.nh.gov/mam_htm/html/230_01_granite_advantage_eligibility_criteria_mam.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.dc.gov/page/give-snap-raise-heres-what-expect",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "snap"
+   ],
+   "title": "Supplemental Nutrition Assistance Program (SNAP) raise in District of Columbia in 2024.",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dhs.dc.gov/page/give-snap-raise-heres-what-expect"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.maryland.gov/documents/FIA/Action Transmittals-AT - Information Memo-IM/AT-IM2026/26-08 AT H.R. 1 2025 Treatment of Energy Assistance Payments combined.pdf",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "snap"
+   ],
+   "title": "Maryland DHS Action Transmittal AT 26-08 - H.R. 1 (2025) Treatment of Energy Assistance Payments (supersedes IM 25-15 Heat and Eat, effective April 1, 2025)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-08%20AT%20H.R.%201%202025%20Treatment%20of%20Energy%20Assistance%20Payments%20combined.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.state.il.us/page.aspx?item=161600",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Illinois DHS - HBIA and HBIS Policy",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhs.state.il.us/page.aspx?item=161600"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.state.il.us/page.aspx?item=33527",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhs.state.il.us/page.aspx?item=33527"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.state.il.us/page.aspx?item=33528",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "IDHS PM 06-20-02 - BCC Eligibility Criteria",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.dhs.state.il.us/page.aspx?item=33528"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.state.il.us/page.aspx?item=61206",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Illinois HFS Medical Policy PM 06-25-01 - ACA Adult nonfinancial requirements, no SSI test",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhs.state.il.us/page.aspx?item=61206"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.wisconsin.gov/dms/memos/ops/dms-ops-2025-13.pdf",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Wisconsin DHS Operations Memo 25-13 (FFY 2026 standard utility allowances effective October 1, 2025)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2025-13.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Wisconsin DHS Operations Memo 26-30 (revised SUAs effective May 1, 2026)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf",
+   "jurisdiction": "US-VA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Virginia Medical Assistance Eligibility Manual, Chapter M04, Appendix 3 | Virginia Medical Assistance Eligibility Manual, Chapter M04, Appendix 4",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf",
+   "jurisdiction": "US-VA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Virginia DMAS Eligibility Manual M0330.250.B - MAGI Adults (\"not be eligible in a Medicaid mandatory covered group\")",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA utility allowances by state spreadsheet. Extracted by build_utility_allowances (FY2024) | USDA SNAP utility allowances by state spreadsheet (FY2024)",
+   "document_class": "federal_agency_data_opaque_host",
+   "urls": [
+    "https://docs.google.com/spreadsheets/d/10otJJisAYUDyZ0d7XpZPn8rEql-rteVE/edit?gid=1837348310"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?ouid=116242521439357911562&rtpof=true&sd=true",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA utility allowances by state spreadsheet (FY2019)",
+   "document_class": "federal_agency_data_opaque_host",
+   "urls": [
+    "https://docs.google.com/spreadsheets/d/1JWtEF0wRlQqM3ajMFnUYs_lGwEzSXGit/edit?usp=sharing&ouid=116242521439357911562&rtpof=true&sd=true"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-10/1805-030-10-25",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-10/1805-030-10-25/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-20/1805-030-20-20/1805-030-20-20-05",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS Manual § 1805.030.20.20.05 - 5% FPL disregard",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-20/1805-030-20-20/1805-030-20-20-05/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-10",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-10/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-20",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS Manual § 1810.020.20.20 - Eligibility for 18-Year-Olds",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-20/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1830-000-00/1830-010-00/1830-010-05",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS Manual § 1830.010.05 - MO HealthNet for Kids income maximums (148% FPL, ages 1-18)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1830-000-00/1830-010-00/1830-010-05/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-010-00",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS Manual § 1865.010.00 - Legal Basis (Mo. Const. art. IV, § 36(c), expansion effective July 1, 2021)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-010-00/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-020-00",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS Manual § 1865.020.00 - Adult Expansion Group (\"Not receiving SSI\")",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-020-00/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/food-stamps/1115-000-00/1115-035-00/1115-035-25/1115-035-25-15",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "snap"
+   ],
+   "title": "MO DSS Food Stamps manual 1115.035.25.15, Mandatory Utility Standards (Non-Heating/Cooling Standard and Telephone Standard)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/food-stamps/1115-000-00/1115-035-00/1115-035-25/1115-035-25-15/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/food-stamps/1135-000-00/1135-025-00",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "snap"
+   ],
+   "title": "Missouri DSS SNAP Manual § 1135.025.00 - Students",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/food-stamps/1135-000-00/1135-025-00/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-05",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-05/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-25",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-25/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-40",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-40/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-45-income-maximum",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS Manual § 0805.015.45 - Income Maximum",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-45-income-maximum/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "MO DSS MHABD Appendix J — SNC maximum grants | MO DSS MHABD Appendix J — SAB resource maximum",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care",
+   "jurisdiction": "US-WY",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Wyoming Eligibility Operations Manual POL M1204A - caretaker relative of \"a child under the age of 18\"",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:ffic.myflfamilies.com/manual/essfiles/30446.pdf",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "ESS Policy Manual Appendix A-7 (April 2026) | Florida DCF - for a family of three, a $303 adults (parents, caretakers) standard, a $183 standard disregard and a $114 5% MAGI disregard, which sum to $600/month; the $600 total appears nowhere in the appendix",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://ffic.myflfamilies.com/manual/essfiles/30446.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fhb.hhs.texas.gov/handbooks/texas-works-handbook/a-520-relationship",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Texas Works Handbook A-521 - dependent child \"under age 18; or if age 18, attends school full-time\"",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/a-520-relationship"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fhb.hhs.texas.gov/handbooks/texas-works-handbook/c-130-medical-programs",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Texas Works Handbook C-131.2, Parents and Caretaker Relatives Medicaid income limits - $230/month for a family of three in the One Parent column, beside a Two Parents column of $251, plus the C-131.4 standard MAGI disregard of $113.85",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/c-130-medical-programs"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:flrules.org/gateway/ruleno.asp?id=65A-1.703",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Fla. Admin. Code R. 65A-1.703(2)(e) - child under age 18, no student extension",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA utility allowances by state spreadsheet (FY2026, revised May 2026; FNS labels it updated August 2026)",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.net/sites/default/files/resource-files/fna-2008-amended-through-pl-116-94.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2019 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY19-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2020 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY21-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2021 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY21-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY22-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2022 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY22-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/media/file/FY24-Maximum-Allotments-and-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2024 Maximum Allotments and Deductions | Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2024 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/media/file/FY24-Maximum-Allotments-and-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/FY23-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2023 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/FY23-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Minnesota FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/mn-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS North Dakota FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/nd-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Pennsylvania FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/pa-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP State Options Report, 16th Edition | USDA FNS SNAP State Options Report, 16th Edition (June 2024) - Treatment of Self-Employment Income",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-16th-state-options-report-june24.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2023 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS SNAP State Options Report, 13th Edition (Oct 2016) - Simplified Self-Employment Determination",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/13-State_Options-revised.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/FY16-Maximun-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2016 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/FY16-Maximun-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/FY17-Maximun-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2017 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/FY17-Maximun-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2018 Maximum Allotments and Deductions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://fns-prod.azureedge.us/sites/default/files/snap/FY18-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/media/file/FY21-COVID ARPA-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions [ARPA]",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID%20ARPA-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/media/file/FY21-COVID-Maximum-Allotments-Deductions.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "Supplemental Nutrition Assistance Program (SNAP) Fiscal Year (FY) 2021 Maximum Allotments and Deductions [CAA]",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/media/file/FY21-COVID-Maximum-Allotments-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA utility allowances by state spreadsheet. Extracted by build_utility_allowances (FY2025) | USDA SNAP utility allowances by state spreadsheet (FY2025)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS FY 2025 Quarter 2 ABAWD Waiver Status Report (waivers as of 2025-01-01; NY then statewide under its FY2024 waiver)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-2-ABAWD-Waiver-Status-Revised.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS FY 2025 Quarter 4 ABAWD Waiver Status Report (waivers as of 2025-07-01; NY classified as a partial waiver)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/FY25-Quarter-4-ABAWD-Waiver-Status.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Alaska FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ak-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Arizona FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS California Statewide ABAWD Waiver Response, January 15, 2025 (effective 2025-02-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025-b.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS California Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ca-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Colorado FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, January 13, 2025 (effective 2025-01-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025-b.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS District of Columbia Districtwide ABAWD Waiver Response, FY 2025 (effective 2024-12-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/dc-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Hawaii FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/hi-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Illinois Statewide ABAWD Waiver Response, March 14, 2025 (effective 2025-02-01 through 2026-01-31)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025-b.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Illinois Statewide ABAWD Waiver Response, FY 2025 (effective 2024-11-01)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/il-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Kentucky FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ky-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Massachusetts FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ma-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Maryland FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/md-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Michigan FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/mi-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Minnesota FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/mn-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS North Dakota FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/nd-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS New Jersey FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/nj-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Nevada Statewide ABAWD Waiver Response (effective 2025-02-01 through 2026-01-31)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/nv-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS New York Statewide ABAWD Waiver Response, FY 2024 (statewide, effective 2024-03-01 through 2025-02-28)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS New York ABAWD Waiver Response, October 2, 2024 (61 counties, effective 2025-03-01 through 2026-02-28)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/ny-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Oregon FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/or-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS South Dakota FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/sd-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Virginia FY 2024 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/va-abawd-response-fy2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Washington FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/wa-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS Wisconsin FY 2025 ABAWD Waiver Response",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/resource-files/wi-abawd-response-fy2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/10-State_Options.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS SNAP State Options Report (10th Edition, August 2012), p. 16",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/10-State_Options.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/12-State_Options.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP State Options Report, 12th Report (April 2016)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/12-State_Options.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP State Options Report, 13th Report (August 2017)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/13-State_Options-revised.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/sites/default/files/snap/14-State-Options.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP State Options Report, 14th Report (May 2018)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/sites/default/files/snap/14-State-Options.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/allotment/COLA",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA Cost of Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/allotment/COLA"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/allotment/cola/fy26",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2026 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/allotment/cola/fy26"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2018 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/allotment/fy-2018-cost-of-living-adjustments"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA | Food and Nutrition Service | SNAP | Standard Utility Allowances",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/eligibility/elderly-disabled-special-rules",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP Special Rules for the Elderly or Disabled",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2015-snap-resource-limit-memo",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2015 Resource Limit Memo",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2015-snap-resource-limit-memo"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2023-cola",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2023 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2023-cola"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2024-cola",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2024 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2024-cola"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/fy-2025-cola",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP FY2025 Cost-of-Living Adjustments",
+   "document_class": "federal_agency_guidance:usda_fns_cola",
+   "urls": [
+    "https://www.fns.usda.gov/snap/fy-2025-cola"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS SNAP Provisions of the One Big Beautiful Bill Act of 2025, ABAWD Waivers Implementation Memorandum (October 3, 2025)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/obbb-abawd-exemptions-implementation",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS, SNAP - OBBB ABAWD Exceptions Implementation | FNS ABAWD Exceptions Implementation Memorandum (October 3, 2025)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/obbb-abawd-exemptions-implementation"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/obbb-alien-eligibility",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA FNS - SNAP Implementation of OBBB - Alien SNAP Eligibility",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/obbb-alien-eligibility"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "Fiscal Responsibility Act of 2023, Section 311 - ABAWD Age Phase-In | Fiscal Responsibility Act of 2023, Section 311 - SNAP provisions",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/provisions-fiscal-responsibility-act-2023"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP – Questions and Answers Related to Food and Nutrition Services Policy Memos Regarding Title IV Provisions of the Agriculture Improvement Act of 2018",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/simplified-homeless-housing-cost-deduction-questions-and-answers"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/work-requirements",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "SNAP Work Requirements",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/work-requirements"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA Food and Nutrition Administration, SNAP Waiver of the Time Limit - Status Update (landing page for the February 26, 2026 memorandum)",
+   "document_class": "federal_agency_guidance:usda_fns",
+   "urls": [
+    "https://www.fns.usda.gov/snap/work-requirements/policies/waiver-reinstatement"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED EXTENSION OF LOSS OF MEDICAID SEP Nov 2025_0.pdf",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Proposed Extension of Existing Loss of Medicaid SEP | DC Health Benefit Exchange Authority",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hca.wa.gov/assets/free-or-low-cost/income-standards.pdf",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "HCA Income Standards (HCA 19-0096) | HCA Income Standards (HCA 19-0096) - operational thresholds with 5pp disregard",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.hca.wa.gov/assets/free-or-low-cost/income-standards.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "HCA Apple Health for Children",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hcopub.dhs.state.mn.us/epm/2_2_2_1.htm",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Minnesota Health Care Programs Eligibility Policy Manual § 2.2.2.1 - \"Is not a Supplemental Security Income (SSI) recipient\"",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://hcopub.dhs.state.mn.us/epm/2_2_2_1.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hcpf.colorado.gov/child-health-plan-plus",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Child Health Plan Plus (CHP+) | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://hcpf.colorado.gov/child-health-plan-plus"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hcpf.colorado.gov/sites/hcpf/files/April 2022 CHP+ Income Chart.pdf",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Monthly Maximum Income Guidelines | CHILD HEALTH PLAN PLUS",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hcpf.colorado.gov/sites/hcpf/files/April 2023 CHP+ Income Chart _.pdf",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Monthly Maximum Income Guidelines | CHILD HEALTH PLAN PLUS",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:health.alaska.gov/en/education/hr-1-ak-impacts",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "snap"
+   ],
+   "title": "Alaska Department of Health, H.R. 1 - AK Impacts | Alaska Department of Health H.R. 1 impacts",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://health.alaska.gov/en/education/hr-1-ak-impacts/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements",
+   "jurisdiction": "US-WY",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid Income Requirements | Wyoming Department of Health - Family MAGI $873/month for a family of three",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:healthcare.gov/glossary/modified-adjusted-gross-income-magi",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Modified Adjusted Gross Income (MAGI)",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:healthcare.gov/medicaid-chip/childrens-health-insurance-program",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:healthfirstcolorado.com/health-coverage-for-immigrants",
+   "jurisdiction": "US-CO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Health First Colorado - Health Coverage for Immigrants | Health First Colorado - Health Coverage for Immigrants (Cover All Coloradans, HB 22-1289)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.healthfirstcolorado.com/health-coverage-for-immigrants/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Illinois HFS - Health Benefits for Immigrants",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Illinois HFS - HBIA FAQ",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/hbiafaq.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Illinois HFS - Health Benefits for Immigrant Adults",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalclients/healthbenefitsforimmigrants/healthbenefitsforimmigrantadults.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalprograms/allkids/about.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Illinois HFS - About All Kids",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalprograms/allkids/about.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalprograms/hbwd.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalprograms/hbwd.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalprograms/hbwd/about.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalprograms/hbwd/about.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalprograms/hbwd/eligibility.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Health Benefits for Workers with Disabilities Eligibility | HFS",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalprograms/hbwd/eligibility.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hfs.illinois.gov/medicalprograms/hbwd/premiums.html",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:hhs.iowa.gov/media/4001/download",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "snap"
+   ],
+   "title": "Iowa HHS Employees' Manual Title 7 Chapter I - SNAP Specific Households",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://hhs.iowa.gov/media/4001/download"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf",
+   "jurisdiction": "US-AR",
+   "programs": [
+    "snap"
+   ],
+   "title": "AR SNAP Certification Manual 6622, Basic Utility Allowance (rev. 01/01/2021) | AR SNAP Certification Manual 6622, Basic Utility Allowance (telephone costs included in the BUA)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://humanservices.arkansas.gov/wp-content/uploads/Recent-Rules-Filing-SNAP-6000-Deductions.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Hawaii Department of Human Services, Changes to Able-Bodied Adult Work Requirements for SNAP - FAQs",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://humanservices.hawaii.gov/changes-to-able-bodied-adult-work-requirements-for-snap-faqs/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Hawaii Department of Human Services news release, Federal SNAP Work Requirement Changes to Begin (October 17, 2025)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://humanservices.hawaii.gov/federal-snap-work-requirement-changes-to-begin-department-of-human-services-offers-guidance-and-resources/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1718-ADULT-GROUP-Final-10-31-16-1.pdf",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Hawaii Administrative Rules § 17-1718-10(a)(3) - Adults Group, \"Not in receipt of Supplemental Security Income (SSI)\"",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1718-ADULT-GROUP-Final-10-31-16-1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:ilga.gov/documents/legislation/ilcs/documents/030500050K5-2.htm",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "305 ILCS 5/5-2 - Classes of Persons Eligible (11)(c) | 305 ILCS 5/5-2 - Classes of Persons Eligible (11)(a)",
+   "document_class": "state_session_law_or_bill",
+   "urls": [
+    "https://www.ilga.gov/documents/legislation/ilcs/documents/030500050K5-2.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:ilga.gov/legislation/ilcs/documents/030500050K5-2.htm",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "305 ILCS 5/5-2(12) - Medical Assistance Eligibility",
+   "document_class": "state_session_law_or_bill",
+   "urls": [
+    "https://www.ilga.gov/legislation/ilcs/documents/030500050K5-2.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100",
+   "jurisdiction": "US-KS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Kansas KFMAM § 02100 - Child in Family, \"A child must be under 19 years of age\"",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:legis.iowa.gov/docs/publications/FN/1449063.pdf",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Iowa SF 2251 Fiscal Note, Pregnancy and Postpartum Medicaid Coverage",
+   "document_class": "state_session_law_or_bill",
+   "urls": [
+    "https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "LIHEAP Clearinghouse - A New Framework for Heat and Eat (2014)",
+   "document_class": "federal_agency_guidance:hhs_acf",
+   "urls": [
+    "https://liheapch.acf.gov/sites/default/files/webfiles/docs/HeatEat.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_acf",
+   "urls": [
+    "https://liheapch.acf.hhs.gov/tables/FY2016/subsidize.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/publication/chip-spending-by-state",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "EXHIBIT 33. CHIP Spending by State | MACPAC",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/publication/chip-spending-by-state/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "MACStats Medicaid and CHIP Data Book, Exhibit 35 | MACPAC",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/wp-content/uploads/2023/12/EXHIBIT-16.-Medicaid-Spending-by-State-Category-and-Source-of-Funds-FY-2022.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid Spending by State, Category, and Source of Funds, FY 2022 (millions) | MACPAC",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/wp-content/uploads/2023/12/EXHIBIT-16.-Medicaid-Spending-by-State-Category-and-Source-of-Funds-FY-2022.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2024) - Georgia parents/caretakers 28% + 5% MAGI disregard",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2025, data as of January 2025) - Georgia parents/caretakers 26% + 5% MAGI disregard",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP 244P Rule Pages (TC).pdf",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "snap"
+   ],
+   "title": "Maine 10-144 CMR Ch. 301 Sec. 999-3 Chart 4 (January re-basing) | Maine SNAP Rule",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2026-02/SNAP%20244P%20Rule%20Pages%20%28TC%29.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/554.pdf",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Michigan DHHS Bridges Eligibility Manual BEM 554 - FAP Allowable Expenses and Expense Budgeting",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/554.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "snap"
+   ],
+   "title": "Michigan DHHS Bridges Policy Bulletin BPB 2017-016 - FAP LIHEAP Payments (effective August 1, 2017)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BPB/2017-016.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/CHIP/Downloads/AL-24-0031-FCEP and AL-24-0031-ABSC.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "CMS Alabama CHIP State Plan Amendment AL-24-0031-FCEP and AL-24-0031-ABSC (statewide From-Conception-to-End-of-Pregnancy coverage)",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/CHIP/Downloads/AL-24-0031-FCEP%20and%20AL-24-0031-ABSC.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "State Annual Report January-December 2018 | Arkansas Works Section 1115",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0021-MM1.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Alabama approved state plan S25 (AL-13-0021-MM1) - under-18 base, student option unchecked (conflicts with current admin code)",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0021-MM1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0019-MM1.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi approved state plan S25 (MS 13-0019-MM1), student option unchecked",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0019-MM1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0014-MM1.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "South Carolina approved state plan S25 (SC-13-0014-MM1), student option checked",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0014-MM1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-021-MM1.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Wisconsin approved state plan S25 (WI-13-021-MM1), student option checked",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-021-MM1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0008-MM1.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Wyoming approved state plan S25 (WY-13-0008-MM1), student option unchecked",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0008-MM1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/chip/chip-eligibility-enrollment",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/chip/chip-eligibility-enrollment"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "CMCS Informational Bulletin, Dec. 8, 2025",
+   "document_class": "federal_agency_guidance:hhs_cms_policy_letter",
+   "urls": [
+    "https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_cms_policy_letter",
+   "urls": [
+    "https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_cms_policy_letter",
+   "urls": [
+    "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/medicaid-spa/2025-05-07/179381",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "NV-25-0006, Medicaid State Plan Amendment",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/medicaid-spa/2025-05-07/179381"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels | CMS | Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels as of December 2023 | CMS",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Arkansas Works | Medicaid",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "CMS Alabama CHIP State Plan Amendment AL-23-0026-RIM2 (ALL Babies expansion to 36 counties, effective May 1, 2023)",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "CMS approval of California CHIP State Plan Amendment 20, CCHIP population in Santa Clara, San Francisco, and San Mateo counties effective January 1, 2014 | CMS approval of California CHIP State Plan Amendment 20, CCHIP population above 261 percent up to and including 317 percent FPL effective January 1, 2014",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "",
+   "document_class": "federal_agency_guidance:hhs_cms",
+   "urls": [
+    "https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Income Limits for Medicaid and CHIP Programs | Mississippi Division of Medicaid (effective March 1, 2026) - parents/caretakers $498/month for a family of three",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Division of Medicaid, Working Disabled",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Division of Medicaid Administrative Code Part 104, Income",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Eligibility Manual Chapter 101 § 101.02.01 - dependent child under age 18",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Division of Medicaid, Healthier Mississippi Waiver Full Public Notice",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.ms.gov/wp-content/uploads/2022/07/Healthier-Mississippi-Waiver-Full-Public-Notice-Website.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Division of Medicaid, Member Coverage Descriptions Job Aid",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.ms.gov/wp-content/uploads/2024/04/20240403_MES_Gainwell_PRP-101_Member-Coverage-Description-Job_Aid_v0.1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Centers for Medicare & Medicaid Services, Healthier Mississippi Extension",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-400-ABD-and-MAGI-Eligibility-Criteria-and-Budgeting.-Revised-July-2025v2.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Division of Medicaid, Eligibility Policy and Procedures Manual, Chapter 400, Working Disabled",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-400-ABD-and-MAGI-Eligibility-Criteria-and-Budgeting.-Revised-July-2025v2.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf",
+   "jurisdiction": "US-MS",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Mississippi Division of Medicaid, Healthier Mississippi Waiver Fact Sheet",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.ms.gov/wp-content/uploads/2026/02/HMW-Fact-Sheet-2026.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf",
+   "jurisdiction": "US-NV",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Nevada Medicaid Web Announcement 3748 (200% FPL pregnancy standard)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "snap"
+   ],
+   "title": "House Bill 445 (2016 Legislation)",
+   "document_class": "state_session_law_or_bill",
+   "urls": [
+    "https://mgaleg.maryland.gov/2016RS/bills/hb/hb0445E.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "snap"
+   ],
+   "title": "House Bill 456 (2022 Legislation)",
+   "document_class": "state_session_law_or_bill",
+   "urls": [
+    "https://mgaleg.maryland.gov/2022RS/bills/hb/hb0456T.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:mydss.mo.gov/benefit-program-income-limits",
+   "jurisdiction": "US-MO",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Missouri DSS benefit program income limits (MO HealthNet for Kids ages 1-18 at 148% FPL)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://mydss.mo.gov/benefit-program-income-limits"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:nd.gov/dhs/policymanuals/51003/Content/510-03-30-05.htm",
+   "jurisdiction": "US-ND",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "North Dakota Medicaid Policy Manual § 510-03-30-05 - adult expansion group \"may include SSI recipients ... who fail the Medicaid asset limits\"",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.nd.gov/dhs/policymanuals/51003/Content/510-03-30-05.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:nj.gov/humanservices/njsnap/apply/eligibility",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "snap"
+   ],
+   "title": "New Jersey Department of Human Services - SNAP",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.nj.gov/humanservices/njsnap/apply/eligibility/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:nj.gov/humanservices/njsnap/emergency/covid19",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "snap"
+   ],
+   "title": "New Jersey Department of Human Services - SNAP",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.nj.gov/humanservices/njsnap/emergency/covid19/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:otda.ny.gov/policy/gis/2025/25DC059-Attachment-1.pdf",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "snap"
+   ],
+   "title": "New York OTDA GIS 25DC059 Attachment 1 (FFY 2026 SUAs effective October 1, 2025)",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.otda.ny.gov/policy/gis/2025/25DC059-Attachment-1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:pamms.dhs.ga.gov/dfcs/medicaid/2162",
+   "jurisdiction": "US-GA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Georgia DFCS Medicaid Policy Manual § 2162 - Parent/Caretaker with Children",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://pamms.dhs.ga.gov/dfcs/medicaid/2162/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:pamms.dhs.ga.gov/dfcs/medicaid/2255",
+   "jurisdiction": "US-GA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Georgia DFCS Medicaid Policy Manual § 2255 - Age (Family Medicaid), child under 19 for Parent/Caretaker",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://pamms.dhs.ga.gov/dfcs/medicaid/2255/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits",
+   "jurisdiction": "US-GA",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Appendix A2, 2026 Family Limits | Georgia DFCS Medicaid manual - parents/caretakers $662/month for a family of three, \"plus 5%\" column",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf",
+   "jurisdiction": "US-CT",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Connecticut DSS UPM 2540 coverage groups chart - HUSKY D (X02) criteria, no SSI test",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf",
+   "jurisdiction": "US-CT",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Connecticut Benefits Quick Guide (Revised May 6, 2024)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf",
+   "jurisdiction": "US-CT",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Connecticut Benefits Quick Guide (Revised February 15, 2023)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7",
+   "jurisdiction": "US-CT",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Connecticut CHOICES Benefits Quick Guide (Rev 04.04.2025)",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:regulations.delaware.gov/register/august2005/proposed/9 DE Reg 168 08-01-05.htm",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "snap"
+   ],
+   "title": "Delaware DEPARTMENT OF health and social services,  Division of Social Services",
+   "document_class": "state_regulation",
+   "urls": [
+    "https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:scdhhs.gov/sites/dhhs/files/pdf/links/Medicaid Eligibility Groups Effective 1.1.pdf",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Medicaid Eligibility Programs (effective March 1, 2026) | South Carolina DHHS - Parent/Caretaker Relative family income cannot exceed 67% of FPL, $1,842.50/month for a family of four",
+   "document_class": "state_agency_web_or_document",
+   "urls": [
+    "https://www.scdhhs.gov/sites/dhhs/files/pdf/links/Medicaid%20Eligibility%20Groups%20Effective%201.1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:scdhhs.gov/sites/dhhs/files/waivers/2025-06-23 Palmetto Pathways to Independence Submission (1).pdf",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Palmetto Pathways to Independence, section 1115 waiver application (June 23, 2025) | South Carolina DHHS - CMS approved the predecessor Healthy Connections Community Engagement Initiative waivers in December 2019, SCDHHS paused implementation for the COVID-19 public health emergency, and CMS withdrew the approval on August 10, 2021",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "FY 2018 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2020-07/FY_2018_Tech_Doc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2020-12/FY 2019 SNAP QC Technical Documentation.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "FY 2019 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2020-12/FY%202019%20SNAP%20QC%20Technical%20Documentation.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2022-12/FY 2020 SNAP QC Technical Documentation.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "FY 2020 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2022-12/FY%202020%20SNAP%20QC%20Technical%20Documentation.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2024-05/FY 2021 Tech Doc.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "FY 2021 SNAP QC Technical Documentation, Table F.7",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2024-05/FY%202021%20Tech%20Doc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:snapqcdata.net/sites/default/files/2025-03/FY 2023 Tech Doc.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "FY 2023 SNAP QC Technical Documentation, Table F.7 (first published Arkansas BUA)",
+   "document_class": "official_statistics",
+   "urls": [
+    "https://snapqcdata.net/sites/default/files/2025-03/FY%202023%20Tech%20Doc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf",
+   "jurisdiction": "US-TN",
+   "programs": [
+    "medicaid_chip"
+   ],
+   "title": "Tennessee approved state plan S25 (TN-21-0010), student option checked",
+   "document_class": "state_program_manual_or_policy",
+   "urls": [
+    "https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "web:usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf",
+   "jurisdiction": "US",
+   "programs": [
+    "snap"
+   ],
+   "title": "USDA SNAP Waiver of the Time Limit - Status Update Memorandum, February 26, 2026 (Appendix A, time limit waiver expiration dates)",
+   "document_class": "federal_agency_guidance:usda",
+   "urls": [
+    "https://www.usda.gov/sites/default/files/guidance-documents/fna.obbb-time-limit-waivers-reinstatement.pdf"
+   ],
+   "citation_paths": []
+  }
+ ]
+}

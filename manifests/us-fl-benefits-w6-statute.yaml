@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-benefits-statute-fl
+documents:
+- source_id: us-fl-statute-session-laws-2024-hb5001
+  jurisdiction: us-fl
+  document_class: statute
+  title: Florida HB 5001 (2024), General Appropriations Act, enrolled text
+  source_url: https://www.flsenate.gov/Session/Bill/2024/5001
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-07-01'
+  citation_path: us-fl/statute/session-laws/2024/hb5001
+  download_url: https://www.flsenate.gov/Session/Bill/2024/5001/BillText/er/PDF
+  metadata:
+    primary_source: true
+    source_authority: The Florida Senate
+    document_subtype: enrolled_bill
+    program: SSI state supplement (Optional State Supplementation rates)
+    expression_date_note: the General Appropriations Act for FY 2024-25 takes effect July 1, 2024
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 74)
+    source_url_note: source_url is the bill page the bundle cites; the document is its enrolled (ER) text
+    wave6_rows:
+    - 74
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

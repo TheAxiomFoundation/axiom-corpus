@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo.json",
+      "sha256": "12e44952dd921ec434f060f30e49623c4d211417af0b6156281b91ebe82e8be6"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo.json",
+      "sha256": "2bdb2d1ce11ba4854af1bbdfbde6989d6c98c8360d3612a959a59e79d85e2841"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo.jsonl",
+      "sha256": "1222cd781e33259613b146a569ae2c1318b892d866d25b1a2cd95ccc3dae9db1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo/official-documents/us-mo-guidance-dor-faq-capital-gains-subtraction.html",
+      "sha256": "d02a2299e9040e90a0cc7bfcf4f5632f5c93cd7ead327a6fed13007693099b13"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo/official-documents/us-mo-guidance-dor-faq-missouri-working-family-tax-credit.html",
+      "sha256": "073d24113f97bb2e8c864bac20eb96df69b94bd2acee244226adb11a343881a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo/official-documents/us-mo-guidance-dor-individual-income-tax-year-changes.html",
+      "sha256": "cbe7c96c4ca3588c215d0b4fae1a39ad13aa3f8e6847dc696df0377a9a9dc1bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/guidance/2026-10-06-w6-income-tax-guidance-mo/official-documents/us-mo-guidance-dor-ty2025-withholding-table-weekly.pdf",
+      "sha256": "d7d8fba241ecf6671b0fe63fc13c53ca6b1024b6401850ba3e1ee4a5ba25bd01"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 29,
+    "missing_count": 0,
+    "provision_count": 29,
+    "source_count": 29
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:54:11.250649+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jO7WhnI/VWtY7PPWKALaHKWpf2QdfnYUzMVvrTVCqT1OnqLeXv8vCNEX2DY74O+2XWaE7VONkDP+Wipkupl+Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-mo"
+}

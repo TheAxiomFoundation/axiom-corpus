@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/policy/2026-10-06-w6-tanf-ccdf-policy-va.json",
+      "sha256": "673b83da340215ac1b3a7203bfee4324fdaeab03ccc0a9d50d833c2a2ef0d479"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/policy/2026-10-06-w6-tanf-ccdf-policy-va.json",
+      "sha256": "dcce444dbe077e5ee5c4f58b0eb16fa676a7767418bab8270f86419e862cac90"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/policy/2026-10-06-w6-tanf-ccdf-policy-va.jsonl",
+      "sha256": "f3b861b0381542763206f1d20fb7667ef4097183272e4af69094efb9efa0f74a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/policy/2026-10-06-w6-tanf-ccdf-policy-va/official-documents/us-va-w6-ccdf-rate-schedules-ccsp-per-child-copayment-amounts-2026-10-01.pdf",
+      "sha256": "0d3c16396558b0ee69de22f2b6e388a91a8caa93a05f7ea2f5be9368ec758f9b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:59:46.047753+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kpA42c5zbqzxaZnZFk8rw8E68Pg8fH1EZko2rJhfIr+nQFiU6J5YGpqy5XnUTcVroHNqS2QayhY9ifcTHC5TDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-va"
+}

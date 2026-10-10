@@ -1,0 +1,40 @@
+version: 2026-10-06-w6-benefits-guidance-il
+documents:
+- source_id: us-il-guidance-dceo-utility-bill-assistance
+  jurisdiction: us-il
+  document_class: guidance
+  title: Utility Bill Assistance (Illinois DCEO, LIHEAP)
+  source_url: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/dceo/utility-bill-assistance
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Commerce and Economic Opportunity
+    document_subtype: agency_web_page
+    program: LIHEAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 84)
+    wave6_rows:
+    - 84
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-il-guidance-dceo-utility-bill-assistance-faqs
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Utility Bill Assistance: Frequently Asked Questions (Illinois DCEO, LIHEAP)'
+  source_url: https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-il/guidance/dceo/utility-bill-assistance-faqs
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Commerce and Economic Opportunity
+    document_subtype: agency_faq
+    program: LIHEAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 85)
+    wave6_rows:
+    - 85
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

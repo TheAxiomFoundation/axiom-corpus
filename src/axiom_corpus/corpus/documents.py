@@ -2822,23 +2822,14 @@ def _extract_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
-    soup = _html_soup(content)
+    soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
+    kept_default_drops = set(_html_keep_default_drop_selectors(extraction))
     drop_selectors = [
-        "script",
-        "style",
-        "noscript",
-        "svg",
-        "button",
-        "input",
-        "nav",
-        "select",
-        "header",
-        "footer",
-        "textarea",
-        "aside",
-        ".breadcrumb",
-        ".breadcrumbs",
-        "[aria-label='breadcrumb']",
+        *(
+            selector
+            for selector in _HTML_DEFAULT_DROP_SELECTORS
+            if selector not in kept_default_drops
+        ),
         *_html_drop_selectors(extraction),
     ]
     for selector in drop_selectors:
@@ -3144,8 +3135,18 @@ def _json_record_citation_suffix_slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def _html_soup(content: bytes) -> BeautifulSoup:
-    """Parse official HTML with a parser that preserves malformed void tags."""
+def _html_soup(content: bytes, *, parser: str | None = None) -> BeautifulSoup:
+    """Parse official HTML with a parser that preserves malformed void tags.
+
+    ``parser="html.parser"`` (extraction option ``html_parser``) opts out of lxml for pages
+    whose unclosed banner ``<header>``/``<nav>`` makes lxml nest the main content inside the
+    element the extractor drops.
+    """
+    if parser is not None:
+        if parser not in {"lxml", "html.parser"}:
+            raise ValueError(f"unsupported html_parser: {parser!r}")
+        if parser == "html.parser":
+            return BeautifulSoup(content, "html.parser")
     try:
         return BeautifulSoup(content, "lxml")
     except FeatureNotFound:
@@ -3478,6 +3479,40 @@ def _html_content_root(soup: BeautifulSoup, *, extraction: dict[str, Any] | None
             return root
         raise ValueError(f"html content selector did not match: {selector!r}")
     return _main_content(soup)
+
+
+_HTML_DEFAULT_DROP_SELECTORS = (
+    "script",
+    "style",
+    "noscript",
+    "svg",
+    "button",
+    "input",
+    "nav",
+    "select",
+    "header",
+    "footer",
+    "textarea",
+    "aside",
+    ".breadcrumb",
+    ".breadcrumbs",
+    "[aria-label='breadcrumb']",
+)
+
+
+def _html_keep_default_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
+    """Default drop selectors a manifest keeps (for pages whose markup wraps the body in one).
+
+    Some publishers' pages (for example revenue.louisiana.gov) leave a ``<nav>`` element open
+    around the whole page, so dropping ``nav`` removes the content; such a manifest names
+    ``html_keep_default_drop_selectors: [nav]`` together with an ``html_content_selector``.
+    """
+    selectors = (extraction or {}).get("html_keep_default_drop_selectors")
+    if selectors is None:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
 
 
 def _html_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:

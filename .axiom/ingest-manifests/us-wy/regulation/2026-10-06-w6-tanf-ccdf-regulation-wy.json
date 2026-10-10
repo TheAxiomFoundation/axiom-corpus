@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/regulation/2026-10-06-w6-tanf-ccdf-regulation-wy.json",
+      "sha256": "3f590bed2ca3583c404e27bc15eb248370a97d7711736ef14e800dba1f1ac77a"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/regulation/2026-10-06-w6-tanf-ccdf-regulation-wy.json",
+      "sha256": "4bfce3a0af31b039d8a57b18095d1020d1d35e505a6269795986e39074420ace"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/regulation/2026-10-06-w6-tanf-ccdf-regulation-wy.jsonl",
+      "sha256": "9f3304ed5e6713ae792b50f46fed2abf0bc187503afdc71d4f67e61ed399cfda"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/regulation/2026-10-06-w6-tanf-ccdf-regulation-wy/official-documents/us-wy-w6-049-0008-chapter-1.pdf",
+      "sha256": "c4c1303aedd39660494cb69e238bed839383e7646fa994d63ac849b4b44ee553"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T18:01:26.330496+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SfP6ECkTOyR2dnQTICW8/gfPJzcmwm0m8jTFiL6Y8RBAZHxFUul3jwGJuR8tA/1tgvsAVhfXdd+G9mMDIMZTCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-wy"
+}

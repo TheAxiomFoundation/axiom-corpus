@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541.json",
+      "sha256": "30572e2e13a58c81af4fa2d73cde18d15dc2ddaa56f635a229276521f8408cbb"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541.json",
+      "sha256": "62dc8e04d0ed49be094d9a2c8167b9c812f4f7d37b22339ddf555ef8fb831f6e"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541.jsonl",
+      "sha256": "406805a269ad87c192e90b9f1e37f0fefe6ed13bfa76a3badc71fcb2366483a8"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541/ecfr/title-29-part-541.xml",
+      "sha256": "8e4581518dbbfa5cfd44f15bb86605f708d576db3818b97b40a5e98daf2c8b3b"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-29-part-541/ecfr/title-29.structure.json",
+      "sha256": "1063c4078c7d4b8dcfdaad5ef0fde372a548830a120a235085d9a227274fe9f6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-federal.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 57,
+    "missing_count": 0,
+    "provision_count": 57,
+    "source_count": 57
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:47:19.835222+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xAwp3WyZxPMQ2VZYrn4WZoD2QGGLix1Mx42xUOmB1ulvBlxovMudi0K62sZffnHY+rXGisQJLSc6yfoJ/IENDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-federal-ecfr-closure-title-29-part-541"
+}

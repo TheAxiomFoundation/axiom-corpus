@@ -79,6 +79,15 @@ def _version_key(value: str) -> tuple[date, str]:
     return day, value
 
 
+def _orders(value: str) -> bool:
+    """Whether a version key parses as YYYY-MM-DD-…, so it can be ordered."""
+    try:
+        _version_key(value)
+    except ValueError:
+        return False
+    return True
+
+
 def _timestamp(value: object, *, label: str) -> datetime:
     if not isinstance(value, str) or not value:
         raise ValueError(f"{label} is missing")
@@ -307,13 +316,61 @@ def _monotonicity_check(
                     f"{current_release!r} at {current_published.isoformat()}"
                 )
             continue
+        # A version both sides keep is unchanged by this activation, so a
+        # grandfathered key that does not parse (us-ky form 2026-740-es)
+        # needs no ordering proof when both sides keep it: only the versions
+        # that differ are ordered. Every other version must still parse.
+        incoming_versions = set(incoming[pair])
+        active_versions = {str(value) for value in current_versions}
+        kept_unordered = {
+            version for version in incoming_versions & active_versions if not _orders(version)
+        }
         try:
-            incoming_frontier = max(_version_key(value) for value in incoming[pair])
-            active_frontier = max(_version_key(str(value)) for value in current_versions)
+            incoming_keys = [
+                _version_key(value) for value in sorted(incoming_versions - kept_unordered)
+            ]
+            active_keys = [
+                _version_key(value) for value in sorted(active_versions - kept_unordered)
+            ]
         except ValueError as exc:
             evidence_schema_failures.append(f"{pair}: {exc}")
             ordering_evidence_failed = True
             continue
+        if not active_keys:
+            # The incoming release keeps every active version and adds ordered
+            # ones, so no version moves back; as with identical evidence, only
+            # publication recency remains to prove.
+            try:
+                incoming_published = _timestamp(
+                    row.get("incoming_published_at"),
+                    label="incoming database publication timestamp",
+                )
+                current_published = _timestamp(
+                    row.get("current_published_at"),
+                    label=f"{pair} active publication timestamp",
+                )
+            except ValueError as exc:
+                evidence_schema_failures.append(str(exc))
+                ordering_evidence_failed = True
+                continue
+            if incoming_published < current_published:
+                ordering_regressions.append(
+                    f"{pair}: incoming keeps the active versions "
+                    f"{sorted(kept_unordered)!r} and adds others, but "
+                    f"{incoming_release!r} was published {incoming_published.isoformat()} "
+                    f"before active {current_release!r} at {current_published.isoformat()}"
+                )
+            continue
+        if not incoming_keys:
+            evidence_schema_failures.append(
+                f"{pair}: incoming keeps only unordered versions "
+                f"{sorted(kept_unordered)!r} and drops active "
+                f"{sorted(active_versions - kept_unordered)!r}; no ordering proof is possible"
+            )
+            ordering_evidence_failed = True
+            continue
+        incoming_frontier = max(incoming_keys)
+        active_frontier = max(active_keys)
         if incoming_frontier < active_frontier:
             ordering_regressions.append(
                 f"{pair}: incoming frontier {incoming_frontier[1]!r} precedes "

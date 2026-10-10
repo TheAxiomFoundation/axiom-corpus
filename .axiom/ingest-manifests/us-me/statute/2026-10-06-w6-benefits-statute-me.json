@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/statute/2026-10-06-w6-benefits-statute-me.json",
+      "sha256": "50ceed9b720978c5ccee1c8189dfac01bfdb1cece8017d65360ec31c434996ea"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/statute/2026-10-06-w6-benefits-statute-me.json",
+      "sha256": "8052fec714276d1032e795248970957de708ad98ef2389637804ac4c1809e2bb"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/statute/2026-10-06-w6-benefits-statute-me.jsonl",
+      "sha256": "605b1beef8b8617f7458c870ceafc884746a8e3a8a79e43f29827f254bc4d629"
+    },
+    {
+      "path": "data/corpus/sources/us-me/statute/2026-10-06-w6-benefits-statute-me/official-documents/us-me-statute-title-22-3271.html",
+      "sha256": "c5c63172eb53468bdd3f397c5e8dafad7875592dacd58830daebd4a21ceaa9af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:29.123075+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C93C/bGGu8YEgWOkcIMIEVH9pC1nULhP5MdzEJLjBVaGXMSys8Bu2wph6j/St0e4rVFb2ozh0TD9FZhASYC0BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-me"
+}

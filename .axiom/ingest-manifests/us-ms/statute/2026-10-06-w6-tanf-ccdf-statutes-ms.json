@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/statute/2026-10-06-w6-tanf-ccdf-statutes-ms.json",
+      "sha256": "1a34c2e9f237a5a425d60a0a1e1ea6cac97d1e1743233911d604f4673d4bdfc8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/statute/2026-10-06-w6-tanf-ccdf-statutes-ms.json",
+      "sha256": "79343b5a57387dfb925cb49554f2f658f65d95d4a1fbf2e7917994fe5ed9682a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/statute/2026-10-06-w6-tanf-ccdf-statutes-ms.jsonl",
+      "sha256": "02940d57e69d2a56b28750f49e86ede0fc30cb48e0bd66474ca45b5360d9c8d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-10-06-w6-tanf-ccdf-statutes-ms/official-documents/us-ms-w6-session-laws-2021-sb-2759.html",
+      "sha256": "8eee6f0bc74eee74ddf5cf694a4aadb1ef67b32dc6882d6b5f51894f10370860"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:48.767863+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yJx51H/QUhrBdme94Q/q1vQqNwd4ARJByZ40qa6dOfEglppkRLczexKHiai4ln6t4bn3EdDa+7GPV7NPadZJDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-ms"
+}

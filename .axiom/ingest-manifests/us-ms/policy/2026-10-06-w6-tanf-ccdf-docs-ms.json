@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms.json",
+      "sha256": "d62b39398390f008b2de7610165baa046f1454e98cf6d50f3d347a84a9e5e54f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms.json",
+      "sha256": "d6973d4d1d69eb995d7badec405fba4dbad5b156cee52f15483c579ef3a6b2b6"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms.jsonl",
+      "sha256": "c4597be578e6640d96bfeec6342addc4a4fdf35bdd41b5c9cb8f3668f7804898"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms/official-documents/us-ms-w6-mdhs-ccdf-market-rate-survey-2024.pdf",
+      "sha256": "5e0133f5ae84452ff6aabf09903394398b0e0f126c02378fc450109b418e787f"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms/official-documents/us-ms-w6-mdhs-tanf-applying-for-tanf.html",
+      "sha256": "a41972bac27ebd06606b2d60842faa956810f8b1789e2f1e83af48a6827b7535"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms/official-documents/us-ms-w6-mdhs-tanf-historic-tanf-increase.html",
+      "sha256": "5dcedc6d8f6a5f0579797418b5f43ee99d874fa14b3201c04be14b387662d9ae"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms/official-documents/us-ms-w6-mdhs-tanf-tanf-eligibility-flyer.pdf",
+      "sha256": "2dd1649e342330d3770669adf7de2dda15e9de5fd1babcb166a1fc9e2592fe61"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/policy/2026-10-06-w6-tanf-ccdf-docs-ms/official-documents/us-ms-w6-mdhs-tanf-tanf.html",
+      "sha256": "9ef77b2c8f91ea70b1c0697e0bc812e6f037a27e09989723c06bcb284304d53c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 105,
+    "missing_count": 0,
+    "provision_count": 105,
+    "source_count": 105
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:54:42.159394+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VvSwhldQdGxv4EDIioNi8176y7zpr5bxCKD5xKsibPs+iLE0aez+zne6/auJMMPCCRTdg5FLzej3P+Jh2LVMDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-ms"
+}

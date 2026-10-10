@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/form/2026-10-06-w6-health-form-ca.json",
+      "sha256": "687d33f93ae7c6303a62edfaabfd123204257618db161b6b202453ac338e0815"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/form/2026-10-06-w6-health-form-ca.json",
+      "sha256": "77b66d81e60bdffcf318eb96c5ba051191738cb347807c392d5d9caf5b68e345"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/form/2026-10-06-w6-health-form-ca.jsonl",
+      "sha256": "888f1c48b12cd405e61c5254b21a0503f93e92a661abf4e761ee5b0fe79bf947"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-10-06-w6-health-form-ca/official-documents/us-ca-w6-health-official-forms-dhcs-ca-gov-formsandpubs-forms-forms-mced-mc-forms-mc250a-eng.pdf",
+      "sha256": "275bef6fd07003c0913e3aeb863c52cd886733fdb97549b571ce068ca07e84ec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:49:02.000179+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZSKEqkTvmqYfzMIr43g4UpXxGavCVq62+ctpsZn+xXU4kgMGNEh4388wV5ZoLEnAPVv+abnp2zLhb/e21gI+DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-form-ca"
+}

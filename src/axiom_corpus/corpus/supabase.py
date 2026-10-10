@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import hashlib
 import heapq
+import http.client
+import io
 import json
 import os
+import pickle
 import re
 import secrets
 import subprocess
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -21,6 +25,7 @@ from pathlib import Path
 from typing import Any, TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
+from axiom_corpus.corpus.deferred import DeferredError
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.projection_digest import (
     ProjectionDigestError,
@@ -505,19 +510,35 @@ def iter_supabase_rows(
     *,
     versioned_ids: bool = True,
 ) -> Iterator[dict[str, object]]:
-    # The int4 ordinal shim indexes within each release scope, not across the
-    # whole iterable, so a multi-scope load projects the exact same rows as
-    # the per-scope signed evidence digests in release content.
-    scope_positions: dict[tuple[str, str, str], int] = {}
+    projector = SupabaseRowProjector(versioned_ids=versioned_ids)
     for record in records:
-        row = provision_to_supabase_row(record, versioned_ids=versioned_ids)
+        yield projector.project(record)
+
+
+class SupabaseRowProjector:
+    """Project records one at a time, exactly as ``iter_supabase_rows`` does.
+
+    A caller that must keep reading after a projection fails (to report an
+    earlier-ranked error first) projects through this instead of the
+    generator, which cannot continue after raising.
+    """
+
+    def __init__(self, *, versioned_ids: bool = True) -> None:
+        self._versioned_ids = versioned_ids
+        # The int4 ordinal shim indexes within each release scope, not across
+        # the whole iterable, so a multi-scope load projects the exact same
+        # rows as the per-scope signed evidence digests in release content.
+        self._scope_positions: dict[tuple[str, str, str], int] = {}
+
+    def project(self, record: ProvisionRecord) -> dict[str, object]:
+        row = provision_to_supabase_row(record, versioned_ids=self._versioned_ids)
         scope_key = (
             str(row.get("jurisdiction") or ""),
             str(row.get("doc_type") or ""),
             str(row.get("version") or ""),
         )
-        index = scope_positions.get(scope_key, 0)
-        scope_positions[scope_key] = index + 1
+        index = self._scope_positions.get(scope_key, 0)
+        self._scope_positions[scope_key] = index + 1
         ordinal = row.get("ordinal")
         if (
             isinstance(ordinal, int)
@@ -533,7 +554,7 @@ def iter_supabase_rows(
             # Production `corpus.provisions.ordinal` is still int4. Preserve
             # sibling order for Supabase queries without mutating corpus JSON.
             row["ordinal"] = index
-        yield row
+        return row
 
 
 def write_supabase_rows_jsonl(path: str | Path, records: Iterable[ProvisionRecord]) -> int:
@@ -786,11 +807,133 @@ def fetch_staged_release_scope_evidence(
     return evidence
 
 
-# The RPC returns each signed object once with all matching scope memberships.
-# Large or transiently rejected requests are recursively split, and duplicate
-# objects from separate halves are required to be byte-for-byte consistent.
+# Prior signed objects reach the publisher in reads that each hold at most one
+# object. corpus.release_scopes gives the releases of the requested scopes (read
+# by version in batches, each checked against PostgREST's exact count), then
+# each release's signed object is read alone from corpus.release_objects. The
+# RPC corpus.get_released_scope_object_sets returned every matching object in
+# one reply, and union releases hold most scopes, so splitting the request did
+# not shrink it: once those objects reached tens of megabytes each, the reply
+# passed what the gateway delivers (publication run 37676075307: HTTP 520 for
+# 1,445 scopes, then a reply cut off at 59.6 MB for 722).
 _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
 _RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+_RELEASED_SCOPE_VERSION_BATCH = 100
+_RELEASED_SCOPE_PAGE_SIZE = 1_000
+_CONTENT_RANGE_TOTAL_RE = re.compile(r"/(\d+)$")
+
+
+def _released_scope_get(
+    path: str,
+    params: Mapping[str, str],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> tuple[list[object], int | None]:
+    """Read one corpus-schema PostgREST page and its exact row count, if asked.
+
+    Server errors, network errors, and a reply cut off before its end (an
+    incomplete body, or JSON that does not end) are retried with backoff.
+    """
+    headers = {
+        "apikey": service_key,
+        "Authorization": f"Bearer {service_key}",
+        "Accept": "application/json",
+        "Accept-Profile": "corpus",
+        "User-Agent": USER_AGENT,
+    }
+    if "limit" in params:
+        headers["Prefer"] = "count=exact"
+    req = urllib.request.Request(
+        f"{_rest_url(supabase_url)}/{path}?{urllib.parse.urlencode(params)}",
+        headers=headers,
+        method="GET",
+    )
+    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+                content_range = resp.headers.get("Content-Range") if resp.headers else None
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected released-scope response")
+            total = None
+            if "limit" in params:
+                match = _CONTENT_RANGE_TOTAL_RE.search(str(content_range or ""))
+                if match is None:
+                    raise RuntimeError("released-scope response has no exact row count")
+                total = int(match.group(1))
+            return rows, total
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500 and exc.code not in {408, 429}:
+                raise
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (
+            urllib.error.URLError,
+            ConnectionError,
+            TimeoutError,
+            http.client.IncompleteRead,
+            json.JSONDecodeError,
+        ):
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("released-scope retry loop exhausted unexpectedly")
+
+
+def _postgrest_in(values: Sequence[str]) -> str:
+    """A PostgREST ``in`` filter whose values are quoted, so any text is one value."""
+    quoted = ('"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"' for value in values)
+    return f"in.({','.join(quoted)})"
+
+
+def _fetch_release_scope_rows(
+    versions: Sequence[str],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> list[object]:
+    """Every corpus.release_scopes row of these versions, complete by exact count.
+
+    A batch whose rows do not fit one page is split until each half does; a
+    single version that still does not fit is read page by page, and its rows
+    must add up to the count the first page reported.
+    """
+    params = {
+        "select": "release_name,jurisdiction,document_class,version",
+        "version": _postgrest_in(versions),
+        "order": "release_name.asc,jurisdiction.asc,document_class.asc,version.asc",
+        "limit": str(_RELEASED_SCOPE_PAGE_SIZE),
+        "offset": "0",
+    }
+    rows, total = _released_scope_get(
+        "release_scopes", params, service_key=service_key, supabase_url=supabase_url
+    )
+    if total is not None and len(rows) == total:
+        return rows
+    if len(versions) > 1:
+        midpoint = len(versions) // 2
+        return _fetch_release_scope_rows(
+            versions[:midpoint], service_key=service_key, supabase_url=supabase_url
+        ) + _fetch_release_scope_rows(
+            versions[midpoint:], service_key=service_key, supabase_url=supabase_url
+        )
+    while rows and total is not None and len(rows) < total:
+        page, _page_total = _released_scope_get(
+            "release_scopes",
+            {**params, "offset": str(len(rows))},
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        if not page:
+            break
+        rows.extend(page)
+    if total is None or len(rows) != total:
+        raise RuntimeError(
+            f"released-scope rows for version {versions[0]!r} do not match their count"
+        )
+    return rows
 
 
 def _fetch_released_scope_object_sets(
@@ -799,91 +942,76 @@ def _fetch_released_scope_object_sets(
     service_key: str,
     supabase_url: str,
 ) -> list[object]:
-    requested_keys = {scope.key for scope in scopes}
-    payload = {
-        "p_scopes": [
-            {
-                "jurisdiction": scope.jurisdiction,
-                "document_class": scope.document_class,
-                "version": scope.version,
-            }
-            for scope in scopes
-        ]
-    }
-    req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/rpc/get_released_scope_object_sets",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "apikey": service_key,
-            "Authorization": f"Bearer {service_key}",
-            "Accept": "application/json",
-            "Accept-Profile": "corpus",
-            "Content-Type": "application/json",
-            "Content-Profile": "corpus",
-            "User-Agent": USER_AGENT,
-        },
-        method="POST",
-    )
-    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
-        try:
-            with urllib.request.urlopen(req, timeout=600) as resp:
-                rows = json.loads(resp.read())
-            if not isinstance(rows, list):
-                raise RuntimeError("unexpected released-scope response")
-            for row in rows:
-                if not isinstance(row, dict):
-                    raise RuntimeError("released-scope response contains a malformed row")
-                raw_scopes = row.get("scopes")
-                if not isinstance(raw_scopes, list):
-                    raise RuntimeError("released-scope response contains malformed memberships")
-                for raw_scope in raw_scopes:
-                    if not isinstance(raw_scope, dict):
-                        raise RuntimeError(
-                            "released-scope response contains a malformed membership"
-                        )
-                    key = (
-                        str(raw_scope.get("jurisdiction") or ""),
-                        str(raw_scope.get("document_class") or ""),
-                        str(raw_scope.get("version") or ""),
-                    )
-                    if key not in requested_keys:
-                        raise RuntimeError(
-                            f"released-scope response contains an unknown scope: {key!r}"
-                        )
-            return rows
-        except urllib.error.HTTPError as exc:
-            if 400 <= exc.code < 500 and exc.code not in {413, 414}:
-                raise
-            if len(scopes) > 1:
-                midpoint = len(scopes) // 2
-                return _fetch_released_scope_object_sets(
-                    scopes[:midpoint],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                ) + _fetch_released_scope_object_sets(
-                    scopes[midpoint:],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                )
-            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                raise
-        except (urllib.error.URLError, ConnectionError, TimeoutError):
-            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                if len(scopes) == 1:
-                    raise
-                midpoint = len(scopes) // 2
-                return _fetch_released_scope_object_sets(
-                    scopes[:midpoint],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                ) + _fetch_released_scope_object_sets(
-                    scopes[midpoint:],
-                    service_key=service_key,
-                    supabase_url=supabase_url,
-                )
-        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+    """Each prior release of the requested scopes: its signed object and those scopes.
 
-    raise AssertionError("released-scope retry loop exhausted unexpectedly")
+    The rows have the shape the RPC returned, one per release in name order,
+    each with its matching scopes in key order.
+    """
+    requested_keys = {scope.key for scope in scopes}
+    versions = sorted({scope.version for scope in scopes})
+    memberships: dict[str, list[dict[str, str]]] = {}
+    for start in range(0, len(versions), _RELEASED_SCOPE_VERSION_BATCH):
+        batch = versions[start : start + _RELEASED_SCOPE_VERSION_BATCH]
+        for row in _fetch_release_scope_rows(
+            batch, service_key=service_key, supabase_url=supabase_url
+        ):
+            if not isinstance(row, dict):
+                raise RuntimeError("released-scope response contains a malformed row")
+            raw_name = row.get("release_name")
+            try:
+                release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
+            except ValueError as exc:
+                raise RuntimeError("released-scope response has an invalid release name") from exc
+            if not release_name:
+                raise RuntimeError("released-scope response has an invalid release name")
+            key = (
+                str(row.get("jurisdiction") or ""),
+                str(row.get("document_class") or ""),
+                str(row.get("version") or ""),
+            )
+            if key[2] not in batch:
+                raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
+            if key not in requested_keys:
+                # The same version of a scope this release does not request.
+                continue
+            memberships.setdefault(release_name, []).append(
+                {"jurisdiction": key[0], "document_class": key[1], "version": key[2]}
+            )
+
+    object_sets: list[object] = []
+    for release_name in sorted(memberships):
+        objects, _total = _released_scope_get(
+            "release_objects",
+            {
+                "select": "release_name,content_sha256,release_object",
+                "release_name": f"eq.{release_name}",
+            },
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        if len(objects) != 1 or not isinstance(objects[0], dict):
+            raise RuntimeError(
+                f"released-scope release {release_name!r} has no single signed object"
+            )
+        signed = objects[0]
+        if signed.get("release_name") != release_name:
+            raise RuntimeError("released-scope response has inconsistent object identity")
+        object_sets.append(
+            {
+                "release_name": release_name,
+                "content_sha256": signed.get("content_sha256"),
+                "release_object": signed.get("release_object"),
+                "scopes": sorted(
+                    memberships[release_name],
+                    key=lambda scope: (
+                        scope["jurisdiction"],
+                        scope["document_class"],
+                        scope["version"],
+                    ),
+                ),
+            }
+        )
+    return object_sets
 
 
 def fetch_released_scope_objects(
@@ -1961,6 +2089,11 @@ def load_provisions_to_supabase(
     and the publisher's evidence gate re-derives every in-release scope
     server-side after staging; a truly transactional staging boundary needs a
     server-side RPC.
+
+    ``records`` is read once. Each projected row is parked in a temporary
+    file and planning keeps only its identity columns, so memory holds
+    compact per-row metadata rather than every provision body; a row's full
+    projection is read back to compare it with a staged row and to insert it.
     """
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")
@@ -1976,29 +2109,67 @@ def load_provisions_to_supabase(
                 )
             yield record
 
-    rows = list(iter_supabase_rows(_require_release_versions(records), versioned_ids=True))
+    with _ProvisionRowSpool() as spool:
+        return _stage_provision_rows(
+            iter_supabase_rows(_require_release_versions(records), versioned_ids=True),
+            spool=spool,
+            service_key=service_key,
+            supabase_url=supabase_url,
+            chunk_size=chunk_size,
+            dry_run=dry_run,
+            progress_stream=progress_stream,
+        )
 
+
+def _stage_provision_rows(
+    projected_rows: Iterable[dict[str, object]],
+    *,
+    spool: _ProvisionRowSpool,
+    service_key: str,
+    supabase_url: str,
+    chunk_size: int,
+    dry_run: bool,
+    progress_stream: TextIO | None,
+) -> SupabaseLoadReport:
+    rows_total = 0
+    scope_keys: dict[tuple[str, str, str], None] = {}
     rows_by_key: dict[tuple[str, str], dict[str, object]] = {}
-    for row in rows:
-        key = (str(row["citation_path"]), str(row["version"]))
+    repeated_key: tuple[str, str] | None = None
+    for row in projected_rows:
+        rows_total += 1
+        # Every row is projected before a repeated key is reported, as when
+        # the rows were first collected into a list.
+        if repeated_key is not None:
+            continue
+        key = _staging_key(row)
         if key in rows_by_key:
-            raise ValueError(
-                f"load payload repeats an immutable provision key: {key[0]} @ {key[1]}"
-            )
-        rows_by_key[key] = row
+            repeated_key = key
+            continue
+        scope_keys.setdefault(
+            (str(row["jurisdiction"]), str(row["doc_type"]), str(row["version"])), None
+        )
+        rows_by_key[key] = {column: row[column] for column in _STAGING_IDENTITY_FIELDS}
+        if not dry_run:
+            spool.add(key, row)
+    if repeated_key is not None:
+        raise ValueError(
+            "load payload repeats an immutable provision key: "
+            f"{repeated_key[0]} @ {repeated_key[1]}"
+        )
 
     if dry_run:
         return SupabaseLoadReport(
-            rows_total=len(rows),
+            rows_total=rows_total,
             rows_loaded=0,
-            chunk_count=sum(1 for _ in _chunked(iter(rows), chunk_size)),
+            chunk_count=(rows_total + chunk_size - 1) // chunk_size,
             dry_run=True,
         )
 
     rest_url = _rest_url(supabase_url)
     plan = _plan_provision_staging(
-        rows,
+        tuple(scope_keys),
         rows_by_key=rows_by_key,
+        spool=spool,
         service_key=service_key,
         rest_url=rest_url,
     )
@@ -2059,7 +2230,11 @@ def load_provisions_to_supabase(
     chunk_count = 0
     for chunk in _chunked(iter(plan.pending_inserts), chunk_size):
         chunk_count += 1
-        insert_supabase_rows(chunk, service_key=service_key, rest_url=rest_url)
+        insert_supabase_rows(
+            [spool.get(_staging_key(row)) for row in chunk],
+            service_key=service_key,
+            rest_url=rest_url,
+        )
         rows_loaded += len(chunk)
         if progress_stream is not None and (chunk_count == 1 or chunk_count % 10 == 0):
             print(
@@ -2081,7 +2256,7 @@ def load_provisions_to_supabase(
         rows_loaded += 1
 
     return SupabaseLoadReport(
-        rows_total=len(rows),
+        rows_total=rows_total,
         rows_loaded=rows_loaded,
         chunk_count=chunk_count,
         dry_run=False,
@@ -2235,6 +2410,47 @@ def delete_supabase_provision_ids(
         resp.read()
 
 
+# The incoming-row columns staging plans with; every other column of a row is
+# read back from the spool when the row is compared or inserted.
+_STAGING_IDENTITY_FIELDS = ("id", "parent_id", "citation_path", "version")
+
+
+def _staging_key(row: Mapping[str, object]) -> tuple[str, str]:
+    return (str(row["citation_path"]), str(row["version"]))
+
+
+class _ProvisionRowSpool:
+    """Projected provision rows parked in a temporary file, read back by key.
+
+    Staging needs an incoming row's full projection only to compare it with
+    the staged row under the same key and to insert it, so rows are pickled to
+    an unnamed temporary file as they are projected and each key keeps one
+    file offset. Pickling returns every value, including key order, exactly.
+    """
+
+    def __init__(self) -> None:
+        self._file = tempfile.TemporaryFile()  # noqa: SIM115 - closed by __exit__
+        self._offsets: dict[tuple[str, str], int] = {}
+
+    def __enter__(self) -> _ProvisionRowSpool:
+        return self
+
+    def __exit__(self, *exc_info: object) -> None:
+        self._file.close()
+
+    def add(self, key: tuple[str, str], row: dict[str, object]) -> None:
+        self._offsets[key] = self._file.seek(0, io.SEEK_END)
+        pickle.dump(row, self._file, protocol=pickle.HIGHEST_PROTOCOL)
+
+    def get(self, key: tuple[str, str]) -> dict[str, object]:
+        self._file.seek(self._offsets[key])
+        # Only this process wrote the file, so unpickling it is safe.
+        row = pickle.load(self._file)
+        if not isinstance(row, dict):
+            raise TypeError(f"spooled provision row is not a mapping: {key}")
+        return row
+
+
 @dataclass(frozen=True)
 class _ProvisionStagingPlan:
     pending_inserts: tuple[dict[str, object], ...]
@@ -2270,6 +2486,35 @@ def _provision_column_equal(column: str, mine: object, theirs: object) -> bool:
         except ProjectionDigestError:
             return json.dumps(mine, sort_keys=True) == json.dumps(theirs, sort_keys=True)
     return mine == theirs
+
+
+def _staged_row_summary(
+    staged: Mapping[str, object],
+    incoming: Mapping[str, object] | None,
+) -> dict[str, object]:
+    """Keep what planning reads from one staged row.
+
+    ``divergent_content`` lists the content columns that differ from the
+    incoming row under the same key, computed now so the staged row's body
+    can be dropped; a comparison that raises is kept and raised where the
+    plan first reads it.
+    """
+    divergent_content: list[str] | DeferredError = []
+    if incoming is not None:
+        try:
+            divergent_content = sorted(
+                column
+                for column in PROVISION_CONTENT_COLUMNS
+                if not _provision_column_equal(column, incoming.get(column), staged.get(column))
+            )
+        except Exception as exc:
+            divergent_content = DeferredError(exc)
+    return {
+        "id": staged.get("id"),
+        "parent_id": staged.get("parent_id"),
+        "level": staged.get("level"),
+        "divergent_content": divergent_content,
+    }
 
 
 def _dependency_ordered_inserts(
@@ -2336,9 +2581,10 @@ def _dependency_ordered_inserts(
 
 
 def _plan_provision_staging(
-    rows: Sequence[dict[str, object]],
+    scope_keys: Sequence[tuple[str, str, str]],
     *,
     rows_by_key: Mapping[tuple[str, str], dict[str, object]],
+    spool: _ProvisionRowSpool,
     service_key: str,
     rest_url: str,
 ) -> _ProvisionStagingPlan:
@@ -2351,23 +2597,25 @@ def _plan_provision_staging(
     staged rows the load does not describe, or a replacement whose ON DELETE
     CASCADE would reach a row that survives the load — is a conflict, and the
     caller writes nothing.
-    """
-    scope_keys: dict[tuple[str, str, str], None] = {}
-    for row in rows:
-        scope_keys.setdefault(
-            (str(row["jurisdiction"]), str(row["doc_type"]), str(row["version"])), None
-        )
 
+    ``rows_by_key`` holds each incoming row's identity columns; full rows come
+    from ``spool``. Staged rows are fetched a page at a time and each is
+    compared with its incoming row as it arrives, keeping only its identity,
+    level and the list of divergent content columns.
+    """
     existing_by_key: dict[tuple[str, str], dict[str, object]] = {}
     for jurisdiction, doc_type, version in scope_keys:
-        for existing in fetch_staged_scope_rows(
+        for existing in iter_staged_scope_rows(
             jurisdiction=jurisdiction,
             doc_type=doc_type,
             version=version,
             service_key=service_key,
             rest_url=rest_url,
         ):
-            existing_by_key[(str(existing["citation_path"]), str(existing["version"]))] = existing
+            key = (str(existing["citation_path"]), str(existing["version"]))
+            existing_by_key[key] = _staged_row_summary(
+                existing, spool.get(key) if key in rows_by_key else None
+            )
 
     conflicts: list[dict[str, object]] = []
     pending_inserts: list[dict[str, object]] = []
@@ -2384,11 +2632,9 @@ def _plan_provision_staging(
             continue
         del leftover[key]
         matched_existing[key] = staged
-        divergent_content = sorted(
-            column
-            for column in PROVISION_CONTENT_COLUMNS
-            if not _provision_column_equal(column, row.get(column), staged.get(column))
-        )
+        divergent_content = staged["divergent_content"]
+        if isinstance(divergent_content, DeferredError):
+            raise divergent_content.error
         if divergent_content:
             conflicts.append(
                 {
@@ -2504,9 +2750,34 @@ def fetch_staged_scope_rows(
     page_size: int = 1_000,
 ) -> tuple[dict[str, object], ...]:
     """Fetch every staged projection row for one exact provision scope."""
+    return tuple(
+        iter_staged_scope_rows(
+            jurisdiction=jurisdiction,
+            doc_type=doc_type,
+            version=version,
+            service_key=service_key,
+            rest_url=rest_url,
+            page_size=page_size,
+        )
+    )
+
+
+def iter_staged_scope_rows(
+    *,
+    jurisdiction: str,
+    doc_type: str,
+    version: str,
+    service_key: str,
+    rest_url: str,
+    page_size: int = 1_000,
+) -> Iterator[dict[str, object]]:
+    """Yield every staged projection row for one exact provision scope.
+
+    Rows arrive one ``page_size`` page at a time, so a caller that keeps a
+    summary of each row never holds a whole scope's bodies.
+    """
     if page_size <= 0:
         raise ValueError("page_size must be positive")
-    fetched: list[dict[str, object]] = []
     last_id: str | None = None
     while True:
         query_params = {
@@ -2549,11 +2820,10 @@ def fetch_staged_scope_rows(
         if not isinstance(page, list):
             raise RuntimeError("unexpected Supabase staged-scope response")
         page_rows = [row for row in page if isinstance(row, dict) and row.get("id") is not None]
-        fetched.extend(page_rows)
+        yield from page_rows
         if len(page_rows) < page_size:
             break
         last_id = str(page_rows[-1]["id"])
-    return tuple(fetched)
 
 
 def fetch_provision_rows_with_parents(

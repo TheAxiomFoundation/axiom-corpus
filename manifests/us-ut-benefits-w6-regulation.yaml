@@ -1,0 +1,34 @@
+version: 2026-10-06-w6-benefits-regulation-ut
+documents:
+- source_id: us-ut-regulation-admin-rules-r994-401
+  jurisdiction: us-ut
+  document_class: regulation
+  title: 'Utah Administrative Code R994-401: Payment of Benefits (Workforce Services, Unemployment Insurance)'
+  source_url: https://adminrules.utah.gov/public/rule/R994-401/Current%20Rules
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2022-04-21'
+  citation_path: us-ut/regulation/admin-rules/r994/401
+  download_url: https://adminrules.utah.gov/api/public/getfile/uac-html/ffc52bcf-88e1-4d58-a0c3-a18af6a6e3b6.html/R994-401.html
+  request:
+    browser_user_agent: true
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 4194304
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Utah Office of Administrative Rules
+    document_subtype: administrative_code_rule
+    program: Unemployment insurance
+    expression_date_note: the rule's effective date in the eRules record (4/21/2022)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 232, 233)
+    rule_id: 2241
+    reference_number: R994-401
+    source_url_note: source_url is the eRules rule route; download_url is the current rule HTML named by the public API record
+      (searchRuleDataTotal/R994-401), fetched with Accept */* as the FEP R986-200 manifest does
+    wave6_rows:
+    - 232
+    - 233
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

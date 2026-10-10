@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/statute/2026-10-06-w6-income-tax-statute-mn.json",
+      "sha256": "b793ef2dce5666401cbfc47d52955ac6e68ce0300183ee0c42316288615d42ed"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/statute/2026-10-06-w6-income-tax-statute-mn.json",
+      "sha256": "6cf909dea57821ebd983a34fc8aa18daf7ee20f7760b0df42890f68cf605b601"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/statute/2026-10-06-w6-income-tax-statute-mn.jsonl",
+      "sha256": "f33a6700bfac826c2dff379fdf1f55a5ca71b24c1652cbcd4cbaa1500b70223f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-income-tax-statute-mn/official-documents/us-mn-statute-270c-22.html",
+      "sha256": "171702c1b72625c006b3c324c60ede3c3773624342a40de178153f5030dec381"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:00.361977+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "O8gTAQAJvw4bJmG3Emzw8QJDhbCq+Qoi3EXDwlQ6FE4Mw/l8+m18Rce1CPM3s6/xZ9XZshksjFA2WKl/UO4cAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-mn"
+}

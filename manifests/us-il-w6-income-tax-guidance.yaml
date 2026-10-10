@@ -1,0 +1,87 @@
+version: 2026-10-06-w6-income-tax-guidance-il
+documents:
+- source_id: us-il-guidance-idor-pub-120
+  jurisdiction: us-il
+  document_class: guidance
+  title: Publication 120 Retirement Income (Illinois Department of Revenue)
+  source_url: https://tax.illinois.gov/content/dam/soi/en/web/tax/research/publications/pubs/documents/pub-120.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-il/guidance/idor/pub-120
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: publication
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-il-guidance-idor-eitc
+  jurisdiction: us-il
+  document_class: guidance
+  title: Illinois Earned Income Tax Credit (EITC)
+  source_url: https://tax.illinois.gov/programs/eitc.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-il/guidance/idor/eitc
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-il-guidance-idor-questions-and-answers-206
+  jurisdiction: us-il
+  document_class: guidance
+  title: 'Question and answer 206: contributions to IRC Section 529 college savings and tuition programs'
+  source_url: https://tax.illinois.gov/questionsandanswers/answer.206.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-il/guidance/idor/questions-and-answers/206
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: faq
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-il-guidance-idor-income-tax-rates
+  jurisdiction: us-il
+  document_class: guidance
+  title: Income Tax Rates (Illinois Department of Revenue)
+  source_url: https://tax.illinois.gov/research/taxrates/income.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-il/guidance/idor/income-tax-rates
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-il-guidance-governor-press-releases-2022-09-12-tax-rebate-payments
+  jurisdiction: us-il
+  document_class: guidance
+  title: Tax Rebate Payments Begin for Millions of Illinoisans (Office of the Governor press release, 2022-09-12)
+  source_url: https://gov.illinois.gov/newsroom/press-release.25425.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-il/guidance/governor/press-releases/2022-09-12-tax-rebate-payments
+  extraction:
+    html_content_selector: div.press-release
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

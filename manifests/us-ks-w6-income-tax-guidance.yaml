@@ -1,0 +1,66 @@
+version: 2026-10-06-w6-income-tax-guidance-ks
+documents:
+- source_id: us-ks-guidance-revenue-notice-24-08
+  jurisdiction: us-ks
+  document_class: guidance
+  title: Notice 24-08 Changes to Individual Income Tax
+  source_url: https://ksrevenue.gov/taxnotices/notice24-08.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/guidance/revenue/notice-24-08
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: notice
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ks-guidance-revenue-notice-24-09
+  jurisdiction: us-ks
+  document_class: guidance
+  title: Notice 24-09 Child and Dependent Care Expenses Credit
+  source_url: https://ksrevenue.gov/taxnotices/notice24-09.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/guidance/revenue/notice-24-09
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: notice
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ks-guidance-revenue-faqs-individual-income-tax
+  jurisdiction: us-ks
+  document_class: guidance
+  title: Frequently Asked Questions About Individual Income Tax (Kansas Department of Revenue)
+  source_url: https://www.ksrevenue.gov/faqs-taxii.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/guidance/revenue/faqs-individual-income-tax
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: faq
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ks-guidance-treasurer-quest529-savings-program
+  jurisdiction: us-ks
+  document_class: guidance
+  title: Quest529 Savings Program (Kansas State Treasurer)
+  source_url: https://www.kansasstatetreasurer.ks.gov/learn_quest.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/guidance/treasurer/quest529-savings-program
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

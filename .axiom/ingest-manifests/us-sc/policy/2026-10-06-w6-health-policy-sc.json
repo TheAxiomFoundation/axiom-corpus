@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/policy/2026-10-06-w6-health-policy-sc.json",
+      "sha256": "5b04da5eaf73eda69fe5b676a699b61a6cc1d8c0864ac5bce0175292efec4c06"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/policy/2026-10-06-w6-health-policy-sc.json",
+      "sha256": "6b7cfc77eacb1684453e906dc5a86cb15f87531e4aa93a1aabc176121241f269"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/policy/2026-10-06-w6-health-policy-sc.jsonl",
+      "sha256": "d4657afb83587a2621f23f2a9360c0b67ed76aa845a56397ce599a487622a499"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-10-06-w6-health-policy-sc/official-documents/us-sc-w6-health-scdhhs-1115-palmetto-pathways-to-independence-2025-06-23.pdf",
+      "sha256": "6b6321bbee556115fbcd1705b6e74af4a60399d50870d1cb9d8b1a86c083412f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 37,
+    "missing_count": 0,
+    "provision_count": 37,
+    "source_count": 37
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:58:35.201463+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DOXRscALP6YxyaVSlEVEZku26is8MUWaest2lNAe4rqk8Xxgu6lDhpnqNVKG44F3mdE3UG4VbQPAWth1IV/xAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-policy-sc"
+}

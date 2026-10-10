@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd.json",
+      "sha256": "75a4bc8c5e7ae5de69a1908f504ca11c54cd8b9b702c8e7d4081b34ad57342fb"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd.json",
+      "sha256": "54861bd78e94a65072e7f7ff1a13b473c1ee6fb78062f53803504dc3740470f8"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd.jsonl",
+      "sha256": "14648ffd806bc74c4691de7c3b7fe3c8c361cadafcf461fcc9ff24f3edd52fa7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd/official-documents/us-nd-w6-hhs-ccdf-ccap-provider-information.html",
+      "sha256": "1f7138d3e751640bc8d69fe185309d3a5c8d03c004035feae1ec1cdcb179a744"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd/official-documents/us-nd-w6-hhs-ccdf-ccap-updates-2026.html",
+      "sha256": "058bb4efb59d169b5a1ed0281198d282c07797a31f5f293e8f63bb7864f7697f"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd/official-documents/us-nd-w6-hhs-ccdf-child-care-assistance-program.html",
+      "sha256": "a96b08353031b512415e5d58af1833d101b4d11eb043b1203f6d1e75daadb552"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-10-06-w6-tanf-ccdf-docs-nd/official-documents/us-nd-w6-legislature-ccdf-testimony-hb-2190-2023-01-18.pdf",
+      "sha256": "1695a5ce0bc0a199f716137ab21531209766dd1528bcda669eb03520da95738d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 80,
+    "missing_count": 0,
+    "provision_count": 80,
+    "source_count": 80
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:55:29.478013+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PskX7M9ecwv1V+hE7ITPbJmC4ZiaGdrA/1/3iDOGKeom6gGllEFmAnU/MHEogpGRwJFJ0nznkWw696cwOlLVDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-nd"
+}

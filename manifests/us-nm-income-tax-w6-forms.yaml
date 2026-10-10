@@ -1,0 +1,270 @@
+version: 2026-10-06-w6-income-tax-forms-nm
+documents:
+- source_id: us-nm-form-trd-ty2025-pit-packet
+  jurisdiction: us-nm
+  document_class: form
+  title: 2025 Personal Income Tax Form Packet
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-nm/form/trd/ty2025/pit-packet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf
+    tax_year: '2025'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2022-pit-packet
+  jurisdiction: us-nm
+  document_class: form
+  title: 2022 Personal Income Tax Form Packet
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-nm/form/trd/ty2022/pit-packet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf
+    - https://taxsim.nber.org/historical_state_tax_forms/NM/2022/PITbook2022.pdf
+    tax_year: '2022'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2021-pit-packet
+  jurisdiction: us-nm
+  document_class: form
+  title: 2021 Personal Income Tax Form Packet
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-nm/form/trd/ty2021/pit-packet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf
+    tax_year: '2021'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2023-pit-packet
+  jurisdiction: us-nm
+  document_class: form
+  title: 2023 Personal Income Tax Form Packet
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-nm/form/trd/ty2023/pit-packet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf
+    tax_year: '2023'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2024-pit-packet
+  jurisdiction: us-nm
+  document_class: form
+  title: 2024 Personal Income Tax Form Packet
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-nm/form/trd/ty2024/pit-packet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2024.pdf
+    tax_year: '2024'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+    source_note: The bundle also names .../90560f4e-.../PITbook2024.pdf; that file id serves the 2023 packet (same bytes as
+      PITbook2023.pdf, printed '2023 Personal Income Tax Form Packet'), so it is joined to this 2024 packet.
+- source_id: us-nm-form-trd-ty2023-pit-adj
+  jurisdiction: us-nm
+  document_class: form
+  title: 2023 PIT-ADJ, Schedule of Additions, Deductions, and Exemptions
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/247e3a1f-2a1f-4002-a689-e1c3994dde9d/2023pit-adj.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-nm/form/trd/ty2023/pit-adj
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/247e3a1f-2a1f-4002-a689-e1c3994dde9d/2023pit-adj.pdf
+    tax_year: '2023'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2024-pit-adj
+  jurisdiction: us-nm
+  document_class: form
+  title: 2024 PIT-ADJ, Schedule of Additions, Deductions, and Exemptions
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/d36fdefa-8c60-4b26-b368-ee712432a54d/2024pit-adj.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-nm/form/trd/ty2024/pit-adj
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/d36fdefa-8c60-4b26-b368-ee712432a54d/2024pit-adj.pdf
+    tax_year: '2024'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2022-pit-adj
+  jurisdiction: us-nm
+  document_class: form
+  title: 2022 PIT-ADJ, Schedule of Additions, Deductions, and Exemptions
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/41cdedb5-199d-4604-b2cb-68c168f36984/2022pit-adj.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-nm/form/trd/ty2022/pit-adj
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.taxformfinder.org/forms/2022/2022-new-mexico-form-pit-adj.pdf
+    tax_year: '2022'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2022-pit-adj-instructions
+  jurisdiction: us-nm
+  document_class: form
+  title: Instructions for 2022 PIT-ADJ
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/2f1a6781-9534-4436-b427-1557f9592099/2022pit-adj-ins.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-nm/form/trd/ty2022/pit-adj-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/2f1a6781-9534-4436-b427-1557f9592099/2022pit-adj-ins.pdf
+    tax_year: '2022'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2023-pit-adj-instructions
+  jurisdiction: us-nm
+  document_class: form
+  title: Instructions for 2023 PIT-ADJ
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/cb0dc85c-5c28-45b1-a3f5-1e00fffaaf6b/2023pit-adj-ins.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-nm/form/trd/ty2023/pit-adj-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/cb0dc85c-5c28-45b1-a3f5-1e00fffaaf6b/2023pit-adj-ins.pdf
+    tax_year: '2023'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2021-pit-1-instructions
+  jurisdiction: us-nm
+  document_class: form
+  title: Instructions for 2021 PIT-1, New Mexico Personal Income Tax Return
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/b60e3775-495d-4b64-aabd-255818dbb420/2021pit-1-ins.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-nm/form/trd/ty2021/pit-1-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://taxsim.nber.org/historical_state_tax_forms/NM/2021/2021pit-1-ins.pdf
+    tax_year: '2021'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+- source_id: us-nm-form-trd-ty2021-pit-rc
+  jurisdiction: us-nm
+  document_class: form
+  title: 2021 PIT-RC, New Mexico Rebate and Credit Schedule
+  source_url: https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/5d7e5285-3975-4df4-952f-1f83c9e7b770/2021pit-rc.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-nm/form/trd/ty2021/pit-rc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://taxsim.nber.org/historical_state_tax_forms/NM/2021/2021pit-rc.pdf
+    tax_year: '2021'
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/

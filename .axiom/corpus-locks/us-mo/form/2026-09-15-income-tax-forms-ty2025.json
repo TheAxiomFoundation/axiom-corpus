@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-mo",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-mo/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "360c12aeffd419404ee66cf11bd032f7921f853afb7580b34675334e7959ce5a", "size": 330},
+    {"path": "data/corpus/inventory/us-mo/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "763f9710ed2d11fb858a012074ebdd72164842028de02d2f075876faa22bb686", "size": 8532},
+    {"path": "data/corpus/provisions/us-mo/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "95c52eaa42ecc624148a6d9bde74360b19b42932e09522c312d25c12d9747184", "size": 363878},
+    {"path": "data/corpus/sources/us-mo/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mo-dor-form-mo-1040-instructions-ty2025.pdf", "sha256": "99b1d607e1c9c7623ecf3cd7a8f6fba2a732861dcb54164cc7e7e3a82c5df540", "size": 1881288},
+    {"path": "data/corpus/sources/us-mo/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mo-dor-form-mo-1040-ty2025.pdf", "sha256": "912b43015ea273d93b0c25fe6268d1415496fbadbb048a97783849c5dd2a8c91", "size": 2371179},
+    {"path": "data/corpus/sources/us-mo/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mo-dor-tax-chart-ty2025.pdf", "sha256": "39c947384d320d7a3cd95478ea264dea33596fc9bf086988cbcdee6c80b8b528", "size": 74620}
+  ]
+}

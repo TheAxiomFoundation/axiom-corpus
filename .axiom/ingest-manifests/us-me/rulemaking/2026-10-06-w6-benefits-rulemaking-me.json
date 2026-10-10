@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/rulemaking/2026-10-06-w6-benefits-rulemaking-me.json",
+      "sha256": "1ee54c0b28b43e8d7f191df56734f043c31ba4886f747ab88a184ea787cb3ee2"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/rulemaking/2026-10-06-w6-benefits-rulemaking-me.json",
+      "sha256": "a03ef8045e8743df9f056107b48ea8ee89b530e3865ae7dbce20ef285b825f93"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/rulemaking/2026-10-06-w6-benefits-rulemaking-me.jsonl",
+      "sha256": "a92670cf00b5ac30ec8be3b26ae078a29dc755ab184cb41da8021be121496624"
+    },
+    {
+      "path": "data/corpus/sources/us-me/rulemaking/2026-10-06-w6-benefits-rulemaking-me/official-documents/us-me-rulemaking-dhhs-ofi-chapter-301-rule-2026-02-244p.pdf",
+      "sha256": "1e14cd7339b3bfd8a18c5835a73038615ea4225e4ff3b452652ee97f3ec90023"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T17:53:27.364080+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YlWstEr3+v7SzK9iRT+7Y/fyuzyzfBFZx1ZK2Yd8CswlofAK7yK6tzVMvQl8BaLhYLz052UbTPlmJABkansgBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-rulemaking-me"
+}

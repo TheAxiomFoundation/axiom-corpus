@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/regulation/2026-10-06-w6-health-regulation-or.json",
+      "sha256": "303e7ff981c618e11d7942651901b6c877b1a045031d95640e00e85248d52049"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/regulation/2026-10-06-w6-health-regulation-or.json",
+      "sha256": "a2ce7d1c9c44f8babcc02c0e2f5cf6f0356109bd994d34c11c93317dd4d91d53"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/regulation/2026-10-06-w6-health-regulation-or.jsonl",
+      "sha256": "d5aeec5ec95cb2056eab760cce4236c84386f5c7aa2c9923e76b8b60e42c56fa"
+    },
+    {
+      "path": "data/corpus/sources/us-or/regulation/2026-10-06-w6-health-regulation-or/official-documents/us-or-w6-health-chapter-461-division-155-rule-461-155-0250-history.pdf",
+      "sha256": "ab903c06062c71df5ab4118a187e4846cd987897874b20b8dd15a4f73763faf5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 47,
+    "missing_count": 0,
+    "provision_count": 47,
+    "source_count": 47
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:57:38.730304+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IyOcFfj107ocaxPqKZPIrNu6fFeh9KW3ygJRaEWyrJ6CdEo1A6uJdemCFsZG97Hy2ozxsF1n/E/Ww9i6CWCJCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-regulation-or"
+}

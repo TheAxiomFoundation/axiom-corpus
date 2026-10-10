@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4.json",
+      "sha256": "ecc4cd6476cb64d7d28764d2129d970be015dad3eea14e2e7cb49bbd924dcb26"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4.json",
+      "sha256": "206f414b1ce068acd8e241db6cd83f531300fabbeef3e30652a1066962b6090c"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4.jsonl",
+      "sha256": "e2ab371e27827ba45fde9068cd2f5d2ca7e85baf8b01252835606a2ff6bd3687"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4/indiana-code-html/2026-Indiana-Code-html.zip",
+      "sha256": "bfbc5948f79e3b8c30cb8b49b8f96a5aca2c135682114af9904e92f8f34fb5c3"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4/indiana-code-html/2026_Indiana_Code_HTML/4.html",
+      "sha256": "567cedefdacc4c39855bfe73be07cea3c442832e9f332f0b5d98a1ddc0e067cf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4118,
+    "missing_count": 0,
+    "provision_count": 4118,
+    "source_count": 4118
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:05.296794+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "H7BXVo9FbGfZZj0oieBUiVLusIQShdVioPkL5F2oDkbRIWVvUNc2ziCnTlfnK/CjBIGCIMe50rTKEs73HrfQBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-in-us-in-title-4"
+}

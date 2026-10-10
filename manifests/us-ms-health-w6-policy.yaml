@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-health-policy-ms
+documents:
+- source_id: us-ms-w6-health-dom-healthier-mississippi-1115-extension-2024
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'CMS approval of the Healthier Mississippi Section 1115 Demonstration extension (11-W-00185/4): expenditure authority
+    and special terms and conditions'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ms/policy/dom/healthier-mississippi-1115-extension-2024
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: cms_1115_approval_pdf
+    source_discovery_group: us-ms/policy/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 96
+    bundle_url: https://medicaid.ms.gov/wp-content/uploads/2024/09/Healthier-Mississippi-Extension.pdf

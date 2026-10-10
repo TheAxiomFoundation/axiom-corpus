@@ -1,0 +1,1 @@
+Wave 6 tax-ok-wv: manifests and generator for 277 Oklahoma-West Virginia income-tax, EITC and CTC documents named by the program bundles (forms, instructions, department guidance, bills and session laws, statute chapters), with the decisions file for the 394-row work order.
