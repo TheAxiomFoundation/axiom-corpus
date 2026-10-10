@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "d0d7a594ea9f7855c723ce3c51a95d3b368463a367fc98b5d12115ba53b7e511"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "1febd56439bd6f13366ba3ec71ced0fcd3bdf0d0a8f0266cacccc0d7d5292c96"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "8fd206dd350d21825dd6d7f9fa6dab1b38f7cc4c5eb6078192ecdd952e15287f"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-09-14-msp-income-standards/official-documents/us-sc-scdhhs-medicaid-eligibility-programs-2026-03-01.pdf",
+      "sha256": "a9e162c91ae8955d3a95c7efa11581c0614b061a1ea97dcbfd9fb945b976de83"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-09-14-msp-income-standards/official-documents/us-sc-scdhhs-program-eligibility-and-income-limits-2026.html",
+      "sha256": "ea053a1c1ab89de2871e5474c1883a73b2a80a411cf790c1bb3fbeeb1e95b50a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-sc-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 76,
+    "missing_count": 0,
+    "provision_count": 76,
+    "source_count": 76
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:02:07.989349+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C0+vV1yXnC6ghpaWcbRqYRUYpsDenKP1yLq8nnYIJ8pdcqoLADUKO9QZotapqc+LyxgDNva3K5KWRJHmUCwyAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

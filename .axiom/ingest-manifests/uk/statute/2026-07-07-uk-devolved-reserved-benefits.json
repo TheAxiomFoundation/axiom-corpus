@@ -11,20 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-devolved-reserved-benefits.jsonl",
       "sha256": "07d02669853858a56facda9d88772ac38c9c561cf1899ab38000a96c3bdc4aa0"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-devolved-reserved-benefits/asp/2018/9/section-81.xml",
-      "sha256": "02d4daaa028e0a76b1e1fdd15607015fb16493d14a40730275919836c0619a6a"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-devolved-reserved-benefits/ukpga/1995/18/section-4.xml",
-      "sha256": "1aadd17024498f5574a053077558e697cecf5899e8ebc36440c5728ed14b5e67"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "83ad788aa0eb2e101d696fc12b46295704f602c9",
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
     "dirty_tracked": false,
-    "root": "/private/tmp/claude-501/-Users-maxghenis/ca5f4ab7-d8a5-4e03-82eb-71e2a5166288/scratchpad/uk-corpus-wt"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,14 +31,14 @@
     "source_count": 2
   },
   "document_class": "statute",
-  "generated_at": "2026-07-07T18:54:27.002707+00:00",
+  "generated_at": "2026-07-21T11:42:01.019857+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "aPO8a+RaY6rQ0e5JKoJZNDd1FLk7MOxHWnIGJH4Y+3n5i9S9vBAGKP2yZ3z4Yo68eJTlNL4ogT41fRRtwTpgBA=="
+    "value": "DNVzVwJC/x8okq0w/WO6BcfKQURgcLAOy7O/oDaubAFUXOe47RceccLF06KT2OC5ET/9Z6xsUB4IoB0a9EJLBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-07-uk-devolved-reserved-benefits"

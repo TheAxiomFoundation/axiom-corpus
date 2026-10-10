@@ -11,24 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-esa-income-related.jsonl",
       "sha256": "8013016f00b2a6b6e4e947392d42bacd781098b3a3a6f4647a19cbf38f1cd738"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/uksi/2008/794/regulation-67.xml",
-      "sha256": "8a40dba4872f2a1546d5b80c095ba580253cc0b6b6cddf67a583a9f58445ba67"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/uksi/2008/794/regulation-68.xml",
-      "sha256": "23b22971eed349436d879d562757f344b5521d57310bc028a93a4f0acb5d92a8"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/uksi/2008/794/schedule-4.xml",
-      "sha256": "0003897c676eb90e3226690c28e3dff58b7d7507289ae740eab37a22e1f53091"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "025f5d98e446cd4bf26961e0a3249b90238b736b",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/laneC-esa-tc/axiom-corpus"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -43,14 +31,14 @@
     "source_count": 3
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-06T22:47:19.527269+00:00",
+  "generated_at": "2026-07-21T11:42:00.391402+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "KBrbXOMUzOUy9mrx5msCmCWdSU0yGqUNyFVhO5hD+dIv7dJEbC/T9CMbHz1oy9Z/kZaPUREGZzF6mMLwGExYBw=="
+    "value": "AaVmYiRa5sqAvqME2AfxNQ7Y17aQO+eVyrSerIq47rUakmAu5hK93+eM5I/NbOG2Mhanj6VmSJSpZNgCBlWCDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-uk-esa-income-related"

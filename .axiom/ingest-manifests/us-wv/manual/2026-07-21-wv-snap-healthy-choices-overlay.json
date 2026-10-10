@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json",
+      "sha256": "50d6ac34322ddc600bc47a5e7f24fd8eac8673bf6804806a733cd7f1cb47e673"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json",
+      "sha256": "2064195a8b8f409fa5bca5e16c631abbfc249bf469b0fb863f69a2273d8e8396"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.jsonl",
+      "sha256": "f85a78468afbd4cd5ba3193c763d53296665f3b137928c74b01c369b529e8823"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay/official-documents/wv-bfa-snap-healthy-choices-pause-2026-07-10.html",
+      "sha256": "dcbb53c4a195902fca1d96d730410a37718e5407cb6e2c1a8b5efd20aa2025e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "04659f83f3ec8347478a83b82eb8c7e0ced5cff8",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src UV_PROJECT_ENVIRONMENT=/Users/pavelmakarchuk/axiom-corpus-uc/.venv uv run --no-sync python -m axiom_corpus.corpus.cli extract-official-documents --base data/corpus --version 2026-07-21-wv-snap-healthy-choices-overlay --manifest manifests/us-wv-snap-healthy-choices-overlay.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T20:08:24.901973+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-wv-snap-manual.md",
+      "sha256": "925ebb25d65477fbcedfa3f4d203de0216fe9e7336aac026d0e72aefb70b8746"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wysKtd+5RaE+SbR8YyHpRk4QmNP9T7SV0SVeAwMkDhS0h9315Zv1d3fS8Mn5DpgpnC4+3jzTwKLYl5B2/ufnDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-wv-snap-healthy-choices-overlay"
+}

@@ -1,0 +1,54 @@
+documents:
+  - source_id: us-hi-dotax-2025-n11-instructions
+    jurisdiction: us-hi
+    document_class: form
+    citation_path: us-hi/form/individual-income-tax/2025/n-11-instructions
+    title: Hawaii Form N-11 Instructions, Tax Year 2025 — Tax on Capital Gains Worksheet
+    source_url: https://files.hawaii.gov/tax/forms/2025/n11ins.pdf
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2025-01-01'
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>Tax on Capital Gains Worksheet)$'
+      section_label_replacements:
+        Tax on Capital Gains Worksheet: capital-gains-tax-worksheet
+      page_windows:
+        - start_page: 35
+          end_page: 35
+          start_at_pattern: '^Tax on Capital Gains Worksheet$'
+          stop_at_pattern: '^Other State and Foreign$'
+    metadata:
+      primary_source: true
+      source_authority: Hawaii Department of Taxation
+      document_subtype: individual_income_tax_instructions
+      form_number: N-11
+      program: individual_income_tax
+      tax_year: '2025'
+      target_tax_year: '2026'
+      application_scope: structural_only
+      worksheet: Tax on Capital Gains Worksheet
+      statutory_authority: HRS 235-51(f)
+      statutory_corpus_citation: us-hi/statute/235-51
+      statutory_corpus_version: 2026-07-16-pit-east-us-hi-volume-04-chapter-235
+      tax_year_2026_alternative_rate: '0.0725'
+      tax_year_2026_threshold_single_or_married_filing_separately: '48000'
+      tax_year_2026_threshold_head_of_household: '72000'
+      tax_year_2026_threshold_joint_or_qualifying_surviving_spouse: '96000'
+      correction_notice_url: https://tax.hawaii.gov/forms/a1_5errors/
+      correction_notice_as_of: '2026-04-22'
+      source_status: current_official_tax_year_instructions
+      source_note: >-
+        Official Hawaii resident individual income tax instructions. Printed
+        page 33 (PDF page 35) states the complete Tax on Capital Gains Worksheet
+        algorithm, including Hawaii long-term and short-term adjustments and the
+        required smaller-of comparisons. This 2025 worksheet is retained for
+        structural use only: its printed line-12 amounts of $24,000, $36,000,
+        and $48,000 are incorrect for tax year 2026. Hawaii DOTAX's official
+        April 22, 2026 correction notice replaces them with $48,000 for single
+        or married filing separately, $72,000 for head of household, and
+        $96,000 for joint or qualifying surviving spouse. Those corrected
+        amounts are also the taxable-income ceilings below 7.25 percent in the
+        HRS 235-51(a)-(c) schedules applicable to taxable years beginning after
+        December 31, 2024; HRS 235-51(f) supplies the 7.25 percent alternative
+        rate. Use corpus citation us-hi/statute/235-51 for 2026 amounts.

@@ -1,0 +1,28 @@
+version: 2026-09-13-wic-state-plan
+documents:
+- source_id: ma-wic-state-plan-ffy2027
+  jurisdiction: us-ma
+  document_class: policy
+  title: Massachusetts WIC State Plan 2027
+  source_url: https://www.mass.gov/doc/massachusetts-wic-state-plan-2027/download
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-10-01'
+  citation_path: us-ma/policy/wic-state-plan/ffy2027
+  request:
+    browser_impersonation: safari17_0
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Public Health, WIC Nutrition Program
+    document_subtype: state_plan
+    program: WIC
+    fiscal_year: '2027'
+    plan_period: 2026-10-01 to 2027-09-30
+    plan_status: current (FFY 2027 plan as posted)
+    extraction_granularity: pdf_page
+    publisher_page_url: https://www.mass.gov/info-details/massachusetts-wic-state-plan
+    source_discovery_group: us-ma/policy/wic-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; state WIC agency state plan page
+    closure_element: wic_s30
+    tls_note: mass.gov answers HTTP 403 to non-browser clients; the Safari 17 fingerprint is served

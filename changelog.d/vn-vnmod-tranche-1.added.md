@@ -1,0 +1,1 @@
+First Viet Nam (vn) corpus presence: VNMOD v3.5 tranche-1 statute scope (Luat 04/2007/QH12 PIT; Luat 13/2008/QH12 VAT; Luat 57/2010/QH12 environmental protection tax; Luat 58/2014/QH13 social insurance — the portal's digitally signed scan via Vietnamese OCR) and regulation scope (Nghi dinh 20/2021/ND-CP social assistance; Nghi dinh 76/2024/ND-CP amendment).

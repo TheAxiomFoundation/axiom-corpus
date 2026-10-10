@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
-      "sha256": "502975cbbc738287adcefd3090654d1f2c36247e7461afc7f20617247ca4fcba"
+      "sha256": "392341d5fd06100b8db5cae5da835264a3d6a7479efdb438897520c95f5a5663"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:54.054317+00:00",
+  "generated_at": "2026-07-21T11:40:42.578113+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "fTAzJQI2fbaJzJnKvUj7v2jMwNX1ovhT9qUAnwXRgSqjTMZZhhSkE4/8Damjzjw4jp8kUsuGpEkOpnq4rPuiBw=="
+    "value": "kN094F7gff9geO8t9hf22m+2zKcPY2uiAdIZWwW6eFp7nRNghZ1cSw9hs2grK5LyZQ6CDA/L6Q7xQUb/doh8AA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-h-caregivers"

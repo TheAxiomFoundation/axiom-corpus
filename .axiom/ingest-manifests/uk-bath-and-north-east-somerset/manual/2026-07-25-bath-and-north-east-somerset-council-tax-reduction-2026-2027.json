@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bath-and-north-east-somerset/manual/2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027.json",
+      "sha256": "e3b61f6792721c01fe555c73fa00ffc7031c70c39bd435cc9657fb6ff01ab13c"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bath-and-north-east-somerset/manual/2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027.json",
+      "sha256": "aa87820fdfab57269ed8ad8aa1051d0c2e13014383dd9508ed1323a92ab9a81f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bath-and-north-east-somerset/manual/2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "90c119a897b4d54b272a2a939aa0fc154f3f6248d55df0203ea00ef2f019086c"
+    },
+    {
+      "path": "data/corpus/sources/uk-bath-and-north-east-somerset/manual/2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027/official-documents/bath-and-north-east-somerset-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "c64f5386b6fe539bb4423fb45658faacacd6c9d196c948efe7b4dab61e777839"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bath-and-north-east-somerset-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 182,
+    "missing_count": 0,
+    "provision_count": 182,
+    "source_count": 182
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:24.299983+00:00",
+  "jurisdiction": "uk-bath-and-north-east-somerset",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "a/q0ZJ8V6lsUg1q/3WXhxoPut70B/jv9CarTWLLXbTIrdB4yM3jyuSXua2FaS19UcEqpqdOnngvmENuEGa1mBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027"
+}

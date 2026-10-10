@@ -35,6 +35,23 @@ The purpose of these Rules is to fulfill Ethics Commission duties.\par
 Promulgated by Ethics Commission January 10, 2014.\par
 }"""
 
+SAMPLE_VERSIONED_SECTION_RTF = r"""{\rtf1\ansi
+OKLAHOMA STATUTES\par
+TITLE 68. REVENUE AND TAXATION\par
+§68-2358V1.  Adjustments to arrive at Oklahoma taxable income.\tab 1\par
+§68-2358V2.  Adjustments to arrive at Oklahoma taxable income.\tab 2\par
+§68-2358V3.  Adjustments to arrive at Oklahoma taxable income.\tab 3\par
+\par
+§68-2358V1.  Adjustments to arrive at Oklahoma taxable income.\par
+Historical version one text. NOTE: An earlier enactment was repealed by later laws.\par
+\par
+§68-2358V2.  Adjustments to arrive at Oklahoma taxable income.\par
+Historical version two text. NOTE: An earlier enactment was repealed by later laws.\par
+\par
+§68-2358V3.  Adjustments to arrive at Oklahoma taxable income.\par
+Operative version three text. NOTE: An earlier enactment was repealed by later laws.\par
+}"""
+
 SAMPLE_SOURCE = OklahomaSource(
     title="75",
     file_name="os75.rtf",
@@ -61,6 +78,34 @@ def test_parse_oklahoma_title_rtf_skips_toc_and_extracts_sections():
     assert provisions[1].heading == "Statutes defined"
     assert provisions[1].references_to == ("us-ok/statute/75-12",)
     assert provisions[1].source_history == ("R.L. 1910, § 8147.",)
+
+
+def test_parse_oklahoma_title_rtf_applies_section_2358_version_statuses():
+    source = OklahomaSource(
+        title="68",
+        file_name="os68.rtf",
+        source_url="https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os68.rtf",
+        source_path="sources/us-ok/statute/test/oklahoma-statutes-rtf/os68.rtf",
+        source_format=OKLAHOMA_STATUTES_RTF_SOURCE_FORMAT,
+        sha256="abc",
+    )
+
+    provisions = parse_oklahoma_title_rtf(
+        SAMPLE_VERSIONED_SECTION_RTF,
+        source=source,
+        title_heading="Title 68. Revenue and Taxation",
+    )
+
+    assert [provision.citation_path for provision in provisions] == [
+        "us-ok/statute/68-2358v1",
+        "us-ok/statute/68-2358v2",
+        "us-ok/statute/68-2358v3",
+    ]
+    assert [provision.status for provision in provisions] == [
+        "superseded",
+        "superseded",
+        "operative",
+    ]
 
 
 def test_extract_oklahoma_statutes_from_source_dir_writes_artifacts(tmp_path):

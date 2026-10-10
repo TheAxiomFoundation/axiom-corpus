@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-sandwell/manual/2026-08-06-sandwell-council-tax-reduction-2026-2027.json",
+      "sha256": "a5424ed41ea155c52c7a70ed0778a2d8415ed498dfa897a3ba28f99e1d20ea85"
+    },
+    {
+      "path": "data/corpus/inventory/uk-sandwell/manual/2026-08-06-sandwell-council-tax-reduction-2026-2027.json",
+      "sha256": "e9e18c61ae6b5da2374de0247ab5039fa8c8475a9fccd373641b2dde28197b1a"
+    },
+    {
+      "path": "data/corpus/provisions/uk-sandwell/manual/2026-08-06-sandwell-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6b21aebfdad4dd2acaf9dfa26079e232cd10d30f1af9f30c0aa1f06398826f7c"
+    },
+    {
+      "path": "data/corpus/sources/uk-sandwell/manual/2026-08-06-sandwell-council-tax-reduction-2026-2027/official-documents/sandwell-council-tax-reduction-policy-2026-2027.pdf",
+      "sha256": "cecd0fcccbda273a344971f4e15296aeb0fa5c0046cb5b38364ffe4032d4a3e7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "afdca63bd6d51ff39736ef3fa19a034327f1f903",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-06-sandwell-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-sandwell-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 133,
+    "missing_count": 0,
+    "provision_count": 133,
+    "source_count": 133
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-07T02:06:40.403480+00:00",
+  "jurisdiction": "uk-sandwell",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "M0Db6Cz1i7ybpUgUANbrPyhgbLXMhCSbf0LUKP4FGRm7Tjcj7ebke9zB8wemBA2BoMKiR8FHfIUvMt1GGje2Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-06-sandwell-council-tax-reduction-2026-2027"
+}

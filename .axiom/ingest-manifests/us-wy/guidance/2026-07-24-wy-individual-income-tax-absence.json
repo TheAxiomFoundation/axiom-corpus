@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/guidance/2026-07-24-wy-individual-income-tax-absence.json",
+      "sha256": "e14d5c3eb4d62b23d4ffd8a38a30238ed85a29b68c04210f2cbfc885f95f2e3c"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/guidance/2026-07-24-wy-individual-income-tax-absence.json",
+      "sha256": "d9a7ad51c0bb424c5286b5b946d94760aad6580721bd9d07dd0251fbee0f8479"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/guidance/2026-07-24-wy-individual-income-tax-absence.jsonl",
+      "sha256": "34d9dc6a0dcf0bb4ea4127ac293d83aff953389bbaa35cf3e1818a044f6b7991"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/guidance/2026-07-24-wy-individual-income-tax-absence/official-documents/us-wy-lso-2026-gaming-revenue-distribution-and-taxation-rates.pdf",
+      "sha256": "924cfe4fce8d6f552ee80e4c350ea62184119b515a9dc39ab60fafa281580145"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/guidance/2026-07-24-wy-individual-income-tax-absence/official-documents/us-wy-state-portal-about-wyoming.html",
+      "sha256": "c0029def1bbeeec86552e47d35242a982977f823950bab3a7c6762bd999d8a47"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3523477de565e6cf4e1b1fafb25647dc58e11efd",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-wy-individual-income-tax-absence --manifest manifests/us-wy-2026-individual-income-tax-absence.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T19:35:21.485120+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-wy-individual-income-tax-absence.md",
+      "sha256": "91eadaaf4a4da9fd1dc940fa9bcdfc4e7a7dde111d2440c7884e72f91b09e430"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AzPUwBQQF/6CEOiXpIkDkqK6UWfQPSmU9MxOjHfekiqSUgMY/yfD8Cu6J7JKJ1nuQCGIgY8fio0RSY7tuHCEDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-wy-individual-income-tax-absence"
+}

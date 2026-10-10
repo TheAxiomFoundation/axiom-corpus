@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade.json",
+      "sha256": "ec4e44666444c837f1a69b191e9de33c9c24799416e43b5a9b076236317caec7"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade.json",
+      "sha256": "11b6bc0260c8ba730fb8056a99cdfe7f4ce1a8fd2ab34551e161bf2de5372957"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade.jsonl",
+      "sha256": "65de785358421e4f0a3cda4d1cde52d4ee5f79693c150eb7630c18975568c39c"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade/federal-register/api/documents-page-1.json",
+      "sha256": "8d2517bbb4a8e5c84b0065fa9b9f6188cbac1edcfa9dbbe043b3ef3261d0d8b3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade/federal-register/documents/2026-14542.json",
+      "sha256": "3c057fc18014a1f421ef952f0b3fe74881dce61c3a7d04d0c951f93a3955f666"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade/federal-register/documents/2026-14542.txt",
+      "sha256": "61f2446c6f0d34fdada69e187f580ebf2acc2cb4ce4405ece00d4f33d36db7c7"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade/federal-register/documents/2026-14654.json",
+      "sha256": "13c86222e2fdf85d07007b1045a7173d21813b2104f368106202585700211a68"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade/federal-register/documents/2026-14654.txt",
+      "sha256": "6af82dda82fbaea05106ef39af50281d2c8fcb28143015d3fdb2c814ebc8fcea"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-brazil-301 --start-date 2026-07-20 --document-type NOTICE --document-type PRESDOCU --term \"Brazil digital trade\" --source-as-of 2026-08-01 --expression-date 2026-07-20"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T12:58:16.795086+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ki+CCqCv/btK0SnUz9xsZaws4mPpMqMLonbbCdZFzAQ4DTKkSPTYKnVKJOWKMgoVdb9iiiz2dJ4iWHm8aIMsAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-brazil-301-2026-07-20-types-notice-presdocu-term-brazil-digital-trade"
+}

@@ -1,0 +1,1 @@
+Add a service-role work queue with atomic claims, expiring leases, and live priorities. Claims require every declared dependency to exist and be completed; missing or null dependency IDs keep work pending.

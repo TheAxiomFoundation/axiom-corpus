@@ -1,0 +1,103 @@
+# Bolivia (bo) tranche-1 capture, STATUTE class - BOLMOD v2.1 parity
+# (policy years 2019-23; SOUTHMOD full-bundle program lane 6; report
+# CR-BOLMOD-v2-1).
+#
+# BOLMOD simulates (S): the complementary regime to VAT RC-IVA (13 percent,
+# Ley 843 texto ordenado Art. 30), VAT (13 percent general rate, Art. 15;
+# zero-rated categories incl. book sales and official publications),
+# company revenue tax IT, SIP pension contributions under Ley 065
+# (retirement 10 percent; severance/prima 1.71 percent; administration 0.5
+# percent; solidarity 0.5 percent employee + 3 percent employer; national
+# solidarity contribution bands of 1/5/10 percent over Bs13,000/25,000/
+# 35,000 monthly), Renta Dignidad (universal old-age income at 60+:
+# Bs3,900 annual for pension recipients - 11 payments of Bs300 plus Bs600;
+# Bs4,550 for non-recipients - 11 payments of Bs350 plus Bs700), and the
+# Bono Juancito Pinto and Bono Juana Azurduy CCTs (regulation class
+# manifest).
+#
+# THREE instruments:
+#
+# 1. Ley 843 (Reforma Tributaria) in the TEXTO ORDENADO published as Anexo
+#    N. 3 to Decreto Supremo 27947 de 20 de Diciembre de 2004 - the
+#    consolidated tax code carrying the operative BOLMOD rates (IVA Art.
+#    15 alicuota general unica 13 percent; RC-IVA Art. 30 alicuota 13
+#    percent; IT; ICE). Captured from the Gaceta Oficial's own norm view
+#    (verGratis_gob/25501). NOTE: the SIN "Compendio Tributario" print
+#    (Texto Ordenado al 30/06/2026) carries an explicit reproduction
+#    prohibition watermark on every page and is NOT captured; the gazette
+#    text is the public official publication. The direct gazette PDF
+#    generator (descargarPdf/21396 and /25501) fails server-side (dompdf
+#    out-of-memory), so the HTML norm view is the capture surface.
+#    Post-2004 amendment instruments are tranche-2 captures.
+# 2. Ley 065 de 10 de Diciembre de 2010 (Ley de Pensiones) - the SIP
+#    contribution framework behind Table 2.6-2.9 of the report (10 percent
+#    retirement; 1.71 percent severance; 0.5 percent administration; 0.5
+#    percent solidarity + 3 percent employer; national solidarity bands).
+#    Captured from the Central Bank of Bolivia's official print (the exact
+#    source the BOLMOD country report cites).
+# 3. Ley 3791 de 28 de Noviembre de 2007 (Renta Universal de Vejez /
+#    Renta Dignidad) - captured from the APS (Autoridad de Fiscalizacion y
+#    Control de Pensiones y Seguros) official normativa file, the source
+#    the BOLMOD country report cites.
+#
+# MOZMOD-style comparison note (targets, never sources): all rates and
+# amounts above are the BOLMOD v2.1 applied values for 2019-23 quoted for
+# parity checking; the corpus text is the authority.
+documents:
+  - source_id: bo-ley-843-texto-ordenado-ds-27947
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/texto-ordenado-ds-27947
+    title: Ley 843 (Reforma Tributaria) - Texto Ordenado, Anexo 3 al Decreto Supremo 27947 de 20 de Diciembre de 2004 (Gaceta Oficial del Estado Plurinacional de Bolivia, vista de norma) - IVA Art. 15 (13 por ciento), RC-IVA Art. 30 (13 por ciento), IT, ICE
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-23'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado
+      language: es
+  - source_id: bo-ley-065-2010-pensiones
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-2010-065/pensiones
+    title: Ley 065 de 10 de Diciembre de 2010, Ley de Pensiones (Banco Central de Bolivia official print) - Sistema Integral de Pensiones
+    source_url: 'https://www.bcb.gob.bo/webdocs/MesaDePartes/files/Ley-065-Pensiones.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2010-12-10'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Banco Central de Bolivia publication)
+      publisher: Banco Central de Bolivia
+      source_family: social-security/pensions
+      language: es
+  - source_id: bo-ley-3791-2007-renta-dignidad
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-2007-3791/renta-dignidad
+    title: Ley 3791 de 28 de Noviembre de 2007, Ley de la Renta Universal de Vejez (Renta Dignidad) (APS official normativa file)
+    source_url: 'https://www.aps.gob.bo/files/webdocs/DJ/normativa/renta_dignidad/PRINCIPALES/Ley_3791.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2007-11-28'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Autoridad de Fiscalizacion y Control de Pensiones y Seguros publication)
+      publisher: Autoridad de Fiscalizacion y Control de Pensiones y Seguros
+      source_family: social-assistance/renta-dignidad
+      language: es

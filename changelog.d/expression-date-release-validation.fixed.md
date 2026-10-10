@@ -1,0 +1,1 @@
+Require valid expression dates through a signed, versioned release quality profile, retain verification for historical v2 release objects, and provide an immutable re-versioning utility for repairing legacy scope metadata.

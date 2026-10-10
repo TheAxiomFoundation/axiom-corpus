@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "c93ecb5605899a06268bf41fa8cc8d73f16b3844c5d9f694bec82d2ee7e16e30"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "fc1041019907bee9e2d34c21b1f449c43a4dc9b5c3233ff2d7d510989d662443"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/manual/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "f52f335d10dbfa8866e6b4ecb76f99a21197b28a24ca184f6315e334bfa72d99"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ut-dws-eligibility-manual-table-2-fy2026.html",
+      "sha256": "550a89a081d4d6e0eb0ccc33d00a59704bfee66a0dc9cc17e552d295d03ddb03"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-ut-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T18:14:12.735463+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2kykFbQLHFG3HBlf5TwLUJWPxQuZ6kbtX8ozVRPcUZ1kDH3X1DoPQeTweyzkLH6FHexSUK6qkFtxQ0L78nX8Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

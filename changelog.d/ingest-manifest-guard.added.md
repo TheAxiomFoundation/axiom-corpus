@@ -1,1 +1,0 @@
-Added Ed25519-signed corpus ingest manifests and a `guard-ingested` CLI gate so generated source, inventory, provision, and coverage artifacts can be protected from hand edits with public-key CI verification.

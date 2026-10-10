@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-01-usitc-hts-2026-rev14.json",
+      "sha256": "d21084bf71f1996d01b2908e9de50fa1ae6e95d979aa7b608962cd530455e2a0"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-01-usitc-hts-2026-rev14.json",
+      "sha256": "5a56face7bb282df3706ee21e3360efdbd49c988818463c9da540f40bbe63ad7"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-01-usitc-hts-2026-rev14.jsonl",
+      "sha256": "795996817aafc026dcdb9b41b8cc7ad84ae3ac820613711e9a74b99cb24ad879"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-01-usitc-hts-2026-rev14/usitc-hts/hts_2026_revision_14_json.json",
+      "sha256": "a99da87129ebfd71352b9a747b2a36045a45f7f838ce8d4b9b02e157b78392ef"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_hts_tariff_snapshots.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1707,
+    "missing_count": 0,
+    "provision_count": 1707,
+    "source_count": 1707
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-01T12:58:02.481710+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7fFlp9Pcyvlb6C1VK4mmm7rn53ua3gphkUVMH3Fb41SS6X9vrTuWVWA1QWGnZb22Cmg53ZT1xJIAbarjc5ZgDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-usitc-hts-2026-rev14"
+}

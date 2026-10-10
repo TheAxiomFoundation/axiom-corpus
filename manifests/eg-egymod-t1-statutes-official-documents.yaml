@@ -1,0 +1,564 @@
+# Egypt (eg) tranche-1 capture, STATUTE class - EGYMOD v1.0 parity
+# (policy years 2019-25; SOUTHMOD full-bundle program lane 8; report
+# CR-EGYMOD-v1.0). FULL-DOCUMENT capture: per Max's directive the three
+# instruments are captured in their ENTIRETY, sliced per structural unit
+# (kitab/bab) via single_block page_windows so every slice is an
+# independently encodable citation - the union of slices covers each
+# whole document.
+#
+# EGYMOD simulates (S): personal income tax under Law 91/2005 (2019
+# credit regime; 2020-25 progressive-with-phase-out regimes governed by
+# amendment Laws 26/2020, 30/2023, 7/2024 - tranche-2 captures; annual
+# personal exemption EGP 7,000 (2019) rising to 20,000 (2024-25);
+# phase-out tiers over EGP 600,000 with ceiling 1,000,000/1,200,000),
+# social insurance contributions under Law 148/2019 (unified regime
+# 2020+: employee 11 percent / employer 18.75 percent of insurable
+# salary by branch - old age 9/12, sickness 1/3.25, end-of-service 1/1,
+# work injury -/1.5, unemployment -/1 - with monthly insurable-salary
+# caps; 2019 dual-component regime under the predecessor Law 79/1975),
+# VAT under Law 67/2016 (14 percent general rate; schedule tax), and the
+# Takaful & Karama cash transfers (statutorily codified by Law 12/2025 -
+# NO publicly hosted official copy located: the ELP portal holds it
+# behind subscription; gazette No. of April 2025; TOP tranche-2 gap.
+# The 2019-24 modeled T&K systems operated administratively).
+#
+# Sources (all official; all image-only or broken-glyph text layers,
+# hence force_ocr ara at 400 dpi - Arabic diacritics and structure OCR
+# cleanly; numeral-heavy provisions carry OCR risk and encode gates
+# handle ungrounded values honestly):
+# 1. Law 91/2005 (income tax): Egyptian Tax Authority hosted print of
+#    the gazette text (71 pp scan, no text layer).
+# 2. Law 148/2019 (social insurance and pensions): NOSI official book
+#    print "Kitab al-Qanun al-Jadid" (155 pp; 1st edition Sept 2019;
+#    gazette No. 33 bis (a) of 19 Aug 2019 is the underlying
+#    publication; broken-glyph text layer bypassed by OCR).
+# 3. Law 67/2016 (VAT): Egyptian Tax Authority guide print carrying the
+#    statute text side-by-side with the Unified Tax Procedures Law
+#    cross-references (72 pp; broken-glyph text layer; slice titles note
+#    the guide format).
+documents:
+  - source_id: eg-law-2005-91-issuance-articles
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2005-91/issuance-articles
+    title: 'Mawad al-isdar (issuance articles 1-7 of Law 91/2005) (pages 2-8 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2005-06-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 2
+          end_page: 8
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: income-tax
+      language: ar
+  - source_id: eg-law-2005-91-book-2-natural-persons-tax
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2005-91/book-2-natural-persons-tax
+    title: 'Al-Kitab al-Thani: tax on natural persons income (salaries; commercial-industrial; professional; real estate) (pages 9-28 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2005-06-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 9
+          end_page: 28
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: income-tax
+      language: ar
+  - source_id: eg-law-2005-91-book-3-juridical-persons-tax
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2005-91/book-3-juridical-persons-tax
+    title: 'Al-Kitab al-Thalith: tax on juridical persons profits (pages 29-32 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2005-06-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 29
+          end_page: 32
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: income-tax
+      language: ar
+  - source_id: eg-law-2005-91-book-4-5-withholding-advance
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2005-91/book-4-5-withholding-advance
+    title: 'Al-Kitab al-Rabi and al-Khamis: withholding at source; advance payments and collection under account of the tax (pages 33-40 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2005-06-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 33
+          end_page: 40
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: income-tax
+      language: ar
+  - source_id: eg-law-2005-91-book-6-obligations
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2005-91/book-6-obligations
+    title: 'Al-Kitab al-Sadis: taxpayer and third-party obligations (pages 41-51 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2005-06-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 41
+          end_page: 51
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: income-tax
+      language: ar
+  - source_id: eg-law-2005-91-book-7-8-procedures-penalties
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2005-91/book-7-8-procedures-penalties
+    title: 'Al-Kitab al-Sabi and al-Thamin: assessment, appeals, procedures and penalties (pages 52-71 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2005-06-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 52
+          end_page: 71
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: income-tax
+      language: ar
+  - source_id: eg-law-2019-148-issuance-articles
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/issuance-articles
+    title: 'Issuance articles of Law 148/2019 (pages 6-7 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 6
+          end_page: 7
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-1-definitions-scope
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-1-definitions-scope
+    title: 'Al-Bab al-Awwal: definitions and scope of coverage (pages 8-15 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 8
+          end_page: 15
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-2-fund-finance
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-2-fund-finance
+    title: 'Al-Bab al-Thani: fund administration and financing (contribution machinery) (pages 16-24 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 16
+          end_page: 24
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-3-old-age-disability-death
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-3-old-age-disability-death
+    title: 'Al-Bab al-Thalith: old-age, disability and death insurance (pensions core) (pages 25-44 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 25
+          end_page: 44
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-4-work-injury
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-4-work-injury
+    title: 'Al-Bab al-Rabi: work-injury insurance (pages 45-54 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 45
+          end_page: 54
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-5-6-sickness-unemployment
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-5-6-sickness-unemployment
+    title: 'Al-Bab al-Khamis and al-Sadis: sickness insurance; unemployment insurance (pages 55-64 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 55
+          end_page: 64
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-7-8-care-end-of-service
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-7-8-care-end-of-service
+    title: 'Al-Bab al-Sabi and al-Thamin: pensioner care; end-of-service bonus (pages 65-71 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 65
+          end_page: 71
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-9-10-special-general
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-9-10-special-general
+    title: 'Al-Bab al-Tasi and al-Ashir: special-regime beneficiaries; general provisions (subscriptions, exemptions, penalties) (pages 72-95 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 72
+          end_page: 95
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-bab-11-12-transitional-final
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/bab-11-12-transitional-final
+    title: 'Al-Bab al-Hadi Ashar and al-Thani Ashar: transitional and final provisions (pages 96-102 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 96
+          end_page: 102
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2019-148-annex-tables
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2019-148/annex-tables
+    title: 'Al-Jadawil al-murafaqa: annexed schedules and calculation tables (pages 103-155 of the official print)'
+    source_url: 'https://www.nosi.gov.eg/ar/Lists/NOSILibrary/2-12-2019%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2019-08-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 103
+          end_page: 155
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: National Organization for Social Insurance
+      source_family: social-insurance
+      language: ar
+  - source_id: eg-law-2016-67-issuance-articles
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2016-67/issuance-articles
+    title: 'Issuance articles of Law 67/2016 (pages 7-9 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2021-04/%D8%AF%D9%84%D9%8A%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%82%D9%8A%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D8%B6%D8%A7%D9%81%D8%A9%20%D9%88%D8%A7%D9%84%D9%86%D8%B5%20%D8%A7%D9%84%D9%85%D9%82%D8%A7%D8%A8%D9%84%20%D8%A3%D9%88%D8%A7%D9%84%D9%85%D9%83%D9%85%D9%84%20%D9%85%D9%86%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%AD%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2016-09-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 7
+          end_page: 9
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: vat
+      language: ar
+  - source_id: eg-law-2016-67-bab-1-2-scope-registration-rates
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2016-67/bab-1-2-scope-registration-rates
+    title: 'Al-Bab al-Awwal and al-Thani: scope, the 14 percent general rate, registration, returns (pages 10-33 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2021-04/%D8%AF%D9%84%D9%8A%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%82%D9%8A%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D8%B6%D8%A7%D9%81%D8%A9%20%D9%88%D8%A7%D9%84%D9%86%D8%B5%20%D8%A7%D9%84%D9%85%D9%82%D8%A7%D8%A8%D9%84%20%D8%A3%D9%88%D8%A7%D9%84%D9%85%D9%83%D9%85%D9%84%20%D9%85%D9%86%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%AD%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2016-09-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 10
+          end_page: 33
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: vat
+      language: ar
+  - source_id: eg-law-2016-67-bab-3-4-deduction-refund
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2016-67/bab-3-4-deduction-refund
+    title: 'Al-Bab al-Thalith and al-Rabi: schedule tax; deduction and refund (pages 34-43 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2021-04/%D8%AF%D9%84%D9%8A%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%82%D9%8A%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D8%B6%D8%A7%D9%81%D8%A9%20%D9%88%D8%A7%D9%84%D9%86%D8%B5%20%D8%A7%D9%84%D9%85%D9%82%D8%A7%D8%A8%D9%84%20%D8%A3%D9%88%D8%A7%D9%84%D9%85%D9%83%D9%85%D9%84%20%D9%85%D9%86%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%AD%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2016-09-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 34
+          end_page: 43
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: vat
+      language: ar
+  - source_id: eg-law-2016-67-appeals-penalties
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2016-67/appeals-penalties
+    title: 'Appeals committees, evasion and penalties chapters (pages 44-59 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2021-04/%D8%AF%D9%84%D9%8A%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%82%D9%8A%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D8%B6%D8%A7%D9%81%D8%A9%20%D9%88%D8%A7%D9%84%D9%86%D8%B5%20%D8%A7%D9%84%D9%85%D9%82%D8%A7%D8%A8%D9%84%20%D8%A3%D9%88%D8%A7%D9%84%D9%85%D9%83%D9%85%D9%84%20%D9%85%D9%86%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%AD%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2016-09-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 44
+          end_page: 59
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: vat
+      language: ar
+  - source_id: eg-law-2016-67-schedules-exemptions
+    jurisdiction: eg
+    document_class: statute
+    citation_path: eg/statute/law-2016-67/schedules-exemptions
+    title: 'Comparative treatment tables and the exemptions schedule (pages 60-72 of the official print)'
+    source_url: 'https://eta.gov.eg/sites/default/files/2021-04/%D8%AF%D9%84%D9%8A%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%82%D9%8A%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D8%B6%D8%A7%D9%81%D8%A9%20%D9%88%D8%A7%D9%84%D9%86%D8%B5%20%D8%A7%D9%84%D9%85%D9%82%D8%A7%D8%A8%D9%84%20%D8%A3%D9%88%D8%A7%D9%84%D9%85%D9%83%D9%85%D9%84%20%D9%85%D9%86%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%AD%D8%AF.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2016-09-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: ara
+      page_windows:
+        - start_page: 60
+          end_page: 72
+    metadata:
+      primary_source: true
+      source_authority: Arab Republic of Egypt (official agency print)
+      publisher: Egyptian Tax Authority
+      source_family: vat
+      language: ar

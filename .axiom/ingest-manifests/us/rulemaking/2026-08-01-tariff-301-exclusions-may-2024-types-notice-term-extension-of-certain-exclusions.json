@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions.json",
+      "sha256": "47bdc1b8e2e019ace6b4c90007d890107676a64bff1b80b362725007cac7e5d2"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions.json",
+      "sha256": "8b4d15abb1b3e20a5435ebcfd969eeda73ac72f0c21fe190e4f6fa4e0b7dac91"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions.jsonl",
+      "sha256": "b15c4992e1e1c060f9545e425427bc8c25c0b90b22ce05732b393a59b074ea5e"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions/federal-register/api/documents-page-1.json",
+      "sha256": "22d398aef2f8c3871696ab346127eaecf373286f24c7ebe06ba77c692bc9391b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions/federal-register/documents/2024-11904.json",
+      "sha256": "31c9c1563f023eb1dd8c26c5e2d929e554811b8175018bf8417b1b0c6598bce9"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions/federal-register/documents/2024-11904.txt",
+      "sha256": "1c42cd44f5d26274e8cf441a0b057df1f545e9f1d03bf87b29b67fe99e3e7589"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9ca5291d639dcd68856feb86c933e6b216a6710",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-exclusions-may-2024 --start-date 2024-05-30 --document-type NOTICE --term '\"extension of certain exclusions\"' --source-as-of 2026-08-01 --expression-date 2024-05-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:32:30.733619+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GnOpuEYgDTLwLWMZrCxUbGMZhGLBkRvZCo9nsRQ1BtTZ16xxNayMlGkJf8hRPmFOhQKbw1/kQaHOTuq2aYKYDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-exclusions-may-2024-types-notice-term-extension-of-certain-exclusions"
+}

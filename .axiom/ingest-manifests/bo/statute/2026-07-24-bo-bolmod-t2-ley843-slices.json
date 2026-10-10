@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices.json",
+      "sha256": "75f834f8917f91557cdbaa4a2fec57ec2c6497cae151f4e0cc9fee9e517adef8"
+    },
+    {
+      "path": "data/corpus/inventory/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices.json",
+      "sha256": "728dd02cd5f35455b32366d353e170697277c2a26004a7cc299fc7a9cf0a72af"
+    },
+    {
+      "path": "data/corpus/provisions/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices.jsonl",
+      "sha256": "3bfe47228087d15e686b09a5f9f4d860b1665f64bb8c639d860794337cdce6a3"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-1-iva.html",
+      "sha256": "0e063a80a28cfc6a903c3cf42fcb8d3e52ca2c66d575ca8304efd7155371d060"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-2-rc-iva.html",
+      "sha256": "6ec4daeec482934cf14bbcf442af805b62d11004f1ea56d0d22827e283a0a6a3"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-3-iue.html",
+      "sha256": "1bfe97064a5ff08346d1284abe0312008709728e8918490c3ff0e5168259e14f"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-4-5-inmuebles-regularizacion.html",
+      "sha256": "1bfe97064a5ff08346d1284abe0312008709728e8918490c3ff0e5168259e14f"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-6-it.html",
+      "sha256": "b6f7874141965122f5172344cc7e27c60e7a8317554fe42d30252f8ff50bc065"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-7-8-ice-actualizacion.html",
+      "sha256": "daedec3353efff0f40d291c1a1964c687fd875692be53cd625b1fb65d2dceb53"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley843-slices/official-documents/bo-ley-843-to-titulo-9-14-coparticipacion-finales.html",
+      "sha256": "ba6e361f66c1751fe3fcffb7ee51d5c7dd166a0e53789b8932d0b61dadfc8b00"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "482ff2b67be5c0b8c5002ee6a50dc411f5318598",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-bo-bolmod-t2-ley843-slices --manifest manifests/bo-bolmod-t2-ley843-slices-official-documents.yaml (7 anchor_range titulo slices of the t1-captured gazette norm view)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-25T12:31:38.650353+00:00",
+  "jurisdiction": "bo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dxeI6+IiPbrw91dZ0ERm0sYEKezx983eyiYYeOV/bKOWXDhrpEiN9M18pqpK60G+NK+JUsCjr+MkV2aahJXbAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-bo-bolmod-t2-ley843-slices"
+}

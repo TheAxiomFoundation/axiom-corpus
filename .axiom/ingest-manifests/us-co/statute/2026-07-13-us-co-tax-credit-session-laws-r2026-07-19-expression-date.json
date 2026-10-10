@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date.json",
+      "sha256": "1ad773c27dda927c6d86abee2f4c90965cd574845c3c701da911e87d7c59c9e1"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date.json",
+      "sha256": "b3742c30c0b984d154ed141f2b7f3ada25243293f36398b25b3aef594338f70f"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date.jsonl",
+      "sha256": "7ce2821721e409e08783d932d1ac3a953573981d6d588c3aeb595a73c5553540"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date/official-documents/us-co-hb24-1134-signed-act-2024.pdf",
+      "sha256": "835e807d5da1fa6986f976345b7221a98c3a49b7715917f6d10d360ba6a61f1e"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date/official-documents/us-co-hb24-1311-signed-act-2024.pdf",
+      "sha256": "6b388535d46a1f1fb653ea16c2096c66db186cf861cb22448661aa8136b45fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date/provenance/us-co-hb24-1134-signed-act-2024.provenance.json",
+      "sha256": "1d8039ebbe9c35ce6ab120ed930034305e1d908ed71b01a5ae9ffe5a135616fd"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date/provenance/us-co-hb24-1311-signed-act-2024.provenance.json",
+      "sha256": "47ce5e1e63cf359d490273aca915d82611cbc6bc45cfffef6b1b92261bc83ee8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1a1f66cb6e4e8c139bbc14e34ef97f7fdf73387",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/reversion_expression_dates.py --base data/corpus --jurisdiction us-co --document-class statute --source-version 2026-07-13-us-co-tax-credit-session-laws --target-version 2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-19T03:28:22.131588+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0JR895IwJMMjvcMWnoINaTmJdAySrjz/YBP29W56H5jy6Q54tOUj/eY02zbnehrate7cKnzukgaWNllS/lT+Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date"
+}

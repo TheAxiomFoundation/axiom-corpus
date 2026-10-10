@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix.json",
+      "sha256": "fbcd5afe91c42d9503e8adf576aae0b7832887dd85f09dac792fcc12217e452d"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix.json",
+      "sha256": "bd5bf4835cb861e5eb8345cd54692f7951d67869b2831bcf15e6cf78b3351750"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix.jsonl",
+      "sha256": "6a90198cd59bf7aa0f6f7f4316a289034ded2f3e1fd62486676e4e031de3c920"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix/uksi/2012/2885/schedule-1-paragraph-1.xml",
+      "sha256": "4fc671a8e93f0e0391616213b9c2eba54edc9df108950870c2a89addc05e8ef8"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix/uksi/2012/2885/schedule-1-paragraph-4.xml",
+      "sha256": "c8958802341e22dfc8c42d571f7af6c8718df88ad19e6166de946ff91567e288"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix/uksi/2012/2885/schedule-1-paragraph-6.xml",
+      "sha256": "c862ae8ca22ab8e1d580b4216ba9321b0ac9c89c3cf99e08cac6bf2cbd75196f"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix/uksi/2012/2885/schedule-1-paragraph-9.xml",
+      "sha256": "c6e7de86e53e8369ad338b64cf7a9cf7413464366cf809a9ebf2615b7bb22a6f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c47424cde45c7b686929d921b81a9f1f9da741c2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:39.432304+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LT0BugClsJj01TpuXkWN+It5hzVl+d9lRnayFhPbOgav+8uXmj14/IET3SKLvcz2rATSSurBn98L5Rv1fVZCBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix"
+}

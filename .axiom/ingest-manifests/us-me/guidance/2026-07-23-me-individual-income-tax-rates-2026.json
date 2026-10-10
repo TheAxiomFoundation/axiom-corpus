@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/guidance/2026-07-23-me-individual-income-tax-rates-2026.json",
+      "sha256": "320a929a71e5dfd4d26abdd50d40ae81de221d2ce884c185ac36e0ff528e0a82"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/guidance/2026-07-23-me-individual-income-tax-rates-2026.json",
+      "sha256": "c5fc1b16b653a4c545146eefc15304cde675357d58548cb312b006d73cbe5669"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/guidance/2026-07-23-me-individual-income-tax-rates-2026.jsonl",
+      "sha256": "44d02f78209843db3c66029977038f3f5aee92e652a0a1520a3f3dba90bfb555"
+    },
+    {
+      "path": "data/corpus/sources/us-me/guidance/2026-07-23-me-individual-income-tax-rates-2026/official-documents/us-me-revenue-individual-income-tax-rates-2026.pdf",
+      "sha256": "64946a135ef18e8a0085fb47b67e99968467fd0b8d8932ea68d9f3c7560d6d80"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a6a3ed71334d1bc00b5f81990d151f5bb5239ea5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-me-individual-income-tax-rates-2026 --manifest manifests/us-me-individual-income-tax-rates-2026.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-23T16:05:39.296191+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-23-me-individual-income-tax-rates.md",
+      "sha256": "68dc7ce500c9adf95efa514a6dd3d0a6fd9233e3551a82d690d1c38952005355"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "p2VqwQ9bAss11McvpgslW+OtDP8IYkV/FmjwMWwSsIxST7vx8TJSGDdnBT9OEJvw8JFCSSqUwgIDaILNuNsbBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-me-individual-income-tax-rates-2026"
+}

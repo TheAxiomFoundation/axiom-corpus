@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/co/regulation/2026-07-23-co-colmod-t1-regulations.json",
+      "sha256": "71437f7dc8f2b1e9ab3a73d65ec9ee7e1ded6858710c35907eac91ef038e0363"
+    },
+    {
+      "path": "data/corpus/inventory/co/regulation/2026-07-23-co-colmod-t1-regulations.json",
+      "sha256": "4fcc70dd155b70fa1be06b65aedd3ee203ca04ebba83a70633eab2c0811d81d0"
+    },
+    {
+      "path": "data/corpus/provisions/co/regulation/2026-07-23-co-colmod-t1-regulations.jsonl",
+      "sha256": "8e68cbfa167a55fb4ff9971ee06267ed118cfee9761e9cdb50139c576dbdca5f"
+    },
+    {
+      "path": "data/corpus/sources/co/regulation/2026-07-23-co-colmod-t1-regulations/official-documents/co-decreto-518-2020-ingreso-solidario.html",
+      "sha256": "4ea7d83ab363aee448b9a62fa6487c172130b33cbcfc1f591be65cb91d8a7a86"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "eb745dfe95e8d21bf0f9a707aea3c9d2827f3d71",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "REQUESTS_CA_BUNDLE=<certifi+sectigo-ev-r36> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-co-colmod-t1-regulations --manifest manifests/co-colmod-t1-regulations-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-23T09:09:31.720466+00:00",
+  "jurisdiction": "co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pponfl9e1EwOqJpDBkcJOqY1YJpIeFyqrBUFvUeSeAjqv23xNnMDo1J3SsCBaMPkcuqR49ZYRraV7SgYu/DXAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-co-colmod-t1-regulations"
+}

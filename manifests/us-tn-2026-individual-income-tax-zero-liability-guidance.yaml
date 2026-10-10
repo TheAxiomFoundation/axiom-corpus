@@ -1,0 +1,59 @@
+documents:
+  - source_id: us-tn-revenue-hall-income-tax
+    jurisdiction: us-tn
+    document_class: guidance
+    title: Tennessee Department of Revenue — Hall Income Tax
+    source_url: https://www.tn.gov/revenue/taxes/hall-income-tax.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-tn/guidance/revenue/hall-income-tax
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: div.tn-rte
+    metadata:
+      primary_source: true
+      source_authority: Tennessee Department of Revenue
+      legal_identifier: Tennessee DOR Hall Income Tax overview
+      document_subtype: current_tax_administration_guidance
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_repeal_and_no_return_guidance
+      certification_scope: hall_income_tax_scope_repeal_and_no_return
+      source_note: >-
+        Current Department of Revenue guidance states that the Hall income tax
+        applied only to individuals and other entities receiving bond or note
+        interest and stock dividends, was repealed for periods beginning
+        January 1, 2021 or later, and must not be reported on a return for any
+        tax year beginning on or after that date.
+
+  - source_id: us-tn-revenue-gen-34-income-tax-withholding
+    jurisdiction: us-tn
+    document_class: guidance
+    title: Tennessee Department of Revenue GEN-34 — Income Tax Withholding
+    source_url: https://revenue.support.tn.gov/api/v2/help_center/en-us/articles/360057595051.json
+    source_format: json
+    source_as_of: "2026-07-24"
+    expression_date: "2024-08-13"
+    citation_path: us-tn/guidance/revenue/gen-34-income-tax-withholding
+    request:
+      browser_user_agent: true
+    extraction:
+      json_html_field: article.body
+      json_html_as_single_block: true
+    metadata:
+      primary_source: true
+      source_authority: Tennessee Department of Revenue
+      legal_identifier: Tennessee DOR GEN-34
+      document_subtype: current_tax_administration_guidance_api
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_no_earned_income_tax_guidance
+      source_updated_at: "2024-08-13T17:17:45Z"
+      certification_scope: no_earned_income_tax_and_hall_tax_repeal
+      source_note: >-
+        Current Department of Revenue guidance states that Tennessee has no
+        state income tax on earned income and no withholding requirement, and
+        that the former Hall income tax on bond or note interest and stock
+        dividends was repealed January 1, 2021.

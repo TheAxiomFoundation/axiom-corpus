@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/statute/2026-07-24-tn-hall-income-tax-zero-rate-statute.json",
+      "sha256": "432032f0bf3c201880838221f4e5fdc4d57f1f3bd0b71fe5d911a791e3b99662"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/statute/2026-07-24-tn-hall-income-tax-zero-rate-statute.json",
+      "sha256": "b870ca45516f5782046f07ddd34bffecc528719e9ed0ac47942e323937c75955"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/statute/2026-07-24-tn-hall-income-tax-zero-rate-statute.jsonl",
+      "sha256": "12a2b4ca882efa72efa607d6c5520404f09637a59bebd80e2f73a3fa886db0f9"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/statute/2026-07-24-tn-hall-income-tax-zero-rate-statute/official-documents/us-tn-public-chapter-181-pages-3-through-4.pdf",
+      "sha256": "c4032d4ab9f9c842a159fd8c87f4e70a003fc77b5299bb803c124e29e3c8f43e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4614dc11a02c235d4531a7192b40e11777f38a19",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-tn-hall-income-tax-zero-rate-statute --manifest manifests/us-tn-2017-public-chapter-181-hall-income-tax-zero-rate.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T16:24:45.287577+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-tn-individual-income-tax-zero-liability.md",
+      "sha256": "058afa15350e25fc8b6917ec07d566ffef1f62824376158fb1bf0947142a3dad"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C4R3qFCSafibLVcxKgUi5RZECfbSul6sZB6ZnGQrlCWysXxJnpWOjcW7Jn+ExWUNHRZpdf49XOT7ggqMBNzNBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-tn-hall-income-tax-zero-rate-statute"
+}

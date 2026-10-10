@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/form/2026-07-23-ca-2025-tax-materials-for-2026-estimates.json",
+      "sha256": "c522fd5f644979c53b3d64c35d11c8a9c264bb24a2a03681090da270442dcac6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/form/2026-07-23-ca-2025-tax-materials-for-2026-estimates.json",
+      "sha256": "1845da9ec7d201fc13e8ad7dc56a0d10b2f4d07c13a33046e8099dc75ba847f3"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/form/2026-07-23-ca-2025-tax-materials-for-2026-estimates.jsonl",
+      "sha256": "337c50b5acc33396ddf4ab7c2648a674573f68f79ea6d53294385e4edb7360d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-07-23-ca-2025-tax-materials-for-2026-estimates/official-documents/us-ca-ftb-2025-form-540-tax-rate-schedules.pdf",
+      "sha256": "ad70ee345aa7daf5788b64419e04280c76fbebd0c15856820ccea71f3534a8c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-07-23-ca-2025-tax-materials-for-2026-estimates/official-documents/us-ca-ftb-2025-form-540-tax-table.pdf",
+      "sha256": "0414ffb02dbcd209966f5fe9bbdfeffd55816cc8d86a08501fd9ef7d79e7087d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6b7e2a1abd728b6ef3145661916a34e98d39bf1a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-ca-2025-tax-materials-for-2026-estimates --manifest manifests/us-ca-2025-tax-materials-for-2026-estimates.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-23T16:07:30.971931+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-23-ca-2026-estimated-tax.md",
+      "sha256": "8721243e7852e93c7a70f80146a95fadac68cddfa5c9040a0099f63df3492fca"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "aVlX0JKEnzJrQp1f191smpFOUOrJdzhbtg2oMZSUM8sm4ydw/ZCu+oI/UdISmkv/Fr26pitdrbjT8T08wqveDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-ca-2025-tax-materials-for-2026-estimates"
+}

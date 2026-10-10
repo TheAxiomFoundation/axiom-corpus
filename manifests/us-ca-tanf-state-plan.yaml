@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ca-tanf-state-plan-2022
+  jurisdiction: us-ca
+  document_class: policy
+  title: California TANF State Plan (ACF approved 2022)
+  source_url: https://www.cdss.ca.gov/Portals/9/DSSDB/acf-approved-tanf-state-plan-2022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ca/policy/acf/tanf-plan/2022
+  metadata:
+    primary_source: true
+    source_authority: California Department of Social Services (CalWORKs)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: ACF Approved TANF State Plan 2022, effective October 1, 2022 (the newest plan the CDSS TANF State Plan page
+      posts; the 2019 plan and addendum are also listed)
+    publisher_index_url: https://www.cdss.ca.gov/inforesources/data-portal/state-plans/tanf-state-plan
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ca/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.cdss.ca.gov/inforesources/data-portal/state-plans/tanf-state-plan
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

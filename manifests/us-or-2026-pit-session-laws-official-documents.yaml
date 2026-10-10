@@ -1,0 +1,92 @@
+# Official chaptered Oregon Laws carrying the tax-year-2026 personal-income-tax
+# changes that are not yet incorporated into the 2025 Edition of the ORS.
+documents:
+  - source_id: us-or-2026-sb1507-chapter-142
+    jurisdiction: us-or
+    document_class: statute
+    title: "Oregon Laws 2026, chapter 142 (SB 1507): Revenue"
+    source_url: https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2026orLaw0142.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-04-09"
+    citation_path: us-or/statute/session-laws/2026/sb1507
+    extraction: &single_block
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Oregon Legislative Assembly
+      legal_authority_url: https://olis.oregonlegislature.gov/liz/2026R1/Measures/Overview/SB1507
+      chapter_number: "142"
+      measure_number: SB 1507
+      approval_date: "2026-04-09"
+      effective_date: "2026-06-05"
+      source_status: chaptered_law
+      source_family: personal-income-tax
+      relevant_sections: "2,3,5,7,10,12,13,14"
+      source_note: >-
+        Official chaptered law. Sections 2, 5, and 7 establish tax-year-2026
+        personal-income-tax modifications for qualified passenger vehicle loan
+        interest, qualified small business stock gain, and federal bonus
+        depreciation; section 3 raises the refundable Oregon earned income
+        credit percentages to 14 and 17 percent; and sections 12 through 14
+        create and limit a nonrefundable new-jobs credit. The official
+        publication notes that sections 2 and 7 were identified as subjects of
+        an April 2026 referendum petition and preserves the petition-status
+        endnote as part of the authoritative source.
+
+  - source_id: us-or-2026-hb4084-chapter-50
+    jurisdiction: us-or
+    document_class: statute
+    title: "Oregon Laws 2026, chapter 50 (HB 4084): Economic development"
+    source_url: https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2026orLaw0050.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-03-31"
+    citation_path: us-or/statute/session-laws/2026/hb4084
+    extraction: *single_block
+    metadata:
+      primary_source: true
+      source_authority: Oregon Legislative Assembly
+      legal_authority_url: https://olis.oregonlegislature.gov/liz/2026R1/Measures/Overview/HB4084
+      chapter_number: "50"
+      measure_number: HB 4084-A
+      approval_date: "2026-03-31"
+      effective_date: "2026-06-05"
+      source_status: chaptered_law
+      source_family: personal-income-tax/new-jobs-credit
+      relevant_sections: "16,17"
+      source_note: >-
+        Official chaptered law corresponding to enrolled HB 4084-A. Section 16
+        amends section 12, chapter 142, Oregon Laws 2026 (SB 1507), to restrict
+        the new-jobs credit to taxpayers engaged primarily in a qualified
+        industry and to jobs created in a qualified industry, defines the
+        qualifying industry categories, and adds certification and rulemaking
+        requirements. Section 17 gives the Act a June 5, 2026 effective date.
+
+  - source_id: us-or-2026-sb1510-chapter-75
+    jurisdiction: us-or
+    document_class: statute
+    title: "Oregon Laws 2026, chapter 75 (SB 1510): Taxation"
+    source_url: https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2026orLaw0075.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-03-31"
+    citation_path: us-or/statute/session-laws/2026/sb1510
+    extraction: *single_block
+    metadata:
+      primary_source: true
+      source_authority: Oregon Legislative Assembly
+      legal_authority_url: https://olis.oregonlegislature.gov/liz/2026R1/Downloads/MeasureDocument/SB1510
+      chapter_number: "75"
+      measure_number: SB 1510-A
+      approval_date: "2026-03-31"
+      effective_date: "2026-06-05"
+      source_status: chaptered_law
+      source_family: personal-income-tax/pass-through-entity-tax
+      relevant_sections: "9,10,11,12"
+      source_note: >-
+        Official chaptered law corresponding to enrolled SB 1510-A. Sections 9
+        through 12 extend the elective pass-through business alternative
+        income tax and member credit through tax years beginning before January
+        1, 2028, and allow a pass-through entity to apply an overpayment to the
+        subsequent tax year's estimated tax.

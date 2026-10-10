@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/regulation/2026-10-06-w6-benefits-regulation-wa.json",
+      "sha256": "af790f23edd0613ce517c2a54d5823bd253c91cdb36fce0e05cc0283df3f3843"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/regulation/2026-10-06-w6-benefits-regulation-wa.json",
+      "sha256": "2455fe71e3e8a2e2f7ffee81a00e29acd861e752114e4125cc16d2d825a175d5"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/regulation/2026-10-06-w6-benefits-regulation-wa.jsonl",
+      "sha256": "2419b3da1562bfee5c396de91fc1115a475d7cf5ca45b811d26d5e988be92030"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-10-06-w6-benefits-regulation-wa/official-documents/us-wa-regulation-388-388-414-388-414-0001.html",
+      "sha256": "3c14db3b9ba9350184a7f68876f83a207f2408c792481de89d38ba426f2b1211"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T18:00:24.385005+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UuEgkdLuWVp+wXUfG1ZOzi/Hul0RN+CDGm6ity7+9j4iEIPoyB5GWb1wIc77LKKnZRFpAte6URp2xXmoSHsZDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-regulation-wa"
+}

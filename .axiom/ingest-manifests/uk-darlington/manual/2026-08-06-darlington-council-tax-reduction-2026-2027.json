@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-darlington/manual/2026-08-06-darlington-council-tax-reduction-2026-2027.json",
+      "sha256": "10d8c7f66842473d6f33aacef00645909306c6684a9c2000f934f845de1f1bab"
+    },
+    {
+      "path": "data/corpus/inventory/uk-darlington/manual/2026-08-06-darlington-council-tax-reduction-2026-2027.json",
+      "sha256": "99b90342de8a80216e04462604f8eea1031deb89b1da2f76a6bcba06757e7042"
+    },
+    {
+      "path": "data/corpus/provisions/uk-darlington/manual/2026-08-06-darlington-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "e1b490c04498cb4fab5b9002cd50eff614d8c562ed5ca9c8ae8e63f3b34b86af"
+    },
+    {
+      "path": "data/corpus/sources/uk-darlington/manual/2026-08-06-darlington-council-tax-reduction-2026-2027/official-documents/darlington-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1d22d4266f21745e102f5075f32513ff4746e879d68b8494034226487da1833d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2e5ce9d588b7810854856748cf9bf380df628525",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-06-darlington-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-darlington-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 50,
+    "missing_count": 0,
+    "provision_count": 50,
+    "source_count": 50
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-06T17:01:30.549838+00:00",
+  "jurisdiction": "uk-darlington",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mJAZ/J5Efe2qrA2bPtEnoUgD46+Dw7E7Q3KG2Wm3KKj/pfDZxb+qUU+FI4KVzzKzJ593C0d9PbDhXE6/SFGaCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-06-darlington-council-tax-reduction-2026-2027"
+}

@@ -15,6 +15,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -344,8 +345,13 @@ def extract_alabama_code(
         if citation_path in seen:
             if node.kind != "section":
                 continue
+            # ALISON carries a second node for a section number when a pending
+            # version exists ("Effective upon ratification..."). The publisher
+            # code id disambiguates it as a "--code-<id>" variant segment (the
+            # NM/VT "--" convention; "@" is outside the citation-path grammar).
             metadata["canonical_citation_path"] = citation_path
-            citation_path = f"{citation_path}@code-{node.code_id}"
+            metadata["publisher_section_id"] = node.display_id or node.code_id
+            citation_path = variant_segment(citation_path, f"code-{node.code_id}")
             if citation_path in seen:
                 continue
         seen.add(citation_path)
@@ -586,7 +592,7 @@ def _section_node_count(nodes: list[AlabamaNode]) -> int:
 
 def _alabama_citation_path(node: AlabamaNode, parent: AlabamaNode | None) -> str:
     if node.kind == "section" and node.display_id:
-        return f"us-al/statute/{node.display_id}"
+        return f"us-al/statute/{citation_segment(node.display_id)}"
     token = _alabama_path_token(node)
     if parent is None or node.kind == "title":
         return f"us-al/statute/{token}"
@@ -609,6 +615,13 @@ def _alabama_metadata(node: AlabamaNode) -> dict[str, Any]:
         "graph_id": node.graph_id,
         "parent_code_id": node.parent_id,
         "display_id": node.display_id,
+        "publisher_section_id": (
+            node.display_id
+            if node.kind == "section"
+            and node.display_id
+            and citation_segment(node.display_id) != node.display_id
+            else None
+        ),
         "section_range": node.section_range,
         "effective_date": node.effective_date,
         "supersession_date": node.supersession_date,

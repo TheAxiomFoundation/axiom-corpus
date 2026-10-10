@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-07-16-de-federal-tax-benefit.json",
+      "sha256": "7411622fa3e1192a770f4adb023494f3e7cb3ec7f83d827bf5cc35a76ae50b60"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-07-16-de-federal-tax-benefit.json",
+      "sha256": "12bbd5cd4a43a763d5498795c23c1068b25a21f60ae7c44464c371da8810db70"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-07-16-de-federal-tax-benefit.jsonl",
+      "sha256": "6703f5f3f1b58bf6af993ab5ddb5e757af7c12500d562856e18d04d2a1889df1"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit/algiiv_2008/BJNR294200007.xml",
+      "sha256": "6d2f5c0d0db794bd1c2cb4d33c2a2f160d50a1499c7f6306ccf43030da85f6ac"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit/estdv_1955/BJNR007560955.xml",
+      "sha256": "917f896d8d11e0e1be257e284495ccb789e95497e238a4d9604ea62d81e764a9"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit/minuhv/BJNR218800015.xml",
+      "sha256": "dcadd62d68b3d20934bfb8d4bd887d99aff90a797cdac7a0bc0430124bf11879"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit/svbezgrv_2025/BJNR16D0A0024.xml",
+      "sha256": "59576e5f25abd46db802e39af1f035cca05021f90435af37e94e607d0fea25f4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit/wogv/BJNR020650971.xml",
+      "sha256": "f11b08a667c875e1a3480ff2a29fe76db5e50f644a1a36240e5cb54ca9257518"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ed3c28515bb6f80e4e43f52df4382230615edabb",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-de-gii --base data/corpus --version 2026-07-16-de-federal-tax-benefit --manifest manifests/de-federal-tax-benefit-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 153,
+    "missing_count": 0,
+    "provision_count": 153,
+    "source_count": 153
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-16T23:02:35.290762+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QDNVTBW+2U9U1dqRp99ULV/fKvNkipEXn+UM6YOdbTq6IZfefjWBg3RpbudPrtNCu6vYdsYh9xNvJCPCdmX/AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-de-federal-tax-benefit"
+}

@@ -1,0 +1,34 @@
+version: 2026-10-06-w6-income-tax-statute-ky
+documents:
+- source_id: us-ky-statute-session-laws-2025-hb1
+  jurisdiction: us-ky
+  document_class: statute
+  title: 'House Bill 1 (2025 Regular Session), Acts Ch. 1: individual income tax rate'
+  source_url: https://apps.legislature.ky.gov/recorddocuments/bill/25RS/hb1/bill.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ky/statute/session-laws/2025/hb1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: bill_text
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ky-statute-session-laws-2025-hb1-record
+  jurisdiction: us-ky
+  document_class: statute
+  title: 'House Bill 1 (2025 Regular Session): bill record page'
+  source_url: https://apps.legislature.ky.gov/record/25rs/hb1.html
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ky/statute/session-laws/2025/hb1-record
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: bill_page
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

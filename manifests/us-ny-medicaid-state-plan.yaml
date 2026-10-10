@@ -1,0 +1,1756 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p07
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 7 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=6
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p07
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 7
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p08
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 8 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=7
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p08
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 8
+    index_pages: 9
+    index_records_on_page: 100
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-index-p09
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 9 of 9'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=8
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p09
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 9
+    index_pages: 9
+    index_records_on_page: 55
+    index_records_total: 855
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-26-0022-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-26-0022: Approval Document (approved September 11, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-26-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-26-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-26-0022
+    cms_node_id: '195551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=195551
+    approval_date: '2026-09-11'
+    effective_date: '2026-04-01'
+    summary: This amendment proposes to amend the Title XIX (Medicaid) State Plan for State Method on Cost Effectiveness and
+      Voluntary Participation in Employer-Based Group Health Plans to comply with Social Security Act §1906(a).
+    topics:
+    - Benefits
+    - Coverage
+    - Eligibility
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-25-0006-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-25-0006: Approval Document (approved July 20, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-25-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-25-0006
+    cms_node_id: '194196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=194196
+    approval_date: '2026-07-20'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to provide mandatory Medicaid services, including limited pre-release services for eligible
+      juveniles leaving incarceration, as mandated by the Consolidated Appropriations Act of 2023, Section 5121.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-24-0026-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-24-0026: Approval Document (approved May 27, 2026, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-24-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-24-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-24-0026
+    cms_node_id: '192956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192956
+    approval_date: '2026-05-27'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes to establish Critical Time Intervention (CTI) services under the medical assistance program.
+    topics:
+    - Coverage
+    - Eligibility
+    - Other Licensed Practitioners
+    - Preventative Services
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-25-0026-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-25-0026: Approval Document (approved May 23, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-25-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-25-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-25-0026
+    cms_node_id: '179976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179976
+    approval_date: '2025-05-23'
+    effective_date: '2025-01-01'
+    summary: This amendment proposed to increase its resource standards for the Medically Needy, Ticket to Work Basic, and
+      Ticket to Work Medical Improvement eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-24-0059-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-24-0059: Approval Document (approved April 29, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-24-0059.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-24-0059/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-24-0059
+    cms_node_id: '164096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=164096
+    approval_date: '2024-04-29'
+    effective_date: '2024-01-01'
+    summary: Update its Medically Needy resource levels.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-23-0001-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-23-0001: Approval Document (approved October 23, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-23-0001
+    cms_node_id: '155516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155516
+    approval_date: '2023-10-23'
+    effective_date: '2023-01-01'
+    summary: To raise the Federal Poverty Level (FPL) for Qualified Medicare Beneficiaries from 100 percent to 138 percent
+      and the Qualified Individual's eligibility level to greater than 138 percent FPL to 186 percent FPL.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-23-0030-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-23-0030: Approval Document (approved June 22, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-23-0030
+    cms_node_id: '150206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150206
+    approval_date: '2023-06-22'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-22-0016-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-22-0016: Approval Document (approved April 29, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-22-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-22-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-22-0016
+    cms_node_id: '137851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137851
+    approval_date: '2022-04-29'
+    effective_date: '2022-01-01'
+    summary: To revise the Medically Needy Income Levels
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-21-0003-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-21-0003: Approval Document (approved June 4, 2021, effective February 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NY-21-0003
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-02-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-21-0003/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-21-0003
+    cms_node_id: '109056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109056
+    approval_date: '2021-06-04'
+    effective_date: '2021-02-01'
+    summary: This amendment revises the State Plan to establish and authorize payment for rehabilitative and preventative
+      services delivered to children residing in a structured and supportive living environment.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-21-0013-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-21-0013: Approval Document (approved May 27, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NY-21-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-21-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-21-0013
+    cms_node_id: '109041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109041
+    approval_date: '2021-05-27'
+    effective_date: '2021-01-01'
+    summary: Proposes to apply a $2.50 copay to all brand drugs, except when the brand drug cost less than the generic equivalent.
+      The proposed policy will result in a $1.50 increase in copays for some brand name drugs referred to as “preferred” brand
+      name drugs.
+    topics:
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-21-0016-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-21-0016: Approval Document (approved May 7, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-21-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-21-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-21-0016
+    cms_node_id: '137856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137856
+    approval_date: '2021-05-07'
+    effective_date: '2021-01-01'
+    summary: Revises the Medically Needy Income Levels, effective January 1, 2021. For Medically Needy households of 1 and
+      2, levels are calculated using the SSI standards. To arrive at uniform levels for households of 3 and higher, 15% per
+      additional household member is added to the standard for a household of 2. Thus, the standard for a household of 3 would
+      be 115% of the standard for a household of 2; the standard for a household of 4 would be 130% of the standard of for
+      a household of 2, etc.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-15-0048-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-15-0048: Approval Document (approved October 27, 2020, effective April 1, 2015)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NY-15-0048.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-15-0048/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-15-0048
+    cms_node_id: '103486'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103486
+    approval_date: '2020-10-27'
+    effective_date: '2015-04-01'
+    summary: Proposes to eliminate the reduction to the statewide base price for inpatient services
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-20-0035-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-20-0035: Approval Document (approved September 2, 2020, effective April 2, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-20-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-02'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-20-0035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-20-0035
+    cms_node_id: '101821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101821
+    approval_date: '2020-09-02'
+    effective_date: '2020-04-02'
+    summary: Proposes to implement a 5% reduction to the inpatient hospital add-on for capital and to reduce the impact from
+      reconciliations of capital to actuals
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-20-0052-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-20-0052: Approval Document (approved September 1, 2020, effective April 2, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-20-0052.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-02'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-20-0052/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-20-0052
+    cms_node_id: '101966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101966
+    approval_date: '2020-09-01'
+    effective_date: '2020-04-02'
+    summary: applies an one and half percent reduction uniformly across payments made under certain sections in the 4.19B
+      section of the state plan
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-15-0011-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-15-0011: Approval Document (approved June 9, 2020, effective October 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-15-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-15-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-15-0011
+    cms_node_id: '100066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100066
+    approval_date: '2020-06-09'
+    effective_date: '2015-10-01'
+    summary: Adds additional exempt groups from Medicaid copays
+    topics:
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-17-0029-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-17-0029: Approval Document (approved June 9, 2020, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-17-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-17-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-17-0029
+    cms_node_id: '100091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100091
+    approval_date: '2020-06-09'
+    effective_date: '2017-07-01'
+    summary: proposes to amend the co-payment for brand name prescription drugs dispensed in order to eliminate the difference
+      in co-pay between a preferred drugs and a non-preferred drug
+    topics:
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-20-0009-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-20-0009: Approval Document (approved June 2, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-20-0009
+    cms_node_id: '183721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183721
+    approval_date: '2020-06-02'
+    effective_date: '2020-01-01'
+    summary: Revises Medical Needy Income levels
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-20-0011-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-20-0011: Approval Document (approved May 29, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-20-0011
+    cms_node_id: '98926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98926
+    approval_date: '2020-05-29'
+    effective_date: '2020-01-01'
+    summary: Updates and extends the Ambulatory Patient Group (APG) methodology for hospital based clinics and ambulatory
+      surgery services for the effective period January 1, 2020 thru December 31, 2020 and revise the APG methodology to reflect
+      the recalculated weights with component updates
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-18-0024-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-18-0024: Approval Document (approved April 24, 2020, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NY-18-0024_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-18-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-18-0024
+    cms_node_id: '183646'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183646
+    approval_date: '2020-04-24'
+    effective_date: '2018-07-01'
+    summary: Updates existing policy on the minimum utilization percentage and therapy leave days for psychiatric residential
+      treatment facilities (PRTF).
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-19-0053-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-19-0053: Approval Document (approved February 6, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-19-0053_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-19-0053/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-19-0053
+    cms_node_id: '58741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58741
+    approval_date: '2020-02-06'
+    effective_date: '2019-10-01'
+    summary: Proposes updates in State Plan Pages based on provisions included in Section 1004 of the Substance Use-Disorder
+      Prevention that promotes Opioid Recovery and Treatment (SUPPORT) for Patients and Communities Act (P.L. 115-271).
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-19-0046-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-19-0046: Approval Document (approved December 17, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-19-0046.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-19-0046/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-19-0046
+    cms_node_id: '57456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=57456
+    approval_date: '2019-12-17'
+    effective_date: '2019-10-01'
+    summary: Revises the State Plan to add Applied Behavioral analyst, certified behavior analyst assists under the supervision
+      of licensed behavior analyst, or other individual specified under article one hundred sixty-seven of New York State
+      education law, and update service type/fee schedule accordingly
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-19-0014-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-19-0014: Approval Document (approved December 16, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-19-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-19-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-19-0014
+    cms_node_id: '58106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58106
+    approval_date: '2019-12-16'
+    effective_date: '2020-01-01'
+    summary: Applies changes to the state’s rehabilitation benefit by implementing targeted services for individuals with
+      intellectual and/or developmental disabilities who have significant behavioral or mental health needs
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-18-0027-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-18-0027: Approval Document (approved December 10, 2019, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-18-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-18-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-18-0027
+    cms_node_id: '52366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52366
+    approval_date: '2019-12-10'
+    effective_date: '2019-04-01'
+    summary: Authorizes supplemental payments for the 2018 outpatient services of certain public general hospitals
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-16-0041-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-16-0041: Approval Document (approved November 22, 2019, effective April 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-16-0041.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-16-0041/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-16-0041
+    cms_node_id: '52356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52356
+    approval_date: '2019-11-22'
+    effective_date: '2016-04-01'
+    summary: Personalized Recovery Oriented Services (PROS) FMAP=50%.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-17-0069-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-17-0069: Approval Document (approved November 21, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-17-0069.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-17-0069/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-17-0069
+    cms_node_id: '4131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4131
+    approval_date: '2019-11-21'
+    effective_date: '2019-10-01'
+    summary: Authorizes supplemental payments for the outpatient services furnished by critical access hospitals.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-19-0048-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-19-0048: Approval Document (approved November 5, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-19-0048.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-19-0048/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-19-0048
+    cms_node_id: '4316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4316
+    approval_date: '2019-11-05'
+    effective_date: '2019-07-01'
+    summary: Updates the State's APG system for Freestanding Clinic services (FMAP=50%).
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-19-0042-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-19-0042: Approval Document (approved September 26, 2019, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-19-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-19-0042/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-19-0042
+    cms_node_id: '4851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4851
+    approval_date: '2019-09-26'
+    effective_date: '2019-04-01'
+    summary: Cost Containment-OP (FMAP=50%).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-19-0013-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-19-0013: Approval Document (approved June 11, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-19-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-19-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-19-0013
+    cms_node_id: '5886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5886
+    approval_date: '2019-06-11'
+    effective_date: '2019-01-01'
+    summary: Changes reimbursement for free-standing chemical dependence residential rehabilitation for youth.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-17-0066-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-17-0066: Approval Document (approved March 8, 2018, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-17-0066.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-17-0066/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-17-0066
+    cms_node_id: '11356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11356
+    approval_date: '2018-03-08'
+    effective_date: '2017-10-01'
+    summary: Ends Express Lane Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-17-0048-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-17-0048: Approval Document (approved July 11, 2017, effective June 30, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-17-0048.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-06-30'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-17-0048/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-17-0048
+    cms_node_id: '14461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=14461
+    approval_date: '2017-07-11'
+    effective_date: '2017-06-30'
+    summary: Removes eligibility for individuals who were in foster care and on Medicaid in any state at the time they turn
+      or aged out of the foster care system.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-17-0014-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-17-0014: Approval Document (approved December 22, 2016, effective December 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-17-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-12-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-17-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-17-0014
+    cms_node_id: '16816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16816
+    approval_date: '2016-12-22'
+    effective_date: '2016-12-01'
+    summary: To use the Temporary Assistance for Needy Families (TANF) option as the means tested public benefits program
+      to support Medicaid eligibility determinations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-16-0019-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-16-0019: Approval Document (approved November 30, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-16-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-16-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-16-0019
+    cms_node_id: '17216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=17216
+    approval_date: '2016-11-30'
+    effective_date: '2016-07-01'
+    summary: Amendment proposes to revise the IEP eligibility ratio formula for school-based health services for school-age
+      children and extend the sunset date to June 30, 2017.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-16-0026-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-16-0026: Approval Document (approved August 12, 2016, effective April 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-16-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-16-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-16-0026
+    cms_node_id: '18461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=18461
+    approval_date: '2016-08-12'
+    effective_date: '2016-04-01'
+    summary: Implements cost sharing limits to Medicare Part C.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-15-0020-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-15-0020: Approval Document (approved April 7, 2016, effective October 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-15-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-15-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-15-0020
+    cms_node_id: '19891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19891
+    approval_date: '2016-04-07'
+    effective_date: '2016-10-01'
+    summary: Adds Health Home Eligibility criteria for Children.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-15-0038-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-15-0038: Approval Document (approved December 9, 2015, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-15-0038.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-15-0038/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-15-0038
+    cms_node_id: '21396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21396
+    approval_date: '2015-12-09'
+    effective_date: '2015-07-01'
+    summary: Prevents the Medicaid program from paying any cost-sharing amount more than the maximum amount that Medicaid
+      would pay for the same service.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-15-0005-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-15-0005: Approval Document (approved November 18, 2015, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-15-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-15-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-15-0005
+    cms_node_id: '21511'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21511
+    approval_date: '2015-11-18'
+    effective_date: '2015-07-01'
+    summary: This SPA adds Erie County Medical Center to the list of Eligible Providers regarding supplemental payments to5certain
+      professional practitioners. These supplemental payments are applicable only to the professional component of the eligible
+      services provided.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-13-0053-mm1-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-13-0053-MM1: Approval Document (approved June 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-13-0053-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-13-0053-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-13-0053-MM1
+    cms_node_id: '35721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35721
+    approval_date: '2014-06-26'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI Based Eligibility Groups and AFDC Income Standards.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-13-0058-mm6-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-13-0058-MM6: Approval Document (approved June 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-13-0058-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-13-0058-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-13-0058-MM6
+    cms_node_id: '36056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36056
+    approval_date: '2014-06-23'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunities Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-13-0057-mm5-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-13-0057-MM5: Approval Document (approved June 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-13-0057-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-13-0057-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-13-0057-MM5
+    cms_node_id: '36051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36051
+    approval_date: '2014-06-17'
+    effective_date: '2014-01-01'
+    summary: Affirms Residency Regulations and Addresses Interstate Agreements and Temporary Absence In Accordance with the
+      Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-13-0040-mm1-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-13-0040 MM1: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-13-0040-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-13-0040-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-13-0040 MM1
+    cms_node_id: '39246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39246
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Incorporates the Eligibility Groups Mandatory Coverage- Adult Group into this New York state plan in accordance
+      with the Affordable Care Act
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-13-10-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-13-10: Approval Document (approved November 6, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-13-10.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-13-10/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-13-10
+    cms_node_id: '35461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35461
+    approval_date: '2013-11-06'
+    effective_date: '2013-10-01'
+    summary: Changes the service limits for comprehensive tobacco cessation services provided to pregnant women, including
+      both counseling and pharmacotherapy, without cost sharing.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-11-05-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-11-05: Approval Document (approved March 5, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-11-05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-11-05/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-11-05
+    cms_node_id: '41306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41306
+    approval_date: '2012-03-05'
+    effective_date: '2011-10-01'
+    summary: Transitional Medical Assistance Eligibility Criteria Change (FMAP = 50%).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-10-04-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-10-04: Approval Document (approved September 29, 2011, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-10-04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-10-04/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-10-04
+    cms_node_id: '41391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41391
+    approval_date: '2011-09-29'
+    effective_date: '2010-04-01'
+    summary: Mental Hygiene Inpatient DSH Historical Eligibility & Payment Language.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-11-08-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-11-08: Approval Document (approved September 7, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-11-08.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-11-08/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-11-08
+    cms_node_id: '41286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41286
+    approval_date: '2011-09-07'
+    effective_date: '2011-04-01'
+    summary: Revised Hospital DSH Caps; Extension of Major Public and High Need Indigent Care; SUNY/County DSH Payments; (FMAP
+      = 50%).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-10-21-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-10-21: Approval Document (approved May 11, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-10-21.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-10-21/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-10-21
+    cms_node_id: '41361'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41361
+    approval_date: '2011-05-11'
+    effective_date: '2010-07-01'
+    summary: Potentially Preventable Readmissions (PPRs).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ny-cms-medicaid-state-plan-spa-ny-09-12b-approval-document
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York Medicaid SPA NY-09-12B: Approval Document (approved January 25, 2011, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NY/NY-09-12B.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ny/policy/cms/medicaid-state-plan/spa/ny-09-12b/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New York
+    source_discovery_group: us-ny/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-09-12B
+    cms_node_id: '41616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41616
+    approval_date: '2011-01-25'
+    effective_date: '2009-04-01'
+    summary: NH Recruitment & Modify Capital Rates for Certain Proprietary Homes (FMAP = 61.59% as of effective date).
+    topics:
+    - Eligibility
+    link_label: Approval Document

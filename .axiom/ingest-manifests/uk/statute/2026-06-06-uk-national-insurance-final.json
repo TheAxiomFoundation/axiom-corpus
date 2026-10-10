@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "statute",
-  "generated_at": "2026-06-07T15:11:56.640457+00:00",
+  "generated_at": "2026-07-21T11:42:00.699692+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "FKVRSf+byxQxpEQaGhB1WAIXEkUZOQEQZPzjpgETXe8cxfD0zshonT/2puNRh7JmKwyHY8DRbHH+6khqUNQHAg=="
+    "value": "sBdwi282WujCOLO8A+uGAAwirM30RsQMXF3d4AmwnV6ZkgKVwe7uqDhl7zFRRmwPRWz818q35P0rXfw4Z0WrCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-06-uk-national-insurance-final"

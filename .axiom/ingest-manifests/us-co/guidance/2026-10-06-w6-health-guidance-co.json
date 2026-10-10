@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/guidance/2026-10-06-w6-health-guidance-co.json",
+      "sha256": "44f32ffce4864ba6bfabb73bdcaf1a37a8b6f9f9616d26bf1546b16321a8696d"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/guidance/2026-10-06-w6-health-guidance-co.json",
+      "sha256": "012444a1b6237950fe9f8695a2ff184cb3bbc6a2d13481240f93a5e44a97b1dc"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/guidance/2026-10-06-w6-health-guidance-co.jsonl",
+      "sha256": "d995610f6a06967a41c00405021d1e40ddbdd90d181a193101a41257efecfe07"
+    },
+    {
+      "path": "data/corpus/sources/us-co/guidance/2026-10-06-w6-health-guidance-co/official-documents/us-co-w6-health-connect-for-health-colorado-omnisalud.html",
+      "sha256": "af480353b86bc8391c3a12687cabeb089e0621514a262e9106479e83f3fc41e6"
+    },
+    {
+      "path": "data/corpus/sources/us-co/guidance/2026-10-06-w6-health-guidance-co/official-documents/us-co-w6-health-hcpf-child-health-plan-plus.html",
+      "sha256": "72d9fe6a6e0a056e8a0a09e8850fcf1a2eddf4e99d226319f24034f0e03a7c2f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/guidance/2026-10-06-w6-health-guidance-co/official-documents/us-co-w6-health-hcpf-chp-plus-income-chart-2022-04.pdf",
+      "sha256": "d5eaa9d937758b46c391bc7d021af136c72cb3e7af897401219c870cada359fd"
+    },
+    {
+      "path": "data/corpus/sources/us-co/guidance/2026-10-06-w6-health-guidance-co/official-documents/us-co-w6-health-hcpf-chp-plus-income-chart-2023-04.pdf",
+      "sha256": "af9a8d03fa9657b1e5b1dd84b3ace08901cb44b23df824b5fdbdec73f44f6368"
+    },
+    {
+      "path": "data/corpus/sources/us-co/guidance/2026-10-06-w6-health-guidance-co/official-documents/us-co-w6-health-hcpf-health-first-colorado-health-coverage-for-immigrants.html",
+      "sha256": "c656e4c289cb0d165b3847e81b3fb80dab25f59c6aca193271100dcc9e47b6e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:49:40.052816+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FBx+MFa7mJE2XAphKetB+0LM34isQxmxvGUYDBXBEmrB812rVNF1R37F3sKPtbPHZIlTxKN3Nljp+2yR5jGaDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-co"
+}

@@ -1,0 +1,671 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-tx-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 23
+    index_records_total: 23
+- source_id: us-tx-cms-chip-state-plan-spa-tx-19-0045-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-19-0045: Approval Package (approved April 9, 2024, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX-19-0045.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-19-0045/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-19-0045
+    cms_node_id: '165101'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=165101
+    approval_date: '2024-04-09'
+    effective_date: '2018-07-01'
+    summary: This SPA demonstrates compliance with the CHIP managed care regulations at 42 CFR 457, Subpart L for utilization
+      of a managed care delivery system. Additionally, through this SPA the state is updating its process for conducting reviews
+      of health services matters.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-23-0029-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-23-0029: Approval Package (approved January 17, 2024, effective March 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX-23-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-23-0029/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-23-0029
+    cms_node_id: '158161'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=158161
+    approval_date: '2024-01-17'
+    effective_date: '2024-03-01'
+    summary: This SPA provides Texas with approval to provide 12 months of continuous postpartum coverage to individuals enrolled
+      in its CHIP program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-22-0001-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-22-0001: Approval Package (approved December 23, 2022, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-22-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-22-0001
+    cms_node_id: '143266'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143266
+    approval_date: '2022-12-23'
+    effective_date: '2023-01-01'
+    summary: This SPA reduces copayments for brand name insulin from $35 to $25 for all CHIP members with family income above
+      151 percent of the federal poverty level (FPL) up to and including 201 percent of the FPL.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-22-0031-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-22-0031: Approval Package (approved December 5, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX-22-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-22-0031/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-22-0031
+    cms_node_id: '143246'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143246
+    approval_date: '2022-12-05'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-18-0042-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-18-0042: Approval Package (approved September 15, 2022, effective September 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX-18-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-09-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-18-0042/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-18-0042
+    cms_node_id: '140401'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=140401
+    approval_date: '2022-09-15'
+    effective_date: '2017-09-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-22-0004-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-22-0004: Approval Package (approved August 11, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX-22-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-22-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-22-0004
+    cms_node_id: '139631'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139631
+    approval_date: '2022-08-11'
+    effective_date: '2022-01-01'
+    summary: This SPA removes state-specific exceptions to continuous eligibility to comply with 42 CFR 457.342.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-17-0043-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-17-0043: Approval Package (approved August 31, 2017, effective August 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-17-0043.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-08-02'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-17-0043/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-17-0043
+    cms_node_id: '3736'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3736
+    approval_date: '2017-08-31'
+    effective_date: '2017-08-02'
+    summary: This SPA provides temporary adjustments to the state's enrollment and redetermination policies, and cost-sharing
+      requirements for children in families impacted by disaster events.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-14-0036-mc5-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-14-0036-MC5: Approval Package (approved December 23, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-14-0036-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-14-0036-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-14-0036-MC5
+    cms_node_id: '3066'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3066
+    approval_date: '2015-12-23'
+    effective_date: '2014-01-01'
+    summary: Clarifies the state's non-financial eligibility policies on residency, citizenship, social security numbers,
+      substitution of coverage, non-payment of premiums, and continuous eligibility.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-14-0034-mc3-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-14-0034-MC3: Approval Package (approved January 8, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-14-0034-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-14-0034-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-14-0034-MC3
+    cms_node_id: '3061'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3061
+    approval_date: '2015-01-08'
+    effective_date: '2014-01-01'
+    summary: 'Describes the state''s plan to provide coverage in its separate CHIP, for children subject to Section 2101(f)
+      of the Affordable Care Act, as specified in the state''s submission of CS14: Children Ineligible for Medicaid as a Result
+      of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-14-0033-mc2-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-14-0033-MC2: Approval Package (approved November 5, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-14-0033-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-14-0033-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-14-0033-MC2
+    cms_node_id: '3056'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3056
+    approval_date: '2014-11-05'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to MAGI-equivalent standards, by age group, for children
+      covered in its title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-30-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-30: Approval Package (approved July 27, 2011, effective September 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-30-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-30/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-30
+    cms_node_id: '1351'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1351
+    approval_date: '2011-07-27'
+    effective_date: '2011-09-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-23-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-23: Approval Package (approved February 11, 2011, effective May 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-23-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-05-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-23/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-23
+    cms_node_id: '2066'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2066
+    approval_date: '2011-02-11'
+    effective_date: '2010-05-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-29-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-29: Approval Package (approved January 11, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-29-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-29/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-29
+    cms_node_id: '1776'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1776
+    approval_date: '2011-01-11'
+    effective_date: '2003-06-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-24-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-24: Approval Package (approved October 21, 2010, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-24-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-24/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-24
+    cms_node_id: '1356'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1356
+    approval_date: '2010-10-21'
+    effective_date: '2003-06-01'
+    summary: 'Deemed newborns - SPA #24.'
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-25-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-25: Approval Package (approved October 21, 2010, effective August 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-25-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-08-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-25/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-25
+    cms_node_id: '1331'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1331
+    approval_date: '2010-10-21'
+    effective_date: '2010-08-01'
+    summary: Elect hospice services.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-26-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-26: Approval Package (approved October 21, 2010, effective March 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-26-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-26/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-26
+    cms_node_id: '2206'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2206
+    approval_date: '2010-10-21'
+    effective_date: '2011-03-01'
+    summary: Benefit and Cost Sharing changes.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-19-current-state-plan
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-19: Current State Plan (approved November 8, 2007, effective September 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-19-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-09-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-19/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: TX-CSPA-19
+    cms_node_id: '1571'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1571
+    approval_date: '2007-11-08'
+    effective_date: '2007-09-01'
+    summary: Amends the dollar amount of dental services enrollees are eligible to receive in a year.
+    topics: &id002
+    - Dental
+    link_label: Current State Plan
+- source_id: us-tx-cms-chip-state-plan-spa-tx-cspa-19-approval-package
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP SPA TX-CSPA-19: Approval Package (approved November 8, 2007, effective September 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TX-CSPA-19-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-09-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/spa/tx-cspa-19/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-CSPA-19
+    cms_node_id: '1571'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1571
+    approval_date: '2007-11-08'
+    effective_date: '2007-09-01'
+    summary: Amends the dollar amount of dental services enrollees are eligible to receive in a year.
+    topics: *id002
+    link_label: Approval Package
+- source_id: us-tx-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TXCurrentFactSheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: TX
+    cms_node_id: '1616'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1616
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan and Factsheet.
+    topics: &id003
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-tx-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/TX/TXCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-tx/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: TX
+    cms_node_id: '1616'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1616
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan and Factsheet.
+    topics: *id003
+    link_label: Current State Plan

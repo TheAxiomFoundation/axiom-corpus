@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-north-yorkshire/manual/2026-07-25-north-yorkshire-council-tax-reduction-2026-2027.json",
+      "sha256": "ffa8663d6efc5501c5c996008fbc4f5ef21107e0758f83fbc0caa0874373e0bc"
+    },
+    {
+      "path": "data/corpus/inventory/uk-north-yorkshire/manual/2026-07-25-north-yorkshire-council-tax-reduction-2026-2027.json",
+      "sha256": "cc095766d381a31ce7281ea58dae988af4f8b40ba49bcc9b3ad153fd1a476ac9"
+    },
+    {
+      "path": "data/corpus/provisions/uk-north-yorkshire/manual/2026-07-25-north-yorkshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f5266c7e15473deb0a7c9b3ff8c23c8e2ebafc84931f491af53342cc3789de13"
+    },
+    {
+      "path": "data/corpus/sources/uk-north-yorkshire/manual/2026-07-25-north-yorkshire-council-tax-reduction-2026-2027/official-documents/north-yorkshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a742bbb6fbaf7e404c20da95afc4d4aa3775ad44892a746c62c52a4c4d486770"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-north-yorkshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-north-yorkshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 82,
+    "missing_count": 0,
+    "provision_count": 82,
+    "source_count": 82
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:34.216804+00:00",
+  "jurisdiction": "uk-north-yorkshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YxRA+DzZRqPv18QEoXtij9nD4D9XyXUTj/xZOBq9RYonxymk50EYkghrj5hJFiYxMrXTZqWTJGABmohaZEOWCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-north-yorkshire-council-tax-reduction-2026-2027"
+}

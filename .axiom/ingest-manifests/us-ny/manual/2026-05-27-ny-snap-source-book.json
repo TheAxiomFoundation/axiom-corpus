@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ny/manual/2026-05-27-ny-snap-source-book.json",
-      "sha256": "1d0eee6e67767b4f829fd5185bb37159b3d9aa6adc6ce10bd46d68d1d3e58938"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ny/manual/2026-05-27-ny-snap-source-book.json"
     },
     {
-      "path": "data/corpus/inventory/us-ny/manual/2026-05-27-ny-snap-source-book.json",
-      "sha256": "d6777545e6277a0fa07f7489096e3f1aa4476a41b7e43287cff907c7c8cad9b8"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ny/manual/2026-05-27-ny-snap-source-book.json"
     },
     {
-      "path": "data/corpus/provisions/us-ny/manual/2026-05-27-ny-snap-source-book.jsonl",
-      "sha256": "825c300c074be005485de25a14bf7a4049c3c60afa9e517f6a4de35aef421fb0"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ny/manual/2026-05-27-ny-snap-source-book.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "e2bd3caa3fe240fb8a30cbc5cbb21fcd98f20b1d",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "scope replacement by 2026-07-17-ny-snap-manuals; superseded source-less artifacts removed"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 22,
-    "missing_count": 0,
-    "provision_count": 22,
-    "source_count": 22
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:39.364975+00:00",
+  "generated_at": "2026-07-17T21:55:03.319061+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "1xPpRewDD3k/9Azl9xN4s+aBXttlwQJO3JRiwNFD6jaIEqfVd41CuwvvZqS74aqbE0ILM0Oc+R3BLAjv5aMFBQ=="
+    "value": "9Os3SMsoB7rC9JuW+EyWzPOcR5AnC6b1zzFS9UtPJvvBuU9LBph7q1zDwillnHbRDAh2MLXekb8iP+ChU2ZEDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-ny-snap-source-book"

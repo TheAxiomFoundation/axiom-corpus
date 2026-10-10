@@ -1,0 +1,283 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-nh-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 6
+    index_records_total: 6
+- source_id: us-nh-cms-chip-state-plan-spa-nh-13-9001-approval-package
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP SPA NH-13-9001: Approval Package (approved June 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NH-13-9001-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa/nh-13-9001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-9001
+    cms_node_id: '2636'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2636
+    approval_date: '2014-06-24'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to MAGI-equivalent standards, by age group, for children
+      covered in its title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nh-cms-chip-state-plan-spa-nh-13-9002-approval-package
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP SPA NH-13-9002: Approval Package (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NH-13-9002-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa/nh-13-9002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-13-9002
+    cms_node_id: '2641'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2641
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: 'Describes the state''s plan to maintain Medicaid eligibility for children who would otherwise be subject to
+      Section 2101(f) of the Affordable Care Act, as specified in the state''s submission of CS14: Children Ineligible for
+      Medicaid as a Result of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nh-cms-chip-state-plan-spa-nh-cspa-6-approval-package
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP SPA NH-CSPA-6: Approval Package (approved December 21, 2011, effective January 3, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NH-CSPA-06-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-03'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa/nh-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-CSPA-6
+    cms_node_id: '1961'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1961
+    approval_date: '2011-12-21'
+    effective_date: '2011-01-03'
+    summary: Increases current co-payments and implements new co-payments for families with children in New Hampshire's CHIP
+      program.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-nh-cms-chip-state-plan-spa-nh-cspa-05-approval-package
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP SPA NH-CSPA-05: Approval Package (approved December 18, 2009, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NH-CSPA-5-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa/nh-cspa-05/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NH-CSPA-05
+    cms_node_id: '1681'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1681
+    approval_date: '2009-12-18'
+    effective_date: '2003-06-01'
+    summary: Increases premiums.
+    topics: &id002
+    - Outreach & Enrollment
+    link_label: Approval Package
+- source_id: us-nh-cms-chip-state-plan-spa-nh-cspa-05-final-approved-state-plan
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP SPA NH-CSPA-05: Final Approved State Plan (approved December 18, 2009, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NH-CSPA-5-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa/nh-cspa-05/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NH-CSPA-05
+    cms_node_id: '1681'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1681
+    approval_date: '2009-12-18'
+    effective_date: '2003-06-01'
+    summary: Increases premiums.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-nh-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP compiled state plan: Factsheet (approved January 13, 2005, effective July 1, 2004)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NHCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2004-07-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: NH
+    cms_node_id: '1531'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1531
+    approval_date: '2005-01-13'
+    effective_date: '2004-07-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 12-18-2009.
+    topics: &id003
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-nh-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP compiled state plan: Current State Plan (approved January 13, 2005, effective July 1, 2004)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NHCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2004-07-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NH
+    cms_node_id: '1531'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1531
+    approval_date: '2005-01-13'
+    effective_date: '2004-07-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 12-18-2009.
+    topics: *id003
+    link_label: Current State Plan
+- source_id: us-nh-cms-chip-state-plan-spa-nh-cspa-08-pending-state-plan
+  jurisdiction: us-nh
+  document_class: policy
+  title: 'New Hampshire CHIP SPA NH-CSPA-08: Pending State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NH/NH-CSPA-8-Initial.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-nh/policy/cms/chip-state-plan/spa/nh-cspa-08/pending-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Hampshire
+    source_discovery_group: us-nh/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_document
+    transmittal_number: NH-CSPA-08
+    cms_node_id: '1896'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1896
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Requests to convert its Title XXI Combination Program to a Medicaid Expansion Program effective July 1, 2012.
+    topics:
+    - Expansion
+    link_label: Pending State Plan

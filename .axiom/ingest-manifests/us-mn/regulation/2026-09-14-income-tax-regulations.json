@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "4c0f65e37719382a01531fec4e177f7f05f793bbee66c7f508b6682ad32f3e7e"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "71059c229034c7027e3c8eceaa66919e73f60d0caa4e529ceb2ebc7141289531"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "ce55b5615e2c54795c9736ede7d4e94fb80202ffac368e8f2eda3b82e0173c0c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8001.html",
+      "sha256": "a4702d33f1a2bbc32619d36a9e08c6c10db2e8116805644c807ef98fbd5cc5ec"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8002.html",
+      "sha256": "c395ae17746033f2c378ed4aa78bfddff46f5359cfc501ea47a0914c5d327160"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8007.html",
+      "sha256": "804c3e2289548ef0cbdd7dd4013519ee8b2ad37ba5936d2bde54714a7f937f49"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8038.html",
+      "sha256": "c4efa54599fd3f0d8fb34325f1a76dfd7d08e4ce7a51218665c411210384d61a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8050.html",
+      "sha256": "d7a9ac6b0a4e654c969a59186ddc2ed223df501108c815e1812439dce8a8ce1f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8092.html",
+      "sha256": "650c54614a6e36bf67a24ddd3def1d7bbc1818037953cbce3c6a5acd9a9289a0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-09-14-income-tax-regulations/official-documents/mn-revisor-rules-8093.html",
+      "sha256": "af17bb1877eabb1d9a0b4684e010a1d45dafe0a447a1678d503ec139887e3e0f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 27,
+    "missing_count": 0,
+    "provision_count": 27,
+    "source_count": 27
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:56:49.679283+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UQ/fFP9LhTxoTu4GIVYtJvepzX3/u9sRD/p+36tUlX6Hu0gJgVQ4DkWElkxzNlp8XWr6nj4ig992XYf4f+TGBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

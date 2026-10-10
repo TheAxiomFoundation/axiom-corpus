@@ -1,0 +1,177 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ne-dhhs-468-nac-chapter-1
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 468 NAC Chapter 1: General Background'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/468%20NAC%201%20%2808-29-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-08-29'
+  citation_path: us-ne/regulation/title-468/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: TANF
+    state_program: Aid to Dependent Children (ADC)
+    federal_program: TANF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    source_discovery_group: us-ne/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/223
+    chapter_id: 1674
+    chapter_name: GENERAL BACKGROUND
+    pdf_blob_name: 468 NAC 1 (08-29-2022).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2022-08-29'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: 'labeled sections with the 475 NAC SNAP scope''s heading patterns (no signature-page drop lines: these
+      blobs are the unsigned chapter files)'
+- source_id: us-ne-dhhs-468-nac-chapter-2
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 468 NAC Chapter 2: Eligibility Requirements'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/468%20NAC%202%20%2808-29-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-08-29'
+  citation_path: us-ne/regulation/title-468/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: TANF
+    state_program: Aid to Dependent Children (ADC)
+    federal_program: TANF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    source_discovery_group: us-ne/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/223
+    chapter_id: 1675
+    chapter_name: ELIGIBILITY REQUIREMENTS
+    pdf_blob_name: 468 NAC 2 (08-29-2022).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2022-08-29'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: 'labeled sections with the 475 NAC SNAP scope''s heading patterns (no signature-page drop lines: these
+      blobs are the unsigned chapter files)'
+- source_id: us-ne-dhhs-468-nac-chapter-3
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 468 NAC Chapter 3: Calculation of Aid to Dependent Children Benefits'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/468%20NAC%203%20%2808-29-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-08-29'
+  citation_path: us-ne/regulation/title-468/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: TANF
+    state_program: Aid to Dependent Children (ADC)
+    federal_program: TANF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    source_discovery_group: us-ne/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/223
+    chapter_id: 1676
+    chapter_name: CALCULATION OF AID TO DEPENDENT CHILDREN BENEFITS
+    pdf_blob_name: 468 NAC 3 (08-29-2022).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2022-08-29'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: 'labeled sections with the 475 NAC SNAP scope''s heading patterns (no signature-page drop lines: these
+      blobs are the unsigned chapter files)'
+- source_id: us-ne-dhhs-468-nac-chapter-4
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 468 NAC Chapter 4: Employment First Self-Sufficiency Program (EF)'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/468%20NAC%204%20%2808-29-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-08-29'
+  citation_path: us-ne/regulation/title-468/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: TANF
+    state_program: Aid to Dependent Children (ADC)
+    federal_program: TANF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    source_discovery_group: us-ne/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/223
+    chapter_id: 1677
+    chapter_name: EMPLOYMENT FIRST SELF-SUFFICIENCY PROGRAM (EF)
+    pdf_blob_name: 468 NAC 4 (08-29-2022).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2022-08-29'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: 'labeled sections with the 475 NAC SNAP scope''s heading patterns (no signature-page drop lines: these
+      blobs are the unsigned chapter files)'
+- source_id: us-ne-dhhs-468-nac-chapter-5
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 468 NAC Chapter 5: Emergency Assistance to Needy Families with Children (EA)'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/468%20NAC%205%20%2808-29-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-08-29'
+  citation_path: us-ne/regulation/title-468/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: TANF
+    state_program: Aid to Dependent Children (ADC)
+    federal_program: TANF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    source_discovery_group: us-ne/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/223
+    chapter_id: 1678
+    chapter_name: EMERGENCY ASSISTANCE TO NEEDY FAMILIES WITH CHILDREN (EA)
+    pdf_blob_name: 468 NAC 5 (08-29-2022).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2022-08-29'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: 'labeled sections with the 475 NAC SNAP scope''s heading patterns (no signature-page drop lines: these
+      blobs are the unsigned chapter files)'

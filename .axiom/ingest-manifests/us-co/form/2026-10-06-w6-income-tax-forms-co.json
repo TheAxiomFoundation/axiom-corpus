@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/form/2026-10-06-w6-income-tax-forms-co.json",
+      "sha256": "f6ced0c2c655d6354933242e03be3b7954855f5ef3024dfa2fdf4eeabb3d39d8"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/form/2026-10-06-w6-income-tax-forms-co.json",
+      "sha256": "a4019ab76a07e0ea7ddca38fdcf9ff2b2a56a92418ad93e43dd71d1194ab8aca"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/form/2026-10-06-w6-income-tax-forms-co.jsonl",
+      "sha256": "974e4f90904b4a0e11dccfeea4196bd41a89d62a60d9615177bfd049d5de93c6"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2021-dr-0104-book-v3.pdf",
+      "sha256": "cfb9cdc27a27015a252d9172358d7820d2ff4239047accee2e74d5e67e4e7346"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2021-dr-0104-book.pdf",
+      "sha256": "882b570eb53dedaaf2892ba3ec4ea3cf11a8de8d701f1cde70e1ff112d2a9a15"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2021-dr-0104ad.pdf",
+      "sha256": "91a0c7685ebbb2d05ee3207276fca228a1d863f3acc48871313123541fdf802d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2022-dr-0104-book.pdf",
+      "sha256": "c7e813591fbea7d5b7930649a4d8e8f175263d995a492cc0e33ba938fee5647f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2022-dr-0104ad.pdf",
+      "sha256": "a7088ea44d2659a4b0701ac43b7221e53140aea60ae4498f9f45dd9be7ac507b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2022-dr-0104cn.pdf",
+      "sha256": "2eb13a8566e83e28fbda127c0e9c873b44c7032b9410d381ce569d584ce61f5d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2022-dr-0104ep.pdf",
+      "sha256": "c3e0487c9c53e53c935de6f30c9d4bc47bd585ddefbda0665fb53f9ff1f75424"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2023-dr-0104-book.pdf",
+      "sha256": "7f9f50ce9ce9e5552cd7e6e6454e1e25fca0bfbfb7226e2e12cf4f0bc5680d5c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2023-dr-0104ad.pdf",
+      "sha256": "0a9e5eb0b1e965ded049936c50c7de246659258095b958896ba7984bdc4cedaa"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2023-dr-0104cn.pdf",
+      "sha256": "9585f29e1317447d23d0723872522d1d7b3f9b868f0257c45898ef0b2c3556ee"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2024-dr-0104-book.pdf",
+      "sha256": "64e7f9a6093901466419a3ed75413ed1b1eb559e931a5e056aa73520c7abd1b6"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-10-06-w6-income-tax-forms-co/official-documents/us-co-w6-cdor-ty2024-dr-0104cn.pdf",
+      "sha256": "c2b4b537230a95cad5313e55a9c8cb19ef377f89226849090d06b53c032ac9e9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:49:37.006388+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bWiHdhx37uAz0FvSsBKaZQyknlVAyabdiU2903HEzbCrLBcty/NcZfUvSbvGRL851HJBFq3ikX64hr77tdjaDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-co"
+}

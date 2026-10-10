@@ -1,0 +1,34 @@
+documents:
+  - source_id: us-sd-dor-2026-sales-use-tax-guide
+    jurisdiction: us-sd
+    document_class: guidance
+    title: South Dakota January 2026 Sales and Use Tax Guide
+    source_url: https://dor.sd.gov/media/kavh1fzg/2026-1_sales-use-tax-guide.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-01-01"
+    citation_path: us-sd/guidance/revenue/2026/sales-and-use-tax-guide
+    extraction:
+      segmentation: single_block
+      sort_text: true
+    metadata:
+      primary_source: true
+      source_authority: South Dakota Department of Revenue
+      document_subtype: state_tax_guide
+      program: individual_income_tax
+      tax_year: "2026"
+      publication_date: "2026-01"
+      source_status: current_official_2026_tax_guide
+      certification_scope: natural_person_personal_income_tax_pre_credit_absence
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        The official January 2026 guide affirmatively states that South Dakota
+        does not have a personal income tax. The guide separately identifies
+        taxes that may apply to businesses. This intake supports the absence
+        of natural-person personal income tax through the pre-credit tax
+        stage. It does not certify a complete nonrefundable-credit,
+        refundable-credit, or signed net-liability surface, and it does not
+        cover business or entity taxes, payments, filing administration,
+        local taxes, or nonresident allocation.

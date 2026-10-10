@@ -1,0 +1,1 @@
+Tranche-2 full-document re-slice of Bolivia Ley 065 de Pensiones: 4 titulo page_windows slices of the BCB official print (retrofit of the whole-law capture that deferred); new release bo-rulespec-2026-07-24 selects t1 + t2 scopes.

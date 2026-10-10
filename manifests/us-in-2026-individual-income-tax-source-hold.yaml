@@ -1,0 +1,59 @@
+documents:
+  - source_id: us-in-dor-2026-individual-income-tax-rate
+    jurisdiction: us-in
+    document_class: guidance
+    title: Indiana DOR Rates, Fees, and Penalties — 2026 Individual Income Tax Rate
+    source_url: https://www.in.gov/dor/resources/tax-rates-and-reports/rates-fees-and-penalties/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-in/guidance/dor/individual-income-tax-rate/2026
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#content_container_80326"
+      segmentation: anchor_range
+      html_start_selector: "h2:nth-of-type(1)"
+      html_stop_selector: "h2:nth-of-type(2)"
+      section_label: individual-income-tax-rate
+    metadata:
+      primary_source: true
+      source_authority: Indiana Department of Revenue
+      legal_identifier: Indiana DOR 2026 individual adjusted gross income tax rate
+      document_subtype: tax_rate_guidance
+      program: individual_income_tax
+      source_status: current_official_guidance
+      source_note: >-
+        Current official DOR guidance establishes the 2.95 percent Indiana
+        individual adjusted gross income tax rate for tax year 2026 and
+        distinguishes the separate county income tax rate surface.
+
+  - source_id: us-in-dor-current-year-individual-tax-forms-2026-07-24
+    jurisdiction: us-in
+    document_class: guidance
+    title: Indiana DOR Current Year Individual Tax Forms Portal
+    source_url: https://www.in.gov/dor/tax-forms/individual/current/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-in/guidance/dor/current-year-individual-tax-forms
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#content_container_744163"
+      segmentation: anchor_range
+      html_start_selector: "p:nth-of-type(1)"
+      section_label: available-return-materials
+    metadata:
+      primary_source: true
+      source_authority: Indiana Department of Revenue
+      legal_identifier: Indiana DOR current-year individual tax forms portal
+      document_subtype: tax_forms_portal
+      program: individual_income_tax
+      source_status: current_portal_lists_tax_year_2025_return_materials
+      source_note: >-
+        As of July 24, 2026, the official current-year portal identifies the
+        available full-year-resident IT-40 booklet, return, add-back,
+        deduction, exemption, other-tax, and credit schedules as tax-year
+        2025 materials. It does not publish a final tax-year-2026 IT-40
+        annual-return package.

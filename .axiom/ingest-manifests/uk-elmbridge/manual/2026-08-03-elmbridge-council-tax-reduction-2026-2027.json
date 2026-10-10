@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-elmbridge/manual/2026-08-03-elmbridge-council-tax-reduction-2026-2027.json",
+      "sha256": "8a924b19d457a9fd60cecb6b1fb03d64fde74616357cffbdb24de4eb3796e8fa"
+    },
+    {
+      "path": "data/corpus/inventory/uk-elmbridge/manual/2026-08-03-elmbridge-council-tax-reduction-2026-2027.json",
+      "sha256": "5aaba26e448b587062cf824e4d58657c2e8fc5027e2e642dcca08017ea67c86b"
+    },
+    {
+      "path": "data/corpus/provisions/uk-elmbridge/manual/2026-08-03-elmbridge-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "e1ef44311c724cc1267d20eca658e53c4b5153144a2497f2feba8680f937e37e"
+    },
+    {
+      "path": "data/corpus/sources/uk-elmbridge/manual/2026-08-03-elmbridge-council-tax-reduction-2026-2027/official-documents/elmbridge-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "9a434666559aa711a8c4dcc6d865d4e712d0bf6c02381b0c9f9fa38f06cc7f2c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-elmbridge-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-elmbridge-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 297,
+    "missing_count": 0,
+    "provision_count": 297,
+    "source_count": 297
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:21.890858+00:00",
+  "jurisdiction": "uk-elmbridge",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GtdaukVDbSN9lVyufp08yEgRTOJjvjCNGPENfY8b6P19rnI3B1/vSJKHitoAOPMlCWsQgg0JLXXJviWgbnRgAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-elmbridge-council-tax-reduction-2026-2027"
+}

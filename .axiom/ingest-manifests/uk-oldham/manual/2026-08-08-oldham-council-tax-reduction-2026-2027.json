@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-oldham/manual/2026-08-08-oldham-council-tax-reduction-2026-2027.json",
+      "sha256": "b6991ab07321f42c482bd057fbe0e095a1d8fbc4ef7999f00bd7a9d016058238"
+    },
+    {
+      "path": "data/corpus/inventory/uk-oldham/manual/2026-08-08-oldham-council-tax-reduction-2026-2027.json",
+      "sha256": "b33e674a45967ad3f3ab4c65454ee8057b791d179dac40e7e104210c541e9b1d"
+    },
+    {
+      "path": "data/corpus/provisions/uk-oldham/manual/2026-08-08-oldham-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "853d0d8cf72eea6442375dbae7f01eb3bf99bbfe7dfe7fb00918f1e60ce94b87"
+    },
+    {
+      "path": "data/corpus/sources/uk-oldham/manual/2026-08-08-oldham-council-tax-reduction-2026-2027/official-documents/oldham-council-minutes-2026-03-04.pdf",
+      "sha256": "790379195d7faf68f436ee8119ef0b4e0a2143991de90748f92c10a640b84d9d"
+    },
+    {
+      "path": "data/corpus/sources/uk-oldham/manual/2026-08-08-oldham-council-tax-reduction-2026-2027/official-documents/oldham-council-tax-reduction-scheme-2025-26.pdf",
+      "sha256": "53fdce1cefb960feb0ccef9434b4cdcce0ef3c54f7dff314e7f7166558816f8b"
+    },
+    {
+      "path": "data/corpus/sources/uk-oldham/manual/2026-08-08-oldham-council-tax-reduction-2026-2027/official-documents/oldham-ctr-cabinet-report-2026-27.pdf",
+      "sha256": "3a3698cc43896450d2a523df2d256b56123929e1d584365288c89a7e59d9238c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0cae5bdaad598b803007d949c5f5f6ed8f9a864e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-08-oldham-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-oldham-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 190,
+    "missing_count": 0,
+    "provision_count": 190,
+    "source_count": 190
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-08T19:40:23.385507+00:00",
+  "jurisdiction": "uk-oldham",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "giJtfZC0oGn0IvEVBz4WlFQNppGzLc3+Fk/GUSAC+zvyoGLBfCTnXn7hW8zCKpR8/Icp5p52jBN1BH/MSspuDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-08-oldham-council-tax-reduction-2026-2027"
+}

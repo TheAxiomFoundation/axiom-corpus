@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/statute/2026-07-22-individual-income-tax.json",
+      "sha256": "cce6a505da3f752ee90460b765201c5e1785424cc1d0e8c1e7825e8f1fb4148d"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/statute/2026-07-22-individual-income-tax.json",
+      "sha256": "0b8fdfa113e380694d14c8ad8d2a1c3f3be1f61d460065d18720d2c8e674017f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/statute/2026-07-22-individual-income-tax.jsonl",
+      "sha256": "c4022520600e8b2b1467124e10973b4f5d05f4d1f623be7fb02588ede4cedf4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-07-22-individual-income-tax/official-documents/us-ky-lrc-krs-141-020.pdf",
+      "sha256": "ba8f7b25f40ff55012f8e1713d4b4b58fcee9ac5a14b116e7b77c9c6a27b6777"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-07-22-individual-income-tax/official-documents/us-ky-lrc-krs-141-081.pdf",
+      "sha256": "15191d4bb195e64d4d318dc09da270f4cb09cbcaeea997a1a72afd8d2db67084"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "aa0ac7082fdbf1ac4e2e5a5e109ad5abf0e7f7fc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-individual-income-tax --manifest manifests/us-ky-2026-individual-income-tax-statutes.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-22T17:10:32.832854+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-ky-income-tax-sources.md",
+      "sha256": "f957382e9df3f90c2debeed535f3dd8c128cff748eba13dc0cf92767db3412b2"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "L5C4ejT7MxnzQcEUD55metD57Yix9o5uwUUBgedFeQHp04P/ApzUn8df0M1xRLFlzx74gvKSk5lFw5mgKamdDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-individual-income-tax"
+}

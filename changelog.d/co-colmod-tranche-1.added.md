@@ -1,0 +1,1 @@
+Ingest the Colombia COLMOD tranche-1 instruments (Ley 100/1993, Ley 2010/2019, Ley 1532/2012, DL 518/2020 — SUIN-Juriscol HTML captures with the TLS chain completed via the leaf's AIA intermediate) and cut the first Colombia selector, co-rulespec-2026-07-23.

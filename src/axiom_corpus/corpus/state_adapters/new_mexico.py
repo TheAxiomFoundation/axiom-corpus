@@ -1020,7 +1020,7 @@ def _disambiguated_variant(
 
 
 def _section_source_id(section_number: str, variant: str | None) -> str:
-    return section_number if variant is None else f"{section_number}@{variant}"
+    return section_number if variant is None else f"{section_number}--{variant}"
 
 
 def _slug(value: str, *, fallback: str) -> str:

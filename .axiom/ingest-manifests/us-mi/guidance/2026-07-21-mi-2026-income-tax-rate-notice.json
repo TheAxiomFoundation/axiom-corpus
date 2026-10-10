@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice.json",
+      "sha256": "0855509a5cb28471e9ede30b1b958f41ea948822aca099b8c42b7e4e4fa14d3a"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice.json",
+      "sha256": "faf220f068ad91d7ab0512521d5a85d83d4ec73a22c82ea1a205f0388b412f2d"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice.jsonl",
+      "sha256": "8b215e0dd3ecf57cb186314450c9a78bab1f342282222d8fcf2e636f12d824c1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice/official-documents/us-mi-treasury-2026-individual-income-tax-rate-notice.html",
+      "sha256": "c7a25d8ec95eb0671b8db5fb4421b0e7e09f2c4d1ba601eee20966a3e88471e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea4e3cc1d8008d0d12cd40c3ce57cf13c5b274ab",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-mi-2026-income-tax-rate-notice --manifest manifests/us-mi-2026-income-tax-rate-notice.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T20:12:34.211109+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-mi-2026-income-tax-rate-notice.md",
+      "sha256": "4b56f8b9aab7a2d544e3340a3b5a09b497a1f41b62d31d4777ae551f1b7794c1"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Auw+FCC9vqVcBiugUw2pjrNo5hyOasc7d1WSzbFRm5o7f0wuL9wZNtus3PSaL0b/8K5dF5UuVd+ddSMlv2vRDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-mi-2026-income-tax-rate-notice"
+}

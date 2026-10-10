@@ -1,0 +1,1 @@
+Top-level `--help` now indexes all 79 subcommands by pipeline stage (ingest guards, discovery, extract, stage/serve, verify/report) instead of one flat alphabetical wall, notes that `axiom-corpus` and `axiom-corpus-ingest` are the same CLI, and a test keeps the grouping complete as commands are added.

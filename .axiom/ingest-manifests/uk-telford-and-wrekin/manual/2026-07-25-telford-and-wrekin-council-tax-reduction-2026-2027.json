@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-telford-and-wrekin/manual/2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027.json",
+      "sha256": "ff8eb9b114db049d47d2f16e8ad5faa33fe2d66f66b3b01343332f12f26fcf4c"
+    },
+    {
+      "path": "data/corpus/inventory/uk-telford-and-wrekin/manual/2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027.json",
+      "sha256": "03d754abdd8a7e9616205effb70c1326568a9a98520c2e5646610d7d035a9ee9"
+    },
+    {
+      "path": "data/corpus/provisions/uk-telford-and-wrekin/manual/2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "bbd4942dbf6fb1bb70248aff610676450574cf8a84568618adea34e3d192f277"
+    },
+    {
+      "path": "data/corpus/sources/uk-telford-and-wrekin/manual/2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027/official-documents/telford-and-wrekin-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "ae687a96edda1f05b7fb4e8b81c4472e08eff34855a8c7d6b947df841296f6d0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-telford-and-wrekin-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 122,
+    "missing_count": 0,
+    "provision_count": 122,
+    "source_count": 122
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:40.278310+00:00",
+  "jurisdiction": "uk-telford-and-wrekin",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "A29Sg1R9ORQBCdOe9SMqGnBJ4wecT1z8PZAK8RHRlTAWchoSJCLAyWGH5/N+FAcnkbFOsFryJHf3y7+DGRIlAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027"
+}

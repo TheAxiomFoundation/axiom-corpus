@@ -61,6 +61,15 @@ _TITLE_REFERENCE_RE = re.compile(
     r"\s+of\s+Title\s+(?P<title>[0-9A-Za-z]+)\b",
     re.I,
 )
+_STATUS_OVERRIDES = {
+    # The official Title 68 codification publishes three 2024 session-law
+    # versions of section 2358. V3 is the last-enacted operative version;
+    # historical repeal notes inside each long section body must not classify
+    # the versions themselves as repealed.
+    "68-2358V1": "superseded",
+    "68-2358V2": "superseded",
+    "68-2358V3": "operative",
+}
 
 
 @dataclass(frozen=True)
@@ -452,7 +461,7 @@ def parse_oklahoma_title_rtf(
                 source=source,
                 source_history=tuple(_source_history(body_lines)),
                 references_to=tuple(_extract_references(text_for_refs, self_label=label)),
-                status=_status(heading, body),
+                status=_status(heading, body, label=label),
             )
         )
     return tuple(provisions)
@@ -664,7 +673,14 @@ def _extract_references(text: str, *, self_label: str) -> list[str]:
     return _dedupe_preserve_order(refs)
 
 
-def _status(heading: str | None, body: str | None) -> str | None:
+def _status(
+    heading: str | None,
+    body: str | None,
+    *,
+    label: str | None = None,
+) -> str | None:
+    if label is not None and label in _STATUS_OVERRIDES:
+        return _STATUS_OVERRIDES[label]
     text = "\n".join([heading or "", body or ""])
     if re.search(r"\bRepealed\b", text, re.I):
         return "repealed"

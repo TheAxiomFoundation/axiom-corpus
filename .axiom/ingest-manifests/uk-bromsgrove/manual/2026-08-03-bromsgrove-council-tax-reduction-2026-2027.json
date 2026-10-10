@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bromsgrove/manual/2026-08-03-bromsgrove-council-tax-reduction-2026-2027.json",
+      "sha256": "d81685cd84d2ca4b76b410e2541a2d3e2fe42045419de0b7c122ca0d83fd9462"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bromsgrove/manual/2026-08-03-bromsgrove-council-tax-reduction-2026-2027.json",
+      "sha256": "ff88d3dee5f9ff913ad8784da350352869bf7fd5d5287831729ab65ef410b3d8"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bromsgrove/manual/2026-08-03-bromsgrove-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "83785b665410a0e7bc4e39306e9f5966056aae69d5397c19bd494b0da0adbba2"
+    },
+    {
+      "path": "data/corpus/sources/uk-bromsgrove/manual/2026-08-03-bromsgrove-council-tax-reduction-2026-2027/official-documents/bromsgrove-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2eb803fa0aa4e80dd086bed2aac5dd18128ab7d65f8b3b21141cafcbb6b2420c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-bromsgrove-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bromsgrove-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 87,
+    "missing_count": 0,
+    "provision_count": 87,
+    "source_count": 87
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:18.252465+00:00",
+  "jurisdiction": "uk-bromsgrove",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vGMf0/aU1h9dX/Uxikcd0psOqw5HYULkKUOl4+oU7APVMz9Pz+C82J6uYTbfbbua2YejFKAmEuoPLUVxtefEBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-bromsgrove-council-tax-reduction-2026-2027"
+}

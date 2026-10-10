@@ -4,6 +4,7 @@ from axiom_corpus.corpus.state_adapters.kansas import (
     KANSAS_CHAPTER_SOURCE_FORMAT,
     KANSAS_ROOT_SOURCE_FORMAT,
     KANSAS_SECTION_SOURCE_FORMAT,
+    KansasSectionListing,
     _RecordedSource,
     extract_kansas_statutes,
     parse_kansas_chapter_page,
@@ -98,6 +99,36 @@ SAMPLE_RESERVED_RANGE_HTML = """
 </body></html>
 """
 
+SAMPLE_RATE_TABLE_HTML = """
+<html><body>
+<div id="print">
+<p class="ksa_stat">
+  <span class="stat_number">79-32,110.</span>
+  <span class="stat_caption">Tax imposed; schedules of tax rates.</span>
+  (a) Resident individuals.
+</p>
+<p class="ksa_stat">(1) Married individuals filing joint returns.</p>
+<ul class="leaders">
+  <li class="nodots">
+    <span class="ksa_stat_8pt_left">If the taxable income is:</span>
+    <span class="ksa_stat_8pt_right">The tax is:</span>
+  </li>
+  <li>
+    <span class="ksa_stat_8pt_left">Not over $46,000</span>
+    <span class="ksa_stat_8pt_right">5.2% of Kansas taxable income</span>
+  </li>
+  <li>
+    <span class="ksa_stat_8pt_left">Over $46,000</span>
+    <span class="ksa_stat_8pt_right">$2,392 plus 5.58% of excess over $46,000</span>
+  </li>
+</ul>
+<p class="ksa_stat_hist">
+  <span class="history">History:</span> L. 2025, ch. 116, &sect; 4; July 1.
+</p>
+</div>
+</body></html>
+"""
+
 SAMPLE_ROOT_SOURCE = _RecordedSource(
     source_url="https://ksrevisor.gov/ksa.html",
     source_path="sources/us-ks/statute/test/ksa.html",
@@ -166,7 +197,7 @@ def test_parse_kansas_indexes_and_section_page():
         source=section_source,
     )
     assert reserved.section_label == "79-15,147 through 79-15,200"
-    assert reserved.source_id == "79-15,147-through-79-15,200"
+    assert reserved.source_id == "79-15-147-through-79-15-200"
     assert reserved.heading == "Reserved"
 
 
@@ -218,3 +249,70 @@ def test_extract_kansas_statutes_from_source_dir_writes_complete_artifacts(tmp_p
     ]
     assert records[-1].metadata is not None
     assert records[-1].metadata["references_to"] == ["us-ks/statute/74-7501"]
+
+
+def test_extract_kansas_statutes_filters_one_article(tmp_path):
+    source_dir = tmp_path / "source"
+    (source_dir / KANSAS_ROOT_SOURCE_FORMAT).mkdir(parents=True)
+    (source_dir / KANSAS_CHAPTER_SOURCE_FORMAT).mkdir(parents=True)
+    (source_dir / KANSAS_SECTION_SOURCE_FORMAT / "ch01").mkdir(parents=True)
+    (source_dir / KANSAS_ROOT_SOURCE_FORMAT / "ksa.html").write_text(
+        SAMPLE_ROOT_HTML,
+        encoding="utf-8",
+    )
+    (source_dir / KANSAS_CHAPTER_SOURCE_FORMAT / "ksa_ch1.html").write_text(
+        SAMPLE_CHAPTER_HTML,
+        encoding="utf-8",
+    )
+    (source_dir / KANSAS_SECTION_SOURCE_FORMAT / "ch01" / "001_002_0001.html").write_text(
+        SAMPLE_SECTION_HTML,
+        encoding="utf-8",
+    )
+
+    report = extract_kansas_statutes(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        version="2026-07-16-pit-west",
+        source_dir=source_dir,
+        source_as_of="2026-07-16",
+        expression_date="2026-07-16",
+        only_title="1",
+        only_article="2",
+    )
+
+    assert report.coverage.complete is True
+    assert report.provisions_path.name == (
+        "2026-07-16-pit-west-us-ks-chapter-1-article-2.jsonl"
+    )
+    assert [record.citation_path for record in load_provisions(report.provisions_path)] == [
+        "us-ks/statute/chapter-1",
+        "us-ks/statute/chapter-1/article-2",
+        "us-ks/statute/1-201",
+    ]
+
+
+def test_parse_kansas_section_page_preserves_rate_tables():
+    listing = KansasSectionListing(
+        chapter="79",
+        article="32",
+        section_label="79-32,110",
+        heading="Tax imposed; schedules of tax rates",
+        source_url="https://ksrevisor.gov/statutes/chapters/ch79/079_032_0110.html",
+        ordinal=1,
+    )
+    source = _RecordedSource(
+        source_url=listing.source_url,
+        source_path="sources/us-ks/statute/test/079_032_0110.html",
+        source_format=KANSAS_SECTION_SOURCE_FORMAT,
+        sha256="rate-table",
+    )
+
+    section = parse_kansas_section_page(
+        SAMPLE_RATE_TABLE_HTML,
+        listing=listing,
+        source=source,
+    )
+
+    assert section.body is not None
+    assert section.citation_path == "us-ks/statute/79-32-110"
+    assert "Not over $46,000 | 5.2% of Kansas taxable income" in section.body
+    assert "Over $46,000 | $2,392 plus 5.58% of excess over $46,000" in section.body

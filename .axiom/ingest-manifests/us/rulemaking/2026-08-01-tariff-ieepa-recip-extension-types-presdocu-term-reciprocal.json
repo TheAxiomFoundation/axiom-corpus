@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal.json",
+      "sha256": "ce11e2278f0d8eb27065096327030fef65ad91d8a49e426b7c121be8ab05b3c8"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal.json",
+      "sha256": "2d7abee60fe4d47cdbb6fb25714aa8ab689db064a59c1ddf0915510e96a7e95a"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal.jsonl",
+      "sha256": "1faf9ca85ce97bd24c2fae5ecf7ae817f5a71d5e898b90c3c360f21cb2548042"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal/federal-register/api/documents-page-1.json",
+      "sha256": "04d6c8c61a3af5456b02f9509dbfffe901b644e3b677a6206a8b22c143daaf18"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal/federal-register/documents/2025-12962.json",
+      "sha256": "3f51091d24c3bd050bbd9ce01787d281d3b4edfdf8e501e1ef1c48f002d295b4"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal/federal-register/documents/2025-12962.txt",
+      "sha256": "93da85943213812664e15c407c849a8f837a85e7f366d4776e8768629c98abb2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-recip-extension --start-date 2025-07-10 --document-type PRESDOCU --term \"reciprocal\" --source-as-of 2026-08-01 --expression-date 2025-07-10"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:46.024592+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pnP7N356pSG2eyboGbZUWMVSXjxqBCnI8lECTS92leEdHWX51dTCRDUw+XOir1b6VHOXbmmSg2/B8C9oUoqyDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-recip-extension-types-presdocu-term-reciprocal"
+}

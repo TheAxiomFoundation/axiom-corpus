@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom.json",
+      "sha256": "1911e791456903ed6714a59ac84f95ce2e63d0b583694886bda989ec5f3866e9"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom.json",
+      "sha256": "e7f36a67e94edd35a7d68d831ca8e7327d9ebbd1bb0a0af97262e6a5abb2dc69"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom.jsonl",
+      "sha256": "c2c66d8ba3ec2a8e737cd39fe0cdd051470c403f92facdcd1d1320976924f660"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom/federal-register/api/documents-page-1.json",
+      "sha256": "f1fef1f69f2aa3ec72ded2ebdd4a857292c0361c83924625a44e61672c7c6215"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom/federal-register/documents/2025-11473.json",
+      "sha256": "b789b0d9018820db6833816909e0835afcb3684a7ce369b340141a9406f776ba"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom/federal-register/documents/2025-11473.txt",
+      "sha256": "72ed0c9dbf2cfbd8af4be4ae548d9f4b073468840c58e8adb28e653669c116af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-framework-uk-epd --start-date 2025-06-23 --document-type PRESDOCU --term \"United Kingdom\" --source-as-of 2026-08-01 --expression-date 2025-06-23"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:54.930597+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ifywcNJhc1cAwivtsyUM21wByP20MjvFlNoNditNZiLemkSbwySoPmEmkSZJEybMeeeLLBWowQNzB6Lf8u2rDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-framework-uk-epd-types-presdocu-term-united-kingdom"
+}

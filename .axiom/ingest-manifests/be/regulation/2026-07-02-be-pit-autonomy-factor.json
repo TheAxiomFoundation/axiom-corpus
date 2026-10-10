@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b8a4cbffab013ce07a8505ed30045486e3c4ea03",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-workbonus"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,7 +35,7 @@
     "source_count": 3
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-02T23:28:12.457482+00:00",
+  "generated_at": "2026-07-21T11:57:42.909190+00:00",
   "jurisdiction": "be",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "yNJ74X94km+0++d92eNwPEaVBQu+kJ4/2W2qIxOrnrD7S6XVd7F02PAkKJ6zSFwX2gg9ARdWaEHWJetiKsj7CQ=="
+    "value": "BtCR2hrVUiLMa7pl0CyzfrQgjzfzWS7qsHK3Rmo25fijj1BR2MzCly58vBnvagdB4ih6RUFituYgX5XgJgtjAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-be-pit-autonomy-factor"

@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-nj/regulation/2017-02-06-nj-snap-rules-base.jsonl"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ed82e9e55a72093adaa864988e32d35e146d3aa7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "remove source-less archived New Jersey SNAP base after publishing signed complete 2026-07-17-nj-snap-rules replacement"
+  },
+  "coverage": null,
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T20:32:08.989009+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XIVCT9ShxztWTTaK5JLpUOP6Mdd3zrrNSe9e6wYbGnPiSwUW2QFqO0p+Vo4gtUkrLGyZjVbttDt3sFFqboN0Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2017-02-06-nj-snap-rules-base"
+}

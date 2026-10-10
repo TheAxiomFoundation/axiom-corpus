@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-maldon/manual/2026-08-02-maldon-council-tax-reduction-2026-2027.json",
+      "sha256": "2702f1aaac25f9f9a6f3dd63fbf49d8298acfff84d7e99cec965f0528103c1bf"
+    },
+    {
+      "path": "data/corpus/inventory/uk-maldon/manual/2026-08-02-maldon-council-tax-reduction-2026-2027.json",
+      "sha256": "87fb0655cf4c676d36ed0d22966fd22a7d3b38fe3c6daa6914b28e29360ba897"
+    },
+    {
+      "path": "data/corpus/provisions/uk-maldon/manual/2026-08-02-maldon-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "50e83a92b7440286d06562a8a7a8408efb5a0a9a2ab4311284c9092178462149"
+    },
+    {
+      "path": "data/corpus/sources/uk-maldon/manual/2026-08-02-maldon-council-tax-reduction-2026-2027/official-documents/maldon-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "cdbb9edae76f14f156da5750c3ac50914645f410301079b79bcc144a8460bc6e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-maldon-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-maldon-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 149,
+    "missing_count": 0,
+    "provision_count": 149,
+    "source_count": 149
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:25.833466+00:00",
+  "jurisdiction": "uk-maldon",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "A0CwtLm2X4LCXr6ap0h/sfYpT82cCnQhnL5aFvGoAgAWnJxDoygiMJoCqbOaEGBjIkGYcfGM/MO1nUwTS7rzBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-maldon-council-tax-reduction-2026-2027"
+}

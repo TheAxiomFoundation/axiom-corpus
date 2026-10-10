@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-barnsley/manual/2026-08-03-barnsley-council-tax-reduction-2026-2027.json",
+      "sha256": "05c910fa2d517fe6224e1d40ac2ac07800895967b868648cc42892f472827de4"
+    },
+    {
+      "path": "data/corpus/inventory/uk-barnsley/manual/2026-08-03-barnsley-council-tax-reduction-2026-2027.json",
+      "sha256": "e2bbfa9f3889ba25dcbb46fd89563937510f42c3c1faa28b0c5f3db2ccb257df"
+    },
+    {
+      "path": "data/corpus/provisions/uk-barnsley/manual/2026-08-03-barnsley-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "7fb496a9c0e917ce8e5b4c2dfd10362f270768587fcee70dea8100b88fc6dabf"
+    },
+    {
+      "path": "data/corpus/sources/uk-barnsley/manual/2026-08-03-barnsley-council-tax-reduction-2026-2027/official-documents/barnsley-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "0519c413a19924187bf041b0ccdacf3de90a5aae57b3238c877386ef928eb020"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-barnsley-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-barnsley-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 65,
+    "missing_count": 0,
+    "provision_count": 65,
+    "source_count": 65
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:14.657893+00:00",
+  "jurisdiction": "uk-barnsley",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ByNxGmGkVrQk6WrlNtQTGp0DHp9Y8FKfpZ7txX06fqYxKd9IwtrQ/MiLmGqGs8dTXNtqidac/Ih9GcgEzkrlCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-barnsley-council-tax-reduction-2026-2027"
+}

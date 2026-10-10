@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-benefits-regulation-sc
+documents:
+- source_id: us-sc-regulation-chapter-126-pdf
+  jurisdiction: us-sc
+  document_class: regulation
+  title: S.C. Code of Regulations Chapter 126, Department of Health and Human Services (Legislature PDF)
+  source_url: https://www.scstatehouse.gov/coderegs/Chapter%20126.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-sc/regulation/chapter-126-pdf
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Legislature, Code of Regulations
+    document_subtype: administrative_code_chapter_pdf
+    program: SSI state supplement (Optional State Supplementation)
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 223, 224)
+    path_note: whole-chapter PDF at page granularity; R. 126-910 and 126-920 (OSS) are in Article 9 of the chapter
+    wave6_rows:
+    - 223
+    - 224
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

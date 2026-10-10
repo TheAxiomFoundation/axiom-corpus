@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "315010f9cca826ab9adeb398947d5495d7062ce396b4a98db589d835ce555cad"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "5f08ee0c1fe89e645c9d98c32dd118262ebaee35846282e20acc161751887fbb"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "c2c8ff09d4547deb3bc70e50bd9c7ba3854dd56040a1398f6400443f81fbc6d9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mi-treasury-form-mi-1040-ty2025.pdf",
+      "sha256": "98e6d52b88e412a5d51529bc3144bd137eb24554e30c918f63fdcf82cf9cd01c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mi-treasury-mi-1040-book-ty2025.pdf",
+      "sha256": "35b38086176f867d1365e20f4f31a40b9b85ef68befb3e44d6021eb4502f66cd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:53:36.334756+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "q91amgm/+UCyq4HfhnMMd8ZzII1yhNgSIQUMFlBQvt161ckknF45jW/SmntxgdVW49AKnVMqIoLOSzU0Thx0Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

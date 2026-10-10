@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-castle-point/manual/2026-08-02-castle-point-council-tax-reduction-2026-2027.json",
+      "sha256": "df93b3472f1a071ba8ad53d428d16c72e1933c50d5f8ed5ad8adbd2ffd19e5b7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-castle-point/manual/2026-08-02-castle-point-council-tax-reduction-2026-2027.json",
+      "sha256": "8f34104ca3c957bae370fac380ef5b4ce118a1e2868396cbe0a34e4543bb8475"
+    },
+    {
+      "path": "data/corpus/provisions/uk-castle-point/manual/2026-08-02-castle-point-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "84289375b2257ed8f366e8484e72eac86a87cba742bdf852013fdb2513732c1a"
+    },
+    {
+      "path": "data/corpus/sources/uk-castle-point/manual/2026-08-02-castle-point-council-tax-reduction-2026-2027/official-documents/castle-point-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "186909f452b9c88c76dec79a8a419749c3b1a47056ea1924c1031a20b4b6e817"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-castle-point-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-castle-point-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 74,
+    "missing_count": 0,
+    "provision_count": 74,
+    "source_count": 74
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:53.987725+00:00",
+  "jurisdiction": "uk-castle-point",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZAWWH6iUrBxP8rutofiwv+TFxlrdEbA/sTcCHaeYCp0OkwkSAXMwdIHMWPjGyrT0CCQvrfUD9rnIQxbNiDbZBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-castle-point-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+documents:
+  - source_id: us-ct-cga-current-section-12-700-a-10
+    jurisdiction: us-ct
+    document_class: statute
+    title: >-
+      Connecticut General Statutes Section 12-700(a)(10), resident income-tax
+      schedules for taxable years beginning on or after January 1, 2024
+    source_url: https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-700
+    source_format: html
+    source_as_of: "2026-07-26"
+    expression_date: "2026-01-01"
+    citation_path: us-ct/statute/12-700-a-10
+    request:
+      verify_tls: false
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: >-
+        p:-soup-contains("(10) For taxable years commencing on or after January
+        1, 2024, in accordance with the following schedule:")
+      html_stop_selector: >-
+        p:-soup-contains("(11) The provisions of this subsection shall apply to
+        resident trusts and estates")
+      citation_suffix: operative-text
+      section_heading: >-
+        Section 12-700(a)(10). Resident income-tax schedules for taxable years
+        beginning on or after January 1, 2024.
+    metadata:
+      primary_source: true
+      source_authority: Connecticut General Assembly
+      legal_identifier: Connecticut General Statutes Section 12-700(a)(10)
+      legal_authority_url: >-
+        https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-700
+      document_subtype: general_statutes_current
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_codified_statute
+      certification_scope: resident_ordinary_income_tax_schedule
+      final_return_certification: false
+      source_family: personal-income-tax/resident-ordinary-tax
+      source_note: >-
+        Exact current codified source unit for subsection 12-700(a)(10). The
+        anchor range starts at subdivision (10) and stops before subdivision
+        (11), excluding the chapter table of contents, prior historical rate
+        schedules, sibling subsections, annotations, and other Chapter 229
+        sections. This source establishes the individual resident ordinary-tax
+        schedules, low-rate phaseouts, recapture provisions, and the distinct
+        trust-or-estate rate applicable to taxable years beginning on or after
+        January 1, 2024. It does not certify a complete annual Connecticut
+        income-tax liability.

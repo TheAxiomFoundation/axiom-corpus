@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/statute/2026-07-24-nv-individual-income-tax-zero-liability.json",
+      "sha256": "cdd4c6ea38e206de3c810cc5cd8232cef71a5cef0b95ea07036213d7ed4d4b2b"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/statute/2026-07-24-nv-individual-income-tax-zero-liability.json",
+      "sha256": "9d16784ef4a82ea82a7a0ca2e79c1682e0980f02535c6971cf81450a57875ed1"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/statute/2026-07-24-nv-individual-income-tax-zero-liability.jsonl",
+      "sha256": "a4fe91aa28164cf3e13523326b05098bb07adf49593a74283dbd102ec107a7d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/statute/2026-07-24-nv-individual-income-tax-zero-liability/official-documents/us-nv-constitution-article-10-section-1-source-note.html",
+      "sha256": "726067b645f47709f00c2cf23ee6a514f7fc64381fd6c1f6eb0b1f48b31c51cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/statute/2026-07-24-nv-individual-income-tax-zero-liability/official-documents/us-nv-constitution-article-10-section-1-subsection-9.html",
+      "sha256": "726067b645f47709f00c2cf23ee6a514f7fc64381fd6c1f6eb0b1f48b31c51cc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "253975715f8a3476856dadb0cdb8ea6b8b5233b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-nv-individual-income-tax-zero-liability --manifest manifests/us-nv-individual-income-tax-zero-liability.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T10:59:49.977093+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-nv-individual-income-tax-zero-liability.md",
+      "sha256": "914ba11336b54434f0f4c1a8fa84dc1d04139dc987ee7ff98410d4ae864263fe"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "K6LRobo+G6UabUbkNJqMhCzYgg9aWtVoEv/OF+sfIiDBDQ/0vfXov+CD8PBsiwXDX/1okYDomEcBEtihvKdZAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-nv-individual-income-tax-zero-liability"
+}

@@ -31,6 +31,7 @@ from axiom_corpus.corpus.anchors import (
     anchor_for_stored_leaf,
     anchor_to_supabase_row,
     generate_anchors_for_provision,
+    generate_asserted_descendant_anchors,
     generate_stored_leaf_anchors,
     load_anchors,
     verify_anchor,
@@ -193,6 +194,134 @@ def test_cfr_parent_linkage_is_the_stored_provision(
     for anchor in cfr_anchors:
         assert anchor.parent_provision_id == cfr_section.id
         assert anchor.parent_citation_path == CFR_SECTION
+
+
+def test_source_asserted_descendants_use_publisher_identity_and_exact_spans() -> None:
+    parent_path = "us/statute/26/1401"
+    parent_source_id = "/us/usc/t26/s1401"
+    parent_body = (
+        "(b) Hospital insurance (2) Additional tax "
+        "(A) In general Tax applies. (i) joint return. "
+        "(B) Coordination with FICA Apply section 3121(b)(2)."
+    )
+    parent = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path=parent_path,
+        id="00000000-0000-0000-0000-000000000101",
+        source_id=parent_source_id,
+        version="v",
+        body=parent_body,
+    )
+    descendants = [
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b",
+            id="00000000-0000-0000-0000-000000000102",
+            source_id=f"{parent_source_id}/b",
+            version="v",
+            kind="subsection",
+            heading="Hospital insurance",
+            body=(
+                "(2) Additional tax (A) In general Tax applies. "
+                "(i) joint return. (B) Coordination with FICA "
+                "Apply section 3121(b)(2)."
+            ),
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2",
+            id="00000000-0000-0000-0000-000000000103",
+            source_id=f"{parent_source_id}/b/2",
+            version="v",
+            kind="paragraph",
+            heading="Additional tax",
+            body=(
+                "(A) In general Tax applies. (i) joint return. "
+                "(B) Coordination with FICA Apply section 3121(b)(2)."
+            ),
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2/A",
+            id="00000000-0000-0000-0000-000000000104",
+            source_id=f"{parent_source_id}/b/2/A",
+            version="v",
+            kind="subparagraph",
+            heading="In general",
+            body="Tax applies. (i) joint return.",
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2/A/i",
+            id="00000000-0000-0000-0000-000000000105",
+            source_id=f"{parent_source_id}/b/2/A/i",
+            version="v",
+            kind="clause",
+            body="joint return.",
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2/B",
+            id="00000000-0000-0000-0000-000000000106",
+            source_id=f"{parent_source_id}/b/2/B",
+            version="v",
+            kind="subparagraph",
+            heading="Coordination with FICA",
+            body="Apply section 3121(b)(2).",
+        ),
+    ]
+
+    anchors = generate_asserted_descendant_anchors(parent, descendants)
+
+    assert [anchor.citation_path for anchor in anchors] == [
+        f"{parent_path}/b",
+        f"{parent_path}/b/2",
+        f"{parent_path}/b/2/A",
+        f"{parent_path}/b/2/A/i",
+        f"{parent_path}/b/2/B",
+    ]
+    assert {anchor.confidence for anchor in anchors} == {"machine_asserted"}
+    coordination = anchors[-1]
+    assert coordination.span == (
+        parent_body.index("(B)"),
+        len(parent_body),
+    )
+    assert coordination.text.endswith("section 3121(b)(2).")
+    assert coordination.metadata == {
+        "source_id": f"{parent_source_id}/b/2/B",
+        "source_kind": "subparagraph",
+    }
+    verify_anchors_against_provisions(anchors, [parent])
+
+
+def test_source_asserted_descendant_rejects_unrelated_source_id() -> None:
+    parent = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path="us/statute/26/1401",
+        id="00000000-0000-0000-0000-000000000201",
+        source_id="/us/usc/t26/s1401",
+        version="v",
+        body="(b) Text.",
+    )
+    descendant = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path="us/statute/26/1401/b",
+        id="00000000-0000-0000-0000-000000000202",
+        source_id="/us/usc/t26/s3101/b",
+        version="v",
+        body="Text.",
+    )
+
+    with pytest.raises(ValueError, match="source id"):
+        generate_asserted_descendant_anchors(parent, [descendant])
 
 
 def test_ma_stored_leaf_and_children(ma_anchors: list[ProvisionAnchor]) -> None:

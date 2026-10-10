@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/policy/2026-10-06-w6-tanf-ccdf-policy-sd.json",
+      "sha256": "e28012af326adda7559326dbaed823858107440363e8dbe5a74321387d28faec"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/policy/2026-10-06-w6-tanf-ccdf-policy-sd.json",
+      "sha256": "162e4fe0e0012c589c879d5635abdfb2589e7284fcde5fe33fd2f05e7a81d8ce"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/policy/2026-10-06-w6-tanf-ccdf-policy-sd.jsonl",
+      "sha256": "5788eb7d7a41cf7945f73b2b7f07cfa88c8559c7f1ebe901a611ddf6afb5faa8"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-10-06-w6-tanf-ccdf-policy-sd/official-documents/us-sd-w6-ccdf-rate-schedules-cca-weekly-reimbursement-rates.pdf",
+      "sha256": "b4afe8a26733f56b0ed4e6c0df09f99847347bfaeb06fbc58ba7654dec620042"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-10-06-w6-tanf-ccdf-policy-sd/official-documents/us-sd-w6-ccdf-rate-schedules-provider-rate-regions.pdf",
+      "sha256": "0a0654f370935f3902d379abc83189bf370827e034bbe6338f8c75ffe6d07910"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-10-06-w6-tanf-ccdf-policy-sd/official-documents/us-sd-w6-ccdf-rate-schedules-sliding-fee-scale.pdf",
+      "sha256": "26572a6633d2be28e144ee5b0662b367ffbbd2072e4092b05f6b58bec4759c5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:58:50.713686+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7DNaufhyn9x7ZMXRsCaab6XmIILvLzCcmuavLCCj9STuOqyOx1dZIrHhTfcKlHYAiP7JIQ8EJ0EOgVUHVwfBDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-sd"
+}

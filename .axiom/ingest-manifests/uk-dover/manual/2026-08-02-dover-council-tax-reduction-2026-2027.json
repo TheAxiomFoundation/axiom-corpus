@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-dover/manual/2026-08-02-dover-council-tax-reduction-2026-2027.json",
+      "sha256": "fb96d0ce7b111828018aa37122d3ed57f166e8ac5d5e4d975308abddec2bb993"
+    },
+    {
+      "path": "data/corpus/inventory/uk-dover/manual/2026-08-02-dover-council-tax-reduction-2026-2027.json",
+      "sha256": "ab99fb5d93ee1bf73282c9bb5c6bbe707f895f078dbe0b67321c66621f01fb44"
+    },
+    {
+      "path": "data/corpus/provisions/uk-dover/manual/2026-08-02-dover-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f426a2da88deefa4d393eb0141feb98999a1e735d71125547655345c9438dfc5"
+    },
+    {
+      "path": "data/corpus/sources/uk-dover/manual/2026-08-02-dover-council-tax-reduction-2026-2027/official-documents/dover-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "96a4aaa0e74e9e9da75f394eca8107151343d19f8d76d4a1fbc54075445e97e4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-dover-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-dover-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 98,
+    "missing_count": 0,
+    "provision_count": 98,
+    "source_count": 98
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:58.099783+00:00",
+  "jurisdiction": "uk-dover",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "h22hqsJAYO1Yeg1uCTLi3pbaEh/d7vxw2VxxvBvGa/dz9MNMjtdhzFcdQVCS5HO7jXdLkuqKm62835bRBHFYDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-dover-council-tax-reduction-2026-2027"
+}

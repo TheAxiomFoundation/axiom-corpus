@@ -1,0 +1,213 @@
+documents:
+  - source_id: us-ks-ksa-79-32-109-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,109 Definitions
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0109_section/079_032_0109_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-109
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: &current_ksa
+      primary_source: true
+      source_authority: Kansas Office of Revisor of Statutes
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_2026_ksa
+
+  - source_id: us-ks-ksa-79-32-110-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,110 Individual Income Tax
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0110_section/079_032_0110_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-110
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-110c-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,110c Annual Rate Reductions
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0110c_section/079_032_0110c_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-110c
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-111-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,111 Credits Against Tax
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0111_section/079_032_0111_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-111
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-116-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,116 Taxable Income
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0116_section/079_032_0116_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-116
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-117-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,117 Adjusted Gross Income
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0117_section/079_032_0117_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-117
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-119-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,119 Standard Deduction
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0119_section/079_032_0119_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-119
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-120-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,120 Itemized Deductions
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0120_section/079_032_0120_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-120
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-121-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,121 Personal Exemptions
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0121_section/079_032_0121_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-121
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata:
+      <<: *current_ksa
+      source_note: >-
+        One of two official versions resulting from multiple 2025 amendments;
+        retained with 79-32,121b so downstream users can hold branches that
+        differ rather than silently selecting one version.
+
+  - source_id: us-ks-ksa-79-32-121b-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,121b Personal Exemptions
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0121b_section/079_032_0121b_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-121b
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata:
+      <<: *current_ksa
+      source_note: >-
+        Official alternate amendment version containing the head-of-household
+        and updated permanently disabled veteran exemptions.
+
+  - source_id: us-ks-ksa-79-32-205-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,205 Earned Income Tax Credit
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0205_section/079_032_0205_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-205
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-ksa-79-32-288-current
+    jurisdiction: us-ks
+    document_class: statute
+    title: Kansas Statutes 79-32,288 Pass-through Entity Credit
+    source_url: https://kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/079_032_0288_section/079_032_0288_k/
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/2026/79-32-288
+    request: {browser_user_agent: true}
+    extraction: {html_content_selector: ".statute-body"}
+    metadata: *current_ksa
+
+  - source_id: us-ks-2026-hb-2029-enrolled
+    jurisdiction: us-ks
+    document_class: statute
+    title: 2026 Kansas House Bill 2029 Enrolled
+    source_url: https://kslegislature.gov/li/b2025_26/measures/documents/hb2029_enrolled.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-ks/statute/session-2026/hb-2029
+    metadata:
+      primary_source: true
+      source_authority: Kansas Legislature
+      legal_identifier: 2026 House Bill 2029
+      document_subtype: state_session_law
+      program: individual_income_tax
+      source_status: signed_2026_reconciliation_bill
+      source_note: >-
+        Signed by the Governor. The enrolled reconciliation bill preserves a
+        single 79-32,110 version containing the 79-32,110c rate-reduction
+        reference, combines the nonconflicting 79-32,121 exemption amendments,
+        and repeals 79-32,110b and 79-32,121b.
+
+  - source_id: us-ks-2026-sb-82-enrolled
+    jurisdiction: us-ks
+    document_class: statute
+    title: 2026 Kansas Senate Bill 82 Enrolled
+    source_url: https://kslegislature.gov/li/b2025_26/measures/documents/sb82_enrolled.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-04-27"
+    citation_path: us-ks/statute/session-2026/sb-82
+    metadata:
+      primary_source: true
+      source_authority: Kansas Legislature
+      legal_identifier: 2026 Senate Bill 82
+      document_subtype: state_session_law
+      program: individual_income_tax
+      source_status: enacted_2026_session_law
+      source_note: >-
+        Signed by the Governor on April 27, 2026. Section 1 creates a
+        tax-year-2026 through 2028 resident individual credit for qualifying
+        lockable gun and ammunition storage expenditures.

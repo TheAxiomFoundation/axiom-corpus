@@ -1,0 +1,286 @@
+documents:
+  # ---- Inland Revenue: withholding and deduction rates -------------------
+  - source_id: nz-ird-rwt-rates
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — Resident withholding tax (RWT) rates
+    source_url: https://www.ird.govt.nz/rwt-rate
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/rwt-rates
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: resident_withholding_tax
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue guidance stating the RWT rate set elected by
+        individuals (10.5%, 17.5%, 30%, 33%, 39%) and the default rate applied
+        where no election is made. Statutory bases are Income Tax Act 2007
+        subpart RE and schedule 1 part D; this page corroborates the operative
+        rates as administered.
+  - source_id: nz-ird-student-loan-repayment-deductions
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — Repaying my student loan when I earn salary or wages
+    source_url: https://www.ird.govt.nz/repaying-my-student-loan-when-i-earn-salary-or-wages
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/student-loan-repayment-deductions
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: student_loan
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue guidance stating the 12% repayment rate on
+        earnings over the repayment threshold and the pay-period threshold
+        amounts (annual $24,128; weekly $464; fortnightly $928; four-weekly
+        $1,856; monthly $2,010.66). Statutory bases are Student Loan Scheme
+        Act 2011 ss 4 (annual repayment threshold) and 37 (deduction rate).
+  - source_id: nz-ird-paye-deduction-tables
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — Deductions from salary and wages
+    source_url: https://www.ird.govt.nz/deductions-from-salary-and-wages
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/paye-deduction-tables
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: payroll
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue guidance on the deductions an employer must
+        make from salary or wages (PAYE, ACC earners' levy, KiwiSaver, student
+        loan) and the deduction tables that set the amounts (IR340 weekly and
+        fortnightly; IR341 four-weekly and monthly). Statutory base is Income
+        Tax Act 2007 subpart RD.
+  # ---- Inland Revenue: GST ----------------------------------------------
+  - source_id: nz-ird-gst-calculation-guidance
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — Calculating GST
+    source_url: https://www.ird.govt.nz/gst/filing-and-paying-gst-and-refunds/calculating-gst
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/gst-calculation-guidance
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: gst
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue guidance stating the 15% GST rate and the
+        arithmetic for extracting the GST component from a GST-inclusive
+        amount (multiply by 3 and divide by 23). Statutory base is Goods and
+        Services Tax Act 1985 s 8.
+  - source_id: nz-ird-gst-low-value-imported-goods
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — GST on low value imported goods
+    source_url: https://www.ird.govt.nz/gst/gst-for-overseas-businesses/gst-on-low-value-imported-goods
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/gst-low-value-imported-goods
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: gst
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue guidance stating the NZ$1,000 low-value
+        threshold that determines whether GST on imported goods is collected
+        by the overseas supplier or at the border by Customs.
+  # ---- Inland Revenue: child support ------------------------------------
+  - source_id: nz-ird-child-support-overview
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — Child support
+    source_url: https://www.ird.govt.nz/child-support
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/child-support/overview
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: child_support
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue overview of child support, describing formula
+        assessment and the costs and rates the formula is based on. Statutory
+        base is Child Support Act 1991 Part 1 subpart 3.
+  - source_id: nz-ird-child-support-sharing-care
+    jurisdiction: nz
+    document_class: guidance
+    title: Inland Revenue — Sharing care (child support formula assessment)
+    source_url: https://www.ird.govt.nz/child-support/types/formula-assessment/sharing-care
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/ird/child-support/types/formula-assessment/sharing-care
+    metadata:
+      primary_source: true
+      source_authority: Inland Revenue
+      source_family: child_support
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official Inland Revenue guidance stating the shared-care recognition
+        threshold — care for at least 28% of the time, about 2 nights a week
+        or 103 nights a year, on an ongoing basis. Statutory bases are Child
+        Support Act 1991 s 16 and schedule 2.
+  # ---- ACC: weekly compensation -----------------------------------------
+  - source_id: nz-acc-weekly-compensation
+    jurisdiction: nz
+    document_class: guidance
+    title: ACC — Weekly compensation
+    source_url: https://www.acc.co.nz/im-injured/financial-support/weekly-compensation
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/acc/weekly-compensation
+    metadata:
+      primary_source: true
+      source_authority: Accident Compensation Corporation
+      source_family: acc
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official ACC entry page for weekly compensation, describing the
+        entitlement as financial support replacing part of a claimant's income
+        during recovery and indexing the employee and self-employed
+        calculation pages. The operative rate and calculation detail are on
+        the linked employee page. Statutory base is Accident Compensation Act
+        2001 schedule 1 part 2.
+  - source_id: nz-acc-weekly-compensation-employees
+    jurisdiction: nz
+    document_class: guidance
+    title: ACC — Weekly compensation for employees (including loss of potential earnings)
+    source_url: https://www.acc.co.nz/im-injured/financial-support/weekly-compensation/weekly-compensation-for-employees
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/acc/weekly-compensation-for-employees
+    metadata:
+      primary_source: true
+      source_authority: Accident Compensation Corporation
+      source_family: acc
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official ACC guidance for employees, which now carries the loss of
+        potential earnings entitlement previously published at a standalone
+        URL: payments at 80% of the weekly minimum wage for a claimant injured
+        before turning 18. Statutory base is Accident Compensation Act 2001
+        schedule 1 part 2 clause 47.
+  - source_id: nz-acc-client-payment-rates-2025-04
+    jurisdiction: nz
+    document_class: guidance
+    title: ACC — Changes to client payments from 1 April 2025
+    source_url: https://www.acc.co.nz/newsroom/stories/changes-to-client-payments-from-1-april-2025
+    source_format: html
+    source_as_of: '2026-08-16'
+    citation_path: nz/guidance/acc/client-payment-rates-2025-04
+    metadata:
+      primary_source: true
+      source_authority: Accident Compensation Corporation
+      source_family: acc
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official ACC notice (27 March 2025) of the client payment rates
+        applying from 1 April 2025: gross minimum weekly compensation for a
+        full-time earner $752.00, stated as 80% of the adult minimum wage of
+        $940.00 for a forty-hour week. Grounds the 2025 value of
+        acc_weekly_minimum_wage_40_hour_week (rulespec-nz#106). Statutory
+        base is Accident Compensation Act 2001 schedule 1 clauses 32(3)
+        (80% of weekly earnings) and 42(3) (minimum weekly earnings for
+        full-time earners), with the adult minimum wage set by the Minimum
+        Wage Order 2025; s 115(1)(a) expressly excludes this minimum-rate
+        compensation from indexation. Page re-resolved and content-verified
+        2026-08-16; plain-HTTP fetch returns a script stub, rendered
+        content verified in a browser.
+  - source_id: nz-acc-client-payment-rates-2026-04
+    jurisdiction: nz
+    document_class: guidance
+    title: ACC — Changes to client payments from 1 April 2026
+    source_url: https://www.acc.co.nz/newsroom/stories/changes-to-client-payments-from-1-april-2026
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/acc/client-payment-rates-2026-04
+    metadata:
+      primary_source: true
+      source_authority: Accident Compensation Corporation
+      source_family: acc
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official ACC notice of the client payment rates applying from 1 April
+        2026, including the minimum weekly compensation rate ($766.40).
+        Statutory base is Accident Compensation Act 2001 s 115 (indexation).
+  - source_id: nz-acc-client-payment-rates-2026-07
+    jurisdiction: nz
+    document_class: guidance
+    title: ACC — Changes to ACC client payments from 1 July 2026
+    source_url: https://www.acc.co.nz/newsroom/stories/changes-to-acc-client-payments-from-1-july-2026
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/acc/client-payment-rates-2026-07
+    metadata:
+      primary_source: true
+      source_authority: Accident Compensation Corporation
+      source_family: acc
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official ACC notice of the client payment rates applying from 1 July
+        2026, including the maximum weekly compensation rate ($2,466.20).
+        Statutory bases are Accident Compensation Act 2001 s 115 and schedule
+        1 part 2 clause 46.
+  # ---- StudyLink ---------------------------------------------------------
+  - source_id: nz-studylink-ordinarily-resident
+    jurisdiction: nz
+    document_class: guidance
+    title: StudyLink — Ordinarily resident
+    source_url: https://www.studylink.govt.nz/about-studylink/glossary/ordinarily-resident.html
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/studylink/ordinary-residence
+    metadata:
+      primary_source: true
+      source_authority: StudyLink (Ministry of Social Development)
+      source_family: student_support
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official StudyLink glossary definition of ordinarily resident for
+        student support purposes — normally and lawfully living in New
+        Zealand, intending to stay, and considering New Zealand home.
+        Statutory context is Social Security Act 2018 schedule 2.
+  - source_id: nz-studylink-student-allowance-rates
+    jurisdiction: nz
+    document_class: guidance
+    title: StudyLink — Student Allowance rates
+    source_url: https://www.studylink.govt.nz/products/rates/student-allowance-rates.html
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/studylink/student-allowances
+    metadata:
+      primary_source: true
+      source_authority: StudyLink (Ministry of Social Development)
+      source_family: student_support
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official StudyLink table of current Student Allowance weekly rates by
+        living situation, age, and dependants. Statutory base is the Student
+        Allowances Regulations 1998.
+  - source_id: nz-studylink-parents-income
+    jurisdiction: nz
+    document_class: guidance
+    title: StudyLink — Parents' income
+    source_url: https://www.studylink.govt.nz/about-studylink/glossary/parents-income.html
+    source_format: html
+    source_as_of: '2026-07-25'
+    citation_path: nz/guidance/studylink/student-allowance-parental-income
+    metadata:
+      primary_source: true
+      source_authority: StudyLink (Ministry of Social Development)
+      source_family: student_support
+      source_status: official_current_rate_guidance_after_statute_locator
+      source_note: >
+        Official StudyLink guidance on the parental income test for Student
+        Allowance, stating the income threshold at which entitlement begins
+        to abate ($72,108.92) and the cut-out points. Statutory base is the
+        Student Allowances Regulations 1998.

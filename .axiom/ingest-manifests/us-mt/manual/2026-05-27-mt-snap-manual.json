@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-mt/manual/2026-05-27-mt-snap-manual.json",
-      "sha256": "064dd97b0f4b66b2c0e2540e6eb14e893fdd9a1d34754ebe77d38a6e0e7263de"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-mt/manual/2026-05-27-mt-snap-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-mt/manual/2026-05-27-mt-snap-manual.json",
-      "sha256": "426360b2aa86c4fcc6df600f1ce983a2258a575b35bddab45309e1c83d5b9d3d"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-mt/manual/2026-05-27-mt-snap-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-mt/manual/2026-05-27-mt-snap-manual.jsonl",
-      "sha256": "c98c56973df71f53dfa92b641967a65e9989874ff6b3528888bb5d58ebd9c694"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-mt/manual/2026-05-27-mt-snap-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "6f44d722f6ce1cce7760d84edb4cb8c6667511c4",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "git rm obsolete source-less Montana SNAP scope after signed replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 429,
-    "missing_count": 0,
-    "provision_count": 429,
-    "source_count": 429
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:33.982114+00:00",
+  "generated_at": "2026-07-17T18:46:18.371502+00:00",
   "jurisdiction": "us-mt",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "OmuwG7Ayj2YeICeX4KBDDkjv6IJZnlswA037af3qu+BZp4Xebw2zwENezFt0NS6xxri/UEtxiguHgolgo4oeAA=="
+    "value": "aBxu4pmVq5/ElIzNyDTiDxgX3Q5/ValNah42Hr7Zkme75qWh6s7OoPQMhDJ3DzB9KTNiimU5agwAlPZcK8rHCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-mt-snap-manual"

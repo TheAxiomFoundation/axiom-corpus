@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-medicare-statute-eligibility-premiums-title-42.json",
+      "sha256": "a51690d0f3843ebd7fc9f01fece59b5ae4b86912b81b35b226506c27ff5d36a2"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-medicare-statute-eligibility-premiums-title-42.json",
+      "sha256": "6b55004eff87497a58b21593c00797455eac58e624285ff23b48e2e735bf4e25"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-medicare-statute-eligibility-premiums-title-42.jsonl",
+      "sha256": "9caad56e11ccd678cdf57c01687b215ec71cf769121af0b5390b97ef2601403a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-medicare-statute-eligibility-premiums-title-42/olrc/xml_usc42@119-103.zip",
+      "sha256": "28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-medicare-statute-eligibility-premiums-title-42 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2335,
+    "missing_count": 0,
+    "provision_count": 2335,
+    "source_count": 2335
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:56:43.409794+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YYdkBzum4e/KSCfLGKajWOZXdnukjrcesbdCHPOsZOvNoOpQsYK7RONy0NGFITUXQGOFa6fF4jWXM0E5EeysBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-medicare-statute-eligibility-premiums-title-42"
+}

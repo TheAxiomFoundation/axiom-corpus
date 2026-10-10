@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal.json",
+      "sha256": "b163a5791dc0c3058b1eb4b4d504b6fa3cce46bb058b7952e2f6e12b555a368b"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal.json",
+      "sha256": "c8bad3e1125aab5b074dfe535d64814a855f23b1df88f8f47505a6e89975b0ea"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal.jsonl",
+      "sha256": "cf9734664323ab3feba487b832fef579afd58bb6a650a3c3003f1586712f484d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal/federal-register/api/documents-page-1.json",
+      "sha256": "ebeb6ad0762b7ef06b1f22c3b63127abce009db76b11f9bcae3e459217dc6798"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal/federal-register/documents/2025-15554.json",
+      "sha256": "1d66991b6f3766346f6f1ace5ddabf094f520f0d71c818cb9711262cd7ea4e18"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal/federal-register/documents/2025-15554.txt",
+      "sha256": "5ca7de41d5a93345ec7b3ee9b0e2574602c73ae1b1ffd5d2b8f55263f31c9ab2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-recip-china-ext --start-date 2025-08-14 --document-type PRESDOCU --term \"reciprocal\" --source-as-of 2026-08-01 --expression-date 2025-08-14"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:47.885831+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BF4eWm/huDyc1Oi+oxGSrCz060YoAi/GxzppqhmztslK+NUqG7L9ySw5JP6rsvG9lzQiXB8+DWq/HZ820narCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-recip-china-ext-types-presdocu-term-reciprocal"
+}

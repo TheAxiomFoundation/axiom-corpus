@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks.json",
+      "sha256": "3f0b553c414339d71a692e445128faad29693cd3953fe423ae86e465170889c6"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks.json",
+      "sha256": "f143212644b491cd7042c50aeedaac4baf9d5b5963e8747fe68c2ddc1cfb68e6"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks.jsonl",
+      "sha256": "6ac2181c4118cc8a70025a610144f44a2cd7d79968b75f41b2c3759fb4b7a729"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks/federal-register/api/documents-page-1.json",
+      "sha256": "d8424155588daaf7877b05341bcd1db445f74d1ef2e457c98741a55570d8c40c"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks/federal-register/documents/2025-19639.json",
+      "sha256": "e076e74f8ab6c44fc9e21f1d292b553cfa054d2f9d77ad2ef6aeab8a07a5cb1b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks/federal-register/documents/2025-19639.txt",
+      "sha256": "bb47df9d58b9a85ab8bf8dc1f973404ee337cb593fc2faf9df88c7ecb88f94d3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-mhd-buses --start-date 2025-10-22 --document-type PRESDOCU --term \"adjusting imports of trucks\" --source-as-of 2026-08-01 --expression-date 2025-10-22"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:16.149056+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KYWAjN1ODLWG3nrsekXqv7bpH88y3nUoEHXt1radm60ZcIVYRhs6UEk5T3Q7KC1SbMYKabRRhofNqB+OMj0hCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-mhd-buses-types-presdocu-term-adjusting-imports-of-trucks"
+}

@@ -222,9 +222,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -239,14 +239,14 @@
     "source_count": 52
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-07T15:11:55.170444+00:00",
+  "generated_at": "2026-07-21T11:42:00.184955+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "a3w8jY5okBkTlOiYofTAiVkHzeEp5ODwCGp1tSHO+gPTJpIotr/ltc0USuE+sjYDWoYJ2JGWM0fToaeWST0KBg=="
+    "value": "8A1v6LfLCM8wxs27QiQVIP5i0J/ADWRVgLpqxFfA6prJVUNsys63gl5Wacp2rzUPlN1Mk0mvOJJ3JmUwQT8aBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-03-uk-universal-credit"

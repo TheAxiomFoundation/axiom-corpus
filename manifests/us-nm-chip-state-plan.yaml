@@ -1,0 +1,192 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-nm-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-nm
+  document_class: policy
+  title: 'New Mexico CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1006&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nm/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Mexico
+    source_discovery_group: us-nm/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 4
+    index_records_total: 4
+- source_id: us-nm-cms-chip-state-plan-spa-nm-21-0009-approval-package
+  jurisdiction: us-nm
+  document_class: policy
+  title: 'New Mexico CHIP SPA NM-21-0009: Approval Package (approved December 7, 2021, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NM-21-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-nm/policy/cms/chip-state-plan/spa/nm-21-0009/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Mexico
+    source_discovery_group: us-nm/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NM-21-0009
+    cms_node_id: '128636'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=128636
+    approval_date: '2021-12-07'
+    effective_date: '2021-10-01'
+    summary: This amendment strategic objectives and performance goals by removing obsolete goals and incorporating new objectives
+      and goals that align with the state’s current CHIP.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nm-cms-chip-state-plan-spa-nm-14-0010-approval-package
+  jurisdiction: us-nm
+  document_class: policy
+  title: 'New Mexico CHIP SPA NM-14-0010: Approval Package (approved July 23, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NM/NM-14-0010-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-nm/policy/cms/chip-state-plan/spa/nm-14-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Mexico
+    source_discovery_group: us-nm/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NM-14-0010
+    cms_node_id: '2646'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2646
+    approval_date: '2014-07-23'
+    effective_date: '2014-04-01'
+    summary: Converts the state's existing income eligibility standards to MAGI-equivalent standards, by age group, for children
+      covered in its title XXI-funded Medicaid program. A copy of the approved state plan page (CS3) is attached, and should
+      be incorporated into the state's approved CHIP state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nm-cms-chip-state-plan-spa-nm-14-0011-approval-package
+  jurisdiction: us-nm
+  document_class: policy
+  title: 'New Mexico CHIP SPA NM-14-0011: Approval Package (approved June 17, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NM/NM-14-0011-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-nm/policy/cms/chip-state-plan/spa/nm-14-0011/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Mexico
+    source_discovery_group: us-nm/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NM-14-0011
+    cms_node_id: '2651'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2651
+    approval_date: '2014-06-17'
+    effective_date: '2014-04-01'
+    summary: 'Describes the state''s plan to provide coverage in a separate CHIP, for children subject to Section 2101(\u00A3)
+      of the Affordable Care Act, as specified in the state''s submission of CS14: Children Ineligible for Medicaid as a Result
+      of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nm-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-nm
+  document_class: policy
+  title: 'New Mexico CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NM/NMCurrentFactsheet508.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-nm/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Mexico
+    source_discovery_group: us-nm/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: NM
+    cms_node_id: '2251'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2251
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 05-20-2005.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-nm-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-nm
+  document_class: policy
+  title: 'New Mexico CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NM/NMCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-nm/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New Mexico
+    source_discovery_group: us-nm/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NM
+    cms_node_id: '2251'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2251
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 05-20-2005.
+    topics: *id002
+    link_label: Current State Plan

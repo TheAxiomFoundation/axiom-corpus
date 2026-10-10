@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices.json",
+      "sha256": "a669bc0652875d8d3e9fe157588d821a4e8ddbe41994566a2202a966c9122cdc"
+    },
+    {
+      "path": "data/corpus/inventory/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices.json",
+      "sha256": "2a315f722b36aef35b0702944ecc39ed9a77080528ef29f63005766da2f1e33b"
+    },
+    {
+      "path": "data/corpus/provisions/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices.jsonl",
+      "sha256": "872b9b10974ebd44dfc10bd14fecdce3cdb12823764fbc19fbfd7b2950b03afc"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-1-cap-1-3-objeto-ingresos-exenciones.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-1-cap-4-depuracion.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-1-cap-5-8-base-tarifas.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-1-cap-9-11-declaracion-retenciones.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-2-iva.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-3-ice.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-4-4a-regimenes.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-24-ec-ecuamod-t2-lrti-slices/official-documents/ec-codificacion-2004-026-titulo-5-disposiciones.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "38676e9f0daafbcd8ce67443bd9bdc98bef7f031",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-ec-ecuamod-t2-lrti-slices --manifest manifests/ec-ecuamod-t2-lrti-slices-official-documents.yaml (page_windows re-slice of the t1-captured official PDF; text-native, no OCR)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-25T11:58:53.003440+00:00",
+  "jurisdiction": "ec",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "djyRt7NLbLI2ge+1s/CDmaXfEdJHsW+5XZrFOyT1Ng7FCSMYnZtzqal4gCpyCY4YVz5uIt/G4PBPIUtp/QA7Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-ec-ecuamod-t2-lrti-slices"
+}

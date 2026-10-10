@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions.json",
+      "sha256": "34245d9a4c9b484e2c7b6b501e965d7c41b62e744f8b9e026d5e5ef628d8c371"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions.json",
+      "sha256": "54f76a58452694e2929d5b1dff86740e1c191276d338ccfabb5a9e9ee1c3535d"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions.jsonl",
+      "sha256": "2342bfd9df4cd4995eaf277e8c8b52c298bc469deb1b10dc7df8bbd8ac0c9b48"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions/federal-register/api/documents-page-1.json",
+      "sha256": "6866ebd602bd72c8fae6c7c08a8c5cd0cfe5c0a17793b6401c24ac8f4b4a7f54"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions/federal-register/documents/2025-21671.json",
+      "sha256": "2931495f57a45d94def58614f376ba7dadbff6ee1df386e69f6c9db3da306076"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions/federal-register/documents/2025-21671.txt",
+      "sha256": "5253e64418c2fd1a098c826db3fa3485716124a2dfa230c924259ae5cf466506"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8369dd66091dc4fc4d34dcbd7a760b4b3af53b97",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-exclusions-dec-2025 --start-date 2025-12-01 --document-type NOTICE --term \"exclusion extensions\" --source-as-of 2026-08-01 --expression-date 2025-12-01"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:45:55.591218+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/iWG2gXBjZ86V1nP/P+U2BkKxXvjOEjkjoUwhNiOD/4KIb3CUijyG40ZEmTrYjTxmxshc9sS5OaFhLtAZxZCBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-exclusions-dec-2025-types-notice-term-exclusion-extensions"
+}

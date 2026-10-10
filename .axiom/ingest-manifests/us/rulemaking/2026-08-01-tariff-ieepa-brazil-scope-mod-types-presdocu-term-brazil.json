@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil.json",
+      "sha256": "e75cb27637878a3dc482b54ebd39ee05d3e642951717749ac103329c954f2617"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil.json",
+      "sha256": "fbb3696bcd3e0f167c3d3249ba47b480a0e6aeaa2bce26c0969c1e1c03b91868"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil.jsonl",
+      "sha256": "64255946d49b19e4078ca7adec6f80676ce5191628362e0c7aca196d7cf9c4ce"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil/federal-register/api/documents-page-1.json",
+      "sha256": "4857dde07d4e90fb72eed54a17a5c52a55d24ceb4ed56da72e5453602b160aff"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil/federal-register/documents/2025-21417.json",
+      "sha256": "4303c4ffb877bd0119527892ba61d64d5df04f1477b7ab44ba1a592a0bbede33"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil/federal-register/documents/2025-21417.txt",
+      "sha256": "9f21104df9028b87ebbcc2e159c6130b76fa1d0cf1eb1717df3eb1af4f486c24"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-brazil-scope-mod --start-date 2025-11-26 --document-type PRESDOCU --term \"Brazil\" --source-as-of 2026-08-01 --expression-date 2025-11-26"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:49.893520+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MG/bqJ+R9upNJx3Tv9ccnCC/i94ez26c+OlpFbFb5mOoozLQHRtBnezTYxOg3NRnNQwUqvZjgE5/BFp2sQspDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-brazil-scope-mod-types-presdocu-term-brazil"
+}

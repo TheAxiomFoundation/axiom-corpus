@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77.json",
+      "sha256": "c0ce10167b0b95cdbbe750f2fe29d0cad383057e33c4f130c916e392f6a5bda8"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77.json",
+      "sha256": "f06b1086666f2e9274184a1c22dc13a57489300f7e63524ba58c9b4fbd6ff8ab"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77.jsonl",
+      "sha256": "2ca43f1a62a69eceeeb5cab0fce3a959f8b87e1cc49e2941fb5996e173b59990"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77/new-hampshire-general-court/2021-hb-2-chapter-91.html",
+      "sha256": "247e4aa35c6dbc8ca75e5c716ccd0514cc308d0aa878c6dc6364024bc8148ae4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77/new-hampshire-general-court/2023-hb-2-chapter-79.html",
+      "sha256": "da1cf1935732fa613fb83020ce56470bfd921a470f3007235fe82e0f25531c70"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77/new-hampshire-rsa-chapter-toc-html/NHTOC-V-77.htm",
+      "sha256": "b6fe7146a2371a58face974c22d065c3a836631476e90b538182a3145f424ba6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77/new-hampshire-rsa-merged-chapter-html/V/77/77-mrg.htm",
+      "sha256": "8badde3feb8d0adf8f0ea252a86c1dd31809342a01cb0cbae7bdd0e6539278dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77/new-hampshire-rsa-root-html/nhtoc.htm",
+      "sha256": "d38dc4ad245683b632fe28146a557875c4631be7c5026c35c1c741db2073f794"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/statute/2026-07-16-pit-central-us-nh-title-v-chapter-77/new-hampshire-rsa-title-toc-html/NHTOC-V.htm",
+      "sha256": "c4d6e491db003ea74fe4aef22fcfaea9dfff06984fb7c1a36d6ac378e488f0d2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:26.722561+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qs6f27xxOXyCgglechGNaro50I7EHniaqZgH3yOIJMDLMIF0Z6lwlwlbPN2rX2MGTJC8UIykFvvMcx0KyLHlBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-nh-title-v-chapter-77"
+}

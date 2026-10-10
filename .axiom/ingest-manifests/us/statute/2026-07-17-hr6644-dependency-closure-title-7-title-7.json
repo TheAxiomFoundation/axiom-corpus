@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-17-hr6644-dependency-closure-title-7-title-7.json",
+      "sha256": "a03e38327e812cb5d36b274ffac7f0bddec2df1b09c8d81e9c594f4493c67862"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-17-hr6644-dependency-closure-title-7-title-7.json",
+      "sha256": "b2e58ff0938862d5f38cdaf95c53ae403d6a152e6e2fd9fe5accf604d2a72fbc"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-17-hr6644-dependency-closure-title-7-title-7.jsonl",
+      "sha256": "b10a1aabc60f767b8979c34b06270aae7870a936afb40e01a9e13d297a758bd2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-17-hr6644-dependency-closure-title-7-title-7/uslm/usc7.xml",
+      "sha256": "03564ccd721daff05f0f285704b542d80fd0d2df8967c6c2b6636fcc287547e9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d02ed377d6d2ae775d48e52c4c8a97646b12fcf0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-usc title 7 HR6644 dependency closure from official US Code releasepoint 119-102not101"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 36,
+    "missing_count": 0,
+    "provision_count": 36,
+    "source_count": 36
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-17T19:09:53.044926+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EKWXAxj7/KMVxtUVdd1lODEShCSbMaj0krRkvLEDUBi1hX71FIpy9cwDisnWYP5JldmrksMs6k+If5yscfJ5AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-hr6644-dependency-closure-title-7-title-7"
+}

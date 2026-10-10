@@ -1,0 +1,737 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-co-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 33
+    index_records_total: 33
+- source_id: us-co-cms-chip-state-plan-spa-co-26-0047-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-26-0047: Approval Package (approved August 18, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-26-0047.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-26-0047/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-26-0047
+    cms_node_id: '195006'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=195006
+    approval_date: '2026-08-18'
+    effective_date: '2026-01-01'
+    summary: Through this SPA, Colorado demonstrates compliance with section 205 of the Consolidated Appropriations Act, 2024
+      (CAA, 2024) by modifying CHIP eligibility requirements for the treatment of incarcerated pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-26-0045-chip-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-26-0045-CHIP: Approval Package (approved July 23, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-26-0045-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-26-0045-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-26-0045-CHIP
+    cms_node_id: '194261'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=194261
+    approval_date: '2026-07-23'
+    effective_date: '2026-01-01'
+    summary: Through this SPA, the state implements four additional Health Services Initiatives.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-25-0044-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-25-0044: Approval Package (approved April 6, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-25-0044.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-25-0044/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-25-0044
+    cms_node_id: '191271'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=191271
+    approval_date: '2026-04-06'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, the state demonstrates compliance with section 5121 of the Consolidated Appropriations Act,
+      2023 (CAA, 2023) by modifying CHIP eligibility requirements for the treatment of incarcerated youth and providing pre-release
+      services to eligible juveniles.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-24-0041-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-24-0041: Approval Package (approved December 18, 2025, effective October 30, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-24-0041.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-30'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-24-0041/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-24-0041
+    cms_node_id: '187781'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=187781
+    approval_date: '2025-12-18'
+    effective_date: '2023-10-30'
+    summary: Through this SPA, the state removes outdated CHIP state plan language to ensure that the plan reflects the state’s
+      approved program policies.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-24-0042-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-24-0042: Approval Package (approved July 16, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-24-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-24-0042/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-24-0042
+    cms_node_id: '169211'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169211
+    approval_date: '2024-07-16'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-23-0039-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-23-0039: Approval Package (approved October 30, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-23-0039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-23-0039/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-23-0039
+    cms_node_id: '154851'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=154851
+    approval_date: '2023-10-30'
+    effective_date: '2023-07-01'
+    summary: Through this SPA, Colorado permanently removes enrollment fees for all CHIP beneficiaries.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-20-0032-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-20-0032: Approval Package (approved September 13, 2023, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-20-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-20-0032/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-20-0032
+    cms_node_id: '153071'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=153071
+    approval_date: '2023-09-13'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-22-0039-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-22-0039: Approval Package (approved March 14, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-22-0039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-22-0039/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0039
+    cms_node_id: '145771'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145771
+    approval_date: '2023-03-14'
+    effective_date: '2022-07-01'
+    summary: This SPA provides Colorado with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-22-0036-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-22-0036: Approval Package (approved September 1, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-22-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-22-0036/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0036
+    cms_node_id: '139616'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139616
+    approval_date: '2022-09-01'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-18-0027-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-18-0027: Approval Package (approved August 9, 2022, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-18-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-18-0027/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-18-0027
+    cms_node_id: '139396'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139396
+    approval_date: '2022-08-09'
+    effective_date: '2017-10-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-21-0034-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-21-0034: Approval Package (approved August 30, 2021, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-21-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-21-0034/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-21-0034
+    cms_node_id: '125611'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=125611
+    approval_date: '2021-08-30'
+    effective_date: '2019-07-01'
+    summary: This SPA updates the payment methodology used to ensure each Federally Qualified Health Center (FQHC) and Rural
+      Health Clinic (RHC) receives reimbursement for cervices to CHIP enrollees.
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-19-0030-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-19-0030: Approval Package (approved January 23, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO-19-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-19-0030/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-19-0030
+    cms_node_id: '145496'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145496
+    approval_date: '2020-01-23'
+    effective_date: '2019-10-01'
+    summary: This SPA extends dental coverage to pregnant women enrolled in Children's Health Plan Plus (CHIP+).
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-19-0029-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-19-0029: Approval Package (approved August 8, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-19-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-19-0029/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-19-0029
+    cms_node_id: '4056'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4056
+    approval_date: '2019-08-08'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations at 42 CFR 457, Subpart L, for utilization of a
+      managed care delivery system.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-16-0025-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-16-0025: Approval Package (approved September 6, 2017, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-16-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-16-0025/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-16-0025
+    cms_node_id: '3741'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3741
+    approval_date: '2017-09-06'
+    effective_date: '2016-01-01'
+    summary: This SPA amends Colorado's eligibility application materials in response to stakeholder input recommending changes
+      to improve readability of materials, streamline application questions to pertain only to eligibility determinations,
+      and ensure that members of a federally recognized tribes have the opportunity to obtain all the benefits to which they
+      are entitled.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-13-0015-mc1-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-13-0015-MC1: Approval Package (approved September 5, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-13-0015-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-13-0015-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-0015-MC1
+    cms_node_id: '2786'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2786
+    approval_date: '2014-09-05'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-13-0018-mc4-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-13-0018-MC4: Approval Package (approved November 23, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-13-0018-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-13-0018-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-0018-MC4
+    cms_node_id: '2696'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2696
+    approval_date: '2013-11-23'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements, including the single streamlined application,
+      into Colorado's CHIP State Plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-13-0016-mc2-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-13-0016-MC2: Approval Package (approved November 1, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-13-0016-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-13-0016-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-0016-MC2
+    cms_node_id: '2791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2791
+    approval_date: '2013-11-01'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standard to a modified adjusted gross income (MAGI)-equivalent
+      standard, by age group, for children covered in its title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-cspa-12-current-state-plan
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-CSPA-12: Current State Plan (approved April 25, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-CSPA-12-CurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-cspa-12/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CO-CSPA-12
+    cms_node_id: '2291'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2291
+    approval_date: '2013-04-25'
+    effective_date: '2013-01-01'
+    summary: Medicaid Expansion and State Employees Expansion.
+    topics: &id002
+    - Current State Plan
+    - Expansion
+    link_label: Current State Plan
+- source_id: us-co-cms-chip-state-plan-spa-co-cspa-12-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-CSPA-12: Approval Package (approved April 25, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-CSPA-12-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-cspa-12/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-CSPA-12
+    cms_node_id: '2291'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2291
+    approval_date: '2013-04-25'
+    effective_date: '2013-01-01'
+    summary: Medicaid Expansion and State Employees Expansion.
+    topics: *id002
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-cspa-9-approval-package
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-CSPA-9: Approval Package (approved June 28, 2010, effective May 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/CO-CSPA-9-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-05-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-cspa-9/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-CSPA-9
+    cms_node_id: '2216'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2216
+    approval_date: '2010-06-28'
+    effective_date: '2010-05-01'
+    summary: Expansion from 200% FPL to 250% FPL.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-co-cms-chip-state-plan-spa-co-cspa-6-factsheet
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-CSPA-6: Factsheet (approved December 23, 2005, effective July 1, 2005)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/COCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-07-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-cspa-6/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: CO-CSPA-6
+    cms_node_id: '1871'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1871
+    approval_date: '2005-12-23'
+    effective_date: '2005-07-01'
+    summary: Final Approved State Plan - Raised Upper Eligibility Limit for Children.
+    topics: &id003
+    - Eligibility
+    link_label: Factsheet
+- source_id: us-co-cms-chip-state-plan-spa-co-cspa-6-current-state-plan
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado CHIP SPA CO-CSPA-6: Current State Plan (approved December 23, 2005, effective July 1, 2005)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CO/COCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-07-01'
+  citation_path: us-co/policy/cms/chip-state-plan/spa/co-cspa-6/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CO-CSPA-6
+    cms_node_id: '1871'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1871
+    approval_date: '2005-12-23'
+    effective_date: '2005-07-01'
+    summary: Final Approved State Plan - Raised Upper Eligibility Limit for Children.
+    topics: *id003
+    link_label: Current State Plan

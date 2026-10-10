@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -13,6 +13,7 @@ from threading import Lock
 from typing import Any
 from urllib.parse import parse_qs, quote, unquote, urlencode, urljoin, urlparse
 
+import fitz
 import requests
 from bs4 import BeautifulSoup
 from bs4.element import Tag
@@ -28,6 +29,7 @@ MISSOURI_ROOT_SOURCE_FORMAT = "missouri-rs-root-html"
 MISSOURI_CHAPTER_SOURCE_FORMAT = "missouri-rs-chapter-html"
 MISSOURI_VIEW_CHAPTER_SOURCE_FORMAT = "missouri-rs-view-chapter-html"
 MISSOURI_SECTION_SOURCE_FORMAT = "missouri-rs-section-html"
+MISSOURI_RATE_SCHEDULE_SOURCE_FORMAT = "missouri-dor-form-pdf"
 MISSOURI_USER_AGENT = "axiom-corpus/0.1 (contact@axiom-foundation.org)"
 
 _CHAPTER_HREF_RE = re.compile(r"/?main/OneChapter\.aspx\?chapter=(?P<chapter>\d+[A-Za-z]?)", re.I)
@@ -166,6 +168,7 @@ class MissouriSection:
     source_format: str
     sha256: str
     status: str | None = None
+    metadata: dict[str, Any] | None = None
 
     @property
     def source_id(self) -> str:
@@ -190,6 +193,17 @@ class _MissouriSource:
     source_url: str
     source_format: str
     data: bytes
+
+
+@dataclass(frozen=True)
+class MissouriRateBracket:
+    """One row in an official Missouri annual individual income-tax schedule."""
+
+    over: str
+    not_over: str | None
+    base_tax: str
+    rate: str
+    amount_over: str
 
 
 @dataclass(frozen=True)
@@ -278,6 +292,17 @@ class _MissouriFetcher:
             data=self._fetch(listing.relative_source_name, listing.source_url),
         )
 
+    def fetch_rate_schedule(self, source_url: str, *, tax_year: int) -> _MissouriSource:
+        relative_path = (
+            f"missouri-department-of-revenue/{tax_year}-form-mo-1040es.pdf"
+        )
+        return _MissouriSource(
+            relative_path=relative_path,
+            source_url=source_url,
+            source_format=MISSOURI_RATE_SCHEDULE_SOURCE_FORMAT,
+            data=self._fetch(relative_path, source_url),
+        )
+
     def _fetch(self, relative_path: str, source_url: str) -> bytes:
         if self.source_dir is not None:
             return (self.source_dir / relative_path).read_bytes()
@@ -323,6 +348,8 @@ def extract_missouri_revised_statutes(
     timeout_seconds: float = 60.0,
     request_attempts: int = 3,
     workers: int = 8,
+    rate_schedule_url: str | None = None,
+    tax_year: int = 2026,
 ) -> StateStatuteExtractReport:
     """Snapshot official Revised Statutes of Missouri HTML and extract provisions."""
     jurisdiction = "us-mo"
@@ -348,6 +375,8 @@ def extract_missouri_revised_statutes(
     container_count = 0
     section_count = 0
     remaining_sections = limit
+    rate_schedule: tuple[MissouriRateBracket, ...] | None = None
+    rate_schedule_source: _RecordedSource | None = None
 
     root_source = fetcher.fetch_root()
     root_recorded = _record_source(
@@ -376,6 +405,29 @@ def extract_missouri_revised_statutes(
     )
     if not chapter_listings:
         raise ValueError(f"no Missouri statute chapters selected for filter: {only_title!r}")
+
+    if rate_schedule_url is not None:
+        if not any(listing.chapter == "143" for listing in chapter_listings):
+            raise ValueError("Missouri annual rate schedule requires chapter 143")
+        schedule_source = fetcher.fetch_rate_schedule(
+            rate_schedule_url,
+            tax_year=tax_year,
+        )
+        rate_schedule_source = _record_source(
+            store,
+            jurisdiction=jurisdiction,
+            run_id=run_id,
+            source=schedule_source,
+        )
+        source_paths.append(
+            store.source_path(
+                jurisdiction,
+                DocumentClass.STATUTE,
+                run_id,
+                schedule_source.relative_path,
+            )
+        )
+        rate_schedule = parse_missouri_rate_schedule(schedule_source.data)
 
     for title in titles:
         if _append_unique(
@@ -423,6 +475,7 @@ def extract_missouri_revised_statutes(
             listing=chapter_page.listing,
             source=chapter_recorded,
             base_url=base_url,
+            as_of=expression_date_text,
         )
         if _append_unique(
             seen,
@@ -477,6 +530,26 @@ def extract_missouri_revised_statutes(
         except ValueError as exc:
             errors.append(f"chapter {chapter.chapter} full text: {exc}")
             continue
+        if chapter.chapter == "143" and rate_schedule is not None:
+            assert rate_schedule_source is not None
+            target_index = next(
+                (
+                    index
+                    for index, section in enumerate(sections)
+                    if section.section_label == "143.011"
+                ),
+                None,
+            )
+            if target_index is None:
+                errors.append("chapter 143 full text: section 143.011 missing")
+                continue
+            sections = list(sections)
+            sections[target_index] = apply_missouri_rate_schedule_overlay(
+                sections[target_index],
+                brackets=rate_schedule,
+                tax_year=tax_year,
+                rate_source=rate_schedule_source,
+            )
         for section in sections:
             if section.citation_path in seen:
                 errors.append(f"duplicate citation path: {section.citation_path}")
@@ -602,6 +675,7 @@ def parse_missouri_chapter_page(
     listing: MissouriChapterListing,
     source: _RecordedSource,
     base_url: str = MISSOURI_REVISED_STATUTES_BASE_URL,
+    as_of: date | str | None = None,
 ) -> tuple[MissouriChapter, tuple[MissouriSectionListing, ...]]:
     """Parse one official RSMo chapter index page into section links."""
     soup = BeautifulSoup(_decode(html), "lxml")
@@ -637,7 +711,6 @@ def parse_missouri_chapter_page(
     )
 
     listings: list[MissouriSectionListing] = []
-    seen: set[str] = set()
     for anchor in soup.find_all("a", href=True):
         href = str(anchor["href"])
         match = _SECTION_HREF_RE.search(href)
@@ -645,9 +718,6 @@ def parse_missouri_chapter_page(
             continue
         section_label = _normalize_section_label(unquote(match.group("section")))
         bid = match.group("bid")
-        if section_label in seen:
-            continue
-        seen.add(section_label)
         row = anchor.find_parent("tr")
         heading, effective_date = _chapter_row_heading_and_date(row, anchor)
         listings.append(
@@ -665,7 +735,7 @@ def parse_missouri_chapter_page(
                 ordinal=len(listings) + 1,
             )
         )
-    return chapter, tuple(listings)
+    return chapter, _select_missouri_current_listings(tuple(listings), as_of=as_of)
 
 
 def parse_missouri_section_page(
@@ -720,12 +790,34 @@ def parse_missouri_view_chapter_page(
     containers = _view_chapter_section_containers(soup)
     if not containers:
         raise ValueError("missing full-chapter section containers")
-    if len(containers) < len(listings):
-        raise ValueError(
-            f"full-chapter section count mismatch: {len(containers)} < {len(listings)}"
-        )
+    containers_by_section: dict[str, list[Tag]] = {}
+    for container in containers:
+        section_label = _view_chapter_section_label(container)
+        if section_label is not None:
+            containers_by_section.setdefault(section_label, []).append(container)
     sections: list[MissouriSection] = []
-    for listing, container in zip(listings, containers, strict=False):
+    for listing in listings:
+        candidates = containers_by_section.get(listing.section_label, [])
+        if not candidates:
+            raise ValueError(
+                f"full-chapter source omits section {listing.section_label}"
+            )
+        container = candidates[0]
+        if len(candidates) > 1:
+            matching_container = next(
+                (
+                    candidate
+                    for candidate in candidates
+                    if _view_chapter_effective_date(candidate) == listing.effective_date
+                ),
+                None,
+            )
+            if matching_container is None:
+                raise ValueError(
+                    "full-chapter source has no matching effective version for "
+                    f"section {listing.section_label}"
+                )
+            container = matching_container
         heading = _section_heading(container, listing.section_label) or listing.heading
         source_history = tuple(_source_history(container))
         body = _section_body(container)
@@ -755,6 +847,144 @@ def parse_missouri_view_chapter_page(
             )
         )
     return tuple(sections)
+
+
+def parse_missouri_rate_schedule(pdf: bytes) -> tuple[MissouriRateBracket, ...]:
+    """Parse the annual individual rate chart from official Form MO-1040ES."""
+    document = fitz.open(stream=pdf, filetype="pdf")
+    page_text = next(
+        (
+            page.get_text("text")
+            for page in document
+            if "Form MO-1040ES Tax Rate Chart" in page.get_text("text")
+        ),
+        None,
+    )
+    if page_text is None:
+        raise ValueError("Missouri MO-1040ES source omits the tax rate chart")
+    text = re.sub(r"(\d)\.\s+(\d)", r"\1.\2", page_text)
+    text = _clean_whitespace(text)
+    match = re.search(
+        r"If the Missouri taxable income is:\s*The tax is:\s*"
+        r"(?P<table>.*?)\s*[•]?\s*Example 1:",
+        text,
+        re.I,
+    )
+    if match is None:
+        raise ValueError("Missouri MO-1040ES tax rate chart is not parseable")
+    table = match.group("table")
+    first = re.match(
+        r"\$0 to \$(?P<not_over>[\d,]+)\s+\$0\s+",
+        table,
+        re.I,
+    )
+    if first is None:
+        raise ValueError("Missouri MO-1040ES first tax bracket is not parseable")
+    brackets = [
+        MissouriRateBracket(
+            over="0",
+            not_over=first.group("not_over"),
+            base_tax="0",
+            rate="0.0%",
+            amount_over="0",
+        )
+    ]
+    remaining = table[first.end() :]
+    row_pattern = re.compile(
+        r"Over \$(?P<over>[\d,]+)"
+        r"(?: but not over \$(?P<not_over>[\d,]+))?\s+"
+        r"(?:\.+\s+)?"
+        r"(?:\$(?P<base_tax>[\d,]+) plus )?"
+        r"(?P<rate>\d+(?:\.\d+)?)% of excess over \$(?P<amount_over>[\d,]+)",
+        re.I,
+    )
+    for row in row_pattern.finditer(remaining):
+        brackets.append(
+            MissouriRateBracket(
+                over=row.group("over"),
+                not_over=row.group("not_over"),
+                base_tax=row.group("base_tax") or "0",
+                rate=f"{row.group('rate')}%",
+                amount_over=row.group("amount_over"),
+            )
+        )
+    if len(brackets) != 8:
+        raise ValueError(f"Missouri MO-1040ES has {len(brackets)} tax brackets, expected 8")
+    for current, following in zip(brackets, brackets[1:], strict=False):
+        if current.not_over != following.over:
+            raise ValueError("Missouri MO-1040ES tax brackets are not contiguous")
+    if brackets[-1].not_over is not None or brackets[-1].rate != "4.7%":
+        raise ValueError("Missouri MO-1040ES has an unexpected top tax bracket")
+    return tuple(brackets)
+
+
+def apply_missouri_rate_schedule_overlay(
+    section: MissouriSection,
+    *,
+    brackets: tuple[MissouriRateBracket, ...],
+    tax_year: int,
+    rate_source: _RecordedSource,
+) -> MissouriSection:
+    """Replace the codified base table with the operative annual DOR schedule."""
+    if section.section_label != "143.011":
+        raise ValueError(
+            f"Missouri rate schedule cannot apply to section {section.section_label}"
+        )
+    if section.body is None:
+        raise ValueError("Missouri section 143.011 has no body")
+    replacement = _render_missouri_rate_schedule(brackets)
+    body, count = re.subn(
+        r"If the Missouri taxable income is:\s*The tax is:.*?"
+        r"(?=\s+2\.\s*\(1\)\s+Notwithstanding)",
+        replacement,
+        section.body,
+        count=1,
+        flags=re.I | re.S,
+    )
+    if count != 1:
+        raise ValueError("Missouri section 143.011 omits its replaceable base tax table")
+    metadata = dict(section.metadata or {})
+    metadata["rate_schedule_overlay"] = {
+        "tax_year": tax_year,
+        "authority": [
+            "Mo. Rev. Stat. § 143.011(2)-(5)",
+            "Mo. Rev. Stat. § 143.021(2)",
+        ],
+        "bracket_count": len(brackets),
+    }
+    metadata["source_components"] = [
+        {
+            "role": "codified_base",
+            "source_url": section.source_url,
+            "source_path": section.source_path,
+            "sha256": section.sha256,
+        },
+        {
+            "role": f"operative_{tax_year}_individual_rate_schedule",
+            "source_url": rate_source.source_url,
+            "source_path": rate_source.source_path,
+            "sha256": rate_source.sha256,
+        },
+    ]
+    return replace(section, body=body, metadata=metadata)
+
+
+def _render_missouri_rate_schedule(
+    brackets: tuple[MissouriRateBracket, ...],
+) -> str:
+    lines = ["If the Missouri taxable income is: The tax is:"]
+    first, *remaining = brackets
+    lines.append(f"$0 to ${first.not_over}: $0")
+    for bracket in remaining:
+        income_range = f"Over ${bracket.over}"
+        if bracket.not_over is not None:
+            income_range += f" but not over ${bracket.not_over}"
+        tax = ""
+        if bracket.base_tax != "0":
+            tax = f"${bracket.base_tax} plus "
+        tax += f"{bracket.rate} of excess over ${bracket.amount_over}"
+        lines.append(f"{income_range}: {tax}")
+    return "\n".join(lines)
 
 
 def _fetch_missouri_chapter_pages(
@@ -1005,7 +1235,48 @@ def _section_metadata(section: MissouriSection) -> dict[str, Any]:
         metadata["source_history"] = list(section.source_history)
     if section.status:
         metadata["status"] = section.status
+    if section.metadata:
+        metadata.update(section.metadata)
     return metadata
+
+
+def _select_missouri_current_listings(
+    listings: tuple[MissouriSectionListing, ...],
+    *,
+    as_of: date | str | None,
+) -> tuple[MissouriSectionListing, ...]:
+    grouped: dict[str, list[MissouriSectionListing]] = {}
+    for listing in listings:
+        grouped.setdefault(listing.section_label, []).append(listing)
+    cutoff = _as_of_date(as_of)
+    selected: list[MissouriSectionListing] = []
+    for candidates in grouped.values():
+        choice = candidates[0]
+        if cutoff is not None:
+            eligible = [
+                candidate
+                for candidate in candidates
+                if candidate.effective_date is None
+                or date.fromisoformat(candidate.effective_date) <= cutoff
+            ]
+            if eligible:
+                choice = max(
+                    eligible,
+                    key=lambda candidate: candidate.effective_date or "0001-01-01",
+                )
+        selected.append(replace(choice, ordinal=len(selected) + 1))
+    return tuple(selected)
+
+
+def _as_of_date(value: date | str | None) -> date | None:
+    if value is None:
+        return None
+    if isinstance(value, date):
+        return value
+    try:
+        return date.fromisoformat(value)
+    except ValueError as exc:
+        raise ValueError(f"invalid Missouri source as-of date: {value!r}") from exc
 
 
 def _filter_root_entries(
@@ -1148,6 +1419,19 @@ def _view_chapter_section_containers(soup: BeautifulSoup) -> list[Tag]:
         if isinstance(container.find("span", class_="bold"), Tag):
             containers.append(container)
     return containers
+
+
+def _view_chapter_section_label(container: Tag) -> str | None:
+    bold = container.find("span", class_="bold")
+    if not isinstance(bold, Tag):
+        return None
+    match = re.match(
+        r"^\s*(?P<section>\d+[A-Za-z]?\.\d+[A-Za-z]?(?:\.\d+[A-Za-z]?)*)\.",
+        _clean_text(bold),
+    )
+    if match is None:
+        return None
+    return _normalize_section_label(match.group("section"))
 
 
 def _view_chapter_effective_date(container: Tag) -> str | None:

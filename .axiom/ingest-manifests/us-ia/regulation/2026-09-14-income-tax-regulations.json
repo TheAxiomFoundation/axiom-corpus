@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "8879e493c32f6392c69e62e0f54c1441fac0842881b998318292f03358c8a176"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "b3464961cb94becbba61f1387ba349258c9f5de99e92adfa40dc2806b5d78a73"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "e95c94da0e70709b2cb6f0494ef61b232a2b4caba9232f928a912afec641f457"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-300.pdf",
+      "sha256": "25d5d8da7364bfa828984482fea581fb948245c98fff156ecd9c7733a955be98"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-301.pdf",
+      "sha256": "209878c48e1c421ee6534c4971649059041c45b86b6a7fcf908b0bc151769cdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-302.pdf",
+      "sha256": "7669ca5e0190690cca16d22d6d4aa9bbe84bc439e06c3f49bdb2d1f5ce857e19"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-303.pdf",
+      "sha256": "29382020c0bbc3846167fff217a9895ef0c03fd773a6a4668a2e3563cc5afefe"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-304.pdf",
+      "sha256": "af38a61b0581f591eb611b90e4f362c289bb3801be510dc4d9917a8a809f5d72"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-305.pdf",
+      "sha256": "41739692a125a9e0d66edb140e79003f7eedd71d126f919aa6eebfd8fb64d141"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-306.pdf",
+      "sha256": "1812f650d886c342ba875aa79a117a84bc8af1e9573f4d7a34c43a4c11b909fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-307.pdf",
+      "sha256": "1153992b0e5953dbe1759bee00e2e676590738169fe89aaf61ec742fafef3490"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-09-14-income-tax-regulations/official-documents/ia-legis-iac-701-308.pdf",
+      "sha256": "1971c3d82b2dd0833059ddbe64cf38bc5ac2a60a13ec26f8c3bf6f154d1d03df"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 218,
+    "missing_count": 0,
+    "provision_count": 218,
+    "source_count": 218
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:29:06.045344+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "F01UhdWv1uPoN/Meg7+fybKXuD+A4ve2hFnYMbMr+uZxh56V5Wt+SpyV4nySj4gRVx38tlLeILpxS2IRHY94DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

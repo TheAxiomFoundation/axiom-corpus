@@ -1,0 +1,141 @@
+# Peru (pe) tranche-2 FULL-DOCUMENT re-slice of the LIR TUO (DS
+# 179-2004-EF) - PERUMOD lane repair item: the 185-page whole-TUO capture
+# (pe/statute/ds-2004-179-ef/tuo-ley-impuesto-a-la-renta, scope
+# 2026-07-22-pe-perumod-t1-statutes) encoded a 20-rule module - far short
+# of full-code coverage. Per the full-document program (Egypt lane), the
+# SAME official Congreso-hosted TUO PDF is re-captured in 6 capitulo
+# page_windows slices. The t1 capture remains in the corpus (immutable);
+# this t2 scope supersedes it for encoding.
+documents:
+  - source_id: pe-ds-2004-179-ef-cap-1-4-ambito-base-contribuyentes
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/cap-1-4-ambito-base-contribuyentes
+    title: 'LIR TUO Capitulos I-IV: ambito de aplicacion, base jurisdiccional, contribuyentes, inafectaciones y exoneraciones (pages 1-33 of the captured official print)'
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 1
+          end_page: 33
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (TUO oficial)
+      publisher: Congreso de la Republica del Peru (repositorio oficial)
+      source_family: income-tax/lir-tuo-slices
+      language: es
+  - source_id: pe-ds-2004-179-ef-cap-5-renta-bruta
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/cap-5-renta-bruta
+    title: 'LIR TUO Capitulo V: de la renta bruta (categorias de renta) (pages 34-68 of the captured official print)'
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 34
+          end_page: 68
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (TUO oficial)
+      publisher: Congreso de la Republica del Peru (repositorio oficial)
+      source_family: income-tax/lir-tuo-slices
+      language: es
+  - source_id: pe-ds-2004-179-ef-cap-6-renta-neta
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/cap-6-renta-neta
+    title: 'LIR TUO Capitulo VI: de la renta neta (deducciones) (pages 69-98 of the captured official print)'
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 69
+          end_page: 98
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (TUO oficial)
+      publisher: Congreso de la Republica del Peru (repositorio oficial)
+      source_family: income-tax/lir-tuo-slices
+      language: es
+  - source_id: pe-ds-2004-179-ef-cap-7-9-tasas-perdidas
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/cap-7-9-tasas-perdidas
+    title: 'LIR TUO Capitulos VII-IX: tasas del impuesto, perdidas, regimenes (pages 99-116 of the captured official print)'
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 99
+          end_page: 116
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (TUO oficial)
+      publisher: Congreso de la Republica del Peru (repositorio oficial)
+      source_family: income-tax/lir-tuo-slices
+      language: es
+  - source_id: pe-ds-2004-179-ef-cap-10-11-responsables-retenciones
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/cap-10-11-responsables-retenciones
+    title: 'LIR TUO Capitulos X-XI: responsables y retenciones del impuesto (pages 117-146 of the captured official print)'
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 117
+          end_page: 146
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (TUO oficial)
+      publisher: Congreso de la Republica del Peru (repositorio oficial)
+      source_family: income-tax/lir-tuo-slices
+      language: es
+  - source_id: pe-ds-2004-179-ef-cap-12-17-declaracion-finales
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/cap-12-17-declaracion-finales
+    title: 'LIR TUO Capitulos XII-XVII: declaracion, pagos a cuenta, disposiciones transitorias y finales (pages 147-185 of the captured official print)'
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 147
+          end_page: 185
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (TUO oficial)
+      publisher: Congreso de la Republica del Peru (repositorio oficial)
+      source_family: income-tax/lir-tuo-slices
+      language: es

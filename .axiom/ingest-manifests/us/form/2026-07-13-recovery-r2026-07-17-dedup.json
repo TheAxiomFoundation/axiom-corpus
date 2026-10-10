@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/form/2026-07-13-recovery-r2026-07-17-dedup.json",
+      "sha256": "1bfbccb97c51cbd3b6b22e72be41a5a8d38526664dad0889d42f2026bf970cd5"
+    },
+    {
+      "path": "data/corpus/inventory/us/form/2026-07-13-recovery-r2026-07-17-dedup.json",
+      "sha256": "c3a440cefcfbdda07be6c39d80ad6ccdacd6a9426aaca5de68fabc83f7a7c903"
+    },
+    {
+      "path": "data/corpus/provisions/us/form/2026-07-13-recovery-r2026-07-17-dedup.jsonl",
+      "sha256": "acc2c89561f39af55a961d362ad02600df27ebb91fa68e7e8358b2b3aecb2a54"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-07-13-recovery-r2026-07-17-dedup/official-documents/release-scope-us-form-2026-05-12-cms-medicaid-chip-bhp-eligibility-levels",
+      "sha256": "e7ba8942e1b9c88f363fb988625f33fb963145b0beca217e3e31538ac73daac9"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-07-13-recovery-r2026-07-17-dedup/official-documents/us-cms-eligibility-levels",
+      "sha256": "e7ba8942e1b9c88f363fb988625f33fb963145b0beca217e3e31538ac73daac9"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-07-13-recovery-r2026-07-17-dedup/provenance/release-scope-us-form-2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
+      "sha256": "9204944fd65110ae179e2566b052a619a079eea5bdca99f44844b98110b990c1"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-07-13-recovery-r2026-07-17-dedup/provenance/us-cms-eligibility-levels.json",
+      "sha256": "0bf6924456c44b83231261f6991ee59d8860aacfb0db887c7386e73a77de2603"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "989e5ad9223abc0a1b600e9861ea9b8d47e079af",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-16T21:01:40.847612+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WHD700S6tMJ4OxYvQgNujWIE8VdgO9JXDUJO7ymglL+ZDliUFAb42HnKkfnIwzknWlAzH+tGSIOAUMQRi7bWDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-07-17-dedup"
+}

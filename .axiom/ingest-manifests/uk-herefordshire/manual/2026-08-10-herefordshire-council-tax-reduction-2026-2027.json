@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-herefordshire/manual/2026-08-10-herefordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "3c468c6ad4aa47b999aec7dfdc5ec8f8038635b5a4a94c9b704aed0ced6bbea1"
+    },
+    {
+      "path": "data/corpus/inventory/uk-herefordshire/manual/2026-08-10-herefordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "946761c8f9c16fa34fec987a3f795263fe02ced170c8761ebd1a041ce3ea61ec"
+    },
+    {
+      "path": "data/corpus/provisions/uk-herefordshire/manual/2026-08-10-herefordshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "b0867a00f8d7ebeb89bcd1a46531ec50ba259e5663cb5ea28da15884124ae99e"
+    },
+    {
+      "path": "data/corpus/sources/uk-herefordshire/manual/2026-08-10-herefordshire-council-tax-reduction-2026-2027/official-documents/herefordshire-council-minutes-2026-02-13.pdf",
+      "sha256": "9f430717963dd9495441d0eb524dc0f17b028069b1b8125bbc961aa9edee551e"
+    },
+    {
+      "path": "data/corpus/sources/uk-herefordshire/manual/2026-08-10-herefordshire-council-tax-reduction-2026-2027/official-documents/herefordshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2526158300a9046b797bf6263b057fd0f37b023361949c3a59ba47802d6ecc49"
+    },
+    {
+      "path": "data/corpus/sources/uk-herefordshire/manual/2026-08-10-herefordshire-council-tax-reduction-2026-2027/official-documents/herefordshire-ctr-cabinet-decision-2026-27.pdf",
+      "sha256": "80a652b2f8d85543dc200406e90669d84e8e8747d7fe42233a91298f8e2cef6b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f7289e50efb1e95ea459b2755f222d1ffe147734",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-10-herefordshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-herefordshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 154,
+    "missing_count": 0,
+    "provision_count": 154,
+    "source_count": 154
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-10T12:24:07.077600+00:00",
+  "jurisdiction": "uk-herefordshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MVZdSiAPtSn6S3z/kob7356YpR5huZVEKeRsWE3nr0NhkXyLRI/vEZLC7Dh45oHk121onUuus9fiUQMP/PNiCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-10-herefordshire-council-tax-reduction-2026-2027"
+}

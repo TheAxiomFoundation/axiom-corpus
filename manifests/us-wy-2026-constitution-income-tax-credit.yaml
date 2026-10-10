@@ -1,0 +1,38 @@
+documents:
+  - source_id: us-wy-constitution-article-15-section-18
+    jurisdiction: us-wy
+    document_class: statute
+    title: Wyoming Constitution Article 15, Section 18
+    source_url: https://wyoleg.gov/NXT/gateway.dll/2025%20Wyoming%20Statutes/2025%20Constitution/1/16
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-wy/statute/constitution/article-15/section-18
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: >-
+        a[name="LPTOC18"] + div.Section + div.Normal-Level + div.Normal-Level
+      html_stop_selector: a[name="LPTOC19"]
+      section_label: operative-text
+      section_heading: Wyoming Constitution article 15, section 18 operative text
+    metadata:
+      primary_source: true
+      source_authority: Wyoming Legislature
+      legal_identifier: Wyo. Const. art. 15, § 18
+      document_subtype: state_constitution
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_constitution
+      certification_scope: income_tax_constitutional_credit_boundary
+      final_return_certification: false
+      source_note: >-
+        The current official Wyoming Constitution requires any tax imposed on
+        income to allow a full credit for sales, use, and ad valorem taxes
+        paid by the same taxpayer to any Wyoming taxing authority in the
+        taxable year. This higher-authority boundary does not itself impose an
+        income tax or prove that every downstream credit and signed
+        net-liability output is zero. It is preserved as the constitutional
+        check on the current official sources that affirmatively state that
+        Wyoming has no individual or state income tax.

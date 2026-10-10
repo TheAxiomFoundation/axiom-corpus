@@ -1,0 +1,54 @@
+documents:
+  - source_id: us-md-code-gtg
+    jurisdiction: us-md
+    document_class: statute
+    citation_path: us-md/statute/gtg/10-105
+    title: Maryland Code, Tax-General § 10-105 — State income tax rates
+    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&enactments=false&section=10-105
+    source_format: html
+    source_as_of: "2026-07-22"
+    expression_date: "2026-07-22"
+    extraction:
+      html_content_selector: "#StatuteText"
+      html_drop_selectors:
+        - .btn-group
+    metadata:
+      primary_source: true
+      source_authority: Maryland General Assembly
+      document_subtype: codified_statute_section
+      article: Tax-General
+      section: 10-105
+      statute_vintage: "2026"
+      source_status: official_current_codified_text_as_of_2026-07-22
+      source_note: >-
+        Current Maryland General Assembly codified text retrieved with the
+        correct Tax-General article parameter (article=gtg). This source
+        replaces the unusable article=ggt recovery capture while preserving
+        the established citation path.
+
+  - source_id: us-md-code-gtg-p2
+    jurisdiction: us-md
+    document_class: statute
+    citation_path: us-md/statute/gtg/10-211
+    title: Maryland Code, Tax-General § 10-211 — Personal exemptions
+    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&enactments=false&section=10-211
+    source_format: html
+    source_as_of: "2026-07-22"
+    expression_date: "2026-07-22"
+    extraction:
+      html_content_selector: "#StatuteText"
+      html_drop_selectors:
+        - .btn-group
+    metadata:
+      primary_source: true
+      source_authority: Maryland General Assembly
+      document_subtype: codified_statute_section
+      article: Tax-General
+      section: 10-211
+      statute_vintage: "2026"
+      source_status: official_current_codified_text_as_of_2026-07-22
+      source_note: >-
+        Current Maryland General Assembly codified text retrieved with the
+        correct Tax-General article parameter (article=gtg). This source
+        replaces the unusable article=ggt recovery capture while preserving
+        the established citation path.

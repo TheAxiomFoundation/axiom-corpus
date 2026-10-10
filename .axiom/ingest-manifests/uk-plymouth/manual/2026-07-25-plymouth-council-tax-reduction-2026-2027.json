@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-plymouth/manual/2026-07-25-plymouth-council-tax-reduction-2026-2027.json",
+      "sha256": "5a36518595c0cdcffc9e691ddeeb7187d136d2ccbc1ba0f37f93edfbdf8021b7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-plymouth/manual/2026-07-25-plymouth-council-tax-reduction-2026-2027.json",
+      "sha256": "7eb315ada801c97fd16e62230ac351acdc38668dbd73e80781a69e3682c8ea51"
+    },
+    {
+      "path": "data/corpus/provisions/uk-plymouth/manual/2026-07-25-plymouth-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6a42a49dc3e434a057e6ad600ee4e36ff10614527a5bf0adc64e2ac6bac7e751"
+    },
+    {
+      "path": "data/corpus/sources/uk-plymouth/manual/2026-07-25-plymouth-council-tax-reduction-2026-2027/official-documents/plymouth-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "288dc82c1c1edf6c9bff89ea1a1826da6cb492ea2e822e9eb8ca7668aabe593f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-plymouth-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-plymouth-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 131,
+    "missing_count": 0,
+    "provision_count": 131,
+    "source_count": 131
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:36.925132+00:00",
+  "jurisdiction": "uk-plymouth",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1vgMxREkUfgKubfF1UdYjmKHLuFSTOCFgAHyxPZJwK4xR5Zw5sFKO1QxM9NrCva0aB69aRMXlUGu1lzUT80GAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-plymouth-council-tax-reduction-2026-2027"
+}

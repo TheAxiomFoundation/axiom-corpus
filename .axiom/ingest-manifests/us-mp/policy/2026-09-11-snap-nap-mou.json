@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mp/policy/2026-09-11-snap-nap-mou.json",
+      "sha256": "3ee53bb68345ca15a1d24fc1b713ad7cdde876ad6b836f3a0d7df7b399513439"
+    },
+    {
+      "path": "data/corpus/inventory/us-mp/policy/2026-09-11-snap-nap-mou.json",
+      "sha256": "d34e645c3273b7297f1ef7866500679f296adb4ae7965de49cf1540d3c841c3c"
+    },
+    {
+      "path": "data/corpus/provisions/us-mp/policy/2026-09-11-snap-nap-mou.jsonl",
+      "sha256": "26d63cea9b7e845208b181257795cdf3ea6abbe3ba964cb3ad4cee28f5be72cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mp/policy/2026-09-11-snap-nap-mou/official-documents/us-mp-dcca-nap-mou-ffy2025.pdf",
+      "sha256": "ab2badc79f79c55a12f591f9999efa09198679e414d8a279244257ffbf2af5af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-snap-nap-mou --manifest manifests/us-mp-nap-mou-fy2025.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T19:39:47.280725+00:00",
+  "jurisdiction": "us-mp",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "s4XiKG5/9L/gj3FpgCjWdYqhDslptyxj8xDiJpSL9nH5fRq+W4tmQOxmtC1KXYe5g9BzMjVXb82diIg5ur61Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-snap-nap-mou"
+}

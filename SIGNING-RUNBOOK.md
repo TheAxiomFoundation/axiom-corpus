@@ -81,12 +81,12 @@ Fail closed if any required signing/publication value is empty:
 : "${R2_SECRET_ACCESS_KEY:?missing R2 secret access key}"
 ```
 
-## 4. Publish, sign, verify, and activate
+## 4. Publish, sign, and verify (does not move serving)
 
-This is the production boundary. The controller deep-validates locally, uploads
-and reads back content-addressed R2 artifacts, stages and verifies exact Supabase
-provision/navigation projections, signs and public-key-verifies the release
-object, uploads and verifies it, then atomically activates the release.
+This is the production publication boundary. The controller deep-validates locally,
+uploads and reads back content-addressed R2 artifacts, stages and verifies exact
+Supabase provision/navigation projections, and signs and public-key-verifies the
+release object. It does NOT activate: serving is unchanged.
 
 ```bash
 test -z "$(git status --porcelain)"
@@ -100,3 +100,31 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/publish_corpus.py \
 Retain `/tmp/${RELEASE}-signed-release.json` as the operator copy of the exact
 signed release object. Any command failure means the release is not approved;
 do not manually advance a pointer or bypass the controller.
+
+## 5. Activate (move serving) — separate, deliberate step
+
+Activation repoints the per-`(jurisdiction, document_class)` serving map and can
+displace another jurisdiction's release (axiom-corpus#408), so it is decided and
+run separately from publication. Always preview the takeover first.
+
+```bash
+# Preview: what would this release displace? (read-only, moves nothing)
+UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/activate_release.py \
+  --release-object "/tmp/${RELEASE}-signed-release.json" \
+  --dry-run
+
+# Activate after reviewing every changed pair:
+UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/activate_release.py \
+  --release-object "/tmp/${RELEASE}-signed-release.json"
+```
+
+Serving follows the per-scope map; only the pairs this release carries move, and
+each takeover is recorded in `corpus.scope_activation_history`.
+
+The protected workflow keeps the preview request bounded by sending only the
+verified release name and signed scope evidence. After approval it installs the
+idempotent private upload transport, sends the canonical release object in
+bounded chunks, and requires PostgreSQL to verify the reconstructed object hash
+and identity before entering the existing atomic activation transaction. The
+private chunks are removed after activation and are never readable by public or
+staging roles.

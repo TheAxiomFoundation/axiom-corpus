@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/guidance/2026-07-24-sd-personal-income-tax-zero-liability.json",
+      "sha256": "fa9da99e1ed549aa94a33d682c61b492ac11d2c69a128925a638c280b671c1d8"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/guidance/2026-07-24-sd-personal-income-tax-zero-liability.json",
+      "sha256": "e77ae3a07eec7f70b66b6b183f825369ed9f4589c9dda1971b9b2978929ec9be"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/guidance/2026-07-24-sd-personal-income-tax-zero-liability.jsonl",
+      "sha256": "a7013957ce93f011230192149364a881d34eab2abc75fdfb80a7e01db4d02edc"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/guidance/2026-07-24-sd-personal-income-tax-zero-liability/official-documents/us-sd-dor-2026-sales-use-tax-guide.pdf",
+      "sha256": "df386b65b5ae8bd5fed832dd970b27aaaa345d6a87d6cc3e94d147917010c2e8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0bd1da463f6898433f87789261fb875aa23f7250",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-sd-personal-income-tax-zero-liability --manifest manifests/us-sd-2026-personal-income-tax-zero-liability.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T11:44:50.439348+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-sd-personal-income-tax-zero-liability.md",
+      "sha256": "014ac5ea8340ed02f0be5bae51df666205ea6603f1ae6652b95fd70f0b081771"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2pc/nSCwiZXb6yABEv2m+FgKHxo6u/e/PNSGknmzHVMli/OYJCTOMp1OnWf8CJ0qfD6g64JJ+6+bxbDg/VipCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-sd-personal-income-tax-zero-liability"
+}

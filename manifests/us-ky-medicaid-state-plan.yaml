@@ -1,0 +1,890 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ky-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 191
+- source_id: us-ky-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 91
+    index_records_total: 191
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-26-0002-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-26-0002: Approval Document (approved June 5, 2026, effective July 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-26-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-26-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-26-0002
+    cms_node_id: '193391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193391
+    approval_date: '2026-06-05'
+    effective_date: '2026-07-01'
+    summary: The purpose of this amendment is to update the state's methodology for development of the PACE amount that would
+      otherwise have been paid (AWOP) and prospective monthly capitation payment rates to ensure consistency with federal
+      requirements and current state processes.
+    topics:
+    - Eligibility
+    - Home and Community Based Services
+    - Program Administration
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-24-0018-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-24-0018: Approval Document (approved July 18, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-24-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-24-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-24-0018
+    cms_node_id: '182896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=182896
+    approval_date: '2025-07-18'
+    effective_date: '2025-01-01'
+    summary: This SPA amends the Medicaid State Plan to provide for mandatory coverage in accordance with section 1902(a)(84)(D)
+      of the Social Security Act for eligible juveniles who are incarcerated in a public institution post-adjudication of
+      charges. This SPA is effective on January 1, 2025, and will sunset on December 31, 2026.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-25-0001-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-25-0001: Approval Document (approved July 3, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-25-0001
+    cms_node_id: '182301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=182301
+    approval_date: '2025-07-03'
+    effective_date: '2025-07-01'
+    summary: This amendment proposed to disregard post-application resource increases for non-MAGI groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-24-0001-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-24-0001: Approval Document (approved April 12, 2024, effective February 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-24-0001
+    cms_node_id: '163216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163216
+    approval_date: '2024-04-12'
+    effective_date: '2024-02-01'
+    summary: This amendment proposes to update private duty nursing rates and unit limits.
+    topics:
+    - Coverage
+    - Eligibility
+    - Home Health
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-23-0019-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-23-0019: Approval Document (approved August 2, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-23-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-23-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-23-0019
+    cms_node_id: '151686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151686
+    approval_date: '2023-08-02'
+    effective_date: '2023-04-01'
+    summary: To remove cost sharing requirements from the state plan.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-23-0007-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-23-0007: Approval Document (approved June 26, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-23-0007
+    cms_node_id: '150006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150006
+    approval_date: '2023-06-26'
+    effective_date: '2023-04-01'
+    summary: To implement 12-month continuous eligibility for children.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-22-0005-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-22-0005: Approval Document (approved June 22, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-22-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-22-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-22-0005
+    cms_node_id: '150201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150201
+    approval_date: '2023-06-22'
+    effective_date: '2022-07-01'
+    summary: To transition CHIP children to the state Medicaid program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-23-0004-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-23-0004: Approval Document (approved May 1, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-23-0004
+    cms_node_id: '147526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147526
+    approval_date: '2023-05-01'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-20-0012-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-20-0012: Approval Document (approved January 20, 2023, effective January 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-12'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-20-0012
+    cms_node_id: '107656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107656
+    approval_date: '2023-01-20'
+    effective_date: '2023-01-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to disregard
+      any excess resources for LTC members as of the month the PHE ends and for 90 days thereafter and increase its PE period
+      to application month to following months or until a regular Medicaid application has been submitted and determination
+      made.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-22-0003-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-22-0003: Approval Document (approved June 21, 2022, effective May 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-22-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-05-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-22-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-22-0003
+    cms_node_id: '137501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137501
+    approval_date: '2022-06-21'
+    effective_date: '2022-05-01'
+    summary: To amend the Third-Party Liability (TPL) provisions in the State Plan to make necessary updates to ensure compliance
+      with current laws and regulations.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-21-0005-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-21-0005: Approval Document (approved January 28, 2022, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-21-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-21-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-21-0005
+    cms_node_id: '134326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=134326
+    approval_date: '2022-01-28'
+    effective_date: '2021-07-01'
+    summary: To adopt the optional eligibility group serving individuals eligible for the Medicaid Program for All-Inclusive
+      Care for the Elderly (PACE).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-20-0011-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-20-0011: Approval Document (approved March 23, 2021, effective March 15, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ky-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-15'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-20-0011
+    cms_node_id: '106801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106801
+    approval_date: '2021-03-23'
+    effective_date: '2020-03-15'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to disregard any excess resources for LTC members as of the month the PHE ends.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-20-0010-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-20-0010: Approval Document (approved September 4, 2020, effective June 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KY-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-06-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-20-0010
+    cms_node_id: '101921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101921
+    approval_date: '2020-09-04'
+    effective_date: '2020-06-01'
+    summary: The purpose of this SPA is to allow pharmacies to provide COVID 19 testing
+    topics:
+    - Current State Plan
+    - Disaster Relief
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-20-0003-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-20-0003: Approval Document (approved June 22, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-20-0003
+    cms_node_id: '99631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99631
+    approval_date: '2020-06-22'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to allow for hospital presumptive eligibility for a number of optional groups and authorizes 2 PE periods within
+      a calendar year while waiting performance standards during the emergency. This SPA also waives all copays during the
+      emergency. These changes also apply to the approved Alternative Benefit Plan. The SPA allows for broad use of telehealth
+      with reimbursement based on the current face-to-face fee schedule. Prior authorization for medications and Preferred
+      Drug List exceptions are modified under this SPA.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-19-0007-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-19-0007: Approval Document (approved February 18, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-19-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-19-0007
+    cms_node_id: '86846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86846
+    approval_date: '2020-02-18'
+    effective_date: '2019-10-01'
+    summary: Allows the state to comply with the Medicaid Drug Utilization Review (DUR) provisions included in Section 1004
+      of the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment.
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-20-0001-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-20-0001: Approval Document (approved January 21, 2020, effective January 15, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-20-0001, Table
+    of Content, Approval Letter, 179 and Plan Page.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-15'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-20-0001
+    cms_node_id: '58551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58551
+    approval_date: '2020-01-21'
+    effective_date: '2020-01-15'
+    summary: Designates Lisa Lee, Commissioner of the KY Department for Medicaid Services, as the Governor’s designee for
+      review and approval of state plan amendments
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-19-0008-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-19-0008: Approval Document (approved December 18, 2019, effective December 11, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-19-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-12-11'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-19-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-19-0008
+    cms_node_id: '58246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58246
+    approval_date: '2019-12-18'
+    effective_date: '2019-12-11'
+    summary: This amendment designates Stephanie M. Bates, Acting Commissioner of the KY Department for Medicaid Services,
+      as the Governor’s designee for review and approval of state plan amendments
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-15-009-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-15-009: Approval Document (approved December 14, 2015, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-15-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-15-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-15-009
+    cms_node_id: '20886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20886
+    approval_date: '2015-12-14'
+    effective_date: '2016-01-01'
+    summary: Extends Current Sunset Date for Community Mental Health Center Reimbursement From December 31, 2015 to June 30,
+      2016.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-14-0005-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-14-0005: Approval Document (approved August 10, 2015, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-14-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-14-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-14-0005
+    cms_node_id: '23361'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23361
+    approval_date: '2015-08-10'
+    effective_date: '2014-07-01'
+    summary: Clarifies that Foster Children, and Women Receiving Treatment Through the Breast and Cervical Cancer Program,
+      are Exempt from Certain Cost Sharing Requirements in the State Plan.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-13-023-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-13-023: Approval Document (approved December 31, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-13-023-MSPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-13-023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-023
+    cms_node_id: '39371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39371
+    approval_date: '2013-12-31'
+    effective_date: '2014-01-01'
+    summary: Revises cost sharing for Kentucky Medicaid and increases various copay amounts for beneficiaries.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-13-020-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-13-020: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-13-020-ABPSPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-13-020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-020
+    cms_node_id: '39376'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39376
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Meets all Federal Statutory and Regulatory requirements for Establishing an Alternative Benefit Plan.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-13-0009-mm7-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-13-0009-MM7: Approval Document (approved November 22, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-13-0009-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-13-0009-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0009-MM7
+    cms_node_id: '40031'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40031
+    approval_date: '2013-11-22'
+    effective_date: '2014-01-01'
+    summary: Establishes that One or More Qualified Hospitals are Determining Presumptive Eligibility, and that the State
+      is Providing Coverage for Individuals Determined Presumptive Eligible.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-13-0011-mm5-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-13-0011-MM5: Approval Document (approved November 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-13-0011-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-13-0011-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0011-MM5
+    cms_node_id: '40026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40026
+    approval_date: '2013-11-20'
+    effective_date: '2014-01-01'
+    summary: Establishes the State Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-13-0008-mm1-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-13-0008-MM1: Approval Document (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-13-0008-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-13-0008-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0008-MM1
+    cms_node_id: '40121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40121
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: Provides for Simplification and Alignment of Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ky-cms-medicaid-state-plan-spa-ky-13-0007-mm2-approval-document
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky Medicaid SPA KY-13-0007-MM2: Approval Document (approved November 7, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KY/KY-13-0007-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/medicaid-state-plan/spa/ky-13-0007-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0007-MM2
+    cms_node_id: '40126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40126
+    approval_date: '2013-11-07'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document

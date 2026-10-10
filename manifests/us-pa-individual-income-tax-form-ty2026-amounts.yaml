@@ -1,0 +1,28 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-pa-department-of-revenue-rev-413i-ty2026
+  jurisdiction: us-pa
+  document_class: form
+  title: 2026 REV-413 (I) Instructions for Estimating PA Personal Income Tax, for individuals only
+  source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2026/2026_rev-413i.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-pa/form/department-of-revenue/ty2026/rev-413i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Revenue
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-04-01'
+    amounts_carried:
+    - flat rate (3.07%)
+    - estimated-payment income threshold ($14,000 for 2026)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.pa.gov/agencies/revenue/forms-and-publications
+    discovered_via: manual-review:tax-agent-queue; index https://www.pa.gov/agencies/revenue/forms-and-publications (read
+      2026-09-13)

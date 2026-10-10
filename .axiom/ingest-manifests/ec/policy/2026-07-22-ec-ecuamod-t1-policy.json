@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ec/policy/2026-07-22-ec-ecuamod-t1-policy.json",
+      "sha256": "ceb56c5e68f6da7586a2eeccdd4b04107fafb381a8c1049c59b88875326d3428"
+    },
+    {
+      "path": "data/corpus/inventory/ec/policy/2026-07-22-ec-ecuamod-t1-policy.json",
+      "sha256": "27bd1560fa555c273c34ebf65e15260f4e4711bb87984b0596ab5f038cf8d1cf"
+    },
+    {
+      "path": "data/corpus/provisions/ec/policy/2026-07-22-ec-ecuamod-t1-policy.jsonl",
+      "sha256": "c90e1d59172ff36b475bb9b99cc90c2b604455d19cff06addd7350d34a606c87"
+    },
+    {
+      "path": "data/corpus/sources/ec/policy/2026-07-22-ec-ecuamod-t1-policy/official-documents/ec-mies-base-legal-bdh.html",
+      "sha256": "f826aec66e4865df74a5f1e18f5c8923041a7d57d38a8896139cde04c4b0239a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "39a63b3f530e578919987b339667ed4d5c8f5b0f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-ec-ecuamod-t1-policy --manifest manifests/ec-ecuamod-t1-policy-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-22T17:47:28.273996+00:00",
+  "jurisdiction": "ec",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6OqiunkXjiaYxI7UFwrXRjE3uuSV2IMBUoi6MgMyK7/I20YL+J41CyjMtY2XlcsBV2LBmIdeqaO0DeJfbtV3Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-ec-ecuamod-t1-policy"
+}

@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "aa24fd03c2728873d3e0f4a1e72d89fe86c933872900cb4d32df912efe4b33f6"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "99be430b34aeab9a2b5a69614822896f234886ef57ff5c5bf51c784d46667c6f"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "426edd99f9ab80f2f79b76cc8458cc1d7236fc4aace8fb8f64c08b7e598c37a1"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan/official-documents/us-dc-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "69dca3cd2d62b736a287ee28ab1fd4d8e09ade2884a479731fb00c3bc250427a"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan/official-documents/us-dc-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "dc12a8bd3e41e5997892badecd84101d4dcf9ce516bd20c9f36a5dc8397a44bb"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan/official-documents/us-dc-cms-chip-state-plan-spa-dc-13-0010-approval-package.pdf",
+      "sha256": "a5e6501926e97bbf5c791a83d6fd63c476d637f07cac4e96d86b13d71d39d968"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan/official-documents/us-dc-cms-chip-state-plan-spa-dc-13-12-mc2-approval-package.pdf",
+      "sha256": "22159bb2153b314e80557156f194c540536247c8d226dc3b1773bead3674ad9e"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan/official-documents/us-dc-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "d78ef18e89727455e1559fb1928b241fecb40b268ad688a67b093efe613e2126"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 61,
+    "missing_count": 0,
+    "provision_count": 61,
+    "source_count": 61
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T01:21:07.178943+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RnyUogXpQ6qTeVkdWdPdq0vzixAqB/j897F/ujnXhsebtXSbtKYyVhn5kNiwhaZYoOE5WU0TCgKIqpADST9QCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}

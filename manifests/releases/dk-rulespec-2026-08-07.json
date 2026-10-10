@@ -1,0 +1,12 @@
+{
+  "name": "dk-rulespec-2026-08-07",
+  "description": "Immutable Denmark RuleSpec corpus release: Tier-1 full-parity ingest for the dk-euromod campaign (rulespec-dk#11) — 64 instruments at paragraph level via the ELI/LexDania adapter (16 acts incl. the DK_2025 legal time slice LBK 724/2022 + LOV 482/2024, plus 48 amendment acts, 28 amendment-marked with structured amendment_targets), composed into one same-version scope of 1,922 provisions.",
+  "scopes": [
+    {
+      "jurisdiction": "dk",
+      "document_class": "statute",
+      "version": "2026-08-04-dk-full-parity-tier1"
+    }
+  ],
+  "quality_profile": "complete-expression-dates-v1"
+}

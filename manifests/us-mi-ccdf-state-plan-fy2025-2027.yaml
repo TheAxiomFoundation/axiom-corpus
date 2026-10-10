@@ -1,0 +1,38 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-mi-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-mi
+  document_class: policy
+  title: Michigan CCDF Plan, FFY 2025-2027
+  source_url: https://www.michigan.gov/mileap/-/media/Project/Websites/mileap/Documents/Early-Childhood-Education/Child-Development-and-Care/data-and-reporting/CARS-118-FFY2025-2027-CCDF-Plan-Print-Template.pdf?rev=7d0ee04737634947b4883ee964af46a7&hash=C3B5F436B5ECD5F2D57742378BDE464C
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-mi/policy/acf/ccdf-plan/fy2025-2027
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Amendment 2
+    plan_status: Approved as of 2026-03-12 (state posts Amendment 1 and 2 consolidated plans and the Appendix; initial approved
+      plan not posted)
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.michigan.gov/mileap/early-childhood-education/early-learners-and-care/cdc/data-and-reporting
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/MI-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-mi/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

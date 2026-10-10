@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-health-manual-ca
+documents:
+- source_id: us-ca-w6-health-scc-ssa-medi-cal-cchip
+  jurisdiction: us-ca
+  document_class: manual
+  title: 'Santa Clara County Medi-Cal Program Handbook: County Children''s Health Initiative Program (CCHIP)'
+  source_url: https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2022-07-01'
+  citation_path: us-ca/manual/scc-ssa/medi-cal/cchip
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: County of Santa Clara Social Services Agency, Department of Employment and Benefit Services
+    program: CHIP
+    document_subtype: county_program_handbook_topic
+    source_discovery_group: us-ca/manual/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 17
+    bundle_url: https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm
+    note: County agency handbook (the county administers CCHIP locally); effective July 1, 2022 as printed

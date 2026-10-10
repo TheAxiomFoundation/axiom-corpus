@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/statute/2026-07-16-pit-west-us-or-chapter-316.json",
+      "sha256": "e60a584b280001cc63a198fb06733f3cf21b0f3380bcd64569e5c8239af03c76"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/statute/2026-07-16-pit-west-us-or-chapter-316.json",
+      "sha256": "2940cc894799b1d3394a4b475bb41e6b367ebb7f7a3818ad73809d6b130736b5"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/statute/2026-07-16-pit-west-us-or-chapter-316.jsonl",
+      "sha256": "f0ee4bb148738276dcb9bcf4a7c3748fcb8c7184a17bf2d0c25787be7b5be613"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-16-pit-west-us-or-chapter-316/oregon-ors-html/ORS.aspx",
+      "sha256": "0d7e9c3de6ea19590db90ad3e860e00076c3978f6371ef3fe746c9ab09a51214"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-16-pit-west-us-or-chapter-316/oregon-ors-html/ors316.html",
+      "sha256": "c556b25dd3be1653212a5f1dd5d03c4948baff28ca1307ab77066a9619563621"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 502,
+    "missing_count": 0,
+    "provision_count": 502,
+    "source_count": 502
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:29.319338+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bsnlBJ7EHhK8shRBxB94vQOyKkduP+EbqAzgMOOyUQMwAMw55PLzdli0CSZHx2WOy7gKaeHLM8VwBVLPlB+kBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-west-us-or-chapter-316"
+}

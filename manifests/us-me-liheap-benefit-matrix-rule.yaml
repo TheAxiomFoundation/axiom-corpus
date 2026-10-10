@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-me-liheap-mainehousing-rules-chapter-24
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'MaineHousing Rules Chapter 24: Home Energy Assistance Program (HEAP), effective June 29, 2026'
+  source_url: https://www.mainehousing.org/docs/default-source/msha-rules/ch24-home-energy-assistance-program-rule.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-06-29'
+  citation_path: us-me/regulation/mainehousing-rules/chapter-24
+  metadata:
+    primary_source: true
+    source_authority: Maine State Housing Authority (MaineHousing)
+    document_subtype: agency_rule_chapter_pdf
+    program: LIHEAP
+    state: ME
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://www.mainehousing.org/policy-research/mainehousing-rules
+    on_clearinghouse_index: true
+    source_discovery_group: us-me/regulation/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.mainehousing.org/policy-research/mainehousing-rules
+    extraction_granularity: pdf_page
+    expression_date_note: 'printed ''EFFECTIVE DATE: June 29, 2026'''
+    access_note: mainehousing.org HTTP 200 to the plain client (390,680 bytes)
+    page_count: 33
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

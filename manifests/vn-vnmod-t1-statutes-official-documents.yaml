@@ -1,0 +1,121 @@
+# Viet Nam (vn) tranche-1 capture, STATUTE class - VNMOD v3.5 parity
+# (policy years 2013-24; SOUTHMOD full-bundle program lane 7; report
+# CR-VNMOD-v3.5).
+#
+# VNMOD simulates (S): personal income tax (seven progressive bands of
+# 5/10/15/20/25/30/35 percent over monthly taxable income thresholds of
+# VND 5/10/18/32/52/80 million, report Table 2.4), social insurance
+# contributions (report Table 2.3; 2024 headline splits: pension 8
+# percent employee / 14 percent employer; health 1.5 / 3; unemployment
+# 1 / 1; sick-and-maternity 3 employer; work-injury 0.5 employer; trade
+# union 2 employer), VAT (10 percent standard with 0 and 5 percent lists,
+# report Table 2.5), special sales tax, the environmental protection tax
+# on fuels (per-litre levies adjusted by UBTVQH resolutions), fuel-price
+# stabilization, and social assistance under Decree 20/2021/ND-CP as
+# amended by Decree 76/2024/ND-CP (regulation-class manifest).
+#
+# FOUR instruments, all captured from the Government of Viet Nam's
+# official documents portal (vanban.chinhphu.vn). The three pre-2014 laws
+# are full-text HTML document pages (the portal's inline-text era); the
+# 2014 law is the portal's digitally signed official scan hosted on
+# datafiles.chinhphu.vn (image-only pages behind the signature stamp,
+# hence force_ocr with Vietnamese).
+#
+# 1. Luat 04/2007/QH12 (Thue thu nhap ca nhan) - the PIT law behind the
+#    seven-band schedule (Dieu 22); passed 21/11/2007. Later amendments
+#    (Luat 26/2012/QH13; deduction Resolution 954/2020/UBTVQH14) are
+#    tranche-2 captures.
+# 2. Luat 13/2008/QH12 (Thue gia tri gia tang) - VAT law; 03/06/2008.
+#    Amendments (31/2013/QH13; the 2022-24 8-percent reduction
+#    resolutions) are tranche-2.
+# 3. Luat 57/2010/QH12 (Thue bao ve moi truong) - environmental
+#    protection tax; 15/11/2010. The UBTVQH per-litre schedule
+#    resolutions (579/2018 etc.) are tranche-2.
+# 4. Luat 58/2014/QH13 (Bao hiem xa hoi) - social insurance law behind
+#    the contribution schedule; passed 20/11/2014 (khoa XIII, ky hop thu
+#    8). The 2024 successor (41/2024/QH15, effective 01/07/2025) is
+#    outside the VNMOD window.
+#
+# Comparison note (targets, never sources): all rates above are the
+# VNMOD v3.5 applied values quoted for parity checking; the corpus text
+# is the authority.
+documents:
+  - source_id: vn-luat-04-2007-qh12-thue-thu-nhap-ca-nhan
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2007-04-qh12/thue-thu-nhap-ca-nhan
+    title: Luat so 04/2007/QH12 - Luat Thue thu nhap ca nhan (Cong Thong tin dien tu Chinh phu, van ban toan van)
+    source_url: 'https://vanban.chinhphu.vn/?pageid=27160&docid=51258'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2007-11-21'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: income-tax/pit
+      language: vi
+  - source_id: vn-luat-13-2008-qh12-thue-gia-tri-gia-tang
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2008-13-qh12/thue-gia-tri-gia-tang
+    title: Luat so 13/2008/QH12 - Luat Thue gia tri gia tang (Cong Thong tin dien tu Chinh phu, van ban toan van)
+    source_url: 'https://vanban.chinhphu.vn/?pageid=27160&docid=70797'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2008-06-03'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: vat/base-law
+      language: vi
+  - source_id: vn-luat-57-2010-qh12-thue-bao-ve-moi-truong
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2010-57-qh12/thue-bao-ve-moi-truong
+    title: Luat so 57/2010/QH12 - Luat Thue bao ve moi truong (Cong Thong tin dien tu Chinh phu, van ban toan van)
+    source_url: 'https://vanban.chinhphu.vn/?pageid=27160&docid=98568'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2010-11-15'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: environmental-tax/base-law
+      language: vi
+  - source_id: vn-luat-58-2014-qh13-bao-hiem-xa-hoi
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2014-58-qh13/bao-hiem-xa-hoi
+    title: Luat so 58/2014/QH13 - Luat Bao hiem xa hoi (ban ky so chinh thuc, Cong Thong tin dien tu Chinh phu)
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2014/12/58.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2014-11-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: vie
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-security/social-insurance-law
+      language: vi

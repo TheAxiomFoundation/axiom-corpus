@@ -1,0 +1,64 @@
+# Viet Nam (vn) tranche-1 capture, REGULATION class - companion to the
+# vn-vnmod-t1 statutes manifest (see its header for the full VNMOD v3.5
+# parity notes). Two instruments, both digitally signed official scans
+# from the Government portal's file store (datafiles.chinhphu.vn;
+# image-only pages behind the signature stamp, hence force_ocr vie):
+#
+# 1. Nghi dinh 20/2021/ND-CP de 15/03/2021 - social assistance policy
+#    for social protection beneficiaries: the baseline standard support
+#    rate of VND 360,000/month (Articles 4-6; benefit multiples 1.5x =
+#    540,000 and 2x = 720,000) that VNMOD applies for 2021-24/06.
+# 2. Nghi dinh 76/2024/ND-CP de 01/07/2024 - amends Decree 20/2021,
+#    raising the baseline standard support rate to VND 500,000/month from
+#    01/07/2024 (benefit amounts 750,000 / 1,000,000; individuals aged
+#    75-80 in covered groups receive 500,000).
+#
+# Predecessor Decree 136/2013/ND-CP (pre-2021 amounts), Circular
+# 76/2021/TT-BTC, and the COVID-19 support resolutions (116/2020/NQ-CP,
+# 68/2021/ND-CP-era instruments, QD 08/2022/QD-TTg) are tranche-2
+# captures.
+documents:
+  - source_id: vn-nghi-dinh-20-2021-tro-giup-xa-hoi
+    jurisdiction: vn
+    document_class: regulation
+    citation_path: vn/regulation/nghi-dinh-2021-20/tro-giup-xa-hoi
+    title: Nghi dinh so 20/2021/ND-CP - Quy dinh chinh sach tro giup xa hoi doi voi doi tuong bao tro xa hoi (ban ky so chinh thuc)
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/03/20.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2021-03-15'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: vie
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-assistance/decree-20-2021
+      language: vi
+  - source_id: vn-nghi-dinh-76-2024-sua-doi-nghi-dinh-20
+    jurisdiction: vn
+    document_class: regulation
+    citation_path: vn/regulation/nghi-dinh-2024-76/sua-doi-tro-giup-xa-hoi
+    title: Nghi dinh so 76/2024/ND-CP - Sua doi, bo sung mot so dieu cua Nghi dinh 20/2021/ND-CP (ban ky so chinh thuc)
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/76-cp.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2024-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: vie
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-assistance/decree-76-2024
+      language: vi

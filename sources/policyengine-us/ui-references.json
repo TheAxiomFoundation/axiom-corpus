@@ -1,0 +1,1500 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "ui",
+ "folders": [
+  "gov/dol"
+ ],
+ "state_folders": "unemployment_insurance|unemployment_compensation|unemployment",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 156,
+ "references": [
+  {
+   "url": "https://admincode.legislature.state.al.us/administrative-code/480-4-3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ala. Admin. Code Chapter 480-4-3 — Benefits (waiting-week rule)"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/waiting_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://alabamaretail.org/news/unemployment-comp-weeks-weekly-benefits/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama Act 2019-204 summary"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/wba/max.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_max_weeks.py"
+   ]
+  },
+  {
+   "url": "https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ch. 277 of the Laws of 2021 § 31, as added by Ch. 305 of the Laws of 2021 § 14 — Partial unemployment hours-tier system"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/partial/hours_tiers.yaml"
+   ]
+  },
+  {
+   "url": "https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NYSDOL P832 (Jan 2025) — high quarter minimum increased from $3,300 for 2024 claims"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/high_quarter_minimum.yaml"
+   ]
+  },
+  {
+   "url": "https://dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NYSDOL P803 (Oct 2025), Partial Unemployment FAQs"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/partial/hours_tiers.yaml",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_gross_weekly_earnings.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_hours_tier_rate.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_weekly_hours_worked.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_weekly_payable.py"
+   ]
+  },
+  {
+   "url": "https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NYSDOL P832 (Feb 2026)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/formula_min_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/low_divisor.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/low_hq_threshold.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/max_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/standard_divisor.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/two_quarter_hq_threshold.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/base_wages_multiplier.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/capped_other_quarters_rate.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/full_base_period_quarters.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/high_quarter_cap.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/high_quarter_minimum.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/quarters_required.yaml"
+   ]
+  },
+  {
+   "url": "https://fred.stlouisfed.org/series/ALUR",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FRED — Unemployment Rate in Alabama (ALUR, seasonally adjusted), retrieved 2026-08-03"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/state_unemployment_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah DWS Unemployment Insurance Benefit Schedule (current year — URL rolls over annually)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/wba/max_amount.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_base_period_wages.yaml"
+   ]
+  },
+  {
+   "url": "https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah DWS Claimant Guide (Jan 2025)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/partial/hours_threshold.yaml",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_weekly_hours_worked.py"
+   ]
+  },
+  {
+   "url": "https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah DWS Claimant Guide (Jan 2025)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_quarters_with_wages.yaml"
+   ]
+  },
+  {
+   "url": "https://labor.alabama.gov/docs/guides/uc_brr.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama UC Benefit Rights and Responsibilities Handbook"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/index.yaml"
+   ]
+  },
+  {
+   "url": "https://labor.alabama.gov/docs/guides/uc_brr.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama UC Benefit Rights and Responsibilities Handbook"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/eligibility/quarters_with_wages.yaml"
+   ]
+  },
+  {
+   "url": "https://labor.alabama.gov/docs/guides/uc_brr.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama UC Benefit Rights and Responsibilities Handbook"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/wba/max.yaml",
+    "parameters/gov/states/al/dol/unemployment_insurance/wba/min_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://labor.alabama.gov/docs/guides/uc_brr.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama UC Benefit Rights and Responsibilities Handbook"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/waiting_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/alabama/title-25/chapter-4/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of Alabama 1975, Title 25, Chapter 4 — Unemployment Compensation"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/index.yaml"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-72/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of Alabama § 25-4-72(b)(5)",
+    "Code of Alabama § 25-4-72(b)(2)"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/wba/max.yaml",
+    "parameters/gov/states/al/dol/unemployment_insurance/wba/min_threshold.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_high_quarter_wages.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_monetarily_eligible.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_second_high_quarter_wages.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_unrounded_wba.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_weekly_benefit_amount.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-73/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of Alabama § 25-4-73"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/partial/disregard_rate.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_partial_weekly_benefit.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_weekly_earnings.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-74/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of Alabama § 25-4-74(a)"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/mba/bpw_fraction.yaml",
+    "parameters/gov/states/al/dol/unemployment_insurance/mba/duration_weeks.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_max_weeks.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_maximum_benefit_amount.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/alabama/title-25/chapter-4/article-4/section-25-4-77/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of Alabama § 25-4-77(a)(6)"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/eligibility/bpw_to_hqw_multiplier.yaml",
+    "parameters/gov/states/al/dol/unemployment_insurance/eligibility/quarters_with_wages.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_base_period_wages.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_monetarily_eligible.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_quarters_with_wages.py"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code § 35A-4-201(16)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_base_period_wages.yaml",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_base_period_wages.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_high_quarter_wages.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_monetarily_eligible.py"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code § 35A-4-207"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/partial/hours_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code § 35A-4-401(4)(b)",
+    "Utah Code § 35A-4-401(3)(a)",
+    "Utah Code § 35A-4-401(2)(a)(ii)",
+    "Utah Code § 35A-4-401(2)(b)(ii)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/duration/max_weeks.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/duration/min_weeks.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/duration/multiplier.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/partial/earnings_disregard_rate.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/wba/divisor.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/wba/max_amount.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/wba/subtraction.yaml",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_duration_weeks.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_gross_weekly_earnings.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_maximum_benefit_amount.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_weekly_benefit_amount.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_weekly_payable_amount.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_weeks_unemployed.py"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code § 35A-4-403(1)(f)(i)",
+    "Utah Code § 35A-4-403(1)(f)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/base_period_to_high_quarter_ratio.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_quarters_with_wages.yaml",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_monetarily_eligible.py"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "OESC Claimant Handbook OES-339"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2023.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "OESC Important Numbers for 2023"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/base_period_wages_share.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2024.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "OESC Important Numbers for 2024"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/base_period_wages_share.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Important-Numbers-2025.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "OESC Important Numbers for 2025"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/base_period_wages_share.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "OESC Important Numbers for 2026"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/base_period_wages_share.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "U.S. DOL Comparison of State UI Laws 2023, Table 3-7"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/waiting_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf#page=20",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "U.S. DOL Comparison of State UI Laws 2023, Table 3-8"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/partial/disregard_rate.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_partial_weekly_benefit.py",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_weekly_earnings.py"
+   ]
+  },
+  {
+   "url": "https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "U.S. DOL Comparison of State UI Laws 2023, Table 3-11"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/mba/bpw_fraction.yaml",
+    "variables/gov/states/al/dol/unemployment_insurance/al_ui_maximum_benefit_amount.py"
+   ]
+  },
+  {
+   "url": "https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf#page=29",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "U.S. DOL Comparison of State UI Laws 2023, Table 3-12"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/mba/duration_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://oui.doleta.gov/unemploy/pdf/uilawcompar/2023/monetary.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "U.S. DOL Comparison of State UI Laws 2023, Table 3-2"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/eligibility/bpw_to_hqw_multiplier.yaml",
+    "parameters/gov/states/al/dol/unemployment_insurance/eligibility/quarters_with_wages.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20200324161321/https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2020.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "USDOL ETA, Significant Provisions of State UI Laws, January 2020 (NY row, minimum WBA, p. 3; archived)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20210518005701/https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2021.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "USDOL ETA, Significant Provisions of State UI Laws, January 2021 (NY row, minimum WBA, p. 4; archived)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20220520080838/https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2022.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "USDOL ETA, Significant Provisions of State UI Laws, January 2022 (NY row, minimum WBA, p. 4; archived)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20230902081422/https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2023.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "USDOL ETA, Significant Provisions of State UI Laws, January 2023 (NY row, minimum WBA, p. 4; archived)",
+    "USDOL ETA, Significant Provisions of State UI Laws, January 2023 (NY row, \"1½ × HQW; $3,100 in HQ\")"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/high_quarter_minimum.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20240613222926/https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah DWS Unemployment Insurance Benefit Schedule (Form 04-13-0126, archived 2024)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/wba/max_amount.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_base_period_wages.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250304230024/https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah DWS Unemployment Insurance Benefit Schedule (Form 04-13-0125, archived 2025)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/wba/max_amount.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_base_period_wages.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/2025id_/https://www.tax.ny.gov/forms/publications/wt/nys50.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (archived)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.bls.gov/lau/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "U.S. Bureau of Labor Statistics — Local Area Unemployment Statistics (LAUS)"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dol/unemployment_insurance/state_unemployment_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Governor Hochul and Labor Leaders Announce Maximum Weekly Benefit Increase for Unemployed Workers, May 9, 2025"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-201",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Admin Code R994-401-201"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/base_period_to_high_quarter_ratio.yaml",
+    "parameters/gov/states/ut/dws/unemployment_insurance/eligibility/min_quarters_with_wages.yaml",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_monetarily_eligible.py",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_quarters_with_wages.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/utah/Utah-Admin-Code-R994-401-301",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Admin Code R994-401-301"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/dws/unemployment_insurance/benefit/partial/earnings_disregard_rate.yaml",
+    "variables/gov/states/ut/dws/unemployment_insurance/ut_ui_weekly_payable_amount.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/29/206#a_1",
+   "kind": "statute",
+   "citation": "us/statute/29/206/a/1",
+   "titles": [
+    "29 U.S.C. 206(a)(1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/dol/minimum_wage.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/ea/help/employer_handbook/ui.shtml",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Division of Employer Accounts - Unemployment Insurance"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/partial_benefit_rate_multiplier.yaml",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_dependency_allowance.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_qualifying_dependents.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_spouse_employed_when_claim_established.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_weekly_benefit.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_working_less_than_full_time.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Department of Labor - 2024 UI Benefit Rates"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_weekly_benefit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Department of Labor - 2025 UI Benefit Rates"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_weekly_benefit.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_total_base_earnings.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Department of Labor - 2026 UI Benefit Rates"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_weekly_benefit.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_base_weeks.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_total_base_earnings.yaml",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_base_period_wages.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_base_period_weeks.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_weeks_claimed.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "N.J.S.A. 43:21-3(c)(1) - Weekly benefit rate and 56-2/3% statewide cap",
+    "N.J.S.A. 43:21-3(b) - Partial unemployment benefits and earnings disregard",
+    "N.J.S.A. 43:21-3(c)(1) - Weekly benefit rate (60% of average weekly wage)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_weekly_benefit.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_partial_benefit_disregard.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/partial_benefit_rate_multiplier.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/wbr_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "N.J.S.A. 43:21-3(c)(2)(A) - Dependency allowances"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/dependency_allowance_additional.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/dependency_allowance_first.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_dependency_allowance.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_dependents.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "N.J.S.A. 43:21-3(d)(2) - Maximum total benefits"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_benefit_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "N.J.S.A. 43:21-4(e)(4)(A) - 20-week base-week eligibility test",
+    "N.J.S.A. 43:21-4(e)(4)(B) - Alternative earnings eligibility test"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_base_weeks.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_total_base_earnings.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/before/about/calculator/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Division of Unemployment Insurance - How we calculate benefits"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_benefit_weeks.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/wbr_rate.yaml",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_average_weekly_wage.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_weekly_benefit.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_weekly_benefit_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Division of Unemployment Insurance - How to claim dependency benefits"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/dependency_allowance_additional.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/dependency_allowance_first.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_dependency_allowance.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/max_dependents.yaml",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_dependency_allowance.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_qualifying_dependents.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_spouse_employed_when_claim_established.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_weekly_benefit.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/before/about/who/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Division of Unemployment Insurance - Who is eligible for benefits?"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_base_weeks.yaml",
+    "parameters/gov/states/nj/dol/unemployment_insurance/min_total_base_earnings.yaml",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NJ Division of Unemployment Insurance - FAQ Factors that affect your weekly benefit rate"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/dol/unemployment_insurance/partial_benefit_rate_multiplier.yaml",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_weekly_gross_wages.py",
+    "variables/gov/states/nj/dol/unemployment_insurance/nj_unemployment_insurance_working_less_than_full_time.py"
+   ]
+  },
+  {
+   "url": "https://www.nysenate.gov/legislation/bills/2021/S7148",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_hours_tier_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.nysenate.gov/legislation/bills/2025/S3006",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ch. 56 of the Laws of 2025 — Maximum weekly benefit increase to $869"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nysenate.gov/legislation/laws/LAB/527",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NY Labor Law § 527(1)(d) — Valid original claim"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/base_wages_multiplier.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/capped_other_quarters_rate.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/high_quarter_cap.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/high_quarter_minimum.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/quarters_required.yaml",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_base_period_wages.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_high_quarter_wages.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_monetarily_eligible.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_quarters_with_wages.py"
+   ]
+  },
+  {
+   "url": "https://www.nysenate.gov/legislation/laws/LAB/590",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NY Labor Law § 590(5)(a) — Rights to benefits",
+    "NY Labor Law § 590(4) — Rights to benefits",
+    "NY Labor Law § 590(5)(c) — Benefit for partial unemployment"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/formula_min_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/low_divisor.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/low_hq_threshold.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/max_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/max_weeks.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/standard_divisor.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/two_quarter_hq_threshold.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/eligibility/full_base_period_quarters.yaml",
+    "parameters/gov/states/ny/dol/unemployment_insurance/partial/hours_tiers.yaml",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_raw_weekly_benefit_rate.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_second_high_quarter_wages.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_weekly_benefit_rate.py",
+    "variables/gov/states/ny/dol/unemployment_insurance/ny_ui_weekly_payable.py"
+   ]
+  },
+  {
+   "url": "https://www.oklahoma.gov/content/dam/ok/en/oesc/documents/labor-market/publications/special-reports/oklahoma-ui-tax-rates-industry-size-county-2021.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oklahoma Unemployment Insurance Tax Rates by Industry, Size, and County (2022 column)"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=20",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_base_period_total_wages.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_base_period_taxable_wages.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_high_quarter_taxable_wages.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=42",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_base_period_total_wages.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_base_period_taxable_wages.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=48",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §1-231"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=49",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_weekly_benefit_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=50",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-104(A)",
+    "40 O.S. §2-104(B)"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/divisor.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/min_amount.yaml",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_high_quarter_taxable_wages.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_weekly_benefit_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=51",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-105"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/partial/disregard.yaml",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_gross_weekly_earnings.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_weekly_payable.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=52",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-106(2)",
+    "40 O.S. §2-106(1)"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_weeks.yaml",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_maximum_benefit_amount.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=53",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-106(3)"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/base_period_wages_share.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf#page=56",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-207(A)(1)",
+    "40 O.S. §2-207(A)(2)"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/eligibility/min_taxable_wages.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/eligibility/min_total_wages_multiplier.yaml",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_base_period_total_wages.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_high_quarter_total_wages.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_meets_alternate_wages_test.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_meets_high_quarter_test.py",
+    "variables/gov/states/ok/oesc/unemployment_insurance/ok_ui_monetarily_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB1933%20ENR.PDF",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oklahoma House Bill 1933 (Laws 2022, c. 287)"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=492632",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §1-231"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-104"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/divisor.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/wba/min_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-105"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/partial/disregard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-106"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/base_period_wages_share.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_amount.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/mba/max_weeks.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77177",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "40 O.S. §2-207"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/oesc/unemployment_insurance/eligibility/min_taxable_wages.yaml",
+    "parameters/gov/states/ok/oesc/unemployment_insurance/eligibility/min_total_wages_multiplier.yaml"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law (43 P.S. §§ 751-919)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/index.yaml"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=119",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law § 401(a)(2)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/wages_outside_high_quarter_fraction.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_base_year_wages.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_meets_wages_outside_high_quarter_test.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_monetarily_eligible.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_wages_outside_high_quarter.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=133",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law § 404(c)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/maximum_weeks.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/minimum_credit_weeks.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_gross_weekly_earnings.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_maximum_benefit_amount.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_maximum_weeks.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_meets_credit_weeks_test.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_meets_qualifying_wages_test.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_monetarily_eligible.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_weekly_payable.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=136",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law § 404(e)(1)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/minimum_high_quarter_wages.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/qualifying_wages.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/rate_table.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_highest_quarter_wages.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_meets_high_quarter_test.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_qualifying_wages.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_weekly_benefit_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=159",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law § 404(e)(3)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/dependent_allowance/child_age_limit.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/dependent_allowance/maximum.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/dependent_allowance/second_child.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/dependent_allowance/spouse_or_first_child.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_dependent_allowance.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_dependent_children_count.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_has_dependent_spouse.py",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_weekly_payable.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law § 4(g.1)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/credit_week_minimum_earnings.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_credit_weeks.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_credit_weeks.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=34",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania Unemployment Compensation Law § 4(m.3)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/partial_benefit_credit/minimum.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/partial_benefit_credit/rate.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_partial_benefit_credit.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf#page=36",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_weekly_payable.py"
+   ]
+  },
+  {
+   "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Pennsylvania UC Claimant Handbook (UCP-1)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/index.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/rate_table.yaml"
+   ]
+  },
+  {
+   "url": "https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol54/54-52/1863.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "54 Pa.B. 8560, Doc. No. 24-1863 (December 28, 2024) — 2025 Table Specified by Law"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/minimum_high_quarter_wages.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/qualifying_wages.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/rate_table.yaml",
+    "variables/gov/states/pa/dli/unemployment_compensation/pa_uc_weekly_benefit_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "34 Pa. Code Ch. 65 App. A — Table Specified for the Determination of Rate and Amount of Benefits"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/dli/unemployment_compensation/qualifying_wages.yaml",
+    "parameters/gov/states/pa/dli/unemployment_compensation/rate_table.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/dol/unemployment_insurance/benefit/min_amount.yaml"
+   ]
+  }
+ ]
+}

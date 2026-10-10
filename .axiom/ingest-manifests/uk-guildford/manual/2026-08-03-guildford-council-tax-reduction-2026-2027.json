@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-guildford/manual/2026-08-03-guildford-council-tax-reduction-2026-2027.json",
+      "sha256": "e3f0f79ce0827f4918ed0f167aa42fd996b31f8dc5af6dd0ed6cc10bd77c8773"
+    },
+    {
+      "path": "data/corpus/inventory/uk-guildford/manual/2026-08-03-guildford-council-tax-reduction-2026-2027.json",
+      "sha256": "34d50d27ff38c33c2478da4fb9390978c1fba759d29ff736509d1c936b881428"
+    },
+    {
+      "path": "data/corpus/provisions/uk-guildford/manual/2026-08-03-guildford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "689eccdd0cec595e79bf39bf7987cf9c88b712b2ad39cf959b5e6e8c8158ca04"
+    },
+    {
+      "path": "data/corpus/sources/uk-guildford/manual/2026-08-03-guildford-council-tax-reduction-2026-2027/official-documents/guildford-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "52cd1f1bc5d8dcd5e09f6f65a3b159ac8ad7270d45f6b4a9f335c53cbd5fb051"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-guildford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-guildford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 141,
+    "missing_count": 0,
+    "provision_count": 141,
+    "source_count": 141
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:23.540587+00:00",
+  "jurisdiction": "uk-guildford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WmlCb5aMbQECgFaHoWzN9IwNsyY8PX1WJjdNQl4z1XwxDS+4M4F7TpFQL0oGyK8Zc/iPuJ+781DL0BN3CflLDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-guildford-council-tax-reduction-2026-2027"
+}

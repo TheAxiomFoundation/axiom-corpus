@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-copper-types-presdocu-term-copper.json",
+      "sha256": "7d231b96f7f3d2235d947c6bddccb053d3d61fbca1b6d3407e0ab02d81fde53b"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-copper-types-presdocu-term-copper.json",
+      "sha256": "c1f0a45d9b0ecc7a9a86be83e73543741a468579c13b5599c9b8fbaf2992cb6c"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-copper-types-presdocu-term-copper.jsonl",
+      "sha256": "d24e8cae1e6be71cdb98cab40472ab32b17acd1931bf2f42e02c91ba8ffa990b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-copper-types-presdocu-term-copper/federal-register/api/documents-page-1.json",
+      "sha256": "14a90469587752295e6c278880568f7f87c485bf736d338aefff06ab2e11c76f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-copper-types-presdocu-term-copper/federal-register/documents/2025-14893.json",
+      "sha256": "f24947dbe7069c0aa6d2e389f42f9fdc3edd72a49eef066c429934e4c7b9487f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-copper-types-presdocu-term-copper/federal-register/documents/2025-14893.txt",
+      "sha256": "72444978d276d609655dd7c4a0456117faf084c15bfcc3bff30e8553edc77499"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-copper --start-date 2025-08-05 --document-type PRESDOCU --term \"copper\" --source-as-of 2026-08-01 --expression-date 2025-08-05"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:17.178499+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "aJeAfXdct5SznvMZGJkTrT9UxSO1kJGehHlrSobyyT8cGKR5KULxiZgG1/BtrScIscPbReLP3uiyL6UdrCvoAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-copper-types-presdocu-term-copper"
+}

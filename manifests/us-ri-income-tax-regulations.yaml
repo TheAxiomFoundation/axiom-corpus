@@ -1,0 +1,314 @@
+version: '2026-09-14'
+documents:
+- source_id: ri-sos-280-ricr-20-55-1
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/1
+  title: '280-RICR-20-55-1: Estimated Payments'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-1
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11639_20211209133600.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>1\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>1\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-2
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/2
+  title: '280-RICR-20-55-2: Extension of Time to File'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-2
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11640_20211209133623.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>2\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>2\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-3
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/3
+  title: '280-RICR-20-55-3: Credit for Income Taxes of Other States'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-3
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11641_20211209133659.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>3\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-4
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/4
+  title: '280-RICR-20-55-4: Tax Preparer Penalties'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-4
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11642_20211209133727.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>4\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>4\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-5
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/5
+  title: '280-RICR-20-55-5: Filing Status of Spouses – Nonresident Military Personnel and Partial-Year Residents'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-5
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11643_20211209133807.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>5\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>5\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-6
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/6
+  title: '280-RICR-20-55-6: Fiscal Year Taxpayers’ Method of Computing Rhode Island Tax'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-6
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11644_20211209133830.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>6\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>6\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-7
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/7
+  title: '280-RICR-20-55-7: Trust Distributions'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-7
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11645_20211209133854.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>7\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>7\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-8
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/8
+  title: '280-RICR-20-55-8: Lottery and Pari-Mutuel Winnings and Prizes'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-8
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11646_20211209133948.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>8\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-9
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/9
+  title: '280-RICR-20-55-9: W-2 Informational Returns'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-9
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11647_20211209134043.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>9\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>9\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-10
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/10
+  title: '280-RICR-20-55-10: Employers'' Withholding'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-10
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11648_20211209135052.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>10\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>10\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-11
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/11
+  title: '280-RICR-20-55-11: Taxation of Nonresident Professional Athletes'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-11
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11649_20211209135135.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>11\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>11\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-12
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/12
+  title: '280-RICR-20-55-12: Net Operating Loss Limitation'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-12
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_11650_20211209135230.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>12\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>12\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55
+- source_id: ri-sos-280-ricr-20-55-13
+  jurisdiction: us-ri
+  document_class: regulation
+  citation_path: us-ri/regulation/280-ricr/20/55/13
+  title: '280-RICR-20-55-13: Modification of Certain Income of Writers, Composers and Artists'
+  source_url: https://rules.sos.ri.gov/regulations/Part/280-20-55-13
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DOR/REG_13254_20250710143807819.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>13\.\d+)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>13\.\d+)\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Revenue, Division of Taxation
+    official_publisher: Rhode Island Department of State, Rhode Island Code of Regulations
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ri/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ri.gov/Organizations/SubChapter/280-20-55

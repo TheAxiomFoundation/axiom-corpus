@@ -1,0 +1,1 @@
+Published the complete New York SNAP regulation boundary in 18 NYCRR Parts 385 and 387: 46 retained official source files and 1,678 source-backed nested provisions, including the final adopted 2025 standard utility allowances.

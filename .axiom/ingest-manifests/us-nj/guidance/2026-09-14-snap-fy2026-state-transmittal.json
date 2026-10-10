@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "a100edbf5bd0045a9e860eb1e80a2a6333c99f7ca059c4c0163f2aafa27fcb8d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "056ba1a1719f4aee47b7ee991f63a661a1da1f82d79f9f3bfa2930fae9f7057b"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "2eb54e789a1be33012bfb99e9bdb324edb27a1b78ec329c3da45359964f349f5"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-nj-dfd-njsnap-eligibility-fy2026.html",
+      "sha256": "236a3ebe2d9dde5413be0627b9f3b9f8634468d406091c6f63821d91e1679732"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-nj-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:27:57.511423+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KUTBKIuvj9xk8Mu384uDDZQ2Q/jiONLngWLlnogwprFrbqy+2TtD/x6YDkMR9poYgnu1ngM51dFNAqhbsAb2Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

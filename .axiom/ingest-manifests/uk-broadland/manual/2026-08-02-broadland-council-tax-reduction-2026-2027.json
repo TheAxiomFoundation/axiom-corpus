@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-broadland/manual/2026-08-02-broadland-council-tax-reduction-2026-2027.json",
+      "sha256": "1b704c74f9cbf09549ab208fdb2e876e04785de1b5eb0d614614d7240b87ef1c"
+    },
+    {
+      "path": "data/corpus/inventory/uk-broadland/manual/2026-08-02-broadland-council-tax-reduction-2026-2027.json",
+      "sha256": "cda2f7a5f250dfd3844004034448b582b04a53a347a0fd4db7d2386c68c8c993"
+    },
+    {
+      "path": "data/corpus/provisions/uk-broadland/manual/2026-08-02-broadland-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "e65beb555d20affea2277acc12f36af6474ae18678a29fc8982ea5cfcc5dafef"
+    },
+    {
+      "path": "data/corpus/sources/uk-broadland/manual/2026-08-02-broadland-council-tax-reduction-2026-2027/official-documents/broadland-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2e46f2424bc2c99ac93a6c5f6980ea4b9445f81813cfba9329961e67366ac876"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-broadland-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-broadland-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 59,
+    "missing_count": 0,
+    "provision_count": 59,
+    "source_count": 59
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:52.032777+00:00",
+  "jurisdiction": "uk-broadland",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7DlmI7xdLGq5L2WTozNUk2+0i2ZgVNxbKimog6s7ouDp6HLFDLNmt+D3HlFwOlcMjvVOr/6cvi2uTwIhJZJICA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-broadland-council-tax-reduction-2026-2027"
+}

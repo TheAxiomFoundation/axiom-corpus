@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/form/2026-07-21-ga-it-511-2025.json",
+      "sha256": "6aa80698c3eb861e67385161b441c88f95590889e67bfb2447487bc51a74f119"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/form/2026-07-21-ga-it-511-2025.json",
+      "sha256": "d2e10492fdf78367f6786bf3c3e75690e2dd847c459ded90ce8d82efe5957c54"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/form/2026-07-21-ga-it-511-2025.jsonl",
+      "sha256": "6dea79b140806a95c94b1dabe3ecd4850a8df5a744b9c86622d5d57388a7517e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-07-21-ga-it-511-2025/official-documents/us-ga-dor-it-511-2025.pdf",
+      "sha256": "ae43633e68ca423609607b0f93b1ebcd6056bce06ffb91829c448292e48a693f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "11267217a73a354147b14ce0a015fad1546546c2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-ga-it-511-2025 --manifest manifests/us-ga-it-511-2025-official-document.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-21T15:23:30.069370+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-ga-pit-primary-sources.md",
+      "sha256": "626433a9c6f4ad466aa0fdef32f9250f7098104d15e2c0b545bcb3cc26b76250"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xZ+Qu+FtSlS0PUICiht6lHlFDZAYORboW/kJ810JyyJrTe1qpBZOdZ6Vuf+8LOD6MmyetoMTXXEMJEeZP8HnAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-ga-it-511-2025"
+}

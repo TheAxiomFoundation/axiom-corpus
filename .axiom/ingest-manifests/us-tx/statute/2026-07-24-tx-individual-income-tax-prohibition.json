@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/statute/2026-07-24-tx-individual-income-tax-prohibition.json",
+      "sha256": "1aaa397586d3b0bc3f5b0c135f809bf82544a3701476f39ff12476fceb4c3777"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/statute/2026-07-24-tx-individual-income-tax-prohibition.json",
+      "sha256": "1a55243daed099aeb19ae3b6388167ff773a2ce7a2f7a566f004aca882be12cc"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/statute/2026-07-24-tx-individual-income-tax-prohibition.jsonl",
+      "sha256": "87d6567d138d6b8bd546aeeede7a4172e69d38aa022db79b8e6d82f225df2776"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/statute/2026-07-24-tx-individual-income-tax-prohibition/official-documents/us-tx-constitution-article-8-sections-24-a-and-24-b.pdf",
+      "sha256": "771abab08b45517cff6930a9dbea56768df7406349f69d407fafbdb5002595bc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea9663b12debc5211b4707b81f906cf31ac9c6f3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-tx-individual-income-tax-prohibition --manifest manifests/us-tx-2026-individual-income-tax-prohibition.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T18:24:16.811629+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-tx-individual-income-tax-prohibition.md",
+      "sha256": "c24ecd1c09a3963e2d32638b0750d4a2d5bdc0ad1b29d5d0e93b108312359fab"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zVqIDXWeqwZ2SKc4SDjlHazUvBpV4b/cAVEG77mYKocnTpi5PjASkVrhQXrxoc2wCLVlK/rICNVmvmdP4LkDBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-tx-individual-income-tax-prohibition"
+}

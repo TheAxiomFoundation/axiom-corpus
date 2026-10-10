@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/statute/2026-07-19-rulespec-nz-pco.json",
+      "sha256": "6cd1c1f5f4c491b33e6bd9cd8b637ddc2cd87fac81c20135f1059c37d6ef4be5"
+    },
+    {
+      "path": "data/corpus/inventory/nz/statute/2026-07-19-rulespec-nz-pco.json",
+      "sha256": "cd83f15819ecc4721824c93d25b0b0fd98810cc11c999d0df5c2bba08a112e6d"
+    },
+    {
+      "path": "data/corpus/provisions/nz/statute/2026-07-19-rulespec-nz-pco.jsonl",
+      "sha256": "85782e4ed17f67fb26810af84a30eac212eae3da4327bd032df92ca989902a9e"
+    },
+    {
+      "path": "data/corpus/sources/nz/statute/2026-07-19-rulespec-nz-pco/act/public/2014/56/act_public_2014_56_en_2022-11-26.xml",
+      "sha256": "11a003fc89b6c7b9d7e165e86e3c70efb11fe8bc4b7cd43721100eff77a99999"
+    },
+    {
+      "path": "data/corpus/sources/nz/statute/2026-07-19-rulespec-nz-pco/act/public/2025/26/act_public_2025_26_en_2026-03-31.xml",
+      "sha256": "b0d564ac7b24cbfa7bb1a5d86df005cb285d0be74afe3b5fe5aa09cf40dd7f57"
+    },
+    {
+      "path": "data/corpus/sources/nz/statute/2026-07-19-rulespec-nz-pco/act/public/2025/27/act_public_2025_27_en_2025-05-29.xml",
+      "sha256": "bf09086ddf3383058477555f1b9aef426602d3af6560d95a29dbdcd8af789146"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "781e6fd2533b72cc14d1b6822593dafae8587dff",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-nz-legislation --source-as-of 2026-07-19 --expression-date 2026-07-19 over 3 pinned official NZ Legislation API current-consolidation XML snapshots (act/public/2014/0056, 2025/0026, 2025/0027)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 463,
+    "missing_count": 0,
+    "provision_count": 463,
+    "source_count": 463
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-20T01:49:59.664311+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FsnEV7vknbD7BN2rOfHsOrOcVakbcIiIzOyBUvgtqGAPJc5dGdheZuYTBiaxH/Tntzv5XJ+2Q4xi5b8SoxJcBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-rulespec-nz-pco"
+}

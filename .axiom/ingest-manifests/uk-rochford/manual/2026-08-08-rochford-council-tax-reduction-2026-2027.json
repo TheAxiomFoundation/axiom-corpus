@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rochford/manual/2026-08-08-rochford-council-tax-reduction-2026-2027.json",
+      "sha256": "4de039d326f8b5321dd8ed979bdee224a0516306e9424bdee411f6b1c96b67f7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rochford/manual/2026-08-08-rochford-council-tax-reduction-2026-2027.json",
+      "sha256": "ac54a787061d5d58c8ff0c0d929a7c2430225be8c2120c76d12a4587679697bf"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rochford/manual/2026-08-08-rochford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "1a82bda836fd60885f63845095d97c7e3c7d82b73285454be3dad12b48e36113"
+    },
+    {
+      "path": "data/corpus/sources/uk-rochford/manual/2026-08-08-rochford-council-tax-reduction-2026-2027/official-documents/rochford-council-tax-support-scheme-2026-2027.pdf",
+      "sha256": "f46d6c81bc8777e4e0b7400e3f70ffa540d6a860d0c4fb2e5cd26227e42d5b57"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0cae5bdaad598b803007d949c5f5f6ed8f9a864e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-08-rochford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rochford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 83,
+    "missing_count": 0,
+    "provision_count": 83,
+    "source_count": 83
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-08T19:40:06.699932+00:00",
+  "jurisdiction": "uk-rochford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jcMRwGzIQLlYzFh3zT1K0DL+wQLabr9b4aeIpy/eEt1ooklj9kmHjQlRm7s2xE/YVbhNe8VhLCkIzL3gfDnUBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-08-rochford-council-tax-reduction-2026-2027"
+}

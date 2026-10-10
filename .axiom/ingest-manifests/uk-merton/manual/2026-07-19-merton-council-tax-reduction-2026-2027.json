@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-merton/manual/2026-07-19-merton-council-tax-reduction-2026-2027.json",
+      "sha256": "284b974fb1ce00ad21ee6ff4253bace276758027ca2e44d43848866061b8ffd6"
+    },
+    {
+      "path": "data/corpus/inventory/uk-merton/manual/2026-07-19-merton-council-tax-reduction-2026-2027.json",
+      "sha256": "99f0d9963c75dc7c375ef17da5e2f4c5b05d6c0435e68fa2d5e3c39650c77ad9"
+    },
+    {
+      "path": "data/corpus/provisions/uk-merton/manual/2026-07-19-merton-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "c1b75c632894195c17031b12d87eaa32573f13b2541ba420a3662fa520a5899c"
+    },
+    {
+      "path": "data/corpus/sources/uk-merton/manual/2026-07-19-merton-council-tax-reduction-2026-2027/official-documents/merton-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "257c8cf697fde24aa62103a0846f133ccd3b6079c508efb59d02dce6ed28b568"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "92ac9c1bedf62968eeea9a873361f49075364157",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-19-merton-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-merton-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 256,
+    "missing_count": 0,
+    "provision_count": 256,
+    "source_count": 256
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-20T11:57:26.837508+00:00",
+  "jurisdiction": "uk-merton",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gg2qBPJCtMA9Pv/MPTzg8sCJzQ618QIWvZP2muvq5XLlKkoADectA24llt2nH6DTXOBXHW4DVDUjvIeWqHZ8AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-merton-council-tax-reduction-2026-2027"
+}

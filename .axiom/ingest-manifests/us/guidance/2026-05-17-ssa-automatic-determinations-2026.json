@@ -2,19 +2,67 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/guidance/2026-05-17-ssa-automatic-determinations-2026.json",
-      "sha256": "227f4c6c9ad63e895e78c0e0e9f3c557f2844b8253f24abbccaba6b4f02ef113"
+      "sha256": "fb00759eb29d44684de014a4dd2472602a14a19668cd20d00b6690c4fd949a23"
     },
     {
       "path": "data/corpus/inventory/us/guidance/2026-05-17-ssa-automatic-determinations-2026.json",
-      "sha256": "a571cdb9188be21a1e29a7b3495aca0f91854ad6ddb8003512732b4fbb52869a"
+      "sha256": "921934c8baf9b4bc60f90ce63d5c804d3db5297bf7a25eff9ac63c22ff1c2c89"
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-05-17-ssa-automatic-determinations-2026.jsonl",
-      "sha256": "20a64faa0437382d5cfb4b848f8ffdadb94008e8b69337820dba46fb8ce60ef3"
+      "sha256": "7664e9d4dfc53681f4cc9e8f04d908805f69472e1bd2fb5e854331beca93a142"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/official-documents/ssa-oact-cola-cbb.html",
+      "sha256": "deb8970175f9175aa0348161d248a7446babb5c16502e4f811e596d9da80944f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/official-documents/ssa-oact-cola-cbbdet.html",
+      "sha256": "d10375e1a25c834d4cd006efc5e15f3fadf653dd41615627e0a62cd196f574c6"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/official-documents/ssa-oact-cola-piaformula.html",
+      "sha256": "e84d29d7e72cf5c4e89afb27db0c653aeac2b716f62c90bf79e31fec173cc19f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/official-documents/ssa-oact-cola-qc.html",
+      "sha256": "77bcaf8da3e47cf0fe0906b3d160964803db35540049f5e019cbfa770db690e8"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/official-documents/ssa-oact-cola-rtdet.html",
+      "sha256": "63a0233adb3cd7cb159df983e0eabf827ec1b0d481ccede56160809e051ae58f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/official-documents/ssa-oact-cola-sgadet.html",
+      "sha256": "a1d08593c8793239f51a57bb6ebc837d5ce2508ce6e3afc4bcdb8b454d121bf3"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/provenance/ssa-oact-cola-cbb.provenance.json",
+      "sha256": "ab60fd8e87362277fcb8d43900ed96f279ce890c33f65003d4fbdbc37c8f8110"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/provenance/ssa-oact-cola-cbbdet.provenance.json",
+      "sha256": "18db14c7c30b30efd9ed362afc035f50347e5d6675bfc8d5b2f106055a4f49f9"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/provenance/ssa-oact-cola-piaformula.provenance.json",
+      "sha256": "322ab3466c4da09f44a24acad0e5162921f7e8048f55d14b26fcbf6a6bb6d16f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/provenance/ssa-oact-cola-qc.provenance.json",
+      "sha256": "4607f296918cbb87f1a8176ff052ad0c7640cbec7bf6e94ed27f1280faf3277e"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/provenance/ssa-oact-cola-rtdet.provenance.json",
+      "sha256": "cdea455a25fe0bf9bc37d61c91f822edd80230732f32d3fe725216ce10e1b3f3"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026/provenance/ssa-oact-cola-sgadet.provenance.json",
+      "sha256": "88f7e2138d805ba77fe3996d038ddb29fd5d48fe6f9752a953e846767b1d419a"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "4ba26f56a783dc2f46d95b1ca4cdb78b7b65771e",
+    "commit": "bfb165754b96db0552c419e5ee9bf06a50148988",
     "dirty_tracked": false,
     "root": "."
   },
@@ -25,20 +73,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 5,
+    "matched_count": 10,
     "missing_count": 0,
-    "provision_count": 5,
-    "source_count": 5
+    "provision_count": 10,
+    "source_count": 10
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T19:51:36.189973+00:00",
+  "generated_at": "2026-07-17T13:25:07.644260+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ro1Ee7av+I/vx2gBq0Ir9myT6nxVkImuUj5HU1zjMCqKX60pi5wWvcBFNwrINv2ICJHr3JPAWSSgAPeRCmZnCw=="
+    "value": "0zfopmtjVa5G27ILetQpbCP9lgYycun1on1FjNKZd8QwZDWmdJRRxu/7/tpJC1DvUnWiTd4YcB04PdpvLhbEAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-17-ssa-automatic-determinations-2026"

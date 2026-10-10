@@ -1,0 +1,27 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-sc-dor-sc1040es-ty2026
+  jurisdiction: us-sc
+  document_class: form
+  title: SC1040ES 2026 Individual Declaration of Estimated Tax (Rev. 10/13/25)
+  source_url: https://dor.sc.gov/sites/dor/files/forms/SC1040ES_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-sc/form/dor/ty2026/sc1040es
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Revenue
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-10-13'
+    amounts_carried:
+    - 2026 tax computation schedule (0%/3%/6%; $3,640 and $18,230 breakpoints)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://dor.sc.gov/find-a-form?search_api_fulltext=&field_category=All&field_document_type=All&field_tax_year=601
+    discovered_via: manual-review:tax-agent-queue; index https://dor.sc.gov/find-a-form?search_api_fulltext=&field_category=All&field_document_type=All&field_tax_year=601
+      (read 2026-09-13)

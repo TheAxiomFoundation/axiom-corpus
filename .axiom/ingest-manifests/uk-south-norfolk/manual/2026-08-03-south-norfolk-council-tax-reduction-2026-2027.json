@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-south-norfolk/manual/2026-08-03-south-norfolk-council-tax-reduction-2026-2027.json",
+      "sha256": "d4fda8ac9cf1977bc000e4ec68b1d381edc1b9f727a70335e7e463ee2e6b65a3"
+    },
+    {
+      "path": "data/corpus/inventory/uk-south-norfolk/manual/2026-08-03-south-norfolk-council-tax-reduction-2026-2027.json",
+      "sha256": "3865fb94ae1b7f36004bc7b9b42af4bfa07296196733ecf18bf3959e908bc304"
+    },
+    {
+      "path": "data/corpus/provisions/uk-south-norfolk/manual/2026-08-03-south-norfolk-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "c659f7ced502bcd22354cd0cf29ccc39e1cc86529ddd128a19be3115f23fe24d"
+    },
+    {
+      "path": "data/corpus/sources/uk-south-norfolk/manual/2026-08-03-south-norfolk-council-tax-reduction-2026-2027/official-documents/south-norfolk-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "d594683058f41a25b2be158688eafb3d2fd4d665ec7cf37a18533d1237a0b66b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-south-norfolk-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-south-norfolk-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 59,
+    "missing_count": 0,
+    "provision_count": 59,
+    "source_count": 59
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:55.245924+00:00",
+  "jurisdiction": "uk-south-norfolk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WKXI1NsBewlMnv0B6rK+HMrijjPM0V48mUAJKfq0ao9THcQxoWdYT82j31YBIPT3/yjOo22baXtz9AgAlziODw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-south-norfolk-council-tax-reduction-2026-2027"
+}

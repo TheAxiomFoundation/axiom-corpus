@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/regulation/2026-07-19-rulespec-nz-pco.json",
+      "sha256": "de78a7eecd0a1b1bf25a11be5bebcbb9111ee5fef1c9e50913791037236db529"
+    },
+    {
+      "path": "data/corpus/inventory/nz/regulation/2026-07-19-rulespec-nz-pco.json",
+      "sha256": "3245643a44c8c6ab34b39b93c1c16d417859a228e22188595f9bb8b51b26a37d"
+    },
+    {
+      "path": "data/corpus/provisions/nz/regulation/2026-07-19-rulespec-nz-pco.jsonl",
+      "sha256": "aeee28a95558d8b86b1dcecf4aec51c88dd33a5f17eb5a851b258279f44ac507"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-07-19-rulespec-nz-pco/secondary-legislation/pco-drafted/2016/68/secondary-legislation_pco-drafted_2016_68_en_2021-03-01.xml",
+      "sha256": "535e0230df4118f0a77ba806c865408f3bdba34ca46c6ecf87f52811689d2fdc"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-07-19-rulespec-nz-pco/secondary-legislation/pco-drafted/2018/173/secondary-legislation_pco-drafted_2018_173_en_2018-11-30.xml",
+      "sha256": "fcb1d4c94af1af57ea31b384da955fde9778977d064b0602dba5f3ca71deaee5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "781e6fd2533b72cc14d1b6822593dafae8587dff",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-nz-legislation --source-as-of 2026-07-19 --expression-date 2026-07-19 over 2 pinned official NZ Legislation API current-consolidation XML snapshots (regulation/public/2016/0068, 2018/0173)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 44,
+    "missing_count": 0,
+    "provision_count": 44,
+    "source_count": 44
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-20T01:50:00.673122+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k1OeBNF3weSBZKyNRM/FsOX8WSLixKrEoCkeKM4JJGD3kDKvBCf0KMJUxVIej4B7iOUtreObMXs9xQM3fwETBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-rulespec-nz-pco"
+}

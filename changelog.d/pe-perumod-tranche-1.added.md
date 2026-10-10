@@ -1,0 +1,1 @@
+Ingest the Peru PERUMOD tranche-1 instruments (the income-tax and IGV/ISC TUOs, Ley 26790, and the Pension 65 creation decree — recovering Ley 26790's font-garbage 1997 text layer via forced Spanish OCR) and cut the first Peru selector, pe-rulespec-2026-07-22.

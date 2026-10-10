@@ -1,0 +1,1409 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-nv-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 295
+- source_id: us-nv-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 295
+- source_id: us-nv-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 95
+    index_records_total: 295
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-22-0025-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-22-0025: Approval Document (approved March 20, 2026, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-22-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-22-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-22-0025
+    cms_node_id: '192081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192081
+    approval_date: '2026-03-20'
+    effective_date: '2022-10-01'
+    summary: The amendment implemented Presumptive Eligibility (PE) for Pregnant Women with Nevada’s Medicaid program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-25-0006-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-25-0006: Approval Document (approved May 2, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-25-0006
+    cms_node_id: '179381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179381
+    approval_date: '2025-05-02'
+    effective_date: '2025-07-01'
+    summary: This Amendment increases the income standard for pregnant women in Medicaid to 200 percent of the federal poverty
+      level.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-25-0010-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-25-0010: Approval Document (approved February 27, 2025, effective January 16, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-25-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-16'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-25-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-25-0010
+    cms_node_id: '177236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=177236
+    approval_date: '2025-02-27'
+    effective_date: '2025-01-16'
+    summary: This State Plan Amendment will increase the amount for the personal needs allowance to eligible recipients in
+      Intermediate Care Facilities for Individuals with Intellectual Disabilities (ICF/IID). This amendment will also allow
+      for COLA increases annually.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-24-0006-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-24-0006: Approval Document (approved January 17, 2025, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-24-0006
+    cms_node_id: '177301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=177301
+    approval_date: '2025-01-17'
+    effective_date: '2024-01-01'
+    summary: This amendment is to update premiums for the Katie Beckett group described at 42 CFR § 435.225.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-24-0012-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-24-0012: Approval Document (approved April 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-24-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-24-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-24-0012
+    cms_node_id: '163421'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163421
+    approval_date: '2024-04-19'
+    effective_date: '2024-01-01'
+    summary: This SPA revises the amount for the personal needs allowance (PNA) provided to certain recipients in nursing
+      facilities. The amendment will allow for COLA increases annually.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-24-0007-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-24-0007: Approval Document (approved March 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-24-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-24-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-24-0007
+    cms_node_id: '161236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161236
+    approval_date: '2024-03-15'
+    effective_date: '2024-01-01'
+    summary: This SPA is to provide 12-months of continuous eligibility for children under age 19.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-23-0030-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-23-0030: Approval Document (approved December 15, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-23-0030
+    cms_node_id: '157531'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157531
+    approval_date: '2023-12-15'
+    effective_date: '2024-01-01'
+    summary: This amendment is to expand eligibility for pregnant individuals whose incomes are up to 185 percent of the federal
+      poverty level (FPL).
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-23-0012-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-23-0012: Approval Document (approved September 22, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-23-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-23-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-23-0012
+    cms_node_id: '153781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=153781
+    approval_date: '2023-09-22'
+    effective_date: '2023-07-01'
+    summary: This SPA in which the state is to change its cost neutrality methodology for the Katie Beckett eligibility group.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-23-0004-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-23-0004: Approval Document (approved August 17, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-23-0004
+    cms_node_id: '152596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152596
+    approval_date: '2023-08-17'
+    effective_date: '2023-04-01'
+    summary: This SPA amendment is to adapt the changes to the eligibility rules for the Former Foster Care children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-22-0026-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-22-0026: Approval Document (approved March 21, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-22-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-22-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-22-0026
+    cms_node_id: '146076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146076
+    approval_date: '2023-03-21'
+    effective_date: '2023-01-01'
+    summary: This amendment is to cover all lawfully present pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-22-0006-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-22-0006: Approval Document (approved April 27, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-22-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-22-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-22-0006
+    cms_node_id: '135076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135076
+    approval_date: '2022-04-27'
+    effective_date: '2022-01-01'
+    summary: This SPA amends to bring Nevada's state plan into compliance with specific third-party liability requirements
+      outlined in the Bipartisan Budget Act of 2018 and the Medicaid Services Investment and Accountability Act of 2019.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-22-0002-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-22-0002: Approval Document (approved February 9, 2022, effective February 1, 2022)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NV-22-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-02-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-22-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-22-0002
+    cms_node_id: '132711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=132711
+    approval_date: '2022-02-09'
+    effective_date: '2022-02-01'
+    summary: The amendment updates the maintenance needs standard for community spouses to be set at the maximum permitted.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-21-0015-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-21-0015: Approval Document (approved December 9, 2021, effective December 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NV-21-0015
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-12-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-21-0015/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-21-0015
+    cms_node_id: '128671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128671
+    approval_date: '2021-12-09'
+    effective_date: '2021-12-01'
+    summary: This amendment proposes changes to incorporate language based on provisions for Medicaid non-emergency medical
+      transpo1iation (NEMT) services added to Section 1902(a)(87), Title XIX of the Social Security Act, as part of the Consolidated
+      Appropriations Act, 2021.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-20-0009-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-20-0009: Approval Document (approved June 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-20-0009
+    cms_node_id: '99561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99561
+    approval_date: '2020-06-18'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to add the COVID-19 testing group under 1902(a)(10)(A)(ii)(XXIII) of the Act; Allow individuals who are evacuated
+      from the state, who leave the state for medical reasons related to the disaster or public health emergency, or who are
+      otherwise absent from the state due to the disaster or public health emergency and who intend to return to the state
+      continue to be residents of the state under 42 CFR 435.403(j)(3); Implement lab benefit flexibilities under 42 CFR 440.30(a)
+      and 42 CFR 440.30(b); and Allow for 100 percent Medicaid reimbursement in accordance with Medicare reimbursement for
+      COVID-19 laboratory testing procedure codes.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-20-0004-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-20-0004: Approval Document (approved May 22, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NV-20-0004_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-20-0004
+    cms_node_id: '98916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98916
+    approval_date: '2020-05-22'
+    effective_date: '2020-03-01'
+    summary: This amendment is to update the needs-based criteria; update who can perform evaluations and re-evaluations of
+      1915(i) eligibility; update language related to the CMS HCBS settings requirements; update who can perform the person-centered
+      planning assessment; revise services covered under Habilitation services; and update reimbursement pages.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-20-0002-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-20-0002: Approval Document (approved March 13, 2020, effective February 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-02-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-20-0002
+    cms_node_id: '86806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86806
+    approval_date: '2020-03-13'
+    effective_date: '2020-02-01'
+    summary: Updates Services for Individuals Age 65 or Older in IMDs and Inpatient Psychiatric Facility Services for Individuals
+      Under 22 Years of Age in order to align certain timeframes related to prior authorization.
+    topics:
+    - Benefits
+    - Eligibility
+    - Health Services Initiatives
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-19-0013-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-19-0013: Approval Document (approved March 10, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-19-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-19-0013
+    cms_node_id: '86676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86676
+    approval_date: '2020-03-10'
+    effective_date: '2020-01-01'
+    summary: Consolidates the supervision of the Peer Supporter under the Clinical Supervisor with the Behavioral Health Community
+      Network (BHCN) and removes the requirement of medical supervision for the provider
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-19-0004-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-19-0004: Approval Document (approved February 18, 2020, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-19-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-19-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-19-0004
+    cms_node_id: '83786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=83786
+    approval_date: '2020-02-18'
+    effective_date: '2019-04-01'
+    summary: Removal of Partial Hospitalization and Intensive Outpatient Services from 1915(i) HCBS to 1905(a).
+    topics:
+    - Benefits
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-19-0020-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-19-0020: Approval Document (approved January 29, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-19-0020_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-19-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-19-0020
+    cms_node_id: '58766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58766
+    approval_date: '2020-01-29'
+    effective_date: '2019-10-01'
+    summary: SPA proposes to allow the state to comply with the Medicaid Drug Utilization Review (DUR) provisions included
+      in Section 1004 of the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment (SUPPORT) for Patients
+      and Communities Act
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-19-014-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-19-014: Approval Document (approved October 21, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-19-014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-19-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-19-014
+    cms_node_id: '4626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4626
+    approval_date: '2019-10-21'
+    effective_date: '2019-09-01'
+    summary: Updates state resource eligibility language when determining Community Spouse Resources for individuals living
+      in an institutionalized setting.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-16-007-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-16-007: Approval Document (approved July 13, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-16-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-16-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-16-007
+    cms_node_id: '18786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=18786
+    approval_date: '2016-07-13'
+    effective_date: '2016-07-01'
+    summary: Implements direct enrollment into managed care for all mandatory managed care eligible Medicaid recipients and
+      establishes children under 19 in foster care or other in-home placement as a voluntary population in managed care versus
+      an excluded population.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-14-0001-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-14-0001: Approval Document (approved September 10, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-14-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-14-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-14-0001
+    cms_node_id: '22386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22386
+    approval_date: '2015-09-10'
+    effective_date: '2014-01-01'
+    summary: Allows qualified hospitals to determine individuals presumptively eligible for Medicaid based on preliminary
+      information.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-14-0006-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-14-0006: Approval Document (approved May 11, 2015, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-14-0006-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-14-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-14-0006
+    cms_node_id: '27561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27561
+    approval_date: '2015-05-11'
+    effective_date: '2014-10-01'
+    summary: Requests to Add the New Single State Agency Template Pages (A1-A3) to the State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-15-002-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-15-002: Approval Document (approved May 7, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-15-0002-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-15-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-15-002
+    cms_node_id: '27556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27556
+    approval_date: '2015-05-07'
+    effective_date: '2015-01-01'
+    summary: Changes Income Standard for the Mandatory Eligibility Group of Parents and Other Caretaker Relatives From the
+      Minimum to the Maximum.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-14-0002-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-14-0002: Approval Document (approved August 18, 2014, effective June 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-14-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-06-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-14-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-14-0002
+    cms_node_id: '34176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34176
+    approval_date: '2014-08-18'
+    effective_date: '2014-06-01'
+    summary: Eliminates the Option for Individuals Within Nevada's Newly Eligible Population Who Have Been Determined to be
+      Seriously Mentally Ill to Dis-enroll from Medicaid Managed Care Plans.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-0026-mm-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-0026-MM: Approval Document (approved June 6, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-0026-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-0026-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0026-MM
+    cms_node_id: '36316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36316
+    approval_date: '2014-06-06'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-0023-mm5-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-0023-MM5: Approval Document (approved May 30, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-0023-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-0023-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0023-MM5
+    cms_node_id: '36356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36356
+    approval_date: '2014-05-30'
+    effective_date: '2014-01-01'
+    summary: Adds Description of Medicaid Eligibility Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-0024-mm-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-0024-MM: Approval Document (approved April 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-0024-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-0024-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0024-MM
+    cms_node_id: '37641'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37641
+    approval_date: '2014-04-23'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-031-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-031: Approval Document (approved February 21, 2014, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-031
+    cms_node_id: '38591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38591
+    approval_date: '2014-02-21'
+    effective_date: '2011-10-01'
+    summary: Nevada is amending the State Plan to reflect updated processes and eligibility groups as they relate to the DHCFPs
+      Managed Care Programs.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-0029-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-0029: Approval Document (approved January 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0029
+    cms_node_id: '39051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39051
+    approval_date: '2014-01-24'
+    effective_date: '2014-01-01'
+    summary: Alternative Benefit Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Managed Care
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-0035-mm-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-0035-MM: Approval Document (approved December 19, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-0035-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-0035-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0035-MM
+    cms_node_id: '39581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39581
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: Incorporates New Adults Below 133% Eligibility Group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-13-0025-mm-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-13-0025-MM: Approval Document (approved December 19, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-13-0025-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-13-0025-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0025-MM
+    cms_node_id: '39591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39591
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: Adds to Description of Provisions Concerning Citizen and Non-Citizen Medicaid Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-11-014-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-11-014: Approval Document (approved February 28, 2012, effective October 13, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-11-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-13'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-11-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-11-014
+    cms_node_id: '41681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41681
+    approval_date: '2012-02-28'
+    effective_date: '2011-10-13'
+    summary: Pharmacy Wholesale Acquisition Cost Benchmark.
+    topics: &id002
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-11-014-attachment
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-11-014: Attachment (approved February 28, 2012, effective October 13, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-11-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-13'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-11-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NV-11-014
+    cms_node_id: '41681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41681
+    approval_date: '2012-02-28'
+    effective_date: '2011-10-13'
+    summary: Pharmacy Wholesale Acquisition Cost Benchmark.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-11-014-form-cms-179
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-11-014: Form CMS-179 (approved February 28, 2012, effective October 13, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-11-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-13'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-11-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NV-11-014
+    cms_node_id: '41681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41681
+    approval_date: '2012-02-28'
+    effective_date: '2011-10-13'
+    summary: Pharmacy Wholesale Acquisition Cost Benchmark.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-11-009-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-11-009: Approval Document (approved October 20, 2011, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-11-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-11-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-11-009
+    cms_node_id: '41696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41696
+    approval_date: '2011-10-20'
+    effective_date: '2011-08-01'
+    summary: Updates the rate effective dates and reduces rates by 0.7% for DME.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-11-009-attachment
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-11-009: Attachment (approved October 20, 2011, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-11-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-11-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NV-11-009
+    cms_node_id: '41696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41696
+    approval_date: '2011-10-20'
+    effective_date: '2011-08-01'
+    summary: Updates the rate effective dates and reduces rates by 0.7% for DME.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-11-009-form-cms-179
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-11-009: Form CMS-179 (approved October 20, 2011, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-11-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-11-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NV-11-009
+    cms_node_id: '41696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41696
+    approval_date: '2011-10-20'
+    effective_date: '2011-08-01'
+    summary: Updates the rate effective dates and reduces rates by 0.7% for DME.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-10-011-approval-document
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-10-011: Approval Document (approved March 9, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-10-011-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-10-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-10-011
+    cms_node_id: '41746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41746
+    approval_date: '2011-03-09'
+    effective_date: '2010-10-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over.
+    topics: &id004
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-10-011-attachment
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-10-011: Attachment (approved March 9, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-10-011-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-10-011/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NV-10-011
+    cms_node_id: '41746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41746
+    approval_date: '2011-03-09'
+    effective_date: '2010-10-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-nv-cms-medicaid-state-plan-spa-nv-10-011-form-cms-179
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada Medicaid SPA NV-10-011: Form CMS-179 (approved March 9, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NV/NV-10-011-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-nv/policy/cms/medicaid-state-plan/spa/nv-10-011/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NV-10-011
+    cms_node_id: '41746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41746
+    approval_date: '2011-03-09'
+    effective_date: '2010-10-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over.
+    topics: *id004
+    link_label: Form CMS-179

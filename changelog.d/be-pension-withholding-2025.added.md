@@ -1,1 +1,0 @@
-Ingested the SFP 2025 pension-withholding tables (INAMI/AMI health withholding and article 68 solidarity contribution, isolated and family-charge scales) so rulespec-be can encode the indexed 2025 thresholds with verbatim money atoms.

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/manual/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "5e4978d916152001832ef24da812f7057d747cccbb93fa4cd105e2f146e99c7b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/manual/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "3c6620c2b62a5d81b780fbcf52dcd343afc81f16ffd5ce3d1080a6c4e0154a3d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/manual/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "c067d42da07c3a98cc3ca695fe82208d6a26e4cf6c22ba7e33087662fb77e4ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-14-ssi-state-supplement-standards/official-documents/us-ok-manual-okdhs-oac-340-appendix-c-1.pdf",
+      "sha256": "f4fdfd4924b1f3193fecd195ac4a2fbea4dbb752a82b69ed2e09092c5f6aea67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-ok-ssi-state-supplement-standards-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T17:48:48.532580+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kfF0yoVkGWYqSIjNiugOGJqUHnMUglnfXgW1ong1wW9hqxnv43/3ci1ZJ8CeF4WEitErX/cOdSGw4bacyqZ+Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

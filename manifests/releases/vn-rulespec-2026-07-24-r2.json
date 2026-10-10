@@ -1,0 +1,22 @@
+{
+  "description": "Immutable official Viet Nam scopes used by RuleSpec-VN: the VNMOD t1 scopes plus the tranche-2 FULL-DOCUMENT re-slice of Luat 58/2014/QH13 (5 chuong page_windows slices superseding the whole-law scan capture for encoding). SOUTHMOD retrofit sweep.",
+  "name": "vn-rulespec-2026-07-24-r2",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "regulation",
+      "jurisdiction": "vn",
+      "version": "2026-07-24-vn-vnmod-t1-regulations"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "vn",
+      "version": "2026-07-24-vn-vnmod-t1-statutes"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "vn",
+      "version": "2026-07-24-vn-vnmod-t2-si-slices"
+    }
+  ]
+}

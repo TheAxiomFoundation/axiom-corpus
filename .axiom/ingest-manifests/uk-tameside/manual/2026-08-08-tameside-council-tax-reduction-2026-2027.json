@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-tameside/manual/2026-08-08-tameside-council-tax-reduction-2026-2027.json",
+      "sha256": "46aa53490edb79a2c1940eb2ba4b7d0d39a3b401171883ff2d04f79ac51d0986"
+    },
+    {
+      "path": "data/corpus/inventory/uk-tameside/manual/2026-08-08-tameside-council-tax-reduction-2026-2027.json",
+      "sha256": "bd603b6cc25154a41fe4c4282b6471c6888daef100d1f4153752c55fd8846314"
+    },
+    {
+      "path": "data/corpus/provisions/uk-tameside/manual/2026-08-08-tameside-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "31ed665d83fb2e72ea9b5c321953da1a8f83332cfea0826433600308ca5b5812"
+    },
+    {
+      "path": "data/corpus/sources/uk-tameside/manual/2026-08-08-tameside-council-tax-reduction-2026-2027/official-documents/tameside-council-tax-support-scheme-2026-2027.pdf",
+      "sha256": "54c8dfd379f98738242b6219398ed78464474175465e9127f4ebadf7495132f3"
+    },
+    {
+      "path": "data/corpus/sources/uk-tameside/manual/2026-08-08-tameside-council-tax-reduction-2026-2027/official-documents/tameside-cts-cabinet-report-2026-27.pdf",
+      "sha256": "4477e1d9e58c630037307b05ffbdc11aa7ea51a84efbebd084e0482801eebca5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0cae5bdaad598b803007d949c5f5f6ed8f9a864e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-08-tameside-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-tameside-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 95,
+    "missing_count": 0,
+    "provision_count": 95,
+    "source_count": 95
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-08T19:40:07.527460+00:00",
+  "jurisdiction": "uk-tameside",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ENgD69DkZHBoA1ym0vyEpojKdJn5oNJKJB9pwmTer4JjrKO/EpqQZlXTctNxLlYdUYfko4BwKhboG4CtgwGlBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-08-tameside-council-tax-reduction-2026-2027"
+}

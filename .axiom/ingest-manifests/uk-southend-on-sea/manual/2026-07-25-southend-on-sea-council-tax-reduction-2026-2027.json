@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-southend-on-sea/manual/2026-07-25-southend-on-sea-council-tax-reduction-2026-2027.json",
+      "sha256": "a6057b27c035dee48476eeb9f138ddb67597fc1d364301dc5ca1f59f85bb100e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-southend-on-sea/manual/2026-07-25-southend-on-sea-council-tax-reduction-2026-2027.json",
+      "sha256": "1841b5870ebdd396b039a757b799d276334e0e3f15db569771ec0db75a6c27af"
+    },
+    {
+      "path": "data/corpus/provisions/uk-southend-on-sea/manual/2026-07-25-southend-on-sea-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "c25b9c453a018b6e6b5dba4d4fae1878248d69bec70e948daf3b2dc4a455ec86"
+    },
+    {
+      "path": "data/corpus/sources/uk-southend-on-sea/manual/2026-07-25-southend-on-sea-council-tax-reduction-2026-2027/official-documents/southend-on-sea-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1f044fa1d08e4c02ed6deb0d959d65cdff12c63bb5a9094db6eecd772de1f039"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-southend-on-sea-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-southend-on-sea-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 86,
+    "missing_count": 0,
+    "provision_count": 86,
+    "source_count": 86
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:39.479474+00:00",
+  "jurisdiction": "uk-southend-on-sea",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MqDeDuRHpXB+UUrP3li8xoJTd9f651IRndrBn6gjgqWyuX2v99ElsdeesxOZRToFsY+vHzZLXLDNXYR2Vd7ZAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-southend-on-sea-council-tax-reduction-2026-2027"
+}

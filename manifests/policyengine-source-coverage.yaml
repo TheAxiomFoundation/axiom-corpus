@@ -5445,29 +5445,34 @@ document_groups:
   jurisdiction: us-wv
   document_class: manual
   source_family: manuals
-  url_count: 1
-  input_count: 1
+  url_count: 2
+  input_count: 2
   host_counts:
-    dhhr.wv.gov: 1
+    bfa.wv.gov: 2
   source_list_counts:
-    all_url: 1
+    all_url: 2
   sample_urls:
-  - https://dhhr.wv.gov/bcf/Services/familyassistance/PolicyManual/Documents/Chapter%2011/ch11_3.pdf
+  - https://bfa.wv.gov/media/39948/download?inline=
+  - https://bfa.wv.gov/article/west-virginia-department-human-services-announces-pause-snap-healthy-choices-waiver
   suggested_manifest_stem: us-wv-manuals
   suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
   target_manifest: manifests/us-wv-manuals.yaml
   target_release_scope:
     jurisdiction: us-wv
     document_class: manual
-    version: 2026-05-27-wv-manuals
+    version: 2026-07-21-wv-income-maintenance-manual
   coverage_status: ingested_local
   corpus_artifacts:
-    sources: data/corpus/sources/us-wv/manual/2026-05-27-wv-manuals/
-    inventory: data/corpus/inventory/us-wv/manual/2026-05-27-wv-manuals.json
-    provisions: data/corpus/provisions/us-wv/manual/2026-05-27-wv-manuals.jsonl
-    coverage: data/corpus/coverage/us-wv/manual/2026-05-27-wv-manuals.json
+    sources: data/corpus/sources/us-wv/manual/2026-07-21-wv-income-maintenance-manual/
+    inventory: data/corpus/inventory/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json
+    provisions: data/corpus/provisions/us-wv/manual/2026-07-21-wv-income-maintenance-manual.jsonl
+    coverage: data/corpus/coverage/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: Local official-document extraction completed for 1 West Virginia Income Maintenance Manual PDF / 2 provisions.
+  notes: Local official-document extraction completed for the current integrated
+    West Virginia Income Maintenance Manual PDF / 2,276 provisions. The separate
+    2026-07-21-wv-snap-healthy-choices-overlay scope retains the July 10 official
+    HTML policy notice / 2 provisions because it immediately supersedes the soda
+    restriction still printed in manual sections 1.4.20 and 16.3.
 additional_source_sets: []

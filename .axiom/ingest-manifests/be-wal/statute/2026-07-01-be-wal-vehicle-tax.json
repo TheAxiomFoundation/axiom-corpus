@@ -34,9 +34,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -51,14 +51,14 @@
     "source_count": 10
   },
   "document_class": "statute",
-  "generated_at": "2026-07-03T17:17:54.705585+00:00",
+  "generated_at": "2026-07-21T11:40:39.865503+00:00",
   "jurisdiction": "be-wal",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "FY4eBBLQKQ9zYSOqDgcZtGjiXHIqBWbfTPB0eUYoiLyk74TF4quwsjtP9kMzlm0KEq2COf8iMg1QBSxP7AhbCA=="
+    "value": "dSAq4mJxBSjyOxMCC0Z5oI/neOqMMXZq6R0ayC4ZU9BzWyt0cjD/1xUWndB4TA/Un6MK1xUD+L8O8aARiy+pCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-be-wal-vehicle-tax"

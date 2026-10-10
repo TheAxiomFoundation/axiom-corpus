@@ -21,6 +21,7 @@ from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_USER_AGENT,
     OfficialDocumentManifest,
     OfficialDocumentSource,
+    _browser_impersonation_headers,
     _date_text,
     _download_document,
     _download_document_by_browser_impersonation,
@@ -29,11 +30,14 @@ from axiom_corpus.corpus.documents import (
     _DownloadedDocument,
     _extract_anchor_range_html_blocks,
     _extract_blocks,
+    _extract_csv_blocks,
     _extract_doc_blocks,
     _extract_json_html_blocks,
     _extract_json_record_blocks,
     _extract_labeled_html_section_blocks,
+    _extract_plain_text_blocks,
     _get_with_retries,
+    _html_soup,
     _infer_source_format,
     _legacy_word_document_text,
     _normalize_text,
@@ -51,7 +55,7 @@ from axiom_corpus.corpus.documents import (
     google_drive_download_url,
     official_documents_run_id,
 )
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 
 
 def test_google_drive_download_url_converts_file_view():
@@ -177,6 +181,22 @@ def test_infer_source_format_handles_common_official_downloads(tmp_path: Path) -
     assert _infer_source_format(pdf, downloaded(pdf, b"%PDF-1.7", None)) == "pdf"
     html = source("https://example.test/file")
     assert _infer_source_format(html, downloaded(html, b"<!doctype html>", None)) == "html"
+    javascript = source("https://example.test/toc.new.js")
+    assert (
+        _infer_source_format(
+            javascript,
+            downloaded(javascript, b"const toc = [];", "text/javascript"),
+        )
+        == "javascript"
+    )
+    csv_source = source("https://example.test/table.csv?download=1")
+    assert (
+        _infer_source_format(
+            csv_source,
+            downloaded(csv_source, b"name,amount\nA,1\n", "text/csv"),
+        )
+        == "csv"
+    )
     xls = source("https://example.test/file.xls?download=1")
     assert _infer_source_format(xls, downloaded(xls, b"legacy", None)) == "xls"
     doc = source("https://example.test/file")
@@ -227,11 +247,103 @@ def test_extract_blocks_rejects_unsupported_and_bad_json_config() -> None:
     with pytest.raises(ValueError, match="unsupported official document source_format"):
         _extract_blocks(
             b"body",
-            "csv",
+            "xml",
             source_url="https://example.test/file.csv",
             title="File",
             extraction=None,
         )
+
+
+def test_extract_csv_blocks_parses_quoted_filtered_rows() -> None:
+    blocks = _extract_csv_blocks(
+        b'\xef\xbb\xbfName,Amount,Note\r\nA,10,"x, y"\r\nB,20,z\r\n',
+        title="Official table",
+        extraction={
+            "csv_columns": ["Name", "Note"],
+            "csv_filters": {"Name": "A"},
+        },
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].kind == "sheet"
+    assert blocks[0].heading == "Official table"
+    assert blocks[0].metadata == {"delimiter": ",", "row_count": 1}
+    assert "Row | Name | Note" in blocks[0].body
+    assert "2 | A | x, y" in blocks[0].body
+    assert "B | z" not in blocks[0].body
+
+
+def test_extract_csv_blocks_validates_configuration_and_empty_data() -> None:
+    with pytest.raises(ValueError, match="exactly one character"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_delimiter": "::"},
+        )
+    with pytest.raises(ValueError, match="csv column not found: Missing"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_columns": ["Missing"]},
+        )
+    with pytest.raises(ValueError, match="csv filter column not found: Missing"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_filters": {"Missing": "1"}},
+        )
+    with pytest.raises(ValueError, match="start row must follow the header row"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_start_row": 1},
+        )
+    with pytest.raises(ValueError, match="start row is outside the source"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_start_row": 99},
+        )
+    for max_rows in (0, -1):
+        with pytest.raises(ValueError, match="max rows must be positive"):
+            _extract_csv_blocks(
+                b"A,B\n1,2\n",
+                title=None,
+                extraction={"csv_max_rows": max_rows},
+            )
+    assert (
+        _extract_csv_blocks(
+            b"A,B\n",
+            title="Empty",
+            extraction=None,
+        )
+        == ()
+    )
+
+
+@pytest.mark.parametrize(
+    ("content", "message"),
+    [
+        (b'A,B\n"unterminated,1\nnext,row\n', "invalid csv source"),
+        (b"A,\n1,2\n", "header cells must be non-empty"),
+        (b"A,B\n1,2,3\n", "row 2 has more cells than the header"),
+    ],
+)
+def test_extract_csv_blocks_rejects_malformed_tables(content: bytes, message: str) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_csv_blocks(content, title=None, extraction=None)
+
+
+def test_extract_plain_text_blocks_decodes_and_normalizes_javascript() -> None:
+    blocks = _extract_plain_text_blocks(
+        b"\xef\xbb\xbf(function() {\r\n  const toc = [];\r\n})();\r\n",
+        title="Official TOC",
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].heading == "Official TOC"
+    assert blocks[0].body == "(function() { const toc = []; })();"
+    assert _extract_plain_text_blocks(b" \r\n", title="Empty") == ()
 
     with pytest.raises(ValueError, match="requires json_html_field"):
         _extract_blocks(
@@ -431,7 +543,146 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
     assert blocks[0].body == "Body"
 
 
+def test_extract_json_record_blocks_filters_exact_labels_and_prefixes() -> None:
+    content = json.dumps(
+        [
+            {"label": "A:1", "text": "Exact"},
+            {"label": "A:2", "text": "Excluded"},
+            {"label": "B:1", "text": "Prefix one"},
+            {"label": "B:2", "text": "Prefix two"},
+            {"text": "Unlabeled"},
+        ]
+    ).encode("utf-8")
+
+    blocks = _extract_json_record_blocks(
+        content,
+        source_url="https://example.test/api",
+        fallback_title=None,
+        extraction={
+            "json_record_text_field": "text",
+            "json_record_text_is_html": False,
+            "json_record_label_field": "label",
+            "json_record_include_labels": ["A:1"],
+            "json_record_include_label_prefixes": "B:",
+        },
+    )
+
+    assert [block.metadata["section_label"] for block in blocks] == [
+        "A:1",
+        "B:1",
+        "B:2",
+    ]
+    assert [block.body for block in blocks] == ["Exact", "Prefix one", "Prefix two"]
+
+    with pytest.raises(ValueError, match="label 'A:missing', prefix 'C:'"):
+        _extract_json_record_blocks(
+            content,
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_text_is_html": False,
+                "json_record_label_field": "label",
+                "json_record_include_labels": ["A:1", "A:missing"],
+                "json_record_include_label_prefixes": ["B:", "C:"],
+            },
+        )
+
+
+def test_extract_json_record_blocks_ignores_nontext_nonscalar_labels() -> None:
+    assert (
+        _extract_json_record_blocks(
+            b'[{"label": ["invalid"], "text": null}]',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+            },
+        )
+        == ()
+    )
+
+    with pytest.raises(ValueError, match="labels must be scalar"):
+        _extract_json_record_blocks(
+            b'[{"label": ["invalid"], "text": "Body"}]',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_text_is_html": False,
+                "json_record_label_field": "label",
+                "json_record_include_labels": "A:1",
+            },
+        )
+
+
+@pytest.mark.parametrize(
+    ("extraction", "message"),
+    [
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_include_labels": "A:1",
+            },
+            "require json_record_label_field",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_labels": [],
+            },
+            "must contain one or more non-empty strings",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_label_prefixes": ["A:", 1],
+            },
+            "must contain one or more non-empty strings",
+        ),
+    ],
+)
+def test_extract_json_record_blocks_rejects_bad_label_filters(
+    extraction: dict[str, object], message: str
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_json_record_blocks(
+            b"[]",
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction=extraction,
+        )
+
+
+def test_html_soup_parser_option_selects_html_parser_and_rejects_unknown() -> None:
+    content = b"<html><body><main><p>Body text</p></main></body></html>"
+    assert _html_soup(content, parser="html.parser").builder.NAME == "html.parser"
+    assert _html_soup(content).builder.NAME in {"lxml", "html.parser"}
+    with pytest.raises(ValueError, match="unsupported html_parser"):
+        _html_soup(content, parser="html5lib")
+    blocks = _extract_blocks(
+        content,
+        source_format="html",
+        source_url="https://example.test/page",
+        title="Page",
+        extraction={"html_parser": "html.parser"},
+    )
+    assert [block.body for block in blocks] == ["Body text"]
+
+
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
+    assert (
+        _extract_json_html_blocks(
+            b'[{"id": "topic-1", "text": "Navigation only"}]',
+            source_url="https://example.test/toc.json",
+            fallback_title="Official TOC",
+            extraction={"segmentation": "source_only"},
+        )
+        == ()
+    )
     with pytest.raises(ValueError, match="did not resolve to HTML text"):
         _extract_json_html_blocks(
             b'{"html": "   "}',
@@ -455,6 +706,17 @@ def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
         )
         == ()
     )
+
+
+@pytest.mark.parametrize("content", [b"", b"not json", b"<html>error</html>"])
+def test_extract_json_source_only_rejects_non_json_content(content: bytes) -> None:
+    with pytest.raises(ValueError):
+        _extract_json_html_blocks(
+            content,
+            source_url="https://example.test/toc.json",
+            fallback_title="Official TOC",
+            extraction={"segmentation": "source_only"},
+        )
 
 
 def test_extract_anchor_range_html_blocks_validates_config_and_extracts_ranges() -> None:
@@ -596,6 +858,99 @@ def test_extract_labeled_html_sections_label_only_and_validation() -> None:
     assert blocks[0].metadata["citation_suffix"] == "article-one"
 
 
+def test_pdf_text_replacements_require_mapping() -> None:
+    with pytest.raises(ValueError, match="text_replacements must be a mapping"):
+        documents_module._text_replacements({"text_replacements": ["bad"]})
+
+
+def test_pdf_text_replacements_reject_empty_search_strings() -> None:
+    with pytest.raises(
+        ValueError,
+        match="text_replacements search strings must not be empty",
+    ):
+        documents_module._text_replacements({"text_replacements": {"": "bad"}})
+
+
+@pytest.mark.parametrize(
+    "text_replacements",
+    [
+        {"BROKEN\nHEADING": "FIXED HEADING"},
+        {"BROKEN HEADING": "FIXED\nHEADING"},
+    ],
+)
+def test_pdf_text_replacements_reject_multiline_strings(
+    text_replacements: dict[str, str],
+) -> None:
+    with pytest.raises(
+        ValueError,
+        match="text_replacements must contain single-line strings",
+    ):
+        documents_module._text_replacements(
+            {"text_replacements": text_replacements}
+        )
+
+
+def test_pdf_text_replacements_are_applied_in_manifest_order() -> None:
+    replacements = documents_module._text_replacements(
+        {"text_replacements": {"2. 5%": "2.5%", "4. 7%": "4.7%"}}
+    )
+
+    assert documents_module._replace_text(
+        "2. 5% through 4. 7%",
+        replacements,
+    ) == "2.5% through 4.7%"
+
+
+@pytest.mark.parametrize("segmentation", [None, "single_block"])
+def test_pdf_text_replacements_apply_to_every_pdf_mode(segmentation: str | None) -> None:
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rate 4. 7%")
+    extraction: dict[str, object] = {
+        "text_replacements": {"4. 7%": "4.7%"},
+    }
+    if segmentation is not None:
+        extraction["segmentation"] = segmentation
+
+    blocks = documents_module._extract_pdf_blocks(
+        document.tobytes(),
+        extraction=extraction,
+    )
+
+    assert [block.body for block in blocks] == ["Rate 4.7%"]
+
+
+@pytest.mark.parametrize(
+    ("source_heading", "text_replacements"),
+    [
+        ("BROKEN HEADING", {"BROKEN": "  FIXED"}),
+        ("BROKEN  HEADING", {"BROKEN  HEADING": "FIXED HEADING"}),
+    ],
+)
+def test_pdf_text_replacements_preserve_normalized_bold_heading_styles(
+    source_heading: str,
+    text_replacements: dict[str, str],
+) -> None:
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), source_heading, fontname="hebo")
+    page.insert_text((72, 96), "Body text.")
+
+    blocks = documents_module._extract_pdf_blocks(
+        document.tobytes(),
+        extraction={
+            "segmentation": "labeled_sections",
+            "section_label_pattern": r"^(?P<label>FIXED HEADING)$",
+            "section_heading_requires_bold": True,
+            "text_replacements": text_replacements,
+        },
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].heading == "FIXED HEADING"
+    assert blocks[0].body == "Body text."
+
+
 def test_download_document_retries_browser_user_agent_on_forbidden():
     class FakeResponse:
         def __init__(self, status_code: int, content: bytes = b""):
@@ -686,6 +1041,93 @@ def test_download_document_retries_browser_user_agent_on_declared_pdf_html_chall
     assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
 
 
+def test_download_document_retries_browser_user_agent_on_pdf_access_denial():
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        def __init__(self, content: bytes):
+            self.status_code = 200
+            self.content = content
+            self.headers = {"content-type": "application/pdf"}
+            self.url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.calls: list[dict[str, str]] = []
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, timeout, allow_redirects, verify
+            self.calls.append(dict(headers or self.headers))
+            if len(self.calls) == 1:
+                return FakeResponse(blocked_content)
+            return FakeResponse(b"%PDF-1.7")
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"%PDF-1.7"
+    assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
+    assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+
+
+def test_download_document_rejects_pdf_access_denial_after_browser_retry():
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        status_code = 200
+        content = blocked_content
+        headers = {"content-type": "application/pdf"}
+        url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, headers, timeout, allow_redirects, verify
+            return FakeResponse()
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+
+    with pytest.raises(RuntimeError, match="remained access-blocked"):
+        _download_document(source, session=FakeSession())  # pyright: ignore[reportPrivateUsage]
+
+
 def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(monkeypatch):
     class FakeResponse:
         status_code = 403
@@ -760,6 +1202,82 @@ def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(
     ]
 
 
+def test_browser_impersonation_headers_follow_the_impersonated_profile():
+    chrome_headers = _browser_impersonation_headers(None, impersonate="chrome120")
+    explicit = _browser_impersonation_headers(
+        {"User-Agent": "custom", "Accept": "text/html"}, impersonate="chrome131"
+    )
+    safari_headers = _browser_impersonation_headers(
+        {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT, "Accept": "text/html"},
+        impersonate="safari17_0",
+    )
+    firefox_headers = _browser_impersonation_headers(None, impersonate="firefox133")
+
+    assert chrome_headers == {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    assert explicit == {"User-Agent": "custom", "Accept": "text/html"}
+    assert safari_headers == {"Accept": "text/html"}
+    assert firefox_headers == {}
+
+
+def test_download_document_can_use_browser_impersonation_directly(monkeypatch):
+    class UnusedSession:
+        headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+
+        def get(self, *args, **kwargs):
+            raise AssertionError("direct browser impersonation must bypass requests")
+
+    impersonation_calls: list[dict[str, object]] = []
+
+    def fake_impersonation_download(source, download_url, *, headers, verify, impersonate):
+        impersonation_calls.append(
+            {
+                "source_id": source.source_id,
+                "download_url": download_url,
+                "headers": headers,
+                "verify": verify,
+                "impersonate": impersonate,
+            }
+        )
+        return _DownloadedDocument(
+            source=source,
+            content=b"<html>official</html>",
+            content_type="text/html",
+            final_url=download_url,
+        )
+
+    monkeypatch.setattr(
+        documents_module,
+        "_download_document_by_browser_impersonation",
+        fake_impersonation_download,
+    )
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="ca",
+        document_class="policy",
+        title="Document",
+        source_url="https://example.test/doc",
+        source_format="html",
+        request={
+            "browser_user_agent": True,
+            "browser_impersonation_direct": True,
+            "verify_tls": False,
+        },
+    )
+
+    downloaded = _download_document(source, session=UnusedSession())  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"<html>official</html>"
+    assert impersonation_calls == [
+        {
+            "source_id": "doc",
+            "download_url": "https://example.test/doc",
+            "headers": {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT},
+            "verify": False,
+            "impersonate": OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
+        }
+    ]
+
+
 def test_download_document_by_browser_impersonation_uses_curl_cffi(monkeypatch):
     class FakeResponse:
         status_code = 200
@@ -813,6 +1331,56 @@ def test_download_document_by_browser_impersonation_uses_curl_cffi(monkeypatch):
             "impersonate": "chrome120",
         }
     ]
+
+
+def test_download_document_by_browser_impersonation_rejects_pdf_access_denial(monkeypatch):
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        status_code = 200
+        content = blocked_content
+        headers = {"content-type": "application/pdf"}
+        url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    calls = 0
+
+    def fake_get(url, **kwargs):
+        nonlocal calls
+        del url, kwargs
+        calls += 1
+        return FakeResponse()
+
+    fake_curl_cffi = types.SimpleNamespace(requests=types.SimpleNamespace(get=fake_get))
+    monkeypatch.setitem(sys.modules, "curl_cffi", fake_curl_cffi)
+    monkeypatch.setattr(documents_module.time, "sleep", lambda seconds: None)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+
+    with pytest.raises(RuntimeError, match="after browser impersonation"):
+        _download_document_by_browser_impersonation(
+            source,
+            source.source_url,
+            headers=None,
+            verify=True,
+            impersonate="chrome120",
+        )
+
+    assert calls == 4
 
 
 def test_download_document_retries_transient_request_errors(monkeypatch):
@@ -1572,6 +2140,50 @@ documents:
     assert "131.12" not in records[1].body
 
 
+def test_extract_official_documents_from_csv_rows(tmp_path: Path) -> None:
+    csv_path = tmp_path / "allotments.csv"
+    csv_path.write_bytes(
+        b"Household,Monthly allotment,Notes\r\n"
+        b'1,$298,"one, person"\r\n'
+        b"2,$546,two people\r\n"
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ok-snap-allotments
+    jurisdiction: us-ok
+    document_class: policy
+    title: Oklahoma SNAP allotments
+    source_url: https://example.test/allotments.csv
+    citation_path: us-ok/policy/snap/allotments
+    source_format: csv
+    local_path: {json.dumps(str(csv_path))}
+    extraction:
+      csv_columns:
+        - Household
+        - Monthly allotment
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-21-ok-snap-allotments",
+    )
+
+    assert report.block_count == 1
+    assert report.source_paths[0].suffix == ".csv"
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path == "us-ok/policy/snap/allotments/sheet-1"
+    assert records[1].metadata["row_count"] == 2
+    assert records[1].metadata["delimiter"] == ","
+    assert records[1].body is not None
+    assert "2 | 1 | $298" in records[1].body
+    assert "3 | 2 | $546" in records[1].body
+
+
 def test_extract_official_documents_from_legacy_xls_rows(tmp_path: Path) -> None:
     workbook_path = tmp_path / "ffe.xls"
     workbook = xlwt.Workbook()
@@ -1795,6 +2407,60 @@ documents:
     assert records[1].body == "Body text."
 
 
+def test_extract_labeled_pdf_sections_preserves_inline_heading_body(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "inline-body-rule.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "001(A). FIRST POLICY FOR",
+                "APPLICANTS. Inline body starts here.",
+                "Body continues here.",
+                "002(B)(IV). SECOND POLICY. Second inline body.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: inline-body-rule
+    jurisdiction: us-test
+    document_class: regulation
+    title: Inline Body Rule
+    source_url: https://example.test/inline-body-rule.pdf
+    citation_path: us-test/regulation/inline-body-rule
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>\\d{{3}}(?:\\([A-Z]+\\))*)\\.\\s+(?P<heading>[A-Z ]+(?:\\.|$))(?:\\s+(?P<body>.*))?$'
+      heading_continuation_pattern: '^(?P<heading>[A-Z][A-Z ]+\\.)(?:\\s+(?P<body>.*))?$'
+      normalize_parenthetical_label_components: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-inline-body-rule",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path.endswith("/001.a")
+    assert records[1].heading == "001(A) FIRST POLICY FOR APPLICANTS."
+    assert records[1].metadata["section_label"] == "001(A)"
+    assert records[1].body == "Inline body starts here. Body continues here."
+    assert records[2].citation_path.endswith("/002.b.iv")
+    assert records[2].body == "Second inline body."
+
+
 def test_extract_labeled_pdf_sections_from_discontiguous_page_windows(tmp_path: Path) -> None:
     pdf_path = tmp_path / "sliced-statute.pdf"
     document = fitz.open()
@@ -1870,6 +2536,69 @@ documents:
     assert records[2].heading == "133 Interpretation section text."
     assert records[2].body == "A currency point means one Cedi."
     assert "132" not in records[2].body
+
+
+def test_extract_single_block_pdf_honors_page_windows(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "gazette-issue.pdf"
+    document = fitz.open()
+    first = document.new_page()
+    first.insert_text((72, 72), "Gazette masthead and first-law text to exclude.")
+    middle = document.new_page()
+    middle.insert_text((72, 72), "Second-law text outside the window.")
+    last = document.new_page()
+    last.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "Tail of the previous law before the anchor.",
+                "Law 5/2009",
+                "Creates the simplified tax for small taxpayers.",
+                "The annual rate is fixed by this law.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: gazette-sliced-law
+    jurisdiction: us-test
+    document_class: statute
+    title: Gazette Sliced Law
+    source_url: https://example.test/gazette-issue.pdf
+    citation_path: us-test/statute/gazette-sliced-law
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 3
+          end_page: 3
+          start_at_pattern: '^Law 5/2009'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-23-gazette-sliced-law",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/statute/gazette-sliced-law",
+        "us-test/statute/gazette-sliced-law/document-1",
+    ]
+    body = records[-1].body or ""
+    assert body.startswith("Law 5/2009")
+    assert "simplified tax for small taxpayers" in body
+    assert "masthead" not in body
+    assert "outside the window" not in body
+    assert "Tail of the previous law" not in body
 
 
 def test_pdf_page_windows_reject_invalid_configs(tmp_path: Path) -> None:
@@ -2190,6 +2919,53 @@ documents:
     )
 
 
+def test_labeled_html_sections_normalize_split_labels_and_ranges(tmp_path: Path) -> None:
+    html_path = tmp_path / "split-labels.html"
+    html_path.write_text(
+        """
+<html><body><div class="WordSection1">
+  <p><b>8.<span>139.502.8</span> STATE SNAP SUPPLEMENT BENEFITS:</b></p>
+  <p>Supplement body.</p>
+  <p><b>8.139.502.9 - 10 [RESERVED]</b></p>
+</div></body></html>
+"""
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        rf"""
+documents:
+  - source_id: split-labels
+    jurisdiction: us-test
+    document_class: regulation
+    title: Split Labels
+    source_url: https://example.test/split-labels.html
+    citation_path: us-test/regulation/split-labels
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: .WordSection1
+      segmentation: labeled_sections
+      normalize_label_internal_whitespace: true
+      section_heading_pattern: >-
+        ^(?P<label>8\.\s*139\.\s*502\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{{0,180}}:|\[RESERVED\])(?:\s+(?P<body>.*))?$
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-split-labels",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert [record.metadata["section_label"] for record in records[1:]] == [
+        "8.139.502.8",
+        "8.139.502.9-10",
+    ]
+    assert records[1].body == "Supplement body."
+
+
 def test_extract_official_documents_formats_labeled_html_section_labels(
     tmp_path: Path,
 ) -> None:
@@ -2505,6 +3281,22 @@ def test_extract_official_documents_from_json_records(tmp_path: Path) -> None:
                 },
                 {
                     "id": 3,
+                    "sectionNum": "340:50-2-1",
+                    "description": "Prefixed dependency",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": "<div>Included by prefix.</div>",
+                },
+                {
+                    "id": 4,
+                    "sectionNum": "340:50-3-1",
+                    "description": "Unselected section",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": "<div>Not selected.</div>",
+                },
+                {
+                    "id": 5,
                     "sectionNum": None,
                     "description": "General Provisions",
                     "name": "Subchapter",
@@ -2537,6 +3329,10 @@ documents:
       json_record_status_field: statusName
       json_record_exclude_statuses:
         - Revoked
+      json_record_include_labels:
+        - 340:50-1-1
+      json_record_include_label_prefixes:
+        - 340:50-2-
       json_record_metadata_fields:
         - id
         - sectionNum
@@ -2551,11 +3347,12 @@ documents:
         version="2026-05-27-ok-snap-rules",
     )
 
-    assert report.block_count == 1
+    assert report.block_count == 2
     records = load_provisions(report.provisions_path)
     assert [record.citation_path for record in records] == [
         "us-ok/regulation/oac/340/50",
         "us-ok/regulation/oac/340/50/340-50-1-1",
+        "us-ok/regulation/oac/340/50/340-50-2-1",
     ]
     assert records[1].heading == ("340:50-1-1 Purpose, legal base, and responsibilities")
     assert records[1].kind == "section"
@@ -2563,6 +3360,21 @@ documents:
     assert records[1].metadata["id"] == 1
     assert "SNAP policy text" in (records[1].body or "")
     assert "Old revoked text" not in (records[1].body or "")
+    assert "Included by prefix" in (records[2].body or "")
+    assert "Not selected" not in " ".join(record.body or "" for record in records)
+    retained_source = json.loads(report.source_paths[0].read_text())
+    assert len(retained_source) == 5
+
+    manifest_path.write_text(
+        manifest_path.read_text().replace("340:50-1-1", "340:50-missing"),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="label '340:50-missing'"):
+        extract_official_documents(
+            CorpusArtifactStore(tmp_path / "unmatched-corpus"),
+            manifest_path=manifest_path,
+            version="2026-05-27-ok-snap-rules",
+        )
 
 
 def test_extract_official_documents_drops_configured_html_selectors(
@@ -3291,6 +4103,244 @@ documents:
     assert records[1].metadata["section_label"] == "section-1"
 
 
+def test_extract_labeled_pdf_sections_can_require_bold_headings(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "styled-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 4.5 Interview.", fontname="tibi")
+    page.insert_text((72, 96), "Interview requirements apply.")
+    page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tiit")
+    page.insert_text((72, 144), "Rule 4.13 Eligibility for U.S.", fontname="tibi")
+    page.insert_text((72, 168), "Citizens.", fontname="tibi")
+    page.insert_text((72, 192), "The seven-day timeframe applies.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: styled-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Styled Manual
+    source_url: https://example.test/styled-manual.pdf
+    citation_path: us-test/manual/styled
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-styled-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/manual/styled",
+        "us-test/manual/styled/4.5",
+        "us-test/manual/styled/4.13",
+    ]
+    assert records[1].body == (
+        "Interview requirements apply. Rule 4.13 Processing Timeframes."
+    )
+    assert records[2].heading == "4.13 Eligibility for U.S. Citizens."
+    assert records[2].body == "The seven-day timeframe applies."
+
+
+def test_bold_pdf_sections_preserve_body_after_unstyled_repeated_heading(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "repeated-heading-manual.pdf"
+    document = fitz.open()
+    first_page = document.new_page()
+    first_page.insert_text((72, 72), "Rule 4.13 Eligibility for U.S.", fontname="tibi")
+    first_page.insert_text((72, 96), "Citizens.", fontname="tibi")
+    first_page.insert_text((72, 120), "First page body.")
+    second_page = document.new_page()
+    second_page.insert_text((72, 72), "Rule 4.13 Eligibility for U.S.")
+    second_page.insert_text((72, 96), "Citizens.")
+    second_page.insert_text((72, 120), "Second page body.")
+    second_page.insert_text((72, 144), "Rule 4.14 Next Rule.", fontname="tibi")
+    second_page.insert_text((72, 168), "Next body.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: repeated-heading-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Repeated Heading Manual
+    source_url: https://example.test/repeated-heading-manual.pdf
+    citation_path: us-test/manual/repeated-heading
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+      allow_unstyled_repeated_section_headings: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-repeated-heading-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "4.13 Eligibility for U.S. Citizens."
+    assert records[1].body == "First page body. Second page body."
+    assert records[2].body == "Next body."
+
+
+def test_label_only_pdf_section_can_preserve_bold_body_lines(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "chapter-notes.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Chapter 7 -- Chapter Notes", fontname="tibi")
+    page.insert_text((72, 96), "Statutory Authority", fontname="tibi")
+    page.insert_text((72, 120), "CHAPTER AUTHORITY:", fontname="tibi")
+    page.insert_text((72, 144), "N.J.S.A. 30:1-12.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: chapter-notes
+    jurisdiction: us-test
+    document_class: regulation
+    title: Chapter Notes
+    source_url: https://example.test/chapter-notes.pdf
+    citation_path: us-test/regulation/chapter-7
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: '^Chapter (?P<label>7) -- Chapter Notes$'
+      label_only_heading_pattern: '^Statutory Authority$'
+      label_only_heading_continuation: false
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-chapter-notes",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "7 Statutory Authority"
+    assert records[1].body == "CHAPTER AUTHORITY: N.J.S.A. 30:1-12."
+
+
+def test_bold_pdf_headings_compose_with_start_after_filter(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "filtered-styled-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 4.13 Processing Timeframes.", fontname="tiit")
+    page.insert_text((72, 96), "BEGIN RULE TEXT")
+    page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tibi")
+    page.insert_text((72, 144), "The seven-day timeframe applies.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: filtered-styled-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Filtered Styled Manual
+    source_url: https://example.test/filtered-styled-manual.pdf
+    citation_path: us-test/manual/filtered-styled
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^BEGIN RULE TEXT$'
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-filtered-styled-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/manual/filtered-styled",
+        "us-test/manual/filtered-styled/4.13",
+    ]
+    assert records[1].body == "The seven-day timeframe applies."
+
+
+def test_complete_bold_pdf_heading_does_not_consume_bold_body(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "bold-body-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 14.14 Provider Determination.", fontname="tibi")
+    page.insert_text((72, 96), "A. The agency must ensure provider responsibility", fontname="tibo")
+    page.insert_text((72, 120), "to determine whether an individual is ill suited.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: bold-body-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Bold Body Manual
+    source_url: https://example.test/bold-body-manual.pdf
+    citation_path: us-test/manual/bold-body
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-bold-body-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "14.14 Provider Determination."
+    assert records[1].body == (
+        "A. The agency must ensure provider responsibility to determine whether an "
+        "individual is ill suited."
+    )
+
+
 def test_extract_labeled_pdf_sections_supports_label_heading_next_line(
     tmp_path: Path,
 ) -> None:
@@ -3357,3 +4407,81 @@ documents:
     ]
     assert records[1].heading == "9001 Legal Base"
     assert "9060 [273.10(d)(7)] Continuation text." in (records[3].body or "")
+
+
+def test_labeled_sections_slugify_publisher_section_ids_into_grammar_safe_paths(
+    tmp_path: Path,
+) -> None:
+    """Parenthesised and dashed publisher labels become grammar-safe segments.
+
+    The publisher label is kept verbatim in ``section_label`` and, when the
+    path segment had to change, in ``publisher_section_id``.
+    """
+    html_path = tmp_path / "rcsa-income-tax.html"
+    html_path.write_text(
+        """
+<html><body><div class="content">
+  <p>Sec. 12-701(a)(1)-1. Resident of this state.</p>
+  <p>Definition body.</p>
+  <p>Sec. 12-740(a)-1. Returns; who must file.</p>
+  <p>Filing body.</p>
+  <p>Sec. 12-742-1. Plain section.</p>
+  <p>Plain body.</p>
+  <p>Sec. 12-743–1. Dashed section.</p>
+  <p>Dashed body.</p>
+</div></body></html>
+"""
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        rf"""
+documents:
+  - source_id: rcsa-income-tax
+    jurisdiction: us-ct
+    document_class: regulation
+    title: RCSA Title 12 Income Tax
+    source_url: https://example.test/rcsa-income-tax.html
+    citation_path: us-ct/regulation/rcsa/12/income-tax
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: .content
+      segmentation: labeled_sections
+      normalize_citation_segment_dashes: true
+      section_heading_pattern: '^Sec\.\s*(?P<label>12-7\d\d[^\s]*?[-–]\d+)\.\s*(?P<heading>.*)$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-09-14-slug-test",
+    )
+
+    records = load_provisions(report.provisions_path)
+    sections = [record for record in records if record.kind == "section"]
+    assert [record.citation_path for record in sections] == [
+        "us-ct/regulation/rcsa/12/income-tax/12-701-a-1-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-740-a-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-742-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-743-1",
+    ]
+    assert [record.metadata["section_label"] for record in sections] == [
+        "12-701(a)(1)-1",
+        "12-740(a)-1",
+        "12-742-1",
+        "12-743–1",
+    ]
+    assert [record.metadata.get("publisher_section_id") for record in sections] == [
+        "12-701(a)(1)-1",
+        "12-740(a)-1",
+        None,
+        "12-743–1",
+    ]
+    assert all(record.parent_citation_path == records[0].citation_path for record in sections)
+    inventory = load_source_inventory(report.inventory_path)
+    assert [item.citation_path for item in inventory[1:]] == [
+        record.citation_path for record in sections
+    ]
+    assert inventory[2].metadata["publisher_section_id"] == "12-740(a)-1"

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup.json",
+      "sha256": "d9a82a18e29e3a5faa427e1711b732fd0f8d35844ab2a00d52f0487a34ca9e80"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup.json",
+      "sha256": "011887391518f2efc5df456b1d9aee4710ada49a60ef2ff9ce07e7256cc95911"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup.jsonl",
+      "sha256": "17a04cf75357c52e9f54cbbf6273d89384e2fd07a0a62d6e609f1490c62c6032"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup/uslm/usc12.xml",
+      "sha256": "cba368e847a44fa7eb82ce7a2aa9b84adad8e7e7593bcab1dd5a90d3ca5cab9f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "948db7f547305a28cbaf957d74c01968d2cf1e17",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "ops/strict-cutover re-version for collision-free us-rulespec-2026-07-18 binding (rulespec-us#911)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 463,
+    "missing_count": 0,
+    "provision_count": 463,
+    "source_count": 463
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-18T18:35:00.074909+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mTAytW8ZwLg7GZVu4UW3CSst5JxtTRg8QC3NvyywD5Z7ti9FCjazzw4tm6fFEAfqtgWfZXbkgrYvqWEd9m8eCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup"
+}

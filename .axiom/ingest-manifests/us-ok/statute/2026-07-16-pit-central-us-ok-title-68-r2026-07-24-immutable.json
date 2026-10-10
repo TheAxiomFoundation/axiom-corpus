@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/statute/2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable.json",
+      "sha256": "add484da926a1ad31e5f179e5edf8c6126fb1ae1d9aac6440513665f73e6f650"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/statute/2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable.json",
+      "sha256": "0d3cfd03aee20347aac2a7bded213c09f124ba84b5b946e3f4dd829aaf36f9a7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/statute/2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable.jsonl",
+      "sha256": "bdb4ad4c112fcd5f5a48628ec06322e0f9cbd0788c3a4875ebabbe599c3727d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/statute/2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable/oklahoma-statutes-rtf/os68.rtf",
+      "sha256": "c3201edf756a861414f1467e491558b7983d36a186e122382707699777e9d0c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/statute/2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable/oklahoma-statutes-rtf-index/index.html",
+      "sha256": "a4210dd1d243be75fc5b08681129a3de8160fffbc74b4a279cebaf47e7bed55c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3e6fe6997a0a172f18a82cff39dc415e439f7fa5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "reversion_expression_dates.py: create immutable successor for corrected Oklahoma Title 68 scope after released-scope mutation was detected"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1841,
+    "missing_count": 0,
+    "provision_count": 1841,
+    "source_count": 1841
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T06:01:30.408083+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lZO3r3OPL1kX8L7ugtvDl3O0P8JVgYm05Q0zkAelZh1v4iZHmKQCnvusrVbClW5XcVCKyDBtyNioCYjAzTrXBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable"
+}

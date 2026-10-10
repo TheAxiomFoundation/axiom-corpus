@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx.json",
+      "sha256": "72558cc8250bdf9eb2cd8f68ddd02b58edf4d1e9169b4bc93234e34f66c71089"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx.json",
+      "sha256": "3881c6cff9dd31b23e4ff01753e0ded27b8c24f84aa2f4dfe710953470029b11"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx.jsonl",
+      "sha256": "a8e29620e8050ea6f9b58c845adad85cb3df128789cf3e506e60a1ef32c82975"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx/official-documents/us-tx-w6-hhsc-mepd-and-tw-bulletin-24-12.pdf",
+      "sha256": "d6840276e2201aea908496151040f878c1eed291febbd4e53932d39357ff6826"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx/official-documents/us-tx-w6-twc-child-care-and-early-learning-program.html",
+      "sha256": "004f49c2d22896ac4252e37ad0b9234b19e90e78557555a8f70d5d3e5394be51"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx/official-documents/us-tx-w6-twc-workforce-development-board-directory.pdf",
+      "sha256": "656f26daa56f2fb325eacc88e22ae7fef5dc19eadbcbe74a4793a013a1d1c153"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/guidance/2026-10-06-w6-tanf-ccdf-guidance-tx/official-documents/us-tx-w6-workforce-solutions-panhandle-child-care-for-parents.html",
+      "sha256": "390106ad7d523fa1e5524169ec953529b0c92a7318b5f3deaf9621307b1bfeef"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 47,
+    "missing_count": 0,
+    "provision_count": 47,
+    "source_count": 47
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:59:01.681272+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lXBitH0HQJip9EJ/uncC0SI8T4juaBKjna09bzQPRt0XV73f3rS6cfKqZYbj6DVqCsZLitHfx5t8w91yC/KDDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-tx"
+}

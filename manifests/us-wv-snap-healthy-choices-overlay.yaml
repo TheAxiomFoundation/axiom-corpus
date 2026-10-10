@@ -1,0 +1,25 @@
+documents:
+  - source_id: wv-bfa-snap-healthy-choices-pause-2026-07-10
+    jurisdiction: us-wv
+    document_class: manual
+    citation_path: us-wv/manual/bfa/snap-healthy-choices-pause
+    title: West Virginia SNAP Healthy Choices Waiver Pause
+    source_url: https://bfa.wv.gov/article/west-virginia-department-human-services-announces-pause-snap-healthy-choices-waiver
+    source_format: html
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-10"
+    extraction:
+      html_content_selector: .block-field-blocknodearticlebody .field--name-body
+    metadata:
+      primary_source: true
+      source_authority: West Virginia Department of Human Services
+      issuing_bureau: West Virginia Bureau for Family Assistance
+      document_subtype: policy_update_notice
+      program: SNAP
+      policy_effective_date: "2026-07-10"
+      policy_effective_date_note: Effective immediately on publication.
+      supersedes_manual_sections:
+        - "1.4.20"
+        - "16.3"
+      source_discovery_group: us-wv/manual/snap-policy-overlay
+      discovered_via: manual-review:state-snap-manual-agent-queue

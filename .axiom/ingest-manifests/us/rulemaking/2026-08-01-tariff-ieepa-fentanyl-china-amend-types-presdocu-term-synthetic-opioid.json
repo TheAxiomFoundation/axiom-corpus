@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid.json",
+      "sha256": "8917ea23ac38c63ff2b6e0202bd25d891de33e97aba42c1d2a5d3ecddf51d332"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid.json",
+      "sha256": "1021d0ca6e2e93fea94bf9362dcac57f1570ff248d9148843f6c370a18a1ce3c"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid.jsonl",
+      "sha256": "f5810e064989c7b00bd99217356972c14080c897e602211f7e4381d4ed424d45"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid/federal-register/api/documents-page-1.json",
+      "sha256": "3a1da56eff4254b796e0e439e679b1fb70d2e68f52244acf78f3810d66f0c162"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid/federal-register/documents/2025-02512.json",
+      "sha256": "89246a4dd1b1c2ebb715307e177771e4e5585ca3cce9570e2bb2f8008c7a2146"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid/federal-register/documents/2025-02512.txt",
+      "sha256": "f3085e6c9c3b25d5ad4df967973e0ec40871230e4e8e7cd79707029f89b54467"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-fentanyl-china-amend --start-date 2025-02-11 --document-type PRESDOCU --term \"synthetic opioid\" --source-as-of 2026-08-01 --expression-date 2025-02-11"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:39.466668+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7XdMf/wgmN+o8ouby47s6rZRi5C3KuQDZIik1fgEldtq7MKYLg/ID5UntDd4J3uB2Rewjw0TY6DuCrFifrxmCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-fentanyl-china-amend-types-presdocu-term-synthetic-opioid"
+}

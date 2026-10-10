@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/policy/2026-09-10.json",
+      "sha256": "f3bbb04a378df64d2be5ec64f184916d0188cda526bb69c6149d4bd5aa7899d4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/policy/2026-09-10.json",
+      "sha256": "56319495228607a002cd037b17f275f501a37133f0bb06a52681a0dfe93ca99c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/policy/2026-09-10.jsonl",
+      "sha256": "c2cb3063ad11e392580659ea8522cc6099941fabce0283062c9469e08b712f5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/policy/2026-09-10/official-documents/us-ny-acf-liheap-plan-fy2026.pdf",
+      "sha256": "6120c675f0b7b06c0f3be0cbbef29b498a91dcaf9ab55f120aad1cbc203f1b08"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-ny-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T22:26:44.768513+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FuT9xwC5g4TBdBHPwWIT1xwB4WZxpsSSpf0eetdEMeOvhba2zpuJmkmAeU6unzMKcj25fstZzuaWMuLSTGQ3Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

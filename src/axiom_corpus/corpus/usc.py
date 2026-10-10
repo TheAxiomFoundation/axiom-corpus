@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import io
 import re
-from collections.abc import Iterator
+import zipfile
+from collections.abc import Iterable, Iterator
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from typing import Any, cast
@@ -95,6 +97,15 @@ _BODY_BLOCK_TAGS = {
     "chapeau",
     "table",
 }
+_NESTED_PROVISION_KINDS = {
+    "subsection": "subsection",
+    "paragraph": "paragraph",
+    "subparagraph": "subparagraph",
+    "clause": "clause",
+    "subclause": "subclause",
+    "item": "item",
+    "subitem": "subitem",
+}
 
 
 @dataclass(frozen=True)
@@ -105,7 +116,9 @@ class UscSection:
     heading: str | None
     body: str
     references_to: tuple[str, ...]
+    status: str | None = None
     subsections: tuple[UscSubsection, ...] = ()
+    descendants: tuple[UscSubsection | UscNestedProvision, ...] = ()
 
     @property
     def citation_path(self) -> str:
@@ -122,6 +135,7 @@ class UscSubsection:
     body: str
     references_to: tuple[str, ...]
     paragraphs: tuple[UscParagraph, ...] = ()
+    descendants: tuple[UscParagraph | UscNestedProvision, ...] = ()
 
     @property
     def citation_path(self) -> str:
@@ -138,6 +152,7 @@ class UscParagraph:
     heading: str | None
     body: str
     references_to: tuple[str, ...]
+    children: tuple[UscNestedProvision, ...] = ()
 
     @property
     def citation_path(self) -> str:
@@ -145,6 +160,39 @@ class UscParagraph:
             f"us/statute/{self.title}/{self.section}/"
             f"{self.subsection}/{self.label}"
         )
+
+
+@dataclass(frozen=True)
+class UscNestedProvision:
+    title: str
+    section: str
+    labels: tuple[str, ...]
+    kinds: tuple[str, ...]
+    kind: str
+    identifier: str | None
+    heading: str | None
+    body: str
+    references_to: tuple[str, ...]
+    children: tuple[UscNestedProvision, ...] = ()
+
+    def __post_init__(self) -> None:
+        if (
+            not self.kinds
+            or len(self.kinds) != len(self.labels)
+            or self.kind != self.kinds[-1]
+        ):
+            raise ValueError("USC descendant kinds must align with labels")
+
+    @property
+    def citation_path(self) -> str:
+        return f"us/statute/{self.title}/{self.section}/{'/'.join(self.labels)}"
+
+    @property
+    def parent_citation_path(self) -> str:
+        section_path = f"us/statute/{self.title}/{self.section}"
+        if len(self.labels) == 1:
+            return section_path
+        return f"{section_path}/{'/'.join(self.labels[:-1])}"
 
 
 @dataclass(frozen=True)
@@ -223,6 +271,7 @@ def _source_artifact_bytes(
     title: str,
     allowed_citation_paths: set[str] | None,
 ) -> bytes:
+    """Build a legacy derived excerpt; canonical extraction must retain raw bytes."""
     if allowed_citation_paths is None:
         return xml_content.encode("utf-8")
 
@@ -362,13 +411,15 @@ def build_usc_inventory_from_xml(
     source_download_url: str | None = None,
     limit: int | None = None,
     allowed_citation_paths: set[str] | None = None,
+    source_path: str | None = None,
 ) -> UscInventory:
     document = parse_uslm_title(xml_content, title=title)
-    source_path = (
-        _usc_source_key(run_id, document.title)
-        if run_id is not None
-        else _usc_source_relative_name(document.title)
-    )
+    if source_path is None:
+        source_path = (
+            _usc_source_key(run_id, document.title)
+            if run_id is not None
+            else _usc_source_relative_name(document.title)
+        )
     title_item = SourceInventoryItem(
         citation_path=document.citation_path,
         source_url=_usc_title_url(document.title),
@@ -378,8 +429,17 @@ def build_usc_inventory_from_xml(
         metadata=_title_metadata(document, source_download_url),
     )
     items: list[SourceInventoryItem] = []
+    seen_citation_paths: set[str] = set()
+
+    def extend_unique(candidates: Iterable[SourceInventoryItem]) -> None:
+        for item in candidates:
+            if item.citation_path in seen_citation_paths:
+                continue
+            seen_citation_paths.add(item.citation_path)
+            items.append(item)
+
     if allowed_citation_paths is None or document.citation_path in allowed_citation_paths:
-        items.append(title_item)
+        extend_unique((title_item,))
     for section in document.sections:
         section_allowed = (
             allowed_citation_paths is None
@@ -389,78 +449,56 @@ def build_usc_inventory_from_xml(
             allowed_citation_paths is not None
             and not section_allowed
             and not any(
-                _subsection_or_descendant_allowed(
-                    subsection, allowed_citation_paths=allowed_citation_paths
+                _section_descendant_allowed(
+                    descendant,
+                    allowed_citation_paths=allowed_citation_paths,
                 )
-                for subsection in section.subsections
+                for descendant in section.descendants
             )
         ):
             continue
         if section_allowed:
-            items.append(
-                SourceInventoryItem(
-                    citation_path=section.citation_path,
-                    source_url=_usc_section_url(section.title, section.section),
-                    source_path=source_path,
-                    source_format=USLM_SOURCE_FORMAT,
-                    sha256=source_sha256,
-                    metadata=_section_metadata(section, document, source_download_url),
+            extend_unique(
+                (
+                    SourceInventoryItem(
+                        citation_path=section.citation_path,
+                        source_url=_usc_section_url(section.title, section.section),
+                        source_path=source_path,
+                        source_format=USLM_SOURCE_FORMAT,
+                        sha256=source_sha256,
+                        metadata=_section_metadata(
+                            section, document, source_download_url
+                        ),
+                    ),
                 )
             )
-        for subsection in section.subsections:
-            subsection_allowed = (
-                allowed_citation_paths is None
-                or section_allowed
-                or subsection.citation_path in allowed_citation_paths
-            )
-            if (
-                allowed_citation_paths is not None
-                and not subsection_allowed
-                and not any(
-                    paragraph.citation_path in allowed_citation_paths
-                    for paragraph in subsection.paragraphs
+        for descendant in section.descendants:
+            if isinstance(descendant, UscSubsection):
+                extend_unique(
+                    _subsection_inventory_items(
+                        descendant,
+                        document=document,
+                        section=section,
+                        source_path=source_path,
+                        source_sha256=source_sha256,
+                        source_download_url=source_download_url,
+                        allowed_citation_paths=allowed_citation_paths,
+                        ancestor_allowed=section_allowed,
+                    )
                 )
-            ):
                 continue
-            if subsection_allowed:
-                items.append(
-                    SourceInventoryItem(
-                        citation_path=subsection.citation_path,
-                        source_url=_usc_section_url(section.title, section.section),
-                        source_path=source_path,
-                        source_format=USLM_SOURCE_FORMAT,
-                        sha256=source_sha256,
-                        metadata=_subsection_metadata(
-                            subsection,
-                            section,
-                            document,
-                            source_download_url,
-                        ),
-                    )
+            extend_unique(
+                _nested_inventory_items(
+                    descendant,
+                    document=document,
+                    section=section,
+                    source_path=source_path,
+                    source_sha256=source_sha256,
+                    source_download_url=source_download_url,
+                    allowed_citation_paths=allowed_citation_paths,
+                    ancestor_allowed=section_allowed,
                 )
-            for paragraph in subsection.paragraphs:
-                if (
-                    allowed_citation_paths is not None
-                    and not subsection_allowed
-                    and paragraph.citation_path not in allowed_citation_paths
-                ):
-                    continue
-                items.append(
-                    SourceInventoryItem(
-                        citation_path=paragraph.citation_path,
-                        source_url=_usc_section_url(section.title, section.section),
-                        source_path=source_path,
-                        source_format=USLM_SOURCE_FORMAT,
-                        sha256=source_sha256,
-                        metadata=_paragraph_metadata(
-                            paragraph,
-                            subsection,
-                            section,
-                            document,
-                            source_download_url,
-                        ),
-                    )
-                )
+            )
         if limit is not None and len(items) >= limit:
             break
     return UscInventory(
@@ -468,6 +506,209 @@ def build_usc_inventory_from_xml(
         title_count=1,
         section_count=len(document.sections),
     )
+
+
+def _subsection_inventory_items(
+    subsection: UscSubsection,
+    *,
+    document: UscTitleDocument,
+    section: UscSection,
+    source_path: str,
+    source_sha256: str | None,
+    source_download_url: str | None,
+    allowed_citation_paths: set[str] | None,
+    ancestor_allowed: bool,
+) -> list[SourceInventoryItem]:
+    subsection_allowed = (
+        allowed_citation_paths is None
+        or ancestor_allowed
+        or subsection.citation_path in allowed_citation_paths
+    )
+    if (
+        allowed_citation_paths is not None
+        and not subsection_allowed
+        and not any(
+            _subsection_descendant_allowed(
+                descendant,
+                allowed_citation_paths=allowed_citation_paths,
+            )
+            for descendant in subsection.descendants
+        )
+    ):
+        return []
+
+    items: list[SourceInventoryItem] = []
+    if subsection_allowed:
+        items.append(
+            SourceInventoryItem(
+                citation_path=subsection.citation_path,
+                source_url=_usc_section_url(section.title, section.section),
+                source_path=source_path,
+                source_format=USLM_SOURCE_FORMAT,
+                sha256=source_sha256,
+                metadata=_subsection_metadata(
+                    subsection,
+                    section,
+                    document,
+                    source_download_url,
+                ),
+            )
+        )
+    for descendant in subsection.descendants:
+        if isinstance(descendant, UscParagraph):
+            items.extend(
+                _paragraph_inventory_items(
+                    descendant,
+                    subsection=subsection,
+                    document=document,
+                    section=section,
+                    source_path=source_path,
+                    source_sha256=source_sha256,
+                    source_download_url=source_download_url,
+                    allowed_citation_paths=allowed_citation_paths,
+                    ancestor_allowed=subsection_allowed,
+                )
+            )
+            continue
+        items.extend(
+            _nested_inventory_items(
+                descendant,
+                document=document,
+                section=section,
+                source_path=source_path,
+                source_sha256=source_sha256,
+                source_download_url=source_download_url,
+                allowed_citation_paths=allowed_citation_paths,
+                ancestor_allowed=subsection_allowed,
+            )
+        )
+    return items
+
+
+def _paragraph_inventory_items(
+    paragraph: UscParagraph,
+    *,
+    subsection: UscSubsection,
+    document: UscTitleDocument,
+    section: UscSection,
+    source_path: str,
+    source_sha256: str | None,
+    source_download_url: str | None,
+    allowed_citation_paths: set[str] | None,
+    ancestor_allowed: bool,
+) -> list[SourceInventoryItem]:
+    paragraph_allowed = (
+        allowed_citation_paths is None
+        or ancestor_allowed
+        or paragraph.citation_path in allowed_citation_paths
+    )
+    if (
+        allowed_citation_paths is not None
+        and not paragraph_allowed
+        and not any(
+            _nested_or_descendant_allowed(
+                child,
+                allowed_citation_paths=allowed_citation_paths,
+            )
+            for child in paragraph.children
+        )
+    ):
+        return []
+
+    items: list[SourceInventoryItem] = []
+    if paragraph_allowed:
+        items.append(
+            SourceInventoryItem(
+                citation_path=paragraph.citation_path,
+                source_url=_usc_section_url(section.title, section.section),
+                source_path=source_path,
+                source_format=USLM_SOURCE_FORMAT,
+                sha256=source_sha256,
+                metadata=_paragraph_metadata(
+                    paragraph,
+                    subsection,
+                    section,
+                    document,
+                    source_download_url,
+                ),
+            )
+        )
+    for child in paragraph.children:
+        items.extend(
+            _nested_inventory_items(
+                child,
+                document=document,
+                section=section,
+                source_path=source_path,
+                source_sha256=source_sha256,
+                source_download_url=source_download_url,
+                allowed_citation_paths=allowed_citation_paths,
+                ancestor_allowed=paragraph_allowed,
+            )
+        )
+    return items
+
+
+def _nested_inventory_items(
+    provision: UscNestedProvision,
+    *,
+    document: UscTitleDocument,
+    section: UscSection,
+    source_path: str,
+    source_sha256: str | None,
+    source_download_url: str | None,
+    allowed_citation_paths: set[str] | None,
+    ancestor_allowed: bool,
+) -> list[SourceInventoryItem]:
+    provision_allowed = (
+        allowed_citation_paths is None
+        or ancestor_allowed
+        or provision.citation_path in allowed_citation_paths
+    )
+    if (
+        allowed_citation_paths is not None
+        and not provision_allowed
+        and not any(
+            _nested_or_descendant_allowed(
+                child,
+                allowed_citation_paths=allowed_citation_paths,
+            )
+            for child in provision.children
+        )
+    ):
+        return []
+
+    items: list[SourceInventoryItem] = []
+    if provision_allowed:
+        items.append(
+            SourceInventoryItem(
+                citation_path=provision.citation_path,
+                source_url=_usc_section_url(provision.title, provision.section),
+                source_path=source_path,
+                source_format=USLM_SOURCE_FORMAT,
+                sha256=source_sha256,
+                metadata=_nested_metadata(
+                    provision,
+                    section,
+                    document,
+                    source_download_url,
+                ),
+            )
+        )
+    for child in provision.children:
+        items.extend(
+            _nested_inventory_items(
+                child,
+                document=document,
+                section=section,
+                source_path=source_path,
+                source_sha256=source_sha256,
+                source_download_url=source_download_url,
+                allowed_citation_paths=allowed_citation_paths,
+                ancestor_allowed=provision_allowed,
+            )
+        )
+    return items
 
 
 def iter_usc_title_provisions(
@@ -484,6 +725,14 @@ def iter_usc_title_provisions(
     document = parse_uslm_title(xml_content, title=title)
     source_as_of_text = source_as_of or document.created_date or version
     expression_date_text = expression_date or source_as_of_text
+    emitted_citation_paths: set[str] = set()
+
+    def unseen(record: ProvisionRecord) -> bool:
+        if record.citation_path in emitted_citation_paths:
+            return False
+        emitted_citation_paths.add(record.citation_path)
+        return True
+
     title_record = _title_provision(
         document,
         version=version,
@@ -492,7 +741,10 @@ def iter_usc_title_provisions(
         expression_date=expression_date_text,
         source_download_url=source_download_url,
     )
-    if allowed_citation_paths is None or title_record.citation_path in allowed_citation_paths:
+    if (
+        allowed_citation_paths is None
+        or title_record.citation_path in allowed_citation_paths
+    ) and unseen(title_record):
         yield title_record
 
     for section in document.sections:
@@ -504,15 +756,16 @@ def iter_usc_title_provisions(
             allowed_citation_paths is not None
             and not section_allowed
             and not any(
-                _subsection_or_descendant_allowed(
-                    subsection, allowed_citation_paths=allowed_citation_paths
+                _section_descendant_allowed(
+                    descendant,
+                    allowed_citation_paths=allowed_citation_paths,
                 )
-                for subsection in section.subsections
+                for descendant in section.descendants
             )
         ):
             continue
         if section_allowed:
-            yield _section_provision(
+            section_record = _section_provision(
                 section,
                 document,
                 version=version,
@@ -521,83 +774,307 @@ def iter_usc_title_provisions(
                 expression_date=expression_date_text,
                 source_download_url=source_download_url,
             )
-        for subsection in section.subsections:
-            subsection_allowed = (
-                allowed_citation_paths is None
-                or section_allowed
-                or subsection.citation_path in allowed_citation_paths
+            if unseen(section_record):
+                yield section_record
+        for descendant in section.descendants:
+            if isinstance(descendant, UscSubsection):
+                records = _iter_subsection_provisions(
+                    descendant,
+                    document=document,
+                    section=section,
+                    version=version,
+                    source_path=source_path,
+                    source_as_of=source_as_of_text,
+                    expression_date=expression_date_text,
+                    source_download_url=source_download_url,
+                    allowed_citation_paths=allowed_citation_paths,
+                    ancestor_allowed=section_allowed,
+                )
+            else:
+                records = _iter_nested_provisions_as_records(
+                    descendant,
+                    document=document,
+                    section=section,
+                    version=version,
+                    source_path=source_path,
+                    source_as_of=source_as_of_text,
+                    expression_date=expression_date_text,
+                    source_download_url=source_download_url,
+                    allowed_citation_paths=allowed_citation_paths,
+                    ancestor_allowed=section_allowed,
+                )
+            for record in records:
+                if unseen(record):
+                    yield record
+
+
+def _iter_subsection_provisions(
+    subsection: UscSubsection,
+    *,
+    document: UscTitleDocument,
+    section: UscSection,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    source_download_url: str | None,
+    allowed_citation_paths: set[str] | None,
+    ancestor_allowed: bool,
+) -> Iterator[ProvisionRecord]:
+    subsection_allowed = (
+        allowed_citation_paths is None
+        or ancestor_allowed
+        or subsection.citation_path in allowed_citation_paths
+    )
+    if (
+        allowed_citation_paths is not None
+        and not subsection_allowed
+        and not any(
+            _subsection_descendant_allowed(
+                descendant,
+                allowed_citation_paths=allowed_citation_paths,
             )
-            if (
-                allowed_citation_paths is not None
-                and not subsection_allowed
-                and not any(
-                    paragraph.citation_path in allowed_citation_paths
-                    for paragraph in subsection.paragraphs
-                )
-            ):
-                continue
-            if subsection_allowed:
-                yield _subsection_provision(
-                    subsection,
-                    section,
-                    document,
-                    version=version,
-                    source_path=source_path,
-                    source_as_of=source_as_of_text,
-                    expression_date=expression_date_text,
-                    source_download_url=source_download_url,
-                )
-            for paragraph in subsection.paragraphs:
-                if (
-                    allowed_citation_paths is not None
-                    and not subsection_allowed
-                    and paragraph.citation_path not in allowed_citation_paths
-                ):
-                    continue
-                yield _paragraph_provision(
-                    paragraph,
-                    subsection,
-                    section,
-                    document,
-                    version=version,
-                    source_path=source_path,
-                    source_as_of=source_as_of_text,
-                    expression_date=expression_date_text,
-                    source_download_url=source_download_url,
-                )
+            for descendant in subsection.descendants
+        )
+    ):
+        return
+
+    if subsection_allowed:
+        yield _subsection_provision(
+            subsection,
+            section,
+            document,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            source_download_url=source_download_url,
+        )
+    for descendant in subsection.descendants:
+        if isinstance(descendant, UscParagraph):
+            yield from _iter_paragraph_provisions(
+                descendant,
+                subsection=subsection,
+                document=document,
+                section=section,
+                version=version,
+                source_path=source_path,
+                source_as_of=source_as_of,
+                expression_date=expression_date,
+                source_download_url=source_download_url,
+                allowed_citation_paths=allowed_citation_paths,
+                ancestor_allowed=subsection_allowed,
+            )
+            continue
+        yield from _iter_nested_provisions_as_records(
+            descendant,
+            document=document,
+            section=section,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            source_download_url=source_download_url,
+            allowed_citation_paths=allowed_citation_paths,
+            ancestor_allowed=subsection_allowed,
+        )
+
+
+def _iter_paragraph_provisions(
+    paragraph: UscParagraph,
+    *,
+    subsection: UscSubsection,
+    document: UscTitleDocument,
+    section: UscSection,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    source_download_url: str | None,
+    allowed_citation_paths: set[str] | None,
+    ancestor_allowed: bool,
+) -> Iterator[ProvisionRecord]:
+    paragraph_allowed = (
+        allowed_citation_paths is None
+        or ancestor_allowed
+        or paragraph.citation_path in allowed_citation_paths
+    )
+    if (
+        allowed_citation_paths is not None
+        and not paragraph_allowed
+        and not any(
+            _nested_or_descendant_allowed(
+                child,
+                allowed_citation_paths=allowed_citation_paths,
+            )
+            for child in paragraph.children
+        )
+    ):
+        return
+
+    if paragraph_allowed:
+        yield _paragraph_provision(
+            paragraph,
+            subsection,
+            section,
+            document,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            source_download_url=source_download_url,
+        )
+    for child in paragraph.children:
+        yield from _iter_nested_provisions_as_records(
+            child,
+            document=document,
+            section=section,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            source_download_url=source_download_url,
+            allowed_citation_paths=allowed_citation_paths,
+            ancestor_allowed=paragraph_allowed,
+        )
+
+
+def _iter_nested_provisions_as_records(
+    provision: UscNestedProvision,
+    *,
+    document: UscTitleDocument,
+    section: UscSection,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    source_download_url: str | None,
+    allowed_citation_paths: set[str] | None,
+    ancestor_allowed: bool,
+) -> Iterator[ProvisionRecord]:
+    provision_allowed = (
+        allowed_citation_paths is None
+        or ancestor_allowed
+        or provision.citation_path in allowed_citation_paths
+    )
+    if (
+        allowed_citation_paths is not None
+        and not provision_allowed
+        and not any(
+            _nested_or_descendant_allowed(
+                child,
+                allowed_citation_paths=allowed_citation_paths,
+            )
+            for child in provision.children
+        )
+    ):
+        return
+
+    if provision_allowed:
+        yield _nested_provision_record(
+            provision,
+            section,
+            document,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            source_download_url=source_download_url,
+        )
+    for child in provision.children:
+        yield from _iter_nested_provisions_as_records(
+            child,
+            document=document,
+            section=section,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            source_download_url=source_download_url,
+            allowed_citation_paths=allowed_citation_paths,
+            ancestor_allowed=provision_allowed,
+        )
+
+
+def read_uslm_zip(source_zip: str | Path) -> tuple[str, bytes, bytes]:
+    """Return ``(member_name, member_bytes, zip_bytes)`` for a single-member OLRC USLM zip.
+
+    The publisher's per-title release-point download holds exactly one ``usc<title>.xml``
+    member; anything else is refused so the retained zip is unambiguous provenance.
+    """
+    zip_path = Path(source_zip)
+    zip_bytes = zip_path.read_bytes()
+    with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
+        members = [name for name in archive.namelist() if not name.endswith("/")]
+        xml_members = [name for name in members if name.lower().endswith(".xml")]
+        if len(members) != 1 or len(xml_members) != 1:
+            raise ValueError(
+                f"{zip_path} must hold exactly one USLM XML member, found {members!r}"
+            )
+        return xml_members[0], archive.read(xml_members[0]), zip_bytes
+
+
+def _with_archive_member_metadata(metadata: dict[str, Any] | None, member: str) -> dict[str, Any]:
+    updated = dict(metadata or {})
+    updated["source_archive_member"] = member
+    return updated
 
 
 def extract_usc(
     store: CorpusArtifactStore,
     *,
     version: str,
-    source_xml: str | Path,
+    source_xml: str | Path | None = None,
+    source_zip: str | Path | None = None,
     title: str | int | None = None,
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
     source_download_url: str | None = None,
     limit: int | None = None,
     allowed_citation_paths: set[str] | None = None,
+    prior_release_point: bool = False,
 ) -> UscExtractReport:
-    source_xml_path = Path(source_xml)
-    source_bytes = source_xml_path.read_bytes()
-    xml_content = decode_uslm_bytes(source_bytes)
+    """Snapshot one USLM title and write its scoped inventory, provisions and coverage.
+
+    ``prior_release_point`` marks the source as a historical OLRC release point. Every
+    inventory item and provision row then takes ``source_download_url`` (the release
+    point's own download) as its ``source_url``, because the default per-section reader
+    URL always displays the current preliminary edition, not the text of this snapshot.
+    """
+    if (source_xml is None) == (source_zip is None):
+        raise ValueError("extract_usc takes exactly one of source_xml or source_zip")
+    if prior_release_point and not source_download_url:
+        raise ValueError(
+            "prior_release_point requires source_download_url (the release point download)"
+        )
+    archive_member: str | None = None
+    if source_zip is not None:
+        # Retain the publisher's zip byte-for-byte as the inventoried source and parse
+        # its sole member in memory; the member path is recorded in row metadata.
+        archive_member, member_bytes, source_bytes = read_uslm_zip(source_zip)
+        xml_content = decode_uslm_bytes(member_bytes)
+        source_relative_name = f"olrc/{Path(source_zip).name}"
+    else:
+        assert source_xml is not None
+        source_bytes = Path(source_xml).read_bytes()
+        xml_content = decode_uslm_bytes(source_bytes)
+        source_relative_name = None
     document = parse_uslm_title(xml_content, title=title)
     run_id = usc_run_id(version, document.title, limit)
-    source_relative_name = _usc_source_relative_name(document.title)
+    if source_relative_name is None:
+        source_relative_name = _usc_source_relative_name(document.title)
     source_artifact_path = store.source_path(
         "us",
         DocumentClass.STATUTE,
         run_id,
         source_relative_name,
     )
-    source_artifact_bytes = _source_artifact_bytes(
-        xml_content,
-        title=document.title,
-        allowed_citation_paths=allowed_citation_paths,
+    source_sha256 = store.write_bytes(source_artifact_path, source_bytes)
+    source_key = (
+        _usc_source_key(run_id, document.title)
+        if archive_member is None
+        else f"sources/us/{DocumentClass.STATUTE.value}/{run_id}/{source_relative_name}"
     )
-    source_sha256 = store.write_bytes(source_artifact_path, source_artifact_bytes)
-    source_key = _usc_source_key(run_id, document.title)
     inventory = build_usc_inventory_from_xml(
         xml_content,
         title=document.title,
@@ -606,10 +1083,20 @@ def extract_usc(
         source_download_url=source_download_url,
         limit=limit,
         allowed_citation_paths=allowed_citation_paths,
+        source_path=source_key,
     )
+    if archive_member is not None:
+        inventory = replace(
+            inventory,
+            items=tuple(
+                replace(item, metadata=_with_archive_member_metadata(item.metadata, archive_member))
+                for item in inventory.items
+            ),
+        )
     inventory_citation_paths = {item.citation_path for item in inventory.items}
     records = tuple(
-        iter_usc_title_provisions(
+        record
+        for record in iter_usc_title_provisions(
             xml_content,
             version=run_id,
             source_path=source_key,
@@ -623,7 +1110,19 @@ def extract_usc(
             source_download_url=source_download_url,
             allowed_citation_paths=inventory_citation_paths,
         )
+        if record.citation_path in inventory_citation_paths
     )
+    if archive_member is not None:
+        records = tuple(
+            replace(record, metadata=_with_archive_member_metadata(record.metadata, archive_member))
+            for record in records
+        )
+    if prior_release_point:
+        inventory = replace(
+            inventory,
+            items=tuple(replace(item, source_url=source_download_url) for item in inventory.items),
+        )
+        records = tuple(replace(record, source_url=source_download_url) for record in records)
     inventory_path = store.inventory_path("us", DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, inventory.items)
     provisions_path = store.provisions_path("us", DocumentClass.STATUTE, run_id)
@@ -700,7 +1199,8 @@ def extract_usc_directory(
         )
         allowed_citation_paths = {item.citation_path for item in inventory.items}
         records = tuple(
-            iter_usc_title_provisions(
+            record
+            for record in iter_usc_title_provisions(
                 xml_content,
                 version=run_id,
                 source_path=source_key,
@@ -710,6 +1210,7 @@ def extract_usc_directory(
                 source_download_url=source_download_url,
                 allowed_citation_paths=allowed_citation_paths,
             )
+            if record.citation_path in allowed_citation_paths
         )
         all_items.extend(inventory.items)
         all_records.extend(records)
@@ -944,6 +1445,21 @@ def _paragraph_label_from_identifier(
     return parts[1]
 
 
+def _nested_label_from_identifier(
+    identifier: str | None,
+    title: str,
+    section: str,
+    parent_labels: tuple[str, ...],
+) -> str | None:
+    prefix = f"/us/usc/t{title}/s{section}/"
+    if not identifier or not identifier.startswith(prefix):
+        return None
+    labels = tuple(part for part in identifier.removeprefix(prefix).split("/") if part)
+    if len(labels) != len(parent_labels) + 1 or labels[:-1] != parent_labels:
+        return None
+    return labels[-1]
+
+
 def _section_from_num(elem: ET.Element) -> str | None:
     num_text = _direct_child_text(elem, "num")
     match = _SECTION_NUM_RE.search(num_text or "")
@@ -972,8 +1488,8 @@ def _title_heading(root: ET.Element, title: str) -> str | None:
 
 
 def _iter_sections(root: ET.Element, title: str) -> Iterator[UscSection]:
-    seen: set[str] = set()
-    for elem in _iter_structural_sections(root):
+    seen: set[tuple[str, str | int]] = set()
+    for position, elem in enumerate(_iter_structural_sections(root)):
         identifier = elem.get("identifier")
         # Quoted amendatory text can contain nested ``section`` elements whose
         # printed number is prose such as ``Sec. “(a)``. Only fall back to the
@@ -986,10 +1502,11 @@ def _iter_sections(root: ET.Element, title: str) -> Iterator[UscSection]:
         if not section:
             continue
         section = section.strip()
-        citation_path = f"us/statute/{title}/{section}"
-        if citation_path in seen:
+        traversal_key = _source_traversal_key(elem, position)
+        if traversal_key in seen:
             continue
-        seen.add(citation_path)
+        seen.add(traversal_key)
+        descendants = tuple(_iter_section_descendants(elem, title, section))
         yield UscSection(
             title=title,
             section=section,
@@ -997,8 +1514,30 @@ def _iter_sections(root: ET.Element, title: str) -> Iterator[UscSection]:
             heading=_direct_child_text(elem, "heading"),
             body=_section_body(elem),
             references_to=_extract_usc_references(elem),
-            subsections=tuple(_iter_subsections(elem, title, section)),
+            status=elem.get("status"),
+            subsections=tuple(
+                descendant
+                for descendant in descendants
+                if isinstance(descendant, UscSubsection)
+            ),
+            descendants=descendants,
         )
+
+
+def _section_descendant_allowed(
+    descendant: UscSubsection | UscNestedProvision,
+    *,
+    allowed_citation_paths: set[str],
+) -> bool:
+    if isinstance(descendant, UscSubsection):
+        return _subsection_or_descendant_allowed(
+            descendant,
+            allowed_citation_paths=allowed_citation_paths,
+        )
+    return _nested_or_descendant_allowed(
+        descendant,
+        allowed_citation_paths=allowed_citation_paths,
+    )
 
 
 def _subsection_or_descendant_allowed(
@@ -1009,8 +1548,59 @@ def _subsection_or_descendant_allowed(
     if subsection.citation_path in allowed_citation_paths:
         return True
     return any(
-        paragraph.citation_path in allowed_citation_paths
-        for paragraph in subsection.paragraphs
+        _subsection_descendant_allowed(
+            descendant,
+            allowed_citation_paths=allowed_citation_paths,
+        )
+        for descendant in subsection.descendants
+    )
+
+
+def _subsection_descendant_allowed(
+    descendant: UscParagraph | UscNestedProvision,
+    *,
+    allowed_citation_paths: set[str],
+) -> bool:
+    if isinstance(descendant, UscParagraph):
+        return _paragraph_or_descendant_allowed(
+            descendant,
+            allowed_citation_paths=allowed_citation_paths,
+        )
+    return _nested_or_descendant_allowed(
+        descendant,
+        allowed_citation_paths=allowed_citation_paths,
+    )
+
+
+def _paragraph_or_descendant_allowed(
+    paragraph: UscParagraph,
+    *,
+    allowed_citation_paths: set[str],
+) -> bool:
+    if paragraph.citation_path in allowed_citation_paths:
+        return True
+    return any(
+        _nested_or_descendant_allowed(
+            child,
+            allowed_citation_paths=allowed_citation_paths,
+        )
+        for child in paragraph.children
+    )
+
+
+def _nested_or_descendant_allowed(
+    provision: UscNestedProvision,
+    *,
+    allowed_citation_paths: set[str],
+) -> bool:
+    if provision.citation_path in allowed_citation_paths:
+        return True
+    return any(
+        _nested_or_descendant_allowed(
+            child,
+            allowed_citation_paths=allowed_citation_paths,
+        )
+        for child in provision.children
     )
 
 
@@ -1019,30 +1609,80 @@ def _iter_subsections(
     title: str,
     section: str,
 ) -> Iterator[UscSubsection]:
-    seen: set[str] = set()
-    for elem in section_elem:
-        if _local_name(elem.tag) != "subsection":
+    for descendant in _iter_section_descendants(section_elem, title, section):
+        if isinstance(descendant, UscSubsection):
+            yield descendant
+
+
+def _iter_section_descendants(
+    section_elem: ET.Element,
+    title: str,
+    section: str,
+) -> Iterator[UscSubsection | UscNestedProvision]:
+    seen: set[tuple[str, str | int]] = set()
+    for position, elem in enumerate(section_elem):
+        tag = _local_name(elem.tag)
+        if tag == "subsection":
+            descendant: UscSubsection | UscNestedProvision | None = (
+                _subsection_from_element(elem, title, section)
+            )
+        elif tag in _NESTED_PROVISION_KINDS:
+            descendant = _nested_provision_from_element(
+                elem,
+                title=title,
+                section=section,
+                parent_labels=(),
+                parent_kinds=(),
+            )
+        else:
             continue
-        identifier = elem.get("identifier")
-        label = _subsection_label_from_identifier(
-            identifier, title, section
-        ) or _label_from_num(elem)
-        if not label:
+        traversal_key = _source_traversal_key(elem, position)
+        if descendant is None or traversal_key in seen:
             continue
-        citation_path = f"us/statute/{title}/{section}/{label}"
-        if citation_path in seen:
-            continue
-        seen.add(citation_path)
-        yield UscSubsection(
+        seen.add(traversal_key)
+        yield descendant
+
+
+def _subsection_from_element(
+    elem: ET.Element,
+    title: str,
+    section: str,
+) -> UscSubsection | None:
+    identifier = elem.get("identifier")
+    if identifier is not None:
+        label = _subsection_label_from_identifier(identifier, title, section)
+        if label is None:
+            raise ValueError(
+                f"USLM subsection identifier {identifier!r} contradicts "
+                f"title {title} section {section}"
+            )
+    else:
+        label = _label_from_num(elem)
+    if not label:
+        return None
+    descendants = tuple(
+        _iter_subsection_descendants(
+            elem,
             title=title,
             section=section,
-            label=label,
-            identifier=identifier,
-            heading=_direct_child_text(elem, "heading"),
-            body=_section_body(elem),
-            references_to=_extract_usc_references(elem),
-            paragraphs=tuple(_iter_paragraphs(elem, title, section, label)),
+            subsection=label,
         )
+    )
+    return UscSubsection(
+        title=title,
+        section=section,
+        label=label,
+        identifier=identifier,
+        heading=_direct_child_text(elem, "heading"),
+        body=_section_body(elem),
+        references_to=_extract_usc_references(elem),
+        paragraphs=tuple(
+            descendant
+            for descendant in descendants
+            if isinstance(descendant, UscParagraph)
+        ),
+        descendants=descendants,
+    )
 
 
 def _iter_paragraphs(
@@ -1051,30 +1691,181 @@ def _iter_paragraphs(
     section: str,
     subsection: str,
 ) -> Iterator[UscParagraph]:
-    seen: set[str] = set()
-    for elem in subsection_elem:
-        if _local_name(elem.tag) != "paragraph":
+    for descendant in _iter_subsection_descendants(
+        subsection_elem,
+        title=title,
+        section=section,
+        subsection=subsection,
+    ):
+        if isinstance(descendant, UscParagraph):
+            yield descendant
+
+
+def _iter_subsection_descendants(
+    subsection_elem: ET.Element,
+    *,
+    title: str,
+    section: str,
+    subsection: str,
+) -> Iterator[UscParagraph | UscNestedProvision]:
+    seen: set[tuple[str, str | int]] = set()
+    for position, elem in enumerate(subsection_elem):
+        tag = _local_name(elem.tag)
+        if tag == "paragraph":
+            descendant: UscParagraph | UscNestedProvision | None = (
+                _paragraph_from_element(
+                    elem,
+                    title=title,
+                    section=section,
+                    subsection=subsection,
+                )
+            )
+        elif tag in _NESTED_PROVISION_KINDS:
+            descendant = _nested_provision_from_element(
+                elem,
+                title=title,
+                section=section,
+                parent_labels=(subsection,),
+                parent_kinds=("subsection",),
+            )
+        else:
             continue
-        identifier = elem.get("identifier")
+        traversal_key = _source_traversal_key(elem, position)
+        if descendant is None or traversal_key in seen:
+            continue
+        seen.add(traversal_key)
+        yield descendant
+
+
+def _paragraph_from_element(
+    elem: ET.Element,
+    *,
+    title: str,
+    section: str,
+    subsection: str,
+) -> UscParagraph | None:
+    identifier = elem.get("identifier")
+    if identifier is not None:
         label = _paragraph_label_from_identifier(
-            identifier, title, section, subsection
-        ) or _label_from_num(elem)
-        if not label:
-            continue
-        citation_path = f"us/statute/{title}/{section}/{subsection}/{label}"
-        if citation_path in seen:
-            continue
-        seen.add(citation_path)
-        yield UscParagraph(
+            identifier,
+            title,
+            section,
+            subsection,
+        )
+        if label is None:
+            raise ValueError(
+                f"USLM paragraph identifier {identifier!r} contradicts "
+                f"title {title} section {section} subsection {subsection}"
+            )
+    else:
+        label = _label_from_num(elem)
+    if not label:
+        return None
+    return UscParagraph(
+        title=title,
+        section=section,
+        subsection=subsection,
+        label=label,
+        identifier=identifier,
+        heading=_direct_child_text(elem, "heading"),
+        body=_section_body(elem),
+        references_to=_extract_usc_references(elem),
+        children=tuple(
+            _iter_nested_provisions(
+                elem,
+                title=title,
+                section=section,
+                parent_labels=(subsection, label),
+                parent_kinds=("subsection", "paragraph"),
+            )
+        ),
+    )
+
+
+def _iter_nested_provisions(
+    parent_elem: ET.Element,
+    *,
+    title: str,
+    section: str,
+    parent_labels: tuple[str, ...],
+    parent_kinds: tuple[str, ...],
+) -> Iterator[UscNestedProvision]:
+    seen: set[tuple[str, str | int]] = set()
+    for position, elem in enumerate(parent_elem):
+        provision = _nested_provision_from_element(
+            elem,
             title=title,
             section=section,
-            subsection=subsection,
-            label=label,
-            identifier=identifier,
-            heading=_direct_child_text(elem, "heading"),
-            body=_section_body(elem),
-            references_to=_extract_usc_references(elem),
+            parent_labels=parent_labels,
+            parent_kinds=parent_kinds,
         )
+        traversal_key = _source_traversal_key(elem, position)
+        if provision is None or traversal_key in seen:
+            continue
+        seen.add(traversal_key)
+        yield provision
+
+
+def _source_traversal_key(
+    elem: ET.Element,
+    position: int,
+) -> tuple[str, str | int]:
+    source_id = elem.get("id")
+    if source_id:
+        return ("id", source_id)
+    return ("position", position)
+
+
+def _nested_provision_from_element(
+    elem: ET.Element,
+    *,
+    title: str,
+    section: str,
+    parent_labels: tuple[str, ...],
+    parent_kinds: tuple[str, ...],
+) -> UscNestedProvision | None:
+    kind = _NESTED_PROVISION_KINDS.get(_local_name(elem.tag))
+    if kind is None:
+        return None
+    identifier = elem.get("identifier")
+    if identifier is not None:
+        label = _nested_label_from_identifier(
+            identifier,
+            title,
+            section,
+            parent_labels,
+        )
+        if label is None:
+            raise ValueError(
+                f"USLM {kind} identifier {identifier!r} contradicts "
+                f"parent {'/'.join(parent_labels)}"
+            )
+    else:
+        label = _label_from_num(elem)
+    if not label:
+        return None
+    labels = (*parent_labels, label)
+    kinds = (*parent_kinds, kind)
+    return UscNestedProvision(
+        title=title,
+        section=section,
+        labels=labels,
+        kinds=kinds,
+        kind=kind,
+        identifier=identifier,
+        heading=_direct_child_text(elem, "heading"),
+        body=_section_body(elem),
+        references_to=_extract_usc_references(elem),
+        children=tuple(
+            _iter_nested_provisions(
+                elem,
+                title=title,
+                section=section,
+                parent_labels=labels,
+                parent_kinds=kinds,
+            )
+        ),
+    )
 
 
 def _section_body(elem: ET.Element) -> str:
@@ -1146,6 +1937,18 @@ def _paragraph_ordinal(section: str, subsection: str, label: str) -> int | None:
     return subsection_ordinal * 1000 + label_ordinal
 
 
+def _nested_ordinal(section: str, labels: tuple[str, ...]) -> int | None:
+    ordinal = _section_ordinal(section)
+    if ordinal is None:
+        return None
+    for label in labels:
+        label_ordinal = _label_ordinal(label)
+        if label_ordinal is None:
+            return None
+        ordinal = ordinal * 1000 + label_ordinal
+    return ordinal
+
+
 def _label_ordinal(label: str) -> int | None:
     if label.isdigit():
         return int(label)
@@ -1199,6 +2002,18 @@ def _usc_identifiers(
     return identifiers
 
 
+def _nested_identifiers(provision: UscNestedProvision) -> dict[str, str]:
+    identifiers = {
+        "usc:title": provision.title,
+        "usc:section": provision.section,
+    }
+    for kind, label in zip(provision.kinds, provision.labels, strict=True):
+        identifiers[f"usc:{kind}"] = label
+    if provision.identifier:
+        identifiers["uslm:identifier"] = provision.identifier
+    return identifiers
+
+
 def _title_metadata(
     document: UscTitleDocument,
     source_download_url: str | None,
@@ -1238,6 +2053,8 @@ def _section_metadata(
         metadata["publication_name"] = document.publication_name
     if section.identifier:
         metadata["identifier"] = section.identifier
+    if section.status:
+        metadata["status"] = section.status
     if source_download_url:
         metadata["source_download_url"] = source_download_url
     return metadata
@@ -1297,6 +2114,35 @@ def _paragraph_metadata(
         metadata["publication_name"] = document.publication_name
     if paragraph.identifier:
         metadata["identifier"] = paragraph.identifier
+    if source_download_url:
+        metadata["source_download_url"] = source_download_url
+    return metadata
+
+
+def _nested_metadata(
+    provision: UscNestedProvision,
+    section: UscSection,
+    document: UscTitleDocument,
+    source_download_url: str | None,
+) -> dict[str, Any]:
+    metadata: dict[str, Any] = {
+        "kind": provision.kind,
+        "title": provision.title,
+        "section": provision.section,
+        "title_heading": document.heading,
+        "section_heading": section.heading,
+        "heading": provision.heading,
+        "parent_citation_path": provision.parent_citation_path,
+        "references_to": list(provision.references_to),
+    }
+    for kind, label in zip(provision.kinds, provision.labels, strict=True):
+        metadata[kind] = label
+    if document.created_date:
+        metadata["created_date"] = document.created_date
+    if document.publication_name:
+        metadata["publication_name"] = document.publication_name
+    if provision.identifier:
+        metadata["identifier"] = provision.identifier
     if source_download_url:
         metadata["source_download_url"] = source_download_url
     return metadata
@@ -1471,6 +2317,52 @@ def _paragraph_provision(
         metadata=_paragraph_metadata(
             paragraph,
             subsection,
+            section,
+            document,
+            source_download_url,
+        ),
+    )
+
+
+def _nested_provision_record(
+    provision: UscNestedProvision,
+    section: UscSection,
+    document: UscTitleDocument,
+    *,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    source_download_url: str | None,
+) -> ProvisionRecord:
+    legal_identifier = (
+        f"{provision.title} U.S.C. § {provision.section}"
+        + "".join(f"({label})" for label in provision.labels)
+    )
+    return ProvisionRecord(
+        id=deterministic_provision_id(provision.citation_path),
+        jurisdiction="us",
+        document_class=DocumentClass.STATUTE.value,
+        citation_path=provision.citation_path,
+        citation_label=legal_identifier,
+        heading=provision.heading,
+        body=provision.body,
+        version=version,
+        source_url=_usc_section_url(provision.title, provision.section),
+        source_path=source_path,
+        source_id=provision.identifier,
+        source_format=USLM_SOURCE_FORMAT,
+        source_as_of=source_as_of,
+        expression_date=expression_date,
+        parent_citation_path=provision.parent_citation_path,
+        parent_id=deterministic_provision_id(provision.parent_citation_path),
+        level=1 + len(provision.labels),
+        ordinal=_nested_ordinal(provision.section, provision.labels),
+        kind=provision.kind,
+        legal_identifier=legal_identifier,
+        identifiers=_nested_identifiers(provision),
+        metadata=_nested_metadata(
+            provision,
             section,
             document,
             source_download_url,

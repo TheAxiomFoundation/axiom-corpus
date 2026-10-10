@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-autos-types-presdocu-term-automobiles.json",
+      "sha256": "c369b0b5ebb8e4c06b9a68a4a430ba08b0edc35d054f78dac123763f4de4494c"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-autos-types-presdocu-term-automobiles.json",
+      "sha256": "ebfdcfc2e1ac87e6c9ca054cea6b53cf4e7e69cc5039d952aa8344fb18047eac"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-autos-types-presdocu-term-automobiles.jsonl",
+      "sha256": "7ad1da648fc60fa781693876bf618476da545f77cbf516db8bc1436dffbcd3db"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-autos-types-presdocu-term-automobiles/federal-register/api/documents-page-1.json",
+      "sha256": "745ddbb03e90dcc7a3c4c46034ef26efaa14b95b0ae65912c24150a19f980b40"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-autos-types-presdocu-term-automobiles/federal-register/documents/2025-05930.json",
+      "sha256": "13a68fd34b83c17dbbdaff792c1dd7401cfdfe339c6ad472550dd3d51842b8a9"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-autos-types-presdocu-term-automobiles/federal-register/documents/2025-05930.txt",
+      "sha256": "877488e58aa7859458614bffaa63fd6c1a4d2e9341283f8a7c5e5af78929123e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-autos --start-date 2025-04-03 --document-type PRESDOCU --term \"automobiles\" --source-as-of 2026-08-01 --expression-date 2025-04-03"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:15.096625+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z29vd1wgQ9RBu5lXwXlOi1QTG0wjIIB4p2mcpIOp8ky+6mcEIY2LhSeWXsRnxRTA1S86UibAJMLwV7QoVClsBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-autos-types-presdocu-term-automobiles"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-north-lincolnshire/manual/2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027.json",
+      "sha256": "6b0682d8ffab8920e144ad94a19e82bca1571ee61c9faa583aadedd877382dc9"
+    },
+    {
+      "path": "data/corpus/inventory/uk-north-lincolnshire/manual/2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027.json",
+      "sha256": "aa9ed93eb2cdc47f9f2bc244a71e6537d7c8b8498ec25bd4d24fc46ebbf3c07f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-north-lincolnshire/manual/2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "a3c4b77e0f364f68866d3a13c9c88c110987bb4d54aabc6e27f7e3a90017bdbe"
+    },
+    {
+      "path": "data/corpus/sources/uk-north-lincolnshire/manual/2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027/official-documents/north-lincolnshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "981bde198be51db8b25aa01366eb6b290bfd3575bdaf1be9a1bd98b7e5fe04f8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-north-lincolnshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 85,
+    "missing_count": 0,
+    "provision_count": 85,
+    "source_count": 85
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:33.427359+00:00",
+  "jurisdiction": "uk-north-lincolnshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HWIyOhq4Atz5Ff+jR+joZ5/YYgZEkcb/MI1Xo5hd4Q+E1E+h12xHGQBEPrkkiOyx4c8LhbaHtcccSd9urKnVAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027"
+}

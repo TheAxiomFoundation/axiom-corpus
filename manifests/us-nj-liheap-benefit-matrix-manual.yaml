@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-nj-liheap-dca-liheap-fy2026-handbook
+  jurisdiction: us-nj
+  document_class: manual
+  title: New Jersey DCA LIHEAP Handbook, FY 2026
+  source_url: https://www.nj.gov/dca/dhcr/offices/docs/FY2026%20LIHEAP%20Handbook%20.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-nj/manual/dca/liheap/fy2026/handbook
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Community Affairs, Division of Housing and Community Resources
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: NJ
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://www.nj.gov/dca/dhcr/offices/liheap.shtml
+    on_clearinghouse_index: true
+    source_discovery_group: us-nj/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.nj.gov/dca/dhcr/offices/liheap.shtml
+    extraction_granularity: pdf_page
+    expression_date_note: FY 2026 handbook (2025-10-01 to 2026-09-30); PDF dated 2025-08-07
+    access_note: nj.gov HTTP 200 to the plain client (419,963 bytes)
+    page_count: 25
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

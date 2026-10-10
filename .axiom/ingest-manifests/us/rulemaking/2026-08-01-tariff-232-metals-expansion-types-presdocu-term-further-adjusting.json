@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting.json",
+      "sha256": "66972b5bbf0583a37e8c418a7c263bd7fa2a2c521ec5d77e9b58d57ed4045387"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting.json",
+      "sha256": "fcc00f445e0b7666e58bdf198faae82d1bbb4eb86e72a961196cec1acb389980"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting.jsonl",
+      "sha256": "7f78bdfbc7c3cb360db757b42b106446a04e3b051f2d202e03e291505d6df330"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting/federal-register/api/documents-page-1.json",
+      "sha256": "995381078653f0d47d6ffaa108a7b1d4451b30cbb01a7d9207c85a28889547b6"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting/federal-register/documents/2026-11314.json",
+      "sha256": "4f87dc02d73a187f49099b612a059fa8e82a033cf785febe91ee2699f7a3f0d7"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting/federal-register/documents/2026-11314.txt",
+      "sha256": "0c0737c26b546ae6bc18722cc0077444689a0765f50f6404139befd68e4b5668"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-metals-expansion --start-date 2026-06-04 --document-type PRESDOCU --term \"further adjusting\" --source-as-of 2026-08-01 --expression-date 2026-06-04"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:23.904539+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qUzX4DV/Ou1TEhi4nD3M339RLT6GXdvlIhWJ1agovSZOV3CFyDT1b9aYKzoixO9e5z+O0q9n2egVEOkYaDpgAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-metals-expansion-types-presdocu-term-further-adjusting"
+}

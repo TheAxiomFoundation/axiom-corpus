@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-07-13-recovery-r2026-07-24-immutable.json",
+      "sha256": "00b49b9459df0c4a35af582622a006e8a47ed93235fccc47c76309948628ae93"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-07-13-recovery-r2026-07-24-immutable.json",
+      "sha256": "878d043f015e1b8421d89b41e804d3a8823612d7c43c23c167df3bc1a6a6093a"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-07-13-recovery-r2026-07-24-immutable.jsonl",
+      "sha256": "7dedf574e3349f12ee7514806189b97934300f2f381ba0defeb51273459dc530"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-07-13-recovery-r2026-07-24-immutable/official-documents/us-md-code-gtg-p2.html",
+      "sha256": "f8634d1122ebea4aca230975ad914d697cf5a4339563216e41755a237473998a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-07-13-recovery-r2026-07-24-immutable/official-documents/us-md-code-gtg.html",
+      "sha256": "62bffb657833663cb276a0f4a09117a424a0a5c00f4c03c0e2c439699417bd55"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3e6fe6997a0a172f18a82cff39dc415e439f7fa5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "reversion_expression_dates.py: create immutable successor for corrected Maryland Tax-General recovery scope after released-scope mutation was detected"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T06:01:29.675897+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YZ6k5XpK8cTWvRJqX/wuP9dZEUHkMKHymQ4JZIBtiiYK9VMZjZblzGqndxk9Xgg6K2yI+6t6eYC/u+vlxxmYDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-07-24-immutable"
+}

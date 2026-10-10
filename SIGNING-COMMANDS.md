@@ -143,8 +143,9 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/publish_corpus.py \
 ```
 
 At the production boundary, load and validate every credential required by
-`SIGNING-RUNBOOK.md`, then let the controller sign, verify, publish, and activate
-the release:
+`SIGNING-RUNBOOK.md`, then let the controller publish, sign, and verify the
+release (this does not move serving; activation is the separate step in
+`SIGNING-RUNBOOK.md` section 5):
 
 ```bash
 : "${AXIOM_CORPUS_RELEASE_PRIVATE_KEY:?missing private release signing key}"

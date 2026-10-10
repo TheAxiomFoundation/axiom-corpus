@@ -1,0 +1,55 @@
+{
+ "documents": [
+  {
+   "source_id": "tameside-council-tax-support-scheme-2026-2027",
+   "jurisdiction": "uk-tameside",
+   "document_class": "manual",
+   "citation_path": "uk-tameside/manual/council-tax-support-scheme-2026-2027",
+   "title": "Tameside Metropolitan Borough Council Council Tax Support Scheme 2026/27",
+   "source_url": "https://tameside.moderngov.co.uk/documents/s201802/Appendix.%202%20for%20Council%20Tax%20Support%20Scheme%202026-2027_v1.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-08",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-weekend",
+    "source_authority": "Tameside",
+    "document_subtype": "council_tax_reduction_scheme",
+    "effective_scheme_year": "2026-2027",
+    "role": "scheme_text"
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  },
+  {
+   "source_id": "tameside-cts-cabinet-report-2026-27",
+   "jurisdiction": "uk-tameside",
+   "document_class": "manual",
+   "citation_path": "uk-tameside/manual/cts-cabinet-report-2026-27",
+   "title": "Tameside Executive Cabinet Report: Council Tax Support Scheme 2026/27",
+   "source_url": "https://tameside.moderngov.co.uk/documents/s200333/Council%20Tax%20Support%20Scheme%202026-2027.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-08",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-weekend",
+    "source_authority": "Tameside",
+    "document_subtype": "cabinet_report",
+    "effective_scheme_year": "2026-2027",
+    "role": "adoption_context",
+    "identification": {
+     "classification": "corroboration-only",
+     "recommends": "tameside-council-tax-support-scheme-2026-2027",
+     "chain": "Executive Cabinet recommends Council continue the 2025/2026 CTS subject to DWP uprating and MCHLG guidance; the operative scheme text (Appendix Two) is separately published and self-declares Council adoption for the period from 1 April 2026."
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  }
+ ]
+}

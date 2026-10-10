@@ -50,8 +50,30 @@ def test_schema_is_valid_json_and_versioned(schema):
     assert schema["version"].startswith("1.")
     assert re.compile(schema["$defs"]["citation_path"]["pattern"])  # compiles
     assert set(schema["$defs"]["document_class"]["enum"]) == {
-        "statute", "regulation", "manual", "guidance", "policy", "form", "rulemaking"
+        "statute", "regulation", "manual", "guidance", "policy", "form", "rulemaking",
+        "district-plan",
     }
+
+
+def test_district_plan_class_paths_validate(tmp_path, schema):
+    # The district-plan council-instrument class (schema v1.1) validates end to end:
+    # a Wellington City district-plan provision path must pass the grammar and the
+    # segment-1/document_class consistency check.
+    pattern = re.compile(schema["$defs"]["citation_path"]["pattern"])
+    path = "nz/district-plan/wellington-city/2024/muz/r13"
+    assert pattern.match(path)
+    provisions = _write_jsonl(
+        tmp_path,
+        [
+            _good_record(path=path),
+            _good_record(path="nz/district-plan/wellington-city/2024/giz/r5"),
+            _good_record(path="nz/district-plan/wellington-city/2024/definitions/supermarket"),
+        ],
+    )
+    res = validate_mod.validate(provisions, schema)
+    assert res["ok"] is True, res
+    assert res["pattern_failures"] == []
+    assert res["unknown_docclass"] == []
 
 
 def test_every_irregular_family_has_a_baseline(schema):
@@ -158,6 +180,46 @@ def test_negative_ratchet_regression_is_caught(tmp_path, schema):
     res = validate_mod.validate(prov, tight)
     assert res["ok"] is False
     assert "block_n" in res["ratchet_regressions"]
+
+
+def test_ratchet_counts_unique_citation_identities(tmp_path, schema):
+    tight = json.loads(json.dumps(schema))
+    tight["known_irregulars_ratchet"]["baselines"]["collection_roots"] = 1
+    duplicate = _good_record(path="us-zz/statute")
+    provisions = _write_jsonl(tmp_path, [duplicate, duplicate])
+
+    result = validate_mod.validate(provisions, tight)
+
+    assert result["record_count"] == 2
+    assert result["unique_path_count"] == 1
+    assert result["irregular_live_counts"]["collection_roots"] == 1
+    assert "collection_roots" not in result["ratchet_regressions"]
+
+
+def test_negative_invalid_json_line_is_caught(tmp_path, schema):
+    provisions = _write_jsonl(tmp_path, [_good_record()])
+    jsonl = next(provisions.rglob("*.jsonl"))
+    with jsonl.open("a", encoding="utf-8") as handle:
+        handle.write('{"citation_path": "us-zz/statute/1/b",\n')
+
+    res = validate_mod.validate(provisions, schema)
+
+    assert res["ok"] is False
+    assert res["json_errors"] == [f"{jsonl}:2 invalid JSON"]
+    assert res["record_count"] == 1
+
+
+def test_scan_keeps_only_checked_fields(tmp_path):
+    # The corpus-wide scan must not hold provision bodies: whole rows for the
+    # 577,545-record corpus peaked at 6.1 GB and pushed this module's fixture
+    # past the CI per-test timeout.
+    rec = _good_record(body="x" * 10_000, heading="Heading", metadata={"a": [1, 2]})
+    provisions = _write_jsonl(tmp_path, [rec])
+
+    (streamed,) = validate_mod.iter_records(provisions)
+
+    assert set(streamed) == set(validate_mod.CHECKED_FIELDS)
+    assert streamed == {field: rec[field] for field in validate_mod.CHECKED_FIELDS}
 
 
 def test_negative_identity_drift_is_caught(tmp_path, schema):

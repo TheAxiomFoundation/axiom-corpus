@@ -1,0 +1,49 @@
+shared_metadata: &shared_metadata
+  primary_source: true
+  source_authority: United States International Trade Commission
+  edition: '2025'
+  revision: 31
+  revision_effective_date: '2025-11-28'
+  release: 2025HTSRev31
+  release_status: archive
+  release_landing_page: https://hts.usitc.gov/
+  archived_official_source: true
+  verified_current_on: '2026-08-01'
+
+documents:
+  - source_id: usitc-hts-2025-rev31-general-note-3
+    jurisdiction: us
+    document_class: statute
+    citation_path: us/statute/hts/general-note-3
+    title: 'Harmonized Tariff Schedule of the United States (2025) Revision 31, General Note 3: Rates of Duty'
+    source_url: https://hts.usitc.gov/reststop/file?release=2025HTSRev31&filename=General%20Note%203
+    source_format: pdf
+    source_as_of: '2026-08-01'
+    expression_date: '2025-11-28'
+    request:
+      browser_impersonation: true
+    extraction:
+      page_citation_prefix: page
+    metadata:
+      <<: *shared_metadata
+      document_subtype: hts_general_note
+      note_number: 3
+
+  - source_id: usitc-hts-2025-rev31-chapter-99
+    jurisdiction: us
+    document_class: statute
+    citation_path: us/statute/hts/chapter-99
+    title: 'Harmonized Tariff Schedule of the United States (2025) Revision 31, Chapter 99: Temporary Legislation; Temporary Modifications Proclaimed Pursuant to Trade Agreements Legislation; Additional Import Restrictions'
+    source_url: https://hts.usitc.gov/reststop/file?release=2025HTSRev31&filename=Chapter%2099
+    source_format: pdf
+    source_as_of: '2026-08-01'
+    expression_date: '2025-11-28'
+    request:
+      browser_impersonation: true
+    extraction:
+      page_citation_prefix: page
+    metadata:
+      <<: *shared_metadata
+      document_subtype: hts_chapter
+      chapter_number: 99
+

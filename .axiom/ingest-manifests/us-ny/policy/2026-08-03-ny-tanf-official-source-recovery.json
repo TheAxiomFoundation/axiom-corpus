@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/policy/2026-08-03-ny-tanf-official-source-recovery.json",
+      "sha256": "00a1447167af76dbe43faf90465df71ce97e82e1ed45bff7de11b364144e8ae3"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/policy/2026-08-03-ny-tanf-official-source-recovery.json",
+      "sha256": "ef95f58e1e14d2548e7384fb60943a4650c86dbd17c2f9d4e65c4c34ee956a54"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/policy/2026-08-03-ny-tanf-official-source-recovery.jsonl",
+      "sha256": "7a447cba2cc5d09755597e87efc04db54f163a23ae6278e83a9cadf5540906bc"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/policy/2026-08-03-ny-tanf-official-source-recovery/official-documents/ny-otda-tanf-state-plan-2024-2026.pdf",
+      "sha256": "f222c3316f975a3a9281846e724ee3ce2c34878d14fe073f24def5c057f94c2f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "961e980dd5e72617977a80a625d6b414eb386ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents manifests/us-ny-tanf-state-plan-recovery.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 115,
+    "missing_count": 0,
+    "provision_count": 115,
+    "source_count": 115
+  },
+  "document_class": "policy",
+  "generated_at": "2026-08-03T14:42:06.161303+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hoguE3LqZsDCWVyTlXz6uyp3O0LQ3CkANMcTB2kNa8qGcUPm6t+XhSKipECbPhdFEYJ59wx4d4mDh90ov+WoCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-ny-tanf-official-source-recovery"
+}

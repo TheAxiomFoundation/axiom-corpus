@@ -1,0 +1,198 @@
+documents:
+  - source_id: us-il-ilcs-section-5-201-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 201
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K201
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/201-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/201
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs_with_2026_session_overlay_required
+      source_note: >-
+        Current official ILCS section imposing individual income tax, setting
+        the 4.95 percent rate, defining the education-expense credit, and
+        identifying specialty surcharge, recapture, and pass-through-entity
+        branches. Public Act 104-0468 is separately pinned because the ILCS
+        database warns that recent laws may not yet be incorporated.
+
+  - source_id: us-il-ilcs-section-5-203-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 203
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K203
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/203-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/203
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs_with_2026_session_overlay_required
+      source_note: >-
+        Current official base-income definition and individual additions and
+        subtractions. Public Act 104-0468 is separately pinned for the
+        tax-year-2026 qualified-small-business-stock addition.
+
+  - source_id: us-il-ilcs-section-5-204-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 204
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K204
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/204-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/204
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs
+      source_note: >-
+        Current official standard-exemption formula, dependent limitation,
+        age and blindness additions, and adjusted-gross-income ceiling.
+
+  - source_id: us-il-ilcs-section-5-208-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 208
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K208
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/208-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/208
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs
+      source_note: >-
+        Current official nonrefundable residential real-property-tax credit.
+
+  - source_id: us-il-ilcs-section-5-212-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 212
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K212
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/212-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/212
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs
+      source_note: >-
+        Current official refundable earned-income-tax-credit percentage and
+        expanded age and taxpayer-identification-number eligibility.
+
+  - source_id: us-il-ilcs-section-5-244-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 244
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K244
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/244-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/244
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs
+      source_note: >-
+        Current official refundable child tax credit, equal for tax years
+        beginning on or after January 1, 2025 to 40 percent of the Illinois
+        earned income credit for a taxpayer with a qualifying child under 12.
+
+  - source_id: us-il-ilcs-section-5-601-current
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Income Tax Act Section 601
+    source_url: https://www.ilga.gov/legislation/ilcs/fulltext?DocName=003500050K601
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/statute/35/5/601-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#billtextanchor .billtext-host"
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: 35 ILCS 5/601
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_ilcs
+      source_note: >-
+        Current official resident credit for qualifying income tax paid to
+        another state and its Illinois-liability limitation.
+
+  - source_id: us-il-public-act-104-0468
+    jurisdiction: us-il
+    document_class: statute
+    title: Illinois Public Act 104-0468
+    source_url: https://www.ilga.gov/Documents/Legislation/PublicActs/104/PDF/104-0468.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-06-16"
+    citation_path: us-il/statute/public-act/104-0468
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      legal_identifier: Public Act 104-0468
+      document_subtype: state_session_law
+      program: individual_income_tax
+      source_status: enacted_2026_session_law
+      source_note: >-
+        Enacted 2026 income-tax amendments, including the section 203
+        qualified-small-business-stock addition for tax years ending on or
+        after December 31, 2026 and the section 201 pass-through-entity tax
+        election changes. Article 999 makes Article 120 effective when the Act
+        became law on June 16, 2026; the July 1 effective date applies only to
+        Articles 25 and 65.

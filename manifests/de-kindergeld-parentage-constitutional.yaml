@@ -1,0 +1,64 @@
+{
+  "documents": [
+    {
+      "source_id": "de-bverfg-parentage-2024-04-09",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bverfg-1-bvr-2017-21-2024-04-09",
+      "title": "BVerfG, Urteil vom 2024-04-09, 1 BvR 2017/21 — Vaterschaftsanfechtung / Fortgeltung",
+      "source_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2024/04/rs20240409_1bvr201721.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2024-04-09",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": ".c-decision",
+        "segmentation": "anchor_range",
+        "html_start_selector": ":scope > *",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesverfassungsgericht, official decision publication",
+        "document_type": "court judgment",
+        "court": "Bundesverfassungsgericht, Erster Senat",
+        "case_number": "1 BvR 2017/21",
+        "ecli": "ECLI:DE:BVerfG:2024:rs20240409.1bvr201721",
+        "source_note": "German official operative decision and reasons, not a press release. Supported guidance namespace preserves court identity in metadata. The 2024 judgment and 2025 continuation order must be read together before applying archived BGB 1600(2) and (3) sentence 1; capture makes no BStBl II publication or complete precedent-discovery claim."
+      }
+    },
+    {
+      "source_id": "de-bverfg-parentage-2025-06-03",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bverfg-1-bvr-2017-21-2025-06-03",
+      "title": "BVerfG, Beschluss vom 2025-06-03, 1 BvR 2017/21 — Vaterschaftsanfechtung / Fortgeltung",
+      "source_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2025/06/rs20250603_1bvr201721.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2025-06-03",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": ".c-decision",
+        "segmentation": "anchor_range",
+        "html_start_selector": ":scope > *",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesverfassungsgericht, official decision publication",
+        "document_type": "court order",
+        "court": "Bundesverfassungsgericht, Erster Senat",
+        "case_number": "1 BvR 2017/21",
+        "ecli": "ECLI:DE:BVerfG:2025:rs20250603.1bvr201721",
+        "source_note": "German official operative decision and reasons, not a press release. Supported guidance namespace preserves court identity in metadata. The 2024 judgment and 2025 continuation order must be read together before applying archived BGB 1600(2) and (3) sentence 1; capture makes no BStBl II publication or complete precedent-discovery claim."
+      }
+    }
+  ]
+}

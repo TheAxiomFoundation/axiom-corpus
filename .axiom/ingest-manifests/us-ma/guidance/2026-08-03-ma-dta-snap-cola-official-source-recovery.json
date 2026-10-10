@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-08-03-ma-dta-snap-cola-official-source-recovery.json",
+      "sha256": "189519b067c47cc229f2a4149fabaff6dc4cb29779a153291cc47bfcb0693626"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-08-03-ma-dta-snap-cola-official-source-recovery.json",
+      "sha256": "b4e391994156b40b74b9892945f969fa6fd51bd4b5804bbc18aa46bff1f82f1b"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-08-03-ma-dta-snap-cola-official-source-recovery.jsonl",
+      "sha256": "c5431fa0a069da8eb355b68810a567b9e35cddcbd3debb4111d0693b61cd3cf6"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-08-03-ma-dta-snap-cola-official-source-recovery/official-documents/ma-dta-policy-online-snap-cola-2025-10-01.html",
+      "sha256": "2b33f5980666920feed1d4694b91b2d3f9b38e0e8d3397ce9008cf10b2190e55"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "961e980dd5e72617977a80a625d6b414eb386ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents manifests/us-ma-dta-snap-cola-2025-recovery.yaml; add deterministic heating/cooling alias; recompute coverage"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-08-03T14:42:06.840496+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "suM1d+Hh4WsXxq2IOg0uJkFoBEy8bUjLE0XQCBaNzs3OrTXmE2RVeOcxF9mDZNAPw/GKzitye9vIcsSVG6K3Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-ma-dta-snap-cola-official-source-recovery"
+}

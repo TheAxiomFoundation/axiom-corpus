@@ -1,0 +1,37 @@
+# Peru (pe) tranche-1 capture, REGULATION class - companion to the
+# pe-perumod-t1 statutes manifest (see its header for the full PERUMOD v2.4
+# parity notes). One instrument:
+#
+# 1. Decreto Supremo N. 081-2011-PCM (19 October 2011; El Peruano print via
+#    the gob.pe official document CDN; image scan captured via OCR with
+#    Spanish language data) - creates the Programa Nacional de Asistencia
+#    Solidaria "Pension 65": the subsidised pension PERUMOD simulates
+#    (~S/250 payable bimonthly, age 65+, SISFOH extreme-poverty targeting;
+#    initially administered through the Juntos programme). The Juntos
+#    creation decree (DS 032-2005-PCM) is a documented tranche-2 gap - not
+#    located on an official host this session (gob.pe norm search, PCM
+#    search, SPIJ unreachable); Juntos operative rules also live in MIDIS
+#    administrative documents (tranche 2).
+documents:
+  - source_id: pe-ds-081-2011-pcm-pension-65
+    jurisdiction: pe
+    document_class: regulation
+    citation_path: pe/regulation/ds-2011-081-pcm/programa-pension-65
+    title: Decreto Supremo 081-2011-PCM (19-oct-2011, El Peruano print via gob.pe CDN; OCR-es capture) - crea el Programa Nacional de Asistencia Solidaria Pension 65
+    source_url: 'https://cdn.www.gob.pe/uploads/document/file/19025/DS_081_2011PCM.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2011-10-19'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: spa
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (Presidencia del Consejo de Ministros; gob.pe official document CDN)
+      publisher: Plataforma del Estado Peruano (gob.pe)
+      source_family: social-assistance/pension-65
+      language: es

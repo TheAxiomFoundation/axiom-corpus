@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ec/statute/2026-07-22-ec-ecuamod-t1-statutes.json",
+      "sha256": "116b2fd969cd5b085856bc261d6b055e4726b5ddcdd176a63fdec4dda53551c4"
+    },
+    {
+      "path": "data/corpus/inventory/ec/statute/2026-07-22-ec-ecuamod-t1-statutes.json",
+      "sha256": "f163ba5d274b9b45c800437eac124fa76bca60c83225fc59b79b7b5b0e8144ef"
+    },
+    {
+      "path": "data/corpus/provisions/ec/statute/2026-07-22-ec-ecuamod-t1-statutes.jsonl",
+      "sha256": "e67ca4104d40bc107abd075f1c594954f2f5b10f5ddf3e11c2cd6c4082aeea3d"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-22-ec-ecuamod-t1-statutes/official-documents/ec-ley-55-seguridad-social-2001.pdf",
+      "sha256": "657bf17780e00255a12b6ab296f048c15bc6df7f3166e3445acb8eb7fac75e37"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-22-ec-ecuamod-t1-statutes/official-documents/ec-ley-conflicto-armado-interno-2024.pdf",
+      "sha256": "4c0831a3504cca491e69e9a2b7bd14b1b11e7ea77c937e947b67fd33609d9397"
+    },
+    {
+      "path": "data/corpus/sources/ec/statute/2026-07-22-ec-ecuamod-t1-statutes/official-documents/ec-lrti-codificacion-26-reformas-2021.pdf",
+      "sha256": "1c26b2ea024e166885fb8a38af64647930bd362691d950e7733c43fc3cd418e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "39a63b3f530e578919987b339667ed4d5c8f5b0f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-ec-ecuamod-t1-statutes --manifest manifests/ec-ecuamod-t1-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-22T17:47:27.513225+00:00",
+  "jurisdiction": "ec",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FH/JFAbiYfurCZ6dofVDFAHLZYgJvpzmj8MhOW7O80jKTgdxu4WcCHSIzUNITbERrvyYMT2uAw53oZNxmzuuBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-ec-ecuamod-t1-statutes"
+}

@@ -28,6 +28,24 @@ The source document itself may be stored in R2 for provenance. Generated
 normalized provision rows are loaded into Supabase. Do not store executable
 encodings in this repo.
 
+## Corpus bytes outside git
+
+When `.axiom/corpus-locks/` exists, git keeps one lock file per scope (path,
+sha256, size of every file under `data/corpus/{sources,inventory,provisions,coverage}`)
+and the bytes live in a shared cache (`~/.axiom/corpus-cache`) backed by R2
+`objects/sha256/`. `data/corpus` holds only what has been fetched. See
+`docs/corpus-storage.md`.
+
+```bash
+uv run axiom-corpus-ingest corpus fetch us-ca/statute       # scopes, --path, --release, --all
+uv run axiom-corpus-ingest corpus status                    # present / missing / unlocked
+uv run axiom-corpus-ingest sign-ingest-manifest ... --lock  # sign, then lock the scope
+```
+
+Code-only work needs no fetch. The test suite reads real corpus data and needs
+`corpus fetch --all` (APFS clones: almost no extra disk). CLI commands and
+`load_provisions`/`load_source_inventory` fetch the locked inputs they name.
+
 ## Infrastructure
 
 - R2 bucket: `axiom-corpus`
@@ -76,21 +94,35 @@ uv run axiom-corpus-ingest verify-release-coverage
 `load-supabase` only stages immutable version rows. A tracked named selector is
 only a cut plan. `scripts/publish_corpus.py` content-addresses and reads back R2
 artifacts, checks exact staged provision and navigation counts, deep-validates, then creates an
-Ed25519-signed release object. `corpus.activate_corpus_release` rechecks counts
-and atomically moves the singleton production pointer while refreshing derived
-counts. `corpus.current_provisions` and navigation follow that pointer's exact
-version membership.
+Ed25519-signed release object. Publication does NOT move serving.
+
+Activation is a separate, deliberate step (`scripts/activate_release.py`, or
+`publish_corpus.py --activate`): `corpus.activate_corpus_release` rechecks counts
+and repoints serving. Serving follows a per-`(jurisdiction, document_class)`
+active map (`corpus.active_scope_pointer`), so activating a release repoints only
+the pairs it carries and never un-serves another jurisdiction; overlaps resolve
+last-activation-wins per pair and every takeover is recorded in
+`corpus.scope_activation_history` (see axiom-corpus#408). `corpus.current_provisions`
+and navigation follow that map's exact version membership. Preview a takeover
+with `activate_release.py --dry-run`.
 
 The release name `current`, per-scope `publish`/`unpublish`, publish-on-load,
 scope auto-registration, and missing-parent synthesis do not exist. See
 `docs/named-release-publication.md`.
+
+## Branches, not forks
+
+Push branches to `TheAxiomFoundation/axiom-corpus` itself, never to a fork: a
+fork-head pull request run does not receive this repository's Actions variable
+`AXIOM_CORPUS_INGEST_PUBLIC_KEY`, so the authentication-gate tests in
+`tests/test_state_snap_manual_queue.py` fail by design. See CONTRIBUTING.md.
 
 ## Repo Boundaries
 
 - Source text and provenance: this repo.
 - RuleSpec encodings: rules repositories.
 - Encoder/validator logic: `axiom-encode`.
-- App/browser UI: `axiom-foundation.org`.
+- App/browser UI: `axiom.org`.
 
 When a provision repeats a value from another source, represent that in the
 rules repo with RuleSpec metadata and source verification. The corpus repo should

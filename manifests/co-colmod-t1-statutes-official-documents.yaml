@@ -1,0 +1,93 @@
+# Colombia (co) tranche-1 capture - COLMOD v6.0 parity (policy years
+# 2019-25; SOUTHMOD full-bundle program lane 4; report CR-COLMOD-v6.0).
+#
+# COLMOD simulates (S): personal income tax (tin_s; UVT-denominated schedular
+# system - labour/pension/capital/dividend schedules, report Tables
+# 2.21-2.24), health and pension social insurance contributions (health
+# 12.5 percent split 4 employee / 8.5 employer; pension 16 percent split
+# 4 / 12; the solidarity fund FSP 1-2 percent bands; pensioners' health;
+# employer ARL/CCF/severance/SENA/ICBF contributions - report Tables
+# 2.9-2.20), the Familias en Accion and Jovenes en Accion conditional
+# transfers, Colombia Mayor, the 2020-22 Ingreso Solidario, VAT (0/5/19
+# percent), the national consumption tax, and fuel subsidies.
+#
+# STATUTE class, three instruments (SUIN-Juriscol official norm pages, HTML
+# capture; SUIN serves the as-enacted text with amendment annotations):
+#
+# 1. Ley 100 de 1993 (Sistema de Seguridad Social Integral) - the
+#    contribution framework COLMOD's SIC modules build on (health and
+#    pension aportes, the solidarity fund, the pensioners' regime).
+# 2. Ley 2010 de 2019 (crecimiento economico) - the operative personal
+#    income tax reform for the COLMOD window: rewrites the Estatuto
+#    Tributario Art. 241 UVT-banded schedule applied from 2020, dividend
+#    taxation, and VAT adjustments. (The Estatuto Tributario base decree
+#    624/1989 and the later Ley 2277 de 2022 reform are tranche-2
+#    captures; COLMOD's 2023+ parameters follow 2277.)
+# 3. Ley 1532 de 2012 (Familias en Accion) - the conditional cash
+#    transfer's governing law (direct monetary transfer, conditional and
+#    periodic, to families in poverty and extreme poverty; minors under 18).
+#
+# COLMOD comparison notes (targets, never sources): health SIC 12.5 percent
+# (4 ee / 8.5 er); pension SIC 16 percent (4 ee / 12 er); FSP 1 percent
+# above 4 minimum wages rising to 2 percent at 20+; PIT in UVT per the
+# Art. 241 schedules; VAT 19 percent general / 5 percent reduced / exempt
+# and excluded lists. Report reference: CR-COLMOD-v6.0 (UNU-WIDER)
+# sections 1-2, Tables 2.9-2.27.
+documents:
+  - source_id: co-ley-100-1993-seguridad-social-integral
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-1993-100/sistema-seguridad-social-integral
+    title: Ley 100 de 1993, Sistema de Seguridad Social Integral (SUIN-Juriscol official norm page) - marco de aportes de salud y pension; fondo de solidaridad pensional
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/1635955'
+    source_format: html
+    source_as_of: '2026-07-23'
+    expression_date: '1993-12-23'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, Sistema Unico de Informacion Normativa SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: social-security/contributions
+      language: es
+  - source_id: co-ley-2010-2019-crecimiento-economico
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/crecimiento-economico
+    title: Ley 2010 de 2019, crecimiento economico (SUIN-Juriscol official norm page) - tarifa del impuesto sobre la renta en UVT (Estatuto Tributario Art. 241 sustituido); dividendos; IVA
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-23'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: income-tax-vat/reform-2019
+      language: es
+  - source_id: co-ley-1532-2012-familias-en-accion
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2012-1532/familias-en-accion
+    title: Ley 1532 de 2012, Familias en Accion (SUIN-Juriscol official norm page) - transferencia monetaria directa condicionada y periodica
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/1682959'
+    source_format: html
+    source_as_of: '2026-07-23'
+    expression_date: '2012-06-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: social-assistance/familias-en-accion
+      language: es

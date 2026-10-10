@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-spelthorne/manual/2026-08-03-spelthorne-council-tax-reduction-2026-2027.json",
+      "sha256": "9ed1c6b87894d9dfc3890d21660949619890e575e098b111363096049d631367"
+    },
+    {
+      "path": "data/corpus/inventory/uk-spelthorne/manual/2026-08-03-spelthorne-council-tax-reduction-2026-2027.json",
+      "sha256": "7b74bdf667a63dc8ce889275a5903901368343f1b78d8afe76ba61339ce8651b"
+    },
+    {
+      "path": "data/corpus/provisions/uk-spelthorne/manual/2026-08-03-spelthorne-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "253e8e26d028bc3983dc22ab602996e6f8a4d380d294ae492fe462d9718439ff"
+    },
+    {
+      "path": "data/corpus/sources/uk-spelthorne/manual/2026-08-03-spelthorne-council-tax-reduction-2026-2027/official-documents/spelthorne-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "926334c1a43c5b1bdf4fc3b5e70404e5129b570781722dd267a5ae17356d0fb7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-spelthorne-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-spelthorne-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 146,
+    "missing_count": 0,
+    "provision_count": 146,
+    "source_count": 146
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:56.856439+00:00",
+  "jurisdiction": "uk-spelthorne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fM57En4bjflMRJw0RCTHEgPXm908jC2uSv0qI4i9vNV1Msi/DI68PUcmQZR5RwsJsV6ztgoSbF/brv4YEeQFAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-spelthorne-council-tax-reduction-2026-2027"
+}

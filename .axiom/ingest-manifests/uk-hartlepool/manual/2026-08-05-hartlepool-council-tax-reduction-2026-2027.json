@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-hartlepool/manual/2026-08-05-hartlepool-council-tax-reduction-2026-2027.json",
+      "sha256": "ccf41ebf8bc2cd96f5ced832a7763d79f6ad465ed203c9a2ae230067d3e5cb36"
+    },
+    {
+      "path": "data/corpus/inventory/uk-hartlepool/manual/2026-08-05-hartlepool-council-tax-reduction-2026-2027.json",
+      "sha256": "059df935bfa52342eec940679a20f96d6900696566f53fc8547236badd1ff792"
+    },
+    {
+      "path": "data/corpus/provisions/uk-hartlepool/manual/2026-08-05-hartlepool-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "4f72ea0e0cf51dad193da630e1f51c26794e1b366f09401d876e96b799345720"
+    },
+    {
+      "path": "data/corpus/sources/uk-hartlepool/manual/2026-08-05-hartlepool-council-tax-reduction-2026-2027/official-documents/hartlepool-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "b2cadfa6c09bf6b484b2d4b77195a6a3e32f8806e8899dc24f15a081f274de66"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2e5ce9d588b7810854856748cf9bf380df628525",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-05-hartlepool-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-hartlepool-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 91,
+    "missing_count": 0,
+    "provision_count": 91,
+    "source_count": 91
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-06T17:01:29.621922+00:00",
+  "jurisdiction": "uk-hartlepool",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9v4yluvs8knF5zxfQft7VHrETFe9gP9IXx4l7ebJkDqsL03MjVt6M/2OduvAyss+xCzK/ICZy7Z6ta/2YWlNDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-05-hartlepool-council-tax-reduction-2026-2027"
+}

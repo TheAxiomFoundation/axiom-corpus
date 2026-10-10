@@ -1,0 +1,29 @@
+{
+  "schema": "de-kindergeld.recipient-priority-capture-audit.v1",
+  "version": "2026-09-10-de-kindergeld-recipient-priority",
+  "source_url": "https://www.gesetze-im-internet.de/famfg/xml.zip",
+  "sources": [
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-recipient-priority/famfg/BJNR258700008.xml",
+      "sha256": "906f738b347fc8a60fb1cbf3817de3e538de839a87f7de2a84f95772a30e6dba",
+      "bytes": 696250
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-recipient-priority/famfg/famfg.xml",
+      "sha256": "906f738b347fc8a60fb1cbf3817de3e538de839a87f7de2a84f95772a30e6dba",
+      "bytes": 696250
+    }
+  ],
+  "provisions_sha256": "65a97192adfb640e7b09c4c92453872d671e25186875a848a17280691a9366f1",
+  "rows": 598,
+  "coverage_complete": true,
+  "missing": 0,
+  "extra": 0,
+  "reviewed_section": {
+    "citation_path": "de/statute/famfg/40",
+    "body_sha256": "5f86b62a3f8346b7223d5ce6852bd2dff410ec586e59efc5a46186179c3264c3",
+    "body": "(1) Der Beschluss wird wirksam mit Bekanntgabe an den Beteiligten, für den er seinem wesentlichen Inhalt nach bestimmt ist.\n(2) Ein Beschluss, der die Genehmigung eines Rechtsgeschäfts zum Gegenstand hat, wird erst mit Rechtskraft wirksam. Dies ist mit der Entscheidung auszusprechen.\n(3) Ein Beschluss, durch den auf Antrag die Ermächtigung oder die Zustimmung eines anderen zu einem Rechtsgeschäft ersetzt oder die Beschränkung oder Ausschließung der Berechtigung des Ehegatten oder Lebenspartners, Geschäfte mit Wirkung für den anderen Ehegatten oder Lebenspartner zu besorgen (§ 1357 Abs. 2 Satz 1 des Bürgerlichen Gesetzbuchs, auch in Verbindung mit § 8 Abs. 2 des Lebenspartnerschaftsgesetzes), aufgehoben wird, wird erst mit Rechtskraft wirksam. Bei Gefahr im Verzug kann das Gericht die sofortige Wirksamkeit des Beschlusses anordnen. Der Beschluss wird mit Bekanntgabe an den Antragsteller wirksam.",
+    "full_xml_body_match": true
+  },
+  "scope_limit": "Full current act retained; only section40 and the act header received legal review in this capture. Historical amendments and other operative provisions are not claimed reviewed."
+}

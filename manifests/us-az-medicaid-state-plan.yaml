@@ -1,0 +1,1453 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-az-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 319
+- source_id: us-az-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 319
+- source_id: us-az-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 319
+- source_id: us-az-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 19
+    index_records_total: 319
+- source_id: us-az-cms-medicaid-state-plan-spa-az-24-0014-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-24-0014: Approval Document (approved October 16, 2024, effective September 14, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AZ-24-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-09-14'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-24-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-24-0014
+    cms_node_id: '170766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=170766
+    approval_date: '2024-10-16'
+    effective_date: '2024-09-14'
+    summary: This amendment attests to the state 's compliance with the third party liability requirements in Section 1902(a)(25)(1)
+      of the Social Security Act.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-24-0004-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-24-0004: Approval Document (approved April 30, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AZ-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-24-0004
+    cms_node_id: '163686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163686
+    approval_date: '2024-04-30'
+    effective_date: '2024-01-01'
+    summary: This amendment is to implement twelve months of continuous eligibility for children.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-23-0007-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-23-0007: Approval Document (approved June 15, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AZ-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-23-0007
+    cms_node_id: '149486'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=149486
+    approval_date: '2023-06-15'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORD Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-ar-23-0001-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AR-23-0001: Approval Document (approved May 3, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/ar-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-23-0001
+    cms_node_id: '150616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150616
+    approval_date: '2023-05-03'
+    effective_date: '2023-01-01'
+    summary: The state adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-23-0006-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-23-0006: Approval Document (approved March 24, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AZ-23-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-23-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-23-0006
+    cms_node_id: '146186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146186
+    approval_date: '2023-03-24'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to temporarily
+      extend the suspension of copay and premium requirements for all members originally approved in Disaster Relief SPA 20-0001.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-20-0009-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-20-0009: Approval Document (approved July 28, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-20-0009
+    cms_node_id: '100766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100766
+    approval_date: '2020-07-28'
+    effective_date: '2020-04-01'
+    summary: CMS is approving this state plan amendment to respond to the COVID-19 national emergency. The purpose of this
+      SPA is to rescind the optional eligibility group in Section A.1 that was previously approved in an earlier COVID-19
+      emergency state plan amendment.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-19-0023-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-19-0023: Approval Document (approved July 13, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AZ-19-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-19-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-19-0023
+    cms_node_id: '100561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100561
+    approval_date: '2020-07-13'
+    effective_date: '2019-10-01'
+    summary: Modifies the eligibility groups for which the disregard for temporary Census Bureau employment income is applied.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-20-0005-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-20-0005: Approval Document (approved May 22, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-20-0005
+    cms_node_id: '98641'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98641
+    approval_date: '2020-05-22'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to approve certain interim payments to hospitals, to make technical corrections to a previously-approved benefit
+      adjustment, and to clarify the effective date for the previously-approved new optional eligibility group.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-19-0007-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-19-0007: Approval Document (approved May 13, 2020, effective September 30, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-19-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-30'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-19-0007
+    cms_node_id: '98526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98526
+    approval_date: '2020-05-13'
+    effective_date: '2019-09-30'
+    summary: Updates the Arizona disproportionate share hospital (DSH) pool 5 payment amount and participant list, for the
+      DSH state plan rate year ending 2019
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-19-0008-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-19-0008: Approval Document (approved May 13, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-19-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-19-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-19-0008
+    cms_node_id: '98531'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98531
+    approval_date: '2020-05-13'
+    effective_date: '2019-10-01'
+    summary: Authorizes the Arizona disproportionate share hospital (DSH) pool 1, 2, 1A, 2A and 4 payments, for the DSH state
+      plan rate year ending 2020.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-20-0001-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-20-0001: Approval Document (approved April 1, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-20-0001_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-20-0001
+    cms_node_id: '88981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=88981
+    approval_date: '2020-04-01'
+    effective_date: '2020-03-01'
+    summary: 'In this time-limited state plan to respond to the COVID-19 national emergency, AZ has elected to temporarily:
+      Expand eligibility to cover COVID-19 testing for uninsured individuals; Streamline enrollment for children whose family
+      income changes during the disaster period; Suspend all cost sharing and premiums; and Expand access to covered outpatient
+      drugs through adjustments to prior authorization and exceptions to the preferred drug list in the event of a drug shortage.'
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Outreach & Enrollment
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-18-0010-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-18-0010: Approval Document (approved January 22, 2020, effective September 30, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ SPA 18-0010_Redacted.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-09-30'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-18-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-18-0010
+    cms_node_id: '58556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58556
+    approval_date: '2020-01-22'
+    effective_date: '2018-09-30'
+    summary: Updates the amounts of Arizona's graduate medical education and indirect medical education payment pools and
+      the qualifying hospital list for each payment pool for the fiscal period ending June 30, 2019
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-19-006-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-19-006: Approval Document (approved December 29, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-19-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-19-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-19-006
+    cms_node_id: '58311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58311
+    approval_date: '2019-12-29'
+    effective_date: '2019-07-01'
+    summary: Updates the list of eligibility groups for which wages paid by the Census Bureau for temporary employment related
+      to Census activities are exempt
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-17-006-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-17-006: Approval Document (approved November 21, 2018, effective September 30, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-17-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-09-30'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-17-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-17-006
+    cms_node_id: '8096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=8096
+    approval_date: '2018-11-21'
+    effective_date: '2017-09-30'
+    summary: Updates the amounts applicable to Arizona1s graduate medical education and indirect medical education payment
+      pools and the qualifying hospital list for each payment pool.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-18-006-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-18-006: Approval Document (approved July 31, 2018, effective May 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-18-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-05-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-18-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-18-006
+    cms_node_id: '9596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9596
+    approval_date: '2018-07-31'
+    effective_date: '2018-05-01'
+    summary: This SPA updates the Asset Verification System (AVS) section of the State Plan to reflect Arizona's election
+      to join a consortium of several states to develop an AVS.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-13-0001-mm-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-13-0001-MM: Approval Document (approved October 25, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-13-00010-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-13-0001-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0001-MM
+    cms_node_id: '40086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40086
+    approval_date: '2013-10-25'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizenship and Non-Citizenship Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-13-0010-mm-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-13-0010-MM: Approval Document (approved October 25, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-13-0010-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-13-0010-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0010-MM
+    cms_node_id: '40151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40151
+    approval_date: '2013-10-25'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizen and Non-Citizen Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-13-0008-mm-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-13-0008-MM: Approval Document (approved October 4, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-13-0008-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-13-0008-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0008-MM
+    cms_node_id: '39921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39921
+    approval_date: '2013-10-04'
+    effective_date: '2014-01-01'
+    summary: Incorporates Optional MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-13-0007-mm-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-13-0007-MM: Approval Document (approved October 4, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-13-0007-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-13-0007-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0007-MM
+    cms_node_id: '39926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39926
+    approval_date: '2013-10-04'
+    effective_date: '2014-01-01'
+    summary: Incorporates Mandatory MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-13-0005-mm-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-13-0005-MM: Approval Document (approved September 30, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-13-0005-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-13-0005-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0005-MM
+    cms_node_id: '39931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39931
+    approval_date: '2013-09-30'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-013-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-013: Approval Document (approved September 22, 2012, effective March 23, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-013-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-23'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-11-013
+    cms_node_id: '44791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44791
+    approval_date: '2012-09-22'
+    effective_date: '2012-03-23'
+    summary: Requires States that recognize freestanding birth centers to provide coverage and separate payments for freestanding
+      birth center facility services and services rendered by certain professionals providing services in freestanding birth
+      centers.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-013-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-013: Attachment (approved September 22, 2012, effective March 23, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-013-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-23'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-013/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-11-013
+    cms_node_id: '44791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44791
+    approval_date: '2012-09-22'
+    effective_date: '2012-03-23'
+    summary: Requires States that recognize freestanding birth centers to provide coverage and separate payments for freestanding
+      birth center facility services and services rendered by certain professionals providing services in freestanding birth
+      centers.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-013-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-013: Form CMS-179 (approved September 22, 2012, effective March 23, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-013-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-23'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-013/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-11-013
+    cms_node_id: '44791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44791
+    approval_date: '2012-09-22'
+    effective_date: '2012-03-23'
+    summary: Requires States that recognize freestanding birth centers to provide coverage and separate payments for freestanding
+      birth center facility services and services rendered by certain professionals providing services in freestanding birth
+      centers.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-009-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-009: Approval Document (approved March 5, 2012, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-10-009
+    cms_node_id: '44916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44916
+    approval_date: '2012-03-05'
+    effective_date: '2010-07-01'
+    summary: This SPA clarifies the service descriptions and provider qualifications for behavioral health services provided
+      under the rehabilitation services component of the State Plan.
+    topics: &id003
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-009-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-009: Attachment (approved March 5, 2012, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-10-009
+    cms_node_id: '44916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44916
+    approval_date: '2012-03-05'
+    effective_date: '2010-07-01'
+    summary: This SPA clarifies the service descriptions and provider qualifications for behavioral health services provided
+      under the rehabilitation services component of the State Plan.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-009-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-009: Form CMS-179 (approved March 5, 2012, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-10-009
+    cms_node_id: '44916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44916
+    approval_date: '2012-03-05'
+    effective_date: '2010-07-01'
+    summary: This SPA clarifies the service descriptions and provider qualifications for behavioral health services provided
+      under the rehabilitation services component of the State Plan.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-014-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-014: Approval Document (approved October 12, 2011, effective July 20, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-20'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-11-014
+    cms_node_id: '44786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44786
+    approval_date: '2011-10-12'
+    effective_date: '2011-07-20'
+    summary: Restores the hospice benefit for acute care program members ages 21 and older.
+    topics: &id004
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-014-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-014: Attachment (approved October 12, 2011, effective July 20, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-20'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-11-014
+    cms_node_id: '44786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44786
+    approval_date: '2011-10-12'
+    effective_date: '2011-07-20'
+    summary: Restores the hospice benefit for acute care program members ages 21 and older.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-014-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-014: Form CMS-179 (approved October 12, 2011, effective July 20, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-20'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-11-014
+    cms_node_id: '44786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44786
+    approval_date: '2011-10-12'
+    effective_date: '2011-07-20'
+    summary: Restores the hospice benefit for acute care program members ages 21 and older.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-005-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-005: Approval Document (approved July 14, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-005-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-11-005
+    cms_node_id: '44846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44846
+    approval_date: '2011-07-14'
+    effective_date: '2011-04-01'
+    summary: Restores medically necessary transplant services to Arizona Health Care Cost Containment system members meeting
+      nationally-recognized criteria for certain non-experimental, non-investigational organ and tissue transplants that previously
+      had been eliminated effective October 1, 2010.
+    topics: &id005
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-005-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-005: Attachment (approved July 14, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-005-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-005/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-11-005
+    cms_node_id: '44846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44846
+    approval_date: '2011-07-14'
+    effective_date: '2011-04-01'
+    summary: Restores medically necessary transplant services to Arizona Health Care Cost Containment system members meeting
+      nationally-recognized criteria for certain non-experimental, non-investigational organ and tissue transplants that previously
+      had been eliminated effective October 1, 2010.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-11-005-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-11-005: Form CMS-179 (approved July 14, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-11-005-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-11-005/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-11-005
+    cms_node_id: '44846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44846
+    approval_date: '2011-07-14'
+    effective_date: '2011-04-01'
+    summary: Restores medically necessary transplant services to Arizona Health Care Cost Containment system members meeting
+      nationally-recognized criteria for certain non-experimental, non-investigational organ and tissue transplants that previously
+      had been eliminated effective October 1, 2010.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-001-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-001: Approval Document (approved May 6, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-001-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-10-001
+    cms_node_id: '44956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44956
+    approval_date: '2011-05-06'
+    effective_date: '2010-10-01'
+    summary: Implements nominal cost sharing.
+    topics: &id006
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-001-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-001: Attachment (approved May 6, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-001-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-001/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-10-001
+    cms_node_id: '44956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44956
+    approval_date: '2011-05-06'
+    effective_date: '2010-10-01'
+    summary: Implements nominal cost sharing.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-001-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-001: Form CMS-179 (approved May 6, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-001-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-001/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-10-001
+    cms_node_id: '44956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44956
+    approval_date: '2011-05-06'
+    effective_date: '2010-10-01'
+    summary: Implements nominal cost sharing.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-008-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-008: Approval Document (approved September 24, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-008-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-10-008
+    cms_node_id: '44921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44921
+    approval_date: '2010-09-24'
+    effective_date: '2010-07-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over
+      in compliance with Section 115 of the Medicare Improvements for Patients and Providers Act of 2008.
+    topics: &id007
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-008-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-008: Attachment (approved September 24, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-008-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-008/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-10-008
+    cms_node_id: '44921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44921
+    approval_date: '2010-09-24'
+    effective_date: '2010-07-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over
+      in compliance with Section 115 of the Medicare Improvements for Patients and Providers Act of 2008.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-008-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-008: Form CMS-179 (approved September 24, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-008-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-008/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-10-008
+    cms_node_id: '44921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44921
+    approval_date: '2010-09-24'
+    effective_date: '2010-07-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over
+      in compliance with Section 115 of the Medicare Improvements for Patients and Providers Act of 2008.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-006-approval-document
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-006: Approval Document (approved August 1, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-006-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-10-006
+    cms_node_id: '44931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44931
+    approval_date: '2010-08-01'
+    effective_date: '2010-10-01'
+    summary: Eliminates certain optional services and imposes limitations on other optional services for adults age 21 and
+      older Specifically, this SPA eliminates podiatrists services preventive dental services and well and physical exams.
+      This SPA also limits prosthetics coverage and organ transplantation Dental services also are limited to treatments of
+      oral disease prior to transplantation and to extractions prior to treatment of certain cancers.
+    topics: &id008
+    - Benefits
+    - Dental
+    - Eligibility
+    - Health Services Initiatives
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-006-attachment
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-006: Attachment (approved August 1, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-006-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-006/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AZ-10-006
+    cms_node_id: '44931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44931
+    approval_date: '2010-08-01'
+    effective_date: '2010-10-01'
+    summary: Eliminates certain optional services and imposes limitations on other optional services for adults age 21 and
+      older Specifically, this SPA eliminates podiatrists services preventive dental services and well and physical exams.
+      This SPA also limits prosthetics coverage and organ transplantation Dental services also are limited to treatments of
+      oral disease prior to transplantation and to extractions prior to treatment of certain cancers.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-az-cms-medicaid-state-plan-spa-az-10-006-form-cms-179
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona Medicaid SPA AZ-10-006: Form CMS-179 (approved August 1, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AZ/AZ-10-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-az/policy/cms/medicaid-state-plan/spa/az-10-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AZ-10-006
+    cms_node_id: '44931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44931
+    approval_date: '2010-08-01'
+    effective_date: '2010-10-01'
+    summary: Eliminates certain optional services and imposes limitations on other optional services for adults age 21 and
+      older Specifically, this SPA eliminates podiatrists services preventive dental services and well and physical exams.
+      This SPA also limits prosthetics coverage and organ transplantation Dental services also are limited to treatments of
+      oral disease prior to transplantation and to extractions prior to treatment of certain cancers.
+    topics: *id008
+    link_label: Form CMS-179

@@ -1,0 +1,1188 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-nd-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 363
+- source_id: us-nd-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 363
+- source_id: us-nd-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 363
+- source_id: us-nd-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 63
+    index_records_total: 363
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-25-0015-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-25-0015: Approval Document (approved September 15, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-25-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-25-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-25-0015
+    cms_node_id: '184886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=184886
+    approval_date: '2025-09-15'
+    effective_date: '2025-07-01'
+    summary: This amendment increases the personal needs allowance.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-23-0034-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-23-0034: Approval Document (approved February 2, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-23-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-23-0034/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-23-0034
+    cms_node_id: '159076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159076
+    approval_date: '2024-02-02'
+    effective_date: '2024-01-01'
+    summary: This Amendment changes to the income disregards and financial methodologies applied to certain medically needy
+      groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-23-0026-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-23-0026: Approval Document (approved January 12, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-23-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-23-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-23-0026
+    cms_node_id: '158886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158886
+    approval_date: '2024-01-12'
+    effective_date: '2023-10-01'
+    summary: in which the state increases the income eligibility level for pregnant women and provide coverage to lawfully
+      residing pregnant women.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-23-0012-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-23-0012: Approval Document (approved August 30, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-23-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-23-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-23-0012
+    cms_node_id: '152496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152496
+    approval_date: '2023-08-30'
+    effective_date: '2023-07-01'
+    summary: This amendment amends the State Plan to increase the personal needs allowance.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-22-0026-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-22-0026: Approval Document (approved February 27, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-22-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-22-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-22-0026
+    cms_node_id: '147111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147111
+    approval_date: '2023-02-27'
+    effective_date: '2023-01-01'
+    summary: This SPA updated the scope of the state’s coverage for the mandatory former foster care youth eligibility group
+      consistent with the changes in the federal law.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-22-0022-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-22-0022: Approval Document (approved October 3, 2022, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-22-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-22-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-22-0022
+    cms_node_id: '140351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140351
+    approval_date: '2022-10-03'
+    effective_date: '2022-10-01'
+    summary: This is to amend the State Plan to change state plan page Attachment 2.6-A Page 26 to reflect that the state
+      uses the maximum Community Spouse Resource standard permissible under federal law.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0028-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0028: Approval Document (approved January 15, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/ND-20-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0028
+    cms_node_id: '105586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105586
+    approval_date: '2021-01-15'
+    effective_date: '2020-10-01'
+    summary: Amends the ABP State Plan to add 1915(j) Behavioral Health services
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0023-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0023: Approval Document (approved October 6, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/media/file/nd-20-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0023
+    cms_node_id: '103291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103291
+    approval_date: '2020-10-06'
+    effective_date: '2020-07-01'
+    summary: Update the criteria for Targeted Case Management for Pregnant Women and Infants and updates the provider qualifications.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0003-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0003: Approval Document (approved September 25, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/nd-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0003
+    cms_node_id: '102691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102691
+    approval_date: '2020-09-25'
+    effective_date: '2020-01-01'
+    summary: Amends the State Plan to increase the eligibility income level for pregnant women to 157% of the Federal Poverty
+      Level.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0024-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0024: Approval Document (approved September 2, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-20-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0024
+    cms_node_id: '102791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102791
+    approval_date: '2020-09-02'
+    effective_date: '2020-07-01'
+    summary: Amends the State Plan to remove page T1 from the State Plan which allowed North Dakota to conduct presumptive
+      eligibility for the month of January 2014.
+    topics:
+    - Current State Plan
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-19-0022-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-19-0022: Approval Document (approved August 21, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-19-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-19-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-19-0022
+    cms_node_id: '101931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101931
+    approval_date: '2020-08-21'
+    effective_date: '2020-01-01'
+    summary: Received North Dakota State Plan Amendment (SPA) ND-19-0022 to move children previously enrolled in the State's
+      stand-alone Children's Health Insurance Program (CHIP) to Medicaid as Optional Targeted Low-Income Children.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-19-0017-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-19-0017: Approval Document (approved August 17, 2020, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-19-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-19-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-19-0017
+    cms_node_id: '101926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101926
+    approval_date: '2020-08-17'
+    effective_date: '2019-08-01'
+    summary: Amends the State Plan to remove the $6000 limit on burial accounts elective August 1, 2019 and amends the State
+      Plan language to be consistent with federal law for annuities. This amendment resolves the companion letter issued with
+      the approval of ND TN 18-0015.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0022-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0022: Approval Document (approved August 14, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-20-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0022
+    cms_node_id: '101636'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101636
+    approval_date: '2020-08-14'
+    effective_date: '2020-07-01'
+    summary: Amends the State Plan to update the Standards for the Coverage of Organ Transplant Services
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-19-0006-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-19-0006: Approval Document (approved July 1, 2020, effective June 30, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-06-30'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-19-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-19-0006
+    cms_node_id: '183736'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183736
+    approval_date: '2020-07-01'
+    effective_date: '2020-06-30'
+    summary: Updates the state plan by extending the supplemental payment for critical access hospitals (CAHs) for an additional
+      two-year period
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0004-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0004: Approval Document (approved June 16, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0004
+    cms_node_id: '99701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99701
+    approval_date: '2020-06-16'
+    effective_date: '2020-01-01'
+    summary: Updates the state’s Alternative Benefits Plan (ABP) for the adult group.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-19-0014-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-19-0014: Approval Document (approved May 13, 2020, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-19-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-19-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-19-0014
+    cms_node_id: '98951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98951
+    approval_date: '2020-05-13'
+    effective_date: '2019-07-01'
+    summary: Increases the eligibility income level for children with disabilities to 250% of the FPL
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-20-0009-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-20-0009: Approval Document (approved April 8, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-20-0009
+    cms_node_id: '91431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=91431
+    approval_date: '2020-04-08'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purposes
+      of this amendment is to suspend premiums for the Employed Individuals with Disabilities program eligibility group, make
+      adjustments to prior authorization and the day supply or quantity limit for covered outpatient drugs, suspend the Qualified
+      Service Provider qualifications regarding competency and state criteria, waive the timelines for nursing facility rate
+      reconsiderations and appeals, and waive the 15 day limit for payment for a reserved bed for an inpatient hospitalization.
+    topics:
+    - Disaster Relief
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-17-0008-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-17-0008: Approval Document (approved November 27, 2019, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-17-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-17-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-17-0008
+    cms_node_id: '52326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52326
+    approval_date: '2019-11-27'
+    effective_date: '2017-01-01'
+    summary: Reimbursement update for Cost Sharing.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-19-0016-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-19-0016: Approval Document (approved November 27, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-19-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-19-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-19-0016
+    cms_node_id: '52331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52331
+    approval_date: '2019-11-27'
+    effective_date: '2019-10-01'
+    summary: Reimbursement update for Removal of Copayments.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-18-0023-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-18-0023: Approval Document (approved September 30, 2019, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-18-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-18-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-18-0023
+    cms_node_id: '4756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4756
+    approval_date: '2019-09-30'
+    effective_date: '2018-10-01'
+    summary: Amends the state plan to provide for enhanced payment for services provided to qualifying children within Intermediate
+      Care Facilities (ICFs).
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-19-0010-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-19-0010: Approval Document (approved September 4, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-19-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-19-0010
+    cms_node_id: '5151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5151
+    approval_date: '2019-09-04'
+    effective_date: '2019-07-01'
+    summary: Implement an increase to the professional fee schedule for vaccines under the Pediatric Immunization program.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-18-0015-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-18-0015: Approval Document (approved September 28, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-18-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-18-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-18-0015
+    cms_node_id: '8946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=8946
+    approval_date: '2018-09-28'
+    effective_date: '2018-07-01'
+    summary: This adds the eligibility group described at section 1902(a)(lO)(A)(ii)(Vl) of the Social Security Act ("Act")
+      and implemented at 42 CFR §435.217 of the regulations to North Dakota Medicaid's State Plan. This also proposed, under
+      the authority of section 1902(r)(2) of the Act, to disregard parental resources from consideration in determining eligibility
+      for children under that eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-14-0009-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-14-0009: Approval Document (approved March 24, 2017, effective February 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-14-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-02-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-14-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-14-0009
+    cms_node_id: '15981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15981
+    approval_date: '2017-03-24'
+    effective_date: '2016-02-01'
+    summary: This amendment would allow would allow for the implementation of hospital presumptive eligibility and associated
+      claiming of FFP in North Dakota Medicaid.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-15-0020-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-15-0020: Approval Document (approved March 15, 2016, effective October 5, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-15-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-10-05'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-15-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-15-0020
+    cms_node_id: '20296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20296
+    approval_date: '2016-03-15'
+    effective_date: '2015-10-05'
+    summary: Allows the State to add the Medicaid Expansion enrollees, who have been determined Medically Frail, and who have
+      chosen the Traditional Medicaid Coverage, to the list of groups who are exempt from mandatory enrollment in the PCCM
+      program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-14-0102-mm-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-14-0102-MM: Approval Document (approved December 16, 2014, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-14-0102-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-14-0102-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-14-0102-MM
+    cms_node_id: '29661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29661
+    approval_date: '2014-12-16'
+    effective_date: '2014-10-01'
+    summary: This amendment reflects the North Dakota delegating appeals to the Office of Market Place Eligibility Appeals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-14-001-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-14-001: Approval Document (approved June 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-14-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-14-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-14-001
+    cms_node_id: '36186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36186
+    approval_date: '2014-06-17'
+    effective_date: '2014-01-01'
+    summary: Conducts presumptive eligibility for individuals applying for coverage prior to January 1, 2014 and who needed
+      coverage approved effective January 1 to ensure they had coverage in place.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-0019-mm-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-0019-MM: Approval Document (approved March 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-13-0019-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-0019-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-13-0019-MM
+    cms_node_id: '37896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37896
+    approval_date: '2014-03-25'
+    effective_date: '2014-01-01'
+    summary: Implements New Provision for MAGI Income Methodologies Under the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-0022-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-0022: Approval Document (approved January 16, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ND-13-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-13-0022
+    cms_node_id: '107511'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107511
+    approval_date: '2014-01-16'
+    effective_date: '2014-01-01'
+    summary: Effective January 1, 2014, the state affirms citizenship regulations, specified reasonable opportunity options,
+      and, specified policy options related to immigrant eligibility in accordance to the Affordable Care Act.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-0022-mm6-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-0022-MM6: Approval Document (approved January 16, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-13-0022-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-0022-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-13-0022-MM6
+    cms_node_id: '39136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39136
+    approval_date: '2014-01-16'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-0017-mm1-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-0017-MM1: Approval Document (approved December 10, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-13-0017-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-0017-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-13-0017-MM1
+    cms_node_id: '39761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39761
+    approval_date: '2013-12-10'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Mandatory and Optional Eligibility Group Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-011-approval-document
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-011: Approval Document (approved August 21, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-13-011-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ND-13-011
+    cms_node_id: '45586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45586
+    approval_date: '2013-08-21'
+    effective_date: '2013-07-01'
+    summary: Concurrent Care for Medicaid Children in Hospice.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-011-attachment
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-011: Attachment (approved August 21, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-13-011-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-011/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: ND-13-011
+    cms_node_id: '45586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45586
+    approval_date: '2013-08-21'
+    effective_date: '2013-07-01'
+    summary: Concurrent Care for Medicaid Children in Hospice.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-nd-cms-medicaid-state-plan-spa-nd-13-011-form-cms-179
+  jurisdiction: us-nd
+  document_class: policy
+  title: 'North Dakota Medicaid SPA ND-13-011: Form CMS-179 (approved August 21, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ND/ND-13-011-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-nd/policy/cms/medicaid-state-plan/spa/nd-13-011/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Dakota
+    source_discovery_group: us-nd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: ND-13-011
+    cms_node_id: '45586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45586
+    approval_date: '2013-08-21'
+    effective_date: '2013-07-01'
+    summary: Concurrent Care for Medicaid Children in Hospice.
+    topics: *id002
+    link_label: Form CMS-179

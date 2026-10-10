@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-folkestone-and-hythe/manual/2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027.json",
+      "sha256": "6c91e8d1a35b2f05094dac733a44a198adf2ab774f19671c5e7caa4f031902b5"
+    },
+    {
+      "path": "data/corpus/inventory/uk-folkestone-and-hythe/manual/2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027.json",
+      "sha256": "88b6a823952bd05e728b67edb3ac430cf4dc25cd47e2c8f0936c14a883292e85"
+    },
+    {
+      "path": "data/corpus/provisions/uk-folkestone-and-hythe/manual/2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "b1175470fe0f7a7963c156d32e22e4c1612cec0bd90650775a20662214f08316"
+    },
+    {
+      "path": "data/corpus/sources/uk-folkestone-and-hythe/manual/2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027/official-documents/folkestone-and-hythe-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "fb3ef5b4d330c1a2f08170bbfdc5a3bfc48c1da8f0284426ab7c2d8c28b56f8f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-folkestone-and-hythe-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 68,
+    "missing_count": 0,
+    "provision_count": 68,
+    "source_count": 68
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:00.175275+00:00",
+  "jurisdiction": "uk-folkestone-and-hythe",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5OK/vmvxy+Mvr6XoZqYrvtBESKACmfyuQf3Fdw6Pmj4MbA1faOnPx8HZYwEjXt5B/5y9vSfScKSvpGrPnniOBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027"
+}

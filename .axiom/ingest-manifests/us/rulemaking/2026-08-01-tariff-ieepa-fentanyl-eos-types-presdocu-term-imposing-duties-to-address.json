@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address.json",
+      "sha256": "cda212081d9dbd38b56e43a3af2e38859287e9945cdc0de1b9436ca0e86638ff"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address.json",
+      "sha256": "bb52b5f2d844c1e671fd7ad36a6170c919593fd8f59d58cd9c9b18ac69547a31"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address.jsonl",
+      "sha256": "634ed34a5a5cff05f6c9d1be165b78ad0455f1ba4e1db049f012de4dae3357c2"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/api/documents-page-1.json",
+      "sha256": "1dfe1f17dbd862e828939cb3a3dfed337d478c03d17970a4d8172d13171266d4"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/documents/2025-02406.json",
+      "sha256": "97a66396ad0139e29541976066e84ecb18ccbeb5c621a2d5fed3f868449b6e77"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/documents/2025-02406.txt",
+      "sha256": "3e7254d2861e7c20db05cc83788ae21502a24a83f27741d2501fd63de7a4bccf"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/documents/2025-02407.json",
+      "sha256": "8c7fa750d896cadd5c679e49b70443b88ed74a56666cf5401217c46c12908103"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/documents/2025-02407.txt",
+      "sha256": "573c88ed249067d41dc2e22a75cfb17423bc9a61c3f4d80a3653abc8b65fcd8f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/documents/2025-02408.json",
+      "sha256": "8f37d75ebcec24669ba817d4ba231476ffd85cd0c0dd5d12d2535b7ce641dbc8"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address/federal-register/documents/2025-02408.txt",
+      "sha256": "06f84a8c2789c28372b1ed3287d69310d5fa61f54003d9fa35dee7b3f4910808"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-fentanyl-eos --start-date 2025-02-07 --document-type PRESDOCU --term \"imposing duties to address\" --source-as-of 2026-08-01 --expression-date 2025-02-07"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:37.366374+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Fzgulz76Uu02zGNXZ6cHsmbbJZBxd/aRaBctClKC9c4LVXHdTCEhekrlWIA/pH15WLnlNSCMvx2b+WBq9/HmDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-fentanyl-eos-types-presdocu-term-imposing-duties-to-address"
+}

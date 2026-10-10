@@ -120,7 +120,7 @@ def test_parse_new_mexico_epub_extracts_articles_sections_and_excludes_annotatio
     assert [section.source_id for section in parsed.sections] == [
         "7-1-1",
         "7-1-2",
-        "7-1-1@effective-2026-07-01",
+        "7-1-1--effective-2026-07-01",
         "7-1-2.1",
         "7-1-2.2",
         "7-1-3",
@@ -131,7 +131,7 @@ def test_parse_new_mexico_epub_extracts_articles_sections_and_excludes_annotatio
     assert parsed.sections[0].references_to == ("us-nm/statute/7-1-2",)
     assert parsed.sections[0].source_history == ("History: Laws 1965, ch. 248, s. 1.",)
     assert parsed.sections[1].status == "repealed"
-    assert parsed.sections[2].citation_path == "us-nm/statute/7-1-1@effective-2026-07-01"
+    assert parsed.sections[2].citation_path == "us-nm/statute/7-1-1--effective-2026-07-01"
     assert parsed.sections[2].canonical_citation_path == "us-nm/statute/7-1-1"
     assert parsed.sections[2].effective_note == "Effective July 1, 2026."
     assert parsed.sections[2].status == "future_or_conditional"
@@ -173,7 +173,7 @@ def test_extract_new_mexico_statutes_from_source_dir_writes_complete_artifacts(t
     assert records[2].citation_path == "us-nm/statute/7-1-1"
     assert records[2].metadata is not None
     assert records[2].metadata["references_to"] == ["us-nm/statute/7-1-2"]
-    assert records[4].citation_path == "us-nm/statute/7-1-1@effective-2026-07-01"
+    assert records[4].citation_path == "us-nm/statute/7-1-1--effective-2026-07-01"
     assert records[4].metadata is not None
     assert records[4].metadata["canonical_citation_path"] == "us-nm/statute/7-1-1"
     assert records[5].citation_path == "us-nm/statute/7-1-2.1"

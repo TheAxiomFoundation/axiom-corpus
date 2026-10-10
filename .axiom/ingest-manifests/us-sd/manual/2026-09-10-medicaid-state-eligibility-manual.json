@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "6a29580f7142b1b535a0f88f98c97ac76128f42addc84d88df77e9b68e331b8b"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "ccabb4dba3b14cbe987dc5177ea04dd6cf861d718d6afade2fe722991a0f5327"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "94c459078cf8dddfdc804f404f130040d1c20b01e4a055e0a5c73207503c8deb"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-01.json",
+      "sha256": "1afe82dd8b210402aa8b83c7ea17f1e49ab77dc92bffe4f6046f002b60e15a26"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-02.json",
+      "sha256": "b8b106473c85c10c15aec2e4cfe84e0d9ad399c3b1597a3220a6ae5a34f30bf8"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-03.json",
+      "sha256": "7e9396d4994159c59b400491fc4535ec222815f10d0719224d5ea7c98a31ad65"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-04.json",
+      "sha256": "6b3fa9e41ad2adb635a477d3250cc32b10471fd08bf140d21d02d7c203e21b76"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-05.json",
+      "sha256": "637dba92232962e1950d1e542ceb2832b66ac2fab2d10b2d61d0548155498f8e"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-06.json",
+      "sha256": "115e956c3ee646a8a7e4cb6dc70049ab2b5caf940979dcf38b9609db834e7aa3"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-07.json",
+      "sha256": "c1be3387cd626a9e8478cfe96750b2841205b20fc409cc8477a1bb180161e218"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-08.json",
+      "sha256": "7810325292a4ed7a0f45b9c33dde9ccda4d38451f8d599286a7b9aec67c5bba2"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-09.json",
+      "sha256": "2d2e76996b8d78dc4d775de26ad2771a5d7a65d6ec206d1ba24acf5f0bb5e033"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-10.json",
+      "sha256": "eba54873e9645393402791e9a577cc7d9b743460b9847a7b91721eb5efac1ce7"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-11.json",
+      "sha256": "15d744b431c0fee1ca4aec3eb127bd485b209225e08c47c2e0366c410eee6ee5"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-12.json",
+      "sha256": "4582f63c30ec6d222545c82336f80fd2f42efb23a592e6069285f64ee42d4514"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-13.json",
+      "sha256": "23878858c61fa4cd4e0bde47ba0870f34e2fa528c1243666bca67932d82c031a"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/sd-lrc-arsd-67-46-15.json",
+      "sha256": "7351ec6ce313e03d9c4c641af9fb22201cc9ba7d7b1ceb632acd7668575ad515"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-sd-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 29,
+    "missing_count": 0,
+    "provision_count": 29,
+    "source_count": 29
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:48:53.038379+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oNypv1XUYa2aFOWOTOqQc2UOyfdAhJkrhXG4TR6bqfdq7A15RVnjw0uuhMUdqF22C67xM3pv+ZoTDpXJpnxXAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

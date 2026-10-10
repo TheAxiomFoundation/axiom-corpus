@@ -1,0 +1,489 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-pa-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 21
+    index_records_total: 21
+- source_id: us-pa-cms-chip-state-plan-spa-pa-24-0001-chip-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-24-0001-CHIP: Approval Package (approved July 30, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA-24-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-24-0001-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-24-0001-CHIP
+    cms_node_id: '169771'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169771
+    approval_date: '2024-07-30'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-23-0001-dral-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-23-0001-DRAL: Approval Package (approved August 10, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-23-0001-DRAL
+    cms_node_id: '152136'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=152136
+    approval_date: '2023-08-10'
+    effective_date: '2023-05-12'
+    summary: 'This letter reactivates Pennsylvania''s approved Evergreen Disaster Relief State Plan Amendment to include the
+      following flexibilities: waiving the collection of premiums for all CHIP beneficiaries through July 31, 2023. The state
+      will resume the standard premium and cost sharing policies for individuals who have completed a full renewal in the
+      last 12 months. The state will resume the collection of premiums on a rolling basis as renewals are conducted through
+      the state’s COVID-19 PHE unwinding period, scheduled to end February 29, 2024.'
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-22-0001-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-22-0001: Approval Package (approved October 26, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-22-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-22-0001
+    cms_node_id: '141051'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=141051
+    approval_date: '2022-10-26'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Pennsylvania with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its separate CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-22-0002-chip-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-22-0002-CHIP: Approval Package (approved July 21, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA-22-0002-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-22-0002-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-22-0002-CHIP
+    cms_node_id: '145386'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145386
+    approval_date: '2022-07-21'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-20-0002-chip-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-20-0002-CHIP: Approval Package (approved February 5, 2021, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA-20-0002-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-20-0002-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-20-0002-CHIP
+    cms_node_id: '106896'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=106896
+    approval_date: '2021-02-05'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-19-0001-chip-factsheet
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-19-0001-CHIP: Factsheet (approved November 27, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-19-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-19-0001-chip/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: PA-19-0001-CHIP
+    cms_node_id: '92356'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92356
+    approval_date: '2019-11-27'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with CHIP managed care regulations
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-pa-cms-chip-state-plan-spa-pa-18-0001-chip-factsheet
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-18-0001-CHIP: Factsheet (approved May 3, 2019, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-18-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-18-0001-chip/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: PA-18-0001-CHIP
+    cms_node_id: '92351'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92351
+    approval_date: '2019-05-03'
+    effective_date: '2017-10-02'
+    summary: Implements mental health parity requirements to ensure that treatment limitations and financial requirements.
+    topics:
+    - Benefits
+    link_label: Factsheet
+- source_id: us-pa-cms-chip-state-plan-spa-pa-14-0001-mc-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-14-0001-MC: Approval Package (approved January 29, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-14-0001-MC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-14-0001-mc/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0001-MC
+    cms_node_id: '2841'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2841
+    approval_date: '2015-01-29'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-14-0003-mc3-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-14-0003-MC3: Approval Package (approved September 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-14-0003-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-14-0003-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0003-MC3
+    cms_node_id: '3496'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3496
+    approval_date: '2014-09-11'
+    effective_date: '2014-01-01'
+    summary: To provide coverage in its separate CHIP, for children subject to Section 2101(f) of the Affordable Care Act.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-14-0004-mc4-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-14-0004-MC4: Approval Package (approved September 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-14-0004-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-14-0004-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0004-MC4
+    cms_node_id: '3501'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3501
+    approval_date: '2014-09-11'
+    effective_date: '2014-01-01'
+    summary: Clarifies the state's non-financial eligibility policies on residency citizenship; social security numbers; submission
+      of coverage, non-payment of premiums; and continuous eligibility.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-14-0005-mc5-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-14-0005-MC5: Approval Package (approved September 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-14-0005-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-14-0005-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0005-MC5
+    cms_node_id: '3506'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3506
+    approval_date: '2014-09-11'
+    effective_date: '2014-01-01'
+    summary: Clarifies the state's non-financial eligibility policies on residency; citizenship; social security numbers;
+      substitution of coverage, , non-payment of premiums; and, continuous eligibility.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-spa-pa-cspa-9-approval-package
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP SPA PA-CSPA-9: Approval Package (approved August 12, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PA-CSPA-09-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/spa/pa-cspa-9/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-CSPA-9
+    cms_node_id: '2246'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2246
+    approval_date: '2011-08-12'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 501 - Oral Health Coverage for certain children of state employees -Section 10203(6)(C) of the
+      Affordable Care Act.
+    topics:
+    - Dental
+    link_label: Approval Package
+- source_id: us-pa-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP compiled state plan: Factsheet (approved February 20, 2007, effective January 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PACurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-01-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: PA
+    cms_node_id: '1781'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1781
+    approval_date: '2007-02-20'
+    effective_date: '2007-01-01'
+    summary: Current CHIP State Plan as amended by SPA 7 and Factsheet as of 09-01-2009.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-pa-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania CHIP compiled state plan: Current State Plan (approved February 20, 2007, effective January 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/PA/PACurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-01-01'
+  citation_path: us-pa/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: PA
+    cms_node_id: '1781'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1781
+    approval_date: '2007-02-20'
+    effective_date: '2007-01-01'
+    summary: Current CHIP State Plan as amended by SPA 7 and Factsheet as of 09-01-2009.
+    topics: *id002
+    link_label: Current State Plan

@@ -1,0 +1,1 @@
+First Bolivia (bo) corpus presence: BOLMOD v2.1 tranche-1 statute scope (Ley 843 in the DS 27947 Anexo 3 texto ordenado from the Gaceta Oficial norm view; Ley 065 de Pensiones from the BCB official print; Ley 3791 Renta Dignidad from the APS normativa file) and regulation scope (DS 28899 Bono Juancito Pinto; DS 0066 Bono Juana Azurduy).

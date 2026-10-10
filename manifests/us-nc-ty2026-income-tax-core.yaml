@@ -1,0 +1,57 @@
+version: 2026-07-26-nc-ty2026-income-tax-core
+jurisdiction: us-nc
+document_class: statute
+tax_year: 2026
+expression_date: '2026-07-07'
+liability_status: deferred_pending_final_d_400
+targets:
+  - us-nc/statute/105/105-153.5
+  - us-nc/statute/105/105-153.7
+  - us-nc/statute/105/105-153.9
+  - us-nc/statute/105/105-153.11
+sources:
+  us-nc-code-105:
+    source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/ByChapter/Chapter_105.html
+    source_path: official-documents/us-nc-code-105.html
+    sha256: 5ef104d936836f683570e6b0e04f8ea26204f4650979756a482acb9a163c18e2
+    role: consolidated_base
+    fetched_at: '2026-07-14T01:42:26Z'
+  sl-2026-11:
+    source_url: https://www.ncleg.gov/EnactedLegislation/SessionLaws/HTML/2025-2026/SL2026-11.html
+    source_path: official-documents/sl-2026-11.html
+    sha256: 90f496762980f6af1cfaf1bef529c620c29a993b7f5fa6b640e3e8399980047e
+    role: enacted_overlay
+    fetched_on: '2026-07-26'
+    approved: '2026-06-22'
+    overlays:
+      - section: 24(a)-(b)
+        effective: '2026-06-22'
+        effect: extend_real_property_donation_provisions_through_2030
+  sl-2026-31:
+    source_url: https://www.ncleg.gov/EnactedLegislation/SessionLaws/HTML/2025-2026/SL2026-31.html
+    source_path: official-documents/sl-2026-31.html
+    sha256: a4f934b753a95c57be0c5c33e2533258c71859f92e57be9def36daf2db03fcfa
+    role: enacted_overlay
+    fetched_on: '2026-07-26'
+    approved: '2026-07-02'
+    overlays:
+      - section: 1.5(b)
+        effective: '2026-07-02'
+        effect: correct_105_153_11_cross_references_and_cap_language
+      - section: '1.8'
+        effective: 'taxable years beginning on or after 2026-01-01'
+        effect: amend_105_153_5_itemized_and_grant_deduction_language
+  sl-2026-41:
+    source_url: https://www.ncleg.gov/EnactedLegislation/SessionLaws/HTML/2025-2026/SL2026-41.html
+    source_path: official-documents/sl-2026-41.html
+    sha256: a44598558a70f574492f2eef87abb3cdfd7624ef7e8ece3ccb55e3b6b6c1273d
+    role: enacted_overlay
+    fetched_on: '2026-07-26'
+    approved: '2026-07-07'
+    overlays:
+      - section: '44.1'
+        effective: '2026-07-07'
+        effect: rewrite_105_153_7_rate_schedule_and_trigger
+      - section: '44.2'
+        effective: 'taxable years beginning on or after 2025-01-01'
+        effect: add_105_153_5_wagering_loss_itemized_deduction

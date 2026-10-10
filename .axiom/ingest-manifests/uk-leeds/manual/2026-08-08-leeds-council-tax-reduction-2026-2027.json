@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-leeds/manual/2026-08-08-leeds-council-tax-reduction-2026-2027.json",
+      "sha256": "6fecae0f7d61815642bf276b1ad5b492b0ba068bdb7e38ff2afc9b0de6fc4bb7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-leeds/manual/2026-08-08-leeds-council-tax-reduction-2026-2027.json",
+      "sha256": "d5de34cd418b0ae7e418cb8443e8e0df8ed72a9156435892ce924666430d7f2c"
+    },
+    {
+      "path": "data/corpus/provisions/uk-leeds/manual/2026-08-08-leeds-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "8058b8995dd1af92864fff1a2b9c828e87751c50df9d16cd31467562d4131efb"
+    },
+    {
+      "path": "data/corpus/sources/uk-leeds/manual/2026-08-08-leeds-council-tax-reduction-2026-2027/official-documents/leeds-council-tax-support-scheme-universal-credit-2026-2027.html",
+      "sha256": "74ffd873f5e914f9d9777ca99e2f8c2c2a129eb6f8183b6c3bd75ab2de9bb6d1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0cae5bdaad598b803007d949c5f5f6ed8f9a864e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-08-leeds-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-leeds-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 77,
+    "missing_count": 0,
+    "provision_count": 77,
+    "source_count": 77
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-08T19:40:12.925257+00:00",
+  "jurisdiction": "uk-leeds",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "R86fnu9yDY1k7M6iZ++31oAHAHM0RRseoy9ZfTaOcHreCbf8OzGcdGworabwpUX59sNNHMxKKtfekzq94UhWBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-08-leeds-council-tax-reduction-2026-2027"
+}

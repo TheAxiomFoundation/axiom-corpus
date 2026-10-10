@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/vn/statute/2026-07-24-vn-vnmod-t1-statutes.json",
+      "sha256": "8c9b93a3f1d3849a276541ade8183016446927bce39dfa9fecc6171aaf4e1531"
+    },
+    {
+      "path": "data/corpus/inventory/vn/statute/2026-07-24-vn-vnmod-t1-statutes.json",
+      "sha256": "d0d3b925587dc77b3c80d0155b42e4356c7de5a53511b722878cd6a70fcbba99"
+    },
+    {
+      "path": "data/corpus/provisions/vn/statute/2026-07-24-vn-vnmod-t1-statutes.jsonl",
+      "sha256": "d0e5640f7735c1a5ac5fcf8fbf1ef2e97dba0744916874608cca3a781e6a672a"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t1-statutes/official-documents/vn-luat-04-2007-qh12-thue-thu-nhap-ca-nhan.html",
+      "sha256": "a3c9079221dc4622972d27f67e190de41826f4cee318b7001a7ee11a16b59bf8"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t1-statutes/official-documents/vn-luat-13-2008-qh12-thue-gia-tri-gia-tang.html",
+      "sha256": "f14822dd03d7b95c5f764a96bffa3658e535ecdab9c7be5450ca1ce6c94b7729"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t1-statutes/official-documents/vn-luat-57-2010-qh12-thue-bao-ve-moi-truong.html",
+      "sha256": "13e5e9c62a80517ef3aca27b376278c60cf1b2018dae50e72793e8d764fe170f"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t1-statutes/official-documents/vn-luat-58-2014-qh13-bao-hiem-xa-hoi.pdf",
+      "sha256": "10dc17ba706c03f93a5b9f0aae492a3e637a09b480cbf01c7e12d6ffc547e64d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6efad6c359baa7c4b5fcbbe2f88916dbc66d669b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-vn-vnmod-t1-statutes --manifest manifests/vn-vnmod-t1-statutes-official-documents.yaml (three vanban.chinhphu.vn full-text HTML pages; Luat 58/2014 from the datafiles.chinhphu.vn signed scan via force_ocr vie)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T12:07:31.637698+00:00",
+  "jurisdiction": "vn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/hvJWfvyMII+Kmz37VYMoYCIC7bxZ4jap3H8KJ/deZfQ5yUNxhOUE/zpqcinz7Lstkd2W1rt3Tp2GRmxDzUVDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-vn-vnmod-t1-statutes"
+}

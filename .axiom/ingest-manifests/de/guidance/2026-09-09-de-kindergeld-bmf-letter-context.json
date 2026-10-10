@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context.json",
+      "sha256": "6ac6e1be5dc29a2b8b753f21400218cd209d55b4b3d55e03fe05773a73f484ad"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context.json",
+      "sha256": "741158c6661fcc152978385ded67a9d927c9afaad99e460ec03ac98a0b9d7257"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context.jsonl",
+      "sha256": "7557a3800822439c310f3fcfca0c070ffdcb3259347d824e987d343a3261bf9b"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context/official-documents/de-bmf-2013-06-28-child-allowance-transfer.html",
+      "sha256": "c9cc5e7fff4cdcd13a82987a199ed502a4bea4bffe5f56268954bd06b00e7210"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context/official-documents/de-bmf-2025-12-02-country-groups.pdf",
+      "sha256": "745c34ec78b01e23896a46ea9c6e6c6c7c0ae69186c920908c95aaff6d95e0a0"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context/official-documents/de-cjeu-c-328-20.pdf",
+      "sha256": "efdd53c5338484844376e54c8401a244a0578dd87d9e436dc22656eb6c8d937d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4c93f9cd6a00d7141f4e4c1cc76c5bc9e3aa884f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src python -m axiom_corpus.corpus.cli extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-bmf-letter-context --manifest /private/tmp/de-kindergeld-closure/bmf-letter-context-replay.json --source-as-of 2026-09-09 --expression-date 2026-09-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T23:51:24.238718+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-09-de-kindergeld-bmf-letter-context-audit.json",
+      "sha256": "618c568635328e7928463d44de13a41f885ca7b2fa9692b42a17a21cae01a11a"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-09-de-kindergeld-bmf-letter-context.md",
+      "sha256": "1d18cfd844cf497f7066ff8263f4b778d9bd6f71b4835a68fab2a9eff99704fe"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RuPhjHmRjxGRC9sH1to9N9LNCfRKHIx5fzyJk3SNWSE6ZHRHjfYdyInTKa3uFfTNrjXFvbK4oRQmzxBttaeGAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-bmf-letter-context"
+}

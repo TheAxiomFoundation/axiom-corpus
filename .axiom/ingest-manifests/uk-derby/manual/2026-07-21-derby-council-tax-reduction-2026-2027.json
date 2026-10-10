@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-derby/manual/2026-07-21-derby-council-tax-reduction-2026-2027.json",
+      "sha256": "b307971a5c45a8d78864cf57e97d3da808409702bc9b75e47524a1e29a608adc"
+    },
+    {
+      "path": "data/corpus/inventory/uk-derby/manual/2026-07-21-derby-council-tax-reduction-2026-2027.json",
+      "sha256": "516c7150ff0ccb5419d1341d7634c904a8f351db9696e9cd99525084b0a17894"
+    },
+    {
+      "path": "data/corpus/provisions/uk-derby/manual/2026-07-21-derby-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "4119551ee2f2b94e5b1dc05ed88713ba1cf28d5b83fff99588563680cbfdd035"
+    },
+    {
+      "path": "data/corpus/sources/uk-derby/manual/2026-07-21-derby-council-tax-reduction-2026-2027/official-documents/derby-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "ce1409e090e1a37d844fdbd5744b96ef17a8adc2c83fdb03c1e672c8c526e08d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9e5a705e57dd78c39173cbde38552803e492f3be",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-derby-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-derby-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-23T14:01:37.419873+00:00",
+  "jurisdiction": "uk-derby",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QS6+b9mk+CrUTdOBwY/EAMhxvqSFTRTNZB0IBYHsrVV6Jg1ZQJcIBQyfIeIy98MzMtde6ASSyWqGbhbErHlFDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-derby-council-tax-reduction-2026-2027"
+}

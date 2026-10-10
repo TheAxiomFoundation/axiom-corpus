@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-07-23-irs-notice-2025-67.json",
+      "sha256": "6a230a64c400cd89057762b2c5a06e6baf857b2288b48a1d875455e15e1db462"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-07-23-irs-notice-2025-67.json",
+      "sha256": "400f1ad890ce0122adb590e61a3cd2fc248014fe1c32dab868cd349e9707be06"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-07-23-irs-notice-2025-67.jsonl",
+      "sha256": "4838e2001b16f4afcb0b97b7a194743adbaa14da59cb30f5b06626551baa018f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-23-irs-notice-2025-67/official-documents/irs-notice-2025-67.pdf",
+      "sha256": "1eea8f141b0cddd182f9f09b3bc8ffad683d27ceb806dfc6da126811dc0a1f8d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1568d98e1b17ed4a7e73fc4fbfaff796abd520a7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23 --manifest manifests/us-irs-guidance.yaml --only-source-id irs-notice-2025-67"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-26T13:46:19.311160+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PRwYAySDdsBC7z7mluc68WwoWPgOS5o3s7O9MPblZ/hqT4hX6tcTUOfN05VHtrey1leWlSHIuve2RiGGy/rmCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-irs-notice-2025-67"
+}

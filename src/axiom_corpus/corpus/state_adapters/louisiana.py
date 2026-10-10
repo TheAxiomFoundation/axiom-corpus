@@ -947,14 +947,17 @@ def _is_history_text(value: str) -> bool:
     return bool(_HISTORY_START_RE.match(value))
 
 
-def _status(heading: str, body: str | None, history: list[str]) -> str | None:
-    text = "\n".join([heading, body or "", *history])
+def _status(heading: str, body: str | None, _history: list[str]) -> str | None:
     empty_status = _empty_page_status(heading)
     if empty_status == "reserved":
         return empty_status
-    if re.search(r"\bRepealed\b", text, re.I):
+    if re.search(r"(?:^\s*[\[(]?\s*Repealed\b|\[\s*Repealed\s*\]\s*$)", heading, re.I) or (
+        body is None and re.search(r"\bRepealed\b", heading, re.I)
+    ):
         return "repealed"
-    if re.search(r"\bExpired\b", text, re.I):
+    if re.search(r"(?:^\s*[\[(]?\s*Expired\b|\[\s*Expired\s*\]\s*$)", heading, re.I) or (
+        body is None and re.search(r"\bExpired\b", heading, re.I)
+    ):
         return "expired"
     return None
 

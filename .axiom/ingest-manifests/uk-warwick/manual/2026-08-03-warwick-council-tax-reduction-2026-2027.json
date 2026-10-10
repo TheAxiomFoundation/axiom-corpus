@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-warwick/manual/2026-08-03-warwick-council-tax-reduction-2026-2027.json",
+      "sha256": "9f1a33928f456358d1863d818191a33417861f611c2ff76f0586332fe61a7442"
+    },
+    {
+      "path": "data/corpus/inventory/uk-warwick/manual/2026-08-03-warwick-council-tax-reduction-2026-2027.json",
+      "sha256": "e521efeb7756203c8244a4e074ef8bf31855fb5dccc03f315c37e3a6d1c02f26"
+    },
+    {
+      "path": "data/corpus/provisions/uk-warwick/manual/2026-08-03-warwick-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0a76d7323aacd0694a4efaa17efdc598ff186b34148a13d69ef9c68704b2a845"
+    },
+    {
+      "path": "data/corpus/sources/uk-warwick/manual/2026-08-03-warwick-council-tax-reduction-2026-2027/official-documents/warwick-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "16823c8112983a8f56b6bf71eb9769abf74a5c5de508b9f9c4f1e9e6e7dfc438"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-warwick-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-warwick-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 156,
+    "missing_count": 0,
+    "provision_count": 156,
+    "source_count": 156
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:37:06.214153+00:00",
+  "jurisdiction": "uk-warwick",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vCKMyKO70ucsLR67Z/mOTJNVnIFrtpPoDM5HAsGTdZYkJus6DFIwmvv2timxuOR+E1nA5cypFRvGgHpEipiXDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-warwick-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/guidance/2026-07-21-ks-k40es-2026.json",
+      "sha256": "fdab5eb436f574a8d31e77626596a1395c6dc13f26385bbcda7bcb00cdf5a975"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/guidance/2026-07-21-ks-k40es-2026.json",
+      "sha256": "a1371e94d418f8b72c2f5a742d69a3578cd83aabaea68b431495cb2c9c96b7cd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/guidance/2026-07-21-ks-k40es-2026.jsonl",
+      "sha256": "17d6e7c4fdfed6f3d28e173a08499d0ab75b4e7f159793e61fb494c4081a3bd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-07-21-ks-k40es-2026/official-documents/us-ks-revenue-2026-k40es.pdf",
+      "sha256": "8ce02ac89717ac81f832629c677fa6cd7f743944d21fe1bb2c6881c529d38490"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dbedd9af4b614be526e8685f00a4449149dad111",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-ks-k40es-2026 --manifest manifests/us-ks-2026-k40es.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T23:25:32.326743+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-ks-k40es-2026.md",
+      "sha256": "b32e2c5cfec2e8bce57267e908c35a47ced26fc92d09684ce381e93d16686385"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Xp9uXLyHOCIrXh1AqWiTAZGNeGc752CL2XDp3n0pf4lghL/qnTFVEWwIQprzscgUXuKL8CwSJamP8VZxPXpNCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-ks-k40es-2026"
+}

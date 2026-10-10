@@ -1,0 +1,31 @@
+documents:
+  - source_id: us-ks-revenue-2026-k40es
+    jurisdiction: us-ks
+    document_class: guidance
+    title: Kansas 2026 Individual Estimated Tax (K-40ES)
+    source_url: https://www.ksrevenue.gov/pdf/k-40es26.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2025-08-26"
+    citation_path: us-ks/guidance/department-of-revenue/forms/2026/k-40es
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Kansas Department of Revenue
+      document_subtype: individual_estimated_tax_form
+      form_number: K-40ES
+      program: individual_income_tax
+      tax_year: "2026"
+      revision_date: "2025-08-26"
+      lower_rate: "0.052"
+      upper_rate: "0.0558"
+      joint_lower_bracket_ceiling: "46000"
+      other_lower_bracket_ceiling: "23000"
+      legal_authority: K.S.A. 79-32,110 and 79-32,110c
+      legal_authority_url: https://www.kslegislature.gov/b2025_26/laws/079_000_0000_chapter/079_032_0000_article/
+      source_status: current_official_tax_year_schedule
+      source_note: >-
+        Official Kansas Department of Revenue tax-year-2026 estimated-tax form
+        publishing the individual income-tax schedules in effect after the
+        August 15, 2025 determination window under K.S.A. 79-32,110c.

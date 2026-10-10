@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ky/manual/2026-05-27-ky-snap-manual.json",
-      "sha256": "020b759c1d92d8499aa2d9da161a0f9ae0dbea6c053ff2ff69c6fec96ee4acca"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ky/manual/2026-05-27-ky-snap-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-ky/manual/2026-05-27-ky-snap-manual.json",
-      "sha256": "b79299f81e50e5a83938a728a3611f3610f42feaef7d4890e0d1b3329355f196"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ky/manual/2026-05-27-ky-snap-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-ky/manual/2026-05-27-ky-snap-manual.jsonl",
-      "sha256": "80b321ed60459249414e5a656119d965c76de3bc2a664ebb34ac0a4fae2e0c09"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ky/manual/2026-05-27-ky-snap-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "95ab854b5f4adc0155273dda55e233d9946082f4",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "retire source-less Kentucky SNAP scope after authenticated 2026-07-17 replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 397,
-    "missing_count": 0,
-    "provision_count": 397,
-    "source_count": 397
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:28.528014+00:00",
+  "generated_at": "2026-07-17T14:05:31.806708+00:00",
   "jurisdiction": "us-ky",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "8yETMF7TVfBEpYw9yWrjO1JiyM0eT62/GE2zwKvUvVf+C5Y9g9BiJaYacOykI1BKqxsxpB5IuHDT/q3uiDXtBA=="
+    "value": "QWFDfP/9F18WWJ6tikAm3VC7N2Dj7F4HZLlAe13Ewc0/1umquvKGfQRnK2WdXJz25hxaeMCvIg6Fpz7lYXjQCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-ky-snap-manual"

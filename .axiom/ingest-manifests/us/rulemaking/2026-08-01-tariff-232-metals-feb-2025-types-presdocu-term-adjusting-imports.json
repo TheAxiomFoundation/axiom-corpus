@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports.json",
+      "sha256": "bfdd50a9bbbed0d11bab563a3fb5700949683df9fd2357b731d44cedba482a3f"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports.json",
+      "sha256": "a4ac7961b914ad105cda0d0c8f547715116334d0e6c650e67b5bb215ae6c2467"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports.jsonl",
+      "sha256": "a1db1f5e5f43b8e98f6bea27a0570e7dd6dc3fe0463dc5b9419933da5317b9c1"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports/federal-register/api/documents-page-1.json",
+      "sha256": "e55590ea167862c2c51ba3a5ce0ae5cd5015600313647abc63352f1dfbb34456"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports/federal-register/documents/2025-02832.json",
+      "sha256": "42b829dbfd7ed439132719a13d39bcc7d59cd54af2e56292fe82457054ee0d74"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports/federal-register/documents/2025-02832.txt",
+      "sha256": "189d710a1f89233486089d2c639baa8b1ee53c3828ed5b5d6931d637ad55649a"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports/federal-register/documents/2025-02833.json",
+      "sha256": "513a570a8f5bf59805f162c341aab57e8d318af4d6feb3b7ecd4520aa2219e3b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports/federal-register/documents/2025-02833.txt",
+      "sha256": "b0b7ebadae274fdf9d6056dff11e76440ae7f2589653157ac7882766955799c9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-metals-feb-2025 --start-date 2025-02-18 --document-type PRESDOCU --term \"adjusting imports\" --source-as-of 2026-08-01 --expression-date 2025-02-18"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:13.053065+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FafYY1FBZCrFAXCRZV9Iu32WnG1aTYeNlBCa5mXz3CTv2RiAPLBEm58KLKhRN8f2LzmdvfT9paPZPEfbRbDvDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-metals-feb-2025-types-presdocu-term-adjusting-imports"
+}

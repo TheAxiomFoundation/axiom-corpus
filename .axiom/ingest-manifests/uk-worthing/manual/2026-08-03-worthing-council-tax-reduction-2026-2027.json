@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-worthing/manual/2026-08-03-worthing-council-tax-reduction-2026-2027.json",
+      "sha256": "1240a5096c8c229abab754fee569e9584b4ea042080d72720a07e0836f158820"
+    },
+    {
+      "path": "data/corpus/inventory/uk-worthing/manual/2026-08-03-worthing-council-tax-reduction-2026-2027.json",
+      "sha256": "fbad696ced65a9c75ac23edf830fa4fa39476d3a61e908e24a1412366cac359f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-worthing/manual/2026-08-03-worthing-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "2aaaedc1464c1c0cacbf1e393d3a3d4e2ced288de826bebde36aa8bac83c9abc"
+    },
+    {
+      "path": "data/corpus/sources/uk-worthing/manual/2026-08-03-worthing-council-tax-reduction-2026-2027/official-documents/worthing-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "58b224427f5ac2b9d49f9f7b879f21640f0d4d9c4109fb34f0988e6c8102cbc1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-worthing-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-worthing-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 151,
+    "missing_count": 0,
+    "provision_count": 151,
+    "source_count": 151
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:37:12.822759+00:00",
+  "jurisdiction": "uk-worthing",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+25TpsC8a+L+gwNEkxe0Wzvqk90WvI7tTujKATdDvC3xQT1fO870bDe8wT1bNhXAHmH5NV7VOo7RwcYSdcz7Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-worthing-council-tax-reduction-2026-2027"
+}

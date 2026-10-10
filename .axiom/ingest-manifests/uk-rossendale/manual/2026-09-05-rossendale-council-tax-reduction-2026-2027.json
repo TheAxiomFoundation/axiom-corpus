@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rossendale/manual/2026-09-05-rossendale-council-tax-reduction-2026-2027.json",
+      "sha256": "9d16255203e02e170c44794748c575d4fc8b530bf5abb15b6cbf318b8b5b2928"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rossendale/manual/2026-09-05-rossendale-council-tax-reduction-2026-2027.json",
+      "sha256": "9051ac58f1d8805dd842571d7d18001102ec9b98a1f31568324a7070162ea466"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rossendale/manual/2026-09-05-rossendale-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "8fc36c0016e9914a9f173ebc78f6b9af0ceaca6ddfa1ff5b765b07c48878f1a4"
+    },
+    {
+      "path": "data/corpus/sources/uk-rossendale/manual/2026-09-05-rossendale-council-tax-reduction-2026-2027/official-documents/rossendale-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "d1c9faa6375303b51cb58ba0dc8a5e12c54a3e6d7e1bbb38b476f0d9b8b81043"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-rossendale-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rossendale-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 147,
+    "missing_count": 0,
+    "provision_count": 147,
+    "source_count": 147
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:12.362085+00:00",
+  "jurisdiction": "uk-rossendale",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "q1gEPNNAM1GAGGUeRwc4v5uEJH7LNwOEakjJRm7gHa+Rnal5qi5Pv4LQeEvzetxxp5Wa5CEsYPhiX0sX68JkBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-rossendale-council-tax-reduction-2026-2027"
+}

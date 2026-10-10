@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer.json",
-      "sha256": "118429b6578cf14f15ad7753a5e193eb28e880d653cb7e13b692ab26bd3a992e"
+      "sha256": "725acc4ef1ecf4fee51ea3dc722d82e7a238c5d0b2a83684f1d33aa8e5b67ae7"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:58.409988+00:00",
+  "generated_at": "2026-07-21T11:40:42.789330+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "A0NLV81Wcbmj3wcctilo3BTlOqyHT44slvkLun2WVIKdQYMcVOPT3ilHKc9kWVjOeIMrYXxGiYVxIhnb5z2aAw=="
+    "value": "ZPdtaIabgC04h33S5TxUFDvxnI868QmRntpM7EgoI/L5cXDBxeM15PMjVVUQcEjvX7HBx/kI1yS3D9WKeXjvBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"

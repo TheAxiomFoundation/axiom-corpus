@@ -1,0 +1,2695 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ca-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 575
+- source_id: us-ca-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 575
+- source_id: us-ca-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 575
+- source_id: us-ca-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 575
+- source_id: us-ca-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 575
+- source_id: us-ca-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 6
+    index_records_on_page: 75
+    index_records_total: 575
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-26-0003-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-26-0003: Approval Document (approved June 24, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-26-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-26-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-26-0003
+    cms_node_id: '193711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193711
+    approval_date: '2026-06-24'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to disregard any increases in the total amount of resources determined available at an
+      individual's most recent Medicaid application until the individual's first renewal that occurs on or after January 1,
+      2026.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-25-0041-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-25-0041: Approval Document (approved March 5, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-25-0041.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-25-0041/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-25-0041
+    cms_node_id: '189811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189811
+    approval_date: '2026-03-05'
+    effective_date: '2026-01-01'
+    summary: This amendment resumes the electronic Asset Verification System.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-25-0037-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-25-0037: Approval Document (approved December 19, 2025, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-25-0037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-25-0037/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-25-0037
+    cms_node_id: '188311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=188311
+    approval_date: '2025-12-19'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to resume evaluating resources in the determinations of eligibility for its non-MAGI
+      eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0036-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0036: Approval Document (approved December 17, 2025, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0036/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0036
+    cms_node_id: '188306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=188306
+    approval_date: '2025-12-17'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes to rebrand the online presumptive portal (CHOP Gateway) as Children's Presumptive Eligibility
+      (CPE). Presumptive eligibility services will expand to include all qualified Medi-Cal providers enrolled in Medi-Cal,
+      thereby permitting more providers to make presumptive eligibility determinations and expanding access to Medi-Cal services
+      for more children/youth under the age of 19.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-24-0035-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-24-0035: Approval Document (approved March 3, 2025, effective December 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-24-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-12-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-24-0035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0035
+    cms_node_id: '177251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=177251
+    approval_date: '2025-03-03'
+    effective_date: '2024-12-01'
+    summary: This SPA updates the eligibility requirements for the Health Insurance Premium Payment program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-24-0054-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-24-0054: Approval Document (approved February 27, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-24-0054.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-24-0054/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0054
+    cms_node_id: '177231'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=177231
+    approval_date: '2025-02-27'
+    effective_date: '2025-01-01'
+    summary: This SPA establishes guidelines for the medical allocation for unallocated settlements, judgments, and/or awards
+      to avoid unnecessary costs associated with litigation over the medical allocation of an unallocated settlement, judgment,
+      and/or award.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-24-0056-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-24-0056: Approval Document (approved December 11, 2024, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-24-0056.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-24-0056/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0056
+    cms_node_id: '174071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=174071
+    approval_date: '2024-12-11'
+    effective_date: '2025-01-01'
+    summary: This amendment will align the Medicaid State Plan with federal law for prior authorizations and prompt payment
+      and will bring California into compliance with the Consolidated Appropriations Act of 2022 (Public Law 117-103).
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-24-0011-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-24-0011: Approval Document (approved December 10, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-24-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-24-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0011
+    cms_node_id: '173891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173891
+    approval_date: '2024-12-10'
+    effective_date: '2024-10-01'
+    summary: This amendment will implement a Medicare Part A buy-in agreement between the California Department of Health
+      Care Services (DHCS) with CMS.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0007-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0007: Approval Document (approved April 19, 2024, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0007
+    cms_node_id: '163386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163386
+    approval_date: '2024-04-19'
+    effective_date: '2022-01-01'
+    summary: This amendment is to approve the paper and online single streamlined applications used to apply for insurance
+      affordability programs.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-23-0033-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-23-0033: Approval Document (approved November 6, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-23-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-23-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-23-0033
+    cms_node_id: '155281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155281
+    approval_date: '2023-11-06'
+    effective_date: '2023-07-01'
+    summary: This SPA amendment is to allow for facilitated enrollment of California Work Opportunity and Responsibility to
+      Kids (CalWORKs) beneficiaries into the Medicaid program without a separate financial eligibility determination.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-23-0030-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-23-0030: Approval Document (approved November 3, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-23-0030
+    cms_node_id: '155286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155286
+    approval_date: '2023-11-03'
+    effective_date: '2024-01-01'
+    summary: This SPA amendment is to end the use of the electronic Asset Verification System (AVS) to determine or redetermine
+      Medicaid eligibility for all Aged, Blind and Disabled (ABD) program applicants and recipients
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-23-0012-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-23-0012: Approval Document (approved July 14, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-23-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-23-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-23-0012
+    cms_node_id: '150451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150451
+    approval_date: '2023-07-14'
+    effective_date: '2024-01-01'
+    summary: This state plan amendment allows the state to disregard, under the authority of section 1902(r)(2) of the Social
+      Security Act, all countable resources for all eligibility groups covered under the state plan to which a resource standard
+      applies.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-23-0009-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-23-0009: Approval Document (approved May 4, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-23-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-23-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-23-0009
+    cms_node_id: '147681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147681
+    approval_date: '2023-05-04'
+    effective_date: '2023-01-01'
+    summary: This State Plan Amendment is to adopt the changes to the eligibility rules for the Former Foster Care Children
+      eligibility group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for
+      Patients and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0072-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0072: Approval Document (approved January 30, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0072.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0072/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0072
+    cms_node_id: '144356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=144356
+    approval_date: '2023-01-30'
+    effective_date: '2022-10-01'
+    summary: This SPA amendment is to disregard, in Medicaid eligibility determinations, the payments an individual receives
+      from the California Guaranteed Income Pilot programs as income in the month of the receipt and as resources for the
+      12 months following receipt.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0045-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0045: Approval Document (approved December 15, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0045.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0045/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0045
+    cms_node_id: '142951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142951
+    approval_date: '2022-12-15'
+    effective_date: '2022-07-01'
+    summary: This amendment is to comply with federal requirements on premium and cost sharing tracking and assessing copays
+      on non-emergency use of services provided in emergency departments. This amendment proposes to eliminate copayments
+      in the Medi-Cal program effective July 1, 2022.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0042-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0042: Approval Document (approved September 8, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0042/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0042
+    cms_node_id: '139586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139586
+    approval_date: '2022-09-08'
+    effective_date: '2022-07-01'
+    summary: This SPA will reduce premiums to $0 for the Optional Targeted Low-Income Child (OTLIC) group, which covers eligible
+      individuals with a family income determined to be above 160 percent of the Federal Poverty Level.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0034-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0034: Approval Document (approved September 8, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0034/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0034
+    cms_node_id: '139591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139591
+    approval_date: '2022-09-08'
+    effective_date: '2022-07-01'
+    summary: This SPA will reduce premiums to $0 for the Working Disabled Program, which covers eligible working disabled
+      individuals with a family income up to 250 percent of the Federal Poverty Level.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-22-0018-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-22-0018: Approval Document (approved June 30, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-22-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-22-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0018
+    cms_node_id: '137466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137466
+    approval_date: '2022-06-30'
+    effective_date: '2022-07-01'
+    summary: This amendment is to clarify the Department of Health Care Services’ third-party liability practices for prenatal
+      services and child support enforcement services. It also amends exceptions for recovery practices and updates Medicare
+      thresholds.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-21-0027-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-21-0027: Approval Document (approved June 4, 2021, effective February 23, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-21-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-02-23'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-21-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-21-0027
+    cms_node_id: '108931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108931
+    approval_date: '2021-06-04'
+    effective_date: '2021-02-23'
+    summary: CMS is approving this time-limited state plan amendment (SPA) to respond to the COVID-19 national emergency.
+      The purpose of this amendment is to disregard as income and disregard as resources any payments received from a Golden
+      State Stimulus or a Golden State Grant for 12 months after receipt.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0011-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0011: Approval Document (approved November 24, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/CA-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0011
+    cms_node_id: '104106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104106
+    approval_date: '2020-11-24'
+    effective_date: '2020-07-01'
+    summary: authorizes augmentation payments to emergency air medical transportation services for state fiscal year
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0045-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0045: Approval Document (approved November 19, 2020, effective December 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/CA-20-0045.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-12-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0045/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0045
+    cms_node_id: '104066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104066
+    approval_date: '2020-11-19'
+    effective_date: '2020-12-01'
+    summary: Increase the Blind Federal Poverty Level (FPL) and the Aged and Disabled FPL program income limits by increasing
+      the income disregard to all countable income above the Supplemental Security Income/State Supplementary Payment (SSI/SSP)
+      standard
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-16-0001-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-16-0001: Approval Document (approved October 22, 2020, effective January 2, 2016)'
+  source_url: https://www.medicaid.gov/media/file/ca-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-02'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-16-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-16-0001
+    cms_node_id: '103366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103366
+    approval_date: '2020-10-22'
+    effective_date: '2016-01-02'
+    summary: Targeted Case Management Services for All Medicaid Eligible Children
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0016-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0016: Approval Document (approved October 21, 2020, effective December 2, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ca-20-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-12-02'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0016
+    cms_node_id: '103816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103816
+    approval_date: '2020-10-21'
+    effective_date: '2020-12-02'
+    summary: Implements California Assembly Bill (AB) 1088 (Chapter 450, 2019) for a new income disregard that would allow
+      an aged, blind, or disabled individual to remain eligible for the Aged, Blind, and Disabled Federal Poverty Level (ABD
+      FPL) program once the state pays the individual’s Medicare Part B premiums. The income disregard would disregard from
+      an individual’s income the amount of such individual’s incurred Medicare Part B premium. The purpose of the legislation
+      is to avoid any adverse impacts on beneficiaries.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0027-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0027: Approval Document (approved August 25, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-20-0027 (2).pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0027
+    cms_node_id: '101551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101551
+    approval_date: '2020-08-25'
+    effective_date: '2020-07-01'
+    summary: Removes Imperial County and adds Mariposa County to the list of geographic areas offering Targeted Case Management
+      (TCM) services for the "Children Under the Age of 21” TCM group.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0031-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0031: Approval Document (approved August 25, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-20-0031 (2).pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0031
+    cms_node_id: '101561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101561
+    approval_date: '2020-08-25'
+    effective_date: '2020-07-01'
+    summary: Removes Alameda, Imperial and Los Angeles Counties from and add Mariposa County to the list of geographic areas
+      offering Targeted Case Management (TCM) services for the "Individuals with a Communicable Disease” TCM group.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0030-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0030: Approval Document (approved August 25, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-20-0030 (2).pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0030
+    cms_node_id: '101566'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101566
+    approval_date: '2020-08-25'
+    effective_date: '2020-07-01'
+    summary: Removes Imperial County from and add Mariposa, Placer and Sacramento Counties to the list of geographic areas
+      offering Targeted Case Management (TCM) services for the "Individuals in Jeopardy of Negative Health or Psycho-Social
+      Outcomes” TCM group
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0029-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0029: Approval Document (approved August 25, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-20-0029 (2).pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0029
+    cms_node_id: '101571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101571
+    approval_date: '2020-08-25'
+    effective_date: '2020-07-01'
+    summary: Removes Humboldt, Imperial, and Sacramento Counties from and add Mariposa and Placer Counties to the list of
+      geographic areas offering Targeted Case Management (TCM) services for the "Individuals at Risk of Institutionalization”
+      TCM
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0028-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0028: Approval Document (approved August 25, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CA-20-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0028
+    cms_node_id: '101906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101906
+    approval_date: '2020-08-25'
+    effective_date: '2020-07-01'
+    summary: Removes Imperial, Los Angeles and Sacramento Counties from and add Mariposa and Placer Counties to the list of
+      geographic areas offering Targeted Case Management (TCM) services for the "Medically Fragile Individuals” TCM group.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0024-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0024: Approval Document (approved May 13, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-20-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0024
+    cms_node_id: '98401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98401
+    approval_date: '2020-05-13'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new COVID-19 testing group; expand eligibility by disregarding income up to 138% FPL for certain individuals;
+      expand Hospital Presumptive Eligibility (HPE) to certain groups and expand the number of HPE periods in a 12-month period
+      to two HPE periods for certain groups; suspend cost-sharing for COVID-19 testing and treatment services; suspend enrollment
+      fees, premiums, and similar charges for certain groups; allow physicians and other licensed practitioners (OLPs) to
+      order Medicaid home health services; modify the rehabilitative services benefit in the Drug Medi-Cal State Plan to expand
+      the uses for individual counseling visits; remove utilization controls on covered benefits to the extent such limits
+      can’t be exceeded based on medical necessity; use telehealth by modifying the face-to-face requirement for State Plan
+      benefits/services to be provided via all forms of telehealth, regardless of originating or distant site; adjust day
+      supply or quantity limits for covered outpatient drugs; include non-legend acetaminophen-containing drugs, non-legend
+      cough, and cold drugs that are covered outpatient drugs in the pharmacy benefit; and allow prior authorizations for
+      medications to be expanded by automatic renewal without clinical review, or time/quantity extensions. This amendment
+      also will add COVID-19 diagnostic tests and corresponding payment increases for these tests up to the corresponding
+      Medicare level; increase current per diem rates by 10 percent to Nursing Facilities and ICF/DDs; modify the face-to-face
+      requirement for virtual communications and allow for reimbursement as appropriate using HCPCS code G0071 at the Medicare
+      rate; suspend requirements for face-to-face contact in the Drug Medi-Cal state plan program and treat non-face-to-face
+      contacts as equivalent to face-to-face contacts; and pay for ancillary costs for Drug Medi-Cal services only. Other
+      temporary payment changes will allow the In-Home Supportive Services (IHSS) Individual Provider Rate to include payment
+      for paid time off of IHSS providers related to COVID-19 sick leave benefits for a limited time period; and update the
+      State-approved county governmental, contracted, and private individual provider rates fee schedule to reflect the additional
+      sick leave mandated pursuant to the Emergency Paid Sick Leave Act. For the Drug Medi-Cal and Specialty Mental Health
+      programs in the state plan, the amendment will increase interim rates by 100%, and remove charges as a limit in cost
+      settlement; exempt the clinical lab COVID-19 testing procedure codes from the 10 percent payment reduction mandated
+      by state law; and add Associate Marriage and Family Therapists/Associate Clinical Social Workers (AMFTs/ACSWs) as billable
+      provider types in FQHCs/RHCs.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-20-0007-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-20-0007: Approval Document (approved April 30, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-20-0007
+    cms_node_id: '98136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98136
+    approval_date: '2020-04-30'
+    effective_date: '2020-01-01'
+    summary: Clarifies which Non-Emergency Medical Transportation (NEMT) procedure codes are eligible to receive a time-limited
+      supplemental payment (through December 31, 2021)
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-19-0015-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-19-0015: Approval Document (approved January 24, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-19-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-19-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0015
+    cms_node_id: '58816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58816
+    approval_date: '2020-01-24'
+    effective_date: '2020-07-01'
+    summary: Proposes to revise the state’s Medi-Cal Fee-For-Service (FFS) reimbursement methodology for blood factors in
+      Hemophilia Treatment Centers, as described on Supplement 2 to Attachment 4.19-B, page 9, in the California Medicaid
+      State Plan.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-19-0050-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-19-0050: Approval Document (approved December 20, 2019, effective August 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-19-0050_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-08-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-19-0050/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0050
+    cms_node_id: '53156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=53156
+    approval_date: '2019-12-20'
+    effective_date: '2020-08-01'
+    summary: This State Plan Amendment is required to implement state Senate Bill (SB) 104 (2019). SB 104 increases the Blind
+      Federal Poverty Level (FPL) and the Aged and Disabled FPL program income limits by increasing the income disregard to
+      all countable income above the SSI/SSP payment standard up to 138% of FPL for the Blind FPL program and 100% up to 138%
+      FPL for the Aged and Disabled FPL program. The income disregard is applied after all other exclusions and disregards.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-18-0040-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-18-0040: Approval Document (approved October 24, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-18-0040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-18-0040/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-18-0040
+    cms_node_id: '4511'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4511
+    approval_date: '2019-10-24'
+    effective_date: '2019-01-01'
+    summary: Adds the Diabetes Prevention Program (DPP) as a Medi-Cal preventive service benefit to prevent or delay the onset
+      of type 1 and type 2 diabetes for adults.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-19-0042-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-19-0042: Approval Document (approved September 26, 2019, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-19-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-19-0042/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0042
+    cms_node_id: '4811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4811
+    approval_date: '2019-09-26'
+    effective_date: '2019-08-01'
+    summary: Extension of the time-limited supplemental payment for Freestanding Pediatric Subacute Facilities under the Medi-Cal
+      program using California Healthcare, Research and Prevention Tobacco Tax Act.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-19-0022-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-19-0022: Approval Document (approved September 26, 2019, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-19-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-19-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0022
+    cms_node_id: '4816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4816
+    approval_date: '2019-09-26'
+    effective_date: '2019-08-01'
+    summary: Extension of the time-limited supplemental payment for Intermediate Care Facilities for the Developmentally Disabled,
+      including Habilitative and Nursing facilities, using California Healthcare, Research and Prevention Tobacco Tax Act.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-19-0038-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-19-0038: Approval Document (approved August 14, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-19-0038.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-19-0038/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0038
+    cms_node_id: '5381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5381
+    approval_date: '2019-08-14'
+    effective_date: '2019-07-01'
+    summary: Supplemental payment extension for certain dental services.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Dental
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-19-0023-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-19-0023: Approval Document (approved July 17, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-19-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-19-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0023
+    cms_node_id: '5701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5701
+    approval_date: '2019-07-17'
+    effective_date: '2019-07-01'
+    summary: Proposes to update the Private Hospital Supplemental Fund Program inpatient hospital supplemental payments.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-17-039-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-17-039: Approval Document (approved November 22, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-17-039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-17-039/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-17-039
+    cms_node_id: '12741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=12741
+    approval_date: '2017-11-22'
+    effective_date: '2017-07-01'
+    summary: This SPA will amend the Medi-Cal Fee-for-Service (FFS) statewide all-inclusive reimbursement rate for delivery
+      services provided in Alternative Birth Centers (ABCs) so that the payment does not exceed eighty (80) percent of the
+      statewide average Diagnosis Related Group (DRG) - Level 1 rate received by general acute care hospitals.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-0021-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-0021: Approval Document (approved April 29, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-0021
+    cms_node_id: '15426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15426
+    approval_date: '2015-04-29'
+    effective_date: '2014-01-01'
+    summary: To incorporate MAGI-based eligibility groups into California's Medicaid State Plan.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-0027-mm7-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-0027-MM7: Approval Document (approved February 27, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-0027-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-0027-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-0027-MM7
+    cms_node_id: '28661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28661
+    approval_date: '2015-02-27'
+    effective_date: '2014-01-01'
+    summary: Identifies the specifications according to which California will implement the hospital presumptive eligibility
+      (PE) requirements of the Affordable Care Act, found at 42 CFR 435.1110.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-11-030-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-11-030: Approval Document (approved July 23, 2014, effective November 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-11-030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-11-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-11-030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-11-030
+    cms_node_id: '34816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34816
+    approval_date: '2014-07-23'
+    effective_date: '2011-11-01'
+    summary: This SPA serves to clarify coverage provisions related to Durable Medical Equipment, and reimbursement provisions
+      related to hearing aids.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-14-015-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-14-015: Approval Document (approved June 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-14-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-14-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-14-015
+    cms_node_id: '36236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36236
+    approval_date: '2014-06-06'
+    effective_date: '2014-01-01'
+    summary: Authorizes the utilization of presumptive eligibility for certain eligibility groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-035-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-035: Approval Document (approved March 28, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-035
+    cms_node_id: '37621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37621
+    approval_date: '2014-03-28'
+    effective_date: '2014-01-01'
+    summary: Affordable Care Act Alternative Benefit Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-005-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-005: Approval Document (approved December 20, 2013, effective November 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-005-MSPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-11-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-005
+    cms_node_id: '39701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39701
+    approval_date: '2013-12-20'
+    effective_date: '2013-11-01'
+    summary: Introduce coverage for Optional Targeted Low-Income Children,to transition children from California Childrens
+      Health Insurance Program to Medicaid, and to impose premium payments.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-0028-mm1-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-0028-MM1: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-0028-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-0028-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-0028-MM1
+    cms_node_id: '35806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35806
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Incorporates the New Adults Below 133% Eligibility Group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-0022-mm2-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-0022-MM2: Approval Document (approved December 10, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-0022-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-0022-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-0022-MM2
+    cms_node_id: '40101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40101
+    approval_date: '2013-12-10'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI-Based Eligibility Process Requirements, including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-0026-mm-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-0026-MM: Approval Document (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-0026-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-0026-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-0026-MM
+    cms_node_id: '40141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40141
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizenship and Non-Citizenship Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-0023-mm-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-0023-MM: Approval Document (approved September 30, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-0023-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-0023-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-0023-MM
+    cms_node_id: '39911'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39911
+    approval_date: '2013-09-30'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-13-004-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-13-004: Approval Document (approved May 31, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-13-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-13-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-13-004
+    cms_node_id: '38811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38811
+    approval_date: '2013-05-31'
+    effective_date: '2013-07-01'
+    summary: Provides that inpatient hospital services furnished by private hospitals will be reimbursed under an All Patient
+      Refined Diagnosis Related Group prospective payment methodology.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-12-008-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-12-008: Approval Document (approved November 21, 2012, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-12-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-12-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-12-008
+    cms_node_id: '32396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32396
+    approval_date: '2012-11-21'
+    effective_date: '2013-01-01'
+    summary: Provider Screening and Enrollment.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-11-037a-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-11-037A: Approval Document (approved February 28, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-11-037A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-11-037a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-11-037A
+    cms_node_id: '32536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32536
+    approval_date: '2012-02-28'
+    effective_date: '2012-04-01'
+    summary: On February 22, 2012, the State requested that SPA 11-037 be split such that 11-037a amends the State Plan to
+      delay the effective date of the elimination of the coverage of Adult Day Health Care (ADHC) services to April 1, 2012.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-008a-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-008A: Approval Document (approved September 9, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-008A-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-008a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-10-008A
+    cms_node_id: '45091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45091
+    approval_date: '2011-09-09'
+    effective_date: '2010-07-01'
+    summary: Revises the target populations receiving services through the Targeted Case Management Program.
+    topics: &id002
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-008a-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-008A: Attachment (approved September 9, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-008A-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-008a/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-10-008A
+    cms_node_id: '45091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45091
+    approval_date: '2011-09-09'
+    effective_date: '2010-07-01'
+    summary: Revises the target populations receiving services through the Targeted Case Management Program.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-008a-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-008A: Form CMS-179 (approved September 9, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-008A-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-008a/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-10-008A
+    cms_node_id: '45091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45091
+    approval_date: '2011-09-09'
+    effective_date: '2010-07-01'
+    summary: Revises the target populations receiving services through the Targeted Case Management Program.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-014-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-014: Approval Document (approved March 24, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-10-014
+    cms_node_id: '45061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45061
+    approval_date: '2011-03-24'
+    effective_date: '2010-07-01'
+    summary: Incorporates the State Eligibility Option for Family Planning Services.
+    topics: &id003
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-014-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-014: Attachment (approved March 24, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-10-014
+    cms_node_id: '45061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45061
+    approval_date: '2011-03-24'
+    effective_date: '2010-07-01'
+    summary: Incorporates the State Eligibility Option for Family Planning Services.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-014-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-014: Form CMS-179 (approved March 24, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-10-014
+    cms_node_id: '45061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45061
+    approval_date: '2011-03-24'
+    effective_date: '2010-07-01'
+    summary: Incorporates the State Eligibility Option for Family Planning Services.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-009-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-009: Approval Document (approved February 4, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-10-009
+    cms_node_id: '45066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45066
+    approval_date: '2011-02-04'
+    effective_date: '2010-10-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over.
+    topics: &id004
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-009-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-009: Attachment (approved February 4, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-10-009
+    cms_node_id: '45066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45066
+    approval_date: '2011-02-04'
+    effective_date: '2010-10-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-009-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-009: Form CMS-179 (approved February 4, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-10-009
+    cms_node_id: '45066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45066
+    approval_date: '2011-02-04'
+    effective_date: '2010-10-01'
+    summary: Prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries age 55 and over.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-10-012b-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-10-012B: Approval Document (approved December 20, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-10-012B.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-10-012b/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-10-012B
+    cms_node_id: '29466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29466
+    approval_date: '2010-12-20'
+    effective_date: '2010-07-01'
+    summary: This amendment updates the Mentally Disabled target group language to reflect current practice and align with
+      Federal regulations.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-014-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-014: Approval Document (approved May 25, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-09-014
+    cms_node_id: '45131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45131
+    approval_date: '2010-05-25'
+    effective_date: '2009-04-01'
+    summary: Provides full Medicaid coverage qualified alien children and pregnant women who are are fully residing in the
+      U S but have either not met the 5 year waiting period or 5 year bar under Section 403 of the Personal Responsibility
+      and Work Opportunity Reconciliation Act of 1996 or are nonqualified aliens lawfully residing in the U S who are other
+      otherwise eligible for such assistance.
+    topics: &id005
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-014-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-014: Attachment (approved May 25, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-09-014
+    cms_node_id: '45131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45131
+    approval_date: '2010-05-25'
+    effective_date: '2009-04-01'
+    summary: Provides full Medicaid coverage qualified alien children and pregnant women who are are fully residing in the
+      U S but have either not met the 5 year waiting period or 5 year bar under Section 403 of the Personal Responsibility
+      and Work Opportunity Reconciliation Act of 1996 or are nonqualified aliens lawfully residing in the U S who are other
+      otherwise eligible for such assistance.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-014-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-014: Form CMS-179 (approved May 25, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-09-014
+    cms_node_id: '45131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45131
+    approval_date: '2010-05-25'
+    effective_date: '2009-04-01'
+    summary: Provides full Medicaid coverage qualified alien children and pregnant women who are are fully residing in the
+      U S but have either not met the 5 year waiting period or 5 year bar under Section 403 of the Personal Responsibility
+      and Work Opportunity Reconciliation Act of 1996 or are nonqualified aliens lawfully residing in the U S who are other
+      otherwise eligible for such assistance.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-006-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-006: Approval Document (approved September 29, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-006-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-09-006
+    cms_node_id: '45161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45161
+    approval_date: '2009-09-29'
+    effective_date: '2009-10-01'
+    summary: Implements Section 1915j authority for self directed personal assistance services to transition Medi Cal beneficiaries
+      currently receiving services through the In-Home Supportive Services Plus Section 1115 Demonstration project which expires
+      on September 30, 2009.
+    topics: &id006
+    - Benefits
+    - Eligibility
+    - Health Services Initiatives
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-006-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-006: Attachment (approved September 29, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-006-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-006/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-09-006
+    cms_node_id: '45161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45161
+    approval_date: '2009-09-29'
+    effective_date: '2009-10-01'
+    summary: Implements Section 1915j authority for self directed personal assistance services to transition Medi Cal beneficiaries
+      currently receiving services through the In-Home Supportive Services Plus Section 1115 Demonstration project which expires
+      on September 30, 2009.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-006-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-006: Form CMS-179 (approved September 29, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-09-006
+    cms_node_id: '45161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45161
+    approval_date: '2009-09-29'
+    effective_date: '2009-10-01'
+    summary: Implements Section 1915j authority for self directed personal assistance services to transition Medi Cal beneficiaries
+      currently receiving services through the In-Home Supportive Services Plus Section 1115 Demonstration project which expires
+      on September 30, 2009.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-012-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-012: Approval Document (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-012-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-09-012
+    cms_node_id: '45136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45136
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi-Cal benefits as Disabled
+      Widows, Widowers or Early Disabled Widows, Widowers through the use of more liberal income disregards under Section
+      1902 r 2 of the Social Security Act.
+    topics: &id007
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-012-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-012: Attachment (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-012-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-012/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-09-012
+    cms_node_id: '45136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45136
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi-Cal benefits as Disabled
+      Widows, Widowers or Early Disabled Widows, Widowers through the use of more liberal income disregards under Section
+      1902 r 2 of the Social Security Act.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-012-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-012: Form CMS-179 (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-012-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-012/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-09-012
+    cms_node_id: '45136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45136
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi-Cal benefits as Disabled
+      Widows, Widowers or Early Disabled Widows, Widowers through the use of more liberal income disregards under Section
+      1902 r 2 of the Social Security Act.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-011-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-011: Approval Document (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-011-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-09-011
+    cms_node_id: '45141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45141
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi Cal benefits as Childhood
+      Disability Beneficiaries through the use of more liberal income disregards under Section 1902 r 2 of the Social Security
+      Act.
+    topics: &id008
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-011-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-011: Attachment (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-011-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-011/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-09-011
+    cms_node_id: '45141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45141
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi Cal benefits as Childhood
+      Disability Beneficiaries through the use of more liberal income disregards under Section 1902 r 2 of the Social Security
+      Act.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-011-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-011: Form CMS-179 (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-011-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-011/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-09-011
+    cms_node_id: '45141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45141
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi Cal benefits as Childhood
+      Disability Beneficiaries through the use of more liberal income disregards under Section 1902 r 2 of the Social Security
+      Act.
+    topics: *id008
+    link_label: Form CMS-179
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-010-approval-document
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-010: Approval Document (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-010-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-09-010
+    cms_node_id: '45146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45146
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi-Cal benefits under the Pickle
+      Amendment through the use of more liberal income disregards under Section 1902 r 2.
+    topics: &id009
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-010-attachment
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-010: Attachment (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-010-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-010/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CA-09-010
+    cms_node_id: '45146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45146
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi-Cal benefits under the Pickle
+      Amendment through the use of more liberal income disregards under Section 1902 r 2.
+    topics: *id009
+    link_label: Attachment
+- source_id: us-ca-cms-medicaid-state-plan-spa-ca-09-010-form-cms-179
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California Medicaid SPA CA-09-010: Form CMS-179 (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CA/CA-09-010-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ca/policy/cms/medicaid-state-plan/spa/ca-09-010/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CA-09-010
+    cms_node_id: '45146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45146
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Implements a new coverage group for individuals who would otherwise qualify for Medi-Cal benefits under the Pickle
+      Amendment through the use of more liberal income disregards under Section 1902 r 2.
+    topics: *id009
+    link_label: Form CMS-179

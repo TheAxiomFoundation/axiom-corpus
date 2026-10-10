@@ -1,0 +1,233 @@
+# Denmark full-parity Tier-1, current-expression constituent.
+#
+# This is a fresh LexDania XML re-ingest.  It deliberately does not compose with
+# the immutable 2026-07-12 PDF scope: that scope has document-level blocks,
+# whereas this campaign requires paragraph-level citations throughout.
+#
+# Extract to the constituent version below, then use the adjacent compose plan
+# to join it to the historical-expression and amendment-act constituents.  All
+# amendment siblings must ultimately share the composed
+# 2026-08-04-dk-full-parity-tier1 version because amendment discovery filters
+# candidates to the target provision's exact version.
+#
+#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#     axiom-corpus-ingest extract-eli-documents --base data/corpus \
+#     --version 2026-08-04-dk-full-parity-tier1-current \
+#     --manifest manifests/dk-full-parity-tier1-eli.yaml
+documents:
+  - source_id: dk-lbk-603-2025-boerne-og-ungeydelsesloven
+    eli_uri: https://retsinformation.dk/eli/lta/2025/603
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven
+    title: Bekendtgørelse af lov om en børne- og ungeydelse
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 603 af 12/05/2025
+      title_alternative: Børne- og ungeydelsesloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: child-benefit
+
+  - source_id: dk-lbk-1284-2021-personskatteloven
+    eli_uri: https://retsinformation.dk/eli/lta/2021/1284
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1284-2021/personskatteloven
+    title: Bekendtgørelse af lov om indkomstskat for personer m.v. (personskatteloven)
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1284 af 14/06/2021
+      title_alternative: Personskatteloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: personal-income-tax
+      source_note: Known consolidation lag; post-consolidation acts are a required second pass.
+
+  - source_id: dk-lbk-121-2020-arbejdsmarkedsbidragsloven
+    eli_uri: https://retsinformation.dk/eli/lta/2020/121
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-121-2020/arbejdsmarkedsbidragsloven
+    title: Bekendtgørelse af lov om arbejdsmarkedsbidrag (arbejdsmarkedsbidragsloven)
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 121 af 07/02/2020
+      title_alternative: Arbejdsmarkedsbidragsloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: social-contributions
+
+  - source_id: dk-lbk-63-2019-boernetilskudsloven
+    eli_uri: https://retsinformation.dk/eli/lta/2019/63
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-63-2019/boernetilskudsloven
+    title: Bekendtgørelse af lov om børnetilskud og forskudsvis udbetaling af børnebidrag
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 63 af 21/01/2019
+      title_alternative: Børnetilskudsloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: family-benefits
+
+  - source_id: dk-lbk-395-2023-su-loven
+    eli_uri: https://retsinformation.dk/eli/lta/2023/395
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-395-2023/su-loven
+    title: Bekendtgørelse af lov om statens uddannelsesstøtte (SU-loven)
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 395 af 13/04/2023
+      title_alternative: SU-loven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: education-benefits
+
+  - source_id: dk-lbk-1123-2024-pensionsloven
+    eli_uri: https://retsinformation.dk/eli/lta/2024/1123
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1123-2024/pensionsloven
+    title: Bekendtgørelse af lov om social pension
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1123 af 21/10/2024
+      title_alternative: Pensionsloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: social-pension
+
+  - source_id: dk-lbk-1004-2025-aktivloven
+    eli_uri: https://retsinformation.dk/eli/lta/2025/1004
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1004-2025/aktivloven
+    title: Bekendtgørelse af lov om aktiv socialpolitik
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1004 af 30/06/2025
+      title_alternative: Aktivloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: social-assistance
+
+  - source_id: dk-lbk-1243-2024-pensionsbeskatningsloven
+    eli_uri: https://retsinformation.dk/eli/lta/2024/1243
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1243-2024/pensionsbeskatningsloven
+    title: Bekendtgørelse af lov om beskatningen af pensionsordninger m.v. (pensionsbeskatningsloven)
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1243 af 26/11/2024
+      title_alternative: Pensionsbeskatningsloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: pension-tax
+
+  - source_id: dk-lbk-460-2024-kildeskatteloven
+    eli_uri: https://retsinformation.dk/eli/lta/2024/460
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-460-2024/kildeskatteloven
+    title: Bekendtgørelse af kildeskatteloven
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 460 af 03/05/2024
+      title_alternative: Kildeskatteloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: withholding-tax
+
+  - source_id: dk-lbk-1142-2024-atp-loven
+    eli_uri: https://retsinformation.dk/eli/lta/2024/1142
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1142-2024/atp-loven
+    title: Bekendtgørelse af lov om Arbejdsmarkedets Tillægspension
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1142 af 01/11/2024
+      title_alternative: ATP-loven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: social-contributions
+
+  - source_id: dk-lbk-1077-2025-arbejdsloeshedsforsikringsloven
+    eli_uri: https://retsinformation.dk/eli/lta/2025/1077
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1077-2025/arbejdsloeshedsforsikringsloven
+    title: Bekendtgørelse af lov om arbejdsløshedsforsikring m.v.
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1077 af 28/08/2025
+      title_alternative: Arbejdsløshedsforsikringsloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: unemployment-insurance
+
+  - source_id: dk-lbk-1500-2025-ligningsloven
+    eli_uri: https://retsinformation.dk/eli/lta/2025/1500
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-1500-2025/ligningsloven
+    title: Bekendtgørelse af lov om påligningen af indkomstskat til staten (ligningsloven)
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 1500 af 24/11/2025
+      title_alternative: Ligningsloven
+      document_type: lovbekendtgørelse (consolidated act)
+      source_family: personal-income-tax
+
+  - source_id: dk-lov-303-2026-aendringslov
+    eli_uri: https://retsinformation.dk/eli/lta/2026/303
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lov-303-2026/aendring-af-social-pension-mv
+    title: Lov om ændring af lov om social pension, lov om højeste, mellemste, forhøjet almindelig og almindelig førtidspension m.v. og forskellige andre love
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LOV nr 303 af 24/02/2026
+      document_type: ændringslov (amendment act)
+      amends: >-
+        Lov om social pension (act § 1), lov om aktiv socialpolitik (act § 3),
+        lov om arbejdsløshedsforsikring m.v. (act § 5), and lov om en børne-
+        og ungeydelse (act § 9), plus six acts outside this Tier-1 scope.
+      amendment_targets:
+        - dk/statute/lbk-1123-2024/pensionsloven
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-16
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-26-a
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-26-g
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-39
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-46-d
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-46-f
+        - dk/statute/lbk-1123-2024/pensionsloven/paragraf-46-g
+        - dk/statute/lbk-1004-2025/aktivloven
+        - dk/statute/lbk-1004-2025/aktivloven/paragraf-10-e
+        - dk/statute/lbk-1004-2025/aktivloven/paragraf-10-f
+        - dk/statute/lbk-1004-2025/aktivloven/paragraf-10-h
+        - dk/statute/lbk-1077-2025/arbejdsloeshedsforsikringsloven
+        - dk/statute/lbk-1077-2025/arbejdsloeshedsforsikringsloven/paragraf-87-a
+        - dk/statute/lbk-1077-2025/arbejdsloeshedsforsikringsloven/paragraf-87-b
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven/paragraf-4-e
+      source_family: social-benefits/amending-acts

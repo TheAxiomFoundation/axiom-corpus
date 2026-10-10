@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-cotswold/manual/2026-08-02-cotswold-council-tax-reduction-2026-2027.json",
+      "sha256": "ad4282f5fe6abaceee6a1ca2cbad2ed93cf190a58f7ce2df29630e6583c502ec"
+    },
+    {
+      "path": "data/corpus/inventory/uk-cotswold/manual/2026-08-02-cotswold-council-tax-reduction-2026-2027.json",
+      "sha256": "b060ea401215c70e83b75321e91a0d178dfd7c35c7e0c3d6df7feade8cc04286"
+    },
+    {
+      "path": "data/corpus/provisions/uk-cotswold/manual/2026-08-02-cotswold-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "ec1ea900f95f9bc40d909fc7ae6fe6b581cacdd2b9fc2c8ca82c73912e403055"
+    },
+    {
+      "path": "data/corpus/sources/uk-cotswold/manual/2026-08-02-cotswold-council-tax-reduction-2026-2027/official-documents/cotswold-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "ebf0f8436fb3c8aa64375214fa902fb3d1a7b70f6c67ada413b94fdbc849b539"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-cotswold-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-cotswold-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 167,
+    "missing_count": 0,
+    "provision_count": 167,
+    "source_count": 167
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:55.968990+00:00",
+  "jurisdiction": "uk-cotswold",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BeE7HYUipVoDE+RWmE4r9dKaa9y6wtkLp2xmHTEd53h9/RGHX3lG0VSwuOt1w75KBEfveyxOo/56wzmuiUQVAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-cotswold-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,64 @@
+documents:
+  - source_id: us-ky-lrc-krs-141-020
+    jurisdiction: us-ky
+    document_class: statute
+    title: KRS 141.020 — Levy of income tax on individuals
+    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56339
+    source_format: pdf
+    source_as_of: "2026-07-22"
+    expression_date: "2026-07-22"
+    citation_path: us-ky/statute/krs/141.020
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Kentucky Legislative Research Commission
+      document_subtype: codified_statute_section
+      chapter: "141"
+      section: "141.020"
+      program: individual_income_tax
+      applicable_tax_year: "2026"
+      individual_income_tax_rate: "0.035"
+      source_status: current_official_codified_text_as_of_2026-07-22
+      certification_scope: statutory_rate_and_applicability_only
+      standard_deduction_amount_certification: false
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Official current codified section. KRS 141.020(2)(f) states that for
+        taxable years beginning on or after January 1, 2026, the individual
+        income tax is 3.5 percent of net income. This intake preserves the
+        complete section and certifies only that statutory rate and effective
+        period; it does not certify a complete final-return calculation.
+
+  - source_id: us-ky-lrc-krs-141-081
+    jurisdiction: us-ky
+    document_class: statute
+    title: KRS 141.081 — Optional standard deduction for individuals
+    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=29067
+    source_format: pdf
+    source_as_of: "2026-07-22"
+    expression_date: "2026-07-22"
+    citation_path: us-ky/statute/krs/141.081
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Kentucky Legislative Research Commission
+      document_subtype: codified_statute_section
+      chapter: "141"
+      section: "141.081"
+      program: individual_income_tax
+      applicable_tax_year: "2026"
+      source_status: current_official_codified_text_as_of_2026-07-22
+      certification_scope: standard_deduction_indexing_authority_only
+      standard_deduction_amount_certification: false
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Official current codified section establishing the optional individual
+        standard deduction and its annual CPI-U adjustment. The statute does
+        not itself publish the dollar amount for tax year 2026, so this source
+        must not be used to infer that amount.

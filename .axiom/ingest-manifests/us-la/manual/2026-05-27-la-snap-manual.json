@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-la/manual/2026-05-27-la-snap-manual.json",
-      "sha256": "1a0f072ca73698569c2f262e3efe1bb95ac1aa2457eb82d1f35d0668ee1d2f28"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-la/manual/2026-05-27-la-snap-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-la/manual/2026-05-27-la-snap-manual.json",
-      "sha256": "34816df20c0f7105b0245bb955e8c34ee8e6625d241775d33e253f6bc912f62e"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-la/manual/2026-05-27-la-snap-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-la/manual/2026-05-27-la-snap-manual.jsonl",
-      "sha256": "ad1ba5c6a4c1124308bdad6c3019758df7ec14ef333e4577405f93418f407e88"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-la/manual/2026-05-27-la-snap-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "98a2e17e4cbacae0a9a319d60618c70ec80f8819",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "Retire source-less Louisiana SNAP scope after replacement by 2026-07-17-la-snap-manual"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1481,
-    "missing_count": 0,
-    "provision_count": 1481,
-    "source_count": 1481
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:29.108531+00:00",
+  "generated_at": "2026-07-17T14:42:43.744254+00:00",
   "jurisdiction": "us-la",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "QGzmOINFQ79g+8ZVIjKClFvpDzIj+gG/kaynCnC0coktejZlrIoOmr1wkgpDVWbXe/SsKOMWSvLXXQP9d5wOAg=="
+    "value": "zi9XSQROI+WaEbYF17Z5a56+Jg8KFjBhildVjCeBP/XTWx9k4bQw6ekcna++9KSDwE231r8+sIRFhyR3Z+76BA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-la-snap-manual"

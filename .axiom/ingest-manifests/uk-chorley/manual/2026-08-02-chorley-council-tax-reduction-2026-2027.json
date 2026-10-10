@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-chorley/manual/2026-08-02-chorley-council-tax-reduction-2026-2027.json",
+      "sha256": "8c5ae5a7c169eb3e904f9bfad740c9ea75a9d33520cdc0f9135800b7f8f07a8d"
+    },
+    {
+      "path": "data/corpus/inventory/uk-chorley/manual/2026-08-02-chorley-council-tax-reduction-2026-2027.json",
+      "sha256": "801d8d146af66cde3859fb1a5ab56f12bb41bf405ff33fc754fbf6c5cbe79b3f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-chorley/manual/2026-08-02-chorley-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "bd929d246d45daed84f303721d7c9b2eb058b56b27fec22d8db687f291c01ab1"
+    },
+    {
+      "path": "data/corpus/sources/uk-chorley/manual/2026-08-02-chorley-council-tax-reduction-2026-2027/official-documents/chorley-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2b0ca74853deaabea0b11473aab30c0f715e7e8ac03c4cf090019c5849c9e722"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-chorley-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-chorley-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 146,
+    "missing_count": 0,
+    "provision_count": 146,
+    "source_count": 146
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:54.974380+00:00",
+  "jurisdiction": "uk-chorley",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6dn74Nc0RchuIKhjgZHG/BfqEJH8yLcXtPLBfLkpZc5witbp6fS2Y8Sk2uUC9+2kk30RellmxlJ+8CJOYBUzDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-chorley-council-tax-reduction-2026-2027"
+}

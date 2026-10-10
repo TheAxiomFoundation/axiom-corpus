@@ -1,0 +1,33 @@
+documents:
+  - source_id: cra-2025-employment-expenses-deduction
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/employment-expenses-deduction
+    title: CRA Form T777 2025 Statement of Employment Expenses
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/t777/t777-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Canada Revenue Agency
+      document_subtype: cra_t1_form
+      program: employment_expenses_deduction
+  - source_id: cra-2025-employment-expenses-guide-t4044
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/employment-expenses-deduction/guide-t4044
+    title: CRA Guide T4044 2025 Employment Expenses
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4044/t4044-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Canada Revenue Agency
+      document_subtype: cra_t1_guide
+      program: employment_expenses_deduction

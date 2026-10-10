@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "52a4b0307b0657ad051bcbb4eaa76036293ac8cf6973c22ec7fef0cb42bf5099"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "643d4100ad4e280c70b6de0a6aca790d567a8d9caf405767192d0380536b4402"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "fe119e978a5bf60be25f5e83ad81b193154bbe005a63fe6ee5573822af1a70ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-nj-taxation-nj-1040-instructions-ty2025.pdf",
+      "sha256": "fe7977419b70d0c3dcc392c328adc5f58f3b99937e0d2f79aecf6ac368872c31"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-nj-taxation-nj-1040-ty2025.pdf",
+      "sha256": "3d15ad99f3ced62a38eb53c25bd53830a0b9e3927abcb75030ef06ec4c7eb6a3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T22:17:50.445310+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5nA0QFF4qVXdSc9ySD/G4zN14uA6Gu/QOzIH7fOtp4iWH20UayiDbK4DJOu47kVID4QZzuXHfugmlgKWqJ7XDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

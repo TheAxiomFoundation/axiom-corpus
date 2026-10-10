@@ -1,0 +1,709 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-nv-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 22
+    index_records_total: 22
+- source_id: us-nv-cms-chip-state-plan-spa-nv-24-0026-and-nv-24-0027-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-24-0026 and NV-24-0027: Approval Package (approved December 16, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV-24-0026-and-NV-24-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-24-0026-and-nv-24-0027/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-24-0026 and NV-24-0027
+    cms_node_id: '175371'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=175371
+    approval_date: '2024-12-16'
+    effective_date: '2024-01-01'
+    summary: Through these SPAs, the state amends its CHIP state plan to demonstrate that the state no longer disenrolls children
+      from coverage due to non-payment of premiums during the continuous eligibility period and removes the state’s premium
+      lock out period.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-24-0028-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-24-0028: Approval Package (approved July 31, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV-24-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-24-0028/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-24-0028
+    cms_node_id: '169761'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169761
+    approval_date: '2024-07-31'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state documents the state’s compliance with the longstanding requirement to cover children’s
+      vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which requires states to cover age-appropriate
+      vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-24-0008-nv-24-0009-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-24-0008/NV-24-0009: Approval Package (approved May 3, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV-24-0008-and-NV-24-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-24-0008-nv-24-0009/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-24-0008/NV-24-0009
+    cms_node_id: '163711'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=163711
+    approval_date: '2024-05-03'
+    effective_date: '2024-01-01'
+    summary: SPA NV-24-0008 demonstrates Nevada's compliance with the CAA, 2023 requirement to provide continuous eligibility
+      for children. SPA NV-24-0009 provides Nevada with approval to provide 12 months of continuous postpartum coverage to
+      individuals enrolled in its CHIP program.
+    topics:
+    - Benefits
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-23-0001-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-23-0001: Approval Package (approved December 28, 2022, effective February 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-02-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-23-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-23-0001
+    cms_node_id: '144301'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144301
+    approval_date: '2022-12-28'
+    effective_date: '2023-02-01'
+    summary: This SPA removes all state-specific exceptions to the continuous eligibility period for children to be consistent
+      with CHIP regulations 42 CFR 457.342. This regulation only permits certain federal exceptions to the continuous eligibility
+      period.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-22-0014-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-22-0014: Approval Package (approved July 28, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV-22-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-22-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-22-0014
+    cms_node_id: '138331'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=138331
+    approval_date: '2022-07-28'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-21-0008-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-21-0008: Approval Package (approved March 29, 2022, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV-21-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-21-0008/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-21-0008
+    cms_node_id: '135526'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135526
+    approval_date: '2022-03-29'
+    effective_date: '2020-07-01'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-21-0017-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-21-0017: Approval Package (approved January 20, 2022, effective December 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-21-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-12-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-21-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-21-0017
+    cms_node_id: '132306'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=132306
+    approval_date: '2022-01-20'
+    effective_date: '2021-12-01'
+    summary: Updates strategic objectives and goals in section 9.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-19-0006-factsheet
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-19-0006: Factsheet (approved August 20, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-19-0006/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: NV-19-0006
+    cms_node_id: '92331'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92331
+    approval_date: '2019-08-20'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with CHIP managed care regulations
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-nv-cms-chip-state-plan-spa-nv-18-0008-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-18-0008: Approval Package (approved June 6, 2019, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-18-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-18-0008/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-18-0008
+    cms_node_id: '4026'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4026
+    approval_date: '2019-06-06'
+    effective_date: '2017-10-02'
+    summary: Implements mental health parity requirements to ensure that treatment limitations applied to mental health (MH)
+      and substance use disorder (SUD) benefits are no more restrictive than those applied to medical/surgical (M/S) benefits.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-chipspa-18-0002-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-CHIPSPA-18-0002: Approval Package (approved June 7, 2018, effective February 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-CHIPSPA-18-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-02-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-chipspa-18-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-CHIPSPA-18-0002
+    cms_node_id: '3876'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3876
+    approval_date: '2018-06-07'
+    effective_date: '2018-02-01'
+    summary: This SPA allows Nevada to obtain federal funding to expand coverage to uninsured non-citizen targeted low income
+      children who are lawfully residing in the United States, as permitted under section 2107(e)(l)(M) of the Social Security
+      Act. On May 17, 2018, the state received approval for the same type of amendment under Medicaid SPA NVI 8-0003.
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-16-0012-a-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-16-0012-A: Approval Package (approved November 23, 2016, effective October 1, 2016)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-16-0012-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-16-0012-a/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-16-0012-A
+    cms_node_id: '3671'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3671
+    approval_date: '2016-11-23'
+    effective_date: '2016-10-01'
+    summary: This SPA permits Nevada to implement a new health services initiative (HSI) to integrate the Resources for the
+      Early Advancement of Child Health (REACH) program into after school programs serving the highest risk populations of
+      children in Nevada public schools.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-13-0004-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-13-0004: Approval Package (approved May 7, 2015, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-13-0004-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-13-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0004
+    cms_node_id: '2876'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2876
+    approval_date: '2015-05-07'
+    effective_date: '2013-10-01'
+    summary: Incorporates the Modified Adjusted Gross Income (MAGI)-Based Eligibility Process Requirements in Accordance with
+      the Affordable Care Act and Implementing Regulations.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-13-0003-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-13-0003: Approval Package (approved May 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-13-0003-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-13-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0003
+    cms_node_id: '2881'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2881
+    approval_date: '2014-05-21'
+    effective_date: '2014-01-01'
+    summary: Converts State's Existing Income Eligibility Standards to MAGI-Equivalent Standards, By Age Group, For Children
+      Covered in Its Title XXI-Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-13-0005-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-13-0005: Approval Package (approved May 15, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-13-0005-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-13-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0005
+    cms_node_id: '2871'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2871
+    approval_date: '2014-05-15'
+    effective_date: '2014-01-01'
+    summary: Clarifies State's Non-Financial Eligibility Policies on Residency, Citizenship, Social Security Numbers, Substitution
+      of Coverage, Non-Payment of Premiums, Continuous Eligibility, and Presumptive Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-13-0001-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-13-0001: Approval Package (approved April 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-13-0001-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-13-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0001
+    cms_node_id: '2891'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2891
+    approval_date: '2014-04-12'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that the State will Apply Methodologies Based on MAGI For all Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-13-0002-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-13-0002: Approval Package (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-13-0002-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-13-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-13-0002
+    cms_node_id: '2886'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2886
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: 'Describes State''s Plan to Provide Coverage in Its Separate CHIP, for Children Subject to Section 2101(f) of
+      the Affordable Care Act, As Specified In the State''s Submission of CS14: Children Ineligible for Medicaid As a Result
+      of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-cspa-10-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-CSPA-10: Approval Package (approved September 17, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-cspa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-CSPA-10
+    cms_node_id: '2046'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2046
+    approval_date: '2012-09-17'
+    effective_date: '2011-07-01'
+    summary: Proposing to expand coverage to a population of Medicaid children whom no longer have a resource test.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-cspa-9-approval-package
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-CSPA-9: Approval Package (approved January 13, 2012, effective September 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-CSPA-09-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-cspa-9/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NV-CSPA-9
+    cms_node_id: '1736'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1736
+    approval_date: '2012-01-13'
+    effective_date: '2011-09-01'
+    summary: Implements an electronic data match with the Social Security Administration (Section 211 CHIPRA) and CHIRRA Section
+      504 Premium Grace.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-nv-cms-chip-state-plan-spa-nv-cspa-9-final-approved-state-plan
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP SPA NV-CSPA-9: Final Approved State Plan (approved January 13, 2012, effective September 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NV-CSPA-09-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/spa/nv-cspa-9/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NV-CSPA-9
+    cms_node_id: '1736'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1736
+    approval_date: '2012-01-13'
+    effective_date: '2011-09-01'
+    summary: Implements an electronic data match with the Social Security Administration (Section 211 CHIPRA) and CHIRRA Section
+      504 Premium Grace.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-nv-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP compiled state plan: Factsheet (approved February 24, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NVCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: NV
+    cms_node_id: '1281'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1281
+    approval_date: '2010-02-24'
+    effective_date: '2009-07-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 02-24-2010.
+    topics: &id003
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-nv-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-nv
+  document_class: policy
+  title: 'Nevada CHIP compiled state plan: Current State Plan (approved February 24, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NV/NVCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-nv/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Nevada
+    source_discovery_group: us-nv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NV
+    cms_node_id: '1281'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1281
+    approval_date: '2010-02-24'
+    effective_date: '2009-07-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 02-24-2010.
+    topics: *id003
+    link_label: Current State Plan

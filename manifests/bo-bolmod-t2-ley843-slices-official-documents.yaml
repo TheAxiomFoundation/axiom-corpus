@@ -1,0 +1,159 @@
+# Bolivia (bo) tranche-2 FULL-DOCUMENT re-slice of the Ley 843 texto
+# ordenado (DS 27947 Anexo 3) - BOLMOD lane repair item: the whole-code
+# HTML capture (bo/statute/ley-1986-843/texto-ordenado-ds-27947, scope
+# 2026-07-23-bo-bolmod-t1-statutes, 172KB gazette norm view) yielded a
+# thin 8-rule fragment. Per the full-document program, the SAME Gaceta
+# Oficial norm view is re-captured in 7 titulo slices using anchor_range
+# HTML segmentation with p-tag :-soup-contains anchors on the ALL-CAPS
+# titulo heading nodes (exact raw spacing preserved - the gazette mixes
+# single and double spaces; anchors are case-sensitive so lower-case
+# cross-references cannot collide; p nodes sit at flow level in the
+# gazette markup, as the range walk requires). The t1 capture remains
+# immutable; this t2 scope supersedes it for encoding.
+documents:
+  - source_id: bo-ley-843-to-titulo-1-iva
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-1-iva
+    title: 'Ley 843 TO Titulo I: Impuesto al Valor Agregado (13 por ciento, Art. 15) (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO  I")'
+      html_stop_selector: 'p:-soup-contains("TITULO  II")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es
+  - source_id: bo-ley-843-to-titulo-2-rc-iva
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-2-rc-iva
+    title: 'Ley 843 TO Titulo II: Regimen Complementario al IVA (RC-IVA, Art. 30) (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO  II")'
+      html_stop_selector: 'p:-soup-contains("TITULO III")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es
+  - source_id: bo-ley-843-to-titulo-3-iue
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-3-iue
+    title: 'Ley 843 TO Titulo III: Impuesto sobre las Utilidades de las Empresas (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO III")'
+      html_stop_selector: 'p:-soup-contains("TITULO IV")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es
+  - source_id: bo-ley-843-to-titulo-4-5-inmuebles-regularizacion
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-4-5-inmuebles-regularizacion
+    title: 'Ley 843 TO Titulos IV-V: propiedad de bienes inmuebles; regularizacion impositiva (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO IV")'
+      html_stop_selector: 'p:-soup-contains("TITULO  VI")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es
+  - source_id: bo-ley-843-to-titulo-6-it
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-6-it
+    title: 'Ley 843 TO Titulo VI: Impuesto a las Transacciones (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO  VI")'
+      html_stop_selector: 'p:-soup-contains("TITULO  VII")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es
+  - source_id: bo-ley-843-to-titulo-7-8-ice-actualizacion
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-7-8-ice-actualizacion
+    title: 'Ley 843 TO Titulos VII-VIII: Impuesto a los Consumos Especificos; regimen de actualizacion (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO  VII")'
+      html_stop_selector: 'p:-soup-contains("TITULO  IX")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es
+  - source_id: bo-ley-843-to-titulo-9-14-coparticipacion-finales
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-1986-843/titulo-9-14-coparticipacion-finales
+    title: 'Ley 843 TO Titulos IX-XIV: coparticipacion, abrogaciones, sucesiones, salidas aereas, municipal, IEHD (anchor-range slice of the Gaceta Oficial norm view)'
+    source_url: 'http://gacetaoficialdebolivia.gob.bo/normas/verGratis_gob/25501'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2004-12-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'p:-soup-contains("TITULO  IX")'
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia
+      source_family: tax-code/texto-ordenado-slices
+      language: es

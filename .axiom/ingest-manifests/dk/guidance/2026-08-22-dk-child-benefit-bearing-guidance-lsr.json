@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/dk/guidance/2026-08-22-dk-child-benefit-bearing-guidance-lsr.json",
+      "sha256": "57fb4a4374681060911e686af95cb987fe36ec2794f56e12d934a1f0b6362b8d"
+    },
+    {
+      "path": "data/corpus/inventory/dk/guidance/2026-08-22-dk-child-benefit-bearing-guidance-lsr.json",
+      "sha256": "7f58193aeda8c64b6d2615f711b42cb6580e8d89dd7d7d558425e2fc378f2fbe"
+    },
+    {
+      "path": "data/corpus/provisions/dk/guidance/2026-08-22-dk-child-benefit-bearing-guidance-lsr.jsonl",
+      "sha256": "a9d451ad48b9bd5df6b92095ca2175973c0d940d70f49fdcf4250d19e42175a3"
+    },
+    {
+      "path": "data/corpus/sources/dk/guidance/2026-08-22-dk-child-benefit-bearing-guidance-lsr/eli/dk-lsr-9323-2011-afgoerelse.jsonld",
+      "sha256": "a8cd380264671322fe814a4d61fb07fab2fdab3f2bbc9ccb4324d51c81f0be31"
+    },
+    {
+      "path": "data/corpus/sources/dk/guidance/2026-08-22-dk-child-benefit-bearing-guidance-lsr/eli/dk-lsr-9323-2011-afgoerelse.xml",
+      "sha256": "9b4caae5c4a883a470076af3c8161aa2029f57bb7787240cfbb8aeec22c7e582"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abb523299a7871833f5070f7c8af71c6caf5d7ed",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-eli-documents --base data/corpus --version 2026-08-22-dk-child-benefit-bearing-guidance-lsr --manifest manifests/dk-child-benefit-bearing-guidance-lsr-eli.yaml --source-as-of 2026-08-22"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-08-22T18:08:23.972773+00:00",
+  "jurisdiction": "dk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n+FVoqxgHqxCfChmKWgveSnrpxDDEB/yiIANA6WYjF/QiSDWKAWJRvwoGaKBwmPhuRxYYdTu93Oeb6OREoyNDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-22-dk-child-benefit-bearing-guidance-lsr"
+}

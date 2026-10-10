@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/policy/2026-09-10.json",
+      "sha256": "bb1327000a2b2077d183e1a2fad2f1da2513ddd8f2b9c27c978d217a5d8cf2dc"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/policy/2026-09-10.json",
+      "sha256": "c4161b4cac64b1017d97407c166c68f7dd8f6da6d3637163ae088e3a8b9fc9ab"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/policy/2026-09-10.jsonl",
+      "sha256": "a5447a7dee75ef21c5831d5d5e839e14f1ebc762050b01c4b6d645d5a74ecf02"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-10/official-documents/us-nd-acf-liheap-plan-fy2026.pdf",
+      "sha256": "9fe5bc2ca378a2f4b2bc83902b289a6df2eea5617ffc9c8a7decddb75516ba7a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-nd-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T22:11:52.783450+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QDbE9uUYO2w92Vza8IomCI7NDM7CrWVBmA1z+0yWS3XpIp93IZgesmxvnXARk9FSVocFzA3e2EfpuBnIfBs+Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

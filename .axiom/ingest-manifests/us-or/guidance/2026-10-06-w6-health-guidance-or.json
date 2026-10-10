@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/guidance/2026-10-06-w6-health-guidance-or.json",
+      "sha256": "d73978877831beb48ab2126b332084177a3aa37ec4ad46b24170d7d175f7a27e"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/guidance/2026-10-06-w6-health-guidance-or.json",
+      "sha256": "6172589906124d386ef94c6aa6f684f2729649c0f60777af35d08248faf34676"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/guidance/2026-10-06-w6-health-guidance-or.jsonl",
+      "sha256": "bf7d0aee4298f5f6473f29c705f438968f6a42799e0190b6598ae2a7173c1480"
+    },
+    {
+      "path": "data/corpus/sources/us-or/guidance/2026-10-06-w6-health-guidance-or/official-documents/us-or-w6-health-odhs-oha-combined-standards-de5530.pdf",
+      "sha256": "0c51912f924b15cd90fd1bef5bd3956e7905715dc43c1ca29bb9db4b5302f441"
+    },
+    {
+      "path": "data/corpus/sources/us-or/guidance/2026-10-06-w6-health-guidance-or/official-documents/us-or-w6-health-oha-healthier-oregon.html",
+      "sha256": "cca231f3e1741db99e622de2af5def42e991e4d4a281b698cfee2fa2aba73e14"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 27,
+    "missing_count": 0,
+    "provision_count": 27,
+    "source_count": 27
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:28.591367+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bqrEgjkwV5kPMfv9YrwY1+2cgH0xxMavoy49+vPJyp4XSSpUbmpySJ4nxc1nyjSmz4r3EaEInNHQPWnPAQjLAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-or"
+}

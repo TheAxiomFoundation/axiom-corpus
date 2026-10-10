@@ -1,0 +1,22 @@
+version: '2026-09-14'
+extractor: extract-illinois-admin-code --only-title 86 --only-part 100
+documents:
+- source_id: il-jcar-86-ill-adm-code-100-income-tax
+  jurisdiction: us-il
+  document_class: regulation
+  citation_path: us-il/regulation/title-86/part-100
+  title: '86 Ill. Adm. Code Part 100: Income Tax (Department of Revenue)'
+  source_url: https://www.ilga.gov/ftp/JCAR/AdminCode/086/086001000sections.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    official_publisher: Illinois General Assembly, Joint Committee on Administrative Rules
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-il/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.ilga.gov/ftp/JCAR/AdminCode/086/
+    extractor: uv run axiom-corpus-ingest extract-illinois-admin-code --only-title 86 --only-part 100
+    pointer_manifest: true

@@ -1,0 +1,138 @@
+# Colombia (co) tranche-2 FULL-DOCUMENT re-slice of Ley 2010 de 2019 -
+# the COLMOD lane's top repair item (CO-BACKLOG-STATUS.md): the whole-law
+# HTML capture (co/statute/ley-2019-2010/crecimiento-economico, scope
+# 2026-07-23-co-colmod-t1-statutes, 385KB SUIN norm page) resisted
+# encoding (sol whole-law deferral; 2-rule terra fragment salvaged). Per
+# the full-document program (Egypt lane), the SAME SUIN page is
+# re-captured in 6 titulo slices using the extractor's anchor_range HTML
+# segmentation (html_start_selector/html_stop_selector with
+# div.division :-soup-contains anchors (the SUIN norm page wraps each flow block in a division-classed div; the anchor must sit at sibling level for the range walk) on the unique in-body subject headings - the
+# SUIN table-of-contents block uses bare "TITULO N" strings and cannot
+# collide with the subject-qualified anchors). The t1 capture remains
+# immutable; this t2 scope supersedes it for encoding.
+documents:
+  - source_id: co-ley-2019-2010-titulo-1-iva-consumo
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/titulo-1-iva-consumo
+    title: 'Ley 2010 Titulo I: impuesto a las ventas e impuesto al consumo (anchor-range slice of the SUIN-Juriscol norm page)'
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'div.division:-soup-contains("IMPUESTO A LAS VENTAS E IMPUESTO AL CONSUMO")'
+      html_stop_selector: 'div.division:-soup-contains("IMPUESTO SOBRE LA RENTA DE PERSONAS NATURALES")'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: tax-reform/ley-2010-slices
+      language: es
+  - source_id: co-ley-2019-2010-titulo-2-renta-personas-naturales
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/titulo-2-renta-personas-naturales
+    title: 'Ley 2010 Titulo II: impuesto sobre la renta de personas naturales (incl. the ET Art. 241 UVT schedule rewrite COLMOD applies) (anchor-range slice of the SUIN-Juriscol norm page)'
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'div.division:-soup-contains("IMPUESTO SOBRE LA RENTA DE PERSONAS NATURALES")'
+      html_stop_selector: 'div.division:-soup-contains("IMPUESTOS AL PATRIMONIO, DIVIDENDOS Y NORMALIZACIÓN")'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: tax-reform/ley-2010-slices
+      language: es
+  - source_id: co-ley-2019-2010-titulo-3-patrimonio-dividendos
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/titulo-3-patrimonio-dividendos
+    title: 'Ley 2010 Titulo III: impuestos al patrimonio, dividendos y normalizacion (anchor-range slice of the SUIN-Juriscol norm page)'
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'div.division:-soup-contains("IMPUESTOS AL PATRIMONIO, DIVIDENDOS Y NORMALIZACIÓN")'
+      html_stop_selector: 'div.division:-soup-contains("MEDIDAS PARA COMBATIR LA EVASIÓN Y EL ABUSO EN MATERIA TRIBUTARIA")'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: tax-reform/ley-2010-slices
+      language: es
+  - source_id: co-ley-2019-2010-titulo-4-evasion
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/titulo-4-evasion
+    title: 'Ley 2010 Titulo IV: medidas contra la evasion y el abuso (anchor-range slice of the SUIN-Juriscol norm page)'
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'div.division:-soup-contains("MEDIDAS PARA COMBATIR LA EVASIÓN Y EL ABUSO EN MATERIA TRIBUTARIA")'
+      html_stop_selector: 'div.division:-soup-contains("MEDIDAS PARA EL CRECIMIENTO ECONÓMICO")'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: tax-reform/ley-2010-slices
+      language: es
+  - source_id: co-ley-2019-2010-titulo-5-crecimiento
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/titulo-5-crecimiento
+    title: 'Ley 2010 Titulo V: medidas para el crecimiento economico (Regimen Simple; renta empresas) (anchor-range slice of the SUIN-Juriscol norm page)'
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'div.division:-soup-contains("MEDIDAS PARA EL CRECIMIENTO ECONÓMICO")'
+      html_stop_selector: 'div.division:-soup-contains("MEDIDAS DE SEGURIDAD JURÍDICA, SIMPLIFICACIÓN Y FACILICITACIÓN")'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: tax-reform/ley-2010-slices
+      language: es
+  - source_id: co-ley-2019-2010-titulo-6-7-procedimiento-finales
+    jurisdiction: co
+    document_class: statute
+    citation_path: co/statute/ley-2019-2010/titulo-6-7-procedimiento-finales
+    title: 'Ley 2010 Titulos VI-VII: procedimiento tributario; disposiciones finales (anchor-range slice of the SUIN-Juriscol norm page)'
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/30038705'
+    source_format: html
+    source_as_of: '2026-07-24'
+    expression_date: '2019-12-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: 'div.division:-soup-contains("MEDIDAS DE SEGURIDAD JURÍDICA, SIMPLIFICACIÓN Y FACILICITACIÓN")'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: tax-reform/ley-2010-slices
+      language: es

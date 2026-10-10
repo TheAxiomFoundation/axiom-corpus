@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 16
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-03T17:17:49.280046+00:00",
+  "generated_at": "2026-07-21T11:40:39.151856+00:00",
   "jurisdiction": "be-bru",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "+78pN6DLC0mkzmyDRHS5cIKbN5ipV6sQsv5h1LgrIV5pFxeW6KsGL6M4EdCJVpgG+PXKn1NL5jO++CE0yt27AQ=="
+    "value": "zMLrjZvE8sApX9OVU97o1YcXQMvKy8z50Sc2T83W9AsnHKY838oMLkQPVpQbAYLpE7uvZb9jAqXbiw6ndMczCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-be-bru-mytax-road-tax-current"

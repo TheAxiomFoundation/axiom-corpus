@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/guidance/2026-07-24-il-personal-exemption-guidance.json",
+      "sha256": "901cd9caaa95c747b43791a968a52c10201656f841956c10a82849cc553ea672"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/guidance/2026-07-24-il-personal-exemption-guidance.json",
+      "sha256": "72de19dc31e6532376e7f48ef778bf0f8ebd7fff8397e28da073f4e44108f78d"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/guidance/2026-07-24-il-personal-exemption-guidance.jsonl",
+      "sha256": "004372d4c4d8037cb781085b5ed511ccc691d77d4a607eae46f690a1c929fceb"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-07-24-il-personal-exemption-guidance/official-documents/us-il-idor-2026-personal-exemption.html",
+      "sha256": "921525edae1c6e92027cf0369ad1b4c73c55155d84102b8654d2a8aa41fb7364"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a30ddf59588252dd733d8e4b0ab90ea412143797",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-il-personal-exemption-guidance --manifest manifests/us-il-2026-personal-exemption-guidance.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T12:28:26.510311+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xBGFdeDN8vHGFcp/CMfBOdC0VMOXHDjkVod6bf+sULcghb4sVaoObaG+9LEVZigf69Z27j9JypaNozJG9qy+CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-il-personal-exemption-guidance"
+}

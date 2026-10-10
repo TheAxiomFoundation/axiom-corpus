@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil.json",
+      "sha256": "1f046df05b7642595428d2b364883e98758161091aa6129b22adf1c2cbf42495"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil.json",
+      "sha256": "2631da32d096eccc9eb98e0722c4e519fe701f7eb0183f24b788092b264d4683"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil.jsonl",
+      "sha256": "d2088d1f02154c7ab35503bf6b5a5130ab694983d26e2bb97b78f1a1ca928c17"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil/federal-register/api/documents-page-1.json",
+      "sha256": "e685464a42aef1220cd6b90421cfe2185ba7bc50cb73bc99f05d3b8694f78e4e"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil/federal-register/documents/2025-13498.json",
+      "sha256": "65c36f22e645836cba1174db1704ac1d2ad538866185b61a63fbe006b0a7656b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil/federal-register/documents/2025-13498.txt",
+      "sha256": "d9eeeb2695708b50390d985cb15dba0771698b33293d58e9e9cbbd3320396a36"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8369dd66091dc4fc4d34dcbd7a760b4b3af53b97",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-brazil-initiation --start-date 2025-07-18 --document-type NOTICE --term \"Brazil\" --source-as-of 2026-08-01 --expression-date 2025-07-18"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:45:56.744925+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lEGKr6pYODHVhf7eWip3kOHjqUrm5AFyyFzbjzcHB4baJcl+pXuxvnd6QPnfwZLLgmkAcElEnppg62aGEhNUBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-brazil-initiation-types-notice-term-brazil"
+}

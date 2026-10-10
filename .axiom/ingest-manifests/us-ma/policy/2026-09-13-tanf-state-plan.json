@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "49e776df2b79f8adb48058b77ad4404171ded62842662845f573fe8cf4d603d8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "199f89accb0b9ef2202b446619edc17954a00cbec0ac50fe46585ccc0c935556"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "7377aa6aca742e8b31e6b45098a261e2a937c28191db800b5c1b942736d35b65"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-09-13-tanf-state-plan/official-documents/us-ma-tanf-state-plan-2024.pdf",
+      "sha256": "e8cc416f5b129e108c695c6dbad17ee4579ccc81a7da527aa7032bcba35a5185"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:38:17.085123+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pdxKcVWebgeJVy/lwM/tW2s8UdHAjZYPsGeUnnTdivb34BrN3u1+QLG/tR5AR8c8/Jm/dhhS+GM3jMSch41gBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.json",
-      "sha256": "64e732ddfe93f31f593311235e56f20f6fdb8508d499d09ef14cf920692dbc75"
+      "sha256": "7826bdf78dc9beb78d21a6b8a42144eeaafa0ecd01fef394039013483adee601"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.jsonl",
-      "sha256": "7c227f2a1301ceaf910ea3c2dce597c0a29f270a921257233d1ad37d49a616bd"
+      "sha256": "6d904d13a310c3038cc272fffc2feb0526c5a9f78f3381cb741484a84727a31b"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction/official-documents/cra-2025-t778-child-care-expenses.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:38:01.020500+00:00",
+  "generated_at": "2026-07-21T11:40:42.910371+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "a+OkwttGBNbQqkUOEMtfsYg5N7io/+d4HQsJ0zaVPvT3AejmmWITnmR85PsJK0C4dTOqRZY1xoA7tz//G6fiAg=="
+    "value": "ka3r7ovYt2vAO8n3q2aQdwXjRnzKRaBF6az7WsBiQZzto+ZmvZczVYZOtn7p7WylJDxUc0A83cDRwC1ZrnbGAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-cra-2025-child-care-expenses-deduction"

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-newham/manual/2026-07-19-newham-council-tax-reduction-2026-2027.json",
+      "sha256": "55bb54e9196ed0a14a388bc479bc67a140c4ed5f8e7e5cfbe748fa96547f9a85"
+    },
+    {
+      "path": "data/corpus/inventory/uk-newham/manual/2026-07-19-newham-council-tax-reduction-2026-2027.json",
+      "sha256": "fcfab6c64a14e5e8c30e07665634abb549f354b0799c8ac22b60550cb6b60a47"
+    },
+    {
+      "path": "data/corpus/provisions/uk-newham/manual/2026-07-19-newham-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "27f33b520818e0fbbe1840f03537a8942ef9837c00e506c0a7768943206492a1"
+    },
+    {
+      "path": "data/corpus/sources/uk-newham/manual/2026-07-19-newham-council-tax-reduction-2026-2027/official-documents/newham-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a80003d671a35178fb11095b05994a336cfecbba50cc872a53a2da6895da555f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "92ac9c1bedf62968eeea9a873361f49075364157",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-19-newham-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-newham-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 341,
+    "missing_count": 0,
+    "provision_count": 341,
+    "source_count": 341
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-20T11:57:27.435157+00:00",
+  "jurisdiction": "uk-newham",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ygjXnASbJGQy+2z+GyiTNrP4i4LfI4jGHSnuuKOroPSMffkn6QzUGCLIDgtDqkYMZ961cVgid1KVFaKd4264AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-newham-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,22 @@
+{
+  "description": "Immutable official Ecuador scopes used by RuleSpec-EC: the ECUAMOD t1 scopes plus the tranche-2 FULL-DOCUMENT re-slice of the LRTI codification (8 titulo/capitulo page_windows slices superseding the whole-code capture for encoding). SOUTHMOD retrofit sweep.",
+  "name": "ec-rulespec-2026-07-24",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "policy",
+      "jurisdiction": "ec",
+      "version": "2026-07-22-ec-ecuamod-t1-policy"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "ec",
+      "version": "2026-07-22-ec-ecuamod-t1-statutes"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "ec",
+      "version": "2026-07-24-ec-ecuamod-t2-lrti-slices"
+    }
+  ]
+}

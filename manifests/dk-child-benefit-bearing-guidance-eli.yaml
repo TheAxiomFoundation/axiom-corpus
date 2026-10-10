@@ -1,0 +1,300 @@
+# Denmark child/youth benefit — bearing guidance and decisions (dk/guidance scope).
+#
+# The 20 retsinfo-series instruments of the børne- og ungeydelse certification
+# frontier (axiom-oracles conformance/closure/dk-boerne-og-ungeydelse.yaml,
+# CERTIFIED.md v3) that expose a LexDania XML manifestation: Ankestyrelsen
+# principafgørelser and principmeddelelser and three convention vejledninger,
+# routed by the ELI adapter's prose shape (#613). Landsskatteretsafgørelse
+# 9323/2011 (retsinfo/2011/9323) is held back: its TekstGruppe carries Rubrica
+# heading elements the prose shape does not yet route (follow-up adapter PR).
+# All in force per the ELI graph. The frontier's other guidance-class rows
+# (CIR 148/1986, CIR 140/2003, AFG 18075/1988, LSR 9237/2006) have metadata-only
+# XML manifestations and are not extractable through this adapter; their bodies
+# were captured from the rendered official page (ops mirror, dk-lane/wave2).
+#
+#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#     axiom-corpus-ingest extract-eli-documents --base data/corpus \
+#     --version 2026-08-22-dk-child-benefit-bearing-guidance \
+#     --manifest manifests/dk-child-benefit-bearing-guidance-eli.yaml \
+#     --source-as-of 2026-08-22
+documents:
+  - source_id: dk-ken-64-13-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2013/9724
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-64-13/boerne-og-ungeydelse
+    title: "Ankestyrelsens principafgørelse 64-13 om børne- og ungeydelse – børnetilskud – faktisk ophold her i landet – opholdstilladelse - folkeregisteradresse"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2013-04-30"
+      source_family: child-benefit
+
+  - source_id: dk-vej-9267-2014-vejledning
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2014/9267
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/vej-9267-2014/social-sikring-indien
+    title: "Vejledning om overenskomst mellem Danmark og Indien om social sikring"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: vejledning
+      document_date: "2011-04-05"
+      source_family: child-benefit
+
+  - source_id: dk-vej-9268-2014-vejledning
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2014/9268
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/vej-9268-2014/social-sikring-kroatien
+    title: "Vejledning om overenskomst mellem Danmark og Kroatien om social sikring"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: vejledning
+      document_date: "2006-10-23"
+      source_family: child-benefit
+
+  - source_id: dk-vej-9269-2014-vejledning
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2014/9269
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/vej-9269-2014/social-sikring-tyrkiet
+    title: "Vejledning om Konvention mellem Danmark og Tyrkiet om social sikring"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: vejledning
+      document_date: "2004-05-10"
+      source_family: child-benefit
+
+  - source_id: dk-ken-11-23-principmeddelelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2023/9456
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-11-23/boerne-og-ungeydelse
+    title: "Ankestyrelsens principmeddelelse 11-23 om børne- og ungeydelse - ligedeling - nye regler - overgangsregel - personkreds - flytning fra udlandet - forældremyndighed - ændring i forholdene"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principmeddelelse
+      document_date: "2023-06-02"
+      source_family: child-benefit
+
+  - source_id: dk-ken-18-24-principmeddelelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2024/9493
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-18-24/boerne-og-ungeydelse
+    title: "Ankestyrelsens principmeddelelse 18-24 om børne- og ungeydelse - ligedeling - EU/EØS - EF-forordning nr. 883/2004 - to berettigede ydelsesmodtagere - udbetalingsregler - overgangsregel"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principmeddelelse
+      document_date: "2024-07-03"
+      source_family: child-benefit
+
+  - source_id: dk-ken-4-25-principmeddelelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2025/9372
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-4-25/boerne-og-ungeydelse
+    title: "Ankestyrelsens principmeddelelse 4-25 om børne- og ungeydelse - ligedeling - dokumentation - ændret fordeling - forældremyndighed -samvær"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principmeddelelse
+      document_date: "2025-04-29"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-1-96-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/1996/9256
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-1-96/boernetilskud
+    title: "Ankestyrelsens principafgørelse B-1-96 om børnetilskud - børnefamilieydelse - forsørget af offentlige midler - observationsskole - forsørgelsesudgifter"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "1996-01-15"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-9-96-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/1996/9261
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-9-96/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse B-9-96 om børnefamilieydelse - passivitet - anbragt uden for hjemmet - ophold i hjemmet uden accept"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "1996-07-15"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-1-97-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/1997/9246
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-1-97/boernetilskud
+    title: "Ankestyrelsens principafgørelse B-1-97 om børnetilskud - børnefamilieydelse - forsørget af offentlige midler - produktionsskole - arbejdsdusør"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "1997-01-15"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-5-98-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/1998/9196
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-5-98/varetaegtsfaengsling
+    title: "Ankestyrelsens principafgørelse B-5-98 om varetægtsfængsling - børnetilskud - børnefamilieydelse - forsørget af offentlige midler - afsoning"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "1998-06-15"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-5-07-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2007/11117
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-5-07/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse B-5-07 om børnefamilieydelse - stop - bopæl - folkeregisteradresse"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2007-11-02"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-1-08-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2008/10901
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-1-08/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse B-1-08 om børnefamilieydelse - barnets ophold i Danmark - udland - uden for EU/EØS - udsendt af offentlig myndighed"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2008-02-01"
+      source_family: child-benefit
+
+  - source_id: dk-ken-11-21-principmeddelelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2021/9457
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-11-21/ulovligt-skolefravaer
+    title: "Ankestyrelsens principmeddelelse 11-21 om ulovligt skolefravær - standsning af børne- og ungeydelsen - registrering af fravær - undskyldelige omstændigheder - funktionsnedsættelse - sagens oplysning - kompetence - prøvelsesadgang"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principmeddelelse
+      document_date: "2021-06-17"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-9-86-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/1986/9052
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-9-86/boernetilskud
+    title: "Ankestyrelsens principafgørelse B-9-86 om børnetilskud - fast bopæl her i landet - barnets hjemsted - forældremyndighedsindehaverens studieophold i udlandet"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "1986-10-23"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-7-95-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/1995/9206
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-7-95/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse B-7-95 om børnefamilieydelse - fælles forældremyndighed - udbetaling - folkeregister - ophold"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "1995-11-15"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-4-06-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2006/10864
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-4-06/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse B-4-06 om børnefamilieydelse - korterevarende ophold uden for EU - varighed - over 6 måneder - udstationering"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2006-12-21"
+      source_family: child-benefit
+
+  - source_id: dk-ken-b-2-07-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2007/11114
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-b-2-07/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse B-2-07 om børnefamilieydelse - eget barn - hjemtagelse fra udland - forældremyndighed - manglende dokumentation - verserende sag om forældremyndighed"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2007-07-26"
+      source_family: child-benefit
+
+  - source_id: dk-ken-29-09-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2009/10575
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-29-09/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse 29-09 om børnefamilieydelse - arbejdstager - bopæl - EU - prioriteringsregler - udstationering - EU regler"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2009-02-10"
+      source_family: child-benefit
+
+  - source_id: dk-ken-31-09-principafgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2009/10577
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/ken-31-09/boernefamilieydelse
+    title: "Ankestyrelsens principafgørelse 31-09 om børnefamilieydelse - ophold i Grønland - udstationering - skat"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: principafgoerelse
+      document_date: "2009-02-10"
+      source_family: child-benefit
+

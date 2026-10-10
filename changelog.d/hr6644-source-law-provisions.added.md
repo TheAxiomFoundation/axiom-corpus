@@ -1,1 +1,0 @@
-Added source-law corpus provisions for the upstream programs amended by H.R. 6644, supporting RuleSpec source verification for housing, rural housing, FHA, public housing, HUD administration, CDBG, manufactured housing, and banking/appraisal provisions.

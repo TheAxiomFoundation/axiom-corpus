@@ -1,1 +1,0 @@
-Add the Scottish Government's Scottish Rate Resolution 2026-27 draft motion (gov.scot) as UK guidance corpus, carrying the verbatim 2026-27 Scottish non-savings non-dividend income tax bands and rates (starter/basic/intermediate/higher/advanced/top) that ground the rulespec-uk Scottish-rate money atoms (axiom-corpus#214).

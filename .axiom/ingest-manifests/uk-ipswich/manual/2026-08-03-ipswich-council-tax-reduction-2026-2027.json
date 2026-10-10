@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-ipswich/manual/2026-08-03-ipswich-council-tax-reduction-2026-2027.json",
+      "sha256": "6acb938d1c6399458508bfe76542b8c76798ad30fc6f35b0584b716d32161d2b"
+    },
+    {
+      "path": "data/corpus/inventory/uk-ipswich/manual/2026-08-03-ipswich-council-tax-reduction-2026-2027.json",
+      "sha256": "78deefd3474b5de484bc56245aa15d0b90a547fd1da6e03def2689de10a6ee82"
+    },
+    {
+      "path": "data/corpus/provisions/uk-ipswich/manual/2026-08-03-ipswich-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "bdd621feeb4770007bb6f1ac7eb53d0508b436f79daaa7d55e05291211b1ce9c"
+    },
+    {
+      "path": "data/corpus/sources/uk-ipswich/manual/2026-08-03-ipswich-council-tax-reduction-2026-2027/official-documents/ipswich-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "0e90e442871c5617830c134b4176c9f61d03997114e6c488f3e779fac4147527"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-ipswich-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-ipswich-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 153,
+    "missing_count": 0,
+    "provision_count": 153,
+    "source_count": 153
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:28.657901+00:00",
+  "jurisdiction": "uk-ipswich",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kpz5DpGuXSByucOU12vw0Mzy9HLCuLjOVTOY/yqEyl+Sn/IQXcNJaso9Lb/ZxqKkoY2VqTnittThupE3KHUSCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-ipswich-council-tax-reduction-2026-2027"
+}

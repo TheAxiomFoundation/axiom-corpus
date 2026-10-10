@@ -1,0 +1,1 @@
+Tranche-2 full-document re-slice of the Ecuador LRTI codification: 8 titulo/capitulo page_windows slices of the SRI official PDF (retrofit of the whole-code capture that resisted encoding); new release ec-rulespec-2026-07-24 selects t1 + t2 scopes.

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-19-rulespec-title-42-consolidated.json",
+      "sha256": "d95f188cd361d490c5297df5c17b11b3f9af1aa8d878f74981c81aeb5f6226b5"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-19-rulespec-title-42-consolidated.json",
+      "sha256": "261daf5fcabd4f67e34a61a3a8a92663e13a02a069484c4be51f7e0c6119b1e8"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-19-rulespec-title-42-consolidated.jsonl",
+      "sha256": "16c62848bb00af6aa66812ee7300a3cd447a996ee0b1845c07a9f36d24f434d1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-19-rulespec-title-42-consolidated/2026-06-26-chip-title-xxi-title-42/uslm/usc42.xml",
+      "sha256": "6a1f3fe06255c21558d752a78e6d52fc99367e075e4964d99a4c44c9e303dca5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-19-rulespec-title-42-consolidated/2026-07-16-hr6644-dependencies-current-law-title-42/uslm/usc42.xml",
+      "sha256": "3441769bf661bf83381686cf7bc89fb17eb3138c34ae964816759a554ca88a36"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-19-rulespec-title-42-consolidated/2026-07-16-hr6644-dependencies-current-law-title-42-1437c-1-title-42/uslm/usc42.xml",
+      "sha256": "4b9a00e12f18bc4b32c44a3e1cd5c0493da8cf0db0a0662a69fa91f5307a05af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "eae8aed90d4cb5d27805140f1be5fdd742514130",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us --document-class statute --source-version 2026-06-26-chip-title-xxi-title-42 --source-version 2026-07-16-hr6644-dependencies-current-law-title-42 --source-version 2026-07-16-hr6644-dependencies-current-law-title-42-1437c-1-title-42 --target-version 2026-07-19-rulespec-title-42-consolidated"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1081,
+    "missing_count": 0,
+    "provision_count": 1081,
+    "source_count": 1081
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-19T20:13:10.343820+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7oYDAAbsEmAmRM9zYdLb5bupEQ2w0xNKJfOT0wAJIr+7WZC5z0ZLQE9qrklaeRYtt56TigEFT1nLl64aJh2qDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-rulespec-title-42-consolidated"
+}

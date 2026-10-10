@@ -1,0 +1,1 @@
+Ingest the explicit 14-row 20 CFR Part 416 deeming slice from retained official eCFR XML and structure data, plus IRS Notice 2025-67 (7 rows) from the official IRS PDF, with hash-pinned source provenance, complete scoped coverage, a literal deterministic reproduction script, and exact encoder resolution for every path.

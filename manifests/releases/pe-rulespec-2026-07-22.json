@@ -1,0 +1,17 @@
+{
+  "description": "Immutable official Peru scopes used by RuleSpec-PE: the PERUMOD v2.4 tranche-1 statute chain (TUO Ley del Impuesto a la Renta DS 179-2004-EF; TUO Ley del IGV e ISC DS 055-99-EF; Ley 26790 Modernizacion de la Seguridad Social en Salud) and the Pension 65 creation decree (DS 081-2011-PCM). First Peru cut; SOUTHMOD full-bundle program lane 3.",
+  "name": "pe-rulespec-2026-07-22",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "regulation",
+      "jurisdiction": "pe",
+      "version": "2026-07-22-pe-perumod-t1-regulations"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "pe",
+      "version": "2026-07-22-pe-perumod-t1-statutes"
+    }
+  ]
+}

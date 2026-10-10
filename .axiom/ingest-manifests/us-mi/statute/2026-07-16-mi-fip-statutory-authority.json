@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/statute/2026-07-16-mi-fip-statutory-authority.json",
+      "sha256": "57edaadb35f52906b7ade06c12135f6e79b9495231488fea7ec2a0c6e3b93af6"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/statute/2026-07-16-mi-fip-statutory-authority.json",
+      "sha256": "d31105b4c7787d950718aa02e8f6edef1e7e47743be3fdccef2f91d5908bc272"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/statute/2026-07-16-mi-fip-statutory-authority.jsonl",
+      "sha256": "9881271d0305c11900a4d46cd51abddb6c1b5c69db07da4c9cbe1bc56c9712e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-16-mi-fip-statutory-authority/official-documents/mi-mcl-400-10d-fip-asset-test-current.html",
+      "sha256": "88a81279a0f1bfe2dfda07f0228c3fc7c7930acf1bd1fbf420016212b0bf9eb0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-16-mi-fip-statutory-authority/official-documents/mi-mcl-400-57a-fip-administration-current.html",
+      "sha256": "7bc4e332def0e6d986de9515031f50788d6f5e90a44f896589774a2ed2da029b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dfe1bc4c02f37d254d53dd1733c54cd2d473340f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-16-mi-fip-statutory-authority --manifest manifests/us-mi-fip-statutory-authority.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T17:08:51.109352+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "t33k16CFozaHMKYFsiJj51ZAqdVSkeD4fpQ4gmnCKHotaE16NR2BeNR8WzCI/XZHBPUZ/uKjNyNvkqm9MjiLCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-mi-fip-statutory-authority"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1.json",
+      "sha256": "2a3ecdfaaa2b7c92eab01bb4593c9622f29bbc726a8f3a2eb1358c0f823e861a"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1.json",
+      "sha256": "ed035858bb79b09e3bb83f6d7ed6f8893d3fbf9d6971df5bb1d844f0532213bb"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1.jsonl",
+      "sha256": "73c1f3e656fefb1d9101cb6fd281654583f621be93224635af3bf199d6bbbc9b"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1/ecfr/title-26-part-1.xml",
+      "sha256": "1e5ca5d86df2ebf303d2df1eb9d162412e549896118779621d41139c9662001a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "afab29fc555af3d5bc25bba795e5b0c6ef936adc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_1401_coordination_repair.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-26T15:56:52.413277+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2SGS6vuKyMDIAjN7nBooa/igeipEgvScE0QSHR/U/m5fSLdgP4a6ceAZPq90qJIRr1By/Q1fxgC79BQ3FMTQDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-1401-coordination-repair-title-26-part-1"
+}

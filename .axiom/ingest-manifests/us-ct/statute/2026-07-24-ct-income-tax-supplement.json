@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/statute/2026-07-24-ct-income-tax-supplement.json",
+      "sha256": "b12936a94b8d7dbda988d3d0a30fc6ff341fb2c8d67be2e74caf273e469c66c2"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/statute/2026-07-24-ct-income-tax-supplement.json",
+      "sha256": "4c14c02939959ebc3223441c681691196d36bfd7312f44f319f2d6802098e4e7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/statute/2026-07-24-ct-income-tax-supplement.jsonl",
+      "sha256": "ed9b18d156338551059fe89c5255c4655c4661034f68590d1bb5e2d225bd72a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-07-24-ct-income-tax-supplement/official-documents/us-ct-cga-2026-supplement-section-12-704e.html",
+      "sha256": "2faa8eebcad4e951d01bfd563941ba74e4f8d7d2b0d29a84a631cf19f8752511"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a1fdd673a4d2b04358ab44e81617e1c766362e1b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom_with_corpus_ingest_key uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-ct-income-tax-supplement --manifest manifests/us-ct-2026-supplement-section-12-704e.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T09:45:56.744309+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LPhIoFYapF8IHIdeKufqbmL7uqPaa88MQxyXxVdzP6Wj59kpE5X3xQaZLnndFtPGniexcXa0QKXTI6R6/mMtBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-ct-income-tax-supplement"
+}

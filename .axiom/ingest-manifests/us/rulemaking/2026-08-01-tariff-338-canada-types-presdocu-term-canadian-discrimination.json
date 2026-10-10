@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination.json",
+      "sha256": "81f6c0f46e86392cbd03e95687cd8b198a47ecbcf9f9a4ce626df4bb1c169d1a"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination.json",
+      "sha256": "0fcdc8e4205a8a7d7444a44fba01ad1b606655292fd5df760811cdb43eefc473"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination.jsonl",
+      "sha256": "35930c4cd1b7a21eaae3b9a02d383d2d514d180a1bd748b2cc68200c1e05afa6"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/api/documents-page-1.json",
+      "sha256": "7426f8467534b2384483b65f9324cb3d2f693e52e9a1652f6be658685862b5ea"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/documents/2026-14991.json",
+      "sha256": "544ef4c54bdde3f9a845065c16ab520ceff6c1f86953c13b72641f0e2f10781f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/documents/2026-14991.txt",
+      "sha256": "7ff511ec6595595f7b3af9fa2952d34e5c4e7d6586e32609e668387defd788d5"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/documents/2026-14992.json",
+      "sha256": "8298864c99358506e0c78ed22350a9e38536b3cd0130c918e23c5393745a83da"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/documents/2026-14992.txt",
+      "sha256": "fbaab410db4f8f398f66ce134efba33de8deee72eba9ebd33a2c231c12471b44"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/documents/2026-14997.json",
+      "sha256": "d6fe3cdc6b89f892241ce05aeb57134a9609a229d2774bd6cf3f68842c57c7ce"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination/federal-register/documents/2026-14997.txt",
+      "sha256": "b3d1fb6d71e1842dc8eedbca91aac27910005872d5baed5b387635aeb5e05fe4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4f10129985f0490176e226077a96a8d7a5fb7f43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-338-canada --start-date 2026-07-23 --document-type PRESDOCU --term \"Canadian discrimination\" --source-as-of 2026-08-01 --expression-date 2026-07-23"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:47:33.686181+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TuXLDahVS487yLqFip7MkGfrX31c8cToNDm8Pfad3j/XMZYSAuUXsvDY6OirHz5YG441rL07NhH/K9OIy26JBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-338-canada-types-presdocu-term-canadian-discrimination"
+}

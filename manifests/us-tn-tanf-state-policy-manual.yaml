@@ -1,0 +1,496 @@
+version: '2026-09-10'
+documents:
+- source_id: us-tn-dhs-families-first-23-01
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.01 Families First Application Process'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.01%20Families%20First%20Application%20Process.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-01
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.01'
+    official_listing_title: 23.01 Families First Application Process
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-02
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.02 Families First Assistance Units'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.02%20Families%20First%20Assistance%20Units.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-02
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.02'
+    official_listing_title: 23.02  Families First Assistance Units
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-03
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.03 Families First Technical Eligibility'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.03%20Families%20First%20Technical%20Eligibility.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-03
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.03'
+    official_listing_title: 23.03 Families First Technical Eligibility
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-04
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.04 Families First Resource Eligibility'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.04%20Families%20First%20Resource%20Eligibility.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-04
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.04'
+    official_listing_title: 23.04  Families First Resource Eligibility
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-05
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.05 Families First Income Eligibility'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.05%20Families%20First%20Income%20Eligibility.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-05
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.05'
+    official_listing_title: 23.05  Families First Income Eligibility
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-06
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.06 Families First Drug Testing'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.06%20Families%20First%20Drug%20Testing.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-06
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.06'
+    official_listing_title: 23.06 Families First Drug Testing
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-07
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.07 Families First Personal Responsibility Plans'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.07_Families_First_Personal_Responsibility_Plans.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-07
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.07'
+    official_listing_title: 23.07_Families_First_Personal_Responsibility_Plans
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-11
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.11 Families First Child Support Cooperation'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.11_Families_First_Child_Support_Cooperation.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-11
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.11'
+    official_listing_title: 23.11 Families First Child Support Cooperation
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-12
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.12 Families First EBT Location Restrictions'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.12%20Families%20First%20EBT%20Location%20Restrictions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-07-31'
+  citation_path: us-tn/manual/dhs/families-first/23-12
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.12'
+    official_listing_title: 23.12 Families First EBT Location Restrictions
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-07-31'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-13
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.13 Families First Work and or Educational Activity'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.13%20Families%20First%20Work%20and_or%20Educational%20Activity.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-13
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.13'
+    official_listing_title: 23.13 Families First Work and or Educational Activity
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-14
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.14 Families First Time Limits'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.14%20Families%20First%20Time%20Limits.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-14
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.14'
+    official_listing_title: 23.14 Families First Time Limits
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-16
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.16 Marriage During Receipt of Assistance'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.16%20Marriage%20During%20Receipt%20of%20Assistance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-08-10'
+  citation_path: us-tn/manual/dhs/families-first/23-16
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.16'
+    official_listing_title: 23.16 Marriage During Receipt of Assistance
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-08-10'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-17
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.17 Families First Verification and Documentation'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.17%20Families%20First%20Verification%20and%20Documentation.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-17
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.17'
+    official_listing_title: 23.17 Families First Verification and Documentation
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-18
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.18 Families First Authorization And Case Management'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.18%20Families%20First%20Authorization%20And%20Case%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-18
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.18'
+    official_listing_title: 23.18 Families First Authorization And Case Management
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-19
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.19 Families First Overpayments And Underpayments'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.19%20Families%20First%20Overpayments%20And%20Underpayments.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-19
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.19'
+    official_listing_title: 23.19 Families First Overpayments And Underpayments
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-21
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.21 Family Focused Solutions'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.21%20Family%20Focused%20Solutions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-21
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.21'
+    official_listing_title: 23.21 Family Focused Solutions
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-22
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.22 Families First Child Care'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.22%20Families%20First%20Child%20Care.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-22
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.22'
+    official_listing_title: 23.22 Families First Child Care
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-23
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.23 Families First Diversion Payments'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.23_Families_First_Diversion_Payments.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-23
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.23'
+    official_listing_title: 23.23  Families First Diversion Payments
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)
+- source_id: us-tn-dhs-families-first-23-24
+  jurisdiction: us-tn
+  document_class: manual
+  title: 'Tennessee Families First Policy Manual: 23.24 Families First Work Incentive Payments'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/23.24%20Families%20First%20Work%20Incentive%20Payments.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-24'
+  citation_path: us-tn/manual/dhs/families-first/23-24
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Families First
+    federal_program: TANF
+    manual_landing_page: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    source_discovery_group: us-tn/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    policy_series: '23'
+    policy_number: '23.24'
+    official_listing_title: 23.24 Families First Work Incentive Payments
+    listing_section: Families First (TANF)
+    source_last_modified: '2026-04-24'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-tn SNAP policy manual scope (24-series on the same page)

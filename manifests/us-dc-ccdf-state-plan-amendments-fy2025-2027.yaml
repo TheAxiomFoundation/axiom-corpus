@@ -1,0 +1,58 @@
+version: 2026-09-13-ccdf-state-plan-amendments
+documents:
+- source_id: us-dc-acf-ccdf-plan-fy2025-2027-amendment-1-approval-letter
+  jurisdiction: us-dc
+  document_class: policy
+  title: District of Columbia CCDF Plan FFY 2025-2027, Amendment 1 approval letter
+  source_url: https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20FFY%202025-2027%20CCDF%20Plan%20Amendment%201%20Approval%20Letter.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-dc/policy/acf/ccdf-plan/fy2025-2027-amendment-1-approval-letter
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: amendment_approval_letter_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://osse.dc.gov/publication/dc-child-care-and-development-fund
+    source_discovery_group: us-dc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://osse.dc.gov/publication/dc-child-care-and-development-fund
+    plan_version: Amendment 1 approval letter
+    plan_status: ACF approval letter effective 2024-10-01
+    closure_elements:
+    - ccdf-s28
+- source_id: us-dc-acf-ccdf-plan-fy2025-2027-amendment-2-approval-letter
+  jurisdiction: us-dc
+  document_class: policy
+  title: District of Columbia CCDF Plan FFY 2025-2027, Amendment 2 approval letter
+  source_url: https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20FFY%202025-2027%20CCDF%20Plan%20Amendment%202%20Approval%20Letter_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-05-28'
+  citation_path: us-dc/policy/acf/ccdf-plan/fy2025-2027-amendment-2-approval-letter
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: amendment_approval_letter_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://osse.dc.gov/publication/dc-child-care-and-development-fund
+    source_discovery_group: us-dc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://osse.dc.gov/publication/dc-child-care-and-development-fund
+    plan_version: Amendment 2 approval letter
+    plan_status: ACF approval letter effective 2026-05-28
+    closure_elements:
+    - ccdf-s28

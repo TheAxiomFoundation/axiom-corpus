@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-stratford-on-avon/manual/2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027.json",
+      "sha256": "047771203eebdb54ea81e71ddd2824098059e2e0785eec65fdb15162b3b8b713"
+    },
+    {
+      "path": "data/corpus/inventory/uk-stratford-on-avon/manual/2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027.json",
+      "sha256": "d8c98175c3fe1243e0ec0d60d5b47305e23ca6172ab3a57303cc7f4ee775d9d5"
+    },
+    {
+      "path": "data/corpus/provisions/uk-stratford-on-avon/manual/2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "8c4466974a4bd8e1908f52a58fe6c8ef9ad65dd5f9c4518f17b611326220da61"
+    },
+    {
+      "path": "data/corpus/sources/uk-stratford-on-avon/manual/2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027/official-documents/stratford-on-avon-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "0210ef2644eb28020a867e43aab4c6a05c9f06a0a055f7c608bda0064aba0908"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-stratford-on-avon-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 147,
+    "missing_count": 0,
+    "provision_count": 147,
+    "source_count": 147
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:37:01.751722+00:00",
+  "jurisdiction": "uk-stratford-on-avon",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Sdc//i9zJBOvb0Spp3JnTPpA40c4gQcJ4/RCdxc0rGHZ1naGVEnbxLsN2kWat0fkaibzwoBc6vQe8BVWPnffDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027"
+}

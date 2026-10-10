@@ -11,24 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-05-uk-scottish-income-tax.jsonl",
       "sha256": "08cfa2e2e485fe440d0e2ef2dfb177a32031bd3311bcfd8565577c05e2037364"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-05-uk-scottish-income-tax/ukpga/1998/46/section-80C.xml",
-      "sha256": "beb9cc9a2fd28920aa80f9765232e5dfc688e54120febc50188faef8c1d6bee3"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-05-uk-scottish-income-tax/ukpga/2007/3/section-11A.xml",
-      "sha256": "77a72aa7e5e5dfcfbbadac37446435568d7a39c17efa15b251409b882d2abe45"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-05-uk-scottish-income-tax/ukpga/2016/11/section-13.xml",
-      "sha256": "dd9608b432aa59a3404509f0f75ae8cbbec3b95f36c3fe3e6e192691f5dd3bfb"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "83f9dc44eb5536b47afbc0a083150c42cafc9e1b",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus/_worktrees/scottish-income-tax"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -43,19 +31,14 @@
     "source_count": 3
   },
   "document_class": "statute",
-  "generated_at": "2026-07-05T20:45:07.691448+00:00",
+  "generated_at": "2026-07-21T11:42:00.791340+00:00",
   "jurisdiction": "uk",
-  "reasoning_logs": [
-    {
-      "path": "docs/ingest-runs/2026-07-05-uk-scottish-income-tax.md",
-      "sha256": "0e85f3f7e3c3814d55f329808a709bd35391e24ec8011fe20782ec3a91efd6f0"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Wxf2nRwu6hMLDUCpx5kHWYHO5mLATPJzrb/R2bCcfCRcp9wJI5XZcwxdO9iuT7qAhBC+ME9repEYSpV2dCQHBA=="
+    "value": "E0B//+vw6jdSuR8hCIlYPE8Dg5zyLWd4kIsvpc9dOyj4xA4V2m8GbepIGJUW6TC3XX0+f9WdYeIqRaZjNZbBDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-uk-scottish-income-tax"

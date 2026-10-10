@@ -1,0 +1,28 @@
+version: 2026-09-11-snap-nap-regulation
+documents:
+- source_id: us-pr-adsef-reglamento-8684-pan
+  jurisdiction: us-pr
+  document_class: regulation
+  citation_path: us-pr/regulation/adsef/reglamento-8684
+  title: 'Reglamento Num. 8684: Reglamento para establecer las normas de elegibilidad del Programa de Asistencia Nutricional
+    (PAN)'
+  source_url: https://serviciosenlinea.adsef.pr.gov/documents/1.ReglamentoPAN.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2015-12-28'
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Puerto Rico Department of the Family, Administracion de Desarrollo Socioeconomico de la Familia (ADSEF)
+    document_subtype: adopted_regulation_pdf
+    program: NAP
+    federal_program: NAP block grant (7 U.S.C. 2028), in lieu of SNAP
+    regulation_number: '8684'
+    regulation_date: '2015-12-28'
+    manual_landing_page: https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+    source_discovery_group: us-pr/regulation/nap
+    discovered_via: manual-review:snap-completion-agent-queue territories pass; publisher index https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+    extraction_granularity: pdf_page
+    ocr_note: scanned image-only PDF; Tesseract page OCR with the eng traineddata (the only one installed), so Spanish diacritics
+      are approximate

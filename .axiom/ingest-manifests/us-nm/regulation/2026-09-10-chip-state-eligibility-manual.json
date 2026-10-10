@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "b189795e5eef422fc9540e15f0efd7fded30b1d8d666d42b3883683bbc2cbca8"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "71ecd24824327f394c25960c7fb04d366af83bc45ec036daf599c3abd22f5edb"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "2ca1965808c071e48c0cfc423fb4002d911827a40c0f97b3f930279e02596944"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/nm-srca-nmac-8-291-400.html",
+      "sha256": "ecb87cb3db2314692a614e892919651933342640ee1aa2955bc9d06f4d5a1664"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/nm-srca-nmac-8-291-410.html",
+      "sha256": "432bd53b2247fb299a97c3b70ad879187fda5b51ffa808ad908971f811d2703f"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/nm-srca-nmac-8-291-420.html",
+      "sha256": "8dfee15969892cd4084eeb9150650219af231458ee1f4af2e355953e2f4505e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/nm-srca-nmac-8-291-430.html",
+      "sha256": "119037a1d2e631e113a5f142ec579d9292e216311621932daf735fd9a0737518"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-nm-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 78,
+    "missing_count": 0,
+    "provision_count": 78,
+    "source_count": 78
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:21:41.256636+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5dzoGO9hcrDQBT+DIiHXzR64jGBKJc3SXNclo8qN69lXgBLFbWKyXbEqQSTOw3tFOGI+84rYAvqdcCP1WT+qAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

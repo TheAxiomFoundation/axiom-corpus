@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rushcliffe/manual/2026-08-03-rushcliffe-council-tax-reduction-2026-2027.json",
+      "sha256": "d86d443caa8df88b834d2d0f0d45097dc3590ada8884e1d00258837492b49b92"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rushcliffe/manual/2026-08-03-rushcliffe-council-tax-reduction-2026-2027.json",
+      "sha256": "2b91a90ed6d0c36c7b9c3ce8eec964d693ba56e303eddc49f768b68e5e274125"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rushcliffe/manual/2026-08-03-rushcliffe-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "5bf341237cb91bbe3f4df2af5ab70d798f694598026f09ebfdaa9e02e763ac67"
+    },
+    {
+      "path": "data/corpus/sources/uk-rushcliffe/manual/2026-08-03-rushcliffe-council-tax-reduction-2026-2027/official-documents/rushcliffe-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "65132b3c12a2697cf12883cad0daad5e1633e63478bd850e305425093c49b0a2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-rushcliffe-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rushcliffe-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 267,
+    "missing_count": 0,
+    "provision_count": 267,
+    "source_count": 267
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:48.195864+00:00",
+  "jurisdiction": "uk-rushcliffe",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "68BTaOGCrlRfNQshG7vANE7lZeyRdG3CGzX+dTBZt0orljpyZC1Vawwg5aDZ6Ppj4Is1jDeR7tY2pE700+HODw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-rushcliffe-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/guidance/2026-10-06-w6-income-tax-guidance-nm.json",
+      "sha256": "b97b23ad93db33da17531c0c4fbb97bdec2cf897abd5df45e8cdcf61b22f6d97"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/guidance/2026-10-06-w6-income-tax-guidance-nm.json",
+      "sha256": "767dbbe30f198a8721ac7a62c229b53b3f6f40afe6aac7056296988052e70323"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/guidance/2026-10-06-w6-income-tax-guidance-nm.jsonl",
+      "sha256": "5f0436a61e41e9fb1e0e256edb54b6925713c49c4c7dbaca916cc787d19f957a"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-income-tax-guidance-nm/official-documents/us-nm-guidance-hed-new-mexico-529-college-savings-plan.html",
+      "sha256": "41bb6bbcbefc88aa6fbfd907326b2379f7a01da0d1991136303a8fa4721cc6e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-income-tax-guidance-nm/official-documents/us-nm-guidance-trd-income-tax-act-regulations-publication-2023.pdf",
+      "sha256": "2a11e072926ccad58bfff9ccb4dd9b9ccf03cc6613c0a90280d172f03ea174fc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:16.672220+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Q11pDA07ghoSszijvxTQecnzsG3BGh2emp+ncjd9PwlZ8k8mSjChhrTySSzqmL32t4pZ+PbChy0gORwPTfVTAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-nm"
+}

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum.json",
+      "sha256": "ad893546c11f071ad6cb98d1a3fa521c318453d3dff8255973fdd563c4939d3b"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum.json",
+      "sha256": "8ac2102cb9759bdfc1dc0e578fc3158135ccfe38f2cdbf0283d348c52286256d"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum.jsonl",
+      "sha256": "1f4197b94182ff5b4f65302e0166d3bfd510336a3613f84fc396c30bf4965171"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum/federal-register/api/documents-page-1.json",
+      "sha256": "b0bb041eb1d4f866c3f19a41bded8b6af42d4b2c5788538638cff39d7cf7f2a7"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum/federal-register/documents/2026-14990.json",
+      "sha256": "7062dc42377d6330ca9460e2976815d7d5dc7aef5d2f54187e133aaef1a80c2b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum/federal-register/documents/2026-14990.txt",
+      "sha256": "587499bed55d444838c341a479bb8a6710b6e68e982896998dc8e004969b95fc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-aluminum --start-date 2026-07-23 --document-type PRESDOCU --term \"aluminum\" --source-as-of 2026-08-01 --expression-date 2026-07-23"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T12:58:17.257073+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RB0Ua0q3Pel8TxxYObB2tTgIE21o/fxKyzNnBUhct205f3L9NF+Ru69wyM8wqrXjTi5D2H1hdZ0ly5Ujh0DHBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-aluminum-2026-07-23-types-presdocu-term-aluminum"
+}

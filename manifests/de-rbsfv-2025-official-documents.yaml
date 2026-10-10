@@ -1,0 +1,81 @@
+# Regelbedarfsstufen-Fortschreibungsverordnung 2025 (RBSFV 2025) — the
+# operative instrument behind the 2025 SGB II/SGB XII Regelbedarfsstufen
+# (563 € RBS 1 etc.). Its gesetze-im-internet xml.zip returns 404 (verified
+# again 2026-07-21), exactly as the main DE manifest header records, so this
+# is the documented BGBl-archive capture: the official electronic
+# Bundesgesetzblatt PDF from recht.bund.de.
+#
+# The Verordnung's §§ 2–3 textually supplement (ergänzen) the Anlage zu § 28
+# and the Anlage zu § 34 SGB XII under the § 40 SGB XII authority — the
+# current consolidated SGB XII Anlage rows for 1. Januar 2025 in this corpus
+# are the incorporated result. It therefore carries `amends` scoped to those
+# Anlagen. Note the discovery boundary: axiom-encode's amendment discovery
+# only considers candidate rows in the target's own (jurisdiction,
+# document_class) scope, so this regulation-scope document is not injectable
+# for statute-scope SGB XII targets; the marking records the true relation
+# and makes the document part of the amendment census either way.
+#
+# Run:
+#   uv run axiom-corpus-ingest extract-official-documents \
+#     --base data/corpus \
+#     --version <version> \
+#     --manifest manifests/de-rbsfv-2025-official-documents.yaml
+documents:
+  - source_id: de-rbsfv-2025-bgbl-i-312
+    jurisdiction: de
+    document_class: regulation
+    citation_path: de/regulation/bgbl-2024-i-312/rbsfv-2025
+    title: Regelbedarfsstufen-Fortschreibungsverordnung 2025 (RBSFV 2025) (BGBl. 2024 I Nr. 312)
+    source_url: 'https://www.recht.bund.de/bgbl/1/2024/312/regelungstext.pdf?__blob=publicationFile&v=1'
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2024-10-18'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (Bundesgesetzblatt Teil I, recht.bund.de)
+      title_short: RBSFV 2025 (BGBl. 2024 I Nr. 312)
+      title_alternative: >-
+        Verordnung zur Bestimmung der für die Fortschreibung der
+        Regelbedarfsstufen nach § 28a und für die Fortschreibung des
+        Teilbetrags nach § 34 Absatz 3a Satz 1 des Zwölften Buches
+        Sozialgesetzbuch maßgeblichen Prozentsätze sowie zur Ergänzung der
+        Anlage zu §§ 28 und 34 des Zwölften Buches Sozialgesetzbuch für das
+        Jahr 2025
+      document_type: Fortschreibungsverordnung (amendment regulation; supplements the SGB XII Anlagen)
+      date_document: '2024-10-18'
+      date_publication: '2024-10-23'
+      in_force: true
+      amends: >-
+        Anlage zu § 28 and Anlage zu § 34 of the Zwölftes Buch
+        Sozialgesetzbuch (SGB 12): under the § 40 SGB XII authority, § 2
+        appends the "1. Januar 2025" Regelbedarfsstufen row and § 3 appends
+        the "gültig im Kalenderjahr 2025" Schulbedarf-Teilbeträge row. It
+        does not change any other SGB XII provision text.
+      amendment_targets:
+        - de/statute/sgb-12
+        - de/statute/sgb-12/anlage-bjne014918130
+        - de/statute/sgb-12/anlage-bjne020206130
+      source_family: citizens-benefit/regelbedarf
+      source_note: >-
+        Official electronic Bundesgesetzblatt PDF (BGBl. 2024 I Nr. 312,
+        ausgegeben zu Bonn am 23. Oktober 2024), downloaded 2026-07-21 from
+        the stable recht.bund.de publicationFile URL. Text-embedded PDF, no
+        OCR needed. Key contents, verbatim-verified against the PDF text:
+        § 1 Abs. 1 sets the 2025 Fortschreibung percentages (Basisfort-
+        schreibung "4,60 Prozent", ergänzende Fortschreibung "0,7 Prozent");
+        § 1 Abs. 2 records that the resulting amounts are LOWER than the 2024
+        amounts, so under the § 28a Abs. 5 SGB XII Besitzschutz the 2024
+        Eurobeträge continue to apply from 1. Januar 2025 (the "Nullrunde");
+        § 2 appends the Anlage zu § 28 row "1. Januar 2025 | 563 | 506 | 451
+        | 471 | 390 | 357" (Regelbedarfsstufen 1–6); § 3 appends the Anlage
+        zu § 34 row "gültig im Kalenderjahr 2025" (Schulbedarf 130 / 65
+        Euro); § 4: in force 1. Januar 2025, simultaneously repealing the
+        RBSFV 2024 (BGBl. 2023 I Nr. 287). Context beyond this document's
+        text: these Regelbedarfsstufen amounts are what the SGB II § 20
+        Bürgergeld encoding references for the 2025 validation year (SGB II
+        is not cited in this Verordnung).

@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151.json",
+      "sha256": "affa2a915cd23a7b3509669ace220e3e695c9b8ec5e562b8768bf28a703c7cfb"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151.json",
+      "sha256": "e7f1d2fcb0b00bd279edfcb5ec5d5e4ae237beae7f50301c6cdd4e4cda6ff759"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151.jsonl",
+      "sha256": "aae919cdf9dda9e5791155453c8fc7d7491bfc88d4c39e695f9a3e0f0ec88877"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151/vermont-legislature/2026-act-152-s325.pdf",
+      "sha256": "f79ba680db5252bfc324e6da8025f49f01394d6210f08905d16377d7290be2e5"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151/vermont-legislature/2026-act-164-h933.pdf",
+      "sha256": "b9f43f1b8096f45dc685a7008f646d54b0b830288df8f9a61947f823cf872135"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151/vermont-legislature/2026-acts-affecting-statutes.json",
+      "sha256": "d4381c200ad089a8943ac321987ffc746df29442cf61c072c8d878f99f68c855"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151/vermont-legislature/title-32-chapter-151-full.html",
+      "sha256": "257998c89282dea3c1d3d57c119b0b597c56cff0f2e4f6f632fa7a91affcba21"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-07-16-pit-central-us-vt-title-32-chapter-151/vermont-legislature/title-32-chapter-151-index.html",
+      "sha256": "0607054cba932e9e8bb8d31d9233a0d130412f4083b085677f11d383518d6a99"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 179,
+    "missing_count": 0,
+    "provision_count": 179,
+    "source_count": 179
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:31.815395+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7fNo6YYTLVRitlCaVAmPh4qOfLJMUON1R+D4jfkak1qWdSHHpe5xvbYu6Y3zw3AGiBguaHkIonCHO9bdSZr7DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-vt-title-32-chapter-151"
+}

@@ -1,0 +1,46 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-dedup.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-dedup.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-dedup.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-dedup/uslm/usc12.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-dedup/uslm/usc42.xml"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b6049c931b75b03571e58dd81149e3b50103cdab",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "retire the unpublished dedup twin superseded by the published -expression-date scope (corpus#415)"
+  },
+  "coverage": null,
+  "document_class": "statute",
+  "generated_at": "2026-07-19T16:38:00.836767+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v19S4kogTxBRoTyqb7yx0dKYXe4/QxNaQWqy4hzAhsivhYHe1oc33ytltBichPKHedSmLt/qkz9HjiQGMT+/DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-15-hr6644-current-law-r2026-07-19-dedup"
+}

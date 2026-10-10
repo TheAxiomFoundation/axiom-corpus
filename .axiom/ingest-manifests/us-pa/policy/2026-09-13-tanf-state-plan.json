@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "e63bbead2c8ca6dd20ecdb251e6094db76f0d9df10d3d763f0bf97e65baeaa96"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "b90c2a079c12dd7d80e62837687b52066884ec45f448e7fda7b51cf6428ff9a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "9497d30fddbfda39b57ea6b820c7901f1a367ca59eb5b8853de20592f77f7ce9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-09-13-tanf-state-plan/official-documents/us-pa-tanf-state-plan-2024.pdf",
+      "sha256": "91f0edbe433ae98a48cd710200a8e055ddb071dbd35e29cbc824b91d9f9f62bc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:11:24.047162+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "w/twuBecSK3s1weVe4bkSJtRfl5v8iecVkuzciAP2gDlDGVkMnKl9G9/o9inj6QYALdVeN7U8UgpYK5IDurUBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

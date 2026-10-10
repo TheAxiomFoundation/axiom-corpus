@@ -11,16 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-healthy-start-reg8.jsonl",
       "sha256": "3421c0c46fe50840925a51f2cdcaaabd48aeb07de1058cfb1805786454aeaea6"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-healthy-start-reg8/uksi/2005/3262/regulation-8.xml",
-      "sha256": "a1acde667f384fad92d935b4cf5b46621ae7294ba8abd323e669f614f98ea3f0"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "025f5d98e446cd4bf26961e0a3249b90238b736b",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/uk-passport-grants-20260706/axiom-corpus"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +31,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-06T22:47:27.720008+00:00",
+  "generated_at": "2026-07-21T11:42:00.427217+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Mf/BUSY5Nkzl6+wfwL5goVdOFM02AURxVB8O0UpVr0bmnTtrUJq/rGNpkpMwrdldmpKMcp0xPK8IoGwts41MCQ=="
+    "value": "kwF1fnNAxmu1DSA1bHc4JZeSVDKN7an+rfZ3bKMUABU5fRyyg1wIIGHWC6TqfRtuP5AFnUjZdKBQxsDvUz23CA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-uk-healthy-start-reg8"

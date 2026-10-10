@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "5611d9cc5484fa447fa4c1fb8faebc0fbb1bbbca9f01435ab080692cba21ed65"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "8b08b14688a78a0ca33245327b005c5fcdc9517107e1ca561b2f902df7a1a6cb"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "f3263bb510d2956fcd40853a67c213c7712c1dd185a09ccfdb3f84c1bdbc1bda"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-09-13-snap-et-state-plan/official-documents/ky-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "6b704dbf4d7d1ca0fc01d6ca104cb8911ee763c2a3df86a6edfa970967962d4e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 143,
+    "missing_count": 0,
+    "provision_count": 143,
+    "source_count": 143
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:34:28.509943+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3Vz7uAGOHkoBln9FK9dNOlcM7/a79K8eQZ//L7OOaMvNSDOR5ne6VPY7lb3SnP6yVx8qjX/DcgAJGM6vBfdaCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

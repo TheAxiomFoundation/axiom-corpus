@@ -11,20 +11,12 @@
     {
       "path": "data/corpus/provisions/nz/statute/2026-07-08.jsonl",
       "sha256": "b3ee26be98ffd20c409f580803bfe550ef8f5503f1bca5d13859f7995611606f"
-    },
-    {
-      "path": "data/corpus/sources/nz/statute/2026-07-08/act/public/2007/0097/wholeof.xml",
-      "sha256": "68bfaaa68c6c08c946173273005c011ba8a1e3c6d7d4c691e8bad4d34d96b163"
-    },
-    {
-      "path": "data/corpus/sources/nz/statute/2026-07-08/act/public/2007/97/act_public_2007_97_en_2026-07-01.xml",
-      "sha256": "68bfaaa68c6c08c946173273005c011ba8a1e3c6d7d4c691e8bad4d34d96b163"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "614a186e1a0fda179f7ba4ef00bcd550015321ec",
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
     "dirty_tracked": false,
-    "root": "/private/tmp/claude-501/-Users-maxghenis/ca5f4ab7-d8a5-4e03-82eb-71e2a5166288/scratchpad/wt/nz-corpus"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,14 +31,14 @@
     "source_count": 4134
   },
   "document_class": "statute",
-  "generated_at": "2026-07-08T21:32:52.603467+00:00",
+  "generated_at": "2026-07-21T11:41:59.797412+00:00",
   "jurisdiction": "nz",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "+ZuFCfCMvTn4vBv/dPTBvuN8lQSlVQkVP0jv7nw6xOULmmVi78FM5cSBKQgO3eZYyPj+kHQbxyFEvXlWrVjqBQ=="
+    "value": "4oGcFlolCJaeskE/791+7PPNFgHvAlekMEj5dNM3cdX5l1N8a7o/PTg0d3LQAQeHegVwgviRUb0gg87PElzgCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-08"

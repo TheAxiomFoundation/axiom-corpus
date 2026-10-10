@@ -1,0 +1,17 @@
+{
+  "description": "Immutable official Germany federal statute and regulation scopes used by RuleSpec-DE (dual-oracle lane: EUROMOD DE_2025 + GETTSIM). Composes the byte-identical 2026-07-16 gesetze-im-internet consolidations with the 2025-era operative instruments: the SteFeG amendment act (BGBl. 2024 I Nr. 449 — 2025 Kindergeld 255 EUR, Grundfreibetrag 12096 EUR, SolzG Freigrenze 19950 EUR, amendment-marked with machine-readable targets), RBSFV 2025 (BGBl. 2024 I Nr. 312), PBAV 2025, MiLoV4, and the RV contribution-rate chain BSV 2018 (set 18.6 percent) plus RVBeitrSBek 2025 (the s. 158(4) SGB VI Bekanntmachung by which BMAS makes the unchanged 2025 rate known in the BGBl).",
+  "name": "de-rulespec-2026-07-21",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "regulation",
+      "jurisdiction": "de",
+      "version": "2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "de",
+      "version": "2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments"
+    }
+  ]
+}

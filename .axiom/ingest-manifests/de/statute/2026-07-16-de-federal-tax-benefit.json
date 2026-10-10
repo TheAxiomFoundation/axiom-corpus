@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-07-16-de-federal-tax-benefit.json",
+      "sha256": "0ec42e6176160ca49f39f9d04fd17d476896107b355a65f01d56c9643f30f32c"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-07-16-de-federal-tax-benefit.json",
+      "sha256": "7f715478115359b462fd2f63985bad4de26a14ef84995ba0af28686ce07166e9"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-07-16-de-federal-tax-benefit.jsonl",
+      "sha256": "4736e2d318a392d71d8f12c2d58edbe92f19f58ad26ec025e9edb70f00022764"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/beeg/BJNR274810006.xml",
+      "sha256": "4b4f14b75f9b03433133aa4fc348f1ae753aeb5f92c3fbc44a8b8c857f2bad55"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/bkgg_1996/BJNR137800995.xml",
+      "sha256": "5df8172355832dfd4b418f8bb1ef4848aff29bd5b0135cba60b6fd663a2be8b8"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/estg/BJNR010050934.xml",
+      "sha256": "11935d71163aa89f5bbcbcfb913170640159a3970c28f04fe0d7fccb2c435fc4"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/rbeg_2021/BJNR285510020.xml",
+      "sha256": "54b9c29117dae655abec4b366fcf4e6cd2cf26c9fbd4dff960bd06f0a1fb0fa5"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_11/BJNR101500994.xml",
+      "sha256": "29511f1ce687480bfcc8f423c32b9fee4783203d1a405154e6fb13e3efae13f5"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_12/BJNR302300003.xml",
+      "sha256": "5654a343e1ceac4b916149043e87243bd65fd4cc736794ba6f7cefad302e3195"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_2/BJNR295500003.xml",
+      "sha256": "2bb8e2f275bb9c28c4ba097743320c816594d86e7264660c88810a168089cfe6"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_3/BJNR059500997.xml",
+      "sha256": "797904b09b76f646804e58fef65b7123d5fd128951d00af0f64ef13098c08d83"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_4/BJNR138450976.xml",
+      "sha256": "c480793789d6c1d2e48e313e1be4f8930758409df78300abbcd4e6339d63697d"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_5/BJNR024820988.xml",
+      "sha256": "383cf3a5ed797d63efca5170b004b14168f640c409f84421356ebba19b5fbb31"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/sgb_6/BJNR122610989.xml",
+      "sha256": "03a5b3f2e66619e4784ca5dd5e835530c3c7d084372e04df648a704d477e7926"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/solzg_1995/BJNR097500993.xml",
+      "sha256": "17d836e267afa763efffe1b87014aff0f6d3c513c545d2ec091f8790b3d36d58"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/uhvorschg/BJNR011840979.xml",
+      "sha256": "f9dee7d0e69f0d511bc3e65bfe9bb2d6ad77b2a8c41b9524928342cfeadb1310"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-07-16-de-federal-tax-benefit/wogg/BJNR185610008.xml",
+      "sha256": "3d0a31c4eecf0351b0b9e4e2639329cf77493d55b11f44ed70d046643f464ba9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "587aebd67c7a82f5f6d90f59a35dd7a966a8fa1e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-de-gii --base data/corpus --version 2026-07-16-de-federal-tax-benefit --manifest manifests/de-federal-tax-benefit-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3374,
+    "missing_count": 0,
+    "provision_count": 3374,
+    "source_count": 3374
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T23:02:34.557024+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QIo0TxDM/pTIL+PR4fsgoeFfAhyBAbBDgp5McgoH13SWpRR7Qo7EdDqlMjkwjWlbMsT0OFPLbcy38ny7Gf5RBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-de-federal-tax-benefit"
+}

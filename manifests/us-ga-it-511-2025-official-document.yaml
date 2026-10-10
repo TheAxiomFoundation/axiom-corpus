@@ -1,0 +1,23 @@
+# Official Georgia Department of Revenue individual-income-tax instructions.
+documents:
+  - source_id: us-ga-dor-it-511-2025
+    jurisdiction: us-ga
+    document_class: form
+    citation_path: us-ga/form/it-511/2025
+    title: "2025 IT-511 Individual Income Tax Booklet"
+    source_url: https://dor.georgia.gov/document/document/2025-it-511-individual-income-tax-booklet/download
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2025-01-01"
+    extraction:
+      segmentation: single_block
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 300
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Revenue
+      document_subtype: tax_form_instructions
+      form: IT-511
+      program: individual_income_tax
+      tax_year: "2025"

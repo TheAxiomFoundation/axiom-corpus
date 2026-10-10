@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -28,7 +28,13 @@ NEW_HAMPSHIRE_ROOT_SOURCE_FORMAT = "new-hampshire-rsa-root-html"
 NEW_HAMPSHIRE_TITLE_SOURCE_FORMAT = "new-hampshire-rsa-title-toc-html"
 NEW_HAMPSHIRE_CHAPTER_SOURCE_FORMAT = "new-hampshire-rsa-chapter-toc-html"
 NEW_HAMPSHIRE_MERGED_CHAPTER_SOURCE_FORMAT = "new-hampshire-rsa-merged-chapter-html"
+NEW_HAMPSHIRE_SESSION_LAW_SOURCE_FORMAT = "new-hampshire-session-law-html"
 NEW_HAMPSHIRE_USER_AGENT = "axiom-corpus/0.1 (contact@axiom-foundation.org)"
+NEW_HAMPSHIRE_2021_HB2_URL = "https://gc.nh.gov/legislation/2021/HB0002.html"
+NEW_HAMPSHIRE_2023_HB2_URL = (
+    "https://gc.nh.gov/bill_status/legacy/bs2016/"
+    "billText.aspx?id=1081&sy=2023&txtFormat=html&v=current"
+)
 
 _TITLE_HREF_RE = re.compile(r"NHTOC/NHTOC-(?P<title>[IVXLCDM]+(?:-[A-Z])?)\.htm$", re.I)
 _TITLE_LABEL_RE = re.compile(
@@ -205,6 +211,19 @@ class _RecordedSource:
 
 
 @dataclass(frozen=True)
+class NewHampshireChapter77Repeal:
+    """Verified current RSA 77 repeal and its chaptered-law authority."""
+
+    body: str
+    printed_source_note: str
+    effective_date: str
+    original_law: str
+    acceleration_law: str
+    original_approved_date: str
+    acceleration_approved_date: str
+
+
+@dataclass(frozen=True)
 class _NewHampshireTitlePage:
     title: NewHampshireTitle
     source: _NewHampshireSource | None = None
@@ -285,6 +304,19 @@ class _NewHampshireFetcher:
             data=self._fetch(relative_path, listing.merged_source_url),
         )
 
+    def fetch_session_law(
+        self,
+        *,
+        relative_path: str,
+        source_url: str,
+    ) -> _NewHampshireSource:
+        return _NewHampshireSource(
+            relative_path=relative_path,
+            source_url=source_url,
+            source_format=NEW_HAMPSHIRE_SESSION_LAW_SOURCE_FORMAT,
+            data=self._fetch(relative_path, source_url),
+        )
+
     def _fetch(self, relative_path: str, source_url: str) -> bytes:
         if self.source_dir is not None:
             return (self.source_dir / relative_path).read_bytes()
@@ -321,6 +353,7 @@ def extract_new_hampshire_rsa(
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
     only_title: str | int | None = None,
+    only_chapter: str | int | None = None,
     limit: int | None = None,
     download_dir: str | Path | None = None,
     base_url: str = NEW_HAMPSHIRE_RSA_BASE_URL,
@@ -328,11 +361,19 @@ def extract_new_hampshire_rsa(
     timeout_seconds: float = 30.0,
     request_attempts: int = 2,
     workers: int = 1,
+    repeal_authority_2021_url: str | None = None,
+    repeal_acceleration_2023_url: str | None = None,
 ) -> StateStatuteExtractReport:
     """Snapshot official New Hampshire RSA HTML and extract provisions."""
     jurisdiction = "us-nh"
     title_filter = _title_filter(only_title)
-    run_id = _new_hampshire_run_id(version, title_filter=title_filter, limit=limit)
+    chapter_filter = _chapter_filter(only_chapter)
+    run_id = _new_hampshire_run_id(
+        version,
+        title_filter=title_filter,
+        chapter_filter=chapter_filter,
+        limit=limit,
+    )
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
     fetcher = _NewHampshireFetcher(
@@ -354,6 +395,9 @@ def extract_new_hampshire_rsa(
     section_count = 0
     remaining_sections = limit
 
+    if (repeal_authority_2021_url is None) != (repeal_acceleration_2023_url is None):
+        raise ValueError("both New Hampshire chapter 77 repeal authority URLs are required")
+
     root_source = fetcher.fetch_root()
     root_recorded = _record_source(
         store,
@@ -369,6 +413,48 @@ def extract_new_hampshire_rsa(
             root_source.relative_path,
         )
     )
+    repeal_sources: tuple[_RecordedSource, _RecordedSource] | None = None
+    repeal_source_data: tuple[bytes, bytes] | None = None
+    if repeal_authority_2021_url is not None and repeal_acceleration_2023_url is not None:
+        authority_2021 = fetcher.fetch_session_law(
+            relative_path="new-hampshire-general-court/2021-hb-2-chapter-91.html",
+            source_url=repeal_authority_2021_url,
+        )
+        acceleration_2023 = fetcher.fetch_session_law(
+            relative_path="new-hampshire-general-court/2023-hb-2-chapter-79.html",
+            source_url=repeal_acceleration_2023_url,
+        )
+        repeal_sources = (
+            _record_source(
+                store,
+                jurisdiction=jurisdiction,
+                run_id=run_id,
+                source=authority_2021,
+            ),
+            _record_source(
+                store,
+                jurisdiction=jurisdiction,
+                run_id=run_id,
+                source=acceleration_2023,
+            ),
+        )
+        repeal_source_data = (authority_2021.data, acceleration_2023.data)
+        source_paths.extend(
+            [
+                store.source_path(
+                    jurisdiction,
+                    DocumentClass.STATUTE,
+                    run_id,
+                    authority_2021.relative_path,
+                ),
+                store.source_path(
+                    jurisdiction,
+                    DocumentClass.STATUTE,
+                    run_id,
+                    acceleration_2023.relative_path,
+                ),
+            ]
+        )
     titles = list(parse_new_hampshire_root(root_source.data, source=root_recorded, base_url=base_url))
     if title_filter is not None:
         titles = [title for title in titles if _slug(title.title) == title_filter]
@@ -425,6 +511,16 @@ def extract_new_hampshire_rsa(
             title=title,
             base_url=base_url,
         )
+        if chapter_filter is not None:
+            chapter_listings = tuple(
+                listing
+                for listing in chapter_listings
+                if _slug(listing.chapter) == chapter_filter
+            )
+        if not chapter_listings:
+            raise ValueError(
+                f"no New Hampshire RSA chapters selected for filter: {only_chapter!r}"
+            )
         for chapter_page in _fetch_chapter_pages(
             fetcher,
             list(chapter_listings),
@@ -472,17 +568,51 @@ def extract_new_hampshire_rsa(
                 listing=chapter_page.listing,
                 source=chapter_recorded,
             )
+            chapter_item = _chapter_inventory_item(chapter)
+            chapter_provision = _chapter_record(
+                chapter,
+                version=run_id,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+            )
+            if chapter.chapter == "77" and repeal_sources is not None:
+                assert repeal_source_data is not None
+                repeal = parse_new_hampshire_chapter_77_repeal(
+                    chapter_page.merged_source.data,
+                    repeal_source_data[0],
+                    repeal_source_data[1],
+                )
+                chapter_metadata = _chapter_77_metadata(
+                    chapter,
+                    repeal=repeal,
+                    current_toc=chapter_recorded,
+                    current_chapter=merged_recorded,
+                    repeal_authority=repeal_sources[0],
+                    repeal_acceleration=repeal_sources[1],
+                    source_as_of=source_as_of_text,
+                )
+                chapter_item = replace(
+                    chapter_item,
+                    source_url=merged_recorded.source_url,
+                    source_path=merged_recorded.source_path,
+                    source_format=merged_recorded.source_format,
+                    sha256=merged_recorded.sha256,
+                    metadata=chapter_metadata,
+                )
+                chapter_provision = replace(
+                    chapter_provision,
+                    body=repeal.body,
+                    source_url=merged_recorded.source_url,
+                    source_path=merged_recorded.source_path,
+                    source_format=merged_recorded.source_format,
+                    metadata=chapter_metadata,
+                )
             if _append_unique(
                 seen,
                 items,
                 records,
-                _chapter_inventory_item(chapter),
-                _chapter_record(
-                    chapter,
-                    version=run_id,
-                    source_as_of=source_as_of_text,
-                    expression_date=expression_date_text,
-                ),
+                chapter_item,
+                chapter_provision,
             ):
                 container_count += 1
             selected_listings: list[NewHampshireSectionListing] = []
@@ -700,6 +830,133 @@ def parse_new_hampshire_merged_chapter(
             )
         )
     return tuple(sections)
+
+
+def parse_new_hampshire_chapter_77_repeal(
+    current_chapter_html: str | bytes,
+    repeal_authority_2021_html: str | bytes,
+    repeal_acceleration_2023_html: str | bytes,
+) -> NewHampshireChapter77Repeal:
+    """Verify the current Chapter 77 repeal against both chaptered laws."""
+    current_soup = BeautifulSoup(_decode(current_chapter_html), "lxml")
+    current_text = _clean_text(current_soup)
+    if "Chapter 77 Repealed" not in current_text or "Entire Chapter was repealed" not in current_text:
+        raise ValueError("current New Hampshire RSA chapter 77 repeal marker not found")
+    note_match = re.search(r"\[Repealed by [^\]]+\]", current_text, re.I)
+    if note_match is None or "eff. Jan. 1, 2025" not in note_match.group(0):
+        raise ValueError("current New Hampshire RSA chapter 77 effective-date note not found")
+    paragraph = current_soup.find("p")
+    if not isinstance(paragraph, Tag):
+        raise ValueError("current New Hampshire RSA chapter 77 repeal body not found")
+    body = f"{_clean_text(paragraph)}\n\n{note_match.group(0)}"
+
+    original_text = _clean_text(BeautifulSoup(_decode(repeal_authority_2021_html), "lxml"))
+    original_requirements = (
+        "91:99 Repeals; Interest and Dividends Taxation; 2027",
+        "II. RSA 77, relative to taxation of incomes",
+        "91:101 Application; Repeal of RSA 77",
+        "taxable periods beginning after December 31, 2026",
+        "Approved: June 25, 2021",
+    )
+    if any(requirement not in original_text for requirement in original_requirements):
+        raise ValueError("2021 New Hampshire chapter 77 repeal authority is incomplete")
+
+    acceleration_text = _enacted_session_law_text(repeal_acceleration_2023_html)
+    acceleration_requirements = (
+        "79:85 Taxation of Incomes; Rate",
+        "79:87 Application; Repeal of RSA 77",
+        "taxable periods beginning after December 31, 2024",
+        "79:88 Amend Effective Date; Amend Repeal of Interest and Dividends Tax from 2027 to 2025",
+        "Sections 90-100 of this act shall take effect January 1, 2025",
+        "Approved: June 20, 2023",
+    )
+    if any(requirement not in acceleration_text for requirement in acceleration_requirements):
+        raise ValueError("2023 New Hampshire chapter 77 repeal acceleration is incomplete")
+    if "2 percent for all taxable periods ending on or after December 31, 2025" in acceleration_text:
+        raise ValueError("repealed 2025 New Hampshire interest-and-dividends rate remained")
+    if "1 percent for all taxable periods ending on or after December 31, 2026" in acceleration_text:
+        raise ValueError("repealed 2026 New Hampshire interest-and-dividends rate remained")
+    return NewHampshireChapter77Repeal(
+        body=body,
+        printed_source_note=note_match.group(0),
+        effective_date="2025-01-01",
+        original_law="Laws 2021, chapter 91, section 99(II)",
+        acceleration_law="Laws 2023, chapter 79, sections 85-88",
+        original_approved_date="2021-06-25",
+        acceleration_approved_date="2023-06-20",
+    )
+
+
+def _enacted_session_law_text(html: str | bytes) -> str:
+    soup = BeautifulSoup(_decode(html), "lxml")
+    deleted_classes: set[str] = set()
+    for style in soup.find_all("style"):
+        for match in re.finditer(
+            r"\.([A-Za-z0-9_-]+)\s*\{[^}]*text-decoration:\s*line-through",
+            style.get_text(),
+            re.I,
+        ):
+            deleted_classes.add(match.group(1))
+    for tag in soup.find_all(class_=True):
+        if isinstance(tag, Tag) and deleted_classes.intersection(tag.get("class", [])):
+            tag.decompose()
+    text = _clean_text(soup)
+    return _clean_whitespace(re.sub(r"\[\s*\]", "", text))
+
+
+def _chapter_77_metadata(
+    chapter: NewHampshireChapter,
+    *,
+    repeal: NewHampshireChapter77Repeal,
+    current_toc: _RecordedSource,
+    current_chapter: _RecordedSource,
+    repeal_authority: _RecordedSource,
+    repeal_acceleration: _RecordedSource,
+    source_as_of: str,
+) -> dict[str, Any]:
+    components = [
+        _source_component("current_chapter_toc", current_toc),
+        _source_component("current_repeal_text", current_chapter),
+        _source_component("original_repeal_authority", repeal_authority),
+        _source_component("accelerated_repeal_authority", repeal_acceleration),
+    ]
+    return {
+        "kind": "chapter",
+        "title": chapter.title,
+        "chapter": chapter.chapter,
+        "status": "repealed",
+        "scope": "complete current RSA chapter 77",
+        "law_vintage": {
+            "original_repeal": repeal.original_law,
+            "original_approved_date": repeal.original_approved_date,
+            "accelerated_repeal": repeal.acceleration_law,
+            "acceleration_approved_date": repeal.acceleration_approved_date,
+            "repeal_effective_date": repeal.effective_date,
+            "source_as_of": source_as_of,
+        },
+        "operative_2026": {
+            "individual_interest_and_dividends_tax": "repealed",
+            "rate_percent": 0,
+            "taxable_periods_beginning_after": "2024-12-31",
+            "legal_character": "no tax imposed because RSA chapter 77 is repealed",
+        },
+        "printed_source_note": repeal.printed_source_note,
+        "source_note_discrepancy": (
+            "The current RSA page prints 2021, 91:189, II; the official 2021 chaptered law "
+            "places the RSA 77 repeal at Laws 2021, chapter 91, section 99(II)."
+        ),
+        "source_components": components,
+    }
+
+
+def _source_component(role: str, source: _RecordedSource) -> dict[str, str]:
+    return {
+        "role": role,
+        "source_url": source.source_url,
+        "source_path": source.source_path,
+        "source_format": source.source_format,
+        "sha256": source.sha256,
+    }
 
 
 def _fetch_title_pages(
@@ -1066,17 +1323,28 @@ def _title_filter(value: str | int | None) -> str | None:
     return _slug(text) if text else None
 
 
+def _chapter_filter(value: str | int | None) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    text = re.sub(r"^(?:chapter)[-\s]*", "", text, flags=re.I)
+    return _slug(text) if text else None
+
+
 def _new_hampshire_run_id(
     version: str,
     *,
     title_filter: str | None,
+    chapter_filter: str | None,
     limit: int | None,
 ) -> str:
-    if title_filter is None and limit is None:
+    if title_filter is None and chapter_filter is None and limit is None:
         return version
     parts = [version, "us-nh"]
     if title_filter is not None:
         parts.append(f"title-{title_filter}")
+    if chapter_filter is not None:
+        parts.append(f"chapter-{chapter_filter}")
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)

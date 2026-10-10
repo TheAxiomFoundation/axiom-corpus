@@ -1,0 +1,1529 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-nj-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 280
+- source_id: us-nj-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 280
+- source_id: us-nj-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 80
+    index_records_total: 280
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-26-0002-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-26-0002: Approval Document (approved July 24, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-26-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-26-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-26-0002
+    cms_node_id: '194241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=194241
+    approval_date: '2026-07-24'
+    effective_date: '2026-04-01'
+    summary: This amendment adds Community Palliative Care services to the preventive services benefit.
+    topics:
+    - Benefits
+    - Eligibility
+    - Other Licensed Practitioners
+    - Preventive Services
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-25-0003-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-25-0003: Approval Document (approved September 12, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-25-0003
+    cms_node_id: '184846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=184846
+    approval_date: '2025-09-12'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to add (1) mandatory coverage for eligible juveniles who are inmates of a public institution
+      post-adjudication of charges in accordance with section 1902(a)(84)(D), as added by section 5121 of the Consolidated
+      Appropriations Act, 2023, and (2) proposes to add targeted case management services for eligible juveniles.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-24-0005-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-24-0005: Approval Document (approved May 17, 2024, effective February 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-24-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-24-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-24-0005
+    cms_node_id: '165061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165061
+    approval_date: '2024-05-17'
+    effective_date: '2024-02-01'
+    summary: To eliminate the income test for its Work Incentives eligibility group and end coverage of its Ticket to Work
+      eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-24-0006-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-24-0006: Approval Document (approved May 17, 2024, effective February 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-24-0006
+    cms_node_id: '165066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165066
+    approval_date: '2024-05-17'
+    effective_date: '2024-02-01'
+    summary: To assess premiums to individuals covered under the eligibility group described at section 1902(a)(10)(A)(ii)(XIII)
+      of the Social Security Act.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-24-0003-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-24-0003: Approval Document (approved April 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-24-0003
+    cms_node_id: '163551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163551
+    approval_date: '2024-04-19'
+    effective_date: '2024-01-01'
+    summary: To provide 12 months of continuous eligibility for children under age 19 in Medicaid. This amendment will align
+      state policy and practices with federal requirements under section 5112 of the Consolidated Appropriations Act, 2023.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-23-0025-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-23-0025: Approval Document (approved March 6, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-23-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-23-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-23-0025
+    cms_node_id: '161046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161046
+    approval_date: '2024-03-06'
+    effective_date: '2023-10-01'
+    summary: To disregard refunds issued by the state to individuals who incurred Medicare-related premiums, deductibles,
+      and co-payments as a result of not having been enrolled in the appropriate Medicare Savings Program eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-23-0010-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-23-0010: Approval Document (approved August 10, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-23-0010
+    cms_node_id: '152056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152056
+    approval_date: '2023-08-10'
+    effective_date: '2023-04-01'
+    summary: To include an assurance that the state has state laws and regulations in place to comply with section 202 of
+      the Consolidated Appropriations Act, 2022, which prohibits third parties from refusing payments to the Medicaid program.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-23-0009-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-23-0009: Approval Document (approved July 21, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-23-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-23-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-23-0009
+    cms_node_id: '150781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150781
+    approval_date: '2023-07-21'
+    effective_date: '2023-04-01'
+    summary: To adopt the optional Work Incentives eligibility group and incorporate additional disregards in the determinations
+      of financial eligibility for the Ticket to Work-Basic eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-23-0005-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-23-0005: Approval Document (approved May 25, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-23-0005
+    cms_node_id: '148796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148796
+    approval_date: '2023-05-25'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-22-0010-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-22-0010: Approval Document (approved April 27, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-22-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-22-0010
+    cms_node_id: '135086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135086
+    approval_date: '2022-04-27'
+    effective_date: '2022-01-01'
+    summary: The state proposes to include assurances that the state complies with Third Party Liability rules as authorized
+      under both the Bipartisan Budget Act of 2018 and the Medicaid Services Investment and Accountability Act of 2019. The
+      state has submitted this SPA per the guidance issued in August 2021. CMS supports this change.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-20-0011-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-20-0011: Approval Document (approved February 19, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NJ-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-20-0011
+    cms_node_id: '106101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106101
+    approval_date: '2021-02-19'
+    effective_date: '2021-01-01'
+    summary: Proposes to add coverage allowing Doula Services to provide support for pregnant individuals throughout the perinatal
+      period to the Title XIX and State Plan
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-20-0007-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-20-0007: Approval Document (approved November 18, 2020, effective July 3, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/NJ-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-03'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-20-0007
+    cms_node_id: '104586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104586
+    approval_date: '2020-11-18'
+    effective_date: '2020-07-03'
+    summary: Authorizes $67,250,000 in Charity Care Subsidy payment under New Jersey’ s DSH program for the first three months
+      of the 2021 DSH state plan rate year (SPRY) which runs con-currently with the state fiscal year (July 1, 2020 to June
+      30, 2021
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-20-0003-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-20-0003: Approval Document (approved July 23, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-20-0003
+    cms_node_id: '100701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100701
+    approval_date: '2020-07-23'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to expand entities qualified to make presumptive eligibility determinations, all for adjustments
+      to benefits currently covered in the state plan (e.g. Personal Care Assistant Services; Care Management Organization
+      Targeted Case Management Staffing), expand telehealth, adjust prior authorizations for medications, decrease certain
+      payments (quarterly rather than monthly basis), expand bed hold limits due to COVID, and alteration of Behavioral Health
+      Home travel protocols.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-19-0021-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-19-0021: Approval Document (approved March 19, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-19-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-19-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-19-0021
+    cms_node_id: '102371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102371
+    approval_date: '2020-03-19'
+    effective_date: '2019-10-01'
+    summary: implement the Family Planning eligibility group
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-18-0009-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-18-0009: Approval Document (approved March 10, 2020, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ180009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-18-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-18-0009
+    cms_node_id: '101431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101431
+    approval_date: '2020-03-10'
+    effective_date: '2018-10-01'
+    summary: Adds coverage for Long-Term Residential Substance Use Disorder Services to the Title XIX and State Plan
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-19-0022-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-19-0022: Approval Document (approved March 10, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-19-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-19-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-19-0022
+    cms_node_id: '100936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100936
+    approval_date: '2020-03-10'
+    effective_date: '2019-10-01'
+    summary: Family Planning and Family Planning Related Services
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-19-0009-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-19-0009: Approval Document (approved December 4, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-19-0009_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-19-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-19-0009
+    cms_node_id: '58096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58096
+    approval_date: '2019-12-04'
+    effective_date: '2019-07-01'
+    summary: Continues New Jersey's Graduate Medical Education Supplemental program for state fiscal year 2020 '
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-18-0001-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-18-0001: Approval Document (approved November 15, 2019, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-18-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-18-0001
+    cms_node_id: '4216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4216
+    approval_date: '2019-11-15'
+    effective_date: '2018-01-01'
+    summary: Updates to various 2018 Medicaid fee schedules.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-19-0013-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-19-0013: Approval Document (approved November 13, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-19-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-19-0013
+    cms_node_id: '4186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4186
+    approval_date: '2019-11-13'
+    effective_date: '2019-07-01'
+    summary: Add coverage and reimbursement for peer support and coordination services provided in the aftermath of an opioid
+      overdose.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-19-0017-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-19-0017: Approval Document (approved October 28, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NJ-19-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-19-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-19-0017
+    cms_node_id: '100931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100931
+    approval_date: '2019-10-28'
+    effective_date: '2019-07-01'
+    summary: Excludes income from employment related to census activities paid by the United States Census Bureau
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-19-0007-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-19-0007: Approval Document (approved October 9, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-17-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-19-0007
+    cms_node_id: '4306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4306
+    approval_date: '2019-10-09'
+    effective_date: '2019-07-01'
+    summary: Amends continuation of NJ's Charity Care Subsidy program for fiscal 2020.
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-16-0010-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-16-0010: Approval Document (approved July 3, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-16-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-16-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-16-0010
+    cms_node_id: '5671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5671
+    approval_date: '2019-07-03'
+    effective_date: '2019-07-01'
+    summary: Amends ABP 5 requiring prior authorization for certain Substance Abuse Disorder (SUD) services and notes the
+      change to certain Mental Health rates.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-16-0002-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-16-0002: Approval Document (approved May 12, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-16-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-16-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-16-0002
+    cms_node_id: '19506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19506
+    approval_date: '2016-05-12'
+    effective_date: '2016-01-01'
+    summary: Children with SED will qualify for health home services whereas SED will be defined to include serious emotional
+      disturbance, co-occurring developmental disability and mental illness, co-occurring mental health and substance abuse,
+      or developmental Disability eligible (per NJ Statute 10:196) with symptomology of SED.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-14-03-t-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-14-03 T: Approval Document (approved September 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-14-03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-14-03-t/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-14-03 T
+    cms_node_id: '32576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32576
+    approval_date: '2014-09-12'
+    effective_date: '2014-01-01'
+    summary: Temporary Presumptive Eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0025-mm4-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0025-MM4: Approval Document (approved August 25, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0025-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0025-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0025-MM4
+    cms_node_id: '33556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33556
+    approval_date: '2014-08-25'
+    effective_date: '2013-10-01'
+    summary: Incorporates the Single State Agency SPA into New Jersey's Medicaid state plan in accordance with the Affordable
+      Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-14-0002-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-14-0002: Approval Document (approved June 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-14-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-14-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-14-0002
+    cms_node_id: '36221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36221
+    approval_date: '2014-06-06'
+    effective_date: '2014-01-01'
+    summary: Presumptive Eligibility by Hospitals.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0023-mm2-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0023-MM2: Approval Document (approved March 18, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0023-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0023-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0023-MM2
+    cms_node_id: '38021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38021
+    approval_date: '2014-03-18'
+    effective_date: '2013-10-01'
+    summary: Medicaid Eligibility -general eligibility requirements and eligibility process S94.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0024-mm5-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0024-MM5: Approval Document (approved March 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0024-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0024-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0024-MM5
+    cms_node_id: '37891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37891
+    approval_date: '2014-03-17'
+    effective_date: '2014-01-01'
+    summary: Incorporates that the State Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies
+      Policy Options.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0011-mm1-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0011-MM1: Approval Document (approved February 28, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0011-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0011-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0011-MM1
+    cms_node_id: '38091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38091
+    approval_date: '2014-02-28'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Groups and AFDC Income Standards.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0018-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0018: Approval Document (approved February 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0018
+    cms_node_id: '32551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32551
+    approval_date: '2014-02-19'
+    effective_date: '2014-01-01'
+    summary: CHIP MAGI Eligibility and Methods.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0017-mm6-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0017-MM6: Approval Document (approved February 5, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0017-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0017-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0017-MM6
+    cms_node_id: '38546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38546
+    approval_date: '2014-02-05'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunities Options, and Specifies Policy Options related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-0016-mm3-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-0016-MM3: Approval Document (approved December 3, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-0016-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-0016-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-0016-MM3
+    cms_node_id: '39606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39606
+    approval_date: '2013-12-03'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-26-ma-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-26-MA: Approval Document (approved November 19, 2013, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-26-ma/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-26-MA
+    cms_node_id: '35731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35731
+    approval_date: '2013-11-19'
+    effective_date: '2013-12-31'
+    summary: Updates Eligibility Standards.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-06-m-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-06 M: Approval Document (approved September 12, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-06-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-06-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-13-06 M
+    cms_node_id: '41856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41856
+    approval_date: '2013-09-12'
+    effective_date: '2013-04-01'
+    summary: Affordable Care Act section 4106 preventative services 1% FMAP.
+    topics: &id002
+    - Premiums
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-06-m-attachment
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-06 M: Attachment (approved September 12, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-06-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-06-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NJ-13-06 M
+    cms_node_id: '41856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41856
+    approval_date: '2013-09-12'
+    effective_date: '2013-04-01'
+    summary: Affordable Care Act section 4106 preventative services 1% FMAP.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-13-06-m-form-cms-179
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-13-06 M: Form CMS-179 (approved September 12, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-13-06-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-13-06-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NJ-13-06 M
+    cms_node_id: '41856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41856
+    approval_date: '2013-09-12'
+    effective_date: '2013-04-01'
+    summary: Affordable Care Act section 4106 preventative services 1% FMAP.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-11-18-m-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-11-18 M: Approval Document (approved March 27, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-11-18-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-11-18-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-11-18 M
+    cms_node_id: '45346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45346
+    approval_date: '2012-03-27'
+    effective_date: '2011-10-01'
+    summary: Eligibility.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-11-18-m-attachment
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-11-18 M: Attachment (approved March 27, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-11-18-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-11-18-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NJ-11-18 M
+    cms_node_id: '45346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45346
+    approval_date: '2012-03-27'
+    effective_date: '2011-10-01'
+    summary: Eligibility.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-11-18-m-form-cms-179
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-11-18 M: Form CMS-179 (approved March 27, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-11-18-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-11-18-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NJ-11-18 M
+    cms_node_id: '45346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45346
+    approval_date: '2012-03-27'
+    effective_date: '2011-10-01'
+    summary: Eligibility.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-11-06-m-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-11-06 M: Approval Document (approved February 8, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-11-06-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-11-06-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-11-06 M
+    cms_node_id: '45411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45411
+    approval_date: '2012-02-08'
+    effective_date: '2011-04-01'
+    summary: Express lane eligibility option.
+    topics: &id004
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-11-06-m-attachment
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-11-06 M: Attachment (approved February 8, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-11-06-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-11-06-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NJ-11-06 M
+    cms_node_id: '45411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45411
+    approval_date: '2012-02-08'
+    effective_date: '2011-04-01'
+    summary: Express lane eligibility option.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-11-06-m-form-cms-179
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-11-06 M: Form CMS-179 (approved February 8, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-11-06-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-11-06-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NJ-11-06 M
+    cms_node_id: '45411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45411
+    approval_date: '2012-02-08'
+    effective_date: '2011-04-01'
+    summary: Express lane eligibility option.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-09-03-m-approval-document
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-09-03 M: Approval Document (approved June 23, 2009, effective May 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-09-03-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-05-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-09-03-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NJ-09-03 M
+    cms_node_id: '45456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45456
+    approval_date: '2009-06-23'
+    effective_date: '2009-05-01'
+    summary: Express lane eligibility option.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-09-03-m-attachment
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-09-03 M: Attachment (approved June 23, 2009, effective May 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-09-03-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-05-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-09-03-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NJ-09-03 M
+    cms_node_id: '45456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45456
+    approval_date: '2009-06-23'
+    effective_date: '2009-05-01'
+    summary: Express lane eligibility option.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-nj-cms-medicaid-state-plan-spa-nj-09-03-m-form-cms-179
+  jurisdiction: us-nj
+  document_class: policy
+  title: 'New Jersey Medicaid SPA NJ-09-03 M: Form CMS-179 (approved June 23, 2009, effective May 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NJ/NJ-09-03-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-05-01'
+  citation_path: us-nj/policy/cms/medicaid-state-plan/spa/nj-09-03-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: New Jersey
+    source_discovery_group: us-nj/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NJ-09-03 M
+    cms_node_id: '45456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45456
+    approval_date: '2009-06-23'
+    effective_date: '2009-05-01'
+    summary: Express lane eligibility option.
+    topics: *id005
+    link_label: Form CMS-179

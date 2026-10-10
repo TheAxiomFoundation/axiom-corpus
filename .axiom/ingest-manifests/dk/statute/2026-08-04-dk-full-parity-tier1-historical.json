@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/dk/statute/2026-08-04-dk-full-parity-tier1-historical.json",
+      "sha256": "1a90875a478675f949c194809b0ae070617734745037bc558f5ed67070e91cef"
+    },
+    {
+      "path": "data/corpus/inventory/dk/statute/2026-08-04-dk-full-parity-tier1-historical.json",
+      "sha256": "ebd64eda786d435317018bcf3ebfaf231702ab9ab84400a1d199b8b7f130c412"
+    },
+    {
+      "path": "data/corpus/provisions/dk/statute/2026-08-04-dk-full-parity-tier1-historical.jsonl",
+      "sha256": "a6732fbba856273c58e9a81a17ca946c2052fd430e5fe9255ea29a069490571c"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1-historical/eli/dk-lbk-724-2022-boerne-og-ungeydelsesloven.jsonld",
+      "sha256": "d7156dfe02b8d8b404478e176dcf1aa65b739c08cc69c137d6382de184db309e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1-historical/eli/dk-lbk-724-2022-boerne-og-ungeydelsesloven.xml",
+      "sha256": "9913af228d25012fe954df6c79e7d993d63570a37e35aee6e78a6da38519ba06"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1-historical/eli/dk-lov-1642-2025-aendringslov.jsonld",
+      "sha256": "ab3ac649f3bc6b270aa063a67355da5c8ca41009da8f8b5ff708aedd7a487f6a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1-historical/eli/dk-lov-1642-2025-aendringslov.xml",
+      "sha256": "ef491f9d8abc77c65f18bd9f78200e036ac6ec1a0678c08ff84b142c268cf62e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1-historical/eli/dk-lov-482-2024-personskattereform.jsonld",
+      "sha256": "eeff78ccc667027a347e032f7db5176d8ac4bb2447151757ef239a18ff5f73ff"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1-historical/eli/dk-lov-482-2024-personskattereform.xml",
+      "sha256": "3e741a0a253d5cbf1a20fdcd7d8b74448d6909f32d6d0fddbc92bbc4e1e5468e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9062e639e4e93f0b6cef710873df94d0ee4f821a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-eli-documents --base data/corpus --version 2026-08-04-dk-full-parity-tier1-historical --manifest manifests/dk-full-parity-tier1-historical-eli.yaml --allow-superseded --source-as-of 2026-08-04"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 47,
+    "missing_count": 0,
+    "provision_count": 47,
+    "source_count": 47
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-07T19:02:01.001889+00:00",
+  "jurisdiction": "dk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3UonX/rSK7a3Fd8BMkZOGaTAAWsMAGu5rRMLys6FYCvZDko2HM2WOcf76N+MYib1m6icm6okyFIxRHBwGcn0AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-04-dk-full-parity-tier1-historical"
+}

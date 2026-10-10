@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-north-hertfordshire/manual/2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "26e9985333707eca8f257c5141512cbe4f8aad3325f1d0c2a88d7f115dddf131"
+    },
+    {
+      "path": "data/corpus/inventory/uk-north-hertfordshire/manual/2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "0bd9534baedb9a162ccb04ce1b3a4c0211645eaad954c7f48e759bba9e5003fe"
+    },
+    {
+      "path": "data/corpus/provisions/uk-north-hertfordshire/manual/2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0565a6f9f09532d3902206e634f88782e72b0ef724909eaf36623551213e7391"
+    },
+    {
+      "path": "data/corpus/sources/uk-north-hertfordshire/manual/2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027/official-documents/north-hertfordshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "5b1c14f7830ad9c6dc6fd1acd91ba447c43b4a1a516b71255c82d7c876fd8d0b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-north-hertfordshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 83,
+    "missing_count": 0,
+    "provision_count": 83,
+    "source_count": 83
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:27.054349+00:00",
+  "jurisdiction": "uk-north-hertfordshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Faj3xuDLA8tYVWiuh0wrgNrWM1DjyHNDOimn4Fiwdwxe3Cj+m1f2t6SxaOuqvBYaGEhaGXQY9dXj52rjuZC2Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027"
+}

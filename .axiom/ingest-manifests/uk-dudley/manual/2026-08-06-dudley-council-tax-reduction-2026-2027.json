@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-dudley/manual/2026-08-06-dudley-council-tax-reduction-2026-2027.json",
+      "sha256": "788e3ba846f7079db828875649726f0c34a66a3399ca9f4388f4f912848b6b27"
+    },
+    {
+      "path": "data/corpus/inventory/uk-dudley/manual/2026-08-06-dudley-council-tax-reduction-2026-2027.json",
+      "sha256": "285dc39f270a701d58ad3f88e84413781fbfed82df98d615819849fda61c900a"
+    },
+    {
+      "path": "data/corpus/provisions/uk-dudley/manual/2026-08-06-dudley-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "bb8921450b954bb95ca3c6cf0c2f9c62c81fd76b13502a17954b911cee6ae0b4"
+    },
+    {
+      "path": "data/corpus/sources/uk-dudley/manual/2026-08-06-dudley-council-tax-reduction-2026-2027/official-documents/dudley-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "cd9e6d4512a1798532d81dca89ca679e10f4d5038d6a5fd6047fda960f971866"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "afdca63bd6d51ff39736ef3fa19a034327f1f903",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-06-dudley-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-dudley-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 151,
+    "missing_count": 0,
+    "provision_count": 151,
+    "source_count": 151
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-07T02:06:39.875689+00:00",
+  "jurisdiction": "uk-dudley",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WSZARJ0smpboXu/9BDznqLnTIfTAb2iFpHoZIVTCkdmOgtjQmOx+KTsbowpdrLMfsR6Dbq8qnODnjCeCazWQAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-06-dudley-council-tax-reduction-2026-2027"
+}

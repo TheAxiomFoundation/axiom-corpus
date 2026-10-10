@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-harrow/manual/2026-08-03-harrow-council-tax-reduction-2026-2027.json",
+      "sha256": "e19301ccdbf20793e68e5e05ab193a45c7eec9af45ce01e429dc27c3b983e1a8"
+    },
+    {
+      "path": "data/corpus/inventory/uk-harrow/manual/2026-08-03-harrow-council-tax-reduction-2026-2027.json",
+      "sha256": "6a110f1fa7be4ad044f48db23ad8f5ff7b05bec72469728c9a3562c52515b7d6"
+    },
+    {
+      "path": "data/corpus/provisions/uk-harrow/manual/2026-08-03-harrow-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "e8513726dc4e54b8fc0ef3beb0b7f62b50686500bb6b359831351f766f9fbcce"
+    },
+    {
+      "path": "data/corpus/sources/uk-harrow/manual/2026-08-03-harrow-council-tax-reduction-2026-2027/official-documents/harrow-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "158f916e341f683d303f1ed92cd02bdea17865d5aab9cb096c4da0cbbbd9227e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-harrow-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-harrow-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 197,
+    "missing_count": 0,
+    "provision_count": 197,
+    "source_count": 197
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:25.181818+00:00",
+  "jurisdiction": "uk-harrow",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "M9z2cL0OsPtfdLqlyXxaiXqQ1i/T3s0tyualRnM1WgHtoWivXF6iNXP++ykI1kDtTV/ilJA+3XH+aYme3YeEBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-harrow-council-tax-reduction-2026-2027"
+}

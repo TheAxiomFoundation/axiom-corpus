@@ -1,0 +1,1 @@
+Add current Kansas resident individual income-tax statutes, the signed 2026 reconciliation bill, the official no-rate-reduction determination for tax year 2026, and the enacted 2026 gun-storage credit.

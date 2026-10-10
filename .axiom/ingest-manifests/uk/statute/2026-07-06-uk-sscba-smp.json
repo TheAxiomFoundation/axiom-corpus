@@ -11,28 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-06-uk-sscba-smp.jsonl",
       "sha256": "013e4be5470a0a2b6d9e1fc6ccf844b86d99fb7f367d53b2dd965a9007f736bd"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-164.xml",
-      "sha256": "643a1db34b512aea1d4467cbe11374e39bdf8eb727ede64e629efa19952916ca"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-165.xml",
-      "sha256": "cd4700cc4593f1bc6edfd46cc764cf657c48649b9ca6cb79fe67fade4ac8f0d7"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-166.xml",
-      "sha256": "ddd519570b0f3296cd6f08ce7a04877314603127031ded54dea389d79d6a92a2"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-171.xml",
-      "sha256": "d81708d6951e415c33482c50ea93151f44d7dd59dcdf49247e2ea2c57bcc816c"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5edfd598bc8ae0ac9c9030847da97dc477026f23",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/uk-statpay-wave-20260706/axiom-corpus"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -47,7 +31,7 @@
     "source_count": 4
   },
   "document_class": "statute",
-  "generated_at": "2026-07-06T18:50:33.651439+00:00",
+  "generated_at": "2026-07-21T11:57:43.199147+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
@@ -59,7 +43,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "kqAv3LXtTaamCSkUF9MwFzzI6/Q0AgQENOFC8ZbIi/u0z8Oy51gA6CyZpNKJfCNFdGPxoR42T2eegloSKRqrCA=="
+    "value": "Wc7P7JDpi2sivgCmY/U2y9h8RbM65Uu750cBQuvEu472WDb1JXXr8JJ3z/HfFCxr+6Z2Inbg2E2jKJDGXCjKAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-uk-sscba-smp"

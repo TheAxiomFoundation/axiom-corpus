@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-brentwood/manual/2026-08-02-brentwood-council-tax-reduction-2026-2027.json",
+      "sha256": "cc60c0aedc72d268f7f860469279dc7b2c743cc3c8bc667854df291c89f4e83f"
+    },
+    {
+      "path": "data/corpus/inventory/uk-brentwood/manual/2026-08-02-brentwood-council-tax-reduction-2026-2027.json",
+      "sha256": "64f343dbc15759f3d2783eb1c9af471ed506d356d19139ab4443bfe529009a8c"
+    },
+    {
+      "path": "data/corpus/provisions/uk-brentwood/manual/2026-08-02-brentwood-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0f10a4a543d87b980ed3011b4d773b8c8cb5a1b05771d46b84e0f152c25ba50f"
+    },
+    {
+      "path": "data/corpus/sources/uk-brentwood/manual/2026-08-02-brentwood-council-tax-reduction-2026-2027/official-documents/brentwood-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "70335a199e1c3efca8b7e3a4355cb2e5456269f5f9b8b15d0c307e3fe638fd7e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-brentwood-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-brentwood-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 78,
+    "missing_count": 0,
+    "provision_count": 78,
+    "source_count": 78
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:50.949395+00:00",
+  "jurisdiction": "uk-brentwood",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WHqNN/zHxsAXKHRT23htWOvfnawSpikUz0HmLNop6yzA7d3oOqt45xnvN246K11fs9cb05/4oTGG81VzsyQsAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-brentwood-council-tax-reduction-2026-2027"
+}

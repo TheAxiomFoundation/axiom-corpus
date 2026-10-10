@@ -1,0 +1,24 @@
+documents:
+  - source_id: us-ks-revenue-notice-25-06
+    jurisdiction: us-ks
+    document_class: guidance
+    title: Notice 25-06 Decreases of Income and Privilege Tax Rates
+    source_url: https://www.ksrevenue.gov/taxnotices/notice25-06.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2025-08-15"
+    citation_path: us-ks/guidance/revenue/notice-25-06
+    extraction: {segmentation: single_block}
+    metadata:
+      primary_source: true
+      source_authority: Kansas Department of Revenue
+      document_subtype: tax_notice
+      document_number: Notice 25-06
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_agency_determination
+      source_note: >-
+        Official determination under K.S.A. 79-32,110c that fiscal-year-2025
+        adjusted collections did not exceed inflation-adjusted base-year
+        revenue and therefore no individual-income-tax rate reduction applies
+        for tax year 2026.

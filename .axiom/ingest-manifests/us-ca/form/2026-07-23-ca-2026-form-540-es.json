@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/form/2026-07-23-ca-2026-form-540-es.json",
+      "sha256": "bb18d59702a0b7481a83f5e705bda1602353a95078b092d923d472022345daf9"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/form/2026-07-23-ca-2026-form-540-es.json",
+      "sha256": "1363160760ebe23492f15bcb7d7cd6808fe3821154881efd061540558928dc38"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/form/2026-07-23-ca-2026-form-540-es.jsonl",
+      "sha256": "572610ef6ba4cd7564602c1edae0ef47cd455422e5ffa67575f8a77d125ca2ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-07-23-ca-2026-form-540-es/official-documents/us-ca-ftb-2026-form-540-es-instructions.pdf",
+      "sha256": "3e67bc8f3dc6773cee6dab6e3d1b8d70ee03b8f91fbd581b5ad0e44ec49970bc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6b7e2a1abd728b6ef3145661916a34e98d39bf1a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-ca-2026-form-540-es --manifest manifests/us-ca-2026-form-540-es-instructions.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-23T16:07:30.065619+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-23-ca-2026-estimated-tax.md",
+      "sha256": "8721243e7852e93c7a70f80146a95fadac68cddfa5c9040a0099f63df3492fca"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1qGppitTQYi775xPWw5ttvYEhDkToDTucccciUsH1eRoFrTLRzrbNPZ21tjnRcCpgCh6I+smEH5Q6BxGGVd9Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-ca-2026-form-540-es"
+}

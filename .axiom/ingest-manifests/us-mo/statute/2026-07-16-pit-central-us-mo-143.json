@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/statute/2026-07-16-pit-central-us-mo-143.json",
+      "sha256": "6e98e12b62979751738ee5e3acc0c3d669dd4ab2ae420f9229436aeffe05fb67"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/statute/2026-07-16-pit-central-us-mo-143.json",
+      "sha256": "9f79eea133e418f97d4fb02dba5f70c55ae1d6c00049251d81b5b2950a9ae6f2"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/statute/2026-07-16-pit-central-us-mo-143.jsonl",
+      "sha256": "0063724a49551e64a2e224de645aa02559cfaf06f4392b3b4b738b811031fe84"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-07-16-pit-central-us-mo-143/missouri-department-of-revenue/2026-form-mo-1040es.pdf",
+      "sha256": "660f9c44610bb911f5652c42710cf86d49f693eb151dff35640932e7cae58793"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-07-16-pit-central-us-mo-143/missouri-rs-chapter-html/chapter-143.html",
+      "sha256": "5bf3aa2312218a29d8d0752e14d6d85b4b83f0361356c47a666a27303915b961"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-07-16-pit-central-us-mo-143/missouri-rs-root-html/Home.aspx.html",
+      "sha256": "cdce469cc05b498762894e19074ba03f6b6b8a6be8595c0382a26d8cd15075c6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-07-16-pit-central-us-mo-143/missouri-rs-view-chapter-html/chapter-143.html",
+      "sha256": "5190598e201c8fec04f0a12f4ea5a8a77ce64b76c7490b7d02b1f1f326d5a807"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 170,
+    "missing_count": 0,
+    "provision_count": 170,
+    "source_count": 170
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:23.600006+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "S6u2rBu/cbAZrBUBnb/NY2T4VxK6ZCvBb4dWbxkho0Mo4Kdag5dsRN2P7KKvZDwzdn515l/Lj9sriMK9CCEdDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-mo-143"
+}

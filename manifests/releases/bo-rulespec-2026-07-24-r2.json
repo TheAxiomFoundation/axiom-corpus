@@ -1,0 +1,27 @@
+{
+  "description": "Immutable official Bolivia scopes used by RuleSpec-BO: the BOLMOD t1 scopes, the Ley 065 t2 slices, and the tranche-2 FULL-DOCUMENT re-slice of the Ley 843 texto ordenado (7 titulo anchor_range slices superseding the whole-code capture for encoding). SOUTHMOD retrofit sweep.",
+  "name": "bo-rulespec-2026-07-24-r2",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "regulation",
+      "jurisdiction": "bo",
+      "version": "2026-07-23-bo-bolmod-t1-regulations"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "bo",
+      "version": "2026-07-23-bo-bolmod-t1-statutes"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "bo",
+      "version": "2026-07-24-bo-bolmod-t2-ley065-slices"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "bo",
+      "version": "2026-07-24-bo-bolmod-t2-ley843-slices"
+    }
+  ]
+}

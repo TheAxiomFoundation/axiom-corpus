@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-framework-japan-types-presdocu-term-japan.json",
+      "sha256": "c61a3d644eb221c81a95d162b0eb48fb0be351d320364c5e64ff9f53e0495a1a"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-framework-japan-types-presdocu-term-japan.json",
+      "sha256": "68d722e90db2b8f58236c4c909fcdb553c416d1eb96e4982d67dc80d5f604e0a"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-framework-japan-types-presdocu-term-japan.jsonl",
+      "sha256": "cd93caf0b46e74263168a26f04a8f020e926cbf4a50008a45636522b51ab06f0"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-japan-types-presdocu-term-japan/federal-register/api/documents-page-1.json",
+      "sha256": "70992516b5242eb9bcb347e5e9de0ba883f1e2d9382182045a6cd19face5c4b5"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-japan-types-presdocu-term-japan/federal-register/documents/2025-17389.json",
+      "sha256": "afa94ee9d876d77be29eea36047c6d1ec50c0b47d1b4e767419f83733755d62d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-japan-types-presdocu-term-japan/federal-register/documents/2025-17389.txt",
+      "sha256": "0553a7256ba603a03920af7aa6c46159fbaa64b91a9223a3d694f3b944fe30af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-framework-japan --start-date 2025-09-09 --document-type PRESDOCU --term \"Japan\" --source-as-of 2026-08-01 --expression-date 2025-09-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:53.001107+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3j0kCgWb8cZSY+dBwDiR2OCte8arVBhY2awtrLfJnrmmP4LQY4Tu6GdNqoF5tc3e4sv3wqpEE7tMomT/Y1BvDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-framework-japan-types-presdocu-term-japan"
+}

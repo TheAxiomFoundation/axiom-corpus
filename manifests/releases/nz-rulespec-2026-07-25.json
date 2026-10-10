@@ -1,0 +1,47 @@
+{
+ "description": "Immutable NZ scopes for RuleSpec-NZ: the 2026-06-16 PCO statute and regulation scopes, the 2026-07-18 Wellington district-plan scope, the 2026-07-19 PCO supplement scopes, and the 2026-07-20 guidance scope carried unchanged, plus two new 2026-07-25 scopes — the agency guidance layer (14 IRD, ACC, and StudyLink documents re-resolved after the prior curated URLs rotted) and the PCO supplement carrying Taxation (Budget Measures) Act 2024 and Income Tax (FamilyBoost) Amendment Act 2025.",
+ "name": "nz-rulespec-2026-07-25",
+ "quality_profile": "complete-expression-dates-v1",
+ "scopes": [
+  {
+   "document_class": "statute",
+   "jurisdiction": "nz",
+   "version": "2026-06-16-rulespec-nz-pco"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "nz",
+   "version": "2026-06-16-rulespec-nz-pco"
+  },
+  {
+   "document_class": "district-plan",
+   "jurisdiction": "nz",
+   "version": "2026-07-18-wellington-district-plan"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "nz",
+   "version": "2026-07-19-rulespec-nz-pco"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "nz",
+   "version": "2026-07-19-rulespec-nz-pco"
+  },
+  {
+   "document_class": "guidance",
+   "jurisdiction": "nz",
+   "version": "2026-07-20-rulespec-nz-guidance"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "nz",
+   "version": "2026-07-25-rulespec-nz-pco"
+  },
+  {
+   "document_class": "guidance",
+   "jurisdiction": "nz",
+   "version": "2026-07-25-rulespec-nz-guidance"
+  }
+ ]
+}

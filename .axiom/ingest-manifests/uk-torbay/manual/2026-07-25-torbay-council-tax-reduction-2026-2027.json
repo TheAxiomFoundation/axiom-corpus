@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-torbay/manual/2026-07-25-torbay-council-tax-reduction-2026-2027.json",
+      "sha256": "13978898873064109a6c570adbe4e7be77114984dda998608003231502c0092f"
+    },
+    {
+      "path": "data/corpus/inventory/uk-torbay/manual/2026-07-25-torbay-council-tax-reduction-2026-2027.json",
+      "sha256": "1f14e6cf7a542fa927d00bd11adb90ca67a4926f26ada257cc0ec3ef5e52bc6a"
+    },
+    {
+      "path": "data/corpus/provisions/uk-torbay/manual/2026-07-25-torbay-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "32b7e2be65d775a38cab127bee728066e7eb54f817eaeff23956d7e328131124"
+    },
+    {
+      "path": "data/corpus/sources/uk-torbay/manual/2026-07-25-torbay-council-tax-reduction-2026-2027/official-documents/torbay-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "de80863e56136cd069d8d49068589b56417510f6e73c64b81d28ff693e21ae81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-torbay-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-torbay-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 91,
+    "missing_count": 0,
+    "provision_count": 91,
+    "source_count": 91
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:41.079166+00:00",
+  "jurisdiction": "uk-torbay",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rqNoLoJ3ubCguYcex/M3cNZtg42AyIipxmnASVX5KngTOyn0V5+EMIb7K0eDv3sByPeT1RDAXIiwac5tGIr3AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-torbay-council-tax-reduction-2026-2027"
+}

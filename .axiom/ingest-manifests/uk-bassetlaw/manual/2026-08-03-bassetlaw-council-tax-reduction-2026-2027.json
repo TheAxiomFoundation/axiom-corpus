@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bassetlaw/manual/2026-08-03-bassetlaw-council-tax-reduction-2026-2027.json",
+      "sha256": "c2cc35b484c3139bca4a559a20f6f630a1736e5a09784113aca3b69c2818a4ca"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bassetlaw/manual/2026-08-03-bassetlaw-council-tax-reduction-2026-2027.json",
+      "sha256": "9de5f022dbf1439b0ada635e0217a9db22a5520ca76aaf69ee6afa99bd77e50f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bassetlaw/manual/2026-08-03-bassetlaw-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "523b9a7ee87c37291e0ce5cecf25c48507966624044c3ea8a383d926d7a26b87"
+    },
+    {
+      "path": "data/corpus/sources/uk-bassetlaw/manual/2026-08-03-bassetlaw-council-tax-reduction-2026-2027/official-documents/bassetlaw-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "3b1411df701db70ebbfb5447d62495d7bf05e00ea4b044e5e6ea50ab9f036acb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-bassetlaw-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bassetlaw-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 93,
+    "missing_count": 0,
+    "provision_count": 93,
+    "source_count": 93
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:16.232851+00:00",
+  "jurisdiction": "uk-bassetlaw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uOSvgcPWtkTLpyYSZyt3Y32ClFUv5VQHCALVhl1yosdFaQWP3fMyDmfY45lfT2DRLW9x1t9jd03EbBRXUtDHDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-bassetlaw-council-tax-reduction-2026-2027"
+}

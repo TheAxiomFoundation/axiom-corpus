@@ -1,0 +1,750 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-wv-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=731&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 128
+- source_id: us-wv-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=731&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 28
+    index_records_total: 128
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-25-0001-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-25-0001: Approval Document (approved September 22, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-25-0001
+    cms_node_id: '185156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185156
+    approval_date: '2025-09-22'
+    effective_date: '2025-01-01'
+    summary: This amendment is to provide for mandatory coverage in accordance with section 1902(a)(84)(D) of the Social Security
+      Act (the Act) for eligible juveniles who are incarcerated in a public institution post-adjudication of charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-25-0003-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-25-0003: Approval Document (approved September 19, 2025, effective June 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-06-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-25-0003
+    cms_node_id: '185101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185101
+    approval_date: '2025-09-19'
+    effective_date: '2025-06-01'
+    summary: This amendment proposed to disregard from countable resources certain Medicare premium refunds.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-23-0001-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-23-0001: Approval Document (approved December 19, 2024, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-23-0001
+    cms_node_id: '175741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=175741
+    approval_date: '2024-12-19'
+    effective_date: '2023-05-12'
+    summary: 'This amendment is to conduct Medicaid presumptive eligibility (PE) determinations. PE groups: children under
+      age 19, parents and other caretaker relatives, pregnant women, adults, and former foster care children, the effective
+      date is May 12, 2023. PE for individuals needing treatment for breast or cervical cancer, the effective date is January
+      1, 2023.'
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-23-0008-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-23-0008: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-23-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-23-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-23-0008
+    cms_node_id: '148446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148446
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-22-0008-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-22-0008: Approval Document (approved October 4, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-22-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-22-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-22-0008
+    cms_node_id: '140366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140366
+    approval_date: '2022-10-04'
+    effective_date: '2022-01-01'
+    summary: Proposes to update the state’s premium assistance program requirements.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-22-0020-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-22-0020: Approval Document (approved July 11, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-22-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-22-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-22-0020
+    cms_node_id: '137666'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137666
+    approval_date: '2022-07-11'
+    effective_date: '2022-04-01'
+    summary: To update third-party liability requirements.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-21-0010-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-21-0010: Approval Document (approved August 27, 2021, effective June 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WV-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-06-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-21-0010
+    cms_node_id: '125351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125351
+    approval_date: '2021-08-27'
+    effective_date: '2020-06-01'
+    summary: CMS is approving this time-limited state plan amendment (SPA) to respond to the COVID-19 national emergency.
+      The purpose of this amendment is to designate Local Health Departments as qualified entities for purposes of making
+      presumptive eligibility determinations during the COVID-19 national emergency.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-20-0004-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-20-0004: Approval Document (approved August 13, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WV-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-20-0004
+    cms_node_id: '101161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101161
+    approval_date: '2020-08-13'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to make changes to eligibility, suspend most cost-sharing, adjust some existing benefits, expand
+      telehealth flexibilities, and make certain payment changes.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-16-0008-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-16-0008: Approval Document (approved May 4, 2017, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-16-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-16-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-16-0008
+    cms_node_id: '15331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15331
+    approval_date: '2017-05-04'
+    effective_date: '2017-04-01'
+    summary: Health Homes Pre-Diabetes, Diabetes, Obesity, at Risk for Anxiety and/or Depression.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-16-0007-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-16-0007: Approval Document (approved May 4, 2017, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-16-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-16-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-16-0007
+    cms_node_id: '15336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15336
+    approval_date: '2017-05-04'
+    effective_date: '2017-04-01'
+    summary: This SPA implements Health Homes.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-14-0007-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-14-0007: Approval Document (approved September 18, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-14-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-14-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-14-0007
+    cms_node_id: '22176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22176
+    approval_date: '2015-09-18'
+    effective_date: '2014-01-01'
+    summary: Amends the cost sharing obligations for West Virginia Medicaid Beneficiaries.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-13-0020-mm7-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-13-0020-MM7: Approval Document (approved March 18, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-13-0020-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-13-0020-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0020-MM7
+    cms_node_id: '38106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38106
+    approval_date: '2014-03-18'
+    effective_date: '2014-01-01'
+    summary: Proposes that one or more Qualified Hospitals Determine Presumptive Eligibility and WV Provides Medicaid Coverage
+      for Individuals Determined Presumptively Eligible.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-13-0009-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-13-0009: Approval Document (approved March 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-13-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-13-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0009
+    cms_node_id: '38031'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38031
+    approval_date: '2014-03-17'
+    effective_date: '2014-01-01'
+    summary: Alternate Benefit Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-13-0019-mm6-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-13-0019-MM6: Approval Document (approved March 7, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-13-0019-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-13-0019-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0019-MM6
+    cms_node_id: '38291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38291
+    approval_date: '2014-03-07'
+    effective_date: '2013-10-01'
+    summary: Identifies Non-Financial Eligibility Requirements for Both Citizens and Eligible Non-Citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-13-0015-mm2-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-13-0015-MM2: Approval Document (approved February 14, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-13-0015-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-13-0015-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0015-MM2
+    cms_node_id: '38521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38521
+    approval_date: '2014-02-14'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-13-0014-mm1-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-13-0014 MM1: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-13-0014-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-13-0014-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0014 MM1
+    cms_node_id: '39216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39216
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI Based Eligibility Group SPA into West Virginia State Plan in accordance with the Affordable
+      Care Act.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-12-009-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-12-009: Approval Document (approved December 4, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-12-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-12-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-12-009
+    cms_node_id: '47076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47076
+    approval_date: '2012-12-04'
+    effective_date: '2012-07-01'
+    summary: Verification of coverage for Tobacco Cessation for Pregnant Women as mandated in the Patient Protection and Affordable
+      Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-12-008-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-12-008: Approval Document (approved July 27, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-12-008-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-12-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-12-008
+    cms_node_id: '47081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47081
+    approval_date: '2012-07-27'
+    effective_date: '2012-04-01'
+    summary: Implements Process for Screening Providers and Suppliers and Creates Temporary Enrollment Moratorium for Certain
+      Providers.
+    topics: &id002
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-12-008-attachment
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-12-008: Attachment (approved July 27, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-12-008-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-12-008/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: WV-12-008
+    cms_node_id: '47081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47081
+    approval_date: '2012-07-27'
+    effective_date: '2012-04-01'
+    summary: Implements Process for Screening Providers and Suppliers and Creates Temporary Enrollment Moratorium for Certain
+      Providers.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-12-008-form-cms-179
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-12-008: Form CMS-179 (approved July 27, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-12-008-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-12-008/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: WV-12-008
+    cms_node_id: '47081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47081
+    approval_date: '2012-07-27'
+    effective_date: '2012-04-01'
+    summary: Implements Process for Screening Providers and Suppliers and Creates Temporary Enrollment Moratorium for Certain
+      Providers.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-wv-cms-medicaid-state-plan-spa-wv-10-02-approval-document
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia Medicaid SPA WV-10-02: Approval Document (approved September 30, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WV/WV-10-02.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-wv/policy/cms/medicaid-state-plan/spa/wv-10-02/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-10-02
+    cms_node_id: '30431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30431
+    approval_date: '2010-09-30'
+    effective_date: '2010-07-01'
+    summary: This deemed newborn plan amendment eliminates the restriction that a newborn, to remain Medicaid eligible, must
+      return home from the hospital to live with the mother.
+    topics:
+    - Eligibility
+    link_label: Approval Document

@@ -1,0 +1,943 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-or-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-or/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 28
+    index_records_total: 28
+- source_id: us-or-cms-chip-state-plan-spa-or-24-0141-and-or-24-0140-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-24-0141 and OR-24-0140: Approval Package (approved December 5, 2025, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR-24-0141andOR-24-0140.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-24-0141-and-or-24-0140/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-24-0141 and OR-24-0140
+    cms_node_id: '186976'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=186976
+    approval_date: '2025-12-05'
+    effective_date: '2024-01-01'
+    summary: Through these SPAs, Oregon transitions the majority of its separate CHIP to a Medicaid expansion program effective
+      January 1, 2024. The only individuals remaining in the separate CHIP are those covered under the from-conception-to-end-of-pregnancy
+      (FCEP) option.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-23-0136-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-23-0136: Approval Package (approved June 8, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR-23-0136.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-23-0136/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-23-0136
+    cms_node_id: '148841'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148841
+    approval_date: '2023-06-08'
+    effective_date: '2023-07-01'
+    summary: This amendment implements a health services initiative (HSI) to provide comprehensive coverage during the 12-month
+      postpartum period for individuals whose pregnancy was covered under the conception-to-end-of-pregnancy group (also known
+      as the “unborn” option)
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-22-0135-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-22-0135: Approval Package (approved May 25, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR-22-0135.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-22-0135/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-22-0135
+    cms_node_id: '136051'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=136051
+    approval_date: '2022-05-25'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Oregon with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its separate CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-22-0134-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-22-0134: Approval Package (approved March 1, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR-22-0134.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-22-0134/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-22-0134
+    cms_node_id: '133391'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=133391
+    approval_date: '2022-03-01'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-19-0131-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-19-0131: Approval Package (approved October 31, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR-19-0131.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-19-0131/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-19-0131
+    cms_node_id: '145706'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145706
+    approval_date: '2019-10-31'
+    effective_date: '2019-07-01'
+    summary: This SPA removes the option to provide express lane eligibility for children.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-18-0128-factsheet
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-18-0128: Factsheet (approved September 12, 2019, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-18-0128.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-18-0128/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: OR-18-0128
+    cms_node_id: '58611'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=58611
+    approval_date: '2019-09-12'
+    effective_date: '2017-10-01'
+    summary: Administers the program in accordance with the provisions of the approved Child Health Plan, the requirements
+      of Title XXI and XIX of the Act
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-or-cms-chip-state-plan-spa-or-18-0129-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-18-0129: Approval Package (approved August 23, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-18-0129.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-18-0129/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-18-0129
+    cms_node_id: '3886'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3886
+    approval_date: '2018-08-23'
+    effective_date: '2018-07-01'
+    summary: Changes to the application and training based upon alignment with the ONE eligibility system.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-13-0120-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-13-0120: Approval Package (approved February 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-13-0120-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-13-0120/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0120
+    cms_node_id: '2666'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2666
+    approval_date: '2014-02-10'
+    effective_date: '2014-01-01'
+    summary: Provides assurance on page CS15 that the state will apply methodologies based on MAGI for all separate CHIP covered
+      groups, using the approved MAGI conversion plan income thresholds.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-13-0123-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-13-0123: Approval Package (approved February 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-13-0123-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-13-0123/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0123
+    cms_node_id: '2676'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2676
+    approval_date: '2014-02-10'
+    effective_date: '2014-01-01'
+    summary: Is approved to clarify the state's non-financial eligibility policies on residency, citizenship, social security
+      numbers, non-payment of premiums, continuous eligibility and presumptive eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-13-0122-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-13-0122: Approval Package (approved February 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-13-0122-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-13-0122/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0122
+    cms_node_id: '2671'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2671
+    approval_date: '2014-02-03'
+    effective_date: '2014-01-01'
+    summary: 'Describes the state''s plan to provide coverage in its separate CHIP, as specified in the state''s submission
+      of CS14: Children Ineligible for Medicaid as a Result of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-13-0124-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-13-0124: Approval Package (approved February 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-13-0124-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-13-0124/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0124
+    cms_node_id: '2681'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2681
+    approval_date: '2014-02-03'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to modified adjusted gross income (MAGI)-equivalent
+      standards, by age group, for children covered in its title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-19-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-19: Approval Package (approved November 22, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-19.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-19/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-19
+    cms_node_id: '3471'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3471
+    approval_date: '2013-11-22'
+    effective_date: '2013-10-01'
+    summary: This SPA will allow Oregon to expand direct coverage to children currently enrolled in the Healthy Kids Connect
+      Program and expand the Oregon Health Plan (OHP) to children with family incomes at or below 300 percent of the Federal
+      Poverty Level (FPL).
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-16-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-16: Approval Package (approved May 26, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-16-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-16/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-16
+    cms_node_id: '1591'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1591
+    approval_date: '2011-05-26'
+    effective_date: '2011-07-01'
+    summary: Expand Unborn coverage to Columbia, Crook, Douglas, Josephine, Jefferson, Morrow, Union & Wasco Counties.
+    topics: &id002
+    - Expansion
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-16-final-approved-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-16: Final Approved State Plan (approved May 26, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-16-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-16/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR-CSPA-16
+    cms_node_id: '1591'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1591
+    approval_date: '2011-05-26'
+    effective_date: '2011-07-01'
+    summary: Expand Unborn coverage to Columbia, Crook, Douglas, Josephine, Jefferson, Morrow, Union & Wasco Counties.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-14-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-14: Approval Package (approved December 30, 2010, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-14-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-14/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-14
+    cms_node_id: '1641'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1641
+    approval_date: '2010-12-30'
+    effective_date: '2003-06-01'
+    summary: SPA Expand Unborn Coverage to Lane County.
+    topics: &id003
+    - Expansion
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-14-final-approved-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-14: Final Approved State Plan (approved December 30, 2010, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-14-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-14/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR-CSPA-14
+    cms_node_id: '1641'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1641
+    approval_date: '2010-12-30'
+    effective_date: '2003-06-01'
+    summary: SPA Expand Unborn Coverage to Lane County.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-13-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-13: Approval Package (approved October 21, 2010, effective August 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-13-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-08-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-13/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-13
+    cms_node_id: '1496'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1496
+    approval_date: '2010-10-21'
+    effective_date: '2010-08-01'
+    summary: 'Express Lane Eligibility SPA #13 - SNAP and NSLP.'
+    topics: &id004
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-13-final-approved-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-13: Final Approved State Plan (approved October 21, 2010, effective August 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-13-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-08-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-13/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR-CSPA-13
+    cms_node_id: '1496'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1496
+    approval_date: '2010-10-21'
+    effective_date: '2010-08-01'
+    summary: 'Express Lane Eligibility SPA #13 - SNAP and NSLP.'
+    topics: *id004
+    link_label: Final Approved State Plan
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-11-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-11: Approval Package (approved September 20, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-11-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-11/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-11
+    cms_node_id: '1451'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1451
+    approval_date: '2010-09-20'
+    effective_date: '2009-10-01'
+    summary: Unborn Expansion.
+    topics: &id005
+    - Expansion
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-11-final-approved-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-11: Final Approved State Plan (approved September 20, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-11-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-11/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR-CSPA-11
+    cms_node_id: '1451'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1451
+    approval_date: '2010-09-20'
+    effective_date: '2009-10-01'
+    summary: Unborn Expansion.
+    topics: *id005
+    link_label: Final Approved State Plan
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-12-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-12: Approval Package (approved May 14, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-12-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-12/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-12
+    cms_node_id: '1576'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1576
+    approval_date: '2010-05-14'
+    effective_date: '2009-10-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: &id006
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-12-final-approved-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-12: Final Approved State Plan (approved May 14, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-12-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-12/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR-CSPA-12
+    cms_node_id: '1576'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1576
+    approval_date: '2010-05-14'
+    effective_date: '2009-10-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: *id006
+    link_label: Final Approved State Plan
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-10-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-10: Approval Package (approved September 16, 2008, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-10
+    cms_node_id: '2201'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2201
+    approval_date: '2008-09-16'
+    effective_date: '2003-06-01'
+    summary: Expansion from 185% to 300% FPL; Application Assistance; eliminate asset test reduce waiting period.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-7-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-7: Approval Package (approved April 9, 2008, effective April 1, 2008)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-7-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-04-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-7/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-7
+    cms_node_id: '1401'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1401
+    approval_date: '2008-04-09'
+    effective_date: '2008-04-01'
+    summary: Expands health care coverage to unborn children.
+    topics: &id007
+    - Expansion
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-7-final-approved-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-7: Final Approved State Plan (approved April 9, 2008, effective April 1, 2008)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-7-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-04-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-7/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR-CSPA-7
+    cms_node_id: '1401'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1401
+    approval_date: '2008-04-09'
+    effective_date: '2008-04-01'
+    summary: Expands health care coverage to unborn children.
+    topics: *id007
+    link_label: Final Approved State Plan
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-8-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-8: Approval Package (approved December 12, 2007, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-8-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-8/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-8
+    cms_node_id: '1846'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1846
+    approval_date: '2007-12-12'
+    effective_date: '2003-06-01'
+    summary: Require applicants to provide a Social Security Number on CHIP applications.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-spa-or-cspa-9-approval-package
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP SPA OR-CSPA-9: Approval Package (approved September 18, 2006, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/OR-CSPA-9-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/spa/or-cspa-9/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-CSPA-9
+    cms_node_id: '2211'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2211
+    approval_date: '2006-09-18'
+    effective_date: '2003-06-01'
+    summary: Transition targeted low income children eligibility through the 1115 demo to the CHIP State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-or-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/ORCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: OR
+    cms_node_id: '2071'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2071
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 16 and Factsheet as of 06-09-2011.
+    topics: &id008
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-or-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OR/ORCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-or/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OR
+    cms_node_id: '2071'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2071
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 16 and Factsheet as of 06-09-2011.
+    topics: *id008
+    link_label: Current State Plan

@@ -1,0 +1,876 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-sd-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 176
+- source_id: us-sd-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 76
+    index_records_total: 176
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-24-0014-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-24-0014: Approval Document (approved October 23, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-24-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-24-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-24-0014
+    cms_node_id: '171061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=171061
+    approval_date: '2024-10-23'
+    effective_date: '2024-07-01'
+    summary: This amendment inflationary rate increases and various coverage and service updates.
+    topics:
+    - Coverage and Reimbursement
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-24-0012-a-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-24-0012-A: Approval Document (approved October 18, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-24-0012-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-24-0012-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-24-0012-A
+    cms_node_id: '170926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=170926
+    approval_date: '2024-10-18'
+    effective_date: '2024-07-01'
+    summary: This amendment eliminates cost sharing for medical services.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-23-0021-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-23-0021: Approval Document (approved February 26, 2024, effective November 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-23-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-11-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-23-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-23-0021
+    cms_node_id: '159956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159956
+    approval_date: '2024-02-26'
+    effective_date: '2023-11-01'
+    summary: With this SPA the state expands eligibility to individuals under age 21 who are under a state-only funded adoption
+      assistance agreement, and to confirm the scope of coverage under the state plan for certain reasonable classifications
+      of children.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-23-0023-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-23-0023: Approval Document (approved February 26, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-23-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-23-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-23-0023
+    cms_node_id: '160021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160021
+    approval_date: '2024-02-26'
+    effective_date: '2024-01-01'
+    summary: This SPA provides twelve months of continuous eligibility for children.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-23-0018-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-23-0018: Approval Document (approved November 30, 2023, effective August 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-23-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-08-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-23-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-23-0018
+    cms_node_id: '156746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=156746
+    approval_date: '2023-11-30'
+    effective_date: '2023-08-01'
+    summary: This Amendment expands Hospital Presumptive Eligibility (HPE) to include the Adult Medicaid Expansion group.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-23-0003-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-23-0003: Approval Document (approved May 23, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-23-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-23-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-23-0003
+    cms_node_id: '148256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148256
+    approval_date: '2023-05-23'
+    effective_date: '2023-07-01'
+    summary: The state adopts the the eligibility group serving individuals under age 65 with incomes at or below 133% of
+      the federal poverty level (FPL), as described in section 1902(a)(10)(A)(VIII) of the Social Security Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-23-0002-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-23-0002: Approval Document (approved May 23, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-23-0002
+    cms_node_id: '148266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148266
+    approval_date: '2023-05-23'
+    effective_date: '2023-07-01'
+    summary: This SPA describes the methodology used by the state for determining the appropriate FMAP rates, including the
+      increased FMAP rates, available under the provisions of the Affordable Care Act applicable for the medical assistance
+      expenditures under the Medicaid program associated with enrollees in the new adult group adopted by the state and described
+      in 42 CFR 435.119.
+    topics:
+    - Eligibility
+    - Federal Financial Participation
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-23-0007-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-23-0007: Approval Document (approved May 12, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-23-0007
+    cms_node_id: '148076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148076
+    approval_date: '2023-05-12'
+    effective_date: '2023-01-01'
+    summary: The state adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as
+      enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-22-0014-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-22-0014: Approval Document (approved April 25, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-22-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-22-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-22-0014
+    cms_node_id: '147236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147236
+    approval_date: '2023-04-25'
+    effective_date: '2022-10-01'
+    summary: The SPA clarifies how the premium assistance program determines if premium assistance is estimated to be cost
+      effective and aligns with policies and current practice.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-21-0011-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-21-0011: Approval Document (approved December 22, 2021, effective November 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-21-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-11-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-21-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-21-0011
+    cms_node_id: '139201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139201
+    approval_date: '2021-12-22'
+    effective_date: '2022-11-01'
+    summary: Provides assurances that the State is in compliance with federal regulation regarding third party liability.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-21-0001-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-21-0001: Approval Document (approved April 26, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-21-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-21-0001
+    cms_node_id: '107996'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107996
+    approval_date: '2021-04-26'
+    effective_date: '2021-01-01'
+    summary: Effective January 01, 2021, this amendment allows substance use disorder (SUD) agencies to be reimbursed an originating
+      site fee for acting as a telemedicine originating site.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-21-0002-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-21-0002: Approval Document (approved April 20, 2021, effective June 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-06-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-21-0002
+    cms_node_id: '107846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107846
+    approval_date: '2021-04-20'
+    effective_date: '2021-06-01'
+    summary: Effective June 1, 2021 until terminated on May 31, 2023, this amendment extends the exception to the Medicaid
+      Recovery Audit Contractor (RAC) program.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    - Program Integrity
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-19-0011-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-19-0011: Approval Document (approved March 17, 2021, effective November 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SD-19-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-19-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-19-0011
+    cms_node_id: '107206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107206
+    approval_date: '2021-03-17'
+    effective_date: '2019-11-01'
+    summary: Effective 11/01/2019 this amendment clarifies that substance use disorder (SUD) early intervention services provided
+      by a SUD agency are covered and SUD treatment services may be provided in an institution for mental disease (IMD).
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-20-0007-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-20-0007: Approval Document (approved November 23, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/SD-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-20-0007
+    cms_node_id: '104081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104081
+    approval_date: '2020-11-23'
+    effective_date: '2020-07-01'
+    summary: implements inflationary rate increases appropriated by the state during the 2020 legislative session
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-20-0003-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-20-0003: Approval Document (approved May 28, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-20-0003
+    cms_node_id: '98746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98746
+    approval_date: '2020-05-28'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to waive cost-sharing for testing services, testing-related services and treatments of COVID-19 and suspend the face-to-face
+      requirements for community mental health centers.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-19-0002-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-19-0002: Approval Document (approved September 3, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-19-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-19-0002
+    cms_node_id: '5141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5141
+    approval_date: '2019-09-03'
+    effective_date: '2019-01-01'
+    summary: Establishes supplemental payments for in-state private hospitals.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-18-0002-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-18-0002: Approval Document (approved April 9, 2018, effective May 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-18-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-05-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-18-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-18-0002
+    cms_node_id: '11001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11001
+    approval_date: '2018-04-09'
+    effective_date: '2018-05-01'
+    summary: Out of state former foster care youth eligibility.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-14-002-mm7-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-14-002-MM7: Approval Document (approved June 13, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-14-002-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-14-002-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-14-002-MM7
+    cms_node_id: '36126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36126
+    approval_date: '2014-06-13'
+    effective_date: '2014-01-01'
+    summary: Offers Medicaid Coverage to Individuals Determined Presumptively Eligible by a Qualified Hospital.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-13-022-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-13-022: Approval Document (approved March 7, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-13-022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-13-022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-13-022
+    cms_node_id: '38371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38371
+    approval_date: '2014-03-07'
+    effective_date: '2014-01-01'
+    summary: This SPA allows the Department to use the financial eligibility findings of the Supplemental Nutrition Assistance
+      Program (SNAP) to enroll and reenroll children under age 19 in Medicaid.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-13-0015-mm-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-13-0015-MM: Approval Document (approved November 25, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-13-0015-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-13-0015-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-13-0015-MM
+    cms_node_id: '39986'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39986
+    approval_date: '2013-11-25'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Mandatory and Optional Eligibility Groups Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-13-0013-mm-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-13-0013-MM: Approval Document (approved November 21, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-13-0013-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-13-0013-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-13-0013-MM
+    cms_node_id: '39941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39941
+    approval_date: '2013-11-21'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-13-0012-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-13-0012: Approval Document (approved November 21, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-13-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-13-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-13-0012
+    cms_node_id: '39996'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39996
+    approval_date: '2013-11-21'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigration Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-13-0009-mm-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-13-0009-MM: Approval Document (approved November 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-13-0009-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-13-0009-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-13-0009-MM
+    cms_node_id: '39946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39946
+    approval_date: '2013-11-20'
+    effective_date: '2014-01-01'
+    summary: Addresses Single State Agencies Delegation of Appeals and Determinations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-13-0014-mm-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-13-0014-MM: Approval Document (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-13-0014-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-13-0014-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-13-0014-MM
+    cms_node_id: '39991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39991
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: Establishes Modified Adjusted Gross Income (MAGI) Methodologies for Determining Eligibility for Most Children,
+      Pregnant Women, Parents, and Caretaker Relatives and Adults.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sd-cms-medicaid-state-plan-spa-sd-10-002-approval-document
+  jurisdiction: us-sd
+  document_class: policy
+  title: 'South Dakota Medicaid SPA SD-10-002: Approval Document (approved May 18, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SD/SD-10-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-sd/policy/cms/medicaid-state-plan/spa/sd-10-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Dakota
+    source_discovery_group: us-sd/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SD-10-002
+    cms_node_id: '30536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30536
+    approval_date: '2010-05-18'
+    effective_date: '2010-01-01'
+    summary: 'MIPPA: Section 112, Application of Low-Income Subsidy (LIS) Resource Tests to Medicare Savings Programs (MSPs)
+      and Section 115, Eliminating Application of Estate Recovery to Medicare Cost-Sharing Benefits.'
+    topics:
+    - Cost Sharing
+    link_label: Approval Document

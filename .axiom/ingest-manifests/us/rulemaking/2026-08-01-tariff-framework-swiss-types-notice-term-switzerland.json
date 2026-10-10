@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-framework-swiss-types-notice-term-switzerland.json",
+      "sha256": "17663314010ce53ea8d0f676f5bece02c4ad17fe19814e337abed9986af14b07"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-framework-swiss-types-notice-term-switzerland.json",
+      "sha256": "203478279560b99745137b4cf42b76079a70bd7e2809e4543eeb54205048853b"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-framework-swiss-types-notice-term-switzerland.jsonl",
+      "sha256": "f09442346cfee8364762ef8e9d4ac0f79fae414cd6e3b7a76586aaa9fd71aa29"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-swiss-types-notice-term-switzerland/federal-register/api/documents-page-1.json",
+      "sha256": "73751e85dd3debdc3f93991d63b52d994abea558710c8210d984460721145617"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-swiss-types-notice-term-switzerland/federal-register/documents/2025-23316.json",
+      "sha256": "2c7258b6d57eb9e939bbefa906ba8408b7bee4dea7073875653d0ad73d494f20"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-swiss-types-notice-term-switzerland/federal-register/documents/2025-23316.txt",
+      "sha256": "f724f98efa9afa4d683b21f4be06e76ab26707ad796b22ef2d68ead14f789881"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-framework-swiss --start-date 2025-12-18 --document-type NOTICE --term \"Switzerland\" --source-as-of 2026-08-01 --expression-date 2025-12-18"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:55.914467+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2Feuenx7HSPqh1/zAowTfydcCqS97ArvQLIDmEWeBuqZkfTORd0y/cl3HTpkErDCdgl7AgBJysYjsQXkxcQ2Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-framework-swiss-types-notice-term-switzerland"
+}

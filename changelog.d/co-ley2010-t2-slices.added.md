@@ -1,0 +1,1 @@
+Tranche-2 full-document re-slice of Colombia Ley 2010 de 2019: 6 titulo anchor_range slices of the SUIN norm page (first anchor_range use in the SOUTHMOD program); new release co-rulespec-2026-07-24 selects t1 + t2 scopes.

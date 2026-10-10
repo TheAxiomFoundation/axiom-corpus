@@ -1,0 +1,48 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-oh-odm-mepl-194
+  jurisdiction: us-oh
+  document_class: guidance
+  title: 'Medicaid Eligibility Procedure Letter (MEPL) No. 194: 2026 Federal Poverty Level Income Guidelines'
+  source_url: https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/About%20Us/PoliciesGuidelines/MEPL/MEPL_194_-_2026_Federal_Poverty_Level_Income_Guidelines.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-oh/guidance/odm/mepl/194
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Medicaid
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-oh/guidance
+    index_url: https://medicaid.ohio.gov/resources-for-providers/policies-guidelines/medicaid-eligibility-procedure-letters/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_procedure_letter
+    document_number: MEPL 194
+    issue_date: '2026-01-21'
+    closure_elements_extra:
+    - MED-ST-2
+- source_id: us-oh-odm-abd-monthly-financial-eligibility-2026
+  jurisdiction: us-oh
+  document_class: guidance
+  title: 'Ohio Medicaid 2026 Monthly Financial Eligibility: Aged, Blind or Disabled Individuals / Medicare Premium Assistance
+    Programs'
+  source_url: https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Families,%20Individuals/Programs/whoQualifies/2026_Aged_Blind_Disabled_Individuals.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-oh/guidance/odm/abd-monthly-financial-eligibility-chart/2026
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Medicaid
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-oh/guidance
+    index_url: https://medicaid.ohio.gov/resources-for-providers/policies-guidelines/medicaid-eligibility-procedure-letters/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: financial_eligibility_chart
+    expression_date_source: MEPL 194 effective date (the chart is undated on its face)
+    closure_elements_extra:
+    - MED-ST-2

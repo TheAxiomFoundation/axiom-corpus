@@ -1,0 +1,149 @@
+# Mozambique (mz) tranche-1 capture - MOZMOD v3.1 parity (policy years
+# 2015-24; SOUTHMOD full-bundle program lane 5; report CR-MOZMOD-v3.1).
+#
+# MOZMOD simulates (S): personal income tax (IRPS schedules 1 employment and
+# 3 other), the simplified small-taxpayer tax ISPC (ttn_s), VAT (tva_s:
+# seventeen percent standard, sixteen percent from the 2023 reform), excise
+# duty (tex02_s) and the fuel tax (tfl_s), INSS social insurance
+# contributions (seven percent of gross income: four percent employer,
+# three percent employee; self-employed seven percent), and the PSSB basic
+# social subsidy with INAS direct social support.
+#
+# STATUTE class, four instruments (Autoridade Tributaria and INSS official
+# prints; Boletim da Republica texts):
+#
+# 1. Lei n. 4/2007 de 7 de Fevereiro (Lei da Proteccao Social; INSS
+#    official print) - the three-subsystem social protection framework
+#    (basica, obrigatoria, complementar) behind the INSS seven percent
+#    contribution and the PSSB basic-security subsystem (whose regulation,
+#    Decreto 85/2009, is a tranche-2 capture).
+# 2. Lei n. 20/2013 de 23 de Setembro (AT print) - the operative IRPS
+#    revision MOZMOD's personal income tax builds on (report cite incl.
+#    Art. 65-A); the base Codigo do IRPS (Lei 33/2007) is a tranche-2
+#    capture (the AT folheto is a 2-page withholding leaflet, not the
+#    code).
+# 3. Lei n. 5/2009 de 12 de Janeiro - creates the ISPC simplified tax for
+#    small taxpayers (annual rate 75.000,00MT or alternatively 3 percent
+#    of turnover), simulated as ttn_s. CAPTURE NOTE: the AT media entry
+#    named "Lei-n1-05-2009" (content/download/2129/16298) serves the WRONG
+#    bytes - Decreto 21/2002, the Codigo do IRPC - so this entry captures
+#    the law from the AT-hosted Boletim da Republica I Serie n. 1,
+#    3. Suplemento, 12 Jan 2009 (media entry "Lei-n1-4-2009-de-12-de-
+#    janeiro": an 11-page gazette scan containing Leis 2-5/2009), with a
+#    page_windows slice (pages 10-11, anchored at the Lei 5/2009 heading)
+#    selecting exactly the ISPC law text through the promulgation block.
+#    The scan has no text layer, hence force_ocr.
+# 4. Lei n. 3/2012 de 23 de Janeiro (AT print) - the operative IVA code
+#    revision; the base Codigo do IVA (Lei 32/2007, seventeen percent
+#    standard rate) is a tranche-2 capture.
+#
+# MOZMOD comparison notes (targets, never sources): INSS 7 percent (4 er /
+# 3 ee; self-employed 7); VAT 17 percent through 2022, 16 percent from
+# 2023; excise ad valorem 5-75 percent bands; IRPS employment schedule 1
+# and other-income schedule 3 (report Tables 2.4-2.5); PSSB paid by INAS.
+# Report reference: CR-MOZMOD-v3.1 (UNU-WIDER) sections 1-2.
+#
+# Capture note: www.at.gov.mz negotiates TLS DH parameters below modern
+# OpenSSL minimums (requests fails with DH_KEY_TOO_SMALL under OpenSSL 3
+# defaults), so the three AT documents use the manifest local_path
+# mechanism (us-ny TANF state-plan precedent): bytes were fetched from the
+# recorded source_url over TLS with a client that tolerates the legacy DH
+# size, content-verified against the statute text, and handed to the
+# extractor from disk. sha256 of the fetched files:
+#   lei-20-2013:      e9971b37fe1c1c7355bea7d80101c6f891a74f898bacee214994feea88175b13
+#   br-2009-01-12 3s: fda4c1a0056842dc882013fa422fa77fba5f8fe2d70e205ffa1e00cce30bbacf
+#   lei-3-2012:       1189fa3d8c4aa74ad48e15ac6dbd28e94066e063ed872cc1aa90974756d23e5a
+# TLS verification was never disabled at any point.
+documents:
+  - source_id: mz-lei-4-2007-proteccao-social
+    jurisdiction: mz
+    document_class: statute
+    citation_path: mz/statute/lei-2007-4/proteccao-social
+    title: Lei 4/2007 de 7 de Fevereiro, Lei da Proteccao Social (INSS official Boletim print) - subsistemas basica/obrigatoria/complementar; base do INSS 7 por cento
+    source_url: 'https://www.inss.gov.mz/wp-content/uploads/2024/04/Lei-4-2007-de-7-de-Fevereiro-Lei-da-Proteccao-Social.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2007-02-07'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica de Mocambique (Instituto Nacional de Seguranca Social publication)
+      publisher: Instituto Nacional de Seguranca Social
+      source_family: social-security/framework
+      language: pt
+  - source_id: mz-lei-20-2013-irps-revisao
+    jurisdiction: mz
+    document_class: statute
+    citation_path: mz/statute/lei-2013-20/irps-revisao
+    title: Lei 20/2013 de 23 de Setembro (AT print) - revisao do Codigo do IRPS (incl. Art. 65-A)
+    source_url: 'https://www.at.gov.mz/por/content/download/1385/10635/version/1/file/Lei+n%C2%BA+20-2013-IRPS.pdf.pdf'
+    local_path: /Users/maxghenis/overnight-encode-20260718/mz-sources/lei-20-2013-irps-real.pdf
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2013-09-23'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: por
+    metadata:
+      primary_source: true
+      source_authority: Republica de Mocambique (Autoridade Tributaria publication)
+      publisher: Autoridade Tributaria de Mocambique
+      source_family: income-tax/irps-revision
+      language: pt
+  - source_id: mz-lei-5-2009-ispc
+    jurisdiction: mz
+    document_class: statute
+    citation_path: mz/statute/lei-2009-5/ispc-imposto-simplificado
+    title: Lei 5/2009 de 12 de Janeiro - cria o Imposto Simplificado para Pequenos Contribuintes ISPC (Boletim da Republica I Serie n. 1, 3. Suplemento, paginas 10-11; gazeta hospedada pela AT)
+    source_url: 'https://www.at.gov.mz/por/content/download/2130/16304/version/1/file/Lei+n%C2%BA+4+-+2009+de+12+de+janeiro.pdf'
+    local_path: /Users/maxghenis/overnight-encode-20260718/mz-sources/br-2009-01-12-i-serie-1-3sup.pdf
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2009-01-12'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: por
+      page_windows:
+        - start_page: 10
+          end_page: 11
+          start_at_pattern: 'Lei\s+n.{0,4}5/2009'
+    metadata:
+      primary_source: true
+      source_authority: Republica de Mocambique (Autoridade Tributaria publication)
+      publisher: Autoridade Tributaria de Mocambique
+      source_family: income-tax/ispc
+      language: pt
+  - source_id: mz-lei-3-2012-iva-revisao
+    jurisdiction: mz
+    document_class: statute
+    citation_path: mz/statute/lei-2012-3/iva-revisao
+    title: Lei 3/2012 de 23 de Janeiro (AT print) - revisao do Codigo do IVA
+    source_url: 'https://www.at.gov.mz/por/content/download/1318/10264/version/1/file/Lei+n%C2%BA+3-2012.pdf'
+    local_path: /Users/maxghenis/overnight-encode-20260718/mz-sources/Lei-n1-3-2012.pdf
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2012-01-23'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: por
+    metadata:
+      primary_source: true
+      source_authority: Republica de Mocambique (Autoridade Tributaria publication)
+      publisher: Autoridade Tributaria de Mocambique
+      source_family: vat/iva-revision
+      language: pt

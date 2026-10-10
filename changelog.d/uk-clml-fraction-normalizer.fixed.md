@@ -1,1 +1,0 @@
-Render CLML `<Superior>`/`<Inferior>` vulgar fractions as spaced mixed numbers when extracting UK provisions, so `2<Superior>6</Superior>/<Inferior>7</Inferior> per cent` yields `2 6/7 per cent` instead of the improper `26/7 per cent`; exponent and footnote uses of `<Superior>` (no following `<Inferior>`) are left unchanged.

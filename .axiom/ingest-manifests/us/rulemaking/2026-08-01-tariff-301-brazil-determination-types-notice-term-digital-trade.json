@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade.json",
+      "sha256": "70b81b32fcc2a7b0eea01c03dad1377a39015486529e4ba8d57984fb3cc2c7e4"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade.json",
+      "sha256": "5fee0fb5bec98a1129b1c02ae798af3b13af2109df4f8229aa8cc2160406909c"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade.jsonl",
+      "sha256": "db9e1e999191161e07be66af6c9d856fe438af83674bd7bb3f88521f727fd1ee"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade/federal-register/api/documents-page-1.json",
+      "sha256": "7f5ab55a4016b631bcc5e711e92ea85bfd88effa4d909cbbf72b5203b2cb6190"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade/federal-register/documents/2026-11158.json",
+      "sha256": "0975f639f14b374aa4fcf3107d118ec7d82c5e8e98f5410864678293767aba49"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade/federal-register/documents/2026-11158.txt",
+      "sha256": "e372ec05c2e5b208d669ee79a1151dbf108ad11cd084cac2e1cfb7007b43beaf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9ca5291d639dcd68856feb86c933e6b216a6710",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-brazil-determination --start-date 2026-06-04 --document-type NOTICE --term '\"digital trade\"' --source-as-of 2026-08-01 --expression-date 2026-06-04"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:34:37.700077+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sm664lOM2fhJxayeuwfmp+1K9jihuqziFyJNqdO0nmcc76OaXHr66fZ4pA4a1ndeHT7sIjncNyK46GqmX5aRBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-brazil-determination-types-notice-term-digital-trade"
+}

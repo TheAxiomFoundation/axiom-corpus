@@ -1,0 +1,1 @@
+Added the official Hawaii 2025 Form N-11 capital-gains worksheet as a structural source, with explicit corrected 2026 HRS thresholds, signed-ingest protection, and a successor US RuleSpec release selector.

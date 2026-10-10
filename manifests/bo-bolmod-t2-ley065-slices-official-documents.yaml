@@ -1,0 +1,97 @@
+# Bolivia (bo) tranche-2 FULL-DOCUMENT re-slice of Ley 065 de Pensiones -
+# BOLMOD lane repair item (BO-BACKLOG-STATUS.md): the whole-law capture
+# (bo/statute/ley-2010-065/pensiones, scope 2026-07-23-bo-bolmod-t1-
+# statutes) hit the whole-blob failure mode (sol deferral; 1-rule terra
+# fragment salvaged). Per the full-document program (Egypt lane), the
+# SAME BCB official print is re-captured in 4 titulo page_windows slices.
+# The t1 capture remains in the corpus (immutable); this t2 scope
+# supersedes it for encoding.
+documents:
+  - source_id: bo-ley-2010-065-titulo-1-2-disposiciones-prestaciones
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-2010-065/titulo-1-2-disposiciones-prestaciones
+    title: 'Ley 065 Titulos I-II: disposiciones generales; prestaciones y beneficios del SIP (incl. contribuciones) (pages 1-12 of the captured official print)'
+    source_url: 'https://www.bcb.gob.bo/webdocs/MesaDePartes/files/Ley-065-Pensiones.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2010-12-10'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 1
+          end_page: 12
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Banco Central de Bolivia publication)
+      publisher: Banco Central de Bolivia
+      source_family: social-security/pensions-slices
+      language: es
+  - source_id: bo-ley-2010-065-titulo-3-4-retiros-cobro
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-2010-065/titulo-3-4-retiros-cobro
+    title: 'Ley 065 Titulos III-IV: retiros; gestion de cobro y proceso coactivo (pages 13-17 of the captured official print)'
+    source_url: 'https://www.bcb.gob.bo/webdocs/MesaDePartes/files/Ley-065-Pensiones.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2010-12-10'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 13
+          end_page: 17
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Banco Central de Bolivia publication)
+      publisher: Banco Central de Bolivia
+      source_family: social-security/pensions-slices
+      language: es
+  - source_id: bo-ley-2010-065-titulo-5-6-sectores-inversiones
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-2010-065/titulo-5-6-sectores-inversiones
+    title: 'Ley 065 Titulos V-VI: sectores laborales integrados; inversiones (pages 18-20 of the captured official print)'
+    source_url: 'https://www.bcb.gob.bo/webdocs/MesaDePartes/files/Ley-065-Pensiones.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2010-12-10'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 18
+          end_page: 20
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Banco Central de Bolivia publication)
+      publisher: Banco Central de Bolivia
+      source_family: social-security/pensions-slices
+      language: es
+  - source_id: bo-ley-2010-065-titulo-7-9-gestora-transicion-finales
+    jurisdiction: bo
+    document_class: statute
+    citation_path: bo/statute/ley-2010-065/titulo-7-9-gestora-transicion-finales
+    title: 'Ley 065 Titulos VII-IX: Gestora de la seguridad social; transicion; disposiciones varias y finales (pages 21-29 of the captured official print)'
+    source_url: 'https://www.bcb.gob.bo/webdocs/MesaDePartes/files/Ley-065-Pensiones.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2010-12-10'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 21
+          end_page: 29
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Banco Central de Bolivia publication)
+      publisher: Banco Central de Bolivia
+      source_family: social-security/pensions-slices
+      language: es

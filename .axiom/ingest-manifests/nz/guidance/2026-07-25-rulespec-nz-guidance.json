@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/guidance/2026-07-25-rulespec-nz-guidance.json",
+      "sha256": "aeb23dadc97bb02073e8c4b5a6ea7072369d31793c638c048653e2878b1c634f"
+    },
+    {
+      "path": "data/corpus/inventory/nz/guidance/2026-07-25-rulespec-nz-guidance.json",
+      "sha256": "8990f85617ce183e01f833d9ad2a65614d1e55a992fa812563c2a0b769a9ffbf"
+    },
+    {
+      "path": "data/corpus/provisions/nz/guidance/2026-07-25-rulespec-nz-guidance.jsonl",
+      "sha256": "af1452542e813631d2a94671ce27c8b00ba2498bb1a452f6c3f1b80d6f308a60"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-acc-client-payment-rates-2026-04.html",
+      "sha256": "1a1da3d13d67737c9cce6f67297d565480c9c842bf05c5158d06c933c01373ac"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-acc-client-payment-rates-2026-07.html",
+      "sha256": "bccf7051e55cc86b7fe3a935271e75f5c208c9ec6b4db248d6fbfa77744aea7b"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-acc-weekly-compensation-employees.html",
+      "sha256": "c194e748fba73e6643530af887495e899fc49cc6cc9cff001759425d90dfe904"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-acc-weekly-compensation.html",
+      "sha256": "e94af6ec541b3125abb0d8d04352de4b1d23caee149eeabb5b851ae1e4d202d9"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-child-support-overview.html",
+      "sha256": "0edfc5ac91a25a11e64fbdcb394f8338e7e934f682ac45c7e2ad09a1ba7a5f5e"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-child-support-sharing-care.html",
+      "sha256": "f2ea77a590d5557bda7632e40be223625fc0ff7097bb851a435f453ef60b4d91"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-gst-calculation-guidance.html",
+      "sha256": "73810ec8f387196e523363ebbcb52e7accbee05797f63b1012a11b5daa724d0b"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-gst-low-value-imported-goods.html",
+      "sha256": "f99b450387e09bf5332215b2c79ad79d319d8f272ee9f8478d954c69107d026b"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-paye-deduction-tables.html",
+      "sha256": "15a48f660429901aaf2248f157aa00bba97be20006ca98f5ee2f3ee80a39d450"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-rwt-rates.html",
+      "sha256": "cd7968f72312e8cc8bd367cc96f299b6c6b6ea0b8dff38f570c6a260568cf641"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-ird-student-loan-repayment-deductions.html",
+      "sha256": "5d7cd2da9bf17cd56e9445df39e3d50a60df1263b847749e3ec368be8dc91059"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-studylink-ordinarily-resident.html",
+      "sha256": "d38e884ad97d0844b16d65c8aa12d123373a7e4365fd043e3cb5c2f6691ca550"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-studylink-parents-income.html",
+      "sha256": "3026a703ac2870aabc11ebfb38783867b639b45cfacbf7e836b341cf16035c8e"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-25-rulespec-nz-guidance/official-documents/nz-studylink-student-allowance-rates.html",
+      "sha256": "34f898e221629ad2824371b24b659a990a79c7e3237ae0e472d29a5082b6b007"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0c1ab234e716e8b3c3da2af88b754e79c045ee3b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --manifest manifests/nz-agency-guidance-documents.yaml --source-as-of 2026-07-25 --expression-date 2026-07-25 over 14 live official agency pages (IRD x7, ACC x4, StudyLink x3) resolved after the prior curated URLs rotted, retained as sha256-pinned source snapshots"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 118,
+    "missing_count": 0,
+    "provision_count": 118,
+    "source_count": 118
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-25T13:05:50.488060+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ODfuO5DHvc2s0iTo0fzmdcxpFKGbLYb9S4jyDmqaQP7fnXV5FDhv1nyOHSguTAPucIFMwDi3nDfKoS8ksEDvAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-rulespec-nz-guidance"
+}

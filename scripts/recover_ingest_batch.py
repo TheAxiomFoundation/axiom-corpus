@@ -22,15 +22,10 @@ from axiom_corpus.corpus.anchors import generate_anchors_for_provision
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.california_mpp import _section_provision, _subsection_provision
 from axiom_corpus.corpus.coverage import compare_provision_coverage
-from axiom_corpus.corpus.documents import (
-    OfficialDocumentSource,
-    _extract_blocks,
-    _inventory_items,
-    _provision_records,
-)
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from axiom_corpus.corpus.ingest_manifests import build_ingest_manifest, default_ingest_manifest_path
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
     build_usc_inventory_from_xml,
@@ -39,6 +34,11 @@ from axiom_corpus.corpus.usc import (
     parse_uslm_title,
 )
 from axiom_corpus.parsers.us_ca.regulations import extract_paragraphs, parse_mpp_sections
+
+if __package__:
+    from .recover_ingest import assert_ecfr_recovery_supported
+else:
+    from recover_ingest import assert_ecfr_recovery_supported
 
 REPO = Path(__file__).parents[1]
 FETCHED = REPO / "recovered-fetched"
@@ -132,6 +132,7 @@ def _all_ingested_citation_paths() -> tuple[set[str], dict[str, list[str]]]:
     """Index every durable provision scope for the final offline recovery audit."""
     exact: set[str] = set()
     normalized: dict[str, list[str]] = defaultdict(list)
+    require_materialized([BASE / "provisions"], fetch=True, repo=REPO)
     for path in sorted((BASE / "provisions").rglob("*.jsonl")):
         for line_number, line in enumerate(path.read_text().splitlines(), 1):
             if not line.strip():
@@ -347,8 +348,12 @@ def _targeted_state_html(
     targets = list(entry.get("covers_citation_paths") or [])
     if not text or len(text) < 200:
         raise ValueError("state statute page contains no parseable statutory text")
-    if len(targets) != 1:
-        return _targeted_multi_section_html(entry, text, provenance, source_key)
+    if (
+        len(targets) != 1
+        or entry.get("parser") == "new:north-carolina-statutes-html"
+        or entry.get("version_aware_splitter") is not None
+    ):
+        return _targeted_multi_section_html(entry, soup, text, provenance, source_key)
     target = targets[0]
     label = target.rsplit("/", 1)[-1]
     citation_number = label.removeprefix("rule-")
@@ -376,7 +381,11 @@ def _targeted_state_html(
 
 
 def _targeted_multi_section_html(
-    entry: dict[str, Any], text: str, provenance: dict[str, Any], source_key: str
+    entry: dict[str, Any],
+    soup: BeautifulSoup,
+    text: str,
+    provenance: dict[str, Any],
+    source_key: str,
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
     """Split official title/chapter HTML only where every planned section is printed."""
     targets = list(entry.get("covers_citation_paths") or [])
@@ -384,21 +393,135 @@ def _targeted_multi_section_html(
     # not truncate them to the title path: assembled chapter captures (notably
     # Delaware) need one durable row for each cited section.
     section_paths = list(dict.fromkeys(target for target in targets))
-    starts: list[tuple[int, str]] = []
+    heading_starts: list[tuple[int, str]] = []
+    search_start = 0
+    for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "div"]):
+        raw_classes = tag.get("class")
+        classes = (
+            {str(value).lower() for value in raw_classes}
+            if isinstance(raw_classes, list)
+            else set()
+        )
+        if tag.name == "div" and "sectionhead" not in classes:
+            continue
+        heading = re.sub(r"\s+", " ", tag.get_text(" ", strip=True)).strip()
+        if not re.match(r"^§+\s*\d", heading):
+            continue
+        start = text.find(heading, search_start)
+        if start < 0:
+            raise ValueError("state statute heading could not be located in normalized text")
+        heading_starts.append((start, heading))
+        search_start = start + len(heading)
+
+    splitter = entry.get("version_aware_splitter")
+    if splitter is not None and (
+        not isinstance(splitter, dict)
+        or splitter.get("kind") != "north-carolina-tax-year"
+        or entry.get("jurisdiction") != "us-nc"
+        or not isinstance(splitter.get("tax_year"), int)
+        or isinstance(splitter.get("tax_year"), bool)
+    ):
+        raise ValueError(
+            "version_aware_splitter must be a North Carolina tax-year selector "
+            "with an integer tax_year"
+        )
+
+    def rendition_end(start: int) -> int:
+        return next(
+            (heading_start for heading_start, _ in heading_starts if heading_start > start),
+            len(text),
+        )
+
+    def select_nc_tax_year_rendition(
+        label: str, matches: list[tuple[int, str]]
+    ) -> tuple[int, dict[str, Any]]:
+        if splitter is None:
+            raise ValueError(
+                f"state statute page contains repeated planned section {label}; "
+                "configure an explicit version-aware splitter instead of the generic "
+                "multi-section splitter"
+            )
+        tax_year = int(splitter["tax_year"])
+        renditions: list[dict[str, Any]] = []
+        selected: list[tuple[int, str]] = []
+        for start, heading in matches:
+            before = re.search(
+                r"\(Effective for taxable years beginning before January 1, (\d{4})\)",
+                heading,
+                re.I,
+            )
+            on_or_after = re.search(
+                r"\(Effective for taxable years beginning on or after January 1, (\d{4})\)",
+                heading,
+                re.I,
+            )
+            if bool(before) == bool(on_or_after):
+                raise ValueError(
+                    f"North Carolina section {label} has an unsupported or ambiguous "
+                    f"effective rendition heading: {heading}"
+                )
+            if before is not None:
+                boundary_year = int(before.group(1))
+                applies = tax_year < boundary_year
+                applicability = {"tax_year_before": boundary_year}
+            elif on_or_after is not None:
+                boundary_year = int(on_or_after.group(1))
+                applies = tax_year >= boundary_year
+                applicability = {"tax_year_on_or_after": boundary_year}
+            else:
+                raise AssertionError("effective-heading validation failed")
+            body = text[start : rendition_end(start)].strip()
+            renditions.append(
+                {
+                    "heading": heading,
+                    "applicability": applicability,
+                    "body_sha256": hashlib.sha256(body.encode()).hexdigest(),
+                    "selected": applies,
+                }
+            )
+            if applies:
+                selected.append((start, heading))
+        if len(selected) != 1:
+            raise ValueError(
+                f"North Carolina section {label} has {len(selected)} renditions "
+                f"applicable to tax year {tax_year}; expected exactly one"
+            )
+        selected_start, selected_heading = selected[0]
+        return selected_start, {
+            "kind": "north-carolina-tax-year",
+            "tax_year": tax_year,
+            "selected_heading": selected_heading,
+            "renditions": renditions,
+        }
+
+    starts: list[tuple[int, str, dict[str, Any] | None]] = []
     for section_path in section_paths:
         label = section_path.rsplit("/", 1)[-1]
-        match = re.search(rf"(?:§+\s*){re.escape(label)}(?:\.|\s)", text, re.I)
-        if match is None:
+        pattern = re.compile(rf"^§+\s*{re.escape(label)}(?:\.|\s)", re.I)
+        matches = [
+            (start, heading) for start, heading in heading_starts if pattern.search(heading)
+        ]
+        if not matches:
             raise ValueError(f"state statute page does not contain declared section {label}")
-        starts.append((match.start(), section_path))
-    starts.sort()
+        if len(matches) > 1:
+            start, selection = select_nc_tax_year_rendition(label, matches)
+            starts.append((start, section_path, selection))
+            continue
+        starts.append((matches[0][0], section_path, None))
+    starts.sort(key=lambda value: value[0])
     records: list[ProvisionRecord] = []
-    metadata = {"fetched_at": provenance["fetched_at"], "recovery_parser": entry["parser"]}
-    for index, (start, section_path) in enumerate(starts):
-        next_section = re.search(r"\s§+\s*\d", text[start + 1 :])
-        fallback_end = start + 1 + next_section.start() if next_section else len(text)
+    common_metadata = {
+        "fetched_at": provenance["fetched_at"],
+        "recovery_parser": entry["parser"],
+    }
+    for index, (start, section_path, record_selection) in enumerate(starts):
+        fallback_end = rendition_end(start)
         end = starts[index + 1][0] if index + 1 < len(starts) else fallback_end
+        end = min(end, fallback_end)
         label = section_path.rsplit("/", 1)[-1]
+        metadata = dict(common_metadata)
+        if record_selection is not None:
+            metadata["version_selection"] = record_selection
         records.append(ProvisionRecord(
             id=deterministic_provision_id(section_path), jurisdiction=str(entry["jurisdiction"]),
             document_class=str(entry["document_class"]), citation_path=section_path,
@@ -506,6 +629,13 @@ def _california_mpp(
 def _generic(
     entry: dict[str, Any], path: Path, data: bytes, provenance: dict[str, Any], source_key: str
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    from axiom_corpus.corpus.documents import (
+        OfficialDocumentSource,
+        _extract_blocks,
+        _inventory_items,
+        _provision_records,
+    )
+
     source_format = _format(data)
     parser = str(entry["parser"])
     extract_data = data
@@ -826,6 +956,7 @@ def _uslm_planned_descendants(
 def _parse(
     entry: dict[str, Any], path: Path, data: bytes, provenance: dict[str, Any], source_key: str
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    assert_ecfr_recovery_supported(entry)
     parser = str(entry["parser"])
     document_id = str(entry["document_id"])
     if document_id in ASSEMBLED_SCOPE_REPLACEMENTS:
@@ -888,12 +1019,12 @@ def _parse(
             raise ValueError(
                 "unrecoverable: official response is XHTML, not a USLM title snapshot"
             )
-        title = (
+        usc_title: int | None = (
             int(str(entry["document_id"]).removeprefix("uscode-title-"))
             if str(entry["document_id"]).startswith("uscode-title-")
             else None
         )
-        document = parse_uslm_title(xml, title=title)
+        document = parse_uslm_title(xml, title=usc_title)
         inventory = build_usc_inventory_from_xml(
             xml,
             title=document.title,
@@ -958,6 +1089,11 @@ def main() -> int:
                 ignored_duplicates.append(path.name)
         else:
             files[document_id] = path
+
+    # Preflight the whole selected batch before any writes or reuse of a prior
+    # success report: appendix replay needs scope and graphics we cannot restore.
+    for document_id in files:
+        assert_ecfr_recovery_supported(entries[document_id], base=BASE)
 
     store = CorpusArtifactStore(BASE)
     scoped_items: dict[tuple[str, str, str], list[SourceInventoryItem]] = defaultdict(list)

@@ -1,0 +1,38 @@
+# Execution plan only; extraction and composition are the next supervised step.
+# The three source versions are fresh paragraph-level ELI ingests.  The old
+# 2026-07-12 PDF scope is intentionally absent because mixing document-level
+# and paragraph-level shapes would make citation resolution non-uniform.
+jurisdiction: dk
+document_class: statute
+target_version: 2026-08-04-dk-full-parity-tier1
+source_versions:
+  - version: 2026-08-04-dk-full-parity-tier1-current
+    manifest: manifests/dk-full-parity-tier1-eli.yaml
+    allow_superseded: false
+  - version: 2026-08-04-dk-full-parity-tier1-historical
+    manifest: manifests/dk-full-parity-tier1-historical-eli.yaml
+    allow_superseded: true
+  - version: 2026-08-04-dk-full-parity-tier1-amendments
+    manifest: manifests/dk-full-parity-tier1-amendments-eli.yaml
+    allow_superseded: true
+compose_command:
+  - UV_CACHE_DIR=/private/tmp/axiom-uv-cache
+  - uv
+  - run
+  - --no-sync
+  - python
+  - scripts/compose_scope_versions.py
+  - --base
+  - data/corpus
+  - --jurisdiction
+  - dk
+  - --document-class
+  - statute
+  - --source-version
+  - 2026-08-04-dk-full-parity-tier1-current
+  - --source-version
+  - 2026-08-04-dk-full-parity-tier1-historical
+  - --source-version
+  - 2026-08-04-dk-full-parity-tier1-amendments
+  - --target-version
+  - 2026-08-04-dk-full-parity-tier1

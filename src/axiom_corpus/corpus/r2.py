@@ -313,8 +313,14 @@ def load_r2_config(
     )
 
 
-def make_r2_client(config: R2Config) -> Any:
-    """Create a boto3 S3-compatible client for Cloudflare R2."""
+def make_r2_client(config: R2Config, *, max_pool_connections: int = 10) -> Any:
+    """Create a boto3 S3-compatible client for Cloudflare R2.
+
+    ``max_pool_connections`` sizes botocore's per-client connection pool. A
+    caller that drives the client from a thread pool must size it to at least
+    the worker count, otherwise botocore serializes the surplus threads on the
+    pool and logs "Connection pool is full" warnings.
+    """
     return boto3.client(
         "s3",
         endpoint_url=config.endpoint_url,
@@ -325,6 +331,7 @@ def make_r2_client(config: R2Config) -> Any:
             connect_timeout=10,
             read_timeout=30,
             retries={"max_attempts": 5, "mode": "standard"},
+            max_pool_connections=max(10, max_pool_connections),
         ),
     )
 

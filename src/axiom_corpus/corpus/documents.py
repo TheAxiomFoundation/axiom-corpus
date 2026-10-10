@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import csv
 import re
 import shutil
 import subprocess
@@ -13,7 +14,7 @@ import warnings
 import zipfile
 from dataclasses import dataclass
 from datetime import date
-from io import BytesIO
+from io import BytesIO, StringIO
 from json import dumps as json_dumps
 from json import loads as json_loads
 from pathlib import Path
@@ -30,6 +31,7 @@ from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
+from axiom_corpus.corpus.citation_segment import citation_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -356,6 +358,20 @@ def _download_document(
     request_config = source.request or {}
     verify = bool(request_config.get("verify_tls", True))
     request_headers = _request_headers_from_config(request_config)
+    if request_config.get("browser_impersonation_direct"):
+        impersonation_config = request_config.get("browser_impersonation")
+        impersonate = (
+            OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION
+            if impersonation_config in (None, True)
+            else str(impersonation_config)
+        )
+        return _download_document_by_browser_impersonation(
+            source,
+            download_url,
+            headers=request_headers,
+            verify=verify,
+            impersonate=impersonate,
+        )
     if request_config.get("range_fetch"):
         if request_config.get("range_backend") == "curl":
             return _download_document_by_curl_ranges(
@@ -375,6 +391,12 @@ def _download_document(
             verify=verify,
             chunk_size=int(request_config.get("range_chunk_size", _RANGE_FETCH_CHUNK_SIZE_BYTES)),
         )
+    if request_config.get("fresh_session"):
+        # Publishers such as govt.westlaw.com answer a cookie-bearing session with a
+        # browser-check interstitial after the first page; fetch with a fresh session.
+        fresh_session = requests.Session()
+        fresh_session.headers.update(session.headers)
+        session = fresh_session
     response = _get_with_retries(session, download_url, headers=request_headers, verify=verify)
     if _needs_browser_fallback(source, response):
         response.close()
@@ -396,6 +418,9 @@ def _download_document(
             verify=verify,
             impersonate=impersonate,
         )
+    if _needs_browser_fallback(source, response):
+        response.close()
+        raise RuntimeError(f"official document remained access-blocked: {download_url}")
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
@@ -403,6 +428,26 @@ def _download_document(
         content_type=response.headers.get("content-type"),
         final_url=response.url,
     )
+
+
+def _browser_impersonation_headers(
+    headers: dict[str, str] | None,
+    *,
+    impersonate: str,
+) -> dict[str, str]:
+    """Headers for a curl_cffi fetch that stay consistent with the impersonated browser.
+
+    Chromium profiles (the default ``chrome120``, ``edge``) keep the official Chrome
+    User-Agent. For a Safari or Firefox profile no User-Agent is forced: a Chrome
+    User-Agent on a Safari TLS fingerprint is itself a bot signal (Cloudflare answers
+    HTTP 403 to it), so curl_cffi sends the profile's own User-Agent instead.
+    """
+    request_headers = dict(headers or {})
+    if impersonate.startswith(("chrome", "edge")):
+        request_headers.setdefault("User-Agent", OFFICIAL_DOCUMENT_BROWSER_USER_AGENT)
+    else:
+        request_headers.pop("User-Agent", None)
+    return request_headers
 
 
 def _download_document_by_browser_impersonation(
@@ -419,10 +464,7 @@ def _download_document_by_browser_impersonation(
     except ImportError as exc:  # pragma: no cover - exercised only in incomplete installs
         raise RuntimeError("browser_impersonation official-document fetches require curl-cffi") from exc
 
-    request_headers = {
-        "User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
-        **(headers or {}),
-    }
+    request_headers = _browser_impersonation_headers(headers, impersonate=impersonate)
     for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
         try:
             response = curl_requests.get(
@@ -441,6 +483,15 @@ def _download_document_by_browser_impersonation(
                 _sleep_before_retry(attempt)
                 continue
             cast(Any, response).raise_for_status()
+            if _needs_browser_fallback(source, cast(requests.Response, response)):
+                cast(Any, response).close()
+                if attempt < _REQUEST_RETRY_ATTEMPTS:
+                    _sleep_before_retry(attempt)
+                    continue
+                raise RuntimeError(
+                    f"official document remained access-blocked after browser "
+                    f"impersonation: {download_url}"
+                )
             return _DownloadedDocument(
                 source=source,
                 content=response.content,
@@ -653,9 +704,15 @@ def _parse_curl_header_dump(header_dump: str) -> tuple[int, dict[str, str]]:
 
 
 def _request_headers_from_config(request_config: dict[str, Any]) -> dict[str, str] | None:
-    if not request_config.get("browser_user_agent"):
-        return None
-    return {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    headers: dict[str, str] = {}
+    if request_config.get("browser_user_agent"):
+        headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+    cookies = request_config.get("cookies")
+    if isinstance(cookies, dict) and cookies:
+        # Publisher-declared cookies (for example the govt.westlaw.com browser-check
+        # cookies) sent with every request for the document.
+        headers["Cookie"] = "; ".join(f"{name}={value}" for name, value in cookies.items())
+    return headers or None
 
 
 def _needs_browser_fallback(
@@ -669,7 +726,22 @@ def _needs_browser_fallback(
     stripped = response.content.lstrip()
     if declared_format == "pdf" and not response.content.startswith(b"%PDF"):
         return "html" in content_type or stripped.startswith((b"<!doctype", b"<html"))
-    return False
+    return declared_format == "pdf" and _pdf_is_access_denial(response.content)
+
+
+def _pdf_is_access_denial(content: bytes) -> bool:
+    if not content.startswith(b"%PDF"):
+        return False
+    try:
+        with fitz.open(stream=content, filetype="pdf") as document:
+            if document.page_count > 2:
+                return False
+            text = " ".join(
+                " ".join(page.get_text().split()) for page in document
+            ).strip().lower()
+    except (RuntimeError, ValueError):
+        return False
+    return len(text) <= 500 and text.startswith("the request is blocked.")
 
 
 def _get_with_retries(
@@ -722,6 +794,10 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "pdf"
     if "html" in content_type or downloaded.content.lstrip().startswith((b"<!doctype", b"<html")):
         return "html"
+    if "javascript" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".js"):
+        return "javascript"
+    if "csv" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".csv"):
+        return "csv"
     if "excel" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".xls"):
         return "xls"
     if "msword" in content_type or downloaded.content.startswith(_LEGACY_WORD_DOCUMENT_MAGIC):
@@ -760,6 +836,8 @@ def _extension(source_format: str) -> str:
         return ".pdf"
     if source_format == "html":
         return ".html"
+    if source_format == "javascript":
+        return ".js"
     return f".{safe_segment(source_format)}"
 
 
@@ -784,6 +862,10 @@ def _extract_blocks(
             fallback_title=title,
             extraction=extraction,
         )
+    if source_format == "javascript":
+        return _extract_plain_text_blocks(content, title=title)
+    if source_format == "csv":
+        return _extract_csv_blocks(content, title=title, extraction=extraction)
     if source_format == "docx":
         return _extract_docx_blocks(content, extraction=extraction)
     if source_format == "doc":
@@ -795,27 +877,193 @@ def _extract_blocks(
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
+def _extract_plain_text_blocks(
+    content: bytes,
+    *,
+    title: str | None,
+) -> tuple[_DocumentBlock, ...]:
+    """Extract a retained plain-text source as one auditable block."""
+    try:
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = content.decode("cp1252")
+    body = _normalize_text(text)
+    if not body:
+        return ()
+    return (
+        _DocumentBlock(
+            kind="block",
+            ordinal=1,
+            heading=title,
+            body=body,
+            metadata={},
+        ),
+    )
+
+
+def _extract_csv_blocks(
+    content: bytes,
+    *,
+    title: str | None,
+    extraction: dict[str, Any] | None,
+) -> tuple[_DocumentBlock, ...]:
+    """Parse a CSV source into one auditable tabular block."""
+    config = extraction or {}
+    try:
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = content.decode("cp1252")
+
+    configured_delimiter = config.get("csv_delimiter") or config.get("delimiter")
+    if configured_delimiter is not None:
+        delimiter = str(configured_delimiter)
+        if len(delimiter) != 1:
+            raise ValueError("csv delimiter must be exactly one character")
+    else:
+        try:
+            delimiter = csv.Sniffer().sniff(text[:8192], delimiters=",;\t|").delimiter
+        except csv.Error:
+            delimiter = ","
+
+    try:
+        rows = [
+            tuple(row)
+            for row in csv.reader(StringIO(text), delimiter=delimiter, strict=True)
+        ]
+    except csv.Error as exc:
+        raise ValueError(f"invalid csv source: {exc}") from exc
+    header_row_number = int(
+        config["csv_header_row"]
+        if "csv_header_row" in config
+        else config.get("header_row", 1)
+    )
+    start_row_configured = "csv_start_row" in config or "start_row" in config
+    start_row_number = int(
+        config["csv_start_row"]
+        if "csv_start_row" in config
+        else config.get("start_row", header_row_number + 1)
+    )
+    if header_row_number < 1 or header_row_number > len(rows):
+        raise ValueError("csv header row is outside the source")
+    if start_row_number <= header_row_number:
+        raise ValueError("csv start row must follow the header row")
+    if start_row_configured and start_row_number > len(rows):
+        raise ValueError("csv start row is outside the source")
+
+    header_row = rows[header_row_number - 1]
+    if not header_row or any(not _xlsx_cell_text(value) for value in header_row):
+        raise ValueError("csv header cells must be non-empty")
+    headers = _xlsx_headers(header_row)
+    index = _xlsx_header_index(headers)
+    output_columns = _xlsx_configured_strings(
+        config.get("csv_columns") or config.get("columns")
+    )
+    filters = _xlsx_filters(config.get("csv_filters") or config.get("filters"))
+    missing_columns = [column for column in output_columns if column not in index]
+    if missing_columns:
+        raise ValueError(f"csv column not found: {', '.join(missing_columns)}")
+    missing_filter_columns = [column for column in filters if column not in index]
+    if missing_filter_columns:
+        raise ValueError(f"csv filter column not found: {', '.join(missing_filter_columns)}")
+    row_columns = output_columns or headers
+    max_rows = (
+        config["csv_max_rows"] if "csv_max_rows" in config else config.get("max_rows")
+    )
+    row_limit = int(max_rows) if max_rows is not None else None
+    if row_limit is not None and row_limit < 1:
+        raise ValueError("csv max rows must be positive")
+    selected_rows: list[tuple[int, tuple[str, ...]]] = []
+
+    for row_number, row in enumerate(rows, start=1):
+        if row_number < start_row_number or not any(cell.strip() for cell in row):
+            continue
+        if len(row) > len(headers):
+            raise ValueError(f"csv row {row_number} has more cells than the header")
+        if not _xlsx_row_matches_filters(row, index=index, filters=filters):
+            continue
+        selected_rows.append(
+            (
+                row_number,
+                tuple(
+                    _xlsx_cell_text(row[index[column]])
+                    if index[column] < len(row)
+                    else ""
+                    for column in row_columns
+                ),
+            )
+        )
+        if row_limit is not None and len(selected_rows) >= row_limit:
+            break
+
+    if not selected_rows:
+        return ()
+    body_lines = ["Row | " + " | ".join(row_columns)]
+    body_lines.extend(
+        f"{row_number} | " + " | ".join(values) for row_number, values in selected_rows
+    )
+    metadata: dict[str, Any] = {
+        "delimiter": delimiter,
+        "row_count": len(selected_rows),
+    }
+    citation_suffix = config.get("citation_suffix") or config.get("section_label")
+    if isinstance(citation_suffix, str) and citation_suffix:
+        metadata["citation_suffix"] = citation_suffix
+        metadata["section_label"] = citation_suffix
+    return (
+        _DocumentBlock(
+            kind="sheet",
+            ordinal=1,
+            heading=str(config.get("heading") or title or "CSV data"),
+            body=_normalize_text("\n".join(body_lines)),
+            metadata=metadata,
+        ),
+    )
+
+
 def _extract_pdf_blocks(
     content: bytes, *, extraction: dict[str, Any] | None
 ) -> tuple[_DocumentBlock, ...]:
     extraction_config = extraction or {}
     segmentation = extraction_config.get("segmentation")
+    layered = _pdf_layered_page_text_requested(extraction_config)
+    if layered and segmentation is not None:
+        raise ValueError(
+            "amendment_markup and sort_blocks support only the default per-page "
+            f"PDF segmentation, not segmentation={segmentation!r}"
+        )
     if segmentation == "numbered_sections":
         return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "labeled_sections":
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
+    markup = _pdf_amendment_markup_config(extraction_config) if layered else None
+    typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
     with fitz.open(stream=content, filetype="pdf") as document:
         for index, page in enumerate(document, start=1):
-            text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
+            markup_metadata: dict[str, Any] | None = None
+            if layered:
+                text, markup_metadata = _pdf_page_layered_text(
+                    page,
+                    extraction=extraction_config,
+                    markup=markup if markup is not None and markup.covers(index) else None,
+                    page_number=index,
+                )
+                for phrase, count in (markup_metadata or {}).get(
+                    "typographic_underlines", {}
+                ).items():
+                    typographic_matches[phrase] += count
+            else:
+                text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
             if not text:
                 continue
             metadata: dict[str, Any] = {"page_number": index}
             if page_citation_prefix:
                 metadata["citation_suffix"] = f"{safe_segment(str(page_citation_prefix))}-{index}"
+            if markup_metadata is not None:
+                metadata["amendment_markup"] = markup_metadata
             blocks.append(
                 _DocumentBlock(
                     kind="page",
@@ -825,7 +1073,414 @@ def _extract_pdf_blocks(
                     metadata=metadata,
                 )
             )
+    unmatched = [phrase for phrase, count in typographic_matches.items() if not count]
+    if unmatched:
+        raise ValueError(
+            f"amendment_markup typographic_underlines not found in the marked pages: {unmatched}"
+        )
     return tuple(blocks)
+
+
+# Amendment markup for PDF pages (opt-in with the ``amendment_markup`` extraction
+# key). Register and agency PDFs that print amended rule text show deleted text
+# struck through and inserted text underlined. The strike and underline are
+# vector rules on the page, not text, so plain text extraction reads both as
+# ordinary text. With ``amendment_markup`` each character is classified against
+# the page's thin horizontal rules and written with the GNU wdiff delimiters:
+# ``[-deleted text-]`` and ``{+inserted text+}``. Removing the delimiters gives
+# back exactly the page text that extraction without the markup would produce.
+_AMENDMENT_DELETED = "deleted"
+_AMENDMENT_INSERTED = "inserted"
+_AMENDMENT_MARKUP_DELIMITERS = {
+    _AMENDMENT_DELETED: ("[-", "-]"),
+    _AMENDMENT_INSERTED: ("{+", "+}"),
+}
+_AMENDMENT_MARKUP_TOKENS = ("[-", "-]", "{+", "+}")
+_AMENDMENT_MARKUP_NOTATION = {
+    "notation": "wdiff",
+    "deleted": "[-text-]",
+    "inserted": "{+text+}",
+    "deleted_source_markup": "strike-through",
+    "inserted_source_markup": "underline",
+}
+# A rule is a filled or stroked horizontal line at most this thick (points).
+_PDF_RULE_MAX_THICKNESS = 1.5
+# Vertical position of a rule's centre relative to a text line's baseline, in
+# multiples of the line's font size (positive is below the baseline). A strike
+# crosses the lower-case letters; an underline sits just below the baseline.
+# Calibrated on CDSS ACL 06-31 (strike -0.23 to -0.24, underline +0.13 to
+# +0.18) and 13 DE Reg. 1550 (strike -0.26, underline +0.11). The nearest other
+# offsets in those PDFs, box borders and form rules, are at -0.84 or below and
+# +0.25 or above; a superscript's own strike measured against the main line
+# (-0.53) is classified by the superscript's own baseline instead.
+_PDF_STRIKE_OFFSET_RANGE = (-0.40, -0.10)
+_PDF_UNDERLINE_OFFSET_RANGE = (0.05, 0.22)
+_PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
+_PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements")
+
+
+@dataclass(frozen=True)
+class _PdfHorizontalRule:
+    x0: float
+    x1: float
+    y: float
+
+
+def _pdf_layered_page_text_requested(extraction: dict[str, Any]) -> bool:
+    return bool(extraction.get("amendment_markup")) or bool(extraction.get("sort_blocks"))
+
+
+@dataclass(frozen=True)
+class _PdfAmendmentMarkupConfig:
+    start_page: int
+    end_page: int
+    typographic_underlines: tuple[str, ...] = ()
+
+    def covers(self, page_number: int) -> bool:
+        return self.start_page <= page_number <= self.end_page
+
+
+def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMarkupConfig | None:
+    """Parse the ``amendment_markup`` extraction key.
+
+    ``true`` marks every page. A mapping may limit marking to an inclusive
+    ``start_page``/``end_page`` range (for example the attached regulation text
+    of an agency letter, leaving the letter's own emphasis underlines alone) and
+    may list ``typographic_underlines``: exact phrases whose underline is
+    citation typography, such as an underlined case name, and not an insertion.
+    Those phrases are written without insertion delimiters, and every listed
+    phrase must occur in the marked pages.
+    """
+    config = extraction.get("amendment_markup")
+    if not config:
+        return None
+    if config is True:
+        return _PdfAmendmentMarkupConfig(start_page=1, end_page=sys.maxsize)
+    if not isinstance(config, dict):
+        raise ValueError("amendment_markup must be true or a mapping")
+    unknown = set(config) - {"start_page", "end_page", "typographic_underlines"}
+    if unknown:
+        raise ValueError(f"unknown amendment_markup keys: {sorted(unknown)}")
+    start_page = _positive_int(config.get("start_page"), default=1)
+    end_value = config.get("end_page")
+    end_page = sys.maxsize if end_value is None else _positive_int(end_value, default=1)
+    if end_page < start_page:
+        raise ValueError("amendment_markup end_page must not precede start_page")
+    phrases = config.get("typographic_underlines") or ()
+    if not isinstance(phrases, list | tuple) or not all(
+        isinstance(phrase, str) and phrase.strip() == phrase and phrase for phrase in phrases
+    ):
+        raise ValueError(
+            "amendment_markup typographic_underlines must be a list of non-empty, "
+            "unpadded strings"
+        )
+    return _PdfAmendmentMarkupConfig(
+        start_page=start_page,
+        end_page=end_page,
+        typographic_underlines=tuple(phrases),
+    )
+
+
+def _pdf_text_flags(extraction: dict[str, Any], *, default: int) -> int:
+    if extraction.get("ignore_actual_text"):
+        return default | int(fitz.TEXT_IGNORE_ACTUALTEXT)
+    return default
+
+
+def _pdf_page_layered_text(
+    page: Any,
+    *,
+    extraction: dict[str, Any],
+    markup: _PdfAmendmentMarkupConfig | None,
+    page_number: int,
+) -> tuple[str, dict[str, Any] | None]:
+    """Build normalized page text from the character layer.
+
+    Used when ``sort_blocks`` or ``amendment_markup`` is set. The character
+    stream is the one ``page.get_text("text")`` returns (same flags), so without
+    either option the result equals the default page text. ``sort_blocks``
+    orders text blocks top to bottom (PyMuPDF block sort), which places a boxed
+    note drawn last in the content stream where it appears on the page.
+    """
+    unsupported = [key for key in _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS if extraction.get(key)]
+    if unsupported:
+        raise ValueError(
+            "amendment_markup and sort_blocks do not support "
+            f"{', '.join(unsupported)}"
+        )
+    raw = page.get_text(
+        "rawdict",
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+        sort=bool(extraction.get("sort_blocks")),
+    )
+    rules = _pdf_horizontal_rules(page) if markup is not None else ()
+    chars: list[str] = []
+    states: list[str | None] = []
+    for block in raw.get("blocks", ()):
+        if block.get("type") != 0:
+            continue
+        for line in block.get("lines", ()):
+            spans = line.get("spans", ())
+            reference = _pdf_line_reference(spans)
+            for span in spans:
+                span_size = float(span.get("size") or 0.0)
+                for char in span.get("chars", ()):
+                    character = str(char.get("c", ""))
+                    state = None
+                    if rules and reference is not None and not character.isspace():
+                        references = [reference]
+                        if span_size > 0:
+                            references.append((float(char["origin"][1]), span_size))
+                        state = _pdf_char_amendment_state(
+                            char,
+                            references=tuple(references),
+                            rules=rules,
+                            page_number=page_number,
+                        )
+                    chars.append(character)
+                    states.append(state)
+            chars.append("\n")
+            states.append(None)
+    raw_text = "".join(chars)
+    plain_text = _normalize_text(raw_text)
+    if markup is None:
+        return plain_text, None
+    present = [token for token in _AMENDMENT_MARKUP_TOKENS if token in raw_text]
+    if present:
+        raise ValueError(
+            f"PDF page {page_number} text already contains amendment markup "
+            f"delimiters {present}; amendment_markup output would be ambiguous"
+        )
+    rendered = _render_amendment_markup(
+        raw_text, states, typographic_underlines=markup.typographic_underlines
+    )
+    if _strip_amendment_markup(rendered.text) != plain_text:
+        raise RuntimeError(
+            f"amendment markup changed the text of PDF page {page_number}"
+        )
+    metadata: dict[str, Any] = {
+        **_AMENDMENT_MARKUP_NOTATION,
+        "deleted_runs": rendered.deleted_runs,
+        "inserted_runs": rendered.inserted_runs,
+    }
+    typographic = {
+        phrase: count for phrase, count in rendered.typographic_underlines.items() if count
+    }
+    if typographic:
+        metadata["typographic_underlines"] = typographic
+    return rendered.text, metadata
+
+
+def _pdf_horizontal_rules(page: Any) -> tuple[_PdfHorizontalRule, ...]:
+    """Return the page's thin, visible, horizontal vector rules."""
+    rules: list[_PdfHorizontalRule] = []
+    for path in page.get_drawings():
+        path_type = str(path.get("type") or "")
+        filled = "f" in path_type and not _pdf_color_is_white(path.get("fill"))
+        stroked = "s" in path_type and not _pdf_color_is_white(path.get("color"))
+        stroke_width = float(path.get("width") or 0.0)
+        for item in path.get("items", ()):
+            operator = item[0]
+            if operator == "re":
+                rect = item[1]
+                if rect.height > _PDF_RULE_MAX_THICKNESS or rect.width <= rect.height:
+                    continue
+                if filled or (stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS):
+                    rules.append(
+                        _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2)
+                    )
+            elif operator == "l" and stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                start, end = item[1], item[2]
+                if abs(start.y - end.y) <= 0.5 and abs(start.x - end.x) > 0.5:
+                    rules.append(
+                        _PdfHorizontalRule(
+                            min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2
+                        )
+                    )
+    return tuple(rules)
+
+
+def _pdf_color_is_white(color: Any) -> bool:
+    if not color:
+        return False
+    return all(float(component) >= 0.95 for component in color)
+
+
+def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
+    """Return the (baseline, font size) of a line's main text.
+
+    The main text is the largest-size span with visible characters. Each
+    character is measured against this reference and against its own baseline
+    and size, so a raised superscript is classified whether the document draws
+    its rule at the superscript's height (the struck "th" of "18th" in CDSS ACL
+    06-31, Attachment A page 2) or continues the main text's rule under it (the
+    underlined "1st" on Attachment A page 5).
+    """
+    best: tuple[float, int, float] | None = None
+    for span in spans:
+        visible = sum(1 for char in span.get("chars", ()) if not str(char.get("c", "")).isspace())
+        size = float(span.get("size") or 0.0)
+        if not visible or size <= 0:
+            continue
+        key = (size, visible, float(span["origin"][1]))
+        if best is None or key[:2] > best[:2]:
+            best = key
+    if best is None:
+        return None
+    return (best[2], best[0])
+
+
+def _pdf_char_amendment_state(
+    char: dict[str, Any],
+    *,
+    references: tuple[tuple[float, float], ...],
+    rules: tuple[_PdfHorizontalRule, ...],
+    page_number: int,
+) -> str | None:
+    x0, _y0, x1, _y1 = char["bbox"]
+    center = (float(x0) + float(x1)) / 2
+    struck = underlined = False
+    for rule in rules:
+        if not (
+            rule.x0 - _PDF_RULE_HORIZONTAL_TOLERANCE
+            <= center
+            <= rule.x1 + _PDF_RULE_HORIZONTAL_TOLERANCE
+        ):
+            continue
+        for baseline, size in references:
+            offset = (rule.y - baseline) / size
+            if _PDF_STRIKE_OFFSET_RANGE[0] <= offset <= _PDF_STRIKE_OFFSET_RANGE[1]:
+                struck = True
+            elif _PDF_UNDERLINE_OFFSET_RANGE[0] <= offset <= _PDF_UNDERLINE_OFFSET_RANGE[1]:
+                underlined = True
+    if struck and underlined:
+        raise ValueError(
+            f"PDF page {page_number} character {char.get('c')!r} is both struck "
+            "through and underlined; amendment_markup cannot classify it"
+        )
+    if struck:
+        return _AMENDMENT_DELETED
+    if underlined:
+        return _AMENDMENT_INSERTED
+    return None
+
+
+@dataclass(frozen=True)
+class _RenderedAmendmentMarkup:
+    text: str
+    deleted_runs: int
+    inserted_runs: int
+    typographic_underlines: dict[str, int]
+
+
+_WORD_SEPARATOR = "separator"
+
+
+def _render_amendment_markup(
+    raw_text: str,
+    states: list[str | None],
+    *,
+    typographic_underlines: tuple[str, ...] = (),
+) -> _RenderedAmendmentMarkup:
+    """Normalize text as ``_normalize_text`` does and wrap marked runs.
+
+    Whitespace is neutral: a space between two words with the same state stays
+    inside one run, so a struck clause reads ``[-a b c-]``, not ``[-a-] [-b-]``.
+    Each ``typographic_underlines`` phrase loses its insertion state wherever it
+    occurs within a paragraph.
+    """
+    kept = [
+        (character, state)
+        for character, state in zip(raw_text, states, strict=True)
+        if character not in {"\u200b", "\ufeff"}
+    ]
+    text = "".join(character for character, _state in kept)
+    paragraphs: list[list[tuple[str, str | None]]] = []
+    current: list[tuple[str, str | None]] = []
+    offset = 0
+    for line in text.splitlines(keepends=True):
+        line_chars = kept[offset : offset + len(line)]
+        offset += len(line)
+        words: list[list[tuple[str, str | None]]] = []
+        word: list[tuple[str, str | None]] = []
+        for character, state in line_chars:
+            if character.isspace():
+                if word:
+                    words.append(word)
+                    word = []
+                continue
+            word.append((character, state))
+        if word:
+            words.append(word)
+        if not words:
+            if current:
+                paragraphs.append(current)
+                current = []
+            continue
+        for word in words:
+            if current:
+                current.append((" ", _WORD_SEPARATOR))
+            current.extend(word)
+    if current:
+        paragraphs.append(current)
+
+    typographic_counts = dict.fromkeys(typographic_underlines, 0)
+    counts = {_AMENDMENT_DELETED: 0, _AMENDMENT_INSERTED: 0}
+    rendered: list[str] = []
+    for paragraph in paragraphs:
+        paragraph_text = "".join(character for character, _state in paragraph)
+        for phrase in typographic_underlines:
+            start = paragraph_text.find(phrase)
+            while start >= 0:
+                typographic_counts[phrase] += 1
+                for position in range(start, start + len(phrase)):
+                    character, state = paragraph[position]
+                    if state == _AMENDMENT_INSERTED:
+                        paragraph[position] = (character, None)
+                start = paragraph_text.find(phrase, start + len(phrase))
+        out: list[str] = []
+        open_state: str | None = None
+        for position, (character, state) in enumerate(paragraph):
+            if state == _WORD_SEPARATOR:
+                next_state = paragraph[position + 1][1]
+                if open_state is not None and open_state != next_state:
+                    out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
+                    open_state = None
+                out.append(character)
+                continue
+            if state != open_state:
+                if open_state is not None:
+                    out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
+                if state is not None:
+                    out.append(_AMENDMENT_MARKUP_DELIMITERS[state][0])
+                    counts[state] += 1
+                open_state = state
+            out.append(character)
+        if open_state is not None:
+            out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
+        rendered.append("".join(out))
+    return _RenderedAmendmentMarkup(
+        text="\n\n".join(rendered),
+        deleted_runs=counts[_AMENDMENT_DELETED],
+        inserted_runs=counts[_AMENDMENT_INSERTED],
+        typographic_underlines=typographic_counts,
+    )
+
+
+def _strip_amendment_markup(text: str) -> str:
+    for token in _AMENDMENT_MARKUP_TOKENS:
+        text = text.replace(token, "")
+    return text
+
+
+_SINGLE_BLOCK_PDF_FILTER_KEYS = (
+    "page_windows",
+    "start_page",
+    "end_page",
+    "start_after_pattern",
+    "drop_lines",
+    "drop_line_patterns",
+)
 
 
 def _extract_single_block_pdf(
@@ -839,13 +1494,30 @@ def _extract_single_block_pdf(
     page texts are concatenated in order under the source's own
     ``citation_path``; a blank-line separator preserves page boundaries for
     readers without emitting page suffixes.
+
+    Page filters (``page_windows`` or the legacy ``start_page``/``end_page``/
+    ``start_after_pattern``/``drop_lines``/``drop_line_patterns``) are honored
+    when present, so one instrument can be sliced out of a larger scan (e.g.
+    a single law inside a multi-law gazette issue) while remaining a single
+    root provision.
     """
     page_texts: list[str] = []
-    with fitz.open(stream=content, filetype="pdf") as document:
-        for page in document:
-            text = _normalize_text(_pdf_page_text(page, extraction=extraction))
-            if text:
-                page_texts.append(text)
+    if any(
+        extraction.get(key) is not None for key in _SINGLE_BLOCK_PDF_FILTER_KEYS
+    ):
+        current_page: int | None = None
+        for line, page_index in _filtered_pdf_lines(content, extraction=extraction):
+            if page_index != current_page:
+                page_texts.append(line)
+                current_page = page_index
+            else:
+                page_texts[-1] = f"{page_texts[-1]}\n{line}"
+    else:
+        with fitz.open(stream=content, filetype="pdf") as document:
+            for page in document:
+                text = _normalize_text(_pdf_page_text(page, extraction=extraction))
+                if text:
+                    page_texts.append(text)
     body = "\n\n".join(page_texts)
     if not body:
         return ()
@@ -931,24 +1603,80 @@ def _extract_labeled_pdf_section_blocks(
     label_heading_re = (
         re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
     )
+    heading_continuation_pattern = extraction.get("heading_continuation_pattern")
+    heading_continuation_re = (
+        re.compile(str(heading_continuation_pattern))
+        if heading_continuation_pattern is not None
+        else None
+    )
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
-    lines = _filtered_pdf_lines(content, extraction=extraction)
+    label_heading_continuation = bool(
+        extraction.get("label_only_heading_continuation", True)
+    )
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
+    heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
+    allow_unstyled_repeated = bool(
+        extraction.get("allow_unstyled_repeated_section_headings", False)
+    )
+    normalize_parentheticals = bool(
+        extraction.get("normalize_parenthetical_label_components", False)
+    )
+    if heading_requires_bold:
+        styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
+        lines = tuple((line, page) for line, page, _style in styled_lines)
+        line_styles = tuple(style for _line, _page, style in styled_lines)
+    else:
+        lines = _filtered_pdf_lines(content, extraction=extraction)
+        line_styles = ()
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
+    current_citation_label: str | None = None
     current_heading: str | None = None
     current_body: list[str] = []
     current_body_pages: list[int] = []
     current_start_page: int | None = None
     index = 0
 
+    def is_heading_continuation(
+        candidate_index: int, *, heading_style: int
+    ) -> bool:
+        candidate = lines[candidate_index][0]
+        is_distinct_section = _match_labeled_pdf_section(
+            candidate,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
+        )
+        if (
+            heading_requires_bold
+            and line_styles[candidate_index] == heading_style
+            and not is_distinct_section
+            and not re.match(r"^(?:[A-Z]|\d+)[.)]\s", candidate)
+            and not re.match(r"^\([A-Za-z0-9]+\)\s", candidate)
+        ):
+            return True
+        return _looks_like_labeled_heading_continuation(
+            candidate,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
+        )
+
     def flush() -> None:
-        nonlocal current_label, current_heading, current_body, current_body_pages
+        nonlocal current_label, current_citation_label, current_heading
+        nonlocal current_body, current_body_pages
         nonlocal current_start_page
-        if current_label is None or current_heading is None or current_start_page is None:
+        if (
+            current_label is None
+            or current_citation_label is None
+            or current_heading is None
+            or current_start_page is None
+        ):
             return
         pages = current_body_pages or [current_start_page]
         sections.append(
@@ -958,7 +1686,7 @@ def _extract_labeled_pdf_section_blocks(
                 heading=current_heading,
                 body=_normalize_text("\n".join(current_body)),
                 metadata={
-                    "citation_suffix": current_label,
+                    "citation_suffix": current_citation_label,
                     "section_label": current_label,
                     "page_start": min(pages),
                     "page_end": max(pages),
@@ -966,6 +1694,7 @@ def _extract_labeled_pdf_section_blocks(
             )
         )
         current_label = None
+        current_citation_label = None
         current_heading = None
         current_body = []
         current_body_pages = []
@@ -980,18 +1709,46 @@ def _extract_labeled_pdf_section_blocks(
             label_template=str(label_template) if label_template is not None else None,
             label_replacements=label_replacements,
         )
+        if (
+            match
+            and heading_requires_bold
+            and not line_styles[index] & fitz.TEXT_FONT_BOLD
+            and not (allow_unstyled_repeated and match[0] == current_label)
+        ):
+            match = None
         if match:
             label, heading_text = match
+            citation_label = (
+                re.sub(
+                    r"\(([^)]+)\)",
+                    lambda component: f".{component.group(1).lower()}",
+                    label,
+                )
+                if normalize_parentheticals
+                else label
+            )
+            inline_body = ""
+            if section_heading_re is not None:
+                heading_match = section_heading_re.match(line)
+                if heading_match is not None:
+                    inline_body = (heading_match.groupdict().get("body") or "").strip()
+            heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
-            if drop_repeated and label == current_label:
+            if drop_repeated and citation_label == current_citation_label:
                 index += 1
-                while index < len(lines) and _looks_like_labeled_heading_continuation(
-                    lines[index][0],
-                    section_heading_re,
-                    section_label_re,
-                    label_template=str(label_template) if label_template is not None else None,
-                    label_replacements=label_replacements,
-                ):
+                full_heading = (current_heading or "").removeprefix(f"{label} ")
+                remaining_heading = (
+                    full_heading.removeprefix(heading_text).strip()
+                    if full_heading.startswith(heading_text)
+                    else ""
+                )
+                while remaining_heading and index < len(lines):
+                    continuation_line = lines[index][0]
+                    if not remaining_heading.startswith(continuation_line):
+                        break
+                    remaining_heading = remaining_heading.removeprefix(
+                        continuation_line
+                    ).strip()
                     index += 1
                 continue
             if not heading_text and label_heading_re is not None:
@@ -1006,22 +1763,49 @@ def _extract_labeled_pdf_section_blocks(
                     continue
             flush()
             heading_lines = [heading_text] if heading_text else []
+            continuation_bodies: list[tuple[str, int]] = []
             index += 1
             if consumed_label_heading:
                 index += 1
-            while index < len(lines) and _looks_like_labeled_heading_continuation(
-                lines[index][0],
-                section_heading_re,
-                section_label_re,
-                label_template=str(label_template) if label_template is not None else None,
-                label_replacements=label_replacements,
+            if heading_continuation_re is not None and not inline_body:
+                while index < len(lines):
+                    continuation_line, continuation_page = lines[index]
+                    continuation_match = heading_continuation_re.match(continuation_line)
+                    if continuation_match is None:
+                        break
+                    continuation_heading = (
+                        continuation_match.groupdict().get("heading") or ""
+                    ).strip()
+                    if not continuation_heading:
+                        break
+                    heading_lines.append(continuation_heading)
+                    continuation_body = (
+                        continuation_match.groupdict().get("body") or ""
+                    ).strip()
+                    index += 1
+                    if continuation_body:
+                        continuation_bodies.append((continuation_body, continuation_page))
+                    if continuation_body or continuation_heading.endswith("."):
+                        break
+            elif heading_continuation_re is None and (
+                not consumed_label_heading or label_heading_continuation
             ):
-                heading_lines.append(lines[index][0])
-                index += 1
+                while index < len(lines) and is_heading_continuation(
+                    index, heading_style=heading_style
+                ):
+                    heading_lines.append(lines[index][0])
+                    index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
+            current_citation_label = citation_label
             current_heading = f"{label} {heading}".strip()
             current_start_page = page
+            if inline_body:
+                current_body.append(inline_body)
+                current_body_pages.append(page)
+            for continuation_body, continuation_page in continuation_bodies:
+                current_body.append(continuation_body)
+                current_body_pages.append(continuation_page)
             continue
         if current_label is not None:
             current_body.append(line)
@@ -1034,6 +1818,11 @@ def _extract_labeled_pdf_section_blocks(
 def _extract_docx_blocks(
     content: bytes, *, extraction: dict[str, Any] | None
 ) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "styled_labeled_sections":
+        return _extract_styled_labeled_docx_section_blocks(
+            content,
+            extraction=extraction or {},
+        )
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_docx_section_blocks(
             content,
@@ -1472,6 +2261,154 @@ def _extract_labeled_docx_section_blocks(
     return tuple(sections)
 
 
+_STYLED_LABELED_CONTINUATION_SUFFIX = r"\s*\((?:Continued|Cont\.)\)\s*$"
+
+
+def _extract_styled_labeled_docx_section_blocks(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[_DocumentBlock, ...]:
+    """Extract DOCX sections that start at Word heading-styled paragraphs.
+
+    Only paragraphs carrying a Word heading style (``Heading1``, ``Title`` ...)
+    are candidate section starts unless ``heading_paragraphs_only`` is false,
+    in which case any body paragraph (never a table cell) is a candidate; they
+    must match ``section_heading_pattern`` (named groups ``label`` and
+    ``heading``) and, when ``heading_text_pattern`` is set, the heading text
+    must match it too (for example an all-caps requirement). Every other
+    paragraph and every table row belongs to the body of the open section, so
+    section numbers quoted in body text or relocation tables never start a new
+    section. A heading whose
+    label was already seen (page-break restatements such as ``44-207 INCOME
+    ELIGIBILITY (Continued)``) is merged into the existing section, keeping
+    the first heading; ``heading_continuation_suffix_pattern`` (default
+    ``(Continued)``/``(Cont.)``) is stripped before matching. ``drop_lines``,
+    ``drop_line_patterns``, ``start_after_pattern`` and ``stop_text_pattern``
+    behave as in ``labeled_sections``.
+    """
+    heading_pattern = extraction.get("section_heading_pattern")
+    if heading_pattern is None:
+        raise ValueError(
+            "styled_labeled_sections DOCX extraction requires section_heading_pattern"
+        )
+    section_heading_re = re.compile(str(heading_pattern))
+    label_template = extraction.get("section_label_template")
+    label_replacements = _section_label_replacements(extraction)
+    continuation_re = re.compile(
+        str(
+            extraction.get(
+                "heading_continuation_suffix_pattern",
+                _STYLED_LABELED_CONTINUATION_SUFFIX,
+            )
+        )
+    )
+    start_after_pattern = extraction.get("start_after_pattern")
+    start_after_re = (
+        re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
+    )
+    stop_pattern = extraction.get("stop_text_pattern")
+    stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
+    drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
+    drop_line_patterns = tuple(
+        re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
+    )
+    merge_repeated = bool(extraction.get("merge_repeated_labels", True))
+    heading_paragraphs_only = bool(extraction.get("heading_paragraphs_only", True))
+    heading_text_pattern = extraction.get("heading_text_pattern")
+    heading_text_re = (
+        re.compile(str(heading_text_pattern)) if heading_text_pattern is not None else None
+    )
+
+    with zipfile.ZipFile(BytesIO(content)) as document:
+        xml = document.read("word/document.xml")
+    root = ElementTree.fromstring(xml)
+    body = root.find("w:body", _WORD_NS)
+    if body is None:
+        return ()
+
+    sections: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    current_label: str | None = None
+    started = start_after_re is None
+    stopped = False
+
+    def keep_line(line: str) -> bool:
+        return not _drop_pdf_line(line, drop_lines, drop_line_patterns)
+
+    for child in body:
+        if stopped:
+            break
+        if child.tag == _word_tag("p"):
+            text = _docx_paragraph_text(child)
+            if not text:
+                continue
+            if not started:
+                if start_after_re is not None and start_after_re.search(text):
+                    started = True
+                continue
+            if stop_re is not None and stop_re.search(text):
+                stopped = True
+                break
+            if heading_paragraphs_only is False or _docx_paragraph_is_heading(child):
+                heading_line = continuation_re.sub("", text).strip()
+                match = _match_labeled_pdf_section(
+                    heading_line,
+                    section_heading_re,
+                    None,
+                    label_template=str(label_template) if label_template is not None else None,
+                    label_replacements=label_replacements,
+                )
+                if (
+                    match is not None
+                    and heading_text_re is not None
+                    and not heading_text_re.match(match[1])
+                ):
+                    match = None
+                if match is not None:
+                    label, heading_text = match
+                    if label in sections:
+                        if not merge_repeated:
+                            raise ValueError(
+                                f"styled_labeled_sections: repeated section label {label!r}"
+                            )
+                        sections[label]["occurrences"] += 1
+                    else:
+                        sections[label] = {
+                            "heading": f"{label} {heading_text}".strip(),
+                            "body": [],
+                            "occurrences": 1,
+                        }
+                        order.append(label)
+                    current_label = label
+                    continue
+            if current_label is not None and keep_line(text):
+                sections[current_label]["body"].append(text)
+        elif child.tag == _word_tag("tbl"):
+            if not started or current_label is None:
+                continue
+            table_text = _docx_table_text(child)
+            rows = [row for row in table_text.splitlines() if row and keep_line(row)]
+            if rows:
+                sections[current_label]["body"].append("\n".join(rows))
+
+    blocks: list[_DocumentBlock] = []
+    for label in order:
+        section = sections[label]
+        blocks.append(
+            _DocumentBlock(
+                kind="section",
+                ordinal=len(blocks) + 1,
+                heading=section["heading"],
+                body=_normalize_text("\n\n".join(section["body"])),
+                metadata={
+                    "citation_suffix": label,
+                    "section_label": label,
+                    "heading_occurrences": section["occurrences"],
+                },
+            )
+        )
+    return tuple(blocks)
+
+
 def _docx_lines(content: bytes) -> tuple[str, ...]:
     with zipfile.ZipFile(BytesIO(content)) as document:
         xml = document.read("word/document.xml")
@@ -1579,8 +2516,19 @@ def _match_labeled_pdf_section(
 def _filtered_pdf_lines(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[tuple[str, int], ...]:
+    return tuple(
+        (line, page)
+        for line, page, _style in _filtered_pdf_styled_lines(
+            content, extraction=extraction
+        )
+    )
+
+
+def _filtered_pdf_styled_lines(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int, int], ...]:
     if extraction.get("page_windows") is not None:
-        return _windowed_pdf_lines(content, extraction=extraction)
+        return _windowed_pdf_styled_lines(content, extraction=extraction)
     start_page = _positive_int(extraction.get("start_page"), default=1)
     end_page = extraction.get("end_page")
     parsed_end_page = _positive_int(end_page, default=0) if end_page is not None else None
@@ -1595,22 +2543,21 @@ def _filtered_pdf_lines(
         re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
     )
     started = start_after_re is None
-    lines: list[tuple[str, int]] = []
+    lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
-                line = _normalize_text(raw_line)
+            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started:
                     if start_after_re is not None and start_after_re.search(line):
                         started = True
                     continue
-                lines.append((line, page_index))
+                lines.append((line, page_index, style))
     return tuple(lines)
 
 
@@ -1659,6 +2606,17 @@ def _parse_pdf_page_windows(extraction: dict[str, Any]) -> tuple[_PdfPageWindow,
 def _windowed_pdf_lines(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[tuple[str, int], ...]:
+    return tuple(
+        (line, page)
+        for line, page, _style in _windowed_pdf_styled_lines(
+            content, extraction=extraction
+        )
+    )
+
+
+def _windowed_pdf_styled_lines(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int, int], ...]:
     """Collect PDF text lines from discontiguous page windows.
 
     Each window is a mapping with ``start_page``/``end_page`` (1-based,
@@ -1682,7 +2640,7 @@ def _windowed_pdf_lines(
     last_page = max(window.end_page for window in windows)
     started: dict[int, bool] = {id(window): window.start_at_re is None for window in windows}
     stopped: dict[int, bool] = {id(window): False for window in windows}
-    lines: list[tuple[str, int]] = []
+    lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
@@ -1690,8 +2648,7 @@ def _windowed_pdf_lines(
             page_window = window_by_page.get(page_index)
             if page_window is None or stopped[id(page_window)]:
                 continue
-            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
-                line = _normalize_text(raw_line)
+            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started[id(page_window)]:
@@ -1699,22 +2656,71 @@ def _windowed_pdf_lines(
                         line
                     ):
                         started[id(page_window)] = True
-                        lines.append((line, page_index))
+                        lines.append((line, page_index, style))
                     continue
                 if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
                     stopped[id(page_window)] = True
                     break
-                lines.append((line, page_index))
+                lines.append((line, page_index, style))
+    return tuple(lines)
+
+
+def _pdf_page_styled_lines(
+    page: Any, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int], ...]:
+    """Pair the normal PDF text stream with first-span font flags by occurrence."""
+    text_replacements = _text_replacements(extraction)
+    styles: dict[str, list[int]] = {}
+    if not extraction.get("force_ocr"):
+        page_dict = page.get_text(
+            "dict",
+            sort=bool(extraction.get("sort_text")),
+            flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_DICT),
+        )
+        for block in page_dict.get("blocks", ()):
+            for line in block.get("lines", ()):
+                spans = line.get("spans", ())
+                first_span = next(
+                    (span for span in spans if str(span.get("text", "")).strip()),
+                    None,
+                )
+                if first_span is None:
+                    continue
+                text = "".join(str(span.get("text", "")) for span in spans)
+                text = _normalize_text(_replace_text(text, text_replacements))
+                if text:
+                    styles.setdefault(text, []).append(
+                        int(first_span.get("flags", 0))
+                    )
+
+    occurrences: dict[str, int] = {}
+    lines: list[tuple[str, int]] = []
+    for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
+        line = _normalize_text(raw_line)
+        if not line:
+            continue
+        occurrence = occurrences.get(line, 0)
+        occurrences[line] = occurrence + 1
+        line_styles = styles.get(line, ())
+        style = line_styles[occurrence] if occurrence < len(line_styles) else 0
+        lines.append((line, style))
     return tuple(lines)
 
 
 def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
+    text_replacements = _text_replacements(extraction)
     if extraction.get("force_ocr"):
-        return _ocr_pdf_page_text(page, extraction=extraction)
-    text = page.get_text("text", sort=bool(extraction.get("sort_text")))
+        text = _ocr_pdf_page_text(page, extraction=extraction)
+        return _replace_text(text, text_replacements)
+    text = page.get_text(
+        "text",
+        sort=bool(extraction.get("sort_text")),
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+    )
     if _normalize_text(text) or not extraction.get("ocr"):
-        return str(text)
-    return _ocr_pdf_page_text(page, extraction=extraction)
+        return _replace_text(str(text), text_replacements)
+    text = _ocr_pdf_page_text(page, extraction=extraction)
+    return _replace_text(text, text_replacements)
 
 
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
@@ -1816,23 +2822,14 @@ def _extract_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
-    soup = _html_soup(content)
+    soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
+    kept_default_drops = set(_html_keep_default_drop_selectors(extraction))
     drop_selectors = [
-        "script",
-        "style",
-        "noscript",
-        "svg",
-        "button",
-        "input",
-        "nav",
-        "select",
-        "header",
-        "footer",
-        "textarea",
-        "aside",
-        ".breadcrumb",
-        ".breadcrumbs",
-        "[aria-label='breadcrumb']",
+        *(
+            selector
+            for selector in _HTML_DEFAULT_DROP_SELECTORS
+            if selector not in kept_default_drops
+        ),
         *_html_drop_selectors(extraction),
     ]
     for selector in drop_selectors:
@@ -1876,9 +2873,7 @@ def _extract_html_blocks(
             )
         parts = []
 
-    for node in root.find_all(_TEXT_TAGS):
-        if not isinstance(node, Tag) or _inside_text_tag(node):
-            continue
+    for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
@@ -1911,6 +2906,9 @@ def _extract_json_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "source_only":
+        json_loads(content.decode("utf-8-sig"))
+        return ()
     if (extraction or {}).get("segmentation") == "records":
         return _extract_json_record_blocks(
             content,
@@ -1968,6 +2966,14 @@ def _extract_json_record_blocks(
     status_field = extraction.get("json_record_status_field")
     include_statuses = extraction.get("json_record_include_statuses")
     exclude_statuses = extraction.get("json_record_exclude_statuses", ())
+    include_labels = _json_record_filter_values(
+        extraction.get("json_record_include_labels"),
+        setting="json_record_include_labels",
+    )
+    include_label_prefixes = _json_record_filter_values(
+        extraction.get("json_record_include_label_prefixes"),
+        setting="json_record_include_label_prefixes",
+    )
     metadata_fields = extraction.get("json_record_metadata_fields", ())
     text_is_html = bool(extraction.get("json_record_text_is_html", True))
     citation_suffix_slugify = bool(extraction.get("json_record_citation_suffix_slugify", False))
@@ -1976,6 +2982,10 @@ def _extract_json_record_blocks(
         raise ValueError("records JSON extraction requires json_record_text_field")
     if label_field is not None and not isinstance(label_field, str):
         raise ValueError("json_record_label_field must be a string when configured")
+    if (include_labels or include_label_prefixes) and not label_field:
+        raise ValueError(
+            "JSON record label filters require json_record_label_field"
+        )
     if citation_suffix_field is not None and not isinstance(citation_suffix_field, str):
         raise ValueError("json_record_citation_suffix_field must be a string when configured")
     if heading_field is not None and not isinstance(heading_field, str):
@@ -1992,6 +3002,9 @@ def _extract_json_record_blocks(
         metadata_fields = (metadata_fields,)
     include_status_set = {str(status) for status in include_statuses or ()}
     exclude_status_set = {str(status) for status in exclude_statuses or ()}
+    include_label_set = set(include_labels)
+    matched_labels: set[str] = set()
+    matched_label_prefixes: set[str] = set()
     metadata_field_names = tuple(str(field) for field in metadata_fields)
 
     data = json_loads(content.decode("utf-8"))
@@ -2018,10 +3031,26 @@ def _extract_json_record_blocks(
             continue
 
         label_value = _json_record_value(row, label_field)
+        if label_value is None or label_value == "":
+            label = ""
+        elif isinstance(label_value, (str, int, float, bool)):
+            label = str(label_value).strip()
+        elif include_label_set or include_label_prefixes:
+            raise ValueError("filtered JSON record labels must be scalar values")
+        else:
+            label = str(label_value).strip()
+        exact_match = label in include_label_set
+        prefix_matches = tuple(
+            prefix for prefix in include_label_prefixes if label.startswith(prefix)
+        )
+        if (include_label_set or include_label_prefixes) and not (
+            exact_match or prefix_matches
+        ):
+            continue
+
         citation_suffix_value = _json_record_value(row, citation_suffix_field)
         heading_value = _json_record_value(row, heading_field)
         kind_value = _json_record_value(row, kind_field)
-        label = str(label_value).strip() if label_value not in {None, ""} else ""
         citation_suffix = (
             str(citation_suffix_value).strip()
             if citation_suffix_value not in {None, ""}
@@ -2058,7 +3087,39 @@ def _extract_json_record_blocks(
                 metadata=metadata,
             )
         )
+        if exact_match:
+            matched_labels.add(label)
+        matched_label_prefixes.update(prefix_matches)
+
+    unmatched_labels = [label for label in include_labels if label not in matched_labels]
+    unmatched_prefixes = [
+        prefix
+        for prefix in include_label_prefixes
+        if prefix not in matched_label_prefixes
+    ]
+    if unmatched_labels or unmatched_prefixes:
+        missing = [
+            *(f"label {label!r}" for label in unmatched_labels),
+            *(f"prefix {prefix!r}" for prefix in unmatched_prefixes),
+        ]
+        raise ValueError(
+            "JSON record label filters did not match text-bearing records: "
+            + ", ".join(missing)
+        )
     return tuple(blocks)
+
+
+def _json_record_filter_values(value: Any, *, setting: str) -> tuple[str, ...]:
+    """Normalize one exact-label or label-prefix record filter."""
+    if value is None:
+        return ()
+    values = (value,) if isinstance(value, str) else value
+    if not isinstance(values, (list, tuple)):
+        raise ValueError(f"{setting} must be a string or list of strings")
+    normalized = tuple(item.strip() for item in values if isinstance(item, str))
+    if len(normalized) != len(values) or not normalized or any(not item for item in normalized):
+        raise ValueError(f"{setting} must contain one or more non-empty strings")
+    return normalized
 
 
 def _json_record_text(value: Any) -> str:
@@ -2074,8 +3135,18 @@ def _json_record_citation_suffix_slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def _html_soup(content: bytes) -> BeautifulSoup:
-    """Parse official HTML with a parser that preserves malformed void tags."""
+def _html_soup(content: bytes, *, parser: str | None = None) -> BeautifulSoup:
+    """Parse official HTML with a parser that preserves malformed void tags.
+
+    ``parser="html.parser"`` (extraction option ``html_parser``) opts out of lxml for pages
+    whose unclosed banner ``<header>``/``<nav>`` makes lxml nest the main content inside the
+    element the extractor drops.
+    """
+    if parser is not None:
+        if parser not in {"lxml", "html.parser"}:
+            raise ValueError(f"unsupported html_parser: {parser!r}")
+        if parser == "html.parser":
+            return BeautifulSoup(content, "html.parser")
     try:
         return BeautifulSoup(content, "lxml")
     except FeatureNotFound:
@@ -2133,6 +3204,9 @@ def _extract_labeled_html_section_blocks(
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
+    normalize_label_internal_whitespace = bool(
+        extraction.get("normalize_label_internal_whitespace", False)
+    )
     stop_pattern = extraction.get("stop_text_pattern")
     stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
 
@@ -2163,9 +3237,7 @@ def _extract_labeled_html_section_blocks(
         current_heading = None
         current_body = []
 
-    for node in root.find_all(_TEXT_TAGS):
-        if not isinstance(node, Tag) or _inside_text_tag(node):
-            continue
+    for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
@@ -2181,6 +3253,9 @@ def _extract_labeled_html_section_blocks(
         )
         if match is not None:
             label, heading, body = match
+            if normalize_label_internal_whitespace:
+                label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
+                label = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", label)
             flush()
             current_label = label
             current_heading = heading or label
@@ -2357,6 +3432,37 @@ def _section_label_replacements(extraction: dict[str, Any]) -> dict[str, str] | 
     return {str(key): str(value).strip() for key, value in raw.items()}
 
 
+def _text_replacements(extraction: dict[str, Any]) -> dict[str, str] | None:
+    raw = extraction.get("text_replacements")
+    if raw is None:
+        return None
+    if not isinstance(raw, dict):
+        raise ValueError("text_replacements must be a mapping")
+    replacements: dict[str, str] = {}
+    for key, value in raw.items():
+        search = str(key)
+        if not search:
+            raise ValueError("text_replacements search strings must not be empty")
+        replacement = str(value)
+        if (
+            "\n" in search
+            or "\r" in search
+            or "\n" in replacement
+            or "\r" in replacement
+        ):
+            raise ValueError("text_replacements must contain single-line strings")
+        replacements[search] = replacement
+    return replacements
+
+
+def _replace_text(text: str, replacements: dict[str, str] | None) -> str:
+    if not replacements:
+        return text
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
+
+
 def _replace_section_label(label: str, replacements: dict[str, str] | None) -> str:
     if not replacements:
         return label
@@ -2373,6 +3479,40 @@ def _html_content_root(soup: BeautifulSoup, *, extraction: dict[str, Any] | None
             return root
         raise ValueError(f"html content selector did not match: {selector!r}")
     return _main_content(soup)
+
+
+_HTML_DEFAULT_DROP_SELECTORS = (
+    "script",
+    "style",
+    "noscript",
+    "svg",
+    "button",
+    "input",
+    "nav",
+    "select",
+    "header",
+    "footer",
+    "textarea",
+    "aside",
+    ".breadcrumb",
+    ".breadcrumbs",
+    "[aria-label='breadcrumb']",
+)
+
+
+def _html_keep_default_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
+    """Default drop selectors a manifest keeps (for pages whose markup wraps the body in one).
+
+    Some publishers' pages (for example revenue.louisiana.gov) leave a ``<nav>`` element open
+    around the whole page, so dropping ``nav`` removes the content; such a manifest names
+    ``html_keep_default_drop_selectors: [nav]`` together with an ``html_content_selector``.
+    """
+    selectors = (extraction or {}).get("html_keep_default_drop_selectors")
+    if selectors is None:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
 
 
 def _html_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
@@ -2481,6 +3621,32 @@ def _document_title(soup: BeautifulSoup) -> str | None:
     return None
 
 
+def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[Tag, ...]:
+    """Return the block-level text nodes of ``root`` in document order.
+
+    By default these are the heading, paragraph, list-item, table and blockquote tags
+    (nested ones are read through their outermost ancestor). ``html_text_selector``
+    names the nodes explicitly for publishers that print provision text inside ``div``
+    or ``span`` containers; a selected node inside another selected node is skipped so
+    the text is read once.
+    """
+
+    selector = (extraction or {}).get("html_text_selector")
+    if not selector:
+        return tuple(
+            node
+            for node in root.find_all(_TEXT_TAGS)
+            if isinstance(node, Tag) and not _inside_text_tag(node)
+        )
+    selected = [node for node in root.select(str(selector)) if isinstance(node, Tag)]
+    selected_ids = {id(node) for node in selected}
+    return tuple(
+        node
+        for node in selected
+        if not any(id(parent) in selected_ids for parent in node.parents)
+    )
+
+
 def _inside_text_tag(node: Tag) -> bool:
     for parent in node.parents:
         if not isinstance(parent, Tag):
@@ -2525,7 +3691,12 @@ def _inventory_items(
                 source_path=source_key,
                 source_format=source_format,
                 sha256=source_sha,
-                metadata={"kind": block.kind, **metadata, **block.metadata},
+                metadata={
+                    "kind": block.kind,
+                    **metadata,
+                    **block.metadata,
+                    **_block_segment_metadata(source, block),
+                },
             )
         )
     return tuple(items)
@@ -2573,8 +3744,17 @@ def _provision_records(
             metadata={"kind": "document", **metadata},
         )
     ]
-    for block in blocks:
-        citation_path = _block_citation_path(source, block)
+    block_paths = tuple(_block_citation_path(source, block) for block in blocks)
+    available_parent_paths = {root_path, *block_paths}
+    for block, citation_path in zip(blocks, block_paths, strict=True):
+        relative_path = citation_path.removeprefix(f"{root_path}/")
+        level = len(relative_path.split("/")) + 1
+        parent_citation_path = citation_path.rsplit("/", 1)[0]
+        if parent_citation_path not in available_parent_paths:
+            raise ValueError(
+                f"document block citation path {citation_path!r} has missing parent "
+                f"{parent_citation_path!r}"
+            )
         records.append(
             ProvisionRecord(
                 id=deterministic_provision_id(citation_path),
@@ -2592,12 +3772,17 @@ def _provision_records(
                 source_as_of=source_as_of,
                 expression_date=expression_date,
                 language=source.language or "en",
-                parent_citation_path=root_path,
-                parent_id=root_id,
-                level=2,
+                parent_citation_path=parent_citation_path,
+                parent_id=deterministic_provision_id(parent_citation_path),
+                level=level,
                 ordinal=block.ordinal,
                 kind=block.kind,
-                metadata={"kind": block.kind, **metadata, **block.metadata},
+                metadata={
+                    "kind": block.kind,
+                    **metadata,
+                    **block.metadata,
+                    **_block_segment_metadata(source, block),
+                },
             )
         )
     return tuple(records)
@@ -2635,8 +3820,37 @@ def _root_citation_path(source: OfficialDocumentSource) -> str:
 def _block_citation_path(source: OfficialDocumentSource, block: _DocumentBlock) -> str:
     citation_suffix = block.metadata.get("citation_suffix")
     if isinstance(citation_suffix, str) and citation_suffix:
-        return f"{_root_citation_path(source)}/{safe_segment(citation_suffix)}"
+        return f"{_root_citation_path(source)}/{_block_citation_suffix(source, citation_suffix)}"
     return f"{_root_citation_path(source)}/{block.kind}-{block.ordinal}"
+
+
+def _block_citation_suffix(source: OfficialDocumentSource, citation_suffix: str) -> str:
+    """Return the grammar-safe hierarchy segments for a block's citation suffix.
+
+    Publisher section labels are carried verbatim in ``metadata.section_label``;
+    the path segment folds characters outside the citation-path grammar
+    (commas, parentheses, ``@``...) into hyphens, and
+    ``normalize_citation_segment_dashes: true`` additionally turns en-dashes
+    and em-dashes into hyphens for publishers that use them as ordinary
+    separators (Colorado ``39-22-303–1``).
+    """
+    normalize_dashes = bool(
+        (source.extraction or {}).get("normalize_citation_segment_dashes", False)
+    )
+    return "/".join(
+        citation_segment(safe_segment(part), normalize_dashes=normalize_dashes)
+        for part in citation_suffix.split("/")
+    )
+
+
+def _block_segment_metadata(source: OfficialDocumentSource, block: _DocumentBlock) -> dict[str, str]:
+    """Record the publisher identifier when the path segment had to be slugified."""
+    citation_suffix = block.metadata.get("citation_suffix")
+    if not isinstance(citation_suffix, str) or not citation_suffix:
+        return {}
+    if _block_citation_suffix(source, citation_suffix) == citation_suffix:
+        return {}
+    return {"publisher_section_id": citation_suffix.rsplit("/", 1)[-1]}
 
 
 def _validate_citation_path(

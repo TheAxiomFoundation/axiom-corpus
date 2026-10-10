@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.json",
-      "sha256": "437ce8f24bfabed66e33910dfa8e2d48468ab4b91550aa461612d9df3837633c"
+      "sha256": "601b2ee4191a5b70053a11c94d13773056e84310892266086efff8d4e7bceefe"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:00.613244+00:00",
+  "generated_at": "2026-07-21T11:40:40.048352+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "TpvDQqORz8DIEO1jM0JpALHIQns1/DNjTOAuAA4kD/Qtzkm8DnDhVoxUV8TQUOqQL2jpufKCzMcJPzWrwXXVBw=="
+    "value": "4EP6/5udA4Og0icfsq0XzMpH5EF4kcUZcoI7M0ggdkobxKYRviTloLqfLOb9aJzPQ1EjQCiClVbckqH2wH85CQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-reserves"

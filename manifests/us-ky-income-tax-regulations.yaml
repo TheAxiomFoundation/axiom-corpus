@@ -1,0 +1,650 @@
+version: '2026-09-14'
+documents:
+- source_id: ky-lrc-103-kar-015-050
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/015/050
+  title: 103 KAR 15:050. Filing dates and extensions.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/015/050/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/854/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '015'
+    kar_chapter_title: Income Tax; General Administration
+- source_id: ky-lrc-103-kar-015-110
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/015/110
+  title: 103 KAR 15:110. Ethanol tax credit.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/015/110/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/861/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '015'
+    kar_chapter_title: Income Tax; General Administration
+- source_id: ky-lrc-103-kar-015-120
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/015/120
+  title: 103 KAR 15:120. Cellulosic ethanol tax credit.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/015/120/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/862/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '015'
+    kar_chapter_title: Income Tax; General Administration
+- source_id: ky-lrc-103-kar-015-140
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/015/140
+  title: 103 KAR 15:140. Biodiesel tax credit.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/015/140/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/863/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '015'
+    kar_chapter_title: Income Tax; General Administration
+- source_id: ky-lrc-103-kar-015-180
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/015/180
+  title: 103 KAR 15:180. Kentucky new markets development program tax credit.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/015/180/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/865/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '015'
+    kar_chapter_title: Income Tax; General Administration
+- source_id: ky-lrc-103-kar-015-195
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/015/195
+  title: 103 KAR 15:195. Endow Kentucky Tax Credit.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/015/195/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/867/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '015'
+    kar_chapter_title: Income Tax; General Administration
+- source_id: ky-lrc-103-kar-017-010
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/017/010
+  title: 103 KAR 17:010. Residence.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/017/010/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/16805/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '017'
+    kar_chapter_title: Income Tax; Individual
+- source_id: ky-lrc-103-kar-017-020
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/017/020
+  title: 103 KAR 17:020. Combined individual returns.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/017/020/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/916/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '017'
+    kar_chapter_title: Income Tax; Individual
+- source_id: ky-lrc-103-kar-017-060
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/017/060
+  title: 103 KAR 17:060. Income subject to taxation; portions.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/017/060/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/16807/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '017'
+    kar_chapter_title: Income Tax; Individual
+- source_id: ky-lrc-103-kar-017-100
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/017/100
+  title: 103 KAR 17:100. Division of income between married individuals filing separate tax returns.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/017/100/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/928/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '017'
+    kar_chapter_title: Income Tax; Individual
+- source_id: ky-lrc-103-kar-017-130
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/017/130
+  title: 103 KAR 17:130. Individual income tax - military personnel - nonresidents.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/017/130/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/932/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '017'
+    kar_chapter_title: Income Tax; Individual
+- source_id: ky-lrc-103-kar-017-140
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/017/140
+  title: 103 KAR 17:140. Individual income tax - reciprocity - nonresidents.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/017/140/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/933/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: '017'
+    kar_chapter_title: Income Tax; Individual
+- source_id: ky-lrc-103-kar-018-010
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/010
+  title: 103 KAR 18:010. Employers required to withhold.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/010/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/936/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-020
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/020
+  title: 103 KAR 18:020. Withholding return adjustment.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/020/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/10326/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-050
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/050
+  title: 103 KAR 18:050. Withholding statements.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/050/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/940/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-060
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/060
+  title: 103 KAR 18:060. Miscellaneous payroll period.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/060/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/941/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-070
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/070
+  title: 103 KAR 18:070. Supplemental wages and other payments subject to withholding.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/070/942/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/942/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-090
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/090
+  title: 103 KAR 18:090. Payroll records.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/090/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/10327/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-110
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/110
+  title: 103 KAR 18:110. Voluntary withholding.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/110/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/947/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-120
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/120
+  title: 103 KAR 18:120. Security for compliance; bonds.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/120/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/948/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-150
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/150
+  title: 103 KAR 18:150. Employer's withholding reporting requirements.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/150/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/952/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-172
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/172
+  title: 103 KAR 18:172. Withholding tax circulars.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/172/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/955/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-018-180
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/018/180
+  title: 103 KAR 18:180. Kentucky economic development acts wage assessment.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/018/180/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/956/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 018
+    kar_chapter_title: Income Tax; Withholding
+- source_id: ky-lrc-103-kar-019-010
+  jurisdiction: us-ky
+  document_class: regulation
+  citation_path: us-ky/regulation/kar/103/019/010
+  title: 103 KAR 19:010. Computation of income; estates and trusts.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/103/019/010/
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/16757/document.engrossed.pdf
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<num>\d+)\.\s+(?P<heading>[A-Z].*)$
+    section_label_pattern: ^Section (?P<num>\d+)\.\s*$
+    section_label_template: section-{num}
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    official_publisher: Kentucky Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ky/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.legislature.ky.gov/law/kar/titles/103/
+    kar_chapter: 019
+    kar_chapter_title: Income Tax; Miscellaneous

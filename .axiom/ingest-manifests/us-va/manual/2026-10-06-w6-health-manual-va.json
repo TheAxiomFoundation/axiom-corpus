@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/manual/2026-10-06-w6-health-manual-va.json",
+      "sha256": "a9c3b0f549a405ee9492a52897fd9b389f02d037b2ed6b136f75428f2b81f671"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/manual/2026-10-06-w6-health-manual-va.json",
+      "sha256": "cbbb7febd25684726740ea97637c58f11fb40129405755a4490b67d3c5a4cd8d"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/manual/2026-10-06-w6-health-manual-va.jsonl",
+      "sha256": "b26be0228e079c605609496ed33d78b806c3c5279b79cf95144eabc25d1c9ba4"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-10-06-w6-health-manual-va/official-documents/us-va-w6-health-dmas-medicaid-m03-2024-07-01.pdf",
+      "sha256": "7283c9d3a93f59aba1f4d4b27b19ae55d82553e00ac9b9a4c5aa76e71a414ffd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 157,
+    "missing_count": 0,
+    "provision_count": 157,
+    "source_count": 157
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:59:41.375898+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sThOjDXhhqJCTjgtuA64GTW37ZDiZ6S8UkKTjJ58hBdmR9+1p+3YciXuXGsLdW9rJGKWbpC3wXTErqrZ75YWBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-manual-va"
+}

@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix.json",
+      "sha256": "81d3f3eccc531d4246ae9d6f3a801a16ed57771e1bcf56016b73cba05e5ea96b"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix.json",
+      "sha256": "e31279e48a9888cac0b52c5d18e71f92e5ba4da43209c92eec71dcad65aa7979"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix.jsonl",
+      "sha256": "8329a5c0742d8beb1be77bfca29b41cc56164139d8eeb26426b19cb3f8df4daa"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix/uksi/2012/2885/schedule-2-part-1-paragraph-1.xml",
+      "sha256": "4b49f13b9386d9250ae97e8e1f597ac8d6849e123589f89573da82ffef529fba"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix/uksi/2012/2885/schedule-2-part-1-paragraph-2.xml",
+      "sha256": "1ed96574d40f6d382b736c8acc8ab0ec08e259e8cad2b4648802e418ba102f57"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix/uksi/2012/2885/schedule-2-part-2-paragraph-3.xml",
+      "sha256": "1e61a803e023edcfd92a4996989e14054f9eb116028c84a7e762caadfcdcbb09"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix/uksi/2012/2885/schedule-2-part-4.xml",
+      "sha256": "51e07ed01bd8dc848760791be910e5fc676a515c165f3c3bc3853b5c2de23f22"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e58679d1c8bd2847514a05f0da9c4869300c2350",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:50.943642+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2ZzPbPFwU5yfdmo2zclJ5sp8SyzxJXq0CX2+u/EGecBs0wHMsnLATFqcXBUe6kZuXyqPzYDc1bLzNWF8AK7TDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix"
+}

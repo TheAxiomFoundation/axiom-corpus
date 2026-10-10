@@ -1,0 +1,35 @@
+documents:
+  - source_id: us-tn-public-chapter-181-pages-3-through-4
+    jurisdiction: us-tn
+    document_class: statute
+    title: Tennessee Public Chapter 181 (2017), Pages 3–4
+    source_url: https://publications.tnsosfiles.com/acts/110/pub/pc0181.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2017-04-26"
+    citation_path: us-tn/statute/public-chapter/2017/181/pages-3-through-4
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 3
+          end_page: 4
+          start_at_pattern: '^SECTION 13\.'
+    metadata:
+      primary_source: true
+      source_authority: Tennessee Secretary of State
+      legal_identifier: 2017 Tenn. Pub. Acts ch. 181, pp. 3–4
+      document_subtype: enacted_state_session_law
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: enacted_zero_rate_for_2021_and_subsequent_tax_years
+      certification_scope: hall_income_tax_zero_rate
+      source_note: >-
+        Enacted Public Chapter 181 amends Tennessee Code Annotated section
+        67-2-102 to set the chapter 2 tax rate to zero percent for every tax
+        year beginning on or after January 1, 2021. Sections 14 and 15 preserve
+        the related cross-reference and move the chapter's sunset date to
+        January 1, 2021. The retained two-page window continues through the
+        unrelated fuel-tax provisions that share page 4; those provisions are
+        preserved for page fidelity but are outside this certification scope.

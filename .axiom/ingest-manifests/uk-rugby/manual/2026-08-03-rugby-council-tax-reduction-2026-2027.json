@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rugby/manual/2026-08-03-rugby-council-tax-reduction-2026-2027.json",
+      "sha256": "af157a18b7b8898eed16c83edc1ba3dd08a4d3486cb707e118e151e283f9082e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rugby/manual/2026-08-03-rugby-council-tax-reduction-2026-2027.json",
+      "sha256": "48279c05cd74be30f0cc7cbee51f9d0c8c95b82aced2f7565029399d5f6a07bb"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rugby/manual/2026-08-03-rugby-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "ba6473aa3cc5021848806012de6287ac4e61e7e4fd7de9408031a38070e17c7a"
+    },
+    {
+      "path": "data/corpus/sources/uk-rugby/manual/2026-08-03-rugby-council-tax-reduction-2026-2027/official-documents/rugby-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1d293876b1b6cb4524bd1915cfcbdcec4628f26fcf9f90dc08cefe25008cc0be"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-rugby-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rugby-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 85,
+    "missing_count": 0,
+    "provision_count": 85,
+    "source_count": 85
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:44.666862+00:00",
+  "jurisdiction": "uk-rugby",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FF2354ocaZ6R3qrXe+FCPiJbhCXJtzzaPoeMot1lOvvsz3TyLDtSr6AKo3xlPd3ICY6wjn92xB7KdSnrar6EAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-rugby-council-tax-reduction-2026-2027"
+}

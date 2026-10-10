@@ -1,0 +1,484 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-il-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-il/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 18
+    index_records_total: 18
+- source_id: us-il-cms-chip-state-plan-spa-il-25-0007-chip-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-25-0007-CHIP: Approval Package (approved April 23, 2025, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL-25-0007-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-25-0007-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-25-0007-CHIP
+    cms_node_id: '179101'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=179101
+    approval_date: '2025-04-23'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-18-0002-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-18-0002: Approval Package (approved October 31, 2024, effective June 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL-18-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-06-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-18-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-18-0002
+    cms_node_id: '173106'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=173106
+    approval_date: '2024-10-31'
+    effective_date: '2018-06-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-24-0009-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-24-0009: Approval Package (approved July 15, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL-24-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-24-0009/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-24-0009
+    cms_node_id: '169241'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169241
+    approval_date: '2024-07-15'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-23-0017-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-23-0017: Approval Package (approved June 2, 2023, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL-23-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-23-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-23-0017
+    cms_node_id: '148561'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148561
+    approval_date: '2023-06-02'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-21-0006-chip-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-21-0006-CHIP: Approval Package (approved June 30, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL-21-0006-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-21-0006-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-21-0006-CHIP
+    cms_node_id: '144706'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144706
+    approval_date: '2022-06-30'
+    effective_date: '2022-07-01'
+    summary: This SPA transitions all children, with the exception of the conception to birth population, from the state’s
+      separate CHIP to a Medicaid expansion CHIP.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-21-0007-chip-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-21-0007-CHIP: Approval Package (approved June 30, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL-21-0007-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-21-0007-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-21-0007-CHIP
+    cms_node_id: '144711'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144711
+    approval_date: '2022-06-30'
+    effective_date: '2022-07-01'
+    summary: This SPA transitions all children, with the exception of the conception to birth population, from the state’s
+      separate CHIP to a Medicaid expansion CHIP.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-21-0014-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-21-0014: Approval Package (approved September 15, 2021, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-21-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-21-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-21-0014
+    cms_node_id: '126246'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=126246
+    approval_date: '2021-09-15'
+    effective_date: '2020-03-01'
+    summary: This amendment implements a health services initiative (HSI) to extend the postpartum period from 60-days to
+      12 months for women whose newborns had been covered as targeted low-income children from conception to birth.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-19-0006-factsheet
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-19-0006: Factsheet (approved August 15, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-19-0006/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: IL-19-0006
+    cms_node_id: '92306'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92306
+    approval_date: '2019-08-15'
+    effective_date: '2018-07-01'
+    summary: demonstrates compliance with CHIP Managed Care regulations
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-il-cms-chip-state-plan-spa-il-14-0009-mc5-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-14-0009-MC5: Approval Package (approved August 10, 2016, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-14-0009-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-14-0009-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0009-MC5
+    cms_node_id: '3231'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3231
+    approval_date: '2016-08-10'
+    effective_date: '2014-01-01'
+    summary: To clarify the state's non-financial eligibility policies on residency; citizenship; social security numbers;
+      substitution of coverage; non-payment of premiums; continuous eligibility and presumptive eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-14-0024-mc3-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-14-0024-MC3: Approval Package (approved August 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-14-0024-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-14-0024-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-14-0024-MC3
+    cms_node_id: '3206'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3206
+    approval_date: '2014-08-21'
+    effective_date: '2014-01-01'
+    summary: 'To provide coverage in its separate CHIP, for children subject to Section 2101(f) of the Affordable Care Act,
+      as specified in the state''s submission of CS14: Children Ineligible for Medicaid as a Result of the Elimination of
+      Income Disregards.'
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-spa-il-chipspa-8-approval-package
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-CHIPSPA-8: Approval Package (approved June 4, 2013, effective July 1, 2008)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-CHIPSPA-8.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-07-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-chipspa-8/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IL-CHIPSPA-8
+    cms_node_id: '3581'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3581
+    approval_date: '2013-06-04'
+    effective_date: '2008-07-01'
+    summary: This SPA permits the state to (1) expand eligibility for children with a family income up to 300% of the federal
+      poverty level (FPL); (2) cover the costs of uncompensated post-partum care for the provision of services for mothers
+      of newborns deemed eligible for Medicaid using a Health Services Initiative (HSI); and (3) expand coverage in the state's
+      CHIP for lawfully residing children under Section 214 of CHIPRA.
+    topics:
+    - Eligibility
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-il-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP compiled state plan: Factsheet (approved August 8, 2003, effective July 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/ILCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-07-01'
+  citation_path: us-il/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: IL
+    cms_node_id: '1646'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1646
+    approval_date: '2003-08-08'
+    effective_date: '2003-07-01'
+    summary: Current CHIP State Plan as amended by SPA 4 and Factsheet as of 08-18-2010.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-il-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP compiled state plan: Current State Plan (approved August 8, 2003, effective July 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/ILCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-07-01'
+  citation_path: us-il/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: IL
+    cms_node_id: '1646'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1646
+    approval_date: '2003-08-08'
+    effective_date: '2003-07-01'
+    summary: Current CHIP State Plan as amended by SPA 4 and Factsheet as of 08-18-2010.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-il-cms-chip-state-plan-spa-il-cspa-10-pending-state-plan
+  jurisdiction: us-il
+  document_class: policy
+  title: 'Illinois CHIP SPA IL-CSPA-10: Pending State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-CSPA-10-Initial.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-il/policy/cms/chip-state-plan/spa/il-cspa-10/pending-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Illinois
+    source_discovery_group: us-il/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_document
+    transmittal_number: IL-CSPA-10
+    cms_node_id: '2306'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2306
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Initial
+    topics:
+    - Cost Sharing
+    link_label: Pending State Plan

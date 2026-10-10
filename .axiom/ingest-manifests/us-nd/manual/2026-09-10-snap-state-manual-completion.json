@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "51804ef57d98e71e0a6ea86f4eeb3587c64dd37a34b22816e39bfd978091a1a7"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "542353ad96541bf870ebaa27325ab074dc6d249a8f544ed9f206ab8b9b3e55f0"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/manual/2026-09-10-snap-state-manual-completion.jsonl",
+      "sha256": "ed3fab3a3c364f601747aa4db32a4c4ae6ba4e3c67e65e2c71cfcb28e7517bc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-snap-state-manual-completion/official-documents/nd-hhs-snap-dhs-policymanuals-snap-content-acting-on-snap-changes-htm.html",
+      "sha256": "8897d75081391f5f163ba6cd1cf2bd4df4d43c2a54209de88f0e3dd8f342d77a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-snap-state-manual-completion/official-documents/nd-hhs-snap-dhs-policymanuals-snap-content-snap-application-and-review-processing-htm.html",
+      "sha256": "ef03dd868563b4e1cc51dc0acbad11f2b8e22b264a1542c226a91b65ae49c40b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-snap-state-manual-completion/official-documents/nd-hhs-snap-release-26-6.pdf",
+      "sha256": "5df78f7190de428d2c57c19b01212351bac6e55091286ffb5c4537375b0bf5e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-10-snap-state-manual-completion/official-documents/nd-hhs-snap-release-26-7.pdf",
+      "sha256": "b2f5e36c9e89eaac359be9e5eba0babcbbb4e0bd4ffec2101823f4077d7d1df2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-snap-state-manual-completion --manifest manifests/us-nd-snap-manual-completion.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 60,
+    "missing_count": 0,
+    "provision_count": 60,
+    "source_count": 60
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:11:00.584188+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "86AViej0edd69B46NnD66ng/SIlBiKhQqjCJgIliAwBQvNCfKdLh9MCDWlba2C2fd4fjpsR2GwSAFc8nS76QAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-snap-state-manual-completion"
+}

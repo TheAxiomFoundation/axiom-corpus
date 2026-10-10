@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-warrington/manual/2026-07-25-warrington-council-tax-reduction-2026-2027.json",
+      "sha256": "35baad2276d816bdfb6dafd9bd879ae27e0ee4a720c1dff60011e0793b13a054"
+    },
+    {
+      "path": "data/corpus/inventory/uk-warrington/manual/2026-07-25-warrington-council-tax-reduction-2026-2027.json",
+      "sha256": "7f663566841b10822824321e2c092b7ac5c096f747b85355fb05d701751e1770"
+    },
+    {
+      "path": "data/corpus/provisions/uk-warrington/manual/2026-07-25-warrington-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "440bda1310563bfc55d2259d21575bb95fbad0bef5b7bfc5ef3479ced5348998"
+    },
+    {
+      "path": "data/corpus/sources/uk-warrington/manual/2026-07-25-warrington-council-tax-reduction-2026-2027/official-documents/warrington-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a34680d0794da2cb8bf988f50db47cc2b7da07ea7b88dd09082eafe1423bae98"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-warrington-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-warrington-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 140,
+    "missing_count": 0,
+    "provision_count": 140,
+    "source_count": 140
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:41.961151+00:00",
+  "jurisdiction": "uk-warrington",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FC8YCCca2PJmfZvKML2Wge0GF7YUI/Za7PlhNKlKfSxvhcQoclpdQoMi6wWDwWka970HidlxYd1CNZfxum1fAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-warrington-council-tax-reduction-2026-2027"
+}

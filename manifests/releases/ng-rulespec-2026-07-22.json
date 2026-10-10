@@ -1,0 +1,12 @@
+{
+  "description": "Immutable official Nigeria legislation scope used by RuleSpec-NG. Supersedes ng-rulespec-2026-07-10: the 2026-07-22 re-extraction of the same pinned gazette capture (byte-identical source PDF, sha256 e13ea10a…) repairs the section 30 and section 58 provision bodies, whose leading operative words the earlier section_heading_pattern had routed into the heading field.",
+  "name": "ng-rulespec-2026-07-22",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "statute",
+      "jurisdiction": "ng",
+      "version": "2026-07-22-ng-income-tax-individual-core"
+    }
+  ]
+}

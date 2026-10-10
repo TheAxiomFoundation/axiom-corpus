@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-kensington-and-chelsea/manual/2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027.json",
+      "sha256": "29b93d47461609e2bfb9e6132e25f6bec0c6e45b4938e0e1898965ebcad8bf40"
+    },
+    {
+      "path": "data/corpus/inventory/uk-kensington-and-chelsea/manual/2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027.json",
+      "sha256": "2e45468a20a1ecc726887d94464ae764ace7a9cd857c5a55eea8dba479856d6d"
+    },
+    {
+      "path": "data/corpus/provisions/uk-kensington-and-chelsea/manual/2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "db938de476ab19f0858e55007bf366de33ba89ae87485fc43184aee839ff1d84"
+    },
+    {
+      "path": "data/corpus/sources/uk-kensington-and-chelsea/manual/2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027/official-documents/kensington-and-chelsea-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "4acc97cc2240830a8c73fa0ca4c675ddf140e310bad409041c0936b240b78432"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-kensington-and-chelsea-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 221,
+    "missing_count": 0,
+    "provision_count": 221,
+    "source_count": 221
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:30.546228+00:00",
+  "jurisdiction": "uk-kensington-and-chelsea",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2sgcEirh30pYTAQF9al/I6Rk9wzggrPwHmvDfTFV22F0nAgXQ4SsPN5ldxz9ED6nGbzLRMkfv8T054rrx1MCCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027"
+}

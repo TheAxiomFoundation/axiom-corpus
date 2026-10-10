@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "998cf0d0ccb0f5154e722d01405f2cdff18fab77ff823fd3752c01499c6d0e13"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "4557d3bec9f918dcaff65659084f73b97f0f782d91b601f1b066b7dc2b7cf133"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/manual/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "d16405e70b8867b54056c53a27f038ff366cec99155760c4cb9c8090c0afe746"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/manual/2026-09-10-ssi-state-supplement/official-documents/sc-scdhhs-mppm-chapter-403.docx",
+      "sha256": "3ebd528bb6aacdb0a458326dafbad0c7883f9b5f656164baf6194b5523da26c5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-sc-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 23,
+    "missing_count": 0,
+    "provision_count": 23,
+    "source_count": 23
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:47:00.946819+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NA3+VKtj/N4BYtLinku/vMU+6YUHyY1jo6sszdSIWcmoJTFPei+BTnOVKt4kV0hVNTkixQ/BKVtd5CcSJWD7DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

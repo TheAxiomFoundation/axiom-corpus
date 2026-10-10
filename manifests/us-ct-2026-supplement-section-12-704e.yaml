@@ -1,0 +1,39 @@
+documents:
+  - source_id: us-ct-cga-2026-supplement-section-12-704e
+    jurisdiction: us-ct
+    document_class: statute
+    title: Connecticut 2026 Supplement, Section 12-704e, Earned Income Tax Credit
+    source_url: https://www.cga.ct.gov/2026/sup/chap_229.htm
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-01-01"
+    citation_path: us-ct/statute/2026-supplement/12-704e
+    request:
+      verify_tls: false
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: "p:has(#sec_12-704e)"
+      html_stop_selector: "p:has(#sec_12-704j)"
+      citation_suffix: earned-income-tax-credit
+      section_heading: >-
+        Section 12-704e. Earned income tax credit. Additional amount for
+        certain taxpayers.
+    metadata:
+      primary_source: true
+      source_authority: Connecticut General Assembly
+      document_subtype: general_statutes_supplement
+      program: individual_income_tax
+      tax_year: "2026"
+      legal_authority: Connecticut General Statutes Section 12-704e
+      legal_authority_url: https://www.cga.ct.gov/2026/sup/chap_229.htm#sec_12-704e
+      source_status: official_2026_supplement
+      amendment: P.A. 25-168, Section 371
+      amendment_effective_date: "2025-06-30"
+      amendment_applicable_tax_year_start: "2025-01-01"
+      source_family: personal-income-tax/earned-income-tax-credit
+      source_note: >-
+        Official consolidated 2026 Supplement text for Section 12-704e. The
+        retained section supplies the 40 percent applicable percentage, the
+        additional $250 credit for an eligible taxpayer with at least one
+        federal qualifying child, refundable-excess treatment, the
+        separate-state-return allocation rule, and the amendment history.

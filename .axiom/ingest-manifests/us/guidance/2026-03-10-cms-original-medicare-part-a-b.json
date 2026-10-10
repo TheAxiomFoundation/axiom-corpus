@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5a3fa9b719ee5aa6947fa42af17fe4a2dc7db18c",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/medicare-pe-corpus-20260626"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,7 +35,7 @@
     "source_count": 31
   },
   "document_class": "guidance",
-  "generated_at": "2026-06-26T19:02:27.814434+00:00",
+  "generated_at": "2026-07-21T11:57:43.259356+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HnXUVbcNphti3FCIJGNkcpfrtdf0BFG5U+3wHQ72AW00BXKBVRbK3NMWg/KQux/3MhU8q8n3cM8cYPmfE+UPBA=="
+    "value": "4Mv6pGoIYO2AMWABL9X1PYbSH31cw8YAbmKA+BiPydp38Ez6Fjq4r59nKDPfaPAWmkPaF+52VW677E1jkuHLBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-03-10-cms-original-medicare-part-a-b"

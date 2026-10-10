@@ -1,0 +1,53 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-id-istc-individual-income-tax-rate-schedule-ty2025
+  jurisdiction: us-id
+  document_class: guidance
+  title: Individual Income Tax Rate Schedule (by year; 2025 latest)
+  source_url: https://tax.idaho.gov/taxes/income-tax/individual-income/individual-income-tax-rate-schedule/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-01-01'
+  citation_path: us-id/guidance/istc/ty2025/individual-income-tax-rate-schedule
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2025'
+    publication_or_revision_date: '2025-12-29'
+    amounts_carried:
+    - 'rate schedule by year (2025 latest: 0% to $4,811/$9,622, then 5.3%)'
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.idaho.gov/taxes/income-tax/individual-income/individual-income-tax-rate-schedule/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.idaho.gov/taxes/income-tax/individual-income/individual-income-tax-rate-schedule/
+      (read 2026-09-13)
+    source_note: 'Latest published year: the page has no 2026 row as of 2026-09-13.'
+- source_id: us-id-istc-epb00744-withholding-percentage-table-ty2026
+  jurisdiction: us-id
+  document_class: guidance
+  title: Table for Percentage Computation Method of Withholding (EPB00744, rev. 2026-07-23)
+  source_url: https://tax.idaho.gov/wp-content/uploads/pubs/EPB00744/EPB00744_07-23-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-id/guidance/istc/ty2026/epb00744-withholding-percentage-table
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: withholding_tables
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-07-23'
+    amounts_carried:
+    - withholding rate (5.3%)
+    - zero-bracket withholding thresholds ($16,100/$32,200)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.idaho.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.idaho.gov/forms/ (read 2026-09-13)

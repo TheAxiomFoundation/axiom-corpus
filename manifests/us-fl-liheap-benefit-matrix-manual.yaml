@@ -1,0 +1,36 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-fl-liheap-commerce-liheap-policy-manual
+  jurisdiction: us-fl
+  document_class: manual
+  title: Florida LIHEAP Policy Manual, effective May 27, 2022
+  source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2023/manuals/FL_PolicyManual_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2022-05-27'
+  citation_path: us-fl/manual/commerce/liheap-policy-manual
+  metadata:
+    primary_source: true
+    source_authority: Florida Department of Commerce (formerly Department of Economic Opportunity), Division of Community
+      Development
+    hosting_authority: HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: FL
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    on_clearinghouse_index: true
+    source_discovery_group: us-fl/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://liheapch.acf.gov/stateplans.htm#MANUALS
+    extraction_granularity: pdf_page
+    expression_date_note: 'printed ''EFFECTIVE DATE: May 27, 2022'' (last revised November 17, 2021)'
+    access_note: liheapch.acf.gov HTTP 200 with the Entrust intermediate in the CA bundle (2,098,739 bytes)
+    page_count: 73
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+    tls_note: liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem

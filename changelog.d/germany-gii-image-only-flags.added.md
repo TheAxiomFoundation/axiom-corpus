@@ -1,0 +1,1 @@
+`germany_gii` now flags provisions whose renderable content is image-only (`content_flags.image_only_content` with count and image names) and warns per affected provision during conversion, instead of silently emitting a blank body. Census of the current DE source set: SGB IV § 20 Abs. 2a (2 formula images) and SGB VI § 255e Abs. 2 (4 formula images) are affected (corpus#533).

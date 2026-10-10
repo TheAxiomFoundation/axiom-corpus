@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/guidance/2026-07-24-tn-individual-income-tax-zero-liability-guidance.json",
+      "sha256": "bddc2d699a4bbfaa735bcae244e2976b9ca22640d36b363ebb6e73db4aa215e2"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/guidance/2026-07-24-tn-individual-income-tax-zero-liability-guidance.json",
+      "sha256": "199e1a88b5a3305960e90f2fc391697593812dfa6c11cd283279cf9a3ba2e5c5"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/guidance/2026-07-24-tn-individual-income-tax-zero-liability-guidance.jsonl",
+      "sha256": "452796b29729cd556bde2092c79e9c9063c08c71b0f8255d351ca10c20d2e1ab"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/guidance/2026-07-24-tn-individual-income-tax-zero-liability-guidance/official-documents/us-tn-revenue-gen-34-income-tax-withholding.json",
+      "sha256": "30885afcb7ecc2e90bd2b1fdaa5df46aa7bb9058759c763bb8615fbb5b4da86f"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/guidance/2026-07-24-tn-individual-income-tax-zero-liability-guidance/official-documents/us-tn-revenue-hall-income-tax.html",
+      "sha256": "a92fe7751c6183e7fced4db46c14c811fd442ae8e22818b2ab6b9cc3015d86ca"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4614dc11a02c235d4531a7192b40e11777f38a19",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-tn-individual-income-tax-zero-liability-guidance --manifest manifests/us-tn-2026-individual-income-tax-zero-liability-guidance.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T16:24:51.624679+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-tn-individual-income-tax-zero-liability.md",
+      "sha256": "058afa15350e25fc8b6917ec07d566ffef1f62824376158fb1bf0947142a3dad"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7AcBVR3a0bZOm5jIxxhp0rfo6/VOVFw333Ey4EAOreckAQA9BXOMO5lrFqot/i6VK+Rg1H6gvm17Skvgo5znCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-tn-individual-income-tax-zero-liability-guidance"
+}

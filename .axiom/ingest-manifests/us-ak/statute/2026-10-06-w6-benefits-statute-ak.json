@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/statute/2026-10-06-w6-benefits-statute-ak.json",
+      "sha256": "cc7fe165b99658d12ad8e34917cf1caf9b64bc472176a934fbcb07c500e0acf8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/statute/2026-10-06-w6-benefits-statute-ak.json",
+      "sha256": "533ffd69809fe48e583d63b6cebbeefe5877a9968609aa9d2c899b4c430d44d1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/statute/2026-10-06-w6-benefits-statute-ak.jsonl",
+      "sha256": "13ca6d450e8efd6d38f7521b4e11d259b56132e1ebb79ed8070a6c514f32156f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/statute/2026-10-06-w6-benefits-statute-ak/official-documents/us-ak-statute-title-47-pdf.pdf",
+      "sha256": "b513626368d66155708c1be24a3cb00aa7d31c65074c9e761ac8dd788e8a0f92"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 369,
+    "missing_count": 0,
+    "provision_count": 369,
+    "source_count": 369
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:48:03.439551+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "u2PT7MxsyPiENGjyj1MOV0BlPvBysR6MxEOstBz8W8cQKqRXUAdMzgCWr10dsGVse2cpG3p3df5tHnneTVvECA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-ak"
+}

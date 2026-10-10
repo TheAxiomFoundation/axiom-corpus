@@ -1,0 +1,1 @@
+Preserve current official Illinois statutory and enacted-session-law authority for the tax-year-2026 resident individual income-tax pipeline, together with IDOR's official 2026 personal exemption amount and limits.

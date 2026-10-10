@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-nj/regulation/2026-05-27-nj-snap-rules-partial.jsonl"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "372972f08a1c8239c019744a845bef13234d0252",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "remove superseded source-less partial New Jersey SNAP scope after publishing signed 2026-07-17-nj-snap-rules replacement"
+  },
+  "coverage": null,
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T20:17:03.983287+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "f1evJtT5cjtHbwFRy82G3IjfPOhrcjVeniyRj1uk0Up0QGnJnSy7OOYHgeuNsgSyPImIVlDv+t0FwAhgyOHmAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-nj-snap-rules-partial"
+}

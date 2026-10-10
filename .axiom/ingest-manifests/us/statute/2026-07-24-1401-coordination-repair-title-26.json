@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-24-1401-coordination-repair-title-26.json",
+      "sha256": "c4af9dbafd80857116ab94b5ac1a968abaaf4b7abce13cba0a85ddc6bb6ec7cc"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-24-1401-coordination-repair-title-26.json",
+      "sha256": "014369a372affa906a3afc2ce058d96364e0e6f631bd5ec0bd49d33d1fb430bf"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-24-1401-coordination-repair-title-26.jsonl",
+      "sha256": "cda76f0ea15210b1df7a5800d985ddb6abc016b5e694ea5d35e60f0f01a36a54"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-24-1401-coordination-repair-title-26/olrc/xml_usc26@119-102not101.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-24-1401-coordination-repair-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "afab29fc555af3d5bc25bba795e5b0c6ef936adc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_1401_coordination_repair.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-26T15:56:43.845824+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KfBQqkKScQYl70oFqrNLtOhXIMap3XruORFwcaDV5kQ+jFyBP3GGkQTlrc27FNZ4+wN/GYCa/N5We+PD5TUQCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-1401-coordination-repair-title-26"
+}

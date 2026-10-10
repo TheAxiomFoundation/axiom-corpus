@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-winchester/manual/2026-08-02-winchester-council-tax-reduction-2026-2027.json",
+      "sha256": "d27e8b1bf045e49cc496a864eefb7f121e94c86d7ff6da3be5ac44ca4b78dc7d"
+    },
+    {
+      "path": "data/corpus/inventory/uk-winchester/manual/2026-08-02-winchester-council-tax-reduction-2026-2027.json",
+      "sha256": "a665da58b7cbb809c072339dd09308210da7249b36b1826171565a88325a7259"
+    },
+    {
+      "path": "data/corpus/provisions/uk-winchester/manual/2026-08-02-winchester-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "725c357e484c8beb360c6100a08def4cc88ca812adf63a8fa76a8a8c96473ca2"
+    },
+    {
+      "path": "data/corpus/sources/uk-winchester/manual/2026-08-02-winchester-council-tax-reduction-2026-2027/official-documents/winchester-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "4d5b9e31160e7c34d5a22c20ad69f5d60ac96a15876be3b33ed3076f100b7fd1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-winchester-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-winchester-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 84,
+    "missing_count": 0,
+    "provision_count": 84,
+    "source_count": 84
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:31.638915+00:00",
+  "jurisdiction": "uk-winchester",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "S4XmkjxHkwKzZ2VueNkqVCGwiHsVWS8fr1AjujswKBYKvVXuviidivQwRLfh2OxLDPLy3KwKTuX/NVwPu4szCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-winchester-council-tax-reduction-2026-2027"
+}

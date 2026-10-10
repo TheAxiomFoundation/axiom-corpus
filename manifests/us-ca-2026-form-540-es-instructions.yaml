@@ -1,0 +1,55 @@
+documents:
+  - source_id: us-ca-ftb-2026-form-540-es-instructions
+    jurisdiction: us-ca
+    document_class: form
+    title: 2026 Instructions for Form 540-ES — Estimated Tax for Individuals
+    source_url: https://www.ftb.ca.gov/forms/2026/2026-540-es-instructions.pdf
+    source_format: pdf
+    source_as_of: "2026-07-23"
+    expression_date: "2026-01-01"
+    citation_path: us-ca/form/individual-income-tax/2026/540-es-instructions
+    extraction:
+      segmentation: single_block
+      sort_text: true
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: 3e67bc8f3dc6773cee6dab6e3d1b8d70ee03b8f91fbd581b5ad0e44ec49970bc
+      pdf_last_modified: "2025-12-18"
+      document_subtype: individual_estimated_income_tax_instructions_and_worksheet
+      form: 540-ES
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_estimated_tax_instructions
+      certification_scope: tax_year_2026_estimated_tax_worksheet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      resident_standard_deduction_single_or_separate: "5706"
+      resident_standard_deduction_joint_head_or_survivor: "11412"
+      line_4_tax_materials_year: "2025"
+      line_4_tax_materials_direction: >-
+        Figure tax on worksheet line 3 using the 2025 tax table for Form 540
+        or Form 540NR, and include any tax from FTB 3800 and FTB 3803.
+      behavioral_health_services_tax_threshold: "1000000"
+      behavioral_health_services_tax_rate: "0.01"
+      behavioral_health_services_tax_formula: >-
+        Subtract $1,000,000 from Form 540 line 19 taxable income or Form 540NR
+        line 35 nonresident California-source taxable income, multiply the
+        positive excess by 1%, and enter the result on estimated-tax
+        worksheet line 17.
+      statutory_rate_corpus_citation: us-ca/statute/rtc/17041
+      statutory_surtax_corpus_citation: us-ca/statute/rtc/17043
+      statutory_standard_deduction_corpus_citation: us-ca/statute/rtc/17073.5
+      statutory_corpus_version: 2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5
+      source_note: >-
+        Official tax-year-2026 Form 540-ES instructions and California
+        Estimated Tax Worksheet. The worksheet publishes 2026 standard
+        deductions of $5,706 for single or married/RDP filing separately and
+        $11,412 for married/RDP filing jointly, head of household, or
+        qualifying surviving spouse/RDP. Line 4 expressly directs use of the
+        2025 Form 540 or Form 540NR tax table; this intake therefore does not
+        project a final tax-year-2026 return schedule. Section D and worksheet
+        line 17 impose the 1% Behavioral Health Services Tax on taxable income
+        over $1,000,000. This source supports estimated-tax worksheet
+        computation only and does not certify complete final-return liability.

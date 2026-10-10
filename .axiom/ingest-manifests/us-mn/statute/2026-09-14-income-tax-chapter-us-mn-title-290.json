@@ -1,0 +1,473 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290.json",
+      "sha256": "c87c3e4d460dc17f8e94d03edbfae6fea76dabd08556f64a5f8d371dbea13f36"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290.json",
+      "sha256": "041d2b30bd915ef1f69d969d72cdd2cbe0b4cd0afd3c3395487c8c3e77a65c60"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290.jsonl",
+      "sha256": "48b9852647a6ad35658758415e3db5ae7648d8df6276228a2076f82e48abd190"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/chapters/chapter-290.html",
+      "sha256": "e70c1ce638a16bf258c91ebb5239b5daad9250f80c2ac663f114adc24c37ec3e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/index.html",
+      "sha256": "9076b845e47bbbe5986bfe460126bb96afee4327266c46531b6806d2233648c6"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/administration-and-finance.html",
+      "sha256": "0026ad089ab41fc6839fe0aaa967b441af4f4b02afd49e4793db971886897dc5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/aeronautics.html",
+      "sha256": "9763ec332c092f43e8599591f2e91262b9c8ab2e23de332a011dd6c4ac3dd20f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/agriculture.html",
+      "sha256": "bcdd741e8dff1bf7327f6cd69f07525fd66ce65b885fedcef8244837b9dddc13"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/animals-and-property.html",
+      "sha256": "8ca3c69a8bc71a9746d2d245abcae2d641b3d775dc595dfb22213a2145364213"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/arts.html",
+      "sha256": "3b4b381d68363be357e649485857ffb555b017a6385c9ffcf4b0a7e76bec62fc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/banking.html",
+      "sha256": "f1c39b8bf33a66a5679981ef53b01fe31f90c0c809d310190c1b3d54c6bb9a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/business-development.html",
+      "sha256": "b7e3ab9120e8be7e888e51c383e163ad02ae365162245543e0ed7f1117324e4a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/business-social-and-charitable-organizations.html",
+      "sha256": "a374108bd761e010bc13ebbe7dc998c6835c1e07ed2ec775d36b2782e6108eaa"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/capitol-area.html",
+      "sha256": "79559a704501837fe4d4767ee5061f9756e5db9c0db19c2a018ba3f26864c087"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/carriers.html",
+      "sha256": "85edd371ed3727189f9293a73dfab7f843ceb065698dee6c6489e3a266cc4892"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/certiorari.html",
+      "sha256": "59dfacb356baf851c1979f2ca65e941cd7d60f091cb1daa256abd21d1879ec20"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/children-and-families.html",
+      "sha256": "292b7ea2b2e944b556e1bdd9001f893ab661481e34180bf3c4e104008adb9781"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/children-youth-and-families.html",
+      "sha256": "f6a0778e36edbaa275ccf7aec348cf7d4e6fedcd4193b58fc91abe5cbe1ac016"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/cities-general-government.html",
+      "sha256": "94ca5762d6973fea416a33662acbe0714511acd967a4e4ee4df5c06dafd58884"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/cities-organization.html",
+      "sha256": "1dd7db67da6dbeebf7c22b6d7f44a6ad6abc212d437d516fbcb9a3879adb65d8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/city-merit-systems.html",
+      "sha256": "8f514ac64c8b6747f171a89a29f359e0382648cd1de672ac30fc93798b9f7f07"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/civil-actions.html",
+      "sha256": "efb4795d6a71235d2bb9bad5aab58f97c2596cdd22467483ecd510495cfcc477"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/civil-procedure.html",
+      "sha256": "47e027c9d736a229d5c0f33114b84272a87b4aa5e1ede89dedeab310879a6ce2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/commerce.html",
+      "sha256": "5fd720f43cce40dcc46f29f9c9617efc32d705e2eb5e292f6ef744db212b9187"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/commercial-regulations.html",
+      "sha256": "e5ea36099c68b819bdce01416e335f7d72c36db4b302751e7b8ae30cf978e527"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/conservation.html",
+      "sha256": "53ee172ced31c55bf7fb2fdf1a2ecbf35178429222e53d734b1e89a5ebff6311"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/constitutional-offices-and-duties.html",
+      "sha256": "4a18f5fc56151696f2d17a8dda1b2e20642721810f0b3f5f4f41dd40b4d1cf83"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/corrections.html",
+      "sha256": "dca5e8a489b7bf21b28af10ed3b703e00179cc0d0646b47c97eac8e67ad7d639"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/counties-county-officers-regional-authorities.html",
+      "sha256": "dd3d56141326c569b3baba11385773e61db1c1adb7005fd33f215c1adf7536d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/court-and-filing-fees-attestations.html",
+      "sha256": "900acd9ebe0f2a7a2cd0c959f3292283e4b88aa02031a05eb6a7c5ca9ac64a45"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/crimes-expungement-victims.html",
+      "sha256": "f432effbb1bcb4d595675e5cd51090d007314b2084e993121bcb08fb34ee92da"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/criminal-procedure-peace-officers-privacy-of-communications.html",
+      "sha256": "1c6566288716ca13695a3093c7e1a175d793f6bb48825402964a1cde0e2dc0a0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/criminals-rehabilitation.html",
+      "sha256": "0ecf6ff45c376a01d8db02f50f8ca0ebc1b921267d74405639472ef5026f2468"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/data-practices.html",
+      "sha256": "c105d456665ab00b6c1c552cf917dbfeb67799946ff1b9a1edb47efe23321588"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/declaratory-corrective-and-administrative-remedies.html",
+      "sha256": "52d12643e163fc61f5ef9d2f4baceb2c44fcd1f279d916040067d29f26e3b918"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/domestic-relations.html",
+      "sha256": "e6b7f1f805deec8c74ae86aefdcdbd8a09d999fc81507699952b885d78a34b7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/economic-development-and-planning.html",
+      "sha256": "3b97fdf473fe66bd2bd2b913bfc41a0b18542daf6111ae22dd4f8cf69c02fc47"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/education-code-prekindergarten---grade-12.html",
+      "sha256": "b90f8bbebfa803865b94ba568490a4d92d5a11f0aabbc0e3f28d007e5d6e8e10"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/elections.html",
+      "sha256": "46715d619637aed21e425ea9b4f3b439ba4c35d40b773d2e341a9de9be0c2575"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/eminent-domain-local-depositories-and-investments.html",
+      "sha256": "448e1c87e273d31320e4786fb654c5a9b751d5fd4115694c9d32be43443d9fc5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/employment-and-economic-development.html",
+      "sha256": "e3a819dc08701fd6f3536f66c48b3facb3c96721cacc29f53bc32f7ab890e2c2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/environmental-protection-funds.html",
+      "sha256": "d308755f33cd4ad3de683b340f76bd10e2ff2ce9cc474c0174c4e37640602181"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/environmental-protection.html",
+      "sha256": "e02e4cf3f637431022cb845382a53ca19ebd49a02ac03019fe1897fc7bae8f49"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/evidence.html",
+      "sha256": "320d447ee405c5e78c9826123036b55a3865b0212d15492b3ad00761b9a0a033"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/examining-and-licensing-boards.html",
+      "sha256": "d1d2c097255c147d870a6ccf0cc736d21db7ab5fe4e3d1ed78cf847ba7799178"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/excise-and-sales-taxes.html",
+      "sha256": "d57069b67391cf73e00f023d7e70a67d693735d3c806e5764172dbb1f503bc14"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/extraordinary-writs-contempt-postconviction-relief.html",
+      "sha256": "65a2fc172007e2b088b595f5fed4d538fa569cab23a6d2a1563e4f5cf22462fa"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/farm-products-commercial-practices.html",
+      "sha256": "b4256e686648174565816f7bb6b8819c8f9299e2f4cd6605495bc57f3421a2c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/fiduciaries-powers-of-attorney.html",
+      "sha256": "9917e6b37a8669ff4830d505dc708452755b85144c38e173c1ecf456df035986"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/forestry.html",
+      "sha256": "71c597afd1b387407e80599691a70074f569a489eb1a02e15d663fc12ea8545b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/fraudulent-state-claims.html",
+      "sha256": "76ee9d9bd8a4b755d3a7ca987906074204f23315b2c0520be00435fea950e176"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/game-and-fish.html",
+      "sha256": "f7c0e3d1ad5c52ecb0279da2153b0bd8a40864bf53b3afe984fbd3d15df5b299"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/gaming.html",
+      "sha256": "c1e7657b62ff83663a9429984911f6f870211fd603964ab855488054e9ec6512"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/government-miscellany.html",
+      "sha256": "f7c25f44ede16fda03c67ebd2da7d01c02a50f4348864ea532bf0ffd0ee9d6a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/health-and-education-facilities-authority.html",
+      "sha256": "a2e0ec4883754d0c7c034e2fc449dce303155076fce04cd0a4a0f63cede46a5d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/health.html",
+      "sha256": "10c82972b00681ad75a4b8169feccc988a8b1f762bf11b644f2d219d852619ec"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/human-rights.html",
+      "sha256": "78ec80a9a799dcb48180e943d56a0c8f084d0483beac2b45fa984c0f4e0dc775"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/insurance.html",
+      "sha256": "763c202204c678128682e53e18c7fe4f5bb2fa24930d9f9c871d34c014af15f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/judiciary.html",
+      "sha256": "d018dd5b62800a0b4d3a85cb727783169d9ec838d764226f5e2bf7ed23a22de8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/juries.html",
+      "sha256": "36cd32b6042cf926bdd185c32a976c61f992e9e44604b5381e7c12848edba7f0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/jurisdiction-civil-divisions.html",
+      "sha256": "4c7001395fb85601c511aaf6c604eee808c3973afa2a8cd9e86a92398d316bd8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/labor-industry.html",
+      "sha256": "2851071ede0e099211020ceda6e3349fb7a91139bba3bca6a422e0b6dbef0124"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/lands-and-minerals.html",
+      "sha256": "bc4297300425fee15e3be848900d57589f714e31c703567737f1c48cfe3a14e2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/legislature.html",
+      "sha256": "96fd0b8d7adb0208478b7372d5d2ad80292745210c67496ff165388bfab37f57"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/libraries.html",
+      "sha256": "a8ddf453fa61d76b7e4b18233c8d145156b235edd35d9f537a2772db701a2c16"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/local-economic-development.html",
+      "sha256": "03bf3def8b5f783412d40b83e8fc68d4afe250db454e0ffecfa14ba454ed6a2c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/local-government-police-powers.html",
+      "sha256": "f593f8e9c993c57963981e1425e5a53b3dd7143c157c9261fa3859e6faa3bf2e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/local-jail-facilities-lockups-workhouse-juvenile-offender-care-pardons-clemency-review-commission.html",
+      "sha256": "be14c21488a552c5ad163831f07568c0d3fa6d7ac1bcef68b5325f72c345d8e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/local-public-utilities-enterprises.html",
+      "sha256": "0e57c51bf30485ecf4c5dc099026cdda868ededc81db7286299b4b1f9fa81d36"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/meetings-of-public-bodies.html",
+      "sha256": "4b1f4675bc39f106787bc9567f0f1f41e10a3d6cd23816ee5629f1153bc0814e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/metropolitan-area.html",
+      "sha256": "653c1d49a0d595c26a0bbfa8eed4bb11a89f50f6aff13acdde5100138f9b7342"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/military-affairs.html",
+      "sha256": "a27e8e7a3c7971773137b59cb8f0b9767aa8faa566850eae17d0dd9b8dc73bdb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/municipal-finance-taxation-special-assessments.html",
+      "sha256": "56b9456e4c963eccc6fbc6bafaa3293bbaee5a566ca6e4d8146afe0834ed85b8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/municipal-personnel-retirement.html",
+      "sha256": "6d65af3aafb38278fc30b5451b3584776e9ea4a2b4f84a13c90f7a3529e7b323"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/municipal-public-safety.html",
+      "sha256": "fb76d20aa4dbc26e0aac351455aa15360e0f58b2aa49e6e6c7bf99caa46a48a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/municipal-public-works.html",
+      "sha256": "7b42927a3b676d613ad5e0f54febf20b102cb136f8e0d1a8ba21d81f70ec9c6b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/municipal-welfare-recreation.html",
+      "sha256": "abf00f50d64f290fff61b36545dea1f02d01682b0ab891ca4958760c6992aeab"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/municipalities.html",
+      "sha256": "56c67f14fa9f4a6f53038d660769a442c4eebf2ee75b0ec119c40561ed53cbdf"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/natural-resources.html",
+      "sha256": "c698cb48121dcb0bc6ed5f7f4cefa3b833ca30717e73b12dbded458b2b2fa4a8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/political-subdivisions-general-provisions.html",
+      "sha256": "8bc3a9a5ac5e40c81d2d69942c4a31d5a3b746cc37296ac7bb4c055c2fe40cac"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/postjudgment-remedies-alternative-dispute-resolution-bonds.html",
+      "sha256": "df7418eb3f3cf25c10844daf6627496bdffa442ea96dab558e43e004fe7c0a3e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/postsecondary-education.html",
+      "sha256": "897254c6d6973e89c01cd4019576bfd87fd64c196d578e76c11f474fd0500b2e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/probate-property-estates-guardianships-anatomical-gifts.html",
+      "sha256": "232792981e55be0ee82aaaeffbb6c4b0211c22b82a02895e19dcdd1a0bd6953a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/property-and-property-interests.html",
+      "sha256": "272056287b82e0d226b7d515cb02e60eeef4cd84ca2c48f328d928663d279ae0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/property-taxes.html",
+      "sha256": "22d8262a33ca2897faa5ca0ada4c3cee5375258df27b19562d4570bd870002b1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/proprietary-schools.html",
+      "sha256": "0cedc797792bfde2d451e962a6c71af9f663f141f1bd9262f1db342907633f5b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/public-debt-local-government-aid.html",
+      "sha256": "a6ebb740ae238925b48d738d55a280b6f61b5e4ee52ec439842e60f9f4691e31"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/public-safety.html",
+      "sha256": "b904ff2c5bec2fdf7d476922f7d5a64a5b0ff6f8c2ceed1328f2ddcab8249a58"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/public-welfare-and-related-activities.html",
+      "sha256": "3bbc2a8376a7896d512c6da8dc651fad9cb7a9425b536f70f68a0d62e5db6a35"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/real-estate-sales-regulations.html",
+      "sha256": "fae2f3b8972b5efaca17a7e43da99ce2dc092e6e986cc1187b5d6ec47fcffdf1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/recreation.html",
+      "sha256": "f1b928be8bfaa3c84fa80a59f7f57609846ae508c6309a86de3288d171b7f488"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/retirement.html",
+      "sha256": "bb2364e012b4c8157cc6a00b16aba4b2c40df35d7471bff05d3290b948fc4bbb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/rural-development.html",
+      "sha256": "54e33af96771833bc1c2c0280dad5bef46c964959f2b72f109ca9131db240b0a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/securities.html",
+      "sha256": "dfabf23e55e2d921c4dd13abd40fde2f21f472957a41e6024574bfbc9e115a0d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/sports.html",
+      "sha256": "13338b06e44317e3580661efaca014404a8b48db9318001795b047bfd7833cb4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/state-agencies.html",
+      "sha256": "159a1adc8b9b3bfb526b1fa3bfb34b254298bb64c4d1df9a3f8b82e360269c49"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/state-employment.html",
+      "sha256": "66b8a71ca19fa3387cf48c96888b6a0b5b36629afe1a961fac8b2b69f098c8f8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/state-history.html",
+      "sha256": "95d9ea10bc8ae628ff3a387d295b90d9b2ad94a15c1b50826b1e1d8e9124fe2f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/statutes-construction.html",
+      "sha256": "98cdefe919f5621b2da195ad27160efac2110a80d55ae9f37f954ecec3660775"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/taxation-supervision-data-practices.html",
+      "sha256": "365ec1138949949b3225d96d2a5d03321864dfc53c6ed055b48b91caf7f7ede3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/telecommunications.html",
+      "sha256": "d29f8bf3d83e5badef4d23e822662e5b924606c9e966a44d0096b145adfee497"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/towns.html",
+      "sha256": "0052797708bb463bd4eaefc159384094fca6e4a0856251a86f54e2b1dda1d314"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/trade-regulations-consumer-protection.html",
+      "sha256": "ac86bd7136b07995f48508fabc898e47662b7292698c71200040a792aad34e0c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/transportation.html",
+      "sha256": "d9bab65e3326b8df6660d3d04ef4a5eb0e609d7ebab4df07560689d633471af3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/utilities.html",
+      "sha256": "3f11d2f6594ea2c40ca28ab8ce939b524ca477460620275a3e11d0bd95267ac7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/vacancy-in-public-office.html",
+      "sha256": "e26b29e7f078d49fd7964e09580decf2d94ad17c4861a604048a2ebf410ff7a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/various-state-taxes-and-programs.html",
+      "sha256": "a198d7ccdf3b4d46c11b36d5c1c349cedb1774d9998d7b641d973e750c424fe4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/veterans.html",
+      "sha256": "41f5a4845498f9a0001aa7618be41ce3610ebe9cfad272092d207a26f0b90244"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/water.html",
+      "sha256": "d87fb5b626b6e459f6e75dd06b9b3f10963b5e492d96fb019820b4c96aa444d3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290/minnesota-statutes-html/parts/weights-and-measures.html",
+      "sha256": "0364fa0220ec406aa2c111f5c5e134fe2c6d455e9a556630f39a91cbf6a93b54"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-us-mn-title-290 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 238,
+    "missing_count": 0,
+    "provision_count": 238,
+    "source_count": 238
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T16:59:59.105316+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2SVXoSCkgi8EqHwaQmLlBG71C3s+myoqYxjR7EpwHWAiq86PgCxUzk+N5sdXmbKvIOvZre6HXmk5Sq/1qbOnBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-us-mn-title-290"
+}

@@ -1,0 +1,1681 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-pa-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 510
+- source_id: us-pa-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 510
+- source_id: us-pa-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 510
+- source_id: us-pa-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 510
+- source_id: us-pa-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 510
+- source_id: us-pa-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 6
+    index_records_on_page: 10
+    index_records_total: 510
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-26-0001-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-26-0001: Approval Document (approved April 8, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-26-0001
+    cms_node_id: '191286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=191286
+    approval_date: '2026-04-08'
+    effective_date: '2026-01-01'
+    summary: This amendment updates the State Plan to connect Targeted Support Management to a 1915(b)(4) Selective Contracting
+      Waiver. This includes changes to providers' qualifications to require a signed agreement that requires compliance with
+      performance measures, changes to payment rates from 15-minute units to monthly case rates, and a flat rate for initial
+      plan development.
+    topics:
+    - Eligibility
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-25-0009-a-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-25-0009-A: Approval Document (approved March 3, 2026, effective October 12, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-25-0009-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-12'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-25-0009-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-25-0009-A
+    cms_node_id: '189686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189686
+    approval_date: '2026-03-03'
+    effective_date: '2025-10-12'
+    summary: This amendment proposes adding Targeted Case Management (TCM) youth reentry services, as required under Section
+      5121 of the Consolidated Appropriations Act.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-25-0022-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-25-0022: Approval Document (approved February 24, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-25-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-25-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-25-0022
+    cms_node_id: '189681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189681
+    approval_date: '2026-02-24'
+    effective_date: '2025-10-01'
+    summary: This amendment updates the Third-Party Liability language in the Pennsylvania Medicaid State Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-25-0026-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-25-0026: Approval Document (approved February 18, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-25-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-25-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-25-0026
+    cms_node_id: '189301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189301
+    approval_date: '2026-02-18'
+    effective_date: '2025-10-01'
+    summary: This amendment proposes to remove the September 30, 2025, sunset date for the Medication-Assisted Treatment (MAT)
+      benefit, making the MAT benefit permanent under the Medicaid State Plan in accordance with federal statute.
+    topics:
+    - Benefits
+    - Coverage
+    - Drugs and Related Services
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-25-0009-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-25-0009: Approval Document (approved January 27, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-25-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-25-0009
+    cms_node_id: '189116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189116
+    approval_date: '2026-01-27'
+    effective_date: '2025-01-01'
+    summary: This amendment is to provide for mandatory coverage in accordance with section 1902(a)(84)(D) of the Social Security
+      Act (the Act) for eligible juveniles who are incarcerated in a public institution post-adjudication of charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-24-0023-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-24-0023: Approval Document (approved February 27, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-24-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-24-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-24-0023
+    cms_node_id: '178236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178236
+    approval_date: '2025-02-27'
+    effective_date: '2025-01-01'
+    summary: Increases the monthly personal needs allowance deduction for institutionalized individuals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-24-0028-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-24-0028: Approval Document (approved November 15, 2024, effective October 29, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-24-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-29'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-24-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-24-0028
+    cms_node_id: '173006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173006
+    approval_date: '2024-11-15'
+    effective_date: '2024-10-29'
+    summary: Updates Supplement to Attachment 4.22 of Pennsylvania’s Medicaid State Plan to reflect Pennsylvania’s compliance
+      with the third-party liability (TPL) requirements, Section 1902(a)(25)(I), as amended by the Consolidated Appropriations
+      Act, 2022.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-24-0005-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-24-0005: Approval Document (approved March 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-24-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-24-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-24-0005
+    cms_node_id: '162051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162051
+    approval_date: '2024-03-15'
+    effective_date: '2024-01-01'
+    summary: Provides 12 months of continuous Medicaid eligibility for children under age 19.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-23-0001-a-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-23-0001-A: Approval Document (approved June 14, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-23-0001-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-23-0001-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-23-0001-A
+    cms_node_id: '149951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=149951
+    approval_date: '2023-06-14'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-21-0005-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-21-0005: Approval Document (approved May 17, 2021, effective February 28, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-21-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-02-28'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-21-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-21-0005
+    cms_node_id: '108591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108591
+    approval_date: '2021-05-17'
+    effective_date: '2021-02-28'
+    summary: Effective February 28, 2021, this amendment continues Pennsylvania's authority to make supplemental payments
+      to non-public special rehabilitation nursing facilities.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-20-0012-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-20-0012: Approval Document (approved April 14, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-20-0012
+    cms_node_id: '107751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107751
+    approval_date: '2021-04-14'
+    effective_date: '2020-10-01'
+    summary: Effective October 1, 2020, this amendment updates the Outpatient Upper Payment Limit (UPL) Methodology.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-20-0009-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-20-0009: Approval Document (approved June 24, 2020, effective April 19, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/PA-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-19'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-20-0009
+    cms_node_id: '183731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183731
+    approval_date: '2020-06-24'
+    effective_date: '2020-04-19'
+    summary: Authorizes a supplemental payment to qualifying inpatient hospitals operating nursing schools
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-20-0010-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-20-0010: Approval Document (approved June 2, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-20-0010
+    cms_node_id: '98946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98946
+    approval_date: '2020-06-02'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to allow individuals who are evacuated or absent from the state due to the public health emergency and who intend
+      to return to the state to continue to be residents of the state, extend eligibility redetermination timeframes for certain
+      beneficiaries to 12 months, waive certain cost-sharing for COVID-19 related services, adjust certain state plan benefits,
+      extend timelines for submission to CMS of cost reconciliation and settlement for school-based providers, and allow for
+      the payment of additional therapeutic leave days for nursing facilities.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-19-0025-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-19-0025: Approval Document (approved November 26, 2019, effective October 7, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-19-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-07'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-19-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-19-0025
+    cms_node_id: '52421'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52421
+    approval_date: '2019-11-26'
+    effective_date: '2019-10-07'
+    summary: Fiscal Year 2019-2020 supplementation payment for Medical Assistance nonpublic nursing facilities located in
+      a county of the eighth class.
+    topics:
+    - Benefits
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-19-0016-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-19-0016: Approval Document (approved October 28, 2019, effective September 22, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-19-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-22'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-19-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-19-0016
+    cms_node_id: '4341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4341
+    approval_date: '2019-10-28'
+    effective_date: '2019-09-22'
+    summary: Aggregate Limits to Inpatient Disproportionate Share, Outpatient Supplemental and Direct Medical Education and
+      Disproportionate Share Hospital and Supplemental Payments to newly enrolled in-state hospitals that qualify for payments.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-19-0013-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-19-0013: Approval Document (approved October 10, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-19-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-19-0013
+    cms_node_id: '4266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4266
+    approval_date: '2019-10-10'
+    effective_date: '2019-07-01'
+    summary: Designation of Additional Practitioners in FQHC/RHC Settings.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-19-0005-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-19-0005: Approval Document (approved May 30, 2019, effective April 21, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-19-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-21'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-19-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-19-0005
+    cms_node_id: '5911'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5911
+    approval_date: '2019-05-30'
+    effective_date: '2019-04-21'
+    summary: Continues disproportionate share hospital payments to enhance access in economically distressed areas.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-19-0004-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-19-0004: Approval Document (approved May 30, 2019, effective April 21, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-19-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-21'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-19-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-19-0004
+    cms_node_id: '5871'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5871
+    approval_date: '2019-05-30'
+    effective_date: '2019-04-21'
+    summary: Continuing disproportionate share hospital payments to promote access to comprehensive inpatient services.
+    topics:
+    - Cost Sharing
+    - Health Services Initiatives
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-18-0006-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-18-0006: Approval Document (approved July 11, 2018, effective June 24, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-18-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-06-24'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-18-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-18-0006
+    cms_node_id: '9841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9841
+    approval_date: '2018-07-11'
+    effective_date: '2018-06-24'
+    summary: This amendment continues provisions for disproportionate share hospital payments to certain acute care hospitals
+      that further Pennsylvania's goal of enhanced access in economically distressed areas.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-18-0001-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-18-0001: Approval Document (approved April 24, 2018, effective March 26, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-26'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-18-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-18-0001
+    cms_node_id: '10776'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10776
+    approval_date: '2018-04-24'
+    effective_date: '2018-03-26'
+    summary: Continuous eligibility allowing children under the age of 4 to maintain Medicaid coverage for a full year, even
+      if families experience a change in income or household size.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-17-0012-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-17-0012: Approval Document (approved November 9, 2017, effective December 31, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-17-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-12-31'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-17-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-17-0012
+    cms_node_id: '11801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11801
+    approval_date: '2017-11-09'
+    effective_date: '2017-12-31'
+    summary: Implements Pennsylvania's Asset Verification System (AVS), for the purposes of determining and re-determining
+      Medicaid eligibility for the aged, blind, and disabled population.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-17-0006-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-17-0006: Approval Document (approved September 25, 2017, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-17-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-17-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-17-0006
+    cms_node_id: '13431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=13431
+    approval_date: '2017-09-25'
+    effective_date: '2017-10-01'
+    summary: Pennsylvania Medicaid State Plan Eligibility - Former Foster Care Youth from a Different State.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-16-0031-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-16-0031: Approval Document (approved December 21, 2016, effective August 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-16-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-08-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-16-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-16-0031
+    cms_node_id: '16901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16901
+    approval_date: '2016-12-21'
+    effective_date: '2017-08-01'
+    summary: 'Using the Income Determination from another Means-Tested Public Benefit Programs to Support Medicaid Determinations."
+      PA-16-0031 proposed to use the Supplemental Nutrition Assistance Program (SNAP), at initial application and renewal,
+      and the LIHEAP program, at initial application, to support Medicaid income eligibility determinations under the Centers
+      for Medicare and Medicaid Services'' (CMS) guidance issued on August 31, 2015 (SHO #15-001).'
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-15-0016-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-15-0016: Approval Document (approved November 19, 2015, effective April 27, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-15-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-04-27'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-15-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-15-0016
+    cms_node_id: '21276'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21276
+    approval_date: '2015-11-19'
+    effective_date: '2015-04-27'
+    summary: Alternative Benefit Plan for Newly Eligible Adults.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-15-0019-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-15-0019: Approval Document (approved August 21, 2015, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-15-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-15-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-15-0019
+    cms_node_id: '20811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20811
+    approval_date: '2015-08-21'
+    effective_date: '2015-07-01'
+    summary: '"Individuals Eligible for Family Planning Services," the State elects to cover individuals who are not pregnant,
+      and have household income at or below a standard established by the State, whose coverage is limited to family planning
+      and related services and in accordance with provisions described at 42 CFR 435.214.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-14-0001-mc-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-14-0001-MC: Approval Document (approved January 29, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-14-0001-MC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-14-0001-mc/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0001-MC
+    cms_node_id: '28671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28671
+    approval_date: '2015-01-29'
+    effective_date: '2014-01-01'
+    summary: Relates to MAGI Eligibility for CHIP-covered groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-14-0049-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-14-0049: Approval Document (approved December 17, 2014, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-14-0049.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-14-0049/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0049
+    cms_node_id: '28866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28866
+    approval_date: '2014-12-17'
+    effective_date: '2015-01-01'
+    summary: This amendment contains the Department's Private Coverage Option, through an ABP, for newly eligible adult beneficiaries
+      ages 21 to 64, who are not determined to be medically frail.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-14-0048-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-14-0048: Approval Document (approved December 17, 2014, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-14-0048.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-14-0048/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0048
+    cms_node_id: '28871'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28871
+    approval_date: '2014-12-17'
+    effective_date: '2015-01-01'
+    summary: This amendment contains the State's Health Plus Benefit Coverage through the Alternative Benefit Plan for newly
+      eligible adult beneficiaries who are determined to be medically frail, newly eligible adult beneficiaries aged 19-20,
+      and as an option for Medicaid beneficiaries with complex health needs in the Commonwealth.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-14-0012-mm1-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-14-0012-MM1: Approval Document (approved October 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-14-0012-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-14-0012-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0012-MM1
+    cms_node_id: '28691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28691
+    approval_date: '2014-10-02'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI-Based Eligibility Groups SPA into Pennsylvania's State Plan in accordance with the Affordable
+      Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-13-0046-mm6-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-13-0046-MM6: Approval Document (approved July 21, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-13-0046-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-13-0046-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-13-0046-MM6
+    cms_node_id: '28666'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28666
+    approval_date: '2014-07-21'
+    effective_date: '2013-10-01'
+    summary: Requires states to affirm citizen regulations, specify reasonable opportunity options and specify policy options
+      related to immigrant eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-14-0014-mm5-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-14-0014-MM5: Approval Document (approved June 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-14-0014-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-14-0014-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0014-MM5
+    cms_node_id: '26071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26071
+    approval_date: '2014-06-12'
+    effective_date: '2014-01-01'
+    summary: Includes specific requirements for what constitutes State residency, provides information regarding the State's
+      interstate agreements and policies for individuals who are temporarily out of the state or temporarily living in the
+      state.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-14-0013-mm3-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-14-0013-MM3: Approval Document (approved May 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-14-0013-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-14-0013-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-14-0013-MM3
+    cms_node_id: '34766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34766
+    approval_date: '2014-05-20'
+    effective_date: '2014-01-01'
+    summary: Designates the Options Selected by the State with Respect to MAGI-Based Income Methodologies that Pennsylvania
+      is Electing in 2014.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-13-0042-mm2-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-13-0042-MM2: Approval Document (approved March 21, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-13-0042-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-13-0042-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-13-0042-MM2
+    cms_node_id: '36816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36816
+    approval_date: '2014-03-21'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI-Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-12-027-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-12-027: Approval Document (approved June 17, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-12-027-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-12-027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-12-027
+    cms_node_id: '46036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46036
+    approval_date: '2013-06-17'
+    effective_date: '2013-07-01'
+    summary: Revises and expands on language to the State Plan to reflect current practices for school-based services.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-12-027-attachment
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-12-027: Attachment (approved June 17, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-12-027-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-12-027/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: PA-12-027
+    cms_node_id: '46036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46036
+    approval_date: '2013-06-17'
+    effective_date: '2013-07-01'
+    summary: Revises and expands on language to the State Plan to reflect current practices for school-based services.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-12-027-form-cms-179
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-12-027: Form CMS-179 (approved June 17, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-12-027-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-12-027/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: PA-12-027
+    cms_node_id: '46036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46036
+    approval_date: '2013-06-17'
+    effective_date: '2013-07-01'
+    summary: Revises and expands on language to the State Plan to reflect current practices for school-based services.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-12-002-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-12-002: Approval Document (approved June 7, 2012, effective March 25, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-12-002-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-25'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-12-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-12-002
+    cms_node_id: '26061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26061
+    approval_date: '2012-06-07'
+    effective_date: '2012-03-25'
+    summary: Medicaid/CHIP Provider Screening and Enrollment.
+    topics: &id003
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-12-002-attachment
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-12-002: Attachment (approved June 7, 2012, effective March 25, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-12-002-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-25'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-12-002/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: PA-12-002
+    cms_node_id: '26061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26061
+    approval_date: '2012-06-07'
+    effective_date: '2012-03-25'
+    summary: Medicaid/CHIP Provider Screening and Enrollment.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-12-002-form-cms-179
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-12-002: Form CMS-179 (approved June 7, 2012, effective March 25, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-12-002-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-25'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-12-002/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: PA-12-002
+    cms_node_id: '26061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26061
+    approval_date: '2012-06-07'
+    effective_date: '2012-03-25'
+    summary: Medicaid/CHIP Provider Screening and Enrollment.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-09-020-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-09-020: Approval Document (approved March 22, 2012, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-09-020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-09-020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-09-020
+    cms_node_id: '32156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32156
+    approval_date: '2012-03-22'
+    effective_date: '2009-07-01'
+    summary: Extends Medicaid coverage to lawfully residing children under the age of21 and pregnant women who are otherwise
+      eligible for Medicaid.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-10-014-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-10-014: Approval Document (approved February 3, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-10-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-10-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-10-014
+    cms_node_id: '40671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40671
+    approval_date: '2011-02-03'
+    effective_date: '2010-10-01'
+    summary: Limitations on Estate Recovery - Medicare Cost Sharing as specified at 4.17 (b) (3 cont) for qualified dual eligibles
+      age 55 and over, for dates of service on or after 1/1/2010.
+    topics: &id004
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-10-014-attachment
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-10-014: Attachment (approved February 3, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-10-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-10-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: PA-10-014
+    cms_node_id: '40671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40671
+    approval_date: '2011-02-03'
+    effective_date: '2010-10-01'
+    summary: Limitations on Estate Recovery - Medicare Cost Sharing as specified at 4.17 (b) (3 cont) for qualified dual eligibles
+      age 55 and over, for dates of service on or after 1/1/2010.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-10-014-form-cms-179
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-10-014: Form CMS-179 (approved February 3, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-10-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-10-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: PA-10-014
+    cms_node_id: '40671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40671
+    approval_date: '2011-02-03'
+    effective_date: '2010-10-01'
+    summary: Limitations on Estate Recovery - Medicare Cost Sharing as specified at 4.17 (b) (3 cont) for qualified dual eligibles
+      age 55 and over, for dates of service on or after 1/1/2010.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-09-013-approval-document
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-09-013: Approval Document (approved March 8, 2010, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-09-013-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-09-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: PA-09-013
+    cms_node_id: '40716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40716
+    approval_date: '2010-03-08'
+    effective_date: '2009-01-01'
+    summary: To establish a greater Personal Needs Allowance under Post-Eligibility Treatment of individuals residing in State
+      Veterans Homes.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-09-013-attachment
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-09-013: Attachment (approved March 8, 2010, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-09-013-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-09-013/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: PA-09-013
+    cms_node_id: '40716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40716
+    approval_date: '2010-03-08'
+    effective_date: '2009-01-01'
+    summary: To establish a greater Personal Needs Allowance under Post-Eligibility Treatment of individuals residing in State
+      Veterans Homes.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-pa-cms-medicaid-state-plan-spa-pa-09-013-form-cms-179
+  jurisdiction: us-pa
+  document_class: policy
+  title: 'Pennsylvania Medicaid SPA PA-09-013: Form CMS-179 (approved March 8, 2010, effective January 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/PA/PA-09-013-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-01-01'
+  citation_path: us-pa/policy/cms/medicaid-state-plan/spa/pa-09-013/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Pennsylvania
+    source_discovery_group: us-pa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: PA-09-013
+    cms_node_id: '40716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40716
+    approval_date: '2010-03-08'
+    effective_date: '2009-01-01'
+    summary: To establish a greater Personal Needs Allowance under Post-Eligibility Treatment of individuals residing in State
+      Veterans Homes.
+    topics: *id005
+    link_label: Form CMS-179

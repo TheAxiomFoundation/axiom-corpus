@@ -1,0 +1,40 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-marginal-employment-milog",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "slug": "milog",
+      "citation_path": "de/statute/milog",
+      "title": "Gesetz zur Regelung eines allgemeinen Mindestlohns",
+      "source_url": "https://www.gesetze-im-internet.de/milog/xml.zip",
+      "source_format": "gesetze-im-internet.de-juris-xml",
+      "request": {
+        "browser_user_agent": true
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz und Bundesamt für Justiz, juris",
+        "source_note": "Complete official act capture for the EStG32(4) marginal-employment dependency through SGBIV8(1a). MiLoV5 rates apply from2026 and2027; retained MiLoV4 supplies2025. Capture date does not establish historic applicability of every provision in the current MiLoG consolidation."
+      }
+    },
+    {
+      "source_id": "de-kindergeld-marginal-employment-milov5",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "slug": "milov5",
+      "citation_path": "de/regulation/milov5",
+      "title": "Fünfte Verordnung zur Anpassung der Höhe des Mindestlohns",
+      "source_url": "https://www.gesetze-im-internet.de/milov5/xml.zip",
+      "source_format": "gesetze-im-internet.de-juris-xml",
+      "request": {
+        "browser_user_agent": true
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz und Bundesamt für Justiz, juris",
+        "source_note": "Complete official act capture for the EStG32(4) marginal-employment dependency through SGBIV8(1a). MiLoV5 rates apply from2026 and2027; retained MiLoV4 supplies2025. Capture date does not establish historic applicability of every provision in the current MiLoG consolidation."
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations.json",
+      "sha256": "c31b857600d1b850b9529608e3ac2071dec5fd719b46741ee822eadb41bfd162"
+    },
+    {
+      "path": "data/corpus/inventory/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations.json",
+      "sha256": "94b65fdc1c0d4f36257986e23f54da18e077e236dc1e0b51f8b946a6a0d257b4"
+    },
+    {
+      "path": "data/corpus/provisions/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations.jsonl",
+      "sha256": "39514e67ce2b313a63412e4fbdc1e43504b43d09c1196030ca221cdc89a6fd03"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-1015-2015-aendring-boerne-og-ungeydelsen.jsonld",
+      "sha256": "1a892c9319474be36d168150a20171808ceac0ddb0c16f854a10805050c45600"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-1015-2015-aendring-boerne-og-ungeydelsen.xml",
+      "sha256": "062941d1846636405e667bea0a1b466772a75c4f148900e912652458d495929e"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-1063-2019-elevers-fravaer-folkeskolen.jsonld",
+      "sha256": "5a5b2ff8bd6fac1542eb841dbd8a0287d91a73d3fa64d304b2a131607811c351"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-1063-2019-elevers-fravaer-folkeskolen.xml",
+      "sha256": "15af40e319e5aed0e1d2cb5dc118c877d7d75b10d39234394ff3f89556a636c9"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-1563-2013-boerne-og-ungeydelsen.jsonld",
+      "sha256": "ac72d3d90eccf50eadee1101569cb98949f13eb1045d5d404531142209b71694"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-1563-2013-boerne-og-ungeydelsen.xml",
+      "sha256": "18ef6e44ae9f99dfe44fff409e4a832ef28c4d4f35e8485e528a5abb59d210df"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-58-2025-aendring-elevers-fravaer-folkeskolen.jsonld",
+      "sha256": "e010fb4126e672aef8e770e25384cd8ec075c0fded2efb9090d1c0363fcffecb"
+    },
+    {
+      "path": "data/corpus/sources/dk/regulation/2026-08-22-dk-child-benefit-bearing-regulations/eli/dk-bek-58-2025-aendring-elevers-fravaer-folkeskolen.xml",
+      "sha256": "e023c7104e3d8dc19ac750453fb8e63b391116e47e2c3f33d92f092fd564f438"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "773c04f5e3e2eedc14a841793d4c13069a91ac7a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-eli-documents --base data/corpus --version 2026-08-22-dk-child-benefit-bearing-regulations --manifest manifests/dk-child-benefit-bearing-regulations-eli.yaml --source-as-of 2026-08-22"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 45,
+    "missing_count": 0,
+    "provision_count": 45,
+    "source_count": 45
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-08-22T08:20:56.842324+00:00",
+  "jurisdiction": "dk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rHdKXMqb2+n+7wzHGoKyVHvag/jLUZFuuSPcA3GF/6dnyo8bPHnWoS/E/KdtxXmm6sho1EB+uMcffCewH19FDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-22-dk-child-benefit-bearing-regulations"
+}

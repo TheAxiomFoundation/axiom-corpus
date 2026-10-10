@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-nj/regulation/2026-05-28-nj-snap-rules-reconstructed.json",
-      "sha256": "52108caef6e0893a5da2fd9ad2aa832d280ca3d577b8ddfbf023609fb75042fa"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-nj/regulation/2026-05-28-nj-snap-rules-reconstructed.json"
     },
     {
-      "path": "data/corpus/inventory/us-nj/regulation/2026-05-28-nj-snap-rules-reconstructed.json",
-      "sha256": "829d275927ad641496fe99b571a4420f92dd0bedbf439d9f7aa6463703f1ef75"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-nj/regulation/2026-05-28-nj-snap-rules-reconstructed.json"
     },
     {
-      "path": "data/corpus/provisions/us-nj/regulation/2026-05-28-nj-snap-rules-reconstructed.jsonl",
-      "sha256": "ded4042411ada96c5cc84eb7fb933c988e2230fab3c3902fea23c4086a0325ad"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-nj/regulation/2026-05-28-nj-snap-rules-reconstructed.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "850b975b06522e1523dec474ca77dd93e94cfe36",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "remove superseded source-less New Jersey reconstructed SNAP scope after publishing signed 2026-07-17-nj-snap-rules replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 262,
-    "missing_count": 0,
-    "provision_count": 262,
-    "source_count": 262
-  },
+  "coverage": null,
   "document_class": "regulation",
-  "generated_at": "2026-07-07T19:50:36.997720+00:00",
+  "generated_at": "2026-07-17T20:16:07.140951+00:00",
   "jurisdiction": "us-nj",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "IlLTnIyPyIoqXcVxhihaTw6rsFZv1vvLLZymNBoL2xr7ODnHbh+i+LnFAkyS8MadGOwn5Bvgt1g67NeMOuhgAQ=="
+    "value": "0ygzOyHUYeH4BTCRbRCkNYJjOKtrseFPq5fwmqAdqPPj1vUKMHWG7D/GnHBrkNPb9mB/4bgQKau+Zl/4Jh1TAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-28-nj-snap-rules-reconstructed"

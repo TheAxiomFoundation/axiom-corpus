@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-dartford/manual/2026-08-02-dartford-council-tax-reduction-2026-2027.json",
+      "sha256": "16b31c56781b0a2f82b025b530b30c7502d8f0b2a43f72a6b7b5504756cfe29f"
+    },
+    {
+      "path": "data/corpus/inventory/uk-dartford/manual/2026-08-02-dartford-council-tax-reduction-2026-2027.json",
+      "sha256": "5a3dfc3e869fe14853946c3ee0193f9ae156a1f3e39c0ef2857e59e1c5caf69a"
+    },
+    {
+      "path": "data/corpus/provisions/uk-dartford/manual/2026-08-02-dartford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "309bfed58bc57ca30fb5e5ab0befd2a7fff146ac1309e259627ae5c377a80ab7"
+    },
+    {
+      "path": "data/corpus/sources/uk-dartford/manual/2026-08-02-dartford-council-tax-reduction-2026-2027/official-documents/dartford-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1ba13e6bf8b80b2b2b33c3afc631f0e88131662733f4c63ad0394f75c9fb8b55"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-dartford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-dartford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 89,
+    "missing_count": 0,
+    "provision_count": 89,
+    "source_count": 89
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:57.048314+00:00",
+  "jurisdiction": "uk-dartford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IHFnEgmsV9JUOYTLGxPsC6ifafUROaNw5GwYwmFjAzAycKmc10OP0vFIMMloT80MVk/guG5s9UyKwResxC5oDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-dartford-council-tax-reduction-2026-2027"
+}

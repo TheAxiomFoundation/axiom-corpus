@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/form/2026-07-23-la-2026-it-540es-instructions.json",
+      "sha256": "de98b810a33c6bc7d6b166f494efedc181fadfae768a94c47113c9ff3f63e8a6"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/form/2026-07-23-la-2026-it-540es-instructions.json",
+      "sha256": "c68cc74308987acd3b4730eead6e7c8c104a5ec01ac97c2689f65afad67342ae"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/form/2026-07-23-la-2026-it-540es-instructions.jsonl",
+      "sha256": "6dd005acf694c6bb5deb9dbaf3b74d9ba1802fed3f2ea2985278aa0d5a5bb59e"
+    },
+    {
+      "path": "data/corpus/sources/us-la/form/2026-07-23-la-2026-it-540es-instructions/official-documents/us-la-ldr-2026-it-540es-instructions.pdf",
+      "sha256": "5733a329213809222d304e87ab6ce17200790843490fc21240ce415ceb5947dd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ede5c779c3df296c41f76d1c6b69e045a6e9c0ec",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-la-2026-it-540es-instructions --manifest manifests/us-la-2026-it-540es-instructions.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-23T22:00:12.670418+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-23-la-2026-it-540es-instructions.md",
+      "sha256": "64fc1a3642fcbfd75b860f912e53ee31e7c0b749a650db4116c68f8f6d5d9469"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SGdQFNDjWw8l4Iovv+KdGnUORS7EL9V/AAkzzY0D+HA5/AdZ/6hk5aTVPbcQeJDMRbGHlSVQRcB4+y3rlh69Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-la-2026-it-540es-instructions"
+}

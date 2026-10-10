@@ -12,6 +12,7 @@ from typing import Any
 from axiom_corpus.corpus.models import DocumentClass
 
 ScopeKey = tuple[str, str, str]
+COMPLETE_EXPRESSION_DATES_PROFILE = "complete-expression-dates-v1"
 _RELEASE_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _SCOPE_COMPONENT_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
 _RESERVED_RELEASE_NAMES = {"current"}
@@ -48,16 +49,22 @@ class ReleaseManifest:
     name: str
     scopes: tuple[ReleaseScope, ...]
     description: str | None = None
+    quality_profile: str | None = None
 
     def __post_init__(self) -> None:
         validate_release_name(self.name)
+        if self.quality_profile not in {None, COMPLETE_EXPRESSION_DATES_PROFILE}:
+            raise ValueError(
+                f"Release selector {self.name!r} has unsupported quality_profile: "
+                f"{self.quality_profile!r}"
+            )
         _require_unique_scopes(self.scopes, manifest_path=Path(f"<{self.name}>"))
 
     @classmethod
     def load(cls, path: str | Path) -> ReleaseManifest:
         manifest_path = Path(path)
         data = _load_json_object(manifest_path)
-        if set(data) - {"name", "description", "scopes"}:
+        if set(data) - {"name", "description", "quality_profile", "scopes"}:
             raise ValueError(f"Release selector {manifest_path} has unsupported fields")
         name_value = data.get("name")
         if not isinstance(name_value, str):
@@ -65,6 +72,10 @@ class ReleaseManifest:
         name = validate_release_name(name_value)
         description_value = data.get("description")
         description = str(description_value) if description_value is not None else None
+        quality_profile_value = data.get("quality_profile")
+        quality_profile = (
+            str(quality_profile_value) if quality_profile_value is not None else None
+        )
         raw_scopes = data.get("scopes")
         if not isinstance(raw_scopes, list) or not raw_scopes:
             raise ValueError(
@@ -72,11 +83,20 @@ class ReleaseManifest:
             )
         scopes = tuple(_parse_scope(scope, manifest_path=manifest_path) for scope in raw_scopes)
         _require_unique_scopes(scopes, manifest_path=manifest_path)
-        return cls(name=name, description=description, scopes=scopes)
+        return cls(
+            name=name,
+            description=description,
+            quality_profile=quality_profile,
+            scopes=scopes,
+        )
 
     @property
     def scope_keys(self) -> tuple[ScopeKey, ...]:
         return tuple(scope.key for scope in self.scopes)
+
+    @property
+    def requires_complete_expression_dates(self) -> bool:
+        return self.quality_profile == COMPLETE_EXPRESSION_DATES_PROFILE
 
 
 def resolve_release_manifest_path(release: str | Path) -> Path:

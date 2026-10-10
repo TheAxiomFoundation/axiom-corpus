@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/form/2026-07-21-az-140es-2026.json",
+      "sha256": "6d760a4d1070b3c0f6e1a2ad103475a20807cb0c66ab890db4a23c386f441fc3"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/form/2026-07-21-az-140es-2026.json",
+      "sha256": "293357e90077a7f89fe218516cc4252cb5450fb0d2891fa453c2650b43e466a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/form/2026-07-21-az-140es-2026.jsonl",
+      "sha256": "0cbaec8d1d919dee0cfa034d8913a8607e17b6f94dce19f946371ea496b480f4"
+    },
+    {
+      "path": "data/corpus/sources/us-az/form/2026-07-21-az-140es-2026/official-documents/us-az-dor-2026-140es-booklet.pdf",
+      "sha256": "aabbb77a51587288015d6a8a0e3d0171a94758b738deed0b5c28d5d24b0753b6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "109566c769c47d80b86ef825f583fd9365abe0c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-az-140es-2026 --manifest manifests/us-az-2026-140es-booklet.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-22T00:00:39.868477+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-az-140es-booklet.md",
+      "sha256": "861dbb187887b0729d61a6692c77f21fcc858e00bb8e838821b50b143eab9f1a"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YIfRCAAgiNL594B+S0HsXzOLAfTckaIpWK4vQ+upVmv7pYgueN7sKCDQm7rZOQlkBL2tslb2MAqJetCDUNOsAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-az-140es-2026"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-northumberland/manual/2026-07-25-northumberland-council-tax-reduction-2026-2027.json",
+      "sha256": "7349ab6f5056b8bfc6e149bd8095c29956b02b3357d5467df79b5edbd7e3706b"
+    },
+    {
+      "path": "data/corpus/inventory/uk-northumberland/manual/2026-07-25-northumberland-council-tax-reduction-2026-2027.json",
+      "sha256": "10a8fd08ddb42e3da7ae95da4428bf170abb74227e71feccc02eeca557947cf4"
+    },
+    {
+      "path": "data/corpus/provisions/uk-northumberland/manual/2026-07-25-northumberland-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "64adae8565f7aa42849f52fc731a887c3fae0d2399df99c6578d321ccdcc21e6"
+    },
+    {
+      "path": "data/corpus/sources/uk-northumberland/manual/2026-07-25-northumberland-council-tax-reduction-2026-2027/official-documents/northumberland-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "70c808cd5ee6a627ad1421b6362b729c105481d0d6d2c08e28deaeec538989df"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-northumberland-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-northumberland-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 86,
+    "missing_count": 0,
+    "provision_count": 86,
+    "source_count": 86
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:35.014295+00:00",
+  "jurisdiction": "uk-northumberland",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nxidihw8UhyTE2lhl1unFcf9ZR0MGET3qKEkROsW4LkMxW0+0mtB7wPIZxZa6UBLX0dbD3WnTlQ53IvUcBACBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-northumberland-council-tax-reduction-2026-2027"
+}

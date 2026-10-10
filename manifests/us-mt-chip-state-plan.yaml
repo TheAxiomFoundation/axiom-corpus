@@ -1,0 +1,673 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-mt-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 21
+    index_records_total: 21
+- source_id: us-mt-cms-chip-state-plan-spa-mt-22-0026-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-22-0026: Approval Package (approved August 13, 2026, effective November 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-22-0026-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-11-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-22-0026/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-22-0026
+    cms_node_id: '195011'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=195011
+    approval_date: '2026-08-13'
+    effective_date: '2022-11-01'
+    summary: Through this SPA, Montana is removing all state-specific exceptions to the continuous eligibility (CE) period
+      for children to be consistent with CHIP regulations at 42 CFR 457.432, which only permits certain federal exceptions
+      to the CE period.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-24-0029-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-24-0029: Approval Package (approved May 22, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-24-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-24-0029/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-24-0029
+    cms_node_id: '165106'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=165106
+    approval_date: '2024-05-22'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state documents the state’s compliance with the longstanding requirement to cover children’s
+      vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which requires states to cover age-appropriate
+      vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-23-0028-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-23-0028: Approval Package (approved October 16, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-23-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-23-0028/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-23-0028
+    cms_node_id: '154286'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=154286
+    approval_date: '2023-10-16'
+    effective_date: '2023-07-01'
+    summary: This SPA provides Montana with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-23-0027-0000-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-23-0027-0000: Approval Package (approved July 19, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-23-0027-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-23-0027-0000/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-23-0027-0000
+    cms_node_id: '150796'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=150796
+    approval_date: '2023-07-19'
+    effective_date: '2023-07-01'
+    summary: Through previously approved SPA MT-22-0025, Montana waived cost-sharing for all CHIP services during the COVID-19
+      public health emergency. Through this SPA, the state continues to waive cost sharing for COVID-19 services through September
+      30, 2024, but reinstates copayments for all other CHIP benefits to pre-COVID levels. Additionally, this SPA removes
+      the state’s PA requirement for occupational, physical, and speech therapy services
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-20-0023-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-20-0023: Approval Package (approved December 23, 2022, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-20-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-20-0023/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-20-0023
+    cms_node_id: '143256'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143256
+    approval_date: '2022-12-23'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-22-0025-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-22-0025: Approval Package (approved July 21, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-22-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-22-0025/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-22-0025
+    cms_node_id: '144311'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144311
+    approval_date: '2022-07-21'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-22-0024-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-22-0024: Approval Package (approved April 22, 2022, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT-22-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-22-0024/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-22-0024
+    cms_node_id: '135351'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135351
+    approval_date: '2022-04-22'
+    effective_date: '2021-04-01'
+    summary: This SPA removes the Nurse First Advice Line benefit from the Healthy Montana Kids (HMK) program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-18-0021-current-state-plan
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-18-0021: Current State Plan (approved November 27, 2019, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-18-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-18-0021/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MT-18-0021
+    cms_node_id: '57526'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=57526
+    approval_date: '2019-11-27'
+    effective_date: '2017-10-01'
+    summary: Implements mental health parity requirements to ensure that treatment limitations applied to mental health (MH)
+      and substance use disorder (SUD) benefits are no more restrictive than those applied to medical/surgical (M/S) benefits.
+      This SPA also adds applied behavior analysis as a benefit and removed a copay for ambulance services.
+    topics:
+    - Benefits
+    - Children's Health Insurance Program
+    link_label: Current State Plan
+- source_id: us-mt-cms-chip-state-plan-spa-mt-17-0020-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-17-0020: Approval Package (approved September 14, 2017, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-17-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-17-0020/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-17-0020
+    cms_node_id: '3766'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3766
+    approval_date: '2017-09-14'
+    effective_date: '2017-04-01'
+    summary: This SPA makes the Comprehensive Primary Care Plus (CPC+) Program model accessible on a voluntary basis to children
+      in Montana's separate CHIP, Healthy Montana Kids.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-13-0010-mc1-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-13-0010-MC1: Approval Package (approved December 24, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-13-0010-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-13-0010-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0010-MC1
+    cms_node_id: '2571'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2571
+    approval_date: '2013-12-24'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance on Page CS15 That State will Apply Methodologies Based on MAGI for All Separate CHIP Covered
+      Groups; Using the Approved MAGI Conversion Plan Income Thresholds.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-13-0014-mc5-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-13-0014-MC5: Approval Package (approved November 5, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-13-0014-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-13-0014-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0014-MC5
+    cms_node_id: '2556'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2556
+    approval_date: '2013-11-05'
+    effective_date: '2014-01-01'
+    summary: Clarifies State's Non-Financial Eligibility Policies on Residency; Citizenship; Social Security Numbers; and
+      Continuous Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-13-0012-mc3-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-13-0012-MC3: Approval Package (approved November 5, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-13-0012-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-13-0012-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0012-MC3
+    cms_node_id: '2561'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2561
+    approval_date: '2013-11-05'
+    effective_date: '2014-01-01'
+    summary: 'Describes State''s Plan to Provide Coverage in Its Separate CHIP as Specified in State''s Submission of CS14:
+      Children Ineligible for Medicaid as a Result of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-13-0011-mc2-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-13-0011-MC2: Approval Package (approved November 5, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-13-0011-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-13-0011-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0011-MC2
+    cms_node_id: '2566'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2566
+    approval_date: '2013-11-05'
+    effective_date: '2014-01-01'
+    summary: Converts State's Existing Income Eligibility Standard to a Modified Adjusted Gross Income (MAGI) Equivalent Standard,
+      by Age Group, for Children Covered in Its' Title XXI-Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-cspa-08-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-CSPA-08: Approval Package (approved February 2, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-CSPA-8-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-cspa-08/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-CSPA-08
+    cms_node_id: '1786'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1786
+    approval_date: '2011-02-02'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion CHIPRA Section 501 - Oral Health and CHIPRA Section 503 - Prospective
+      Payment System for FQHCs & RHCs other program changes as well. Citizenship Documentation.
+    topics:
+    - Dental
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-cspa-7-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-CSPA-7: Approval Package (approved October 21, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-CSPA-7-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-cspa-7/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-CSPA-7
+    cms_node_id: '1521'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1521
+    approval_date: '2010-10-21'
+    effective_date: '2010-10-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-cspa-6-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-CSPA-6: Approval Package (approved December 18, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-CSPA-6-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-CSPA-6
+    cms_node_id: '2226'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2226
+    approval_date: '2009-12-18'
+    effective_date: '2009-10-01'
+    summary: Adds Medicaid Expansion program to become a Combination program.
+    topics: &id002
+    - Expansion
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-spa-mt-cspa-6-final-approved-state-plan
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-CSPA-6: Final Approved State Plan (approved December 18, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-CSPA-6-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-cspa-6/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MT-CSPA-6
+    cms_node_id: '2226'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2226
+    approval_date: '2009-12-18'
+    effective_date: '2009-10-01'
+    summary: Adds Medicaid Expansion program to become a Combination program.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-mt-cms-chip-state-plan-spa-mt-cspa-4-approval-package
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP SPA MT-CSPA-4: Approval Package (approved October 5, 2007, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MT-CSPA-4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/spa/mt-cspa-4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-CSPA-4
+    cms_node_id: '1566'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1566
+    approval_date: '2007-10-05'
+    effective_date: '2003-06-01'
+    summary: Expansion from 150% FPL to 175% FPL; add an Extended Dental Plan TPA updates to the State Plan.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-mt-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MTCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: MT
+    cms_node_id: '1911'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1911
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 11-23-2009.
+    topics: &id003
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-mt-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MT/MTCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-mt/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MT
+    cms_node_id: '1911'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1911
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 11-23-2009.
+    topics: *id003
+    link_label: Current State Plan

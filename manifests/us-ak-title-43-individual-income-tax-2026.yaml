@@ -1,0 +1,42 @@
+documents:
+  - source_id: us-ak-title-43-sections-43-20-011-through-43-20-013
+    jurisdiction: us-ak
+    document_class: statute
+    citation_path: us-ak/statute/43/20
+    title: Alaska Statutes Title 43, sections 43.20.011 through 43.20.013
+    source_url: https://www.akleg.gov/statutesPDF/Title-43.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-01-01"
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Sec\. (?P<label>43\.20\.01[123])\.(?:\s+(?P<heading>.+))?$'
+      section_label_replacements:
+        '43.20.011': '11'
+        '43.20.012': '12'
+        '43.20.013': '13'
+      page_windows:
+        - start_page: 37
+          end_page: 38
+          start_at_pattern: '^Sec\. 43\.20\.011\.'
+    metadata:
+      primary_source: true
+      source_authority: Alaska State Legislature
+      document_subtype: current_state_statutes
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_title_43
+      certification_scope: individual_tax_exclusion_and_statutory_credit_surface
+      final_return_certification: false
+      source_note: >-
+        Current official Title 43 text. Section 43.20.011 imposes the chapter
+        tax on corporations. Section 43.20.012 expressly makes the tax
+        inapplicable to individuals but permits an individual return for the
+        credits in section 43.20.013. Section 43.20.013 provides resident
+        political-contribution and federal dependent-care-linked credits and
+        conditions payment on an appropriation. This intake proves zero
+        individual tax through the pre-credit stage but does not certify a
+        tax-year-2026 appropriation, current claim mechanics, refundable-credit
+        amount, or signed net liability.

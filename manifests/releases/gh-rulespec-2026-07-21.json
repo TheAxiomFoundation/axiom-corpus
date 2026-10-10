@@ -1,0 +1,42 @@
+{
+  "description": "Collision-free re-cut of the Ghana RuleSpec selection. gh-rulespec-2026-07-12 carries duplicate structural ownership (act-766 document root in two scopes, act-896 in three), which the axiom-encode corpus resolver rejects release-wide. Replaces the five colliding scopes with the two 2026-07-21 consolidated scopes while keeping every other selection; every body-bearing descendant is preserved and the selection is citation-unique.",
+  "name": "gh-rulespec-2026-07-21",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "policy",
+      "jurisdiction": "gh",
+      "version": "2026-07-07-gh-transfer-programmes"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "gh",
+      "version": "2026-07-06-gh-income-tax-rate-schedule"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "gh",
+      "version": "2026-07-07-gh-appropriation-act-2025"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "gh",
+      "version": "2026-07-07-gh-excise-and-fuel-levies"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "gh",
+      "version": "2026-07-07-gh-vat-reform-2026-anchors"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "gh",
+      "version": "2026-07-21-gh-income-tax-consolidated"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "gh",
+      "version": "2026-07-21-gh-national-pensions-consolidated"
+    }
+  ]
+}

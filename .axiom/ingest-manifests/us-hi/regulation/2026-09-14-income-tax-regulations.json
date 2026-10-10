@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "fae0f60b6acdc0984280e9f5d3ebf246ccf5cccd8d9ef7752c6b8609aed56f0d"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "ca6ab3b8d8705356bfc950bad539cdfd67afaae30544e8c33aac136f1ca9373b"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "53143b3ef03e26ef6f1a4aaf2c2345cb351a8621d1490a6d0198a0b8407c3688"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-09-14-income-tax-regulations/official-documents/hi-dotax-har-18-235-income-tax-law.pdf",
+      "sha256": "017054c120f20c6049c68d4cf74ef7610a2deaed7a51e56c254e88d6a3c19f67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 138,
+    "missing_count": 0,
+    "provision_count": 138,
+    "source_count": 138
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:27:37.368764+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eSc4OOuqqgHJEUGDxe/4bXnqVgj+oIRWHyszoV5NSt33Mnvv7po8egNWf96x+u6bNMq5NaNxKuXEBp8d3mysDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

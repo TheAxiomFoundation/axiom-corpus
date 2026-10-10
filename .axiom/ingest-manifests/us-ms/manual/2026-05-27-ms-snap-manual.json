@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ms/manual/2026-05-27-ms-snap-manual.json",
-      "sha256": "c75337570911fb441aa4d83ce1e7636dda786e6d0ca6bbfb2176615f3e3f00a4"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ms/manual/2026-05-27-ms-snap-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-ms/manual/2026-05-27-ms-snap-manual.json",
-      "sha256": "3da061680eefca538248240132c925aa922c23c34ed338e4bdb92058eaadf944"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ms/manual/2026-05-27-ms-snap-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-ms/manual/2026-05-27-ms-snap-manual.jsonl",
-      "sha256": "31e0da97d1bd075d285a13cc6f8d0a56fa2f188c6c641a68a64b3ee160859188"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ms/manual/2026-05-27-ms-snap-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "1d99c634a0a1c7c67b0e4d3078094038d344eca6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "git rm obsolete source-less Mississippi SNAP scope after signed replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 169,
-    "missing_count": 0,
-    "provision_count": 169,
-    "source_count": 169
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:33.377245+00:00",
+  "generated_at": "2026-07-17T17:46:28.191353+00:00",
   "jurisdiction": "us-ms",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JSahgEUg/orhPR9GqrdIGVaQ/ovNC+HAWlD6i2HUl4AY5cUwERmX9o6WOP7BSdNPBZKLwuofe8KV1aH5++7rAQ=="
+    "value": "rNa1rDIYEYQT2xjALHof2zPuaenVz+zI9tJH5u83ZPLnmxLQhfbfA8cIRz/bxwgGhd2Ti6V2aq7ODMaerc9oAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-ms-snap-manual"

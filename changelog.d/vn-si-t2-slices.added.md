@@ -1,0 +1,1 @@
+Tranche-2 full-document re-slice of Viet Nam Luat 58/2014/QH13 (social insurance): 5 chuong page_windows slices of the signed official scan via force_ocr/vie; new release vn-rulespec-2026-07-24-r2 selects t1 + t2 scopes.

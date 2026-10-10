@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-shropshire/manual/2026-07-25-shropshire-council-tax-reduction-2026-2027.json",
+      "sha256": "0f0b5ec58d8f05242fee25a36ced9ac415b76f3c9bdcf7ecf2fe3efa299cc217"
+    },
+    {
+      "path": "data/corpus/inventory/uk-shropshire/manual/2026-07-25-shropshire-council-tax-reduction-2026-2027.json",
+      "sha256": "e9a2560705ebee89cde687d835ab7010c9d8e1fb96c46c51bb4381e042e9c9ae"
+    },
+    {
+      "path": "data/corpus/provisions/uk-shropshire/manual/2026-07-25-shropshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6d5635a93a73c2b8409ea30ba42829fba2d3d7ba616e3074f997a11260a0c08e"
+    },
+    {
+      "path": "data/corpus/sources/uk-shropshire/manual/2026-07-25-shropshire-council-tax-reduction-2026-2027/official-documents/shropshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "6a0d19c01d286d6c8dc98e76a97b52b80d23be40787d07f59f3c885cb0cc0c92"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-shropshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-shropshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 221,
+    "missing_count": 0,
+    "provision_count": 221,
+    "source_count": 221
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:37.894932+00:00",
+  "jurisdiction": "uk-shropshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tYElP7daEQqbaXOOJ5c665JNQvyM9CoYwwm+T49jR3J6caVtR0gpokKi+ZZG8TV8FiwK4c+TuVvxlDHkUUEHCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-shropshire-council-tax-reduction-2026-2027"
+}

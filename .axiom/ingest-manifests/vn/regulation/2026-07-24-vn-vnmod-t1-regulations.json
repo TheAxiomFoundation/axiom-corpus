@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/vn/regulation/2026-07-24-vn-vnmod-t1-regulations.json",
+      "sha256": "18886c67e92afc14ad039175565e7590fde26a83b06546b0b2a230a7e7cbd791"
+    },
+    {
+      "path": "data/corpus/inventory/vn/regulation/2026-07-24-vn-vnmod-t1-regulations.json",
+      "sha256": "a5e168caef04a1df0f347353bea9926182f40f4ad1b64ca8590895c47503c411"
+    },
+    {
+      "path": "data/corpus/provisions/vn/regulation/2026-07-24-vn-vnmod-t1-regulations.jsonl",
+      "sha256": "e1be77378ca07f1217b3eebca956debd1ab1ced1f3c7d0271f22e0049174923c"
+    },
+    {
+      "path": "data/corpus/sources/vn/regulation/2026-07-24-vn-vnmod-t1-regulations/official-documents/vn-nghi-dinh-20-2021-tro-giup-xa-hoi.pdf",
+      "sha256": "627922a72141c70f021d234fb616b42c7418baff391f4f01af3ed8823f469de1"
+    },
+    {
+      "path": "data/corpus/sources/vn/regulation/2026-07-24-vn-vnmod-t1-regulations/official-documents/vn-nghi-dinh-76-2024-sua-doi-nghi-dinh-20.pdf",
+      "sha256": "df1bf46267d805db185e1163335f40392fdc1fc120f710e38dcf9140916c8cab"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6efad6c359baa7c4b5fcbbe2f88916dbc66d669b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-vn-vnmod-t1-regulations --manifest manifests/vn-vnmod-t1-regulations-official-documents.yaml (both decrees are datafiles.chinhphu.vn signed scans via force_ocr vie)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-24T12:07:34.284799+00:00",
+  "jurisdiction": "vn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EioIbX9cxytwCqR0Y/S8m+TC0ea0hB0b1/9qg/QuZv+nQ7WCCgGbCcb5W4jffIOL49PJNu6XjEQN0A9GkOpQCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-vn-vnmod-t1-regulations"
+}

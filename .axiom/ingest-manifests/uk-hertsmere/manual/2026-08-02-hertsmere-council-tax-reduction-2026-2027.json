@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-hertsmere/manual/2026-08-02-hertsmere-council-tax-reduction-2026-2027.json",
+      "sha256": "b0cb73685de6df8a0e5025fb10419c77bf750d82a0fe84e3f956a3b4e38e8353"
+    },
+    {
+      "path": "data/corpus/inventory/uk-hertsmere/manual/2026-08-02-hertsmere-council-tax-reduction-2026-2027.json",
+      "sha256": "cd5e8eff48c4b77884d6f864462cc31eff75b109b82e310dd44abfb41a20e423"
+    },
+    {
+      "path": "data/corpus/provisions/uk-hertsmere/manual/2026-08-02-hertsmere-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "764f65611be876897da2bfd97be189e91fd3f458bed51432306adbe8e701e80a"
+    },
+    {
+      "path": "data/corpus/sources/uk-hertsmere/manual/2026-08-02-hertsmere-council-tax-reduction-2026-2027/official-documents/hertsmere-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "d5704d4bfd2987cf8858c43ef1c3d91f92dfd9f5c0a023ad8f5796ed45ef59ae"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-hertsmere-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-hertsmere-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 150,
+    "missing_count": 0,
+    "provision_count": 150,
+    "source_count": 150
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:05.851073+00:00",
+  "jurisdiction": "uk-hertsmere",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "W178+CP5JLTZoMAWOufyU1f377zmHDvmhEWECvD6vC2PoglMIdN6HB0PFaWMGIWu5gI5djpJ9J4mEmiSXlPiCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-hertsmere-council-tax-reduction-2026-2027"
+}

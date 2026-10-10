@@ -10,11 +10,11 @@
     },
     {
       "path": "data/corpus/provisions/us-ny/policy/2026-06-05-ny-tanf.jsonl",
-      "sha256": "ab63cd9c6f93f3abaa0de1a5ad0efb564fb6084226841b378f529c5c2dad377d"
+      "sha256": "71ade2709d4c425eedb5d1bac82d1121dee6bcd3f1a615c65e6d212c227e8f66"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c754022448696f7f04ab399728c3758162284282",
+    "commit": "1d7f14d5ab34b9d1710e0a6e7595f36386baa0c2",
     "dirty_tracked": false,
     "root": "."
   },
@@ -31,14 +31,14 @@
     "source_count": 115
   },
   "document_class": "policy",
-  "generated_at": "2026-07-15T19:51:43.436048+00:00",
+  "generated_at": "2026-07-17T00:05:51.841716+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "KZga2QEEdtY/Yvjw0r7Hw99Q7m3SUK4DHA8k/yhvFJLRAYMGYCydVRXk0i6VttOeAJk1hhHjHEInfVWlzo72Aw=="
+    "value": "hsq0XdWU1aOWl38BJfOGXDXhgAAaRLTQLA2nC3GguE4xw/gJ4vjKIPZoJNziOLyilDjOI2TOg8MDQndOEy9LAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-05-ny-tanf"

@@ -1,0 +1,27 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ct-tanf-state-plan-fy2024-2026
+  jurisdiction: us-ct
+  document_class: policy
+  title: Connecticut TANF State Plan FFY 2024-2026
+  source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/state-plans-and-federal-reports/tanf-state-plan/ct-tanf-state-plan-2024---2026---41524-amendment.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ct/policy/acf/tanf-plan/fy2024-2026
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: CT TANF State Plan FFY 2024-2026 (October 1, 2023 through September 30, 2026), 4/15/24 amendment print
+    publisher_index_url: https://portal.ct.gov/dss/knowledge-base/articles/state-plans-and-federal-reports/tanf-state-plans-and-federal-reports
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ct/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://portal.ct.gov/dss/knowledge-base/articles/state-plans-and-federal-reports/tanf-state-plans-and-federal-reports
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

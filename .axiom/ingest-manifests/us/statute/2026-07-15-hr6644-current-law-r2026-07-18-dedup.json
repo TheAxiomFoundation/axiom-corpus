@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-15-hr6644-current-law-r2026-07-18-dedup.json",
+      "sha256": "4aad8499f0322b0cd55663c7507b0ea8a78a42e1f39f9cf59e4e29072845049e"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-15-hr6644-current-law-r2026-07-18-dedup.json",
+      "sha256": "906afd756b0a14ae80c757bf93fe82ed1e9180ebe38cd0f1229b1aedd527a9e1"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-15-hr6644-current-law-r2026-07-18-dedup.jsonl",
+      "sha256": "34479e16ec5f5b35963eab5a5b1e0cf4d68ebbbc776d502eedcea089ff8b26aa"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-15-hr6644-current-law-r2026-07-18-dedup/uslm/usc12.xml",
+      "sha256": "d8f3c76a21576e0697f8f47312702aa6369b9d361cacb1be18f07c9100dd0495"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-15-hr6644-current-law-r2026-07-18-dedup/uslm/usc42.xml",
+      "sha256": "3441769bf661bf83381686cf7bc89fb17eb3138c34ae964816759a554ca88a36"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "948db7f547305a28cbaf957d74c01968d2cf1e17",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "ops/strict-cutover re-version for collision-free us-rulespec-2026-07-18 binding (rulespec-us#911)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-18T18:34:59.518411+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "frSRedEpe6rJ1y5XBlAQpmo9ioZOsqTWVdYMXF7fm/EoKeTBjpD/1jXOiNAAWsEdbL0ZmjzOY03YOlzskWArDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-15-hr6644-current-law-r2026-07-18-dedup"
+}

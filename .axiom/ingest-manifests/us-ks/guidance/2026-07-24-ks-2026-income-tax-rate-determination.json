@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/guidance/2026-07-24-ks-2026-income-tax-rate-determination.json",
+      "sha256": "b380ff29293a3f0070f861b7c5edf3de69119217e89077ab16f134b3852ef1fc"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/guidance/2026-07-24-ks-2026-income-tax-rate-determination.json",
+      "sha256": "09164a77ef3f6901004bd42802c8caf90cad734c984dd96bf803069c0440ef75"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/guidance/2026-07-24-ks-2026-income-tax-rate-determination.jsonl",
+      "sha256": "1a7e6fd4896bb7784b725fff4284595c383b03b33cf20a770767cc6dd460c4fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-07-24-ks-2026-income-tax-rate-determination/official-documents/us-ks-revenue-notice-25-06.pdf",
+      "sha256": "0f413e2c56bc38997786e0a8f99b795004708d41c3fd248da9cc63ee89c48bf1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9f1ef671a4225cfa1c33e239c59e7652a35a5dc3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-ks-2026-income-tax-rate-determination --manifest manifests/us-ks-2026-income-tax-rate-determination.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T14:12:46.676848+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-ks-resident-income-tax-core.md",
+      "sha256": "578fc4c501f247c8220109b470b012f2cce08ba975b98753056c29190eaacd83"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tTgawikdCS8FkrGwPRaZ0yCJXubpRapYOmdYifoc4QBVCBIP5V2zwuDfrfrmIwuOAjVoiavIKynLPSsH+9KbAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-ks-2026-income-tax-rate-determination"
+}

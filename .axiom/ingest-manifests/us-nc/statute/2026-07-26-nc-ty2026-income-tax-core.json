@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core.json",
+      "sha256": "fd8c74226de84bc3e4ac2f0c2dd7e548981d8f40cdc92237f2cdcdf1e74fdd47"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core.json",
+      "sha256": "d6ef415eabeaed38eedbfb1fb87645aa17d2dd3b76c85e7ddca6131f64b3918c"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core.jsonl",
+      "sha256": "56d45fafeaba120fb5120be054e8edac725c5d604ffbb33c1da1de125fd719b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core/official-documents/sl-2026-11.html",
+      "sha256": "90f496762980f6af1cfaf1bef529c620c29a993b7f5fa6b640e3e8399980047e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core/official-documents/sl-2026-31.html",
+      "sha256": "a4f934b753a95c57be0c5c33e2533258c71859f92e57be9def36daf2db03fcfa"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core/official-documents/sl-2026-41.html",
+      "sha256": "a44598558a70f574492f2eef87abb3cdfd7624ef7e8ece3ccb55e3b6b6c1273d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-07-26-nc-ty2026-income-tax-core/official-documents/us-nc-code-105.html",
+      "sha256": "5ef104d936836f683570e6b0e04f8ea26204f4650979756a482acb9a163c18e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "566316025b8cbebefad7d8a8b475267b7d2604e2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python -m scripts.build_nc_ty2026_statutes --base data/corpus --manifest manifests/us-nc-ty2026-income-tax-core.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-26T10:35:35.472587+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WvnmHxMXjtj3kqWJ2PmMBtbzRDxpVyAIzwep2OWxQkHU+RvpG3hLVP6TPvD1pJBnQtewmmKNk/3ZRWOTGqD+DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-26-nc-ty2026-income-tax-core"
+}

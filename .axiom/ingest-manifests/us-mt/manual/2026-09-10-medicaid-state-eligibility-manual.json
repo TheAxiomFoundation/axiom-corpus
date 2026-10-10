@@ -1,0 +1,545 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "dd4185e81b9812a545b2a2def3eacec682969922f54697e1e3bd5b6574445a53"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "f1e2f015ab91eb2b6e2d3833a436d9574ab52e27ad26a2cf141a176a2a08ca4f"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "255b3dda8313cf9e3ed11c428b45da5a380080e56fafbb84bb60c649820629bc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd008.pdf",
+      "sha256": "c0d57835c291372bff2e67ba079fe91965f7d0d62d73bc988e5d9ac4a2a84ec3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd009.pdf",
+      "sha256": "23e6977ccb13d553edde4fe29942f1d0a261d3ae33e2e92e8ee2e838d697f181"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd011.pdf",
+      "sha256": "f089ecb87cece7471f3798880423dca9262aa818058ff099979ab63e655b4430"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd012.pdf",
+      "sha256": "6a1bd4223c056f11aa85b568515379c77c9adb66e82424b5b3023e51caa20a19"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd013.pdf",
+      "sha256": "1e64b36bf604aead79bdb94902dce65c7258c3ec13d950bcf44cd4e0a7c98dc4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd014.pdf",
+      "sha256": "4858026473c2bd79ee51d6cb1af5d53bfc8b97e9dc3d7519daa31d05e8f76499"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd01501012022.pdf",
+      "sha256": "4df569a70379f4de78fcf1e7cf3ea2ca8ec0fb31c6cc0832618c5264195b8a62"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd017july012016.pdf",
+      "sha256": "fe7673cef28eba14d22fa48e560cbe3cb444c0d11862882636053d5d80dd2de1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd105-1jan012017.pdf",
+      "sha256": "55a909f8f06ab7d355c0f02233485e01be69319098818a14fa5a1f33aa4fd8fc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd200july012016.pdf",
+      "sha256": "14bf14dacf96d4458b7d3b3eceb9e0476aa0c7afa7250feaf3b850e55f62989b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-1.pdf",
+      "sha256": "553c426d991bc008b9e378b531f85d9e6f0125e452f5a418c23d00db4bb1ff46"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-3july012016.pdf",
+      "sha256": "9a4202f8c17f337003521c6f012817b26b144b5f663231354037f8d589ed7ce8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-4july012016.pdf",
+      "sha256": "affc4e3d723d2261d7ba6333b2536cf77f32708a6a92d96f995e00d0dfa449c1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-5july012016.pdf",
+      "sha256": "b4f9ed5b94bda9a0d5426eafdc2d30f28f87660355fd4ffe63159d2a27c74463"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-6.pdf",
+      "sha256": "684ba29284a47b4316e3435a285e287b2cd7ae1662540dcfce964d648e7065ab"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-7july012016.pdf",
+      "sha256": "42d64606769630561504d67fb3178a4d50a9e7bcefb6dd5a5eb0a86fddb2d79a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-8.pdf",
+      "sha256": "389205bf72266544b4c8eb55b4c58d5432107c27557f50c836984e9792ae8aa2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd201-9july012016.pdf",
+      "sha256": "ab1bf62860f72d183a4a6e617b8e689b81b42691062f85f7c08f17ac9cdb7e00"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd2012042022.pdf",
+      "sha256": "c6845ffec8c404343a4e13d2f71e7806ce482160f0a5c8e7a5fae309796928a9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd402-4july012016.pdf",
+      "sha256": "94e7fdb40f516d6d49a1957bd00b8b67e1a54a3b1ba94687d265a0beb0fce581"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd404-5july012016.pdf",
+      "sha256": "8affe9c24ff9dd1f1b76f66d4db4197cb2c58f906942e164364e53cc837ec5ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd800.pdf",
+      "sha256": "dfb1638a0184fd2436e081bdc58323f042c61c660a94fbe8352f15bc40133b13"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd804-1july012016.pdf",
+      "sha256": "60dec038d534fbea34135b092436dd102fb53b0c4a9aa05ed6bd927a1efa70f0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd805-1july012016.pdf",
+      "sha256": "8f7bf1e9ad466906109b7c77b2d05d3778659dda84e20da0d2ead16462569196"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd805-2.pdf",
+      "sha256": "77f6b9a85c70e7c82e90a6bc605903f8de70ab51a59eb3fdd83700d06cf3baea"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd806-1july012016.pdf",
+      "sha256": "f013ff716cb0d35bbb4479c5f2b49896d885f8c921f848b2127f106656b79297"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd900.pdf",
+      "sha256": "4306ddfa5332aaf3ed8fba08ae053be184d4003ecf705bd1e4e79c34c4bb2807"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd901-1.pdf",
+      "sha256": "274f825f9c1659281aca5ad1ce09adc5f3df61268a94cdcde7a3079cdb395445"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-abd902-1july012016.pdf",
+      "sha256": "2665a9551d65bd8358ab17e9d4f4371710b12804afc7ee82b0b0e198023c6a23"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca003.pdf",
+      "sha256": "3141d19058f439842a72685e2dae62c03eaa6989b7563737fc42e6e1bb04820a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca004.pdf",
+      "sha256": "e72f41cfdd3fd41195015b5c6f1b8bed7d5729770a1af43c53922fcb8749f6c3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca005.pdf",
+      "sha256": "e15c608272d91a16baab5a9843f2de1259bf5b0f0299b02b9db7577ecc299f60"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca006.pdf",
+      "sha256": "2a53ecf1ce6ae06e6a8c59251727c9c31768f87a789b326b68c6ba1cbe252fa6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca007.pdf",
+      "sha256": "60c8b6807e6b13f2a0a61d6446f14d19cfe33dffe45d1cb4aa1fc71f81136092"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca018.pdf",
+      "sha256": "24bfb0da2cf4f144d0389820ba35c29372b60bf2b5f1f1ae28b887386ca64ef0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca201-4.pdf",
+      "sha256": "a5239739d3e780cf26eee29128175e7cf75647fbd896cc2d30bdbc08dd0ae8fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca201-5.pdf",
+      "sha256": "33db3fe81c22a8c50cee405b2989a63703b4d4055371b28484c7e87a8e416607"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca201-7.pdf",
+      "sha256": "a2a54b71cded30bd8c852da24b79187425d30dfef90b2e276c52b99ec3e0bb58"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-aca805-1.pdf",
+      "sha256": "6db0b547bbd088e4cbf83c472c0a7df03aa3abf198e191e137a84ee88ba821de"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma0-3july012016.pdf",
+      "sha256": "700cf8ebbcc737397545fab41a7fe743fec9e096217af3444ce8903c0a640df4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma001.pdf",
+      "sha256": "22ffedfb8d50e0b65672cb8749da224adcb3a6b9b396e1924837874bef43672d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma002.pdf",
+      "sha256": "4f9df0ca28529945f14c55efe2b518f88f5db554247ca1ccc5d5d0608206ae87"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma04.pdf",
+      "sha256": "9d48b49ac7d8f799a225aefc239407831b809eda453f1b615c90999e4b4ace94"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma101-1july012016.pdf",
+      "sha256": "1e1a5428ae14c2def7b6d2efe4b54d9d56edd489e2eda41e7abdfb44e0c3ad0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma102-1.pdf",
+      "sha256": "85e4b2f1e201ac74931902f1f75b2fc72289bd7e650ed31fb2885752c919e654"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma102-2july012016.pdf",
+      "sha256": "c69e5a0268b60183940757fb5550a69aff4b8fec7c6d5cd199433ad47c021523"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma103-1.pdf",
+      "sha256": "609ec5d2c1affc9d01c9df7d235e8eaf41977c789e3080201983a65256c75238"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma103-2july012016.pdf",
+      "sha256": "7d89158988dd4f8c003fc31b269d6d179a352be9812aefd2d7826aa67571cf9e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma103-3july012016.pdf",
+      "sha256": "2c1e8f8ca8800c8a44aa9a1de8fa6cb158995fcc01083ab9c28d3f6d4549bdbb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma103-4.pdf",
+      "sha256": "a2d521f445dc69f6ab23236a7c7b6484ebb69d616b7a929c6b72f4b3c334cd0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma103-67-22.pdf",
+      "sha256": "a60fad18629e9ee62c9e0a4876a6f44ae4911fe79c16ae95a3bfcfe16a1b2242"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma104-1may012017.pdf",
+      "sha256": "45c46db76da760e182a883d3e3137304518d395e2d85a9c934c01e4dfeb35581"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1300july012016.pdf",
+      "sha256": "7b7a254f95a67fa12282e3ba89a75b3b202fc92ebcf3bd23d46b5798cba068bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1501-1.pdf",
+      "sha256": "bbff36578df418039e189e694c187c8720adae11e0692b3fb8416e2db62d5478"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1502-1.pdf",
+      "sha256": "6f4732d3e00b21e50690b4456402fabec9805bfe46cb6b132b101b164822f449"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1503-1.pdf",
+      "sha256": "4efe8e05c4aa083f54c016cc87833f9827094794f32c95e4c1240003d0e27ae1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1504-1july012016.pdf",
+      "sha256": "873bae6dd3534514ef2b763748a0c05e99d414a5a8b1f8a918bcf80a34a0e4d5"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1505-1july012016.pdf",
+      "sha256": "02480bad4dec3e4af53b2968c4537e6d04cbd0b81dcd68c373b88af5bb53a4a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1506-1july012016.pdf",
+      "sha256": "a93318c6c3d35cab2fd4d2eade11e3a947370e8fce86e7c169bcd04b3af9b6c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1507-1july012016.pdf",
+      "sha256": "1d28d82d109fd8f1cc993173751c6626f3262421b1806a24ca8f05b550df8eb2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma1509-1.pdf",
+      "sha256": "45e88c257204f14294b44b23f723fa769a98da9a29c916c26f01e4b96844dd22"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma202-110-22.pdf",
+      "sha256": "5086a6a1d7241427131729d53f8f9517d8c8393b2fc82206c4c049328a9b34be"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma300.pdf",
+      "sha256": "4015cb65d1a513c9c015bf8634117c60221ef669d9b5547928bce75323d25b13"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma301-1.pdf",
+      "sha256": "648be1d022faaa200683943ba022dcd3615bcee0d5b1866f91c8da7bd02b78cb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma301-2.pdf",
+      "sha256": "1002b5789e2bfa763f222ad0715b5c251737c970e51af6376e95e9e4c3ea51cd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma301-3.pdf",
+      "sha256": "9016762c2d50f69a7ffbb7c46f2d616ce839b5aba17ad1a541ef90906d410d57"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma302-1july012016.pdf",
+      "sha256": "f3da787436ab34ce2787c57622e999c35bd93a22ad941eacf15d415b1cc13880"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma302-2.pdf",
+      "sha256": "fe7213dd047c960e41afd16531a6df432f1d4c6bc9e38ef329b088bafeb77e9e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma302-3.pdf",
+      "sha256": "649269ac4606fa675ce6aa6040cb147a1703386be09ebaf31c59490d3e1f15fa"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma303-1july012016.pdf",
+      "sha256": "a0d0ff1ee7c58d94da4a53b2fe666e8e3461aa97068f0f68b18adad420a50b33"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma304-1july012016.pdf",
+      "sha256": "7ea7b53f6404a157db943db51b1a73b63e640c714acd194497917176306eebab"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma304-2july012016.pdf",
+      "sha256": "a6682aa5b5126cfdfb0e149fbdc55f165c9ce9fce64bc8f3f16fc2841149ab81"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma304-3july012016.pdf",
+      "sha256": "630700e78c718365c3074e2a410c7cce94707b375e285c422a715bc99e9016d8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma304-4-7-23.pdf",
+      "sha256": "da52f4465df306ccff08fc4d3a2f48a7e255d8721ebd597360c03d8e9eee63e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma304-5jan012018.pdf",
+      "sha256": "129c7b1f72fba2b7f3a7eb59d09592e83ce9bebb3d808374573fca595d9605c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma305-1july012016.pdf",
+      "sha256": "d17c413b60308713b8ab85e344337cb719c2266a26adeff4e168f55f2432e32c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma306-1july012016.pdf",
+      "sha256": "15d46b3e9f1b5c528b3d5a8db308fd0c93f38f2794f4f69ff0315558da890e47"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma307-1oct012017.pdf",
+      "sha256": "9c6523696c23409889bc8c69c91b9510842ea79102f1e17ed5842f9fe05086a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma308-1july012016.pdf",
+      "sha256": "dbbadd0a8d454048895d590998bc0d6461028197b533c7c18b6390a11dd5d740"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma310-1.pdf",
+      "sha256": "0515258252c5e1471f7f1f883fbd539d902dd43a948b3ff590bbb07a7e5df6d9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma401-1.pdf",
+      "sha256": "d4afb44fd258ab199690e9b69343915a2cdb6b16b8f2e703275d91cb4bb518b2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma402-1.pdf",
+      "sha256": "0d4f62771888d3bd041446e0e2fa7d1d87de5172db5c5b38269c03a1f43fcf6f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma402-2july012016.pdf",
+      "sha256": "7e5328f20e548cf041df8bcc21edd1101c15552b95bab37e97ed2f834bb1c494"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma4023-062022.pdf",
+      "sha256": "b43998e8a662b25ac8d6ca3f3a4ceaae8bf4baaedb84fd20f3be0dd4a2fc9ec3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma403-1july012016.pdf",
+      "sha256": "122521c2c7ac5a09563470f411f01f566d79739362aa33e069a687a292f64674"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma404-1.pdf",
+      "sha256": "a3f1d41c24edde2b5b0c4771856c2feb5b4b6e0ad635c2087c0bf7dbd30c8118"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma404-2.pdf",
+      "sha256": "68307ee0d2a2ee28bce2eee38c42cf0fa7f418cbe27502c35d185825616f4cfd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma404-3july012016.pdf",
+      "sha256": "365fd4db5a14a22fd772325c6fa47cb8bb3ce4d44f04f0aaaf91cd4ee4e3d85b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma404-4july012016.pdf",
+      "sha256": "e42cd670ac880991154e1d26b15fd3bd1190b4cadf237a1e1e73f2c1a5e9ffd9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma500.pdf",
+      "sha256": "effebf6a44e55e1cd6b459b742d271a8487be857b707a8bf53aaba8837d58a5d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma501-1.pdf",
+      "sha256": "4b824926fa8cd31b5b6b2fa765663327f3474cf30612075b8807fe7e0f8e1e97"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma501-2june012016.pdf",
+      "sha256": "67b2911d7b49d6eb1dd51aa75a11b9f76816cd2f44b1e06c1e3566f7d535e60c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma502-1.pdf",
+      "sha256": "37de11a02d4aa142fbfbcb2bdf9986b3e9f7b09ad5de9ab6d4d0108f136317ec"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma503-1nc.pdf",
+      "sha256": "3615dcb05025680e083325c81109a1dfaa120e21e3bbbaa7cf2d77ab12aba72c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma601-1july012016.pdf",
+      "sha256": "d623a557d3a6a819391206d18e1741f471848a033428b4f28187b9cd1c8f0bf0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma602-1.pdf",
+      "sha256": "f8e3e0b9434b93cd67cff47224d9a2eed39ab88dfeb7fd7b27608d0a8e7eb166"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma603-1.pdf",
+      "sha256": "437c5958b67c8d5211a2a04c7d64df55540404d74603bfe748faf48119f548de"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma700march012017.pdf",
+      "sha256": "3af56895f706df4d777ec052c5d4cbdb5df8e5dfc7052d58b7b217618f6ab4f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma701-2.pdf",
+      "sha256": "8108ad64211d894f2e972fd7f3faf1f49b9ba094945791e329e438460ed5de1b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma702-1jan012020.pdf",
+      "sha256": "217ecef8c44026b591e652d6447e5ce0a104671fcc09f661e6dd954e0e833bdc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma801-1.pdf",
+      "sha256": "11383d16fc1bc2417a9ac6092f6bdd52325874a632bb6c348a0a211e33b36892"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma802-1.pdf",
+      "sha256": "9bfbf0d861624a70eb0c8fcde8e94526e47cb40b9ff1439eb49672949d96445b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cma803-1.pdf",
+      "sha256": "7c50c21702976e84ead2d0a177082f0ba47257e4d6878f5f9b5e4431b4e6393f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-cmatoc.pdf",
+      "sha256": "9a56ec276cfe13e62dc011df2a934e1be684cc5da2b309a95e3c8997538eb1f9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma1000.pdf",
+      "sha256": "29a2be4b3b1c1cb12d7857ab783b3b62c902f577b614c32c4b19671673fbe74f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma1001.pdf",
+      "sha256": "594b12e1ff901a1c7dd70b366cd5cc10dbf5242eb52f1aecd62cf68249c67f2c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma105-1.pdf",
+      "sha256": "620c2cfbd419c4761acc5539b987e8d0779f248797ad7ea57f3b936977b173b6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma200-1.pdf",
+      "sha256": "8ff026ed2432672dcb176c577277df15e30db71a7607455dcd667dc77aba983a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma200.pdf",
+      "sha256": "edd9a697522ecc5066edf52201fb86da34d35fe89d8601e81017e42a85a5853f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-1.pdf",
+      "sha256": "083ee163ebca117cd7bd61b0c111805b8e8226eb92d82e30f522e79f42cc7ba9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-10.pdf",
+      "sha256": "3275b1eac81d9c979bba4260529a68b2776a0142e4ec8fd34a39e6a092074728"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-11.pdf",
+      "sha256": "a242c9a641e55379aa9a09701f5773a48e7449db20b40017eb58164066e19a90"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-12.pdf",
+      "sha256": "3bf66d70932b9437985fb970118a9e432ba64baf2c3e70e6f6652d66220e43a8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-13.pdf",
+      "sha256": "f1beef4e9619f6599f958ca262521f92b1ea87807eb4d4639ee7adf65b40003e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-14.pdf",
+      "sha256": "83a01f00a5ce26cd5a3f8592e3de251bb0d88cf8fa1ae6c83fc18434601c6971"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-2.pdf",
+      "sha256": "cdf9ef079d6e1eb7d44e2d2a20956ff0d9d8a51d84dcd23c70f345f9465e60c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-3.pdf",
+      "sha256": "446109c740093bed5cd46a8c74418c42b6c2defbd998f66769e02160ac674b54"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-6.pdf",
+      "sha256": "7657b9c5892e594df281cefc35f6aa45c36fc9d374076670a218d89389e3c6b6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-8.pdf",
+      "sha256": "b10dce36d544edd92a9fe2256be8a4fefca602fc270073f16a2e28b7cfb54ea8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma201-9.pdf",
+      "sha256": "6889a5a6762318af0005886240f729b0395ea57dc7c91df106a1d97d72c1ee4c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma308-2.pdf",
+      "sha256": "2760062cc21d5a91106478453dca81b98b24f86e0dbf1091d31edafff2afb889"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma309-1.pdf",
+      "sha256": "9fb515dc2967fadbe8599d63b1cb1058f481c68f947d74a7a1cb22e7a1b309a9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma804-1.pdf",
+      "sha256": "7a450f1e3f8c91ccd1b04b230cfbfd7c6453c6f170464bc02e51ae68dc3bb65e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma806-1.pdf",
+      "sha256": "8e310052596837f07fea7ed7e4dfa6e423bc3a6bfe274e98c9db5c73b556769f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mt-medicaid-fma900.pdf",
+      "sha256": "f64d69763ec113090fe0be640be2bcd2d16a69dfbe51070db3ae3c985e5b69d8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-mt-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 486,
+    "missing_count": 0,
+    "provision_count": 486,
+    "source_count": 486
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:07:13.158088+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mgvD8uUIvr19EMQgtk7+o/Q7goJSm8XHwBg2CikXWumLMxzCeNk+6PsJpKC43r1U+MW1gBJuHOnbkbuhBb3jDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

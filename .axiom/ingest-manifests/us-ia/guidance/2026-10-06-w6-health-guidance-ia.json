@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/guidance/2026-10-06-w6-health-guidance-ia.json",
+      "sha256": "66fcbe1d859a2b02af411765068f374130cd4190316c5a96b49c02a2d1261e22"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/guidance/2026-10-06-w6-health-guidance-ia.json",
+      "sha256": "a244ba1d128e108c63754ffc0619cdb1e767f6ffb051e38e4c379c2e1b92c1d0"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/guidance/2026-10-06-w6-health-guidance-ia.jsonl",
+      "sha256": "8927fc701bd939bdf47730ac2a868c5ea683b48069a49f89b163fe198ca56765"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/guidance/2026-10-06-w6-health-guidance-ia/official-documents/us-ia-w6-health-hhs-hawki-income-guidelines-2026.pdf",
+      "sha256": "1747028e60b0b81464fd5baea61e3da32ab327c36a47b3fa7a179cdd1cb69339"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/guidance/2026-10-06-w6-health-guidance-ia/official-documents/us-ia-w6-health-lsa-fiscal-note-sf-2251-postpartum-coverage.pdf",
+      "sha256": "037170b7eca661b58c8000161e717ddec63099f129e498bec3f3e73531aaa2d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:51:11.111514+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2Fd0Df57ZGL/Nx9U8OuVc5O7MhOFjaUCp0l9zUJdN8G8Ko5ZIOaAACofBegvf5IEE5bLyefQPK9e5y85hZBlBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-ia"
+}

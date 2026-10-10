@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26.json",
+      "sha256": "d8068e4cab2b3dafd2094ba5d83272a51a79d9dcca17c9673417fc535020db69"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26.json",
+      "sha256": "d1b2007177891d7f6adc18e884d9da80a1e4778bc850b46a5700014c090b4544"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26.jsonl",
+      "sha256": "c75d138fb7dc03abb0a6b27caf3eb7d8278cc49c4765bafcce067a9241b26178"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26/uslm/usc26.xml",
+      "sha256": "d334ed90f58a35e3c0df48e73e7e6352e36d36412f8b1b486c3d7c04ccc3bdd4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8345b663066ae2db8261fa64bf0381eed1074bda",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 87,
+    "missing_count": 0,
+    "provision_count": 87,
+    "source_count": 87
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-17T13:35:10.582376+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Gr/bUL4BqtQJ/ozrXSVxXMXpjB+486dMnGjHspd6xHop78YwnB8WpCrG/b9VGr/Zgc1DrnKtniSNK9FvrMW7AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-hr6644-dependencies-current-law-title-26"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-08-03-snap-obbb-abawd-exceptions-implementation-memo.json",
+      "sha256": "019d9f7db0305cc21a8c5481a1c659e19d9a1a5bd5878bac97c6811f55557889"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-08-03-snap-obbb-abawd-exceptions-implementation-memo.json",
+      "sha256": "8705e0324b0e42bbd44a411f68c86497a05e685208e701d8aa3e724ce6aabef1"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-08-03-snap-obbb-abawd-exceptions-implementation-memo.jsonl",
+      "sha256": "d7717b18377518de7a920e124b18dd9438de05c2c1f4b218331fbfe83fd5556d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-03-snap-obbb-abawd-exceptions-implementation-memo/official-documents/snap-obbb-abawd-exceptions-implementation-memo.pdf",
+      "sha256": "b78d912058ccf06a07bd8e8d14a1c0da133f48c9c0996d1bfc36511e56a5c549"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "646f9ac78ac43bd0f508dfbd16f31d35885eb82a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-08-03-snap-obbb-abawd-exceptions-implementation-memo --manifest manifests/us-snap-obbb-abawd-exceptions-memo-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-08-04T13:11:33.140776+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V1fpbGlFSighlZ4iiv6hKtX/atDwIxCz35jnZMxepZuBqAPtWrGXEZOpLCZrsy2JtCAR6dugOtT3whCpHsrPDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-snap-obbb-abawd-exceptions-implementation-memo"
+}

@@ -11,24 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-06-uk-sscba-maternity-allowance.jsonl",
       "sha256": "e0f966deb4cf3b7a8d0b1f04a878cb8dcdcbf278851f683566b9fe4eae94892d"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-maternity-allowance/ukpga/1992/4/section-35.xml",
-      "sha256": "cb37609cc92f5ea094b515c6aa97b7bf65dc8f6b40510ca5b717141f422769e0"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-maternity-allowance/ukpga/1992/4/section-35A.xml",
-      "sha256": "d005e8ad5d18f5a5575d992368b51ffb902b58d9d4f2b94eee1f75773fef3bc4"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-maternity-allowance/ukpga/1992/4/section-35B.xml",
-      "sha256": "ca5966604614f1cd6ddbf16830a71f087373bb05fe7a9b83c65228d01526b415"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5edfd598bc8ae0ac9c9030847da97dc477026f23",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/uk-statpay-wave-20260706/axiom-corpus"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -43,7 +31,7 @@
     "source_count": 3
   },
   "document_class": "statute",
-  "generated_at": "2026-07-06T18:50:34.167402+00:00",
+  "generated_at": "2026-07-21T11:57:43.169644+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
@@ -55,7 +43,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "02COaD1QOADE42IivYd+3THvtVC/dwfvJHu7Fwi70AQ2DwXmw1pinrKXiERFYmUMRYMcpfb7UWAwlfQGj6CtCQ=="
+    "value": "QwZHjn08e8HslcyqhCNB3Eh7jssaWb3TcPj+EVvS2e6A3U38P3r6Ifq7poPC99wEt7cc0R+mVKdqp/Hx+qmFAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-uk-sscba-maternity-allowance"

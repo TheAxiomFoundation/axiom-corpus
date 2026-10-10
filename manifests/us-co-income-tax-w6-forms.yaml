@@ -1,0 +1,271 @@
+version: 2026-10-06-w6-income-tax-forms-co
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Colorado
+documents:
+- source_id: us-co-w6-cdor-ty2021-dr-0104-book
+  jurisdiction: us-co
+  document_class: form
+  title: 2021 Colorado Individual Income Tax Filing Guide (104 Book)
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-co/form/cdor/ty2021/dr-0104-book
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Individual Income Tax Filing Guide ... 104 BOOK (2021)
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 269
+- source_id: us-co-w6-cdor-ty2021-dr-0104-book-v3
+  jurisdiction: us-co
+  document_class: form
+  title: 2021 Colorado Individual Income Tax Filing Guide (104 Book), version 3
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-co/form/cdor/ty2021/dr-0104-book-v3
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Individual Income Tax Filing Guide ... 104 BOOK (2021, V3)
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 263
+- source_id: us-co-w6-cdor-ty2021-dr-0104ad
+  jurisdiction: us-co
+  document_class: form
+  title: 2021 DR 0104AD Subtractions from Income Schedule
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104AD_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-co/form/cdor/ty2021/dr-0104ad
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DR 0104AD (10/22/21) ... 2021 DR 0104AD - Subtractions from Income Schedule
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 260
+- source_id: us-co-w6-cdor-ty2022-dr-0104-book
+  jurisdiction: us-co
+  document_class: form
+  title: 2022 Colorado Individual Income Tax Filing Guide (104 Book)
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-co/form/cdor/ty2022/dr-0104-book
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Individual Income Tax Filing Guide ... 104 BOOK (2022)
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 270
+- source_id: us-co-w6-cdor-ty2022-dr-0104ad
+  jurisdiction: us-co
+  document_class: form
+  title: 2022 DR 0104AD Subtractions from Income Schedule
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104AD_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-co/form/cdor/ty2022/dr-0104ad
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DR 0104AD (11/17/22) ... 2022 DR 0104AD
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 261
+- source_id: us-co-w6-cdor-ty2022-dr-0104cn
+  jurisdiction: us-co
+  document_class: form
+  title: 2022 DR 0104CN Colorado Child Tax Credit
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-co/form/cdor/ty2022/dr-0104cn
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Complete this form to calculate the 2022 Colorado child tax credit
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 267
+- source_id: us-co-w6-cdor-ty2022-dr-0104ep
+  jurisdiction: us-co
+  document_class: form
+  title: 2022 DR 0104EP Colorado Individual Estimated Income Tax Payment Form
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR_0104EP_2022_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-co/form/cdor/ty2022/dr-0104ep
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Estimated tax is the method used to pay tax on income that is not subject to withholding (2022)
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 268
+- source_id: us-co-w6-cdor-ty2023-dr-0104-book
+  jurisdiction: us-co
+  document_class: form
+  title: 2023 Colorado Individual Income Tax Filing Guide (104 Book)
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-co/form/cdor/ty2023/dr-0104-book
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Colorado Individual Income Tax Filing Guide ... 104 BOOK (2023)
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 259
+- source_id: us-co-w6-cdor-ty2023-dr-0104ad
+  jurisdiction: us-co
+  document_class: form
+  title: 2023 DR 0104AD Subtractions from Income Schedule
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104AD_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-co/form/cdor/ty2023/dr-0104ad
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DR 0104AD (09/28/23) ... 2023 DR 0104AD
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 262
+- source_id: us-co-w6-cdor-ty2023-dr-0104cn
+  jurisdiction: us-co
+  document_class: form
+  title: 2023 DR 0104CN Colorado Child Tax Credit
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-co/form/cdor/ty2023/dr-0104cn
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Complete this form to calculate the 2023 Colorado child tax credit
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 264
+- source_id: us-co-w6-cdor-ty2024-dr-0104cn
+  jurisdiction: us-co
+  document_class: form
+  title: 2024 DR 0104CN Colorado Child Tax Credit Instructions
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-co/form/cdor/ty2024/dr-0104cn
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2024 Colorado Child Tax Credit Instructions
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 265
+- source_id: us-co-w6-cdor-ty2024-dr-0104-book
+  jurisdiction: us-co
+  document_class: form
+  title: 2024 Colorado Individual Income Tax Filing Guide (104 Book)
+  source_url: https://tax.colorado.gov/sites/tax/files/documents/DR0104_book_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-co/form/cdor/ty2024/dr-0104-book
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: '(11/26/24) Booklet Includes: Instructions | DR 0104 | Related Forms 2024 104 BOOK'
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 266

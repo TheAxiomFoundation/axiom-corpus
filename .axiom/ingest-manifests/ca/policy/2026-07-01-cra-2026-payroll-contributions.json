@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-payroll-contributions.json",
-      "sha256": "5d0e88403b735640849a4ad582eff5904a98f015677eae752790b7902e43a1a9"
+      "sha256": "254b014078c0f3cce7c66b13ce2b9ade901b6456c87d7953b112ff0d85c8cae5"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-payroll-contributions.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
+    "text": "Refresh ingest attestation provenance for the complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:52:03.218192+00:00",
+  "generated_at": "2026-07-21T11:40:41.262937+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Dv5O6GuE0YnB3AC8xcyKiKtuSr+GuZZIyaZVmnPeOwMuuLqlnnv1wBXvHG0JeUH7A/wboMoulPwWCDLTnjmXBw=="
+    "value": "DTGtgTGkIxN9uSGlPkH9rpKymxmxHVcjZtnUJwPSk5ASbBcRemqc2ITlqWc95RyVH1IG3F0sTIczLjpMqqH6CQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-payroll-contributions"

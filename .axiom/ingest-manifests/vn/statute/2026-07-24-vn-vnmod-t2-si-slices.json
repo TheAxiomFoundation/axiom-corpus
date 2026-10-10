@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/vn/statute/2026-07-24-vn-vnmod-t2-si-slices.json",
+      "sha256": "b7dfc501d13563bbab51d894b834fc06cd965780d74f599331febc32188a5207"
+    },
+    {
+      "path": "data/corpus/inventory/vn/statute/2026-07-24-vn-vnmod-t2-si-slices.json",
+      "sha256": "3bba19291a77e62d52eba26ef49e560f35b8bce1a89a4b6cda8acb4e3f959772"
+    },
+    {
+      "path": "data/corpus/provisions/vn/statute/2026-07-24-vn-vnmod-t2-si-slices.jsonl",
+      "sha256": "6dd7563cfff3d880798bc585ef22a5b263c9fe185d78b72202c2a8235a41a119"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t2-si-slices/official-documents/vn-luat-2014-58-chuong-1-2-quy-dinh-chung.pdf",
+      "sha256": "10dc17ba706c03f93a5b9f0aae492a3e637a09b480cbf01c7e12d6ffc547e64d"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t2-si-slices/official-documents/vn-luat-2014-58-chuong-3-bhxh-bat-buoc.pdf",
+      "sha256": "10dc17ba706c03f93a5b9f0aae492a3e637a09b480cbf01c7e12d6ffc547e64d"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t2-si-slices/official-documents/vn-luat-2014-58-chuong-4-5-tu-nguyen-quy.pdf",
+      "sha256": "10dc17ba706c03f93a5b9f0aae492a3e637a09b480cbf01c7e12d6ffc547e64d"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t2-si-slices/official-documents/vn-luat-2014-58-chuong-6-7-to-chuc-thu-tuc.pdf",
+      "sha256": "10dc17ba706c03f93a5b9f0aae492a3e637a09b480cbf01c7e12d6ffc547e64d"
+    },
+    {
+      "path": "data/corpus/sources/vn/statute/2026-07-24-vn-vnmod-t2-si-slices/official-documents/vn-luat-2014-58-chuong-8-9-khieu-nai-thi-hanh.pdf",
+      "sha256": "10dc17ba706c03f93a5b9f0aae492a3e637a09b480cbf01c7e12d6ffc547e64d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "18595c240fa6b638c0d2431cb1909a463f0a0147",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-vn-vnmod-t2-si-slices --manifest manifests/vn-vnmod-t2-si-slices-official-documents.yaml (5 chuong page_windows slices of the t1-captured signed scan; force_ocr vie 400dpi)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-25T12:08:45.938815+00:00",
+  "jurisdiction": "vn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "czVvUibFhaZqUHhiRDRkiRhRtoknbhuxIGT+dUzXVVJjfsTNlnSCuua8r2Ih1nf3A8kSR2wSugJlky4wZb4UCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-vn-vnmod-t2-si-slices"
+}

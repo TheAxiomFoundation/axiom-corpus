@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup.json",
+      "sha256": "c6ada0eed780536bbf8fef376bf7988dda7a11b83152015bdbdbba9ba118f0fe"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup.json",
+      "sha256": "8b3fb1fa151274c1a8f37f52034cf99d49e308123ecf36e048432f9a45850cd4"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup.jsonl",
+      "sha256": "8ac084b723b6fd7a48a9ad769ace8df9201d627b15283201cefbf6d9542b1d26"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup/uslm/usc42.xml",
+      "sha256": "a50590f023907c02e8748778dcba74121b664458f6b85ad8a54b4d7de2300ff6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2efb4c609f34a551b3121f72cb330f4f1dcd4c7b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 51,
+    "missing_count": 0,
+    "provision_count": 51,
+    "source_count": 51
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T21:01:43.640770+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WkgLYltuR8/K6S9VkiktxRrFP4Yd9oB24igfX0Xr7Xf/wGqi2/+ikRyFhaFe2SJJndHx7rxc711rKxxBEbIRAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+}

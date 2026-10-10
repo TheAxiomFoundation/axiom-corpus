@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/form/2026-07-22-or-estimate-2026.json",
+      "sha256": "7438a39598a22a0389c0454478d7e05ba33755a1fadb8d3880f81899e6ca7938"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/form/2026-07-22-or-estimate-2026.json",
+      "sha256": "f3413ed004af3d09c2fedbfb8f6f5e472d58deae3dd90718fb242e1df65f23cf"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/form/2026-07-22-or-estimate-2026.jsonl",
+      "sha256": "8d8e9f7bc9045959ffa41470941cdbc95e1ba18e84e0fd1124b6a34770d1ab74"
+    },
+    {
+      "path": "data/corpus/sources/us-or/form/2026-07-22-or-estimate-2026/official-documents/us-or-dor-2026-or-estimate.pdf",
+      "sha256": "6abb5d87494ce16da8f32b93b812bd95c830acb0763294b8e0bcff420bee96b1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de1a4b2b0efef325a69991355ca26cfb8b920bec",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-or-estimate-2026 --manifest manifests/us-or-2026-or-estimate.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-22T13:59:30.045894+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-or-estimate-2026.md",
+      "sha256": "4d686a4b4537c4c59fab136416af9811116e83c265462addc2e48f4f13a4644f"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4TJ6S0cyg+Kymre7/lHuSo8/w8zWaTP0xdxKgymEX1RNzPFvg1Q/fh5fJ9uQMaWlnnc8uZwfhgm+Uv62u8loBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-or-estimate-2026"
+}

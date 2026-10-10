@@ -1,0 +1,48 @@
+version: '2026-09-14'
+documents:
+- source_id: ok-oar-oac-710-50-income-tax
+  jurisdiction: us-ok
+  document_class: regulation
+  citation_path: us-ok/regulation/oac/710/50
+  title: 'Oklahoma Administrative Code Title 710, Chapter 50: Income (Oklahoma Tax Commission)'
+  source_url: https://rules.ok.gov/home
+  source_format: json
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=710&chapterNum=50
+  extraction:
+    segmentation: records
+    json_record_text_field: text
+    json_record_text_is_html: true
+    json_record_label_field: sectionNum
+    json_record_heading_field: description
+    json_record_kind_field: name
+    json_record_status_field: statusName
+    json_record_exclude_statuses:
+    - Revoked
+    - Reserved
+    json_record_metadata_fields:
+    - id
+    - parentId
+    - name
+    - titleNum
+    - chapterNum
+    - subChapterNum
+    - partNum
+    - sectionNum
+    - appendixNum
+    - description
+    - statusName
+    - effectiveDate
+    - filingId
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Tax Commission
+    official_publisher: Oklahoma Secretary of State, Office of Administrative Rules
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ok/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.ok.gov/home
+    rules_api_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=710&chapterNum=50
+    title_number: '710'
+    chapter_number: '50'

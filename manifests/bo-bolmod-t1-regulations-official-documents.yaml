@@ -1,0 +1,65 @@
+# Bolivia (bo) tranche-1 capture, REGULATION class - companion to the
+# bo-bolmod-t1 statutes manifest (see its header for the full BOLMOD v2.1
+# parity notes). Two instruments:
+#
+# 1. Decreto Supremo 28899 de 26 de Octubre de 2006 (Ministerio de
+#    Educacion official file) - creates the Bono Juancito Pinto CCT
+#    (Bs200 annual per eligible pupil in public education; BOLMOD fully
+#    simulates it from EH school-attendance data).
+# 2. Decreto Supremo 0066 de 3 de Abril de 2009 (Gaceta Oficial print
+#    hosted by the Bono Juana Azurduy institution) - institutes the Bono
+#    Madre Nino-Nina "Juana Azurduy" (prenatal and early-childhood CCT;
+#    component amounts per report Table 2.4).
+#
+# COVID-19 DS bonos (3546/4197/4200/4215/4345) and program reglamentos
+# operativos are tranche-2 captures.
+#
+# Capture note: www.bja.gob.bo serves an EXPIRED server certificate
+# (python-requests: "certificate has expired"), so the DS 0066 document
+# uses the manifest local_path mechanism (us-ny TANF / mz precedent):
+# bytes were fetched from the recorded source_url and content-verified
+# against the Gaceta Oficial print (DECRETO SUPREMO N 0066 heading,
+# ARTICULO 1 OBJETO). sha256:
+#   ds-0066: 657fd970901c2a50c7bd6802c7a6d7cb52b963c2e15115031afbf1ebb50fb606
+# TLS verification was never disabled. The minedu DS 28899 fetches
+# directly with verification on.
+documents:
+  - source_id: bo-ds-28899-2006-bono-juancito-pinto
+    jurisdiction: bo
+    document_class: regulation
+    citation_path: bo/regulation/ds-2006-28899/bono-juancito-pinto
+    title: Decreto Supremo 28899 de 26 de Octubre de 2006 - crea el Bono Juancito Pinto (Ministerio de Educacion official file)
+    source_url: 'https://www.minedu.gob.bo/files/ministerio-educacion/Creacion-Unidad-Ejecutora-DSN-28899.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2006-10-26'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Ministerio de Educacion publication)
+      publisher: Ministerio de Educacion
+      source_family: social-assistance/bono-juancito-pinto
+      language: es
+  - source_id: bo-ds-0066-2009-bono-juana-azurduy
+    jurisdiction: bo
+    document_class: regulation
+    citation_path: bo/regulation/ds-2009-0066/bono-juana-azurduy
+    title: Decreto Supremo 0066 de 3 de Abril de 2009 - instituye el Bono Madre Nino-Nina Juana Azurduy (Gaceta Oficial print, hosted by the BJA institution)
+    source_url: 'https://www.bja.gob.bo/images/gmapfp/documentsPDF/DECRETO%20SUPREMO%20066%20DE%203%20DE%20ABRIL%20DE%202009%20QUE%20INSTITUYE%20E.pdf'
+    local_path: /Users/maxghenis/overnight-encode-20260718/bo-sources/ds-0066-juana-azurduy.pdf
+    source_format: pdf
+    source_as_of: '2026-07-23'
+    expression_date: '2009-04-03'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Estado Plurinacional de Bolivia (Gaceta Oficial print)
+      publisher: Gaceta Oficial del Estado Plurinacional de Bolivia (via Unidad Ejecutora Bono Juana Azurduy)
+      source_family: social-assistance/bono-juana-azurduy
+      language: es

@@ -1,0 +1,48 @@
+documents:
+  - source_id: us-tx-constitution-article-8-sections-24-a-and-24-b
+    jurisdiction: us-tx
+    document_class: statute
+    citation_path: us-tx/statute/constitution/article-8
+    title: Texas Constitution Article VIII, Sections 24-a and 24-b
+    source_url: https://tcss.legis.texas.gov/resources/SDocs/THETEXASCONSTITUTION.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2025-11-04"
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Sec\. (?P<label>24-[ab])\.\s+(?P<heading>[A-Z][A-Z ]+\.)\s*(?P<body>.*)$'
+      section_label_replacements:
+        24-a: section-24-a
+        24-b: section-24-b
+      page_windows:
+        - start_page: 232
+          end_page: 233
+          start_at_pattern: '^Sec\. 24-a\.'
+          stop_at_pattern: '^Sec\. 25\.'
+      drop_line_patterns:
+        - '^THE TEXAS CONSTITUTION$'
+        - '^Statute text rendered on:'
+        - '^-\s+\d+\s+-$'
+    metadata:
+      primary_source: true
+      source_authority: Texas Legislative Council
+      document_subtype: current_state_constitution
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_constitution
+      source_rendered_on: "2026-06-14"
+      certification_scope: individual_net_income_and_capital_gains_tax_prohibition
+      final_return_certification: false
+      source_note: >-
+        Current official Texas Constitution text. Article VIII, section 24-a
+        prohibits the legislature from imposing a tax on the net incomes of
+        individuals, including an individual's share of partnership and
+        unincorporated-association income. Section 24-b, added November 4,
+        2025, separately prohibits taxes on realized or unrealized capital
+        gains of an individual, family, estate, or trust, while preserving ad
+        valorem, sales, and use taxes. This intake proves the absence of a
+        tax-year-2026 resident individual net-income tax through the
+        pre-credit tax stage. It does not certify a complete nonrefundable-
+        credit, refundable-credit, or signed net-liability surface, and it
+        excludes business and entity taxes, payments, filing administration,
+        local taxes, and nonresident allocation.

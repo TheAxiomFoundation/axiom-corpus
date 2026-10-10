@@ -1,1 +1,0 @@
-Restructured eight ca scopes whose bodies concatenated several official captures (CWB Schedule 6 variants, TD1 federal/provincial bundles, donations, RRSP, t4127 rate scopes, ESDC disability benefit) into per-capture child provisions, and reverted the TOC-artifact step splits on the shared t4127 scopes.

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-hillingdon/manual/2026-08-03-hillingdon-council-tax-reduction-2026-2027.json",
+      "sha256": "8f7d868fba84ce25f66fb9e1e9c5775ed9b2239eb4d13d9f5172f4cd9f9a16ba"
+    },
+    {
+      "path": "data/corpus/inventory/uk-hillingdon/manual/2026-08-03-hillingdon-council-tax-reduction-2026-2027.json",
+      "sha256": "8d299ca382b967b860db4c79aa35aad301e6cd2a4523f4cb55e646ae5e5fb3ec"
+    },
+    {
+      "path": "data/corpus/provisions/uk-hillingdon/manual/2026-08-03-hillingdon-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0f41fc73a483f8e2fe024c9d4f8eaee820ed7113c6f894d56529fc56128d1599"
+    },
+    {
+      "path": "data/corpus/sources/uk-hillingdon/manual/2026-08-03-hillingdon-council-tax-reduction-2026-2027/official-documents/hillingdon-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "21ee1498005b0cc92ea92334638586d43c31b33c3d636fdb982ebbb238707bb4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-hillingdon-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-hillingdon-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 135,
+    "missing_count": 0,
+    "provision_count": 135,
+    "source_count": 135
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:26.938509+00:00",
+  "jurisdiction": "uk-hillingdon",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GYrJU5lJHxRH/3o+QkBaVnnyR+H8hkszR6T7WQXKyGQelUirxkg9C9HCFl6F/6q1Wqz1PGnLpY4b5I6xp9i6Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-hillingdon-council-tax-reduction-2026-2027"
+}

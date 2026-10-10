@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-cambridge/manual/2026-08-05-cambridge-council-tax-reduction-2026-2027.json",
+      "sha256": "e72f7fcbfae8bd19f8df6a618d09992ff6e8e4b2950670e93dbcd73f2f30b0e0"
+    },
+    {
+      "path": "data/corpus/inventory/uk-cambridge/manual/2026-08-05-cambridge-council-tax-reduction-2026-2027.json",
+      "sha256": "34996bfb6f598fb2e6de47a67ea5ccbb54c4dd0d6b774962fcbc854e64b1ab63"
+    },
+    {
+      "path": "data/corpus/provisions/uk-cambridge/manual/2026-08-05-cambridge-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "baaef436076d616a2ac8dcf64ce19db63188787e649128f544076ce0c02d5b7e"
+    },
+    {
+      "path": "data/corpus/sources/uk-cambridge/manual/2026-08-05-cambridge-council-tax-reduction-2026-2027/official-documents/cambridge-council-decisions-2026-02-26.pdf",
+      "sha256": "57758936fe6dc65e01cd679bc222cee6f84e2de08a952e99746ee67ac6690106"
+    },
+    {
+      "path": "data/corpus/sources/uk-cambridge/manual/2026-08-05-cambridge-council-tax-reduction-2026-2027/official-documents/cambridge-council-tax-reduction-scheme-working-age.pdf",
+      "sha256": "339be4afeed51215dc1b35ac0fb16389b60f906373ede652c61a7bd203136bf2"
+    },
+    {
+      "path": "data/corpus/sources/uk-cambridge/manual/2026-08-05-cambridge-council-tax-reduction-2026-2027/official-documents/cambridge-full-council-minutes-2026-02-26.pdf",
+      "sha256": "a783da48ce2b31de9a5d6e035bc151ea710d5ed6f309356964201ed8781566e3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a8225f8e02516726ecb856d6b945d70204676bec",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-05-cambridge-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-cambridge-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 222,
+    "missing_count": 0,
+    "provision_count": 222,
+    "source_count": 222
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-05T19:29:24.094212+00:00",
+  "jurisdiction": "uk-cambridge",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7iTE4yGJTJkiILKFuEl+MmBC4fKhHPz090ESjv/JxPn39F9IvQVx9Bphz+5HUFNW6fAOFDezKj5QPse0AC5YAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-05-cambridge-council-tax-reduction-2026-2027"
+}

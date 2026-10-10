@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "2ed7215c5461ecda4533871fb81e2cd6c54cfe90d3db80fe22fccb73ee1b938f"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "b796a600c3103760377f07e2d3e47d160d373d57c06437e6f61ecb53b135c23f"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "34ce1742ff3bb9c3a2a686769a8b35877d0a0f7521416423904203cec7047e87"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-wv-tax-2026-income-tax-rate-cut-ty2026.html",
+      "sha256": "db277e8369e96533179f91d338c300f141a1bc6ea60b04e3a7d291bf3bcb055e"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-wv-tax-it-100-2-a-withholding-tables-ty2026.pdf",
+      "sha256": "c103bacc00f5d3c6c02ce3831c76d328e3ada5ee8af3746a48100b9001ee68b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-wv-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:35:26.305378+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "S+dKm3I6TphwNVRPbu8JjjbOJUFFG0RQDS38HWm5hih8sHuLQHv/y3msSimwAy9RsMhXwUMAFEeMQn/cbp63CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

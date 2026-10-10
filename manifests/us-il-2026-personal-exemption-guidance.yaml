@@ -1,0 +1,25 @@
+documents:
+  - source_id: us-il-idor-2026-personal-exemption
+    jurisdiction: us-il
+    document_class: guidance
+    title: Illinois Department of Revenue 2026 Personal Exemption Allowance
+    source_url: https://tax.illinois.gov/questionsandanswers/answer.851.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-il/guidance/idor/2026-personal-exemption-allowance
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "main.soi-base"
+    metadata:
+      primary_source: true
+      source_authority: Illinois Department of Revenue
+      legal_identifier: IDOR Answer 851
+      document_subtype: tax_year_guidance
+      program: individual_income_tax
+      source_status: official_ty2026_parameter
+      source_note: >-
+        Official tax-year-2026 personal exemption amount of $2,925, including
+        the dependent limitation, the $1,000 age and blindness additions, and
+        the federal-AGI ceilings.

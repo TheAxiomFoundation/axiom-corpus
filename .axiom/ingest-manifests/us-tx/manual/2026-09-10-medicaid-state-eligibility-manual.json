@@ -1,0 +1,2897 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "6ab853c9bcfa8ae30b533b20c65eced79a0001ee37663839e4dae0c73b096fd0"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "48564ea66282a674528bd214136d04d583f6c6188cef1c435a2a36805ac3ed17"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "bf0e63c11c092492405631a9e3ea929e5fd6237bd1aa9e6baddbae7f6a016cfb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-1000.html",
+      "sha256": "fc080bbeabbd0f90f891b2a1351bc3cb10f4a1cd307e72f37b31326d347f3f88"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-1100.html",
+      "sha256": "13b9f5fa7b1aadef3bf08b43c52c179dca9a01053b037fb7b82885610f783f17"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-2000.html",
+      "sha256": "b362688c194be8f508b18ba49f5bf863fe954be9e8b00cc3ab9fe4917ec05884"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-2100.html",
+      "sha256": "86c9957cbaa9298810a15105f0dd61edc1ea1af0117965b60222fe726a1842c1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-2200.html",
+      "sha256": "590a1b7839bf2f488b43663979edd1c719cc2a7a1e94ad70be683e4d48db9b63"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-2300.html",
+      "sha256": "34d7e09abe72f6b69ec9173c11423523aa5cd7e3b9b188a41be227b3d2430002"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-3000.html",
+      "sha256": "8fe5d2b67c91a143ed470e2afb02634d95887c6b5242e66cf11f21d91e559f85"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-3100.html",
+      "sha256": "1bfe5266c4ba07bb7607230b94c444f7e3a7f1cc842098c8870d610d8cebd2ab"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-3200.html",
+      "sha256": "0c58a41e898fc2445a9469a0eae22f0cfb8595730ad2660058235a7229270da8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-3300.html",
+      "sha256": "280e198b86b7bf1b12d761059f6c3ee9874fc6a67eb77e6c60dc747c8019a10e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-3400.html",
+      "sha256": "96525d5f94a2f80723d946938bed80c71e40b31a84d1f8645f5446270a792415"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-3500.html",
+      "sha256": "b9bb036a97a47474b9bccd0381d06bd0a848f2b0580e8fb95fb99db8875cb8c7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-4000.html",
+      "sha256": "56846081ec20cab01c1c055f2ad8e9f757d31f5009767facebbf1257a2d48df2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-4100.html",
+      "sha256": "a5da88d5b1c33a168fafb4fe49b23beb5826c4ecf7202829c587d111416101d1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-4200.html",
+      "sha256": "6545cd08feec81027ff26f3091fd57a40929b37b904cc27b8cdc7ace606b9459"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-4300.html",
+      "sha256": "a2caf35ab7d16a03f77cf44c742669133613baaae479f84150842136251fecea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-5000.html",
+      "sha256": "c37c5b41a101e8837185b9365f902758b4620efdbffdf5c2586a617e1d79b09b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-5100.html",
+      "sha256": "0a95a4e05fa0384be5c50abc8803c0e498f23c12aab8e00c5de043e9fd312046"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-5200.html",
+      "sha256": "3a98635bb469ec889e905b2dc2bed184d2bfd5fe975dc19d6e93ab92dc87d615"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-6000.html",
+      "sha256": "37d8bf462a1f00c138b276eb9fb4f4b02fc1a3cf50277463f386416de785e23b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-7000.html",
+      "sha256": "a4b536082c1e03e89eb9b0524bb4cafbd8299f5dee2b0d565c532b31bbd943d8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-8000.html",
+      "sha256": "e52e39a943dec217994f9577a82407d3e0d4db2ba720dae9ea51cf9787e2c627"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-8100.html",
+      "sha256": "99f7e4031f43c3bc250c1f03e6a7bdcf2b88773c126eda406e2c58a57f9ae5ed"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-8200.html",
+      "sha256": "0f83d599aa66dbfd31fc274aeda01919e290d70525ae0e5a8cd262fac2b89c02"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-8300.html",
+      "sha256": "91f6ffcce585ce6834a0dd79a511b6ba4265cabafffe667d182a7989892b5c05"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-8400.html",
+      "sha256": "851d9e60c33a3c5eb5f4ea9112a1b149fc0145ce4ae1b792368ce65b8d8c3372"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-9000.html",
+      "sha256": "faf07fc6df9c608f85f47710d686f8571e6c6e7a2fd14a690d076f3851056b2d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-9100.html",
+      "sha256": "58e910295b8529840ac72c851cca8b2d216073c066630ae37b04b891a1556752"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-a-9200.html",
+      "sha256": "0ea5a86318731cc8f8457c1b06fec451168e3e1c03ca1851c736a43567343682"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-i.html",
+      "sha256": "785771f9fae65d5872c8a21604b288b5c3a00ff360741f39a415a0351de55cc0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-ii.html",
+      "sha256": "610c05b4b925d6df78725d4a0bb7bb74ba43792e136742843a94e217b1730839"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-iii.html",
+      "sha256": "ff373b57373aa65e3060fbc8bc8fcda5cb1191d491d31e4fd9bc62a3fbdf7328"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-iv.html",
+      "sha256": "7985453b826a6459c4926875597cbb09d73fd018c30e8502ee0a5a2fef8e8871"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-ix.html",
+      "sha256": "62b73fded52b0e87b080b2afff8d042d44d98d0e942c4067f9cc9f605756fcb3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-l.html",
+      "sha256": "0e352c6771703a050e60cfe0a0c840652d73ab82a4d6804148216734b9755a1a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-li.html",
+      "sha256": "f44c6b3944b17febac194f58d34108626198a424f105e610b9230bc9b9d51d02"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-lii.html",
+      "sha256": "bea7e60806667666a496e594b99a5bb564efff0cf573daad3be037e15765f4b4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-liii.html",
+      "sha256": "4ec384b7cb13910aecf5c8056ec3cd490763bd9c3b3b19f0d5575df83d682fae"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-liv.html",
+      "sha256": "afada7144e9c4951851538edb60c47d65d7fbd57c9b4d7de95deb1c036b60fcb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-lv.html",
+      "sha256": "8a5eb413adb1aede0c1f392194e6f9f681c9eae3d285d6c43eb852a9aa9c8ea7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-v.html",
+      "sha256": "7c4094997a104b10a9944f0aceaa41735bb939073114196fb0ab2d3005704e42"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-vi.html",
+      "sha256": "36e12d85089125fe2a9104e00aea49b03689fab6b988c5dab64867d6b72153fa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-vii.html",
+      "sha256": "d5fd6df69dacdc188ccdb67f49b416c70588312c9f062b48eb3de3dfbc5a67b0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-viii.html",
+      "sha256": "0a776a28b5bc30addd3896e3ce38c265c5f8c693ed18b79d631c19dbac211102"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-x.html",
+      "sha256": "0018ca9983a92def5344969a44016f325153d158b494e39e984bb6b873afb50b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xi.html",
+      "sha256": "f1439a1e1081612896c51bd368e90bb3d7ff6f0ee9d51ec24f34228385451278"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xii.html",
+      "sha256": "e4bfe096bd8ea872b351122422b0c91a56c8d8115aa915d5b55c6d237bc80b7f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xiii.html",
+      "sha256": "f611b7683567acb797175380612a4a5e9a62f4d129977981fda9ae8ddef604f0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xiv.html",
+      "sha256": "a477fe971fe83c9ee68493f3bebc5feb83c092f831fc5b51c172b62e3d87fcaa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xix.html",
+      "sha256": "82e075c3fc54f91ebb2c1b0cbcb3e3696b349b957fa86014161c6e3e2b8413e7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xl.html",
+      "sha256": "20f0621defd57cf37cedfc0047ed59a6c6373153399d316bedf451c44f7d5b32"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xli.html",
+      "sha256": "3220ea4d82deef2f1600f83035dc7554283a23a5ec7aed53c6f03313745d7570"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xlii.html",
+      "sha256": "797f1da4ddca40e5a66ff2437170a1d8d7ec60a869f48a4facd9d1f88724d7d1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xliv.html",
+      "sha256": "60dbf95da783ef19915764307bbfdc0182187d31f3f467e99b657d8858d75e65"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xlix.html",
+      "sha256": "e41b3eddf82fbc9bf9bc63ebdc4e38f7ae386fbbafb994ee80391d6e8be32bf3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xlv.html",
+      "sha256": "94a5c2a117fd25ddbb75675019e56dfb7ef5fd9c7730d150ee3503319a497f8a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xlvi.html",
+      "sha256": "153e4dfa2f4dae306a007758ed7625c24e6534dd9de36d218bf82c1121a6f592"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xlvii.html",
+      "sha256": "35467e70cc5bfe440f1c6f83475c7b3044e546ac673d0141e2c9c51c53321172"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xlviii.html",
+      "sha256": "059ac401b58ac4339bfc87bedd360d9e6d1a53ef1360c9ddc7bfb77b5abf3379"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xv.html",
+      "sha256": "9e6d84762d19d53ce12671ef20ddae53dec69854798f201fe5e380dde1949a73"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xvi.html",
+      "sha256": "988de210f48f53dcee0b5b74319be08c863a61ac4f89090ce814de34727ec47c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xvii.html",
+      "sha256": "e3e49a27c929a0e0e26a76b7a7cd30945e6ed9279847ef069976823d7663413e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xviii.html",
+      "sha256": "d6fa8322e67084174efefe934178eccbc3cde6f0dd184b50fbdebb52161a580d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xx.html",
+      "sha256": "808341ff382c34f7bbbea618ca1469ba662e4ff14b556f9dffc5045f515481ef"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxi.html",
+      "sha256": "947487964bc94e1243b75538a8b028ccf29801789895af3836e6b60d98deb655"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxii.html",
+      "sha256": "7ffc0e7c1f45b971abe2c954665b592eed11f96b689c9ee6134ba6899622879f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxiii.html",
+      "sha256": "0d9521d622beed87b62d40ebdee0c82cb48961b557890e7db883d9dd362c1d2f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxix.html",
+      "sha256": "f23b33a8cf0604a150c54b9eff76dabed82712254ad90aff0dbb15fffcb420ce"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxv.html",
+      "sha256": "726508f40996c037035184e07b2a124f121d0d27a0ade27259ec9a4424ab7748"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxvi.html",
+      "sha256": "6fc2a45dfa513cdd13e51da9b6cdaa88a9cdda0b899eac6a07a0babfc81bd316"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxvii.html",
+      "sha256": "a392cbc525c9c7fc906f5dc50a494adda4dba9fbc25b78644789190da513c4c0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxviii.html",
+      "sha256": "ba81d6b696145b74e6e865bda95586d9aab0b6b9960186c283f9bda43c892991"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxx.html",
+      "sha256": "74b817af87e1ff0698e39c1a2834312ff7121ba71b65bb1b7288501391741393"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxi.html",
+      "sha256": "20cd3a5aed2d213364df5ad1e6a9c9c37670c5b34498c3798ad5f3d098bc8835"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxii.html",
+      "sha256": "741a75e24b40198eea8809d55a5f50d8ae3546ace053dc941d52b8f4370ed8c2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxiii.html",
+      "sha256": "6a7e37442cb9d9b2604931b563c4ccbbf5426fdea30790bb56ad6b9eb73a6813"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxiv.html",
+      "sha256": "56a585502acf1fd61c63d2f74a6791f4598455369155875585300c85c1827c68"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxix.html",
+      "sha256": "0067cd2d6fd192351a1a782f6a5093d55f945c07aa36e3e2f32a979bdc63fe70"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxv.html",
+      "sha256": "b9dd0e0d360c1c8d80c581ebb66af38f75628e25a5a7f3d1ca77b2789a280b70"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxvi.html",
+      "sha256": "ae515ec741864f36b7631232e87df9715ff7b1d56613e814a04700c6b3f513be"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxvii.html",
+      "sha256": "7a7c17472b967568fa8db1b38c8bd3b3abf9dc342c043c210182b0d132ed7d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-appendix-xxxviii.html",
+      "sha256": "9ddbc0df5260dacbc929de74d64395dadbf12d603c9a92642a0603258f67d07e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-1000.html",
+      "sha256": "71fc2c75db4d5d2984dcbeb1084c4e9f991dc463314ab92cdd26d9674a17f95b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-1100.html",
+      "sha256": "914a3b0e364205ce215a9441a94d22eb568981e8937b3364543bbf7277e83486"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-2100.html",
+      "sha256": "e34bf667b90da70dc2208dc7ca1d77a652fe6176f3f14361041058d255aa7a8a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-2200.html",
+      "sha256": "0c4117722e2b27a33b9296901b11e7f439e814558ceb7f8fec6ae2b1aa59f780"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-2300.html",
+      "sha256": "d1378324d517ddf79c77a7db3869cf0f5fd096ad3d6457059855dc9c47608c73"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-2400.html",
+      "sha256": "3da56099da8121eb7683cf29b0dd02bad794f419d0a2da1ed77bc453f4d385a7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-2500.html",
+      "sha256": "c6f2890651cffbf609cd956870e691d9beba0673b37f2d4ec8ae151422820bf3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-2600.html",
+      "sha256": "74900452b49f61f615d3522d84a5fafcd2408aaf5a4a4f5a150af0ff2ab75d05"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-3100.html",
+      "sha256": "bd74b29e97ec2709f5fb9f4e8293465b02cf283f3fba321db24a81d0f3402914"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-3200.html",
+      "sha256": "e9e191414311f4fafe3c17528760129e6becb0d8a383e46aa2b01a9c0e4e9403"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-3300.html",
+      "sha256": "d8355fc4366c25616fd854b1771816f48602d270a3d1c6c62d4bbe9b984f13de"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-3400.html",
+      "sha256": "4d48f370e46cdffb32bae09c0846783ae178c4998a112491e01250e5ba11fbce"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-3500.html",
+      "sha256": "049399b183022b4e25651e6ffadd74541a2395353e45788c89a558357f2db313"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-4000.html",
+      "sha256": "ad68490a7eeb8ec7eaec6274bb1078839fe021dce67e972832da98cd3b14b732"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-5000.html",
+      "sha256": "a0f2635672246560d411f0af82994d205771b855363a550ea9fb68188f6155f3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-6100.html",
+      "sha256": "40ddbffa751b9079d1c77f85f4b2ee00a7f3d9b0e061804434ce993f88a974bd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-6200.html",
+      "sha256": "2c4ca2e1cdaf3c535241f0a65fe5b2024bee1da6730aaa385b7a1dab82a04bd2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-6300.html",
+      "sha256": "deec6aaca9ea02ba6c65fab7e3c07d5522790634810ae4028f0d82a24cfc3960"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-6400.html",
+      "sha256": "e7364e4dda868a89ae81b9e757d1a5efe06b2de7be82c4b091f046c856275298"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-6500.html",
+      "sha256": "9a524f98d3670c0cebd4a2421f6981003011378c43012d3c78ef2e0ddad5e8c4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-6600.html",
+      "sha256": "84f722b4c8a9ae00dd4ce31047da11beebc3f8bb8064a04837a0e9a6e2f4c9ec"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-7100.html",
+      "sha256": "c04623b6048f8d284ffcba701dc90b7572ac406795f1bfa161fe8c96b9a8b939"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-7200.html",
+      "sha256": "97f566d0f76162371e9688f3eb986a7eaefe6a4feb359410188deebd2254f3df"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-7300.html",
+      "sha256": "e1896876bb49250511c179f865c559d34d37e96369e1402c7b7406ee5c15359c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-7400.html",
+      "sha256": "8cce9b5050a0ce9e8c366581171587a76349f5952dc1475436ec398620753b0e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-8100.html",
+      "sha256": "96243e71501c411f8d0f9a695f7fe9594da4944f18055c62be43b8fe26202af6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-8200.html",
+      "sha256": "d21775e071aaaa3c15f871287cbf64ee2de939da05656bbda7ede3eb469a545b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-8300.html",
+      "sha256": "b62dfd098922449bb1f30050b9658c187236fcffa6ef3832002bd45242c387a8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-8400.html",
+      "sha256": "245fd035e8b2cc53628f5398a37dde77396e6d288b2c66ea3d42d91417d231ef"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-9100.html",
+      "sha256": "5208fd0594da92d2623bd412c5be02a819a0a7e8fcdc21a833802a959b826a2a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-9200.html",
+      "sha256": "e5038a9114108f6b61d1a9802c9122525eb132500ade5935a78c589c260fe939"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-9300.html",
+      "sha256": "f3e6c4afc38bd1fe083107e56ee947a5e644f6fbd5361cd1dd8e743997588a6d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-b-9400.html",
+      "sha256": "71b334026103627f7c32bb459780634f860101e92ca8cacba8541c7b4ab141a0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-1000.html",
+      "sha256": "605346f639b8ee80760872d7b4fdbb03d07cc7d52eafd949a5dfa91f35238291"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-1100.html",
+      "sha256": "2f959dd819bd0768d549b58d9332c5e8806610885541f9009b84d24aedddba06"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2000.html",
+      "sha256": "d78bf6f621aed3bb60b8fb58358ecb7545517607b66fa1d8c6fbbc4a83a4c659"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2100.html",
+      "sha256": "d3ac81320b6049b6fa2f9bfff315e99901ccced934169a1e31b5fe6bab5801a6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2200.html",
+      "sha256": "df8522bd9c72f1e0aa33acfa01ecb3991d1bbb477ccfc0d3a10ef6240a78a7e2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2300.html",
+      "sha256": "4dc202166056df9842f09f28cfc1102e6abb7df99ffd556ea297c559af3b40aa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2400.html",
+      "sha256": "6586d29ee64399c3deef77a66c6c133088b59cf11f0018f1f771111be4e0f398"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2500.html",
+      "sha256": "f702cf438d3caeafbef968952ec9a64377e54771e16532603789a14a3484ec96"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-2600.html",
+      "sha256": "0a2b18985dec5562ef64eac3a7e9792641e6747acddaf1e99587bc9682d5deb9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-3000.html",
+      "sha256": "e2987d2033f3118e36f70f98df87781284dd99af5d02c13a3e9adad308e03d3d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-4000.html",
+      "sha256": "ce6e3792368e229d8a0f0644f190fff71cdea2bfe3e4702b1e6bd4cfe7a272f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-4100.html",
+      "sha256": "8ef8e3376c909eb92b4d874b97c558f00c6dfdb3eefadaa6ab1ac27221d6831d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-4200.html",
+      "sha256": "f0f6d26222d14a8689e3f53d8b7c69948fc4278a854479d12fc5a02e1b7ddbb5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-4300.html",
+      "sha256": "e81376ca29cb4fa4cf6e5c5422e7be9f53657c0bf4795139e76046d74ff6b5c1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-5000.html",
+      "sha256": "1959dc3c45155074f0b9baaa4bae286a59abb8bbb29849cdba92a8f3f8e92b40"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-5100.html",
+      "sha256": "3375cfd649523fa8258a46aff17f428968ed8a90c02546934c9686433f9ab42d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-5200.html",
+      "sha256": "d4e1e8e5e233cee3abb8f9011d485b650a1890d5654610ba31f133ac4df9d45e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-5300.html",
+      "sha256": "65d7db319e21f5e958e22fa241e645bf6d74693059b43b4765ff4d145691e650"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-6100.html",
+      "sha256": "a3bbb280658bdc6c96c75dc67cebdf0be24850e103d9021c5b80933d0266f5b6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-6200.html",
+      "sha256": "dff976952b5a51ce44553344b3d21f2190e9e158749eb6eabdef4a3e2c483587"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-7000.html",
+      "sha256": "39b217f7385577b7917c02c8a0c4e7b6971c0cb0015e6c213168b458a32c29a0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-8000.html",
+      "sha256": "245b7aac0991c297f945d2f31020b00f058111ec10523517da4b4be6aea1fd1a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-9100.html",
+      "sha256": "540cab216673883f0885f3ee2bebe4a012d18037f829af4e62230d097a9d5853"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-c-9200.html",
+      "sha256": "4a3e7fefb49140bf354f2a6fe8ce1243292ebfe5d08eae8716d4e125094330dd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-1100.html",
+      "sha256": "113bb3a9dd2e3ab7f83c6a3914ae2cb8ff8416ce90e60c3f718e1a936f374d24"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-1200.html",
+      "sha256": "a272e17824f9c6c9a6d1fb31b059799acfddb0ddce868bb04e0657192d15533c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-1300.html",
+      "sha256": "374eebed1d5cf8c5d494378b2de4fc4e165bb4d80b1027f7652e623503005228"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-1400.html",
+      "sha256": "1af2f172995062abd863d595ebce7ab7adc02a0656f1f7dd6f4b915558d03335"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2100.html",
+      "sha256": "c896f480cb11d60068df9cb876828ce66c424172b84386a4cf668b39c432826d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2200.html",
+      "sha256": "2a05e31790e83ace314d8a3f5d5993fe0bc1255793df36b2c61a6f4acdba05b7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2300.html",
+      "sha256": "028c1891e442e5c789d01c4f69f9e03cbc0d656ce4fefcc6f89c6205257dec4e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2400.html",
+      "sha256": "fa88dd6daa37d97d5fce7a2c5e341b5fead6816885cff90196338e93e6516dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2500.html",
+      "sha256": "5414d001ff943e3d16418a2d0fd19f395d1dcdea3e47eff9e72a291de80b7f6f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2600.html",
+      "sha256": "be549ca3dbfaf38684035f22575907e1a1b6e6baa06b2196bb5c2c8dc1138d72"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2700.html",
+      "sha256": "9a0dadf71b7ccc6975ade88477379e4d921d99c11a17eef1775f496d6fd43412"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-2800.html",
+      "sha256": "4b1e735ef9d74ec1ceeaaf00fbfa0482f7c275fcc8fbff8f6800c8e777c32caa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3100.html",
+      "sha256": "304f3de137e79f00622bd04b7d7ddf75be2f64445cf3cb49f6037ea098119e48"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3200.html",
+      "sha256": "e306157411ca2a1948944bb588824e4cb2ff2ce4ec125d1eaecf35ba36a5df6d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3300.html",
+      "sha256": "1aa21059d6e26616bd26c0b602f07bfc1dda8d9b9dfd321b76ad24c09dba8a7b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3400.html",
+      "sha256": "86bfdf8a58ce2ad647531452c5788010b3ca8ad906ea44128302096d8dc0871c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3500.html",
+      "sha256": "5f31c943b32590dea972d1b1fc2cfbc09b0d3da2d8710cb8fd6d362ecba353b1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3600.html",
+      "sha256": "2693d8bdab62e6d887241341d74c76d02841263d952706e49ea846fb94280e2a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3700.html",
+      "sha256": "40aa6caeab266d87fc40835133b7e25911582dfb862f475cfac88278f56520c8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-3800.html",
+      "sha256": "6dbae6e4c5900f865e851dda871c842dd1f80888bf6d14cf23b2bd566810b9da"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-4100.html",
+      "sha256": "eb221b2c47247fe965da98e92f35004a7f73f0b9ab6f939030e1ac3b74b890ea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-4200.html",
+      "sha256": "328616d633c4aa334caa89b4c6d55f40ffe41d1fe6126064016d99f1583097dc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5000.html",
+      "sha256": "f26058a9bfde8a089afbf6791bc3a199b1ee21b682d1b03e2895b5e7f603206b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5100.html",
+      "sha256": "2c6d50d3a31e457be748c1ecadaa788d7ae83cb6ecb313213b081dfdca205526"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5200.html",
+      "sha256": "3a4eb72f4bf44148b464e2d49648c608326fd4b87ef05964e9d428c9c5819a3e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5300.html",
+      "sha256": "e6407a29d72b1ad2e73d80186f5c3606d6ed952aabd0218fa1964dda72b2a2e7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5400.html",
+      "sha256": "d5094c2255da656f21815587c029e1d3604bf498327dadbdf58dd3b6f37efab9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5500.html",
+      "sha256": "68bffce7c85e4df4426311ff804ce84cc3963028d56218535284e42f8fc9c329"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-5600.html",
+      "sha256": "17caf5cc7d9bd67c182cad5c5100459e1db00886d9db00ca22159170a46da715"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-6000.html",
+      "sha256": "f803b324b6c0647c8d43483d9a952489751468023eecedf5852b4afaf37eb8eb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-6100.html",
+      "sha256": "adf9447811e6971c618f24b9e7b6f5ba482e7d9e1e74a83881ecca5cdf48c89a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-6200.html",
+      "sha256": "65ff1c94014349c6a1a5c3592d7f41e6829c1787cbe7374a81ad0eb094490e10"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7100.html",
+      "sha256": "b00bc069c18cd3b92bc95aa82137361f02eac0af6ceea4ecf44d3db7a0e1b644"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7200.html",
+      "sha256": "aad5cfe942ea572f4af16f5149f95494b363850be52bcb24987679b46764519b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7300.html",
+      "sha256": "f7fb3a0ff2e7cb0f3d711c395ea7fdb9e4ac730a8404283942d1497ca65580ea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7400.html",
+      "sha256": "bd17778607355381496ad52a4b657409818d581ab0659960b42669e2b2b82b61"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7500.html",
+      "sha256": "1bdbc89c5799ff70504e329b2e8109c8d82e91c7bfa6dddefdc210bbe8bc1864"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7600.html",
+      "sha256": "3537ada7569969dae9ba8a70366c9e027ad35352256b88c0f34b06020f34cd3a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7700.html",
+      "sha256": "baa858cda62d194c8f0701a5622f01ead5a112a0b0c8f47cebe7d5020c2b79f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-7800.html",
+      "sha256": "23c957a7401feafe9eb6e535fc58f4569352fe4fdf11b83dc5362694c39f3b17"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8100.html",
+      "sha256": "a4390ac8bccb4c79d75a4085f4f41546284982ae1ee27a23097a116cfe599920"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8200.html",
+      "sha256": "88a199a0f17a6cc53d67f14630e111bd0e637b21298bfe245f3faa8067db6343"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8300.html",
+      "sha256": "a194a72c2bd4481683add203b39a457e8be4c1828e3944f88c090923f2d3a463"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8400.html",
+      "sha256": "20b55223e08d3ee13633e53c89a76c5166b19b2b47c6cbc390066a4687f84bd8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8500.html",
+      "sha256": "78521b075ce540098f4c1cdfcc5e554e08a4bf6f6d5cc5977df13828b4792e0b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8600.html",
+      "sha256": "56f2a753c74e86d1e4d441c1200c4ea310de199b2f831773f89c6b29d9edce8d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8700.html",
+      "sha256": "4d71b79ecb6b05fc43bb6233bb194c05517311f653f203c7f848d6b3caa17978"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8800.html",
+      "sha256": "53ff7381265cb9833a5773b3355329f08e9955e6f520eb4a81b025cdb45f549f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-8900.html",
+      "sha256": "a18c1c35a1f3947280bb0e083db8417cb66748be7969debe01f484c21c800be0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9000.html",
+      "sha256": "e68b15b6fe0303edd524cb12cd167440ccaa4f258513db179ad031dd523f48f2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9100.html",
+      "sha256": "60da63ec298e7964704b29dd5ff3e815d40b6bf1b7778dcc2d603e69002d1ff4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9200.html",
+      "sha256": "b4a25d1ed9f96ae1026ee4ed3ace58852d9292a7b187852662f9f7d086eac179"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9300.html",
+      "sha256": "2d29c807c6ec705c23e3c66d323a4851520b699f855561cafd70c80a4d3117b8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9400.html",
+      "sha256": "2f966526a1588d652d3dd6751da30be0aec2f7112b3ac5c51f30cd6a477a7a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9500.html",
+      "sha256": "faa6dd92ee3e1f88b56cbf4601a558cfd721c2574237f62aac7608e9c309d08e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-d-9600.html",
+      "sha256": "1c388c5353f8ef8b353eab85943694ea5a4552200466905a9993975c7564ea86"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1100.html",
+      "sha256": "6d1de037a136b50cf2538172c01c3104df123cc30b853b5d3aa4179f0302d069"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1200.html",
+      "sha256": "559d35e26713db23e13aafb0393b483c6deb56024bbcab1d212cd7e6851c0b35"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1300.html",
+      "sha256": "2b42dbd08da6e9a65f72fb022702e070bcf2803d28096a6cd1306bf30c090e22"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1400.html",
+      "sha256": "922bccde31b7181972d1e8a955e66fc198b070100d87613de7ddcedd8b90be0a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1500.html",
+      "sha256": "eac530118852f6c11de5df9ad153e18af6fb7ec98eebd38df178ef4720795dc3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1600.html",
+      "sha256": "e41b39cb1749e92304f74236eb189188a9f424575f5873369a157cafa020e071"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-1700.html",
+      "sha256": "813db7485d900e3deb8fb42a9fe356f57414cdf84eefa2c1c7d68c51e3239b72"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-2000.html",
+      "sha256": "47622485604142d767c881de72bcc29ebf3ef891ff2d1bc8b119c72a114a4203"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-2100.html",
+      "sha256": "e085a063fb432cfa78d8f6c35af96924027c8b8db872f6caf05aa8bcab830e39"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-2200.html",
+      "sha256": "605a6c32d2104ddba4aafa36df536583de1a17a82bee91e89ca526253fa9051a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-2300.html",
+      "sha256": "012df62436c26ea56c673129ebd567a36f4e3831aed991fa36471f2546fd68da"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-2400.html",
+      "sha256": "46533f8984ea4dd39abb9e3bcd9355be184fd7159b9e4184f6b91c210a66d135"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-3100.html",
+      "sha256": "200266c4b82b9a1716b2b288e8e2d9930e027d9e8d96048d36956832713ad703"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-3200.html",
+      "sha256": "313295887ef18ba03f2ec39e663a246d8a26c3715844c1f31bf0312d0fc797fa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-3300.html",
+      "sha256": "09b678be5f848c4e8b650030754fa0adb1ed9ecafc63d43c4f6c75b914420d83"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4000.html",
+      "sha256": "867436e6801856ec0c2bdfa1aa5516e6fcbcb2fab819dfa42b452b77cddc1917"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4100.html",
+      "sha256": "6e9af42aeb8550f925dd3b18cefcddb26d7a0d5b624aaad53550f5e8847c69ea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4200.html",
+      "sha256": "e420dd38daa30355bd47036f05b5876fc24252b9364edf07c4c3467c1ef228fb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4300.html",
+      "sha256": "a2976277aea2612c6aa4d63b4b28c244c095c3ef4fb1c3b941ff0dce3068d145"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4400.html",
+      "sha256": "c4f4b52834b06564e02c82b154a8d5d24db479c2d508c4529b38dd141463cfbe"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4500.html",
+      "sha256": "c2d5ca075321997d91fbf4834c408f2d495df1fbbbaeac377fc7fae39d95b335"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4600.html",
+      "sha256": "b40c4b18167db5e411048d1ae633361a06aa4558d8c6fc4be198f2bdb63ff466"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-4700.html",
+      "sha256": "ee4d0b2aec77b0ec4062af835493d5ef536c90648332e5fb70691db96350f285"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-5100.html",
+      "sha256": "8a5373b80259418c4575cb5686d8d1b3b5f4d36a10526ff6c3e108337bbc43fa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-5200.html",
+      "sha256": "d38f070e270d450ebd139d853b2f0d5427f7803093ead02f883b18ceb94edfcd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-5300.html",
+      "sha256": "be6259cd04db6ca5908e3a54b370715b4bfd4a4715725ad56fbf865c96abf0d5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-5400.html",
+      "sha256": "2efca2cfbf02f7b1ad88c4ca82130c7516c2cbd70761e093bbb5f53efb49cbe8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-5500.html",
+      "sha256": "dafac94989e979f30e0d562e65585e7fe282657df7e4613ab522c2b8ad21ada8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-6000.html",
+      "sha256": "e7c2b619f1f092d795ac41bedd374433369df559fcb364e006a98dc6be9a7930"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-6100.html",
+      "sha256": "1c03f98f9e1f1b3b90943aeda2b17221de130c93614081af94e46861f4e82bdb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-6200.html",
+      "sha256": "5760fb80d8e42b0c80fd722e60085b7049e5f3c5780864d4b869259e685354ef"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-6300.html",
+      "sha256": "05c06682ea26f3db8769a81a5675c9821e8a2699ef2a0c2f2450b1b1cdc7e282"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-6400.html",
+      "sha256": "8ce8526775844ebd9291187aff767c676355a59681da4c5d4fb23b7a412eb564"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-6500.html",
+      "sha256": "616598c2d655bc9dec69a51fdfae73d8954616dccac9ad61f4c881c2ecf45d55"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-7100.html",
+      "sha256": "5f393575bd938444eb8a68252bff58f6ed26771efcbe88b0b995a6ac43105de8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-7200.html",
+      "sha256": "22d87eb227fea174bcfdca5ec3b22b861dcb087b145039c1ff40ed2aaa1052a9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-7300.html",
+      "sha256": "c62971b57398fbd4ad0cf1faaa2c96b20730771f5fae0add83fe4f92289a5c85"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-7400.html",
+      "sha256": "371fb2d53e1e541eb439ae7db2d6c5cf83c73213ef5ff4ea17abbe6e2684ff3f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8000.html",
+      "sha256": "fe272e4e644e53f5d60bf9d1b66b6b933bb0726bab2ce5859bb2babf6c272953"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8100.html",
+      "sha256": "947b52f56ec63a88e142b649ed86badc15c5bc72b0cbe47603860a6b7429b43c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8200.html",
+      "sha256": "e34a9f20d0fdddfbd9ca0ff781bdb9a162857b0c8680daa420dd016765743040"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8300.html",
+      "sha256": "07a364158b896a5eb9c4e5b132e608d6b0d1443d81432d1bf93b261c26d459cb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8400.html",
+      "sha256": "12a412faccc7a5c4fce949874210691e235a676f8edb7deabe33e1a75aeecc68"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8500.html",
+      "sha256": "14f229060d202ddc67c9c164de3bfa6835626d8fcc414c73cd0901fc6d958b6f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8600.html",
+      "sha256": "1a91b8152bfa98c4a19508d28b1c2124eb50d7f38ee712d8f9e7f93b35b29102"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8700.html",
+      "sha256": "346b16adb88d74a31ebdf42c13b6134e5099920b032f09fe780e585e83fe2437"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-8800.html",
+      "sha256": "61afc03f4af260841e11342f6c9bb76640b50658d2424dcf85f9203876df7c3d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-9100.html",
+      "sha256": "980633e58088dd155268bc136175a09cd528f80dd68582594bb6cf3e6791d2a4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-9200.html",
+      "sha256": "11ae2ca82759d6dc4082240de433862907b2b296f27f6e5a20c015f26eb795b1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-9300.html",
+      "sha256": "e085c0f614427ad5d98933e018676581dc4ed42f72da50a9f2b93e2e121cc296"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-e-9400.html",
+      "sha256": "0c8315c38ba4bcc68f4803505c0388dd67ee6c6db7b269d17756da58e00c6de1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-1100.html",
+      "sha256": "2d4f6b5cb80f7635efcf151a03daeef058748bced6678e9412d4f5b393396109"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-1200.html",
+      "sha256": "0e3a7c1a8ba5f0239a781875175c41a45414f44313aba1bdbc6f40d0960b32f2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-1300.html",
+      "sha256": "b664c5987cf7775d20707d06268fd8acb23450d795fa1b1a5a85f5548e20e26e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-1400.html",
+      "sha256": "4f8429a072dfe307b2f0879301eb4fbf797be1dd457452b197739ae1eb200d4a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-2100.html",
+      "sha256": "d5c17ba4f02a1e14ac530fd10b3ec3d12c1c670c2e13617332bb3954c23faa98"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-2200.html",
+      "sha256": "1c18a2e49d1311139c49b8ddd0d59ad18240ebefa5001c7f6302322b4910ffb3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-2300.html",
+      "sha256": "c8034bc656d9f249dbc945991ab29a7352fb65d19418142291d15737371ee8a8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3000.html",
+      "sha256": "c83ded1242a87f18a8c3a98b9173ac75032e273afe1ac59ede87836e4170e68c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3100.html",
+      "sha256": "70ec2cf8ea95e426c0bd5b6bf3fe8cfa900e21f41a87f64073a9f1786bc09404"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3200.html",
+      "sha256": "e6454f884cbdf60b1c0ed456f23a1d536315b6c99ab2bf9608e653fc18e7fcdc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3300.html",
+      "sha256": "f61e9399a5816852cca56f4f6a69a41a9b4cb6d4eebcc0360e76cbde5e3dfa4f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3400.html",
+      "sha256": "3ac55b24a999a9e424ccc44382141953f429896e3e3f5ccef62a69dcc0506f8c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3500.html",
+      "sha256": "e67c12a6dbc9cb1b18d55dac232b86b7dab2801001285d16a365b5bbdf4a2211"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3600.html",
+      "sha256": "826bf1433d8213281fd3273b00789de43ad1faf4d7e2488dd2447febba54b0a4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3700.html",
+      "sha256": "74ab8c25c9aa82838167b21c18c15e3705c1e21977a0f15cd275030944cd67cf"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-3800.html",
+      "sha256": "24de63c6b206dab8291ee3936370fcf6771176aca6b491c3d0b6c6035c95b200"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-4000.html",
+      "sha256": "75cb05955b9acbac84bfbbd7a1442fff7ebf15cd7ce889760caac28e6b88b48a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-4100.html",
+      "sha256": "87981eea7782cb5c3eb3f3b06a01ca0380e10150ed431237e2bd537469a957cd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-4200.html",
+      "sha256": "7408a5b7bebf5d2882110b7a2640cce894000fe121f9e9a83a3d05fbf94ee542"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-4300.html",
+      "sha256": "6bd268d1c5cb532f1d05e9192e9677b2a10f0249b238e7f902db31ee3b894272"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-4400.html",
+      "sha256": "ace8b3b257a1a77e69ea8c889d3a3de5ab9ee5ef4ccd5b63451bc2de8628a8e7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-5100.html",
+      "sha256": "5f66c277a66efbefe7bf49afa0828f0915ced22a7801977001600eb4d10f3be5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-5200.html",
+      "sha256": "9d7e08b163ff638930b3879b4248c40330b6e2ac6a63c4287cd3c64f0bc2a269"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6100.html",
+      "sha256": "d7d91aef47901cde0f23138809074a6aa38921f207de51477d4a253a2edc2361"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6200.html",
+      "sha256": "c0e55f9de1c0c5f9769a2d808e3d838ab76410af20312dc6a9caec07b13f71a5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6300.html",
+      "sha256": "32856638ef3bdf5e7f74cb6725690961c9a40d45848588c0c232e8d32c9d7a5a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6400.html",
+      "sha256": "b8d34fd49a8369be6d451475656c675f5b35bf1cab8bdd71c4d9bb455c85caa6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6500.html",
+      "sha256": "daf616a17e79c74d77db30588b9e7b698831e9d88cf5814c1bc838d89c0f62b6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6600.html",
+      "sha256": "30776af325c2fabfcc8d1ed4f7380eaf05a06604744a0853624ca60c61ca487d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6700.html",
+      "sha256": "deeb79f0cc16902b9fc8341172a688c31dbd4e829e588313b0d3c0952f64dc2e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6800.html",
+      "sha256": "28f10ee13bf7a69161c6f43276ff732c6481977c91570d60c12be52afae60c60"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-6900.html",
+      "sha256": "e826cd0123da61ede515445fab8bf4453dccd130a3ad0da6c8973aaa7b324a64"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-7000.html",
+      "sha256": "56389de042ef95d5b7cb1a536bcd948ad97507ff5a9763ba40e4daa06a9813e6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-7100.html",
+      "sha256": "59b84df8ee7e7a5161417a7b7221a297218c5021b18f505a0f46112195b643e5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-7200.html",
+      "sha256": "af142fc3b3a511c54e0d76fb7af770bbbb737ac6e45391ab7354e78949fc4e14"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-7300.html",
+      "sha256": "a9bacd64a5dca7afa4d8d70471e5aa6e1a4b50619287055f3af5fab8a012d258"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-8100.html",
+      "sha256": "200f88774dc50fdee3ad42981189ab8f3a0027d568f4154bcb384bb8578b682a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-8200.html",
+      "sha256": "3555df28dd13d0558882e8024f19cde9a42978ea1d122bd83e8829090bb91727"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-8300.html",
+      "sha256": "7d4a3a49b681cbc3e4734bbb12b8e8cca02445db1244ed8c75ee5f273c2afdfe"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-f-8400.html",
+      "sha256": "18bd944194bf1144d2f4f196635fcd3753b896a13013ba007dd41b261c13aaf1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-1000.html",
+      "sha256": "05fc3658f09783e836bb812b009cce73f530ed275057867ebf832c8350c458c1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-1100.html",
+      "sha256": "b3d8356a3c7648543157cba40a227ce9f975d72d576eb5a7fffba19fd3efb7dc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-1200.html",
+      "sha256": "494092c30090d3eed6c7d9352ec1584385f665823edbf96797a8b1889a8cb23a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-1300.html",
+      "sha256": "cf525713f92ec7833e637ec9484a2ffb2d6603e648108ad0ecdeec57478f5593"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-2100.html",
+      "sha256": "8d17bc4b46c2185b4d3fa3f8e3089d070ac2eaa4a8d66e14c2f73f41b8b2df87"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-2200.html",
+      "sha256": "e63b0664ba33e3dd61401562895b92ba8d2cd0f2e98bf25c8389777d41146e55"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-2300.html",
+      "sha256": "dc9b8d8a0ec26895d979dca3dc74b5b8493d53b6f2bae2db2bc4e34110cd5a70"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-3110.html",
+      "sha256": "c5d3450041cb8d0f3c1a605bbd2f0955dc50bbec2be0a362087ff06fdeb8edc1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-4100.html",
+      "sha256": "7903b2afa308f1fdd939b55f8978a435523d62d97587ca15ac5e4df556c98dce"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-4200.html",
+      "sha256": "4dbad96a3636629e938b177ba74bf933a93c1de1e2a0fa3274f54fa98c5ff7cd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-4300.html",
+      "sha256": "10e5e8606b0dd26d41436a54326c6891fba4e37b0c26679b10761203d9a7f600"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-4400.html",
+      "sha256": "b2a91f7e1f1d3f04485e3b19b8fad6a29c920ec1760d3a333e658dc3c1becd01"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-4500.html",
+      "sha256": "935cd1e8209623282eb4d25865f46d6f59e5f01d2d96d99bb8efd47471df4213"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-5100.html",
+      "sha256": "410347989063f95485ce4265fbbd3f10a3e2bb0e2cebf4d141083964dbcfdcb0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-6000.html",
+      "sha256": "d42aa53191f8026983396e3d973434ca2642df220258f829cf59226f9865f53f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-6100.html",
+      "sha256": "23e4a6b8c53a3a8f136fc863600e7787d760e802725cae79764304cd25a62cc3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-6200.html",
+      "sha256": "a693276d4cde0807d0bb372ab7eab61a9ce724f8d49b176c15efbc66f29576f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-6300.html",
+      "sha256": "a8cb8c61b8ade4080483bfb6d55d0a3ab67cd5a3bd4b2d127e14c28fdeebd2bd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-6400.html",
+      "sha256": "6b338f65e75606b7bf836dd5c3c8294d79e68f6ca317c1dd07310c8127c820a0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-7000.html",
+      "sha256": "84c3b0eaef0cc1843f7c2f3fc77b947a9c4831ad1c9078e144573d2f8f396da8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-7100.html",
+      "sha256": "e4bfc022689c2ec98b27ad17792acc8b8f1be4949608ea5f840eefffb1338ede"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-7200.html",
+      "sha256": "6c80e84cfe849b3579cc388df783e6b3b2241d0e2407be27e3dd0bea5be97fa3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-g-7300.html",
+      "sha256": "35c8903c9d1306cf46e771600309111c05c1d6c9a376dbef0648df115c0481b8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-glossary.html",
+      "sha256": "9831654d48a040444409a2fc7b532016e3b4906837fc6e69230086a60e88ae33"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1100.html",
+      "sha256": "fff292530717f8a9e1a4bf5d6786b9056a6a2d6e2f9c207a337dd35db17c5c96"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1200.html",
+      "sha256": "68c28b5c84d9a5a36bd75afcb6be11334c5f95cd2afdd73bceabfc8d9b65bf34"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1300.html",
+      "sha256": "feb97f51d985b1aae26eb627316c72567d43cf5216fa5ecb74efef8a88defde5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1400.html",
+      "sha256": "9621d2a174c3d29fb74c6470ae7b5ea4a56010dcedb3631de1fff84f997c093e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1500.html",
+      "sha256": "a25c0db8e3eb08b2fa17dee6b3a37ca0c259bcdc2eb8069e2037973cc8850a84"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1600.html",
+      "sha256": "4111cc4f7d263f01b3f539cad6a0d9e36b6f6d46ea2f93a0df8aea1f5c8713c1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1700.html",
+      "sha256": "7d12ba115205b0554d6efe2594c0b7ab7d6d0c9320a4da4fd51773f0b0c5ce49"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-1800.html",
+      "sha256": "9b658b3e0517c734f809942398f3dc8f08543571cd8058825a5ddde157fddd1d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2100.html",
+      "sha256": "e10abb813594da18c2a1004b2562f62743ab1bcf883e8fc35b7edb4533430b43"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2200.html",
+      "sha256": "dccf74e26ae38594360f40e96d72f3537c1207561eb2c96f34048d5121674ba2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2300.html",
+      "sha256": "53560cadbb36f4027d7cb86785810040ca5006ff29f973cdbb610a386d335b07"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2400.html",
+      "sha256": "a6ddb216ae6beccabf704d17ba9653d3ce0d209e7d4732176dae24d356dd0311"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2500.html",
+      "sha256": "63bb4a5a118c5e4c731bfcaec96fcdb4de7d4ab3e387d6033d4e04aba758f1cd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2600.html",
+      "sha256": "bf36edcd02e377920215c55f0b99c0c2ccf0304c6b59bd05fdff706a0d88358f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2700.html",
+      "sha256": "53cc6c921b7888acebb99cd7be3bf2af688b89061e9184c930d0f5ec835d925a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2800.html",
+      "sha256": "7eab90d904389221b48ef8704bfc527b1d9d93ae5bc04d97556dbfac9aaa7dad"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-2900.html",
+      "sha256": "41df5a50605623f9ed28522a637e91433717c11355aa6728b91ca3e8ddcad6d0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3000.html",
+      "sha256": "2c828b9751dfd70e0e1b7cf1d6a9485c0e18e529c8aa8fb213b2a443150b2bf9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3100.html",
+      "sha256": "7cce93fdc3e64c17183267d7880b37bd646ef3e27c44f852db99bce915c0ebdc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3200.html",
+      "sha256": "0655e32c27760bcd583d797012dcc41492f67bebccc7dfcc99170e50f5d50b9d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3300.html",
+      "sha256": "266b131a7bd34e47caf47da3ea23e2ac7816c4250e000ad3ad32b78c8cf1f516"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3400.html",
+      "sha256": "f7a87ef71a183a1271cec2631e6bf0d62e7752c82bb2a8b65957dc0bcdf012bc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3500.html",
+      "sha256": "ef40d16ee20d128944a0489f6c3763f2494329f75fca426bf684a6ef7b0b2ce2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3600.html",
+      "sha256": "48b59f716688b373658c559bffb379bdda4e4ebe7dff1e2e5b6faa879797f36b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3700.html",
+      "sha256": "2cad014c8f7e4ad3b802d3340e2fc2ac541ff0d099e0444619fb8bc5a1a24daa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-3800.html",
+      "sha256": "c06a9193645f4386118d0ef26ba785618c6b96579300c66196aa38568b1f6eae"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-4100.html",
+      "sha256": "40be54575fc0fa9c393e1c33a59796cb33f6ed01470cb91759a881499273b137"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-4200.html",
+      "sha256": "322e0d83e880700e7961cf882f9183235f71c2b135b632eea542b7cb77030305"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-5000.html",
+      "sha256": "379341b7616eeae2d255321134d1b9ebf258df7d2f5f78c1974be80512f53bd5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-5100.html",
+      "sha256": "cd5b6ce344285f4786f029a115f1fdd94e0a5a5918fa2d18e17ea818336c8b43"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-6000.html",
+      "sha256": "eca822f3e2ba2556ca92cbc720cb007f08b429ce3d0001ab0a1fead3fa5a5e80"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-6100.html",
+      "sha256": "fd1db75cfb56415a8bcc8dc682069dbd64e7dae32de95950f2e67a1ddda8ff07"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-6200.html",
+      "sha256": "0c79316e5eb5ba5f4f449fccba44726c9b7ab800d6effce5f5129d1919d7dca9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-7000.html",
+      "sha256": "2385b740f30116e042de5c83e97b33e5e6ab82bbadaad353cd6783d6b01da182"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-7100.html",
+      "sha256": "ac54deb2350eed35a6486d37248f07aa4dc13a2ed1f5926024a6ee4d90ebe671"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-7200.html",
+      "sha256": "953b699499bbaef4a3f18a0505ed68799c2306eef896ad4872c3e01d5e840a3b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-7300.html",
+      "sha256": "36f0d1dc0299abd8c35b85ea7a007d40949f0f5c1a9261e27db9a84048be3548"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-7400.html",
+      "sha256": "7427876308f646f077025627b6b56306d48561187f292e159e28103a94b4d8d7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-8100.html",
+      "sha256": "a4d1a6c9e872505d8c671600a48b987c8398f9836128dd55a57832e61951d23a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-8200.html",
+      "sha256": "eb982a87574a62c561b3edd11b4013835434efe55d52fce8a11b66653ff7ee7a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-h-8300.html",
+      "sha256": "3916df9573b891ae95fd783652da3dcf8e68df0e712cd46899e820b06ad69d09"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-1100.html",
+      "sha256": "bdf83f884e617dd948fe03f064985e8b911ad1a5f48cea247801a49c8af60eec"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-1200.html",
+      "sha256": "741596d9e2880e18a1e0152a27fa64be3804b61ae1d81cf9f11ff41a911798fe"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-1300.html",
+      "sha256": "c79a7b21d1a702d4928b45c55ee709b831f4d4c0852c1f061e498d6c5ce1e819"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-1400.html",
+      "sha256": "f4859aa2b2edeb95012cb85dbdf1bdb028a42900a269e73f484db9d1a603bd0c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-1500.html",
+      "sha256": "a4b090b677dc2570f5e13046a61435e40b71ba97faaf94dba33106af35ff9d72"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-1600.html",
+      "sha256": "4394c265f9827880becca215fea391ec49bbaa6d6f664646dcb346d79370a2ce"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-2100.html",
+      "sha256": "fb2ba8b69c4e5394741f04566f8acfdcf64b76fdae52c6eff58efef66f06f209"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-2200.html",
+      "sha256": "c77d3efc7a5fcb33ababe4c60b5583d6d00cf323dfbd39bcf5ee4a6abad57a38"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-3100.html",
+      "sha256": "4fb01a86f024a244974b4fb6e5b0430c88ffcc03b64b41df89cf0434d192f653"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-3200.html",
+      "sha256": "0f219772c71a56b9c84371b4bf1a16569b430c5715629642c5dfc35829e0f667"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-3300.html",
+      "sha256": "2eeef363bd30906faa9c33e87470792137ea4e1f880ed8c9b1c95eaff4aaf039"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-3400.html",
+      "sha256": "43621b9cd923b8f933ac0f3ba45aedab1a14fc34b79829779994543645cf4bd7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-3500.html",
+      "sha256": "4dcc59d3ddc0dfd3f5d087ab74a9674deae233906c49df2b93f59b2e4dc147b2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-3600.html",
+      "sha256": "62a81edb5cc545b36d2cb195e0cd9bd1269a147f1a9b176b9053b41f4226db5f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-4000.html",
+      "sha256": "07c0f97a65ad044bc5824293dd7a404d52bcf4d0268d8ee1fecf9ff39737d286"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-4100.html",
+      "sha256": "e37ab1a6898ed736a17d49fa57ad812f54c359513aa151659beff10647d262c2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-4200.html",
+      "sha256": "9c74f6b263e585846fe974eb0711895fcb6839e6c3c001fac4dcc7f73df9d8ea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-4300.html",
+      "sha256": "8d103aa80d603d4c2e0c5e10dfbea4a9cb6cdddef55f876a3d396a5ace2d8b58"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5000.html",
+      "sha256": "804677b477907566d36a23f26d4d5712e91f0ddc3db2e6f7f169e535ddd2b74c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5100.html",
+      "sha256": "62afd8add70fc75bc7fee1fb5a5bb10364a4be71083b336d66fc7cb8cc72bd7e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5200.html",
+      "sha256": "d676f1173761dea2c78656bbe8041013c3234d5b0d301c0a049f1e21bab190ca"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5300.html",
+      "sha256": "3cbb655f7bcc416409a6cec04b76ec727553f69b7f65944e29d61ce9d2e727ec"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5400.html",
+      "sha256": "cc70e0cc18ccb0df8d6d7910e709ca0ae283f7396a17eb82b71dc46c446494c0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5500.html",
+      "sha256": "90f57d16d0e75f1b8dc45a12a8082002f865139758b2ccf7d2ee48a9b49b254a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5600.html",
+      "sha256": "61d1d3b2e1ccca3a8a3f5d82dfa641e569f32b592346f84cf4ccba179dcf3e57"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-5700.html",
+      "sha256": "bc2c4b4909a98f883106352767e6ca9b8e938f9d448414dba864f7de6587dba0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-6000.html",
+      "sha256": "58c5b897b65d3c3b60b9d28fa94c66a87cf742ae8c687ac76b65f7b3694d7347"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-6100.html",
+      "sha256": "5e8a96eaab2d20426723989a87bf6cf42d671887939a173478f85edbdedf7412"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-6200.html",
+      "sha256": "0d9c11ed4c3b0e2ec8318be40254315607cbf9620184ed20ded0acab2b55de69"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-7000.html",
+      "sha256": "db9e24335801ede47eac6659d48a3a4f5416b2f76a212fef1a6ec3cdc56601f8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-8000.html",
+      "sha256": "1457d03214ca867b46cc2f2f0596bd2aeb574a35636f75b300b067fe31e9a60d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-i-9100.html",
+      "sha256": "5a94f01b0ee7c7f10842b661af1b893e517321318f96194eb64a0d020ea3d11f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-1100.html",
+      "sha256": "f79133fb4ff5c838c9320a62159fab6f14051ed01d6b5923d5443fc36f59b135"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-1200.html",
+      "sha256": "599b59f4f985ab58f1f1877e3bd6248af12e2db27086f54f695f9ef6e894d58d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-1300.html",
+      "sha256": "6f10ccc9590af072ddcb7f41be86a3c2472354a5dd24aa9d4941dac48134d48e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-1400.html",
+      "sha256": "f0fbf60ace12d43a9e59b4a1ae6ea19bd01f4b7c39ac5364c36c3019da181d4f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-1500.html",
+      "sha256": "6ebae114d7e913e6f96a9e31df7cb925e5747ce317f14b13c4ed1289dcbc80a7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-2000.html",
+      "sha256": "b19c2371fe9c771005c97c12f87fd3c78ed4bc1583a9b2b4ec714b97aa04488c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-2100.html",
+      "sha256": "d9bb7ba4ff21bfb415ea02348d13fffa2ea9b4025c6797c75c52a1ef171caa43"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-2200.html",
+      "sha256": "8d411a82eb84a30017af1c2d99cea9a7666e0485483a981a89058bab75bab4b1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-3100.html",
+      "sha256": "bc153deb3fac4bf0b5f3b5c2ed6b1dff83baed9fd013f455b017d44a51c02fdf"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-3200.html",
+      "sha256": "cc9a3402b6fc0d32601b8b02257aeb11e82320e08cef5f7ce47dfb8cd63aa449"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-3300.html",
+      "sha256": "7ce94c48f9eabffbe97728d55f2458894bbabc98be922063e7ba304ea18ef99e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-4000.html",
+      "sha256": "ad7b47f128e6077920e8025cee7129345e8cdedb95dbdf0a914a666cfd7a99d5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-4100.html",
+      "sha256": "c0f2d72992c511d2e1bf98ddc83ccd16c4b952fec57d55cd4554508a26d0dee2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-4200.html",
+      "sha256": "1282782dc7b10d24fc98173718ea2dbcf00f2255fbf3b7bc4cee843138741a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-4300.html",
+      "sha256": "8df919db30a0f3f8b8a7349ccb44a70c713848c2bdfca1a815d264ccf08cb183"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-4400.html",
+      "sha256": "38b2217bb07b74e4757e291e38307733d716822901eb681aadfec12a9dff8c60"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-4500.html",
+      "sha256": "454694e0dac3509f2dfb6cad4380607aa3fde031a5f30f46ab5bf55cfaf50feb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-5000.html",
+      "sha256": "8f7e0ac15f7ab645369ac82bf0c503442a7da35e24a67c9faeff3fbdc881ae85"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-5100.html",
+      "sha256": "e7fe01f86f5f167665891db380fc110f4adaaa04903e5e03860790e2cfedefcf"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-6100.html",
+      "sha256": "0063df8b5090ff8e00ef8f6ad56201749f444eb57e125ef14bd76c7615e9af2e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-6200.html",
+      "sha256": "333b582b67226264879fdd2b28a95e52a81f487194853c4c2fe81c2cd37be154"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-6300.html",
+      "sha256": "88cb2b301cb910b49e11d5513002d05e5122d2673a5eaf6c01eaceebb27cf82e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-6400.html",
+      "sha256": "03eacc76a59b586368c748af1a0d35752f26f37b57b27362e96687eee0e7833d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-7000.html",
+      "sha256": "6f390f614f7ab3bea901862061152073fbcf21d57f51924b1d04cd101a20cdd4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-7100.html",
+      "sha256": "daf13091f8f3255ee128c5c41fb5d720db2d2ab19c59dfd53608723c66ac34af"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-7200.html",
+      "sha256": "dca8bf2ea593b3653fb9dce92e06a2087e71c2960f28f7e9a73173dda4923d90"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-7300.html",
+      "sha256": "d6c9b4df266afa0b8adcbe194d7450d8395a9b2bc2e3b3f597a4138396a4e620"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-7400.html",
+      "sha256": "040d5b8310dce1e1232488f3f25ab4c418fd34dd0c6eb17e06c0211f575066b0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-8000.html",
+      "sha256": "38d01164f605a0e91a7a684ecf05d9d16f728b2dce6ceb71c69b2b2c4089dd76"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-j-9000.html",
+      "sha256": "9dc1e318a276a55297f26ff3d48590dd1517e3a4a29c1dcf387f702895f971c6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-1100.html",
+      "sha256": "3da0b4554cf1be56463c11723c6e5b18d44da6cdb0eb79e132f16ce78a978d52"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-1200.html",
+      "sha256": "8201ff12dfa47c68c9f75d759e7efd746ae9eaadb40731a1311a096a37de7bb1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-1300.html",
+      "sha256": "eadc8e471aa61e16d2b20743da9e79c77715fad5ea9f5a26cef951ebdf2931b5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-2000.html",
+      "sha256": "12683ba7bc5c855248da995bc3fa6c0e3b949d834b17deed483f81fc074de8a4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-3000.html",
+      "sha256": "902f67596572fd91ecfb7a159b5634c86ddb2ce61bbafb5da3848e9bb1157133"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-3100.html",
+      "sha256": "094f7597abc16e426778dc3c594890439308ef79eae2c6e94f63c29a7a14090a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-3200.html",
+      "sha256": "453c4c1c7803da4c4569f9cec045843d17fe444fd2e3b8df4fc5fb5c25891818"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-3300.html",
+      "sha256": "e4a453361d27afc0fba7bee2c36b3895f72fd603240518b2d5a221919c2830c0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-4000.html",
+      "sha256": "be3969e99054ebc9d62169c0f27a0b53b9f714899d8a4bb026a2acbef54ad377"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-4100.html",
+      "sha256": "be608b4ff60a32d1c33dc20e032b23e570e1da177598b4f7af20c47ed9392efe"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-5000.html",
+      "sha256": "85cb338d7014157d8d57f90e3d29e10691ea0b73970f5b2dac48af95cf502698"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-5100.html",
+      "sha256": "411147ecdc656a356c1ee0b2eebf8e0724f3be940314dc459835e47340231a21"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-5200.html",
+      "sha256": "444bde1ecd26c64c2bdf2a03c36c95b348471390b13b00259c1f0cbe2801c031"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-6000.html",
+      "sha256": "47d065f9dd135f9b06def2ec5f5be412502662ac5c4f15d87e6e68510ecbd571"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-6100.html",
+      "sha256": "900ba0c884a5f58549ef7c7ba21605294607af327c1bb4aa5963ce388ff69795"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-7000.html",
+      "sha256": "94d28d46ec4d60ff833a64c5e7612d5f90668d1ea45e3c563d1b6ce0046c08e7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-7100.html",
+      "sha256": "c01f581b1c8d5485ada5b69c686cbcc7301184d46c275601fd9103e733010171"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-8100.html",
+      "sha256": "7d9637ab9b58e420837d307a97b2c32fa11563d046ee7c10192eb0e90d1a48ec"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-8200.html",
+      "sha256": "7863f5d6087980c01387a9e803da4b079adc3b17a7c9203c262cecf494d4166d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-8300.html",
+      "sha256": "babb11aad3eac17a6fb494c03dd9c282f54a3e7c49ee02dc1bf7b0b86a915701"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-8400.html",
+      "sha256": "02225e74d7d0fef68e0adb695ff6cfccbc849e194645960dba31359a71d15449"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-8500.html",
+      "sha256": "d34322f18c31f3180a40fab4d68c48ebca4e742b0b87a962b06b007fa25c5cc3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-9000.html",
+      "sha256": "73557bc35190af2f3cdc2d9f0d48d4b216051a2aba7530b4758bb400e82932a9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-m-9100.html",
+      "sha256": "998336683a6e2ae511a0fb7d37cf9bc12acf4f8c266fe1385cb05d0a7defd1ee"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-1100.html",
+      "sha256": "fa305bcdbaa21e68eb1b477d21bb9b2d32d90dbd9e600fef5d21589435ea0ce4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-1200.html",
+      "sha256": "5f6dabcc575d453613def9459db12b6358861bfee88934fc4342b2fc3bd7ecda"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-1300.html",
+      "sha256": "1e13df5d585fb53a94ad9960216c4473586ff239bd84c8254947462ef6abf168"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-2000.html",
+      "sha256": "3c3a795c77bfe333ce13430264bb6310767c8d08bc0f5fe3123c70814a9330ef"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-3000.html",
+      "sha256": "01bb3e2ad8469dbecd255be6ef0956f2b3b3691c9bac9956dad33d240f8dda76"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-3100.html",
+      "sha256": "2fa588ed73ac54ef0e2183d593fd8c2292bb98a433bad1dc4580c9341f94d75e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-3200.html",
+      "sha256": "99e3958061d7892dbcad3088a85a50771efbb3e2f4c061ad7c60e93b43e1f3d0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-3300.html",
+      "sha256": "3079a19b09bb14ce3acf0763acbc628182a199781a3ec2f0d4bbb648202569b8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-3400.html",
+      "sha256": "5dbd45d5cc97943b8a18d19d49430bc772f949f155d18ea8663dd8dc72b3bcc4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-3500.html",
+      "sha256": "b5c6bd69f5e2a73143e997838ea64a55b8adeaaef88afbde85df8ce90cbbdcb4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-4000.html",
+      "sha256": "a19db4c49390af65bc0c441cee7f8e7251e441cd7b57cc42119612e7c437a352"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-4100.html",
+      "sha256": "2dfd7e58724555a302a7effa27152b48d09c5b39096d603c18c09dc3053f5ca7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-4200.html",
+      "sha256": "3dfecd6d8ea57bcaff9ac147524dffa5dae838ef96b5be978ac2cb2557c213f5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-5000.html",
+      "sha256": "b9ebabfb1c9c24c1961af942f31801b0fe76152faf4f69a4dc736628a6dae502"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-5100.html",
+      "sha256": "9c295dd5c328d625806a7fe3ecfee6134dc618aee798e655925a08cac4e99fb8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-6100.html",
+      "sha256": "eea9db0e6b3c3a186ef3e41fbfa2120a90f6d0d9950b3d54bc58e7d38f2946a5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-6200.html",
+      "sha256": "c6d985285afca5458f18efce4af9665b839e7d3bbd8595d131b633ba32a00f9c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-6300.html",
+      "sha256": "4c9df1e80d56ade9f07cf81a94e4f8aa7584df8ed15c3b446e09f6d4ff380b1b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7000.html",
+      "sha256": "46f78897c8783fd8f99b0abaa60f1e81863df88463d909ba5f86c4782b3f0953"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7100.html",
+      "sha256": "0a7287ca3df7256807c77c55c05ffcfa7bab5d3e5c10e9fda5487e957b7fc4c8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7200.html",
+      "sha256": "56d5fb1f1a21513ee47c9183b3709d71f57e704977d9e02dd4ea810bf31a7d61"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7300.html",
+      "sha256": "5707d7eb9387dcfb3374c8f3538416bcc22c37cda39a5246dfc099adc3cb7e17"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7400.html",
+      "sha256": "c82f1be0c5014ad434ebeaa986520b0e7690dd7fb8f170c2c9f010245ead2b29"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7500.html",
+      "sha256": "f38c1a2a1ef9ef613aac078d91f96518976c8880c950ec6a66faa9dc4fc308ff"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7600.html",
+      "sha256": "07399e7477232b50037220dea809cc8a106d51b2c826bf634b86b0d4f98e0028"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7700.html",
+      "sha256": "d2c24c6f6365f82c9c828412b08bc8db5a78f534259d3760953e1c72fcfc24e5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7800.html",
+      "sha256": "3f8af27cdcb16f53f8a6a8fa3d1fbfc55f39a76bc4e234375c36f370198bee87"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-7900.html",
+      "sha256": "50a4698be7ba3f9f9117224f89fc8f475d9bb53adaa5b80c613459477d211643"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-8100.html",
+      "sha256": "878833a2c57d5344f06a85c65a3c3fb8962d03afebbdd9d4f26a0f1713cb88d4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-8200.html",
+      "sha256": "b893f3924631ae45c07d2136a03f36738c7f416b3a8b46fea3cd459ff2462ef1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-8300.html",
+      "sha256": "04bb3e5948e4b49427c1d8b9936d23ace71d7f5d2fb017e0b91c5c1a4a3aa10e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-9000.html",
+      "sha256": "d91a451af3ba28e222686cd790032909723f6c091a7939fe038c28e9e25bf677"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-n-9100.html",
+      "sha256": "e9fba1667b67e8c3363936a7498e541750c33110c3cbba82eac9a68da628aa32"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1000.html",
+      "sha256": "50b130cdc271804c364553e329121b547732403fbf3e355b62c5b8bfeec4c568"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1100.html",
+      "sha256": "f3cef3066730a86dcb28ef98b7c9dffd94e32a99576b6c687f151f461999f1dd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1200.html",
+      "sha256": "fe138126f81fc59805cea7f05f3b644dadf70ebb1a2f87f4bc0f00f7b563fb68"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1300.html",
+      "sha256": "23ec6437f41d304c635a8049bd3f81f13fdf86c0ced67a63185eb7b8a1944787"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1400.html",
+      "sha256": "82806e7e183045128e765479b6a968af0217d82de9b103009b18471382640b36"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1500.html",
+      "sha256": "33f737167ded1081778362f794126774b1185925384c70615965d383c3a0eace"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1600.html",
+      "sha256": "0e698dac938395fd0b48578141631f06b817cd59a2c723db2c49a446ddf2c0b0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1700.html",
+      "sha256": "c73f976299e5c3e242c466e499c691fe1a3609f3b433aa42a82f4d84816beadc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-1800.html",
+      "sha256": "12b6cf949fa93af956c9478995656956a79efc7f381953e6327827374265014e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-2100.html",
+      "sha256": "24a1a430ee89573ee0b8d8da3dac67a5d6a2c0f8ea4addbde14d7ee936db23e8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-3000.html",
+      "sha256": "9cec13659958b9a3fd91848a5886e59d71b03e8303eb2ba853243e2061a150ed"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-3100.html",
+      "sha256": "5e2ea5c34001f259011dbd1493ecbb80c6d27b9e29958a5e9b24e0e1d93632b9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-3200.html",
+      "sha256": "184210d566a242a39b8e26ca72651f30ee312e7b58edc32b70aab7381762eadf"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-4000.html",
+      "sha256": "206df4cdbd82f1501a9c647525096e03e3d440505d211456dfd26652ec975889"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-5000.html",
+      "sha256": "e018f9a46ecc7043e0a518f26b1b725e79c8929bb1f82e6235386a24bb4d1331"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-5100.html",
+      "sha256": "5110b4bbc87c62ac7c5a49075e0c86a4bfd5b04291ff770e8b8998a9249241f9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-5200.html",
+      "sha256": "c9bbd95f7dd10a360c2f864f141bdb02a4272899ff143b96cd2a6c9ac863285c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-6100.html",
+      "sha256": "8a0b17d73408a047044e42f3ecf8811fa8aa7309de74d3a104711086ce2bb807"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-o-7100.html",
+      "sha256": "8a303eeb144145ef4f2bcbde0f56eecbe2e90f418ce151416eac26b0ba06f9df"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-p-1100.html",
+      "sha256": "edf3786cece2c54e23bc4f1dc76b0ef11bc8ab1c209d6db3d7720bbc824a191e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-p-1200.html",
+      "sha256": "39d1e62d5c3402c1877ee70e8e8f0715bb94a0eda67d77b1cafc2ecd2368c307"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-p-2100.html",
+      "sha256": "de5204b90edd50150905588e7a07f966588cf0c2ac26cbbd753d783a61de947f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-p-2200.html",
+      "sha256": "ce8b1c7925b924f7c8daa5b6ce3019b0f97b215c997e5331d31a1b0045694f59"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-1000.html",
+      "sha256": "787a3ec233b6395b8efe51562fffd3937e7985e9f4cc2942f0a45773c1780972"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-1100.html",
+      "sha256": "5e815b2ba0334ba46e96f7dee8ae8fca51346be0b3c01c71439dfa12c7504c57"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-1200.html",
+      "sha256": "93f9e425465cc8eb45480b1fa1911410b086cbe77d77a1192a6b09ec250dddea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-1300.html",
+      "sha256": "0714ac909d12d315dde71a7edc0ef632f23124439971f56542b2ba44cb098447"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-1400.html",
+      "sha256": "57e68397ea3102110cbe2f8aee554de91b627e2db95d48fbdfef293609be46b3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-1500.html",
+      "sha256": "941c24c07f4c29bdfeebc07b71210ea09ea3f8576f003d1b136a3da3041fc4e1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2000.html",
+      "sha256": "f97c2c4e8f5858b2047a8f6ce4b6cfc072af560f4582f342c4be66a72896d124"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2100.html",
+      "sha256": "96f875ee145c6e495683829e995401be3c5774508215e54839439b3c80437840"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2200.html",
+      "sha256": "dfb58364d4e0b1c3aa293804fc6dbbf3c3b8e0b62beda05ca3f1a9781d347410"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2300.html",
+      "sha256": "74bd9e63039c5337aa66b800c04de0e458f40994787bc480dc5d22dd86dd11f4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2400.html",
+      "sha256": "d8f8b1d6890268d4dc1f74e54fd10d23b0847c015b832c933f503cc50e84e4f7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2500.html",
+      "sha256": "f4189becfcb92c15284ad3d7fbd33eafc0a3754352e120212e9acbd47e48100c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2600.html",
+      "sha256": "2d94a151a2df032a3f30192d5fcb2836a0f454f97864288bb50c0b4aa4c45806"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2700.html",
+      "sha256": "471768847f19c0bb4053c1719d86566807884ae519ba6381798838ac16d384c3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2800.html",
+      "sha256": "732086c985262f58621747d2c6f712143fe7f9a43648b3de5a2b0a610c1a1016"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-2900.html",
+      "sha256": "a9cb7e0085d371c5a7da2f0b04bd855d974c423654ccf5bcfe1789b8249b36e0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-3000.html",
+      "sha256": "d6c43592609995bce4e0cf48bdbd3dfda5bce27b6d67eb2def0e9183a614ca24"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-3100.html",
+      "sha256": "491ac312992dcd18241076972e42f50c2f61a6de92f8580872459ed931eda995"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-3200.html",
+      "sha256": "e3e9747720d2f6caa17d8cc5e21040a94f3819dbd75d6d6b080337cc3c82a96c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-3300.html",
+      "sha256": "64c6bcc83b139757ec659c3c5a21e4db4b98b043c4feb2e8dbde03bb1cfd6117"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-3400.html",
+      "sha256": "7b01dae8097edfcbcd9f77faf5cf6629dde924a8630c698f8b4a8cba8fa93145"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-3500.html",
+      "sha256": "33315cb08455424291a9683454dfe326be852bb5716c6e128db52cef1a532e0f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-4100.html",
+      "sha256": "8bd8f0b5f9040b9d7ad836c6caf53aa79c52b01d173713e5b46074483972b10a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-4200.html",
+      "sha256": "1e6ca996d14d9ce17226102b76496644e544f0a4a6c5b54d65c58bd78526d99a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5000.html",
+      "sha256": "8d3a775e2f8e853af6859fe29b101e6a0f6edd3c9519b19362c31d711e8a73e5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5100.html",
+      "sha256": "8676a104dee0cbf92767a6800a96ef19b3871dc475a829d7c046dc50731d3089"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5200.html",
+      "sha256": "1afb1213905a352fe25d99f7aa79732f07c61c1f931d230d4d29c1655106503e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5300.html",
+      "sha256": "2fd975869e551755dfc1275f44fb45cd9574369ad7e7eddcae7f22f3133da039"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5400.html",
+      "sha256": "4df5f237e57b044c0e045290054c4ee4c4a49a52f803402911a9e6e9f808203b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5500.html",
+      "sha256": "ab91f28a3c5c05dd46a20abd98b44fc284c311d145780d2f3df16fa8a0f6474f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-5600.html",
+      "sha256": "b33a544be65ee01d5081965d2d0a83c296b25a460262cfb0cf3ea56481a99ba5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6000.html",
+      "sha256": "8781fe36f3e9f6f27072f49a95379fb82fcd9a001a7b39f71748f289c47428d2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6100.html",
+      "sha256": "77093e06e28e9e95756e93d1848128358663b4c903e844c7357e3c23f4bbca94"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6200.html",
+      "sha256": "06ae7ad15fc54c56de9d8898720ae1ac85beaf13a21f7b8a926200a979f12d69"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6300.html",
+      "sha256": "a927569922ead0a926877e1b5c51dff1aad52091d3c395f7fd85efeed924889e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6400.html",
+      "sha256": "d34530fafa2d1dd6909290c2414e9e91a9f537db72726959bd41cc29d578522f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6500.html",
+      "sha256": "67ab63252ee9244f35a5dfca514e3a994bceddc814ef6ebeda6ef3cc616e4ade"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6600.html",
+      "sha256": "414d5919fa3da57be6bb59255db2c76ee6f6eb21e8becd58f7df9873774f49d5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-q-6700.html",
+      "sha256": "410397b0a1a6e6df7b7146c98f8b4daa2b1c3625397ae2f710a014c534f709e2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-1100.html",
+      "sha256": "036eb98ff1323c19be01802d60f4cf6f6d59327e9829b929e7b09799e9290a0b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-1200.html",
+      "sha256": "233808ebcd371b76f06922ccbe3e6fdbf706298fc0ffe6e9a49a81eb5ff42101"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-1300.html",
+      "sha256": "2255dc7d6e5d916a6882efda9333f1f1a49e64ca7de068fd53efa6f692ce0c48"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2100.html",
+      "sha256": "8a47f61c22fd302e04ea03d8aeadf033a36373e46ac63ccc5ce49e308d9a967b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2200.html",
+      "sha256": "11b8ce0c9d411ec1aa207229f4f4cd670135d0b556098931d6fb1acb5bd3ff5b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2300.html",
+      "sha256": "4a79303a6e25d35edf57d2af2b722affbd526c6ab39edf60615845dfc6cdddae"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2400.html",
+      "sha256": "bd8546833574b018d7970e75ef72014fef2a6261da84a93c33dea307358637e8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2500.html",
+      "sha256": "4e8018c24050a4d8c1101eea5bf6eacd859058f69fdc6f7ec07f5379e56497df"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2600.html",
+      "sha256": "c167fb431df08fc09fb98278474c136b43de4a321db9fd538c8272d3ca8855a7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-2700.html",
+      "sha256": "e7c3618c749487459b06f366da84ba5b258ba16712e8a33bd7ae36c5b4512b2c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3100.html",
+      "sha256": "84bf575b119cc4b5f7ec2d316732baf7eff2e2650fff40e2e08b82f84d595f88"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3200.html",
+      "sha256": "cb4df7867e1682770635b342b4d335fceaabfdb8696f98708efa6601bf26f506"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3300.html",
+      "sha256": "8cc26969d3e4e28c24413ef28edb214215e6e680c7118b92a7d837bb6b1bfb0a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3400.html",
+      "sha256": "37c399825c094b17a29d33cb7e7f068396be6dc0293cf885ba323317d15dfc16"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3500.html",
+      "sha256": "49c4c3002d3cd9b7e6f35bfa2957fa118b55764eb749ab67289f99a3fb5e41f2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3600.html",
+      "sha256": "f3cbcb9b95864eb4b809face2e507e2a6e5ecb3aae5c4222d36622dc2e7f9d18"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3700.html",
+      "sha256": "4acd755e1ebd001bafbb9a16fab49299544bb9514476daae82a4fc86571f46f7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-3800.html",
+      "sha256": "4e9c41f94ba44d59c88d8d6f95b345a986c68dd8892e2581524095e74f9b7981"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4000.html",
+      "sha256": "2c1de40f516dda97e0814c4d1fbb847f1c1d7bc7c34a1d81b0de2d0acbfce3a1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4100.html",
+      "sha256": "4b0a24a4929093c8774ffd4b17ddb62f24e0d9b73d5d4703910ea14bdb18d8b3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4200.html",
+      "sha256": "f78f56b977d31296c8b178a6ec308137ab7b560e79518a41cbbdfeaf0b81f0c4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4300.html",
+      "sha256": "f6b183d6fe412f893c4838bd32da561c02be3ea3aa2e6105b3e4765d977c2ea4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4400.html",
+      "sha256": "c6f8cd5ffbf071a4117b28be3ef8943c4347ed7d9a1c34916cc9ed7e0f8d7a7e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4500.html",
+      "sha256": "79b83a42f61034d2a9c2aea1fca91ec051c6069f36efc2cef2928f5e17b6a1e9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-mepd-r-4600.html",
+      "sha256": "d07dc704b76253582b886d993423e0caf7ac458fe43ad80a9d1c9f5b84811868"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1010.html",
+      "sha256": "73970152500979a6895488bd9cb6e928daeb0055c86e3a7943cc1b6678d52316"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1020.html",
+      "sha256": "781023a6aa465dc18c020cd2109201e60f1986316e1ce9ff329dd9571b5a1753"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1030.html",
+      "sha256": "cc4da2de2d3921cdb9d0cadb19013433d3180270d7310a1861c302be95de9757"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1040.html",
+      "sha256": "05e0228f6c27a91ac5e10a816c760510d3b4efa81c40d908be189949d1aedeb3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1050.html",
+      "sha256": "8f40d8b12b6d821f35541ecf933395cf135ae5746320e978bd175cf329c17f8f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1060.html",
+      "sha256": "be748a6ebede38ae287b9abaaefba2898c8c832212b93c468bb19edba6a8a3f5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1070.html",
+      "sha256": "6dee2add1a100e60c3270af46a985989673b4725f7c3b3158b87daec522a912e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1080.html",
+      "sha256": "a225384369ac57c491b59dffe1a6b494329bbc8c6dd9aab0f365dfa822b2bdab"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1090.html",
+      "sha256": "ded2e4905ffcbd71d169624d7d307cfaf02c6585d5072d170bac1fb80065a852"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-110.html",
+      "sha256": "3fdb4529b58efd2118369fc3d00c0514183ad6881ada6553fbdbb2f5a63603a5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1110.html",
+      "sha256": "8b1161f767d417b8ca361e1a32fcde49215911665c89b0240ecfe6bba03b7a66"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1120.html",
+      "sha256": "d69442a1e495d515f474504121a4b09c1c207c72e85d8b88bf3f38c6eee32065"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1130.html",
+      "sha256": "20d0b388d5b7a32991571c8cf4c7807eb03ff05e80adf745790299fc18027bb8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1140.html",
+      "sha256": "6c8148b34d877ce4d8755bc3e9e1ab17a75fa6ebc0568a1bc5b1e129f09a834c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1150.html",
+      "sha256": "093d8766f5f37de772c82a806119af65ab040aec7605c5611c64dc32fc5588ac"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1160.html",
+      "sha256": "3aee36bfe4c12e6c0d680d50dc4bfc3c7b75e8a04fac44ac1403d1c1bad23271"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-120.html",
+      "sha256": "5c6bcce6e617faaf5991f810234573067847be1867e54bfc264f82ab1f04e6da"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1210.html",
+      "sha256": "6dafc3bee1103f42ec498bce3c0f2e06614088f1cd70a7b3384170f452c37ec8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1220.html",
+      "sha256": "dbabdd7afd1448ef097bc0fe513baa6297ad715db79c6799ba2653ecca03cf9d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1230.html",
+      "sha256": "aa856f42b15f99ba0c915553b0155abe775b884a3e39b26abb773e51324036ff"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1240.html",
+      "sha256": "aa1459fb0aec4ffb8521670658ce03ff4d8f56ae665e62c468dedb4ca45832f4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1250.html",
+      "sha256": "8a7486cdd0c536df7ea2d34e0967bedc5a4dacde10ffc0324b98e82d611b2f30"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1260.html",
+      "sha256": "f97b46c42aa981af1138acdc1dd1f0fa89d2bb06b6720bf07b3cea7a4c78b16c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-130.html",
+      "sha256": "09454059c0d8c9258cd139f7364a8d0cdd5053432fd9e5dafb5d47492867e89e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1310.html",
+      "sha256": "b2957944d5d07a6649ab9a1a44a17e22d668ad8364d261ebfc7420550ac4358b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1320.html",
+      "sha256": "796371896e6353c765cb85393ab7dbfa3538a228e47912b5fb8de57e942bc089"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1330.html",
+      "sha256": "3d261eafa61123c015dd9c64b6950269f8de2162164274aef67d6129a74daca8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1340.html",
+      "sha256": "5ebb17f6f6250692a0e6b5a8299b867012334bf83c289715a4ec7fb5f3b07ea7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1350.html",
+      "sha256": "d55d3b54609a80532e0e330e2d72c3d9ba0c0e2a9281b70bfc243d192e93f678"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1360.html",
+      "sha256": "fb77b3c6a318af2ca280f403d87a7fc464799d71d9a7dffc230d9102bf9782bf"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1370.html",
+      "sha256": "b5aa0e3a2234f4d5b5e2cceb5a76344dd34dde90de84fdb3102666bc080e3280"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1380.html",
+      "sha256": "883b055600298c3db872406c27f725a6f829deeecaad928a38fb7aa8572a221d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-140.html",
+      "sha256": "df38de11c9d5c21717e0168da2439432115546d2f9761d2a03f6e6a55f19de00"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1410.html",
+      "sha256": "fe755d2e34cea862582f9295868ae2ffd4ed8ae9d9fd179ff310f8430f84d885"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1420.html",
+      "sha256": "550afab16438407d3fcc1cab649c1d3dc0cbcf5e797cbb3833dd7110f3f6d15d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1430.html",
+      "sha256": "e6d11419b04bea0491e17a1efbbcc2c74856bdcc8e06bf5a8fb0376fff28e675"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1440.html",
+      "sha256": "a21f724bedef7ec5e385833b9f6317a98588a1779d888a0c7f67730782d4786a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1450.html",
+      "sha256": "072462c93056ef9ac636d4eb2bb4263fc9c0aae8ece0565b4625d4f12a628344"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-150.html",
+      "sha256": "2779a24d4d71d94cf411a656b5972c6966bf07d900bedb0a764274e7a668eb2b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1510.html",
+      "sha256": "3431212d1fed4d5e53923dac9af1c90c379bc0b430b2ef90d58e290c2cc51485"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1520.html",
+      "sha256": "a0ae88a54b4cf7a235dfad8ce9f3365a51a1ee8db6c7253b23821d2a2a2f4cb9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1530.html",
+      "sha256": "f3649166f6f6765f1b7712b0b3f9c580ea1aa6475c47bd225d3078391004a451"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1540.html",
+      "sha256": "e24ff1592b2e56bc6b44994e7204545b52aff9d6094702353c0874ea939ad2fc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1550.html",
+      "sha256": "be8815d2bdb6f5cbc5ac0be3c8affef91ce66020e18ec1dc5fddc84afd6bd247"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1560.html",
+      "sha256": "65cf9fdd443195de7565c0a7ed14a984ec251ff4439df16af754f9b3f8baadcc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-160.html",
+      "sha256": "ced290177aecafd5e7e2bda454347ae830fd0bcf92f6b635eb7bda3b534db2a1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1610.html",
+      "sha256": "7158b9db3b4195f5189cc07adccc19db2888efa4b086e2b34abaf075c3894b21"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1620.html",
+      "sha256": "a7617ca25c28ba19fad38fec77530a958aabd2ec9d77e9587829e28e4345a5c5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1630.html",
+      "sha256": "c4cc920e261b6638f91287875ee5215db58828ce6a833f760623eeee3c58debb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1640.html",
+      "sha256": "9cbf3809680ef44aa276d333f7f0d4566298e403d5adcb8007a8afc6c8b05851"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1650.html",
+      "sha256": "c104c4d3cc8354e8857b95c81ebca518bd65244d3e803f95aff296e73023fce6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-170.html",
+      "sha256": "e2bd0b274dd67dfb43ece080fffe6da02c68166275ff6342620f288c6cba6285"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1710.html",
+      "sha256": "5f45a741c2ef2346b299c5a2c3fe2c37d0302523009fd9156f2a26bd3c95b07e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1720.html",
+      "sha256": "55a1c1d67eacc77f2b41941ee866acc33bd01e8f84a214bf2b0ad28100f5b42f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1730.html",
+      "sha256": "326520abb83a9d4a0748e516b9f7864e4a6a4266990706bafef24f21b6e86386"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1740.html",
+      "sha256": "4cd55533f90f656fb08c911f3b388a49b885080183df7937d09227eec0c318a0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1750.html",
+      "sha256": "e4eb34ce18b0b27f5d3dfb39127166b16e855264b1eaaca797ebfa98f2b2d1e0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-180.html",
+      "sha256": "d76ad528f271e01885bdb1d0daa10abe621795eab036b47a1b1a600408be75f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1810.html",
+      "sha256": "af7ac9be9164995533e64b83ed80a8a66c66ace8a25a772083d4fc858df6154b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1820.html",
+      "sha256": "389b9f7e58cb0312783ce0b2ca0668097533a505f3cb948d277cc09d79c38c6d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1830.html",
+      "sha256": "dcd8d1a70e5c55f9da790afbd4fb738e8b5da998f8c19595479d43dde776037a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1840.html",
+      "sha256": "1d408bb39db8a1a4489353348e719b369dedff73d358988033c8a36f29b86e00"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1850.html",
+      "sha256": "e844e5ef2d35218891b46f9451c37717c5b2ec2d5aefb406a8f6fd4abb0f40e8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1860.html",
+      "sha256": "ee991289c84522551a8eb5dcb6041f03f3124e586911b527ce073a34e8029cf9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1870.html",
+      "sha256": "1feb379c24e4fd7d75d19ac21bbf500b804f69a6a019dc81b2f029917ec5f9c8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1880.html",
+      "sha256": "5237398d66b72c44afe189c8833a5153682a960af5b21b1cfd3d990d3a21d7e2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1890.html",
+      "sha256": "fd0961ed1d27e597f7f6627db914cf121f7dfd1db63a246bb224907d41214d1b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-190.html",
+      "sha256": "f32eb6632c95359f4f9e45ecbe8437b41f529cee08d6470153f25e4769fcc5cb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1910.html",
+      "sha256": "9b118efda138f39b6da774f5de4fd532f448216386b9ffac2fdeabc7b410d3a0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1920.html",
+      "sha256": "dacfc69c4727ba70e1c51cb080f3f34eb705f4ff3e872f9adbff478a020392b3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1930.html",
+      "sha256": "be9159893d94cf4fe0b22788c66aaf78040431b488ef3a3212c469e7e2cc1972"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1940.html",
+      "sha256": "802699578e9e02d1e7825de504f6d853ec9b8d73511bf58f149e75ef37cd4560"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1950.html",
+      "sha256": "87b5402739cdd1cae7562824f03b38fbfc35b701eb5b87fa3c8b7c82ae54a650"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1960.html",
+      "sha256": "ca24ebb11a675615dec082f687416399acc70b7a1f4dd1a5f3ee028ab0908842"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1970.html",
+      "sha256": "617b7ac4c35e1eeca76bfa17004d66a09d4eae7f3be3a2eb83c7b278efb413b3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-1980.html",
+      "sha256": "03749cae3d124c2f3057747e6fb8dc6b1c08fb4b818c99fec35d4ecbd9b522dc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2010.html",
+      "sha256": "4514b8fb11e5842493448d5009bf626c686165fd16ca53bfbbf9e1602149c2e4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2020.html",
+      "sha256": "8627965ddb5eae11b2e1d754f93b0c3908d244132d7c83a6f2d49786f7f76317"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2030.html",
+      "sha256": "a2aa309f81e34d5748ad48ec05555c440b6fd295f4d11102016d6eef52e084d6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2040.html",
+      "sha256": "c27d832ae24b2d1bb532bb5ad4f358f67659a5d8b3e61c2417bd7baec93648cb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2050.html",
+      "sha256": "a2b6ee7d63289bcbf21e2d103df106400ac2567a3cca47dd787231195510b7d6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-210.html",
+      "sha256": "63989dbe1049bc0a0f7277e905c834d67f1b2b208d55788c7c52bc8f79ca4e21"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2110.html",
+      "sha256": "1a9b3e7746c47f15d2dcf41715a2c3721208e402b147cd3853088f93cffea3f8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2120.html",
+      "sha256": "f76bdea96c31039e0d6ddad92fcb7820918a2f1599137b8727595033196ed44a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2130.html",
+      "sha256": "e161a637259926af9e8b8a3116b9303e8084f7b4bae8447e4379d1c5ac51ff5f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2140.html",
+      "sha256": "9617e7290a01e4a8334afea691c3c4a466cd845588f40a1e37676919c484993c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2150.html",
+      "sha256": "0048a3da719964f3f52ed96d4eec23878de659ad7ce8704e6a8b3ea162956619"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2160.html",
+      "sha256": "c2141a249da7ee03de1320d336a7a44ea55ac561a03c9453a05bafc71cef435f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2170.html",
+      "sha256": "deaf30209c7afab4bdd593592a9d51660a5080ed624c0b7857a1f62126907a8e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-220.html",
+      "sha256": "ea713a56939c821564dbc78599af4edfe8efdf3994c52efa032aea7e7064488a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2210.html",
+      "sha256": "60a871af38cd9537cc145a8477c300fe552f21c4904da0894fd1f0834a83b10b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2220.html",
+      "sha256": "193cbb4044fc1518c54d67c194f6997346550b273843eaed6a395d726c45cc96"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2230.html",
+      "sha256": "1f429f25ca9e6c1dda27d56b32c2d2883ecbdabb74225f58cc2af6ceedcf59e5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-230.html",
+      "sha256": "4f3737668d232aed23149b571b4a5dffe80e78b5e768402e17da5491e0be7c38"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2310.html",
+      "sha256": "0a72af8e73d394b24e2db8d97670aaf8ba37c65649a97f64122ad2ee1b191657"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2320.html",
+      "sha256": "e371dbdcc6f393ed2919c49f76267311f465e5e35e6fbdde27d335c01933ae71"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2330.html",
+      "sha256": "7365358dc60609ac79542620682277c7476c747dec45568ffca85e80d1859b49"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2340.html",
+      "sha256": "73796c3a237255ae05228bfcd4d3f1146f0bce0d033837c1e79f6d188c90c2e6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2350.html",
+      "sha256": "86f24503c8b09d98a0b9dc314922938a91b4aaa6385657648fd8a329d188965b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2360.html",
+      "sha256": "cecb3ae0c47593692203830c801344d51caa024640bdb354b85ff07254af73c9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-240.html",
+      "sha256": "3f044a8bd5b2b02c7d1ef8d95b88db95bf8d789599a13e2700be2e65800b61c2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2410.html",
+      "sha256": "8c633094bc06557eca984608e52fcbaecbde98bb814fb8ce6eccfc21222dae32"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2420.html",
+      "sha256": "7a44c72d0a7bb98a6b69ccf5b3a68977f7bb171169d552292e62d82bc5108693"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2430.html",
+      "sha256": "ac2d8e3350037815ba5414ce153d2b8ed887821fa7afc85d8d92ed5f92e98b8d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2440.html",
+      "sha256": "285a38553c7d61bdeea9d6a60a5cc6b4e9cc5af59740c79bc6c34c8544fc41c0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2450.html",
+      "sha256": "b744c14c5c544d14c6e71434d3395bb1f8466b6b520b2c65f0abeac69d6677d0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2460.html",
+      "sha256": "34020ae83d418a9811219ea3471464a4760eb3262e7b6896eae4fad83e6ca8f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2470.html",
+      "sha256": "86c38888034f7794fa31db242806aaedd3ce6ad1354241eacf5eea6b9b17f307"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-250.html",
+      "sha256": "55ab9ccc0ba38c151f44547da6b4dbcbc0b98316297789d4a2919ef0a30dc9fc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2510.html",
+      "sha256": "ff853142a110714b9631e2e5f41fc6d7809f3c68fd0b73828f0128aefed2bcec"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2520.html",
+      "sha256": "4e77bf8ee61ca389e2266f41a5f27751a90091e54b72ea7a0b2ca39618f46b2b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2530.html",
+      "sha256": "28229b84d36186d8f3ab59eb96163f17fd45b194f74a108af411bb2e37e6547c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2540.html",
+      "sha256": "1d20a42bfd9a0081280f516f767d15d7d5fe492a1854cd66c065528e5de5ab49"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2550.html",
+      "sha256": "f580e8fb445aa3bdf47a653e5439a1122f3fd97b3c7b5e9784acdd144dea5f36"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2560.html",
+      "sha256": "671deb3a2668935c163bad3b094c317301487b4051974e9317313baf999cd48f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2570.html",
+      "sha256": "fe972741b251396a45f4b8b2d3e41f331f56d71cb4ecb04d6d82ce52719fdeb1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-2580.html",
+      "sha256": "da38c343901300318bf29431c42e58e6a675394a3d12c78a0adc37c28ae7dfd2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-260.html",
+      "sha256": "61ec4ab8cc8e51781a2e255d3160035355f9f9cad7415e9df7dfe3b152f37a35"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-310.html",
+      "sha256": "2671d0cbf6a8fcfdd2ece8b3b71935ec713102dced0dd843f6889e3e685b372d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-320.html",
+      "sha256": "275404d1c7fff0fc3248217e9f23a40787f117385f63c71017c46578141d9c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-330.html",
+      "sha256": "8482e84f9f66761a46c50223243460458f79f3bc4c5ddff7ff2f609070020c75"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-340.html",
+      "sha256": "32d093b2995632546a8fbee183d46c21d83d23ffff08e93b3a4d1dfefe328e3e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-350.html",
+      "sha256": "2238afedd405ff6bc6f74fa1b29d576cd0b476abb90ed1ff7c8ee252f1d3ab78"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-360.html",
+      "sha256": "956f3955b6b35af1f9239b9cefdddb63546f755a04e5bd410319fbeb24ca5b32"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-410.html",
+      "sha256": "b8f263718a1b3e64dfea18f90f19e86060665b4cd9795e763ca20943d50620dd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-420.html",
+      "sha256": "0554a4f2a4926192b8ab4a08098fc17cdb224922a67933460cbbf164165d2284"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-430.html",
+      "sha256": "c5a5ef90a90ae0c001c2354fb966fbecb8c4201d9219130cf70ba5a21850a4ca"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-440.html",
+      "sha256": "ae58b2609cee386c0df1569bb63d4e09f6823e3c186198de80008e3a84ed6577"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-450.html",
+      "sha256": "673034ede61d860657418f908d69c52016c428200c6914033c39024ff8c38f3a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-510.html",
+      "sha256": "efa64ce248a50b58ffa07eab58dce553d3ecc11a5a88a827afaa3d66737f1bbd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-520.html",
+      "sha256": "2c4c53ebfa43e35706bd16a9aea308ce74e501f6a325b131ac24aa7c57030df0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-530.html",
+      "sha256": "2cf9c1f470ee37461a623421eb84da5fcab2a6985ccd06ef1f5f45682705d7f3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-540.html",
+      "sha256": "46b4c523ba103aa1f02bdcb5c5362997d517a734ea53ea1a7ab7d3f1f969aa1e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-610.html",
+      "sha256": "b468509bc2323cd33263197b4f8ffdfbb6a9687fb6108cf5626f01b777ef4db6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-620.html",
+      "sha256": "e46f24311bb01cfa8178c10fa8df3c8e72f51ae6f61a4f8e0da8002c7e21b81c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-630.html",
+      "sha256": "a60ef547402f70f565a31e0fecb26a1e018685f3abaf7967c06238ebc6a60a12"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-710.html",
+      "sha256": "872d2ad4ee5fb6901e89b74f1b601ab946eb04839a2b67a5911029fe91b6fd1f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-720.html",
+      "sha256": "6f63892cf7c929f49f64cc5f685962d71b643d28032d3df14bdae17354a086a5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-730.html",
+      "sha256": "991486dbf6c9093dc316e1762d1832a70e42a0c9ed385e16b9cc47b627b89d97"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-740.html",
+      "sha256": "6aeea4f265165cd97c1dcb8c672d5c5f2ec450e2b15ebf4a99390ddd81674cb6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-750.html",
+      "sha256": "f19100dd479ee15cd05375e68712c3e09bff0de74ca21bd628c1faf588a547d1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-760.html",
+      "sha256": "f9307fbac5dcba1a4a44e761a44f0a4ee62396942d70de14708e7cf49e898200"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-770.html",
+      "sha256": "d88c9daa11f74ba63ab1e8ba4688735ea42cc9f27019b9cf34e17570d9f5a7d5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-810.html",
+      "sha256": "f657117df8bce2143bcb8b61f14269bc9c214feec6ad22bb5fe467cfc57cb36b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-820.html",
+      "sha256": "d1efb3bf6db0fdb9e13677e05e4b0b7b268aa6c8de48f13ca5f8e9f59c2d5445"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-830.html",
+      "sha256": "f8324d520cb11e54881c649fce8ce3757007fba5f9bf361d1c0ae5c7c81ea902"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-840.html",
+      "sha256": "c0b146bba97516947b41c76eaad8bf85afd22d63ed0404b0c1b8dc9dc35c3934"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-850.html",
+      "sha256": "6d285ae9205a909f74cf9013e7fbf055c051a0262f8f0ff63a483b000d94836e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-860.html",
+      "sha256": "eaed653a21ce85fc263958f10c6e102adac65a9acb62a834c0b6027923bba303"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-870.html",
+      "sha256": "ff98501c08848638baf6fad0171368447b0f61986117018ccefc41853f556c1f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-880.html",
+      "sha256": "ed0d88724e9ec8fb874aa3fdd20cc45fe0c3fe4f26940079c16b2a14289ce61d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-910.html",
+      "sha256": "31a1e264aa80b0384d13adfddf96ca0197400176cf4a2d41878807f6cb187189"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-920.html",
+      "sha256": "18e38ef04a13b8be3bfbc67d27e4c73bfb1bb65e562227ce370f2e789534364e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-930.html",
+      "sha256": "87232ac5f59b955f62a187fb3ce7480db9794fdc45b7fb2689681bb82ab1c5d8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-940.html",
+      "sha256": "68d54f15194c25763a7068796508f612454878eecd55d31e1514198b0976ff2c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-tx-medicaid-twh-a-950.html",
+      "sha256": "95afad3f5738eafa08192dcd6177473f5aadabc1498f7142875583bdee6a0336"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-tx-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5026,
+    "missing_count": 0,
+    "provision_count": 5026,
+    "source_count": 5026
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:54:25.702364+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FZUJOJ6U+MO3kfbbA+qpoGIfswd8iIzA5xVMJe8oZlb18VygMqRDmEEru1KSEYepXmVPAQOWw7+ugDPK57NmDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

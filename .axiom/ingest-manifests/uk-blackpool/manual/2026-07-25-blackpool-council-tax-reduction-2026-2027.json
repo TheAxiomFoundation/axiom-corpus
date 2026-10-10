@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-blackpool/manual/2026-07-25-blackpool-council-tax-reduction-2026-2027.json",
+      "sha256": "14cbab0ba413d79cd3e8403244cca4f345929215bd010ab0f39310cdd62c9063"
+    },
+    {
+      "path": "data/corpus/inventory/uk-blackpool/manual/2026-07-25-blackpool-council-tax-reduction-2026-2027.json",
+      "sha256": "fa263797a3862754ced23e37ef4790c3b176586e8ff4c0ded9845495868af141"
+    },
+    {
+      "path": "data/corpus/provisions/uk-blackpool/manual/2026-07-25-blackpool-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "83721ee5d768fe6891a6d5cc2e019306957d1612e1b9c678343232c7cd170854"
+    },
+    {
+      "path": "data/corpus/sources/uk-blackpool/manual/2026-07-25-blackpool-council-tax-reduction-2026-2027/official-documents/blackpool-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "722784892f57872e5db4f30eca339a9c0537587a06c56305a5ccf4bd793250ef"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-blackpool-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-blackpool-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 138,
+    "missing_count": 0,
+    "provision_count": 138,
+    "source_count": 138
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:26.110568+00:00",
+  "jurisdiction": "uk-blackpool",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "i865Gb+1fNDwVNHPHrtONhWJ0fOtRMDKZvwBQbetEj40AsvFASIAjasf7YNsq4jmn2WYQo46BdosKMIN4MIbAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-blackpool-council-tax-reduction-2026-2027"
+}

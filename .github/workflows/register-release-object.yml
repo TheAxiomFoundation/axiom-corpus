@@ -1,0 +1,138 @@
+name: Register existing signed release object
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_run_id:
+        description: Successful publication workflow run containing the signed object
+        required: true
+        type: string
+      release:
+        description: Expected immutable release name
+        required: true
+        type: string
+      content_sha:
+        description: Expected signed release object content_sha256
+        required: true
+        type: string
+
+concurrency:
+  group: register-corpus-release-object
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  register:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: release-preview
+    env:
+      RELEASE_NAME: ${{ inputs.release }}
+      CONTENT_SHA: ${{ inputs.content_sha }}
+      RELEASE_OBJECT: ${{ github.workspace }}/signed-release-object.json
+    steps:
+      - name: Validate immutable identity inputs
+        run: |
+          set -euo pipefail
+          [[ "$CONTENT_SHA" =~ ^[0-9a-f]{64}$ ]] || {
+            echo "::error::content_sha must be 64 lowercase hexadecimal characters."
+            exit 1
+          }
+          [[ "$RELEASE_NAME" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || {
+            echo "::error::release must contain lowercase alphanumeric segments."
+            exit 1
+          }
+          [ "${#RELEASE_NAME}" -le 128 ] || {
+            echo "::error::release name is too long."
+            exit 1
+          }
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.14"
+
+      - name: Install package before exposing production credentials
+        run: python -I -m pip install -e .
+
+      - name: Verify official publication workflow run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISH_RUN_ID: ${{ inputs.publish_run_id }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          [[ "$PUBLISH_RUN_ID" =~ ^[1-9][0-9]*$ ]] || {
+            echo "::error::publish_run_id must be a positive integer."
+            exit 1
+          }
+          gh api "repos/$REPOSITORY/actions/runs/$PUBLISH_RUN_ID" \
+            > "$RUNNER_TEMP/publication-run.json"
+          jq -e '
+            .event == "workflow_dispatch"
+            and .status == "completed"
+            and .conclusion == "success"
+            and .head_branch == "main"
+            and .path == ".github/workflows/publish.yml"
+          ' "$RUNNER_TEMP/publication-run.json" > /dev/null || {
+            echo "::error::publish_run_id is not a successful official main publication."
+            exit 1
+          }
+
+      - name: Download signed publication object
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/publication
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.publish_run_id }}
+
+      - name: Select the single signed object
+        run: |
+          set -euo pipefail
+          mapfile -t objects < <(find "$RUNNER_TEMP/publication" -maxdepth 1 \
+            -type f -name '*-release-object.json')
+          if [ "${#objects[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one signed release object artifact."
+            exit 1
+          fi
+          mv "${objects[0]}" "$RELEASE_OBJECT"
+
+      - name: Register verified immutable object without activation
+        env:
+          AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          for value in AXIOM_CORPUS_RELEASE_PUBLIC_KEY SUPABASE_ACCESS_TOKEN; do
+            if [ -z "${!value}" ]; then
+              echo "::error::Required registration value $value is not set."
+              exit 1
+            fi
+          done
+          python scripts/apply_release_activation_upload_migration.py
+          python scripts/apply_release_object_staging_migration.py
+          python scripts/stage_release_object.py \
+            --release-object "$RELEASE_OBJECT" \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --expected-project-ref swocpijqqahhuwtuahwc \
+            | tee "$RUNNER_TEMP/release-registration.txt"
+          cat "$RUNNER_TEMP/release-registration.txt" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Registration summary
+        if: always()
+        run: |
+          {
+            echo "### Existing signed release registration"
+            echo
+            echo "This workflow verifies and registers one immutable signed object."
+            echo "It does not install release scopes or move serving pointers."
+          } >> "$GITHUB_STEP_SUMMARY"

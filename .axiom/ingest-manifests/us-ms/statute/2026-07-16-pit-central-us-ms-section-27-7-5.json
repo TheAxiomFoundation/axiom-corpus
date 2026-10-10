@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5.json",
+      "sha256": "388a829e0c6175f9a06a2148eed1e6cf0e97a8da58623a4fb8e970193706d0cc"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5.json",
+      "sha256": "8ccbb757242d201225fba1860e48a2b1cbfdc6d50dcfd4d56a7d77659b032651"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5.jsonl",
+      "sha256": "35a66295b98139d674b7e64fd5528204cea27d9c92da629f5dcd4f17b5bb5098"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5/mississippi-department-of-revenue/2026-individual-income-tax-rates.html",
+      "sha256": "4a4646ea6f62995155cad10874909a0139b9c5e14d6fd8b5f9583c56e08e8494"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5/mississippi-governor/2025-hb-1-signing.html",
+      "sha256": "5c8e7e2ab3cb1b8d60e0de63025f8b06c6d0406161e8b5127af18fe768a02a6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5/mississippi-legislature/2025-hb-1-sg.html",
+      "sha256": "5b04f6b5557c0ae542c57fca7beba06e601fe1bcd556b01e70ed4a8b67f8c7df"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-07-16-pit-central-us-ms-section-27-7-5/mississippi-legislature/2025-hb-1-sg.pdf",
+      "sha256": "04726ec7396a303258c0550efd1ffebf34b7b966768520d6d79a18b06e4a6f19"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:24.200553+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IWFvPpTbRNQ17KQHTN8V3O+Kdm+ZqWNJhNuulwplAROSV60ezIVIv5+eZW6ZIucyZuD2JIwkEvkHDOis2UExAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-ms-section-27-7-5"
+}

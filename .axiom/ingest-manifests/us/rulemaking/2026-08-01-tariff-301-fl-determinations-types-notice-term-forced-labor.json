@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor.json",
+      "sha256": "6f962fec9b3421bacb7c8b31cfa5f87dc89b200c526fe9a5e3acf271401aec6f"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor.json",
+      "sha256": "83903aca287f5accdf6256b905e2da5226d1804826a5e13b1f94310cbb5e9212"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor.jsonl",
+      "sha256": "dbbee7e63aaafd36bd6e12febb91be65e772be70e909260c406a1966f9798ec3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor/federal-register/api/documents-page-1.json",
+      "sha256": "0697d87196ca03fb704997bc73ebeda7ab6b98e17b0a0c0914f7db9f9fbba419"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor/federal-register/documents/2026-11296.json",
+      "sha256": "0ceac2ae65b944690efc43cc4cc04354c5bcf3873a4f336a50a3bf9e17923aa5"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor/federal-register/documents/2026-11296.txt",
+      "sha256": "d9c9193173131935640c34cda62711e457632edd18e68732988f039e5dd76fbe"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8369dd66091dc4fc4d34dcbd7a760b4b3af53b97",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-fl-determinations --start-date 2026-06-05 --document-type NOTICE --term \"forced labor\" --source-as-of 2026-08-01 --expression-date 2026-06-05"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:46:00.289455+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QfBgUtMwS7DQ5VbO1hFsVpfj6Tx+tP/m2gqZ6hcOqYpRa5n6hcwBr1L6UOXB24XBKZXUh4TgMpnn4AAlDCKfAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-fl-determinations-types-notice-term-forced-labor"
+}

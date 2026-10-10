@@ -1,0 +1,88 @@
+{
+ "documents": [
+  {
+   "source_id": "cambridge-council-tax-reduction-scheme-working-age",
+   "jurisdiction": "uk-cambridge",
+   "document_class": "manual",
+   "citation_path": "uk-cambridge/manual/council-tax-reduction-scheme-working-age",
+   "title": "Cambridge Council Tax Reduction Scheme (Persons who are not Pensioners)",
+   "source_url": "https://www.cambridge.gov.uk/media/5olhzv3k/council-tax-reduction-scheme-working-age.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-05",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "source_authority": "Cambridge",
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-continuation",
+    "document_subtype": "council_tax_reduction_scheme",
+    "role": "scheme_text",
+    "effective_scheme_year": "2026-2027",
+    "base_instrument_year": "2023",
+    "identification": {
+     "classification": "ACCEPT-DERIVED",
+     "adopted_by": "cambridge-full-council-minutes-2026-02-26",
+     "chain": "Full Council 26 Feb 2026 item 7b resolves to agree the Executive recommendations, which retain the non-UC working-age scheme and prescribe 2026/27 uprating incl. the UC non-dependant amount; the scheme instrument is the council's published working-age CTR scheme text (commencement 11 March 2023)."
+    }
+   }
+  },
+  {
+   "source_id": "cambridge-full-council-minutes-2026-02-26",
+   "jurisdiction": "uk-cambridge",
+   "document_class": "manual",
+   "citation_path": "uk-cambridge/manual/full-council-minutes-2026-02-26",
+   "title": "Cambridge City Council Minutes, Full Council 26 February 2026",
+   "source_url": "https://democracy.cambridge.gov.uk/documents/g4628/Printed%20minutes%2026th-Feb-2026%2018.00%20Council.pdf?T=1",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-05",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "source_authority": "Cambridge",
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-continuation",
+    "document_subtype": "adoption_minutes",
+    "role": "operative_adoption",
+    "adoption_body": "Full Council",
+    "adoption_date": "2026-02-26",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "ACCEPT-DERIVED",
+     "adopts": "cambridge-council-tax-reduction-scheme-working-age",
+     "carries_amendments": "2026/27 uprating; UC non-dependant weekly amount 8.36",
+     "confirmed_by": "cambridge-council-decisions-2026-02-26"
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  },
+  {
+   "source_id": "cambridge-council-decisions-2026-02-26",
+   "jurisdiction": "uk-cambridge",
+   "document_class": "manual",
+   "citation_path": "uk-cambridge/manual/council-decisions-2026-02-26",
+   "title": "Cambridge City Council Decisions Sheet, 26 February 2026",
+   "source_url": "https://democracy.cambridge.gov.uk/documents/s72268/260226%20Council%20Decisions.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-05",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "source_authority": "Cambridge",
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-continuation",
+    "document_subtype": "decision_record",
+    "role": "adoption_confirmation",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "corroboration-only",
+     "confirms": "cambridge-full-council-minutes-2026-02-26"
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  }
+ ]
+}

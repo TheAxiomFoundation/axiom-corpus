@@ -1,0 +1,26 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-nd-otc-nd-1es-ty2026
+  jurisdiction: us-nd
+  document_class: form
+  title: Form ND-1ES 2026 Estimated Individual Income Tax (SFN 28709, 12-2025)
+  source_url: https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-nd/form/otc/ty2026/nd-1es
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-10-23'
+    amounts_carried:
+    - 2026 Forms ND-1 and ND-EZ tax rate schedules (1.95%/2.5% by filing status)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.tax.nd.gov/forms
+    discovered_via: manual-review:tax-agent-queue; index https://www.tax.nd.gov/forms (read 2026-09-13)

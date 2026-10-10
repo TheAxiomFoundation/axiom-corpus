@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/statute/2026-07-16-pit-west-chapter-71.json",
+      "sha256": "2776dc79b72850fdb8492330ff18dc79f0efc4809ba7589d15b7a6c984e950c5"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/statute/2026-07-16-pit-west-chapter-71.json",
+      "sha256": "16d170446af16a89e4fbf5e16a530752d247141a8a13b390d91433f499083c91"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/statute/2026-07-16-pit-west-chapter-71.jsonl",
+      "sha256": "af1b3afb17c7a3979e4a8ade6d0a56162c7490dfea1f2baeb28d149d52a55147"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-07-16-pit-west-chapter-71/wisconsin-statutes-html/statutes/prefaces/toc.html",
+      "sha256": "6cd0fcef6a521600c126cb8a11e2daa43f0f45aa9a66000c11179c9fb3f99767"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-07-16-pit-west-chapter-71/wisconsin-statutes-html/statutes/statutes/71.html",
+      "sha256": "662f8ba8b5410f11f34b4c8a3d0b6767ce778845287e9fa84ddfd3b6f6e50e98"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 116,
+    "missing_count": 0,
+    "provision_count": 116,
+    "source_count": 116
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:33.053112+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NrabFehYef4mb6Oa8Mp9/bZJrAWVXu98jW3wD9ozcKOpaNA7JvVAe0iu8awcThh+FixMFDi3g8TUppT9MDx0CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-west-chapter-71"
+}

@@ -5,11 +5,10 @@ documents:
     citation_path: us-ri/regulation/218-ricr/20/00/1
     title: Rhode Island SNAP Regulations
     source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
-    source_format: html
-    source_as_of: "2026-05-27"
+    download_url: https://risos-apa-production-public.s3.amazonaws.com/DHS/REG_13456_20260316083651496.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
     expression_date: "2026-04-05"
-    extraction:
-      html_content_selector: "#first"
     metadata:
       primary_source: true
       source_authority: Rhode Island Department of Human Services
@@ -17,5 +16,10 @@ documents:
       document_subtype: administrative_regulation
       program: SNAP
       legal_identifier: 218-RICR-20-00-1
+      filing_type: Amendment
+      agency_signing_date: "2026-03-13"
+      department_of_state_signing_date: "2026-03-16"
+      regulation_effective_date: "2026-04-05"
+      extraction_granularity: pdf_page
       source_discovery_group: us-ri/regulation/snap
       discovered_via: manual-review:state-snap-manual-agent-queue

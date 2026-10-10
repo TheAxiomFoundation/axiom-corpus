@@ -1,0 +1,1 @@
+Register each verified immutable release object during protected publication so activation previews have database-backed publication timestamps, and fail workflow pipelines when a release gate reports an error.

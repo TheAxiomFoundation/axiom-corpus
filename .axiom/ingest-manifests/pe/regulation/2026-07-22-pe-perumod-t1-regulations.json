@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/pe/regulation/2026-07-22-pe-perumod-t1-regulations.json",
+      "sha256": "80c4ba780f2ed256ea767f5c8aa8de1ac4b95593caabf301b51847dadf4051f9"
+    },
+    {
+      "path": "data/corpus/inventory/pe/regulation/2026-07-22-pe-perumod-t1-regulations.json",
+      "sha256": "348487d08e4e3ee3448e322c42a65bd5149bea4d03e26e0545a8846d8038815d"
+    },
+    {
+      "path": "data/corpus/provisions/pe/regulation/2026-07-22-pe-perumod-t1-regulations.jsonl",
+      "sha256": "bd2d06f8a065163de2133aedcafad186d4e6c3d5355dcb74dc1996b4feeceef5"
+    },
+    {
+      "path": "data/corpus/sources/pe/regulation/2026-07-22-pe-perumod-t1-regulations/official-documents/pe-ds-081-2011-pcm-pension-65.pdf",
+      "sha256": "889deabfbd976c4628796cf16ffc2773b41e9f82c87c3dd75e624fcebd6358f5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "449849166e93588ed961dcf12eafadfaafaa6866",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-pe-perumod-t1-regulations --manifest manifests/pe-perumod-t1-regulations-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-23T01:52:15.457657+00:00",
+  "jurisdiction": "pe",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Bz2FBELn8rLG9g8kep1NbpUPHOgMb91OYdaPK7PXQ+bBWv8Vt0FXe69RMClWMY2ASUoxAM4QUd/Aq126111yDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-pe-perumod-t1-regulations"
+}

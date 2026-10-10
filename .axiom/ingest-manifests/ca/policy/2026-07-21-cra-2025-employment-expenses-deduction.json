@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-21-cra-2025-employment-expenses-deduction.json",
+      "sha256": "224757b0a1606b6e9ebac42417420df637261533695afe5ba294c642b479c641"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-21-cra-2025-employment-expenses-deduction.json",
+      "sha256": "6ff1e3f3aea5055cc5d105cdb53899749a081f5957ba1a7f5e37bf15b38f3530"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-21-cra-2025-employment-expenses-deduction.jsonl",
+      "sha256": "76648f8cbefb5e4613097db92e6c5e39a40d4e2305af3ed2c87a4c13ebe52b35"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-cra-2025-employment-expenses-deduction/official-documents/cra-2025-employment-expenses-deduction.pdf",
+      "sha256": "99e767b0c8a2a841f66f516e28b5f9fe631d6dbd4db6eaae36cb7c82b93f1204"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-cra-2025-employment-expenses-deduction/official-documents/cra-2025-employment-expenses-guide-t4044.pdf",
+      "sha256": "b2d9af2221225548d006df065e0ac2b2319e54c4260defe16aacf0174971c5e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-cra-2025-employment-expenses-deduction --manifest manifests/ca-cra-2025-employment-expenses-deduction.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.973593+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cOhJZTXqdWC/XKP4v6Y2dSeuqnN20J+jlML2gaF93/+SzREbUqBaLGIdbID99/7FmrkUlkt7+hfc/bme5jAjAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-cra-2025-employment-expenses-deduction"
+}

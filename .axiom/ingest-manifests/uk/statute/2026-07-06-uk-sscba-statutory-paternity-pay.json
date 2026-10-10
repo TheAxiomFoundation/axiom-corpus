@@ -11,28 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay.jsonl",
       "sha256": "7d9e7388403a2ed8e4b7637b60b39a640bbf1b9bbcb7b4348c17f689d263a57b"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/ukpga/1992/4/section-171ZA.xml",
-      "sha256": "3e98f6c209456a97ecc658b3575d1dfac5171e684f2c602c68a733ca6c6cfa72"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/ukpga/1992/4/section-171ZB.xml",
-      "sha256": "d035957a810f99a1617a7e9659503f8480cac43471f7b103d00a52557c00c058"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/ukpga/1992/4/section-171ZE.xml",
-      "sha256": "a52d4fc068242a20769f8423f844102022dbbf67630c94bb916adebe63b88be0"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/ukpga/1992/4/section-171ZJ.xml",
-      "sha256": "2391d431235fe0b67b5e0ddc1551bb6b98665346e77edb49d27172b28fb5fa5d"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5edfd598bc8ae0ac9c9030847da97dc477026f23",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/uk-statpay-wave-20260706/axiom-corpus"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -47,7 +31,7 @@
     "source_count": 4
   },
   "document_class": "statute",
-  "generated_at": "2026-07-06T18:50:34.675747+00:00",
+  "generated_at": "2026-07-21T11:57:43.229280+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
@@ -59,7 +43,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "laP3FQEWzCJF7Jz8KLV3JlVdznxi46Fx6w/Nj6QFS8Vlu04ThjIcd3WKvIEE998FJKcNyn0arkJPanYYnfjpCg=="
+    "value": "HyQWX5uc36HrEbNMb6+7sscE68O5KUKGISsUcVlp0qgvZR5aek+Sf1KXrAF8+ucXzTk97Kg+GZKsB81mFpBICA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-uk-sscba-statutory-paternity-pay"

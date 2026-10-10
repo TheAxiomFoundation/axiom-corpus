@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "1f65766e9539fdb0feb31b1beb3a9e6ebf7ec35c37c926e05978ea493920c172"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "affa8473a22e0291a12e6290fe016de82f159b822f7adfa028ddada6f6e4d3d9"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "6fcc235204ddc623874858de502bf07a674600abb28fd18239e51bdefa76358e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-a.pdf",
+      "sha256": "546a01adeb8fcb9eefa0143ab674b1aa710750e05c7b8f14ec724348b75414c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-b.pdf",
+      "sha256": "9d2802a874c04208cdc1e48a1b2e046b454f6dcf7cc172a8b661cd70c153cf98"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-c.pdf",
+      "sha256": "97aa4d5940f9fb3ed3052bd03b1632ed494161067f9e0b60d80d39234735e9e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-d.pdf",
+      "sha256": "e780a4c7ca54e1057d314ea5c1e46be7e8983e6d6306176d5440c6311e2c56db"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-e.pdf",
+      "sha256": "48a8503751293c793d747f5f11d60a99eb7386fb699b7c4d79491c06a3cedf2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-f.pdf",
+      "sha256": "79f9bb05288833f55c15cd889683df181b963ce7a3b22227b41cc448222d3613"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-g.pdf",
+      "sha256": "019056cbd7e98a970d559ce5b148ae6de78762f3d90bebbc4646bdac961bf312"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-h.pdf",
+      "sha256": "783206ff4a08b8f1d3b3605cd2a5201e3dbdf4ad1baad9a0e2ff53d2a78df274"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-i.pdf",
+      "sha256": "85280eaf362dcfcc32490afc6b8e1cc1ad2fe2087477b625aac944951e5e8574"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-j.pdf",
+      "sha256": "174f6594d2e6d3321ce25b2b53d590b3194c385642a6b7c427210a2d2953a5fb"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-k.pdf",
+      "sha256": "c49e859711343131cd0c926820fc8f794049a61840ba995384cfa025517f2da5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-l.pdf",
+      "sha256": "2eac0986de548a28f00405020396e904e031301bf48ca7a59494d76b9ed1be11"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-m.pdf",
+      "sha256": "8a6715ed317b4db9cf1bdfd44384a26a3598a78a04d44a9ada7a827ea4ffa9ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ia-medicaid-employees-manual-8-n.pdf",
+      "sha256": "b3c8c25f9491259295018b9cae4f3a099dfd357fb2a47b29555bc972b8b7f45a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ia-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1199,
+    "missing_count": 0,
+    "provision_count": 1199,
+    "source_count": 1199
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:45:41.761878+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oJ/+jms1WN4warB/Ze8ECcnb+lCIgj++bgMnjMijSbJ8Agh6+wVP/L6AaFadmA6rrSN3Aqxco5qv6qmqHUUbDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

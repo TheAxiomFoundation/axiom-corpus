@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-milton-keynes/manual/2026-07-25-milton-keynes-council-tax-reduction-2026-2027.json",
+      "sha256": "e4d43756d0d29a19ba9d6fafa31fecaea458b01fc41627ae588e02d9e1187d41"
+    },
+    {
+      "path": "data/corpus/inventory/uk-milton-keynes/manual/2026-07-25-milton-keynes-council-tax-reduction-2026-2027.json",
+      "sha256": "fd66986fcb80337c6b91f0359c41a0a236a90d69c0992956b03b798d50059d29"
+    },
+    {
+      "path": "data/corpus/provisions/uk-milton-keynes/manual/2026-07-25-milton-keynes-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "d44d1a567c56cccb2292c0f413533c97f43d2b7e77cba462063503dcdc11ab28"
+    },
+    {
+      "path": "data/corpus/sources/uk-milton-keynes/manual/2026-07-25-milton-keynes-council-tax-reduction-2026-2027/official-documents/milton-keynes-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "c70e03a79f0c63489c1719eac08dcee0e9c4437f7e66d57170f5287be1b85cbd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-milton-keynes-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-milton-keynes-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 323,
+    "missing_count": 0,
+    "provision_count": 323,
+    "source_count": 323
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:31.689785+00:00",
+  "jurisdiction": "uk-milton-keynes",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hCTR3zXdiigQWCNdpPpCLqO8IOH2AnC5wY09GSXPvRSh1vG2Ke7OvmAZYeTnxN/i7kSEkOw4ia+msWDWkvwMCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-milton-keynes-council-tax-reduction-2026-2027"
+}

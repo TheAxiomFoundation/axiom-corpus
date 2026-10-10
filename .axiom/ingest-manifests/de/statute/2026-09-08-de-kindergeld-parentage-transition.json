@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-parentage-transition.json",
+      "sha256": "7c9201615a8be0a5f0e25cd8ba337ae2e73398ca9df178a9cad0edc0a818d8b1"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-parentage-transition.json",
+      "sha256": "6a3c0ab21d4487fc69adf4fb063af1829d7c9c1e0f54731ee53764e11361dc64"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-transition.jsonl",
+      "sha256": "c8bafa5f3805c99097ecea6c1f89ecf3f036ff560562776b35f3ab4229f06059"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-transition/bgbeg/BJNR006049896.xml",
+      "sha256": "c57de5f1ae86a97cb57b15e78d7d33dc16c82203bbcf16453385256ff8438a33"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-transition/sbgg/BJNR0CE0B0024.xml",
+      "sha256": "5f24065c1d672d3ddab36ec7c032b806c64b5bedbf5cee31da26a2cfcab2674a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1447584b5eeee8f568d9f9f29a7819336d183c41",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Existing official-document OCR / GII CLI capture; exact commands and retained-source replay in docs/ingest-runs/2026-09-08-de-kindergeld-parentage.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 535,
+    "missing_count": 0,
+    "provision_count": 535,
+    "source_count": 535
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T17:48:58.061880+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-audit.json",
+      "sha256": "63e9e346586414098f6cba843abf7819e0afaf5668924810b726d18f666d63c9"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage.md",
+      "sha256": "72f3e9e8acc298c88e27b3a80ded900b0a026b722c2666a5e59356f598da5322"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xdlj8SGkU+ZyBlW6NU4tkyuCeJtahRa8XVgcSSoPolynb5GDyK5cLmdzcBF7sSEY0LZQietQcfgMEEW2Ymi/DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-parentage-transition"
+}

@@ -1,0 +1,77 @@
+documents:
+  - source_id: us-wy-state-portal-about-wyoming
+    jurisdiction: us-wy
+    document_class: guidance
+    title: State of Wyoming About Wyoming
+    source_url: https://www.wyo.gov/about-wyoming
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2025-10-16"
+    citation_path: us-wy/guidance/state-portal/about-wyoming
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: anchor_range
+      html_content_selector: 'div:has(> h2#h\.a6uqktcdayvo_l)'
+      html_start_selector: 'h2#h\.a6uqktcdayvo_l + p'
+      section_label: operative-text
+      section_heading: State of Wyoming individual income-tax absence
+    metadata:
+      primary_source: true
+      source_authority: State of Wyoming
+      document_subtype: current_state_portal
+      program: individual_income_tax
+      tax_year: "2026"
+      page_updated_at: "2025-10-16T19:49:55Z"
+      source_status: current_official_state_portal
+      certification_scope: individual_income_tax_pre_credit_absence
+      final_return_certification: false
+      source_note: >-
+        The current official State of Wyoming portal affirmatively states that
+        Wyoming does not possess an individual or corporate income tax. The
+        page was last updated October 16, 2025 and displays a 2026 State of
+        Wyoming copyright. This intake supports the absence of a tax-year-2026
+        resident individual income tax through the pre-credit tax stage. It
+        does not certify a complete nonrefundable-credit, refundable-credit,
+        or signed net-liability surface, and it excludes business and entity
+        taxes, payments, filing administration, local taxes, and nonresident
+        allocation.
+
+  - source_id: us-wy-lso-2026-gaming-revenue-distribution-and-taxation-rates
+    jurisdiction: us-wy
+    document_class: guidance
+    title: Wyoming Legislative Service Office Gaming Revenue Distribution and Taxation Rates in Other States
+    source_url: https://wyoleg.gov/InterimCommittee/2026/S44-20260514LSOShortReport-GamingRevenueDistributionandTaxRatesinOtherStates.pdf
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-05-01"
+    citation_path: us-wy/guidance/lso/2026/gaming-revenue-distribution-and-taxation-rates
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 22
+          end_page: 22
+      drop_line_patterns:
+        - '^PAGE 22 OF 23$'
+        - '^LSO RESEARCH AND EVALUATION DIVISION'
+        - '^TELEPHONE 307-777-7881'
+    metadata:
+      primary_source: true
+      source_authority: Wyoming Legislative Service Office
+      document_subtype: legislative_research_short_report
+      program: individual_income_tax
+      tax_year: "2026"
+      publication_date: "2026-05"
+      source_status: current_official_2026_lso_report
+      certification_scope: state_income_tax_pre_credit_absence
+      final_return_certification: false
+      source_note: >-
+        The official May 2026 Wyoming Legislative Service Office report states
+        that Wyoming does not have a state income tax and explains that neither
+        sweepstakes-casino operators nor players are taxed by the state. This
+        current legislative research source corroborates the state portal's
+        explicit individual-income-tax absence for tax year 2026. It does not
+        certify a complete nonrefundable-credit, refundable-credit, or signed
+        net-liability surface, and it does not establish the treatment of
+        business or entity taxes, payments, filing administration, local
+        taxes, or nonresident allocation.

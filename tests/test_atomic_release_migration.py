@@ -1,6 +1,12 @@
 from pathlib import Path
 
 MIGRATION = Path("supabase/migrations/20260710180000_atomic_named_release_activation.sql")
+PROFILED_RELEASE_MIGRATION = Path(
+    "supabase/migrations/20260719043000_profiled_release_activation.sql"
+)
+STAGED_RELEASE_OBJECT_MIGRATION = Path(
+    "supabase/migrations/20260803175000_stage_signed_release_object.sql"
+)
 
 
 def test_migration_installs_immutable_release_object_and_single_pointer() -> None:
@@ -158,3 +164,48 @@ def test_activation_stores_memberships_under_the_validated_release_name() -> Non
         in sql
     )
     assert "INSERT INTO corpus.release_scopes (\n    v_release_name," not in sql
+
+
+def test_profiled_release_migration_accepts_v3_without_dropping_v2_replay() -> None:
+    sql = PROFILED_RELEASE_MIGRATION.read_text()
+
+    assert "CREATE OR REPLACE FUNCTION corpus.activate_corpus_release" in sql
+    assert "'axiom-corpus/release-object/v2'" in sql
+    assert "'axiom-corpus/release-object/v3'" in sql
+    assert "COALESCE(p_release_object ->> 'schema_version', '') NOT IN" in sql
+    assert (
+        "p_release_object #>> '{content,quality_profile}'\n"
+        "       IS DISTINCT FROM 'complete-expression-dates-v1'"
+    ) in sql
+    assert (
+        "p_release_object #>> '{content,validation,quality_profile}'\n"
+        "       IS DISTINCT FROM p_release_object #>> '{content,quality_profile}'"
+    ) in sql
+    assert "FROM anon, authenticated, service_role, PUBLIC" in sql
+
+
+def test_signed_release_object_staging_is_immutable_and_does_not_move_serving() -> None:
+    sql = STAGED_RELEASE_OBJECT_MIGRATION.read_text(encoding="utf-8")
+
+    assert "FUNCTION corpus.stage_corpus_release_object(p_release_object jsonb)" in sql
+    assert "INSERT INTO corpus.release_objects" in sql
+    assert "ON CONFLICT (release_name) DO NOTHING" in sql
+    assert "pg_advisory_xact_lock(hashtextextended(v_release_name, 0))" in sql
+    assert "FUNCTION corpus.guard_corpus_release_object_insert()" in sql
+    assert "CREATE TRIGGER guard_corpus_release_object_insert" in sql
+    assert "BEFORE INSERT ON corpus.release_objects" in sql
+    assert "pg_advisory_xact_lock(hashtextextended(NEW.release_name, 0))" in sql
+    assert "immutable corpus release name already exists with another digest" in sql
+    assert "immutable corpus release name already exists with another object" in sql
+    assert "corpus release object lacks an Ed25519 signature" in sql
+    assert "INSERT INTO corpus.release_scopes" not in sql
+    assert "active_scope_pointer" not in sql
+    assert "scope_activation_history" not in sql
+    assert (
+        "REVOKE EXECUTE ON FUNCTION corpus.stage_corpus_release_object(jsonb)\n"
+        "  FROM anon, authenticated, service_role, PUBLIC"
+    ) in sql
+    assert (
+        "GRANT EXECUTE ON FUNCTION corpus.stage_corpus_release_object(jsonb)\n"
+        "  TO postgres"
+    ) in sql

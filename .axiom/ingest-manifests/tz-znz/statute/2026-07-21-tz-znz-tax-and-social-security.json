@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security.json",
+      "sha256": "3dca84c761b64d992f5d8130d19ea601ce96c38e239b8943fac03d2340b4d9b3"
+    },
+    {
+      "path": "data/corpus/inventory/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security.json",
+      "sha256": "6435bd460dc373036bee020bd30adde49445fb068845d83fd958b8fb55cf6bdc"
+    },
+    {
+      "path": "data/corpus/provisions/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security.jsonl",
+      "sha256": "3755c11677db1083cb5e6ea95aedafae88ca2d4e735eceb9e02c16007f3c57a0"
+    },
+    {
+      "path": "data/corpus/sources/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security/official-documents/tz-znz-act-1998-4-value-added-tax-re2025.pdf",
+      "sha256": "04b2313662d70f3b95ef9a00aabab51beb06bab17f0bc9b8d35d1f0746e6d529"
+    },
+    {
+      "path": "data/corpus/sources/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security/official-documents/tz-znz-act-2005-2-zanzibar-social-security-fund.pdf",
+      "sha256": "36590401439ea686a59d7ededa153849e0e311330ff139aac4f42c0a7a1dbda1"
+    },
+    {
+      "path": "data/corpus/sources/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security/official-documents/tz-znz-act-2017-8-excise-duty-re2025.pdf",
+      "sha256": "0e59981526c33b138344f61494cc749b0445d5a1ae3a8a0eb7ecdaecc638dd82"
+    },
+    {
+      "path": "data/corpus/sources/tz-znz/statute/2026-07-21-tz-znz-tax-and-social-security/official-documents/tz-znz-act-2022-10-written-laws-miscellaneous-amendment.pdf",
+      "sha256": "91840712c1b42c5a3389f1dd0eae32b7e1b353f2ef962d02e2508fe1dd232f2b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "069337c28782d63bf9d4da82d50684843b15be86",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-tz-znz-tax-and-social-security --manifest manifests/tz-znz-zanmod-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T19:25:57.747728+00:00",
+  "jurisdiction": "tz-znz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xXsod1OFVJO7dyeZZQQdsMxprB9htkIdFEeBKv5wKxepeGZMkr47sqEocHXW7L32sDzVshPz8RTYbMXsIJb2Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-tz-znz-tax-and-social-security"
+}

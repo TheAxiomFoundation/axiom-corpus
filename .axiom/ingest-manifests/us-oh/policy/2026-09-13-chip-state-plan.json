@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "f6f165ab9fbe02853429572d1c26995a3e9ae9cb30249a8e175366e9c9b3f1d7"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "374f218a5eaf55f1923cba807592d27e69d63002a6048ab13faad83c53279e3e"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "96e9fe68431345d080db50c556489ab66c71e03f04627c3a386b00e1e988399f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "334b84da15b0b351c1c3227f7d170ffca75bb6e2dbd657134c01729c4e5028b4"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "3ae34ec8a5b0395d56c34a9a9195c68c5e6fefd0a1e112af2ecfe0a8c7025dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "2c53828618c2546ea4d45a9bb8125161b0425ac4a30337d7f30493ede08d8969"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-oh-14-0011-approval-package.pdf",
+      "sha256": "aa1f48eeee348dbbbf68a0d1fd37e9defc5b38132459c887485dbbb0ae0fc398"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-oh-14-0012-approval-package.pdf",
+      "sha256": "ca914f7f0c576339628fe66aa35978db9e8d441ce81c0f0b2404f1cb8f1f4909"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-oh-17-0038-approval-package.pdf",
+      "sha256": "ab1032d3f2784ccb8a9d1dbda292e473161ea926190aab238df5b9a0eb9e7562"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-oh-21-0037-approval-package.pdf",
+      "sha256": "585dd18030ddbca77b6d83d6b41b04d046bbdb8702d6879e3c19af99d48e6e0b"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-oh-26-0006-approval-package.pdf",
+      "sha256": "c57a805a0a0640c6e09694dbd4e87096e049c31b35fb504f9e02123163d6d26f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-chip-state-plan/official-documents/us-oh-cms-chip-state-plan-spa-oh-cspa-5-approval-package.pdf",
+      "sha256": "ffed446effbd93783445d6742dcc1b18d7dce4fdda056106ba2faddecace0a27"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 414,
+    "missing_count": 0,
+    "provision_count": 414,
+    "source_count": 414
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:16:57.515215+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cdu87Cdisb21yUg5cuAYHpCX/s7R3QZY7fmVQd76/CXtF//tMRiVrXe9w+YWvXx/Map4EPo8y2w5pIC0g0nuCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}

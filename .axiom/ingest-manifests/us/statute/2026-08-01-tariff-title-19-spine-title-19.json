@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-01-tariff-title-19-spine-title-19.json",
+      "sha256": "05aa9f77a516639e22724d1d54439a46556ebd140461036037c1be65368f7abb"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-01-tariff-title-19-spine-title-19.json",
+      "sha256": "07e2bac4fe3fad973186f892e7fc4ca084f301111d0667e4017c13db17e00b67"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-01-tariff-title-19-spine-title-19.jsonl",
+      "sha256": "a5c5216a3b29b105c9021b6aaf00196f07b37c52c294df89a1254de3e2f10f31"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-01-tariff-title-19-spine-title-19/uslm/usc19.xml",
+      "sha256": "cd21e6796f9f0baa403d21a37a0a2d70ecfedae92b879e1b7b06738a67591c67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-usc --base data/corpus --version 2026-08-01-tariff-title-19-spine --source-xml /tmp/usc19.xml --title 19 --section 1202 --section 1401a --section 1321 --section 1862 --section 2411 --section 2251 --section 2132 --source-as-of 2026-07-23 --expression-date 2026-07-23 --source-url \"https://uscode.house.gov/download/releasepoints/us/pl/119/102/xml_usc19@119-102.zip\""
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 325,
+    "missing_count": 0,
+    "provision_count": 325,
+    "source_count": 325
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-01T12:58:00.561723+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VZr3kVj4nNCSA0RqeO+Ggie41eFWfzmuMMU4f0H83MGKS9h+q90QZ4E9g1MnLV6E6jEk69pBX/p0VLlTLIODCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-title-19-spine-title-19"
+}

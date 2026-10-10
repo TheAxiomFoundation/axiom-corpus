@@ -1,0 +1,96 @@
+documents:
+  - source_id: us-fl-constitution-article-vii-section-5
+    jurisdiction: us-fl
+    document_class: statute
+    title: Florida Constitution Article VII, Section 5
+    source_url: https://www.flsenate.gov/Laws/Constitution/Article7
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-fl/statute/constitution/article-vii/section-5
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: 'div.Section:has(a[name="A7S05"])'
+    metadata:
+      primary_source: true
+      source_authority: Florida Senate
+      legal_identifier: Fla. Const. art. VII, § 5
+      document_subtype: state_constitution
+      program: individual_income_tax
+      source_status: current_official_constitution
+      source_note: >-
+        Current official constitutional boundary for taxes on the income of
+        natural persons who are Florida residents or citizens.
+
+  - source_id: us-fl-statutes-section-220-02
+    jurisdiction: us-fl
+    document_class: statute
+    title: Florida Statutes Section 220.02
+    source_url: https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0200-0299%2F0220%2FSections%2F0220.02.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-fl/statute/title-xiv/chapter-220/section-220-02
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#statutes div.Section"
+    metadata:
+      primary_source: true
+      source_authority: Florida Legislature
+      legal_identifier: Fla. Stat. § 220.02
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_2025_florida_statutes
+      source_note: >-
+        Current official statutory construction excluding natural persons
+        operating as proprietors, partners, or members or managers of
+        partnership-classified limited liability companies from chapter 220.
+
+  - source_id: us-fl-statutes-section-220-03
+    jurisdiction: us-fl
+    document_class: statute
+    title: Florida Statutes Section 220.03
+    source_url: https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0200-0299%2F0220%2FSections%2F0220.03.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-fl/statute/title-xiv/chapter-220/section-220-03
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "#statutes div.Section"
+    metadata:
+      primary_source: true
+      source_authority: Florida Legislature
+      legal_identifier: Fla. Stat. § 220.03
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_2025_florida_statutes
+      source_note: >-
+        Current official definition limiting a chapter 220 taxpayer to a
+        corporation subject to the tax imposed by that code.
+
+  - source_id: us-fl-laws-chapter-2026-137
+    jurisdiction: us-fl
+    document_class: statute
+    title: Laws of Florida Chapter 2026-137
+    source_url: https://laws.flrules.org/2026/137
+    source_format: pdf
+    source_as_of: "2026-07-24"
+    expression_date: "2026-06-11"
+    citation_path: us-fl/statute/session-laws/2026/chapter-137
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Florida Legislature
+      legal_identifier: Ch. 2026-137, Laws of Florida
+      document_subtype: state_session_law
+      program: individual_income_tax
+      source_status: enacted_2026_session_law
+      source_note: >-
+        Current enacted amendment to section 220.03. Section 1 amends only
+        paragraph (1)(n) and paragraph (2)(c), preserving paragraph (1)(z)'s
+        definition of taxpayer as a corporation.

@@ -1,0 +1,801 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-or-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 287
+- source_id: us-or-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 287
+- source_id: us-or-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 87
+    index_records_total: 287
+- source_id: us-or-cms-medicaid-state-plan-spa-or-24-0009-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-24-0009: Approval Document (approved May 24, 2024, effective April 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-24-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-24-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-24-0009
+    cms_node_id: '165051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165051
+    approval_date: '2024-05-24'
+    effective_date: '2024-04-01'
+    summary: This amendment removes the requirement to obtain employer sponsored insurance as a condition of Medicaid eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-23-0033-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-23-0033: Approval Document (approved February 13, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-23-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-23-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-23-0033
+    cms_node_id: '159401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159401
+    approval_date: '2024-02-13'
+    effective_date: '2023-10-01'
+    summary: This amendment is to disregard certain compensation payments from income and resources when determining financial
+      eligibility.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-23-0010-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-23-0010: Approval Document (approved June 14, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-23-0010
+    cms_node_id: '149296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=149296
+    approval_date: '2023-06-14'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORD Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-22-0010-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-22-0010: Approval Document (approved May 16, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-22-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-22-0010
+    cms_node_id: '135856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135856
+    approval_date: '2022-05-16'
+    effective_date: '2022-04-01'
+    summary: This amendment is in compliance with specific third party liability requirements outlined in the Bipartisan Budget
+      Act of 2018 and the Medicaid Services Investment and Accountability Act of 2019.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-21-0012-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-21-0012: Approval Document (approved August 26, 2021, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/OR-21-0012
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-21-0012/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-21-0012
+    cms_node_id: '125566'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125566
+    approval_date: '2021-08-26'
+    effective_date: '2022-01-01'
+    summary: This SPA proposes to expand the full continuum of substance use disorder care by increasing access to certain
+      services to beneficiaries diagnosed with a substance use disorder.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-21-0010-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-21-0010: Approval Document (approved June 16, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-21-0010
+    cms_node_id: '110606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110606
+    approval_date: '2021-06-16'
+    effective_date: '2021-04-01'
+    summary: Effective April 1, 2021, this amends the state's coverage pages to include updates to covered over-the-counter
+      items.
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-19-0004-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-19-0004: Approval Document (approved July 22, 2020, effective October 31, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-19-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-31'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-19-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-19-0004
+    cms_node_id: '101971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101971
+    approval_date: '2020-07-22'
+    effective_date: '2019-10-31'
+    summary: Revises the alternative paper application to align with the state’s online eligibility system
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-20-0010-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-20-0010: Approval Document (approved June 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OR-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-20-0010
+    cms_node_id: '99566'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99566
+    approval_date: '2020-06-18'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to designate Contracted Community Partner organizations as qualified entities to make presumptive eligibility determinations;
+      consider individuals evacuated from the state due to the emergency to continue to be residents; allow flexibility for
+      mobile testing for COVID-19; and waive medication supply limits when appropriate to reduce exposure risk. In addition,
+      this amendment will allow for changes in reimbursement policies and adjustment of payment rates for certain services
+      and providers.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-19-0002-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-19-0002: Approval Document (approved November 7, 2019, effective November 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-19-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-19-0002
+    cms_node_id: '4381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4381
+    approval_date: '2019-11-07'
+    effective_date: '2019-11-01'
+    summary: Revising the Community First Choice (K-Plan) option which increases the local case management benefit limit on
+      assistive technology, implements an enhanced Foster Care model which would allow for some children with intellectual
+      and developmental disabilities to be diverted from children's residential placement to less costly and restrictive placements,
+      adds Support Technology where advanced supervision is necessary.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Tribal Issues
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-18-0007-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-18-0007: Approval Document (approved January 15, 2019, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-18-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-18-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-18-0007
+    cms_node_id: '7541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7541
+    approval_date: '2019-01-15'
+    effective_date: '2018-10-01'
+    summary: Updates the state plan to reflect recent changes to the Medicaid unit and organizational structure of the Oregon
+      Health Authority.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-18-0003-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-18-0003: Approval Document (approved May 17, 2018, effective February 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-18-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-02-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-18-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-18-0003
+    cms_node_id: '10261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10261
+    approval_date: '2018-05-17'
+    effective_date: '2018-02-01'
+    summary: This SPA updates the Hospital Presumptive Eligibility (HPE) application to align with the state's new eligibility
+      system.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-16-0010-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-16-0010: Approval Document (approved January 5, 2017, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-16-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-16-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-16-0010
+    cms_node_id: '16846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16846
+    approval_date: '2017-01-05'
+    effective_date: '2017-01-01'
+    summary: Removes copayments and updates the description of preventive services coverage as it was last dated in 2009.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-15-0007-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-15-0007: Approval Document (approved February 1, 2016, effective December 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-15-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-12-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-15-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-15-0007
+    cms_node_id: '20716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20716
+    approval_date: '2016-02-01'
+    effective_date: '2015-12-01'
+    summary: This SPA changes the retroactive effective date of eligibility for all eligibility groups except Qualified Medicare
+      Beneficiaries from the date of eligibility/application to the first day of the month of eligibility/application under
+      the Medicaid State plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-15-0006-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-15-0006: Approval Document (approved December 10, 2015, effective December 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-15-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-12-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-15-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-15-0006
+    cms_node_id: '21306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21306
+    approval_date: '2015-12-10'
+    effective_date: '2015-12-01'
+    summary: Changes the effective date of eligibility for all eligibility groups except Qualified Medicare Beneficiaries
+      from the date of eligibility/application to the first day of the month of eligibility application under the Medicaid
+      State plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-0016-mm-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-0016-MM: Approval Document (approved March 27, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-0016-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-0016-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0016-MM
+    cms_node_id: '38131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38131
+    approval_date: '2014-03-27'
+    effective_date: '2014-01-01'
+    summary: Incorporates Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-0017-mm6-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-0017-MM6: Approval Document (approved March 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-0017-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-0017-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0017-MM6
+    cms_node_id: '38126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38126
+    approval_date: '2014-03-24'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizen and Non-Citizen Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-0013-mm-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-0013-MM: Approval Document (approved March 21, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-0013-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-0013-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0013-MM
+    cms_node_id: '38121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38121
+    approval_date: '2014-03-21'
+    effective_date: '2013-10-01'
+    summary: Incorporates Modified Adjusted Gross Income MAGI Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-0018-mm7-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-0018-MM7: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-0018-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-0018-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-0018-MM7
+    cms_node_id: '38306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38306
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: Specifies Options for Presumptive Eligibility Conducted by Hospitals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-09-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-09: Approval Document (approved September 24, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-09-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-09/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-13-09
+    cms_node_id: '40756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40756
+    approval_date: '2013-09-24'
+    effective_date: '2013-07-01'
+    summary: This transmittal is being submitted to amend 1915(j) eligibility criteria.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-09-attachment
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-09: Attachment (approved September 24, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-09-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-09/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OR-13-09
+    cms_node_id: '40756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40756
+    approval_date: '2013-09-24'
+    effective_date: '2013-07-01'
+    summary: This transmittal is being submitted to amend 1915(j) eligibility criteria.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-or-cms-medicaid-state-plan-spa-or-13-09-form-cms-179
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-13-09: Form CMS-179 (approved September 24, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-13-09-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-13-09/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OR-13-09
+    cms_node_id: '40756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40756
+    approval_date: '2013-09-24'
+    effective_date: '2013-07-01'
+    summary: This transmittal is being submitted to amend 1915(j) eligibility criteria.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-or-cms-medicaid-state-plan-spa-or-10-04-approval-document
+  jurisdiction: us-or
+  document_class: policy
+  title: 'Oregon Medicaid SPA OR-10-04: Approval Document (approved May 18, 2010, effective May 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OR/OR-10-04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-05-01'
+  citation_path: us-or/policy/cms/medicaid-state-plan/spa/or-10-04/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Oregon
+    source_discovery_group: us-or/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OR-10-04
+    cms_node_id: '22876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22876
+    approval_date: '2010-05-18'
+    effective_date: '2010-05-01'
+    summary: Adds the optional eligibility group provided for under the Chafee Foster Care Independence Program.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document

@@ -1,0 +1,28 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-nh-dhhs-sr-25-32
+  jurisdiction: us-nh
+  document_class: manual
+  title: 'SR 25-32 Dated 10/25: October 2025 SNAP Mass Change, Annual Update of the Minimum and Maximum SNAP Allotments, Maximum
+    Income Limits, Standard Utility Allowances, Resource Limit and Certain Income Deductions'
+  source_url: https://www.dhhs.nh.gov/sr_htm/html/sr_25-32_dated_10_25.htm
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-nh/manual/dhhs/sr/25-32
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: New Hampshire Department of Health and Human Services, Bureau of Family Assistance
+    program: SNAP
+    source_discovery_group: us-nh/manual
+    index_url: https://www.dhhs.nh.gov/fsm_htm/newfsm.htm
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: service_release
+    document_number: SR 25-32
+    signed_date: '2025-09-18'
+    fiscal_year: '2026'

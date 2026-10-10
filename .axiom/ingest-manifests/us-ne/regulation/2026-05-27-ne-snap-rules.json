@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ne/regulation/2026-05-27-ne-snap-rules.json",
-      "sha256": "598bd3c50bffd16a98d400520ee4711eb4734e1d37fd0d70a7623015baad352d"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ne/regulation/2026-05-27-ne-snap-rules.json"
     },
     {
-      "path": "data/corpus/inventory/us-ne/regulation/2026-05-27-ne-snap-rules.json",
-      "sha256": "2e1d107ab81f37efe981443ccd20443483982dbfe948c02a87712258daaa9e6d"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ne/regulation/2026-05-27-ne-snap-rules.json"
     },
     {
-      "path": "data/corpus/provisions/us-ne/regulation/2026-05-27-ne-snap-rules.jsonl",
-      "sha256": "f5456452bad1d75dbe7ef3ec52f395ac3b091f01a2be52ffc74474e23c495d71"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ne/regulation/2026-05-27-ne-snap-rules.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "16fb3811175844ecead9fb72c627bb18b6acf86e",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "axiom-corpus remove-obsolete-scope 2026-05-27-ne-snap-rules after source-backed replacement 2026-07-17-ne-snap-rules"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 10,
-    "missing_count": 0,
-    "provision_count": 10,
-    "source_count": 10
-  },
+  "coverage": null,
   "document_class": "regulation",
-  "generated_at": "2026-07-07T19:50:35.762968+00:00",
+  "generated_at": "2026-07-17T19:31:19.987267+00:00",
   "jurisdiction": "us-ne",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JLrSDbBo3mbaUeG6mX4XbOH+lKD/bXE4B7RlyGtMOvmJ58J6bhrHoGN5O4x1rKjdD44bvU8tZPJIcM/bDfnnCg=="
+    "value": "snkTfcN04Ga08aaSn0AxBV6liX/6Jk9ID4uou2psogd/xThD+utksJY9lVMvI6w4vyIhNTMlLM9pWCsig2R+CQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-ne-snap-rules"

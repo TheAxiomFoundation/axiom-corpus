@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/policy/2026-08-09-ny-tanf-official-source-recovery-with-aliases.json",
+      "sha256": "4fd3c69f30fa298cd32e7d2ec282c5275a363fcb53705a7c68b7ee9a5ae89fc8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/policy/2026-08-09-ny-tanf-official-source-recovery-with-aliases.json",
+      "sha256": "0d22feb1cc76c20191956832601123296999f62de45258a9bc4d1be00897a886"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/policy/2026-08-09-ny-tanf-official-source-recovery-with-aliases.jsonl",
+      "sha256": "5d1d484f482c7c3660a8da2fcd52c1c0e9129097d1e0f5501169206894b345ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/policy/2026-08-09-ny-tanf-official-source-recovery-with-aliases/2026-08-03-ny-tanf-official-source-recovery/official-documents/ny-otda-tanf-state-plan-2024-2026.pdf",
+      "sha256": "f222c3316f975a3a9281846e724ee3ce2c34878d14fe073f24def5c057f94c2f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8ea83b58ec3410f9a3fb698ae371690ce9c51386",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src python scripts/build_ny_tanf_compatibility_scope.py --repo . --target-version 2026-08-09-ny-tanf-official-source-recovery-with-aliases"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 119,
+    "missing_count": 0,
+    "provision_count": 119,
+    "source_count": 119
+  },
+  "document_class": "policy",
+  "generated_at": "2026-08-10T20:52:56.718923+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "81ozZoZrrhzVlwguDy9RPGiXFhR0SwBuS45Ztr4S4EHsvT/eA6kWWNx7x2kD2VjR2MUwAhHDd8mTUKJXh2C0CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-09-ny-tanf-official-source-recovery-with-aliases"
+}

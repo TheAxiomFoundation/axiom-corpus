@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum.json",
+      "sha256": "6e2a67a2178bcf81056c346f09783fee56a2e4dad3e9b2bfb1aa4f6ed23d5932"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum.json",
+      "sha256": "7c5adc62bbe38080165aab20078c37999df970b3254b8249673bf3270ac7ff43"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum.jsonl",
+      "sha256": "f996bada580085033e77326e80bd9060b9c11df0d59c1564541896ccef5f787d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum/federal-register/api/documents-page-1.json",
+      "sha256": "d398c9f1e00fa50f297a8b09d814b89059ff47c808bfed2ce5e400efd91279e3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum/federal-register/documents/2023-04470.json",
+      "sha256": "2816e0583aaef3c02790351c9e75f790b11d0b949ec05fb6f185b4dae9da24b1"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum/federal-register/documents/2023-04470.txt",
+      "sha256": "ba87da6462e36c0c8834a886e8f5e0d69a1e10d652d6ef52f01ca6b6ec3ec5e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-russia-aluminum --start-date 2023-03-02 --document-type PRESDOCU --term \"aluminum\" --source-as-of 2026-08-01 --expression-date 2023-03-02"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:12.077573+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lQSMWa+Suf1PiiDHjHJonqzvw0sobYpjJmf+al34pb9t898xlXWP5SqnCkHIUCf8cCDyfOL5o3f1rOoKm7w/Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-russia-aluminum-types-presdocu-term-aluminum"
+}

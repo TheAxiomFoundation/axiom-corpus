@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process.json",
+      "sha256": "9f911e5deeea762a9d83f13e25dcd09a427279f85f41beadb5784a6da084f9c6"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process.json",
+      "sha256": "89746e122e998a67dee5ad235902fe1ec473c91302c2a9505d28a9a8e3321e13"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process.jsonl",
+      "sha256": "e94ffbfba4577bd3d86a22aaa2114c740aa955ff2fbf37fa209060b6ce01e81d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process/federal-register/api/documents-page-1.json",
+      "sha256": "01fcf5fbae7dbedc9493837406d54977baf20d6926b08b1b3dd237094eb0289e"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process/federal-register/documents/2025-15819.json",
+      "sha256": "aa45bfe285f4aad6100be03935662c6d5396b5f0a469a44b21970349e090f57f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process/federal-register/documents/2025-15819.txt",
+      "sha256": "18f98dd3a771c6aed9a7593729dd026938f4ea635c33f9f8079e4ab63ba7ff90"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7dcb14694645e345c86e2c108c225e0a1cbe7290",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-inclusions-process --start-date 2025-08-19 --document-type NOTICE --term '\"tariff inclusions process\"' --source-as-of 2026-08-01 --expression-date 2025-08-19"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:26:26.198875+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "x73S1qVz4EoenIW8jEqgQFUMHhRBLe5GV8CXSFN2LFCt/YNQW2pJEHSO9/afRk2UdPrBnOyTXmlMfSwvaHZYCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-inclusions-process-types-notice-term-tariff-inclusions-process"
+}

@@ -593,6 +593,98 @@ def generate_anchors_for_provision(
     return anchors
 
 
+def generate_asserted_descendant_anchors(
+    parent_provision: ProvisionRecord,
+    descendants: Iterable[ProvisionRecord],
+) -> list[ProvisionAnchor]:
+    """Anchor publisher-identified descendants inside an asserted parent body.
+
+    The descendant records must carry source identifiers below the parent's
+    source identifier. Their normalized heading/body text mechanically locates
+    the publisher-asserted node in the parent body, so the resulting spans are
+    ``machine_asserted`` rather than typography-inferred.
+    """
+    body = parent_provision.body or ""
+    parent_id = parent_provision.id
+    parent_source_id = parent_provision.source_id
+    if not parent_id:
+        raise ValueError(
+            f"parent provision {parent_provision.citation_path!r} has no id"
+        )
+    if not parent_source_id:
+        raise ValueError(
+            f"parent provision {parent_provision.citation_path!r} has no source id"
+        )
+
+    path_prefix = f"{parent_provision.citation_path}/"
+    source_prefix = f"{parent_source_id}/"
+    parent_hash = body_sha256(body)
+    located: list[tuple[int, int, ProvisionRecord, str, int]] = []
+    for descendant in descendants:
+        if not descendant.citation_path.startswith(path_prefix):
+            raise ValueError(
+                f"{descendant.citation_path!r} is not below "
+                f"{parent_provision.citation_path!r}"
+            )
+        if not descendant.source_id or not descendant.source_id.startswith(
+            source_prefix
+        ):
+            raise ValueError(
+                f"{descendant.citation_path}: source id "
+                f"{descendant.source_id!r} is not below {parent_source_id!r}"
+            )
+
+        relative_path = descendant.citation_path.removeprefix(path_prefix)
+        label = relative_path.rsplit("/", 1)[-1]
+        parts = [f"({label})"]
+        if descendant.heading:
+            parts.append(descendant.heading)
+        if descendant.body:
+            parts.append(descendant.body)
+        expected_text = re.sub(r"\s+", " ", " ".join(parts)).strip()
+        start = body.find(expected_text)
+        if start < 0:
+            raise AnchorVerificationError(
+                f"{descendant.citation_path}: asserted text not found in "
+                f"{parent_provision.citation_path}"
+            )
+        if body.find(expected_text, start + 1) >= 0:
+            raise AnchorVerificationError(
+                f"{descendant.citation_path}: asserted text is ambiguous in "
+                f"{parent_provision.citation_path}"
+            )
+        end = start + len(expected_text)
+        depth = relative_path.count("/")
+        located.append((start, end, descendant, label, depth))
+
+    located.sort(key=lambda row: (row[0], -row[1], row[2].citation_path))
+    anchors: list[ProvisionAnchor] = []
+    for ordinal, (start, end, descendant, label, depth) in enumerate(located):
+        anchor = ProvisionAnchor(
+            citation_path=descendant.citation_path,
+            parent_provision_id=str(parent_id),
+            parent_citation_path=parent_provision.citation_path,
+            char_start=start,
+            char_end=end,
+            text=body[start:end],
+            label=label,
+            depth=depth,
+            confidence=CONFIDENCE_MACHINE_ASSERTED,
+            parent_body_sha256=parent_hash,
+            jurisdiction=parent_provision.jurisdiction,
+            document_class=parent_provision.document_class,
+            version=parent_provision.version,
+            ordinal=ordinal,
+            metadata={
+                "source_id": descendant.source_id,
+                "source_kind": descendant.kind,
+            },
+        )
+        verify_anchor(anchor, body)
+        anchors.append(anchor)
+    return anchors
+
+
 def anchor_for_stored_leaf(
     leaf_provision: ProvisionRecord,
     *,

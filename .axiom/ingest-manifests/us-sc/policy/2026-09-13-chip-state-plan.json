@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "ed56ad160cda10c34368e5230e25e0fd40678e57141c802777f28ccf7e2a4bd7"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "bdb298432dba542a66f6bed6c83536bb511e13712a14fb6ed9f0dfe73d777ec8"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "efb868aa8e321b10298aad56f1b73094cee32da803d00456ba8b443cbabe9f0e"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "9d63f81c68a18bc54f649d42dbf7e174dd76d7048ac214c1257bfda50fd8d8d1"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "9b409d8a9ed6d334a600e2e2d2dbc1d41611d2b7f5792b71cc0e9a1fcce60a1e"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "c9f3094d3b7d01f04badf67b894ecc145d03780ae5f1eab153c8de588ca0ed67"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-spa-sc-13-0020-approval-package.pdf",
+      "sha256": "7f5d5f8939676a2f585b6b4c444a5970e9c9ea6849d04bf1b9dcdf3b55f146e4"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-spa-sc-13-0027-approval-package.pdf",
+      "sha256": "9ce6b1989a9d6c75029a3e73621c293c4d8b4cc7d8d5ddf80eeb81e46542c9ad"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-spa-sc-cspa-4-approval-package.pdf",
+      "sha256": "6775c217bf378c829a36ccf95755597451623ca77730b7fd432579d9607f86d0"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-spa-sc-cspa-4-final-approved-state-plan.pdf",
+      "sha256": "f7f1ebeb5903f4f723b1d319ea7b16629bdde7acb620cbcb3f50b21d79fa7ac9"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-13-chip-state-plan/official-documents/us-sc-cms-chip-state-plan-spa-sc-cspa-5-approval-package.pdf",
+      "sha256": "ea5887bdaac0d6a1f33db9e759075541e84a5c18f116bc056cd7e06d58ba7ed3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 130,
+    "missing_count": 0,
+    "provision_count": 130,
+    "source_count": 130
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:22:47.352902+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wmjC4tdUPfc9If39B7POYPcdXi9P+UhBcEiwzFprGVOnlYIbbAdpFLIZ+Ik/AwTzsUY5Poq8ndxBeU/vWyXxDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}

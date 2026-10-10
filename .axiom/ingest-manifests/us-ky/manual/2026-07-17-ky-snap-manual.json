@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-07-17-ky-snap-manual.json",
+      "sha256": "d4f91899ceaaf90e7498dafb6b9ebaee024a03c1109a008b13fd905f99a7a3d0"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-07-17-ky-snap-manual.json",
+      "sha256": "4ea881bdf0fb55a5b364d1cc45900e1ee35ae4368fafaf5ae14344f0cee9afee"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-07-17-ky-snap-manual.jsonl",
+      "sha256": "61e1b246213b0ca2a9f9721f5e608287758afc26567d8d5ae60b37250d19eb15"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-07-17-ky-snap-manual/official-documents/ky-dcbs-dfs-om-vol-ii.pdf",
+      "sha256": "7ef887dacc2332da4b2e49312b8d9d66c8ab5aa47258c51d666d5db0c84996c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-07-17-ky-snap-manual/official-documents/ky-dcbs-dfs-om-vol-iia.pdf",
+      "sha256": "a1a7f8d111f38003d14ad5bb18fe9c4761a8ce3d688be5ace7d682e652c6279a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a7028b9aa3414fe40445d963dec3a9e52021ca32",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-17-ky-snap-manual --manifest manifests/us-ky-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 400,
+    "missing_count": 0,
+    "provision_count": 400,
+    "source_count": 400
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-17T14:04:51.655130+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iqj8h8iFih9FBZei4UxNL/PwrrubT5mnBmil4WoXJbUbPAGTeKakJYUkoJaETPfPl0fbiiKqEgi8ezhA2cJAAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-ky-snap-manual"
+}

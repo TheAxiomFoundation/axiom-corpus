@@ -218,17 +218,17 @@ def test_extract_rhode_island_general_laws_handles_parts_and_effective_variants(
     records = load_provisions(report.provisions_path)
     assert report.coverage.complete
     assert [record.citation_path for record in records] == [
-        "us-ri/statute/title-6A",
-        "us-ri/statute/6A-11",
-        "us-ri/statute/6A-11/part-1",
-        "us-ri/statute/6A-11-101",
-        "us-ri/statute/6A-11-101@effective-2026-01-01",
+        "us-ri/statute/title-6a",
+        "us-ri/statute/6a-11",
+        "us-ri/statute/6a-11/part-1",
+        "us-ri/statute/6a-11-101",
+        "us-ri/statute/6a-11-101-effective-2026-01-01",
     ]
     assert records[2].kind == "part"
     assert records[3].metadata["status"] == "effective_until"
     assert records[4].metadata["status"] == "future_or_conditional"
-    assert records[4].metadata["canonical_citation_path"] == "us-ri/statute/6A-11-101"
-    assert records[4].parent_citation_path == "us-ri/statute/6A-11/part-1"
+    assert records[4].metadata["canonical_citation_path"] == "us-ri/statute/6a-11-101"
+    assert records[4].parent_citation_path == "us-ri/statute/6a-11/part-1"
 
 
 def test_extract_rhode_island_general_laws_cli_local_source(tmp_path, capsys):

@@ -8,6 +8,7 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
 - Use this repository's corpus adapters, manifests, CLI commands, release tooling, and Axiom project instructions as the operating procedure for corpus work.
 - Do not use PolicyEngine workflow skills or PolicyEngine implementation skills for Axiom corpus, RuleSpec, encoding, or oracle-parity tasks. PolicyEngine may appear as downstream comparison context, but it does not define the ingestion workflow.
 - If a reusable workflow is missing, add or propose an Axiom-specific Codex skill or project instruction instead of borrowing a PolicyEngine skill.
+- Push branches to this repository, never to a fork: a fork-head pull request run does not receive this repository's Actions variable `AXIOM_CORPUS_INGEST_PUBLIC_KEY`, so the authentication-gate tests in `tests/test_state_snap_manual_queue.py` fail by design. See CONTRIBUTING.md.
 
 ## Corpus Architecture
 
@@ -22,17 +23,39 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   such as State Options Reports, Justia, FindLaw, or LegiScan unless explicitly
   directed for a separate non-canonical experiment.
 
+## Corpus Bytes Outside Git
+
+- When `.axiom/corpus-locks/` exists, protected corpus files
+  (`data/corpus/{sources,inventory,provisions,coverage}`) are never tracked in
+  git; each scope's lock file pins them by sha256. See `docs/corpus-storage.md`.
+- Fetch what a task reads: `axiom-corpus-ingest corpus fetch <scope>` (or
+  `--path`, `--release`, `--all`). Code-only tasks fetch nothing; the full test
+  suite needs `--all`.
+- After an ingest, `sign-ingest-manifest ... --lock --push` writes the scope's
+  lock and uploads its new objects; commit the lock with the signed manifest.
+  Never `git add -f` corpus files.
+- An ingest you were asked to do includes `corpus push` of its own new objects
+  (Max, 2026-09-30). They are content-addressed and write-once under R2
+  `objects/sha256/`: an upload never overwrites an object and publishes
+  nothing. CI fails an ingest pull request until R2 holds every object its new
+  lock entries name. Every other R2 write, and release publication and
+  activation, still need the user's explicit ask.
+- A branch opened before the switch (#774) that tracks corpus files: merge
+  `main`, run `axiom-corpus-ingest corpus migrate`, commit, then
+  `corpus push --changed-since origin/main`.
+
 ## State Statute Work
 
 - Pick one jurisdiction at a time from
   `manifests/state-statute-agent-queue.yaml`.
 - Add or repair one source-first adapter, then wire it through
-  `extract-state-statutes-batch` or a dedicated CLI command.
+  `extract-state-statutes` or a dedicated CLI command.
 - A successful state statute task writes all four scoped artifacts:
   `sources/`, `inventory/`, `provisions/`, and `coverage/`.
 - Coverage must be complete before a state is proposed for release promotion.
 - Do not publish to R2, load Supabase, merge to `main`, or delete old production
-  rows unless the user explicitly asks for publication.
+  rows unless the user explicitly asks for publication. (An ingest's own
+  `corpus push` of content-addressed objects is not publication; see above.)
 
 ## Required Checks
 

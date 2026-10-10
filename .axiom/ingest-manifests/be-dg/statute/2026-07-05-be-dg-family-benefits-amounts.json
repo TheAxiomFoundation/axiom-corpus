@@ -22,9 +22,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "981967d7b8e9fb62e7dd0ff5af13dd3446c24c60",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus/_worktrees/ingest-205"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,7 +39,7 @@
     "source_count": 244
   },
   "document_class": "statute",
-  "generated_at": "2026-07-06T04:19:08.699191+00:00",
+  "generated_at": "2026-07-21T11:57:43.013012+00:00",
   "jurisdiction": "be-dg",
   "reasoning_logs": [
     {
@@ -51,7 +51,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JDCn6y2iqW18DhrympIdQoWrLgthU6RtvzAKIeZeVneGyuk/LeScAuxvHyPuxdiD2GIyxpZS0kM0yMv3yRScDQ=="
+    "value": "KKi1F7GRha5wsRPJrlKuwzZ8TQmGiVdg3FbO12R0My5NsSbs8FmRg5SLvBGOg7n9ICex0zKTY5IZuGf+1UDmAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-be-dg-family-benefits-amounts"

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/form/2026-07-22-hi-2025-n11-capital-gain-worksheet.json",
+      "sha256": "c8854d4950cc304ed8f1122b28f498c6feb70bf0a9b38bda62f1177e07332dfd"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/form/2026-07-22-hi-2025-n11-capital-gain-worksheet.json",
+      "sha256": "fe0ad9770e362277d5263bd6e3534b09f2aa19c683fad0f9727090dc4f954ad6"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/form/2026-07-22-hi-2025-n11-capital-gain-worksheet.jsonl",
+      "sha256": "6a179ef254b05f39a42cc2d84c25546e223c12093df0b38f85cefdd886aa10e2"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/form/2026-07-22-hi-2025-n11-capital-gain-worksheet/official-documents/us-hi-dotax-2025-n11-instructions.pdf",
+      "sha256": "7160595e466b376ba9c14da1540d21532be9e05d48d01d877f5d953c85e4e4d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "865f6bbaccf8b61202044f91b21a4e79ac9a24a3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Axiom corpus recovery of official Hawaii DOTAX 2025 Form N-11 capital-gains worksheet"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-22T09:11:24.052191+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bedl/mi01M9rsmxuBEw8X4boA90OrfgI2PvUhk7KJ51HHIkKIuzAHxsR3O0pD/m5lXWLCWOKWRFIVlA07u8/Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-hi-2025-n11-capital-gain-worksheet"
+}

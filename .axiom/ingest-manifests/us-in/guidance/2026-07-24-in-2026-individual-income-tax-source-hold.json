@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/guidance/2026-07-24-in-2026-individual-income-tax-source-hold.json",
+      "sha256": "624d8a8836304a57bbc7d8d282d09ebda0fe2514fcae71412e159a94039058d0"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/guidance/2026-07-24-in-2026-individual-income-tax-source-hold.json",
+      "sha256": "759f4697f484fe9dee6386fa9efae25628d10abd58ea8c920d2a8cdf738cc506"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/guidance/2026-07-24-in-2026-individual-income-tax-source-hold.jsonl",
+      "sha256": "24f8fd07ae768af35d1e197db4d0be73fed9e5a2a1601c0464f8d4ada0ddf74d"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-07-24-in-2026-individual-income-tax-source-hold/official-documents/us-in-dor-2026-individual-income-tax-rate.html",
+      "sha256": "491b9646de892bac5a4ee44d8219bfcfbb4e658d5f34025db6a699b28fed7f47"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-07-24-in-2026-individual-income-tax-source-hold/official-documents/us-in-dor-current-year-individual-tax-forms-2026-07-24.html",
+      "sha256": "377944c8e332697f640d0742e6e07e10312d515d97e0c8090dc05051a7469ec9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2340488530fe7b10752905c61f3efc9bf7dd81ee",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-in-2026-individual-income-tax-source-hold --manifest manifests/us-in-2026-individual-income-tax-source-hold.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T13:50:47.558036+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ixRJfhI3952S03A4uHlklBQUjAcLn1JOkpiWVc5Ssyv+b6qzBrsV452AVr6bnhG5w3gyNxi9IXX4Xh/mTOe9DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-in-2026-individual-income-tax-source-hold"
+}

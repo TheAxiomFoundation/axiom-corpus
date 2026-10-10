@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-ashford/manual/2026-08-02-ashford-council-tax-reduction-2026-2027.json",
+      "sha256": "7efe2d0a1adae0405f0c6f84384143aa224ba0925d6653809418a16000742d0a"
+    },
+    {
+      "path": "data/corpus/inventory/uk-ashford/manual/2026-08-02-ashford-council-tax-reduction-2026-2027.json",
+      "sha256": "30ad51a806df928346cc636b2cf98bdc132e820cdaa2430491921308dd0a0cd3"
+    },
+    {
+      "path": "data/corpus/provisions/uk-ashford/manual/2026-08-02-ashford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "afb1148253a7efe01abd7fe333e8899ab23dd915085378db9e429fb586e6342d"
+    },
+    {
+      "path": "data/corpus/sources/uk-ashford/manual/2026-08-02-ashford-council-tax-reduction-2026-2027/official-documents/ashford-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "203b94ebf076d99aa504e74cd6a58d4901fa3cc07ef5330f13a1e9c3a9e684ce"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-ashford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-ashford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 127,
+    "missing_count": 0,
+    "provision_count": 127,
+    "source_count": 127
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:35:40.668901+00:00",
+  "jurisdiction": "uk-ashford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pMvRStCwH9z/Mu9iQZOH4+15NP8R9BdtupMXjLgkUmNWVbcSqmA7waUzpnV/yxnshF1/qqfppOAht8LcvMq0AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-ashford-council-tax-reduction-2026-2027"
+}

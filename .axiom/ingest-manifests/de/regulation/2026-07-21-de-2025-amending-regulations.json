@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-07-21-de-2025-amending-regulations.json",
+      "sha256": "379f142d3d12a4972fbfa9097403b0aefa182cbb924cf0b9867ae6f6e046a1b7"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-07-21-de-2025-amending-regulations.json",
+      "sha256": "fb1556ee9e2299deca63020afef862ad17ab6969a04a3b54b336e3c2b92bd2c0"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-07-21-de-2025-amending-regulations.jsonl",
+      "sha256": "48f763231c25c2eefd6a8fe8a10901c0a92d1097f870e780dd69a4284f17265c"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-21-de-2025-amending-regulations/official-documents/de-rbsfv-2025-bgbl-i-312.pdf",
+      "sha256": "8b58f7e5b915873232c642810b30ce7c444cfdf7f32d9537083fbe9814e206f4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "99638e3e6e93818edc18436666d32caa75d97252",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-de-2025-amending-regulations --manifest manifests/de-rbsfv-2025-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T10:45:45.363625+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FK1Ba3r427OQ6ZUPCeswjkUUk6apum/fAzQEDi9p6ORBDvGFqfAbO0/CPecuEqiy1zVmhKswiwQkcP+jaASvDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-de-2025-amending-regulations"
+}

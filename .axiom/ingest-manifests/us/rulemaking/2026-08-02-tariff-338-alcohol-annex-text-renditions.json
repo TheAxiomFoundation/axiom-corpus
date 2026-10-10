@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-02-tariff-338-alcohol-annex-text-renditions.json",
+      "sha256": "36574a34f9caecd5ed2e9ced604ac5356c4a27a006e64cce1579a62da6ebd3cf"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-02-tariff-338-alcohol-annex-text-renditions.json",
+      "sha256": "5f77592619a8d6a48affb33c65e69d37b2745cb57302880f7732e0aa4a25ec4e"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-02-tariff-338-alcohol-annex-text-renditions.jsonl",
+      "sha256": "e426eac33610a65588d453d02d2701795a68fb2b1f4d28ad2d2edabdb48f46ea"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-02-tariff-338-alcohol-annex-text-renditions/official-documents/whitehouse-s338-alcohol-annex-1.pdf",
+      "sha256": "055f714425c51050f7c180c14a73f4596f74ee3dd76bb2c26a986421747e917f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-02-tariff-338-alcohol-annex-text-renditions/official-documents/whitehouse-s338-alcohol-annex-2.pdf",
+      "sha256": "2b9237b2dcaf7dbe42ebfa408e1fa81247a1bc9b18196d48f283ac261200d24b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a5a7a4304ffef9726092ab16dfb0235e266be74f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_s338_alcohol_annexes.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-03T01:50:21.077123+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qnOU59XZYmdEIuObuTmhDUl68rrguFQhMKjDNWqpgrXAWWxO99wKdBDlSQuJKkR4K4LrLedDD7qmPmRhFCRuCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-tariff-338-alcohol-annex-text-renditions"
+}

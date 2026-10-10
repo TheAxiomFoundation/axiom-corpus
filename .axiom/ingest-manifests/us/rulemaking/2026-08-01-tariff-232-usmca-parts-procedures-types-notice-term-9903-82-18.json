@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18.json",
+      "sha256": "c6bea9aac4388468b67e88737be85d50ccd85903c913fc27b6dc6535771d6516"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18.json",
+      "sha256": "f07b2b9b9895516925721f89360d23d88774d92098b60d75d78f9db63d1b4737"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18.jsonl",
+      "sha256": "852ba053997caab78edabc065e4c359b891ece6e53bcd81b3edc2bd0a47df865"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18/federal-register/api/documents-page-1.json",
+      "sha256": "7572a9ddbeff06f5be796baccd1ba2f2fa1dd4e75646a7ad2d15f3f9f5e530a2"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18/federal-register/documents/2026-07987.json",
+      "sha256": "62804e7a3ea675b813dea83e76585c2716a0b76119450b6a31def97cb0b40553"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18/federal-register/documents/2026-07987.txt",
+      "sha256": "5ecaf3a9f8a755294852cba01743341a692de9c48e3a3001a95683728ddc1773"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-usmca-parts-procedures --start-date 2026-04-23 --document-type NOTICE --term \"9903.82.18\" --source-as-of 2026-08-01 --expression-date 2026-04-23"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:24.929557+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hv0TzFD47t7p3uwjCmCdBrSqmeR2pAFQejS4dtTsvBvkJPiR7kN+1EVRkm4f1j/crKDjyyo1CuVyAhAY3GAfAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-usmca-parts-procedures-types-notice-term-9903-82-18"
+}

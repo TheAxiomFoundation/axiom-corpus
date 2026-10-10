@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-cheshire-east/manual/2026-07-25-cheshire-east-council-tax-reduction-2026-2027.json",
+      "sha256": "24293d638c63ba61ce24fa9a64646098be16f94e08c0afef392ba82f8da1af7d"
+    },
+    {
+      "path": "data/corpus/inventory/uk-cheshire-east/manual/2026-07-25-cheshire-east-council-tax-reduction-2026-2027.json",
+      "sha256": "14cc7d6ec0ee8a2cae799faf7d3b38b0027e66298d9b4dc2e9872a2c7af5051f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-cheshire-east/manual/2026-07-25-cheshire-east-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6db26f066b84f118ce4fd319ab28f04e47b1b83acbe19bdeeba57cb13734e2fd"
+    },
+    {
+      "path": "data/corpus/sources/uk-cheshire-east/manual/2026-07-25-cheshire-east-council-tax-reduction-2026-2027/official-documents/cheshire-east-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1c6915233f63a9b3372a54f26fc59e6bd12e66f2ba06c156821b2f779cc6a775"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d077803ee17f921c30014b9e98ae9ee3b612512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-25-cheshire-east-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-cheshire-east-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 128,
+    "missing_count": 0,
+    "provision_count": 128,
+    "source_count": 128
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-25T15:07:27.409953+00:00",
+  "jurisdiction": "uk-cheshire-east",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0bQrS3AsDVA2oyxvV6VvHsK3iJ3Ce2+w3QXgI0aAW07SLRWFRVqlDj/X8QQwZ0E7CA7gxiQpWOidtNXXCfDZBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-25-cheshire-east-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,50 @@
+documents:
+  - source_id: us-nv-constitution-article-10-section-1-subsection-9
+    jurisdiction: us-nv
+    document_class: statute
+    title: Nevada Constitution Article 10, Section 1, Subsection 9
+    source_url: https://www.leg.state.nv.us/Const/NVConst.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-nv/statute/constitution/article-10/section-1/subsection-9
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: 'p.SectBody:-soup-contains("No income tax shall be levied")'
+    metadata:
+      primary_source: true
+      source_authority: Nevada Legislature
+      legal_identifier: Nev. Const. art. 10, § 1(9)
+      document_subtype: state_constitution
+      program: individual_income_tax
+      source_status: current_official_constitution
+      source_note: >-
+        Current official constitutional prohibition on an income tax upon the
+        wages or personal income of natural persons, together with the express
+        carveout permitting taxes on the income or revenue of a business.
+
+  - source_id: us-nv-constitution-article-10-section-1-source-note
+    jurisdiction: us-nv
+    document_class: statute
+    title: Nevada Constitution Article 10, Section 1, Amendment History
+    source_url: https://www.leg.state.nv.us/Const/NVConst.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-nv/statute/constitution/article-10/section-1/source-note
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: 'p.SectBody:has(a[name="Art10Sec1"]) ~ p.ConstSourceNote'
+    metadata:
+      primary_source: true
+      source_authority: Nevada Legislature
+      legal_identifier: Nev. Const. art. 10, § 1 amendment history
+      document_subtype: state_constitution_source_note
+      program: individual_income_tax
+      source_status: current_official_constitution
+      source_note: >-
+        Current official amendment and ratification history for article 10,
+        section 1, including the 1989 ratification and the later approved and
+        rejected amendment history displayed by the Nevada Legislature.

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/statute/2026-08-03-nc-income-tax-current-union.json",
+      "sha256": "663ad8aa52afb4e4f19fc3e9cda52ed76f9c3726952f7c66f99bde0ec00573e3"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/statute/2026-08-03-nc-income-tax-current-union.json",
+      "sha256": "9e0029e955a785d513b89b57b74b8399103b1fbec6617b13af772770d6d3890a"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/statute/2026-08-03-nc-income-tax-current-union.jsonl",
+      "sha256": "e05d2aee0dd392ba8031d6ad727f145fc93ac92d7caec15d8f290b67433e0243"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-08-03-nc-income-tax-current-union/2026-07-13-recovery/official-documents/us-nc-code-105",
+      "sha256": "5ef104d936836f683570e6b0e04f8ea26204f4650979756a482acb9a163c18e2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-08-03-nc-income-tax-current-union/2026-07-13-recovery/provenance/us-nc-code-105.json",
+      "sha256": "a550072817bb48e6ed620b9612ef74e692a713f688bd00158d67303690ccfc04"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-08-03-nc-income-tax-current-union/2026-07-26-nc-ty2026-income-tax-core/official-documents/sl-2026-11.html",
+      "sha256": "90f496762980f6af1cfaf1bef529c620c29a993b7f5fa6b640e3e8399980047e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-08-03-nc-income-tax-current-union/2026-07-26-nc-ty2026-income-tax-core/official-documents/sl-2026-31.html",
+      "sha256": "a4f934b753a95c57be0c5c33e2533258c71859f92e57be9def36daf2db03fcfa"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-08-03-nc-income-tax-current-union/2026-07-26-nc-ty2026-income-tax-core/official-documents/sl-2026-41.html",
+      "sha256": "a44598558a70f574492f2eef87abb3cdfd7624ef7e8ece3ccb55e3b6b6c1273d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-08-03-nc-income-tax-current-union/2026-07-26-nc-ty2026-income-tax-core/official-documents/us-nc-code-105.html",
+      "sha256": "5ef104d936836f683570e6b0e04f8ea26204f4650979756a482acb9a163c18e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a1238fbba8aadb73d8e257d4180cff525d14a69c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-nc --document-class statute --source-version 2026-07-13-recovery --source-version 2026-07-26-nc-ty2026-income-tax-core --target-version 2026-08-03-nc-income-tax-current-union --prefer-all-duplicates-from 2026-07-26-nc-ty2026-income-tax-core"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 58,
+    "missing_count": 0,
+    "provision_count": 58,
+    "source_count": 58
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-03T14:12:59.302768+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PMmShn70Juu9YcudyNjRkcD9lt5XGDOHONCpBzncT6O5NHQZHh/JpvjYKVsi/YGhzUPygi7IRhAhVs0CyxhmCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-nc-income-tax-current-union"
+}

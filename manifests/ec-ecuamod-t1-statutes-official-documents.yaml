@@ -1,0 +1,111 @@
+# Ecuador (ec) tranche-1 capture - ECUAMOD v5.1 parity (policy years
+# 2011-25; SOUTHMOD full-bundle program lane 2; report CR-ECUAMOD-v5.1).
+#
+# ECUAMOD simulates (S): personal income tax (tin_s), VAT (tva_s), excise
+# duties/ICE (tex_s), employee/armed-forces/self-employed/employer/government
+# social insurance contributions (tscee/txcee/tscse/tscer/txcer_s), the Human
+# Development Transfer (bsa), the Family Protection Grant (bot), fuel
+# subsidies (bof), and partially the Joaquin Gallegos Lara transfer (bdi).
+#
+# Four documents; statute class carries the primary tax and social-security
+# law chain, policy class carries the government's BDH legal-basis record:
+#
+# 1. Ley de Regimen Tributario Interno (LRTI), Codificacion 26, RO Suplemento
+#    463 of 17 November 2004, SRI compilation including reforms to 2 July
+#    2021 - personal income tax (Art. 36 annually indexed schedule; the
+#    year tables ECUAMOD applies for 2011-25 are in report Tables 2.11-2.12),
+#    VAT Titulo Segundo (Art. 65: twelve percent - the rate ECUAMOD applies
+#    through March 2024 outside the 2016 earthquake episode), and ICE Titulo
+#    Tercero tariffs (report Table 2.14).
+# 2. Ley de Seguridad Social (Ley 55), RO Suplemento 465 of 30 November 2001,
+#    IESS-published consolidated print - the IESS contribution framework
+#    (aportes; solidarity and rural-worker regimes). ECUAMOD applies
+#    category-based rate tables (report Tables 2.4-2.10, e.g. general
+#    private-sector employees category A); the operative percentage splits
+#    are set by IESS board resolutions (C.D. series, e.g. C.D. 492 of 18
+#    June 2015) - captured as a tranche-2 gap.
+# 3. Ley Organica para Enfrentar el Conflicto Armado Interno, la Crisis
+#    Social y Economica (Ley s/n), RO Suplemento 516 of 12 March 2024, SRI
+#    print - substitutes LRTI Art. 65 (VAT thirteen percent), adds the five
+#    percent rate for locally produced construction materials, and grants
+#    the presidential power under which Executive Decree 198 (RO Suplemento
+#    520) set fifteen percent from 1 April 2024 and Executive Decree 470
+#    (December 2024) kept fifteen percent for 2025 - the rates ECUAMOD
+#    applies; both decrees are tranche-2 gaps pending an official PDF
+#    (Registro Oficial access).
+# 4. Ministerio de Desarrollo Humano "Base Legal - BDH" (policy class, HTML
+#    capture) - the government's own record of the Bono de Desarrollo Humano
+#    decree chain: DE 347-A (25 April 2003, Bono Solidario renamed BDH),
+#    DE 1824 (1 September 2006, elderly/disability pensions, thirty dollars),
+#    DE 12 (17 January 2007, thirty dollars), DE 1838 (20 July 2009,
+#    thirty-five dollars), DE 1395 (2 January 2013, RO 870: USD 50.00 - the
+#    base amount ECUAMOD applies), plus Acuerdos Ministeriales 512/2003 and
+#    0037/2009. The underlying decree PDFs are tranche-2 gaps (no official
+#    PDF located; the ministry page is the operative governmental record).
+#
+# ECUAMOD comparison notes (targets, never sources): VAT 12 percent through
+# 2015; fourteen percent June 2016-May 2017 except Manabi and Esmeraldas
+# (earthquake law episode); twelve percent to March 2024; thirteen percent
+# per RO 516; fifteen percent from 1 April 2024 (DE 198) and through 2025
+# (DE 470); eight percent tourism episodes (DE 644). PIT exempt base USD
+# 11,902 in 2024 (SRI Resolution NAC-DGERCGC24-00000041 raises it for 2025).
+# BDH USD 50 per month from 2013. Report reference: CR-ECUAMOD-v5.1
+# (UNU-WIDER), sections 1-2 and Tables 2.4-2.14.
+documents:
+  - source_id: ec-lrti-codificacion-26-reformas-2021
+    jurisdiction: ec
+    document_class: statute
+    citation_path: ec/statute/codificacion-2004-026/regimen-tributario-interno
+    title: Ley de Regimen Tributario Interno, LRTI (Codificacion 26, RO Supl. 463 de 17-nov-2004; reformas hasta 02-jul-2021) - impuesto a la renta Art. 36; IVA Art. 65 doce por ciento; ICE
+    source_url: 'https://www.sri.gob.ec/o/sri-portlet-biblioteca-alfresco-internet/descargar/e11a944b-a80c-4ebd-a167-1b64c9a8c4c6/LRTI-%C3%BAltima%20modificaci%C3%B3n%2002%20de%20julio%20de%202021.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2021-07-02'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica del Ecuador (Servicio de Rentas Internas compilation)
+      publisher: Servicio de Rentas Internas
+      source_family: income-tax-vat-ice/consolidated-law
+      language: es
+  - source_id: ec-ley-55-seguridad-social-2001
+    jurisdiction: ec
+    document_class: statute
+    citation_path: ec/statute/ley-2001-55/seguridad-social
+    title: Ley de Seguridad Social (Ley 55, RO Supl. 465 de 30-nov-2001, IESS consolidated print) - marco de aportes al IESS
+    source_url: 'https://www.iess.gob.ec/documents/10162/33701/Ley_seguridad_social.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2001-11-30'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica del Ecuador (Instituto Ecuatoriano de Seguridad Social publication)
+      publisher: Instituto Ecuatoriano de Seguridad Social
+      source_family: social-security/contributions
+      language: es
+  - source_id: ec-ley-conflicto-armado-interno-2024
+    jurisdiction: ec
+    document_class: statute
+    citation_path: ec/statute/ro-2024-516/ley-organica-conflicto-armado-interno
+    title: Ley Organica para Enfrentar el Conflicto Armado Interno, la Crisis Social y Economica (RO Supl. 516 de 12-mar-2024, SRI print) - IVA Art. 65 sustituido a trece por ciento; tarifa cinco por ciento materiales de construccion; habilitacion presidencial hasta quince por ciento
+    source_url: 'https://www.sri.gob.ec/o/sri-portlet-biblioteca-alfresco-internet/descargar/f03ecb3a-1e12-412a-bf42-8e4c8efe746c/Ley_enfrentar_Conflicto_Armado_publicado12032024.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2024-03-12'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica del Ecuador (Asamblea Nacional; Servicio de Rentas Internas print)
+      publisher: Servicio de Rentas Internas
+      source_family: vat/rate-reform-2024
+      language: es

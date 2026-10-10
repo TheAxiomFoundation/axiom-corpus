@@ -1,0 +1,118 @@
+documents:
+  - source_id: ca-cdss-acl-2014-14-56
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2014-14-56
+    title: CDSS All County Letter No. 14-56, CalFresh Modified Categorical Eligibility
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl/2014/14-56.pdf
+    source_format: pdf
+    source_as_of: "2014-08-22"
+    expression_date: "2014-08-22"
+    extraction:
+      text_replacements:
+        ? California Department of Social Services Letterhead inclusive of the California Department of Social Services Organizational Logo and the State Seal of California
+        : ""
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter
+      document_number: ACL 14-56
+      program: CalFresh
+      topic: modified_categorical_eligibility
+      authority_role: statewide_bbce_trigger_and_200_percent_fpl_screen
+      source_status: operative_as_corrected_and_modified
+      currentness_note: Read with ACL 14-56E, ACL 15-42, ACL 14-100, and current annual CalFresh figures.
+  - source_id: ca-cdss-acl-2014-14-56e
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2014-14-56e
+    title: CDSS All County Letter No. 14-56E, CalFresh Modified Categorical Eligibility Errata
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl/2014/14-56e.pdf
+    source_format: pdf
+    source_as_of: "2015-04-10"
+    expression_date: "2015-04-10"
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter_errata
+      document_number: ACL 14-56E
+      program: CalFresh
+      topic: modified_categorical_eligibility
+      authority_role: formal_correction_to_acl_14_56
+      source_status: operative_erratum
+  - source_id: ca-cdss-acl-2014-14-63
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2014-14-63
+    title: CDSS All County Letter No. 14-63, Households Eligible for CalFresh but Entitled to No Benefits
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl/2014/14-63.pdf
+    source_format: pdf
+    source_as_of: "2014-09-16"
+    expression_date: "2014-09-16"
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter
+      document_number: ACL 14-63
+      program: CalFresh
+      topic: zero_benefit_categorical_eligibility
+      authority_role: focused_zero_benefit_denial_and_discontinuance_policy
+      source_status: operative_subject_to_current_benefit_tables
+  - source_id: ca-cdss-acl-2015-15-42
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2015-15-42
+    title: CDSS All County Letter No. 15-42, CalFresh Income Reporting Threshold Clarifications
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl/2015/15-42.pdf
+    source_format: pdf
+    source_as_of: "2015-04-15"
+    expression_date: "2015-04-15"
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter
+      document_number: ACL 15-42
+      program: CalFresh
+      topic: modified_categorical_eligibility
+      authority_role: later_200_percent_boundary_and_mce_operational_clarification
+      source_status: operative_subject_to_current_annual_figures
+  - source_id: ca-cdss-acl-2014-14-100
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2014-14-100
+    title: CDSS All County Letter No. 14-100, Prior Felony Drug Conviction Eligibility Changes
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl/2014/14-100.pdf
+    source_format: pdf
+    source_as_of: "2014-12-19"
+    expression_date: "2014-12-19"
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter
+      document_number: ACL 14-100
+      program: CalFresh
+      topic: prior_felony_drug_conviction_eligibility
+      authority_role: modifies_acl_14_56_exclusion_treatment_effective_2015_04_01
+      source_status: operative_eligibility_change
+  - source_id: ca-cdss-acl-2013-13-32
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2013-13-32
+    title: CDSS All County Letter No. 13-32, Modified Categorical Eligibility and Elderly or Disabled Households
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl/2013/13-32.pdf
+    source_format: pdf
+    source_as_of: "2013-04-24"
+    expression_date: "2013-04-24"
+    extraction:
+      text_replacements:
+        CDSS Letterhead: ""
+        Great Seal of California, Edmund G. Brown Jr. Governor: ""
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter
+      document_number: ACL 13-32
+      program: CalFresh
+      topic: modified_categorical_eligibility
+      authority_role: elderly_disabled_household_path
+      source_status: operative_subject_to_current_annual_figures

@@ -1,0 +1,70 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier.json",
+      "sha256": "fde6094a3d97ec174470aa85cecc53faae8db126f9b91286066058722e7ee677"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier.json",
+      "sha256": "ba05d92d427205d675f45883b122eec18f665174150d9f17e24bc8e3ffc6074b"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier.jsonl",
+      "sha256": "4218b77f726b7cdbc100cb7911504ba8c12fd631ebe02e1a1897952c7ee0f063"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier/official-documents/de-kindergeld-eu-1298-2008.pdf",
+      "sha256": "b5345cf8f5eb9c823cccd72bd370c55cebf1838b62edd826ded0801317c35175"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier/official-documents/de-kindergeld-eu-1719-2006.pdf",
+      "sha256": "ee716850346f06f980e362c079a785721eff5e14d15c53bc7500865f779aa84b"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier/official-documents/de-kindergeld-eu-1720-2006.pdf",
+      "sha256": "5f7035d719a4fab3580e790938a56563edfc2fe28597d332773711d70282dc9e"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-earlier/official-documents/de-kindergeld-eu-375-2014.pdf",
+      "sha256": "a37284f5584422303ccf4435ac606564dfcb240c04f2b90403955d002375c89f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6ff60adc3a2a21ba29c7060f3ab616a9c354f9c5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-de-kindergeld-eu-service-earlier --manifest manifests/de-kindergeld-eu-service-earlier.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-10T20:59:01.368474+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-eu-service-earlier-audit.json",
+      "sha256": "18254398dc3d1f6f46396d5184af73c3c8d3c2a98ba9a873325bba5a0c3dfb04"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-eu-service-earlier.md",
+      "sha256": "b80b574114069eb41c2a5411716e36b4746b494a21b33e382d4806d42b300630"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "epXEgCaA3I2MmOIfxG3ueQpCeClr+sIJ/J9IlHAcL5doxl+FJSsiE/KxBSLGIRf6nPFdMvLz8n5x5mEW321DDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-eu-service-earlier"
+}

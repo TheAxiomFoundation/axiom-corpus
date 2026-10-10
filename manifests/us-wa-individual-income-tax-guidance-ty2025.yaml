@@ -1,0 +1,64 @@
+version: '2026-09-10'
+documents:
+- source_id: us-wa-dor-income-tax-ty2025
+  jurisdiction: us-wa
+  document_class: guidance
+  title: 'Income tax (Washington Department of Revenue): no individual income tax; 9.9% tax on adjusted gross income over
+    $1 million from 2028'
+  source_url: https://dor.wa.gov/taxes-rates/income-tax
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-wa/guidance/dor/income-tax
+  extraction: &id001
+    html_content_selector: main .field--name-body
+  metadata:
+    primary_source: true
+    source_authority: Washington State Department of Revenue
+    document_subtype: agency_web_page
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-wa/guidance/individual-income-tax
+    source_family: state-individual-income-tax-guidance-ty2025
+    index_url: https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax
+    discovered_via: manual-review:tax-agent-queue; index https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax
+- source_id: us-wa-dor-capital-gains-tax-ty2025
+  jurisdiction: us-wa
+  document_class: guidance
+  title: Capital gains tax (Washington Department of Revenue)
+  source_url: https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-wa/guidance/dor/capital-gains-tax
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Washington State Department of Revenue
+    document_subtype: agency_web_page
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-wa/guidance/individual-income-tax
+    source_family: state-individual-income-tax-guidance-ty2025
+    index_url: https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax
+    discovered_via: manual-review:tax-agent-queue; index https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax
+- source_id: us-wa-dor-special-notice-capital-gains-tiered-rates-ty2025
+  jurisdiction: us-wa
+  document_class: guidance
+  title: 'Special Notice: New tiered rates for Washington''s capital gains tax (tax year 2025)'
+  source_url: https://dor.wa.gov/forms-publications/publications-subject/special-notices/new-tiered-rates-washingtons-capital-gains-tax
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-wa/guidance/dor/special-notice-capital-gains-tiered-rates
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Washington State Department of Revenue
+    document_subtype: special_notice
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-wa/guidance/individual-income-tax
+    source_family: state-individual-income-tax-guidance-ty2025
+    index_url: https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax
+    discovered_via: manual-review:tax-agent-queue; index https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax

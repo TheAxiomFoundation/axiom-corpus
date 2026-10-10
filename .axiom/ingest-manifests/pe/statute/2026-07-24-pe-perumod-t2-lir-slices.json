@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/pe/statute/2026-07-24-pe-perumod-t2-lir-slices.json",
+      "sha256": "0106239285175afe9d6804150e966d483147eaf1773da381d8bcdb059de63bd9"
+    },
+    {
+      "path": "data/corpus/inventory/pe/statute/2026-07-24-pe-perumod-t2-lir-slices.json",
+      "sha256": "c70f96cb6b915e671ad0261463cfffaefa9f2ebc7b1a3b8787e40b40dfde84f5"
+    },
+    {
+      "path": "data/corpus/provisions/pe/statute/2026-07-24-pe-perumod-t2-lir-slices.jsonl",
+      "sha256": "7973cc23ef4cc847d7f12fb4b6f2f2922d64393beeb2556748f271bc57d42c9e"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-24-pe-perumod-t2-lir-slices/official-documents/pe-ds-2004-179-ef-cap-1-4-ambito-base-contribuyentes.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-24-pe-perumod-t2-lir-slices/official-documents/pe-ds-2004-179-ef-cap-10-11-responsables-retenciones.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-24-pe-perumod-t2-lir-slices/official-documents/pe-ds-2004-179-ef-cap-12-17-declaracion-finales.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-24-pe-perumod-t2-lir-slices/official-documents/pe-ds-2004-179-ef-cap-5-renta-bruta.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-24-pe-perumod-t2-lir-slices/official-documents/pe-ds-2004-179-ef-cap-6-renta-neta.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-24-pe-perumod-t2-lir-slices/official-documents/pe-ds-2004-179-ef-cap-7-9-tasas-perdidas.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f1f9373389bb95b30866f594945fd66da746b3f7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-pe-perumod-t2-lir-slices --manifest manifests/pe-perumod-t2-lir-slices-official-documents.yaml (page_windows re-slice of the t1-captured official PDF; text-native, no OCR)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-25T11:58:58.731858+00:00",
+  "jurisdiction": "pe",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wXFUB66LFW+owqf9ZhdjxSqomXZ+JepD5O1LZTHyGztYP5FUIHjJCMoCZ1qDyXnkXrJMgaEsudFJsiYko1QtBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-pe-perumod-t2-lir-slices"
+}

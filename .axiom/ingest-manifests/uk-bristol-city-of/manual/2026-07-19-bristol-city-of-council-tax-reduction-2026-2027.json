@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bristol-city-of/manual/2026-07-19-bristol-city-of-council-tax-reduction-2026-2027.json",
+      "sha256": "b43531165b65d01c28e76b0338726aaa7d8e6e55a3179b891d01ab7cee32ef38"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bristol-city-of/manual/2026-07-19-bristol-city-of-council-tax-reduction-2026-2027.json",
+      "sha256": "a144a005ac8ad37a9237d94a2fe5abc94ccd7f5fa364f5d813f50f32ee8cdec2"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bristol-city-of/manual/2026-07-19-bristol-city-of-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "128dcd20b0abb5cc6e784764da217a8a8fad0f930944df4eba60b29ecffe1909"
+    },
+    {
+      "path": "data/corpus/sources/uk-bristol-city-of/manual/2026-07-19-bristol-city-of-council-tax-reduction-2026-2027/official-documents/bristol-city-of-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a698a20383d268c0d38c2f33eb0a183a4a568cad8ae5f7b00c1dd2a7727d5e3a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "92ac9c1bedf62968eeea9a873361f49075364157",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-19-bristol-city-of-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bristol-city-of-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 55,
+    "missing_count": 0,
+    "provision_count": 55,
+    "source_count": 55
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-20T11:57:26.210337+00:00",
+  "jurisdiction": "uk-bristol-city-of",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "l89n3kMUohLg3k1pn79fQgA3Pqv8/R35wm5Z01WF9/pE1LWQ1DcBogdHsKqfQSryBlVKwSRuP3+z1Dlgx5bbDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-bristol-city-of-council-tax-reduction-2026-2027"
+}

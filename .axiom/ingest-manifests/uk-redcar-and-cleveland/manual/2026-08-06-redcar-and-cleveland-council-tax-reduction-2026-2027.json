@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-redcar-and-cleveland/manual/2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027.json",
+      "sha256": "6a66a0bd4ccf66be4ab539306f55ea96e88e8ebca508eab98aaedc9b3b063ff8"
+    },
+    {
+      "path": "data/corpus/inventory/uk-redcar-and-cleveland/manual/2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027.json",
+      "sha256": "24755a009a9316556f8f1a81aa93385d2c7e471579c965498e70bb9a7da1e6a7"
+    },
+    {
+      "path": "data/corpus/provisions/uk-redcar-and-cleveland/manual/2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "d158d4c97f87a6d2494446e32a9cc6c109ec83121a8d7013ce8420afa9e074f1"
+    },
+    {
+      "path": "data/corpus/sources/uk-redcar-and-cleveland/manual/2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027/official-documents/redcar-and-cleveland-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "75efcb8eb8a84453539ef8dbe45139a7cd3f232da655596aaa74b5f68e9977ac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2e5ce9d588b7810854856748cf9bf380df628525",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-redcar-and-cleveland-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 23,
+    "missing_count": 0,
+    "provision_count": 23,
+    "source_count": 23
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-06T17:01:30.087933+00:00",
+  "jurisdiction": "uk-redcar-and-cleveland",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AnHA9ZdsqiANZRg4lFpOaFEXXSruDxLOjOry8IK//XfL/Y6kFUftizqBpDaOUdpQabPr6exLDh5BxrZMwlS9CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027"
+}

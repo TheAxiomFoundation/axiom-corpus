@@ -1,0 +1,135 @@
+# Viet Nam (vn) tranche-2 FULL-DOCUMENT re-slice of Luat 58/2014/QH13 -
+# VNMOD lane repair item (VN-BACKLOG-STATUS.md): the whole-law capture
+# (vn/statute/luat-2014-58-qh13/bao-hiem-xa-hoi, scope 2026-07-24-vn-
+# vnmod-t1-statutes, 51-page signed scan) hit the whole-blob failure
+# mode (sol deferral; 7-rule terra fragment salvaged). Per the
+# full-document program (Egypt lane), the SAME datafiles.chinhphu.vn
+# signed scan is re-captured in 5 chuong page_windows slices
+# (force_ocr/vie at 400 dpi). The t1 capture remains immutable; this t2
+# scope supersedes it for encoding.
+documents:
+  - source_id: vn-luat-2014-58-chuong-1-2-quy-dinh-chung
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2014-58-qh13/chuong-1-2-quy-dinh-chung
+    title: 'Luat 58/2014 Chuong I-II: quy dinh chung; quyen va trach nhiem (general provisions; rights and responsibilities) (pages 1-10 of the signed official scan)'
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2014/12/58.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2014-11-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: vie
+      page_windows:
+        - start_page: 1
+          end_page: 10
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-security/si-law-slices
+      language: vi
+  - source_id: vn-luat-2014-58-chuong-3-bhxh-bat-buoc
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2014-58-qh13/chuong-3-bhxh-bat-buoc
+    title: 'Luat 58/2014 Chuong III: bao hiem xa hoi bat buoc (mandatory social insurance - sickness, maternity, occupational, retirement, survivorship) (pages 11-29 of the signed official scan)'
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2014/12/58.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2014-11-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: vie
+      page_windows:
+        - start_page: 11
+          end_page: 29
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-security/si-law-slices
+      language: vi
+  - source_id: vn-luat-2014-58-chuong-4-5-tu-nguyen-quy
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2014-58-qh13/chuong-4-5-tu-nguyen-quy
+    title: 'Luat 58/2014 Chuong IV-V: bao hiem xa hoi tu nguyen; quy bao hiem xa hoi (voluntary SI; the SI fund incl. contribution machinery) (pages 30-37 of the signed official scan)'
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2014/12/58.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2014-11-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: vie
+      page_windows:
+        - start_page: 30
+          end_page: 37
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-security/si-law-slices
+      language: vi
+  - source_id: vn-luat-2014-58-chuong-6-7-to-chuc-thu-tuc
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2014-58-qh13/chuong-6-7-to-chuc-thu-tuc
+    title: 'Luat 58/2014 Chuong VI-VII: to chuc, quan ly; trinh tu, thu tuc (administration; procedures) (pages 38-47 of the signed official scan)'
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2014/12/58.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2014-11-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: vie
+      page_windows:
+        - start_page: 38
+          end_page: 47
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-security/si-law-slices
+      language: vi
+  - source_id: vn-luat-2014-58-chuong-8-9-khieu-nai-thi-hanh
+    jurisdiction: vn
+    document_class: statute
+    citation_path: vn/statute/luat-2014-58-qh13/chuong-8-9-khieu-nai-thi-hanh
+    title: 'Luat 58/2014 Chuong VIII-IX: khieu nai, to cao; dieu khoan thi hanh (complaints; final provisions) (pages 48-51 of the signed official scan)'
+    source_url: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2014/12/58.signed.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-24'
+    expression_date: '2014-11-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 400
+      ocr_language: vie
+      page_windows:
+        - start_page: 48
+          end_page: 51
+    metadata:
+      primary_source: true
+      source_authority: Cong hoa xa hoi chu nghia Viet Nam (Cong Thong tin dien tu Chinh phu)
+      publisher: Cong Thong tin dien tu Chinh phu
+      source_family: social-security/si-law-slices
+      language: vi

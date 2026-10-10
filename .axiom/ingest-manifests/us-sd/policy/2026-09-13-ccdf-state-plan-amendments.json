@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/policy/2026-09-13-ccdf-state-plan-amendments.json",
+      "sha256": "3206de99b5f834c49496faae19ff55bfc5203c25d684b0871cf342f3ccb0a25f"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/policy/2026-09-13-ccdf-state-plan-amendments.json",
+      "sha256": "589fb42e1a99c74d1f6fe65ff939a98f7ea4245515be82fcdf1d181888bf5f23"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/policy/2026-09-13-ccdf-state-plan-amendments.jsonl",
+      "sha256": "f061082fc40eae09ee3af2c38ccf6ac8442f68038222d8316e90c3e32bd21ec8"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-sd-acf-ccdf-plan-fy2025-2027-amendment-1.pdf",
+      "sha256": "4c6ac2b6bbe902fbba55de94efbd621051085c5034ae561bcd8338714e97dce5"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-sd-acf-ccdf-plan-fy2025-2027-amendment-2.pdf",
+      "sha256": "d40824491e2b9cffb2fe98393683b36b14ae5846502e10fc5d091f11629d4f9f"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-sd-acf-ccdf-plan-fy2025-2027-amendment-3.pdf",
+      "sha256": "b6e9e9cd813987dc8e3d89a4b655130566e0f2a81211859fa301b818e07d356f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-amendments (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 126,
+    "missing_count": 0,
+    "provision_count": 126,
+    "source_count": 126
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:15:08.058678+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pTyZo/8joknhSCS7Fvzcr939d9xakxaxOYl1iHynVYBJGZi5lnkvBpUSthREseDn+twWDIfN+0FaHI/+j9EcAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-amendments"
+}

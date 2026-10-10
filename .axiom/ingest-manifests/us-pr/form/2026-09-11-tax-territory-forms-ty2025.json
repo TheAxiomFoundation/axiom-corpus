@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pr/form/2026-09-11-tax-territory-forms-ty2025.json",
+      "sha256": "c56608285a6fe3c8181722e4a8d4d636f548052c23671f26b77ec10edba383c9"
+    },
+    {
+      "path": "data/corpus/inventory/us-pr/form/2026-09-11-tax-territory-forms-ty2025.json",
+      "sha256": "14bb0f4f6e0fcb17a0df2e3dd95b80c98a67412228e03d34663e242fe1b7db4f"
+    },
+    {
+      "path": "data/corpus/provisions/us-pr/form/2026-09-11-tax-territory-forms-ty2025.jsonl",
+      "sha256": "c62ad54e31598cefbde51ddbf65bd8071b24e65a75a92f517a303144a645b0a7"
+    },
+    {
+      "path": "data/corpus/sources/us-pr/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-pr-hacienda-form-482-0-instructions-ty2025.pdf",
+      "sha256": "46fc83da44a88cd2d9dc32eb04cc34609c54ba755ef4a9f9d9f4e1a4ee081818"
+    },
+    {
+      "path": "data/corpus/sources/us-pr/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-pr-hacienda-form-482-0-ty2025.pdf",
+      "sha256": "176f8fea790caed49e3c16e83f5df954fd44b82735a88b7925bc6c3ba23d7ef0"
+    },
+    {
+      "path": "data/corpus/sources/us-pr/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-pr-hacienda-formulario-482-instrucciones-ty2025.pdf",
+      "sha256": "9afb0f5165dba2dc993571dd06db140745058d3849eb7bd0b4c70636b996ef69"
+    },
+    {
+      "path": "data/corpus/sources/us-pr/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-pr-hacienda-formulario-482-ty2025.pdf",
+      "sha256": "c17c5ba0d8c0d2751ed3fe7bcb1b0ed10eb94cdf0129a28c6c056e8229b40761"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-tax-territory-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-13T19:42:45.575814+00:00",
+  "jurisdiction": "us-pr",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "URM8CKc6OYssVjql1mzcdQ2Tb37BZBdgAihOuhIGIK51peUBeF52BDlAq2mbL9D7mKQKQfDcQXvcgqYSZ6tzDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-tax-territory-forms-ty2025"
+}

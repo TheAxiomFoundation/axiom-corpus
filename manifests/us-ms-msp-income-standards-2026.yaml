@@ -1,0 +1,25 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ms-dom-medicare-cost-sharing-eligibility-guide-2026-03
+  jurisdiction: us-ms
+  document_class: guidance
+  title: Medicaid Eligibility Guide for Medicare Cost-Sharing Coverage (revised 3/1/2026)
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Medicare-Cost-Sharing-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ms/guidance/dom/medicare-cost-sharing-eligibility-guide/2026-03
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ms/guidance
+    index_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/medicare-cost-sharing/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_guide
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+    - MED-ST-4

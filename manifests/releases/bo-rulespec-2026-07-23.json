@@ -1,0 +1,17 @@
+{
+  "description": "Immutable official Bolivia scopes used by RuleSpec-BO: the BOLMOD v2.1 tranche-1 statute chain (Ley 843 Reforma Tributaria in the Decreto Supremo 27947 Anexo 3 texto ordenado carrying the operative IVA/RC-IVA 13 percent alicuotas; Ley 065 de Pensiones behind the SIP contribution schedule; Ley 3791 creating Renta Dignidad) and the CCT creation decrees (DS 28899 Bono Juancito Pinto; DS 0066 Bono Juana Azurduy). First Bolivia cut; SOUTHMOD full-bundle program lane 6.",
+  "name": "bo-rulespec-2026-07-23",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "regulation",
+      "jurisdiction": "bo",
+      "version": "2026-07-23-bo-bolmod-t1-regulations"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "bo",
+      "version": "2026-07-23-bo-bolmod-t1-statutes"
+    }
+  ]
+}

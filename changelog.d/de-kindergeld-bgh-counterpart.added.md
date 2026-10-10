@@ -1,0 +1,1 @@
+Capture the complete official BGH XII ZR129/16 judgment for the Kindergeld written-agreement dependency review, preserving the distinction between contract formation and rental documentation. Also retain exact complete SGB IX disability-definition paragraph units from the dated official pages for protected native encoding.

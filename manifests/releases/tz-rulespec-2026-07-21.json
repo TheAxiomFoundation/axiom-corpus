@@ -1,0 +1,27 @@
+{
+  "description": "Immutable official United Republic of Tanzania scopes used by RuleSpec-TZ: the mainland (tz) statute and policy scopes unchanged from tz-rulespec-2026-07-16, plus the Zanzibar (tz-znz) ZANMOD tranche-1 statute scope — the rulespec-us federation precedent (one country repo, sub-jurisdiction content dirs, one release carrying every jurisdiction's scopes). Signed under the rotated release key, so local verification works post-rotation (the 2026-07-16 name stays bound to its object, unconsumed).",
+  "name": "tz-rulespec-2026-07-21",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "policy",
+      "jurisdiction": "tz",
+      "version": "2026-07-09-tz-pssn-policy"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "tz",
+      "version": "2026-07-09-tz-appropriation-2022-statutes"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "tz",
+      "version": "2026-07-09-tz-tax-and-social-security-statutes"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "tz-znz",
+      "version": "2026-07-21-tz-znz-tax-and-social-security"
+    }
+  ]
+}

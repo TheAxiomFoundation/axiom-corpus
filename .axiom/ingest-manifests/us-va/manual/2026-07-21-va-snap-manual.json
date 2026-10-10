@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/manual/2026-07-21-va-snap-manual.json",
+      "sha256": "aca49c5c8037f5ccbf88aa99c8d6c866d105d74706d8d44e3a3bd6102d9b3577"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/manual/2026-07-21-va-snap-manual.json",
+      "sha256": "ffce0a29a0f8e7ce09b3aebdd3ae3a1a7132de1e0d912e11c22c9f0368451979"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/manual/2026-07-21-va-snap-manual.jsonl",
+      "sha256": "8d451aa6ed4bad4e531443b999d66eef225c7b85280f460930ec055fd279db3c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-07-21-va-snap-manual/official-documents/va-dss-snap-full-manual-2025-10-01.pdf",
+      "sha256": "9868c25c0d17685234301783bc1833b4dab494d2380b050ab0dffb73dc4e8d8a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1014aef4665c719e7f8fb9da743de25809ff40bd",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-va-snap-manual --manifest manifests/us-va-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 678,
+    "missing_count": 0,
+    "provision_count": 678,
+    "source_count": 678
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T16:10:51.399659+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "//HP0Aqovay8nDF8yQVVzaDYI7PTCB3wmoQp6CmuKrW1qncV+v5yc2s05DHmvF5crDaNEynVx0CbqW12XNkJBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-va-snap-manual"
+}

@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix.json",
+      "sha256": "8e83295be24c5df2d56751b87a3fe2dd8ed4b1f044c0c265d9a8454702e03bbc"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix.json",
+      "sha256": "0d3124e968c9a73ce4554c12e0593f48a210cc1cccd452763a514701a1b4bb50"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix.jsonl",
+      "sha256": "3e0b166579a9995dc6601367d677f0482a3f38f1851422a5bcc112390f1bbcf8"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/regulation-35.xml",
+      "sha256": "faa6121666796e64ca55e895c7d59b721f20fb062bc105165a94487fdbed4352"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/regulation-79.xml",
+      "sha256": "eb9a3b4a42ab3a8c7490f24a0a720ba5ef17b7d319571cbf2eab8d0bbbe00fae"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/regulation-90.xml",
+      "sha256": "584291b78ee1c497bd39a07f261bd914d69b6cbf9e875e11caf3b8b2646fbfa3"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/regulation-91.xml",
+      "sha256": "954062e76765a59bdef2671eb09b4b6c1caf11338249df5e864b6244c2e9cc42"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/schedule-1-paragraph-1.xml",
+      "sha256": "0e330145f83ca2002e83dffcf0413bcedb6ba7ba5ee4712172937bc2ea708360"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/schedule-1-paragraph-2.xml",
+      "sha256": "9f7c16aa86b28671252cb4906df0ea8f49672bd354f6197dd4c6d3d199bd972e"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix/ssi/2021/249/schedule-2-paragraph-1.xml",
+      "sha256": "a6db8ee63e902fd97a39e0f69fefc3e34c6c1d2325a2f4ce027f557e5121c8b0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ff0a9a76d8b1d9911b08a2a3c7398a5aafac336f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:42.138499+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uJNF/EYrEoPbf6hp8e0g6lRNSAv7KRmfC607+DHGVkrvpLZCmpKnCNIa+YDdxeavXb+udcHynebQ11HutQ0OCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix"
+}

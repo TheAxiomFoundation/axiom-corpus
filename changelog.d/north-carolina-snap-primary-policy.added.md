@@ -1,1 +1,0 @@
-Added North Carolina SNAP primary-policy source manifest (10A NCAC 71U - Food Assistance, 23 sections from Cornell LII) and the corresponding ingested provisions (69 provisions; 7 sections have substantive bodies, the remainder are reserved/empty).

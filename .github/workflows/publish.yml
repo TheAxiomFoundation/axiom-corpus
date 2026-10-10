@@ -26,8 +26,20 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Large union releases perform deep validation plus content-addressed R2 and
+    # Supabase readback for every selected object and scope, and that work grows
+    # with the whole release, not with what is new in it. A 274-scope /
+    # 12,500-object release took 101 minutes serially and a 536-scope /
+    # 17,000-object release was killed at the previous 120-minute limit before
+    # finishing (run 34775035418). R2 staging now runs on a bounded thread pool
+    # (--r2-workers) and every phase logs timestamped progress, but the ceiling
+    # is GitHub's maximum so a slow R2 or Supabase day fails on a real error
+    # instead of a timeout. Keep the job bounded: never remove this line.
+    timeout-minutes: 360
     env:
+      # Publication progress lines go to stderr; keep them ordered with stdout in
+      # the Actions log so a killed run shows the phase it was in.
+      PYTHONUNBUFFERED: "1"
       R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
       R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
       R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
@@ -36,6 +48,7 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       AXIOM_CORPUS_RELEASE_PRIVATE_KEY: ${{ secrets.AXIOM_CORPUS_RELEASE_SIGNING_KEY }}
       AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+      AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS: ${{ vars.AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS }}
     steps:
       - uses: actions/checkout@v6.0.2
         with:
@@ -86,29 +99,72 @@ jobs:
             exit 0
           fi
           if [ "$(grep -cve '^$' "$RUNNER_TEMP/release-selectors.txt")" -ne 1 ]; then
-            echo "::error::One publication run must activate exactly one named release."
+            echo "::error::One publication run must publish exactly one named release."
             exit 1
           fi
           echo "publish=true" >> "$GITHUB_OUTPUT"
           cat "$RUNNER_TEMP/release-selectors.txt"
 
-      - name: Validate, sign, and activate the named release through the management plane
+      - name: Ensure bounded release upload and registration
         if: steps.selectors.outputs.publish == 'true'
         run: |
+          python scripts/apply_release_activation_upload_migration.py
+          python scripts/apply_release_object_staging_migration.py
+
+      - name: Validate, sign, and register the named release (activation is separate)
+        if: steps.selectors.outputs.publish == 'true'
+        run: |
+          # Publication stages content-addressed R2 artifacts + versioned Supabase
+          # rows and signs the release object. It does NOT move serving: activation
+          # repoints the per-scope serving map and can displace another
+          # jurisdiction's release (axiom-corpus#408), so it is a separate,
+          # deliberate step run via scripts/activate_release.py (with --dry-run to
+          # preview the takeover first).
           while IFS= read -r selector; do
             [ -n "$selector" ] || continue
+            output="$RUNNER_TEMP/$(basename "$selector" .json)-release-object.json"
             python scripts/publish_corpus.py \
               --release "$selector" \
-              --output "$RUNNER_TEMP/$(basename "$selector" .json)-release-object.json"
+              --r2-workers 16 \
+              --output "$output"
+            mapfile -t identity < <(python - "$output" <<'PY'
+          import json
+          import sys
+
+          payload = json.load(open(sys.argv[1], encoding="utf-8"))
+          print(payload["release"])
+          print(payload["content_sha256"])
+          PY
+            )
+            if [ "${#identity[@]}" -ne 2 ]; then
+              echo "::error::Published release object has an invalid identity."
+              exit 1
+            fi
+            python scripts/stage_release_object.py \
+              --release-object "$output" \
+              --release "${identity[0]}" \
+              --content-sha "${identity[1]}" \
+              --expected-project-ref swocpijqqahhuwtuahwc
           done < "$RUNNER_TEMP/release-selectors.txt"
+
+      - name: Retain the signed release object for activation
+        # always(): keep the object even when registration failed after
+        # publication succeeded, so the failure can be diagnosed against it.
+        if: always() && steps.selectors.outputs.publish == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/*-release-object.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Publication summary
         if: always()
         run: |
           {
-            echo "### Named corpus release publication"
+            echo "### Named corpus release publication (registered, not activated)"
             echo ""
-            echo "The release must bind the exact artifact/source inventory and canonical provision/navigation projection digests."
-            echo "Conditional R2 writes, exact readback, pre-sign database evidence, local Ed25519 verification, and management-plane transactional activation must all pass."
-            echo "The staging service role cannot activate a release; exact retries only verify and reuse immutable state."
+            echo "The release binds the exact artifact/source inventory and canonical provision/navigation projection digests."
+            echo "Conditional R2 writes, exact readback, pre-sign database evidence, and local Ed25519 verification must all pass."
+            echo "The verified immutable object is registered for publication-time ordering. This step does NOT activate: serving is unchanged. Activation is a separate, deliberate step (scripts/activate_release.py, preview with --dry-run) because it repoints the per-scope serving map and can displace another jurisdiction's release (axiom-corpus#408)."
           } >> "$GITHUB_STEP_SUMMARY"

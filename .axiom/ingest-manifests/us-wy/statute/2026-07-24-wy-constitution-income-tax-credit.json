@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/statute/2026-07-24-wy-constitution-income-tax-credit.json",
+      "sha256": "e3a4476fb96e61b751f587c7f18262e2b54b8bdc469e11536b886250e2b6a0ec"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/statute/2026-07-24-wy-constitution-income-tax-credit.json",
+      "sha256": "30f9e02003f5568688b63461b80373f5247d2d273b85d5496270f0ba98a38cee"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/statute/2026-07-24-wy-constitution-income-tax-credit.jsonl",
+      "sha256": "105e52c821d599ea75fede9f2206ad94b546a38d7c59b3e6ae577df7a1266a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/statute/2026-07-24-wy-constitution-income-tax-credit/official-documents/us-wy-constitution-article-15-section-18.html",
+      "sha256": "6483fab2841e8da6c21b79bc2cf8b0fa225920273a80d9857fc929693a2c2b00"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "190a3b89ce3403b0a5ec727f051ed4d27139ce43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-wy-constitution-income-tax-credit --manifest manifests/us-wy-2026-constitution-income-tax-credit.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T19:32:11.325536+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-wy-constitution-income-tax-credit.md",
+      "sha256": "6bc0a7de551b99fd2ced2c3d7a3c89c538a71379914f7681178a0a65b6cb400c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GSQmbKDNa6ADAxNOpYijf8uaX32wSNTDCv0npHwhtzK9vQRWebFIy2m3K2jazJZkEuOiab198cGwXg5b6qb/Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-wy-constitution-income-tax-credit"
+}

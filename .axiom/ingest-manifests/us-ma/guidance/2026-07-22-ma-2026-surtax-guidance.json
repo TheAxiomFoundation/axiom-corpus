@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-07-22-ma-2026-surtax-guidance.json",
+      "sha256": "c1f41d4ac476ac06d98c59dc3fba01bed0add8f5a869bb9667cb1ba8c50cdc0c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-07-22-ma-2026-surtax-guidance.json",
+      "sha256": "5a9808477ce203f640aab52fdf78a1002081d755006a9d04bb9184c69401407e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-07-22-ma-2026-surtax-guidance.jsonl",
+      "sha256": "d2e7dc17a349dd1f8d305eb801295fadbd39b905cf1cdb13700d9c2f81a9a6dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-07-22-ma-2026-surtax-guidance/official-documents/us-ma-dor-4-percent-surtax-guidance.html",
+      "sha256": "20332177fd5030dfdfbe1f74543a7a65d1aa8e9daf61a267c34c509418d4c081"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "76a70aff79015bb91eba4a6fe35a35b665c3f678",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-ma-2026-surtax-guidance --manifest manifests/us-ma-2026-surtax-guidance.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-23T15:17:59.274811+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-ma-2026-estimated-tax-and-surtax.md",
+      "sha256": "047c00553f6707893c56091fb1b7c591e291921ffc92a07ba2a14a9b7578b9f8"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PylilZL0GONDCxQWctl3rGTgKjfNwOwaZN9qSQAKa3W5EVIcTQbIH1Kw3jfR5XybuRHhuNK5/y3nllYOMoEQDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-ma-2026-surtax-guidance"
+}

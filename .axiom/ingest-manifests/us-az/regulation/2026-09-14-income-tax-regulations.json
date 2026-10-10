@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "521921dc987be5d1920338d7c7416ea66c6c8cbc9f7f5f22a15d47257e7e3e85"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "6a894a700ff2c6ab8ae0670f088e007629be182e17ddcf30eee661ee37b77242"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "63f5006ed99f5e934042b5ac7a0407d071ee4d45fa30f01d522ceac944c5fab1"
+    },
+    {
+      "path": "data/corpus/sources/us-az/regulation/2026-09-14-income-tax-regulations/official-documents/az-sos-aac-title-15-chapter-2-income-tax.pdf",
+      "sha256": "f7dc617343ce4f98b0ed6d4fbb8f9fa7d562e572634bc0b84492c4ed33931eda"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 106,
+    "missing_count": 0,
+    "provision_count": 106,
+    "source_count": 106
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:13:18.225620+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ajArNo1m5SzmUbXloQfwjOcTPONlDWJJVnVGbCUCP+TEwAZXJqFqowEAJxTnDxzNztyOPYwFhoyq3rPISs2JAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

@@ -1,0 +1,44 @@
+version: 2026-09-15-ccdf-rate-schedules
+documents:
+- source_id: us-wi-ccdf-rate-schedule-wisconsin-shares-maximum-rates-2025-10-01
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin: 2025 Wisconsin Shares Child Care Subsidy County and Tribal Maximum Rates, effective October 1, 2025'
+  source_url: https://dcf.wisconsin.gov/files/wishares/pdf/max-rates-statewide.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-wi/policy/ccdf/rate-schedules/wisconsin-shares-maximum-rates-2025-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Children and Families (Wisconsin Shares Child Care Subsidy)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://dcf.wisconsin.gov/wishares/maxrates
+    source_discovery_group: us-wi/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://dcf.wisconsin.gov/wishares/maxrates
+    closure_elements:
+    - ccdf-s30
+- source_id: us-wi-ccdf-rate-schedule-wisconsin-shares-copayment-schedule-2026-02-01
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin: Wisconsin Shares Copayment Schedule, effective February 1, 2026'
+  source_url: https://dcf.wisconsin.gov/files/wishares/pdf/wishares-copay-schedule.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-02-01'
+  citation_path: us-wi/policy/ccdf/rate-schedules/wisconsin-shares-copayment-schedule-2026-02-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Children and Families (Wisconsin Shares Child Care Subsidy)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://dcf.wisconsin.gov/wishares/maxrates
+    source_discovery_group: us-wi/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://dcf.wisconsin.gov/wishares/maxrates
+    closure_elements:
+    - ccdf-s30

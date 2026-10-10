@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices.json",
+      "sha256": "3a9c6177974e39eeb134345b53bc320e9108b2f6ad7c0e7ce7d87d8a253e171a"
+    },
+    {
+      "path": "data/corpus/inventory/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices.json",
+      "sha256": "8661ea5adb0bea41d9ea699ef11aeb952e8b74ccca1724525cfbab3b098eef49"
+    },
+    {
+      "path": "data/corpus/provisions/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices.jsonl",
+      "sha256": "1b58a1c32c66d1e8d60f2f1fbfee020d9391de686db73520ad99ad06eb41245e"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices/official-documents/bo-ley-2010-065-titulo-1-2-disposiciones-prestaciones.pdf",
+      "sha256": "8bfb91850991c028da740c18c9089126d83a095699fa1e805107a6389ecc3911"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices/official-documents/bo-ley-2010-065-titulo-3-4-retiros-cobro.pdf",
+      "sha256": "8bfb91850991c028da740c18c9089126d83a095699fa1e805107a6389ecc3911"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices/official-documents/bo-ley-2010-065-titulo-5-6-sectores-inversiones.pdf",
+      "sha256": "8bfb91850991c028da740c18c9089126d83a095699fa1e805107a6389ecc3911"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-24-bo-bolmod-t2-ley065-slices/official-documents/bo-ley-2010-065-titulo-7-9-gestora-transicion-finales.pdf",
+      "sha256": "8bfb91850991c028da740c18c9089126d83a095699fa1e805107a6389ecc3911"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f41cbaca98528037328e72d253a302046178115e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-bo-bolmod-t2-ley065-slices --manifest manifests/bo-bolmod-t2-ley065-slices-official-documents.yaml (page_windows re-slice of the t1-captured official PDF; text-native, no OCR)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-25T11:59:02.508718+00:00",
+  "jurisdiction": "bo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FoH0urLARh7jWQyRmZk6DNloNGbl+OikFKupLmIo7/lc6ItiwwIbuTI2eMt4oeGO1rpwfz9jH5sGDMkyFRsNCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-bo-bolmod-t2-ley065-slices"
+}

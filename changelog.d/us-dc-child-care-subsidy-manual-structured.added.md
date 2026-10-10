@@ -1,0 +1,1 @@
+Re-ingest the DC OSSE Child Care Subsidy Program Policy Manual with structured segmentation covering the thirteen Section containers, all dotted subsections including deep labels, and the standalone Definitions chapter (fresh 2026-07-19 capture), replacing the page-slab extraction approach.

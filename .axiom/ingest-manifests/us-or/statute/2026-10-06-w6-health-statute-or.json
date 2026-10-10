@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/statute/2026-10-06-w6-health-statute-or.json",
+      "sha256": "88291a84a9cc8d99730560ad5ba02882ca46fd104db55336947f22ed89513981"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/statute/2026-10-06-w6-health-statute-or.json",
+      "sha256": "e638538b60642c33c66e3e2bc1fd791573f3f47daa44da0d569777726f92ca10"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/statute/2026-10-06-w6-health-statute-or.jsonl",
+      "sha256": "e53a3c38c31fcb29cadf9f187f94f942ad7ea0db1674c5e80a7511f5c2bb9d71"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-10-06-w6-health-statute-or/official-documents/us-or-w6-health-session-laws-2021-hb3352.pdf",
+      "sha256": "cd77c9cc34bca1244afa4b45545e6e78bf3613917f5f5ea2fd197372bfbccc7d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:57:42.823957+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rjqKXRy9d8YCaSbY+DkYhkMYyq8rhP/8PFo5lzDrIuTxiTXMTcS2vIn6Qd3HUnHx2rDBZjR1s69NORe55Vl3Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-statute-or"
+}

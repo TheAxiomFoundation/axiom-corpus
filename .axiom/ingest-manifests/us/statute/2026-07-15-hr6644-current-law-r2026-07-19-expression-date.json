@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-expression-date.json",
+      "sha256": "5b996bfc214d1d5bd8bdfea986a13b2d588e1d042becb3ea1520e05d11112b6c"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-expression-date.json",
+      "sha256": "c67122ac340ebc79689897b816b69c6d0b4fabee7729da3c44648e4f26ee73ff"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-expression-date.jsonl",
+      "sha256": "1fa1ea881a1f13a5ce21f7eb0a7b894ed3dbd503cd468250237c80b553216ba0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-expression-date/uslm/usc12.xml",
+      "sha256": "d8f3c76a21576e0697f8f47312702aa6369b9d361cacb1be18f07c9100dd0495"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-15-hr6644-current-law-r2026-07-19-expression-date/uslm/usc42.xml",
+      "sha256": "3441769bf661bf83381686cf7bc89fb17eb3138c34ae964816759a554ca88a36"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1a1f66cb6e4e8c139bbc14e34ef97f7fdf73387",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/reversion_expression_dates.py --base data/corpus --jurisdiction us --document-class statute --source-version 2026-07-15-hr6644-current-law-r2026-07-18-dedup --target-version 2026-07-15-hr6644-current-law-r2026-07-19-expression-date"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-19T03:28:21.602334+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+6/TySnMvks9eQVKLTJhTRm8d0wQ51Zga79ScM5jQQekhobj9IJdrEo6ygRP5uJTU0AT5XUrs+MrelI8ujDLBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-15-hr6644-current-law-r2026-07-19-expression-date"
+}

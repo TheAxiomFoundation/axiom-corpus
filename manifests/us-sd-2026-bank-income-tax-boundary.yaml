@@ -1,0 +1,64 @@
+documents:
+  - source_id: us-sd-codified-law-chapter-10-43
+    jurisdiction: us-sd
+    document_class: statute
+    title: South Dakota Codified Laws Chapter 10-43
+    source_url: https://www.sdlegislature.gov/api/Statutes/10-43.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-sd/statute/10/43
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: div
+      section_label: chapter-index
+      section_heading: SDCL Chapter 10-43 index
+    metadata:
+      primary_source: true
+      source_authority: South Dakota Legislature
+      legal_identifier: SDCL ch. 10-43
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_official_2026_codified_law
+      certification_scope: bank_and_financial_corporation_income_tax_boundary
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Current official codified-law chapter titled Income Tax on Banks and
+        Financial Corporations. This intake supplies the higher-authority
+        boundary showing that chapter 10-43 imposes its income tax on financial
+        institutions. It does not itself establish a natural person's annual
+        resident liability; the Department of Revenue's official January 2026
+        guide supplies the affirmative no-personal-income-tax statement.
+  - source_id: us-sd-codified-law-section-10-43-2
+    jurisdiction: us-sd
+    document_class: statute
+    title: South Dakota Codified Laws Section 10-43-2
+    source_url: https://www.sdlegislature.gov/api/Statutes/10-43-2.html
+    source_format: html
+    source_as_of: "2026-07-24"
+    expression_date: "2026-07-24"
+    citation_path: us-sd/statute/10/43/2
+    extraction:
+      segmentation: anchor_range
+      html_start_selector: div
+      section_label: operative-text
+      section_heading: SDCL 10-43-2 operative text
+    metadata:
+      primary_source: true
+      source_authority: South Dakota Legislature
+      legal_identifier: SDCL 10-43-2
+      document_subtype: state_statute
+      program: individual_income_tax
+      source_status: current_official_2026_codified_law
+      certification_scope: bank_and_financial_corporation_income_tax_boundary
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Current official imposition section providing that the chapter 10-43
+        tax is imposed on each financial institution doing business or licensed
+        to do business in South Dakota. This supplies the operative statutory
+        entity boundary and does not impose personal income tax on a natural
+        person.

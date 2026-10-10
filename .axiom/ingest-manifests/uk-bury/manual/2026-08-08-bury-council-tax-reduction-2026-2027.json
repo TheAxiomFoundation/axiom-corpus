@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bury/manual/2026-08-08-bury-council-tax-reduction-2026-2027.json",
+      "sha256": "34431442e73c931a4a5e79e4dec2f0edd3817979f47765745b0554534d5e3d04"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bury/manual/2026-08-08-bury-council-tax-reduction-2026-2027.json",
+      "sha256": "3c2fc247aae6c7b605bc707ee6a032c0fdc70e4c26016911e7f4fb3980705154"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bury/manual/2026-08-08-bury-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "c447819d85dff196450b835b2e7c8182236edc23427c09853b33367b08e0b9c6"
+    },
+    {
+      "path": "data/corpus/sources/uk-bury/manual/2026-08-08-bury-council-tax-reduction-2026-2027/official-documents/bury-council-tax-support-scheme-2026-27.pdf",
+      "sha256": "8b2c8d7bad2c043b71057aa9d13a2a8f3b97df74c237c47a5b27348030b601da"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0cae5bdaad598b803007d949c5f5f6ed8f9a864e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-08-bury-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bury-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 60,
+    "missing_count": 0,
+    "provision_count": 60,
+    "source_count": 60
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-08T19:40:08.507926+00:00",
+  "jurisdiction": "uk-bury",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7gqq2m/zSDGP9wnlCeRXMNlI3QOB5xp8MgOZ/8+Ai/z9iTvsAtX3OCYg7S85RPpDyJpF1j02V+W5inM+udSaAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-08-bury-council-tax-reduction-2026-2027"
+}

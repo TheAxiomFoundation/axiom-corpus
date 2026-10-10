@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/policy/2026-10-06-w6-tanf-ccdf-docs-ar.json",
+      "sha256": "695697a80f17a9892f26fbe4abb031c3a5e01f9597167cc0a3b5cbf083358451"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/policy/2026-10-06-w6-tanf-ccdf-docs-ar.json",
+      "sha256": "154aa37f2e1834516fbe51741200ff99f85dec378ca074032ee0055abec2b878"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/policy/2026-10-06-w6-tanf-ccdf-docs-ar.jsonl",
+      "sha256": "1136b5d262bf597d2504de0b1b8d2ad717e7fa9aed5b963cd20774e898e40a09"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-10-06-w6-tanf-ccdf-docs-ar/official-documents/us-ar-w6-dhs-tanf-transitional-employment-assistance.html",
+      "sha256": "49c7874e2fd7cfa9a0aed35e5cd45faf74942a0ad403f767ed980b62494055bc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:48:37.702673+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Db4/cYu1KghPisL+sVyY4arNmF3KV9jxcyQW3IXteVgfVr9JSucQqVIetFksiCIm9EzvLmGuckTUALRM3XyNCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-ar"
+}

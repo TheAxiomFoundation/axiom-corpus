@@ -1,0 +1,30 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: wa-hca-apple-health-for-kids
+  jurisdiction: us-wa
+  document_class: manual
+  title: 'Washington Apple Health Eligibility Manual: Apple Health for Kids, with and without premiums'
+  source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-help-others-apply-and-access-apple-health/apple-health-kids-and-without-premiums
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-01'
+  citation_path: us-wa/manual/hca/chip/apple-health-for-kids
+  extraction:
+    html_content_selector: div.region-content
+    html_drop_selectors:
+    - dl.ckeditor-accordion > dt
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<heading>WAC (?P<num>182-505-\d{4})\s+\S.*)$
+    section_label_template: wac-{num}
+  metadata:
+    primary_source: true
+    source_authority: Washington State Health Care Authority
+    document_subtype: eligibility_manual_chapter
+    program: CHIP
+    source_discovery_group: us-wa/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 2; publisher index confirmed by agent 2026-09-10
+    state_program: Apple Health for Kids with premiums (CHIP)
+    wac_sections:
+    - 182-505-0210
+    - 182-505-0215
+    - 182-505-0225

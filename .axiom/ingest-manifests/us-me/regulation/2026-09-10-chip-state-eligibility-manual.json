@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "5a7b415d36246530e178c13cd8bc01f04209ac972193fd8cdd2eb4e30da1d0cd"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "0f424b800a5bfb7b86af963b97d54d3a24ec86db6f81015f085d5bef6e87edb8"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "f8e0551221adfcc048acfed844d9b723bd7bef344d17301f120f713885cd75e5"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/me-ofi-mainecare-eligibility-manual-chapter-332-part-5.docx",
+      "sha256": "34f1fd1451aff9f78e7527aafb8bf9dba3a172c3851c4321b2cfdeedd1a847cc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-me-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:59:08.828428+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gpEGcJAl/INbnj/iITXJuNQxf3XR6Fwuq8SUl6sVxR3G59RBVBsw+yBcsEz4UbEPogukkTkQfYV2oNCF08YuDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/statute/2026-07-24-ak-individual-income-tax.json",
+      "sha256": "4ec3b63e597fb98b735726159245f19bd8cfb8ea08152a9557c97d2d1117e364"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/statute/2026-07-24-ak-individual-income-tax.json",
+      "sha256": "41492ff59c1abc9c09fda51730955dcbdf6cbfb8d84a322fb29415dd4173c8e3"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/statute/2026-07-24-ak-individual-income-tax.jsonl",
+      "sha256": "0e6bdd058c729190fb5bbae2e19b86cb799aeb1337c1e7e36c9850d6adec2fc7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/statute/2026-07-24-ak-individual-income-tax/official-documents/us-ak-title-43-sections-43-20-011-through-43-20-013.pdf",
+      "sha256": "68c909776a9e546c43408fee748dd2fe9aaeed1aea1b8f8bd3fc9f34d7df1ba7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "59a3ae382487307cc79351a46ff72bbca1ed2518",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-ak-individual-income-tax --manifest manifests/us-ak-title-43-individual-income-tax-2026.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T16:48:17.108149+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-ak-individual-income-tax.md",
+      "sha256": "523b8103a5d417bc3701988ba75ab0bce2c69e451f8a6d134a77224ea11c1134"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pODPTi4BLxMUF26AXBukt0v9BHZT4y8ZwAfSa2wvIUkG3r4050AMvxX9oCbR6l8U11SVTYefhGv72wYJRot8Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-ak-individual-income-tax"
+}

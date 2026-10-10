@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-east-hampshire/manual/2026-08-02-east-hampshire-council-tax-reduction-2026-2027.json",
+      "sha256": "c8d11cab8e0e01bcb81095a298891743bf30d707025f15843d27d8152128c8fc"
+    },
+    {
+      "path": "data/corpus/inventory/uk-east-hampshire/manual/2026-08-02-east-hampshire-council-tax-reduction-2026-2027.json",
+      "sha256": "5a5ecd0fdbb59ed70b38d6420c5851b4cddb9452588ca31e2c4194c5626441fe"
+    },
+    {
+      "path": "data/corpus/provisions/uk-east-hampshire/manual/2026-08-02-east-hampshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "b906baf9488bae2fff28b3a6d44311d53be5074f2feada2cf8ba177551f1fb32"
+    },
+    {
+      "path": "data/corpus/sources/uk-east-hampshire/manual/2026-08-02-east-hampshire-council-tax-reduction-2026-2027/official-documents/east-hampshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "011d4448359f97ac2ab484a9254bf977919fdd76054aaa01424e392f51473133"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-east-hampshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-east-hampshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 186,
+    "missing_count": 0,
+    "provision_count": 186,
+    "source_count": 186
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:59.199809+00:00",
+  "jurisdiction": "uk-east-hampshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZEtKaKX4riPh97PLhTUdU5oBoUHA1aoS6S/NnAaclzLcRSWHnOEhJvnI1iLBmgJMqJGniDnVznJWGsEXsCHdBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-east-hampshire-council-tax-reduction-2026-2027"
+}

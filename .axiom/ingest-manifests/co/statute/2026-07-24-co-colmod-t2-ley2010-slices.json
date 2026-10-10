@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/co/statute/2026-07-24-co-colmod-t2-ley2010-slices.json",
+      "sha256": "35abbb7ed1a6c0ba015f018540ed6b7edaad13eadfb385790fec511d8ec714c8"
+    },
+    {
+      "path": "data/corpus/inventory/co/statute/2026-07-24-co-colmod-t2-ley2010-slices.json",
+      "sha256": "be5fcfb2f6495a26ff00c7fc81e3a537af6977c4b993a3bff1b7210b97cecd4f"
+    },
+    {
+      "path": "data/corpus/provisions/co/statute/2026-07-24-co-colmod-t2-ley2010-slices.jsonl",
+      "sha256": "22ef135a5aea7662366877e353a942d301ae1ee08ac3b64f13540a8b234feeb8"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-24-co-colmod-t2-ley2010-slices/official-documents/co-ley-2019-2010-titulo-1-iva-consumo.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-24-co-colmod-t2-ley2010-slices/official-documents/co-ley-2019-2010-titulo-2-renta-personas-naturales.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-24-co-colmod-t2-ley2010-slices/official-documents/co-ley-2019-2010-titulo-3-patrimonio-dividendos.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-24-co-colmod-t2-ley2010-slices/official-documents/co-ley-2019-2010-titulo-4-evasion.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-24-co-colmod-t2-ley2010-slices/official-documents/co-ley-2019-2010-titulo-5-crecimiento.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-24-co-colmod-t2-ley2010-slices/official-documents/co-ley-2019-2010-titulo-6-7-procedimiento-finales.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "363af66f039ffbcde94e0837c25cb5c97fdb8e3f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> REQUESTS_CA_BUNDLE=<certifi+sectigo-ev-r36> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-co-colmod-t2-ley2010-slices --manifest manifests/co-colmod-t2-ley2010-slices-official-documents.yaml (6 anchor_range titulo slices of the t1-captured SUIN page)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-25T12:17:41.642373+00:00",
+  "jurisdiction": "co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "g2rAf3Mzl17rKyPdlwVki9U5YyCeW/iz7AIukSGTOvVFcM2yLnrakXbXHMqnlAOr87V0tkkLmIRV7Cwkg6xEBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-co-colmod-t2-ley2010-slices"
+}

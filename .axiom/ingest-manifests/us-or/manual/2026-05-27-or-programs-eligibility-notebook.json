@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-or/manual/2026-05-27-or-programs-eligibility-notebook.json",
-      "sha256": "d202b61f199d28b4d0012a8d947e06fa076b5956d5830cd53cd9ded6d0266133"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-or/manual/2026-05-27-or-programs-eligibility-notebook.json"
     },
     {
-      "path": "data/corpus/inventory/us-or/manual/2026-05-27-or-programs-eligibility-notebook.json",
-      "sha256": "2e482c1b7e5da375098d2151a6b57f29abd038f5c2aa39944b096de97b066c6e"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-or/manual/2026-05-27-or-programs-eligibility-notebook.json"
     },
     {
-      "path": "data/corpus/provisions/us-or/manual/2026-05-27-or-programs-eligibility-notebook.jsonl",
-      "sha256": "706ab13125dc2d8483c3d333ea594ffa62e57b0d9d9b4a9eb093d5b224d4d1a2"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-or/manual/2026-05-27-or-programs-eligibility-notebook.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "b7b4dd1ed86d08f88b600e6817aeb48119661caa",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "retire source-less Oregon SNAP recovery scope after source-complete July 2026 replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1323,
-    "missing_count": 0,
-    "provision_count": 1323,
-    "source_count": 1323
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:41.173900+00:00",
+  "generated_at": "2026-07-16T23:41:54.801016+00:00",
   "jurisdiction": "us-or",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "QKxFz+N74Cqigaf+4Dj72Q/QxRs5wv9x8MWEMS7CWDWfYEmovsRKBmd3yEJEN8FocT6PvNH2aQkVmff6pHxjBw=="
+    "value": "Qk4NZx9nm9bx5C8B6CM+1Fv3KZniFqSbYFjg1myvjYf1l3i9IzJQWVwYP9XAv8UQ/NiJPIlLCLjONQ83anlSDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-or-programs-eligibility-notebook"

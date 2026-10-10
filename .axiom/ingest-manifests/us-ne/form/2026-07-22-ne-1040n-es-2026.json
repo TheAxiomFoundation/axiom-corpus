@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/form/2026-07-22-ne-1040n-es-2026.json",
+      "sha256": "c4269206746d1922dfec2325490487b99351e9036858baa71533bd9ef9b8cccc"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/form/2026-07-22-ne-1040n-es-2026.json",
+      "sha256": "40f733701098a207366a74bc0da7c2823203b0ada09402c9febef63e9a5a36f1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/form/2026-07-22-ne-1040n-es-2026.jsonl",
+      "sha256": "02c8e154fbfa19d09cceeeb1d9069446e38f1f4744141f7f454ecfc57e926b06"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/form/2026-07-22-ne-1040n-es-2026/official-documents/us-ne-dor-2026-1040n-es.pdf",
+      "sha256": "456e8d651addfb9f3056f996d195e0ae428b87a1e84727c8038a208fb6d880d5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e9bdf828054b7f5d3b01353fcdd18a6fb33cbeda",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-ne-1040n-es-2026 --manifest manifests/us-ne-2026-1040n-es.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-22T14:28:01.395013+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-ne-1040n-es-2026.md",
+      "sha256": "6fc7f001f89eabdcc8356c7b4ac32c3f2e046f76d4fd50ed96fe2b4779998a00"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kxRzqPjRg2DkPicW8v9Q/cw05L/kSHCOcKw556jcykZ23tHjSnEg32C234iENv4K52Jh2qj8n3aswRiNJiubAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-ne-1040n-es-2026"
+}

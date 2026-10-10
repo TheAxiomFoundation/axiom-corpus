@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis.json",
+      "sha256": "d278cc0aedc01430141305c96e0529ec5476a6a45acc01296620f6f14601134d"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis.json",
+      "sha256": "2ef44d1b1e912fa38f9d251ef101d3997e0092397110fdfe02b480984f457668"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis.jsonl",
+      "sha256": "de968dd09e0f7d8c9f3044a50e49526e6914ced355171fc1d7f0e87b97a0ed33"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis/federal-register/api/documents-page-1.json",
+      "sha256": "164a18a950acf4b759374c9a5da43f13b62165f58ffc99bc3032f0d2f1de6e23"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis/federal-register/documents/2025-14897.json",
+      "sha256": "70f311ac936c19cf4dfc66dd263f574a6dc8d28bb8a36ea080c4bec82c3e4e10"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis/federal-register/documents/2025-14897.txt",
+      "sha256": "229696f980d6e26e0c3aa150bc7c1e8224b1997c3123c4a87399139f08ac6de0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-de-minimis-eo --start-date 2025-08-05 --document-type PRESDOCU --term \"de minimis\" --source-as-of 2026-08-01 --expression-date 2025-08-05"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:52.032932+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9p2bwxq5/f02NbcYjhSHEAqSGK3IqdMj+bzF407ntNTYnmYDE9yyZfJny6WxSNNHz9gmfESIcxyF1iLFtOFaCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-de-minimis-eo-types-presdocu-term-de-minimis"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/guidance/2026-07-23-ri-pit-adv-2025-22.json",
+      "sha256": "783b6ea442c2ece9db9d289a54c548a9ab7e8a511e9e768b87e2a1052074b4a5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/guidance/2026-07-23-ri-pit-adv-2025-22.json",
+      "sha256": "632896d219bef38e1fe858537affa2ecd7efd76a5124cdbcfc885e82956159be"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/guidance/2026-07-23-ri-pit-adv-2025-22.jsonl",
+      "sha256": "a17f13201e4a0dcc4c174694897720fbf749405ecc2ac67151a70867c4654f59"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/guidance/2026-07-23-ri-pit-adv-2025-22/official-documents/us-ri-tax-adv-2025-22-inflation-adjustments.pdf",
+      "sha256": "755bc7584a6c67ba01b57da27056cd0283dcc9501d9131e7b55217decfac6eef"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "15faec76e48c36c316c32f80f51f9397f181704a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-07-23-ri-pit-adv-2025-22 --manifest manifests/us-ri-pit-adv-2025-22-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-24T00:46:39.489201+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "o0yiGzBK72E0jzv3RSmcKLPIfwISRTCHOFp3Zx1zXk9rvOLvySYDJlyPN0zh6yMJnmBHqyDfHiv9ts7FJQFTCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-ri-pit-adv-2025-22"
+}

@@ -2,29 +2,37 @@
 
 from __future__ import annotations
 
+import hashlib
 import heapq
+import http.client
+import io
 import json
 import os
+import pickle
 import re
+import secrets
 import subprocess
+import tempfile
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterable, Iterator, Mapping, Sequence
+from contextlib import closing, suppress
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import TextIO
+from typing import Any, TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
+from axiom_corpus.corpus.deferred import DeferredError
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.projection_digest import (
     ProjectionDigestError,
     encode_identifiers_projection,
 )
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, validate_release_name
-from axiom_corpus.release.manifest import verify_release_object
+from axiom_corpus.release.manifest import canonical_json_bytes, verify_release_object
 
 DEFAULT_AXIOM_SUPABASE_URL = "https://swocpijqqahhuwtuahwc.supabase.co"
 DEFAULT_SERVICE_KEY_ENV = "SUPABASE_SERVICE_ROLE_KEY"
@@ -69,6 +77,8 @@ PROVISION_CONTENT_COLUMNS = tuple(
 )
 
 _STAGING_CONFLICT_PREVIEW_LIMIT = 20
+_STAGED_SCOPE_FETCH_MAX_ATTEMPTS = 3
+_STAGED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
 
 
 class ProvisionStagingConflictError(RuntimeError):
@@ -500,19 +510,35 @@ def iter_supabase_rows(
     *,
     versioned_ids: bool = True,
 ) -> Iterator[dict[str, object]]:
-    # The int4 ordinal shim indexes within each release scope, not across the
-    # whole iterable, so a multi-scope load projects the exact same rows as
-    # the per-scope signed evidence digests in release content.
-    scope_positions: dict[tuple[str, str, str], int] = {}
+    projector = SupabaseRowProjector(versioned_ids=versioned_ids)
     for record in records:
-        row = provision_to_supabase_row(record, versioned_ids=versioned_ids)
+        yield projector.project(record)
+
+
+class SupabaseRowProjector:
+    """Project records one at a time, exactly as ``iter_supabase_rows`` does.
+
+    A caller that must keep reading after a projection fails (to report an
+    earlier-ranked error first) projects through this instead of the
+    generator, which cannot continue after raising.
+    """
+
+    def __init__(self, *, versioned_ids: bool = True) -> None:
+        self._versioned_ids = versioned_ids
+        # The int4 ordinal shim indexes within each release scope, not across
+        # the whole iterable, so a multi-scope load projects the exact same
+        # rows as the per-scope signed evidence digests in release content.
+        self._scope_positions: dict[tuple[str, str, str], int] = {}
+
+    def project(self, record: ProvisionRecord) -> dict[str, object]:
+        row = provision_to_supabase_row(record, versioned_ids=self._versioned_ids)
         scope_key = (
             str(row.get("jurisdiction") or ""),
             str(row.get("doc_type") or ""),
             str(row.get("version") or ""),
         )
-        index = scope_positions.get(scope_key, 0)
-        scope_positions[scope_key] = index + 1
+        index = self._scope_positions.get(scope_key, 0)
+        self._scope_positions[scope_key] = index + 1
         ordinal = row.get("ordinal")
         if (
             isinstance(ordinal, int)
@@ -528,7 +554,7 @@ def iter_supabase_rows(
             # Production `corpus.provisions.ordinal` is still int4. Preserve
             # sibling order for Supabase queries without mutating corpus JSON.
             row["ordinal"] = index
-        yield row
+        return row
 
 
 def write_supabase_rows_jsonl(path: str | Path, records: Iterable[ProvisionRecord]) -> int:
@@ -616,17 +642,40 @@ def fetch_release_provision_counts(
     )
 
 
-def fetch_staged_release_scope_evidence(
-    release: ReleaseManifest,
+# Staged evidence is one per-scope aggregate (row counts plus projection
+# digests over every staged row), so a whole-release request scales with the
+# release's total row count and Supabase's HTTP gateway cuts it off long before
+# the function's own statement_timeout. The RPC is per scope, so the client asks
+# for bounded chunks and merges them; a chunk the gateway still rejects is split
+# in half until it fits.
+_STAGED_EVIDENCE_CHUNK_SCOPES = 32
+_STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS = 3
+_STAGED_EVIDENCE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+_STAGED_EVIDENCE_FIELDS = frozenset(
+    {
+        "jurisdiction",
+        "document_class",
+        "version",
+        "provision_count",
+        "navigation_count",
+        "provision_projection_sha256",
+        "navigation_projection_sha256",
+    }
+)
+
+
+def _fetch_staged_scope_evidence_rows(
+    scopes: Sequence[ReleaseScope],
     *,
     service_key: str,
-    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
-) -> dict[tuple[str, str, str], StagedScopeEvidence]:
-    """Fetch exact counts and projection digests for every staged scope.
+    supabase_url: str,
+) -> list[object]:
+    """Call the evidence RPC for one chunk of scopes, splitting it when rejected.
 
-    There is intentionally no materialized-view or paged-client fallback. The
-    publication boundary requires the dedicated evidence RPC; absence or
-    failure is fatal before signing.
+    A 4xx other than 413/414 is a real error and propagates. Gateway rejections
+    (5xx, including 504 on a request that ran too long) and transport timeouts
+    are retried with backoff, and a multi-scope chunk that keeps failing is
+    split in half so that a request that is merely too large still converges.
     """
     payload = {
         "p_scopes": [
@@ -635,7 +684,7 @@ def fetch_staged_release_scope_evidence(
                 "document_class": scope.document_class,
                 "version": scope.version,
             }
-            for scope in release.scopes
+            for scope in scopes
         ]
     }
     req = urllib.request.Request(
@@ -652,22 +701,70 @@ def fetch_staged_release_scope_evidence(
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        rows = json.loads(resp.read())
-    if not isinstance(rows, list):
-        raise RuntimeError("unexpected staged release-evidence response")
+
+    def _split() -> list[object]:
+        midpoint = len(scopes) // 2
+        return _fetch_staged_scope_evidence_rows(
+            scopes[:midpoint], service_key=service_key, supabase_url=supabase_url
+        ) + _fetch_staged_scope_evidence_rows(
+            scopes[midpoint:], service_key=service_key, supabase_url=supabase_url
+        )
+
+    for attempt in range(_STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected staged release-evidence response")
+            return rows
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500 and exc.code not in {413, 414}:
+                raise
+            if len(scopes) > 1:
+                return _split()
+            if attempt + 1 == _STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
+            if attempt + 1 == _STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS:
+                if len(scopes) == 1:
+                    raise
+                return _split()
+        time.sleep(_STAGED_EVIDENCE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("staged-evidence retry loop exhausted unexpectedly")
+
+
+def fetch_staged_release_scope_evidence(
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    chunk_scopes: int = _STAGED_EVIDENCE_CHUNK_SCOPES,
+) -> dict[tuple[str, str, str], StagedScopeEvidence]:
+    """Fetch exact counts and projection digests for every staged scope.
+
+    There is intentionally no materialized-view or paged-client fallback. The
+    publication boundary requires the dedicated evidence RPC; absence or
+    failure is fatal before signing. The RPC computes each scope independently,
+    so the release is requested in chunks of at most ``chunk_scopes`` scopes
+    and the rows are merged; every requested scope must appear exactly once
+    across all chunks.
+    """
+    if chunk_scopes < 1:
+        raise ValueError("chunk_scopes must be positive")
+    scopes = tuple(release.scopes)
+    rows: list[object] = []
+    for start in range(0, len(scopes), chunk_scopes):
+        rows.extend(
+            _fetch_staged_scope_evidence_rows(
+                scopes[start : start + chunk_scopes],
+                service_key=service_key,
+                supabase_url=supabase_url,
+            )
+        )
     evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
-    expected_fields = {
-        "jurisdiction",
-        "document_class",
-        "version",
-        "provision_count",
-        "navigation_count",
-        "provision_projection_sha256",
-        "navigation_projection_sha256",
-    }
     for row in rows:
-        if not isinstance(row, dict) or set(row) != expected_fields:
+        if not isinstance(row, dict) or set(row) != _STAGED_EVIDENCE_FIELDS:
             raise RuntimeError("staged release-evidence response contains a malformed row")
         key = (
             str(row.get("jurisdiction") or ""),
@@ -710,6 +807,213 @@ def fetch_staged_release_scope_evidence(
     return evidence
 
 
+# Prior signed objects reach the publisher in reads that each hold at most one
+# object. corpus.release_scopes gives the releases of the requested scopes (read
+# by version in batches, each checked against PostgREST's exact count), then
+# each release's signed object is read alone from corpus.release_objects. The
+# RPC corpus.get_released_scope_object_sets returned every matching object in
+# one reply, and union releases hold most scopes, so splitting the request did
+# not shrink it: once those objects reached tens of megabytes each, the reply
+# passed what the gateway delivers (publication run 37676075307: HTTP 520 for
+# 1,445 scopes, then a reply cut off at 59.6 MB for 722).
+_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
+_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+_RELEASED_SCOPE_VERSION_BATCH = 100
+_RELEASED_SCOPE_PAGE_SIZE = 1_000
+_CONTENT_RANGE_TOTAL_RE = re.compile(r"/(\d+)$")
+
+
+def _released_scope_get(
+    path: str,
+    params: Mapping[str, str],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> tuple[list[object], int | None]:
+    """Read one corpus-schema PostgREST page and its exact row count, if asked.
+
+    Server errors, network errors, and a reply cut off before its end (an
+    incomplete body, or JSON that does not end) are retried with backoff.
+    """
+    headers = {
+        "apikey": service_key,
+        "Authorization": f"Bearer {service_key}",
+        "Accept": "application/json",
+        "Accept-Profile": "corpus",
+        "User-Agent": USER_AGENT,
+    }
+    if "limit" in params:
+        headers["Prefer"] = "count=exact"
+    req = urllib.request.Request(
+        f"{_rest_url(supabase_url)}/{path}?{urllib.parse.urlencode(params)}",
+        headers=headers,
+        method="GET",
+    )
+    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+                content_range = resp.headers.get("Content-Range") if resp.headers else None
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected released-scope response")
+            total = None
+            if "limit" in params:
+                match = _CONTENT_RANGE_TOTAL_RE.search(str(content_range or ""))
+                if match is None:
+                    raise RuntimeError("released-scope response has no exact row count")
+                total = int(match.group(1))
+            return rows, total
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500 and exc.code not in {408, 429}:
+                raise
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (
+            urllib.error.URLError,
+            ConnectionError,
+            TimeoutError,
+            http.client.IncompleteRead,
+            json.JSONDecodeError,
+        ):
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("released-scope retry loop exhausted unexpectedly")
+
+
+def _postgrest_in(values: Sequence[str]) -> str:
+    """A PostgREST ``in`` filter whose values are quoted, so any text is one value."""
+    quoted = ('"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"' for value in values)
+    return f"in.({','.join(quoted)})"
+
+
+def _fetch_release_scope_rows(
+    versions: Sequence[str],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> list[object]:
+    """Every corpus.release_scopes row of these versions, complete by exact count.
+
+    A batch whose rows do not fit one page is split until each half does; a
+    single version that still does not fit is read page by page, and its rows
+    must add up to the count the first page reported.
+    """
+    params = {
+        "select": "release_name,jurisdiction,document_class,version",
+        "version": _postgrest_in(versions),
+        "order": "release_name.asc,jurisdiction.asc,document_class.asc,version.asc",
+        "limit": str(_RELEASED_SCOPE_PAGE_SIZE),
+        "offset": "0",
+    }
+    rows, total = _released_scope_get(
+        "release_scopes", params, service_key=service_key, supabase_url=supabase_url
+    )
+    if total is not None and len(rows) == total:
+        return rows
+    if len(versions) > 1:
+        midpoint = len(versions) // 2
+        return _fetch_release_scope_rows(
+            versions[:midpoint], service_key=service_key, supabase_url=supabase_url
+        ) + _fetch_release_scope_rows(
+            versions[midpoint:], service_key=service_key, supabase_url=supabase_url
+        )
+    while rows and total is not None and len(rows) < total:
+        page, _page_total = _released_scope_get(
+            "release_scopes",
+            {**params, "offset": str(len(rows))},
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        if not page:
+            break
+        rows.extend(page)
+    if total is None or len(rows) != total:
+        raise RuntimeError(
+            f"released-scope rows for version {versions[0]!r} do not match their count"
+        )
+    return rows
+
+
+def _fetch_released_scope_object_sets(
+    scopes: Sequence[ReleaseScope],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> list[object]:
+    """Each prior release of the requested scopes: its signed object and those scopes.
+
+    The rows have the shape the RPC returned, one per release in name order,
+    each with its matching scopes in key order.
+    """
+    requested_keys = {scope.key for scope in scopes}
+    versions = sorted({scope.version for scope in scopes})
+    memberships: dict[str, list[dict[str, str]]] = {}
+    for start in range(0, len(versions), _RELEASED_SCOPE_VERSION_BATCH):
+        batch = versions[start : start + _RELEASED_SCOPE_VERSION_BATCH]
+        for row in _fetch_release_scope_rows(
+            batch, service_key=service_key, supabase_url=supabase_url
+        ):
+            if not isinstance(row, dict):
+                raise RuntimeError("released-scope response contains a malformed row")
+            raw_name = row.get("release_name")
+            try:
+                release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
+            except ValueError as exc:
+                raise RuntimeError("released-scope response has an invalid release name") from exc
+            if not release_name:
+                raise RuntimeError("released-scope response has an invalid release name")
+            key = (
+                str(row.get("jurisdiction") or ""),
+                str(row.get("document_class") or ""),
+                str(row.get("version") or ""),
+            )
+            if key[2] not in batch:
+                raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
+            if key not in requested_keys:
+                # The same version of a scope this release does not request.
+                continue
+            memberships.setdefault(release_name, []).append(
+                {"jurisdiction": key[0], "document_class": key[1], "version": key[2]}
+            )
+
+    object_sets: list[object] = []
+    for release_name in sorted(memberships):
+        objects, _total = _released_scope_get(
+            "release_objects",
+            {
+                "select": "release_name,content_sha256,release_object",
+                "release_name": f"eq.{release_name}",
+            },
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        if len(objects) != 1 or not isinstance(objects[0], dict):
+            raise RuntimeError(
+                f"released-scope release {release_name!r} has no single signed object"
+            )
+        signed = objects[0]
+        if signed.get("release_name") != release_name:
+            raise RuntimeError("released-scope response has inconsistent object identity")
+        object_sets.append(
+            {
+                "release_name": release_name,
+                "content_sha256": signed.get("content_sha256"),
+                "release_object": signed.get("release_object"),
+                "scopes": sorted(
+                    memberships[release_name],
+                    key=lambda scope: (
+                        scope["jurisdiction"],
+                        scope["document_class"],
+                        scope["version"],
+                    ),
+                ),
+            }
+        )
+    return object_sets
+
+
 def fetch_released_scope_objects(
     release: ReleaseManifest,
     *,
@@ -718,58 +1022,19 @@ def fetch_released_scope_objects(
 ) -> dict[tuple[str, str, str], tuple[ReleasedScopeObject, ...]]:
     """Return prior signed objects that make requested scopes immutable."""
 
-    payload = {
-        "p_scopes": [
-            {
-                "jurisdiction": scope.jurisdiction,
-                "document_class": scope.document_class,
-                "version": scope.version,
-            }
-            for scope in release.scopes
-        ]
-    }
-    req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "apikey": service_key,
-            "Authorization": f"Bearer {service_key}",
-            "Accept": "application/json",
-            "Accept-Profile": "corpus",
-            "Content-Type": "application/json",
-            "Content-Profile": "corpus",
-            "User-Agent": USER_AGENT,
-        },
-        method="POST",
+    memberships: dict[tuple[str, str, str], list[str]] = {key: [] for key in release.scope_keys}
+    seen_memberships: set[tuple[tuple[str, str, str], str]] = set()
+    objects_by_name: dict[str, tuple[str, Mapping[str, object]]] = {}
+    object_set_fields = {"release_name", "content_sha256", "release_object", "scopes"}
+    membership_fields = {"jurisdiction", "document_class", "version"}
+    rows = _fetch_released_scope_object_sets(
+        release.scopes,
+        service_key=service_key,
+        supabase_url=supabase_url,
     )
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        rows = json.loads(resp.read())
-    if not isinstance(rows, list):
-        raise RuntimeError("unexpected released-scope response")
-
-    expected_keys = set(release.scope_keys)
-    grouped: dict[tuple[str, str, str], list[ReleasedScopeObject]] = {
-        key: [] for key in release.scope_keys
-    }
-    seen: set[tuple[tuple[str, str, str], str]] = set()
-    expected_fields = {
-        "jurisdiction",
-        "document_class",
-        "version",
-        "release_name",
-        "content_sha256",
-        "release_object",
-    }
     for row in rows:
-        if not isinstance(row, dict) or set(row) != expected_fields:
+        if not isinstance(row, dict) or set(row) != object_set_fields:
             raise RuntimeError("released-scope response contains a malformed row")
-        key = (
-            str(row.get("jurisdiction") or ""),
-            str(row.get("document_class") or ""),
-            str(row.get("version") or ""),
-        )
-        if key not in expected_keys:
-            raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
         raw_name = row.get("release_name")
         try:
             release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
@@ -787,22 +1052,363 @@ def fetch_released_scope_objects(
             or release_object.get("content_sha256") != content_sha256
         ):
             raise RuntimeError("released-scope response has inconsistent object identity")
-        identity = (key, release_name)
-        if identity in seen:
-            raise RuntimeError(f"released-scope response contains a duplicate: {identity!r}")
-        seen.add(identity)
-        grouped[key].append(
+        prior_object = objects_by_name.get(release_name)
+        if prior_object is not None and prior_object != (content_sha256, release_object):
+            raise RuntimeError(
+                f"released-scope response contains conflicting objects: {release_name!r}"
+            )
+        objects_by_name[release_name] = (content_sha256, release_object)
+
+        raw_scopes = row.get("scopes")
+        if not isinstance(raw_scopes, list) or not raw_scopes:
+            raise RuntimeError("released-scope response contains malformed memberships")
+        for raw_scope in raw_scopes:
+            if not isinstance(raw_scope, dict) or set(raw_scope) != membership_fields:
+                raise RuntimeError("released-scope response contains a malformed membership")
+            key = (
+                str(raw_scope.get("jurisdiction") or ""),
+                str(raw_scope.get("document_class") or ""),
+                str(raw_scope.get("version") or ""),
+            )
+            if key not in memberships:
+                raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
+            identity = (key, release_name)
+            if identity in seen_memberships:
+                raise RuntimeError(f"released-scope response contains a duplicate: {identity!r}")
+            seen_memberships.add(identity)
+            memberships[key].append(release_name)
+
+    return {
+        key: tuple(
             ReleasedScopeObject(
                 scope_key=key,
                 release_name=release_name,
-                content_sha256=content_sha256,
-                release_object=release_object,
+                content_sha256=objects_by_name[release_name][0],
+                release_object=objects_by_name[release_name][1],
             )
+            for release_name in sorted(names)
         )
-    return {
-        key: tuple(sorted(objects, key=lambda item: item.release_name))
-        for key, objects in grouped.items()
+        for key, names in memberships.items()
     }
+
+
+_RELEASE_ACTIVATION_CHUNK_SIZE = 128 * 1024
+_RELEASE_ACTIVATION_CHUNK_PACING_SECONDS = 1.5
+
+
+# Column list must exactly match corpus.preview_corpus_release_activation's
+# RETURNS TABLE (pair-level; no per-version columns). A postgres test runs this
+# string against the live function so the two cannot drift apart.
+# The Management API query endpoint runs every request in its own session with
+# a bounded statement_timeout. A SET inside a function cannot lengthen a timer
+# that was armed when the outer statement began, so activate_corpus_release's
+# own "SET statement_timeout = 0" never applied: run 34866210267 (761 scopes)
+# was cancelled with 57014 about five minutes into the per-scope counts. The
+# long release statements are therefore sent with the timeout disabled as the
+# leading statement of the same request. Multi-statement text cannot carry bind
+# parameters, so the handful of values are inlined as validated literals.
+UNBOUNDED_STATEMENT_PREFIX = "SET statement_timeout = 0;\n"
+_SQL_PLAIN_LITERAL_RE = re.compile(r"[A-Za-z0-9._:@+-]{1,200}")
+_SQL_JSONB_DOLLAR_TAG = "$axiom_release_json$"
+
+PREVIEW_ACTIVATION_QUERY = (
+    "SELECT jurisdiction, document_class, current_release_name, "
+    "current_content_sha256, changes "
+    "FROM corpus.preview_corpus_release_activation({release_identity})"
+)
+
+
+ACTIVATE_RELEASE_QUERY = (
+    "SELECT corpus.activate_corpus_release("
+    "corpus.load_release_activation_upload("
+    "{upload_id}, {release}, {content_sha256}, {object_sha256}"
+    ")) AS result"
+)
+
+
+def sql_text_literal(value: object) -> str:
+    """Quote a plain identifier-like string (hex digest, upload id, release name).
+
+    Anything outside ``[A-Za-z0-9._:@+-]`` is refused rather than escaped: the
+    release identity never needs other characters, and refusing keeps the
+    inlined statement free of quoting subtleties.
+    """
+    if not isinstance(value, str) or _SQL_PLAIN_LITERAL_RE.fullmatch(value) is None:
+        raise RuntimeError("management SQL literal is not a plain identifier-like string")
+    return f"'{value}'"
+
+
+def sql_jsonb_literal(value: str) -> str:
+    """Dollar-quote a JSON document as a ``jsonb`` literal."""
+    if not isinstance(value, str) or _SQL_JSONB_DOLLAR_TAG in value or "\0" in value:
+        raise RuntimeError("management SQL jsonb literal cannot be dollar-quoted")
+    return f"{_SQL_JSONB_DOLLAR_TAG}{value}{_SQL_JSONB_DOLLAR_TAG}::jsonb"
+
+
+def unbounded_statement(template: str, **literals: str) -> str:
+    """Render ``template`` with pre-quoted literals behind the timeout reset."""
+    return UNBOUNDED_STATEMENT_PREFIX + template.format(**literals)
+
+
+STAGE_RELEASE_ACTIVATION_CHUNK_QUERY = (
+    "INSERT INTO corpus.release_activation_upload_chunks ("
+    "upload_id, release_name, content_sha256, chunk_index, chunk_count, chunk_text"
+    ") VALUES ($1::text, $2::text, $3::text, $4::integer, $5::integer, $6::text) "
+    "RETURNING chunk_index"
+)
+
+
+DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY = (
+    "DELETE FROM corpus.release_activation_upload_chunks WHERE upload_id = $1::text"
+)
+
+
+DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY = (
+    "DELETE FROM corpus.release_activation_upload_chunks "
+    "WHERE created_at < now() - interval '1 day'"
+)
+
+
+def apply_release_activation_upload_migration(
+    migration_sql: str,
+    *,
+    access_token: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    expected_project_ref: str | None = None,
+) -> None:
+    """Install the private chunk transport used by protected activation."""
+
+    required_fragments = (
+        "CREATE TABLE IF NOT EXISTS corpus.release_activation_upload_chunks",
+        "CREATE OR REPLACE FUNCTION corpus.load_release_activation_upload",
+        "REVOKE ALL ON corpus.release_activation_upload_chunks",
+    )
+    if any(fragment not in migration_sql for fragment in required_fragments):
+        raise RuntimeError("release activation upload migration is incomplete")
+    project_ref = _project_ref_from_url(supabase_url)
+    if expected_project_ref is not None and project_ref != expected_project_ref:
+        raise RuntimeError(
+            f"refusing to migrate Supabase project {project_ref!r}: "
+            f"expected {expected_project_ref!r}"
+        )
+    rows = _management_api_post_json_with_curl(
+        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
+        payload={"query": migration_sql, "read_only": False},
+        access_token=access_token,
+        timeout=120,
+    )
+    if rows != []:
+        raise RuntimeError(f"unexpected release activation migration response: {rows!r}")
+
+
+def preview_corpus_release_activation(
+    release_object: Mapping[str, object],
+    *,
+    access_token: str,
+    public_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    expected_project_ref: str | None = None,
+) -> list[dict[str, object]]:
+    """Report, per (jurisdiction, document_class) pair the release covers, what
+    activating it would displace.
+
+    Read-only: verifies the Ed25519 signature, then returns one row per pair with
+    the pair's current active release and whether activation would change it.
+    Serving is not moved. ``expected_project_ref``, when set, must match the ref
+    derived from ``supabase_url``.
+    """
+    verify_release_object(release_object, public_key=public_key)
+    project_ref = _project_ref_from_url(supabase_url)
+    if expected_project_ref is not None and project_ref != expected_project_ref:
+        raise RuntimeError(
+            f"refusing to preview against Supabase project {project_ref!r}: "
+            f"expected {expected_project_ref!r}"
+        )
+    # The preview function consumes only these signed fields. Excluding
+    # artifact and validation inventories keeps this request read-only and
+    # bounded even for comprehensive releases.
+    release_identity = json.dumps(
+        {
+            "release": release_object["release"],
+            "content": {
+                "scopes": release_object["content"]["scopes"],  # type: ignore[index]
+            },
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+    rows = _management_api_post_json_with_curl(
+        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
+        payload={
+            "query": unbounded_statement(
+                PREVIEW_ACTIVATION_QUERY,
+                release_identity=sql_jsonb_literal(release_identity),
+            ),
+            "read_only": True,
+        },
+        access_token=access_token,
+        timeout=900,
+    )
+    if not isinstance(rows, list):
+        raise RuntimeError(f"unexpected activation preview response: {rows!r}")
+    return [row for row in rows if isinstance(row, dict)]
+
+
+# Cloudflare fronts api.supabase.com with a 120 s proxy read timeout (error
+# 524, run 34879466018), so the Management API cannot carry a statement that
+# verifies and repoints 800+ scopes even with statement_timeout disabled. When a
+# direct database URL is configured (Actions secret SUPABASE_DB_URL: the
+# project's session-pooler connection string), activation and its preview run
+# over psycopg2 instead: same functions, same verification, no HTTP proxy.
+DEFAULT_DATABASE_URL_ENV = "SUPABASE_DB_URL"
+_DIRECT_STATEMENT_TIMEOUT = "SET statement_timeout = 0"
+
+
+def database_url_names_project(database_url: str, project_ref: str) -> bool:
+    """True when the connection string belongs to ``project_ref``.
+
+    Supabase direct hosts are ``db.<ref>.supabase.co``; pooler connections carry
+    the ref in the user name (``postgres.<ref>``). Either form must name the
+    expected project so a stray URL cannot activate elsewhere.
+    """
+    parsed = urllib.parse.urlsplit(database_url)
+    host = parsed.hostname or ""
+    user = urllib.parse.unquote(parsed.username or "")
+    return host == f"db.{project_ref}.supabase.co" or user.endswith(f".{project_ref}")
+
+
+def _direct_connection(database_url: str) -> Any:
+    import psycopg2
+
+    connection = psycopg2.connect(database_url)
+    connection.autocommit = True
+    with connection.cursor() as cursor:
+        cursor.execute(_DIRECT_STATEMENT_TIMEOUT)
+    return connection
+
+
+def _stage_release_activation_upload_direct(
+    connection: Any, release_object: Mapping[str, object]
+) -> tuple[str, str]:
+    raw = canonical_json_bytes(release_object).decode("ascii")
+    chunks = [
+        raw[offset : offset + _RELEASE_ACTIVATION_CHUNK_SIZE]
+        for offset in range(0, len(raw), _RELEASE_ACTIVATION_CHUNK_SIZE)
+    ]
+    upload_id = secrets.token_hex(32)
+    object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+    with connection.cursor() as cursor:
+        cursor.execute(DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY)
+        for index, chunk in enumerate(chunks):
+            cursor.execute(
+                STAGE_RELEASE_ACTIVATION_CHUNK_QUERY.replace("$1::text", "%s")
+                .replace("$2::text", "%s")
+                .replace("$3::text", "%s")
+                .replace("$4::integer", "%s")
+                .replace("$5::integer", "%s")
+                .replace("$6::text", "%s"),
+                (
+                    upload_id,
+                    str(release_object["release"]),
+                    str(release_object["content_sha256"]),
+                    index,
+                    len(chunks),
+                    chunk,
+                ),
+            )
+            row = cursor.fetchone()
+            if row is None or row[0] != index:
+                raise RuntimeError(
+                    f"unexpected release activation chunk response at index {index}: {row!r}"
+                )
+    return upload_id, object_sha256
+
+
+def preview_corpus_release_activation_direct(
+    release_object: Mapping[str, object],
+    *,
+    database_url: str,
+    public_key: str,
+    expected_project_ref: str,
+) -> list[dict[str, object]]:
+    """``preview_corpus_release_activation`` over a direct database connection."""
+    verify_release_object(release_object, public_key=public_key)
+    if not database_url_names_project(database_url, expected_project_ref):
+        raise RuntimeError(
+            f"refusing to preview: database URL does not name project {expected_project_ref!r}"
+        )
+    release_identity = json.dumps(
+        {
+            "release": release_object["release"],
+            "content": {"scopes": release_object["content"]["scopes"]},  # type: ignore[index]
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+    with closing(_direct_connection(database_url)) as connection, connection.cursor() as cursor:
+        cursor.execute(
+            PREVIEW_ACTIVATION_QUERY.format(release_identity="%s::jsonb"), (release_identity,)
+        )
+        columns = [description[0] for description in cursor.description]
+        rows = [dict(zip(columns, values, strict=True)) for values in cursor.fetchall()]
+    return rows
+
+
+def activate_corpus_release_direct(
+    release_object: Mapping[str, object],
+    *,
+    database_url: str,
+    public_key: str,
+    expected_project_ref: str,
+) -> dict[str, object]:
+    """``activate_corpus_release`` over a direct database connection.
+
+    Same Ed25519 verification, same chunked upload table, same
+    ``corpus.activate_corpus_release`` transaction and the same response
+    checks; only the transport differs, so the statement is bounded by nothing
+    but its own work.
+    """
+    verify_release_object(release_object, public_key=public_key)
+    if not database_url_names_project(database_url, expected_project_ref):
+        raise RuntimeError(
+            f"refusing to activate: database URL does not name project {expected_project_ref!r}"
+        )
+    with closing(_direct_connection(database_url)) as connection:
+        upload_id, object_sha256 = _stage_release_activation_upload_direct(
+            connection, release_object
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    ACTIVATE_RELEASE_QUERY.format(
+                        upload_id="%s", release="%s", content_sha256="%s", object_sha256="%s"
+                    ),
+                    (
+                        upload_id,
+                        str(release_object["release"]),
+                        str(release_object["content_sha256"]),
+                        object_sha256,
+                    ),
+                )
+                row = cursor.fetchone()
+            if row is None or len(row) != 1:
+                raise RuntimeError(f"unexpected corpus activation query response: {row!r}")
+            result = row[0]
+            if isinstance(result, str):
+                result = json.loads(result)
+            if not isinstance(result, dict) or result.get("active") is not True:
+                raise RuntimeError(f"unexpected corpus activation response: {result!r}")
+            if result.get("release") != release_object.get("release"):
+                raise RuntimeError("activated release name does not match the requested object")
+            if result.get("content_sha256") != release_object.get("content_sha256"):
+                raise RuntimeError("activated release digest does not match the requested object")
+            _require_complete_activation_scopes(result, release_object)
+            return result
+        finally:
+            with suppress(Exception), connection.cursor() as cursor:
+                cursor.execute(
+                    DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY.replace("$1::text", "%s"), (upload_id,)
+                )
 
 
 def activate_corpus_release(
@@ -811,44 +1417,245 @@ def activate_corpus_release(
     access_token: str,
     public_key: str,
     supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    expected_project_ref: str | None = None,
 ) -> dict[str, object]:
     """Verify, install, and activate through the trusted management plane.
 
     The staging service role is deliberately unable to invoke the activation
     RPC. This wrapper verifies Ed25519 before using a separate Supabase
     Management API credential to execute the count-and-pointer transaction.
+
+    Activation repoints only the per-(jurisdiction, document_class) serving map
+    for the release's own pairs (last-activation-wins per pair) and records each
+    takeover in ``corpus.scope_activation_history``; it never un-serves a
+    jurisdiction the release does not carry. The returned mapping's ``scopes``
+    field lists which pairs were ``activated`` (with the release each displaced)
+    versus ``reaffirmed`` (already serving this exact release).
+
+    ``expected_project_ref`` guards against activating in the wrong Supabase
+    project: when set, the ref derived from ``supabase_url`` must match it.
     """
     verify_release_object(release_object, public_key=public_key)
     project_ref = _project_ref_from_url(supabase_url)
-    query = "SELECT corpus.activate_corpus_release($1::jsonb) AS result"
+    if expected_project_ref is not None and project_ref != expected_project_ref:
+        raise RuntimeError(
+            f"refusing to activate in Supabase project {project_ref!r}: "
+            f"expected {expected_project_ref!r}"
+        )
+    endpoint = f"https://api.supabase.com/v1/projects/{project_ref}/database/query"
+    upload_id, object_sha256 = _stage_release_activation_upload(
+        release_object,
+        endpoint=endpoint,
+        access_token=access_token,
+    )
+    try:
+        rows = _management_api_post_json_with_curl(
+            endpoint,
+            payload={
+                "query": unbounded_statement(
+                    ACTIVATE_RELEASE_QUERY,
+                    upload_id=sql_text_literal(upload_id),
+                    release=sql_text_literal(str(release_object["release"])),
+                    content_sha256=sql_text_literal(str(release_object["content_sha256"])),
+                    object_sha256=sql_text_literal(object_sha256),
+                ),
+                "read_only": False,
+            },
+            access_token=access_token,
+            timeout=1800,
+        )
+        if (
+            not isinstance(rows, list)
+            or len(rows) != 1
+            or not isinstance(rows[0], dict)
+            or set(rows[0]) != {"result"}
+        ):
+            raise RuntimeError(f"unexpected corpus activation query response: {rows!r}")
+        result = rows[0]["result"]
+        if not isinstance(result, dict) or result.get("active") is not True:
+            raise RuntimeError(f"unexpected corpus activation response: {result!r}")
+        if result.get("release") != release_object.get("release"):
+            raise RuntimeError("activated release name does not match the requested object")
+        if result.get("content_sha256") != release_object.get("content_sha256"):
+            raise RuntimeError("activated release digest does not match the requested object")
+        _require_complete_activation_scopes(result, release_object)
+        return result
+    finally:
+        with suppress(Exception):
+            _delete_release_activation_upload(
+                upload_id,
+                endpoint=endpoint,
+                access_token=access_token,
+            )
+
+
+def _stage_release_activation_upload(
+    release_object: Mapping[str, object],
+    *,
+    endpoint: str,
+    access_token: str,
+) -> tuple[str, str]:
+    raw = canonical_json_bytes(release_object).decode("ascii")
+    chunks = [
+        raw[offset : offset + _RELEASE_ACTIVATION_CHUNK_SIZE]
+        for offset in range(0, len(raw), _RELEASE_ACTIVATION_CHUNK_SIZE)
+    ]
+    upload_id = secrets.token_hex(32)
+    object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+    try:
+        stale_rows = _management_api_post_json_with_curl(
+            endpoint,
+            payload={
+                "query": DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY,
+                "read_only": False,
+            },
+            access_token=access_token,
+            timeout=120,
+        )
+        if stale_rows != []:
+            raise RuntimeError(
+                f"unexpected stale release activation cleanup response: {stale_rows!r}"
+            )
+        for index, chunk in enumerate(chunks):
+            if index:
+                # Stay under the Management API's per-minute budget: a 761-scope
+                # release object is about 70 chunks, which unpaced exceeds it.
+                time.sleep(_RELEASE_ACTIVATION_CHUNK_PACING_SECONDS)
+            rows = _management_api_post_json_with_curl(
+                endpoint,
+                payload={
+                    "query": STAGE_RELEASE_ACTIVATION_CHUNK_QUERY,
+                    "parameters": [
+                        upload_id,
+                        str(release_object["release"]),
+                        str(release_object["content_sha256"]),
+                        index,
+                        len(chunks),
+                        chunk,
+                    ],
+                    "read_only": False,
+                },
+                access_token=access_token,
+                timeout=120,
+            )
+            if rows != [{"chunk_index": index}]:
+                raise RuntimeError(
+                    f"unexpected release activation chunk response at index {index}: {rows!r}"
+                )
+    except Exception:
+        with suppress(Exception):
+            _delete_release_activation_upload(
+                upload_id,
+                endpoint=endpoint,
+                access_token=access_token,
+            )
+        raise
+    return upload_id, object_sha256
+
+
+def _delete_release_activation_upload(
+    upload_id: str,
+    *,
+    endpoint: str,
+    access_token: str,
+) -> None:
     rows = _management_api_post_json_with_curl(
-        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
+        endpoint,
         payload={
-            "query": query,
-            "parameters": [json.dumps(release_object, sort_keys=True)],
+            "query": DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY,
+            "parameters": [upload_id],
             "read_only": False,
         },
         access_token=access_token,
-        timeout=600,
+        timeout=120,
     )
-    if (
-        not isinstance(rows, list)
-        or len(rows) != 1
-        or not isinstance(rows[0], dict)
-        or set(rows[0]) != {"result"}
-    ):
-        raise RuntimeError(f"unexpected corpus activation query response: {rows!r}")
-    result = rows[0]["result"]
-    if not isinstance(result, dict) or result.get("active") is not True:
-        raise RuntimeError(f"unexpected corpus activation response: {result!r}")
-    if result.get("release") != release_object.get("release"):
-        raise RuntimeError("activated release name does not match the requested object")
-    if result.get("content_sha256") != release_object.get("content_sha256"):
-        raise RuntimeError("activated release digest does not match the requested object")
-    return result
+    if rows != []:
+        raise RuntimeError(f"unexpected release activation upload cleanup response: {rows!r}")
+
+
+def _require_complete_activation_scopes(
+    result: Mapping[str, object],
+    release_object: Mapping[str, object],
+) -> None:
+    """Reject a response whose activated+reaffirmed pairs are not exactly the
+    release's own distinct (jurisdiction, document_class) pairs.
+
+    Serving state is authoritative in Postgres; this only stops automation from
+    trusting a malformed or truncated takeover report.
+    """
+    content = release_object.get("content")
+    scopes = content.get("scopes") if isinstance(content, Mapping) else None
+    if not isinstance(scopes, list):
+        raise RuntimeError("release object has no scopes to reconcile against")
+    expected_pairs = {
+        (str(scope.get("jurisdiction")), str(scope.get("document_class")))
+        for scope in scopes
+        if isinstance(scope, Mapping)
+    }
+    if result.get("scope_count") != len(scopes):
+        raise RuntimeError(
+            f"activation scope_count {result.get('scope_count')!r} != {len(scopes)} signed scopes"
+        )
+    reported = result.get("scopes")
+    if not isinstance(reported, Mapping):
+        raise RuntimeError("activation response is missing the scopes report")
+    reported_pairs: list[tuple[str, str]] = []
+    for bucket in ("activated", "reaffirmed"):
+        entries = reported.get(bucket)
+        if not isinstance(entries, list):
+            raise RuntimeError(f"activation response {bucket!r} is not a list")
+        for entry in entries:
+            if not isinstance(entry, Mapping):
+                raise RuntimeError(f"activation response {bucket!r} has a non-object entry")
+            reported_pairs.append(
+                (str(entry.get("jurisdiction")), str(entry.get("document_class")))
+            )
+    if len(reported_pairs) != len(set(reported_pairs)):
+        raise RuntimeError("activation response reports a duplicate (jurisdiction, document_class)")
+    if set(reported_pairs) != expected_pairs:
+        raise RuntimeError(
+            "activation response pairs do not match the release's signed pairs: "
+            f"reported {sorted(set(reported_pairs))}, expected {sorted(expected_pairs)}"
+        )
+
+
+# The Supabase Management API throttles a project to a small per-minute request
+# budget and answers the excess with 429 "ThrottlerException: Too Many Requests".
+# A throttled request was not executed, so it is safe to wait and send it again.
+_MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS = (15.0, 30.0, 60.0, 60.0, 60.0)
+_MANAGEMENT_API_THROTTLE_MARKERS = ("Too Many Requests", "ThrottlerException")
+
+
+def _is_management_api_throttle(error: BaseException) -> bool:
+    text = str(error)
+    return any(marker in text for marker in _MANAGEMENT_API_THROTTLE_MARKERS)
 
 
 def _management_api_post_json_with_curl(
+    url: str,
+    *,
+    payload: Mapping[str, object],
+    access_token: str,
+    timeout: int,
+) -> object:
+    """POST JSON to the Management API, waiting out its per-minute throttle.
+
+    Every other failure (transport error, non-2xx that is not a throttle,
+    malformed JSON) propagates unchanged from the first attempt.
+    """
+    for backoff in (*_MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS, None):
+        try:
+            return _management_api_post_json_with_curl_once(
+                url, payload=payload, access_token=access_token, timeout=timeout
+            )
+        except RuntimeError as exc:
+            if backoff is None or not _is_management_api_throttle(exc):
+                raise
+            time.sleep(backoff)
+    raise AssertionError("management API throttle retry loop exhausted unexpectedly")
+
+
+def _management_api_post_json_with_curl_once(
     url: str,
     *,
     payload: Mapping[str, object],
@@ -1282,6 +2089,11 @@ def load_provisions_to_supabase(
     and the publisher's evidence gate re-derives every in-release scope
     server-side after staging; a truly transactional staging boundary needs a
     server-side RPC.
+
+    ``records`` is read once. Each projected row is parked in a temporary
+    file and planning keeps only its identity columns, so memory holds
+    compact per-row metadata rather than every provision body; a row's full
+    projection is read back to compare it with a staged row and to insert it.
     """
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")
@@ -1297,29 +2109,67 @@ def load_provisions_to_supabase(
                 )
             yield record
 
-    rows = list(iter_supabase_rows(_require_release_versions(records), versioned_ids=True))
+    with _ProvisionRowSpool() as spool:
+        return _stage_provision_rows(
+            iter_supabase_rows(_require_release_versions(records), versioned_ids=True),
+            spool=spool,
+            service_key=service_key,
+            supabase_url=supabase_url,
+            chunk_size=chunk_size,
+            dry_run=dry_run,
+            progress_stream=progress_stream,
+        )
 
+
+def _stage_provision_rows(
+    projected_rows: Iterable[dict[str, object]],
+    *,
+    spool: _ProvisionRowSpool,
+    service_key: str,
+    supabase_url: str,
+    chunk_size: int,
+    dry_run: bool,
+    progress_stream: TextIO | None,
+) -> SupabaseLoadReport:
+    rows_total = 0
+    scope_keys: dict[tuple[str, str, str], None] = {}
     rows_by_key: dict[tuple[str, str], dict[str, object]] = {}
-    for row in rows:
-        key = (str(row["citation_path"]), str(row["version"]))
+    repeated_key: tuple[str, str] | None = None
+    for row in projected_rows:
+        rows_total += 1
+        # Every row is projected before a repeated key is reported, as when
+        # the rows were first collected into a list.
+        if repeated_key is not None:
+            continue
+        key = _staging_key(row)
         if key in rows_by_key:
-            raise ValueError(
-                f"load payload repeats an immutable provision key: {key[0]} @ {key[1]}"
-            )
-        rows_by_key[key] = row
+            repeated_key = key
+            continue
+        scope_keys.setdefault(
+            (str(row["jurisdiction"]), str(row["doc_type"]), str(row["version"])), None
+        )
+        rows_by_key[key] = {column: row[column] for column in _STAGING_IDENTITY_FIELDS}
+        if not dry_run:
+            spool.add(key, row)
+    if repeated_key is not None:
+        raise ValueError(
+            "load payload repeats an immutable provision key: "
+            f"{repeated_key[0]} @ {repeated_key[1]}"
+        )
 
     if dry_run:
         return SupabaseLoadReport(
-            rows_total=len(rows),
+            rows_total=rows_total,
             rows_loaded=0,
-            chunk_count=sum(1 for _ in _chunked(iter(rows), chunk_size)),
+            chunk_count=(rows_total + chunk_size - 1) // chunk_size,
             dry_run=True,
         )
 
     rest_url = _rest_url(supabase_url)
     plan = _plan_provision_staging(
-        rows,
+        tuple(scope_keys),
         rows_by_key=rows_by_key,
+        spool=spool,
         service_key=service_key,
         rest_url=rest_url,
     )
@@ -1380,7 +2230,11 @@ def load_provisions_to_supabase(
     chunk_count = 0
     for chunk in _chunked(iter(plan.pending_inserts), chunk_size):
         chunk_count += 1
-        insert_supabase_rows(chunk, service_key=service_key, rest_url=rest_url)
+        insert_supabase_rows(
+            [spool.get(_staging_key(row)) for row in chunk],
+            service_key=service_key,
+            rest_url=rest_url,
+        )
         rows_loaded += len(chunk)
         if progress_stream is not None and (chunk_count == 1 or chunk_count % 10 == 0):
             print(
@@ -1402,7 +2256,7 @@ def load_provisions_to_supabase(
         rows_loaded += 1
 
     return SupabaseLoadReport(
-        rows_total=len(rows),
+        rows_total=rows_total,
         rows_loaded=rows_loaded,
         chunk_count=chunk_count,
         dry_run=False,
@@ -1556,6 +2410,47 @@ def delete_supabase_provision_ids(
         resp.read()
 
 
+# The incoming-row columns staging plans with; every other column of a row is
+# read back from the spool when the row is compared or inserted.
+_STAGING_IDENTITY_FIELDS = ("id", "parent_id", "citation_path", "version")
+
+
+def _staging_key(row: Mapping[str, object]) -> tuple[str, str]:
+    return (str(row["citation_path"]), str(row["version"]))
+
+
+class _ProvisionRowSpool:
+    """Projected provision rows parked in a temporary file, read back by key.
+
+    Staging needs an incoming row's full projection only to compare it with
+    the staged row under the same key and to insert it, so rows are pickled to
+    an unnamed temporary file as they are projected and each key keeps one
+    file offset. Pickling returns every value, including key order, exactly.
+    """
+
+    def __init__(self) -> None:
+        self._file = tempfile.TemporaryFile()  # noqa: SIM115 - closed by __exit__
+        self._offsets: dict[tuple[str, str], int] = {}
+
+    def __enter__(self) -> _ProvisionRowSpool:
+        return self
+
+    def __exit__(self, *exc_info: object) -> None:
+        self._file.close()
+
+    def add(self, key: tuple[str, str], row: dict[str, object]) -> None:
+        self._offsets[key] = self._file.seek(0, io.SEEK_END)
+        pickle.dump(row, self._file, protocol=pickle.HIGHEST_PROTOCOL)
+
+    def get(self, key: tuple[str, str]) -> dict[str, object]:
+        self._file.seek(self._offsets[key])
+        # Only this process wrote the file, so unpickling it is safe.
+        row = pickle.load(self._file)
+        if not isinstance(row, dict):
+            raise TypeError(f"spooled provision row is not a mapping: {key}")
+        return row
+
+
 @dataclass(frozen=True)
 class _ProvisionStagingPlan:
     pending_inserts: tuple[dict[str, object], ...]
@@ -1591,6 +2486,35 @@ def _provision_column_equal(column: str, mine: object, theirs: object) -> bool:
         except ProjectionDigestError:
             return json.dumps(mine, sort_keys=True) == json.dumps(theirs, sort_keys=True)
     return mine == theirs
+
+
+def _staged_row_summary(
+    staged: Mapping[str, object],
+    incoming: Mapping[str, object] | None,
+) -> dict[str, object]:
+    """Keep what planning reads from one staged row.
+
+    ``divergent_content`` lists the content columns that differ from the
+    incoming row under the same key, computed now so the staged row's body
+    can be dropped; a comparison that raises is kept and raised where the
+    plan first reads it.
+    """
+    divergent_content: list[str] | DeferredError = []
+    if incoming is not None:
+        try:
+            divergent_content = sorted(
+                column
+                for column in PROVISION_CONTENT_COLUMNS
+                if not _provision_column_equal(column, incoming.get(column), staged.get(column))
+            )
+        except Exception as exc:
+            divergent_content = DeferredError(exc)
+    return {
+        "id": staged.get("id"),
+        "parent_id": staged.get("parent_id"),
+        "level": staged.get("level"),
+        "divergent_content": divergent_content,
+    }
 
 
 def _dependency_ordered_inserts(
@@ -1657,9 +2581,10 @@ def _dependency_ordered_inserts(
 
 
 def _plan_provision_staging(
-    rows: Sequence[dict[str, object]],
+    scope_keys: Sequence[tuple[str, str, str]],
     *,
     rows_by_key: Mapping[tuple[str, str], dict[str, object]],
+    spool: _ProvisionRowSpool,
     service_key: str,
     rest_url: str,
 ) -> _ProvisionStagingPlan:
@@ -1672,23 +2597,25 @@ def _plan_provision_staging(
     staged rows the load does not describe, or a replacement whose ON DELETE
     CASCADE would reach a row that survives the load — is a conflict, and the
     caller writes nothing.
-    """
-    scope_keys: dict[tuple[str, str, str], None] = {}
-    for row in rows:
-        scope_keys.setdefault(
-            (str(row["jurisdiction"]), str(row["doc_type"]), str(row["version"])), None
-        )
 
+    ``rows_by_key`` holds each incoming row's identity columns; full rows come
+    from ``spool``. Staged rows are fetched a page at a time and each is
+    compared with its incoming row as it arrives, keeping only its identity,
+    level and the list of divergent content columns.
+    """
     existing_by_key: dict[tuple[str, str], dict[str, object]] = {}
     for jurisdiction, doc_type, version in scope_keys:
-        for existing in fetch_staged_scope_rows(
+        for existing in iter_staged_scope_rows(
             jurisdiction=jurisdiction,
             doc_type=doc_type,
             version=version,
             service_key=service_key,
             rest_url=rest_url,
         ):
-            existing_by_key[(str(existing["citation_path"]), str(existing["version"]))] = existing
+            key = (str(existing["citation_path"]), str(existing["version"]))
+            existing_by_key[key] = _staged_row_summary(
+                existing, spool.get(key) if key in rows_by_key else None
+            )
 
     conflicts: list[dict[str, object]] = []
     pending_inserts: list[dict[str, object]] = []
@@ -1705,11 +2632,9 @@ def _plan_provision_staging(
             continue
         del leftover[key]
         matched_existing[key] = staged
-        divergent_content = sorted(
-            column
-            for column in PROVISION_CONTENT_COLUMNS
-            if not _provision_column_equal(column, row.get(column), staged.get(column))
-        )
+        divergent_content = staged["divergent_content"]
+        if isinstance(divergent_content, DeferredError):
+            raise divergent_content.error
         if divergent_content:
             conflicts.append(
                 {
@@ -1825,9 +2750,34 @@ def fetch_staged_scope_rows(
     page_size: int = 1_000,
 ) -> tuple[dict[str, object], ...]:
     """Fetch every staged projection row for one exact provision scope."""
+    return tuple(
+        iter_staged_scope_rows(
+            jurisdiction=jurisdiction,
+            doc_type=doc_type,
+            version=version,
+            service_key=service_key,
+            rest_url=rest_url,
+            page_size=page_size,
+        )
+    )
+
+
+def iter_staged_scope_rows(
+    *,
+    jurisdiction: str,
+    doc_type: str,
+    version: str,
+    service_key: str,
+    rest_url: str,
+    page_size: int = 1_000,
+) -> Iterator[dict[str, object]]:
+    """Yield every staged projection row for one exact provision scope.
+
+    Rows arrive one ``page_size`` page at a time, so a caller that keeps a
+    summary of each row never holds a whole scope's bodies.
+    """
     if page_size <= 0:
         raise ValueError("page_size must be positive")
-    fetched: list[dict[str, object]] = []
     last_id: str | None = None
     while True:
         query_params = {
@@ -1851,16 +2801,29 @@ def fetch_staged_scope_rows(
                 "User-Agent": USER_AGENT,
             },
         )
-        with urllib.request.urlopen(req, timeout=180) as resp:
-            page = json.loads(resp.read())
+        for attempt in range(_STAGED_SCOPE_FETCH_MAX_ATTEMPTS):
+            try:
+                with urllib.request.urlopen(req, timeout=180) as resp:
+                    page = json.loads(resp.read())
+                break
+            except urllib.error.HTTPError as exc:
+                if 400 <= exc.code < 500:
+                    raise
+                if attempt + 1 == _STAGED_SCOPE_FETCH_MAX_ATTEMPTS:
+                    raise
+            except (urllib.error.URLError, ConnectionError, TimeoutError):
+                if attempt + 1 == _STAGED_SCOPE_FETCH_MAX_ATTEMPTS:
+                    raise
+            time.sleep(_STAGED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+        else:
+            raise AssertionError("staged-scope retry loop exhausted unexpectedly")
         if not isinstance(page, list):
             raise RuntimeError("unexpected Supabase staged-scope response")
         page_rows = [row for row in page if isinstance(row, dict) and row.get("id") is not None]
-        fetched.extend(page_rows)
+        yield from page_rows
         if len(page_rows) < page_size:
             break
         last_id = str(page_rows[-1]["id"])
-    return tuple(fetched)
 
 
 def fetch_provision_rows_with_parents(

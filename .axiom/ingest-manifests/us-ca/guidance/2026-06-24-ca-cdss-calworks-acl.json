@@ -26,9 +26,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c176c0c92cdc186a8519658da805ae43270f837f",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ca-calworks-acl-20260624"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -43,7 +43,7 @@
     "source_count": 23
   },
   "document_class": "guidance",
-  "generated_at": "2026-06-25T01:20:05.924554+00:00",
+  "generated_at": "2026-07-21T11:57:43.659100+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [
     {
@@ -55,7 +55,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "F4XmhzLAi0JW7cfh2lsdwIGiSmfTrRJkYDu4npdxiDxSWl/t1VpLEsyBCNPXM6t/4KWV/FZPuV+kUp869GpgDQ=="
+    "value": "yc+zhXgYZe3NWrx3gIrtVN+Pzr3+jHOruiHvoK9tDn/Mc/pdyrbz2K1vbHtsP6dD9kUFVHVWabbQFaggLMIeBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-24-ca-cdss-calworks-acl"

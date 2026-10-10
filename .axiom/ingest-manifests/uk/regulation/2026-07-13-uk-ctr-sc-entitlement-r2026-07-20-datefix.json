@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix.json",
+      "sha256": "46a133bc1cd5387ee86837d063d7c581ebd346b21446f4df729e73814831ebec"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix.json",
+      "sha256": "3bb9bbaaab1cfeb4d73029884bf1b0fa69425db4441d1761eaf8b5f4a32f5e1f"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix.jsonl",
+      "sha256": "ad6c8bae04e59af54a189fd8feef81756e1a6a2acf00bc2ee9b6ebfd75260906"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix/ssi/2021/249/regulation-13.xml",
+      "sha256": "58ec5296b065bc99bade58ffa83d3b638af1e70651596c023a9f9967ba61fec1"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix/ssi/2021/249/regulation-14.xml",
+      "sha256": "cd52c36c3cbf7cef5a768ff584ca495bf0649fc0407260a1370fd6c37a8b244b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4662f05e6b0ee30c81d02758b17757185175e624",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:42.811575+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vQ/9XQOclyYyOcNn0D/wuBzy6TnC6CQ25Xzwp5lMcHGmso4obToDOj+1BaqZCS2ruRafGEsz0qH6x++ftRjNDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix"
+}
