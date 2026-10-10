@@ -19,6 +19,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import OfficialDocumentManifest
 from axiom_corpus.corpus.io import load_provisions
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.states import extract_california_code_sections
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -891,6 +892,24 @@ def reproduce(base: Path, source_dir: Path | None = None) -> dict[str, Any]:
     }
 
 
+def ensure_corpus_inputs(
+    *, repo: Path = REPO_ROOT, source_dir: Path | None = None
+) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    input_root = source_dir.resolve() if source_dir is not None else Path("data/corpus")
+    ensure_corpus_paths(
+        [
+            *(
+                input_root / path
+                for input_name, canonical_path in CANONICAL_SOURCE_BY_INPUT.items()
+                for path in (input_name, canonical_path)
+            ),
+            Path("data/corpus") / FEDERAL_AUTHORITY_PROVISIONS,
+        ],
+        repo=repo,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -908,6 +927,7 @@ def main() -> int:
         ),
     )
     args = parser.parse_args()
+    ensure_corpus_inputs(source_dir=args.source_dir)
     print(json.dumps(reproduce(args.base, args.source_dir), indent=2, sort_keys=True))
     return 0
 
