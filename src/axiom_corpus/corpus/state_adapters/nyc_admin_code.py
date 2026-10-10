@@ -131,7 +131,9 @@ def extract_nyc_admin_code(
                     source_format=NYC_ADMIN_CODE_SOURCE_FORMAT,
                     source_as_of=source_as_of_text,
                     expression_date=expression_date_text,
-                    parent_citation_path="us-ny/statute/NYC",
+                    # No us-ny/statute/NYC container row is emitted, so a
+                    # parent link would dangle (missing_parent_citation).
+                    parent_citation_path=None,
                     level=1,
                     ordinal=ordinal,
                     kind="section",
