@@ -29,7 +29,7 @@ from __future__ import annotations
 import json
 import re
 from collections import defaultdict
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Container, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any, NamedTuple
 from uuid import NAMESPACE_URL, UUID, uuid5
@@ -344,15 +344,94 @@ def _resolve_parent_path(
     source: NavigationSource,
     by_path: dict[str, NavigationSource],
 ) -> str | None:
-    explicit = source.parent_citation_path
-    if explicit and explicit != source.citation_path and explicit in by_path:
+    return _resolve_parent(source.citation_path, source.parent_citation_path, by_path)
+
+
+def _resolve_parent(path: str, explicit: str | None, paths: Container[str]) -> str | None:
+    if explicit and explicit != path and explicit in paths:
         return explicit
-    parts = source.citation_path.split("/")
+    parts = path.split("/")
     for size in range(len(parts) - 1, 0, -1):
         candidate = "/".join(parts[:size])
-        if candidate in by_path and candidate != source.citation_path:
+        if candidate in paths and candidate != path:
             return candidate
     return None
+
+
+def scope_parent_paths(entries: Iterable[tuple[str, str | None]]) -> dict[str, str | None]:
+    """The parent path :func:`build_navigation_nodes` gives each path of one scope.
+
+    ``entries`` holds one ``(citation_path, parent_citation_path)`` per record.
+    The first record of a path wins, a parent resolves as the build resolves
+    it, and parent cycles are broken as the build breaks them.
+    """
+    declared: dict[str, str | None] = {}
+    for path, parent in entries:
+        declared.setdefault(path, parent)
+    parent_paths = {
+        path: _resolve_parent(path, parent, declared) for path, parent in declared.items()
+    }
+    _break_parent_cycles(parent_paths)
+    return parent_paths
+
+
+class LayeredParentPaths(NamedTuple):
+    """The merged tree of one (jurisdiction, document_class) pair served with a base scope.
+
+    ``parent_paths`` maps every served path to its merged parent. ``new_roots``
+    holds ``(primary index, path)`` for each root of a primary scope that the
+    base does not carry and under no ancestor path the pair serves: a new
+    top-level document. ``broken_cycles`` holds each parent cycle the merge
+    closed, from the path whose parent was cleared.
+    """
+
+    parent_paths: dict[str, str | None]
+    new_roots: tuple[tuple[int, str], ...]
+    broken_cycles: tuple[tuple[str, ...], ...]
+
+
+def merge_layered_parent_paths(
+    base: Mapping[str, str | None],
+    primaries: Sequence[Mapping[str, str | None]],
+) -> LayeredParentPaths:
+    """Merge one pair's scope trees as serving merges them (20260927110000).
+
+    ``base`` and each of ``primaries`` map a scope's paths to the parents
+    :func:`scope_parent_paths` gives them. A primary path is served from the
+    first primary scope carrying it and keeps that scope's parent; a root of
+    its scope takes its base twin's parent, else the nearest ancestor path the
+    pair serves. A base path no primary scope carries keeps its parent. A
+    parent cycle is broken at its smallest path, as the build breaks one.
+    """
+    owner: dict[str, int] = {}
+    for index, primary in enumerate(primaries):
+        for path in primary:
+            owner.setdefault(path, index)
+    served = set(base) | set(owner)
+    parent_paths = {path: parent for path, parent in base.items() if path not in owner}
+    new_roots: list[tuple[int, str]] = []
+    for path, index in owner.items():
+        parent = primaries[index][path]
+        if parent is None:
+            if path in base:
+                parent = base[path]
+            else:
+                parent = _resolve_parent(path, None, served)
+                if parent is None:
+                    new_roots.append((index, path))
+        parent_paths[path] = parent
+    declared = dict(parent_paths)
+    _break_parent_cycles(parent_paths)
+    broken_cycles: list[tuple[str, ...]] = []
+    for path in sorted(parent_paths):
+        if parent_paths[path] is None and declared[path] is not None:
+            cycle = [path]
+            cursor = declared[path]
+            while cursor != path and cursor is not None:
+                cycle.append(cursor)
+                cursor = declared[cursor]
+            broken_cycles.append(tuple(cycle))
+    return LayeredParentPaths(parent_paths, tuple(new_roots), tuple(broken_cycles))
 
 
 def _break_parent_cycles(parent_paths: dict[str, str | None]) -> None:
