@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/manual/2026-10-06-w6-tanf-ccdf-manual-wv.json",
+      "sha256": "b9433e522769fee99b5c7c430f178a71bd4ebacc7b22a72191d5458a4c466178"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/manual/2026-10-06-w6-tanf-ccdf-manual-wv.json",
+      "sha256": "069f2fa1473072c5c250a188687e02cbf89fab9308f275dc81893b26785bb28c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/manual/2026-10-06-w6-tanf-ccdf-manual-wv.jsonl",
+      "sha256": "60490447a4e30bc0cacbe065940c9df5cb9c6c5e19a0f74c0edcbc86e5a3522b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-10-06-w6-tanf-ccdf-manual-wv/official-documents/us-wv-w6-bfa-child-care-subsidy-policy-manual-2024-10-01.pdf",
+      "sha256": "d090d4e3fcc8a3b465ed638346746cdbf93a3e1c3b8175916f8205bf7c29e6e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 142,
+    "missing_count": 0,
+    "provision_count": 142,
+    "source_count": 142
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T18:01:12.470525+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "M92RM+1Ee/5kefyRWHmtEnZ9RYCveig3MJ+WF1seakxDD0byLuadaK2Su449gCWMT9LdJpjJlprvrM4jzf4BAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-wv"
+}

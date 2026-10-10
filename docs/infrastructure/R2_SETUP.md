@@ -28,6 +28,12 @@ axiom-corpus (R2 bucket)/
 └── releases/{release}/{release_content_sha256}.json
 ```
 
+`objects/sha256/` is content-addressed and write-once: release publication and
+`axiom-corpus-ingest corpus push` write there with conditional writes and exact
+readback, and `corpus fetch` reads there first. Path-keyed objects can be
+overwritten by a later `sync-r2`, so fetch reads them only as a fallback and
+only after they hash to the lock's sha256 (`docs/corpus-storage.md`).
+
 ## Status
 
 ✅ **Bucket created**: 2024-12-28

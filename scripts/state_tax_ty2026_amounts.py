@@ -652,6 +652,16 @@ def build_amounts(*, verify_only: bool = False) -> None:
 
 # --------------------------------------------------------------------------- queue
 
+# The CA chapter scope supersedes the recovery scope's R&TC half only (axiom-corpus#748).
+CA_RECOVERY_SUPERSESSION = (
+    "us-ca/statute/2026-07-13-recovery is superseded for its ten R&TC sections only "
+    "(rtc/17014 through rtc/17062.1, same text at the same section paths). Its WIC rows "
+    "(us-ca/statute/wic/11450/a/1/A and its blocks) hold no WIC text and are not carried "
+    "here; WIC 11450 is carried by us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-"
+    "wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018, which holds one of its two "
+    "current versions (axiom-corpus#748, #752)."
+)
+
 STATUTE_ROWS: dict[str, dict[str, Any]] = {
     # jurisdiction -> queue record for the whole-chapter statute scope (versions are the
     # on-disk scope versions; the adapters append their scope suffix to the version prefix)
@@ -670,7 +680,7 @@ STATUTE_ROWS: dict[str, dict[str, Any]] = {
     "us-oh": {"manifest": "manifests/state-income-tax-chapters-2026-09-14.yaml", "source_id": "us-oh-orc-title-57", "versions": ["2026-09-14-income-tax-chapter-us-oh-title-57"], "index_url": "https://codes.ohio.gov/ohio-revised-code/title-57", "chapter": "Ohio Revised Code Chapter 5747 (Income Tax) (whole Title 57 taken)", "supersedes": ["us-oh/statute/2026-07-13-recovery"]},
     "us-ut": {"manifest": "manifests/state-income-tax-chapters-2026-09-14.yaml", "source_id": "us-ut-code-title-59", "versions": ["2026-09-14-income-tax-chapter-title-59"], "index_url": "https://le.utah.gov/xcode/Title59/59.html", "chapter": "Utah Code Title 59, Chapter 10 (Individual Income Tax Act) (whole Title 59 taken)", "supersedes": ["us-ut/statute/2026-07-13-recovery"]},
     "us-va": {"manifest": "manifests/us-va-code-title-58.1-chapter-3-income-tax.yaml", "source_id": None, "versions": ["2026-09-14-income-tax-chapter"], "index_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter3/", "chapter": "Code of Virginia Title 58.1, Chapter 3 (Income Tax)", "supersedes": ["us-va/statute/2026-07-13-recovery"]},
-    "us-ca": {"manifest": "manifests/us-ca-rtc-part-10-10.2-sections.yaml", "source_id": None, "versions": ["2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"], "index_url": "https://leginfo.legislature.ca.gov/faces/codes_displayexpandedbranch.xhtml?tocCode=RTC&division=2.&title=&part=10.&chapter=&article=", "chapter": "California Revenue and Taxation Code Division 2, Parts 10 and 10.2 (Personal Income Tax; Administration)", "supersedes": ["us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5", "us-ca/statute/2026-07-13-recovery"]},
+    "us-ca": {"manifest": "manifests/us-ca-rtc-part-10-10.2-sections.yaml", "source_id": None, "versions": ["2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"], "index_url": "https://leginfo.legislature.ca.gov/faces/codes_displayexpandedbranch.xhtml?tocCode=RTC&division=2.&title=&part=10.&chapter=&article=", "chapter": "California Revenue and Taxation Code Division 2, Parts 10 and 10.2 (Personal Income Tax; Administration)", "supersedes": ["us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5", "us-ca/statute/2026-07-13-recovery"], "supersedes_note": CA_RECOVERY_SUPERSESSION},
 }
 
 STATUTE_BLOCKED: dict[str, dict[str, Any]] = {
@@ -715,6 +725,7 @@ def update_queue() -> None:
             "index_document_count": sum((c or {}).get("provision_count") or 0 for c in cov),
             "taken_count": sum((c or {}).get("provision_count") or 0 for c in cov),
             "supersedes": spec["supersedes"],
+            **({"supersedes_note": spec["supersedes_note"]} if "supersedes_note" in spec else {}),
             "notes": f"{spec['chapter']}; whole-chapter statute scope of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).",
         }
     for jurisdiction, spec in STATUTE_BLOCKED.items():

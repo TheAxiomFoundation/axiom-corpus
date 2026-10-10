@@ -1,18 +1,19 @@
-"""pytest-timeout budget for tests that parse the whole committed provision corpus.
+"""pytest-timeout budget for tests that parse the whole provision corpus.
 
 CI runs the suite with a flat ``--timeout=60``. Three tests json-parse every row
 under data/corpus/provisions: the ``result`` fixture in
 test_citation_path_grammar.py, the identity-convention check in
 test_provision_identity_convention.py, and the evidence-span check in
-test_claims.py. Their cost tracks corpus size, not their own code: 0.95 GB at the
-end of 2026-08-01, 2.28 GB / 577k rows at origin/main on 2026-09-22. The grammar
-scan took 44-48 s of the 60 s on passing CI runs and timed out on slower runners
-(axiom-corpus#736).
+test_claims.py. Their cost tracks corpus size, not their own code, and the corpus
+keeps growing: 0.95 GB at the end of 2026-08-01, 2.28 GB on 2026-09-22, 2.69 GB
+on 2026-10-10. Before the grammar scan streamed rows it took 44-48 s of the 60 s
+on passing CI runs and timed out on slower runners (axiom-corpus#736). Since
+then the three scans have taken 8-23 s on CI.
 
 ``corpus_scan`` budgets such a test by corpus size instead: 1 s per 10 MB of
-provision JSONL, never below the suite's 60 s. Passing pre-fix CI runs scanned at
-47-52 MB/s under pytest, so the floor leaves about 5x headroom over them while a
-genuine hang still fails within minutes.
+provision JSONL, never below the suite's 60 s. The slowest CI scan measured since
+streaming ran at 118 MB/s, so the floor sits an order of magnitude below it while
+a genuine hang still fails within minutes.
 """
 
 from __future__ import annotations

@@ -1,0 +1,47 @@
+version: '2026-09-15'
+documents:
+- source_id: us-ks-kdor-form-k-40-ty2025
+  jurisdiction: us-ks
+  document_class: form
+  title: K-40 2025 Kansas Individual Income Tax
+  source_url: https://www.ksrevenue.gov/pdf/k-4025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ks/form/kdor/ty2025/form-k-40
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.ksrevenue.gov/forms-ii.html
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.ksrevenue.gov/forms-ii.html
+      (read 2026-09-14)
+    page_count_at_research: 2
+    first_page_first_line: K-40 2025 KANSAS INDIVIDUAL INCOME TAX
+- source_id: us-ks-kdor-individual-income-tax-instruction-booklet-ty2025
+  jurisdiction: us-ks
+  document_class: form
+  title: 2025 Individual Income Tax Instruction Booklet (K-40 instructions and tax tables)
+  source_url: https://www.ksrevenue.gov/pdf/ip25.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ks/form/kdor/ty2025/individual-income-tax-instruction-booklet
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.ksrevenue.gov/forms-ii.html
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.ksrevenue.gov/forms-ii.html
+      (read 2026-09-14)
+    page_count_at_research: 36
+    first_page_first_line: 2025 Individual Income Tax

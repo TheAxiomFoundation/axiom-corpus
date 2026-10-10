@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-guidance-wi
+documents:
+- source_id: us-wi-guidance-dhs-dms-ops-memo-2026-30
+  jurisdiction: us-wi
+  document_class: guidance
+  title: DMS Operations Memo 2026-30 (Wisconsin DHS)
+  source_url: https://www.dhs.wisconsin.gov/dms/memos/ops/dms-ops-2026-30.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-08-20'
+  citation_path: us-wi/guidance/dhs/dms/ops-memo/2026-30
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services, Division of Medicaid Services
+    document_subtype: operations_memo
+    program: SNAP (FoodShare)
+    expression_date_note: publisher Last-Modified of the memo (2026-08-20)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 264)
+    wave6_rows:
+    - 264
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

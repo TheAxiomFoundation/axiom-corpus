@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-health-regulation-ms
+documents:
+- source_id: us-ms-w6-health-title-23-part-104
+  jurisdiction: us-ms
+  document_class: regulation
+  title: 'Mississippi Administrative Code Title 23: Medicaid, Part 104: Income (Division of Medicaid file, 2014)'
+  source_url: https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ms/regulation/title-23/part-104
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid (DOM)
+    program: MEDICAID
+    document_subtype: administrative_code_part_pdf
+    source_discovery_group: us-ms/regulation/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 98
+    bundle_url: https://www.medicaid.ms.gov/wp-content/uploads/2014/01/Admin-Code-Part-104.pdf

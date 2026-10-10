@@ -1,0 +1,205 @@
+version: 2026-10-06-w6-income-tax-guidance-ny
+documents:
+- source_id: us-ny-guidance-tax-ty2020-pit-corp-changes
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Summary of 2020 corporation tax and personal income tax changes
+  source_url: https://www.tax.ny.gov/legal/2020/pit-corp-changes.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-ny/guidance/tax/ty2020/pit-corp-changes
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: legislative_summary
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/legal/2020/pit-corp-changes.htm
+    tax_year: '2020'
+- source_id: us-ny-guidance-tax-ty2022-pit-corp-changes
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Summary of 2022 corporation tax and personal income tax changes
+  source_url: https://www.tax.ny.gov/legal/2022/pit-corp-changes.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ny/guidance/tax/ty2022/pit-corp-changes
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: legislative_summary
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/legal/2022/pit-corp-changes.htm
+    tax_year: '2022'
+- source_id: us-ny-guidance-tax-ty2025-pit-corp-changes
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Summary of 2025 corporation tax and personal income tax changes
+  source_url: https://www.tax.ny.gov/legal/2025/pit-corp-changes.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/guidance/tax/ty2025/pit-corp-changes
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: legislative_summary
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/legal/2025/pit-corp-changes.htm
+    tax_year: '2025'
+- source_id: us-ny-guidance-tax-tsb-m-98-7-i
+  jurisdiction: us-ny
+  document_class: guidance
+  title: TSB-M-98(7)I (Income Tax), December 24, 1998
+  source_url: https://www.tax.ny.gov/pdf/memos/income/m98_7i.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/tsb-m-98-7-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: technical_memorandum
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/memos/income/m98_7i.pdf
+- source_id: us-ny-guidance-tax-empire-state-child-credit
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Empire State child credit
+  source_url: https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/empire-state-child-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm
+- source_id: us-ny-guidance-tax-geothermal-energy-system-credit
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Geothermal Energy System Credit
+  source_url: https://www.tax.ny.gov/pit/credits/geothermal-energy-system-credit.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/geothermal-energy-system-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pit/credits/geothermal-energy-system-credit.htm
+- source_id: us-ny-guidance-tax-solar-energy-system-equipment-credit
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Solar Energy System Equipment Credit
+  source_url: https://www.tax.ny.gov/pit/credits/solar_energy_system_equipment_credit.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/solar-energy-system-equipment-credit
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pit/credits/solar_energy_system_equipment_credit.htm
+- source_id: us-ny-guidance-tax-additional-empire-state-child-credit-payments
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Additional Empire State child credit payments
+  source_url: https://www.tax.ny.gov/pit/empire-child-credit-payments.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/additional-empire-state-child-credit-payments
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pit/empire-child-credit-payments.htm
+- source_id: us-ny-guidance-tax-itemized-deductions
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Itemized deductions
+  source_url: https://www.tax.ny.gov/pit/file/itemized-deductions.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/itemized-deductions
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pit/file/itemized-deductions.htm
+- source_id: us-ny-guidance-tax-vita-and-tce
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Volunteer Income Tax Assistance (VITA) and Tax Counseling for the Elderly (TCE)
+  source_url: https://www.tax.ny.gov/pit/file/vita.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/tax/vita-and-tce
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pit/file/vita.htm

@@ -37,6 +37,7 @@ from axiom_corpus.corpus.documents import (
     _extract_labeled_html_section_blocks,
     _extract_plain_text_blocks,
     _get_with_retries,
+    _html_soup,
     _infer_source_format,
     _legacy_word_document_text,
     _normalize_text,
@@ -654,6 +655,22 @@ def test_extract_json_record_blocks_rejects_bad_label_filters(
             fallback_title=None,
             extraction=extraction,
         )
+
+
+def test_html_soup_parser_option_selects_html_parser_and_rejects_unknown() -> None:
+    content = b"<html><body><main><p>Body text</p></main></body></html>"
+    assert _html_soup(content, parser="html.parser").builder.NAME == "html.parser"
+    assert _html_soup(content).builder.NAME in {"lxml", "html.parser"}
+    with pytest.raises(ValueError, match="unsupported html_parser"):
+        _html_soup(content, parser="html5lib")
+    blocks = _extract_blocks(
+        content,
+        source_format="html",
+        source_url="https://example.test/page",
+        title="Page",
+        extraction={"html_parser": "html.parser"},
+    )
+    assert [block.body for block in blocks] == ["Body text"]
 
 
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:

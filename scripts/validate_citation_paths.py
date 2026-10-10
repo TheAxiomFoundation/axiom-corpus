@@ -36,7 +36,7 @@ import argparse
 import glob
 import json
 import re
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
 from uuid import NAMESPACE_URL, uuid5
@@ -45,20 +45,14 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "citation-path.v1.json"
 DEFAULT_PROVISIONS = REPO_ROOT / "data" / "corpus" / "provisions"
 
-_BLOCK_N = re.compile(r"/block-\d+")
-_PAGE_N = re.compile(r"/page-\d+")
-_TRUNCATED_SEGMENT_END = re.compile(r"[ \-–]$")
-
 # Irregular-family membership predicates, keyed to known_irregulars_ratchet.
-# They run over every unique path (426k at 2026-09-24), so the patterns are
-# precompiled and the per-character/per-segment scans go through map().
 IRREGULAR_PREDICATES: dict[str, Callable[[str], bool]] = {
-    "block_n": lambda p: bool(_BLOCK_N.search(p)),
-    "page_n": lambda p: bool(_PAGE_N.search(p)),
+    "block_n": lambda p: bool(re.search(r"/block-\d+", p)),
+    "page_n": lambda p: bool(re.search(r"/page-\d+", p)),
     "space_segments": lambda p: " " in p,
     "endash_segments": lambda p: "–" in p,
-    "uppercase_segments": lambda p: any(map(str.isupper, p)),
-    "truncated_segments": lambda p: any(map(_TRUNCATED_SEGMENT_END.search, p.split("/"))),
+    "uppercase_segments": lambda p: any(c.isupper() for c in p),
+    "truncated_segments": lambda p: any(bool(re.search(r"[ \-–]$", s)) for s in p.split("/")),
     "collection_roots": lambda p: len(p.split("/")) == 2,
 }
 
@@ -77,15 +71,20 @@ def versioned_id(version: str | None, citation_path: str) -> str | None:
     return str(uuid5(NAMESPACE_URL, identity))
 
 
-# The only record fields validate() reads. Every line is still fully parsed, but
-# only these are retained. Keeping whole rows (provision bodies included) made the
-# scan peak at ~6 GB RSS on the 2.3 GB corpus (macOS, 2026-09-24); with slim
-# records the whole scan peaks at ~0.45 GB.
-RECORD_FIELDS = ("citation_path", "jurisdiction", "document_class", "id", "version")
+# The only record fields any check reads. Rows carry full provision bodies, so
+# holding whole rows made memory scale with the corpus text: the 577,545 rows
+# in 2.28 GB of JSONL (2026-09-23) peaked at 6.1 GB RSS, against 0.16 GB when
+# the scan streams these fields.
+CHECKED_FIELDS = ("citation_path", "jurisdiction", "document_class", "id", "version")
 
 
-def load_records(provisions_dir: Path) -> list[dict[str, Any]]:
-    records: list[dict[str, Any]] = []
+def iter_records(provisions_dir: Path) -> Iterator[dict[str, Any]]:
+    """Yield the checked fields of every record that has a citation_path.
+
+    Records stream in file and line order, one at a time, so a scan holds one
+    parsed row plus the per-path results rather than the whole corpus. An
+    unparseable line yields ``{"_error": "<file>:<line> invalid JSON"}``.
+    """
     pattern = str(provisions_dir / "**" / "*.jsonl")
     for filename in sorted(glob.glob(pattern, recursive=True)):
         with open(filename, encoding="utf-8") as handle:
@@ -96,33 +95,35 @@ def load_records(provisions_dir: Path) -> list[dict[str, Any]]:
                 try:
                     obj = json.loads(line)
                 except json.JSONDecodeError:
-                    records.append({"_error": f"{filename}:{lineno} invalid JSON"})
+                    yield {"_error": f"{filename}:{lineno} invalid JSON"}
                     continue
                 if "citation_path" not in obj:
                     continue
-                records.append({field: obj[field] for field in RECORD_FIELDS if field in obj})
-    return records
+                yield {field: obj[field] for field in CHECKED_FIELDS if field in obj}
 
 
 def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
-    """Run all checks, returning a structured result dict."""
+    """Run all checks in one streaming pass, returning a structured result dict."""
     pattern = re.compile(schema["$defs"]["citation_path"]["pattern"])
     doc_classes = set(schema["$defs"]["document_class"]["enum"])
 
-    records = load_records(provisions_dir)
-    paths = [r["citation_path"] for r in records if "citation_path" in r]
-
-    json_errors = [r["_error"] for r in records if "_error" in r]
-
+    record_count = 0
+    unique_paths: set[str] = set()
+    json_errors: list[str] = []
     pattern_failures: list[str] = []
     jurisdiction_mismatches: list[str] = []
     docclass_mismatches: list[str] = []
     unknown_docclass: list[str] = []
+    # Identity drift: stored id derives from neither path-only nor versioned id.
+    drift_live_set: set[str] = set()
 
-    for rec in records:
-        if "citation_path" not in rec:
+    for rec in iter_records(provisions_dir):
+        if "_error" in rec:
+            json_errors.append(rec["_error"])
             continue
         p = rec["citation_path"]
+        record_count += 1
+        unique_paths.add(p)
         segs = p.split("/")
         if not pattern.match(p):
             pattern_failures.append(p)
@@ -136,11 +137,17 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
                 docclass_mismatches.append(f"{p}  (field document_class={dc!r})")
             if segs[1] not in doc_classes:
                 unknown_docclass.append(p)
+        stored = rec.get("id")
+        if (
+            stored
+            and path_only_id(p) != stored
+            and versioned_id(rec.get("version"), p) != stored
+        ):
+            drift_live_set.add(p)
 
     # Immutable scope versions can repeat the same citation identity. Ratchet
     # citation-path shapes, not the number of versioned rows carrying them.
     baselines = schema["known_irregulars_ratchet"]["baselines"]
-    unique_paths = set(paths)
     live_counts = {
         name: sum(1 for path in unique_paths if predicate(path))
         for name, predicate in IRREGULAR_PREDICATES.items()
@@ -151,22 +158,7 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
         if live_counts.get(name, 0) > baselines[name]
     }
 
-    # Identity drift: stored id derives from neither path-only nor versioned id.
     drift_baseline = set(schema["identity_drift_ratchet"]["baseline_paths"])
-    drift_live: list[str] = []
-    for rec in records:
-        if "citation_path" not in rec:
-            continue
-        stored = rec.get("id")
-        if not stored:
-            continue
-        p = rec["citation_path"]
-        if path_only_id(p) == stored:
-            continue
-        if versioned_id(rec.get("version"), p) == stored:
-            continue
-        drift_live.append(p)
-    drift_live_set = set(drift_live)
     drift_new = sorted(drift_live_set - drift_baseline)  # regressions: NOT in baseline
     drift_resolved = sorted(drift_baseline - drift_live_set)  # baseline entries now clean
 
@@ -183,7 +175,7 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
     return {
         "ok": ok,
         "provisions_dir": str(provisions_dir),
-        "record_count": len(paths),
+        "record_count": record_count,
         "unique_path_count": len(unique_paths),
         "json_errors": json_errors,
         "pattern_failures": sorted(set(pattern_failures)),
@@ -244,6 +236,28 @@ def print_report(result: dict[str, Any]) -> None:
     print("  RESULT:", "OK" if result["ok"] else "FAILED")
 
 
+def unfetched_locked_provisions(provisions_dir: Path) -> list[str]:
+    """Locked provision files (``.axiom/corpus-locks``) missing from ``provisions_dir``.
+
+    Corpus bytes live outside git (docs/corpus-storage.md). This stays
+    stdlib-only because CI runs the script without installing the package.
+    """
+    try:
+        relative = provisions_dir.resolve().relative_to(REPO_ROOT)
+    except ValueError:
+        return []
+    prefix = relative.as_posix().rstrip("/") + "/"
+    missing: list[str] = []
+    for lock_file in sorted((REPO_ROOT / ".axiom" / "corpus-locks").glob("*/*/*.json")):
+        if any(part.startswith(".") for part in lock_file.relative_to(REPO_ROOT / ".axiom").parts[1:]):
+            continue  # hidden files (AppleDouble ._x.json, editor swaps) are never locks
+        for entry in json.loads(lock_file.read_text(encoding="ascii")).get("files", []):
+            path = entry.get("path", "")
+            if path.startswith(prefix) and not (REPO_ROOT / path).is_file():
+                missing.append(path)
+    return missing
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--provisions", type=Path, default=DEFAULT_PROVISIONS,
@@ -254,6 +268,15 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--update-baselines", action="store_true",
                     help="Rewrite ratchet baselines and identity-drift list to current live values.")
     args = ap.parse_args(argv)
+
+    missing = unfetched_locked_provisions(args.provisions)
+    if missing:
+        print(
+            f"{len(missing)} locked provision file(s) under {args.provisions} are not in this "
+            f"checkout (first: {missing[0]}); the scan would cover only part of the corpus. "
+            "Run `axiom-corpus-ingest corpus fetch --path data/corpus/provisions` first."
+        )
+        return 2
 
     schema = json.loads(args.schema.read_text(encoding="utf-8"))
     result = validate(args.provisions, schema)
