@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.json",
+      "sha256": "ffedc1e46322b193c277b0a36c3a4e7af62978c331dd482f6c6dbda0093f37c2"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.json",
+      "sha256": "e034741636b6e9cef548d6718521dc4e3bcf360eab44ff3854d2cd5cd4d92546"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections.jsonl",
+      "sha256": "2563e0225ed643953cb4b8883dc7903995eba879d366aee35abd0f28d926a57e"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-07-13-recovery/official-documents/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1",
+      "sha256": "62edf85ec202b1009c4c4655519596a75ea2e4b716ad2e5a9ce5bc6544a72784"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-07-13-recovery/official-documents/us-co-8-ccr-1403-1",
+      "sha256": "b76234b6ce316b86adef29e5ea8d5942bb490b1fe630c37c71a44516229765af"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-07-13-recovery/official-documents/us-co-9-ccr-2503-6",
+      "sha256": "0e0ba2ab150c9327d9907af7e45a54dd2e14cb992c0d04f935245cfffe5fbf41"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-07-13-recovery/provenance/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1.json",
+      "sha256": "a797ee3ace7de2b6af48bbaa4b7eaba0ff37a9e4542e5d6823e5967de19875ec"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-07-13-recovery/provenance/us-co-8-ccr-1403-1.json",
+      "sha256": "033e2e748ef6f85a41f654f2b6b90d08a5e0f3f6a0389559d36691d6f6d32bc0"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-07-13-recovery/provenance/us-co-9-ccr-2503-6.json",
+      "sha256": "db8524b75128135a8d868ef94a8625ea8d83b73ff0b5770ed380f7c8311fdf13"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections/2026-09-10-tanf-state-policy-manual/official-documents/us-co-ccr-9-2503-6-colorado-works.pdf",
+      "sha256": "9509f0f5d7a6bb9d32b2ab2e55568763abda3b11edf945331d036506c326635f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dbd7ab51fcd7c98454d9de23937ecfd3b8404a6f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_co_8_ccr_1403_1_sections.py --base data/corpus (run note: docs/ingest-runs/2026-09-27-co-8-ccr-1403-1-sections.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 228,
+    "missing_count": 0,
+    "provision_count": 228,
+    "source_count": 228
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-10T23:32:41.421764+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+vR2/SAGMnvv7SNX+MQVd5mHDK2oYlTMoAcnzcBEhCHMsxblUinnZFIi3owvpg8baYOVb6eHh7EuczVJsGLyAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+}
