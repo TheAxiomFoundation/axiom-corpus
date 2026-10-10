@@ -1,0 +1,664 @@
+{
+  "generated_by": "scripts/repro/resolve_us_co_8_ccr_1403_1.py",
+  "axiom_encode_rev": "5ddb5ea4a3d98d386330ca4a076ecb1beb54e16a",
+  "rulespec_us_rev": "16a6677190194da2431a78fcaa5b6548cd0e2845",
+  "lines": {
+    "us-rulespec-2026-08-08-obbb-alien-snap": {
+      "swap": {
+        "drop": "us-co/regulation/2026-07-13-recovery",
+        "add": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+      },
+      "us_co_regulation_scopes": 3,
+      "cited_paths": 366,
+      "resolved": {
+        "as_selected": 366,
+        "with_swap": 366
+      },
+      "changed": [
+        {
+          "cited_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "modules": [
+            "us-co/regulations/8-ccr-1403-1/3.111/h-low-income-eligibility-guidelines.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery",
+            "slice_required": false,
+            "composed_from": [
+              "us-co/regulation/8-ccr-1403-1/3.111/page-1",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-2",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-3",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-4",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-5",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-6",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-7",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-8",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-9",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-10",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-11",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-12",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-13",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-14",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-15",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-16",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-17",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-18",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-19",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-20",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-21",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-22",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-23",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-24",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-25",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-26",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-27",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-28",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-29",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-30",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-31",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-32",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-33",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-34",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-35",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-36",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-37",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-38",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-39",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-40",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-41",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-42",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-43",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-44",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-45",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-46",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-47",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-48",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-49",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-50",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-51",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-52",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-53",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-54",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-55",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-56",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-57",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-58",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-59",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-60",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-61",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-62",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-63",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-64",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-65",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-66",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-67",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-68",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-69",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-70",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-71",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-72",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-73",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-74",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-75"
+            ],
+            "body_chars": 222420,
+            "body_sha256": "4fd542ad7028344038e7ff5a1a470d0105e41fb9b60a91d1aae8b45156d5d104"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 11605,
+            "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+          }
+        },
+        {
+          "cited_path": "us-co/regulation/9-ccr-2503-6/3.606.1",
+          "modules": [
+            "us-co/policies/cdhs/colorado-works/basic-cash-assistance.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/E.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/F.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/G.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/H.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/I.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/J.yaml",
+            "us-co/regulations/9-ccr-2503-6/3.606.1/K.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/9-ccr-2503-6/3.606.1",
+            "resolved_version": "2026-07-13-recovery",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 807,
+            "body_sha256": "56dba3fd6cfbefd8f79951f4093fb2f59e9f36396184c04464452c58d33ee748"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/9-ccr-2503-6/3.606.1",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 4458,
+            "body_sha256": "93f3365b8eeefb2195db211156943bdcbadb05abec0c5db4d5a49ffab320b0e2"
+          }
+        },
+        {
+          "cited_path": "us-co/regulation/9-ccr-2503-6/3.606.2",
+          "modules": [
+            "us-co/regulations/9-ccr-2503-6/3.606.2.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/9-ccr-2503-6/3.606.2",
+            "resolved_version": "2026-07-13-recovery",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 2109,
+            "body_sha256": "e7ade48f1c4acd3b42c2ef3ba01f7094677dea687b897d719398b4f3f178b9b1"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/9-ccr-2503-6/3.606.2",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 1346,
+            "body_sha256": "ee27315faeb564203af072012a2d48d5aa31ff475a711b224c4dce808a2ef2f5"
+          }
+        },
+        {
+          "cited_path": "us-co/regulation/9-ccr-2503-6/3.606.6",
+          "modules": [
+            "us-co/regulations/9-ccr-2503-6/3.606.6.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/9-ccr-2503-6/3.606.6",
+            "resolved_version": "2026-07-13-recovery",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 3333,
+            "body_sha256": "f47466fb810ff54ad7c95e1e4f763f20a07819bb2969ab4f751e7fa9aaa6a94d"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/9-ccr-2503-6/3.606.6",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 5930,
+            "body_sha256": "eb0ba0ee39f4f2fa73e6d93f7295102fb1e49603179b21d23a9cddd404928d78"
+          }
+        }
+      ],
+      "same_text_from_successor": [],
+      "probes_with_swap": {
+        "us-co/regulation/8-ccr-1403-1": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1' has uncovered bodyless descendant 'us-co/regulation/8-ccr-1403-1/3.100'"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.104": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1/3.104' has no body-bearing descendants"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.105.1": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.105.1",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 33716,
+          "body_sha256": "af30687322c99a13499db5c3aec0105dd82626b5d65e4b51fb83bffa8898854c"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 11605,
+          "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111/h": {
+          "error": "CorpusSourceSliceError",
+          "message": "Could not isolate 'us-co/regulation/8-ccr-1403-1/3.111/h' from active parent 'us-co/regulation/8-ccr-1403-1/3.111'; missing structural marker path 'h'"
+        }
+      }
+    },
+    "us-rulespec-2026-09-24-irs-sales-tax-tables-union": {
+      "swap": {
+        "drop": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+        "add": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+      },
+      "us_co_regulation_scopes": 3,
+      "cited_paths": 366,
+      "resolved": {
+        "as_selected": 366,
+        "with_swap": 366
+      },
+      "changed": [
+        {
+          "cited_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "modules": [
+            "us-co/regulations/8-ccr-1403-1/3.111/h-low-income-eligibility-guidelines.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+            "slice_required": false,
+            "composed_from": [
+              "us-co/regulation/8-ccr-1403-1/3.111/page-1",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-2",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-3",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-4",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-5",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-6",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-7",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-8",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-9",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-10",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-11",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-12",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-13",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-14",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-15",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-16",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-17",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-18",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-19",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-20",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-21",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-22",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-23",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-24",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-25",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-26",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-27",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-28",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-29",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-30",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-31",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-32",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-33",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-34",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-35",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-36",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-37",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-38",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-39",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-40",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-41",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-42",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-43",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-44",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-45",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-46",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-47",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-48",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-49",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-50",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-51",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-52",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-53",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-54",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-55",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-56",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-57",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-58",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-59",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-60",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-61",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-62",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-63",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-64",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-65",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-66",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-67",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-68",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-69",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-70",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-71",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-72",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-73",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-74",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-75"
+            ],
+            "body_chars": 222420,
+            "body_sha256": "4fd542ad7028344038e7ff5a1a470d0105e41fb9b60a91d1aae8b45156d5d104"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 11605,
+            "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+          }
+        }
+      ],
+      "same_text_from_successor": [
+        "us-co/regulation/9-ccr-2503-6/3.606.1",
+        "us-co/regulation/9-ccr-2503-6/3.606.2",
+        "us-co/regulation/9-ccr-2503-6/3.606.6"
+      ],
+      "probes_with_swap": {
+        "us-co/regulation/8-ccr-1403-1": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1' has uncovered bodyless descendant 'us-co/regulation/8-ccr-1403-1/3.100'"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.104": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1/3.104' has no body-bearing descendants"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.105.1": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.105.1",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 33716,
+          "body_sha256": "af30687322c99a13499db5c3aec0105dd82626b5d65e4b51fb83bffa8898854c"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 11605,
+          "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111/h": {
+          "error": "CorpusSourceSliceError",
+          "message": "Could not isolate 'us-co/regulation/8-ccr-1403-1/3.111/h' from active parent 'us-co/regulation/8-ccr-1403-1/3.111'; missing structural marker path 'h'"
+        }
+      }
+    },
+    "us-rulespec-2026-09-14-wave4-r2-union": {
+      "swap": {
+        "drop": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+        "add": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+      },
+      "us_co_regulation_scopes": 6,
+      "cited_paths": 366,
+      "resolved": {
+        "as_selected": 366,
+        "with_swap": 366
+      },
+      "changed": [
+        {
+          "cited_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "modules": [
+            "us-co/regulations/8-ccr-1403-1/3.111/h-low-income-eligibility-guidelines.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+            "slice_required": false,
+            "composed_from": [
+              "us-co/regulation/8-ccr-1403-1/3.111/page-1",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-2",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-3",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-4",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-5",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-6",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-7",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-8",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-9",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-10",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-11",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-12",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-13",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-14",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-15",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-16",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-17",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-18",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-19",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-20",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-21",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-22",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-23",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-24",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-25",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-26",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-27",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-28",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-29",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-30",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-31",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-32",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-33",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-34",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-35",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-36",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-37",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-38",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-39",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-40",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-41",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-42",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-43",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-44",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-45",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-46",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-47",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-48",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-49",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-50",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-51",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-52",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-53",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-54",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-55",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-56",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-57",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-58",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-59",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-60",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-61",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-62",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-63",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-64",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-65",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-66",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-67",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-68",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-69",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-70",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-71",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-72",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-73",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-74",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-75"
+            ],
+            "body_chars": 222420,
+            "body_sha256": "4fd542ad7028344038e7ff5a1a470d0105e41fb9b60a91d1aae8b45156d5d104"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 11605,
+            "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+          }
+        }
+      ],
+      "same_text_from_successor": [
+        "us-co/regulation/9-ccr-2503-6/3.606.1",
+        "us-co/regulation/9-ccr-2503-6/3.606.2",
+        "us-co/regulation/9-ccr-2503-6/3.606.6"
+      ],
+      "probes_with_swap": {
+        "us-co/regulation/8-ccr-1403-1": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1' has uncovered bodyless descendant 'us-co/regulation/8-ccr-1403-1/3.100'"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.104": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1/3.104' has no body-bearing descendants"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.105.1": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.105.1",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 33716,
+          "body_sha256": "af30687322c99a13499db5c3aec0105dd82626b5d65e4b51fb83bffa8898854c"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 11605,
+          "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111/h": {
+          "error": "CorpusSourceSliceError",
+          "message": "Could not isolate 'us-co/regulation/8-ccr-1403-1/3.111/h' from active parent 'us-co/regulation/8-ccr-1403-1/3.111'; missing structural marker path 'h'"
+        }
+      }
+    },
+    "us-rulespec-2026-10-07-w6-bundle-gaps-union": {
+      "swap": {
+        "drop": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+        "add": "us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections"
+      },
+      "us_co_regulation_scopes": 6,
+      "cited_paths": 366,
+      "resolved": {
+        "as_selected": 366,
+        "with_swap": 366
+      },
+      "changed": [
+        {
+          "cited_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "modules": [
+            "us-co/regulations/8-ccr-1403-1/3.111/h-low-income-eligibility-guidelines.yaml"
+          ],
+          "as_selected": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated",
+            "slice_required": false,
+            "composed_from": [
+              "us-co/regulation/8-ccr-1403-1/3.111/page-1",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-2",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-3",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-4",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-5",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-6",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-7",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-8",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-9",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-10",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-11",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-12",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-13",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-14",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-15",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-16",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-17",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-18",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-19",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-20",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-21",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-22",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-23",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-24",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-25",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-26",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-27",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-28",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-29",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-30",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-31",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-32",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-33",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-34",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-35",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-36",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-37",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-38",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-39",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-40",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-41",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-42",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-43",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-44",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-45",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-46",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-47",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-48",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-49",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-50",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-51",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-52",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-53",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-54",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-55",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-56",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-57",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-58",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-59",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-60",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-61",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-62",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-63",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-64",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-65",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-66",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-67",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-68",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-69",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-70",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-71",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-72",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-73",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-74",
+              "us-co/regulation/8-ccr-1403-1/3.111/page-75"
+            ],
+            "body_chars": 222420,
+            "body_sha256": "4fd542ad7028344038e7ff5a1a470d0105e41fb9b60a91d1aae8b45156d5d104"
+          },
+          "with_swap": {
+            "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+            "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+            "slice_required": false,
+            "composed_from": [],
+            "body_chars": 11605,
+            "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+          }
+        }
+      ],
+      "same_text_from_successor": [
+        "us-co/regulation/9-ccr-2503-6/3.606.1",
+        "us-co/regulation/9-ccr-2503-6/3.606.2",
+        "us-co/regulation/9-ccr-2503-6/3.606.6"
+      ],
+      "probes_with_swap": {
+        "us-co/regulation/8-ccr-1403-1": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1' has uncovered bodyless descendant 'us-co/regulation/8-ccr-1403-1/3.100'"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.104": {
+          "error": "CorpusDescendantStructureError",
+          "message": "Active corpus source 'us-co/regulation/8-ccr-1403-1/3.104' has no body-bearing descendants"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.105.1": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.105.1",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 33716,
+          "body_sha256": "af30687322c99a13499db5c3aec0105dd82626b5d65e4b51fb83bffa8898854c"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111": {
+          "resolved_path": "us-co/regulation/8-ccr-1403-1/3.111",
+          "resolved_version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections",
+          "slice_required": false,
+          "composed_from": [],
+          "body_chars": 11605,
+          "body_sha256": "29579136e7be283e33d365aeee894c2761573e518601d520579d169aa06f5001"
+        },
+        "us-co/regulation/8-ccr-1403-1/3.111/h": {
+          "error": "CorpusSourceSliceError",
+          "message": "Could not isolate 'us-co/regulation/8-ccr-1403-1/3.111/h' from active parent 'us-co/regulation/8-ccr-1403-1/3.111'; missing structural marker path 'h'"
+        }
+      }
+    }
+  }
+}
