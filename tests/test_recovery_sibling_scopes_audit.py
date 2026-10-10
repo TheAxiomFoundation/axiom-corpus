@@ -228,7 +228,7 @@ def test_hollow_statute_scopes_hold_only_chrome_or_already_carried_text() -> Non
         assert entry["carrier_text_in_container_text"] is True
 
 
-def test_sc_block_2_is_other_sections_tables_and_nothing_carries_12_6_520() -> None:
+def test_sc_block_2_is_other_sections_tables_and_only_the_successor_carries_12_6_520() -> None:
     from axiom_corpus.corpus.state_adapters.south_carolina import (
         parse_south_carolina_chapter_html,
     )
@@ -249,7 +249,12 @@ def test_sc_block_2_is_other_sections_tables_and_nothing_carries_12_6_520() -> N
             if line
         )
     ]
-    assert [path.stem for path in carriers] == ["2026-07-13-recovery"]
+    # The recovery root is empty; the follow-up 1 successor carries the section
+    # (tests/test_sc_act110_with_12_6_520_successor.py).
+    assert [path.stem for path in carriers] == [
+        "2026-07-13-recovery",
+        "2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6",
+    ]
     page = next(iter(_rows("us-sc/statute/2026-07-13-recovery").values()))["source_path"]
     chapter_pages = {
         (CORPUS_ROOT / page).read_bytes(),

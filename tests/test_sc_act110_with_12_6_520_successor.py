@@ -13,12 +13,15 @@ from __future__ import annotations
 import hashlib
 import json
 import socket
+import tempfile
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 import pytest
 import yaml
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -40,15 +43,8 @@ ACT110 = "2026-07-24-sc-act110-us-sc-title-12-chapter-6"
 RECOVERY = "2026-07-13-recovery"
 SECTION = "us-sc/statute/12-6-520"
 PROFILE = "complete-expression-dates-v1"
-# The newest selector of each release line that pins rulespec-us or is staged
-# to (see the recovery sibling audit, #757). Each selects RECOVERY and ACT110.
-KEY_LINES = (
-    "us-rulespec-2026-08-08-obbb-alien-snap",
-    "us-rulespec-2026-09-24-snap-fy2027-cola",
-    "us-rulespec-2026-08-23-canada-338-suspension-union",
-    "us-rulespec-2026-09-14-wave4-union",
-    "us-rulespec-2026-09-14-wave4-r2-union",
-)
+# The sections 2026 Act No. 110 amends; the manifest overlays each one.
+OVERLAID = ("12-6-510", "12-6-50", "12-6-1140", "12-6-4910", "12-6-1720", "12-6-3632")
 # The row "Deduplicate PIT release citations" (fbc9f07da) removed from
 # 2026-07-16-pit-central-us-sc-title-12-chapter-6 had this heading and body.
 HEADING = "Annual adjustments to individual state income tax brackets; inflation adjustments"
@@ -93,8 +89,25 @@ def _validate(*scopes: tuple[str, str, str]) -> dict[str, Any]:
 
 def _selected(name: str) -> list[tuple[str, str, str]]:
     payload = json.loads((RELEASES / f"{name}.json").read_text(encoding="utf-8"))
-    assert payload["quality_profile"] == PROFILE
     return [(s["jurisdiction"], s["document_class"], s["version"]) for s in payload["scopes"]]
+
+
+# Every tracked selector that carries the Act 110 scope (each also carries the
+# recovery scope): the cuts a later one takes the paired swap from. Older cuts
+# carry the pit-central scope instead and are not successors' bases.
+SELECTORS = sorted(
+    path.stem for path in RELEASES.glob("*.json") if _statute(ACT110) in _selected(path.stem)
+)
+# The newest cut of each line the run note names.
+KEY_LINES = (
+    "us-rulespec-2026-08-08-obbb-alien-snap",
+    "us-rulespec-2026-09-24-snap-fy2027-cola",
+    "us-rulespec-2026-08-23-canada-338-suspension-union",
+    "us-rulespec-2026-09-14-wave4-union",
+    "us-rulespec-2026-09-14-wave4-r2-union",
+    "us-rulespec-2026-09-24-irs-sales-tax-tables-union",
+    "us-rulespec-2026-10-07-w6-bundle-gaps-union",
+)
 
 
 @pytest.fixture
@@ -130,24 +143,66 @@ def test_the_manifest_rebuilds_the_committed_scope_offline(
     assert rebuilt == _artifacts(CORPUS, NEW)
 
 
-def test_the_same_entry_with_the_exclusion_rebuilds_the_act110_scope(
-    tmp_path: Path, no_network: None
-) -> None:
-    """Differential check: the predecessor is this entry plus ``excluded_sections``."""
+def _entry_manifest(directory: Path, *, version: str | None, excluded: list[str]) -> Path:
+    """The us-sc-code entry alone, optionally re-versioned and with exclusions."""
     manifest = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
     (entry,) = [source for source in manifest["sources"] if source["source_id"] == "us-sc-code"]
     assert "excluded_sections" not in entry["options"]
-    entry["version"] = "2026-07-24-sc-act110"
-    entry["options"]["excluded_sections"] = ["12-6-520"]
+    if version is not None:
+        entry["version"] = version
+    if excluded:
+        entry["options"]["excluded_sections"] = excluded
     entry["options"]["source_dir"] = str(
         (MANIFEST.parent / entry["options"]["source_dir"]).resolve()
     )
     manifest["sources"] = [entry]
-    copy = tmp_path / "act110.yaml"
-    copy.write_text(yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8")
+    path = directory / "us-sc-code.yaml"
+    path.write_text(yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8")
+    return path
 
+
+def test_the_same_entry_with_the_exclusion_rebuilds_the_act110_scope(
+    tmp_path: Path, no_network: None
+) -> None:
+    """Differential check: the predecessor is this entry plus ``excluded_sections``."""
+    copy = _entry_manifest(tmp_path, version="2026-07-24-sc-act110", excluded=["12-6-520"])
     _extract(tmp_path / "out", copy)
     assert _artifacts(tmp_path / "out", ACT110) == _artifacts(CORPUS, ACT110)
+
+
+def _section_key(row: dict[str, Any]) -> str | None:
+    return (row.get("metadata") or {}).get("section")
+
+
+def _excludable() -> st.SearchStrategy[set[str]]:
+    sections = sorted({_section_key(row) for row in _rows(NEW)} - {None, *OVERLAID}, key=str)
+    assert len(sections) == 157 - len(OVERLAID)
+    return st.sets(st.sampled_from(sections), max_size=4)
+
+
+@settings(max_examples=12, deadline=None)
+@given(excluded=st.deferred(_excludable))
+def test_excluding_sections_drops_exactly_their_rows(excluded: set[str]) -> None:
+    """For any set of sections the overlay does not target, ``excluded_sections``
+    removes exactly those sections' rows and items and changes no other byte of
+    any other row: the property the Act 110 scope and this successor rest on."""
+    with tempfile.TemporaryDirectory() as directory:
+        base = Path(directory)
+        manifest = _entry_manifest(base, version=None, excluded=sorted(excluded))
+        _extract(base / "out", manifest)
+        out = base / "out"
+        provisions = (out / f"provisions/us-sc/statute/{NEW}.jsonl").read_text(encoding="utf-8")
+        inventory = load_source_inventory(out / f"inventory/us-sc/statute/{NEW}.json")
+        coverage = json.loads((out / f"coverage/us-sc/statute/{NEW}.json").read_text())
+    rows = [json.loads(line) for line in provisions.splitlines() if line]
+    assert rows == [row for row in _rows(NEW) if _section_key(row) not in excluded]
+    assert [item.citation_path for item in inventory] == [
+        item.citation_path
+        for item in load_source_inventory(CORPUS / f"inventory/us-sc/statute/{NEW}.json")
+        if item.citation_path.removeprefix("us-sc/statute/") not in excluded
+    ]
+    assert coverage["complete"] is True
+    assert coverage["matched_count"] == 159 - len(excluded)
 
 
 def test_only_the_restored_section_differs_from_the_act110_scope() -> None:
@@ -256,14 +311,23 @@ def test_the_successor_carries_no_path_its_predecessors_did_not() -> None:
     assert recovery - new == {f"{SECTION}/block-1", f"{SECTION}/block-2"}
 
 
-@pytest.mark.parametrize("name", KEY_LINES)
-def test_the_paired_swap_validates_on_each_key_line(name: str) -> None:
-    """Every us-sc scope of the line, with both predecessors swapped for the successor."""
-    selected = _selected(name)
-    statute = [scope[2] for scope in selected if scope[:2] == ("us-sc", "statute")]
-    assert statute == [RECOVERY, ACT110]
+def test_every_act110_selector_also_selects_the_recovery_scope() -> None:
+    assert set(KEY_LINES) <= set(SELECTORS)
+    for name in SELECTORS:
+        statute = {scope for scope in _selected(name) if scope[:2] == ("us-sc", "statute")}
+        assert _statute(RECOVERY) in statute, name
+        assert _statute(NEW) not in statute, name
+        payload = json.loads((RELEASES / f"{name}.json").read_text(encoding="utf-8"))
+        assert payload["quality_profile"] == PROFILE, name
+
+
+@pytest.mark.parametrize("name", SELECTORS)
+def test_the_paired_swap_validates_on_every_act110_selector(name: str) -> None:
+    """Every us-sc scope of the cut, with both predecessors swapped for the successor."""
     predecessors = {_statute(RECOVERY), _statute(ACT110)}
-    us_sc = [scope for scope in selected if scope[0] == "us-sc" and scope not in predecessors]
+    us_sc = [
+        scope for scope in _selected(name) if scope[0] == "us-sc" and scope not in predecessors
+    ]
     report = _validate(*us_sc, _statute(NEW))
     assert (report["ok"], report["issue_count"]) == (True, 0), report["issues"][:3]
 
