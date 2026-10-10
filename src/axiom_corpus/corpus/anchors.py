@@ -55,7 +55,6 @@ from __future__ import annotations
 
 import enum
 import hashlib
-import itertools
 import json
 import re
 from collections import Counter
@@ -122,6 +121,23 @@ _CHAINED_HEAD = re.compile(r"[ \t]?(\([A-Za-z0-9]{1,6}\))")
 # keeps the first label; the last one is where its sibling sequence resumes,
 # so the "(i)" that follows is the next paragraph, not a gap.
 _RANGE_END = re.compile(r"[ \t]?(?:-|through)[ \t]?\(([A-Za-z0-9]{1,6})\)")
+
+# Text that, right after a run of labels, makes the run a citation of other
+# paragraphs rather than the start of one: "(d)(1)(i) of this section",
+# "(c)(1)(i)(A) through (C)", "(1) and (2) of this section". eCFR text never
+# opens a paragraph this way, but a reference can still land at a line start
+# or after a colon ("See: (1)(i) of this section").
+_REFERENCE_TAIL = re.compile(
+    r"[ \t]*(?:"
+    r"of\s+(?:(?:this|that)\s+(?:section|paragraph|part|subpart|subchapter|chapter|title)\b"
+    r"|(?:paragraphs?|sections?|parts?|subparts?)\b|§)"
+    r"|(?:through|thru)\b"
+    r"|(?:and|or|to|and/or)\s+\("
+    r"|in\s+(?:this|that)\s+(?:paragraph|section|part|subpart)\b"
+    r"|[,;]\s*(?:and\s+|or\s+)?\("
+    r"|\)"
+    r")"
+)
 
 
 # --------------------------------------------------------------------------- #
@@ -251,41 +267,50 @@ def _scan_heads(body: str) -> list[_Head]:
 
     Emits *strong* heads (line-leading or em/en-dash inline first children),
     *weak* inline candidates (a label after ". ", ": " or "? "), and the *chained*
-    labels printed directly after either ("(d)(1)"). A candidate at an offset
-    already claimed by a strong head is dropped; the rest are only accepted by
-    :func:`_build_tree` when they open the first child of the node they
-    follow, which filters out cross-references and parentheticals.
+    labels printed directly after either ("(d)(1)"). A run of labels followed
+    by a reference phrase ("(d)(1) of this section") is a citation and emits
+    nothing. A candidate at an offset already claimed is dropped; weak and
+    chained heads are only accepted by :func:`_build_tree` when they open the
+    first child of the node they follow, which filters out the remaining
+    cross-references and parentheticals.
     """
     claimed: set[int] = set()
     heads: list[_Head] = []
-    for match in _HEAD.finditer(body):
-        offset = match.start(1)
+
+    def add_run(offset: int, token: str, *, weak: bool) -> None:
+        end = offset + len(token) + 2
+        through = None if weak else _RANGE_END.match(body, end)
+        chain: list[re.Match[str]] = []
+        if through is not None:
+            end = through.end()
+        else:
+            while (chained := _CHAINED_HEAD.match(body, end)) is not None:
+                chain.append(chained)
+                end = chained.end(1)
         claimed.add(offset)
-        through = _RANGE_END.match(body, match.end(1))
+        if _REFERENCE_TAIL.match(body, end):
+            return
         heads.append(
             _Head(
                 offset=offset,
-                token=match.group(1)[1:-1],
+                token=token,
+                weak=weak,
                 through=through.group(1) if through else None,
             )
         )
-    for match in _WEAK_HEAD.finditer(body):
-        offset = match.start(1)
-        if offset in claimed:
-            continue
-        claimed.add(offset)
-        heads.append(_Head(offset=offset, token=match.group(1)[1:-1], weak=True))
-    for head in list(heads):
-        end = head.offset + len(head.token) + 2
-        while (chained := _CHAINED_HEAD.match(body, end)) is not None:
-            offset = chained.start(1)
-            if offset in claimed:
+        for chained in chain:
+            if chained.start(1) in claimed:
                 break
-            claimed.add(offset)
+            claimed.add(chained.start(1))
             heads.append(
-                _Head(offset=offset, token=chained.group(1)[1:-1], chained=True)
+                _Head(offset=chained.start(1), token=chained.group(1)[1:-1], chained=True)
             )
-            end = chained.end(1)
+
+    for match in _HEAD.finditer(body):
+        add_run(match.start(1), match.group(1)[1:-1], weak=False)
+    for match in _WEAK_HEAD.finditer(body):
+        if match.start(1) not in claimed:
+            add_run(match.start(1), match.group(1)[1:-1], weak=True)
     heads.sort(key=lambda h: h.offset)
     return heads
 
@@ -544,7 +569,22 @@ def _strong_placements(
     # paragraph rather than becoming a top-level node that would cut every open
     # paragraph short.
     ladder_form = _expected_child_form(None)
-    top_form = _resolve_form(token, forms, ladder_form) or min(forms)
+    if roots and roots[0].form in forms:
+        top_form = roots[0].form
+    elif not roots:
+        # The section's first paragraph sets the top-level form: read an
+        # ambiguous label as the form in which it opens a list, so a section
+        # that is one "(i), (ii), (iii)" list is roman.
+        openers = [
+            form
+            for form in _OUTLINE_LADDER
+            if form in forms and _label_ordinal(token, form) == 1
+        ]
+        top_form = openers[0] if openers else (
+            _resolve_form(token, forms, ladder_form) or min(forms)
+        )
+    else:
+        top_form = _resolve_form(token, forms, ladder_form) or min(forms)
     if not roots or top_form in (ladder_form, roots[0].form):
         top = _Placement(-1, top_form, continues=bool(roots))
         fit = _sequence_fit(roots, token, top_form)
@@ -627,7 +667,7 @@ def _place_strong_head(
                 placement,
                 stack,
                 roots,
-                itertools.islice(heads, position + 1, None),
+                (heads[later] for later in range(position + 1, len(heads))),
             )
             for placement in consecutive
         ]

@@ -97,6 +97,14 @@ child or paragraph (i). `_build_tree` decides by **sequence continuity**:
   there is a cross-reference or a parenthetical.
 - A range head, `(d)-(h) [Reserved]`, stands for every label it spans, so the
   `(i)` after it is the next paragraph.
+- A run of labels followed by a citation phrase (`of this section`, `of this
+  subchapter`, `of paragraph`, `of §`, `through`, `and (`, `, (`, `)`) cites
+  other paragraphs and is not a head, even at a line start (a wrapped Federal
+  Register line: `paragraph\n(d)(1)(i) of this section`) or after a colon.
+  Lower-case text alone is not a citation: `(B) of those required to
+  participate` is a paragraph.
+- The section's first label sets the top-level form, read as the form in which
+  it opens a list: a section that is one `(i), (ii), (iii)` list is roman.
 - A label that skips ahead (`(a)` then `(d)`) is accepted where it does not
   restart a list. A label that continues no open sequence, such as a `(B)` with
   no `(i)` open or a mislabelled `(xxiv)` after `(xxviii)`, is left as text of

@@ -35,6 +35,7 @@ from axiom_corpus.corpus.anchors import (
     AnchorVerificationError,
     ProvisionAnchor,
     _build_tree,
+    _Head,
     _iter_nodes,
     _label_ordinal,
     _scan_heads,
@@ -315,10 +316,17 @@ def test_chained_labels_open_first_children() -> None:
 
 
 def test_a_chained_label_that_is_not_a_first_label_is_a_reference() -> None:
+    # "(b)(2)" at a line start reads as a chained head, but "(2)" is not a
+    # first label and "of this section" follows: the whole line is a wrapped
+    # citation, not paragraph (b).
     body = _paragraphs(
         "(a) Paragraph (b)(2) of this section applies.",
         "(b)(2) of this section is where that sentence wrapped.",
     )
+    assert _paths(body) == ["a"]
+    # Without the reference phrase, (b) is a paragraph and "(2)" is still not
+    # its first child.
+    body = _paragraphs("(a) First.", "(b)(2) Second.")
     assert _paths(body) == ["a", "b"]
 
 
@@ -343,6 +351,72 @@ def test_an_inline_label_that_is_not_a_first_label_is_text() -> None:
         "(c) Abbreviations. (PTC) means premium tax credit.",
     )
     assert _paths(body) == ["a", "b", "c"]
+
+
+@pytest.mark.parametrize(
+    "citation",
+    [
+        "(a) Scope. See: (1)(i) of this section.",
+        "(a) Total.\n(b) Divide the total under paragraph\n(d)(1)(i) of this section by 4.33.",
+        "(a) Total.\n(b) Meets the criteria at paragraphs\n(c)(1)(i)(A) through (C) of this section.",
+        "(a) Total.\n(b) As described in paragraphs (a)(1) through\n(4) of this section.",
+        "(a) Total.\n(b) Consistent with § 431.210(a) and\n(b) of this subchapter.",
+        "(a) Total.\n(b) Under paragraph\n(a)(1), (2) and (3) of this section.",
+    ],
+)
+def test_a_cited_run_of_labels_is_not_a_paragraph(citation: str) -> None:
+    # A run of labels followed by "of this section", "through", "and (" or
+    # ", (" cites other paragraphs, even at a line start (a wrapped Federal
+    # Register line) or after a colon. Review of #812 found 2.0.0's first cut
+    # anchored "(a) See: (1)(i) of this section." as a/1 and a/1/i.
+    paths = _paths(_paragraphs(citation, "(z) Last."))
+    assert paths[-1] == "z"
+    assert all(len(path) == 1 for path in paths), paths
+
+
+def test_a_paragraph_that_opens_in_lower_case_is_still_a_paragraph() -> None:
+    # 7 CFR 273.7(c)(17)(iv)(B) begins "(B) of those required to participate".
+    body = _paragraphs(
+        "(a) Reports. (1) Mandatory programs.",
+        "(i) The State shall report the following:",
+        "(A) the number required to participate;",
+        "(B) of those required to participate the number referred; and",
+        "(C) the number found ineligible.",
+    )
+    assert _paths(body) == ["a", "a/1", "a/1/i", "a/1/i/A", "a/1/i/B", "a/1/i/C"]
+
+
+def test_a_section_that_is_one_roman_list_stays_roman() -> None:
+    # The first label sets the top-level form: "(i)" that opens a list is
+    # roman, so (ii) and (iii) follow it. Review of #812 found the first cut
+    # kept only (i).
+    assert _paths(_paragraphs("(i) X.", "(ii) Y.", "(iii) Z.")) == ["i", "ii", "iii"]
+    assert _paths(_paragraphs("(i) X.", "(j) Y.", "(k) Z.")) == ["i", "j", "k"]
+
+
+def test_the_look_ahead_reads_each_head_a_bounded_number_of_times() -> None:
+    # Every "(i)" below fits as a roman child and as the next top-level
+    # numeral's sibling list, so each one triggers the look-ahead. It must
+    # read forward from the head, not re-walk the list from the start (review
+    # of #812: the first cut grew quadratically).
+    class CountingHeads(list[_Head]):
+        reads = 0
+
+        def __getitem__(self, index):  # type: ignore[no-untyped-def]
+            CountingHeads.reads += 1
+            return super().__getitem__(index)
+
+        def __iter__(self):  # type: ignore[no-untyped-def]
+            for head in super().__iter__():
+                CountingHeads.reads += 1
+                yield head
+
+    body = "\n".join(
+        f"({n}) Root\n(i) Roman\n(A) Alpha\n(1) Num\n(i) One\n(ii) Two" for n in range(1000, 1400)
+    )
+    heads = CountingHeads(_scan_heads(body))
+    _build_tree(body, heads)
+    assert CountingHeads.reads <= 4 * len(heads)
 
 
 def test_a_range_head_stands_for_every_label_it_spans() -> None:
