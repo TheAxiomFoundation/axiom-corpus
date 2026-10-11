@@ -1613,6 +1613,7 @@ def _extract_labeled_pdf_section_blocks(
     )
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
+    citation_suffix_replacements = _section_citation_suffix_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     label_heading_continuation = bool(
         extraction.get("label_only_heading_continuation", True)
@@ -1729,6 +1730,7 @@ def _extract_labeled_pdf_section_blocks(
                 if normalize_parentheticals
                 else label
             )
+            citation_label = citation_suffix_replacements.get(citation_label, citation_label)
             inline_body = ""
             if section_heading_re is not None:
                 heading_match = section_heading_re.match(line)
@@ -2784,10 +2786,12 @@ def _page_header_patterns(extraction: dict[str, Any]) -> tuple[re.Pattern[str], 
     raw = extraction.get("page_header_patterns")
     if raw is None:
         return ()
-    if not isinstance(raw, (list, tuple)) or not all(
-        isinstance(pattern, str) and pattern for pattern in raw
+    if (
+        not isinstance(raw, (list, tuple))
+        or not raw
+        or not all(isinstance(pattern, str) and pattern for pattern in raw)
     ):
-        raise ValueError("page_header_patterns must be a list of non-empty regex strings")
+        raise ValueError("page_header_patterns must be a non-empty list of non-empty regex strings")
     return tuple(re.compile(pattern) for pattern in raw)
 
 
@@ -2803,6 +2807,12 @@ def _without_page_header(
     ``drop_line_patterns``, which drops a matching line anywhere, this can
     remove a bare page number without removing the same number printed as a
     table cell further down the page.
+
+    The header is matched on the page's lines as extracted, before
+    ``drop_lines`` and ``drop_line_patterns`` run: a line those filters would
+    remove still counts as a line, so list it here if it sits inside the
+    header. Each pattern must match its whole line (``fullmatch``), where
+    ``drop_line_patterns`` uses ``search``.
     """
     header_length = 0
     for (line, _style), pattern in zip(page_lines, patterns, strict=False):
@@ -3470,6 +3480,27 @@ def _section_label_replacements(extraction: dict[str, Any]) -> dict[str, str] | 
     if not isinstance(raw, dict):
         raise ValueError("section_label_replacements must be a mapping")
     return {str(key): str(value).strip() for key, value in raw.items()}
+
+
+def _section_citation_suffix_replacements(extraction: dict[str, Any]) -> dict[str, str]:
+    """Map a publisher label to the citation-path suffix its section takes.
+
+    Unlike ``section_label_replacements``, which rewrites the label everywhere,
+    this changes only the path: the heading and ``metadata.section_label`` keep
+    the publisher's words (``Editor’s Notes`` under ``.../editors-notes``).
+    PDF ``labeled_sections`` only.
+    """
+    raw = extraction.get("section_citation_suffix_replacements")
+    if raw is None:
+        return {}
+    if not isinstance(raw, dict) or not all(
+        isinstance(key, str) and isinstance(value, str) and key and value.strip()
+        for key, value in raw.items()
+    ):
+        raise ValueError(
+            "section_citation_suffix_replacements must map labels to non-empty suffixes"
+        )
+    return {key: value.strip() for key, value in raw.items()}
 
 
 def _text_replacements(extraction: dict[str, Any]) -> dict[str, str] | None:

@@ -195,9 +195,55 @@ def test_3_111_is_parent_fees_and_3_105_1_keeps_the_income_table(built) -> None:
         "3.116.3 INTENTIONAL PROGRAM VIOLATION/ADMINISTRATIVE DISQUALIFICATION HEARINGS (IPV/ADH)"
     )
     notes = rows[f"{ROOT_CITATION_PATH}/editors-notes"]
+    # The path takes a slug; the heading and section_label keep the publisher's words.
+    assert notes.heading == "Editor’s Notes History"
+    assert notes.metadata["section_label"] == "Editor’s Notes"
+    assert notes.metadata["citation_suffix"] == "editors-notes"
     assert (notes.body or "").startswith("New rule emer. rule eff. 10/01/2022.")
+    assert (notes.body or "").endswith("3.111-3.113, 3.114.1 eff. 08/14/2023.")
     last = rows[f"{ROOT_CITATION_PATH}/3.116.95"]
     assert (last.body or "").endswith("has been discharged through bankruptcy.")
+
+
+def test_filters_remove_exactly_the_page_chrome() -> None:
+    """The line stream loses the 74 running headers, two rules and page 1's footer: no more, no less."""
+    content = (SOURCE_DIRECTORY / RETAINED_SOURCE).read_bytes()
+    extraction = yaml.safe_load(MANIFEST.read_text())["documents"][0]["extraction"]
+    raw = list(documents_module._filtered_pdf_lines(content, extraction={}))
+    kept = list(documents_module._filtered_pdf_lines(content, extraction=extraction))
+    # ``kept`` is a subsequence of ``raw``; walk both to list what went, in order.
+    removed = []
+    position = 0
+    for entry in raw:
+        if position < len(kept) and kept[position] == entry:
+            position += 1
+        else:
+            removed.append(entry)
+    assert position == len(kept)
+    rule = "_" * 73
+    header = (
+        "CODE OF COLORADO REGULATIONS",
+        "8 CCR 1403-1",
+        "Colorado Child Care Assistance Program",
+    )
+    expected = [
+        (rule, 1),
+        *(
+            (line, 1)
+            for line in ("Code of Colorado Regulations", "Secretary of State", "State of Colorado")
+        ),
+        *((line, page) for page in range(2, 76) for line in (*header, str(page))),
+    ]
+    expected.insert(expected.index(("CODE OF COLORADO REGULATIONS", 75)) + 4, (rule, 75))
+    assert removed == expected
+    assert len(raw) == 4128 and len(removed) == 74 * 4 + 2 + 3
+    # Bare numbers that are not page numbers stay: the page-20 family sizes and
+    # "101201" (the PDF prints P.L. 101-201 that way) on page 26.
+    assert [entry for entry in kept if entry[0].isdigit()] == [
+        ("1", 1),
+        *((str(size), 20) for size in range(1, 9)),
+        ("101201", 26),
+    ]
 
 
 def test_sections_partition_the_rulebook_text(built) -> None:
@@ -205,20 +251,12 @@ def test_sections_partition_the_rulebook_text(built) -> None:
     _base, scope = built
     content = (SOURCE_DIRECTORY / RETAINED_SOURCE).read_bytes()
     extraction = yaml.safe_load(MANIFEST.read_text())["documents"][0]["extraction"]
-    raw = documents_module._filtered_pdf_lines(content, extraction={})
     kept = documents_module._filtered_pdf_lines(content, extraction=extraction)
-    # The only lines the configuration removes are the 74 running headers
-    # (three title lines and the page number), two rules and page 1's footer.
-    removed = len(raw) - len(kept)
-    assert removed == 74 * 4 + 2 + 3
     start = [line for line, _page in kept].index("3.100")
     words = " ".join(line for line, _page in kept[start:]).split()
-    words = [("editors-notes" if w == "Editor’s" else w) for w in words]
-    words = [
-        w for i, w in enumerate(words) if not (w == "Notes" and words[i - 1] == "editors-notes")
-    ]
     rows = _new_rows(scope)[1:]
     assert " ".join(f"{r.heading} {r.body or ''}" for r in rows).split() == words
+    assert len(words) == 33586
 
 
 def test_downstream_record_matches_the_successor_rows(built) -> None:

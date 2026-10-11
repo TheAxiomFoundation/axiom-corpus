@@ -2723,17 +2723,76 @@ def test_labeled_pdf_sections_drop_page_headers_by_position(tmp_path: Path) -> N
     assert single[0].body.startswith("1.100 FIRST RULE")
 
 
-@pytest.mark.parametrize("value", ["^RULEBOOK$", [""], [3], {"a": "b"}])
+@pytest.mark.parametrize("value", ["^RULEBOOK$", [], [""], [3], {"a": "b"}])
 def test_page_header_patterns_reject_invalid_configs(value: object) -> None:
     pdf_bytes_document = fitz.open()
     pdf_bytes_document.new_page().insert_text((72, 72), "RULEBOOK")
     pdf_content = pdf_bytes_document.tobytes()
     pdf_bytes_document.close()
 
-    with pytest.raises(ValueError, match="page_header_patterns must be a list"):
+    with pytest.raises(ValueError, match="page_header_patterns must be a non-empty list"):
         documents_module._filtered_pdf_lines(
             pdf_content, extraction={"page_header_patterns": value}
         )
+    # An empty list must not quietly move single_block onto the filtered path.
+    with pytest.raises(ValueError, match="page_header_patterns must be a non-empty list"):
+        documents_module._extract_pdf_blocks(
+            pdf_content,
+            extraction={"segmentation": "single_block", "page_header_patterns": value},
+        )
+
+
+def test_labeled_pdf_sections_can_slug_a_label_in_the_path_only(tmp_path: Path) -> None:
+    """The path takes the slug; the heading and section_label keep the publisher's words."""
+    document = fitz.open()
+    document.new_page().insert_text(
+        (72, 72),
+        "\n".join(
+            ["1.100 FIRST RULE", "Rule text.", "Editor's Notes", "History", "Adopted in 2023."]
+        ),
+    )
+    content = document.tobytes()
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>1\.\d00)\s+(?P<heading>[A-Z ]+)$",
+        "section_label_pattern": r"^(?P<label>Editor's Notes)$",
+        "label_only_heading_pattern": r"^History$",
+        "label_only_requires_heading": True,
+    }
+
+    path_only = documents_module._extract_pdf_blocks(
+        content,
+        extraction={
+            **extraction,
+            "section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"},
+        },
+    )
+    assert [
+        (b.heading, b.metadata["citation_suffix"], b.metadata["section_label"]) for b in path_only
+    ] == [
+        ("1.100 FIRST RULE", "1.100", "1.100"),
+        ("Editor's Notes History", "editors-notes", "Editor's Notes"),
+    ]
+    assert path_only[1].body == "Adopted in 2023."
+    # section_label_replacements rewrites the label itself, so the heading loses the words.
+    everywhere = documents_module._extract_pdf_blocks(
+        content,
+        extraction={
+            **extraction,
+            "section_label_replacements": {"Editor's Notes": "editors-notes"},
+        },
+    )
+    assert everywhere[1].heading == "editors-notes History"
+    assert everywhere[1].metadata["section_label"] == "editors-notes"
+    # Without either key the label is used as it is.
+    plain = documents_module._extract_pdf_blocks(content, extraction=extraction)
+    assert plain[1].metadata["citation_suffix"] == "Editor's Notes"
+    for bad in (["a"], {"Editor's Notes": ""}, {"Editor's Notes": 3}, {"": "x"}):
+        with pytest.raises(ValueError, match="section_citation_suffix_replacements must map"):
+            documents_module._extract_pdf_blocks(
+                content, extraction={**extraction, "section_citation_suffix_replacements": bad}
+            )
 
 
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:

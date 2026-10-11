@@ -16,7 +16,7 @@ documents:
     label_only_heading_pattern: ^(?:[A-Z][A-Z0-9 ,()/&'’-]*|History)$
     label_only_requires_heading: true
     heading_continuation_pattern: ^(?P<heading>\([A-Z][A-Z/ ]*\))$
-    section_label_replacements:
+    section_citation_suffix_replacements:
       Editor’s Notes: editors-notes
     page_header_patterns:
     - ^CODE OF COLORADO REGULATIONS$
