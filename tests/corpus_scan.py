@@ -1,19 +1,14 @@
 """pytest-timeout budget for tests that parse the whole provision corpus.
 
-CI runs the suite with a flat ``--timeout=60``. Three tests json-parse every row
-under data/corpus/provisions: the ``result`` fixture in
-test_citation_path_grammar.py, the identity-convention check in
-test_provision_identity_convention.py, and the evidence-span check in
-test_claims.py. Their cost tracks corpus size, not their own code, and the corpus
-keeps growing: 0.95 GB at the end of 2026-08-01, 2.28 GB on 2026-09-22, 2.69 GB
-on 2026-10-10. Before the grammar scan streamed rows it took 44-48 s of the 60 s
-on passing CI runs and timed out on slower runners (axiom-corpus#736). Since
-then the three scans have taken 8-23 s on CI.
+CI runs the suite with a flat ``--timeout=60``. A few tests json-parse every row
+under data/corpus/provisions, so their cost tracks corpus size, not their own
+code, and the corpus keeps growing. Before the citation-path grammar scan
+streamed rows, a slow runner pushed it past that flat 60 s (axiom-corpus#736).
 
 ``corpus_scan`` budgets such a test by corpus size instead: 1 s per 10 MB of
-provision JSONL, never below the suite's 60 s. The slowest CI scan measured since
-streaming ran at 118 MB/s, so the floor sits an order of magnitude below it while
-a genuine hang still fails within minutes.
+provision JSONL, never below the suite's 60 s and never above 20 minutes. The
+10 MB/s floor sits far below the rates CI scans at, so the budget tracks growth
+while a genuine hang still fails with pytest-timeout's traceback.
 """
 
 from __future__ import annotations
@@ -26,22 +21,33 @@ from pathlib import Path
 import pytest
 
 PROVISIONS_DIR = Path(__file__).resolve().parents[1] / "data" / "corpus" / "provisions"
+# Keep in sync with --timeout in .github/workflows/ci.yml: a marker replaces that
+# value, so a lower number here would shorten these tests' limit on a small tree.
 SUITE_TIMEOUT_SECONDS = 60
 MIN_SCAN_BYTES_PER_SECOND = 10_000_000
+# The test job has timeout-minutes: 30. Stay inside it so a hang is reported by
+# pytest-timeout, not cut off by the runner.
+MAX_TIMEOUT_SECONDS = 20 * 60
 
 
-def corpus_scan_timeout(provisions_dir: Path = PROVISIONS_DIR) -> int:
-    """Seconds allowed for one full parse of the provision JSONL under ``provisions_dir``."""
-    corpus_bytes = 0
+def provision_jsonl_bytes(provisions_dir: Path = PROVISIONS_DIR) -> int:
+    """Total size of the provision JSONL under ``provisions_dir``."""
+    total = 0
     # Same listing as scripts/validate_citation_paths.py's loader.
     for filename in glob.glob(str(provisions_dir / "**" / "*.jsonl"), recursive=True):
         try:
-            corpus_bytes += os.path.getsize(filename)
+            total += os.path.getsize(filename)
         except OSError:
             # E.g. a dangling link: leave it to the scan itself to fail on, rather
             # than aborting collection of the whole session here.
             continue
-    return max(SUITE_TIMEOUT_SECONDS, math.ceil(corpus_bytes / MIN_SCAN_BYTES_PER_SECOND))
+    return total
 
 
-corpus_scan = pytest.mark.timeout(corpus_scan_timeout())
+def corpus_scan_timeout(corpus_bytes: int) -> int:
+    """Seconds allowed for one full parse of ``corpus_bytes`` of provision JSONL."""
+    scaled = math.ceil(corpus_bytes / MIN_SCAN_BYTES_PER_SECOND)
+    return min(MAX_TIMEOUT_SECONDS, max(SUITE_TIMEOUT_SECONDS, scaled))
+
+
+corpus_scan = pytest.mark.timeout(corpus_scan_timeout(provision_jsonl_bytes()))
