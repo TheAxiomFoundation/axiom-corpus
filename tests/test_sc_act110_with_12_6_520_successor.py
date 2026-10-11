@@ -184,22 +184,26 @@ def _excludable() -> st.SearchStrategy[set[str]]:
 @given(excluded=st.deferred(_excludable))
 def test_excluding_sections_drops_exactly_their_rows(excluded: set[str]) -> None:
     """For any set of sections the overlay does not target, ``excluded_sections``
-    removes exactly those sections' rows and items and changes no other byte of
-    any other row: the property the Act 110 scope and this successor rest on."""
+    removes exactly those sections' rows and items and leaves every other row's
+    line and every other item unchanged: the property the Act 110 scope and this
+    successor rest on."""
     with tempfile.TemporaryDirectory() as directory:
         base = Path(directory)
         manifest = _entry_manifest(base, version=None, excluded=sorted(excluded))
         _extract(base / "out", manifest)
         out = base / "out"
         provisions = (out / f"provisions/us-sc/statute/{NEW}.jsonl").read_text(encoding="utf-8")
-        inventory = load_source_inventory(out / f"inventory/us-sc/statute/{NEW}.json")
+        inventory = json.loads((out / f"inventory/us-sc/statute/{NEW}.json").read_text())
         coverage = json.loads((out / f"coverage/us-sc/statute/{NEW}.json").read_text())
-    rows = [json.loads(line) for line in provisions.splitlines() if line]
-    assert rows == [row for row in _rows(NEW) if _section_key(row) not in excluded]
-    assert [item.citation_path for item in inventory] == [
-        item.citation_path
-        for item in load_source_inventory(CORPUS / f"inventory/us-sc/statute/{NEW}.json")
-        if item.citation_path.removeprefix("us-sc/statute/") not in excluded
+    committed = (CORPUS / f"provisions/us-sc/statute/{NEW}.jsonl").read_text(encoding="utf-8")
+    assert provisions.splitlines() == [
+        line for line in committed.splitlines() if _section_key(json.loads(line)) not in excluded
+    ]
+    committed_items = json.loads((CORPUS / f"inventory/us-sc/statute/{NEW}.json").read_text())
+    assert inventory["items"] == [
+        item
+        for item in committed_items["items"]
+        if item["citation_path"].removeprefix("us-sc/statute/") not in excluded
     ]
     assert coverage["complete"] is True
     assert coverage["matched_count"] == 159 - len(excluded)
@@ -211,9 +215,10 @@ def test_only_the_restored_section_differs_from_the_act110_scope() -> None:
     assert [row["citation_path"] for row in new if row["citation_path"] != SECTION] == [
         row["citation_path"] for row in old
     ]
-    assert [_without_version(row, NEW) for row in new if row["citation_path"] != SECTION] == [
-        _without_version(row, ACT110) for row in old
-    ]
+    # Compared as serialized text, so key order counts too.
+    assert [
+        json.dumps(_without_version(row, NEW)) for row in new if row["citation_path"] != SECTION
+    ] == [json.dumps(_without_version(row, ACT110)) for row in old]
 
     new_items = load_source_inventory(CORPUS / f"inventory/us-sc/statute/{NEW}.json")
     old_items = load_source_inventory(CORPUS / f"inventory/us-sc/statute/{ACT110}.json")
@@ -315,8 +320,13 @@ def test_every_act110_selector_also_selects_the_recovery_scope() -> None:
     assert set(KEY_LINES) <= set(SELECTORS)
     for name in SELECTORS:
         statute = {scope for scope in _selected(name) if scope[:2] == ("us-sc", "statute")}
-        assert _statute(RECOVERY) in statute, name
-        assert _statute(NEW) not in statute, name
+        assert _statute(RECOVERY) in statute, (
+            f"{name} keeps the Act 110 scope without the recovery scope, so "
+            "us-sc/statute/12-6-520 has no carrier: take the paired swap"
+        )
+        assert _statute(NEW) not in statute, (
+            f"{name} carries the successor beside the Act 110 scope: 158 duplicate citations"
+        )
         payload = json.loads((RELEASES / f"{name}.json").read_text(encoding="utf-8"))
         assert payload["quality_profile"] == PROFILE, name
 

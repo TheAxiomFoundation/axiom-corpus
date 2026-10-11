@@ -228,7 +228,7 @@ def test_hollow_statute_scopes_hold_only_chrome_or_already_carried_text() -> Non
         assert entry["carrier_text_in_container_text"] is True
 
 
-def test_sc_block_2_is_other_sections_tables_and_only_the_successor_carries_12_6_520() -> None:
+def test_sc_block_2_is_other_sections_tables_and_the_successor_carries_12_6_520() -> None:
     from axiom_corpus.corpus.state_adapters.south_carolina import (
         parse_south_carolina_chapter_html,
     )
