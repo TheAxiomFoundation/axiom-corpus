@@ -1,0 +1,1 @@
+Add `idx_navigation_nodes_release_scope_version`, an index on `corpus.navigation_nodes` keyed exactly like the active-scope test of `corpus.current_navigation_nodes`, so a per-jurisdiction page of the view (the `us` page timed out on every request on 2026-09-13) answers in tens of milliseconds instead of exceeding the anon statement timeout.
