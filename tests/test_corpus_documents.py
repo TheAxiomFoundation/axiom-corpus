@@ -2811,6 +2811,27 @@ def test_labeled_pdf_sections_can_slug_a_label_in_the_path_only(tmp_path: Path) 
                 "section_citation_suffix_replacements": {"Editors Notes": "editors-notes"},
             },
         )
+    # A label that never opens a section has not used its replacement either:
+    # with no heading line after it, "Editor's Notes" is folded into the body.
+    headless = fitz.open()
+    headless.new_page().insert_text(
+        (72, 72),
+        "\n".join(["1.100 FIRST RULE", "Rule text.", "Editor's Notes", "adopted in 2023."]),
+    )
+    headless_content = headless.tobytes()
+    headless.close()
+    assert [
+        (block.heading, block.body)
+        for block in documents_module._extract_pdf_blocks(headless_content, extraction=extraction)
+    ] == [("1.100 FIRST RULE", "Rule text. Editor's Notes adopted in 2023.")]
+    with pytest.raises(ValueError, match="matched no section label: \"Editor's Notes\""):
+        documents_module._extract_pdf_blocks(
+            headless_content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"},
+            },
+        )
     # Only the PDF labeled_sections segmenter reads the key; the others refuse it.
     key = {"section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"}}
     scope = "supports only PDF labeled_sections"

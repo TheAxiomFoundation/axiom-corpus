@@ -1738,9 +1738,9 @@ def _extract_labeled_pdf_section_blocks(
                 if normalize_parentheticals
                 else label
             )
-            if citation_label in citation_suffix_replacements:
-                matched_suffix_keys.add(citation_label)
-                citation_label = citation_suffix_replacements[citation_label]
+            suffix_key = citation_label if citation_label in citation_suffix_replacements else None
+            if suffix_key is not None:
+                citation_label = citation_suffix_replacements[suffix_key]
             inline_body = ""
             if section_heading_re is not None:
                 heading_match = section_heading_re.match(line)
@@ -1776,6 +1776,10 @@ def _extract_labeled_pdf_section_blocks(
                     index += 1
                     continue
             flush()
+            # Count a replacement as used only once its label opens a section:
+            # a label folded into body text above has not used it.
+            if suffix_key is not None:
+                matched_suffix_keys.add(suffix_key)
             heading_lines = [heading_text] if heading_text else []
             continuation_bodies: list[tuple[str, int]] = []
             index += 1
