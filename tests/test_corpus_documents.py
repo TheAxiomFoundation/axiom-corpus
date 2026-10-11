@@ -2793,6 +2793,41 @@ def test_labeled_pdf_sections_can_slug_a_label_in_the_path_only(tmp_path: Path) 
             documents_module._extract_pdf_blocks(
                 content, extraction={**extraction, "section_citation_suffix_replacements": bad}
             )
+    # Two labels with one suffix would merge two sections; a key that matches
+    # no label would be a silent no-op. Both are refused.
+    with pytest.raises(ValueError, match="must map labels to distinct suffixes"):
+        documents_module._extract_pdf_blocks(
+            content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editor's Notes": "x", "1.100": "x"},
+            },
+        )
+    with pytest.raises(ValueError, match="matched no section label: 'Editors Notes'"):
+        documents_module._extract_pdf_blocks(
+            content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editors Notes": "editors-notes"},
+            },
+        )
+    # Only the PDF labeled_sections segmenter reads the key; the others refuse it.
+    key = {"section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"}}
+    scope = "supports only PDF labeled_sections"
+    with pytest.raises(ValueError, match=scope):
+        documents_module._extract_pdf_blocks(
+            content, extraction={"segmentation": "single_block", **key}
+        )
+    with pytest.raises(ValueError, match=scope):
+        documents_module._extract_pdf_blocks(content, extraction=key)
+    with pytest.raises(ValueError, match=scope):
+        _extract_blocks(
+            b"<html><body><main><h1>Rule</h1><p>Text.</p></main></body></html>",
+            "html",
+            source_url="https://example.test/rule.html",
+            title="Rule",
+            extraction={"segmentation": "labeled_sections", **key},
+        )
 
 
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:

@@ -851,6 +851,8 @@ def _extract_blocks(
 ) -> tuple[_DocumentBlock, ...]:
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
+    if (extraction or {}).get("section_citation_suffix_replacements") is not None:
+        raise ValueError(_CITATION_SUFFIX_REPLACEMENTS_SCOPE)
     if source_format == "html":
         return _extract_html_blocks(
             content, source_url=source_url, fallback_title=title, extraction=extraction
@@ -1031,6 +1033,11 @@ def _extract_pdf_blocks(
             "amendment_markup and sort_blocks support only the default per-page "
             f"PDF segmentation, not segmentation={segmentation!r}"
         )
+    if (
+        segmentation != "labeled_sections"
+        and extraction_config.get("section_citation_suffix_replacements") is not None
+    ):
+        raise ValueError(_CITATION_SUFFIX_REPLACEMENTS_SCOPE)
     if segmentation == "numbered_sections":
         return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "labeled_sections":
@@ -1635,6 +1642,7 @@ def _extract_labeled_pdf_section_blocks(
         line_styles = ()
 
     sections: list[_DocumentBlock] = []
+    matched_suffix_keys: set[str] = set()
     current_label: str | None = None
     current_citation_label: str | None = None
     current_heading: str | None = None
@@ -1730,7 +1738,9 @@ def _extract_labeled_pdf_section_blocks(
                 if normalize_parentheticals
                 else label
             )
-            citation_label = citation_suffix_replacements.get(citation_label, citation_label)
+            if citation_label in citation_suffix_replacements:
+                matched_suffix_keys.add(citation_label)
+                citation_label = citation_suffix_replacements[citation_label]
             inline_body = ""
             if section_heading_re is not None:
                 heading_match = section_heading_re.match(line)
@@ -1816,6 +1826,12 @@ def _extract_labeled_pdf_section_blocks(
             current_body_pages.append(page)
         index += 1
     flush()
+    unmatched = sorted(set(citation_suffix_replacements) - matched_suffix_keys)
+    if unmatched:
+        raise ValueError(
+            "section_citation_suffix_replacements keys matched no section label: "
+            + ", ".join(repr(key) for key in unmatched)
+        )
     return tuple(sections)
 
 
@@ -3482,13 +3498,24 @@ def _section_label_replacements(extraction: dict[str, Any]) -> dict[str, str] | 
     return {str(key): str(value).strip() for key, value in raw.items()}
 
 
+_CITATION_SUFFIX_REPLACEMENTS_SCOPE = (
+    "section_citation_suffix_replacements supports only PDF labeled_sections"
+)
+
+
 def _section_citation_suffix_replacements(extraction: dict[str, Any]) -> dict[str, str]:
-    """Map a publisher label to the citation-path suffix its section takes.
+    """Map a section label to the citation-path suffix its section takes.
 
     Unlike ``section_label_replacements``, which rewrites the label everywhere,
     this changes only the path: the heading and ``metadata.section_label`` keep
     the publisher's words (``Editor’s Notes`` under ``.../editors-notes``).
-    PDF ``labeled_sections`` only.
+
+    A key is the label as the segmenter holds it when it builds the path: after
+    ``section_label_template``, ``section_label_replacements`` and
+    ``normalize_parenthetical_label_components`` (``3.1.a``, not ``3.1(a)``).
+    A key that matches no section label is an error, and so are two keys with
+    one suffix, which would merge two sections. PDF ``labeled_sections`` only;
+    every other extractor rejects the key.
     """
     raw = extraction.get("section_citation_suffix_replacements")
     if raw is None:
@@ -3500,7 +3527,12 @@ def _section_citation_suffix_replacements(extraction: dict[str, Any]) -> dict[st
         raise ValueError(
             "section_citation_suffix_replacements must map labels to non-empty suffixes"
         )
-    return {key: value.strip() for key, value in raw.items()}
+    replacements = {key: value.strip() for key, value in raw.items()}
+    if len(set(replacements.values())) != len(replacements):
+        raise ValueError(
+            "section_citation_suffix_replacements must map labels to distinct suffixes"
+        )
+    return replacements
 
 
 def _text_replacements(extraction: dict[str, Any]) -> dict[str, str] | None:
