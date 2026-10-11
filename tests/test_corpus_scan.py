@@ -102,9 +102,10 @@ def test_marker_is_a_timeout_carrying_the_budget_of_this_checkout():
     assert corpus_scan.mark.args == (corpus_scan_timeout(provision_jsonl_bytes()),)
 
 
-def test_every_whole_corpus_scan_carries_the_marker():
-    # The grammar module's scan is a module-scoped fixture, charged to whichever
-    # test requests it first, so the whole module carries the marker.
+def test_the_known_whole_corpus_scans_carry_the_marker():
+    # This list is maintained by hand: add any new test that parses every
+    # provision row. The grammar module's scan is a module-scoped fixture, charged
+    # to whichever test requests it first, so the whole module carries the marker.
     assert grammar_tests.pytestmark is corpus_scan
     for scan in (
         claims_tests.test_every_evidence_span_reextracts_to_its_selector,

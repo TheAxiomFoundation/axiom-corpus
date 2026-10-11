@@ -8,7 +8,7 @@ streamed rows, a slow runner pushed it past that flat 60 s (axiom-corpus#736).
 ``corpus_scan`` budgets such a test by corpus size instead: 1 s per 10 MB of
 provision JSONL, never below the suite's 60 s and never above 20 minutes. The
 10 MB/s floor sits far below the rates CI scans at, so the budget tracks growth
-while a genuine hang still fails with pytest-timeout's traceback.
+while a genuine hang still fails.
 """
 
 from __future__ import annotations
@@ -25,8 +25,9 @@ PROVISIONS_DIR = Path(__file__).resolve().parents[1] / "data" / "corpus" / "prov
 # value, so a lower number here would shorten these tests' limit on a small tree.
 SUITE_TIMEOUT_SECONDS = 60
 MIN_SCAN_BYTES_PER_SECOND = 10_000_000
-# The test job has timeout-minutes: 30. Stay inside it so a hang is reported by
-# pytest-timeout, not cut off by the runner.
+# The test job has timeout-minutes: 30 for setup and the whole suite. Keep the
+# budget well inside it, so a hang is normally reported by pytest-timeout rather
+# than cut off by the runner.
 MAX_TIMEOUT_SECONDS = 20 * 60
 
 
