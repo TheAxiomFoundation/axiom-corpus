@@ -503,6 +503,29 @@ def test_build_program_joins_a_query_routed_rule_only_to_its_own_manifest(tmp_pa
     assert colorado[bundle.normalize_url(snap)]["scope"] == "in"
 
 
+def test_build_program_joins_a_manifest_entry_without_a_path_to_the_path_that_holds_it(
+    tmp_path, monkeypatch
+):
+    # A state manifest lists a waiver by its address only; a wave decision says
+    # a served path holds that address, so Tier 2 names the path.
+    cfg = config(tmp_path, monkeypatch)
+    waiver = "https://www.fns.usda.gov/sites/default/files/resource-files/az-snap-waiver.pdf"
+    cfg["document_paths"] = {waiver: "us-az/policy/usda/fns/snap-waiver"}
+    manifests = {
+        "manifests/us-az-snap-primary-policy.yaml": [{"title": "SNAP waiver", "source_url": waiver}]
+    }
+    index = bundle.index_manifests(manifests, cfg["host_aliases"])
+    out = bundle.build_program(cfg, "snap", {"references": []}, None, manifests, index)
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    full = {d["key"]: d for d in layers["us-az"]["full"]}
+    assert "us-az/policy/usda/fns/snap-waiver" in full
+    assert (
+        full["us-az/policy/usda/fns/snap-waiver"]["citation_path"]
+        == "us-az/policy/usda/fns/snap-waiver"
+    )
+    assert waiver not in full
+
+
 def test_build_program_excludes_a_plan_document_the_decisions_rule_out(tmp_path, monkeypatch):
     # A plan row whose URL is a not_source is excluded with its reason, as the
     # same URL is when PolicyEngine cites it (wave-6 OUT-OF-SCOPE rows such as

@@ -830,6 +830,11 @@ def build_program(
                 meta = doc.get("metadata") or {}
                 toc = meta.get("toc_sequence")
                 cp = doc.get("citation_path")
+                if not cp and doc.get("source_url"):
+                    # An entry with no path of its own: the corpus path that holds
+                    # its address (another manifest's entry, or a wave's decision).
+                    k = url_key(normalize_url(doc["source_url"]), aliases)
+                    cp = url_lookup(by_url, k) or url_lookup(held, k)
                 entry = {
                     "key": cp or doc.get("source_url"),
                     "name": doc.get("title"),
