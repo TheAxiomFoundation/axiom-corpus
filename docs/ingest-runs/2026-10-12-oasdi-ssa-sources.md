@@ -60,12 +60,22 @@ axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-10-12 \
   follow-up, by the same route PR #718 used for the part 416 subpart K appendix
   (an official document from the eCFR renderer API) or an adapter change.
 - Text kept: `ecfr._section_body` skips `HEAD` and `CITA` (the bracketed Federal Register
-  amendment history), and the OMB approval notes (`APPRO`) are not emitted. A word count
-  against the XML finds no other missing text (single-token differences such as `i.e. ,`
-  against `i.e.,` aside). No section holds an image or `MATH` element; the 3 `img` tags in
-  the file are in appendices.
+  amendment history), and the OMB approval notes (`APPRO`) are not emitted. Table
+  captions are not emitted either (below). No section holds an image or `MATH` element;
+  the 3 `img` tags in the file are in appendices.
 - Tables render one row per line with cells joined by ` | ` (the adapter's `_table_text`),
-  e.g. 404.409(b): `Before 1/2/1912 | 62 years.`
+  e.g. 404.409(b): `Before 1/2/1912 | 62 years.` `_table_text` reads only `TR` rows, so a
+  table's `CAPTION` is lost. Four captions sit in sections: 404.1574 `Table 1`, 404.1584
+  `Table I`, and 404.1592 `Table 1—For Employees` and `Table 2—For the Self-Employed`.
+  The tables' rows are kept, and the prose of each section still says "Table 1" or
+  "Table I", but the 404.1592 rows lose the employee/self-employed labels. The other 44
+  captions in the file are in the appendices, which are not taken. No register entry
+  cites these sections. This is the adapter's behaviour for every eCFR scope (26 CFR
+  part 1's coordination-repair source alone has 507 captions), and
+  `tests/test_repro_us_cfr_416_deeming_slice.py` regenerates the released part 416
+  deeming slice from retained XML and checks the output hashes against a pinned baseline.
+  The caption fix is therefore a separate adapter change with its own replay plan, not
+  part of this ingest.
 - Sources (`sources/us/regulation/2026-10-12-title-20-part-404/ecfr/`):
   `title-20-part-404.xml` 3,528,997 bytes sha256
   `bdf2ce217abc258f999d54f6df1e2c7f6fa7d22ff10b8d0a3b3fc5b086b2fc50` from
@@ -96,8 +106,10 @@ axiom-corpus-ingest extract-official-documents --base data/corpus \
 - Manifests: `scripts/build_oasdi_poms_manifests.py` adds parts RS and GN to the SI/HI
   generator's `PARTS` table at load time and defines two families. It leaves
   `scripts/build_ssi_poms_si_manifests.py` untouched. After PR #718 changed that file, the two manifests regenerate byte-identical from the page cache. It
-  fails closed if a selected chapter or subchapter is missing from SSA's index, or if the
-  number of sections taken differs from the number the index lists for the selection.
+  fails closed if a selected chapter or subchapter is missing from SSA's index, if the
+  parser finds no sections under one (a markup change would otherwise shrink the parsed
+  index and the count check with it), or if the number of sections taken differs from
+  the number the index lists for the selection.
   There is no OASDI agent queue, so it writes only the manifests.
 - Same conventions as the SI and HI scopes: one document per section, citation path
   `us/manual/ssa/poms/<part>/<section number>` (regional sections keep their lowercased
@@ -154,9 +166,9 @@ Text retention was measured per page: the words of the page's `div.poms` text (d
 selectors removed) against the words of its rows (document heading, block headings,
 block bodies). RS keeps 99.2% of 279,333 words and GN 99.1% of 7,035. What is missing:
 
-- Sub-headings with no text of their own, such as `C. Computing deduction before reduction
-  for permanent deductions` over numbered blocks in GN 02603.050. No row carries them; the
-  blocks under them keep their own headings.
+- Sub-headings with no text of their own, such as `C. Procedure for permanent deductions`
+  and `D. Procedure for temporary deductions` over numbered blocks in GN 02603.050. No row
+  carries them; the blocks under them keep their own headings.
 - RS 02510.026: 57 `<pre>` screen exhibits (DEQY earnings-query printouts, 254 words). The
   HTML extractor reads heading, `p`, `li`, `table` and `blockquote` nodes
   (`documents._TEXT_TAGS`), not `pre`. No other page in either scope has a `pre` element,
@@ -189,15 +201,18 @@ families are unchanged.
 The baselines are repository-wide ceilings on unique irregular paths. The new values equal
 the live counts with these scopes locked, so no headroom is added for any other change.
 
-- `block_n`: the HTML extractor names each heading block `<document path>/block-<n>`
-  (`documents._block_citation_path`). A canonical suffix comes only from
-  `metadata.citation_suffix`, which the code sets for CSV, spreadsheet and PDF
-  segmentations, never for HTML. A canonical POMS sub-path would also need heading
-  levels the rows don't keep: GN 02603.050 has a "1. Definitions" block under both C and
-  D, whose headings carry no text and so are not rows. The existing POMS scopes have the
-  same shape: SI 10,113, SI remainder 6,268, HI 3,788 and DC OSSP 70 `block-N` paths.
-  The register cites POMS at section paths, which the encoder's resolver composes from
-  the blocks.
+- `block_n`: the default HTML heading segmentation used here names each heading block
+  `<document path>/block-<n>` (`documents._block_citation_path`). A canonical suffix comes
+  from `metadata.citation_suffix`. Among the HTML modes, `labeled_sections` sets it to the
+  label its regex matches on a section's own heading, keeping no parent label
+  (`_extract_labeled_html_section_blocks`), and `anchor_range` sets it to one label
+  configured per range. Neither builds a nested POMS id such as `B.2.c`, which needs the
+  heading levels: GN 02603.050 has a `3. Claims Processing` block under both C and D, and
+  the C and D headings carry no text, so they are not rows. Getting nested ids would take
+  an extractor extension. The existing POMS scopes use the same default segmentation and
+  path shape: SI 10,113, SI remainder 6,268, HI 3,788 and DC OSSP 70 `block-N` paths. The
+  register cites POMS at section paths, which the encoder's resolver composes from the
+  blocks.
 - `uppercase_segments`: `ecfr.py` writes `subpart-{letter}` with eCFR's own letter. The
   223 subpart paths already locked in US regulation scopes have the same shape (e.g.
   `us/regulation/20/416/subpart-A`).

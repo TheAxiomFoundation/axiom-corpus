@@ -83,19 +83,28 @@ class Selection:
 
     def subchapters_taken(self, chapters: dict[str, dict]) -> tuple[str, ...]:
         """Expand whole chapters into their subchapters from the publisher's index
-        and fail closed when a named chapter or subchapter is not listed."""
+        and fail closed when a named chapter or subchapter is not listed, or when
+        the parser found no sections under one (SSA changing its section markup
+        would otherwise shrink the parsed index and the count check with it)."""
         taken: list[str] = []
         for chapter in self.chapters:
             if chapter not in chapters:
                 raise SystemExit(f"chapter {chapter} is not in the {self.family.part} chapter list")
+            if not chapters[chapter]["subchapters"]:
+                raise SystemExit(f"chapter {chapter} lists no subchapters")
             taken.extend(chapters[chapter]["subchapters"])
-        listed = {sub for info in chapters.values() for sub in info["subchapters"]}
+        listed = {
+            sub: subinfo for info in chapters.values() for sub, subinfo in info["subchapters"].items()
+        }
         for sub in self.subchapters:
             if sub not in listed:
                 raise SystemExit(f"subchapter {sub} is not in the {self.family.part} subchapter lists")
             taken.append(sub)
         if len(set(taken)) != len(taken):
             raise SystemExit("a subchapter is selected twice")
+        empty = [sub for sub in taken if not listed[sub]["sections"]]
+        if empty:
+            raise SystemExit(f"no sections parsed for selected subchapter(s): {', '.join(empty)}")
         return tuple(taken)
 
 

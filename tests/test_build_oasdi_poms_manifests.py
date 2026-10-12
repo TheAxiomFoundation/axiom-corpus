@@ -30,12 +30,30 @@ REGISTER_SECTIONS = {
 }
 
 
-def _index(part: str, layout: dict[str, list[str]]) -> dict[str, dict]:
+# Sections per taken subchapter in SSA's own subchapter lists on 2026-10-12
+# (docs/ingest-runs/2026-10-12-oasdi-ssa-sources.md), including the .000
+# table-of-contents sections and regional sections.
+EXPECTED_SECTIONS = {
+    "oasdi-rs": {
+        "RS 00200": 1, "RS 00201": 4, "RS 00202": 22, "RS 00203": 16, "RS 00204": 18,
+        "RS 00205": 36, "RS 00207": 17, "RS 00208": 26, "RS 00209": 7, "RS 00210": 11,
+        "RS 00600": 1, "RS 00601": 10, "RS 00605": 96, "RS 00615": 95, "RS 00620": 11,
+        "RS 00630": 6, "RS 00640": 3,
+        "RS 02500": 1, "RS 02501": 20, "RS 02505": 42, "RS 02510": 15,
+    },
+    "oasdi-gn": {"GN 02603": 12},
+}
+
+
+def _index(part: str, layout: dict[str, list[str]], *, empty: tuple[str, ...] = ()) -> dict[str, dict]:
     return {
         chapter: {
             "title": chapter,
             "code": chapter,
-            "subchapters": {sub: {"title": sub, "sections": []} for sub in subs},
+            "subchapters": {
+                sub: {"title": sub, "sections": [] if sub in empty else [{"section": f"{sub}.001"}]}
+                for sub in subs
+            },
         }
         for chapter, subs in layout.items()
     }
@@ -87,6 +105,56 @@ def test_selection_rejects_a_subchapter_taken_twice() -> None:
     )
     with pytest.raises(SystemExit, match="selected twice"):
         selection.subchapters_taken(_index("GN", {"GN 026": ["GN 02603"]}))
+
+
+@pytest.mark.parametrize(
+    ("family", "layout", "empty", "message"),
+    [
+        # SSA keeps a subchapter heading but the parser finds no section under it
+        ("oasdi-rs", {"RS 002": ["RS 00201", "RS 00209"], "RS 006": ["RS 00615"], "RS 025": ["RS 02501"]},
+         ("RS 00201",), "no sections parsed for selected subchapter.*RS 00201"),
+        ("oasdi-gn", {"GN 026": ["GN 02602", "GN 02603"]}, ("GN 02603",), "GN 02603"),
+        # a chapter heading survives with no subchapters under it
+        ("oasdi-rs", {"RS 002": [], "RS 006": ["RS 00615"], "RS 025": ["RS 02501"]}, (), "chapter RS 002 lists no"),
+    ],
+)
+def test_selection_rejects_empty_parsed_selections(family: str, layout: dict, empty: tuple, message: str) -> None:
+    with pytest.raises(SystemExit, match=message):
+        oasdi.SELECTIONS[family].subchapters_taken(_index(family, layout, empty=empty))
+
+
+def test_unselected_empty_subchapter_is_ignored() -> None:
+    chapters = _index("GN", {"GN 026": ["GN 02602", "GN 02603"]}, empty=("GN 02602",))
+    assert oasdi.SELECTIONS["oasdi-gn"].subchapters_taken(chapters) == ("GN 02603",)
+
+
+@pytest.mark.parametrize("family", sorted(oasdi.SELECTIONS))
+def test_committed_manifest_has_every_expected_section(family: str) -> None:
+    fam = oasdi.SELECTIONS[family].family
+    docs = yaml.safe_load(fam.manifest_path.read_text(encoding="utf-8"))["documents"]
+    counts: dict[str, int] = {}
+    for doc in docs:
+        sub = doc["metadata"]["poms_subchapter"]
+        counts[sub] = counts.get(sub, 0) + 1
+    assert counts == EXPECTED_SECTIONS[family]
+    # every subchapter's table-of-contents section is taken
+    sections = {doc["metadata"]["poms_section"] for doc in docs}
+    assert {f"{sub}.000" for sub in EXPECTED_SECTIONS[family]} <= sections
+
+
+@pytest.mark.parametrize("family", sorted(oasdi.SELECTIONS))
+def test_committed_manifest_uses_the_poms_extraction(family: str) -> None:
+    fam = oasdi.SELECTIONS[family].family
+    docs = yaml.safe_load(fam.manifest_path.read_text(encoding="utf-8"))["documents"]
+    expected = {
+        "html_content_selector": "div.poms",
+        "html_drop_selectors": ["p.tninfo", "div.poms-citation"],
+    }
+    assert expected == oasdi.poms.EXTRACTION
+    for doc in docs:
+        assert doc["extraction"] == expected
+        assert doc["request"] == {"browser_impersonation": True}
+        assert doc["source_format"] == "html"
 
 
 @pytest.mark.parametrize("family", sorted(oasdi.SELECTIONS))
