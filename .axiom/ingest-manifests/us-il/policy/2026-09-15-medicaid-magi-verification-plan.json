@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "3b70b1464c8177d67f78bb82a68ce5fa708a2047da49779e69f2122c0cfdbc02"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "94f35b322a1b43c66c250b91705e72a2d937a4d579f09e7d7fa7907a61acec97"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "9a9ac4e38a16e07595f3c84a6450984617bff97ea2a8fd53dc7090625add0e36"
+    },
+    {
+      "path": "data/corpus/sources/us-il/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-il-cms-magi-verification-plan-illinois-magi-based-verification-plan.pdf",
+      "sha256": "261b4e807206745479f951dd3b9d257743120745711567dddb8831d6b096b753"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:37.588741+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ztqa29kHXRlZAWK02SaNk0kWCDeIzEB/f8Cr4+VecWNpdtdfo4xu1Ri1/sa0EDmF7UtvGeadA9i7R/ej05PPBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

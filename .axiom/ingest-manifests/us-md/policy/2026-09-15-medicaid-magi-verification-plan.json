@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "f8d8c8318a86645d20fc7add0409781b7cc2644dac44fca51766173d1415909d"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "bdf8f0fe420ec485a27d4db818bcfa17f9d3919cbcf522a72f4fea7f205ccc77"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "56c72ae5c1623fea6c0830a605caab933e497dd58ce59c43987db8cfeaa6f39e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-md-cms-magi-verification-plan-maryland-verification-plan-template-final.pdf",
+      "sha256": "e537ef641b36e0f77288921b8aa84382712e633811d1463b0d86015beb64baa5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:01.203719+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MvTO8bEWLfeVuED/QnMKFffJYBxj1fg0cPV5sDEl9st9mNGna1218LHYRV91z+H0ZYi+o8nRSh1KYxhhvuwWAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}
