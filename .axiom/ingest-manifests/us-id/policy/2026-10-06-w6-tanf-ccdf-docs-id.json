@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/policy/2026-10-06-w6-tanf-ccdf-docs-id.json",
+      "sha256": "3a3a1615fc16a7a543855b40b46f93a947a882dc8dcb502ba927a7a0c49cb401"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/policy/2026-10-06-w6-tanf-ccdf-docs-id.json",
+      "sha256": "f94aafd69fba01a3e60225d264910325fa60d66f50f4dd7a853b69739554dea0"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/policy/2026-10-06-w6-tanf-ccdf-docs-id.jsonl",
+      "sha256": "c24425cd55ac4bc2bb91433d80da4b1c69c33cc7704fe24f9b67eedb5365197d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/policy/2026-10-06-w6-tanf-ccdf-docs-id/official-documents/us-id-w6-dhw-ccdf-idaho-child-care-program.html",
+      "sha256": "866ff147ea63cacd422fa20e2c303166aee3ce86eca0867cf4f98fa5692ab7e3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:51:26.105459+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Dv7t6yz1Wdzx9tDOVMRYIjhoNbrcaCi7ZqXEHm2WYXyMfYKmkr9N/p5JrRbXMFkqXei/QKqL/vsPrQuEYMJmAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-id"
+}

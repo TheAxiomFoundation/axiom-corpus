@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia.json",
+      "sha256": "78dcc9ed85a5b94741cf3c39e09d8034dcec1e1ef9eb32c396b5a19ce1314d9f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia.json",
+      "sha256": "18214b57ebf7d6bd418db36db20de77f75fc64d60582509eb241f2bc6a3dba80"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia.jsonl",
+      "sha256": "7320ed7ac846789b0620bc983c001b0a613e4a2638d877e508ceec42afa008d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia/official-documents/us-ia-w6-hhs-ccdf-cca-family-fee-chart-2024-07-01.pdf",
+      "sha256": "94a84bde4cc5a898fc6225ad1f58d74b10a60e2c5d57a437c9edfb60c3616a28"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia/official-documents/us-ia-w6-hhs-ccdf-cca-family-fee-chart-2025-07-01.pdf",
+      "sha256": "741ed4518a7a9abd884f6cb44101ad55213f20b73dcb3dfae975e6390c42023b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia/official-documents/us-ia-w6-hhs-ccdf-cca-family-fee-chart-2026-07-01.pdf",
+      "sha256": "eb4617276c706ae7d35b961fee997e5ce1f9fabacb8dad383b511087b9763a15"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/policy/2026-10-06-w6-tanf-ccdf-docs-ia/official-documents/us-ia-w6-hhs-ccdf-general-letter-13-g-56-2024-06-14.pdf",
+      "sha256": "9b459c9c534f60ce109c30cc8a746bfc14dc4c9f75caf6daf62c4c45cb4a652b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 172,
+    "missing_count": 0,
+    "provision_count": 172,
+    "source_count": 172
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:51:14.813514+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Sz/3f2siBPWSPd1/N6s3AlQQrNN8O4hhj24KwqnDxdKT44YMEnDm3IacASRWvmmfI7mZjZENAgke4eXnmta8Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-ia"
+}

@@ -1,0 +1,27 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-ky-dcbs-dfs-operation-manual-volume-viii-ccap
+  jurisdiction: us-ky
+  document_class: manual
+  title: 'Kentucky DCBS Operation Manual Volume VIII: Child Care Assistance Program (CCAP)'
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/omvolviii.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-12-22'
+  citation_path: us-ky/manual/dcbs/dfs/volume-viii-ccap
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, Department for Community Based Services
+    document_subtype: agency_operation_manual_volume
+    program: CCDF
+    state_program: Child Care Assistance Program (CCAP)
+    federal_program: CCDF
+    manual_landing_page: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    closure_elements:
+    - ccdf-s29
+    source_last_modified: '2025-12-22'
+    extraction_granularity: pdf_page
+    official_listing_title: DFS Manual Volume VIII - Child Care Assistance Program (CCAP) (PDF)
+    extraction_note: page-level like the volume III (KTAP) and volume II (SNAP) scopes from the same page

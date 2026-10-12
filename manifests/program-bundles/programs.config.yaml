@@ -1,0 +1,376 @@
+# How manifests/program-bundles/<program>.yaml are built: one bundle file per
+# core program, each with a federal layer (shared by every state) and one
+# layer per state and DC. Every choice the bundles rest on is here, as data a
+# reviewer can change.
+#
+# Rebuild:
+#   python scripts/export_policyengine_references.py manifests/program-bundles/programs.config.yaml --checkout ~/policyengine-us
+#   python scripts/build_program_bundle.py manifests/program-bundles/programs.config.yaml
+
+# The day the bundles describe. Its federal fiscal year (October to
+# September) decides which yearly tables are current: 2026-10-06 is FY2027.
+as_of: 2026-10-06
+
+# The PolicyEngine-US release Tier 1 is measured against: the newest one
+# published (re-run the export to move to it), or a version number to hold
+# one. The export records the version and commit it read.
+policyengine_us:
+  release: latest
+  references: sources/policyengine-us/{program}-references.json
+
+# The plan's document list (snap and medicaid_chip carry addresses), copied
+# from the roadmap so the bundles rebuild without the planning repo.
+plan: sources/plans/m1-plan-documents.json
+
+# The 50 states and DC.
+jurisdictions: [al, ak, az, ar, ca, co, ct, de, dc, fl, ga, hi, id, il, in, ia, ks, ky, la, me, md, ma, mi, mn, ms, mo,
+  mt, ne, nv, nh, nj, nm, ny, nc, nd, oh, ok, or, pa, ri, sc, sd, tn, tx, ut, vt, va, wa, wv, wi, wy]
+
+tiers:
+  screener:
+    title: Screener-level parity
+    definition: >-
+      Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is excluded
+      with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
+      errors. Federal law PolicyEngine cites is shared by every state.
+  full:
+    title: Full document bundle
+    definition: >-
+      Every relevant document for the program in the state: every document of the screener tier, the federal law
+      of the program (statute, regulations and federal guidance), and every primary source of the state's own
+      rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.
+
+# References that are not current law, or not law at all.
+exclusions:
+  back_year: "Back-year table: not current law"
+  secondary: "Secondary source: not law"
+  data_series: "Data series: not law"
+  enacting: "Enacting text: the citing file also cites the codified section, which is the document"
+secondary_hosts: "(?i)snapscreener|docs\\.google\\.com|benefitswiki|website-files\\.com|policyengine\\.org|github\\.com|state[-_ ]?options|ballotpedia|frac\\.org|liheapch\\.acf\\.gov|cbo\\.gov/publication|taxfoundation|taxpolicycenter|wikipedia|investopedia|nolo\\.com|smartasset|kff\\.org|cbpp\\.org"
+data_series_hosts: "(?i)snapqcdata\\.net|data\\.census\\.gov|data\\.bls\\.gov|fred\\.stlouisfed|cbo\\.gov/data|ers\\.usda\\.gov/data-products|ssa\\.gov/oact/cola|bls\\.gov/cpi"
+# Hosts of federal publishers: a page there is federal, whichever state's
+# PolicyEngine folder cites it.
+federal_hosts: "(?i)(^|\\.)(usda|hhs|acf\\.hhs|cms|ssa|irs|treasury|dol|ed|congress|govinfo|ecfr|federalregister|uscode\\.house|medicaid|medicare|healthcare|fns|fna)\\.gov$|law\\.cornell\\.edu$|fns-prod\\.azureedge\\.(us|net)$"
+# Hosts of states' own publishers that a generic .gov test misses.
+state_hosts:
+  azdes.gov: az
+  az.gov: az
+  azleg.gov: az
+  azsos.gov: az
+  azahcccs.gov: az
+  mass.gov: ma
+# Federal documents about one state: the state is the named group.
+state_url_patterns:
+  - "/(?P<state>[a-z]{2})-abawd-response"
+# Hosts that serve the same documents.
+host_aliases:
+  fna.usda.gov: fns.usda.gov
+  fns-prod.azureedge.us: fns.usda.gov
+  fns-prod.azureedge.net: fns.usda.gov
+# URLs of one document.
+# What the ingestion waves decided for documents the bundles name by an
+# address or by a path they moved (scripts/apply_wave_decisions.py).
+joins: manifests/program-bundles/joins.yaml
+
+same_document:
+  "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"
+  "https://www.fns.usda.gov/snap/allotment/COLA": "https://www.fna.usda.gov/snap/allotment/cola/fy27"
+
+# Parts of a benefit program, and how a file, path or title maps to one; the
+# first rule that matches wins.
+benefit_parts: &benefit_parts
+  - Household and eligibility
+  - Income
+  - Deductions
+  - Assets
+  - Work requirements
+  - Benefit amount
+  - Issuance and EBT
+  - Definitions from other programs
+  - Whole program
+  - Other
+benefit_part_rules: &benefit_part_rules
+  - pattern: "^us/(statute/(26|38|25)|regulation/26|form/irs|manual/ssa)/"
+    part: Definitions from other programs
+  - pattern: "(?i)work_?req|work-req|abawd|time.?limit|employment_and_training|/work/"
+    part: Work requirements
+  - pattern: "(?i)deduction|expense|disregard"
+    part: Deductions
+  - pattern: "(?i)asset|resource"
+    part: Assets
+  - pattern: "(?i)/income|earned|unearned|countable|poverty|fpg|smi"
+    part: Income
+  - pattern: "(?i)issuance|ebt"
+    part: Issuance and EBT
+  - pattern: "(?i)payment|benefit|allotment|amount|standard|grant|max|min|copay|reimburs|cola|uprating|rate"
+    part: Benefit amount
+  - pattern: "(?i)eligib|categorical|immigra|citizen|alien|age|student|household|unit|member|elderly|disab"
+    part: Household and eligibility
+tax_parts: &tax_parts
+  - Filing and household
+  - Income
+  - Deductions
+  - Credits
+  - Rates
+  - Whole program
+  - Other
+tax_part_rules: &tax_part_rules
+  - pattern: "(?i)credit|eitc|ctc|cdcc"
+    part: Credits
+  - pattern: "(?i)rate|bracket|schedule"
+    part: Rates
+  - pattern: "(?i)deduction|exemption|exclusion|itemiz|standard"
+    part: Deductions
+  - pattern: "(?i)income|agi|gain|wage|pension|social_security"
+    part: Income
+  - pattern: "(?i)filing|status|dependent|household|joint"
+    part: Filing and household
+
+programs:
+  snap:
+    title: SNAP
+    plan_programs: [snap]
+    policyengine_folders:
+      - gov/usda/snap
+      - gov/hhs/tanf/non_cash
+      - gov/hhs/fpg
+      - gov/hhs/uprating.yaml
+      - gov/ssa/uprating.yaml
+    # A state folder is the program's when a segment after the state code matches.
+    state_folders: "snap"
+    schema: docs/coverage/needs-closure-2026-09-14/snap-schema.yaml
+    federal_exclude:
+      - pattern: "^us/regulation/7/(27[5-9]|28[0-5])(/|$)"
+        reason: "Program administration (quality control, retailers, territories, disasters): no household rule. Proposed; needs review"
+    federal_manifests: "^us-(snap|hhs-poverty)"
+    state_manifests: "snap|nutrition|faa[0-9]|food-?stamp|calfresh|foodshare|3squares|fsp-manual|-nap-|fns-manual"
+    state_documents: "(?i)snap|nutrition assistance|food stamp|calfresh|foodshare|food assistance"
+    expired:
+      - pattern: "(?i)emergency[-_ ]?allotment"
+        reason: "Emergency allotments ended with the February 2023 issuance (Consolidated Appropriations Act, 2023)"
+    parts: *benefit_parts
+    part_rules:
+      - pattern: "gov/usda/snap/(eligibility|categorical_eligibility|student|snap_unit_size)|income/ineligible_members|gov/hhs/tanf/non_cash"
+        part: Household and eligibility
+      - pattern: "gov/usda/snap/income/deductions"
+        part: Deductions
+      - pattern: "gov/usda/snap/income|gov/hhs/fpg"
+        part: Income
+      - pattern: "gov/usda/snap/asset_test"
+        part: Assets
+      - pattern: "gov/usda/snap/work_requirements"
+        part: Work requirements
+      - pattern: "gov/usda/snap/(min_allotment|max_allotment|uprating|emergency_allotment)|uprating\\.yaml"
+        part: Benefit amount
+      - pattern: "^us/regulation/7/274(/|$)|^us/statute/7/2016(/|$)"
+        part: Issuance and EBT
+      - pattern: "^us/regulation/7/273/(7|24)(/|$)|^us/statute/7/(2015|2029)(/|$)"
+        part: Work requirements
+      - pattern: "^us/regulation/7/273/8(/|$)"
+        part: Assets
+      - pattern: "^us/regulation/7/273/(9|11)(/|$)"
+        part: Income
+      - pattern: "^us/regulation/7/273/10(/|$)|^us/statute/7/2017(/|$)"
+        part: Benefit amount
+      - pattern: "^us/regulation/7/273/[1-6](/|$)|^us/statute/7/(2012|2014)(/|$)"
+        part: Household and eligibility
+      - pattern: "^us/regulation/7/27[12](/|$)|^us/statute/7/(2011|2013|2020)(/|$)"
+        part: Whole program
+      - *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-snap-ecps"}
+    states:
+      az:
+        crosswalk:
+          "web:dbmefaapolicy.azdes.gov": us-az/manual/des/faa6/utility-allowance-current-amount
+          "web:dbmefaapolicy.azdes.gov/index.html": us-az/manual/des/faa5/na-medical-expenses-and-deduction
+          "web:fns.usda.gov/snap/obbb-ABAWD-Waivers-Implementation-Memo": us/guidance/usda/fns/snap-obbb-abawd-waivers-implementation-memo
+        exclude:
+          - manifest: manifests/us-az-des-faa5-manual.yaml
+            toc: [3, 44]
+            reason: "Cash Assistance work programs (Jobs, TPEP, Tribal NEW): not SNAP"
+          - manifest: manifests/us-az-des-faa5-manual.yaml
+            toc: [54, 59]
+            reason: "Cash Assistance benefit determination: not SNAP"
+          - manifest: manifests/us-az-des-faa5-manual.yaml
+            toc: [78, 78]
+            reason: "Cash Assistance EBT use: not SNAP"
+        parts:
+          - {manifest: manifests/us-az-des-faa5-manual.yaml, toc: [1, 2], part: Work requirements}
+          - {manifest: manifests/us-az-des-faa5-manual.yaml, toc: [45, 49], part: Benefit amount}
+          - {manifest: manifests/us-az-des-faa5-manual.yaml, toc: [50, 52], part: Household and eligibility}
+          - {manifest: manifests/us-az-des-faa5-manual.yaml, toc: [53, 53], part: Benefit amount}
+          - {manifest: manifests/us-az-des-faa5-manual.yaml, toc: [60, 65], part: Deductions}
+          - {manifest: manifests/us-az-des-faa5-manual.yaml, toc: [66, 79], part: Issuance and EBT}
+          - {manifest: manifests/us-az-des-faa6-utility-amounts.yaml, part: Deductions}
+          - {manifest: manifests/us-az-snap-et-state-plan.yaml, part: Work requirements}
+          - {key: us-az/regulation/aac/6/14, part: Whole program}
+        known_sources:
+          - {citation_path: us-az/manual/des/faa3/arizona-residency, title: Arizona DES FAA3 Arizona Residency, source_url: "https://dbmefaapolicy.azdes.gov/FAA3/Arizona_Residency.html", part: Household and eligibility, note: "Draft manifest us-az-des-faa3-residency.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa3/residents-of-institutions-for-na, title: Arizona DES FAA3 Residents of Institutions for Nutrition Assistance, source_url: "https://dbmefaapolicy.azdes.gov/FAA3/Residents_of_Institutions_for_NA.html", part: Household and eligibility, note: "Draft manifest us-az-des-faa3-snap-membership.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa3/na-qualified-noncitizens, title: Arizona DES FAA3 Nutrition Assistance Qualified Noncitizens, source_url: "https://dbmefaapolicy.azdes.gov/FAA3/NA_Qualified_Noncitizens.html", part: Household and eligibility, note: "Draft manifest us-az-des-faa3-snap-membership.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa4/na-resources, title: Arizona DES FAA4 Nutrition Assistance Resources, source_url: "https://dbmefaapolicy.azdes.gov/FAA4/NA_Resources.html", part: Assets, note: "Draft manifest us-az-des-snap-financial-authority.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa4/income-eligibility-requirements, title: Arizona DES FAA4 Income Eligibility Requirements, source_url: "https://dbmefaapolicy.azdes.gov/FAA4/Income_Eligibility_Requirements.html", part: Income, note: "Draft manifest us-az-des-snap-financial-authority.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa6/maximum-na-resource-limit, title: Arizona DES FAA6 Maximum Nutrition Assistance Resource Limit, source_url: "https://dbmefaapolicy.azdes.gov/FAA6/Maximum_NA_Resource_Limit.html", part: Assets, note: "Draft manifest us-az-des-snap-financial-authority.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa6/na-gross-monthly-income-standard, title: Arizona DES FAA6 NA Gross Monthly Income Eligibility Standard, source_url: "https://dbmefaapolicy.azdes.gov/FAA6/NA_Gross_Monthly_Income_Eligibility_Standard.html", part: Income, note: "Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa6/na-net-monthly-income-standard, title: Arizona DES FAA6 NA Net Monthly Income Eligibility Standard, source_url: "https://dbmefaapolicy.azdes.gov/FAA6/NA_Net_Monthly_Income_Eligibility_Standard_(.html", part: Income, note: "Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa6/na-elderly-disability-standard, title: Arizona DES FAA6 NA Elderly or Disability Eligibility Standard, source_url: "https://dbmefaapolicy.azdes.gov/FAA6/NA_Elderly_or_Disability_Eligibility_Standar.html", part: Income, note: "Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR"}
+          - {citation_path: us-az/manual/des/faa6/na-200-percent-fpl-standard, title: Arizona DES FAA6 NA 200 Percent of Federal Poverty Level, source_url: "https://dbmefaapolicy.azdes.gov/FAA6/NA_200__of_the_Federal_Poverty_Level.html", part: Household and eligibility, note: "Draft manifest us-az-des-faa6-snap-income-standards.yaml, not in a corpus PR"}
+          - {citation_path: us-az/policy/des/faa2/2026-abawd-geographic-waiver-bulletin, title: "Arizona DES urgent bulletin, 2026 ABAWD geographic waiver", source_url: "https://dbmefaapolicy.azdes.gov/FAA2/", part: Work requirements, note: "Draft manifest us-az-snap-abawd-waiver-fy2026.yaml, not in a corpus PR"}
+          - {citation_path: us-az/statute/46, title: "Arizona Revised Statutes Title 46, Welfare", source_url: "https://www.azleg.gov/arsDetail/?title=46", part: Whole program, note: "No manifest yet"}
+
+  medicaid:
+    title: Medicaid
+    plan_programs: [medicaid_chip]
+    policyengine_folders: [gov/hhs/medicaid, gov/hhs/fpg]
+    state_folders: "medicaid|medi_cal|apple_health|healthy_michigan|healthier_oregon|hip"
+    schema: docs/coverage/needs-closure-2026-09-14/medicaid-schema.yaml
+    federal_manifests: "^us-(medicaid|cms-annual|cms-iom|hhs-poverty)"
+    state_manifests: "medicaid|ahcccs|medi-cal|masshealth|medical-assistance|msp-income"
+    state_documents: "(?i)medicaid|medical assistance|medi-cal|ahcccs|masshealth"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-medicaid-ecps"}
+
+  chip:
+    title: CHIP
+    plan_programs: [medicaid_chip]
+    policyengine_folders: [gov/hhs/chip, gov/hhs/fpg]
+    state_folders: "chip|chp|cchip"
+    schema: docs/coverage/needs-closure-2026-09-14/chip-schema.yaml
+    federal_manifests: "^us-(cms-chip|medicaid-chip|hhs-poverty)"
+    state_manifests: "chip|child-health|kidscare"
+    state_documents: "(?i)\\bchip\\b|children's health insurance|child health plus|kidscare"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-chip-ecps"}
+
+  tanf:
+    title: TANF
+    plan_programs: [tanf]
+    policyengine_folders: [gov/hhs/tanf, gov/hhs/fpg]
+    state_folders: "tanf|works|atap|ktap|fitap|owf|mfip|wfnj|reach_up|tfa|fep|nm_works|tea|fip|adc|tca|tafdc"
+    schema: docs/coverage/needs-closure-2026-09-14/tanf-schema.yaml
+    federal_manifests: "^us-(tanf|acf|hhs-poverty)"
+    state_manifests: "tanf|calworks|cash-assistance|atap|tea-|fip-|tafdc|work-first|wfnj|tca-|fep-|reach-up|ktap|fitap|owf|mfip"
+    state_documents: "(?i)\\btanf\\b|cash assistance|temporary assistance|calworks|family investment|work first|tafdc"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-tanf-ecps"}
+
+  ssi:
+    title: SSI
+    plan_programs: [ssi]
+    policyengine_folders: [gov/ssa/ssi, gov/ssa/sga, gov/ssa/revenue]
+    state_folders: "ssp|oss|ossp|sspp|state_supplement|ssi_state_supplement|ssi_supplement|aabd"
+    schema: docs/coverage/needs-closure-2026-09-14/ssi-schema.yaml
+    federal_manifests: "^us-(ssa-poms-si|ssa-cola)"
+    state_manifests: "ssi|ssp|state-supplement|oss|aabd|sspp|capi"
+    state_documents: "(?i)\\bssi\\b|state supplement|supplemental security|optional state supplement"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-ssi-ecps"}
+
+  ccdf:
+    title: CCDF
+    plan_programs: [ccdf]
+    policyengine_folders: [gov/hhs/ccdf, gov/hhs/smi]
+    state_folders: "ccdf|ccap|ccs|ccsp|cca|ccw|ccfa|ccfap|ccpp|ccdp|child_care_subsidy|child_care|wccc|erdc|iccp|caps|c4k|shares|scca"
+    schema: docs/coverage/needs-closure-2026-09-14/ccdf-schema.yaml
+    federal_manifests: "^us-ccdf"
+    state_manifests: "ccdf|ccap|child-care|childcare|caps-manual|ccsp|erdc|wccc"
+    state_documents: "(?i)child care|childcare|ccdf|ccap"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-ccdf-ecps"}
+
+  liheap:
+    title: LIHEAP
+    plan_programs: [liheap]
+    policyengine_folders: [gov/hhs/liheap, gov/hhs/smi, gov/hhs/fpg]
+    state_folders: "liheap|lieap|heap|eap"
+    schema: docs/coverage/needs-closure-2026-09-14/liheap-schema.yaml
+    federal_manifests: "^us-(liheap|hhs-poverty)"
+    state_manifests: "liheap|energy-assistance|heap"
+    state_documents: "(?i)liheap|energy assistance|home energy"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-liheap-ecps"}
+
+  wic:
+    title: WIC
+    plan_programs: [wic]
+    policyengine_folders: [gov/usda/wic, gov/hhs/fpg]
+    state_folders: "wic"
+    schema: docs/coverage/needs-closure-2026-09-14/wic-schema.yaml
+    federal_manifests: "^us-(wic|hhs-poverty)"
+    state_manifests: "(^|-)wic(-|$)"
+    state_documents: "(?i)\\bwic\\b|women, infants"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-wic-ecps"}
+
+  ui:
+    title: Unemployment insurance
+    plan_programs: [ui]
+    policyengine_folders: [gov/dol]
+    state_folders: "unemployment_insurance|unemployment_compensation|unemployment"
+    federal_manifests: "^us-(dol|unemployment)"
+    state_manifests: "unemployment|(^|-)ui(-|$)|uc-|employment-security"
+    state_documents: "(?i)unemployment"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-ui-ecps"}
+
+  medicare:
+    title: Medicare
+    plan_programs: [medicare]
+    policyengine_folders: [gov/hhs/medicare]
+    state_folders: "msp|medicare"
+    schema: docs/coverage/needs-closure-2026-09-14/medicare-schema.yaml
+    federal_manifests: "^us-(cms-original-medicare|cms-iom|ssa-poms-hi|cms-annual)"
+    state_manifests: "medicare|msp"
+    state_documents: "(?i)medicare|medicare savings"
+    parts: *benefit_parts
+    part_rules: *benefit_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-medicare-ecps"}
+
+  income_tax:
+    title: Individual income tax
+    plan_programs: [income_tax]
+    policyengine_folders: [gov/irs]
+    state_folders: "^tax/income"
+    schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
+    federal_manifests: "^us-(irs-(guidance|individual)|usc-26)"
+    state_manifests: "income-tax|tax-regulations|tax-forms|-tax-|-dor-|revenue|140|1040|-it-|-es$|-es-|ftb|-rtc-"
+    state_documents: "(?i)income tax"
+    parts: *tax_parts
+    part_rules: *tax_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-income-tax-liability"}
+
+  eitc:
+    title: EITC
+    plan_programs: [eitc]
+    policyengine_folders: [gov/irs/credits/eitc]
+    state_folders: "^tax/income/credits/(eitc|earned_income)"
+    schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
+    schema_filter: "^us/statute/26/32(/|$)"
+    federal_manifests: "^us-irs-(guidance|individual)"
+    state_manifests: "eitc|earned-income"
+    state_documents: "(?i)earned income (tax )?credit|\\beitc\\b"
+    parts: *tax_parts
+    part_rules: *tax_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-eitc-ecps"}
+
+  ctc:
+    title: CTC
+    plan_programs: [ctc]
+    policyengine_folders: [gov/irs/credits/ctc, gov/irs/credits/ctc_tax_liability_limit]
+    state_folders: "^tax/income/credits/(ctc|child_tax_credit|young_child)"
+    schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
+    schema_filter: "^us/statute/26/24(/|$)"
+    federal_manifests: "^us-irs-(guidance|individual)"
+    state_manifests: "(^|-)ctc(-|$)|child-tax-credit"
+    state_documents: "(?i)child tax credit|\\bctc\\b"
+    parts: *tax_parts
+    part_rules: *tax_part_rules
+    comparison: {repo: TheAxiomFoundation/axiom-oracles, suite: "{st}-ctc-ecps"}

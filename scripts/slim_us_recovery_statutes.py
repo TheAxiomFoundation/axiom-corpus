@@ -12,6 +12,7 @@ from pathlib import Path
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.usc import (
     _source_artifact_bytes,
     build_usc_inventory_from_xml,
@@ -40,6 +41,9 @@ def _load_rows(path: Path) -> list[ProvisionRecord]:
 
 
 def main() -> int:
+    # Corpus bytes may live outside git: fetch the scope before rewriting it,
+    # never after (a later fetch would restore files this run removes).
+    ensure_corpus_scopes([SCOPE], repo=REPO)
     store = CorpusArtifactStore(BASE)
     plan = json.loads(PLAN.read_text())
     entries = {

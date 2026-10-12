@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca.json",
+      "sha256": "d832ce9d3851654aab27bbee66a6a312f85b325e0911c438ba3a6ffe465474b6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca.json",
+      "sha256": "c93dd2ca5b07d1ea584ab658acef41205b7fbec2251b68ac04c6304215830bd8"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca.jsonl",
+      "sha256": "fb0a6b13c7aaebddc792fa7a8d5ac2588b74459ea5a81439b625d6cab7b79331"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca/official-documents/us-ca-w6-ftb-eitc-calculator-help-qualifying-children.html",
+      "sha256": "cf5fc77fa66f5c09b03244367e6cc555d2b47e6e9b7cea33d09692b47e32d2c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca/official-documents/us-ca-w6-ftb-foster-youth-tax-credit.html",
+      "sha256": "ac1ae8dc5506353a8eadc5f12aa1fc8df536133cc7fc82a906e2124a02b3796f"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca/official-documents/us-ca-w6-ftb-reports-california-eitc-and-yctc-report.pdf",
+      "sha256": "111b2b8a799d1b2590b4cf2aa72c4778a0bea70608ac853e33e18aaf6b922ae3"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca/official-documents/us-ca-w6-ftb-reports-california-eitc-report-2019.pdf",
+      "sha256": "430fb740803c11eecd7801bed2de88217837602b00a241caee170618da0c5850"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-10-06-w6-income-tax-guidance-ca/official-documents/us-ca-w6-ftb-summary-of-federal-income-tax-changes.html",
+      "sha256": "373a5fa0f7f213bf29525e44a48db8db05158979b95153f143c03aeac4a62d1c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 320,
+    "missing_count": 0,
+    "provision_count": 320,
+    "source_count": 320
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:49:16.926867+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ra/90Fh+NcmOuBu+OQ+gMn2d/c4DCwMeS95NbiBEMpdWcESLKTdkGPSKgl1v5vN/HdDeuckwwQPOnzdMQsOADg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ca"
+}

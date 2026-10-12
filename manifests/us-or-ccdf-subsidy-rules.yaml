@@ -1,0 +1,30 @@
+version: 2026-09-15-ccdf-subsidy-rules-chapter-414-division-175
+documents:
+- source_id: us-or-delc-oar-414-175-erdc
+  jurisdiction: us-or
+  document_class: regulation
+  title: 'Oregon Administrative Rules Chapter 414 Division 175: Employment Related Day Care Program'
+  source_url: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=115
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-or/regulation/chapter-414/division-175
+  metadata:
+    primary_source: true
+    source_authority: Oregon Department of Early Learning and Care
+    document_subtype: administrative_rules_division
+    program: CCDF
+    state_program: Employment Related Day Care (ERDC)
+    federal_program: CCDF
+    manual_landing_page: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=115
+    source_discovery_group: us-or/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=115
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Oregon Secretary of State, Oregon Administrative Rules Database (OARD)
+    extraction_adapter: extract-oregon-administrative-rules --only-chapter 414 --only-division 175
+    extraction_run_id: 2026-09-15-ccdf-subsidy-rules-chapter-414-division-175
+    chapter_division_count: 32
+    division_rule_count: 41
+    extraction_note: 'descriptor manifest like the chapter 461 TANF scope: division and rule rows come from the OAR adapter,
+      not from extract-official-documents'

@@ -21,9 +21,17 @@ from uuid import NAMESPACE_URL, uuid5
 
 import pytest
 
+from tests.corpus_scan import corpus_scan
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "citation-path.v1.json"
 PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
+
+# The module-scoped `result` fixture parses the whole corpus, and pytest-timeout
+# charges that setup to whichever test first requests it. Under CI's flat 60 s a
+# slow scan errored all eight corpus tests (axiom-corpus#736), so the corpus-sized
+# budget covers the whole module, including its fast tmp_path tests.
+pytestmark = corpus_scan
 
 _spec = importlib.util.spec_from_file_location(
     "validate_citation_paths", REPO_ROOT / "scripts" / "validate_citation_paths.py"
@@ -194,6 +202,32 @@ def test_ratchet_counts_unique_citation_identities(tmp_path, schema):
     assert result["unique_path_count"] == 1
     assert result["irregular_live_counts"]["collection_roots"] == 1
     assert "collection_roots" not in result["ratchet_regressions"]
+
+
+def test_negative_invalid_json_line_is_caught(tmp_path, schema):
+    provisions = _write_jsonl(tmp_path, [_good_record()])
+    jsonl = next(provisions.rglob("*.jsonl"))
+    with jsonl.open("a", encoding="utf-8") as handle:
+        handle.write('{"citation_path": "us-zz/statute/1/b",\n')
+
+    res = validate_mod.validate(provisions, schema)
+
+    assert res["ok"] is False
+    assert res["json_errors"] == [f"{jsonl}:2 invalid JSON"]
+    assert res["record_count"] == 1
+
+
+def test_scan_keeps_only_checked_fields(tmp_path):
+    # The corpus-wide scan must not hold provision bodies: whole rows for the
+    # 577,545-record corpus peaked at 6.1 GB and pushed this module's fixture
+    # past the CI per-test timeout.
+    rec = _good_record(body="x" * 10_000, heading="Heading", metadata={"a": [1, 2]})
+    provisions = _write_jsonl(tmp_path, [rec])
+
+    (streamed,) = validate_mod.iter_records(provisions)
+
+    assert set(streamed) == set(validate_mod.CHECKED_FIELDS)
+    assert streamed == {field: rec[field] for field in validate_mod.CHECKED_FIELDS}
 
 
 def test_negative_identity_drift_is_caught(tmp_path, schema):

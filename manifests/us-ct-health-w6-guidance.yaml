@@ -1,0 +1,108 @@
+version: 2026-10-06-w6-health-guidance-ct
+documents:
+- source_id: us-ct-w6-health-dss-medical-coverage-groups-upm-2540
+  jurisdiction: us-ct
+  document_class: guidance
+  title: DSS Medical Coverage Groups (UPM 2540) chart
+  source_url: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/guidance/dss/medical-coverage-groups-upm-2540
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services (DSS)
+    program: MEDICAID
+    document_subtype: coverage_groups_chart_pdf
+    source_discovery_group: us-ct/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 33
+    bundle_url: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
+- source_id: us-ct-w6-health-ads-choices-benefits-quick-guide-2024-03-01
+  jurisdiction: us-ct
+  document_class: guidance
+  title: CHOICES Benefits Quick Guide (MSP effective 3/1/24-2/29/25)
+  source_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-03-01'
+  citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2024-03-01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Aging and Disability Services (ADS), CHOICES program
+    program: MEDICARE_SAVINGS_PROGRAMS
+    document_subtype: benefits_quick_guide_pdf
+    source_discovery_group: us-ct/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 34
+    bundle_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
+- source_id: us-ct-w6-health-ads-choices-benefits-quick-guide-2023-03-01
+  jurisdiction: us-ct
+  document_class: guidance
+  title: CHOICES Benefits Quick Guide, accessible version (MSP effective 3/1/23-2/29/24)
+  source_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-03-01'
+  citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2023-03-01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Aging and Disability Services (ADS), CHOICES program
+    program: MEDICARE_SAVINGS_PROGRAMS
+    document_subtype: benefits_quick_guide_pdf
+    source_discovery_group: us-ct/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 35
+    bundle_url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
+- source_id: us-ct-w6-health-dss-husky-health-monthly-income-chart-2025-03-01
+  jurisdiction: us-ct
+  document_class: guidance
+  title: Connecticut HUSKY Health Program Monthly Income Guidelines, effective March 1, 2025
+  source_url: https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-03-01'
+  citation_path: us-ct/guidance/dss/husky-health-monthly-income-chart/2025-03-01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services (DSS)
+    program: CHIP
+    document_subtype: income_standards_chart_pdf
+    source_discovery_group: us-ct/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 36
+    bundle_url: https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf
+    note: The March 1, 2026 edition is held in us-ct/manual/2026-09-10-chip-state-eligibility-manual
+- source_id: us-ct-w6-health-ads-choices-benefits-quick-guide-2026-03-01
+  jurisdiction: us-ct
+  document_class: guidance
+  title: CHOICES Benefits Quick Guide (MSP effective 3/1/26-2/28/27)
+  source_url: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-03-01'
+  citation_path: us-ct/guidance/ads/choices-benefits-quick-guide/2026-03-01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Aging and Disability Services (ADS), CHOICES program
+    program: MEDICARE_SAVINGS_PROGRAMS
+    document_subtype: benefits_quick_guide_pdf
+    source_discovery_group: us-ct/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 37
+    bundle_url: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7

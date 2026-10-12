@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-nm.json",
+      "sha256": "f59b57ffa35d65506557ec049b3642e2f62aaf143b15217068581797228756fb"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-nm.json",
+      "sha256": "de1cf9bdbaa9b9c2a3aaa6ffa95827b83672bcea2ca5ebdcc5e0f6165098a412"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-nm.jsonl",
+      "sha256": "111dad32bd0efeac8c450836c17a6cd2787dc0d2b26e51299b24e8f4a6f195e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-nm/official-documents/us-nm-w6-hca-hsr-vol-41-no-17.pdf",
+      "sha256": "a77371115c0e04f733df3b92c3affed568234f8651b20d2c25e1b062b1ed5c3e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T17:56:25.353859+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xOF7Pg+6ZSaC4EXslzs8TTilbHqqMpgBVO+B1Pex1aXcg7AMYCjcKAEMAsoxO+AattiVHWp88LDRNv1kDx8dDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rulemaking-nm"
+}

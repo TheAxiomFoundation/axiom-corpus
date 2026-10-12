@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/form/2026-10-06-w6-income-tax-forms-ga.json",
+      "sha256": "acd0c0d7b148688e83ef07abd9ebaf83f69f028fe6d4442f125dae2da2e70d50"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/form/2026-10-06-w6-income-tax-forms-ga.json",
+      "sha256": "3befd3fda786ab87b943c8f8bd62e2bff759291cb739d54bdca0e43727d77012"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/form/2026-10-06-w6-income-tax-forms-ga.jsonl",
+      "sha256": "6d30812fbbb4f8bb6655a6dbda22611752c530ebc2885bc2b7613c8a78bfc4b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-10-06-w6-income-tax-forms-ga/official-documents/us-ga-w6-dor-ty2021-it-511.pdf",
+      "sha256": "2ea79be236a3f0a577b9910087fc023cd7c784865b59e50cda17dcea28703370"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-10-06-w6-income-tax-forms-ga/official-documents/us-ga-w6-dor-ty2022-form-500.pdf",
+      "sha256": "efe9960ba460650208fa9b82f0bfa7f01cf18e0cfd42b7b02477d8061e00c3aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-10-06-w6-income-tax-forms-ga/official-documents/us-ga-w6-dor-ty2022-it-511.pdf",
+      "sha256": "98eb22b6da9e8023b9be5fe8af962fbfc3ac63499edf7461386b19c8af70a7f2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-10-06-w6-income-tax-forms-ga/official-documents/us-ga-w6-dor-ty2023-it-511.pdf",
+      "sha256": "3ce70e0378602d0fd60f0a86a3326fbd206b3c70613fd820da13d7a135bced2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-10-06-w6-income-tax-forms-ga/official-documents/us-ga-w6-dor-ty2024-it-511.pdf",
+      "sha256": "5907211db514b3a5c485bf372aac2b8be6f61aa61e6995b2d541005d63e8b481"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:50:41.335136+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "thJ1Jj5MnINjbxV+NgOxQLzMmk8dkxHej1YtTQ8RKpMFfcjQFk/Ja3bso6CY6od3aKisAsC5tlLQg/D9OigrAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-ga"
+}

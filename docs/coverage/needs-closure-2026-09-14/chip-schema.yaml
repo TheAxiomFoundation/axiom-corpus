@@ -1,0 +1,2556 @@
+program: chip
+date: '2026-09-11'
+schema_version: 2
+method: 'Elements are derived from the program''s legal structure, not from a model. (1) 42 U.S.C. 1396a and the sections it invokes (1396b(v),
+  1396d, 1396o, 1396p, 1396r-5, 1396r-6, 1396u-1, 1320b-7, 1382-1382c, 8 U.S.C. 1611-1641, 1315) / 42 U.S.C. 1397aa-1397mm. (2) Every section
+  of 42 CFR 435 (as held in us/regulation/2026-06-25-title-42-part-435 plus the CMS-2454-IFC 435.550-563 scope), 436 (us/regulation/2026-09-11-title-42-part-436),
+  447 subpart A (eCFR structure 2026-09-09; not held) and 457 (us/regulation/2026-07-13-recovery-r2026-07-17-dedup). (3) The structure of the
+  state rulebooks held in the corpus (tables of contents of the 2026-09-10 Medicaid and CHIP state scopes: definitions, application, coverage
+  groups, non-financial, household/assistance unit, income, resources, MAGI and non-MAGI budgeting, LTC/HCBS post-eligibility, transfers and trusts,
+  spousal impoverishment, medically needy/spend-down, MSP, presumptive and continuous eligibility, renewals and changes, notices and hearings,
+  appendix income/resource tables), the approved state plan and SPAs, and annual income-level tables. PolicyEngine (policyengine-us 84253b6, 2026-08-17:
+  parameters gov/hhs/medicaid, gov/hhs/chip, gov/aca, gov/states/*/hhs/chip, gov/states/{ar,va}/*/medicaid and the matching variables) and rulespec-us
+  (c8951033, 2026-08-08: us-xx/policies/cms/*-chip-eligibility and *-medicaid-chip-bhp-eligibility-levels wrappers, us/policies/medicaid/magi_household_income_pipeline,
+  us-ga dfcs/medicaid/2578, oracle-coverage-pending entries) are recorded per element as a cross-check in pe_modeled / rulespec.'
+levels:
+  federal_only: 'federal text sets the element; every state inherits it (state matrix rows: INHERITED, or NOT_APPLICABLE for part 436 which governs
+    only GU/PR/VI)'
+  federal_with_state_option: federal text sets the rule; the state elects or implements; the state row is checked against the state's held documents
+  state: a state-set value or state-authored rule; the state row is checked; the federal row records the federal authority
+search_confidence:
+  high: 'search_patterns (strong) exist: a body match in the state''s program or pointer scopes is PRESENT with the matched provision (subject
+    to needs_number and neg_context)'
+  low: 'only weak_patterns exist: a match is a candidate and is reported REVIEW with the candidate cited'
+  n/a: no text search; the cell is settled by the federal row, a CMS compilation, the state plan family or the queue row
+pass_2_note: Schema version 2 (2026-09-12). Pass 1 (2026-09-11) marked PRESENT on single-word patterns and on hits in SNAP, TANF and CalFresh
+  scopes; pass 2 restricts the search universe to the state's Medicaid and CHIP scopes plus the pointer scopes of done-by-pointer states, splits
+  patterns into strong and weak, requires a value signal for state-set standards, rejects Medicare and ACA contexts for cost-sharing elements,
+  and names the CMS-posted state plan family that carries an election when the state text does not. 42 CFR 457.344 is held only as a removal notice
+  in the CMS-2454-IFC conforming-amendments scope and is not an element.
+title: CHIP needs schema (law-derived)
+labels:
+- chip
+pe_cross_check_summary: 'PolicyEngine models: separate-CHIP child income limit and max age, pregnant-woman CHIP income limit, FCEP (unborn child)
+  income limit and Alabama county/statewide flags, disqualifying health coverage, the 5% cumulative cost-sharing cap, and state premium/enrollment-fee
+  schedules for 17 states (AL, CT, DE, FL, GA, IA, ID, IL, IN, KS, LA, MA, MI, MO, NY, TX, WI), plus federal share. PolicyEngine does not model:
+  waiting periods/substitution, continuous eligibility, presumptive eligibility, renewals, verification, benefit package, copayment schedules,
+  disenrollment protections, AI/AN exemptions, M-CHIP vs S-CHIP program type, state plan content.'
+element_count: 186
+elements:
+- id: C-ST-1397aa
+  title: '2101: purpose; state child health plans'
+  federal_citation: 42 U.S.C. 1397aa
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held (us/statute/42/1397aa, consolidated title-42 scope).
+  weak_patterns: []
+- id: C-ST-1397bb
+  title: '2102: general contents of the state child health plan; eligibility standards and methodology; outreach; coordination'
+  federal_citation: 42 U.S.C. 1397bb
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held. State plan content is element 457.50 / C-SS-STATE-PLAN.
+  weak_patterns: []
+- id: C-ST-1397cc
+  title: '2103: coverage requirements (benchmark options); 2103(e) cost-sharing limits'
+  federal_citation: 42 U.S.C. 1397cc
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: partial (cost_sharing/cap/rate)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held. State elections are elements 457.410-457.450 and 457.505-457.570.
+  weak_patterns: []
+- id: C-ST-1397dd
+  title: '2104: allotments'
+  federal_citation: 42 U.S.C. 1397dd
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397ee
+  title: '2105: payments to states (enhanced FMAP; 10% administrative cap; conditions)'
+  federal_citation: 42 U.S.C. 1397ee
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (variables chip_federal_share, chip_federal_cost)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397ff
+  title: '2106: submission, approval and amendment of state child health plans'
+  federal_citation: 42 U.S.C. 1397ff
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397gg
+  title: '2107: strategic objectives and performance goals; plan administration'
+  federal_citation: 42 U.S.C. 1397gg
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397hh
+  title: '2108: annual reports; evaluations'
+  federal_citation: 42 U.S.C. 1397hh
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397ii
+  title: '2109: miscellaneous provisions (relation to other laws; adult coverage limits)'
+  federal_citation: 42 U.S.C. 1397ii
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397jj-b
+  title: '2110(b): targeted low-income child (state income standard; uncovered child; group health plan exclusion; substitution)'
+  federal_citation: 42 U.S.C. 1397jj(b); 42 CFR 457.310
+  level: state
+  carrying_family_state: approved CHIP state plan (CMS template) on medicaid.gov / state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (child/income_limit, child/max_age, disqualifying_health_coverage)
+  rulespec: us-xx:policies/cms/<state>-chip-eligibility
+  search_patterns:
+  - targeted low.income child|uninsured child|(no|without) (other )?(creditable |health )?(insurance|coverage).{0,80}child|child.{0,80}(no|without)
+    (other )?(creditable |health )?(insurance|coverage)
+  search_confidence: high
+  notes: Held (us/statute/42/1397jj).
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-ST-1397jj-c
+  title: '2110(c): definitions (child, creditable coverage, etc.)'
+  federal_citation: 42 U.S.C. 1397jj(c)
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (child/max_age)
+  rulespec: us:statutes/42/1397jj/c/1#child
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397kk
+  title: '2111: phase-out of coverage for nonpregnant childless adults; parent coverage conditions'
+  federal_citation: 42 U.S.C. 1397kk
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-1397ll
+  title: '2112: optional coverage of targeted low-income pregnant women (state election and income standard)'
+  federal_citation: 42 U.S.C. 1397ll
+  level: state
+  carrying_family_state: approved CHIP state plan (CMS template) on medicaid.gov / state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (pregnant/income_limit)
+  rulespec: us-xx:policies/cms/<state>-chip-eligibility (pregnant CHIP availability)
+  search_patterns:
+  - pregnan\w*
+  search_confidence: high
+  notes: 'Held (us/statute/42/1397ll). Fallback: CMS table "Pregnant Women CHIP" column.'
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  chip_context: true
+  weak_patterns: []
+  needs_number: true
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-ST-1397mm
+  title: '2113: grants to improve outreach and enrollment'
+  federal_citation: 42 U.S.C. 1397mm
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: Held.
+  weak_patterns: []
+- id: C-ST-FCEP
+  title: Unborn child option (coverage from conception to birth, 42 CFR 457.10 definition of child; CHIP SPA CS9)
+  federal_citation: 42 CFR 457.10 ("child"); state CHIP SPA template CS9
+  level: state
+  carrying_family_state: CMS CHIP SPA (medicaid.gov) / state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (fcep/*)
+  rulespec: us-xx:policies/cms/<state>-chip-eligibility (FCEP)
+  search_patterns:
+  - unborn child|conception to birth|from conception|prenatal (coverage|program|care).{0,60}(CHIP|title XXI)|CHIP perinatal|unborn
+  search_confidence: high
+  notes: The CMS CHIP children-coverage map (us/form) records which states elect the FCEP option; the CHIP SPA scope holds the FCEP SPAs for some
+    states.
+  fallback: us/form/cms/chip-children-coverage-map
+  coverage_map: true
+  chip_context: true
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-1
+  title: '42 CFR 457.1: Program description'
+  federal_citation: 42 CFR 457.1
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1
+  weak_patterns: []
+- id: C-457-2
+  title: '42 CFR 457.2: Basis and scope of subchapter D'
+  federal_citation: 42 CFR 457.2
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/2
+  weak_patterns: []
+- id: C-457-10
+  title: '42 CFR 457.10: Definitions and use of terms (child, targeted low-income child, etc.)'
+  federal_citation: 42 CFR 457.10
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/10
+  weak_patterns: []
+- id: C-457-30
+  title: '42 CFR 457.30: Basis, scope and applicability of subpart A'
+  federal_citation: 42 CFR 457.30
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/30
+  weak_patterns: []
+- id: C-457-40
+  title: '42 CFR 457.40: State program administration (designated agency)'
+  federal_citation: 42 CFR 457.40
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/40
+  weak_patterns: []
+- id: C-457-50
+  title: '42 CFR 457.50: State plan (the approved CHIP state plan)'
+  federal_citation: 42 CFR 457.50
+  level: state
+  carrying_family_state: approved CHIP state plan (CMS template) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: medicaid.gov posts every CHIP state plan; the PA CHIP index also lists its state plan PDF (not taken).
+  chip_context: true
+  state_plan: true
+  cfr_path: us/regulation/42/457/50
+  weak_patterns: []
+- id: C-457-60
+  title: '42 CFR 457.60: Amendments (CHIP SPAs on record)'
+  federal_citation: 42 CFR 457.60
+  level: state
+  carrying_family_state: CMS CHIP SPA index (medicaid.gov)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: The corpus CHIP SPA scope (us/policy 2026-07-05-cms-chip-fcep-spa) holds SPAs for 20 states.
+  chip_context: true
+  spa: true
+  cfr_path: us/regulation/42/457/60
+  weak_patterns: []
+- id: C-457-65
+  title: '42 CFR 457.65: Effective date and duration of state plans and amendments'
+  federal_citation: 42 CFR 457.65
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/65
+  weak_patterns: []
+- id: C-457-70
+  title: '42 CFR 457.70: Program options (Medicaid expansion, separate program, combination)'
+  federal_citation: 42 CFR 457.70
+  level: state
+  carrying_family_state: CMS CHIP children coverage map (us/form) / approved CHIP state plan (CMS template) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - medicaid expansion (CHIP|program)|separate (CHIP|child health|children.s health) (program|insurance)|combination (program|CHIP)|title XXI
+  search_confidence: high
+  notes: The CMS coverage map (us/form/cms/chip-children-coverage-map/<state>) records each state's program type.
+  chip_context: true
+  coverage_map: true
+  fallback: us/form/cms/chip-children-coverage-map
+  cfr_path: us/regulation/42/457/70
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-80
+  title: '42 CFR 457.80: Current state child health insurance coverage and coordination'
+  federal_citation: 42 CFR 457.80
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/80
+  weak_patterns:
+  - coordinat.{0,120}(medicaid|exchange|marketplace)
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-90
+  title: '42 CFR 457.90: Outreach'
+  federal_citation: 42 CFR 457.90
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/90
+  weak_patterns:
+  - outreach
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-110
+  title: '42 CFR 457.110: Enrollment assistance and information requirements'
+  federal_citation: 42 CFR 457.110
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/110
+  weak_patterns:
+  - (enrollment|application) assist
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-120
+  title: '42 CFR 457.120: Public involvement in program development'
+  federal_citation: 42 CFR 457.120
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/120
+  weak_patterns: []
+- id: C-457-125
+  title: '42 CFR 457.125: Provision of child health assistance to American Indian and Alaska Native children'
+  federal_citation: 42 CFR 457.125
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - american indian|alaska native|\bAI/AN\b|tribal member|indian health
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/125
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-130
+  title: '42 CFR 457.130: Civil rights assurance'
+  federal_citation: 42 CFR 457.130
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/130
+  weak_patterns: []
+- id: C-457-135
+  title: '42 CFR 457.135: Assurance of compliance with other provisions'
+  federal_citation: 42 CFR 457.135
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/135
+  weak_patterns: []
+- id: C-457-140
+  title: '42 CFR 457.140: Budget'
+  federal_citation: 42 CFR 457.140
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/140
+  weak_patterns: []
+- id: C-457-150
+  title: '42 CFR 457.150: CMS review of state plan material'
+  federal_citation: 42 CFR 457.150
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/150
+  weak_patterns: []
+- id: C-457-160
+  title: '42 CFR 457.160: Notice and timing of CMS action'
+  federal_citation: 42 CFR 457.160
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/160
+  weak_patterns: []
+- id: C-457-170
+  title: '42 CFR 457.170: Withdrawal process'
+  federal_citation: 42 CFR 457.170
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/170
+  weak_patterns: []
+- id: C-457-200
+  title: '42 CFR 457.200: Program reviews'
+  federal_citation: 42 CFR 457.200
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/200
+  weak_patterns: []
+- id: C-457-202
+  title: '42 CFR 457.202: Audits'
+  federal_citation: 42 CFR 457.202
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/202
+  weak_patterns: []
+- id: C-457-203
+  title: '42 CFR 457.203: Administrative and judicial review of action on state plan material'
+  federal_citation: 42 CFR 457.203
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/203
+  weak_patterns: []
+- id: C-457-204
+  title: '42 CFR 457.204: Withholding of payment for failure to comply'
+  federal_citation: 42 CFR 457.204
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/204
+  weak_patterns: []
+- id: C-457-206
+  title: '42 CFR 457.206: Administrative appeals under CHIP'
+  federal_citation: 42 CFR 457.206
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/206
+  weak_patterns: []
+- id: C-457-208
+  title: '42 CFR 457.208: Judicial review'
+  federal_citation: 42 CFR 457.208
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/208
+  weak_patterns: []
+- id: C-457-216
+  title: '42 CFR 457.216: Treatment of uncashed or canceled CHIP checks'
+  federal_citation: 42 CFR 457.216
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/216
+  weak_patterns: []
+- id: C-457-220
+  title: '42 CFR 457.220: Funds from units of government as state share'
+  federal_citation: 42 CFR 457.220
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/220
+  weak_patterns: []
+- id: C-457-222
+  title: '42 CFR 457.222: FFP for equipment'
+  federal_citation: 42 CFR 457.222
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/222
+  weak_patterns: []
+- id: C-457-224
+  title: '42 CFR 457.224: FFP: conditions relating to cost sharing'
+  federal_citation: 42 CFR 457.224
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/224
+  weak_patterns: []
+- id: C-457-226
+  title: '42 CFR 457.226: Fiscal policies and accountability'
+  federal_citation: 42 CFR 457.226
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/226
+  weak_patterns: []
+- id: C-457-228
+  title: '42 CFR 457.228: Cost allocation'
+  federal_citation: 42 CFR 457.228
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/228
+  weak_patterns: []
+- id: C-457-230
+  title: '42 CFR 457.230: FFP for state ADP expenditures'
+  federal_citation: 42 CFR 457.230
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/230
+  weak_patterns: []
+- id: C-457-232
+  title: '42 CFR 457.232: Refunding of federal share of overpayments'
+  federal_citation: 42 CFR 457.232
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/232
+  weak_patterns: []
+- id: C-457-236
+  title: '42 CFR 457.236: Audits'
+  federal_citation: 42 CFR 457.236
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/236
+  weak_patterns: []
+- id: C-457-238
+  title: '42 CFR 457.238: Documentation of payment rates'
+  federal_citation: 42 CFR 457.238
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/238
+  weak_patterns: []
+- id: C-457-300
+  title: '42 CFR 457.300: Basis, scope and applicability (subpart C eligibility)'
+  federal_citation: 42 CFR 457.300
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/300
+  weak_patterns: []
+- id: C-457-301
+  title: '42 CFR 457.301: Definitions and use of terms'
+  federal_citation: 42 CFR 457.301
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/301
+  weak_patterns: []
+- id: C-457-305
+  title: '42 CFR 457.305: State plan provisions (eligibility standards in the plan)'
+  federal_citation: 42 CFR 457.305
+  level: state
+  carrying_family_state: approved CHIP state plan (CMS template) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  state_plan: true
+  cfr_path: us/regulation/42/457/305
+  weak_patterns: []
+- id: C-457-310
+  title: '42 CFR 457.310: Targeted low-income child (state income standard; uninsured; not eligible for Medicaid; group health plan exclusions)'
+  federal_citation: 42 CFR 457.310
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes (child/income_limit, disqualifying_health_coverage)
+  rulespec: us-xx:policies/cms/<state>-chip-eligibility
+  search_patterns:
+  - targeted low.income child|(200|250|300|3\d\d|2\d\d) ?(%|percent).{0,60}(FPL|poverty).{0,200}(CHIP|child)|uninsured.{0,80}child|child.{0,80}uninsured
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  cfr_path: us/regulation/42/457/310
+  weak_patterns: []
+  needs_number: true
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-315
+  title: '42 CFR 457.315: Application of MAGI and household definition'
+  federal_citation: 42 CFR 457.315
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (via gov/hhs/medicaid/income)
+  rulespec: 'no'
+  search_patterns:
+  - modified adjusted gross income|\bMAGI\b
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/315
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-320-a
+  title: '42 CFR 457.320-a: Other eligibility standards: residency, citizenship, age, SSN (457.320(a)-(c))'
+  federal_citation: 42 CFR 457.320-a
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/320
+  weak_patterns:
+  - (state )?residen|citizen|immigra|lawfully|social security number
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-320-b
+  title: '42 CFR 457.320-b: Other eligibility standards: waiting period / period of uninsurance (457.320(a)(9), 457.805)'
+  federal_citation: 42 CFR 457.320-b
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - waiting period|period of uninsurance|uninsured for (at least )?(30|60|90|ninety|three|3|6|six)|(30|60|90|ninety) days?.{0,80}(uninsured|without
+    (health )?(insurance|coverage))
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/320
+  weak_patterns: []
+  plan_family: CHIP state plan section 4.4 (substitution of coverage) on medicaid.gov
+- id: C-457-330
+  title: '42 CFR 457.330: Application (single streamlined; state options)'
+  federal_citation: 42 CFR 457.330
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - application (form|process|procedure)|apply(ing)? for|single streamlined application
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/330
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-340
+  title: '42 CFR 457.340: Application for and enrollment in CHIP (effective dates, notices)'
+  federal_citation: 42 CFR 457.340
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/340
+  weak_patterns:
+  - enroll(ment|ed).{0,120}(effective|begin|date)|effective date|begin date
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-342
+  title: '42 CFR 457.342: Continuous eligibility for children (12 months; mandatory 2024)'
+  federal_citation: 42 CFR 457.342
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - continuous eligibility|(12|twelve).month continuous|continuous coverage
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/342
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-343
+  title: '42 CFR 457.343: Periodic renewal of CHIP eligibility'
+  federal_citation: 42 CFR 457.343
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - \brenewals?\b|redetermination|recertification|annual (review|redetermination)|ex parte
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/343
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-348
+  title: '42 CFR 457.348: Determinations of CHIP eligibility by other insurance affordability programs'
+  federal_citation: 42 CFR 457.348
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/348
+  weak_patterns:
+  - (exchange|marketplace|medicaid).{0,120}(determin|refer|transfer).{0,80}CHIP|CHIP.{0,120}(exchange|marketplace).{0,80}(determin|refer|transfer)
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-350
+  title: '42 CFR 457.350: Eligibility screening and enrollment in other insurance affordability programs (Medicaid screen)'
+  federal_citation: 42 CFR 457.350
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - screen(ed|ing)? for medicaid|medicaid.{0,60}screen|not eligible for medicaid|ineligible for medicaid|insurance affordability program
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/350
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-351
+  title: '42 CFR 457.351: Coordination involving appeals entities'
+  federal_citation: 42 CFR 457.351
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/351
+  weak_patterns: []
+- id: C-457-353
+  title: '42 CFR 457.353: Monitoring and evaluation of screening process'
+  federal_citation: 42 CFR 457.353
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/353
+  weak_patterns: []
+- id: C-457-355
+  title: '42 CFR 457.355: Presumptive eligibility for children (state option)'
+  federal_citation: 42 CFR 457.355
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - presumptive(ly)? eligib
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/355
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-360
+  title: '42 CFR 457.360: Deemed newborn children'
+  federal_citation: 42 CFR 457.360
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - deemed newborn|newborn.{0,150}(deemed|automatically|continuous(ly)? eligib|eligible (until|through|for (the )?(first )?(year|12 months|twelve
+    months))|remains eligible)|child born to a (woman|mother|pregnant).{0,120}(chip|medicaid|eligible)
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/360
+  weak_patterns:
+  - newborn
+  plan_family: CHIP state plan sections 4.1-4.4 (eligibility standards and methodology) on medicaid.gov
+- id: C-457-370
+  title: '42 CFR 457.370: Alignment with Exchange initial open enrollment period'
+  federal_citation: 42 CFR 457.370
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/370
+  weak_patterns: []
+- id: C-457-380
+  title: '42 CFR 457.380: Eligibility verification'
+  federal_citation: 42 CFR 457.380
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - verif(y|ied|ication) (of )?(income|eligibility|citizenship|immigration|information|household|residency|insurance|the information)|verification
+    (plan|requirements?|procedures?|standards?|sources?)|electronic (data )?(sources?|verification)|self.attestation
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/380
+  weak_patterns:
+  - verif
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-401
+  title: '42 CFR 457.401: Basis, scope and applicability (subpart D benefits)'
+  federal_citation: 42 CFR 457.401
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/401
+  weak_patterns: []
+- id: C-457-402
+  title: '42 CFR 457.402: Definition of child health assistance'
+  federal_citation: 42 CFR 457.402
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/402
+  weak_patterns: []
+- id: C-457-410
+  title: '42 CFR 457.410: Health benefits coverage options (benchmark, benchmark-equivalent, existing, Secretary-approved)'
+  federal_citation: 42 CFR 457.410
+  level: state
+  carrying_family_state: approved CHIP state plan (CMS template) on medicaid.gov / member handbook
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/410
+  weak_patterns:
+  - benchmark|benefit package|covered (services|benefits)|schedule of benefits|scope of (services|benefits)
+  plan_family: CHIP state plan section 6 (coverage requirements) on medicaid.gov
+- id: C-457-420
+  title: '42 CFR 457.420: Benchmark health benefits coverage'
+  federal_citation: 42 CFR 457.420
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/420
+  weak_patterns: []
+- id: C-457-430
+  title: '42 CFR 457.430: Benchmark-equivalent coverage'
+  federal_citation: 42 CFR 457.430
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/430
+  weak_patterns: []
+- id: C-457-431
+  title: '42 CFR 457.431: Actuarial report for benchmark-equivalent coverage'
+  federal_citation: 42 CFR 457.431
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/431
+  weak_patterns: []
+- id: C-457-440
+  title: '42 CFR 457.440: Existing comprehensive state-based coverage'
+  federal_citation: 42 CFR 457.440
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/440
+  weak_patterns: []
+- id: C-457-450
+  title: '42 CFR 457.450: Secretary-approved coverage'
+  federal_citation: 42 CFR 457.450
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/450
+  weak_patterns: []
+- id: C-457-470
+  title: '42 CFR 457.470: Prohibited coverage'
+  federal_citation: 42 CFR 457.470
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/470
+  weak_patterns: []
+- id: C-457-475
+  title: '42 CFR 457.475: Limitations on coverage: abortions'
+  federal_citation: 42 CFR 457.475
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/475
+  weak_patterns: []
+- id: C-457-480
+  title: '42 CFR 457.480: Prohibited coverage limitations; preexisting conditions'
+  federal_citation: 42 CFR 457.480
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/480
+  weak_patterns: []
+- id: C-457-490
+  title: '42 CFR 457.490: Delivery and utilization control systems'
+  federal_citation: 42 CFR 457.490
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/490
+  weak_patterns: []
+- id: C-457-495
+  title: '42 CFR 457.495: State assurance of access to care and quality'
+  federal_citation: 42 CFR 457.495
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/495
+  weak_patterns: []
+- id: C-457-496
+  title: '42 CFR 457.496: Parity in mental health and substance use disorder benefits'
+  federal_citation: 42 CFR 457.496
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/496
+  weak_patterns: []
+- id: C-457-500
+  title: '42 CFR 457.500: Basis, scope and applicability (subpart E cost sharing)'
+  federal_citation: 42 CFR 457.500
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/500
+  weak_patterns: []
+- id: C-457-505
+  title: '42 CFR 457.505: General state plan requirements for cost sharing (whether the state imposes any)'
+  federal_citation: 42 CFR 457.505
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - cost.sharing|\bco-?pay(ment)?s?\b|\bpremiums?\b|enrollment fee
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/505
+  weak_patterns: []
+  neg_context: medicare|part [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare|individual (shared )?responsibility|marketplace|exchange|qualified
+    health plan|\bAPTC\b|premium tax credit|premium assistance
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-510
+  title: '42 CFR 457.510: Premiums, enrollment fees or similar fees (state schedule)'
+  federal_citation: 42 CFR 457.510
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes for 17 states (states/<xx>/hhs/chip/premium*, enrollment_fee*)
+  rulespec: 'no'
+  search_patterns:
+  - (chip|program|monthly|annual|family|sliding.scale|premium.based) premiums?\b|premiums? (amounts?|schedule|payments?|are|is|shall|will|must)
+    (be )?(charged|required|paid|due|\$|based)|enrollment fee|\$\s?\d[\d,.]*\s?(per|a|/) ?(month|year|child|family).{0,80}(premium|fee)|(premium|fee)s?.{0,100}\$\s?\d
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/510
+  weak_patterns:
+  - premium
+  needs_number: true
+  neg_context: medicare|part [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare|individual (shared )?responsibility|marketplace|exchange|qualified
+    health plan|\bAPTC\b|premium tax credit|premium assistance
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-515
+  title: '42 CFR 457.515: Co-payments, coinsurance, deductibles (state schedule)'
+  federal_citation: 42 CFR 457.515
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - \bco-?pay(ment)?s?\b|\bcoinsurance\b|\bdeductibles?\b
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/515
+  weak_patterns: []
+  neg_context: medicare|part [abd]\b|\bQMB\b|\bSLMB\b|\bQI\b|buy-?in for medicare|individual (shared )?responsibility|marketplace|exchange|qualified
+    health plan|\bAPTC\b|premium tax credit|premium assistance
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-520
+  title: '42 CFR 457.520: Cost sharing for well-baby and well-child care (prohibited)'
+  federal_citation: 42 CFR 457.520
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/520
+  weak_patterns:
+  - well.?(baby|child)|preventive (services|care).{0,120}(no|without|exempt|free)|(no|without|exempt).{0,60}(co-?pay|cost.sharing).{0,120}(preventive|well)
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-525
+  title: '42 CFR 457.525: Public schedule of cost sharing'
+  federal_citation: 42 CFR 457.525
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/525
+  weak_patterns:
+  - public schedule|schedule of (cost.sharing|co-?pay|premium)
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-530
+  title: '42 CFR 457.530: General cost-sharing protection for lower-income children'
+  federal_citation: 42 CFR 457.530
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/530
+  weak_patterns: []
+- id: C-457-535
+  title: '42 CFR 457.535: Cost-sharing protection for American Indians and Alaska Natives'
+  federal_citation: 42 CFR 457.535
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - american indian|alaska native|\bAI/AN\b|tribal
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/535
+  weak_patterns: []
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-540
+  title: '42 CFR 457.540: Cost-sharing charges for children at or below 150% FPL (nominal)'
+  federal_citation: 42 CFR 457.540
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/540
+  weak_patterns:
+  - 150 ?(%|percent).{0,200}(co-?pay|cost.sharing|premium|nominal)|(co-?pay|cost.sharing|premium).{0,200}150 ?(%|percent)
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-555
+  title: '42 CFR 457.555: Maximum allowable cost-sharing charges for children 101-150% FPL'
+  federal_citation: 42 CFR 457.555
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/555
+  weak_patterns: []
+- id: C-457-560
+  title: '42 CFR 457.560: Cumulative cost-sharing maximum (5% of family income)'
+  federal_citation: 42 CFR 457.560
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (cost_sharing/cap/rate)
+  rulespec: 'no'
+  search_patterns:
+  - 5 ?(%|percent).{0,120}(family |household |annual |gross )?income|cumulative (cost.sharing )?maximum|(cost.sharing|co-?pay|premium).{0,160}(cap|maximum|limit).{0,80}(5|five)
+    ?(%|percent)
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/560
+  weak_patterns: []
+  neg_context: individual (shared )?responsibility|marketplace|exchange|qualified health plan|\bAPTC\b|premium tax credit|premium assistance
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-570
+  title: '42 CFR 457.570: Disenrollment protections (premium nonpayment, grace period, lock-out)'
+  federal_citation: 42 CFR 457.570
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - disenroll|non-?payment of (the )?premium|failure to pay (the |a )?premium|grace period|lock-?out
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/570
+  weak_patterns: []
+  plan_family: CHIP state plan section 8 (cost sharing and payment) on medicaid.gov
+- id: C-457-600
+  title: '42 CFR 457.600: Purpose and basis (subpart F payments)'
+  federal_citation: 42 CFR 457.600
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/600
+  weak_patterns: []
+- id: C-457-602
+  title: '42 CFR 457.602: Applicability'
+  federal_citation: 42 CFR 457.602
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/602
+  weak_patterns: []
+- id: C-457-606
+  title: '42 CFR 457.606: Conditions for state allotments and federal payments'
+  federal_citation: 42 CFR 457.606
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/606
+  weak_patterns: []
+- id: C-457-608
+  title: '42 CFR 457.608: State allotments prior to FY 2009'
+  federal_citation: 42 CFR 457.608
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/608
+  weak_patterns: []
+- id: C-457-609
+  title: '42 CFR 457.609: State allotments after FY 2008'
+  federal_citation: 42 CFR 457.609
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/609
+  weak_patterns: []
+- id: C-457-610
+  title: '42 CFR 457.610: Availability of allotments prior to FY 2009'
+  federal_citation: 42 CFR 457.610
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/610
+  weak_patterns: []
+- id: C-457-611
+  title: '42 CFR 457.611: Availability of allotments after FY 2008'
+  federal_citation: 42 CFR 457.611
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/611
+  weak_patterns: []
+- id: C-457-614
+  title: '42 CFR 457.614: General payment process'
+  federal_citation: 42 CFR 457.614
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/614
+  weak_patterns: []
+- id: C-457-616
+  title: '42 CFR 457.616: Application and tracking of payments'
+  federal_citation: 42 CFR 457.616
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/616
+  weak_patterns: []
+- id: C-457-618
+  title: '42 CFR 457.618: Ten percent limit on certain expenditures'
+  federal_citation: 42 CFR 457.618
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/618
+  weak_patterns: []
+- id: C-457-622
+  title: '42 CFR 457.622: Rate of FFP (enhanced FMAP)'
+  federal_citation: 42 CFR 457.622
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: yes (variables chip_federal_share)
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/622
+  weak_patterns: []
+- id: C-457-626
+  title: '42 CFR 457.626: Prevention of duplicate payments'
+  federal_citation: 42 CFR 457.626
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/626
+  weak_patterns: []
+- id: C-457-628
+  title: '42 CFR 457.628: Other applicable federal regulations'
+  federal_citation: 42 CFR 457.628
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/628
+  weak_patterns: []
+- id: C-457-630
+  title: '42 CFR 457.630: Grants procedures'
+  federal_citation: 42 CFR 457.630
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/630
+  weak_patterns: []
+- id: C-457-700
+  title: '42 CFR 457.700: Basis, scope and applicability (subpart G)'
+  federal_citation: 42 CFR 457.700
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/700
+  weak_patterns: []
+- id: C-457-710
+  title: '42 CFR 457.710: Strategic objectives and performance goals (state plan)'
+  federal_citation: 42 CFR 457.710
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/710
+  weak_patterns: []
+- id: C-457-720
+  title: '42 CFR 457.720: Data collection, records and reports assurance'
+  federal_citation: 42 CFR 457.720
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/720
+  weak_patterns: []
+- id: C-457-730
+  title: '42 CFR 457.730: Beneficiary access to and exchange of data'
+  federal_citation: 42 CFR 457.730
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/730
+  weak_patterns: []
+- id: C-457-731
+  title: '42 CFR 457.731: Provider and payer access to health data'
+  federal_citation: 42 CFR 457.731
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/731
+  weak_patterns: []
+- id: C-457-732
+  title: '42 CFR 457.732: Prior authorization requirements'
+  federal_citation: 42 CFR 457.732
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/732
+  weak_patterns: []
+- id: C-457-740
+  title: '42 CFR 457.740: State expenditures and statistical reports'
+  federal_citation: 42 CFR 457.740
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/740
+  weak_patterns: []
+- id: C-457-750
+  title: '42 CFR 457.750: Annual report'
+  federal_citation: 42 CFR 457.750
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/750
+  weak_patterns: []
+- id: C-457-760
+  title: '42 CFR 457.760: Provider directory information'
+  federal_citation: 42 CFR 457.760
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/760
+  weak_patterns: []
+- id: C-457-770
+  title: '42 CFR 457.770: Reporting on health care quality measures'
+  federal_citation: 42 CFR 457.770
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/770
+  weak_patterns: []
+- id: C-457-800
+  title: '42 CFR 457.800: Basis, scope and applicability (subpart H substitution)'
+  federal_citation: 42 CFR 457.800
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/800
+  weak_patterns: []
+- id: C-457-805
+  title: '42 CFR 457.805: Procedures to address substitution under group health plans (crowd-out; waiting periods)'
+  federal_citation: 42 CFR 457.805
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - substitution|crowd.?out|(employer.sponsored|group health).{0,120}(drop|waiting|substitut)|(drop|dropped|voluntarily terminat).{0,80}(coverage|insurance)
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/805
+  weak_patterns: []
+  plan_family: CHIP state plan section 4.4 (substitution of coverage) on medicaid.gov
+- id: C-457-810
+  title: '42 CFR 457.810: Premium assistance programs: protections against substitution'
+  federal_citation: 42 CFR 457.810
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - premium assistance
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/810
+  weak_patterns: []
+  plan_family: CHIP state plan section 4.4 (substitution of coverage) on medicaid.gov
+- id: C-457-900
+  title: '42 CFR 457.900: Basis, scope and applicability (subpart I program integrity)'
+  federal_citation: 42 CFR 457.900
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/900
+  weak_patterns: []
+- id: C-457-910
+  title: '42 CFR 457.910: State program administration'
+  federal_citation: 42 CFR 457.910
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/910
+  weak_patterns: []
+- id: C-457-915
+  title: '42 CFR 457.915: Fraud detection and investigation'
+  federal_citation: 42 CFR 457.915
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/915
+  weak_patterns: []
+- id: C-457-925
+  title: '42 CFR 457.925: Preliminary investigation'
+  federal_citation: 42 CFR 457.925
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/925
+  weak_patterns: []
+- id: C-457-930
+  title: '42 CFR 457.930: Full investigation, resolution and reporting'
+  federal_citation: 42 CFR 457.930
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/930
+  weak_patterns: []
+- id: C-457-935
+  title: '42 CFR 457.935: Sanctions and related penalties'
+  federal_citation: 42 CFR 457.935
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/935
+  weak_patterns: []
+- id: C-457-940
+  title: '42 CFR 457.940: Procurement standards'
+  federal_citation: 42 CFR 457.940
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/940
+  weak_patterns: []
+- id: C-457-945
+  title: '42 CFR 457.945: Certification for contracts and proposals'
+  federal_citation: 42 CFR 457.945
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/945
+  weak_patterns: []
+- id: C-457-950
+  title: '42 CFR 457.950: Contract and payment requirements'
+  federal_citation: 42 CFR 457.950
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/950
+  weak_patterns: []
+- id: C-457-960
+  title: '42 CFR 457.960: Reporting changes in eligibility and redetermining eligibility'
+  federal_citation: 42 CFR 457.960
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - change(s)? in (circumstance|income|eligibility)|report(ing)? (a )?change
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/960
+  weak_patterns: []
+  plan_family: CHIP state plan sections 4 and 5 (eligibility procedures, outreach, coordination) on medicaid.gov
+- id: C-457-965
+  title: '42 CFR 457.965: Documentation'
+  federal_citation: 42 CFR 457.965
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/965
+  weak_patterns: []
+- id: C-457-980
+  title: '42 CFR 457.980: Verification of enrollment and provider services received'
+  federal_citation: 42 CFR 457.980
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/980
+  weak_patterns: []
+- id: C-457-985
+  title: '42 CFR 457.985: Integrity of professional advice to enrollees'
+  federal_citation: 42 CFR 457.985
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/985
+  weak_patterns: []
+- id: C-457-990
+  title: '42 CFR 457.990: Provider and supplier screening'
+  federal_citation: 42 CFR 457.990
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/990
+  weak_patterns: []
+- id: C-457-1000
+  title: '42 CFR 457.1000: Basis, scope and applicability (subpart J waivers)'
+  federal_citation: 42 CFR 457.1000
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1000
+  weak_patterns: []
+- id: C-457-1003
+  title: '42 CFR 457.1003: CMS review of waiver requests'
+  federal_citation: 42 CFR 457.1003
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1003
+  weak_patterns: []
+- id: C-457-1005
+  title: '42 CFR 457.1005: Cost-effective coverage through a community-based health delivery system (waiver option)'
+  federal_citation: 42 CFR 457.1005
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1005
+  weak_patterns:
+  - community.based health (delivery|plan)
+  plan_family: CHIP state plan section 6 (coverage requirements) on medicaid.gov
+- id: C-457-1010
+  title: '42 CFR 457.1010: Purchase of family coverage (waiver option)'
+  federal_citation: 42 CFR 457.1010
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1010
+  weak_patterns:
+  - purchase of family coverage|family coverage.{0,80}(waiver|purchase)
+  plan_family: CHIP state plan section 6 (coverage requirements) on medicaid.gov
+- id: C-457-1015
+  title: '42 CFR 457.1015: Cost-effectiveness'
+  federal_citation: 42 CFR 457.1015
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1015
+  weak_patterns: []
+- id: C-457-1100
+  title: '42 CFR 457.1100: Basis, scope and applicability (subpart K protections)'
+  federal_citation: 42 CFR 457.1100
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1100
+  weak_patterns: []
+- id: C-457-1110
+  title: '42 CFR 457.1110: Privacy protections'
+  federal_citation: 42 CFR 457.1110
+  level: federal_with_state_option
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: low
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1110
+  weak_patterns:
+  - privacy|confidential
+  plan_family: CHIP state plan section 9 (strategic objectives) and CS-series eligibility SPAs on medicaid.gov
+- id: C-457-1120
+  title: '42 CFR 457.1120: Description of the review process (appeals/grievances) in the state plan'
+  federal_citation: 42 CFR 457.1120
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - review process|appeal|fair hearing|grievance|request(ing)? a (review|hearing)
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1120
+  weak_patterns: []
+  plan_family: CHIP state plan section 9 (strategic objectives) and CS-series eligibility SPAs on medicaid.gov
+- id: C-457-1130
+  title: '42 CFR 457.1130: Matters subject to review'
+  federal_citation: 42 CFR 457.1130
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1130
+  weak_patterns: []
+- id: C-457-1140
+  title: '42 CFR 457.1140: Core elements of review'
+  federal_citation: 42 CFR 457.1140
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1140
+  weak_patterns: []
+- id: C-457-1150
+  title: '42 CFR 457.1150: Impartial review'
+  federal_citation: 42 CFR 457.1150
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1150
+  weak_patterns: []
+- id: C-457-1160
+  title: '42 CFR 457.1160: Time frames for review'
+  federal_citation: 42 CFR 457.1160
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1160
+  weak_patterns: []
+- id: C-457-1170
+  title: '42 CFR 457.1170: Continuation of enrollment pending review'
+  federal_citation: 42 CFR 457.1170
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1170
+  weak_patterns: []
+- id: C-457-1180
+  title: '42 CFR 457.1180: Notice'
+  federal_citation: 42 CFR 457.1180
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1180
+  weak_patterns: []
+- id: C-457-1190
+  title: '42 CFR 457.1190: Review procedures with premium assistance'
+  federal_citation: 42 CFR 457.1190
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1190
+  weak_patterns: []
+- id: C-457-1200
+  title: '42 CFR 457.1200: Basis, scope and applicability (subpart L managed care)'
+  federal_citation: 42 CFR 457.1200
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1200
+  weak_patterns: []
+- id: C-457-1201
+  title: '42 CFR 457.1201: Standard contract requirements'
+  federal_citation: 42 CFR 457.1201
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1201
+  weak_patterns: []
+- id: C-457-1203
+  title: '42 CFR 457.1203: Rate development standards and MLR'
+  federal_citation: 42 CFR 457.1203
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1203
+  weak_patterns: []
+- id: C-457-1206
+  title: '42 CFR 457.1206: NEMT PAHPs'
+  federal_citation: 42 CFR 457.1206
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1206
+  weak_patterns: []
+- id: C-457-1207
+  title: '42 CFR 457.1207: Information requirements'
+  federal_citation: 42 CFR 457.1207
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1207
+  weak_patterns: []
+- id: C-457-1208
+  title: '42 CFR 457.1208: Provider discrimination prohibited'
+  federal_citation: 42 CFR 457.1208
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1208
+  weak_patterns: []
+- id: C-457-1209
+  title: '42 CFR 457.1209: Contracts involving Indians and IHCPs'
+  federal_citation: 42 CFR 457.1209
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1209
+  weak_patterns: []
+- id: C-457-1210
+  title: '42 CFR 457.1210: Enrollment process'
+  federal_citation: 42 CFR 457.1210
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1210
+  weak_patterns: []
+- id: C-457-1212
+  title: '42 CFR 457.1212: Disenrollment'
+  federal_citation: 42 CFR 457.1212
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1212
+  weak_patterns: []
+- id: C-457-1214
+  title: '42 CFR 457.1214: Conflict of interest safeguards'
+  federal_citation: 42 CFR 457.1214
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1214
+  weak_patterns: []
+- id: C-457-1216
+  title: '42 CFR 457.1216: Continued services to enrollees'
+  federal_citation: 42 CFR 457.1216
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1216
+  weak_patterns: []
+- id: C-457-1218
+  title: '42 CFR 457.1218: Network adequacy standards'
+  federal_citation: 42 CFR 457.1218
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1218
+  weak_patterns: []
+- id: C-457-1220
+  title: '42 CFR 457.1220: Enrollee rights'
+  federal_citation: 42 CFR 457.1220
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1220
+  weak_patterns: []
+- id: C-457-1222
+  title: '42 CFR 457.1222: Provider-enrollee communication'
+  federal_citation: 42 CFR 457.1222
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1222
+  weak_patterns: []
+- id: C-457-1224
+  title: '42 CFR 457.1224: Marketing activities'
+  federal_citation: 42 CFR 457.1224
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1224
+  weak_patterns: []
+- id: C-457-1226
+  title: '42 CFR 457.1226: Liability for payment'
+  federal_citation: 42 CFR 457.1226
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1226
+  weak_patterns: []
+- id: C-457-1228
+  title: '42 CFR 457.1228: Emergency and poststabilization services'
+  federal_citation: 42 CFR 457.1228
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1228
+  weak_patterns: []
+- id: C-457-1230
+  title: '42 CFR 457.1230: Access standards'
+  federal_citation: 42 CFR 457.1230
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1230
+  weak_patterns: []
+- id: C-457-1233
+  title: '42 CFR 457.1233: Structure and operation standards'
+  federal_citation: 42 CFR 457.1233
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1233
+  weak_patterns: []
+- id: C-457-1240
+  title: '42 CFR 457.1240: Quality measurement and improvement'
+  federal_citation: 42 CFR 457.1240
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1240
+  weak_patterns: []
+- id: C-457-1250
+  title: '42 CFR 457.1250: External quality review'
+  federal_citation: 42 CFR 457.1250
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1250
+  weak_patterns: []
+- id: C-457-1260
+  title: '42 CFR 457.1260: Grievance system'
+  federal_citation: 42 CFR 457.1260
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1260
+  weak_patterns: []
+- id: C-457-1270
+  title: '42 CFR 457.1270: Sanctions'
+  federal_citation: 42 CFR 457.1270
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1270
+  weak_patterns: []
+- id: C-457-1280
+  title: '42 CFR 457.1280: Conditions necessary to contract as an MCO, PAHP or PIHP'
+  federal_citation: 42 CFR 457.1280
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1280
+  weak_patterns: []
+- id: C-457-1285
+  title: '42 CFR 457.1285: Program integrity safeguards'
+  federal_citation: 42 CFR 457.1285
+  level: federal_only
+  carrying_family_state: n/a (federal text only)
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: ''
+  chip_context: true
+  cfr_path: us/regulation/42/457/1285
+  weak_patterns: []
+- id: C-435-229
+  title: '42 CFR 435.229 (via 457.70): optional targeted low-income children under the Medicaid state plan (M-CHIP group; state income standard)'
+  federal_citation: 42 CFR 435.229; 42 U.S.C. 1396a(a)(10)(A)(ii)(XIV)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (via gov/hhs/medicaid child income limits)
+  rulespec: us-xx cms eligibility-levels wrappers
+  search_patterns:
+  - targeted low.income child|title XXI|medicaid expansion (CHIP|program)|M-?CHIP|CHIP.{0,60}medicaid expansion|expansion CHIP|(CHIP|title XXI).{0,80}funded
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/229
+  chip_context: true
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: C-435-118
+  title: '42 CFR 435.118 (via 457.70): Medicaid children income standards by age band that define the M-CHIP band'
+  federal_citation: 42 CFR 435.118
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: 'yes'
+  rulespec: us-xx cms eligibility-levels wrappers
+  search_patterns:
+  - (infants?|children).{0,60}under (age )?19|under (age )?19|age[sd]? (0|1|6).{0,20}(to|through|-).{0,10}(1|5|18|19)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/118
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  weak_patterns: []
+  needs_number: true
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: C-435-603
+  title: '42 CFR 435.603 (via 457.315): MAGI household and income rules applied to CHIP'
+  federal_citation: 42 CFR 435.603
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'yes'
+  rulespec: us:policies/medicaid/magi_household_income_pipeline
+  search_patterns:
+  - modified adjusted gross income|\bMAGI\b
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/603
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.6-A and supplements (financial eligibility, income and resource standards) on medicaid.gov
+- id: C-435-926
+  title: '42 CFR 435.926 (via 457.342): continuous eligibility for M-CHIP children'
+  federal_citation: 42 CFR 435.926
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - continuous eligibility|(12|twelve).month continuous|continuous coverage
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/926
+  weak_patterns: []
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: C-435-1102
+  title: '42 CFR 435.1102 (via 457.355): presumptive eligibility for M-CHIP children'
+  federal_citation: 42 CFR 435.1102
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - presumptive(ly)? eligib
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/1102
+  chip_context: true
+  weak_patterns: []
+  plan_family: Medicaid state plan presumptive-eligibility pages (S-series eligibility SPAs) on medicaid.gov
+- id: C-435-117
+  title: '42 CFR 435.117 (via 457.360): deemed newborns'
+  federal_citation: 42 CFR 435.117
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns:
+  - deemed newborn|newborn.{0,150}(deemed|automatically|continuous(ly)? eligib|eligible (until|through|for (the )?(first )?(year|12 months|twelve
+    months))|remains eligible)|child born to a (woman|mother|pregnant).{0,120}(chip|medicaid|eligible)
+  search_confidence: high
+  notes: ''
+  cfr_path: us/regulation/42/435/117
+  chip_context: true
+  weak_patterns:
+  - newborn
+  plan_family: Medicaid state plan attachment 2.2-A (groups covered) on medicaid.gov
+- id: C-SS-STATE-PLAN
+  title: Approved CHIP state plan (current compiled CMS template)
+  federal_citation: 42 U.S.C. 1397ff; 42 CFR 457.50
+  level: state
+  carrying_family_state: approved CHIP state plan (CMS template) on medicaid.gov
+  pe_modeled: 'no'
+  rulespec: 'no'
+  search_patterns: []
+  search_confidence: n/a
+  notes: No CHIP state plan is held for any state; medicaid.gov posts every approved plan (https://www.medicaid.gov/chip/state-program-information).
+  state_plan: true
+  weak_patterns: []
+- id: C-SS-INCOME-PREMIUM-TABLE
+  title: Current-year CHIP income bands and premium/enrollment-fee schedule (agency table or notice)
+  federal_citation: 42 CFR 457.310, 457.510; state plan
+  level: state
+  carrying_family_state: state eligibility manual appendix / annual income-level table or notice
+  pe_modeled: yes (child/income_limit; states/<xx>/hhs/chip/premium*)
+  rulespec: us-xx:policies/cms/<state>-chip-eligibility
+  search_patterns:
+  - (income (limit|standard|level|guideline|chart|table)s?|premium).{0,200}(%|percent).{0,40}(FPL|poverty)|(%|percent) (of (the )?)?(FPL|federal
+    poverty).{0,200}(premium|income (limit|standard|level))
+  search_confidence: high
+  notes: 'Federal fallback: the CMS eligibility-levels table (2023-12-01) carries the separate-CHIP upper income limit for every state but no
+    premium amounts. Pass 2: the CMS 2023-12-01 compilation does not satisfy a current-year table; it is cited in the evidence note but the cell
+    stays a gap.'
+  fallback: us/form/cms/medicaid-chip-bhp-eligibility-levels/block-1
+  chip_context: true
+  weak_patterns: []
+  needs_number: true
+  no_fallback: true
+- id: C-SS-DISQUALIFYING-COVERAGE
+  title: Disqualifying (creditable / group health / employer-sponsored) coverage rule as applied by the state
+  federal_citation: 42 U.S.C. 1397jj(b)(1)(C), (b)(2); 42 CFR 457.310(b)(2)
+  level: state
+  carrying_family_state: state eligibility manual or codified eligibility regulation
+  pe_modeled: yes (disqualifying_health_coverage; variable has_chip_disqualifying_health_coverage)
+  rulespec: 'no'
+  search_patterns:
+  - (other|creditable|group|employer.sponsored|private) health (insurance|coverage|plan)|creditable coverage|employer.sponsored (insurance|coverage)|\bESI\b|state
+    employee (health )?(benefit|plan|coverage)
+  search_confidence: high
+  notes: ''
+  chip_context: true
+  weak_patterns: []
+  plan_family: CHIP state plan section 4.4 (substitution of coverage) on medicaid.gov

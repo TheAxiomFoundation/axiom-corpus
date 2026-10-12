@@ -1,0 +1,42 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-nm-srca-nmac-8-9-3
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.9.3 NMAC Child Care Assistance; Requirements for Child Care Assistance Programs
+  source_url: https://www.srca.nm.gov/parts/title08/08.009.0003.html
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/9/3
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*9\.\s*3\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Early Childhood Education and Care Department
+    document_subtype: administrative_code_part
+    program: CCDF
+    state_program: New Mexico Child Care Assistance
+    federal_program: CCDF
+    manual_landing_page: https://www.nmececd.org/child-care-assistance/
+    source_discovery_group: us-nm/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://www.nmececd.org/child-care-assistance/
+    closure_elements:
+    - ccdf-s29
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.9.3
+    nmac_title: '8'
+    nmac_chapter: '9'
+    nmac_part: '3'
+    nmac_chapter_title: Early Childhood Education and Care
+    official_listing_title: 8.9.3 NMAC
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-9-early-childhood-education-and-care/
+    source_last_modified: '2025-04-21'
+    recount_note: the recount's '8.150 NMAC child care parts' on the HCA ISD page are the LIHEAP rule (chapter 150); the SRCA
+      chapter 15 (Child Care Assistance) page lists 8.15.1 as reserved and its part widget is client-rendered; 8.9.3 NMAC
+      is the rule the ECECD program page links
+    extraction_note: labeled sections like the us-nm SNAP (8.139) and cash assistance (8.102) part scopes

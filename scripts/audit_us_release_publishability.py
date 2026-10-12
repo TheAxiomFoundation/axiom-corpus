@@ -38,10 +38,25 @@ def _paths(base: Path, jurisdiction: str, document_class: str, version: str) -> 
     }
 
 
-def _exists(artifact_class: str, path: Path) -> bool:
+def _exists(repo: Path, artifact_class: str, path: Path) -> bool:
+    # Corpus bytes may live outside git: a locked artifact exists even when
+    # this checkout has not fetched it (docs/corpus-storage.md).
+    if _locked_under(repo, path):
+        return True
     if artifact_class == "sources":
         return path.is_dir() and any(candidate.is_file() for candidate in path.rglob("*"))
     return path.is_file()
+
+
+def _locked_under(repo: Path, path: Path) -> bool:
+    from axiom_corpus.corpus.resolver import resolver_for
+
+    resolver = resolver_for(repo)
+    if resolver is None or not resolver.active:
+        return False
+    resolver.require_valid_locks()
+    rel = resolver.relative(path)
+    return rel is not None and bool(resolver.locks.entries_under(rel))
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
@@ -49,7 +64,12 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
-def _repair_derived(paths: dict[str, Path], scope: dict[str, str]) -> list[str]:
+def _repair_derived(repo: Path, paths: dict[str, Path], scope: dict[str, str]) -> list[str]:
+    from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
+    # Fetch what the locks pin first, so repair writes only artifacts that
+    # exist nowhere, never a stand-in for an unfetched locked one.
+    ensure_corpus_paths([paths["provisions"], paths["inventory"], paths["coverage"]], repo=repo)
     if not paths["provisions"].is_file():
         return []
     rows = [json.loads(line) for line in paths["provisions"].read_text().splitlines() if line]
@@ -125,8 +145,12 @@ def main() -> int:
     for raw_scope in release["scopes"]:
         scope = {key: str(raw_scope[key]) for key in ("jurisdiction", "document_class", "version")}
         paths = _paths(base, **scope)
-        repaired = _repair_derived(paths, scope) if args.repair_derived else []
-        missing = [name for name in ARTIFACT_CLASSES if not _exists(name, paths[name])]
+        unfetchable = None
+        try:
+            repaired = _repair_derived(repo, paths, scope) if args.repair_derived else []
+        except FileNotFoundError as exc:  # CorpusNotMaterializedError: report, keep auditing
+            repaired, unfetchable = [], str(exc)
+        missing = [name for name in ARTIFACT_CLASSES if not _exists(repo, name, paths[name])]
         manifest = (
             repo
             / ".axiom/ingest-manifests"
@@ -146,6 +170,7 @@ def main() -> int:
                 "missing_artifacts": missing,
                 "signed_manifest": signed,
                 "repaired": repaired,
+                **({"unfetchable": unfetchable} if unfetchable else {}),
             }
         )
     output = {
@@ -156,10 +181,16 @@ def main() -> int:
             row["manifest_exists"] and not row["signed_manifest"] for row in report
         ),
         "manifest_lacking_count": sum(not row["signed_manifest"] for row in report),
+        "unfetchable_count": sum("unfetchable" in row for row in report),
         "scopes": report,
     }
     print(json.dumps(output, indent=2, sort_keys=True))
-    return 2 if output["artifact_lacking_count"] or output["manifest_lacking_count"] else 0
+    failed = (
+        output["artifact_lacking_count"]
+        or output["manifest_lacking_count"]
+        or output["unfetchable_count"]
+    )
+    return 2 if failed else 0
 
 
 if __name__ == "__main__":

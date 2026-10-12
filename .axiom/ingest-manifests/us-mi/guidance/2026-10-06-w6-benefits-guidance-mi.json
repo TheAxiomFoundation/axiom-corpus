@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/guidance/2026-10-06-w6-benefits-guidance-mi.json",
+      "sha256": "adbf2a3af2fb7ab8a4726ca2ca85db93d3b3ffd068068080b4012f6d786aede3"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/guidance/2026-10-06-w6-benefits-guidance-mi.json",
+      "sha256": "a70085105d5d0549f82df15b4c0f38e537f2b3083d3b5b5a4d2fa737eda23fee"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/guidance/2026-10-06-w6-benefits-guidance-mi.jsonl",
+      "sha256": "4daa50ba2b52c26d074254579b03f9596191a4e044c373d8a57f8d11c84cf737"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-benefits-guidance-mi/official-documents/us-mi-guidance-mdhhs-bridges-bpb-2017-016.pdf",
+      "sha256": "d31b8b764514181b7330ce732a3c73bec574a680023fffcd51ad2c2cb47cfafc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:39.980884+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HnwD/CxtzpeMAcfZvyHY/iWw01p4WvQbq6qDi/My9dl/PkIa4g+7+yXIUgxAr+Xly7BoJCAftA84+XRf+8VSAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-mi"
+}

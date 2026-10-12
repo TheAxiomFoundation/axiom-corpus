@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/form/2026-10-06-w6-income-tax-forms-nd.json",
+      "sha256": "75a747b358bb4cdb4f657fc6bbd62438de9c075f20780ffc6902fa37459b8da9"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/form/2026-10-06-w6-income-tax-forms-nd.json",
+      "sha256": "7cd726d891ccc31ee3c73f62d5d9ba50d1f037983af143223db02053310866b7"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/form/2026-10-06-w6-income-tax-forms-nd.jsonl",
+      "sha256": "fa136301692fcbad998d8bb1dadb30ed0f9f3c82744822df9e512be701ff384e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2021-form-nd-1.pdf",
+      "sha256": "1cc4eaad15c14ee7da7c52833e2acaa9799082b9ac862df4277a3bf0fff4a0d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2021-individual-income-tax-booklet-rev-2021-12-20.pdf",
+      "sha256": "bfb63d47a025c00c589ee3022e07c755f921cb385ef479eb63f9e0caf2b003b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2021-individual-income-tax-booklet.pdf",
+      "sha256": "96eaca67f295a7f886497254a9fb8f3fd6e2d2c56aa96f447984bf390f9b8dff"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2022-form-nd-1.pdf",
+      "sha256": "d14706529737979063a6cb902d247ce98496190dabc4646c1cdc28f4331a8ac8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2022-individual-income-tax-booklet.pdf",
+      "sha256": "546721f5bc97969c6ed9f54dadce5dffb59476915b2f5655d6a3a5ffe1fb9496"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2022-schedule-nd-1sa.pdf",
+      "sha256": "92a6a7d647f8ebf4b8c135886584123315f8736740fcab88fbce9cba1f49aa7c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2023-form-nd-1.pdf",
+      "sha256": "a923a4e2902810b83179c4a35c41793a47683f8be6c25c8e5b3556caac19f4ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2023-individual-income-tax-booklet.pdf",
+      "sha256": "9b84b3dbddb25581c6845355a221a6b5e20c9d4df9e648dd7fd6d0baa53b157b"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2023-schedule-nd-1sa.pdf",
+      "sha256": "7286c57786f17aacdcadd961f6344d0bedab82b42a51194bf5772ac878ed88c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2024-individual-income-tax-booklet.pdf",
+      "sha256": "19de7b8496bd64362508131bf6527b811bb9c6ba74eead1b240c5444eb027d02"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2024-schedule-nd-1sa.pdf",
+      "sha256": "61c2b790b06436fbbb17a5a43858758a0d09bae918cd90c2fd9bf848d9bc1bda"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-10-06-w6-income-tax-forms-nd/official-documents/us-nd-form-otc-ty2025-schedule-nd-1sa.pdf",
+      "sha256": "b89d6e92eb61fd5f7f01441fc55b919f2fadbf12f7abd7587ee0ad04463e3c71"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:55:21.251692+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9KJGW9lKTBJ1a+bGidGAN9Zp1SbmqQ/Pg7TOkIswMEnl5stol3TQuGquu6z3e4uIWV9CK5VguuSRzqphaAp+AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-nd"
+}

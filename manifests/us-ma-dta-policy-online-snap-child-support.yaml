@@ -1,0 +1,30 @@
+documents:
+  - source_id: ma-dta-policy-online-snap-child-support-expenses-deduction
+    jurisdiction: us-ma
+    document_class: guidance
+    citation_path: us-ma/guidance/dta/policy-online/snap/child-support-expenses-deduction
+    title: Massachusetts DTA Policy Online SNAP Child Support Expenses Deduction
+    source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/BEACON5/%21SSL%21/WebHelp/SNAP/ExpensesDeductions/Ex_CSExpDed.htm
+    source_format: html
+    source_as_of: "2026-09-23"
+    expression_date: "2023-01-05"
+    extraction:
+      # Keep only the topic body: drop the mass.gov "official website" banner and the
+      # site-policy footer, which are sibling divs of the topic body inside #rh-topic.
+      html_content_selector: '#rh-topic > div:has(> h1)'
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Massachusetts Department of Transitional Assistance Policy Online
+      document_subtype: agency_policy_online_guidance
+      program: SNAP
+      topic: legally_obligated_child_support_payment_exclusion
+      last_update: "2023-01-05"
+      expression_date_note: the page's own "Last Update" line (January 5, 2023)
+      authority_role: >-
+        DTA operational policy on child support expenses: legally obligated child support paid
+        for a nonhousehold member is subtracted from gross income for the gross income test (the
+        page cites 106 CMR 364.370 for that test) and then allowed as a deduction in the SNAP
+        benefit calculation. The same exclusion is codified at 106 CMR 363.230(O)
+        (us-ma/regulation/106-cmr/363/230).
+      discovered_via: 'policyengine-us PR #9586 (gov.usda.snap.income.deductions.child_support references)'

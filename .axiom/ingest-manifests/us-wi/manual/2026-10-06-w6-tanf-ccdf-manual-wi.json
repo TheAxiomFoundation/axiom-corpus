@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/manual/2026-10-06-w6-tanf-ccdf-manual-wi.json",
+      "sha256": "564183454a2b373cd25161c1bc771eb3601ebbcafab7942986d930e1ddb26d98"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/manual/2026-10-06-w6-tanf-ccdf-manual-wi.json",
+      "sha256": "27d7e3917dc7e9ed8476a6d4e90b5bb38b006282c74408853fbe996b9de470f2"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/manual/2026-10-06-w6-tanf-ccdf-manual-wi.jsonl",
+      "sha256": "3bff5ba2ddc24bbc5070d0c022cd59965a0dc6077969f988ebe4fd9ec5b18cf6"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-10-06-w6-tanf-ccdf-manual-wi/official-documents/us-wi-w6-dcf-wisconsin-shares-handbook-2026-07.pdf",
+      "sha256": "fdc9d80323936e9c3a2e6df8b8aff22db5fe22371234ea3aa4fc108dbe6d854c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 204,
+    "missing_count": 0,
+    "provision_count": 204,
+    "source_count": 204
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T18:00:54.077712+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "D3X1mGorQQYk194NJkfgXg3/j8Xn89VnjX20+y/3PhmqOAZYBmuSjeMdpZaSsxRPFeMBS8twRuspy7DuBmMxBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-wi"
+}
