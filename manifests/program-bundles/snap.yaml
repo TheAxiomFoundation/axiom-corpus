@@ -48,7 +48,7 @@ tiers:
       us-vi: 1
     in_scope_by_layer:
       federal: 55
-      state: 79
+      state: 77
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -64,7 +64,7 @@ tiers:
     known_sources: 12
     in_scope_by_layer:
       federal: 142
-      state: 8383
+      state: 8380
 layers:
 - jurisdiction: us
   screener:
@@ -9482,17 +9482,6 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Deductions
   - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=11645&
     name: sos.state.co.us/CCR/GenerateRulePdf.do
     layer: state
@@ -9504,26 +9493,21 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12299&fileName=10%20CCR%202506-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
+  - key: us-co/regulation/10-ccr-2506-1
+    name: Colorado Code of Regulations 10 CCR 2506-1 Supplemental Nutrition Assistance Program
     layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12299&fileName=10%20CCR%202506-1
+    citation_path: us-co/regulation/10-ccr-2506-1
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    - plan
+    references: 3
     scope: in
     part: Deductions
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=3031&fileName=10%20CCR%202506-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=3031&fileName=10%20CCR%202506-1
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
+    cited:
+    - path: us-co/regulation/10-ccr-2506-1
+      references: 3
+      part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
     name: fns.usda.gov/sites/default/files/resource-files/co-abawd-response-fy2025.pdf
     layer: state
@@ -9537,15 +9521,6 @@ layers:
     reason: 'Back-year table: not current law'
     part: Work requirements
   full:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=11645&
     name: sos.state.co.us/CCR/GenerateRulePdf.do
     layer: state
@@ -9555,23 +9530,15 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12299&fileName=10%20CCR%202506-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
+  - key: us-co/regulation/10-ccr-2506-1
+    name: Colorado Code of Regulations 10 CCR 2506-1 Supplemental Nutrition Assistance Program
     layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12299&fileName=10%20CCR%202506-1
+    citation_path: us-co/regulation/10-ccr-2506-1
+    source_url: null
     part: Deductions
     sources:
     - screener
-    scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=3031&fileName=10%20CCR%202506-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=3031&fileName=10%20CCR%202506-1
-    part: Deductions
-    sources:
-    - screener
+    - manifests/us-co-snap-regulations.yaml
     scope: in
   - key: https://cdhs.colorado.gov/snap
     name: Supplemental Nutrition Assistance Program (SNAP)
@@ -9711,16 +9678,6 @@ layers:
     sources:
     - manifests/us-co-snap-primary-policy.yaml
     manifest: manifests/us-co-snap-primary-policy.yaml
-    scope: in
-    part: Other
-  - key: us-co/regulation/10-ccr-2506-1
-    name: Colorado Code of Regulations 10 CCR 2506-1 Supplemental Nutrition Assistance Program
-    layer: state
-    citation_path: us-co/regulation/10-ccr-2506-1
-    source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2818
-    sources:
-    - manifests/us-co-snap-regulations.yaml
-    manifest: manifests/us-co-snap-regulations.yaml
     scope: in
     part: Other
 - jurisdiction: us-ct

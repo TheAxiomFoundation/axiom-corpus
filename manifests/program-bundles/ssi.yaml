@@ -22522,16 +22522,20 @@ layers:
     references: 2
     scope: in
     part: Household and eligibility
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=9+CCR+2503-5&ruleVersionId=12428
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
+  - key: us-co/regulation/9-ccr-2503-5
+    name: us-co/regulation/9-ccr-2503-5
     layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=9+CCR+2503-5&ruleVersionId=12428
+    citation_path: us-co/regulation/9-ccr-2503-5
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Benefit amount
+    cited:
+    - path: us-co/regulation/9-ccr-2503-5
+      references: 1
+      part: Benefit amount
   full:
   - key: https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=10694
     name: coloradosos.gov/CCR/GenerateRulePdf.do
@@ -22551,11 +22555,11 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=9+CCR+2503-5&ruleVersionId=12428
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
+  - key: us-co/regulation/9-ccr-2503-5
+    name: us-co/regulation/9-ccr-2503-5
     layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=9+CCR+2503-5&ruleVersionId=12428
+    citation_path: us-co/regulation/9-ccr-2503-5
+    source_url: null
     part: Benefit amount
     sources:
     - screener
