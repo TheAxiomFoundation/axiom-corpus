@@ -58,7 +58,7 @@ tiers:
     state_manifests: medicare|msp
     known_sources: 0
     in_scope_by_layer:
-      federal: 1054
+      federal: 1064
       state: 43
 layers:
 - jurisdiction: us
@@ -1007,6 +1007,50 @@ layers:
     manifest: manifests/us-cms-iom-100-02.yaml
     scope: in
     part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-1
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 1 (Sections 10 - 80.12)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-1
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part1.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-2
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 2 (Sections 90 - 160.26)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-2
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part2.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-3
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 3 (Sections 170 - 190.34)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-3
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part3.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-4
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 4 (Sections 200 - 310.1)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-4
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part4.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
   - key: us/manual/cms/iom/100-04/chapter-1
     name: CMS Pub 100-04 Medicare Claims Processing Manual, Chapter 1 - General Billing Requirements
     layer: federal
@@ -1413,6 +1457,68 @@ layers:
     sources:
     - manifests/us-cms-iom-100-04.yaml
     manifest: manifests/us-cms-iom-100-04.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-1
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 1 - General MSP Overview
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-1
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c01.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-2
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 2 - MSP Provisions
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-2
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c02.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-3
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 3 - MSP Provider, Physician, and Other Supplier
+      Billing Requirements
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-3
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c03.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-5
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 5 - Contractor MSP Claims Prepayment Processing
+      Requirements
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-5
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c05.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-05/chapter-6
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 6 - Medicare Secondary Payer (MSP) CWF Process
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-6
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c06.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-7
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 7 - MSP Recovery
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-7
+    source_url: https://www.cms.gov/files/document/chapter-7-msp-recovery.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
     scope: in
     part: Other
   - key: us/manual/cms/iom/100-16/chapter-1
