@@ -44,7 +44,7 @@ import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlencode, urlsplit
 
 import yaml
 
@@ -229,6 +229,10 @@ STATE_NAMES = {
 # folder is a publication date, not the year a rule applies to, so it says
 # nothing; poverty guidelines are by calendar year.
 FISCAL_YEAR = re.compile(r"(?i)fy[-_ %]?(?:20)?(\d{2})(?!\d)|cola(20\d{2})(?!\d)")
+# The end of a fiscal-year range ("FFY 2025-2027", "FY2026-FY2028").
+FISCAL_RANGE_END = re.compile(
+    r"(?i)\s*(?:[-\u2013_]|\bto\b|\bthrough\b)\s*(?:f?fy[-_ ]?)?(?:20)?(\d{2})(?!\d)"
+)
 ARCHIVED = re.compile(r"^https?://web\.archive\.org/web/[^/]+/(.+)$")
 # Enacting texts: public laws and bills on congress.gov or govinfo, and
 # Federal Register notices.
@@ -292,11 +296,28 @@ def title_state(titles: list[str]) -> str | None:
     return named.pop() if len(named) == 1 else None
 
 
-def url_key(url: str, aliases: dict[str, str] | None = None) -> tuple[str, str]:
-    """A URL's host and path, with alias hosts read as the host they serve for."""
+def url_key(url: str, aliases: dict[str, str] | None = None) -> tuple[str, str, str]:
+    """A URL's host, path and query, with alias hosts read as the host they
+    serve for. The query stays: on a query-routed page (a rule PDF by its file
+    name and version, a document by its id) it names the document, and without
+    it every rule of a state's register is one page."""
     parts = urlsplit(url.strip())
     host = parts.netloc.lower().removeprefix("www.")
-    return (aliases or {}).get(host, host), parts.path.rstrip("/").lower()
+    query = urlencode(
+        sorted(
+            (k.lower(), v.lower())
+            for k, v in parse_qsl(parts.query, keep_blank_values=True)
+            if not k.lower().startswith("utm_")
+        )
+    )
+    return (aliases or {}).get(host, host), parts.path.rstrip("/").lower(), query
+
+
+def url_lookup(mapping: dict, key: tuple[str, str, str]):
+    """A URL's own entry, else the entry of the same page named without a query
+    (a link that adds a cache or session parameter to a static file)."""
+    found = mapping.get(key)
+    return found if found is not None or not key[2] else mapping.get((key[0], key[1], ""))
 
 
 def fiscal_year(day: dt.date) -> int:
@@ -306,10 +327,15 @@ def fiscal_year(day: dt.date) -> int:
 
 def back_year(text: str, day: dt.date) -> bool:
     """A URL or title names a fiscal year before the day's, or poverty
-    guidelines of an earlier calendar year."""
+    guidelines of an earlier calendar year. A range of fiscal years (a
+    three-year state plan) is current through its last year."""
     for m in FISCAL_YEAR.finditer(text):
         y = m.group(1) or m.group(2)
-        if (int(y) if len(y) == 4 else 2000 + int(y)) < fiscal_year(day):
+        year = int(y) if len(y) == 4 else 2000 + int(y)
+        end = FISCAL_RANGE_END.match(text, m.end()) if m.group(1) else None
+        if end and 2000 + int(end.group(1)) > year:
+            year = 2000 + int(end.group(1))
+        if year < fiscal_year(day):
             return True
     if re.search(r"(?i)poverty[-_ ]guidelines", text):
         years = [int(y) for y in re.findall(r"(?<!\d)(20\d{2})(?!\d)", text)]
@@ -470,7 +496,7 @@ def load_manifests() -> dict[str, list[dict]]:
 
 def index_manifests(
     manifests: dict[str, list[dict]], aliases: dict[str, str]
-) -> tuple[list[str], dict[tuple[str, str], str], dict[str, str]]:
+) -> tuple[list[str], dict[tuple[str, str, str], str], dict[str, str]]:
     """Every registered citation path, the citation path of each source and
     download URL (a document's own path over a recovery scope's), and titles."""
     paths, by_url, titles = set(), {}, {}
@@ -603,13 +629,14 @@ def build_program(
     for ref in references["references"]:
         files = ref.get("files") or []
         url = ref["url"]
-        if url_key(normalize_url(url), aliases) in same:
-            url = same[url_key(normalize_url(url), aliases)]
+        url = url_lookup(same, url_key(normalize_url(url), aliases)) or url
         k = url_key(normalize_url(url), aliases)
         citation = (
-            moves.get(ref.get("citation"), ref.get("citation")) or by_url.get(k) or held.get(k)
+            moves.get(ref.get("citation"), ref.get("citation"))
+            or url_lookup(by_url, k)
+            or url_lookup(held, k)
         )
-        reason = not_sources.get(k) or next(
+        reason = url_lookup(not_sources, k) or next(
             (why for rx, why in expired if any(rx.search(t) for t in [url, *files])), None
         )
         if reason is None and ENACTING.search(url) and any(f in codifying for f in files):
@@ -656,15 +683,15 @@ def build_program(
         citation = moves.get(citation, citation)
         urls = doc.get("urls") or []
         url = urls[0] if urls else None
-        if url and url_key(normalize_url(url), aliases) in same:
-            url = same[url_key(normalize_url(url), aliases)]
-        joined = (
-            by_url.get(url_key(normalize_url(url), aliases))
-            or held.get(url_key(normalize_url(url), aliases))
-            if url
-            else None
-        )
+        k = url_key(normalize_url(url), aliases) if url else None
+        if k:
+            url = url_lookup(same, k) or url
+            k = url_key(normalize_url(url), aliases)
+        joined = (url_lookup(by_url, k) or url_lookup(held, k)) if k else None
         structured = citation_from_url(url) if url else None
+        # A plan row whose URL the decisions rule out (OUT-OF-SCOPE) is excluded,
+        # as the same URL is when PolicyEngine cites it.
+        reason = url_lookup(not_sources, k) if k else None
         # A plan row that names a recovery scope's path: the document's own path.
         if citation and "/recovery/" in citation and joined and "/recovery/" not in joined:
             citation = joined
@@ -681,7 +708,7 @@ def build_program(
             "plan",
             url,
             citation,
-            None,
+            reason,
             part,
             name=None if citation else doc.get("title") or doc["id"],
         )
