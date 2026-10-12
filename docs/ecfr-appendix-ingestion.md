@@ -19,16 +19,53 @@ The Python functions `build_ecfr_inventory`,
 `build_ecfr_inventory_from_structures`, `iter_ecfr_title_provisions`, and
 `extract_ecfr` expose the same keyword, `include_appendices=False` by default.
 
-Supported identifiers are `Appendix A to Part 604` and equivalent single-letter
-or numeric appendix identifiers. Their citation paths are
+Supported part appendix identifiers are `Appendix A to Part 604` and equivalent
+single-letter or numeric appendix identifiers. Their citation paths are
 `us/regulation/45/604/appendix-a`; the parent remains the enclosing part, including
 when a source subject group or subpart contains the appendix. Traversal preserves
 source order without converting a provision twice.
 
+## Subpart appendices
+
+Supported subpart appendix identifiers name the subpart and the part. Their parent
+is the subpart row, at level 2:
+
+| eCFR identifier | Citation path |
+| --- | --- |
+| `Appendix II to Subpart C of Part 404` | `us/regulation/20/404/subpart-C/appendix-ii` |
+| `Appendix 1 to Subpart P of Part 404` | `us/regulation/20/404/subpart-P/appendix-1` |
+| `Appendix A to Subpart C of Part 910` | `us/regulation/2/910/subpart-C/appendix-a` |
+| `Appendix to Subpart B of Part 404` (unnumbered) | `us/regulation/20/404/subpart-B/appendix` |
+| `Appendixes to Subpart C of Part 404` (the note before a subpart's appendices) | `us/regulation/20/404/subpart-C/appendixes` |
+
+A designator is a number, a single letter, or an uppercase roman numeral, and the
+path segment lowercases it. The legal identifier reads
+`20 CFR part 404, subpart C, appendix II` (`..., appendix` and `..., appendixes` for
+the unnumbered and collective forms). Metadata carries `subpart`, `appendix` (the
+lowercased designator, or null), `appendix_identifier` and `appendix_numbering`.
+
+Appendices sort after their subpart's sections (ordinal 1,000,000 plus the
+designator's value). Whether `I` and `V` are numerals or letters depends on the
+other appendices of the same subpart: when every non-numeric designator is a roman
+numeral and one has more than one character (`I`, `II`, ... `VII`), they are
+numerals and sort by value; otherwise single letters keep the part-appendix ordinal
+(`ord` of the letter). A multi-character designator among letters (`CC` beside
+`A`) has no unambiguous order and fails validation. `extract-ecfr` classifies
+designators from the retained structure, so a structure-only placeholder and the
+XML record it stands in for get the same ordinal.
+
+A subpart appendix must sit inside the subpart and part it names. One that does
+not (for example `Appendix A to Subpart F of Part 2520`, which the eCFR places
+outside any subpart) fails validation, as a part appendix that names another part
+does.
+
 Opted-in inventory construction rejects unsupported nonreserved identifiers,
-including `Appendix to Subpart K of Part 416` and multi-letter identifiers such
-as `Appendix II to Part 604`. A parsed part that contradicts the enclosing part
-also fails validation. These errors do not imply full appendix coverage.
+including multi-letter part appendix identifiers such as `Appendix II to Part 604`,
+unnumbered part appendices (`Appendix to Part 720`), hyphenated or alphanumeric
+designators (`Appendix A-1 to Subpart I of Part 550`, `Appendix C1 to Subpart B of
+Part 430`), and identifiers that cite the title (`Appendix B to Subpart A of
+10 CFR Part 51`). A parsed part that contradicts the enclosing part also fails
+validation. These errors do not imply full appendix coverage.
 Exact `--section` selectors exclude appendices before validation. The lower-level
 iterator likewise applies an explicit citation allowlist before converting an
 appendix; selected unsupported identifiers still fail closed.
@@ -41,6 +78,14 @@ images, retains image references in the body, and keeps HD1–HD3 heading text.
 Image-only forms therefore retain a nonempty body pointing to the captured
 source. Existing SHA-256-bound formula transcription checks still apply. Image
 references are source evidence, not OCR text or an executable formula.
+
+Appendix bodies also keep table captions, as a block before the table's rows
+(`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P of
+part 404), and read a `<br/>` as a word break, so `means<br/>less` is
+`means less`, not `meansless`. eCFR's editorial cross-references (`XREF`, such as
+"Link to an amendment published at 91 FR 40836, July 2, 2026.") and the bracketed
+source notes (`CITA`) are not regulation text and are not kept. Section rendering
+is unchanged: it still drops table captions and joins words across `<br/>`.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with
