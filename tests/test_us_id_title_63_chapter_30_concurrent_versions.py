@@ -204,13 +204,13 @@ def test_only_these_two_retained_chapter_30_pages_print_more_than_one_rendition(
 
 
 def test_no_other_us_id_scope_carries_a_variant_path() -> None:
-    carried: dict[str, str] = {}
+    carriers: dict[str, list[str]] = {}
     for path in sorted((CORPUS_ROOT / "provisions/us-id").rglob("*.jsonl")):
         for line in path.read_text(encoding="utf-8").splitlines():
             citation_path = json.loads(line)["citation_path"]
             if "--" in citation_path:
-                carried[citation_path] = path.stem
-    assert carried == dict.fromkeys(VARIANTS, VERSION)
+                carriers.setdefault(citation_path, []).append(path.stem)
+    assert carriers == {variant: [VERSION] for variant in VARIANTS}
 
 
 @pytest.mark.parametrize(
@@ -220,22 +220,25 @@ def test_no_other_us_id_scope_carries_a_variant_path() -> None:
         ("us-rulespec-2026-09-14-wave4-r2-union", CHAPTER_VERSION),
     ],
 )
-def test_the_scope_replaces_each_newest_lines_idaho_statute_carrier_cleanly(
+def test_the_scope_replaces_each_line_heads_idaho_statute_scope_cleanly(
     cut: str, replaced: str
 ) -> None:
-    """In place of each line's us-id statute scope it validates with no issue,
-    strict warnings included, and keeps every citation path that scope carried."""
+    """Each line head carries one us-id statute scope. With that scope replaced
+    by this one, the head's us-id scopes (every document class) validate with
+    strict warnings and no issue, and every citation path the replaced scope
+    carried is still carried. This checks the Idaho slice of the cut, not the
+    whole release: no scope of another jurisdiction carries a us-id path."""
     manifest = ReleaseManifest.load(REPO_ROOT / f"manifests/releases/{cut}.json")
-    carried = [
-        scope
-        for scope in manifest.scopes
-        if (scope.jurisdiction, scope.document_class) == ("us-id", "statute")
-    ]
-    assert [scope.version for scope in carried] == [replaced]
+    us_id = [scope for scope in manifest.scopes if scope.jurisdiction == "us-id"]
+    statute = [scope for scope in us_id if scope.document_class == "statute"]
+    assert [scope.version for scope in statute] == [replaced]
     release = ReleaseManifest(
-        name=f"{cut}-us-id-statute-concurrent-versions",
+        name=f"{cut}-us-id-with-concurrent-versions",
         quality_profile="complete-expression-dates-v1",
-        scopes=(ReleaseScope("us-id", "statute", VERSION),),
+        scopes=tuple(
+            ReleaseScope("us-id", "statute", VERSION) if scope in statute else scope
+            for scope in us_id
+        ),
     )
     report = validate_release(CORPUS_ROOT, release, strict_warnings=True, max_issues=50)
     assert report.to_mapping()["issue_count"] == 0, report.to_mapping()["issues"]
