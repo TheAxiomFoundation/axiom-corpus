@@ -537,6 +537,33 @@ def test_build_program_moves_a_known_source_to_the_path_a_wave_holds_it_at(tmp_p
     assert "us-az/statute/title-46" in keys and "us-az/statute/46" not in keys
 
 
+def test_build_program_expands_a_plan_row_that_names_parts_of_a_code(tmp_path, monkeypatch):
+    # "USC 26 subtitle-A" names subparts of chapter 1, not the whole subtitle:
+    # the config lists their sections, and the bundle names each of them.
+    cfg = config(tmp_path, monkeypatch)
+    cfg["plan_sections"] = {"USC 26 subtitle-A": ["us/statute/26/21", "us/statute/26/32"]}
+    plan = {
+        "documents": [
+            {
+                "id": "USC 26 subtitle-A",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "urls": [
+                    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-A"
+                ],
+                "title": "26 U.S. Code Subpart A - Nonrefundable Personal Credits",
+            }
+        ]
+    }
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, plan, {}, bundle.index_manifests({}, {})
+    )
+    federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+    keys = {d["key"] for d in federal["screener"]}
+    assert {"us/statute/26/21", "us/statute/26/32"} <= keys
+    assert not any("subtitle-A" in k for k in keys)
+
+
 def test_build_program_excludes_a_plan_document_the_decisions_rule_out(tmp_path, monkeypatch):
     # A plan row whose URL is a not_source is excluded with its reason, as the
     # same URL is when PolicyEngine cites it (wave-6 OUT-OF-SCOPE rows such as

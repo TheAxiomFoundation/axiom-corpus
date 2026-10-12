@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "aa83e29ac51b5fec927da08e7bc0c1a3dbaca1f0b02778a706b246c89dc97d38"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "09b95f0f0e53e18a6f3925a52bf00ab874ed31ba61de2faa860a4dd09ce3c667"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "77d444ef3c98329ee9e61ecfd0a63998eb9b3ea0d4b0c22075dd815b6ad3659a"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-15-medicaid-1115-stc/official-documents/us-wy-cms-1115-stc-pregnant-by-choice.pdf",
+      "sha256": "1348dc3d3059cc48cd692317256c05cf46c5ea1839768dbae7faa96d6d2e6c53"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 59,
+    "missing_count": 0,
+    "provision_count": 59,
+    "source_count": 59
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:47:15.258142+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bvUKWU3c+Bb3G7sMRaIvIvB9N+yRghtySNdqxkVAJ2PFLGHjVYMWrFGcFItkmszZYuBysIGMM8JNrGMrTiZqBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}
