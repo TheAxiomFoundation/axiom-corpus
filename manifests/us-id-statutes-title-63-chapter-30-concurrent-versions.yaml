@@ -1,0 +1,37 @@
+version: "2026-09-27-income-tax-concurrent-versions"
+# Idaho Code Title 63, Chapter 30 (Income Tax) re-extracted from the official
+# Legislature HTML retained by us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30,
+# keeping every rendition a section page prints. The pages for §§63-3022E and
+# 63-3025D print the text "[effective until January 1, 2027]" and the text
+# "[effective January 1, 2027]"; the superseded scope kept only the first. The
+# rendition in force on the expression date keeps the plain citation path, and
+# each other rendition is a same-number variant row, e.g.
+# us-id/statute/63-3022E--effective-2027-01-01 (the NM/VT/DE
+# citation_segment.variant_segment convention).
+# The adapter appends "-us-id-title-63-chapter-30", so the scope on disk is
+# us-id/statute/2026-09-27-income-tax-concurrent-versions-us-id-title-63-chapter-30.
+# Run note: docs/ingest-runs/2026-09-27-id-title-63-chapter-30-concurrent-versions.md.
+sources:
+  - source_id: us-id-statutes-title-63-chapter-30
+    jurisdiction: us-id
+    document_class: statute
+    adapter: idaho-statutes
+    source_url: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/
+    version: "2026-09-27-income-tax-concurrent-versions"
+    options:
+      # The source bytes are the official pages retrieved on 2026-09-14 for the
+      # superseded scope (git-tracked; the adapter reads them from source_dir and
+      # never falls back to the network), so the retrieval and expression dates
+      # stay those of that retrieval.
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      source_dir: ../data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30
+      only_title: "63"
+      only_chapter: "30"
+      workers: 4
+    metadata:
+      source_authority: Idaho Legislature
+      source_scope_note: >-
+        Idaho Statutes Title 63, Chapter 30 (Income Tax, sections 63-3001 et seq.)
+        from the official Legislature HTML retrieved 2026-09-14, with every
+        dated rendition a section page prints.
