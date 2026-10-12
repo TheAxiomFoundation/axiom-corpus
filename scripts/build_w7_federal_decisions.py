@@ -72,27 +72,14 @@ DECISIONS: dict[str, tuple[str, str, str, str, str]] = {
         "",
         "",
         "",
-        "Controller decision, not the time box. Container reference to all of 26 U.S.C. Subtitle A "
-        "(income taxes). The served release holds 117 of its 764 current sections (counted in the "
-        "retained OLRC release point 119-103 zip: 890 sections, 126 repealed or transferred), so the text is not held, and the "
-        "corpus has no subtitle node (extract-usc puts sections directly under us/statute/26). "
-        "Options: (a) the CHIP/Medicaid/SNAP bundle plans cite the sections they use (each already "
-        "a row of its own); (b) extract the other 647 sections into a closure scope and join the "
-        "row to us/statute/26 (then the full tier counts all served title 26 provisions)",
+        "replaced by the sections of the parts it names (axiom-corpus#836)",
     ),
     "us/statute/42/chapter-7": (
         "SKIPPED",
         "",
         "",
         "",
-        "Controller decision, not the time box. Container reference to all of 42 U.S.C. chapter 7 "
-        "(the Social Security Act, titles I-XXI). The served release holds 102 of its 591 current "
-        "sections (counted in the retained OLRC release point 119-103 zip: 628 sections, 37 repealed "
-        "or transferred), so the text is "
-        "not held, and the corpus has no chapter node (sections sit directly under us/statute/42). "
-        "Options: (a) the CHIP/Medicaid/SNAP bundle plans cite the titles or sections they use "
-        "(IV-A, XVI, XIX and XXI are held); (b) extract the other 489 sections into a closure scope "
-        "and join the row to us/statute/42 (then the full tier counts all served title 42 provisions)",
+        "replaced by the sections of the parts it names (axiom-corpus#836)",
     ),
 }
 
