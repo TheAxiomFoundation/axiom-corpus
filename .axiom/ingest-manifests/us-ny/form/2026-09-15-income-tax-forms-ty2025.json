@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "6255a730bb092c794b9ccec1d0b44ef436211b01426f3865d0d3e8c79571b835"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "ed5d6a6b314af2f55da320ec6e560738af9df51da58353a27503547536a6508d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "2dbe0160eeb53889389f109633354d8f8af149a04bce116a92e37a90f80cd812"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ny-tax-it-201-ty2025.pdf",
+      "sha256": "cfe63039ffa4374f5fff67b7d2b37c5bdb802211fac55c69386e8f15c20d3e08"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:50.648367+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gfkM1bVLb/1WsxLtxOgoQMNBCQDSzdCsPKVWy//c6BFs35dWMZcAEnwM36lDtXTKNMMeJQuFWdXht67QS42CCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}
