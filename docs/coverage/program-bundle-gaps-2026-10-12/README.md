@@ -20,8 +20,9 @@ What the program bundles still lack after wave 6 and the wave-5 remainder, and t
 |---|---:|---|
 | PENDING-ACTIVATION | 184 | served once `us-rulespec-2026-10-11-w5-remainder-union` is activated (Max) |
 | UNRELEASED-SCOPE | 203 | a scope on main holds them; no release serves it yet (`release-scopes.tsv`, 71 scopes): the next union release |
-| DECIDED-ABSENT / DECIDED-ALREADY-HELD / DECIDED-OUTREACH / DECIDED-PRESENT / DECIDED-SKIPPED | 245 | decided in waves 5–6 (OUTREACH and ABSENT stay missing; SKIPPED, ALREADY-HELD and PRESENT rows are in wave 7) |
-| WAVE7 | 134 | no decision yet: wave 7 |
+| DECIDED OUTREACH / ABSENT | 227 | decided in waves 5–6: the publisher blocks the corpus client or only a vendor publishes it (154), or no official copy exists (73); they stay missing |
+| DECIDED SKIPPED / ALREADY-HELD / PRESENT | 18 | decided in wave 6 but still missing (not reached, or held yet not joined): in wave 7 |
+| WAVE7 | 134 | no decision yet: 44 join here to a served document (group `rejoin`), 90 go to the wave-7 agents |
 
 ## Wave 7
 
