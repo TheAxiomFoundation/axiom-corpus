@@ -703,7 +703,7 @@ def parse_idaho_section_page(
     if primary is None:
         return _parse_section_divs(divs, listing=listing, source=source)
     return _parse_section_divs(
-        _rendition_divs(divs, renditions, primary, history_start=history_start),
+        _rendition_divs(divs, renditions, primary, suffix_start=history_start),
         listing=listing,
         source=source,
     )
@@ -760,7 +760,9 @@ def parse_idaho_section_versions(
             primary=plain,
         )
 
-    apparatus_start = _apparatus_start(divs, after=renditions[0].start)
+    # The page's first History or notes marker, wherever it is: no rendition
+    # may open after it, and everything from it on is shared by every variant.
+    apparatus_start = _apparatus_start(divs)
     for rendition in renditions:
         if rendition.start > apparatus_start:
             raise refuse(f"prints rendition {rendition.position} after its History or notes begin")
@@ -777,7 +779,7 @@ def parse_idaho_section_versions(
             raise refuse(f"prints two renditions named {variant!r}")
         names.add(variant)
         parsed = _parse_section_divs(
-            _rendition_divs(divs, renditions, rendition, history_start=history_start),
+            _rendition_divs(divs, renditions, rendition, suffix_start=apparatus_start),
             listing=listing,
             source=source,
         )
@@ -1326,14 +1328,13 @@ def _section_renditions(
     return tuple(renditions)
 
 
-def _apparatus_start(divs: tuple[Tag, ...], *, after: int) -> int:
-    """The first History or notes marker after ``after`` (``len(divs)`` if none)."""
+def _apparatus_start(divs: tuple[Tag, ...]) -> int:
+    """The page's first History or notes marker (``len(divs)`` if none)."""
     return next(
         (
             index
-            for index in range(after + 1, len(divs))
-            if _is_history_marker(_clean_text(divs[index]))
-            or _is_note_marker(_clean_text(divs[index]))
+            for index, div in enumerate(divs)
+            if _is_history_marker(_clean_text(div)) or _is_note_marker(_clean_text(div))
         ),
         len(divs),
     )
@@ -1371,13 +1372,18 @@ def _rendition_divs(
     renditions: tuple[_IdahoRendition, ...],
     rendition: _IdahoRendition,
     *,
-    history_start: int,
+    suffix_start: int,
 ) -> tuple[Tag, ...]:
-    """The shared page prefix, one rendition, then the shared History and notes."""
+    """The shared page prefix, one rendition, then the shared suffix.
+
+    The rendition in force uses the pre-variant suffix, the History marker
+    after the last rendition; variants use the first History or notes marker
+    on the page, so notes printed without a History are shared too.
+    """
     return (
         *divs[: renditions[0].start],
-        *divs[rendition.start : rendition.end],
-        *divs[history_start:],
+        *divs[rendition.start : min(rendition.end, suffix_start)],
+        *divs[suffix_start:],
     )
 
 

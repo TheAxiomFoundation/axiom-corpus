@@ -20,9 +20,10 @@ sources:
     version: "2026-09-27-income-tax-concurrent-versions"
     options:
       # The source bytes are the official pages retrieved on 2026-09-14 for the
-      # superseded scope (git-tracked; the adapter reads them from source_dir and
-      # never falls back to the network), so the retrieval and expression dates
-      # stay those of that retrieval.
+      # superseded scope, pinned by its lock file (fetch them with
+      # `axiom-corpus-ingest corpus fetch us-id`). The adapter reads them from
+      # source_dir and never falls back to the network, so the retrieval and
+      # expression dates stay those of that retrieval.
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       source_dir: ../data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30

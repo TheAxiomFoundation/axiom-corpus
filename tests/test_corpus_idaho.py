@@ -444,6 +444,56 @@ def test_a_section_heading_quoted_in_a_note_is_never_a_variant():
     assert error.primary.body == "[effective until January 1, 2027] (1) Old."
 
 
+def test_a_section_heading_quoted_after_a_bare_history_is_never_a_variant():
+    page = _section_page(
+        "63-3022E",
+        [("Current text. [effective until January 1, 2027] (1) Old.", [])],
+        "[Added 2026.]",
+    ).replace(
+        "</div></body>",
+        _rendition_div("63-3022E. Quoted. Commentary.") + "</div></body>",
+    )
+
+    error = _versions_error(page)
+
+    assert "rendition 2 after its History or notes begin" in str(error)
+
+
+@pytest.mark.parametrize("marker", ["Compiler's notes:", "History:"])
+def test_history_or_notes_before_the_first_heading_refuse_every_variant(marker):
+    page = _section_page(
+        "63-3022E",
+        [
+            ("A. [effective until January 1, 2027] Old.", []),
+            ("B. Commentary.", []),
+        ],
+        "",
+    ).replace('<div class="pgbrk">', '<div class="pgbrk">' + _rendition_div(marker))
+
+    error = _versions_error(page)
+
+    assert "rendition 1 after its History or notes begin" in str(error)
+
+
+def test_notes_printed_without_a_history_are_shared_by_every_variant():
+    page = _section_page(
+        "63-3022E",
+        [
+            ("A. [effective January 1, 2027] Future.", []),
+            ("B. [effective until January 1, 2027] Current.", []),
+        ],
+        "",
+    ).replace("</div></body>", _rendition_div("Compiler's notes: Shared note.") + "</div></body>")
+
+    plain, future = parse_idaho_section_versions(
+        page, listing=RENDITIONED_LISTING, source=SAMPLE_RECORDED, expression_date="2026-09-14"
+    )
+
+    assert plain.heading == "B"
+    assert plain.source_notes == future.source_notes == ("Shared note.",)
+    assert future.body == "[effective January 1, 2027] Future."
+
+
 def test_a_quoted_marker_never_names_a_variant():
     html = _section_page(
         "63-3022E",
@@ -725,7 +775,10 @@ _EXPRESSION_DATES = st.one_of(
     _VALID_DATES, _VALID_DATES, _VALID_DATES, st.sampled_from((None, "2026-13-01"))
 )
 # None, a plain compiler's note, or one that quotes the section heading.
-_NOTES = st.sampled_from((None,) * 6 + ("plain", "quotes heading"))
+_NOTES = st.sampled_from(
+    (None,) * 6
+    + ("plain", "quotes heading", "quotes heading after history", "notes before the section")
+)
 
 
 def _marker_text(marker: tuple[date | None, bool]) -> str:
@@ -928,16 +981,21 @@ def test_idaho_rendition_invariants(renditions, expression_date, history, note, 
         printed.append((f"{heading}. {first}", lines[1:]))
         expected_bodies.append("\n".join([first, *lines[1:]]))
     html = _section_page(section, printed, history)
-    if note is not None:
-        quoted = (
-            _rendition_div(f"{section}. Quoted. Commentary.") if note == "quotes heading" else ""
-        )
+    quote = _rendition_div(f"{section}. Quoted. Commentary.")
+    if note in ("plain", "quotes heading"):
         html = html.replace(
             "</div></body>",
             _rendition_div("Compiler's notes:")
             + _rendition_div("See the act.")
-            + quoted
+            + (quote if note == "quotes heading" else "")
             + "</div></body>",
+        )
+    elif note == "quotes heading after history":
+        trailer = "" if history else _rendition_div("History:")
+        html = html.replace("</div></body>", trailer + quote + "</div></body>")
+    elif note == "notes before the section":
+        html = html.replace(
+            '<div class="pgbrk">', '<div class="pgbrk">' + _rendition_div("Compiler's notes:")
         )
     if prefix:
         html = html.replace(
@@ -968,8 +1026,9 @@ def test_idaho_rendition_invariants(renditions, expression_date, history, note, 
 
     # 3. the refusals, modelled. Only a page main reads as several renditions
     # (the note's quoted heading counts as one) can be refused.
-    starts = len(renditions) + (note == "quotes heading")
-    in_apparatus = starts > 1 and note == "quotes heading"
+    quoted = note in ("quotes heading", "quotes heading after history")
+    starts = len(renditions) + quoted
+    in_apparatus = starts > 1 and (quoted or note == "notes before the section")
     inside = starts > 1 and any(r[1] is not None and not r[2] for r in renditions)
     if isinstance(versions, IdahoRenditionError):
         # 2. the plain row is kept, unchanged.
@@ -984,6 +1043,10 @@ def test_idaho_rendition_invariants(renditions, expression_date, history, note, 
     plain, variants = sections[0], sections[1:]
     assert plain == compat
     event(f"{len(variants)} variant(s)")
+    if note == "plain":
+        # Notes are shared by every variant; the plain row keeps main's reading,
+        # which gives them to the last rendition when no History precedes them.
+        assert all(s.source_notes == ("See the act.",) for s in variants)
     if len(renditions) == 1 or prefix:
         # An unheaded prefix line takes the heading slot in main's body parser
         # (inherited); the differential above already covers those pages.
@@ -1104,8 +1167,12 @@ def _well_formed_marker(kind: str, when: date | None) -> tuple[date, bool] | Non
 
 
 @settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
-@given(page=_well_formed_pages(), history=st.sampled_from(("", "[Added 2026.]")))
-def test_well_formed_pages_keep_every_rendition(page, history):
+@given(
+    page=_well_formed_pages(),
+    history=st.sampled_from(("", "[Added 2026.]")),
+    notes=st.booleans(),
+)
+def test_well_formed_pages_keep_every_rendition(page, history, notes):
     """Selection, conservation, naming and status on pages with one rendition in
     force: every rendition becomes exactly one row."""
     as_of, renditions, primary, lines, headings = page
@@ -1116,6 +1183,10 @@ def test_well_formed_pages_keep_every_rendition(page, history):
         printed.append((f"{headings[index]}. {first}", lines[index][1:]))
         bodies.append("\n".join([first, *lines[index][1:]]))
     html = _section_page(RENDITIONED_LISTING.section, printed, history)
+    if notes:
+        html = html.replace(
+            "</div></body>", _rendition_div("Compiler's notes: Shared note.") + "</div></body>"
+        )
 
     sections = parse_idaho_section_versions(
         html,
@@ -1136,6 +1207,12 @@ def test_well_formed_pages_keep_every_rendition(page, history):
     assert [s.body for s in variants] == [bodies[i] for i in others]
     assert [s.heading for s in variants] == [headings[i] for i in others]
     assert all(s.source_history == ((history,) if history else ()) for s in sections)
+    # Notes are shared by every variant. The plain row keeps main's reading:
+    # without a History, notes belong to the last printed rendition only.
+    shared = ("Shared note.",) if notes else ()
+    assert all(s.source_notes == shared for s in variants)
+    last = primary == len(renditions) - 1
+    assert plain.source_notes == (shared if history or last else ())
     assert len({s.citation_path for s in sections}) == len(sections)
     for index, variant in zip(others, variants, strict=True):
         marker = _well_formed_marker(*renditions[index])

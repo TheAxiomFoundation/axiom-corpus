@@ -15,13 +15,12 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 
-from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.state_adapters.idaho import (
     _rendition_starts,
     _section_content_divs,
-    extract_idaho_statutes,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -30,6 +29,7 @@ VERSION = "2026-09-27-income-tax-concurrent-versions-us-id-title-63-chapter-30"
 CHAPTER_VERSION = "2026-09-14-income-tax-chapter-us-id-title-63-chapter-30"
 SUCCESSOR_VERSION = "2026-07-31-id-title-63-chapter-30-successor"
 SOURCES = CORPUS_ROOT / f"sources/us-id/statute/{VERSION}"
+MANIFEST = REPO_ROOT / "manifests/us-id-statutes-title-63-chapter-30-concurrent-versions.yaml"
 CHAPTER_SOURCES = CORPUS_ROOT / f"sources/us-id/statute/{CHAPTER_VERSION}"
 SECTION_PAGES = "idaho-statutes-section-html/title-63/chapter-30"
 VARIANTS = {
@@ -54,30 +54,28 @@ def _without_scope_identity(row: dict, version: str) -> dict:
     return row
 
 
-def test_the_scope_rebuilds_offline_and_byte_identically_from_the_retained_bytes(
-    tmp_path, monkeypatch
+def test_the_committed_manifest_rebuilds_the_scope_offline_byte_for_byte(
+    tmp_path, monkeypatch, capsys
 ) -> None:
-    """The committed manifest, run against the 2026-09-14 retained pages with the
-    network blocked, reproduces the provisions, inventory, coverage and sources."""
+    """``extract-state-statutes`` with the committed manifest, its options and
+    its ``source_dir`` (the 2026-09-14 retained pages) and the network blocked,
+    reproduces the provisions, inventory, coverage and sources."""
 
     def offline(*args, **kwargs):
         raise AssertionError("network used")
 
     monkeypatch.setattr("axiom_corpus.corpus.state_adapters.idaho.requests.get", offline)
     base = tmp_path / "corpus"
-    report = extract_idaho_statutes(
-        CorpusArtifactStore(base),
-        version="2026-09-27-income-tax-concurrent-versions",
-        source_dir=CHAPTER_SOURCES,
-        source_as_of="2026-09-14",
-        expression_date="2026-09-14",
-        only_title="63",
-        only_chapter="30",
-        workers=4,
-    )
+    exit_code = main(["extract-state-statutes", "--base", str(base), "--manifest", str(MANIFEST)])
+    payload = json.loads(capsys.readouterr().out)
 
-    assert report.errors == ()
-    assert report.coverage.complete is True
+    assert exit_code == 0
+    assert payload["successful"] is True
+    assert payload["coverage_complete"] is True
+    assert payload["provisions_written"] == 166
+    [row] = payload["rows"]
+    assert row["version"] == "2026-09-27-income-tax-concurrent-versions"
+    assert row["errors"] == []
     for relative in (
         f"inventory/us-id/statute/{VERSION}.json",
         f"provisions/us-id/statute/{VERSION}.jsonl",
