@@ -1094,3 +1094,52 @@ def test_xref_plain_text_is_dropped_but_its_paragraphs_are_kept():
     assert ecfr._section_body(elem, appendix=True).split("\n\n") == [
         "Editorial paragraph.", "Rule text.",
     ]
+
+
+def test_title_whose_preflight_fetch_fails_is_a_title_error_and_never_refetched(tmp_path, monkeypatch):
+    from urllib.error import HTTPError
+
+    _two_title_fetchers(monkeypatch, XML)
+    # Title 21's first fetch fails; any later fetch would return XML whose appendix
+    # names subpart C but sits under B, which the preflight never saw.
+    invalid = _move_appendix_in_xml(XML, "Appendix I to Subpart C of Part 404", "B")
+    fetched = []
+
+    def fetch_title_xml(title, as_of):
+        fetched.append(title)
+        if title == 21 and fetched.count(21) == 1:
+            raise HTTPError("https://example.invalid/21", 404, "not found", None, None)
+        return invalid if title == 21 else XML
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_title_xml", fetch_title_xml)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_ecfr(store, version="2026-10-12", as_of="2026-10-08", workers=2, include_appendices=True)
+
+    assert sorted(fetched) == [20, 21]
+    assert report.title_errors == ("21 CFR: HTTP Error 404: not found",)
+    run = store.root / "sources/us/regulation/2026-10-12/ecfr"
+    assert (run / "title-20.xml").exists() and not (run / "title-21.xml").exists()
+    paths = {record.citation_path for record in load_provisions(report.provisions_path)}
+    assert "us/regulation/20/404/subpart-C/appendix-i" in paths
+    assert not any(path.startswith("us/regulation/21/") for path in paths)
+    assert not report.coverage.complete
+
+
+def test_default_extraction_needs_no_temporary_directory(tmp_path, monkeypatch, live_fetchers):
+    def unavailable(*args, **kwargs):
+        raise OSError("no temporary storage")
+
+    monkeypatch.setattr(ecfr.tempfile, "TemporaryDirectory", unavailable)
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-10-12", as_of="2026-10-08",
+        only_title=20, only_part="404",
+    )
+
+    assert report.coverage.complete
+    with pytest.raises(OSError, match="no temporary storage"):
+        extract_ecfr(
+            CorpusArtifactStore(tmp_path / "opt-in"), version="2026-10-12", as_of="2026-10-08",
+            only_title=20, only_part="404", include_appendices=True,
+        )

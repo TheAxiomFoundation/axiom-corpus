@@ -81,8 +81,9 @@ shows, too, in multi-title runs as well: before writing anything, `extract-ecfr`
 reads or fetches every pending title's XML (staging fetched XML outside the corpus
 base, so it is fetched once) and converts its selected appendices in memory; it
 writes sources, images, structures, inventory, provisions and coverage only after
-every title passes. Other parsing or I/O failures can still occur after source
-capture and surface as title errors.
+every title passes. A title whose XML cannot be fetched there is reported as a title
+error and is not extracted, so no unchecked XML reaches the run. Other parsing or
+I/O failures can still occur after source capture and surface as title errors.
 
 For included appendices, extraction archives official PNG bytes for source
 images, retains image references in the body, and keeps HD1–HD3 heading text.
