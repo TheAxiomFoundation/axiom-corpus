@@ -1,0 +1,48 @@
+version: 2026-09-15-ssi-state-supplement-rules
+documents:
+- source_id: ut-admin-rules-r414-306-6-current
+  jurisdiction: us-ut
+  document_class: regulation
+  title: 'Utah Administrative Code R414-306-6: State Supplemental Payments for Institutionalized SSI Recipients'
+  source_url: https://adminrules.utah.gov/public/rule/R414-306/Current%20Rules
+  download_url: https://adminrules.utah.gov/api/public/getfile/uac-html/1f7c0fac-db65-46f9-bceb-37aaf2db016d.html/R414-306.html
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-06-19'
+  citation_path: us-ut/regulation/admin-rules/r414/306
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 4194304
+  extraction:
+    segmentation: anchor_range
+    html_content_selector: body
+    html_start_selector: div.awdiv:has(> span.awtext1:-soup-contains("R414-306-6."))
+    html_stop_selector: div.awdiv:has(> span.awtext1:-soup-contains("KEY:"))
+    section_label: '6'
+    section_heading: R414-306-6. State Supplemental Payments for Institutionalized SSI Recipients.
+  metadata:
+    primary_source: true
+    source_authority: Utah Office of Administrative Rules
+    document_subtype: administrative_code_rule_section
+    program: SSI
+    state: UT
+    rule_id: 980
+    reference_number: R414-306
+    rule_title: Program Benefits and Date of Eligibility
+    effective_date: '2025-06-19'
+    rule_filing_type: Nonsubstantive
+    agency: Health and Human Services
+    program_name: Integrated Healthcare
+    official_rule_route: https://adminrules.utah.gov/public/rule/R414-306/Current%20Rules
+    api_note: adminrules.utah.gov is a single-page application (its /public/rule/ route answers HTTP 404 with an empty body
+      to any non-browser client); the rule record comes from the application's public search API (searchRuleDataTotal) and
+      the HTML from its getfile API, both of which served the plain corpus client on 2026-09-15 (the getfile route returns
+      the application shell to a request whose Accept header prefers text/html, so the document is fetched with the curl range
+      backend, Accept */*); the 2026-07-04 FEP R986-200-239 manifest used the same getfile route and backend
+    parent_rule_source: us-ut/regulation/admin-rules/r414/306
+    closure_elements:
+    - SSI-ST-2
+    source_discovery_group: us-ut/regulation/ssi
+    discovered_via: manual-review:ssi-agent-queue batch 6 (needs-closure-2026-09-14 SSI-ST-2, state authority); publisher
+      index
