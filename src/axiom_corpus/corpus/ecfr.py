@@ -464,11 +464,14 @@ def _appendix_citation_from_element(
 # A subpart-scoped appendix names its subpart and part: "Appendix II to Subpart C of
 # Part 404", an unnumbered "Appendix to Subpart B of Part 404", or the collective
 # "Appendixes to Subpart C of Part 404" note that introduces a subpart's appendices.
-# A designator is a number, a single letter, or an uppercase roman numeral.
+# A designator is a number, a single letter, or an uppercase roman numeral. The match
+# is ASCII-only: under a Unicode IGNORECASE, [A-Za-z] also matches letters such as
+# the Kelvin sign or a dotted capital I, whose lowercase forms would change the
+# path and ordinal; no eCFR appendix identifier uses them, so they fail closed.
 _SUBPART_APPENDIX_IDENTIFIER_PATTERN = re.compile(
     r"(Appendix|Appendixes|Appendices)(?:\s+([0-9A-Za-z]+))?"
     r"\s+to\s+Subpart\s+([0-9A-Za-z]+)\s+of\s+Part\s+([0-9A-Za-z]+)",
-    flags=re.I,
+    flags=re.I | re.ASCII,
 )
 _ROMAN_NUMERAL_PATTERN = re.compile(
     r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})"

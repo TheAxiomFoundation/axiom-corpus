@@ -281,6 +281,12 @@ def test_subpart_appendix_identifier_parses(identifier, segment, legal_identifie
         "Appendix A to Subpart B to Part 830",
         "Table 1 to Subpart A of Part 1211",
         "Appendix ii to Subpart C of Part 404",
+        # Non-ASCII look-alikes: the Kelvin sign, a dotted capital I, a NBSP.
+        "Appendix \u212a to Subpart A of Part 604",
+        "Appendix \u0130 to Subpart A of Part 604",
+        "Append\u0130x A to Subpart A of Part 604",
+        "Appendix A to Subpart \u212a of Part 604",
+        "Appendix\u00a0A to Subpart A of Part 604",
         "",
     ],
 )
