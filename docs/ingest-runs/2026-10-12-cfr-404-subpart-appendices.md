@@ -150,20 +150,25 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
   Still unsupported: part appendices with roman (`Appendix II to Part 200`) or no
   designator (`Appendix to Part 720`), hyphenated or alphanumeric designators.
 - Differential run (origin/main adapter against this branch, both fed the same bytes)
-  over every locked eCFR XML: 49 files in 45 `us/regulation` scopes (44 `ecfr/title-*.xml`
-  and 5 `official-documents/ecfrtitle-*.xml` recovery sources; 37 with a structure file).
-  With appendices off, 37/37 inventories and 49/49 record sets are identical. With
-  appendices on, they are identical except: the two part 416 sources
-  (`2026-07-23-…` and `2026-09-11-title-20-part-416`), where main raised on
-  `Appendix to Subpart K of Part 416` and the branch takes it (623 inventory items); and
-  2 CFR 200 (`2026-09-24-nsf-slice-title-2-part-200`), which raises the same message in
-  both, now as `EcfrAppendixError`. The caption and word-break changes reach no locked
-  row: the only locked appendices (7 CFR 277 appendix A, 45 CFR 96 appendix A) have
-  neither. Script and report: `~/reviews/axiom-corpus-cfr-404-appendices-2026-10-12/`
-  (`differential.py`, `differential-report-v3.json`).
+  over every eCFR XML named by a `us/regulation` lock, nested runs included: 54 files in
+  47 scopes before this one (38 with a structure file, counting this scope's). With
+  appendices off, every inventory and record set is identical. With appendices on, they
+  are identical except: the two part 416 sources (`2026-07-23-…` and
+  `2026-09-11-title-20-part-416`), where main raised on `Appendix to Subpart K of Part
+  416` and the branch takes it (623 inventory items); and 2 CFR 200
+  (`2026-09-24-nsf-slice-title-2-part-200`), which raises the same message in both, now
+  as `EcfrAppendixError`. The caption and word-break changes reach no locked row: the
+  only locked appendices (7 CFR 277 appendix A, 45 CFR 96 appendix A) have neither.
+  Script and report: `~/reviews/axiom-corpus-cfr-404-appendices-2026-10-12/`
+  (`differential.py`, `differential-report-v4.json`, which also covers this scope).
 - Fail closed before writes: an opted-in appendix that names another part or subpart, or
   has an ambiguous designator, raises `EcfrAppendixError` (CLI exit 2) whether the
-  structure or only the XML shows it, and `extract-ecfr` then writes nothing.
+  structure or only the XML shows it. `extract-ecfr` reads or fetches every pending
+  title's XML and checks its appendices before writing anything, so even a multi-title
+  run writes nothing when one title fails.
+- Replay: the final code, fed this scope's locked XML, structure and PNGs, writes all 8
+  locked files byte for byte, so the manifest signed at `c3cad3462` matches what the
+  merged code produces.
 - Recovery scripts still refuse appendix replay, subpart appendix citations included.
 
 ## Citation-path ratchets
@@ -176,6 +181,23 @@ exactly at the existing baselines) plus the new file: `uppercase_segments` +32, 
 and the 11 appendices. #826 raises the same family by its 21 subpart containers, which
 are the same paths, so with both merged the live count is still 18,828; if #826 lands
 first, the merged baseline is `block_n` from #826 and `uppercase_segments` 18,828.
+
+## Fit with the W6 successor release
+
+The W6 successor selector (PR #819 at `4edda63e2`, 1,446 scopes) plus #826's
+`2026-10-12-oasdi-poms-rs` and `2026-10-12-oasdi-poms-gn` and this scope (1,449 scopes,
+built in scratch, not committed), audited against the locked provisions, inventories,
+coverage and sources of every scope:
+
+- `scripts/audit_release_scope_self_containment.py`: 0 residuals.
+- `axiom-corpus-ingest validate-release --prefix provisions --prefix inventory --prefix
+  coverage`: 0 errors and the 562 warnings #826 recorded for the W6 selector alone (541
+  `missing_parent_id`, 17 `unsectioned_document_body`, 4 `empty_provision_text`), none
+  in these scopes; the selector's `complete-expression-dates-v1` profile enforces
+  release-wide citation uniqueness.
+- The same selector carrying #826's `2026-10-12-title-20-part-404` as well (1,450
+  scopes): 810 `duplicate_release_citation` errors, one per shared path. A release
+  carries this scope or #826's part 404 scope, never both.
 
 ## Part 416
 

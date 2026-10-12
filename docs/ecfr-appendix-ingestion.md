@@ -77,10 +77,12 @@ appendix; selected unsupported identifiers still fail closed.
 Appendix validation errors (`EcfrAppendixError`, a `ValueError`) from either CLI
 command print a diagnostic to stderr and exit with status 2 before writing run
 artifacts; an existing run is preserved. That holds for contradictions only the XML
-shows, too: `extract-ecfr` converts a title's selected appendices in memory before
-writing its XML or images, and writes the structure, inventory, provisions and
-coverage only after every title passes. Other parsing or I/O failures can still
-occur after source capture and surface as title errors.
+shows, too, in multi-title runs as well: before writing anything, `extract-ecfr`
+reads or fetches every pending title's XML (staging fetched XML outside the corpus
+base, so it is fetched once) and converts its selected appendices in memory; it
+writes sources, images, structures, inventory, provisions and coverage only after
+every title passes. Other parsing or I/O failures can still occur after source
+capture and surface as title errors.
 
 For included appendices, extraction archives official PNG bytes for source
 images, retains image references in the body, and keeps HD1–HD3 heading text.
@@ -94,10 +96,11 @@ part 404), and read a `<br/>` as a word break, so `means<br/>less` is
 `means less`, not `meansless`; adjacent block children (`P`, `FP`, `PSPACE`, `HED`,
 `HD1`–`HD3`, `LI`, `DIV`) separate words the same way, while inline markup still
 joins (`FEV<sub>1</sub>` is `FEV1`). An appendix's own bracketed source note
-(`CITA`) and an editorial cross-reference that stands as its own block (`XREF`, such
-as "Link to an amendment published at 91 FR 40836, July 2, 2026.") are not
-regulation text and are not kept; text nested inside a kept element (a caption, a
-paragraph or a table cell) is kept whatever its tag. These rendering changes apply
+(`CITA`) is not kept, and neither is plain text that sits directly in an element the
+renderer does not read, such as an editorial cross-reference (`XREF`, "Link to an
+amendment published at 91 FR 40836, July 2, 2026."); paragraphs, headings and tables
+inside such an element are still kept, and text nested inside a kept element (a
+caption, a paragraph or a table cell) is kept whatever its tag. These rendering changes apply
 to part appendices as well, whose path, parent, level, ordinal and metadata are
 unchanged; no locked part appendix has a caption, a `<br/>` or adjacent block
 children. Section rendering is unchanged: it still drops table captions and joins

@@ -5,6 +5,7 @@ from __future__ import annotations
 import gzip
 import json
 import re
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -88,7 +89,6 @@ class _EcfrTitleResult:
     transcription_evidence: Mapping[str, Mapping[str, str]] | None = None
     source_sha256: str | None = None
     error: str | None = None
-    appendix_error: str | None = None
 
 
 def ecfr_run_id(
@@ -2227,30 +2227,42 @@ def extract_ecfr(
     title_errors: list[str] = []
     failed_titles: set[int] = set()
     transcription_evidence: dict[str, Mapping[str, str]] = {}
-    title_results = tuple(
-        _extract_title_results(
-            store,
-            pending_titles,
-            run_id,
-            version,
-            as_of,
-            expression_date_text,
-            allowed_citation_paths,
-            only_part=only_part,
-            workers=workers,
-            graphic_transcriptions=graphic_transcriptions,
-            include_appendices=include_appendices,
-            appendix_numbering_by_title=appendix_numbering_by_title,
+    with tempfile.TemporaryDirectory(prefix="axiom-ecfr-appendix-preflight-") as staging:
+        # An opted-in appendix that fails validation in any title's XML stops the
+        # run here, before any source, image, structure, inventory, provisions or
+        # coverage file is written.
+        staged_xml_by_title = (
+            _preflight_title_appendices(
+                store,
+                pending_titles,
+                run_id,
+                as_of,
+                allowed_citation_paths,
+                only_part=only_part,
+                workers=workers,
+                appendix_numbering_by_title=appendix_numbering_by_title,
+                staging_dir=Path(staging),
+            )
+            if include_appendices and pending_titles
+            else {}
         )
-    )
-    # An opted-in appendix that fails validation in the XML stops the run here,
-    # before the structures, inventory, provisions or coverage are written; the
-    # failing title wrote nothing either (see _ecfr_appendix_preflight_error).
-    appendix_errors = sorted(
-        result.appendix_error for result in title_results if result.appendix_error
-    )
-    if appendix_errors:
-        raise EcfrAppendixError("; ".join(appendix_errors))
+        title_results = tuple(
+            _extract_title_results(
+                store,
+                pending_titles,
+                run_id,
+                version,
+                as_of,
+                expression_date_text,
+                allowed_citation_paths,
+                only_part=only_part,
+                workers=workers,
+                graphic_transcriptions=graphic_transcriptions,
+                include_appendices=include_appendices,
+                appendix_numbering_by_title=appendix_numbering_by_title,
+                staged_xml_by_title=staged_xml_by_title,
+            )
+        )
 
     if not only_sections and source_xml is None:
         for structure in structures:
@@ -2461,6 +2473,7 @@ def _extract_title_results(
         int, Mapping[tuple[str, str], Mapping[str, str | None]]
     ]
     | None = None,
+    staged_xml_by_title: Mapping[int, Path] | None = None,
 ) -> Iterator[_EcfrTitleResult]:
     max_workers = max(1, workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -2479,6 +2492,7 @@ def _extract_title_results(
                 graphic_transcriptions,
                 include_appendices,
                 (appendix_numbering_by_title or {}).get(title),
+                (staged_xml_by_title or {}).get(title),
             ): title
             for title, targets, _paths in pending_titles
         }
@@ -2494,8 +2508,8 @@ def _ecfr_appendix_preflight_error(
 ) -> str | None:
     """Convert a title's selected appendices once, in memory, before any write.
 
-    Returns the appendix validation error, if any. Other conversion failures are
-    left to the extraction that follows, which reports them as title errors.
+    Returns the appendix validation error, if any. Any other conversion failure is
+    left to the extraction that follows, which reports it as it always has.
     """
     try:
         for _record in iter_ecfr_title_provisions(
@@ -2510,9 +2524,88 @@ def _ecfr_appendix_preflight_error(
             pass
     except EcfrAppendixError as exc:
         return str(exc)
-    except (ValueError, ET.ParseError):
+    except Exception:  # noqa: BLE001 - only appendix validity is decided here
         return None
     return None
+
+
+def _fetch_title_xml(title: int, only_part: str | None, as_of: str) -> str:
+    fetch_label = f"{title} CFR part {only_part}" if only_part else f"{title} CFR"
+    return _fetch_with_retries(
+        fetch_label,
+        lambda: (
+            fetch_ecfr_part_xml(title, only_part, as_of)
+            if only_part is not None
+            else fetch_ecfr_title_xml(title, as_of)
+        ),
+    )
+
+
+def _preflight_title_appendices(
+    store: CorpusArtifactStore,
+    pending_titles: list[tuple[int, tuple[EcfrPartTarget, ...], set[str]]],
+    run_id: str,
+    as_of: str,
+    allowed_citation_paths: set[str],
+    *,
+    only_part: str | None,
+    workers: int,
+    appendix_numbering_by_title: Mapping[
+        int, Mapping[tuple[str, str], Mapping[str, str | None]]
+    ],
+    staging_dir: Path,
+) -> dict[int, Path]:
+    """Validate every pending title's selected appendices before the run writes.
+
+    Each title's XML is read from the run if retained there, or fetched and staged
+    in ``staging_dir`` (outside the corpus base) so the extraction that follows
+    writes those bytes without fetching again. Raises ``EcfrAppendixError`` naming
+    every failing title. A title whose XML cannot be acquired is left to the
+    extraction, which reports it as a title error as before.
+    """
+
+    def preflight_one(
+        title: int, targets: tuple[EcfrPartTarget, ...]
+    ) -> tuple[int, Path | None, str | None]:
+        source_path = store.source_path(
+            "us",
+            DocumentClass.REGULATION,
+            run_id,
+            _ecfr_source_relative_name(title, only_part),
+        )
+        staged: Path | None = None
+        try:
+            if source_path.exists():
+                xml_content = source_path.read_bytes().decode("utf-8")
+            else:
+                xml_content = _fetch_title_xml(title, only_part, as_of)
+                staged = staging_dir / f"title-{title}.xml"
+                staged.write_bytes(xml_content.encode("utf-8"))
+        except (
+            TimeoutError,
+            ValueError,
+            urllib.error.HTTPError,
+            urllib.error.URLError,
+        ):
+            return title, None, None
+        error = _ecfr_appendix_preflight_error(
+            xml_content,
+            targets,
+            allowed_citation_paths,
+            appendix_numbering_by_title.get(title),
+        )
+        return title, staged, error
+
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
+        results = list(
+            executor.map(
+                lambda pending: preflight_one(pending[0], pending[1]), pending_titles
+            )
+        )
+    errors = sorted(f"{title} CFR: {error}" for title, _staged, error in results if error)
+    if errors:
+        raise EcfrAppendixError("; ".join(errors))
+    return {title: staged for title, staged, _error in results if staged is not None}
 
 
 def _extract_one_title(
@@ -2528,6 +2621,7 @@ def _extract_one_title(
     graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
     include_appendices: bool,
     appendix_numbering: Mapping[tuple[str, str], Mapping[str, str | None]] | None = None,
+    staged_xml: Path | None = None,
 ) -> _EcfrTitleResult:
     source_relative_name = _ecfr_source_relative_name(title, only_part)
     source_path = store.source_path(
@@ -2537,28 +2631,17 @@ def _extract_one_title(
         source_relative_name,
     )
     try:
-        source_sha256: str | None = None
         if source_path.exists():
             source_bytes = source_path.read_bytes()
             xml_content = source_bytes.decode("utf-8")
             source_sha256 = sha256_bytes(source_bytes)
         else:
-            fetch_label = f"{title} CFR part {only_part}" if only_part else f"{title} CFR"
-            xml_content = _fetch_with_retries(
-                fetch_label,
-                lambda: (
-                    fetch_ecfr_part_xml(title, only_part, as_of)
-                    if only_part is not None
-                    else fetch_ecfr_title_xml(title, as_of)
-                ),
+            # The appendix preflight already fetched this title's XML.
+            xml_content = (
+                staged_xml.read_bytes().decode("utf-8")
+                if staged_xml is not None
+                else _fetch_title_xml(title, only_part, as_of)
             )
-        if include_appendices:
-            appendix_error = _ecfr_appendix_preflight_error(
-                xml_content, targets, allowed_citation_paths, appendix_numbering
-            )
-            if appendix_error is not None:
-                return _EcfrTitleResult(title=title, appendix_error=f"{title} CFR: {appendix_error}")
-        if source_sha256 is None:
             source_sha256 = store.write_text(source_path, xml_content)
         graphic_paths, used_transcriptions, transcription_evidence = (
             _capture_ecfr_math_graphics(

@@ -999,3 +999,92 @@ def test_part_appendix_body_gains_captions_and_word_breaks_identity_unchanged():
         "us/regulation/20/404", 1, 1_000_065, "20 CFR part 404, appendix A",
     )
     assert set(record.metadata) == {"title", "part", "appendix", "appendix_identifier", "chapter", "subchapter"}
+
+
+def _two_title_fetchers(monkeypatch, title_21_xml):
+    from urllib.error import HTTPError
+
+    structure_21 = json.loads(json.dumps(STRUCTURE))
+    structure_21["identifier"] = "21"
+    structures = {20: STRUCTURE, 21: structure_21}
+    xmls = {20: XML, 21: title_21_xml}
+
+    def fetch_structure(title, as_of):
+        if title not in structures:
+            raise HTTPError(f"https://example.invalid/{title}", 404, "not found", None, None)
+        return structures[title]
+
+    fetched = []
+
+    def fetch_title_xml(title, as_of):
+        fetched.append(title)
+        return xmls[title]
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", fetch_structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_title_xml", fetch_title_xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: pytest.fail("part fetch"))
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: PNG)
+    return fetched
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+@pytest.mark.parametrize("existing_run", [False, True])
+def test_multi_title_run_writes_nothing_when_any_title_fails_appendix_validation(
+    tmp_path, monkeypatch, workers, existing_run
+):
+    # Title 20 is valid; title 21's XML alone puts Appendix I under subpart B.
+    _two_title_fetchers(
+        monkeypatch, _move_appendix_in_xml(XML, "Appendix I to Subpart C of Part 404", "B")
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    if existing_run:
+        previous = store.root / "sources/us/regulation/2026-10-12/ecfr/title-20.structure.json"
+        previous.parent.mkdir(parents=True)
+        previous.write_bytes(b"previous run bytes")
+    before = _files(store.root)
+
+    with pytest.raises(ecfr.EcfrAppendixError, match=r"^21 CFR: .*conflicts with enclosing subpart 'B'"):
+        extract_ecfr(
+            store, version="2026-10-12", as_of="2026-10-08", workers=workers, include_appendices=True,
+        )
+
+    assert _files(store.root) == before
+
+
+def test_multi_title_run_stages_xml_once_and_matches_an_unstaged_extraction(tmp_path, monkeypatch):
+    fetched = _two_title_fetchers(monkeypatch, XML)
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "opt-in"), version="2026-10-12", as_of="2026-10-08",
+        workers=2, include_appendices=True,
+    )
+
+    assert report.title_errors == () and report.coverage.complete
+    # The preflight fetched each title once; the extraction read the staged bytes.
+    assert sorted(fetched) == [20, 21]
+    run = tmp_path / "opt-in/sources/us/regulation/2026-10-12/ecfr"
+    assert (run / "title-20.xml").read_text() == (run / "title-21.xml").read_text() == XML
+    assert [path.name for path in report.source_paths[:2]] == ["title-20.structure.json", "title-21.structure.json"]
+    paths = [record.citation_path for record in load_provisions(report.provisions_path)]
+    assert len(paths) == 2 * len(EXPECTED_PATHS)
+    assert "us/regulation/21/404/subpart-C/appendix-ii" in paths
+    # Re-running over the retained XML reads it from the run and writes the same bytes.
+    rerun = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "opt-in"), version="2026-10-12", as_of="2026-10-08",
+        workers=1, include_appendices=True,
+    )
+    assert rerun.provisions_path.read_bytes() == report.provisions_path.read_bytes()
+    assert sorted(fetched) == [20, 21]
+
+
+def test_xref_plain_text_is_dropped_but_its_paragraphs_are_kept():
+    elem = ecfr.ET.fromstring(
+        '<DIV9 N="Appendix 2 to Subpart P of Part 404" TYPE="APPENDIX"><HEAD>H</HEAD>'
+        '<XREF ID="1">Link to an amendment published at 91 FR 40836.</XREF>'
+        "<XREF><P>Editorial paragraph.</P></XREF><P>Rule text.</P>"
+        "<CITA>[45 FR 55584]</CITA></DIV9>"
+    )
+
+    assert ecfr._section_body(elem, appendix=True).split("\n\n") == [
+        "Editorial paragraph.", "Rule text.",
+    ]
