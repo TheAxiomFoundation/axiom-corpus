@@ -500,16 +500,21 @@ def test_retained_source_inventory_failure_preserves_existing_run_bytes(tmp_path
     import axiom_corpus.corpus.ecfr as ecfr
 
     # A retained-source run must be section-scoped. Its unsupported appendix is
-    # excluded, but the two requested sections fold to one citation path
+    # excluded, and § 605.100 belongs to part 604, which holds it (as 43 CFR 3809.1
+    # belongs to part 3800). The two requested sections fold to one citation path
     # (604.100(a) and 604.100-a are both .../604/100-a), which fails inventory
     # validation after the local XML was read and the scoped structure was constructed.
-    # (A section numbered for another part, such as 605.100 here, now belongs to the
-    # part that holds it, as 43 CFR 3809.1 belongs to part 3800.)
-    xml = SAMPLE_APPENDIX_XML.replace(
-        '<DIV8 N="§ 604.100"',
-        '<DIV8 N="§ 604.100-a" TYPE="SECTION"><HEAD>§ 604.100-a Folded.</HEAD>'
-        '<P>Text.</P></DIV8>\n    <DIV8 N="§ 604.100(a)"',
-    ).replace("Appendix A to Part 604", "Appendix II to Part 604")
+    xml = SAMPLE_APPENDIX_XML.replace("§ 604.100", "§ 605.100").replace(
+        "Appendix A to Part 604", "Appendix II to Part 604"
+    )
+    xml = xml.replace(
+        '    <DIV9 N="Appendix',
+        '    <DIV8 N="§ 604.100(a)" TYPE="SECTION"><HEAD>§ 604.100(a) Folded.</HEAD>'
+        '<P>Text.</P></DIV8>\n'
+        '    <DIV8 N="§ 604.100-a" TYPE="SECTION"><HEAD>§ 604.100-a Folded.</HEAD>'
+        '<P>Text.</P></DIV8>\n    <DIV9 N="Appendix',
+        1,
+    )
     source = tmp_path / "official.xml"
     source.write_bytes(xml.encode())
     store = CorpusArtifactStore(tmp_path / "corpus")
