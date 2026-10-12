@@ -57,7 +57,7 @@ axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-10-12 \
   `--include-appendices` accepts only part-scoped `Appendix X to Part N` identifiers, the
   limit the part 416 run recorded. No register entry cites one. Subpart C's appendices (AWI
   series, benefit formulas, the old-law benefit table, special minimum PIA) are a
-  follow-up, by the same route open PR #718 uses for the part 416 subpart K appendix
+  follow-up, by the same route PR #718 used for the part 416 subpart K appendix
   (an official document from the eCFR renderer API) or an adapter change.
 - Text kept: `ecfr._section_body` skips `HEAD` and `CITA` (the bracketed Federal Register
   amendment history), and the OMB approval notes (`APPRO`) are not emitted. A word count
@@ -95,7 +95,7 @@ axiom-corpus-ingest extract-official-documents --base data/corpus \
   third-party copy was used.
 - Manifests: `scripts/build_oasdi_poms_manifests.py` adds parts RS and GN to the SI/HI
   generator's `PARTS` table at load time and defines two families. It leaves
-  `scripts/build_ssi_poms_si_manifests.py` untouched (open PR #718 edits that file). It
+  `scripts/build_ssi_poms_si_manifests.py` untouched. After PR #718 changed that file, the two manifests regenerate byte-identical from the page cache. It
   fails closed if a selected chapter or subchapter is missing from SSA's index, or if the
   number of sections taken differs from the number the index lists for the selection.
   There is no OASDI agent queue, so it writes only the manifests.
