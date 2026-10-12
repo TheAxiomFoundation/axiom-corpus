@@ -425,10 +425,17 @@ def _section_citation_from_element(
 def _appendix_citation_from_identifier(
     title: int, identifier: str, *, require_supported: bool = True
 ) -> tuple[str, str, str] | None:
+    # A hyphenated part (title 41) matches ASCII-only: under re.I alone, [A-Za-z] also
+    # matches lookalikes such as a dotless "ı", which the citation-path grammar rejects.
+    # The alphanumeric form keeps its earlier flags.
     match = re.fullmatch(
-        rf"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+({_PART_IDENTIFIER_PATTERN})",
+        r"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+([0-9A-Za-z]+)",
         identifier.strip(),
         flags=re.I,
+    ) or re.fullmatch(
+        rf"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+({_PART_IDENTIFIER_PATTERN})",
+        identifier.strip(),
+        flags=re.I | re.ASCII,
     )
     if not match:
         return None
@@ -870,7 +877,12 @@ def _filter_ecfr_inventory_sections(
         metadata = item.metadata or {}
         if metadata.get("kind") != "section":
             continue
-        selector = f"{metadata.get('part')}.{metadata.get('section')}"
+        part = str(metadata.get("part"))
+        selector = f"{part}.{metadata.get('section')}"
+        # A hyphenated part's selector must name the section's own part: eCFR files
+        # "105.60.001" under part 105-60, but its path is under part 105.
+        if "-" in part and item.citation_path.split("/")[3] != part:
+            continue
         if selector in requested:
             matches[selector] = item
     missing = [selector for selector in requested if selector not in matches]

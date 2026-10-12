@@ -385,6 +385,35 @@ def test_section_selector_still_rejects_malformed_hyphenated_parts(selector):
         build_ecfr_inventory_from_structures((TITLE_41_STRUCTURE,), only_sections=(selector,))
 
 
+def test_hyphenated_selector_selects_only_a_section_under_that_part():
+    # eCFR files 41 CFR 105-60.001 under part 105-60 with the identifier "105.60.001",
+    # which the alphanumeric grammar reads as part 105, as it did before this change.
+    structure = {"identifier": "41", "type": "title", "children": [{
+        "identifier": "105-60", "label": "Part 105-60—Public Availability", "type": "part",
+        "children": [{"identifier": "A", "label": "Subpart A—General", "type": "subpart",
+                      "children": [_section("105-60.000", "§ 105-60.000 Scope."),
+                                   _section("105.60.001", "§ 105.60.001 General policy.")]}],
+    }]}
+    whole = _paths(build_ecfr_inventory_from_structures((structure,)).items)
+    assert whole == [
+        "us/regulation/41/105-60",
+        "us/regulation/41/105-60/subpart-A",
+        "us/regulation/41/105-60/000",
+        "us/regulation/41/105/60.001",
+    ]
+
+    selected = build_ecfr_inventory_from_structures(
+        (structure,), only_sections=("105-60.000",)
+    )
+    assert selected.part_count == 1
+    assert _paths(selected.items) == whole[:3]
+    # Its part and section would spell "105-60.60.001", but its path is not under 105-60.
+    with pytest.raises(ValueError, match="not found: 105-60.60.001"):
+        build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.60.001",))
+    with pytest.raises(ValueError, match="not found: 105.60.001"):
+        build_ecfr_inventory_from_structures((structure,), only_sections=("105.60.001",))
+
+
 def test_lettered_appendix_of_a_hyphenated_part():
     inventory = build_ecfr_inventory_from_structures(
         (TITLE_41_STRUCTURE,), only_part="60-300", include_appendices=True
@@ -409,6 +438,19 @@ def test_lettered_appendix_of_a_hyphenated_part():
     assert [record.citation_path for record in records] == _paths(inventory.items)
     assert records[-1].legal_identifier == "41 CFR part 60-300, appendix A"
     assert records[-1].body == "1. A contractor must make reasonable accommodation."
+
+
+@pytest.mark.parametrize(
+    "identifier",
+    [
+        "Appendix \u0131 to Part 60-300",  # dotless i
+        "Appendix \u212a to Part 60-300",  # Kelvin sign
+        "Appendix A to Part 60-\u017f00",  # long s
+    ],
+)
+def test_hyphenated_part_appendix_rejects_unicode_lookalikes(identifier):
+    assert ecfr._appendix_citation_from_identifier(41, identifier) is None
+    assert ecfr._appendix_citation_from_identifier(41, identifier, require_supported=False) is None
 
 
 def test_hyphenated_part_appendix_naming_another_part_fails_closed():
@@ -650,27 +692,50 @@ def test_property_xml_parse_matches_earlier_grammar_outside_hyphenated_parts(tit
         assert new == _old_element(title, n_attr)
 
 
-@settings(max_examples=300, deadline=None)
+# Case-insensitive lookalikes of ASCII letters: dotless i, dotted capital I, Kelvin sign, long s.
+_LOOKALIKES = ["\u0131", "\u0130", "\u212a", "\u017f"]
+
+
+def _old_appendix(title, identifier, supported):
+    match = re.fullmatch(OLD_APPENDIX_IDENTIFIER, identifier.strip(), flags=re.I)
+    if not match:
+        return None
+    appendix, part = match.groups()
+    appendix = appendix.lower()
+    if supported and not (appendix.isdigit() or (len(appendix) == 1 and appendix.isalpha())):
+        return None
+    return f"us/regulation/{title}/{part}/appendix-{appendix}", part, appendix
+
+
+@settings(max_examples=400, deadline=None)
 @given(
     title=st.integers(1, 50),
-    designator=st.one_of(_ALNUM, st.sampled_from(["A", "1", "II", "b"])),
-    part=st.one_of(_PART, st.sampled_from(["S 660", "60--20", "60-"])),
+    designator=st.one_of(_ALNUM, st.sampled_from(["A", "1", "II", "b", *_LOOKALIKES])),
+    part=st.one_of(
+        _PART,
+        st.sampled_from(["S 660", "60--20", "60-", "6\u212a", "60-\u0131", "\u017f-1"]),
+    ),
     supported=st.booleans(),
 )
 def test_property_appendix_part_grammar(title, designator, part, supported):
     identifier = f"Appendix {designator} to Part {part}"
     new = ecfr._appendix_citation_from_identifier(title, identifier, require_supported=supported)
+    if "-" not in part:
+        # The alphanumeric form parses exactly as before, lookalikes included.
+        assert new == _old_appendix(title, identifier, supported)
+        return
+    # A hyphenated part is new: ASCII only, and every path it yields is schema-valid.
+    grammatical = (
+        re.fullmatch(ecfr._PART_IDENTIFIER_PATTERN, part) is not None
+        and re.fullmatch("[0-9A-Za-z]+", designator) is not None
+    )
     designator_ok = not supported or designator.isdigit() or (
         len(designator) == 1 and designator.isalpha()
     )
-    if "-" in part:
-        # Only a well-formed hyphenated part is new; the rest stays unsupported.
-        grammatical = re.fullmatch(ecfr._PART_IDENTIFIER_PATTERN, part) is not None
-    else:
-        grammatical = re.fullmatch(OLD_APPENDIX_IDENTIFIER, identifier, flags=re.I) is not None
     if grammatical and designator_ok:
         appendix = designator.lower()
         assert new == (f"us/regulation/{title}/{part}/appendix-{appendix}", part, appendix)
+        assert _valid_citation_path(new[0])
     else:
         assert new is None
 
@@ -680,7 +745,10 @@ def _title_structures(draw):
     """A title of distinct parts; each part's sections name it, optionally in subparts.
 
     Alphanumeric parts sometimes also carry a section numbered like a hyphenated part
-    ("19-8.1" in part 241), which no part may claim.
+    ("19-8.1" in part 241), which no part may claim. It is left out when the title has a
+    part 8: the XML pass keeps the earlier reading of a section that does not name its part,
+    which takes "19-8.1" as part 8, section 1, and would repeat 8.1's path. No eCFR title
+    has that collision (all 49 titles, 2026-10-08).
     """
     parts = draw(st.lists(_PART, min_size=1, max_size=5, unique=True))
     children = []
@@ -691,7 +759,7 @@ def _title_structures(draw):
                      reserved=draw(st.booleans()) and draw(st.booleans()))
             for number in numbers
         ]
-        if "-" not in part and draw(st.booleans()):
+        if "-" not in part and "8" not in parts and draw(st.booleans()):
             sections.append(_section("19-8.1", "19-8.1 Purpose."))
         if sections and draw(st.booleans()):
             split = draw(st.integers(0, len(sections)))
@@ -732,7 +800,19 @@ def test_property_inventory_partitions_by_part_and_matches_the_xml(structure):
         assert parent is None or parent in seen
         seen.add(item.citation_path)
         assert _valid_citation_path(item.citation_path)
-    assert not any("/19-8/" in path for path in paths)
+        # Every section sits under the part that encloses it (the foreign "19-8.1" drops).
+        if item.metadata["kind"] == "section":
+            assert item.citation_path.split("/")[3] == item.metadata["part"]
+            # Selector round trip: its PART.SECTION selects it, with its ancestors.
+            selector = f"{item.metadata['part']}.{item.metadata['section']}"
+            selected = build_ecfr_inventory_from_structures((structure,), only_sections=(selector,))
+            assert selected.items[-1] == item
+            assert [i.citation_path for i in selected.items[:-1]] == [
+                p for p in paths if p in {
+                    f"us/regulation/41/{item.metadata['part']}",
+                    item.metadata["parent_citation_path"],
+                }
+            ]
 
     # Partition: a part-scoped inventory is the whole inventory restricted to that part.
     for part in [node["identifier"] for node in structure["children"]]:
