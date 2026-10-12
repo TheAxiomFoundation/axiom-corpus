@@ -346,3 +346,63 @@ def test_caption_lines_lead_in_order_and_rows_are_unchanged(case):
     lines = with_caption.split("\n") if with_caption else []
     assert lines[: len(expected)] == expected
     assert "\n".join(lines[len(expected) :]) == without_caption
+
+
+AUDIT_REPORT = REPO_ROOT / "docs/validation/ecfr-table-captions-2026-10-12.audit.json"
+
+
+def _released_findings(report: dict) -> dict[tuple[str, str], tuple]:
+    # Release names are left out: every new union selector re-lists these
+    # scopes, and that must not invalidate the record.
+    return {
+        (scope["scope"], record["citation_path"]): (
+            tuple(record["caption_lines"]),
+            record["caption_only_change"],
+        )
+        for scope in report["scopes"]
+        if scope["released_in"]
+        for record in scope["records"]
+    }
+
+
+def test_released_scopes_missing_captions_match_the_recorded_successor_candidates():
+    """The recorded successor list stays complete for released eCFR scopes.
+
+    If this fails because a release selector now names another eCFR scope
+    extracted before captions were emitted, release a successor extracted with
+    this adapter instead, or rerun scripts/audit_ecfr_table_captions.py
+    --output docs/validation/ecfr-table-captions-2026-10-12.audit.json and add
+    the scope to the validation note's successor list.
+    """
+    from scripts.audit_ecfr_table_captions import audit
+
+    actual = _released_findings(audit(REPO_ROOT / "data/corpus", REPO_ROOT / "manifests/releases"))
+    recorded = _released_findings(json.loads(AUDIT_REPORT.read_text()))
+
+    assert actual == recorded
+    assert len(recorded) == 40
+    # Every candidate's re-extraction differs from its stored body only by
+    # inserted caption lines.
+    assert {only for _, only in recorded.values()} == {True}
+
+
+def test_deeming_slice_replay_holds_no_captioned_table():
+    """Why the pinned part 416 replay baseline needs no versioned behaviour.
+
+    tests/test_repro_us_cfr_416_deeming_slice.py regenerates the 14-path slice
+    with the current adapter and checks its hashes. The retained July XML has
+    two captions, both outside the slice (416.974 and 416.1112), and container
+    bodies join only the slice's own children, so emitting captions leaves
+    every replayed byte unchanged.
+    """
+    from scripts.audit_ecfr_table_captions import _captioned_tables
+    from scripts.repro_us_cfr_416_deeming_slice import (
+        APPROVED_CITATION_PATHS,
+        XML_RELATIVE_PATH,
+    )
+
+    root = ET.fromstring((REPO_ROOT / "data/corpus" / XML_RELATIVE_PATH).read_bytes())
+    captioned = sorted(table["provision"] for table in _captioned_tables(root, 20))
+
+    assert captioned == ["us/regulation/20/416/1112", "us/regulation/20/416/974"]
+    assert not set(captioned) & set(APPROVED_CITATION_PATHS)
