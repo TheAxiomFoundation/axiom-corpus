@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "088343adcf3ff6357a82bf7e7bbd1fcfa6eabdb7ebd9dabd2be4cf3e16b50692"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "5ff8570ed8eae0d73a3180a7ab0e255df36386b8dbd72c45aed6d48571b3f461"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "0d5529fe571a088763d87a506ff25e3954f271e5554ad26ef210e6b30b19a059"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-sc-cms-magi-verification-plan-south-carolina-verification-plan-template-final.pdf",
+      "sha256": "3f6acaac88dc4dcf814377c7e41b9b53c2c19200e21608403f8c2e96dac34148"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:22.579939+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z9p1BpbGbOUfnPAkhJMSL9MWjKS2Vp50uH4PyqN/mA5zGqRBvl0NbqTCcHJvIRIFNqFi2ishKAgKx1uZ5BdODw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}
