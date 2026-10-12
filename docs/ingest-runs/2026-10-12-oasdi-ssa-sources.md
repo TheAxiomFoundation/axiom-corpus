@@ -71,11 +71,11 @@ axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-10-12 \
   "Table I", but the 404.1592 rows lose the employee/self-employed labels. The other 44
   captions in the file are in the appendices, which are not taken. No register entry
   cites these sections. This is the adapter's behaviour for every eCFR scope (26 CFR
-  part 1's coordination-repair source alone has 507 captions), and
-  `tests/test_repro_us_cfr_416_deeming_slice.py` regenerates the released part 416
-  deeming slice from retained XML and checks the output hashes against a pinned baseline.
-  The caption fix is therefore a separate adapter change with its own replay plan, not
-  part of this ingest.
+  part 1's coordination-repair source alone has 507 captions), so the fix changes what
+  any eCFR re-extraction produces and needs its own PR, with a list of released scopes
+  that would get signed successor versions, rather than riding on this ingest. (The
+  pinned part 416 replay in `tests/test_repro_us_cfr_416_deeming_slice.py` covers 14
+  sections with no captions, so a captions-only fix leaves its baseline unchanged.)
 - Sources (`sources/us/regulation/2026-10-12-title-20-part-404/ecfr/`):
   `title-20-part-404.xml` 3,528,997 bytes sha256
   `bdf2ce217abc258f999d54f6df1e2c7f6fa7d22ff10b8d0a3b3fc5b086b2fc50` from
