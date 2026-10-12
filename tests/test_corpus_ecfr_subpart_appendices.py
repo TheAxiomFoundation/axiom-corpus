@@ -18,7 +18,7 @@ Invariants checked here:
 - Numbering evidence: only appendices that sit in the subpart they name classify its
   designators; designator case does not matter.
 - Part appendices keep their identity and metadata; their bodies gain captions and
-  word breaks like subpart appendices. Section rendering is unchanged.
+  word breaks like subpart appendices. Sections keep captions and word breaks too.
 """
 
 import json
@@ -449,7 +449,7 @@ def test_iterator_takes_subpart_appendices_with_identity_and_order():
     ]
 
 
-def test_appendix_rendering_keeps_captions_and_word_breaks_but_sections_do_not_change():
+def test_appendix_and_section_rendering_keep_captions_and_word_breaks():
     by_path = {record.citation_path: record for record in _records(include_appendices=True)}
 
     assert by_path["us/regulation/20/404/subpart-C/appendix-ii"].body.split("\n\n") == [
@@ -472,8 +472,12 @@ def test_appendix_rendering_keeps_captions_and_word_breaks_but_sections_do_not_c
     # eCFR's editorial "Link to an amendment" cross-reference is not regulation text.
     assert "Link to an amendment" not in listing
     assert "45 FR 25060" not in by_path["us/regulation/20/404/subpart-B/appendix"].body
-    # Section rendering keeps its established output (caption dropped, <br/> joined).
-    assert by_path["us/regulation/20/404/201"].body == "A section paragraph.\n\nmeansless"
+    # Sections keep the caption and break the word at <br/> too.
+    assert by_path["us/regulation/20/404/201"].body.split("\n\n") == [
+        "A section paragraph.",
+        "Section Caption",
+        "means less",
+    ]
 
 
 @pytest.mark.parametrize(
@@ -983,7 +987,7 @@ def test_every_block_break_tag_separates_words_in_appendix_text(tag):
     # Inline markup (<E>) still joins: "right" + "em" + "tail".
     expected = "left middle rightemtail" if tag != "br" else "left rightemtail"
     assert ecfr._element_text_with_breaks(elem) == expected
-    # Section text keeps joining everything.
+    # The plain join, still used for headings, glues them.
     assert ecfr._element_text(elem) == expected.replace(" ", "")
 
 

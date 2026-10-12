@@ -91,9 +91,9 @@ Image-only forms therefore retain a nonempty body pointing to the captured
 source. Existing SHA-256-bound formula transcription checks still apply. Image
 references are source evidence, not OCR text or an executable formula.
 
-Appendix bodies also keep table captions, as a block before the table's rows
-(`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P of
-part 404), and read a `<br/>` as a word break, so `means<br/>less` is
+Appendix and section bodies keep table captions, as a block before the table's
+rows (`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P
+of part 404, `Table 1—For Employees` in 20 CFR 404.1592), and read a `<br/>` as a word break, so `means<br/>less` is
 `means less`, not `meansless`; adjacent block children (`P`, `FP`, `PSPACE`, `HED`,
 `HD1`–`HD3`, `LI`, `DIV`) separate words the same way, while inline markup still
 joins (`FEV<sub>1</sub>` is `FEV1`). An appendix's own bracketed source note
@@ -104,8 +104,12 @@ inside such an element are still kept, and text nested inside a kept element (a
 caption, a paragraph or a table cell) is kept whatever its tag. These rendering changes apply
 to part appendices as well, whose path, parent, level, ordinal and metadata are
 unchanged; no locked part appendix has a caption, a `<br/>` or adjacent block
-children. Section rendering is unchanged: it still drops table captions and joins
-words across `<br/>`.
+children.
+
+Sections took captions and word breaks after the appendices did. Locked scopes
+keep the text they were extracted with (captions dropped, words joined across
+`<br/>`); a scope picks up the fix only when it is extracted again as a
+successor.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with
@@ -124,9 +128,10 @@ ordinary section-only recovery. Preserve appendix artifacts and use an
 appendix-aware inventory/extraction workflow for a separate run instead; these
 recovery scripts do not certify an appendix replay as complete.
 
-Ordinary section rendering and formula-only image capture retain their prior
-behavior, even in an appendix-enabled run. This change does not add HD1–HD3 text
-or non-math image capture to sections. It also does not repair the inherited
+Apart from captions and word breaks, ordinary section rendering and
+formula-only image capture retain their prior behavior, even in an
+appendix-enabled run. Sections do not get HD1–HD3 text or non-math image
+capture. It also does not repair the inherited
 loss of a nested `MATH` marker inside a consumed paragraph, table, or heading;
 standalone `MATH` transcription and markers remain supported.
 
