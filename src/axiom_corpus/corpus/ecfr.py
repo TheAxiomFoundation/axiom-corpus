@@ -439,11 +439,15 @@ def _section_citation_from_element(title: int, elem: ET.Element) -> tuple[str, s
 
 # A part appendix names its part: "Appendix A to Part 604", "Appendix II to Part 200",
 # an unnumbered "Appendix to Part 720", or a collective "Appendixes to Part 50" note.
-# Its designator follows the subpart-appendix grammar below.
+# Its designator follows the subpart-appendix grammar below. As there, matching is
+# ASCII-only: without re.ASCII, case-insensitive matching would admit look-alikes
+# such as the Kelvin sign for "k" or a dotless "ı" for "i", and paths the
+# citation-path grammar rejects ("appendix-ı").
 _PART_APPENDIX_IDENTIFIER_PATTERN = re.compile(
-    r"(Appendix|Appendixes|Appendices)(?:\s+([0-9A-Za-z]+))?"
-    r"\s+to\s+Part\s+([0-9A-Za-z]+)",
-    flags=re.I,
+    r"(?:(?P<appendixes>Appendixes)|(?P<appendices>Appendices)|Appendix)"
+    r"(?:\s+(?P<designator>[0-9A-Za-z]+))?"
+    r"\s+to\s+Part\s+(?P<part>[0-9A-Za-z]+)",
+    flags=re.I | re.ASCII,
 )
 
 
@@ -458,7 +462,8 @@ class _PartAppendix:
 
     @property
     def appendix(self) -> str | None:
-        """The lowercased designator, as in the path segment and metadata."""
+        """The lowercased designator: the path segment, metadata, numbering key and
+        ordinal all derive from it, as they did before roman numerals."""
         return self.designator.lower() if self.designator else None
 
     @property
@@ -496,8 +501,14 @@ def _part_appendix_from_identifier(
     match = _PART_APPENDIX_IDENTIFIER_PATTERN.fullmatch(identifier.strip())
     if not match:
         return None
-    noun, designator, part = match.groups()
-    collective = noun.lower() if noun.lower() != "appendix" else None
+    designator, part = match.group("designator", "part")
+    collective = (
+        "appendixes"
+        if match.group("appendixes")
+        else "appendices"
+        if match.group("appendices")
+        else None
+    )
     if require_supported and (
         (collective and designator)
         or (designator and not _is_supported_appendix_designator(designator))
@@ -550,6 +561,7 @@ def _is_supported_appendix_designator(designator: str) -> bool:
         or (len(designator) == 1 and designator.isalpha())
         or _is_roman_numeral(designator)
     )
+
 
 
 @dataclass(frozen=True)
@@ -766,7 +778,7 @@ def _part_appendix_numbering_by_part(
         appendix = _part_appendix_from_identifier(identifier)
         if appendix is None or appendix.part != part:
             continue
-        designators.setdefault(appendix.part, []).append(appendix.designator or "")
+        designators.setdefault(appendix.part, []).append(appendix.appendix or "")
     return {
         (part, None): _appendix_designator_numbering(values)
         for part, values in designators.items()
@@ -806,9 +818,9 @@ def _resolved_part_appendix(
             f"{identifier!r}"
         )
     numbering: str | None = None
-    if appendix.designator:
+    if appendix.appendix:
         numbering = numbering_by_container.get((appendix.part, None), {}).get(
-            appendix.designator.upper()
+            appendix.appendix.upper()
         )
         if numbering is None:
             raise EcfrAppendixError(
@@ -1962,7 +1974,7 @@ def _appendix_provision(
         parent_citation_path=parent_citation_path,
         parent_id=deterministic_provision_id(parent_citation_path),
         level=1,
-        ordinal=_appendix_designator_ordinal(appendix.designator, numbering),
+        ordinal=_appendix_designator_ordinal(appendix.appendix, numbering),
         kind="appendix",
         legal_identifier=legal_identifier,
         identifiers=_ecfr_identifiers(title, appendix.part, appendix=appendix.appendix),

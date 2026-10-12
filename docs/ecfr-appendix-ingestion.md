@@ -45,8 +45,9 @@ Part appendices sort after the part's sections and subparts, by the subpart rule
 below with the part as the container: when the part's lettered designators are
 all roman numerals and one has more than one character, they are numerals and
 sort by value (2 CFR 200's Appendices I–XII sort 1–12); otherwise a letter sorts
-by `ord` and a number by its value. An unnumbered or collective appendix leads
-the part's appendices (ordinal 1,000,000). Only part appendices that sit in the part they name
+by `ord` and a number by its value. An unnumbered or collective appendix sorts at
+1,000,000: before every letter, numeral and number above 0, and tied with an
+`Appendix 0`, which the citation path then orders. Only part appendices that sit in the part they name
 count toward its classification; reserved ones count. A multi-character designator
 among letters (`II` beside `A`) fails validation.
 
@@ -59,6 +60,13 @@ or null), from which a structure-only placeholder takes its ordinal. One designe
 exception: a live single letter (`I`, `V`, `X`, `L`, `C`, `D`, `M`) in a part whose
 other lettered appendices are roman numerals, including a reserved multi-character
 one, reads as a numeral. No eCFR part had that shape on 2026-10-08.
+
+Part appendix identifiers are matched ASCII-only, as subpart appendix identifiers
+are. Case-insensitive matching used to admit look-alikes and read them by Unicode
+case folding: the Kelvin sign as `appendix-k`, a dotless `ı` as `appendix-ı`, which
+the citation-path grammar rejects. Such identifiers, and a no-break space between
+words, now fail validation. No eCFR appendix identifier of 2026-10-08 contains a
+non-ASCII character other than `§`, and none of those parse as part appendices.
 
 The eCFR title structures of 2026-10-08 list 1,588 nonreserved part appendices with
 a number or single letter, which the adapter already parsed, and 82 roman-numbered

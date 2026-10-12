@@ -5,17 +5,21 @@ Invariants checked here:
 - Identity: a part appendix's citation path is ``us/regulation/<title>/<part>/<segment>``
   with segment ``appendix-<d>`` (designator lowercased), ``appendix`` (unnumbered) or
   ``appendixes``/``appendices`` (the collective note). Its parent is the part, at
-  level 1, wherever it sits in the part: directly, in a subject group, or in a subpart.
+  level 1, wherever it sits in the part: directly, in (nested) subject groups, or in
+  a subpart.
 - Order: when a part's lettered designators are all roman numerals and one has more
   than one character, they sort by value; otherwise letters sort by ``ord`` and
-  numbers by value. An unnumbered or collective appendix leads. Classification
-  ignores input order and placement depth.
+  numbers by value. An unnumbered or collective appendix sorts at 1,000,000: before
+  every letter, numeral and number above 0, tied with "Appendix 0" (the citation path
+  breaks the tie). Classification ignores input order and placement depth.
 - Legacy: any set of numbers and single letters keeps the path, ordinal, legal
   identifier, identifiers and exact metadata the adapter gave it before roman and
   unnumbered part appendices were taken; such metadata has no ``appendix_numbering``.
-  Intended exception: a live single letter (I, V, X, L, C, D, M) in a part that also
-  lists a reserved multi-character numeral reads as a numeral. No eCFR part has that
-  shape (all title structures as of 2026-10-08).
+  Intended exceptions, which no eCFR identifier meets (all title structures as of
+  2026-10-08): a live single letter (I, V, X, L, C, D, M) in a part that also lists a
+  reserved multi-character numeral reads as a numeral; and identifiers are ASCII-only,
+  as for subpart appendices, so a look-alike the adapter used to read by Unicode case
+  folding (the Kelvin sign, a dotless i) fails closed.
 - Agreement: the structure inventory and the XML records name the same rows, and a
   structure-only placeholder carries the identity of the XML record it stands in for.
 - Fail closed: an opted-in part appendix that names another part, has a designator
@@ -43,7 +47,7 @@ from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 PNG = b"\x89PNG\r\n\x1a\nunified-guidance-form"
-PLACEMENTS = ("part", "group", "subpart", "subpart-group")
+PLACEMENTS = ("part", "group", "nested-group", "subpart", "subpart-group")
 
 
 def _to_roman(value):
@@ -63,8 +67,8 @@ def _part_fixture(part, appendices, *, title=2, body=None):
 
     ``appendices`` is a list of ``(identifier, placement, reserved)``. Both renderings
     use one layout, so source order agrees: a section, the part-level appendices, a
-    part-level subject group, then subpart A with a section, its appendices and a
-    subject group of its own.
+    part-level subject group (with a subject group nested in it), then subpart A with
+    a section, its appendices and a subject group of its own.
     """
     body = body or (lambda identifier: f"<P>Text of {identifier}.</P>")
 
@@ -88,8 +92,11 @@ def _part_fixture(part, appendices, *, title=2, body=None):
             {"identifier": f"{part}.1", "label": f"§ {part}.1 Purpose.",
              "label_description": "Purpose.", "type": "section"},
             *(node(identifier, reserved) for identifier, _, reserved in at["part"]),
-            {"identifier": f"ECFR{part}g", "type": "subject_group",
-             "children": [node(identifier, reserved) for identifier, _, reserved in at["group"]]},
+            {"identifier": f"ECFR{part}g", "type": "subject_group", "children": [
+                *(node(identifier, reserved) for identifier, _, reserved in at["group"]),
+                {"identifier": f"ECFR{part}n", "type": "subject_group",
+                 "children": [node(i, r) for i, _, r in at["nested-group"]]},
+            ]},
             {"identifier": "A", "label": "Subpart A-General", "type": "subpart", "children": [
                 {"identifier": f"{part}.10", "label": f"§ {part}.10 Scope.",
                  "label_description": "Scope.", "type": "section"},
@@ -105,7 +112,9 @@ def _part_fixture(part, appendices, *, title=2, body=None):
         + "".join(div9(identifier, reserved) for identifier, _, reserved in at["part"])
         + '<DIV7 TYPE="SUBJGRP"><HEAD>Appendices</HEAD>'
         + "".join(div9(identifier, reserved) for identifier, _, reserved in at["group"])
-        + "</DIV7>"
+        + '<DIV7 TYPE="SUBJGRP"><HEAD>Exhibits</HEAD>'
+        + "".join(div9(identifier, reserved) for identifier, _, reserved in at["nested-group"])
+        + "</DIV7></DIV7>"
         + '<DIV6 N="A" TYPE="SUBPART"><HEAD>Subpart A—General</HEAD>'
         + f'<DIV8 N="§ {part}.10" TYPE="SECTION"><HEAD>§ {part}.10 Scope.</HEAD><P>Scope text.</P></DIV8>'
         + "".join(div9(identifier, reserved) for identifier, _, reserved in at["subpart"])
@@ -393,7 +402,8 @@ def test_iterator_allowlist_selects_unnumbered_part_appendix():
 # Legacy oracle: what the adapter produced for numbers and single letters before this
 # change, written out independently of the code under test.
 def _legacy_ordinal(designator):
-    return 1_000_000 + (int(designator) if designator.isdigit() else ord(designator.upper()))
+    appendix = designator.lower()
+    return 1_000_000 + (int(appendix) if appendix.isdigit() else ord(appendix.upper()))
 
 
 def _legacy_inventory_metadata(identifier, designator, part="604", title=45, chapter="VI"):
@@ -410,9 +420,10 @@ _letters = st.sampled_from("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 _legacy_designators = st.lists(
     st.one_of(
         st.integers(min_value=0, max_value=60).map(str),
+        st.sampled_from(["00", "01", "007"]),
         st.tuples(_letters, st.booleans()).map(lambda pair: pair[0] if pair[1] else pair[0].lower()),
     ),
-    min_size=1, max_size=10, unique_by=lambda designator: designator.upper().lstrip("0") or "0",
+    min_size=1, max_size=10, unique_by=lambda designator: designator.lower(),
 )
 
 
@@ -437,6 +448,7 @@ def test_numbers_and_letters_keep_the_legacy_identity(designators, placements, r
 
     live = [(identifier, identifier.split()[1]) for identifier, _, is_reserved in appendices if not is_reserved]
     appendix_items = {item.citation_path: item for item in items if item.metadata["kind"] == "appendix"}
+    # "1" and "01" differ in path but share an ordinal, as they always did.
     assert set(appendix_items) == {f"us/regulation/45/604/appendix-{d.lower()}" for _, d in live}
     for identifier, designator in live:
         path = f"us/regulation/45/604/appendix-{designator.lower()}"
@@ -448,7 +460,7 @@ def test_numbers_and_letters_keep_the_legacy_identity(designators, placements, r
             assert provision.ordinal == _legacy_ordinal(designator)
             assert provision.level == 1
             assert provision.parent_citation_path == "us/regulation/45/604"
-            assert provision.legal_identifier == f"45 CFR part 604, appendix {designator.upper()}"
+            assert provision.legal_identifier == f"45 CFR part 604, appendix {designator.lower().upper()}"
             assert provision.identifiers == {
                 "ecfr:title": "45", "ecfr:part": "604", "ecfr:appendix": designator.lower(),
             }
@@ -836,3 +848,200 @@ def test_real_2_cfr_200_appendices_from_retained_source_when_present():
         xml, (EcfrPartTarget(title=2, part="200", chapter="II"),), version="v", source_path="s.xml",
     ))
     assert [record for record in records if record.kind != "appendix"] == list(default)
+
+
+@pytest.mark.parametrize(
+    "identifier,path,ordinal,legal_identifier",
+    [
+        ("APPENDIX B TO PART 604", "us/regulation/45/604/appendix-b", 1_000_066, "45 CFR part 604, appendix B"),
+        ("Appendix 01 to Part 604", "us/regulation/45/604/appendix-01", 1_000_001, "45 CFR part 604, appendix 01"),
+        ("Appendix 0 to Part 604", "us/regulation/45/604/appendix-0", 1_000_000, "45 CFR part 604, appendix 0"),
+    ],
+)
+def test_legacy_spellings_keep_their_identity(identifier, path, ordinal, legal_identifier):
+    structure, xml = _title([_part_fixture("604", [(identifier, "nested-group", False)], title=45)], title=45, chapter="VI")
+
+    (item,) = [item for item in _inventory(structure, "604") if item.metadata["kind"] == "appendix"]
+    (record,) = [
+        record for record in _records(xml, structure, "604", allowed_citation_paths={item.citation_path})
+        if record.kind == "appendix"
+    ]
+    placeholder = ecfr._structure_only_provision(item, "v", "2026-10-08", "2026-10-08")
+
+    assert item.citation_path == record.citation_path == path
+    assert "appendix_numbering" not in item.metadata and "appendix_numbering" not in record.metadata
+    assert placeholder.ordinal == record.ordinal == ordinal
+    assert placeholder.legal_identifier == record.legal_identifier == legal_identifier
+    assert _identity(placeholder) == _identity(record)
+
+
+@pytest.mark.parametrize(
+    "identifier,path,legal_identifier",
+    [
+        ("APPENDIXES TO PART 720", "us/regulation/2/720/appendixes", "2 CFR part 720, appendixes"),
+        ("Appendices to Part 720", "us/regulation/2/720/appendices", "2 CFR part 720, appendices"),
+    ],
+)
+def test_noun_spellings_take_the_form_that_matched(identifier, path, legal_identifier):
+    parsed = ecfr._part_appendix_from_identifier(identifier)
+
+    assert parsed is not None
+    assert parsed.citation_path(2) == path
+    assert parsed.legal_identifier(2) == legal_identifier
+
+
+@pytest.mark.parametrize(
+    "identifier",
+    [
+        "Appendix \u212a to Part 604",  # Kelvin sign: the old adapter read it as "k"
+        "Appendix \u0131 to Part 604",  # dotless i: the old adapter gave "appendix-\u0131"
+        "Appendix \u017f to Part 604",  # long s: the old adapter gave "appendix-\u017f"
+        "Appendix \u0130 to Part 604",  # dotted capital I
+        "Append\u0130x A to Part 604",
+        "Append\u0131x A to Part 604",
+        "Appendix\u00a0A to Part 604",  # no-break space
+        "Appendix to Part 60\u0131",
+    ],
+)
+def test_non_ascii_look_alikes_fail_closed(identifier):
+    # Identifiers are ASCII-only, as for subpart appendices. No eCFR appendix
+    # identifier has a non-ASCII character other than a section sign.
+    structure, xml = _title([_part_fixture("604", [(identifier, "part", False)], title=45)], title=45, chapter="VI")
+
+    assert ecfr._part_appendix_from_identifier(identifier) is None
+    assert ecfr._part_appendix_from_identifier(identifier, require_supported=False) is None
+    with pytest.raises(EcfrAppendixError, match="unsupported nonreserved eCFR appendix identifier"):
+        _inventory(structure, "604")
+    with pytest.raises(EcfrAppendixError, match="unsupported nonreserved eCFR appendix XML identifier"):
+        _records(xml, structure, "604")
+    # Unparsed, it takes no citation, so an allowlisted run leaves it out.
+    assert [
+        record.citation_path
+        for record in _records(xml, structure, "604", allowed_citation_paths={"us/regulation/45/604/1"})
+    ] == ["us/regulation/45/604/1"]
+
+
+def test_unnumbered_and_collective_appendices_tie_with_appendix_zero():
+    structure, xml = _title([_part_fixture("604", [
+        ("Appendix A to Part 604", "part", False),
+        ("Appendixes to Part 604", "group", False),
+        ("Appendix 0 to Part 604", "group", False),
+        ("Appendix to Part 604", "subpart", False),
+        ("Appendix 1 to Part 604", "nested-group", False),
+    ], title=45)], title=45, chapter="VI")
+
+    items = _inventory(structure, "604")
+    records = _records(xml, structure, "604", allowed_citation_paths={item.citation_path for item in items})
+    appendices = sorted(
+        (record for record in records if record.kind == "appendix"),
+        key=lambda record: (record.ordinal, record.citation_path),
+    )
+    assert [(record.citation_path.rsplit("/", 1)[1], record.ordinal) for record in appendices] == [
+        ("appendix", 1_000_000), ("appendix-0", 1_000_000), ("appendixes", 1_000_000),
+        ("appendix-1", 1_000_001), ("appendix-a", 1_000_065),
+    ]
+    by_path = {record.citation_path: record for record in records}
+    for item in items:
+        if item.metadata["kind"] == "appendix":
+            placeholder = ecfr._structure_only_provision(item, "v", "2026-10-08", "2026-10-08")
+            assert _identity(placeholder)[:-1] == _identity(by_path[item.citation_path])[:-1]
+
+
+def test_placeholder_ordinal_reads_every_metadata_shape():
+    # Part appendix metadata from before this change, #828's subpart appendix
+    # metadata, and the new roman and unnumbered part appendix metadata.
+    legacy = {"kind": "appendix", "title": 45, "part": "604", "appendix": "a",
+              "appendix_identifier": "Appendix A to Part 604"}
+    subpart = {"kind": "appendix", "title": 20, "part": "404", "subpart": "C", "appendix": "ii",
+               "appendix_identifier": "Appendix II to Subpart C of Part 404", "appendix_numbering": "roman"}
+    roman = {"kind": "appendix", "title": 2, "part": "200", "appendix": "i",
+             "appendix_identifier": "Appendix I to Part 200", "appendix_numbering": "roman"}
+    unnumbered = {"kind": "appendix", "title": 5, "part": "720", "appendix": None,
+                  "appendix_identifier": "Appendix to Part 720", "appendix_numbering": None}
+
+    assert ecfr._inventory_ordinal(legacy) == 1_000_065
+    assert ecfr._inventory_ordinal(subpart) == 1_000_002
+    assert ecfr._inventory_ordinal(roman) == 1_000_001
+    assert ecfr._inventory_ordinal(unnumbered) == 1_000_000
+    assert ecfr._inventory_legal_identifier(legacy) == "45 CFR part 604, appendix A"
+    assert ecfr._inventory_legal_identifier(roman) == "2 CFR part 200, appendix I"
+    assert ecfr._inventory_legal_identifier(unnumbered) == "5 CFR part 720, appendix"
+    assert ecfr._inventory_level(roman) == ecfr._inventory_level(unnumbered) == 1
+
+
+def test_free_iteration_converts_a_reserved_numeral_like_a_reserved_letter():
+    # Without an allowlist the iterator converts every appendix element, reserved ones
+    # included, as it always did for letters; the inventory never lists them.
+    records = {record.citation_path: record for record in _records(XML, STRUCTURE, "200")}
+    reserved = records["us/regulation/2/200/appendix-vii"]
+    assert (reserved.ordinal, reserved.parent_citation_path, reserved.body) == (
+        1_000_007, "us/regulation/2/200", "",
+    )
+    assert "us/regulation/2/200/appendix-vii" not in {item.citation_path for item in _inventory(STRUCTURE, "200")}
+
+
+def test_title_wide_extract_takes_every_part_appendix_shape(tmp_path, monkeypatch):
+    fetched = []
+
+    def fetch_graphic(identifier):
+        fetched.append(identifier)
+        return PNG
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: STRUCTURE)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_title_xml", lambda title, as_of: XML)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: pytest.fail("title-wide run fetched a part"))
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", fetch_graphic)
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-10-12", as_of="2026-10-08",
+        only_title=2, include_appendices=True,
+    )
+
+    assert report.title_errors == ()
+    assert report.coverage.complete
+    by_path = {record.citation_path: record for record in load_provisions(report.provisions_path)}
+    assert {path for path in by_path if "appendix" in path} == {
+        *(path for path in EXPECTED_200_PATHS if "appendix" in path),
+        "us/regulation/2/25/appendix-a", "us/regulation/2/25/appendix-i", "us/regulation/2/720/appendix",
+    }
+    assert by_path["us/regulation/2/200/appendix-i"].ordinal == 1_000_001
+    assert by_path["us/regulation/2/25/appendix-i"].ordinal == 1_000_073
+    assert by_path["us/regulation/2/720/appendix"].ordinal == 1_000_000
+    assert fetched == ["EC01JA91.007"]
+
+
+@pytest.mark.parametrize("xml_has_appendix", [True, False])
+def test_extract_ecfr_takes_a_collective_part_note_with_its_image(tmp_path, monkeypatch, xml_has_appendix):
+    appendices = [("Appendixes to Part 50", "group", False), ("Appendix A to Part 50", "group", False)]
+    structure, _ = _title([_part_fixture("50", appendices, title=10, body=lambda identifier: (
+        '<P>About these appendixes.</P><FP><img src="/graphics/EC01JA91.008.gif"/></FP>'
+        if identifier == "Appendixes to Part 50" else "<P>Appendix A text.</P>"
+    ))], title=10, chapter="I")
+    _, xml = _title([_part_fixture("50", appendices if xml_has_appendix else appendices[1:], title=10, body=lambda identifier: (
+        '<P>About these appendixes.</P><FP><img src="/graphics/EC01JA91.008.gif"/></FP>'
+        if identifier == "Appendixes to Part 50" else "<P>Appendix A text.</P>"
+    ))], title=10, chapter="I")
+    fetched = []
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: fetched.append(identifier) or PNG)
+
+    report = extract_ecfr(CorpusArtifactStore(tmp_path / "corpus"), version="2026-10-12", as_of="2026-10-08",
+                          only_title=10, only_part="50", include_appendices=True)
+
+    assert report.coverage.complete
+    note = {record.citation_path: record for record in load_provisions(report.provisions_path)}[
+        "us/regulation/10/50/appendixes"
+    ]
+    assert (note.ordinal, note.level, note.parent_citation_path) == (1_000_000, 1, "us/regulation/10/50")
+    assert note.legal_identifier == note.citation_label == "10 CFR part 50, appendixes"
+    assert note.identifiers == {"ecfr:title": "10", "ecfr:part": "50"}
+    assert note.heading == "Heading of Appendixes to Part 50"
+    if xml_has_appendix:
+        assert note.body.split("\n\n") == [
+            "About these appendixes.", "[Official source image: ecfr/graphics/EC01JA91.008.png]",
+        ]
+        assert fetched == ["EC01JA91.008"]
+    else:
+        assert note.body is None and note.metadata["structure_only"] is True
+        assert fetched == []
