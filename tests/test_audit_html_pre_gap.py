@@ -14,7 +14,9 @@ from scripts.audit_html_pre_gap import has_pre, markdown_table, run
 
 SCOPE = ("us", "manual", "2026-10-12-pre-audit")
 SOURCE_DIR = "data/corpus/sources/us/manual/2026-10-12-pre-audit/official-documents"
+# The table's ``pre`` reached a row before (read through the table); the printout did not.
 PRE_PAGE = b"""<html><body><div class="poms"><h2>A. Printout</h2><p>Lead text.</p>
+<table><tr><td>Code</td><td><pre>A1</pre></td></tr></table>
 <pre>
  WAGE   TOTAL   32750.00
 </pre></div></body></html>"""
@@ -85,7 +87,7 @@ def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Pa
     (repo / "manifests" / "pre-audit.yaml").write_text(MANIFEST, encoding="utf-8")
     cache = ContentCache(tmp_path / "cache")
     # The locked rows are what the extractor made before: the printout is in none of them.
-    rows = _rows("with-pre", "With pre", [("A. Printout", "Lead text.")]) + _rows(
+    rows = _rows("with-pre", "With pre", [("A. Printout", "Lead text.\n\nCode A1")]) + _rows(
         "plain", "Plain", [("B. Rule", "Plain text only.")]
     )
     provisions = "".join(json.dumps(row) + "\n" for row in rows).encode()
@@ -117,8 +119,8 @@ def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Pa
     scope = report["summary"]["scopes"]["us/manual/2026-10-12-pre-audit"]
     assert scope == {
         "sources_with_pre": 1,
-        "pre_elements": 1,
-        "pre_words": 3,
+        "pre_elements": 2,
+        "pre_words": 4,
         "gap_pre_elements": 1,
         "gap_words": 3,
         "rows_changed": 1,
@@ -130,7 +132,7 @@ def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Pa
     [source] = report["sources"]
     assert source["gap_samples"] == ["WAGE TOTAL 32750.00"]
     assert source["words_before"] + 3 == source["words_after"]
-    assert "| `us/manual/2026-10-12-pre-audit` | 1 | 1 | 3 | 3 | 1 | 1 | 1 |" in markdown_table(
+    assert "| `us/manual/2026-10-12-pre-audit` | 1 | 2 | 4 | 3 | 1 | 1 | 1 |" in markdown_table(
         report["summary"]
     )
 
