@@ -3,6 +3,14 @@
 **WIP.** The final capture runs on `main` once #828 (subpart appendices in the eCFR adapter) has merged; the
 numbers below come from pre-captures with #828's code and are replaced by the final run's.
 
+It also waits for the eCFR section-text fix (branch `fix/ecfr-section-text-breaks`, after #828), which makes section
+bodies keep table captions and break words at `<br/>` as #828 does for appendices. Its impact run finds two part-416
+sections change: 416.974 gains its table caption and "earningsaveraged" (in the locked body) becomes "earnings
+averaged", and 416.1112 gains its table caption. Cutting one successor that carries both changes gives part 416 one
+release swap and one rulespec-us re-pin instead of two, and keeps a later re-cut from starting at
+`2026-09-11-title-20-part-416` and dropping the appendix. If the fix has not merged by 2026-10-13, the successor is cut
+with #828 alone and this note records that the two sections still need it.
+
 "Appendix to Subpart K of Part 416" (the list of types of income excluded under SSI by federal laws other than the
 Social Security Act) is the one node of part 416 that no locked scope carries. The released
 `us/regulation/2026-09-11-title-20-part-416` skipped it because `extract-ecfr --include-appendices` raised on
