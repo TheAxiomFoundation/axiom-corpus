@@ -133,7 +133,12 @@ def encode_section(section: Section, model: str = DEFAULT_MODEL) -> Encoding:
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
         # Keep compatibility with anthropic 0.75, which lacks output_config kwargs.
-        extra_body={"output_config": {"effort": "low"}},
+        # Other model overrides may not support effort.
+        extra_body=(
+            {"output_config": {"effort": "low"}}
+            if model in {"claude-sonnet-5-5", "claude-opus-5-5"}
+            else {}
+        ),
     )
 
     if response.stop_reason == "refusal":

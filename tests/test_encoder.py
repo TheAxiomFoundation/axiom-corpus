@@ -225,9 +225,14 @@ class TestSystemPrompt:
         assert "RuleSpec" in SYSTEM_PROMPT or "rulespec" in SYSTEM_PROMPT.lower()
 
 
-def test_sonnet_request_and_thinking_response():
+@pytest.mark.parametrize(
+    "model",
+    [None, "claude-sonnet-5-5", "claude-opus-5-5", "claude-haiku-4-5", "custom-model-id"],
+)
+def test_sonnet_request_and_thinking_response(model):
     """Exercise SDK serialization and response parsing without a network request."""
     requests = []
+    selected_model = model or "claude-sonnet-5-5"
 
     def respond(request):
         requests.append(json.loads(request.content))
@@ -237,7 +242,7 @@ def test_sonnet_request_and_thinking_response():
                 "id": "msg_test",
                 "type": "message",
                 "role": "assistant",
-                "model": "claude-sonnet-5-5",
+                "model": selected_model,
                 "content": [
                     {"type": "thinking", "thinking": "", "signature": "test-signature"},
                     {"type": "text", "text": "```rulespec\nvariable eitc {}\n```"},
@@ -256,13 +261,20 @@ def test_sonnet_request_and_thinking_response():
         ) as client,
         patch("axiom_corpus.encoder.Anthropic", return_value=client),
     ):
-        result = encode_section(_make_section())
+        result = (
+            encode_section(_make_section(), model=model)
+            if model
+            else encode_section(_make_section())
+        )
 
     assert len(requests) == 1
     request = requests[0]
-    assert request["model"] == result.model == "claude-sonnet-5-5"
+    assert request["model"] == result.model == selected_model
     assert request["max_tokens"] == 16000
-    assert request["output_config"] == {"effort": "low"}
+    if selected_model in {"claude-sonnet-5-5", "claude-opus-5-5"}:
+        assert request["output_config"] == {"effort": "low"}
+    else:
+        assert "output_config" not in request
     assert not {"temperature", "top_p", "top_k", "thinking", "tool_choice"} & request.keys()
     assert [message["role"] for message in request["messages"]] == ["user"]
     assert result.dsl == "variable eitc {}"
