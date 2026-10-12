@@ -186,6 +186,22 @@ exactly at the existing baselines) plus the three new files: `block_n` +2,584 (t
 `block-N` rows) and `uppercase_segments` +21 (eCFR `subpart-A` to `subpart-V`); the other
 families are unchanged.
 
+The baselines are repository-wide ceilings on unique irregular paths. The new values equal
+the live counts with these scopes locked, so no headroom is added for any other change.
+
+- `block_n`: the HTML extractor names each heading block `<document path>/block-<n>`
+  (`documents._block_citation_path`). A canonical suffix comes only from
+  `metadata.citation_suffix`, which the code sets for CSV, spreadsheet and PDF
+  segmentations, never for HTML. A canonical POMS sub-path would also need heading
+  levels the rows don't keep: GN 02603.050 has a "1. Definitions" block under both C and
+  D, whose headings carry no text and so are not rows. The existing POMS scopes have the
+  same shape: SI 10,113, SI remainder 6,268, HI 3,788 and DC OSSP 70 `block-N` paths.
+  The register cites POMS at section paths, which the encoder's resolver composes from
+  the blocks.
+- `uppercase_segments`: `ecfr.py` writes `subpart-{letter}` with eCFR's own letter. The
+  223 subpart paths already locked in US regulation scopes have the same shape (e.g.
+  `us/regulation/20/416/subpart-A`).
+
 ## Fit with the W6 successor release
 
 The three scopes are meant to join `us-rulespec-2026-10-12-w6-successor-union` (PR #819,
