@@ -15,7 +15,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Comment, NavigableString, Tag
+from bs4.element import Comment, Doctype, NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -601,8 +601,8 @@ def _maine_section_body_lines(section_node: Tag) -> list[str]:
     Section headings, revisor notes, section histories, status blips, and
     amendment histories outside ``.mrs-text`` or a fallback subsection without
     ``.mrs-text`` are metadata. Embedded history in either operative container
-    remains for existing body compatibility. Script/style content and comments
-    are not visible legal text.
+    remains for existing body compatibility. Script/style content, comments,
+    and DOCTYPE declarations are not visible legal text.
     """
     lines: list[str] = []
     fragments: list[str] = []
@@ -621,7 +621,7 @@ def _maine_section_body_lines(section_node: Tag) -> list[str]:
         in_row: bool = False,
         fallback_subsection: bool = False,
     ) -> None:
-        if isinstance(node, Comment):
+        if isinstance(node, Comment | Doctype):
             return
         if isinstance(node, NavigableString):
             text = str(node).strip()
@@ -667,7 +667,9 @@ def parse_maine_section(
 ) -> MaineParsedSection:
     """Parse one official Maine section page."""
     soup = BeautifulSoup(html, "lxml")
-    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content") or soup
+    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content")
+    if section_node is None:
+        raise ValueError("Maine section page lacks a recognized statute-content container")
     heading_node = section_node.select_one(".heading_section") if isinstance(section_node, Tag) else None
     display_section = target.display_section if target is not None else ""
     heading = target.heading if target is not None else ""

@@ -7,10 +7,10 @@ from bs4 import BeautifulSoup
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from tests.test_state_operative_text import _extracted_body, _operative_tokens
+from tests.test_state_operative_text import _extracted_body, _normalized_tokens, _operative_tokens
 
 _WORDS = st.text(
-    alphabet="abc XYZ019,.;:$%&<>é£\t\n\u00a0",
+    alphabet="abc XYZ019,.;:$%&<>é£-\t\n\u00a0\u2011\u2013\u2014",
     min_size=0,
     max_size=35,
 )
@@ -128,5 +128,5 @@ def test_generated_section_keeps_all_operative_text_once_in_order(jurisdiction: 
 
     assert body.split() == _operative_tokens(html, jurisdiction)
     for row in BeautifulSoup(html, "lxml").select("tr"):
-        expected_row = " ".join(row.get_text(" ", strip=True).split())
+        expected_row = " ".join(_normalized_tokens(row.get_text(" ", strip=True), jurisdiction))
         assert expected_row in body.splitlines()

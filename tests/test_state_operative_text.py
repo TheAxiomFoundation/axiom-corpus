@@ -7,12 +7,16 @@ Amendment history already embedded in either container remains for byte
 compatibility. Substantive headnotes, paragraph labels, and inline references
 are operative text. Ohio excludes ``.laws-notice``.
 Both adapters exclude nonvisible script/style content and HTML comments.
+The source-token oracle also excludes doctype declarations.
+Equality means normalized token equality: both adapters collapse whitespace;
+Maine also maps non-breaking hyphens and en dashes to ASCII hyphens, and em
+dashes to two ASCII hyphens. Ohio preserves those punctuation characters.
 """
 
 from pathlib import Path
 
 import pytest
-from bs4 import BeautifulSoup, Comment, NavigableString, Tag
+from bs4 import BeautifulSoup, Comment, Doctype, NavigableString, Tag
 
 from axiom_corpus.corpus.state_adapters.maine import parse_maine_section
 from axiom_corpus.corpus.states import _ohio_laws_body_text
@@ -25,6 +29,13 @@ SAMPLE_UNSUBDIVIDED_SECTION_HTML = (FIXTURE_DIR / "legacy-maine-unsubdivided.htm
 SAMPLE_OHIO_CHAPTER = (FIXTURE_DIR / "legacy-ohio-chapter.html").read_text(encoding="utf-8")
 
 
+def _normalized_tokens(value: str, jurisdiction: str) -> list[str]:
+    """Apply the documented normalization without calling an adapter cleaner."""
+    if jurisdiction == "maine":
+        value = value.translate({0x00A0: " ", 0x2011: "-", 0x2013: "-", 0x2014: "--"})
+    return value.split()
+
+
 def _operative_tokens(html: str, jurisdiction: str) -> list[str]:
     """Read the source DOM independently of either adapter's paragraph selection."""
     soup = BeautifulSoup(html, "lxml")
@@ -33,7 +44,7 @@ def _operative_tokens(html: str, jurisdiction: str) -> list[str]:
     tokens: list[str] = []
     excluded = {"heading_section", "note", "qhistory", "headnote_blip"}
     for node in root.descendants:
-        if not isinstance(node, NavigableString) or isinstance(node, Comment):
+        if not isinstance(node, NavigableString) or isinstance(node, (Comment, Doctype)):
             continue
         ancestors = [parent for parent in node.parents if isinstance(parent, Tag)]
         if any(parent.name in {"script", "style"} for parent in ancestors):
@@ -52,7 +63,7 @@ def _operative_tokens(html: str, jurisdiction: str) -> list[str]:
                     continue
         elif any("laws-notice" in parent.get("class", []) for parent in ancestors):
             continue
-        tokens.extend(str(node).split())
+        tokens.extend(_normalized_tokens(str(node), jurisdiction))
     return tokens
 
 
@@ -67,11 +78,36 @@ def _extracted_body(html: str, jurisdiction: str) -> str:
     return body
 
 
+@pytest.mark.parametrize(
+    ("jurisdiction", "dash", "normalized"),
+    [
+        ("maine", "\u2011", "-"),
+        ("maine", "\u2013", "-"),
+        ("maine", "\u2014", "--"),
+        ("ohio", "\u2011", "\u2011"),
+        ("ohio", "\u2013", "\u2013"),
+        ("ohio", "\u2014", "\u2014"),
+    ],
+)
+def test_operative_token_oracle_applies_each_adapter_normalization(
+    jurisdiction: str, dash: str, normalized: str
+):
+    text = f"Tax\u00a0credit{dash}limit."
+    if jurisdiction == "maine":
+        html = f'<div class="MRSSection"><div class="mrs-text">{text}</div></div>'
+    else:
+        html = f'<section class="laws-body"><p>{text}</p></section>'
+    expected = f"Tax credit{normalized}limit."
+
+    assert _operative_tokens(html, jurisdiction) == expected.split()
+    assert _extracted_body(html, jurisdiction) == expected
+
+
 @pytest.mark.parametrize("section", ["5111", "5124-C", "5126-A", "5213-A"])
 def test_maine_official_excerpt_keeps_every_operative_text_node_in_order(section: str):
     html = (FIXTURE_DIR / f"maine-{section}.html").read_text(encoding="utf-8")
 
-    # Equality proves every word of every sentence survives in source order,
+    # Normalized token equality proves every operative token survives in source order,
     # including nested amounts, labels, introductory text, and inline references.
     assert _extracted_body(html, "maine").split() == _operative_tokens(html, "maine")
 
