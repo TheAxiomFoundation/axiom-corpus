@@ -519,6 +519,33 @@ def test_extract_ecfr_local_source_xml_selects_a_hyphenated_section(tmp_path):
     assert records[2].body == "(a) Purpose. The purpose of the regulations in this part."
 
 
+
+def test_ecfr_cli_takes_a_hyphenated_part_and_section(tmp_path, monkeypatch, capsys):
+    from axiom_corpus.corpus.cli import main
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: TITLE_41_STRUCTURE)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: TITLE_41_XML)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: b"\x89PNG\r\n\x1a\n")
+    base = tmp_path / "corpus"
+    common = ["--base", str(base), "--version", "2026-10-12", "--as-of", "2026-10-08",
+              "--only-title", "41", "--only-part", "60-300"]
+
+    assert main(["inventory-ecfr", *common, "--section", "60-300.2"]) == 0
+    assert json.loads(capsys.readouterr().out)["items_written"] == 3
+    assert main(["extract-ecfr", *common, "--include-appendices"]) == 0
+    output = json.loads(capsys.readouterr().out)
+
+    records = load_provisions(Path(output["provisions_path"]))
+    assert [record.citation_path for record in records] == [
+        "us/regulation/41/60-300",
+        "us/regulation/41/60-300/subpart-A",
+        "us/regulation/41/60-300/1",
+        "us/regulation/41/60-300/2",
+        "us/regulation/41/60-300/appendix-a",
+    ]
+    assert Path(output["provisions_path"]).parent.name == "regulation"
+    assert Path(output["provisions_path"]).name == "2026-10-12-title-41-part-60-300.jsonl"
+
 # --- Properties --------------------------------------------------------------------
 
 
