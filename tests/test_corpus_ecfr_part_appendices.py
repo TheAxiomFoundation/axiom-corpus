@@ -24,7 +24,6 @@ Invariants checked here:
   another part never changes the numbering of the part it names.
 """
 
-import json
 from pathlib import Path
 
 import pytest
@@ -777,9 +776,7 @@ def test_reserved_numeral_reads_a_lone_letter_as_a_numeral():
     (item,) = [item for item in _inventory(structure, "604") if item.metadata["kind"] == "appendix"]
     assert item.metadata["appendix_numbering"] == "roman"
     assert ecfr._structure_only_provision(item, "v", "d", "d").ordinal == 1_000_001
-    (record,) = [
-        record for record in _records(xml, structure, "604", allowed_citation_paths={item.citation_path})
-    ]
+    (record,) = _records(xml, structure, "604", allowed_citation_paths={item.citation_path})
     assert record.ordinal == 1_000_001
 
 
