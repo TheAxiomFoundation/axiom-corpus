@@ -15,7 +15,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import Comment, NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -595,6 +595,71 @@ def parse_maine_chapter_page(
     return tuple(targets)
 
 
+def _maine_section_body_lines(section_node: Tag) -> list[str]:
+    """Retain operative text once in DOM order, with one line per table row.
+
+    Section headings, revisor notes, section histories, status blips, and
+    amendment histories outside ``.mrs-text`` or a fallback subsection without
+    ``.mrs-text`` are metadata. Embedded history in either operative container
+    remains for existing body compatibility. Script/style content and comments
+    are not visible legal text.
+    """
+    lines: list[str] = []
+    fragments: list[str] = []
+    excluded_classes = {"heading_section", "note", "qhistory", "headnote_blip"}
+
+    def flush() -> None:
+        text = _clean_text(" ".join(fragments))
+        if text:
+            lines.append(text)
+        fragments.clear()
+
+    def visit(
+        node: Tag | NavigableString,
+        *,
+        in_text: bool = False,
+        in_row: bool = False,
+        fallback_subsection: bool = False,
+    ) -> None:
+        if isinstance(node, Comment):
+            return
+        if isinstance(node, NavigableString):
+            text = str(node).strip()
+            if text:
+                fragments.append(text)
+            return
+        classes = set(node.get("class", []))
+        if node.name in {"script", "style"} or excluded_classes.intersection(classes):
+            return
+        is_text = in_text or "mrs-text" in classes
+        if "MRSSubSection" in classes:
+            fallback_subsection = node.select_one(".mrs-text") is None
+        if "bhistory" in classes and not (is_text or fallback_subsection):
+            return
+        is_row = node.name == "tr"
+        # An outer operative paragraph already grouped nested content in the
+        # legacy parser. Keep its bytes while giving tables explicit row lines.
+        boundary = not in_row and (
+            is_row or (not in_text and bool({"mrs-text", "MRSSubSection"} & classes))
+        )
+        if boundary:
+            flush()
+        for child in node.children:
+            if isinstance(child, (Tag, NavigableString)):
+                visit(
+                    child,
+                    in_text=is_text,
+                    in_row=in_row or is_row,
+                    fallback_subsection=fallback_subsection,
+                )
+        if boundary:
+            flush()
+
+    visit(section_node)
+    flush()
+    return lines
+
+
 def parse_maine_section(
     html: str | bytes,
     *,
@@ -622,28 +687,27 @@ def parse_maine_section(
             text = _clean_text(blip.get_text(" ", strip=True))
             if text:
                 status_notes.append(text)
+        # Keep the existing amendment-history selection and ordering independent
+        # of the opening paragraphs and additional operative text now retained.
+        has_subsection_text = False
         for subsection in section_node.select(".MRSSubSection"):
             text_node = subsection.select_one(".mrs-text") or subsection
-            text = _clean_text(text_node.get_text(" ", strip=True))
-            if text:
-                body_lines.append(text)
+            has_subsection_text |= bool(_clean_text(text_node.get_text(" ", strip=True)))
             for item in subsection.select(".bhistory"):
                 text = _clean_text(item.get_text(" ", strip=True))
                 if text:
                     history.append(text)
-        if not body_lines:
+        if not has_subsection_text:
             # Sections without subsections (for example 36 M.R.S. §115) print their
             # text in ``.mrs-text`` paragraphs directly under the section node.
             for text_node in section_node.select(".mrs-text"):
                 if text_node.find_parent(class_="MRSSubSection") is not None:
                     continue
-                text = _clean_text(text_node.get_text(" ", strip=True))
-                if text:
-                    body_lines.append(text)
                 for item in text_node.select(".bhistory"):
                     text = _clean_text(item.get_text(" ", strip=True))
                     if text:
                         history.append(text)
+        body_lines = _maine_section_body_lines(section_node)
         for note in section_node.select(".note"):
             text = _clean_text(note.get_text(" ", strip=True))
             if text:

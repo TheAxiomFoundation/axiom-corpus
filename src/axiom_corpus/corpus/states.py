@@ -24,7 +24,7 @@ from xml.etree import ElementTree as ET
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import Comment, NavigableString, PageElement, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
@@ -3373,15 +3373,47 @@ def _parse_ohio_section_header(text: str) -> tuple[str, str | None] | None:
 
 
 def _ohio_laws_body_text(body_tag: Tag) -> str | None:
-    body_span = body_tag.find("span")
-    root = body_span if isinstance(body_span, Tag) else body_tag
-    paragraphs = [
-        _clean_text(paragraph.get_text(" ", strip=True))
-        for paragraph in root.find_all("p")
-        if isinstance(paragraph, Tag)
-    ]
-    text = "\n".join(paragraph for paragraph in paragraphs if paragraph)
-    return text or None
+    """Keep every operative text node once, with paragraphs and table rows in order.
+
+    The update notice is metadata; site navigation and history are outside
+    ``.laws-body``. Comments and script/style content are not visible law.
+    Inline references and table headers remain part of the operative body.
+    """
+    lines: list[str] = []
+    fragments: list[str] = []
+
+    def flush() -> None:
+        text = _clean_text(" ".join(fragments))
+        if text:
+            lines.append(text)
+        fragments.clear()
+
+    def visit(node: PageElement, *, in_row: bool = False) -> None:
+        if isinstance(node, Comment):
+            return
+        if isinstance(node, NavigableString):
+            text = str(node).strip()
+            if text:
+                fragments.append(text)
+            return
+        if not isinstance(node, Tag):
+            return
+        classes = node.get("class") or ()
+        if node.name in {"script", "style"} or "laws-notice" in classes:
+            return
+        # A paragraph inside a cell belongs to its row, rather than a second
+        # output block. Walking leaves also avoids duplicating nested markup.
+        boundary = node.name == "tr" or (node.name == "p" and not in_row)
+        if boundary:
+            flush()
+        for child in node.children:
+            visit(child, in_row=in_row or node.name == "tr")
+        if boundary:
+            flush()
+
+    visit(body_tag)
+    flush()
+    return "\n".join(lines) or None
 
 
 def _ohio_section_info(content: Tag) -> tuple[str | None, str | None, str | None]:

@@ -1,0 +1,1 @@
+Preserve Maine statute opening paragraphs, every subsection text block, and nested operative text in source order. Preserve Ohio statute table headers and rate-schedule rows, with one line per row and cells in source order. Citation paths, provision identifiers, metadata, and existing complete section bodies remain compatible.
