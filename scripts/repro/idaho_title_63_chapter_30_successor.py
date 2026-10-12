@@ -11,6 +11,7 @@ from pathlib import Path
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.state_adapters.idaho import (
     IDAHO_SECTION_SOURCE_FORMAT,
     IdahoChapter,
@@ -26,6 +27,7 @@ from axiom_corpus.corpus.state_adapters.idaho import (
     parse_idaho_section_page,
 )
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
 JURISDICTION = "us-id"
 DOCUMENT_CLASS = DocumentClass.STATUTE
 SOURCE_VERSION = "2026-07-13-recovery"
@@ -202,6 +204,15 @@ def write_release(*, release_dir: Path, output_dir: Path | None = None) -> Path:
     return output
 
 
+def ensure_corpus_inputs(*, repo: Path = REPO_ROOT, source_base: Path | None = None) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    input_root = source_base.resolve() if source_base is not None else Path("data/corpus")
+    ensure_corpus_paths(
+        [input_root / "sources" / JURISDICTION / DOCUMENT_CLASS.value / SOURCE_VERSION],
+        repo=repo,
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base", type=Path, default=Path("data/corpus"))
@@ -209,6 +220,7 @@ def main() -> None:
     parser.add_argument("--release-dir", type=Path, default=Path("manifests/releases"))
     args = parser.parse_args()
     source_base = args.source_base or args.base
+    ensure_corpus_inputs(source_base=source_base)
     for path in build_scope(base=args.base, source_base=source_base):
         print(path)
     print(write_release(release_dir=args.release_dir))
