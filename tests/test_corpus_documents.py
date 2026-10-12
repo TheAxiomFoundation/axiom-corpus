@@ -2634,6 +2634,223 @@ def test_pdf_page_windows_reject_invalid_configs(tmp_path: Path) -> None:
         documents_module._filtered_pdf_lines(pdf_content, extraction={"page_windows": []})
 
 
+def test_page_header_drop_removes_only_a_matching_prefix_of_each_page() -> None:
+    """Exhaustive over every page of up to six lines drawn from four line kinds."""
+    import itertools
+    import re
+
+    patterns = tuple(re.compile(p) for p in (r"^TITLE$", r"^SUBTITLE$", r"^\d{1,3}$"))
+    alphabet = ("TITLE", "SUBTITLE", "7", "Body text.")
+    checked = 0
+    for length in range(7):
+        for words in itertools.product(alphabet, repeat=length):
+            page = tuple((word, index) for index, word in enumerate(words))
+            kept = documents_module._without_page_header(page, patterns)
+            dropped = len(page) - len(kept)
+            # Only a prefix goes, styles travel with their lines, and nothing
+            # below the header's length can be touched.
+            assert kept == page[dropped:]
+            assert dropped <= len(patterns)
+            # Every dropped line matches the header line in its position...
+            assert all(patterns[i].fullmatch(page[i][0]) for i in range(dropped))
+            # ...and the header ends at the first line that does not.
+            if dropped < min(len(page), len(patterns)):
+                assert patterns[dropped].fullmatch(page[dropped][0]) is None
+            assert documents_module._without_page_header(page, ()) == page
+            checked += 1
+    assert checked == sum(len(alphabet) ** n for n in range(7))
+
+
+def test_labeled_pdf_sections_drop_page_headers_by_position(tmp_path: Path) -> None:
+    """A bare page number goes; the same number printed as a table cell stays."""
+    pdf_path = tmp_path / "rulebook.pdf"
+    document = fitz.open()
+    pages = [
+        ["RULEBOOK", "1", "1.100 FIRST RULE", "Family Size", "1", "$10", "2", "$20"],
+        ["RULEBOOK", "2", "3", "$30", "1.200 SECOND RULE", "Text of the second rule."],
+        ["2", "Body line that is not a header.", "RULEBOOK", "3", "More text."],
+    ]
+    for lines in pages:
+        document.new_page().insert_text((72, 72), "\n".join(lines))
+    document.save(pdf_path)
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>1\.\d00)\s+(?P<heading>[A-Z ]+)$",
+        "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+    }
+
+    blocks = documents_module._extract_pdf_blocks(pdf_path.read_bytes(), extraction=extraction)
+
+    assert [block.heading for block in blocks] == ["1.100 FIRST RULE", "1.200 SECOND RULE"]
+    assert blocks[0].body == "Family Size 1 $10 2 $20 3 $30"
+    # Page 3 does not open with the header, so nothing on it is dropped.
+    assert blocks[1].body == (
+        "Text of the second rule. 2 Body line that is not a header. RULEBOOK 3 More text."
+    )
+    # A content-blind numeric drop would have eaten the table's first column.
+    blind = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            **{k: v for k, v in extraction.items() if k != "page_header_patterns"},
+            "drop_lines": ["RULEBOOK"],
+            "drop_line_patterns": [r"^\d{1,3}$"],
+        },
+    )
+    assert blind[0].body == "Family Size $10 $20 $30"
+
+    windowed = documents_module._filtered_pdf_lines(
+        pdf_path.read_bytes(),
+        extraction={
+            "page_windows": [{"start_page": 2, "end_page": 2}],
+            "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+        },
+    )
+    assert [line for line, _page in windowed] == [
+        "3",
+        "$30",
+        "1.200 SECOND RULE",
+        "Text of the second rule.",
+    ]
+    single = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            "segmentation": "single_block",
+            "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+        },
+    )
+    assert "RULEBOOK\n1" not in single[0].body
+    assert single[0].body.startswith("1.100 FIRST RULE")
+
+
+@pytest.mark.parametrize("value", ["^RULEBOOK$", [], [""], [3], {"a": "b"}])
+def test_page_header_patterns_reject_invalid_configs(value: object) -> None:
+    pdf_bytes_document = fitz.open()
+    pdf_bytes_document.new_page().insert_text((72, 72), "RULEBOOK")
+    pdf_content = pdf_bytes_document.tobytes()
+    pdf_bytes_document.close()
+
+    with pytest.raises(ValueError, match="page_header_patterns must be a non-empty list"):
+        documents_module._filtered_pdf_lines(
+            pdf_content, extraction={"page_header_patterns": value}
+        )
+    # An empty list must not quietly move single_block onto the filtered path.
+    with pytest.raises(ValueError, match="page_header_patterns must be a non-empty list"):
+        documents_module._extract_pdf_blocks(
+            pdf_content,
+            extraction={"segmentation": "single_block", "page_header_patterns": value},
+        )
+
+
+def test_labeled_pdf_sections_can_slug_a_label_in_the_path_only(tmp_path: Path) -> None:
+    """The path takes the slug; the heading and section_label keep the publisher's words."""
+    document = fitz.open()
+    document.new_page().insert_text(
+        (72, 72),
+        "\n".join(
+            ["1.100 FIRST RULE", "Rule text.", "Editor's Notes", "History", "Adopted in 2023."]
+        ),
+    )
+    content = document.tobytes()
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>1\.\d00)\s+(?P<heading>[A-Z ]+)$",
+        "section_label_pattern": r"^(?P<label>Editor's Notes)$",
+        "label_only_heading_pattern": r"^History$",
+        "label_only_requires_heading": True,
+    }
+
+    path_only = documents_module._extract_pdf_blocks(
+        content,
+        extraction={
+            **extraction,
+            "section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"},
+        },
+    )
+    assert [
+        (b.heading, b.metadata["citation_suffix"], b.metadata["section_label"]) for b in path_only
+    ] == [
+        ("1.100 FIRST RULE", "1.100", "1.100"),
+        ("Editor's Notes History", "editors-notes", "Editor's Notes"),
+    ]
+    assert path_only[1].body == "Adopted in 2023."
+    # section_label_replacements rewrites the label itself, so the heading loses the words.
+    everywhere = documents_module._extract_pdf_blocks(
+        content,
+        extraction={
+            **extraction,
+            "section_label_replacements": {"Editor's Notes": "editors-notes"},
+        },
+    )
+    assert everywhere[1].heading == "editors-notes History"
+    assert everywhere[1].metadata["section_label"] == "editors-notes"
+    # Without either key the label is used as it is.
+    plain = documents_module._extract_pdf_blocks(content, extraction=extraction)
+    assert plain[1].metadata["citation_suffix"] == "Editor's Notes"
+    for bad in (["a"], {"Editor's Notes": ""}, {"Editor's Notes": 3}, {"": "x"}):
+        with pytest.raises(ValueError, match="section_citation_suffix_replacements must map"):
+            documents_module._extract_pdf_blocks(
+                content, extraction={**extraction, "section_citation_suffix_replacements": bad}
+            )
+    # Two labels with one suffix would merge two sections; a key that matches
+    # no label would be a silent no-op. Both are refused.
+    with pytest.raises(ValueError, match="must map labels to distinct suffixes"):
+        documents_module._extract_pdf_blocks(
+            content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editor's Notes": "x", "1.100": "x"},
+            },
+        )
+    with pytest.raises(ValueError, match="matched no section label: 'Editors Notes'"):
+        documents_module._extract_pdf_blocks(
+            content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editors Notes": "editors-notes"},
+            },
+        )
+    # A label that never opens a section has not used its replacement either:
+    # with no heading line after it, "Editor's Notes" is folded into the body.
+    headless = fitz.open()
+    headless.new_page().insert_text(
+        (72, 72),
+        "\n".join(["1.100 FIRST RULE", "Rule text.", "Editor's Notes", "adopted in 2023."]),
+    )
+    headless_content = headless.tobytes()
+    headless.close()
+    assert [
+        (block.heading, block.body)
+        for block in documents_module._extract_pdf_blocks(headless_content, extraction=extraction)
+    ] == [("1.100 FIRST RULE", "Rule text. Editor's Notes adopted in 2023.")]
+    with pytest.raises(ValueError, match="matched no section label: \"Editor's Notes\""):
+        documents_module._extract_pdf_blocks(
+            headless_content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"},
+            },
+        )
+    # Only the PDF labeled_sections segmenter reads the key; the others refuse it.
+    key = {"section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"}}
+    scope = "supports only PDF labeled_sections"
+    with pytest.raises(ValueError, match=scope):
+        documents_module._extract_pdf_blocks(
+            content, extraction={"segmentation": "single_block", **key}
+        )
+    with pytest.raises(ValueError, match=scope):
+        documents_module._extract_pdf_blocks(content, extraction=key)
+    with pytest.raises(ValueError, match=scope):
+        _extract_blocks(
+            b"<html><body><main><h1>Rule</h1><p>Text.</p></main></body></html>",
+            "html",
+            source_url="https://example.test/rule.html",
+            title="Rule",
+            extraction={"segmentation": "labeled_sections", **key},
+        )
+
+
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:
     html_path = tmp_path / "cms.html"
     public_token = "pk." + "abc_123" + "." + "DEF-456"
