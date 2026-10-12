@@ -60,7 +60,7 @@ tiers:
     state_manifests: liheap|energy-assistance|heap
     known_sources: 0
     in_scope_by_layer:
-      federal: 5
+      federal: 6
       state: 215
 layers:
 - jurisdiction: us
@@ -345,6 +345,28 @@ layers:
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Income
+  - key: us/guidance/acf/ocs/liheap-at/2026-4
+    name: 'LIHEAP-AT-2026-4: Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2027 (FY27) (page)'
+    layer: federal
+    citation_path: us/guidance/acf/ocs/liheap-at/2026-4
+    source_url: https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27
+    sources:
+    - manifests/us-liheap-model-plan-2026-09-15.yaml
+    manifest: manifests/us-liheap-model-plan-2026-09-15.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us/guidance/acf/ocs/liheap-at/2025-04
+    name: 'LIHEAP-AT-2025-04: LIHEAP-AT-2025-04 Model Plan Application for LIHEAP Funding for Federal Fiscal Year
+      2026 (FY26) (page)'
+    layer: federal
+    citation_path: us/guidance/acf/ocs/liheap-at/2025-04
+    source_url: https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026
+    sources:
+    - manifests/us-liheap-model-plan-2026-09-15.yaml
+    manifest: manifests/us-liheap-model-plan-2026-09-15.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Household and eligibility
 - jurisdiction: us-al
   screener: []
   full:
@@ -1147,6 +1169,18 @@ layers:
     scope: excluded
     reason: 'Back-year table: not current law'
     part: Benefit amount
+  - key: us-ar/manual/aeo/liheap-policy-and-procedures-manual/ffy2025
+    name: Arkansas LIHEAP Policy and Procedures Manual, FFY 2025 (Arkansas Energy Office; effective October 1, 2024
+      - September 30, 2025)
+    layer: state
+    citation_path: us-ar/manual/aeo/liheap-policy-and-procedures-manual/ffy2025
+    source_url: https://liheapch.acf.gov/docs/2025/manuals/AR_Manual_2025.pdf
+    sources:
+    - manifests/us-ar-liheap-policy-manual-manual.yaml
+    manifest: manifests/us-ar-liheap-policy-manual-manual.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Other
   - key: us-ar/policy/acf/liheap-plan/fy2026
     name: Arkansas LIHEAP Detailed Model Plan, FY 2026
     layer: state
